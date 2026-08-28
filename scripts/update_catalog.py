@@ -12,6 +12,7 @@ from pypdf import PdfReader
 NRGC_PAGE = "https://nrgc.nebraska.gov/gaming/sports-betting"
 CATALOG_JSON = "data/catalog.json"
 CATALOG_PDF = "data/catalog-current.pdf"
+BASELINE_FLAG = "data/catalog-baseline-established.txt"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 ActiveOfferingsReview/1.0"
@@ -146,11 +147,10 @@ def looks_like_boilerplate(line):
 
 
 def extract_catalog_entries(text):
-    raw_lines = text.splitlines()
     entries = []
     seen = set()
 
-    for raw_line in raw_lines:
+    for raw_line in text.splitlines():
         line = normalize_line(raw_line)
 
         if not line:
@@ -162,7 +162,6 @@ def extract_catalog_entries(text):
         if looks_like_boilerplate(line):
             continue
 
-        # Skip lines that are mostly punctuation/numbers
         if not re.search(r"[A-Za-z]", line):
             continue
 
@@ -198,17 +197,26 @@ def main():
     entries = extract_catalog_entries(text)
 
     existing = load_existing_catalog()
-    previous_entries = existing.get("entries", [])
 
-    previous_lookup = {
-        item.casefold() for item in previous_entries
-    }
+    baseline_exists = os.path.exists(BASELINE_FLAG)
 
-    new_entries = [
-        item
-        for item in entries
-        if item.casefold() not in previous_lookup
-    ]
+    if baseline_exists:
+        previous_entries = existing.get("entries", [])
+
+        previous_lookup = {
+            item.casefold() for item in previous_entries
+        }
+
+        new_entries = [
+            item
+            for item in entries
+            if item.casefold() not in previous_lookup
+        ]
+
+        status = "comparison"
+    else:
+        new_entries = []
+        status = "baseline-established"
 
     catalog = {
         "source_page": NRGC_PAGE,
@@ -223,6 +231,7 @@ def main():
             item: "UNMAPPED / REVIEW"
             for item in new_entries
         },
+        "comparison_status": status,
     }
 
     save_catalog(catalog)
@@ -232,8 +241,15 @@ def main():
     with open(CATALOG_PDF, "wb") as file:
         file.write(pdf_bytes)
 
+    if not baseline_exists:
+        with open(BASELINE_FLAG, "w", encoding="utf-8") as file:
+            file.write(
+                "Clean catalog baseline established automatically.\n"
+            )
+
     print(f"Catalog: {latest['text']}")
     print(f"Entries found: {len(entries)}")
+    print(f"Comparison status: {status}")
     print(f"New entries: {len(new_entries)}")
 
     for item in new_entries:
