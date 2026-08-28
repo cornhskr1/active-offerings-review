@@ -95,6 +95,10 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .refresh-result.ok{color:#157347;font-weight:800}
 .refresh-result.warn{color:#b54708;font-weight:800}
 @media(max-width:760px){.review-refresh-box{max-width:none;min-width:0;width:100%;margin-top:12px}}
+
+.completed-event{opacity:.92}
+#completedTodayCard .review-card{border-left:4px solid #157347}
+#completedTodayCard .staff-action{display:none}
 </style>
 </head>
 <body>
@@ -149,7 +153,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="metric"><b>24</b><span>catalog sport sections</span></div>
 <div class="metric"><b>56</b><span>restriction / condition records</span></div>
 <div class="metric"><b>24</b><span>verified known U18 records</span></div>
-<div class="metric"><b>10</b><span>current priority triggers</span></div>
+<div class="metric"><b id="priorityTriggerCount">10</b><span>current priority triggers</span></div>
 <div class="metric"><b>7</b><span>tennis review lanes</span></div>
 <div class="metric" id="sourceFreshnessMetric">
 <b id="sourceFreshnessValue">—</b>
@@ -167,7 +171,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <input id="queueSearch" placeholder="Search event, sport, athlete, restriction..." type="search"/>
 </div>
 <div class="review-grid-cards" id="reviewQueue">
-<article class="review-card" data-qclass="red" data-search="ncaa soccer nebraska vs omaha nebraska collegiate team playing in nebraska. verify the event is not offered on kambi, igt, or caesars.">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-27" data-qclass="red" data-search="ncaa soccer nebraska vs omaha nebraska collegiate team playing in nebraska. verify the event is not offered on kambi, igt, or caesars." data-start-hour="19" data-start-minute="5" data-start-zone="CT">
 <div class="review-top"><span class="pill red">NOT PERMISSIBLE</span><span class="review-date">Aug. 27 · 7:05 PM CT</span></div>
 <div class="review-sport">NCAA Soccer</div>
 <h3>Nebraska vs Omaha</h3>
@@ -175,7 +179,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Nebraska collegiate team playing in Nebraska.</p>
 <div class="staff-action"><b>Staff check</b><span>Verify the event is not offered on Kambi, IGT, or Caesars.</span></div>
 </article>
-<article class="review-card" data-qclass="red" data-search="ncaa women's soccer creighton vs kansas city nebraska collegiate team playing in nebraska. verify the event is not offered on kambi, igt, or caesars.">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-27" data-qclass="red" data-search="ncaa women's soccer creighton vs kansas city nebraska collegiate team playing in nebraska. verify the event is not offered on kambi, igt, or caesars." data-start-hour="16" data-start-minute="30" data-start-zone="CT">
 <div class="review-top"><span class="pill red">NOT PERMISSIBLE</span><span class="review-date">Aug. 27 · 4:30 PM CT</span></div>
 <div class="review-sport">NCAA Women's Soccer</div>
 <h3>Creighton vs Kansas City</h3>
@@ -183,7 +187,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Nebraska collegiate team playing in Nebraska.</p>
 <div class="staff-action"><b>Staff check</b><span>Verify the event is not offered on Kambi, IGT, or Caesars.</span></div>
 </article>
-<article class="review-card" data-qclass="red" data-search="ncaa men's soccer creighton vs san francisco nebraska collegiate team playing in nebraska. verify the event is not offered on kambi, igt, or caesars.">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-27" data-qclass="red" data-search="ncaa men's soccer creighton vs san francisco nebraska collegiate team playing in nebraska. verify the event is not offered on kambi, igt, or caesars." data-start-hour="19" data-start-minute="30" data-start-zone="CT">
 <div class="review-top"><span class="pill red">NOT PERMISSIBLE</span><span class="review-date">Aug. 27 · 7:30 PM CT</span></div>
 <div class="review-sport">NCAA Men's Soccer</div>
 <h3>Creighton vs San Francisco</h3>
@@ -191,7 +195,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Nebraska collegiate team playing in Nebraska.</p>
 <div class="staff-action"><b>Staff check</b><span>Verify the event is not offered on Kambi, IGT, or Caesars.</span></div>
 </article>
-<article class="review-card" data-qclass="amber" data-search="ncaa volleyball nebraska vs florida neutral exhibition today. it is not the official regular-season opener. do not trigger the nebraska regular-season futures cutoff yet; official opener is aug. 29 vs unlv.">
+<article class="review-card" data-duration-hours="3.0" data-event-date="2026-08-27" data-qclass="amber" data-search="ncaa volleyball nebraska vs florida neutral exhibition today. it is not the official regular-season opener. do not trigger the nebraska regular-season futures cutoff yet; official opener is aug. 29 vs unlv." data-start-hour="19" data-start-minute="0" data-start-zone="CT">
 <div class="review-top"><span class="pill amber">REVIEW</span><span class="review-date">Aug. 27 · 7:00 PM CT</span></div>
 <div class="review-sport">NCAA Volleyball</div>
 <h3>Nebraska vs Florida</h3>
@@ -199,7 +203,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Neutral exhibition today. It is not the official regular-season opener.</p>
 <div class="staff-action"><b>Staff check</b><span>Do not trigger the Nebraska regular-season futures cutoff yet; official opener is Aug. 29 vs UNLV.</span></div>
 </article>
-<article class="review-card" data-qclass="amber" data-search="tennis · us open julieta pareja vs lucrezia stefanini julieta pareja is 17 (wta dob feb. 18, 2009). search athlete-specific markets for julieta pareja and verify no prohibited u18 performance/nonperformance market is offered.">
+<article class="review-card" data-duration-hours="4.0" data-event-date="2026-08-27" data-qclass="amber" data-search="tennis · us open julieta pareja vs lucrezia stefanini julieta pareja is 17 (wta dob feb. 18, 2009). search athlete-specific markets for julieta pareja and verify no prohibited u18 performance/nonperformance market is offered.">
 <div class="review-top"><span class="pill amber">U18 ATHLETE</span><span class="review-date">Aug. 27 · Final Qualifying Round</span></div>
 <div class="review-sport">Tennis · US Open</div>
 <h3>Julieta Pareja vs Lucrezia Stefanini</h3>
@@ -207,7 +211,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Julieta Pareja is 17 (WTA DOB Feb. 18, 2009).</p>
 <div class="staff-action"><b>Staff check</b><span>Search athlete-specific markets for Julieta Pareja and verify no prohibited U18 performance/nonperformance market is offered.</span></div>
 </article>
-<article class="review-card" data-qclass="red" data-search="soccer · brazil campeonato brasileiro série b catalog-specific restriction applies to série b. check active brazil série b markets across all swsps for proposition offerings.">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-28" data-qclass="red" data-search="soccer · brazil campeonato brasileiro série b catalog-specific restriction applies to série b. check active brazil série b markets across all swsps for proposition offerings.">
 <div class="review-top"><span class="pill red">NO PROPOSITION WAGERS</span><span class="review-date">In season · Aug. 28–29 fixtures</span></div>
 <div class="review-sport">Soccer · Brazil</div>
 <h3>Campeonato Brasileiro Série B</h3>
@@ -215,7 +219,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Catalog-specific restriction applies to Série B.</p>
 <div class="staff-action"><b>Staff check</b><span>Check active Brazil Série B markets across all SWSPs for proposition offerings.</span></div>
 </article>
-<article class="review-card" data-qclass="amber" data-search="soccer · mls red bull new york vs philadelphia union known u18 players are attached to both teams. check matthew dos santos (17), cavan sullivan (16), and malik jakupovic (17) in athlete-specific markets.">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-29" data-qclass="amber" data-search="soccer · mls red bull new york vs philadelphia union known u18 players are attached to both teams. check matthew dos santos (17), cavan sullivan (16), and malik jakupovic (17) in athlete-specific markets.">
 <div class="review-top"><span class="pill amber">U18 REVIEW</span><span class="review-date">Aug. 29</span></div>
 <div class="review-sport">Soccer · MLS</div>
 <h3>Red Bull New York vs Philadelphia Union</h3>
@@ -223,7 +227,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Known U18 players are attached to both teams.</p>
 <div class="staff-action"><b>Staff check</b><span>Check Matthew Dos Santos (17), Cavan Sullivan (16), and Malik Jakupovic (17) in athlete-specific markets.</span></div>
 </article>
-<article class="review-card" data-qclass="amber" data-search="soccer · mls houston dynamo fc vs san jose earthquakes known u18 players are attached to both teams. check matthew arana (15) and kaedren spivey (17).">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-29" data-qclass="amber" data-search="soccer · mls houston dynamo fc vs san jose earthquakes known u18 players are attached to both teams. check matthew arana (15) and kaedren spivey (17).">
 <div class="review-top"><span class="pill amber">U18 REVIEW</span><span class="review-date">Aug. 29</span></div>
 <div class="review-sport">Soccer · MLS</div>
 <h3>Houston Dynamo FC vs San Jose Earthquakes</h3>
@@ -231,7 +235,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Known U18 players are attached to both teams.</p>
 <div class="staff-action"><b>Staff check</b><span>Check Matthew Arana (15) and Kaedren Spivey (17).</span></div>
 </article>
-<article class="review-card" data-qclass="amber" data-search="soccer · mls minnesota united fc vs orlando city sc known u18 players are attached to both teams. check darius randell (17) and gustavo caraballo (16).">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-29" data-qclass="amber" data-search="soccer · mls minnesota united fc vs orlando city sc known u18 players are attached to both teams. check darius randell (17) and gustavo caraballo (16).">
 <div class="review-top"><span class="pill amber">U18 REVIEW</span><span class="review-date">Aug. 29</span></div>
 <div class="review-sport">Soccer · MLS</div>
 <h3>Minnesota United FC vs Orlando City SC</h3>
@@ -239,14 +243,14 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Why:</b> Known U18 players are attached to both teams.</p>
 <div class="staff-action"><b>Staff check</b><span>Check Darius Randell (17) and Gustavo Caraballo (16).</span></div>
 </article>
-<article class="review-card" data-qclass="amber" data-search="soccer · mls inter miami cf vs cf montréal known u18 players are attached to both teams. check alexander shaw (17) and samsy keita (16).">
+<article class="review-card" data-duration-hours="2.5" data-event-date="2026-08-29" data-qclass="amber" data-search="soccer · mls inter miami cf vs cf montréal known u18 players are attached to both teams. check alexander shaw (17) and samsy keita (16).">
 <div class="review-top"><span class="pill amber">U18 REVIEW</span><span class="review-date">Aug. 29</span></div>
 <div class="review-sport">Soccer · MLS</div>
 <h3>Inter Miami CF vs CF Montréal</h3>
 <div class="review-detail">United States / Canada</div>
 <p><b>Why:</b> Known U18 players are attached to both teams.</p>
 <div class="staff-action"><b>Staff check</b><span>Check Alexander Shaw (17) and Samsy Keita (16).</span></div>
-</article><article class="review-card" data-qclass="amber" data-search="ncaa football usc ethan boobie feaster san jose state u18">
+</article><article class="review-card" data-duration-hours="4.0" data-event-date="2026-08-29" data-qclass="amber" data-search="ncaa football usc ethan boobie feaster san jose state u18" data-start-hour="12" data-start-minute="0" data-start-zone="PT">
 <div class="review-top"><span class="pill amber">U18 REVIEW</span><span class="review-date">Aug. 29 · 12:00 PM PT</span></div>
 <div class="review-sport">NCAA Football · USC</div>
 <h3>USC vs San José State</h3>
@@ -254,7 +258,15 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Known U18:</b> Ethan “Boobie” Feaster (17), WR.</p>
 <p><b>Why:</b> USC states Feaster reclassified, skipped his senior year of high school, and begins his freshman campaign at 17.</p>
 <div class="staff-action"><b>Staff check</b><span>Search Feaster by name on each SWSP and document any athlete-specific markets for regulatory review.</span></div>
-</article></div></div><div class="card" id="liveNcaaFootball">
+</article></div></div><div class="callout completion-window-note">
+<b>Event lifecycle:</b> Review Today keeps upcoming and active events visible. Completed events move to <b>Completed Today</b>. 
+  When an official final-status feed is unavailable, the site uses an estimated sport-specific completion window rather than leaving events active until midnight.
+</div><div class="card" id="completedTodayCard">
+<div class="section-title">Completed Today</div>
+<p class="small">Events move here after a final status is received or, when no final-status feed is available, after the sport-specific estimated completion window.</p>
+<div class="review-grid-cards" id="completedTodayQueue"></div>
+<div class="empty-state" id="completedTodayEmpty">No reviewed events have completed yet today.</div>
+</div><div class="card" id="liveNcaaFootball">
 <div class="section-title">Live NCAA Football Intelligence</div>
 <p class="small">Generated from the latest NCAA Football adapter run. Known U18 athletes and incomplete roster-age coverage are both review triggers.</p>
 <div class="coverage-bars" id="ncaaFootballSummary">
@@ -1101,6 +1113,253 @@ if(us) us.addEventListener('input',e=>{
   document.addEventListener('activeOfferingsDataRefreshed',renderNcaaFootball);
   const btn=document.getElementById('refreshReviewBtn');
   if(btn) btn.addEventListener('click',()=>setTimeout(renderNcaaFootball,500));
+})();
+
+
+// Review Today rolling-window filter
+(function(){
+  const TZ='America/Chicago';
+
+  function centralDateParts(d=new Date()){
+    const parts=new Intl.DateTimeFormat('en-US',{
+      timeZone:TZ, year:'numeric', month:'2-digit', day:'2-digit'
+    }).formatToParts(d);
+    const map={};
+    parts.forEach(p=>{ if(p.type!=='literal') map[p.type]=p.value; });
+    return {year:+map.year, month:+map.month, day:+map.day};
+  }
+
+  function dayNumber(y,m,d){
+    return Math.floor(Date.UTC(y,m-1,d)/86400000);
+  }
+
+  function applyRollingReviewWindow(){
+    const p=centralDateParts();
+    const todayNum=dayNumber(p.year,p.month,p.day);
+    const endNum=todayNum+7;
+    let visible=0;
+
+    document.querySelectorAll('#reviewQueue .review-card').forEach(card=>{
+      const iso=card.dataset.eventDate;
+      let inWindow=true;
+
+      if(iso){
+        const m=iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if(m){
+          const n=dayNumber(+m[1],+m[2],+m[3]);
+          inWindow=(n>=todayNum && n<=endNum);
+        }
+      }
+
+      // Preserve any user-applied queue filter/search only if the event itself is current.
+      card.dataset.dateVisible = inWindow ? '1' : '0';
+      if(!inWindow){
+        card.classList.add('date-expired');
+        card.style.display='none';
+      } else {
+        card.classList.remove('date-expired');
+        // If no other filter is hiding it, restore display.
+        if(!card.classList.contains('hide')) card.style.display='';
+        visible++;
+      }
+    });
+
+    const count=document.getElementById('priorityTriggerCount');
+    if(count) count.textContent=visible;
+  }
+
+  // Make existing queue filters/search respect the rolling date window.
+  document.querySelectorAll('.queue-filter').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>{
+      document.querySelectorAll('#reviewQueue .review-card').forEach(card=>{
+        if(card.dataset.dateVisible==='0') card.style.display='none';
+      });
+    },0));
+  });
+
+  const search=document.getElementById('queueSearch');
+  if(search){
+    search.addEventListener('input',()=>setTimeout(()=>{
+      document.querySelectorAll('#reviewQueue .review-card').forEach(card=>{
+        if(card.dataset.dateVisible==='0') card.style.display='none';
+      });
+    },0));
+  }
+
+  applyRollingReviewWindow();
+  window.applyRollingReviewWindow=applyRollingReviewWindow;
+
+  const refreshBtn=document.getElementById('refreshReviewBtn');
+  if(refreshBtn){
+    refreshBtn.addEventListener('click',()=>setTimeout(applyRollingReviewWindow,650));
+  }
+
+  document.addEventListener('activeOfferingsDataRefreshed',applyRollingReviewWindow);
+})();
+
+
+// Event lifecycle: active queue -> Completed Today -> removed next day
+(function(){
+  const CENTRAL_TZ='America/Chicago';
+
+  function centralParts(d=new Date()){
+    const parts=new Intl.DateTimeFormat('en-US',{
+      timeZone:CENTRAL_TZ,
+      year:'numeric',month:'2-digit',day:'2-digit',
+      hour:'2-digit',minute:'2-digit',second:'2-digit',
+      hour12:false
+    }).formatToParts(d);
+    const x={};
+    parts.forEach(p=>{if(p.type!=='literal') x[p.type]=p.value});
+    return {
+      year:+x.year, month:+x.month, day:+x.day,
+      hour:+x.hour, minute:+x.minute, second:+x.second
+    };
+  }
+
+  function dayNum(y,m,d){ return Math.floor(Date.UTC(y,m-1,d)/86400000); }
+
+  // Convert a displayed local event time into Central time.
+  // This is intentionally simple for current US daylight time; adapter ISO timestamps will replace this later.
+  function toCentralHour(hour, zone){
+    zone=(zone||'CT').toUpperCase();
+    if(zone==='ET') return hour-1;
+    if(zone==='MT') return hour+1;
+    if(zone==='PT') return hour+2;
+    return hour;
+  }
+
+  function cloneForCompleted(card){
+    const clone=card.cloneNode(true);
+    clone.classList.remove('hide','date-expired');
+    clone.style.display='';
+    clone.classList.add('completed-event');
+    const top=clone.querySelector('.review-top');
+    if(top){
+      const status=top.querySelector('.pill');
+      if(status){
+        status.className='pill green';
+        status.textContent='COMPLETED';
+      }
+    }
+    return clone;
+  }
+
+  function applyEventLifecycle(){
+    const now=centralParts();
+    const todayN=dayNum(now.year,now.month,now.day);
+    const nowMinutes=now.hour*60+now.minute+(now.second/60);
+
+    const completedBox=document.getElementById('completedTodayQueue');
+    const empty=document.getElementById('completedTodayEmpty');
+    if(completedBox) completedBox.innerHTML='';
+
+    let activeVisible=0;
+    let completedCount=0;
+
+    document.querySelectorAll('#reviewQueue .review-card').forEach(card=>{
+      const iso=card.dataset.eventDate;
+      if(!iso){
+        // Undated persistent alert remains active.
+        card.style.display = card.classList.contains('hide') ? 'none' : '';
+        if(!card.classList.contains('hide')) activeVisible++;
+        return;
+      }
+
+      const m=iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if(!m) return;
+      const eventN=dayNum(+m[1],+m[2],+m[3]);
+
+      // Past calendar day: remove entirely.
+      if(eventN < todayN){
+        card.dataset.lifecycle='expired';
+        card.style.display='none';
+        return;
+      }
+
+      // Future event inside Today+7 stays active.
+      if(eventN > todayN){
+        card.dataset.lifecycle='upcoming';
+        if(card.dataset.dateVisible!=='0' && !card.classList.contains('hide')){
+          card.style.display='';
+          activeVisible++;
+        } else {
+          card.style.display='none';
+        }
+        return;
+      }
+
+      // Event is today. If we know a final-status attribute, it wins.
+      if((card.dataset.eventStatus||'').toUpperCase()==='FINAL'){
+        card.dataset.lifecycle='completed';
+        card.style.display='none';
+        if(completedBox){
+          completedBox.appendChild(cloneForCompleted(card));
+          completedCount++;
+        }
+        return;
+      }
+
+      // If start time is known, estimate completion.
+      if(card.dataset.startHour!==undefined){
+        let h=+card.dataset.startHour;
+        const min=+(card.dataset.startMinute||0);
+        h=toCentralHour(h,card.dataset.startZone||'CT');
+        let startMin=h*60+min;
+
+        // Handle converted times crossing midnight.
+        if(startMin<0) startMin+=1440;
+        if(startMin>=1440) startMin-=1440;
+
+        const duration=(+card.dataset.durationHours||3.5)*60;
+        const estimatedEnd=startMin+duration;
+
+        if(nowMinutes >= estimatedEnd){
+          card.dataset.lifecycle='completed';
+          card.style.display='none';
+          if(completedBox){
+            completedBox.appendChild(cloneForCompleted(card));
+            completedCount++;
+          }
+        } else {
+          card.dataset.lifecycle=(nowMinutes>=startMin)?'active':'upcoming';
+          if(card.dataset.dateVisible!=='0' && !card.classList.contains('hide')){
+            card.style.display='';
+            activeVisible++;
+          } else {
+            card.style.display='none';
+          }
+        }
+      } else {
+        // Same-day event without a start time remains visible for the day.
+        card.dataset.lifecycle='today-time-unknown';
+        if(card.dataset.dateVisible!=='0' && !card.classList.contains('hide')){
+          card.style.display='';
+          activeVisible++;
+        } else {
+          card.style.display='none';
+        }
+      }
+    });
+
+    const count=document.getElementById('priorityTriggerCount');
+    if(count) count.textContent=activeVisible;
+
+    if(empty) empty.style.display = completedCount ? 'none' : '';
+  }
+
+  window.applyEventLifecycle=applyEventLifecycle;
+
+  // Run after existing date-window logic.
+  setTimeout(applyEventLifecycle,50);
+
+  const refresh=document.getElementById('refreshReviewBtn');
+  if(refresh) refresh.addEventListener('click',()=>setTimeout(applyEventLifecycle,800));
+
+  document.addEventListener('activeOfferingsDataRefreshed',()=>setTimeout(applyEventLifecycle,100));
+
+  // Re-evaluate every minute while the page stays open.
+  setInterval(applyEventLifecycle,60000);
 })();
 </script>
 </main>
