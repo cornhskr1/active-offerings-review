@@ -254,7 +254,15 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Known U18:</b> Ethan “Boobie” Feaster (17), WR.</p>
 <p><b>Why:</b> USC states Feaster reclassified, skipped his senior year of high school, and begins his freshman campaign at 17.</p>
 <div class="staff-action"><b>Staff check</b><span>Search Feaster by name on each SWSP and document any athlete-specific markets for regulatory review.</span></div>
-</article></div></div>
+</article></div></div><div class="card" id="liveNcaaFootball">
+<div class="section-title">Live NCAA Football Intelligence</div>
+<p class="small">Generated from the latest NCAA Football adapter run. Known U18 athletes and incomplete roster-age coverage are both review triggers.</p>
+<div class="coverage-bars" id="ncaaFootballSummary">
+<div><span>Status</span><b>Waiting for first NCAA Football workflow run…</b></div>
+</div>
+<div class="review-grid-cards" id="ncaaFootballU18" style="margin-top:12px"></div>
+<div id="ncaaFootballCoverage" style="overflow:auto;margin-top:12px"></div>
+</div>
 <div class="two-col">
 <div class="card">
 <div class="section-title">Nebraska Futures Cutoff</div>
@@ -1043,6 +1051,56 @@ if(us) us.addEventListener('input',e=>{
 
   const btn = document.getElementById('refreshReviewBtn');
   if(btn) btn.addEventListener('click', performReview);
+})();
+
+
+// NCAA Football live adapter renderer
+(function(){
+  function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  async function renderNcaaFootball(){
+    const summary=document.getElementById('ncaaFootballSummary');
+    if(!summary) return;
+    try{
+      const r=await fetch(`data/ncaa-football-data.json?v=${Date.now()}`,{cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d=await r.json();
+      const known=(d.known_u18||[]);
+      const alerts=(d.coverage_alerts||[]);
+      summary.innerHTML=`
+        <div><span>Last NCAA Football check</span><b>${esc(new Date(d.generated_at).toLocaleString('en-US',{timeZone:'America/Chicago'}))} CT</b></div>
+        <div><span>Teams mapped</span><b>${esc(d.teams_mapped||0)}</b></div>
+        <div><span>Known U18</span><b>${known.length}</b></div>
+        <div><span>Coverage alerts</span><b>${alerts.length}</b></div>`;
+
+      const u=document.getElementById('ncaaFootballU18');
+      if(u){
+        u.innerHTML = known.length ? known.map(x=>`
+          <article class="review-card">
+            <div class="review-top"><span class="pill amber">U18 ATHLETE</span><span class="review-date">${esc(x.status)}</span></div>
+            <div class="review-sport">${esc(x.league)} · ${esc(x.team)}</div>
+            <h3>${esc(x.athlete)} · ${esc(x.age)}</h3>
+            <div class="review-detail">${esc(x.position||'')}</div>
+            <p><b>Evidence:</b> ${esc(x.evidence_note||'Official source verified')}</p>
+            <div class="staff-action"><b>Staff check</b><span>Search this athlete by name in active SWSP markets and review any athlete-specific performance/nonperformance offering.</span></div>
+          </article>`).join('') :
+          `<div class="empty-state">No verified NCAA Football U18 athlete is currently loaded. This does not mean the mapped rosters are cleared.</div>`;
+      }
+
+      const c=document.getElementById('ncaaFootballCoverage');
+      if(c){
+        c.innerHTML=`<table><thead><tr><th>Team</th><th>Schedule</th><th>Roster</th><th>Age Coverage</th><th>Known U18</th><th>Status</th></tr></thead><tbody>${
+          alerts.map(x=>`<tr><td><b>${esc(x.team)}</b></td><td><span class="pill ${x.schedule_ok?'green':'amber'}">${x.schedule_ok?'MAPPED':'CHECK'}</span></td><td><span class="pill ${x.participants_ok?'green':'amber'}">${x.participants_ok?'MAPPED':'CHECK'}</span></td><td><span class="pill amber">${esc(x.age_coverage)}</span></td><td>${esc(x.known_u18_count)}</td><td><span class="pill amber">${esc(x.coverage_state)}</span></td></tr>`).join('')
+        }</tbody></table>`;
+      }
+    }catch(e){
+      summary.innerHTML='<div><span>Status</span><b>NCAA Football data file not generated yet. Run the workflow once.</b></div>';
+    }
+  }
+  window.renderNcaaFootball=renderNcaaFootball;
+  renderNcaaFootball();
+  document.addEventListener('activeOfferingsDataRefreshed',renderNcaaFootball);
+  const btn=document.getElementById('refreshReviewBtn');
+  if(btn) btn.addEventListener('click',()=>setTimeout(renderNcaaFootball,500));
 })();
 </script>
 </main>
