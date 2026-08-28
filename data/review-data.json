@@ -1,10 +1,60 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-28T09:44:26.259806+00:00",
+  "generated_at": "2026-08-28T10:40:08.968533+00:00",
   "review_window_days": 7,
   "events": [],
-  "u18_matches": [],
+  "u18_matches": [
+    {
+      "sport": "NCAA Football",
+      "league": "NCAA FBS",
+      "team": "USC",
+      "athlete": "Ethan \"Boobie\" Feaster",
+      "age": 17,
+      "position": "WR",
+      "status": "VERIFIED",
+      "evidence_url": "https://usctrojans.com/sports/football/roster/ethan-boobie-feaster/18898",
+      "evidence_note": "USC official bio states he reclassified and elected to forgo his senior year of high school.",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    }
+  ],
   "restriction_triggers": [],
-  "coverage_alerts": [],
-  "background_checked_at": "2026-08-28T10:18:25.532088+00:00"
+  "coverage_alerts": [
+    {
+      "sport": "NCAA Football",
+      "league": "NCAA Football",
+      "team": "USC",
+      "coverage_state": "PARTIAL",
+      "schedule_ok": true,
+      "participants_ok": true,
+      "age_coverage": "PARTIAL",
+      "freshness": "CURRENT",
+      "known_u18_count": 1,
+      "reason": "full roster DOB/age screening not complete",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    },
+    {
+      "sport": "NCAA Football",
+      "league": "NCAA Football",
+      "team": "Nebraska",
+      "coverage_state": "PARTIAL",
+      "schedule_ok": true,
+      "participants_ok": true,
+      "age_coverage": "PARTIAL",
+      "freshness": "CURRENT",
+      "known_u18_count": 0,
+      "reason": "full roster DOB/age screening not complete",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    }
+  ],
+  "background_checked_at": "2026-08-28T10:40:08.968533+00:00",
+  "discovery_signals": [
+    {
+      "sport": "NCAA Football",
+      "team": "Nebraska",
+      "type": "FRESHMAN / RECLASSIFICATION DISCOVERY",
+      "status": "REVIEW",
+      "message": "Nebraska official roster/bio source contains freshman/reclassification indicators. Age verification remains required.",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    }
+  ]
 }

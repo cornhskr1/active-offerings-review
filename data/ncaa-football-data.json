@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-28T10:40:08.968533+00:00",
+  "sport": "NCAA Football",
+  "teams_mapped": 2,
+  "teams": [
+    {
+      "sport": "NCAA Football",
+      "team": "USC",
+      "division": "FBS",
+      "conference": "Big Ten",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00",
+      "schedule": {
+        "url": "https://usctrojans.com/sports/football/schedule",
+        "ok": true,
+        "http_status": 200,
+        "final_url": "https://usctrojans.com/sports/football/schedule"
+      },
+      "roster": {
+        "url": "https://usctrojans.com/sports/football/roster",
+        "ok": true,
+        "http_status": 200,
+        "final_url": "https://usctrojans.com/sports/football/roster"
+      },
+      "known_u18": [
+        {
+          "name": "Ethan \"Boobie\" Feaster",
+          "age": 17,
+          "position": "WR",
+          "status": "VERIFIED",
+          "evidence_url": "https://usctrojans.com/sports/football/roster/ethan-boobie-feaster/18898",
+          "evidence_note": "USC official bio states he reclassified and elected to forgo his senior year of high school."
+        }
+      ],
+      "freshman_discovery_signals": 0
+    },
+    {
+      "sport": "NCAA Football",
+      "team": "Nebraska",
+      "division": "FBS",
+      "conference": "Big Ten",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00",
+      "schedule": {
+        "url": "https://huskers.com/sports/football/schedule",
+        "ok": true,
+        "http_status": 200,
+        "final_url": "https://huskers.com/sports/football/schedule"
+      },
+      "roster": {
+        "url": "https://huskers.com/sports/football/roster",
+        "ok": true,
+        "http_status": 200,
+        "final_url": "https://huskers.com/sports/football/roster"
+      },
+      "known_u18": [],
+      "freshman_discovery_signals": 2
+    }
+  ],
+  "known_u18": [
+    {
+      "sport": "NCAA Football",
+      "league": "NCAA FBS",
+      "team": "USC",
+      "athlete": "Ethan \"Boobie\" Feaster",
+      "age": 17,
+      "position": "WR",
+      "status": "VERIFIED",
+      "evidence_url": "https://usctrojans.com/sports/football/roster/ethan-boobie-feaster/18898",
+      "evidence_note": "USC official bio states he reclassified and elected to forgo his senior year of high school.",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    }
+  ],
+  "freshman_discovery_signals": [
+    {
+      "sport": "NCAA Football",
+      "team": "Nebraska",
+      "type": "FRESHMAN / RECLASSIFICATION DISCOVERY",
+      "status": "REVIEW",
+      "message": "Nebraska official roster/bio source contains freshman/reclassification indicators. Age verification remains required.",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    }
+  ],
+  "coverage_alerts": [
+    {
+      "sport": "NCAA Football",
+      "league": "NCAA Football",
+      "team": "USC",
+      "coverage_state": "PARTIAL",
+      "schedule_ok": true,
+      "participants_ok": true,
+      "age_coverage": "PARTIAL",
+      "freshness": "CURRENT",
+      "known_u18_count": 1,
+      "reason": "full roster DOB/age screening not complete",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    },
+    {
+      "sport": "NCAA Football",
+      "league": "NCAA Football",
+      "team": "Nebraska",
+      "coverage_state": "PARTIAL",
+      "schedule_ok": true,
+      "participants_ok": true,
+      "age_coverage": "PARTIAL",
+      "freshness": "CURRENT",
+      "known_u18_count": 0,
+      "reason": "full roster DOB/age screening not complete",
+      "checked_at": "2026-08-28T10:40:08.968533+00:00"
+    }
+  ]
+}
