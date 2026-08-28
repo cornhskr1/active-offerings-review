@@ -17,6 +17,28 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 ActiveOfferingsReview/1.0"
 }
 
+BOILERPLATE = {
+    "nebraska racing and gaming commission",
+    "authorized sports wagering menu",
+    "authorized sports",
+    "wagering menu",
+    "approved wagers and events",
+    "table of contents",
+    "contents",
+    "summary",
+    "sport",
+    "sports",
+    "league",
+    "leagues",
+    "event",
+    "events",
+    "competition",
+    "competitions",
+    "restriction",
+    "restrictions",
+    "page",
+}
+
 
 def get_latest_catalog_url():
     response = requests.get(NRGC_PAGE, headers=HEADERS, timeout=30)
@@ -62,7 +84,6 @@ def get_latest_catalog_url():
                         year, month, day = map(int, parts)
                     else:
                         month, day, year = map(int, parts)
-
                         if year < 100:
                             year += 2000
 
@@ -80,7 +101,6 @@ def get_latest_catalog_url():
 def download_pdf(url):
     response = requests.get(url, headers=HEADERS, timeout=60)
     response.raise_for_status()
-
     return response.content
 
 
@@ -95,49 +115,64 @@ def extract_pdf_text(pdf_bytes):
 
 
 def normalize_line(value):
-    return re.sub(r"\s+", " ", value).strip()
+    value = re.sub(r"\s+", " ", value).strip()
+    value = value.strip("•|-–— ")
+    return value
+
+
+def looks_like_boilerplate(line):
+    lowered = line.casefold().strip()
+
+    if lowered in BOILERPLATE:
+        return True
+
+    if re.fullmatch(r"\d+", line):
+        return True
+
+    if re.fullmatch(r"page\s+\d+", lowered):
+        return True
+
+    if re.fullmatch(
+        r"(january|february|march|april|may|june|july|august|"
+        r"september|october|november|december)\s+\d{1,2},\s+\d{4}",
+        lowered
+    ):
+        return True
+
+    if re.fullmatch(r"\d{1,2}[-/]\d{1,2}[-/]\d{2,4}", lowered):
+        return True
+
+    return False
 
 
 def extract_catalog_entries(text):
-    lines = [normalize_line(line) for line in text.splitlines()]
-    lines = [line for line in lines if line]
-
+    raw_lines = text.splitlines()
     entries = []
-    ignored = {
-        "sport",
-        "league",
-        "event",
-        "competition",
-        "restriction",
-        "restrictions",
-        "authorized sports wagering menu",
-    }
+    seen = set()
 
-    for line in lines:
-        lowered = line.lower()
+    for raw_line in raw_lines:
+        line = normalize_line(raw_line)
 
-        if lowered in ignored:
+        if not line:
             continue
 
         if len(line) < 3:
             continue
 
-        if re.fullmatch(r"\d+", line):
+        if looks_like_boilerplate(line):
             continue
 
-        entries.append(line)
+        # Skip lines that are mostly punctuation/numbers
+        if not re.search(r"[A-Za-z]", line):
+            continue
 
-    seen = set()
-    unique_entries = []
-
-    for entry in entries:
-        key = entry.casefold()
+        key = line.casefold()
 
         if key not in seen:
             seen.add(key)
-            unique_entries.append(entry)
+            entries.append(line)
 
-    return unique_entries
+    return entries
 
 
 def load_existing_catalog():
