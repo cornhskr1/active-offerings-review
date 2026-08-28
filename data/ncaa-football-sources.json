@@ -1,314 +1,560 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "sport": "NCAA Football",
-  "scope": "FBS inventory",
+  "scope": "FBS auto-mapping inventory",
   "coverage_rule": "Never Green by Absence",
-  "notes": [
-    "This inventory loads the full NCAA Football FBS universe into coverage control.",
-    "Mapped=true means the adapter has live public schedule/roster source URLs today.",
-    "Mapped=false does not mean low risk; it is an explicit unmapped blind spot until source coverage is added."
-  ],
+  "path_candidates": {
+    "schedule": [
+      "/sports/football/schedule",
+      "/sports/football/schedule/",
+      "/sport/football/schedule",
+      "/football/schedule"
+    ],
+    "roster": [
+      "/sports/football/roster",
+      "/sports/football/roster/",
+      "/sport/football/roster",
+      "/football/roster"
+    ]
+  },
   "teams": [
     {
       "team": "Boston College",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://bceagles.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "California",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://calbears.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Clemson",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://clemsontigers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Duke",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goduke.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Florida State",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://seminoles.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Georgia Tech",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ramblinwreck.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Louisville",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gocards.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Miami",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://miamihurricanes.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "NC State",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gopack.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "North Carolina",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goheels.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Pittsburgh",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://pittsburghpanthers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "SMU",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://smumustangs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Stanford",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gostanford.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Syracuse",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://cuse.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Virginia",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://virginiasports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Virginia Tech",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://hokiesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Wake Forest",
       "conference": "ACC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://godeacs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Arizona",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://arizonawildcats.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Arizona State",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://thesundevils.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Baylor",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://baylorbears.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "BYU",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://byucougars.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Cincinnati",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gobearcats.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Colorado",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://cubuffs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Houston",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://uhcougars.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Iowa State",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://cyclones.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Kansas",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://kuathletics.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Kansas State",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://kstatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Oklahoma State",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://okstate.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "TCU",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gofrogs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Texas Tech",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://texastech.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UCF",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ucfknights.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Utah",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://utahutes.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "West Virginia",
       "conference": "Big 12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://wvusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Illinois",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://fightingillini.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Indiana",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://iuhoosiers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Iowa",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://hawkeyesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Maryland",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://umterps.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Michigan",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://mgoblue.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Michigan State",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://msuspartans.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Minnesota",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gophersports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Nebraska",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": true,
-      "schedule_url": "https://huskers.com/sports/football/schedule",
-      "roster_url": "https://huskers.com/sports/football/roster",
-      "priority": "HIGH",
+      "candidate_roots": [
+        "https://huskers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
       "known_u18": []
     },
     {
       "team": "Northwestern",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://nusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Ohio State",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ohiostatebuckeyes.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Oregon",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goducks.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Penn State",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gopsusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Purdue",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://purduesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Rutgers",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://scarletknights.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UCLA",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://uclabruins.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "USC",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": true,
-      "schedule_url": "https://usctrojans.com/sports/football/schedule",
-      "roster_url": "https://usctrojans.com/sports/football/roster",
-      "priority": "CRITICAL",
+      "candidate_roots": [
+        "https://usctrojans.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
       "known_u18": [
         {
           "name": "Ethan \"Boobie\" Feaster",
@@ -324,523 +570,958 @@
       "team": "Washington",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gohuskies.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Wisconsin",
       "conference": "Big Ten",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://uwbadgers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Alabama",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://rolltide.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Arkansas",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://arkansasrazorbacks.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Auburn",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://auburntigers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Florida",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://floridagators.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Georgia",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://georgiadogs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Kentucky",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ukathletics.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "LSU",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://lsusports.net"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Mississippi State",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://hailstate.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Missouri",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://mutigers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Oklahoma",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://soonersports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Ole Miss",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://olemisssports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "South Carolina",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gamecocksonline.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Tennessee",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://utsports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Texas",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://texaslonghorns.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Texas A&M",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://12thman.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Vanderbilt",
       "conference": "SEC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://vucommodores.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Army",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goarmywestpoint.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Charlotte",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://charlotte49ers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "East Carolina",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ecupirates.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "FAU",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://fausports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Memphis",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gotigersgo.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Navy",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://navysports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "North Texas",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://meangreensports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Rice",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://riceowls.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "South Florida",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gousfbulls.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Temple",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://owlsports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Tulane",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://tulanegreenwave.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Tulsa",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://tulsahurricane.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UAB",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://uabsports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UTSA",
       "conference": "American Athletic",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goutsa.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Delaware",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://bluehens.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "FIU",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://fiusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Jacksonville State",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://jaxstatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Kennesaw State",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ksuowls.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Liberty",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://libertyflames.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Louisiana Tech",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://latechsports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Middle Tennessee",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goblueraiders.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Missouri State",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://missouristatebears.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "New Mexico State",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://nmstatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Sam Houston",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gobearkats.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UTEP",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://utepminers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Western Kentucky",
       "conference": "Conference USA",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://wkusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Akron",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gozips.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Ball State",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ballstatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Bowling Green",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://bgsufalcons.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Buffalo",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ubbulls.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Central Michigan",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://cmuchippewas.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Eastern Michigan",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://emueagles.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Kent State",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://kentstatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Miami (OH)",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://miamiredhawks.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Northern Illinois",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://niuhuskies.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Ohio",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ohiobobcats.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Toledo",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://utrockets.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UMass",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://umassathletics.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Western Michigan",
       "conference": "MAC",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://wmubroncos.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Air Force",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goairforcefalcons.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Boise State",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://broncosports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Colorado State",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://csurams.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Fresno State",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gobulldogs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Hawaii",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://hawaiiathletics.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Nevada",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://nevadawolfpack.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "New Mexico",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://golobos.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "San Diego State",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goaztecs.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "San Jose State",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://sjsuspartans.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UNLV",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://unlvrebels.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Utah State",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://utahstateaggies.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Wyoming",
       "conference": "Mountain West",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gowyo.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Oregon State",
       "conference": "Pac-12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://osubeavers.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Washington State",
       "conference": "Pac-12",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://wsucougars.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Appalachian State",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://appstatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Arkansas State",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://astateredwolves.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Coastal Carolina",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://goccusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Georgia Southern",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://gseagles.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Georgia State",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://georgiastatesports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "James Madison",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://jmusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Louisiana",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ragincajuns.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Louisiana-Monroe",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://ulmwarhawks.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Marshall",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://herdzone.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Old Dominion",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://odusports.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "South Alabama",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://usajaguars.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Southern Miss",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://southernmiss.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Texas State",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://txst.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Troy",
       "conference": "Sun Belt",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://troytrojans.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "Notre Dame",
       "conference": "Independent",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://fightingirish.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     },
     {
       "team": "UConn",
       "conference": "Independent",
       "division": "FBS",
-      "mapped": false
+      "candidate_roots": [
+        "https://uconnhuskies.com"
+      ],
+      "mapped": false,
+      "mapping_status": "UNTESTED",
+      "known_u18": []
     }
   ]
 }
