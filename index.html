@@ -75,6 +75,26 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .flag-index-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.flag-index-grid>div{border:1px solid var(--line);border-radius:9px;padding:11px}.flag-index-grid b{display:block;margin-top:7px}.flag-index-grid p{font-size:12px;color:var(--muted);margin-bottom:0}
 @media(max-width:1000px){.college-events-grid{grid-template-columns:repeat(2,1fr)}.rule-stack{grid-template-columns:repeat(2,1fr)}.flag-index-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.dashboard-hero{display:block}.hero-date{text-align:left;margin-top:12px}.review-grid-cards,.college-events-grid,.coverage-status-grid,.flag-index-grid{grid-template-columns:1fr}.rule-stack{grid-template-columns:1fr}.filter-bar input{max-width:none;margin-left:0}.pipeline{display:grid;grid-template-columns:1fr}.arrow{display:none}}
+
+.review-refresh-box{
+  min-width:285px; max-width:360px; background:#f8fafc; border:1px solid var(--line);
+  border-radius:11px; padding:12px; display:flex; flex-direction:column; gap:9px;
+}
+.refresh-review-btn{
+  appearance:none; border:0; border-radius:9px; background:var(--nav); color:#fff;
+  font-weight:900; font-size:14px; padding:11px 14px; cursor:pointer; width:100%;
+  box-shadow:0 1px 2px rgba(16,24,40,.12)
+}
+.refresh-review-btn:disabled{opacity:.65;cursor:wait}
+.refresh-review-btn.success{background:#157347}
+.refresh-meta{display:grid;gap:6px}
+.refresh-meta>div{display:flex;justify-content:space-between;gap:10px;font-size:11px;border-top:1px solid #e7eaf0;padding-top:6px}
+.refresh-meta span{color:var(--muted)}
+.refresh-meta b{text-align:right}
+.refresh-result{font-size:11px;color:var(--muted);min-height:14px}
+.refresh-result.ok{color:#157347;font-weight:800}
+.refresh-result.warn{color:#b54708;font-weight:800}
+@media(max-width:760px){.review-refresh-box{max-width:none;min-width:0;width:100%;margin-top:12px}}
 </style>
 </head>
 <body>
@@ -90,17 +110,15 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 </div>
 </header>
-
 <div style="max-width:1200px;margin:10px auto 0;padding:0 16px">
-  <div style="background:#eef6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;font-size:12px;color:#1e3a5f">
-    <b>Public-data compliance reference:</b> this site is designed to use only public regulatory, schedule, roster, draw, and athlete-profile information. Internal audit notes, patron information, and confidential operator materials should not be stored here.
+<div style="background:#eef6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;font-size:12px;color:#1e3a5f">
+<b>Public-data compliance reference:</b> this site is designed to use only public regulatory, schedule, roster, draw, and athlete-profile information. Internal audit notes, patron information, and confidential operator materials should not be stored here.
   </div>
 </div>
-
 <main class="wrap">
 <div class="topline">
 <div><b>Interim catalog source:</b> MASTER Nebraska Authorized Sports Wagering Menu</div>
-<div class="version" id="catalogVersion">Loading current NRGC catalog…</div>
+<div class="version">Menu dated 8/20/2026 · includes additions through 8/26/2026</div>
 </div>
 <div class="nav">
 <button class="active" data-panel="today">Review Today</button>
@@ -116,16 +134,31 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <h2>What needs attention right now?</h2>
 <p>Cross-catalog queue. An item appears because of a catalog restriction, Nebraska collegiate rule, known U18 participant, futures cutoff, or unresolved source condition.</p>
 </div>
-<div class="hero-date"><b>Aug. 27, 2026</b><span>Today + 7 review window</span></div>
+<div class="hero-date"><b id="todayDate">Loading current date…</b><span id="reviewWindow">Today + 7 review window</span></div>
+<div class="review-refresh-box">
+<button class="refresh-review-btn" id="refreshReviewBtn" type="button">
+        ↻ Refresh Review
+      </button>
+<div class="refresh-meta">
+<div><span>Review performed</span><b id="reviewPerformed">Not yet refreshed</b></div>
+<div><span>Underlying data</span><b id="dataRefreshed">Loading status…</b></div>
 </div>
+<div aria-live="polite" class="refresh-result" id="refreshResult"></div>
+</div></div>
 <div class="metrics">
 <div class="metric"><b>24</b><span>catalog sport sections</span></div>
 <div class="metric"><b>56</b><span>restriction / condition records</span></div>
 <div class="metric"><b>24</b><span>verified known U18 records</span></div>
 <div class="metric"><b>10</b><span>current priority triggers</span></div>
 <div class="metric"><b>7</b><span>tennis review lanes</span></div>
-</div>
-<div class="card">
+<div class="metric" id="sourceFreshnessMetric">
+<b id="sourceFreshnessValue">—</b>
+<span>public sources last checked</span>
+</div></div>
+<div class="callout amber dynamic-data-note">
+<b>Refresh behavior:</b> the button reloads the newest dataset published by the background refresh job and records the review timestamp. 
+      Events can only be considered current where an official schedule/participant source has been mapped; unmapped coverage remains a visible review condition.
+    </div><div class="card">
 <div class="section-title">Priority Queue</div>
 <div class="filter-bar">
 <button class="queue-filter active" data-qfilter="all">All</button>
@@ -898,67 +931,120 @@ if(us) us.addEventListener('input',e=>{
  const q=e.target.value.toLowerCase();
  document.querySelectorAll('#u18Table tbody tr').forEach(r=>r.classList.toggle('hide',!r.dataset.u18search.includes(q)));
 });
-</script>
-</main>
 
-<script>
-(async function () {
-  try {
-    const response = await fetch('./data/catalog.json?ts=' + Date.now());
-    const catalog = await response.json();
 
-    const versionLine = document.getElementById('catalogVersion');
-    if (versionLine) {
-      versionLine.textContent =
-        catalog.catalog_title
-          ? `Current catalog: ${catalog.catalog_title}`
-          : 'Current NRGC catalog loaded';
+// Production Review Refresh control
+(function(){
+  const TZ = 'America/Chicago';
+  const fmtDate = (d) => new Intl.DateTimeFormat('en-US', {
+    timeZone: TZ, month:'short', day:'numeric', year:'numeric'
+  }).format(d);
+  const fmtStamp = (d) => new Intl.DateTimeFormat('en-US', {
+    timeZone: TZ, month:'short', day:'numeric', year:'numeric',
+    hour:'numeric', minute:'2-digit', second:'2-digit', timeZoneName:'short'
+  }).format(d);
+
+  function updateCurrentDate(){
+    const now = new Date();
+    const dateEl = document.getElementById('todayDate');
+    if(dateEl) dateEl.textContent = fmtDate(now);
+
+    const windowEl = document.getElementById('reviewWindow');
+    if(windowEl){
+      const end = new Date(now.getTime() + (7*24*60*60*1000));
+      windowEl.textContent = `Today + 7 · through ${fmtDate(end)}`;
+    }
+  }
+
+  async function loadStatus(cacheBust=true){
+    const suffix = cacheBust ? `?v=${Date.now()}` : '';
+    const res = await fetch(`data/status.json${suffix}`, {cache:'no-store'});
+    if(!res.ok) throw new Error(`Status ${res.status}`);
+    const data = await res.json();
+
+    const dataEl = document.getElementById('dataRefreshed');
+    if(dataEl){
+      dataEl.textContent = data.generated_at
+        ? fmtStamp(new Date(data.generated_at))
+        : 'Timestamp unavailable';
     }
 
-    const banner = document.createElement('div');
-    banner.style.cssText = `
-      position:fixed;
-      right:16px;
-      bottom:16px;
-      z-index:9999;
-      max-width:340px;
-      background:#101828;
-      color:white;
-      border:1px solid #475467;
-      border-radius:12px;
-      padding:12px 14px;
-      box-shadow:0 8px 24px rgba(0,0,0,.25);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:13px;
-      line-height:1.4;
-    `;
+    const fresh = document.getElementById('sourceFreshnessValue');
+    if(fresh){
+      const checked = Array.isArray(data.sources) ? data.sources.filter(s=>s.checked_at).length : 0;
+      const total = Array.isArray(data.sources) ? data.sources.length : 0;
+      fresh.textContent = total ? `${checked} / ${total}` : '—';
+    }
 
-    const title = catalog.catalog_title || 'NRGC Catalog';
-    const count = catalog.entry_count ?? '—';
-    const newCount = catalog.new_entry_count ?? 0;
-    const checked = catalog.checked_at_utc
-      ? new Date(catalog.checked_at_utc).toLocaleString()
-      : 'Unknown';
+    // Optional future live review data file.
+    try{
+      const r = await fetch(`data/review-data.json${suffix}`, {cache:'no-store'});
+      if(r.ok){
+        const review = await r.json();
+        window.ACTIVE_OFFERINGS_REVIEW_DATA = review;
+        document.dispatchEvent(new CustomEvent('activeOfferingsDataRefreshed',{detail:review}));
+      }
+    }catch(_){}
 
-    banner.innerHTML = `
-      <div style="font-weight:800;margin-bottom:4px;">
-        NRGC Catalog Automation
-      </div>
-      <div>${title}</div>
-      <div style="margin-top:6px;color:#d0d5dd;">
-        ${count} catalog records · ${newCount} new
-      </div>
-      <div style="color:#98a2b3;margin-top:2px;">
-        Last checked: ${checked}
-      </div>
-    `;
-
-    document.body.appendChild(banner);
-  } catch (error) {
-    console.error('Catalog data could not be loaded:', error);
+    return data;
   }
+
+  async function performReview(){
+    const btn = document.getElementById('refreshReviewBtn');
+    const result = document.getElementById('refreshResult');
+    const reviewEl = document.getElementById('reviewPerformed');
+    if(!btn) return;
+
+    btn.disabled = true;
+    btn.classList.remove('success');
+    btn.textContent = '↻ Refreshing…';
+    if(result){ result.className='refresh-result'; result.textContent='Reloading newest published public-source dataset…'; }
+
+    updateCurrentDate();
+
+    try{
+      const status = await loadStatus(true);
+      const reviewed = new Date();
+      localStorage.setItem('activeOfferingsLastReview', reviewed.toISOString());
+      if(reviewEl) reviewEl.textContent = fmtStamp(reviewed);
+
+      btn.classList.add('success');
+      btn.textContent = '✓ Review Refreshed';
+      if(result){
+        const ok = Array.isArray(status.sources) ? status.sources.filter(s=>s.ok).length : 0;
+        const total = Array.isArray(status.sources) ? status.sources.length : 0;
+        result.className='refresh-result ok';
+        result.textContent = total
+          ? `Refresh complete · ${ok}/${total} mapped source checks healthy`
+          : 'Refresh complete · newest published dataset loaded';
+      }
+      setTimeout(()=>{ btn.classList.remove('success'); btn.textContent='↻ Refresh Review'; },2200);
+    }catch(err){
+      btn.textContent='↻ Refresh Review';
+      if(result){
+        result.className='refresh-result warn';
+        result.textContent='Newest dataset could not be loaded. Existing page data remains visible.';
+      }
+    }finally{
+      btn.disabled=false;
+    }
+  }
+
+  updateCurrentDate();
+
+  const saved = localStorage.getItem('activeOfferingsLastReview');
+  const reviewEl = document.getElementById('reviewPerformed');
+  if(saved && reviewEl) reviewEl.textContent = fmtStamp(new Date(saved));
+
+  loadStatus(false).catch(()=>{
+    const d = document.getElementById('dataRefreshed');
+    if(d) d.textContent='Status file unavailable';
+  });
+
+  const btn = document.getElementById('refreshReviewBtn');
+  if(btn) btn.addEventListener('click', performReview);
 })();
 </script>
-
+</main>
 </body>
 </html>
