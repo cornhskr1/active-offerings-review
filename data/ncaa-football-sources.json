@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "sport": "NCAA Football",
+  "coverage_rule": "Never Green by Absence",
+  "notes": [
+    "Official team athletics sites are preferred for roster/bio evidence.",
+    "Freshman, true freshman, reclassified, and early-enrollee language should trigger age review.",
+    "A team with no known U18 athlete remains PARTIAL until current roster age coverage is sufficient."
+  ],
+  "teams": [
+    {
+      "team": "USC",
+      "division": "FBS",
+      "conference": "Big Ten",
+      "schedule_url": "https://usctrojans.com/sports/football/schedule",
+      "roster_url": "https://usctrojans.com/sports/football/roster",
+      "authority": "OFFICIAL",
+      "priority": "CRITICAL",
+      "known_u18": [
+        {
+          "name": "Ethan \"Boobie\" Feaster",
+          "age": 17,
+          "position": "WR",
+          "status": "VERIFIED",
+          "evidence_url": "https://usctrojans.com/sports/football/roster/ethan-boobie-feaster/18898",
+          "evidence_note": "USC official bio states he reclassified and elected to forgo his senior year of high school."
+        }
+      ]
+    },
+    {
+      "team": "Nebraska",
+      "division": "FBS",
+      "conference": "Big Ten",
+      "schedule_url": "https://huskers.com/sports/football/schedule",
+      "roster_url": "https://huskers.com/sports/football/roster",
+      "authority": "OFFICIAL",
+      "priority": "HIGH",
+      "known_u18": []
+    }
+  ]
+}
