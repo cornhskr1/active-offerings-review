@@ -7,8 +7,7 @@ DATA = ROOT / "data"
 CFG = json.loads((DATA / "ncaa-football-sources.json").read_text(encoding="utf-8"))
 REVIEW = DATA / "review-data.json"
 
-UA = "Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"
-HEADERS = {"User-Agent": UA}
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
 
 FRESHMAN_TERMS = [
     r"\bFr\.\b", r"\bFreshman\b", r"\bTrue Freshman\b",
@@ -37,35 +36,43 @@ def load_review():
     return {"schema_version":1,"review_window_days":7,"events":[],"u18_matches":[],"restriction_triggers":[],"coverage_alerts":[]}
 
 now = datetime.datetime.now(datetime.timezone.utc)
+mapped_count = 0
 team_results = []
-u18_records = []
 coverage_alerts = []
-freshman_signals = []
+u18_records = []
+signals = []
 
 for team in CFG["teams"]:
+    mapped = bool(team.get("mapped"))
+    if mapped:
+        mapped_count += 1
+
     result = {
-        "sport":"NCAA Football",
-        "team":team["team"],
-        "division":team.get("division"),
-        "conference":team.get("conference"),
-        "checked_at":now.isoformat(),
-        "schedule":{"url":team["schedule_url"],"ok":False},
-        "roster":{"url":team["roster_url"],"ok":False},
-        "known_u18":team.get("known_u18",[])
+        "sport": "NCAA Football",
+        "team": team["team"],
+        "conference": team.get("conference"),
+        "division": team.get("division","FBS"),
+        "mapped": mapped,
+        "checked_at": now.isoformat(),
+        "schedule": {"url": team.get("schedule_url"), "ok": False},
+        "roster": {"url": team.get("roster_url"), "ok": False},
+        "known_u18": team.get("known_u18", [])
     }
 
     roster_text = ""
-    for key in ("schedule","roster"):
-        url = team[f"{key}_url"]
-        try:
-            final_url, body, status = fetch(url)
-            result[key].update({"ok": 200 <= status < 400, "http_status":status, "final_url":final_url})
-            if key == "roster":
-                roster_text = textify(body)
-        except Exception as e:
-            result[key].update({"ok":False,"error":str(e)[:180]})
+    if mapped:
+        for key in ("schedule","roster"):
+            url = result[key].get("url")
+            if not url:
+                continue
+            try:
+                final_url, body, status = fetch(url)
+                result[key].update({"ok": 200 <= status < 400, "http_status": status, "final_url": final_url})
+                if key == "roster":
+                    roster_text = textify(body)
+            except Exception as e:
+                result[key].update({"ok": False, "error": str(e)[:180]})
 
-    # Freshman/reclassification discovery signals are NOT age determinations.
     matches = []
     if roster_text:
         for term in FRESHMAN_TERMS:
@@ -73,79 +80,98 @@ for team in CFG["teams"]:
                 matches.append(term)
     result["freshman_discovery_signals"] = len(matches)
     if matches:
-        freshman_signals.append({
-            "sport":"NCAA Football",
-            "team":team["team"],
-            "type":"FRESHMAN / RECLASSIFICATION DISCOVERY",
-            "status":"REVIEW",
-            "message":f"{team['team']} official roster/bio source contains freshman/reclassification indicators. Age verification remains required.",
-            "checked_at":now.isoformat()
+        signals.append({
+            "sport": "NCAA Football",
+            "team": team["team"],
+            "type": "FRESHMAN / RECLASSIFICATION DISCOVERY",
+            "status": "REVIEW",
+            "message": f"{team['team']} roster/bio source contains freshman or reclassification indicators. Age verification remains required.",
+            "checked_at": now.isoformat()
         })
 
-    for athlete in team.get("known_u18",[]):
+    for athlete in team.get("known_u18", []):
         u18_records.append({
-            "sport":"NCAA Football",
-            "league":"NCAA FBS" if team.get("division")=="FBS" else "NCAA Football",
-            "team":team["team"],
-            "athlete":athlete["name"],
-            "age":athlete["age"],
-            "position":athlete.get("position"),
-            "status":athlete.get("status","VERIFIED"),
-            "evidence_url":athlete.get("evidence_url"),
-            "evidence_note":athlete.get("evidence_note"),
-            "checked_at":now.isoformat()
+            "sport": "NCAA Football",
+            "league": "NCAA FBS",
+            "team": team["team"],
+            "athlete": athlete["name"],
+            "age": athlete["age"],
+            "position": athlete.get("position"),
+            "status": athlete.get("status","VERIFIED"),
+            "evidence_url": athlete.get("evidence_url"),
+            "evidence_note": athlete.get("evidence_note"),
+            "checked_at": now.isoformat()
         })
 
-    # Coverage stays partial until roster-age screening is actually complete.
-    coverage_state = "PARTIAL"
-    reasons = []
-    if not result["schedule"]["ok"]:
-        reasons.append("schedule source unavailable")
-    if not result["roster"]["ok"]:
-        reasons.append("roster source unavailable")
-    reasons.append("full roster DOB/age screening not complete")
-    coverage_alerts.append({
-        "sport":"NCAA Football",
-        "league":"NCAA Football",
-        "team":team["team"],
-        "coverage_state":coverage_state,
-        "schedule_ok":result["schedule"]["ok"],
-        "participants_ok":result["roster"]["ok"],
-        "age_coverage":"PARTIAL",
-        "freshness":"CURRENT" if result["roster"]["ok"] and result["schedule"]["ok"] else "UNVERIFIED",
-        "known_u18_count":len(team.get("known_u18",[])),
-        "reason":"; ".join(reasons),
-        "checked_at":now.isoformat()
-    })
+    if mapped:
+        coverage_state = "PARTIAL"
+        reason = "full roster DOB/age screening not complete"
+        if not result["schedule"]["ok"]:
+            reason = "schedule source unavailable; " + reason
+        if not result["roster"]["ok"]:
+            reason = "roster source unavailable; " + reason
+        schedule_ok = result["schedule"]["ok"]
+        participants_ok = result["roster"]["ok"]
+        freshness = "CURRENT" if schedule_ok and participants_ok else "UNVERIFIED"
+        age_coverage = "PARTIAL"
+    else:
+        coverage_state = "UNMAPPED"
+        reason = "team is loaded in NCAA Football inventory but live schedule/roster mapping has not been added yet"
+        schedule_ok = False
+        participants_ok = False
+        freshness = "UNVERIFIED"
+        age_coverage = "UNMAPPED"
 
+    coverage_alerts.append({
+        "sport": "NCAA Football",
+        "league": "NCAA FBS",
+        "team": team["team"],
+        "conference": team.get("conference"),
+        "division": team.get("division","FBS"),
+        "mapped": mapped,
+        "schedule_ok": schedule_ok,
+        "participants_ok": participants_ok,
+        "age_coverage": age_coverage,
+        "freshness": freshness,
+        "known_u18_count": len(team.get("known_u18",[])),
+        "coverage_state": coverage_state,
+        "reason": reason,
+        "checked_at": now.isoformat()
+    })
     team_results.append(result)
 
 out = {
-    "schema_version":1,
-    "generated_at":now.isoformat(),
-    "sport":"NCAA Football",
-    "teams_mapped":len(team_results),
-    "teams":team_results,
-    "known_u18":u18_records,
-    "freshman_discovery_signals":freshman_signals,
-    "coverage_alerts":coverage_alerts
+    "schema_version": 2,
+    "generated_at": now.isoformat(),
+    "sport": "NCAA Football",
+    "scope": CFG.get("scope","FBS inventory"),
+    "teams_total": len(team_results),
+    "teams_mapped": mapped_count,
+    "teams_unmapped": len(team_results) - mapped_count,
+    "teams": team_results,
+    "known_u18": u18_records,
+    "freshman_discovery_signals": signals,
+    "coverage_alerts": coverage_alerts,
+    "conference_counts": {}
 }
+for t in team_results:
+    c = t.get("conference","Unknown")
+    out["conference_counts"][c] = out["conference_counts"].get(c,0) + 1
+
 (DATA / "ncaa-football-data.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
 
 review = load_review()
 review["background_checked_at"] = now.isoformat()
 review["generated_at"] = now.isoformat()
-
-# Replace only NCAA Football generated records, preserving other adapters.
-review["u18_matches"] = [x for x in review.get("u18_matches",[]) if x.get("sport")!="NCAA Football"] + u18_records
-review["coverage_alerts"] = [x for x in review.get("coverage_alerts",[]) if x.get("sport")!="NCAA Football"] + coverage_alerts
-review["discovery_signals"] = [x for x in review.get("discovery_signals",[]) if x.get("sport")!="NCAA Football"] + freshman_signals
-
+review["u18_matches"] = [x for x in review.get("u18_matches",[]) if x.get("sport") != "NCAA Football"] + u18_records
+review["coverage_alerts"] = [x for x in review.get("coverage_alerts",[]) if x.get("sport") != "NCAA Football"] + coverage_alerts
+review["discovery_signals"] = [x for x in review.get("discovery_signals",[]) if x.get("sport") != "NCAA Football"] + signals
 REVIEW.write_text(json.dumps(review, indent=2), encoding="utf-8")
+
 print(json.dumps({
-    "generated_at":now.isoformat(),
-    "teams_mapped":len(team_results),
-    "known_u18":len(u18_records),
-    "coverage_alerts":len(coverage_alerts),
-    "freshman_discovery_signals":len(freshman_signals)
+    "generated_at": now.isoformat(),
+    "teams_total": len(team_results),
+    "teams_mapped": mapped_count,
+    "teams_unmapped": len(team_results) - mapped_count,
+    "known_u18": len(u18_records)
 }))
