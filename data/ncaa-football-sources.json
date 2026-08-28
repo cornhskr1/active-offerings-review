@@ -1,20 +1,313 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "sport": "NCAA Football",
+  "scope": "FBS inventory",
   "coverage_rule": "Never Green by Absence",
   "notes": [
-    "Official team athletics sites are preferred for roster/bio evidence.",
-    "Freshman, true freshman, reclassified, and early-enrollee language should trigger age review.",
-    "A team with no known U18 athlete remains PARTIAL until current roster age coverage is sufficient."
+    "This inventory loads the full NCAA Football FBS universe into coverage control.",
+    "Mapped=true means the adapter has live public schedule/roster source URLs today.",
+    "Mapped=false does not mean low risk; it is an explicit unmapped blind spot until source coverage is added."
   ],
   "teams": [
     {
-      "team": "USC",
+      "team": "Boston College",
+      "conference": "ACC",
       "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "California",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Clemson",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Duke",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Florida State",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Georgia Tech",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Louisville",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Miami",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "NC State",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "North Carolina",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Pittsburgh",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "SMU",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Stanford",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Syracuse",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Virginia",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Virginia Tech",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Wake Forest",
+      "conference": "ACC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Arizona",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Arizona State",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Baylor",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "BYU",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Cincinnati",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Colorado",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Houston",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Iowa State",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Kansas",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Kansas State",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Oklahoma State",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "TCU",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Texas Tech",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UCF",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Utah",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "West Virginia",
+      "conference": "Big 12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Illinois",
       "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Indiana",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Iowa",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Maryland",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Michigan",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Michigan State",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Minnesota",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Nebraska",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": true,
+      "schedule_url": "https://huskers.com/sports/football/schedule",
+      "roster_url": "https://huskers.com/sports/football/roster",
+      "priority": "HIGH",
+      "known_u18": []
+    },
+    {
+      "team": "Northwestern",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Ohio State",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Oregon",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Penn State",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Purdue",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Rutgers",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UCLA",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "USC",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": true,
       "schedule_url": "https://usctrojans.com/sports/football/schedule",
       "roster_url": "https://usctrojans.com/sports/football/roster",
-      "authority": "OFFICIAL",
       "priority": "CRITICAL",
       "known_u18": [
         {
@@ -28,14 +321,526 @@
       ]
     },
     {
-      "team": "Nebraska",
-      "division": "FBS",
+      "team": "Washington",
       "conference": "Big Ten",
-      "schedule_url": "https://huskers.com/sports/football/schedule",
-      "roster_url": "https://huskers.com/sports/football/roster",
-      "authority": "OFFICIAL",
-      "priority": "HIGH",
-      "known_u18": []
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Wisconsin",
+      "conference": "Big Ten",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Alabama",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Arkansas",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Auburn",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Florida",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Georgia",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Kentucky",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "LSU",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Mississippi State",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Missouri",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Oklahoma",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Ole Miss",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "South Carolina",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Tennessee",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Texas",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Texas A&M",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Vanderbilt",
+      "conference": "SEC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Army",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Charlotte",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "East Carolina",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "FAU",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Memphis",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Navy",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "North Texas",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Rice",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "South Florida",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Temple",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Tulane",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Tulsa",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UAB",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UTSA",
+      "conference": "American Athletic",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Delaware",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "FIU",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Jacksonville State",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Kennesaw State",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Liberty",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Louisiana Tech",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Middle Tennessee",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Missouri State",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "New Mexico State",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Sam Houston",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UTEP",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Western Kentucky",
+      "conference": "Conference USA",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Akron",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Ball State",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Bowling Green",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Buffalo",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Central Michigan",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Eastern Michigan",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Kent State",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Miami (OH)",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Northern Illinois",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Ohio",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Toledo",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UMass",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Western Michigan",
+      "conference": "MAC",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Air Force",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Boise State",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Colorado State",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Fresno State",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Hawaii",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Nevada",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "New Mexico",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "San Diego State",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "San Jose State",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UNLV",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Utah State",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Wyoming",
+      "conference": "Mountain West",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Oregon State",
+      "conference": "Pac-12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Washington State",
+      "conference": "Pac-12",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Appalachian State",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Arkansas State",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Coastal Carolina",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Georgia Southern",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Georgia State",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "James Madison",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Louisiana",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Louisiana-Monroe",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Marshall",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Old Dominion",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "South Alabama",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Southern Miss",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Texas State",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Troy",
+      "conference": "Sun Belt",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "Notre Dame",
+      "conference": "Independent",
+      "division": "FBS",
+      "mapped": false
+    },
+    {
+      "team": "UConn",
+      "conference": "Independent",
+      "division": "FBS",
+      "mapped": false
     }
   ]
 }
