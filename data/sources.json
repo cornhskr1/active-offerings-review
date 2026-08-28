@@ -1,24 +1,44 @@
-{
-  "sources": [
-    {
-      "category": "catalog",
-      "name": "Nebraska Authorized Sports Wagering Menu",
-      "role": "Primary approved-event and restriction baseline"
-    },
-    {
-      "category": "tennis",
-      "name": "ITF / ATP / WTA official sources",
-      "role": "Participant and age verification"
-    },
-    {
-      "category": "college",
-      "name": "Official school athletics schedules",
-      "role": "Nebraska collegiate event timing and location review"
-    },
-    {
-      "category": "soccer",
-      "name": "Official league and club roster sources",
-      "role": "Known U18 participant monitoring"
-    }
-  ]
-}
+[
+  {
+    "id": "nrgc_catalog",
+    "name": "NRGC Sports Betting / Catalog",
+    "url": "https://nrgc.nebraska.gov/gaming/sports-betting",
+    "priority": "CRITICAL"
+  },
+  {
+    "id": "nebraska_athletics",
+    "name": "Nebraska Athletics",
+    "url": "https://huskers.com/",
+    "priority": "HIGH"
+  },
+  {
+    "id": "creighton_athletics",
+    "name": "Creighton Athletics",
+    "url": "https://gocreighton.com/",
+    "priority": "HIGH"
+  },
+  {
+    "id": "itf",
+    "name": "International Tennis Federation",
+    "url": "https://www.itftennis.com/",
+    "priority": "CRITICAL"
+  },
+  {
+    "id": "atp",
+    "name": "ATP Tour",
+    "url": "https://www.atptour.com/",
+    "priority": "CRITICAL"
+  },
+  {
+    "id": "wta",
+    "name": "WTA",
+    "url": "https://www.wtatennis.com/",
+    "priority": "CRITICAL"
+  },
+  {
+    "id": "mls",
+    "name": "Major League Soccer",
+    "url": "https://www.mlssoccer.com/",
+    "priority": "HIGH"
+  }
+]
