@@ -85,6 +85,24 @@ def slug_to_name(href):
     last = re.sub(r"\b\d+\b", "", last)
     return " ".join(w.capitalize() for w in last.split()).strip()
 
+def looks_like_player_name(text):
+    text = (text or "").strip()
+    if not text or len(text) < 3 or len(text) > 70:
+        return False
+    low = text.lower()
+    reject = [
+        "jersey number", "roster", "bio", "profile", "football",
+        "opens in a new window", "instagram", "twitter", "x.com",
+        "facebook", "linkedin", "previous", "next"
+    ]
+    if any(x in low for x in reject):
+        return False
+    if re.fullmatch(r"[\d#\s\-–—]+", text):
+        return False
+    # Require at least two alphabetic name tokens for automated player identity.
+    tokens = re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ'’.-]+", text)
+    return len(tokens) >= 2
+
 def profile_links_from_roster(roster_url, roster_html):
     links = []
     seen = set()
@@ -99,13 +117,23 @@ def profile_links_from_roster(roster_url, roster_html):
             continue
         if full in seen:
             continue
-        anchor_text = strip_tags(m.group(2))
-        name = anchor_text.strip() or slug_to_name(full)
-        if len(name) < 3 or len(name) > 80:
+
+        anchor_text = strip_tags(m.group(2)).strip()
+        slug_name = slug_to_name(full)
+
+        # Roster sites often wrap jersey number and player name in separate links
+        # pointing to the same bio. Never treat "Jersey Number 0" as a player.
+        if looks_like_player_name(anchor_text):
+            name = anchor_text
+        elif looks_like_player_name(slug_name):
+            name = slug_name
+        else:
             continue
+
         start = max(0, m.start()-1200)
         end = min(len(roster_html), m.end()+1600)
         nearby = strip_tags(roster_html[start:end])
+
         freshman = bool(FRESHMAN_RE.search(nearby))
         reclass = bool(RECLASS_RE.search(nearby))
         if freshman or reclass:
@@ -118,22 +146,38 @@ def profile_links_from_roster(roster_url, roster_html):
             seen.add(full)
     return links
 
-def parse_dob(text):
+def parse_explicit_dob(text):
+    """
+    Conservative DOB parser.
+
+    IMPORTANT:
+    A bare date anywhere on a player page is NOT birth evidence. Athletics bios
+    contain game dates, award dates, class years, article dates, and metadata.
+    Automated verification only accepts a date immediately associated with
+    explicit birth language: Born, Date of Birth, DOB, or Birthday.
+    """
+    label = r"(?:date\s+of\s+birth|dob|birthday|born)"
+    month = (
+        r"(January|February|March|April|May|June|July|August|September|"
+        r"October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|"
+        r"Sep|Sept|Oct|Nov|Dec)"
+    )
+
+    # Born: September 16, 2008
     m = re.search(
-        r"\b(?:born|date of birth|dob|birthday)?\s*[:\-]?\s*"
-        r"(January|February|March|April|May|June|July|August|September|October|November|December|"
-        r"Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)"
-        r"\.?\s+(\d{1,2})(?:st|nd|rd|th)?[,]?\s+((?:19|20)\d{2})\b",
+        rf"\b{label}\b\s*(?:is|on)?\s*[:\-]?\s*"
+        rf"{month}\.?\s+(\d{{1,2}})(?:st|nd|rd|th)?[,]?\s+((?:19|20)\d{{2}})\b",
         text, re.I
     )
     if m:
-        month = MONTHS[m.group(1).lower()]
         try:
-            return datetime.date(int(m.group(3)), month, int(m.group(2)))
+            return datetime.date(int(m.group(3)), MONTHS[m.group(1).lower()], int(m.group(2)))
         except ValueError:
             pass
+
+    # DOB: 09/16/2008
     m = re.search(
-        r"\b(?:date of birth|dob|birthday|born)\b.{0,30}?"
+        rf"\b{label}\b\s*(?:is|on)?\s*[:\-]?\s*"
         r"(\d{1,2})[/-](\d{1,2})[/-]((?:19|20)\d{2})\b",
         text, re.I
     )
@@ -142,10 +186,59 @@ def parse_dob(text):
             return datetime.date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
         except ValueError:
             pass
+
+    # Born 16 September 2008
+    m = re.search(
+        rf"\b{label}\b\s*(?:is|on)?\s*[:\-]?\s*"
+        rf"(\d{{1,2}})(?:st|nd|rd|th)?\s+{month}\.?\s+((?:19|20)\d{{2}})\b",
+        text, re.I
+    )
+    if m:
+        try:
+            return datetime.date(int(m.group(3)), MONTHS[m.group(2).lower()], int(m.group(1)))
+        except ValueError:
+            pass
+
     return None
 
 def age_on(dob, on_date):
     return on_date.year - dob.year - ((on_date.month, on_date.day) < (dob.month, dob.day))
+
+def class_conflict(text, age):
+    """
+    A claimed U18 age conflicts with class/status language that normally
+    represents multiple prior collegiate seasons. This is not proof of age;
+    it is a safeguard that prevents automated VERIFIED U18 classification.
+    """
+    if age >= 18:
+        return None
+    conflict_patterns = [
+        (r"\bfifth[- ]year\b", "Fifth Year"),
+        (r"\bgraduate\b", "Graduate"),
+        (r"\bpost[- ]?baccalaureate\b", "Post-Baccalaureate"),
+        (r"\bsenior\b", "Senior"),
+        (r"\bredshirt senior\b", "Redshirt Senior"),
+    ]
+    for pattern, label in conflict_patterns:
+        if re.search(pattern, text, re.I):
+            return label
+    return None
+
+def explicit_age_statement(text):
+    """
+    Narrative ages are useful review evidence, but are not strong enough for
+    automated VERIFIED status because a bio can mention siblings, recruits,
+    historical ages, etc. Return the age only as a review signal.
+    """
+    patterns = [
+        r"\bage\s*[:\-]\s*(1[5-9]|2[0-9])\b",
+        r"\b(1[5-9]|2[0-9])[- ]year[- ]old\b",
+    ]
+    for pattern in patterns:
+        m = re.search(pattern, text, re.I)
+        if m:
+            return int(m.group(1))
+    return None
 
 def classify_bio(candidate):
     result = dict(candidate)
@@ -155,41 +248,91 @@ def classify_bio(candidate):
         "dob": None,
         "calculated_age": None,
         "age_status": "AGE REVIEW NEEDED",
-        "age_evidence": None
+        "age_evidence": None,
+        "evidence_type": None
     })
     try:
         r = fetch(candidate["profile_url"], timeout=14, max_bytes=700000)
         if not r["ok"]:
             result["age_status"] = "UNRESOLVED"
+            result["age_evidence"] = "Official bio could not be retrieved."
             return result
+
         result["bio_ok"] = True
         result["profile_url"] = r["final_url"]
         text = strip_tags(r["html"])
-        dob = parse_dob(text)
+
+        dob = parse_explicit_dob(text)
         if dob:
             age = age_on(dob, TODAY)
+
+            # Hard plausibility gate for NCAA football.
+            if dob > TODAY:
+                result["age_status"] = "AGE REVIEW NEEDED"
+                result["age_evidence"] = f"Rejected birth date {dob.isoformat()}: date is in the future."
+                result["evidence_type"] = "PARSER CONFLICT"
+                return result
+
+            if age < 15 or age > 40:
+                result["age_status"] = "AGE REVIEW NEEDED"
+                result["age_evidence"] = (
+                    f"Rejected birth date {dob.isoformat()}: calculated age {age} is outside "
+                    "the plausible NCAA football review range (15–40)."
+                )
+                result["evidence_type"] = "PARSER CONFLICT"
+                return result
+
+            conflict = class_conflict(text, age)
+            if conflict:
+                result["age_status"] = "AGE REVIEW NEEDED"
+                result["dob"] = dob.isoformat()
+                result["calculated_age"] = age
+                result["age_evidence"] = (
+                    f"Official page contains explicit birth date {dob.isoformat()}, but calculated "
+                    f"age {age} conflicts with class/status language ({conflict}). Manual review required."
+                )
+                result["evidence_type"] = "CLASS CONFLICT"
+                return result
+
             result["dob"] = dob.isoformat()
             result["calculated_age"] = age
             result["age_status"] = "VERIFIED U18" if age < 18 else "VERIFIED 18+"
-            result["age_evidence"] = f"Official bio DOB {dob.isoformat()}; age {age} on {TODAY.isoformat()}."
+            result["age_evidence"] = (
+                f"Official player bio explicitly labels birth date {dob.isoformat()}; "
+                f"age {age} on {TODAY.isoformat()}."
+            )
+            result["evidence_type"] = "EXPLICIT DOB"
             return result
-        age_match = re.search(r"\b(1[5-9]|2[0-5])[- ]year[- ]old\b|\bage\s*(1[5-9]|2[0-5])\b", text, re.I)
-        if age_match:
-            age = int(age_match.group(1) or age_match.group(2))
-            result["calculated_age"] = age
-            result["age_status"] = "VERIFIED U18" if age < 18 else "VERIFIED 18+"
-            result["age_evidence"] = f"Official bio explicitly states age {age}."
+
+        narrative_age = explicit_age_statement(text)
+        if narrative_age is not None:
+            result["calculated_age"] = narrative_age
+            result["age_status"] = "AGE REVIEW NEEDED"
+            result["age_evidence"] = (
+                f"Official bio contains an age-{narrative_age} statement, but no explicit labeled DOB "
+                "was found. Treat as review evidence, not automated verification."
+            )
+            result["evidence_type"] = "NARRATIVE AGE"
             return result
+
         if RECLASS_RE.search(text):
             result["age_status"] = "AGE REVIEW NEEDED"
-            result["age_evidence"] = "Official bio contains reclassification/early-enrollee language but no verified DOB/age."
+            result["age_evidence"] = (
+                "Official bio contains reclassification/early-enrollee language but no explicit labeled DOB."
+            )
+            result["evidence_type"] = "RECLASS SIGNAL"
         else:
             result["age_status"] = "UNRESOLVED"
-            result["age_evidence"] = "Official bio checked; no verified DOB or explicit age found."
+            result["age_evidence"] = (
+                "Official bio checked; no explicit labeled DOB was found. Bare dates elsewhere on the page are ignored."
+            )
+            result["evidence_type"] = "NO DOB"
         return result
+
     except Exception as e:
         result["error"] = str(e)[:180]
         result["age_status"] = "UNRESOLVED"
+        result["age_evidence"] = "Official bio check failed."
         return result
 
 def load_review():
