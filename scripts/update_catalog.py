@@ -23,7 +23,13 @@ SPORT_ALIASES = {
 }
 
 def normalize(s):
-    return re.sub(r"\s+"," ",s or "").strip()
+    s = (s or "").replace("ﬁ","fi").replace("ﬂ","fl").replace("ﬀ","ff").replace("ﬃ","ffi").replace("ﬄ","ffl")
+    return re.sub(r"\s+"," ",s).strip()
+
+def clean_heading(raw):
+    """Normalize a candidate PDF heading while preserving indentation outside this function."""
+    s = normalize(raw)
+    return re.sub(r"^[•·▪◦\-–—]\s*", "", s).strip()
 
 r = requests.get(PAGE_URL, headers=HEADERS, timeout=30)
 r.raise_for_status()
@@ -69,22 +75,25 @@ pdf_path = DATA/"catalog-current.pdf"
 pdf_path.write_bytes(pdf.content)
 
 reader = PdfReader(str(pdf_path))
+
 pages = []
 all_lines = []
+raw_pages = []
+
 for i,p in enumerate(reader.pages, start=1):
     txt = p.extract_text() or ""
-    lines = [normalize(x) for x in txt.splitlines() if normalize(x)]
+    raw_lines = [x.rstrip() for x in txt.splitlines() if normalize(x)]
+    lines = [normalize(x) for x in raw_lines]
+    raw_pages.append(raw_lines)
     pages.append({"page":i,"lines":lines})
     all_lines.extend(lines)
 
-# Deduplicate adjacent repeated lines only.
 dedup=[]
 for line in all_lines:
     if not dedup or line != dedup[-1]:
         dedup.append(line)
 all_lines=dedup
 
-# Find menu date/version from label or extracted text.
 version = None
 for source in (label, " ".join(all_lines[:80])):
     m = re.search(r"(\d{1,2})[./-](\d{1,2})[./-](\d{2,4})", source)
@@ -94,118 +103,93 @@ for source in (label, " ".join(all_lines[:80])):
         version=f"{mm}.{dd}.{str(yy)[-2:]}"
         break
 
+NCAA_SUBSECTIONS = [
+    "NCAA Baseball","NCAA Basketball","NCAA Beach Volleyball","NCAA Field Hockey",
+    "NCAA Football","NCAA Golf","NCAA Ice Hockey","NCAA Lacrosse","NCAA Soccer",
+    "NCAA Softball","NCAA Swimming","NCAA Tennis","NCAA Track and Field",
+    "NCAA Volleyball","NCAA Water Polo","NCAA Wrestling"
+]
 
-def normalize_ncaa_sections(raw_sections):
-    """
-    Convert repeated formal NCAA page-header sections into operational labels
-    such as NCAA Football / NCAA Lacrosse / NCAA Soccer.
+TOP_LEVEL_SPORTS = [
+    "Aussie Rules","Baseball","Basketball","Bowling","Boxing","Combat Sports",
+    "Cricket","Cycling","Darts","Esports","Football","Golf","Ice Hockey",
+    "Lacrosse","Motorsports","National Collegiate Athletic Association (NCAA)",
+    "Olympics","Rodeo","Rugby","Soccer","Surfing","Table Tennis","Tennis","Volleyball"
+]
 
-    The PDF repeats 'National Collegiate Athletic Association (NCAA)' at the
-    top of many pages/sections. The sport is carried in the nearby Division I
-    line and/or the next 'NCAA <Sport>' marker. This function:
-      - derives the sport from Division I / NCAA sport wording,
-      - removes trailing 'NCAA <Next Sport>' markers from the previous section,
-      - keeps the underlying exact catalog lines otherwise intact.
-    """
-    sport_patterns = [
-        ("Baseball", r"\bbaseball\b"),
-        ("Basketball", r"\bbasketball\b"),
-        ("Football", r"\bfootball\b"),
-        ("Ice Hockey", r"\bice hockey\b|\bhockey\b"),
-        ("Lacrosse", r"\blacrosse\b"),
-        ("Soccer", r"\bsoccer\b"),
-        ("Softball", r"\bsoftball\b"),
-        ("Swimming", r"\bswimming\b"),
-        ("Tennis", r"\btennis\b"),
-        ("Track and Field", r"\btrack\s+and\s+field\b"),
-        ("Volleyball", r"\bvolleyball\b"),
-        ("Water Polo", r"\bwater\s+polo\b"),
-        ("Wrestling", r"\bwrestling\b"),
-        ("Golf", r"\bgolf\b"),
-    ]
+def leading_indent(raw):
+    return len(raw) - len(raw.lstrip(" \t"))
 
-    out = []
-    for sec in raw_sections:
-        sport = sec.get("sport", "")
-        lines = list(sec.get("lines", []))
+def is_pdf_header(line):
+    s=clean_heading(line)
+    return (
+        not s
+        or bool(re.fullmatch(r"\d{1,3}",s))
+        or bool(re.match(r"^Table of Contents\b",s,re.I))
+    )
 
-        if sport == "National Collegiate Athletic Association (NCAA)":
-            inferred = None
+content_start = None
+for page_index, raw_lines in enumerate(raw_pages):
+    if page_index < 4:
+        continue
+    for raw in raw_lines:
+        if leading_indent(raw) != 0:
+            continue
+        heading=clean_heading(raw)
+        if heading in TOP_LEVEL_SPORTS and not re.search(r"\.{4,}", raw):
+            content_start=page_index
+            break
+    if content_start is not None:
+        break
 
-            # First preference: the section's own Division I line(s).
-            local_text = " ".join(lines[:4])
-            for label, pat in sport_patterns:
-                if re.search(pat, local_text, re.I):
-                    inferred = label
-                    break
+if content_start is None:
+    raise RuntimeError("Could not locate the start of the live sport catalog in the PDF.")
 
-            # Fallback: any nearby line in the section.
-            if not inferred:
-                all_text = " ".join(lines)
-                for label, pat in sport_patterns:
-                    if re.search(pat, all_text, re.I):
-                        inferred = label
-                        break
-
-            if inferred:
-                sport = f"NCAA {inferred}"
-            else:
-                sport = "NCAA"
-
-            # A line like "NCAA Soccer" at the end is usually the next TOC/page
-            # marker, not content belonging to the current sport section.
-            cleaned = []
-            for i, line in enumerate(lines):
-                if re.fullmatch(
-                    r"NCAA\s+(Baseball|Basketball|Football|Ice Hockey|Lacrosse|Soccer|Softball|Swimming|Tennis|Track and Field|Volleyball|Water Polo|Wrestling|Golf)",
-                    line, re.I
-                ):
-                    # Keep it only if it actually matches this section's inferred sport.
-                    canonical = "NCAA " + re.sub(r"\s+", " ", line[5:]).strip()
-                    if canonical.lower() != sport.lower():
-                        continue
-                    # Matching marker is redundant with the section heading.
-                    continue
-
-                # Remove PDF page-number / TOC artifacts that occasionally leak in.
-                if re.fullmatch(r"\d{1,3}", line):
-                    continue
-                if re.match(r"^Table of Contents\b", line, re.I):
-                    continue
-
-                cleaned.append(line)
-
-            lines = cleaned
-
-        out.append({"sport": sport, "lines": lines})
-
-    # Merge adjacent sections that normalize to the same sport.
-    merged = []
-    for sec in out:
-        if merged and merged[-1]["sport"] == sec["sport"]:
-            merged[-1]["lines"].extend(sec["lines"])
-        else:
-            merged.append({"sport": sec["sport"], "lines": list(sec["lines"])})
-
-    return merged
-
-# Parse top-level sections conservatively using exact normalized sport headings.
-section_names = set(SPORTS)
 sections=[]
 current=None
-for line in all_lines:
-    canonical = SPORT_ALIASES.get(line,line)
-    if canonical in section_names:
-        if current and current["lines"]:
-            sections.append(current)
-        current={"sport":canonical,"lines":[]}
-        continue
-    if current:
-        current["lines"].append(line)
+
+for page_index in range(content_start, len(raw_pages)):
+    for raw in raw_pages[page_index]:
+        if is_pdf_header(raw):
+            continue
+
+        heading=clean_heading(raw)
+        indent=leading_indent(raw)
+
+        is_top_level = indent == 0 and heading in TOP_LEVEL_SPORTS
+        is_ncaa_subsection = indent == 0 and heading in NCAA_SUBSECTIONS
+
+        if is_top_level or is_ncaa_subsection:
+            label = heading
+            if label == "National Collegiate Athletic Association (NCAA)":
+                label = "NCAA"
+
+            if current and current["lines"]:
+                sections.append(current)
+
+            current={
+                "sport":label,
+                "lines":[],
+                "page_start":page_index+1
+            }
+            continue
+
+        if current:
+            line=normalize(raw)
+            if current["sport"].startswith("NCAA ") and line == "National Collegiate Athletic Association (NCAA)":
+                continue
+            current["lines"].append(line)
+
 if current and current["lines"]:
     sections.append(current)
 
-sections = normalize_ncaa_sections(sections)
+merged=[]
+for sec in sections:
+    if merged and merged[-1]["sport"] == sec["sport"]:
+        merged[-1]["lines"].extend(sec["lines"])
+    else:
+        merged.append(sec)
+sections=merged
 
 # If the PDF's TOC polluted the first sections, retain everything but mark raw parsing.
 # Restriction extraction is intentionally broad and preserves exact catalog wording.
