@@ -408,6 +408,26 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .catalog-restriction-note::before{content:"⚠ ";font-weight:900}
 .catalog-notes{background:transparent!important;border:0!important;padding:0!important}
 @media(max-width:700px){.catalog-entry-grid{grid-template-columns:1fr}}
+
+.pq-day-group{border:1px solid var(--line);border-radius:14px;background:#fff;margin:9px 0;overflow:hidden}
+.pq-day-group>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:12px 14px;background:#f8fafc;font-weight:900;color:var(--nav)}
+.pq-day-group>summary::-webkit-details-marker{display:none}
+.pq-day-group>summary:before{content:"▸";font-size:12px;transition:transform .15s ease}
+.pq-day-group[open]>summary:before{transform:rotate(90deg)}
+.pq-day-name{font-size:13px;font-weight:950;min-width:90px}
+.pq-day-date{font-size:11px;color:var(--muted);font-weight:750}
+.pq-day-count{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 8px;font-size:10px;color:var(--muted);font-weight:850}
+.pq-day-body{padding:6px 12px 10px}
+.pq-event-row{border-top:1px solid #edf1f5;padding:10px 2px}
+.pq-event-row:first-child{border-top:0}
+.pq-event-row>details>summary{cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:850;color:#17283b}
+.pq-event-row>details>summary::-webkit-details-marker{display:none}
+.pq-event-row>details>summary:before{content:"▸";font-size:10px;color:var(--muted)}
+.pq-event-row>details[open]>summary:before{transform:rotate(90deg)}
+.pq-event-title{flex:1}
+.pq-event-time{margin-left:auto;font-size:10px;color:var(--muted);white-space:nowrap}
+.pq-sport-tag{display:inline-flex;align-items:center;border:1px solid #dbe5ef;background:#f7fafc;border-radius:999px;padding:2px 7px;font-size:9px;font-weight:900;letter-spacing:.035em;text-transform:uppercase;color:#36516b}
+.pq-empty-day{padding:10px 12px;font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -2422,43 +2442,57 @@ if(us) us.addEventListener('input',e=>{
       return !search || hay.includes(search);
     });
 
-    const groups={};
+    const dateKey=(date)=>{
+      const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date);
+      const get=t=>p.find(x=>x.type===t)?.value;
+      return `${get('year')}-${get('month')}-${get('day')}`;
+    };
+
+    const now=new Date();
+    const dayKeys=[];
+    for(let i=0;i<8;i++) dayKeys.push(dateKey(new Date(now.getTime()+i*86400000)));
+
+    const buckets=Object.fromEntries(dayKeys.map(k=>[k,[]]));
     cards.forEach(c=>{
-      const sport=c.sport||c.league||'Other';
-      (groups[sport] ||= []).push(c);
+      if(!c.start_time) return;
+      const d=new Date(c.start_time);
+      if(Number.isNaN(d.getTime())) return;
+      const k=dateKey(d);
+      if(buckets[k]) buckets[k].push(c);
     });
 
-    q.innerHTML=Object.entries(groups)
-      .sort((a,b)=>a[0].localeCompare(b[0]))
-      .map(([sport,items])=>{
-        const rows=items.map(c=>{
-          const athleteText=(c.athletes||[]).length
-            ? `<div class="pq-meta"><b>Athletes:</b> ${pe((c.athletes||[]).join(', '))}</div>` : '';
-          return `<div class="pq-compact-row">
-            <details>
-              <summary>
-                <span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span>
-                ${pe(c.event||c.title||'Upcoming event')}
-              </summary>
-              <div class="pq-meta">${c.start_time?pe(ptime(c.start_time)):'Upcoming'}</div>
-              ${athleteText}
-              <p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p>
-              <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div>
-            </details>
-          </div>`;
-        }).join('');
+    const dateLabel=(key)=>{
+      const [y,m,d]=key.split('-').map(Number);
+      const dt=new Date(Date.UTC(y,m-1,d,12));
+      return new Intl.DateTimeFormat('en-US',{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(dt);
+    };
+    const relativeName=i=>i===0?'Today':i===1?'Tomorrow':`Day +${i}`;
+    const eventTime=(iso)=>{
+      const d=new Date(iso);
+      if(Number.isNaN(d.getTime())) return 'TBA';
+      return new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit'}).format(d);
+    };
 
-        return `<details class="pq-sport-group">
-          <summary>
-            <span class="acc-title">${pe(sport)}</span>
-            <span class="acc-count">${items.length} upcoming event${items.length===1?'':'s'}</span>
-          </summary>
-          <div class="pq-group-body">${rows}</div>
-        </details>`;
-      }).join('') || '<div class="empty-state">No Today + 7 events currently meet Priority Queue criteria.</div>';
+    q.innerHTML=dayKeys.map((key,idx)=>{
+      const items=(buckets[key]||[]).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+      const rows=items.length?items.map(c=>{
+        const athletes=(c.athletes||[]).length?`<div class="pq-meta"><b>Athletes:</b> ${pe((c.athletes||[]).join(', '))}</div>`:'';
+        return `<div class="pq-event-row"><details><summary><span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span><span class="pq-sport-tag">${pe(c.sport||c.league||'Event')}</span><span class="pq-event-title">${pe(c.event||c.title||'Upcoming event')}</span><span class="pq-event-time">${pe(eventTime(c.start_time))}</span></summary>${athletes}<p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p><div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div></details></div>`;
+      }).join(''):`<div class="pq-empty-day">No priority triggers for this date.</div>`;
+      return `<details class="pq-day-group" ${idx===0?'open':''}><summary><span class="pq-day-name">${relativeName(idx)}</span><span class="pq-day-date">${dateLabel(key)}</span><span class="pq-day-count">${items.length} event${items.length===1?'':'s'}</span></summary><div class="pq-day-body">${rows}</div></details>`;
+    }).join('');
 
+    const actualCount=dayKeys.reduce((n,k)=>n+(buckets[k]?.length||0),0);
     const cnt=document.getElementById('reviewCount');
-    if(cnt) cnt.textContent=`${cards.length} current priority triggers`;
+    if(cnt) cnt.textContent=`${actualCount} current priority triggers`;
+
+    document.querySelectorAll('.metric').forEach(m=>{
+      const txt=(m.textContent||'').toLowerCase();
+      if(txt.includes('current priority triggers')){
+        const b=m.querySelector('b');
+        if(b) b.textContent=String(actualCount);
+      }
+    });
   }
 
   async function loadPriorityQueue(){
