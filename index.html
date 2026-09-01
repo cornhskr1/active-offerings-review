@@ -1391,7 +1391,7 @@ if(us) us.addEventListener('input',e=>{
         btns.innerHTML=sections.map((s,i)=>`<button class="sport-button live-cat-btn" data-live-cat="${i}">${esc(s.sport)}</button>`).join('');
         body.innerHTML=sections.map((s,i)=>`
           <section class="catalog-sport live-catalog-section" data-live-index="${i}" data-search="${esc((s.sport+' '+(s.lines||[]).join(' ')).toLowerCase())}">
-            <div class="section-title">${esc(s.sport)}</div>
+            <div class="section-title">${esc(simplifyNCAA(s))}</div>
             ${(s.lines||[]).map(line=>`<div class="catalog-line">${esc(line)}</div>`).join('')}
           </section>`).join('');
         // Hide legacy hard-coded catalog once live data is available.
@@ -1674,30 +1674,8 @@ if(us) us.addEventListener('input',e=>{
 (function(){
   function simplifyNCAA(section){
     const sport=(section.sport||'').trim();
-    const lines=section.lines||[];
-    const joined=lines.join(' ');
-
-    if(!/National Collegiate Athletic Association|NCAA/i.test(sport+' '+joined)) return sport;
-
-    // Prefer obvious sport context from the section lines.
-    const candidates=[
-      ['Baseball',/\bbaseball\b/i],
-      ['Basketball',/\bbasketball\b/i],
-      ['Football',/\bfootball\b/i],
-      ['Ice Hockey',/\bice hockey\b|\bhockey\b/i],
-      ['Lacrosse',/\blacrosse\b/i],
-      ['Soccer',/\bsoccer\b/i],
-      ['Volleyball',/\bvolleyball\b/i],
-      ['Softball',/\bsoftball\b/i],
-      ['Wrestling',/\bwrestling\b/i]
-    ];
-    for(const [label,re] of candidates){
-      if(re.test(joined) || re.test(sport)) return `NCAA ${label}`;
-    }
-
-    // If catalog parser created one giant NCAA section, split labels later by content;
-    // keep generic NCAA only as the fallback, never the long formal phrase.
-    return 'NCAA';
+    if(sport === 'National Collegiate Athletic Association (NCAA)') return 'NCAA';
+    return sport;
   }
 
   function rebuildCatalogButtonsWithSimpleLabels(){
