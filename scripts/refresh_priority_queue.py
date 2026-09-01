@@ -57,252 +57,133 @@ cards=[]
 seen=set()
 
 # --------------------------------------------------
-# A) International soccer Known U18 ↔ scheduled match
+# EVENT-FIRST PRIORITY QUEUE
 # --------------------------------------------------
+# Priority Queue answers one question:
+# "Which CURRENT / UPCOMING Today + 7 events need a sportsbook check?"
+#
+# Research inventories (age vetting, source coverage, generic watch lists)
+# live in their dedicated site sections and do not create Priority Queue cards.
+
+event_cards = {}
+def event_key(ev):
+    return str(ev.get("id") or f"{ev.get('league')}|{ev.get('name')}|{ev.get('start_time')}")
+
+def ensure_event(ev, severity="AMBER", reason_type="REVIEW"):
+    key=event_key(ev)
+    if key not in event_cards:
+        event_cards[key]={
+            "key":f"event|{key}",
+            "severity":severity,
+            "type":reason_type,
+            "sport":ev.get("sport"),
+            "league":ev.get("league"),
+            "event":ev.get("name"),
+            "start_time":ev.get("start_time"),
+            "status":ev.get("status"),
+            "title":ev.get("name"),
+            "athletes":[],
+            "triggers":[],
+            "staff_actions":[]
+        }
+    card=event_cards[key]
+    if severity=="RED":
+        card["severity"]="RED"
+    return card
+
+def push_unique(arr, value):
+    if value and value not in arr:
+        arr.append(value)
+
+# A) Known U18 international soccer athlete + upcoming club match.
 soccer_records=[x for x in known.get("records",[]) if x.get("sport")=="Soccer"]
 soccer_events=[e for e in schedule.get("events",[]) if e.get("sport")=="Soccer" and e.get("status") in ("UPCOMING","LIVE")]
 
 for player in soccer_records:
     for ev in soccer_events:
         if team_in_event(player.get("team"), ev.get("name")):
-            add_card(cards, seen,
-                key=f'soccer|{player.get("athlete")}|{ev.get("id")}',
-                severity="RED",
-                type="U18 ATHLETE",
-                sport="Soccer",
-                league=ev.get("league") or player.get("league"),
-                team=player.get("team"),
-                athlete=player.get("athlete"),
-                age=player.get("age"),
-                event=ev.get("name"),
-                start_time=ev.get("start_time"),
-                status=ev.get("status"),
-                title=f'{player.get("athlete")} · {player.get("team")}',
-                reason="Known U18 athlete's club has an approved-catalog match in the current Today + 7 schedule.",
-                staff_action="Search this athlete by name in active SWSP markets and review any athlete-specific performance/nonperformance offering.",
-                source="Known U18 registry + Approved Sports Schedule"
-            )
+            c=ensure_event(ev,"RED","U18 EXPOSURE")
+            push_unique(c["athletes"], player.get("athlete"))
+            push_unique(c["triggers"], f"Known U18 — {player.get('athlete')} ({player.get('team')})")
+            push_unique(c["staff_actions"], "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.")
 
-# --------------------------------------------------
-# B) Known/verified NCAA football U18 ↔ scheduled game
-# --------------------------------------------------
+# B) Verified NCAA Football U18 + upcoming team game.
 football_events=[e for e in schedule.get("events",[]) if e.get("league")=="NCAA Football" and e.get("status") in ("UPCOMING","LIVE")]
+
 for player in football.get("known_u18",[]):
     team=player.get("team")
-    matches=[e for e in football_events if team_in_event(team,e.get("name"))]
-    if matches:
-        for ev in matches:
-            add_card(cards, seen,
-                key=f'ncaa-u18|{player.get("athlete")}|{ev.get("id")}',
-                severity="RED",
-                type="U18 ATHLETE",
-                sport="NCAA Football",
-                league="NCAA Football",
-                team=team,
-                athlete=player.get("athlete"),
-                age=player.get("age"),
-                event=ev.get("name"),
-                start_time=ev.get("start_time"),
-                status=ev.get("status"),
-                title=f'{player.get("athlete")} · {team}',
-                reason="Verified U18 NCAA football athlete is tied to a game in the current Today + 7 schedule.",
-                staff_action="Search athlete-specific markets and review any individual performance/nonperformance offering.",
-                source="NCAA Football age discovery + Approved Sports Schedule"
-            )
-    else:
-        add_card(cards, seen,
-            key=f'ncaa-watch|{player.get("athlete")}|{team}',
-            severity="AMBER",
-            type="NCAA U18 WATCH",
-            sport="NCAA Football",
-            league="NCAA Football",
-            team=team,
-            athlete=player.get("athlete"),
-            age=player.get("age"),
-            event=None,
-            start_time=None,
-            status="WATCH",
-            title=f'{player.get("athlete")} · {team}',
-            reason="Verified U18 NCAA football athlete remains on the watch list; no matching Today + 7 game was resolved in the mapped schedule feed.",
-            staff_action="Keep athlete-specific markets on the watch list and confirm upcoming team schedule/source coverage.",
-            source="NCAA Football age discovery"
-        )
+    for ev in football_events:
+        if team_in_event(team, ev.get("name")):
+            c=ensure_event(ev,"RED","U18 EXPOSURE")
+            push_unique(c["athletes"], player.get("athlete"))
+            push_unique(c["triggers"], f"Verified U18 — {player.get('athlete')} ({team})")
+            push_unique(c["staff_actions"], "Review athlete-specific NCAA markets involving the verified U18 participant.")
 
-# --------------------------------------------------
-# C) NCAA age review / unresolved candidates
-# --------------------------------------------------
-# Age Vetting is now the primary home for unresolved NCAA athletes.
-# Only athletes with current Today + 7 schedule relevance may bubble into
-# operational Priority Queue.
+# C) HIGH-risk unresolved NCAA athletes only, aggregated by current game.
+# MEDIUM / LOW / UNKNOWN remain in NCAA Football Age Vetting.
 age_records = age_review.get("age_review_needed",[]) + age_review.get("unresolved",[])
-football_events=[e for e in schedule.get("events",[]) if e.get("league")=="NCAA Football" and e.get("status") in ("UPCOMING","LIVE")]
-
 for player in age_records:
     tier=(player.get("u18_risk_tier") or "UNKNOWN").upper()
-
-    if tier in ("LOW","VERIFIED_18_PLUS"):
+    if tier != "HIGH":
         continue
-
     team=player.get("team")
-    matches=[e for e in football_events if team_in_event(team,e.get("name"))]
+    for ev in football_events:
+        if team_in_event(team, ev.get("name")):
+            c=ensure_event(ev,"AMBER","NCAA AGE REVIEW")
+            push_unique(c["athletes"], player.get("name"))
+            push_unique(c["triggers"], f"High-risk unresolved age — {player.get('name')} ({team})")
+            push_unique(c["staff_actions"], "Prioritize age verification for high-risk roster candidates tied to this upcoming game.")
 
-    if not matches:
-        continue
-
-    if tier == "HIGH":
-        type_label="AGE REVIEW — HIGH RISK"
-    elif tier == "MEDIUM":
-        type_label="AGE REVIEW — MEDIUM RISK"
-    else:
-        type_label="AGE REVIEW NEEDED"
-
-    for ev in matches:
-        add_card(cards, seen,
-            key=f'age-review|{team}|{player.get("name")}|{ev.get("id")}',
-            severity="AMBER",
-            type=type_label,
-            sport="NCAA Football",
-            league="NCAA Football",
-            team=team,
-            athlete=player.get("name"),
-            age=player.get("calculated_age"),
-            event=ev.get("name"),
-            start_time=ev.get("start_time"),
-            status=ev.get("status"),
-            title=f'{player.get("name") or "Roster candidate"} · {team}',
-            reason=(player.get("u18_risk_reason") or player.get("age_evidence") or
-                    "Official age evidence remains unresolved.") +
-                   " Team has a game in the current Today + 7 window.",
-            staff_action="Prioritize age verification because this athlete's team has a current upcoming game. Class/history is a screening tool only.",
-            source="NCAA Football age discovery + Approved Sports Schedule"
-        )
-
-# --------------------------------------------------
-# D) Nebraska collegiate home-event/site rule
-# --------------------------------------------------
+# D) Nebraska collegiate home/site restrictions.
 for ev in college.get("events",[]):
-    if ev.get("status")=="FINAL":
+    if ev.get("status")=="FINAL" or ev.get("site")!="HOME":
         continue
-    if ev.get("site")=="HOME":
-        add_card(cards, seen,
-            key=f'ne-home|{ev.get("school")}|{ev.get("sport")}|{ev.get("date")}|{ev.get("opponent")}',
-            severity="RED",
-            type="NOT PERMISSIBLE",
-            sport=ev.get("sport"),
-            league=f'{ev.get("school")} Collegiate',
-            team=ev.get("school"),
-            athlete=None,
-            age=None,
-            event=f'{ev.get("school")} vs {ev.get("opponent")}',
-            start_time=f'{ev.get("date")}T{ev.get("time")}' if ev.get("time") and ev.get("time")!="TBA" else ev.get("date"),
-            status=ev.get("status"),
-            title=f'{ev.get("school")} {ev.get("sport")} home event',
-            reason="Nebraska collegiate home event appears in the current Today + 7 schedule.",
-            staff_action="Confirm the event is not offered where the Nebraska collegiate site restriction applies.",
-            source="Official Nebraska/Creighton schedule feed"
-        )
+    # Match or synthesize an event-shaped object for the operational queue.
+    ev_obj={
+        "id":f"ne|{ev.get('school')}|{ev.get('sport')}|{ev.get('date')}|{ev.get('opponent')}",
+        "sport":ev.get("sport"),
+        "league":f"{ev.get('school')} Collegiate",
+        "name":f"{ev.get('school')} vs {ev.get('opponent')}",
+        "start_time":f"{ev.get('date')}T{ev.get('time')}" if ev.get("time") and ev.get("time")!="TBA" else ev.get("date"),
+        "status":ev.get("status") or "UPCOMING"
+    }
+    c=ensure_event(ev_obj,"RED","NOT PERMISSIBLE")
+    push_unique(c["triggers"], "Nebraska collegiate home-event/site restriction")
+    push_unique(c["staff_actions"], "Confirm the event is not offered where the Nebraska collegiate site restriction applies.")
 
-# --------------------------------------------------
-# E) Approved scheduled events with restriction signals
-# --------------------------------------------------
+# E) Event-specific catalog restrictions only.
 for ev in schedule.get("events",[]):
-    if ev.get("status") not in ("UPCOMING","LIVE"):
-        continue
-    if not ev.get("restriction_risk"):
+    if ev.get("status") not in ("UPCOMING","LIVE") or not ev.get("restriction_risk"):
         continue
 
     league=(ev.get("league") or "").strip().upper()
-    sport=(ev.get("sport") or "").strip().lower()
     name=(ev.get("name") or "").strip().lower()
 
-    # HARD MLB EXCLUSION:
-    # Normal MLB games never become catalog-restriction Priority Queue cards.
-    # Only explicitly named special events may pass.
-    if league == "MLB":
-        allowed_special = any(
-            term in name
-            for term in ("draft", "spring training", "preseason", "pre-season")
-        )
-        if not allowed_special:
+    # Ordinary MLB games do not inherit Draft / Spring Training restrictions.
+    if league=="MLB":
+        special=any(term in name for term in ("draft","spring training","preseason","pre-season"))
+        if not special:
             continue
 
-    # HARD NCAA FOOTBALL SCOPE:
-    # Generic catalog restrictions must never turn the entire NCAA Football
-    # schedule into Priority Queue cards. NCAA Football risks are generated by
-    # dedicated logic elsewhere in this script:
-    #   - verified U18 athlete + scheduled game
-    #   - Nebraska collegiate home/site restriction
-    #   - NCAA age-review / unresolved player watch
-    # Therefore generic CATALOG RESTRICTION cards are suppressed here.
-    if league == "NCAA FOOTBALL":
+    # Ordinary NCAA Football games do not inherit generic NCAA restrictions.
+    if league=="NCAA FOOTBALL":
         continue
 
-    add_card(cards, seen,
-        key=f'restriction|{ev.get("id")}',
-        severity="AMBER",
-        type="CATALOG RESTRICTION",
-        sport=ev.get("sport"),
-        league=ev.get("league"),
-        team=None,
-        athlete=None,
-        age=None,
-        event=ev.get("name"),
-        start_time=ev.get("start_time"),
-        status=ev.get("status"),
-        title=f'{ev.get("league")} · {ev.get("name")}',
-        reason="Current approved-catalog schedule event intersects with one or more restriction signals.",
-        staff_action="Review the applicable catalog restriction and confirm the active SWSP markets comply.",
-        source="Current NRGC catalog + Approved Sports Schedule"
-    )
+    c=ensure_event(ev,"AMBER","CATALOG RESTRICTION")
+    signals=ev.get("restriction_signals") or []
+    for sig in signals[:4]:
+        push_unique(c["triggers"], str(sig))
+    push_unique(c["staff_actions"], "Review the applicable catalog restriction and confirm active SWSP markets comply.")
 
-# --------------------------------------------------
-# F) Tennis U18 watch: keep visible until automated draw adapter exists
-# --------------------------------------------------
-tennis_records=[x for x in known.get("records",[]) if x.get("sport")=="Tennis"]
-if tennis_records:
-    # One compact lane card rather than dozens of permanent static cards.
-    names=[x.get("athlete") for x in tennis_records if x.get("athlete")]
-    add_card(cards, seen,
-        key="tennis-u18-watch-lane",
-        severity="AMBER",
-        type="TENNIS U18 WATCH",
-        sport="Tennis",
-        league="ATP / WTA / ITF / UTR / Grand Slams",
-        team=None,
-        athlete=None,
-        age=None,
-        event=None,
-        start_time=None,
-        status="WATCH",
-        title=f'{len(tennis_records)} known U18 tennis athletes',
-        reason="Known U18 tennis registry is active, but automated draw/match-to-player matching is not yet complete.",
-        staff_action="Prioritize current draws/entry lists and search known U18 names before clearing player-specific markets.",
-        source="Known U18 registry",
-        names=names
-    )
-
-# --------------------------------------------------
-# G) Coverage/source issues
-# --------------------------------------------------
-for gap in schedule.get("coverage_gaps",[]):
-    if gap.get("area") in ("Tennis","Soccer"):
-        add_card(cards, seen,
-            key=f'coverage-gap|{gap.get("area")}',
-            severity="AMBER",
-            type="SOURCE COVERAGE",
-            sport=gap.get("area"),
-            league=gap.get("area"),
-            team=None,
-            athlete=None,
-            age=None,
-            event=None,
-            start_time=None,
-            status="COVERAGE GAP",
-            title=f'{gap.get("area")} schedule coverage incomplete',
-            reason=gap.get("note"),
-            staff_action="Do not interpret a lack of matched events as no risk. Continue manual/secondary source review until the adapter is complete.",
-            source="Approved Sports Schedule coverage control"
-        )
+# Finalize event cards.
+cards=[]
+for c in event_cards.values():
+    athlete_count=len(c.get("athletes") or [])
+    if athlete_count:
+        c["title"]=f"{c.get('event')} · {athlete_count} athlete{'s' if athlete_count!=1 else ''}"
+    c["reason"]=" | ".join(c.get("triggers") or [])
+    c["staff_action"]=" ".join(c.get("staff_actions") or [])
+    cards.append(c)
 
 # Priority order: RED first; timed upcoming next; then amber watches.
 sev_rank={"RED":0,"AMBER":1}
@@ -314,29 +195,6 @@ def sort_key(c):
         c.get("sport") or "",
         c.get("title") or ""
     )
-# Final defensive purge: never publish ordinary MLB restriction cards.
-cards = [
-    c for c in cards
-    if not (
-        c.get("type") == "CATALOG RESTRICTION"
-        and str(c.get("league") or "").strip().upper() == "MLB"
-        and not any(
-            term in str(c.get("event") or "").lower()
-            for term in ("draft","spring training","preseason","pre-season")
-        )
-    )
-]
-
-# Final defensive purge:
-# ordinary NCAA Football games cannot be generic CATALOG RESTRICTION cards.
-cards = [
-    c for c in cards
-    if not (
-        c.get("type") == "CATALOG RESTRICTION"
-        and str(c.get("league") or "").strip().upper() == "NCAA FOOTBALL"
-    )
-]
-
 cards.sort(key=sort_key)
 
 out={
