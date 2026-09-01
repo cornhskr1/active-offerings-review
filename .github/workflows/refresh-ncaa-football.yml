@@ -10,8 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+# All workflows that write public data / deploy Pages should use this SAME group.
+# This prevents catalog, collegiate, football, etc. from racing each other.
 concurrency:
-  group: "ncaa-football-refresh-and-pages"
+  group: "active-offerings-data-and-pages"
   cancel-in-progress: false
 
 jobs:
@@ -25,6 +27,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync latest main before processing
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Auto-map and run NCAA Football age discovery
         run: python3 scripts/refresh_ncaa_football.py
@@ -33,12 +42,23 @@ jobs:
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ncaa-football-sources.json data/ncaa-football-data.json data/ncaa-football-age-review.json data/review-data.json
+
+          git add data/ncaa-football-sources.json \
+                  data/ncaa-football-data.json \
+                  data/ncaa-football-age-review.json \
+                  data/review-data.json
+
           if git diff --cached --quiet; then
-            echo "No data changes to commit."
+            echo "No NCAA Football data changes to commit."
           else
             git commit -m "Refresh NCAA Football mapping and age discovery"
-            git push
+
+            # Another human/manual commit can still occur during a long screening run.
+            # Rebase our generated commit onto the newest main instead of rejecting the push.
+            git fetch origin main
+            git rebase origin/main
+
+            git push origin HEAD:main
           fi
 
       - name: Configure GitHub Pages
