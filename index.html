@@ -208,6 +208,136 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .vet-athlete{font-weight:800}
 .vet-basis{color:var(--muted)}
 @media(max-width:800px){.vet-row{grid-template-columns:1fr}}
+
+/* ============================================================
+   Approved Catalog Events — visual hierarchy
+   ============================================================ */
+#liveCatalogCard{scroll-margin-top:18px}
+#liveCatalogBody{display:grid;gap:18px}
+.live-catalog-section{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 4px 18px rgba(15,23,42,.05);
+  scroll-margin-top:18px;
+}
+.live-catalog-section>.catalog-sport-head{
+  padding:17px 20px;
+  background:linear-gradient(180deg,#f7faff 0%,#eef4fb 100%);
+  border-bottom:1px solid #dbe5f0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.catalog-sport-name{
+  font-size:19px;
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:.01em;
+  color:var(--nav);
+}
+.catalog-sport-sub{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-weight:800;
+  color:var(--muted);
+  margin-top:4px;
+}
+.catalog-country-block{padding:0 18px 15px}
+.catalog-country-block+.catalog-country-block{border-top:1px solid #edf1f5}
+.catalog-country-head{
+  margin:14px 0 9px;
+  padding:9px 12px;
+  border-radius:10px;
+  background:#f6f8fb;
+  border-left:4px solid #6b7f95;
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+  color:#24364a;
+}
+.catalog-league-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:8px;
+}
+.catalog-league-card{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 1px 5px rgba(15,23,42,.035);
+}
+.catalog-league-card:hover{background:#fbfdff;border-color:#cbd8e6}
+.catalog-league-name{
+  min-width:0;
+  flex:1;
+  font-size:12px;
+  line-height:1.35;
+  font-weight:820;
+  color:#17283b;
+}
+.catalog-gender-badge{
+  width:26px;
+  height:26px;
+  flex:0 0 26px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);
+}
+.catalog-gender-badge.male{background:#2f80ed}
+.catalog-gender-badge.female{background:#e66aa5}
+.catalog-gender-badge svg{width:14px;height:17px;display:block;fill:#fff}
+.catalog-gender-text{
+  font-size:9px;
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:.045em;
+  color:var(--muted);
+}
+.catalog-ungrouped{
+  margin:10px 18px 15px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:#fafbfc;
+  border:1px dashed #d8e0e8;
+  font-size:11px;
+  color:#34495e;
+}
+.catalog-return-wrap{
+  padding:10px 18px 15px;
+  display:flex;
+  justify-content:flex-end;
+  border-top:1px solid #edf1f5;
+}
+.catalog-return-top{
+  appearance:none;
+  border:1px solid #cbd8e6;
+  background:#f8fbff;
+  color:var(--nav);
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:10px;
+  font-weight:850;
+  cursor:pointer;
+}
+.catalog-return-top:hover{background:#edf5fd}
+.catalog-empty-country{font-size:11px;color:var(--muted);padding:4px 0 8px}
+@media(max-width:700px){
+  .catalog-league-grid{grid-template-columns:1fr}
+  .catalog-country-block{padding-left:12px;padding-right:12px}
+  .live-catalog-section>.catalog-sport-head{padding:14px}
+}
 </style>
 </head>
 <body>
@@ -1407,6 +1537,149 @@ if(us) us.addEventListener('input',e=>{
     return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString('en-US',{month:'short',day:'numeric'});
   }
 
+
+  const CATALOG_FOOTER_JUNK=[
+    /^page\s+\d+(?:\s+of\s+\d+)?$/i,
+    /^\d+\s*$/,
+    /^table\s+of\s+contents$/i,
+    /^nebraska\s+authorized\s+sports\s+wagering\s+menu/i,
+    /^authorized\s+sports\s+wagering\s+menu/i,
+    /^nebraska\s+racing\s+and\s+gaming\s+commission$/i,
+    /^nrgc$/i,
+    /^(?:last\s+)?(?:updated|revised|effective)\s*:?\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}$/i,
+    /^\d{1,2}[./-]\d{1,2}[./-]\d{2,4}$/
+  ];
+
+  function cleanCatalogLine(line){
+    return String(line||'').replace(/\s+/g,' ').trim();
+  }
+  function isCatalogJunk(line){
+    const s=cleanCatalogLine(line);
+    if(!s) return true;
+    return CATALOG_FOOTER_JUNK.some(rx=>rx.test(s));
+  }
+  function catalogGender(value){
+    const s=String(value||'').trim().toLowerCase();
+    if(/\b(male|men|mens|men's|boys?)\b/.test(s)) return 'male';
+    if(/\b(female|women|womens|women's|girls?)\b/.test(s)) return 'female';
+    return null;
+  }
+  function restroomPersonSvg(gender){
+    if(gender==='female'){
+      return `<svg viewBox="0 0 24 30" aria-hidden="true">
+        <circle cx="12" cy="4.5" r="3.2"></circle>
+        <path d="M8.8 9h6.4l3.4 10.5h-3.2V29h-3V20h-.8v9h-3v-9.5H5.4L8.8 9z"></path>
+      </svg>`;
+    }
+    return `<svg viewBox="0 0 24 30" aria-hidden="true">
+      <circle cx="12" cy="4.5" r="3.2"></circle>
+      <path d="M8.2 9h7.6c1.7 0 2.8 1.2 2.8 2.8V19h-3v-6h-.9V29h-3V20h-1.4v9h-3V12.9h-.9V19h-3v-7.2C5.4 10.2 6.5 9 8.2 9z"></path>
+    </svg>`;
+  }
+  function genderBadge(gender, raw){
+    if(!gender) return raw ? `<span class="catalog-gender-text">${esc(raw)}</span>` : '';
+    const label=gender==='male'?'Male':'Female';
+    return `<span class="catalog-gender-badge ${gender}" title="${label}" aria-label="${label}">${restroomPersonSvg(gender)}</span>`;
+  }
+
+  function parseCatalogSection(section){
+    const raw=(section.lines||[]).map(cleanCatalogLine).filter(x=>!isCatalogJunk(x));
+    const countries=[];
+    const byName=new Map();
+    let current=null;
+    const ungrouped=[];
+
+    function country(name){
+      name=cleanCatalogLine(name);
+      if(!name) name='Other / General';
+      if(!byName.has(name)){
+        const obj={name,items:[]};
+        byName.set(name,obj);
+        countries.push(obj);
+      }
+      current=byName.get(name);
+      return current;
+    }
+
+    raw.forEach(line=>{
+      const parts=line.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
+
+      if(parts.length>=3){
+        // Most structured form: Country | League/Event | Gender
+        const maybeGender=parts[parts.length-1];
+        const gender=catalogGender(maybeGender);
+        const c=parts[0];
+        const league=parts.slice(1,gender?parts.length-1:parts.length).join(' | ');
+        country(c).items.push({name:league,gender,genderRaw:gender?maybeGender:null});
+        return;
+      }
+
+      if(parts.length===2){
+        const gender=catalogGender(parts[1]);
+        if(gender){
+          // Common form after a country heading: League/Event | Male/Female
+          (current||country('Other / General')).items.push({
+            name:parts[0],gender,genderRaw:parts[1]
+          });
+        }else{
+          // Treat first part as country and second as event if not gender-tagged.
+          country(parts[0]).items.push({name:parts[1],gender:null,genderRaw:null});
+        }
+        return;
+      }
+
+      // A plain line immediately preceding pipe-delimited rows is usually a country.
+      // Preserve explanatory/other lines separately if it doesn't gain children.
+      country(line);
+    });
+
+    // Plain headings with no child entries are not useful as empty country blocks.
+    // Preserve them as ungrouped information only if they are not duplicated.
+    const populated=countries.filter(c=>c.items.length);
+    countries.filter(c=>!c.items.length).forEach(c=>{
+      if(!populated.some(x=>x.name===c.name)) ungrouped.push(c.name);
+    });
+
+    return {countries:populated,ungrouped};
+  }
+
+  function renderCatalogSection(section,i){
+    const parsed=parseCatalogSection(section);
+    const countries=parsed.countries.map(c=>`
+      <div class="catalog-country-block">
+        <div class="catalog-country-head">${esc(c.name)}</div>
+        <div class="catalog-league-grid">
+          ${c.items.map(item=>`
+            <div class="catalog-league-card">
+              ${genderBadge(item.gender,item.genderRaw)}
+              <div class="catalog-league-name">${esc(item.name)}</div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+
+    const ungrouped=parsed.ungrouped.length
+      ? `<div class="catalog-ungrouped">${parsed.ungrouped.map(x=>esc(x)).join('<br>')}</div>`
+      : '';
+
+    return `
+      <section class="catalog-sport live-catalog-section"
+        id="catalog-sport-${i}"
+        data-live-index="${i}"
+        data-search="${esc((section.sport+' '+(section.lines||[]).join(' ')).toLowerCase())}">
+        <div class="catalog-sport-head">
+          <div>
+            <div class="catalog-sport-name">${esc(catalogDisplayLabel(section))}</div>
+            <div class="catalog-sport-sub">Approved catalog events</div>
+          </div>
+        </div>
+        ${countries}
+        ${ungrouped}
+        <div class="catalog-return-wrap">
+          <button type="button" class="catalog-return-top" data-catalog-top>↑ Back to catalog top</button>
+        </div>
+      </section>`;
+  }
+
   async function loadLiveCatalog(){
     try{
       const r=await fetch(`data/catalog-live.json?v=${Date.now()}`,{cache:'no-store'});
@@ -1422,8 +1695,6 @@ if(us) us.addEventListener('input',e=>{
       if(sum) sum.innerHTML=`
         <div><span>Current menu</span><b>${esc(d.source_label||d.menu_version||'Current NRGC menu')}</b></div>
         <div><span>Last synced</span><b>${esc(fmtStamp(d.generated_at))}</b></div>
-        <div><span>Pages</span><b>${esc(d.page_count||0)}</b></div>
-        <div><span>Parsed lines</span><b>${esc(d.line_count||0)}</b></div>
         <div><span>Restriction signals</span><b>${esc((d.restrictions||[]).length)}</b></div>`;
 
       const sections=d.sections||[]; window.__currentCatalogSections=sections;
@@ -1431,11 +1702,7 @@ if(us) us.addEventListener('input',e=>{
       const body=document.getElementById('liveCatalogBody');
       if(btns && body){
         btns.innerHTML=sections.map((s,i)=>`<button type="button" class="sport-button live-cat-btn" data-live-cat="${i}">${esc(catalogDisplayLabel(s))}</button>`).join('');
-        body.innerHTML=sections.map((s,i)=>`
-          <section class="catalog-sport live-catalog-section" data-live-index="${i}" data-search="${esc((s.sport+' '+(s.lines||[]).join(' ')).toLowerCase())}">
-            <div class="section-title">${esc(catalogDisplayLabel(s))}</div>
-            ${(s.lines||[]).map(line=>`<div class="catalog-line">${esc(line)}</div>`).join('')}
-          </section>`).join('');
+        body.innerHTML=sections.map((s,i)=>renderCatalogSection(s,i)).join('');
         // Hide legacy hard-coded catalog once live data is available.
         const legacy=document.getElementById('catalogBody');
         if(legacy) legacy.style.display='none';
@@ -1444,6 +1711,10 @@ if(us) us.addEventListener('input',e=>{
           const idx=b.dataset.liveCat;
           const target=document.querySelector(`.live-catalog-section[data-live-index="${idx}"]`);
           if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+        document.querySelectorAll('[data-catalog-top]').forEach(b=>b.onclick=()=>{
+          const top=document.getElementById('liveCatalogCard') || document.getElementById('catalog');
+          if(top) top.scrollIntoView({behavior:'smooth',block:'start'});
         });
         const search=document.getElementById('liveCatalogSearch');
         if(search) search.oninput=e=>{
