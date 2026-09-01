@@ -154,6 +154,12 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 @media(max-width:650px){
   .coverage-operational-grid,.coverage-dim-grid,.tennis-risk-grid,.tennis-monitor-grid{grid-template-columns:1fr}
 }
+
+.live-cat-btn.active{
+  background:var(--nav);
+  color:#fff;
+  border-color:var(--nav);
+}
 </style>
 </head>
 <body>
@@ -737,6 +743,13 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 </section>
 <script>
+function catalogDisplayLabel(section){
+  const sport=(section && section.sport ? section.sport : '').trim();
+  if(sport === 'National Collegiate Athletic Association (NCAA)') return 'NCAA';
+  return sport;
+}
+
+
 document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -1388,10 +1401,10 @@ if(us) us.addEventListener('input',e=>{
       const btns=document.getElementById('liveCatalogSportButtons');
       const body=document.getElementById('liveCatalogBody');
       if(btns && body){
-        btns.innerHTML=sections.map((s,i)=>`<button class="sport-button live-cat-btn" data-live-cat="${i}">${esc(s.sport)}</button>`).join('');
+        btns.innerHTML=sections.map((s,i)=>`<button type="button" class="sport-button live-cat-btn" data-live-cat="${i}">${esc(catalogDisplayLabel(s))}</button>`).join('');
         body.innerHTML=sections.map((s,i)=>`
           <section class="catalog-sport live-catalog-section" data-live-index="${i}" data-search="${esc((s.sport+' '+(s.lines||[]).join(' ')).toLowerCase())}">
-            <div class="section-title">${esc(simplifyNCAA(s))}</div>
+            <div class="section-title">${esc(catalogDisplayLabel(s))}</div>
             ${(s.lines||[]).map(line=>`<div class="catalog-line">${esc(line)}</div>`).join('')}
           </section>`).join('');
         // Hide legacy hard-coded catalog once live data is available.
@@ -1672,11 +1685,7 @@ if(us) us.addEventListener('input',e=>{
 
 // Consolidated catalog naming / operational presentation.
 (function(){
-  function simplifyNCAA(section){
-    const sport=(section.sport||'').trim();
-    if(sport === 'National Collegiate Athletic Association (NCAA)') return 'NCAA';
-    return sport;
-  }
+  function simplifyNCAA(section){ return catalogDisplayLabel(section); }
 
   function rebuildCatalogButtonsWithSimpleLabels(){
     if(!window.__currentCatalogSections) return;
@@ -1685,14 +1694,22 @@ if(us) us.addEventListener('input',e=>{
     if(!btns) return;
 
     btns.innerHTML=sections.map((s,i)=>{
-      const label=simplifyNCAA(s);
+      const label=catalogDisplayLabel(s);
       return `<button class="sport-button live-cat-btn" data-live-cat="${i}">${label.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</button>`;
     }).join('');
 
-    document.querySelectorAll('.live-cat-btn').forEach(b=>b.onclick=()=>{
-      const idx=b.dataset.liveCat;
-      const target=document.querySelector(`.live-catalog-section[data-live-index="${idx}"]`);
-      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    document.querySelectorAll('.live-cat-btn').forEach(b=>{
+      b.onclick=()=>{
+        const idx=String(b.dataset.liveCat);
+        document.querySelectorAll('.live-cat-btn').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        const target=[...document.querySelectorAll('.live-catalog-section')]
+          .find(el=>String(el.dataset.liveIndex)===idx);
+        if(target){
+          target.style.display='';
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      };
     });
   }
 
