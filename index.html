@@ -759,18 +759,21 @@ document.querySelectorAll('.sport-button').forEach(btn=>btn.addEventListener('cl
   const el=document.getElementById(btn.dataset.target); if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }));
 
-document.getElementById('restrictionSearch').addEventListener('input',e=>{
+const legacyRestrictionSearch=document.getElementById('restrictionSearch');
+if(legacyRestrictionSearch) legacyRestrictionSearch.addEventListener('input',e=>{
  const q=e.target.value.toLowerCase();
  document.querySelectorAll('#restrictionTable tbody tr').forEach(r=>r.classList.toggle('hide',!r.dataset.search.includes(q)));
 });
 
-document.getElementById('catalogSearch').addEventListener('input',e=>{
+const legacyCatalogSearch=document.getElementById('catalogSearch');
+if(legacyCatalogSearch) legacyCatalogSearch.addEventListener('input',e=>{
  const q=e.target.value.toLowerCase().trim();
  document.querySelectorAll('.catalog-sport').forEach(s=>{
    if(!q){s.classList.remove('hide'); s.querySelectorAll('.country-group').forEach(g=>g.classList.remove('hide')); return;}
    let any=false;
    s.querySelectorAll('.country-group').forEach(g=>{
-      const hit=g.innerText.toLowerCase().includes(q) || s.querySelector('.section-title').innerText.toLowerCase().includes(q);
+      const title=s.querySelector('.section-title');
+      const hit=g.innerText.toLowerCase().includes(q) || (title && title.innerText.toLowerCase().includes(q));
       g.classList.toggle('hide',!hit); if(hit) any=true;
    });
    s.classList.toggle('hide',!any);
