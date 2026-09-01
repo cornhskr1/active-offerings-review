@@ -183,6 +183,25 @@ for ev in schedule.get("events",[]):
         continue
     if not ev.get("restriction_risk"):
         continue
+
+    # Defensive Baseball scope check.
+    # Normal MLB games must never inherit Draft / Spring Training restrictions.
+    if ev.get("sport") == "Baseball" and ev.get("league") == "MLB":
+        signals=[str(x).lower() for x in ev.get("restriction_signals",[])]
+        name=str(ev.get("name") or "").lower()
+        applicable=False
+
+        for sig in signals:
+            if "draft" in sig and "draft" in name:
+                applicable=True
+            elif ("spring training" in sig or "preseason" in sig or "pre-season" in sig) and any(
+                k in name for k in ("spring training","preseason","pre-season")
+            ):
+                applicable=True
+
+        if not applicable:
+            continue
+
     add_card(cards, seen,
         key=f'restriction|{ev.get("id")}',
         severity="AMBER",

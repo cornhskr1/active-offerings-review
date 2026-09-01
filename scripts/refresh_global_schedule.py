@@ -138,7 +138,9 @@ for ev in events:
     ev["u18_matches"]=[n for n in u18_names if n.lower() in low]
     ev["u18_risk"]=bool(ev["u18_matches"])
 
-# Restriction cross-reference at sport level, intentionally conservative.
+# Restriction cross-reference.
+# Applicability must be event/league specific. A restriction somewhere under
+# a sport must NOT automatically flag every scheduled event in that sport.
 restrictions=[]
 cat_path=DATA/"catalog-live.json"
 if cat_path.exists():
@@ -148,11 +150,55 @@ if cat_path.exists():
     except Exception:
         pass
 
+def restriction_applies(ev, x):
+    text=(x.get("text") or "").lower()
+    rsport=(x.get("sport") or "").lower()
+    esport=(ev.get("sport") or "").lower()
+    league=(ev.get("league") or "").lower()
+    name=(ev.get("name") or "").lower()
+    hay=f"{league} {name}"
+
+    sport_related = (
+        not rsport
+        or rsport in esport
+        or esport in rsport
+        or (league and league in text)
+    )
+    if not sport_related:
+        return False
+
+    # Baseball restrictions are special-event specific.
+    # Do not allow Draft or Spring Training restrictions to bleed into
+    # normal MLB regular-season games.
+    if esport == "baseball":
+        if "draft" in text:
+            return "draft" in hay
+
+        if "spring training" in text or "preseason" in text or "pre-season" in text:
+            return any(k in hay for k in ("spring training","preseason","pre-season"))
+
+        special_terms=("all-star","home run derby","world baseball classic")
+        for term in special_terms:
+            if term in text:
+                return term in hay
+
+        # For ordinary MLB scheduled games, do not inherit unrelated
+        # Baseball-section restriction language.
+        if league == "mlb":
+            return False
+
+    # A restriction explicitly naming the scheduled league can apply league-wide.
+    if league and league in text:
+        return True
+
+    # Otherwise require meaningful event wording overlap rather than just sport.
+    tokens=[t for t in re.findall(r"[a-z0-9]+", name) if len(t)>=5]
+    return any(t in text for t in tokens)
+
 for ev in events:
     rel=[]
     for x in restrictions:
-        sport=(x.get("sport") or "").lower()
-        if sport and (sport in ev["sport"].lower() or ev["sport"].lower() in sport or ev["league"].lower() in (x.get("text") or "").lower()):
+        if restriction_applies(ev, x):
             rel.append(x.get("text"))
     ev["restriction_signals"]=rel[:5]
     ev["restriction_risk"]=bool(rel)
