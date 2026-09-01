@@ -1,11 +1,45 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T21:18:59.493981+00:00",
+  "generated_at": "2026-09-01T21:26:24.316044+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-01",
   "window_end": "2026-09-08",
-  "event_count": 792,
+  "event_count": 797,
   "events": [
+    {
+      "id": "189-2026",
+      "source_id": "atp-tennis",
+      "sport": "Tennis",
+      "league": "ATP",
+      "region": "International",
+      "name": "US Open",
+      "start_time": "2026-08-24T04:00Z",
+      "status": "COMPLETED",
+      "status_detail": "Final",
+      "location": null,
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "189-2026",
+      "source_id": "wta-tennis",
+      "sport": "Tennis",
+      "league": "WTA",
+      "region": "International",
+      "name": "US Open",
+      "start_time": "2026-08-24T04:00Z",
+      "status": "COMPLETED",
+      "status_detail": "Final",
+      "location": null,
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
     {
       "id": "401883416",
       "source_id": "ncaa-volleyball",
@@ -12234,6 +12268,57 @@
       "restriction_risk": false
     },
     {
+      "id": "1076-2026",
+      "source_id": "wta-tennis",
+      "sport": "Tennis",
+      "league": "WTA",
+      "region": "International",
+      "name": "ATIK Antalya Open",
+      "start_time": "2026-09-07T04:00Z",
+      "status": "UPCOMING",
+      "status_detail": "TBD",
+      "location": null,
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "964-2026",
+      "source_id": "wta-tennis",
+      "sport": "Tennis",
+      "league": "WTA",
+      "region": "International",
+      "name": "Kia Open",
+      "start_time": "2026-09-07T04:00Z",
+      "status": "UPCOMING",
+      "status_detail": "TBD",
+      "location": null,
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "998-2026",
+      "source_id": "wta-tennis",
+      "sport": "Tennis",
+      "league": "WTA",
+      "region": "International",
+      "name": "Montreux Nestl\u00e9 Open",
+      "start_time": "2026-09-07T04:00Z",
+      "status": "UPCOMING",
+      "status_detail": "TBD",
+      "location": null,
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401874943",
       "source_id": "seriea",
       "sport": "Soccer",
@@ -13490,7 +13575,7 @@
       "ok": true,
       "events": 111,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "nfl",
@@ -13506,7 +13591,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "ncaa-football",
@@ -13522,7 +13607,7 @@
       "ok": true,
       "events": 48,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "nba",
@@ -13538,7 +13623,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "wnba",
@@ -13554,7 +13639,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -13570,7 +13655,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -13586,7 +13671,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "nhl",
@@ -13602,7 +13687,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "mls",
@@ -13618,7 +13703,7 @@
       "ok": true,
       "events": 15,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "epl",
@@ -13633,7 +13718,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "bundesliga",
@@ -13648,7 +13733,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "laliga",
@@ -13663,7 +13748,7 @@
       "ok": true,
       "events": 11,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "seriea",
@@ -13678,7 +13763,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "ligue1",
@@ -13693,7 +13778,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "eredivisie",
@@ -13708,7 +13793,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "primeira",
@@ -13723,7 +13808,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "belgium",
@@ -13739,7 +13824,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "denmark",
@@ -13755,7 +13840,7 @@
       "ok": true,
       "events": 8,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -13771,7 +13856,39 @@
       "ok": true,
       "events": 530,
       "errors": [],
-      "checked_at": "2026-09-01T21:18:59.493981+00:00"
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
+    },
+    {
+      "id": "atp-tennis",
+      "sport": "Tennis",
+      "league": "ATP",
+      "region": "International",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+      "catalog_terms": [
+        "Tennis",
+        "ATP"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
+    },
+    {
+      "id": "wta-tennis",
+      "sport": "Tennis",
+      "league": "WTA",
+      "region": "International",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "catalog_terms": [
+        "Tennis",
+        "WTA"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 4,
+      "errors": [],
+      "checked_at": "2026-09-01T21:26:24.316044+00:00"
     }
   ],
   "coverage_gaps": [
@@ -13852,11 +13969,6 @@
     },
     {
       "area": "Table Tennis",
-      "state": "SCHEDULE ADAPTER PENDING",
-      "note": "Approved catalog area is recognized but not yet included in the automated global schedule feed."
-    },
-    {
-      "area": "Tennis",
       "state": "SCHEDULE ADAPTER PENDING",
       "note": "Approved catalog area is recognized but not yet included in the automated global schedule feed."
     }
