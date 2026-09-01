@@ -17,6 +17,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -25,18 +26,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Auto-map and refresh NCAA Football
+      - name: Auto-map and run NCAA Football age discovery
         run: python3 scripts/refresh_ncaa_football.py
 
-      - name: Commit discovered NCAA Football mappings and data
+      - name: Commit NCAA Football mapping and age-review data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ncaa-football-sources.json data/ncaa-football-data.json data/review-data.json
+          git add data/ncaa-football-sources.json data/ncaa-football-data.json data/ncaa-football-age-review.json data/review-data.json
           if git diff --cached --quiet; then
             echo "No data changes to commit."
           else
-            git commit -m "Auto-map and refresh NCAA Football"
+            git commit -m "Refresh NCAA Football mapping and age discovery"
             git push
           fi
 
