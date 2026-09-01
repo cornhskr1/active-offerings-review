@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "window_days": 7,
+  "note": "Only adapters with a dependable public schedule endpoint are listed. Approved catalog areas without an adapter remain visible as coverage gaps rather than being treated as clear.",
+  "sources": [
+    {
+      "id": "mlb",
+      "sport": "Baseball",
+      "league": "MLB",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+      "catalog_terms": [
+        "Major League Baseball",
+        "MLB"
+      ]
+    },
+    {
+      "id": "nfl",
+      "sport": "Football",
+      "league": "NFL",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+      "catalog_terms": [
+        "National Football League",
+        "NFL"
+      ]
+    },
+    {
+      "id": "ncaa-football",
+      "sport": "Football",
+      "league": "NCAA Football",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
+      "catalog_terms": [
+        "NCAA Football",
+        "Division I Football"
+      ]
+    },
+    {
+      "id": "nba",
+      "sport": "Basketball",
+      "league": "NBA",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+      "catalog_terms": [
+        "National Basketball Association",
+        "NBA"
+      ]
+    },
+    {
+      "id": "wnba",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard",
+      "catalog_terms": [
+        "Women's National Basketball Association",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "ncaa-mbb",
+      "sport": "Basketball",
+      "league": "NCAA Men's Basketball",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
+      "catalog_terms": [
+        "NCAA Basketball",
+        "Division I Basketball"
+      ]
+    },
+    {
+      "id": "ncaa-wbb",
+      "sport": "Basketball",
+      "league": "NCAA Women's Basketball",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard",
+      "catalog_terms": [
+        "NCAA Basketball",
+        "Division I Basketball"
+      ]
+    },
+    {
+      "id": "nhl",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "region": "United States / Canada",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
+      "catalog_terms": [
+        "National Hockey League",
+        "NHL"
+      ]
+    },
+    {
+      "id": "mls",
+      "sport": "Soccer",
+      "league": "MLS",
+      "region": "United States / Canada",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard",
+      "catalog_terms": [
+        "Major League Soccer",
+        "MLS"
+      ]
+    },
+    {
+      "id": "epl",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "region": "England",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+      "catalog_terms": [
+        "Premier League"
+      ]
+    },
+    {
+      "id": "bundesliga",
+      "sport": "Soccer",
+      "league": "Bundesliga",
+      "region": "Germany",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard",
+      "catalog_terms": [
+        "Bundesliga"
+      ]
+    },
+    {
+      "id": "laliga",
+      "sport": "Soccer",
+      "league": "La Liga",
+      "region": "Spain",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
+      "catalog_terms": [
+        "La Liga"
+      ]
+    },
+    {
+      "id": "seriea",
+      "sport": "Soccer",
+      "league": "Serie A",
+      "region": "Italy",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard",
+      "catalog_terms": [
+        "Serie A"
+      ]
+    },
+    {
+      "id": "ligue1",
+      "sport": "Soccer",
+      "league": "Ligue 1",
+      "region": "France",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/scoreboard",
+      "catalog_terms": [
+        "Ligue 1"
+      ]
+    },
+    {
+      "id": "eredivisie",
+      "sport": "Soccer",
+      "league": "Eredivisie",
+      "region": "Netherlands",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/scoreboard",
+      "catalog_terms": [
+        "Eredivisie"
+      ]
+    },
+    {
+      "id": "primeira",
+      "sport": "Soccer",
+      "league": "Primeira Liga",
+      "region": "Portugal",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/por.1/scoreboard",
+      "catalog_terms": [
+        "Primeira Liga"
+      ]
+    },
+    {
+      "id": "belgium",
+      "sport": "Soccer",
+      "league": "Jupiler Pro League",
+      "region": "Belgium",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/scoreboard",
+      "catalog_terms": [
+        "Jupiler Pro League",
+        "Belgian"
+      ]
+    },
+    {
+      "id": "denmark",
+      "sport": "Soccer",
+      "league": "Danish Superliga",
+      "region": "Denmark",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/scoreboard",
+      "catalog_terms": [
+        "Danish Superliga",
+        "Superliga"
+      ]
+    },
+    {
+      "id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "catalog_terms": [
+        "NCAA Volleyball",
+        "Division I Volleyball"
+      ]
+    }
+  ]
+}
