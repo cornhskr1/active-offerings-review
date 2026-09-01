@@ -50,15 +50,25 @@ def parse_event(source, ev):
     comps=ev.get("competitions") or []
     comp=comps[0] if comps else {}
     competitors=comp.get("competitors") or []
-    home=None; away=None
+    home=None; away=None; participant_names=[]
     for c in competitors:
-        team=c.get("team") or {}
-        name=team.get("displayName") or team.get("shortDisplayName") or team.get("name")
+        entity=c.get("team") or c.get("athlete") or {}
+        name=(
+            entity.get("displayName")
+            or entity.get("fullName")
+            or entity.get("shortDisplayName")
+            or entity.get("shortName")
+            or entity.get("name")
+        )
+        if name:
+            participant_names.append(name)
         if c.get("homeAway")=="home": home=name
         elif c.get("homeAway")=="away": away=name
     name=ev.get("name") or ev.get("shortName") or "Scheduled event"
     if home and away:
         name=f"{away} at {home}"
+    elif len(participant_names)>=2:
+        name=f"{participant_names[0]} vs {participant_names[1]}"
     dt=ev.get("date")
     status,detail=event_status(ev)
     venue=(comp.get("venue") or {}).get("fullName")
@@ -217,7 +227,7 @@ if CATALOG:
     candidate_areas=[
         "Aussie Rules","Bowling","Boxing","Combat Sports","Cricket","Cycling","Darts",
         "Esports","Golf","Lacrosse","Motorsports","Olympics","Rodeo","Rugby",
-        "Surfing","Table Tennis","Tennis"
+        "Surfing","Table Tennis"
     ]
     for area in candidate_areas:
         if area.lower() in CATALOG and not any(area.lower() in x for x in mapped_terms):
