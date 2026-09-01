@@ -184,6 +184,30 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 
 .pq-names{margin:8px 0}.pq-names summary{cursor:pointer;font-size:11px;font-weight:850;color:var(--nav)}
 .pq-names>div{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+
+.pq-sport-group,.vet-tier,.vet-school{border:1px solid var(--line);border-radius:14px;background:#fff;margin:8px 0;overflow:hidden}
+.pq-sport-group>summary,.vet-tier>summary,.vet-school>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;font-weight:850;color:var(--nav);background:#fbfcfe}
+.pq-sport-group>summary::-webkit-details-marker,.vet-tier>summary::-webkit-details-marker,.vet-school>summary::-webkit-details-marker{display:none}
+.pq-sport-group>summary:before,.vet-tier>summary:before,.vet-school>summary:before{content:"▸";font-size:13px;transition:transform .15s ease}
+.pq-sport-group[open]>summary:before,.vet-tier[open]>summary:before,.vet-school[open]>summary:before{transform:rotate(90deg)}
+.acc-title{display:flex;align-items:center;gap:8px;flex:1}
+.acc-count{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:3px 8px;background:#fff;color:var(--muted)}
+.pq-group-body{padding:8px}
+.pq-compact-row{border-top:1px solid var(--line);padding:10px 4px}
+.pq-compact-row:first-child{border-top:0}
+.pq-compact-row details summary{cursor:pointer;font-weight:800}
+.pq-meta{font-size:11px;color:var(--muted);margin-top:3px}
+.vetting-grid{display:grid;gap:10px}
+.vet-tier.high>summary{border-left:5px solid #b42318}
+.vet-tier.medium>summary{border-left:5px solid #b7791f}
+.vet-tier.low>summary{border-left:5px solid #2f855a}
+.vet-tier.unknown>summary{border-left:5px solid #718096}
+.vet-school-body{padding:0 12px 10px}
+.vet-row{display:grid;grid-template-columns:minmax(170px,1.6fr) 110px minmax(180px,1.4fr) 120px;gap:10px;align-items:center;padding:8px 4px;border-top:1px solid var(--line);font-size:12px}
+.vet-row:first-child{border-top:0}
+.vet-athlete{font-weight:800}
+.vet-basis{color:var(--muted)}
+@media(max-width:800px){.vet-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1919,7 +1943,8 @@ if(us) us.addEventListener('input',e=>{
       ['NCAA Football age discovery', ()=>window.renderNCAAAgeDiscovery?window.renderNCAAAgeDiscovery():Promise.resolve()],
       ['restriction watch', ()=>window.loadCleanRestrictionWatch?window.loadCleanRestrictionWatch():Promise.resolve()],
       ['approved sports schedule', loadGlobalSchedule],
-      ['dynamic priority queue', ()=>window.loadPriorityQueue?window.loadPriorityQueue():Promise.resolve()]
+      ['dynamic priority queue', ()=>window.loadPriorityQueue?window.loadPriorityQueue():Promise.resolve()],
+      ['NCAA age vetting', ()=>window.loadNCAAVetting?window.loadNCAAVetting():Promise.resolve()]
     ];
 
     const results=await Promise.allSettled(jobs.map(x=>Promise.resolve().then(x[1])));
@@ -2000,52 +2025,32 @@ if(us) us.addEventListener('input',e=>{
     const search=PQ_SEARCH.toLowerCase();
 
     const cards=(PQ_DATA.cards||[]).filter(c=>{
-      // Hard front-end exclusion for stale MLB restriction cards.
-      if(
-        c.type==='CATALOG RESTRICTION' &&
-        String(c.league||'').trim().toUpperCase()==='MLB'
-      ){
+      if(c.type==='CATALOG RESTRICTION' && String(c.league||'').trim().toUpperCase()==='MLB'){
         const ev=String(c.event||'').toLowerCase();
         const special=['draft','spring training','preseason','pre-season'].some(x=>ev.includes(x));
         if(!special) return false;
       }
-
-      // Generic NCAA Football catalog restrictions are never rendered as
-      // Priority Queue cards. Real NCAA risks have dedicated card types.
-      if(
-        c.type==='CATALOG RESTRICTION' &&
-        String(c.league||'').trim().toUpperCase()==='NCAA FOOTBALL'
-      ){
-        return false;
-      }
-
-      // Low-risk NCAA class/history cases belong in Age Discovery, not
-      // Priority Queue. Never confuse low-risk screening with verification.
-      if(
-        String(c.league||'').trim().toUpperCase()==='NCAA FOOTBALL' &&
-        String(c.type||'').toUpperCase().includes('LOW U18 RISK')
-      ){
-        return false;
-      }
-
+      if(c.type==='CATALOG RESTRICTION' && String(c.league||'').trim().toUpperCase()==='NCAA FOOTBALL') return false;
       if(PQ_FILTER==='red' && c.severity!=='RED') return false;
       if(PQ_FILTER==='amber' && c.severity!=='AMBER') return false;
       const hay=`${c.sport||''} ${c.league||''} ${c.team||''} ${c.athlete||''} ${c.event||''} ${c.title||''}`.toLowerCase();
       return !search || hay.includes(search);
     });
 
-    q.innerHTML=cards.length
-      ? cards.map(cardHtml).join('')
-      : '<div class="empty-state">No dynamic priority items match the current filter. This does not override Coverage Control.</div>';
+    const groups={};
+    cards.forEach(c=>{const sport=c.sport||c.league||'Other';(groups[sport] ||= []).push(c);});
+
+    q.innerHTML=Object.entries(groups)
+      .sort((a,b)=>b[1].length-a[1].length || a[0].localeCompare(b[0]))
+      .map(([sport,items])=>{
+        const redCount=items.filter(x=>x.severity==='RED').length;
+        const amberCount=items.filter(x=>x.severity==='AMBER').length;
+        const rows=items.map(c=>`<div class="pq-compact-row"><details><summary><span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span> ${pe(c.title||c.event||'Review item')}</summary><div class="pq-meta">${c.start_time?pe(ptime(c.start_time)):'Watch list'}${c.event?' · '+pe(c.event):''}</div><p><b>Why it surfaced:</b> ${pe(c.reason||'Risk condition matched.')}</p><div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div></details></div>`).join('');
+        return `<details class="pq-sport-group"><summary><span class="acc-title">${pe(sport)}</span><span class="acc-count">${items.length} total · ${redCount} red · ${amberCount} amber</span></summary><div class="pq-group-body">${rows}</div></details>`;
+      }).join('') || '<div class="empty-state">No dynamic priority items match the current filter. This does not override Coverage Control.</div>';
 
     const cnt=document.getElementById('reviewCount');
-    if(cnt) cnt.textContent=`${cards.length} items`;
-
-    // Existing filter counters, if present.
-    const red=document.querySelector('[data-review-filter="red"] .count');
-    const amber=document.querySelector('[data-review-filter="amber"] .count');
-    if(red) red.textContent=PQ_DATA.red_count||0;
-    if(amber) amber.textContent=PQ_DATA.amber_count||0;
+    if(cnt) cnt.textContent=`${cards.length} current priority triggers`;
   }
 
   async function loadPriorityQueue(){
@@ -2090,6 +2095,54 @@ function ncaaRiskTierClass(rec){
   if(t==='HIGH'||t==='MEDIUM'||t==='UNKNOWN') return 'amber';
   return 'green';
 }
+
+
+(function(){
+  let VET_DATA=null, VET_FILTER='all';
+  function vetEsc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function allVettingRecords(data){
+    const out=[];
+    ['age_review_needed','unresolved','players','records','candidates'].forEach(k=>{
+      const arr=data?.[k];
+      if(Array.isArray(arr)) arr.forEach(r=>{if(r&&typeof r==='object') out.push(r)});
+    });
+    const seen=new Set();
+    return out.filter(r=>{
+      const key=`${r.team||''}|${r.name||r.athlete||''}|${r.profile_url||''}`;
+      if(seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+  }
+  function tierOf(r){return String(r.u18_risk_tier||'UNKNOWN').toUpperCase();}
+  function tierLabel(t){return ({HIGH:'High U18 Risk',MEDIUM:'Medium U18 Risk',LOW:'Low U18 Risk — Class/History',UNKNOWN:'Age Review Needed',VERIFIED_U18:'Verified U18',VERIFIED_18_PLUS:'Verified 18+'})[t]||t;}
+  function renderVetting(){
+    const body=document.getElementById('ncaaVettingBody'),status=document.getElementById('ncaaVettingStatus');
+    if(!body||!VET_DATA) return;
+    let records=allVettingRecords(VET_DATA).filter(r=>VET_FILTER==='all' ? tierOf(r)!=='VERIFIED_18_PLUS' : tierOf(r)===VET_FILTER);
+    const tierOrder=['VERIFIED_U18','HIGH','MEDIUM','UNKNOWN','LOW'],groups={};
+    records.forEach(r=>{const t=tierOf(r);((groups[t] ||= {})[r.team||'Unknown School'] ||= []).push(r);});
+    body.innerHTML=tierOrder.filter(t=>groups[t]).map(t=>{
+      const schools=groups[t],total=Object.values(schools).reduce((n,a)=>n+a.length,0),cls=t==='HIGH'?'high':t==='MEDIUM'?'medium':t==='LOW'?'low':'unknown';
+      const schoolHtml=Object.entries(schools).sort((a,b)=>a[0].localeCompare(b[0])).map(([school,rows])=>{
+        const rowHtml=rows.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''))).map(r=>{
+          const name=r.name||r.athlete||'Unknown athlete',klass=r.class||r.class_year||r.academic_year||r.year||'Not found',reason=r.u18_risk_reason||r.age_evidence||'No exact DOB located';
+          return `<div class="vet-row"><div class="vet-athlete">${vetEsc(name)}</div><div>${vetEsc(klass)}</div><div class="vet-basis">${vetEsc(reason)}</div><div><span class="pill ${t==='VERIFIED_U18'?'red':(t==='LOW'?'green':'amber')}">${vetEsc(tierLabel(t))}</span></div></div>`;
+        }).join('');
+        return `<details class="vet-school"><summary><span class="acc-title">${vetEsc(school)}</span><span class="acc-count">${rows.length}</span></summary><div class="vet-school-body">${rowHtml}</div></details>`;
+      }).join('');
+      return `<details class="vet-tier ${cls}" ${t==='HIGH'||t==='VERIFIED_U18'?'open':''}><summary><span class="acc-title">${vetEsc(tierLabel(t))}</span><span class="acc-count">${total}</span></summary><div class="pq-group-body">${schoolHtml}</div></details>`;
+    }).join('') || '<div class="empty-state">No NCAA age-vetting records match this filter.</div>';
+    if(status){const c=VET_DATA.risk_tier_counts||{};status.textContent=`${records.length} displayed · High ${c.HIGH||0} · Medium ${c.MEDIUM||0} · Low ${c.LOW||0} · Unknown ${c.UNKNOWN||0}`;}
+  }
+  async function loadNCAAVetting(){
+    const r=await fetch(`data/ncaa-football-age-review.json?v=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) throw new Error(`NCAA age review HTTP ${r.status}`);
+    VET_DATA=await r.json();renderVetting();return VET_DATA;
+  }
+  window.loadNCAAVetting=loadNCAAVetting;
+  document.querySelectorAll('[data-vet-filter]').forEach(b=>b.addEventListener('click',()=>{VET_FILTER=b.dataset.vetFilter||'all';renderVetting();}));
+  loadNCAAVetting().catch(err=>{const s=document.getElementById('ncaaVettingStatus');if(s) s.textContent=`NCAA age-vetting data unavailable: ${err.message}`;});
+})();
 </script>
 </main>
 </body>
