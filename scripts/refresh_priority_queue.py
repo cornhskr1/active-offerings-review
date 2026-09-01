@@ -131,11 +131,30 @@ for player in football.get("known_u18",[]):
 # --------------------------------------------------
 # C) NCAA age review / unresolved candidates
 # --------------------------------------------------
-for player in (age_review.get("age_review_needed",[]) + age_review.get("unresolved",[])):
+age_records = age_review.get("age_review_needed",[]) + age_review.get("unresolved",[])
+
+for player in age_records:
+    tier=(player.get("u18_risk_tier") or "UNKNOWN").upper()
+
+    # LOW-risk upperclassmen/history cases are documented in NCAA Age Discovery
+    # but do NOT clutter Priority Queue unless contradictory evidence appears.
+    if tier in ("LOW","VERIFIED_18_PLUS"):
+        continue
+
+    # HIGH stays visible. MEDIUM stays visible when unresolved.
+    # UNKNOWN stays visible as source/age review because there is no basis to
+    # lower-prioritize it.
+    if tier == "HIGH":
+        type_label="AGE REVIEW — HIGH RISK"
+    elif tier == "MEDIUM":
+        type_label="AGE REVIEW — MEDIUM RISK"
+    else:
+        type_label="AGE REVIEW NEEDED"
+
     add_card(cards, seen,
         key=f'age-review|{player.get("team")}|{player.get("name")}',
         severity="AMBER",
-        type="AGE REVIEW NEEDED",
+        type=type_label,
         sport="NCAA Football",
         league="NCAA Football",
         team=player.get("team"),
@@ -145,8 +164,8 @@ for player in (age_review.get("age_review_needed",[]) + age_review.get("unresolv
         start_time=None,
         status="REVIEW",
         title=f'{player.get("name") or "Roster candidate"} · {player.get("team")}',
-        reason=player.get("age_evidence") or "Official age evidence remains unresolved.",
-        staff_action="Do not treat this athlete as age-cleared. Resolve age evidence before relying on participant coverage.",
+        reason=player.get("u18_risk_reason") or player.get("age_evidence") or "Official age evidence remains unresolved.",
+        staff_action="Resolve age evidence before treating this athlete as age-cleared. Class/history may prioritize the review but does not verify age.",
         source="NCAA Football age discovery"
     )
 

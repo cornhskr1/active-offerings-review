@@ -547,3 +547,52 @@ print(json.dumps({
     "age_review_needed":len(review_needed),
     "unresolved_age":len(unresolved)
 }))
+
+
+def enrich_age_review_file():
+    p = DATA / "ncaa-football-age-review.json"
+    if not p.exists():
+        return
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return
+
+    def enrich_list(items):
+        if not isinstance(items, list):
+            return items
+        out=[]
+        for rec in items:
+            if isinstance(rec, dict):
+                out.append(apply_class_history_risk(rec))
+            else:
+                out.append(rec)
+        return out
+
+    for key in ("age_review_needed", "unresolved", "players", "records", "candidates"):
+        if key in data:
+            data[key] = enrich_list(data[key])
+
+    # Summary counts for the site.
+    all_records=[]
+    for key in ("age_review_needed", "unresolved", "players", "records", "candidates"):
+        vals=data.get(key)
+        if isinstance(vals,list):
+            all_records.extend([x for x in vals if isinstance(x,dict)])
+
+    counts={"HIGH":0,"MEDIUM":0,"LOW":0,"UNKNOWN":0,"VERIFIED_U18":0,"VERIFIED_18_PLUS":0}
+    for rec in all_records:
+        tier=rec.get("u18_risk_tier") or "UNKNOWN"
+        counts[tier]=counts.get(tier,0)+1
+    data["risk_tier_counts"]=counts
+    data["risk_methodology"]={
+        "purpose":"Risk-screen unresolved NCAA age cases when exact DOB is unavailable.",
+        "high":["Freshman","True Freshman","Reclassified","Early Enrollee"],
+        "medium":["Redshirt Freshman","Sophomore","Transfer with limited prior history"],
+        "low":["Junior","Senior","Fifth Year","Graduate","Multi-year collegiate history"],
+        "important":"Class/history is a screening heuristic and is not age verification."
+    }
+
+    p.write_text(json.dumps(data,indent=2,ensure_ascii=False),encoding="utf-8")
+
+
