@@ -131,19 +131,24 @@ for player in football.get("known_u18",[]):
 # --------------------------------------------------
 # C) NCAA age review / unresolved candidates
 # --------------------------------------------------
+# Age Vetting is now the primary home for unresolved NCAA athletes.
+# Only athletes with current Today + 7 schedule relevance may bubble into
+# operational Priority Queue.
 age_records = age_review.get("age_review_needed",[]) + age_review.get("unresolved",[])
+football_events=[e for e in schedule.get("events",[]) if e.get("league")=="NCAA Football" and e.get("status") in ("UPCOMING","LIVE")]
 
 for player in age_records:
     tier=(player.get("u18_risk_tier") or "UNKNOWN").upper()
 
-    # LOW-risk upperclassmen/history cases are documented in NCAA Age Discovery
-    # but do NOT clutter Priority Queue unless contradictory evidence appears.
     if tier in ("LOW","VERIFIED_18_PLUS"):
         continue
 
-    # HIGH stays visible. MEDIUM stays visible when unresolved.
-    # UNKNOWN stays visible as source/age review because there is no basis to
-    # lower-prioritize it.
+    team=player.get("team")
+    matches=[e for e in football_events if team_in_event(team,e.get("name"))]
+
+    if not matches:
+        continue
+
     if tier == "HIGH":
         type_label="AGE REVIEW — HIGH RISK"
     elif tier == "MEDIUM":
@@ -151,23 +156,26 @@ for player in age_records:
     else:
         type_label="AGE REVIEW NEEDED"
 
-    add_card(cards, seen,
-        key=f'age-review|{player.get("team")}|{player.get("name")}',
-        severity="AMBER",
-        type=type_label,
-        sport="NCAA Football",
-        league="NCAA Football",
-        team=player.get("team"),
-        athlete=player.get("name"),
-        age=player.get("calculated_age"),
-        event=None,
-        start_time=None,
-        status="REVIEW",
-        title=f'{player.get("name") or "Roster candidate"} · {player.get("team")}',
-        reason=player.get("u18_risk_reason") or player.get("age_evidence") or "Official age evidence remains unresolved.",
-        staff_action="Resolve age evidence before treating this athlete as age-cleared. Class/history may prioritize the review but does not verify age.",
-        source="NCAA Football age discovery"
-    )
+    for ev in matches:
+        add_card(cards, seen,
+            key=f'age-review|{team}|{player.get("name")}|{ev.get("id")}',
+            severity="AMBER",
+            type=type_label,
+            sport="NCAA Football",
+            league="NCAA Football",
+            team=team,
+            athlete=player.get("name"),
+            age=player.get("calculated_age"),
+            event=ev.get("name"),
+            start_time=ev.get("start_time"),
+            status=ev.get("status"),
+            title=f'{player.get("name") or "Roster candidate"} · {team}',
+            reason=(player.get("u18_risk_reason") or player.get("age_evidence") or
+                    "Official age evidence remains unresolved.") +
+                   " Team has a game in the current Today + 7 window.",
+            staff_action="Prioritize age verification because this athlete's team has a current upcoming game. Class/history is a screening tool only.",
+            source="NCAA Football age discovery + Approved Sports Schedule"
+        )
 
 # --------------------------------------------------
 # D) Nebraska collegiate home-event/site rule
