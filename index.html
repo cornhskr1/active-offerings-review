@@ -388,7 +388,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <summary>Team Screening Coverage</summary>
 <div id="ncaaAgeTeamCoverage" style="overflow:auto;margin-top:10px"></div>
 </details>
-</div></div>
+</div></div><div class="callout amber" data-ncaa-risk-methodology="1">When exact DOB is unavailable, unresolved athletes are risk-screened by official class/history: Freshman/reclassified/early enrollee = High; redshirt freshman/sophomore/limited-history transfer = Medium; junior/senior/fifth-year/graduate/multi-year collegiate history = Low. Low risk is not verification of age.</div>
 <div class="two-col">
 <div class="card">
 <div class="section-title">Nebraska Futures Cutoff</div>
@@ -2019,6 +2019,15 @@ if(us) us.addEventListener('input',e=>{
         return false;
       }
 
+      // Low-risk NCAA class/history cases belong in Age Discovery, not
+      // Priority Queue. Never confuse low-risk screening with verification.
+      if(
+        String(c.league||'').trim().toUpperCase()==='NCAA FOOTBALL' &&
+        String(c.type||'').toUpperCase().includes('LOW U18 RISK')
+      ){
+        return false;
+      }
+
       if(PQ_FILTER==='red' && c.severity!=='RED') return false;
       if(PQ_FILTER==='amber' && c.severity!=='AMBER') return false;
       const hay=`${c.sport||''} ${c.league||''} ${c.team||''} ${c.athlete||''} ${c.event||''} ${c.title||''}`.toLowerCase();
@@ -2063,6 +2072,24 @@ if(us) us.addEventListener('input',e=>{
 
   loadPriorityQueue().catch(()=>{});
 })();
+
+
+// NCAA class/history U18 risk helpers.
+function ncaaRiskTierLabel(rec){
+  const t=String(rec?.u18_risk_tier||'UNKNOWN').toUpperCase();
+  if(t==='HIGH') return 'HIGH U18 RISK';
+  if(t==='MEDIUM') return 'MEDIUM U18 RISK';
+  if(t==='LOW') return 'LOW U18 RISK — CLASS/HISTORY';
+  if(t==='VERIFIED_U18') return 'VERIFIED U18';
+  if(t==='VERIFIED_18_PLUS') return 'VERIFIED 18+';
+  return 'AGE REVIEW NEEDED';
+}
+function ncaaRiskTierClass(rec){
+  const t=String(rec?.u18_risk_tier||'UNKNOWN').toUpperCase();
+  if(t==='VERIFIED_U18') return 'red';
+  if(t==='HIGH'||t==='MEDIUM'||t==='UNKNOWN') return 'amber';
+  return 'green';
+}
 </script>
 </main>
 </body>
