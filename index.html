@@ -128,10 +128,10 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   </div>
 </div>
 <main class="wrap">
-<div class="topline">
-<div><b>Interim catalog source:</b> MASTER Nebraska Authorized Sports Wagering Menu</div>
-<div class="version">Menu dated 8/20/2026 · includes additions through 8/26/2026</div>
-</div>
+<div class="topline"><div id="catalogSourceBanner">
+<b>Current catalog source:</b> <span id="catalogSourceLabel">Loading current NRGC catalog…</span>
+<div class="small" id="catalogSourceMeta">Checking live catalog metadata…</div>
+</div></div>
 <div class="nav">
 <button class="active" data-panel="today">Review Today</button>
 <button data-panel="college">Nebraska Collegiate</button>
@@ -342,10 +342,12 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="dashboard-hero collegiate-hero">
 <div><div class="eyebrow">INDEPENDENT SCHEDULE REVIEW</div><h2>Nebraska Collegiate Athletics Review</h2>
 <p>Wagering-relevant Nebraska and Creighton sports · Today + 7 · Central Time · official school schedules.</p></div>
-<div class="hero-date"><b>Today + 7</b><span>Official schedule window</span></div>
+<div class="hero-date"><b id="collegeWindowLabel">Today + 7</b><span id="collegeDataStamp">Official schedule data loading…</span></div>
 </div>
 <div class="callout"><b>Color rule:</b> HOME is red because an instate collegiate event involving a Nebraska collegiate team is not permissible. AWAY and NEUTRAL are green for the site-location test only; player props, in-game wagering, and futures cutoffs remain separate rules.</div>
-<div class="college-filters">
+<div class="callout" id="collegeSourceHealth">
+<b>Live schedule feed:</b> waiting for first Nebraska Collegiate refresh.
+</div><div class="college-filters">
 <button class="college-filter active" data-college-filter="all">All Events</button>
 <button class="college-filter" data-college-filter="Nebraska">Nebraska</button>
 <button class="college-filter" data-college-filter="Creighton">Creighton</button>
@@ -354,189 +356,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <button class="college-filter" data-college-filter="NEUTRAL">Neutral</button>
 <select id="collegeSport"><option value="all">All sports</option><option>Women's Soccer</option><option>Men's Soccer</option><option>Volleyball</option></select>
 </div>
-<div class="college-events-grid" id="collegeEvents">
-<article class="college-event" data-school="Nebraska" data-site="HOME" data-sport="Women's Soccer">
-<div class="college-card-top">
-<div class="school-chip">Nebraska</div>
-<span class="pill red">HOME</span>
-</div>
-<div class="college-date">Aug. 27 · 7:05 PM</div>
-<h3>Women's Soccer</h3>
-<div class="opponent">vs. / at <b>Omaha</b></div>
-<div class="location">Lincoln, Neb.</div>
-<div class="college-bottom">
-<span class="pill red">NOT PERMISSIBLE</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Nebraska" data-site="AWAY" data-sport="Women's Soccer">
-<div class="college-card-top">
-<div class="school-chip">Nebraska</div>
-<span class="pill green">AWAY</span>
-</div>
-<div class="college-date">Aug. 30 · 6:30 PM</div>
-<h3>Women's Soccer</h3>
-<div class="opponent">vs. / at <b>Kansas State</b></div>
-<div class="location">Manhattan, Kan.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Nebraska" data-site="NEUTRAL" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Nebraska</div>
-<span class="pill green">NEUTRAL</span>
-</div>
-<div class="college-date">Aug. 27 · 7:00 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>Florida</b></div>
-<div class="location">Arlington, Texas</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill amber">EXHIBITION</span>
-</div>
-</article>
-<article class="college-event" data-school="Nebraska" data-site="NEUTRAL" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Nebraska</div>
-<span class="pill green">NEUTRAL</span>
-</div>
-<div class="college-date">Aug. 29 · 9:00 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>UNLV</b></div>
-<div class="location">Las Vegas, Nev.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON OPENER</span>
-</div>
-</article>
-<article class="college-event" data-school="Nebraska" data-site="NEUTRAL" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Nebraska</div>
-<span class="pill green">NEUTRAL</span>
-</div>
-<div class="college-date">Aug. 30 · 2:30 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>Texas</b></div>
-<div class="location">Las Vegas, Nev.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Nebraska" data-site="AWAY" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Nebraska</div>
-<span class="pill green">AWAY</span>
-</div>
-<div class="college-date">Sep. 2 · 7:00 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>South Dakota State</b></div>
-<div class="location">Brookings, S.D.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="HOME" data-sport="Women's Soccer">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill red">HOME</span>
-</div>
-<div class="college-date">Aug. 27 · 4:30 PM</div>
-<h3>Women's Soccer</h3>
-<div class="opponent">vs. / at <b>Kansas City</b></div>
-<div class="location">Omaha, Neb.</div>
-<div class="college-bottom">
-<span class="pill red">NOT PERMISSIBLE</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="HOME" data-sport="Women's Soccer">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill red">HOME</span>
-</div>
-<div class="college-date">Aug. 30 · 1:00 PM</div>
-<h3>Women's Soccer</h3>
-<div class="opponent">vs. / at <b>Missouri</b></div>
-<div class="location">Omaha, Neb.</div>
-<div class="college-bottom">
-<span class="pill red">NOT PERMISSIBLE</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="HOME" data-sport="Men's Soccer">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill red">HOME</span>
-</div>
-<div class="college-date">Aug. 27 · 7:30 PM</div>
-<h3>Men's Soccer</h3>
-<div class="opponent">vs. / at <b>San Francisco</b></div>
-<div class="location">Omaha, Neb.</div>
-<div class="college-bottom">
-<span class="pill red">NOT PERMISSIBLE</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="AWAY" data-sport="Men's Soccer">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill green">AWAY</span>
-</div>
-<div class="college-date">Aug. 31 · 7:00 PM</div>
-<h3>Men's Soccer</h3>
-<div class="opponent">vs. / at <b>Tulsa</b></div>
-<div class="location">Tulsa, Okla.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="NEUTRAL" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill green">NEUTRAL</span>
-</div>
-<div class="college-date">Aug. 28 · 6:00 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>Purdue</b></div>
-<div class="location">Sioux Falls, S.D.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON OPENER</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="NEUTRAL" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill green">NEUTRAL</span>
-</div>
-<div class="college-date">Aug. 29 · 4:00 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>Minnesota</b></div>
-<div class="location">Sioux Falls, S.D.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article>
-<article class="college-event" data-school="Creighton" data-site="NEUTRAL" data-sport="Volleyball">
-<div class="college-card-top">
-<div class="school-chip">Creighton</div>
-<span class="pill green">NEUTRAL</span>
-</div>
-<div class="college-date">Aug. 30 · 12:00 PM</div>
-<h3>Volleyball</h3>
-<div class="opponent">vs. / at <b>USC</b></div>
-<div class="location">Sioux Falls, S.D.</div>
-<div class="college-bottom">
-<span class="pill green">SITE TEST PASSES</span>
-<span class="pill blue">REGULAR SEASON</span>
-</div>
-</article></div>
+<div class="college-events-grid" id="collegeEvents"><div class="empty-state" id="collegeLoading">Loading current official schedules…</div></div>
 <div class="card">
 <div class="section-title">Nebraska NCAA Rule Stack</div>
 <div class="rule-stack">
@@ -549,7 +369,11 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 </section>
 <section class="panel" id="restrictions">
-<div class="card">
+<div class="card" id="liveRestrictionCard">
+<div class="section-title">Live Catalog Restrictions</div>
+<p class="small">Extracted from the currently posted NRGC Authorized Sports Wagering Menu.</p>
+<div id="liveRestrictionTable"><div class="empty-state">Waiting for catalog sync…</div></div>
+</div><div class="card">
 <div class="section-title">Catalog Restriction Watch</div>
 <p class="small">Search the MASTER menu by sport, league/event, or exact restriction. Restriction Type is taken from the catalog's restriction wording whenever available.</p>
 <input id="restrictionSearch" placeholder="Search sport, country, league, restriction..." type="search"/>
@@ -852,7 +676,15 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="rule-tile amber-border"><span class="pill amber">MARKET-FIRST</span><b>Market → athlete → age verification</b><span>If staff encounters an athlete-specific market first, the athlete name becomes an immediate age-verification query.</span></div>
 </div>
 </div>
-</section><section class="panel" id="catalog">
+</section><section class="panel" id="catalog"><div class="card" id="liveCatalogCard">
+<div class="section-title">Current NRGC Catalog</div>
+<div class="coverage-bars" id="liveCatalogSummary">
+<div><span>Status</span><b>Waiting for first catalog workflow run…</b></div>
+</div>
+<input id="liveCatalogSearch" placeholder="Search the current NRGC catalog..." type="search"/>
+<div class="sport-buttons" id="liveCatalogSportButtons"></div>
+<div id="liveCatalogBody" style="margin-top:12px"></div>
+</div>
 <div class="card">
 <div class="section-title">Catalog Intelligence Explorer</div>
 <p class="small">Full MASTER menu retained, but the explorer now functions as an intelligence directory: restrictions are highlighted, known U18s are cross-referenced, and source-coverage status is visible.</p>
@@ -1522,6 +1354,159 @@ if(us) us.addEventListener('input',e=>{
   document.addEventListener('activeOfferingsDataRefreshed',renderNCAAAgeDiscovery);
   const btn=document.getElementById('refreshReviewBtn');
   if(btn) btn.addEventListener('click',()=>setTimeout(renderNCAAAgeDiscovery,650));
+})();
+
+
+// Live NRGC catalog + Nebraska collegiate schedule feeds
+(function(){
+  function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function fmtStamp(x){
+    if(!x) return 'Unknown';
+    return new Date(x).toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+  }
+  function prettyDate(iso){
+    const [y,m,d]=iso.split('-').map(Number);
+    return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  }
+
+  async function loadLiveCatalog(){
+    try{
+      const r=await fetch(`data/catalog-live.json?v=${Date.now()}`,{cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d=await r.json();
+
+      const label=document.getElementById('catalogSourceLabel');
+      const meta=document.getElementById('catalogSourceMeta');
+      if(label) label.textContent=d.source_label || `NRGC Authorized Sports Wagering Menu ${d.menu_version||''}`;
+      if(meta) meta.textContent=`NRGC website · synced ${fmtStamp(d.generated_at)} · ${d.page_count||0} pages`;
+
+      const sum=document.getElementById('liveCatalogSummary');
+      if(sum) sum.innerHTML=`
+        <div><span>Current menu</span><b>${esc(d.source_label||d.menu_version||'Current NRGC menu')}</b></div>
+        <div><span>Last synced</span><b>${esc(fmtStamp(d.generated_at))}</b></div>
+        <div><span>Pages</span><b>${esc(d.page_count||0)}</b></div>
+        <div><span>Parsed lines</span><b>${esc(d.line_count||0)}</b></div>
+        <div><span>Restriction signals</span><b>${esc((d.restrictions||[]).length)}</b></div>`;
+
+      const sections=d.sections||[];
+      const btns=document.getElementById('liveCatalogSportButtons');
+      const body=document.getElementById('liveCatalogBody');
+      if(btns && body){
+        btns.innerHTML=sections.map((s,i)=>`<button class="sport-button live-cat-btn" data-live-cat="${i}">${esc(s.sport)}</button>`).join('');
+        body.innerHTML=sections.map((s,i)=>`
+          <section class="catalog-sport live-catalog-section" data-live-index="${i}" data-search="${esc((s.sport+' '+(s.lines||[]).join(' ')).toLowerCase())}">
+            <div class="section-title">${esc(s.sport)}</div>
+            ${(s.lines||[]).map(line=>`<div class="catalog-line">${esc(line)}</div>`).join('')}
+          </section>`).join('');
+        // Hide legacy hard-coded catalog once live data is available.
+        const legacy=document.getElementById('catalogBody');
+        if(legacy) legacy.style.display='none';
+
+        document.querySelectorAll('.live-cat-btn').forEach(b=>b.onclick=()=>{
+          const idx=b.dataset.liveCat;
+          const target=document.querySelector(`.live-catalog-section[data-live-index="${idx}"]`);
+          if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+        const search=document.getElementById('liveCatalogSearch');
+        if(search) search.oninput=e=>{
+          const q=e.target.value.toLowerCase();
+          document.querySelectorAll('.live-catalog-section').forEach(s=>s.style.display=(!q||s.dataset.search.includes(q))?'':'none');
+        };
+      }
+
+      const rt=document.getElementById('liveRestrictionTable');
+      if(rt){
+        const restrictions=d.restrictions||[];
+        rt.innerHTML=restrictions.length?`<table><thead><tr><th>Sport</th><th>Current Catalog Text</th></tr></thead><tbody>${
+          restrictions.map(x=>`<tr><td><b>${esc(x.sport)}</b></td><td>${esc(x.text)}</td></tr>`).join('')
+        }</tbody></table>`:'<div class="empty-state">No restriction signals parsed from the current catalog.</div>';
+        const legacyTable=document.getElementById('restrictionTable');
+        if(legacyTable) legacyTable.style.display='none';
+      }
+    }catch(e){
+      const meta=document.getElementById('catalogSourceMeta');
+      if(meta) meta.textContent='Live catalog data not generated yet. Run Update NRGC Catalog.';
+    }
+  }
+
+  let collegeData=null;
+  let collegeFilter='all';
+  let collegeSport='all';
+
+  function renderCollege(){
+    if(!collegeData) return;
+    const grid=document.getElementById('collegeEvents');
+    if(!grid) return;
+    const events=(collegeData.events||[]).filter(e=>{
+      const f=collegeFilter==='all'||e.school===collegeFilter||e.site===collegeFilter;
+      const s=collegeSport==='all'||e.sport===collegeSport;
+      return f&&s;
+    });
+    grid.innerHTML=events.length?events.map(e=>`
+      <article class="college-event" data-school="${esc(e.school)}" data-sport="${esc(e.sport)}" data-site="${esc(e.site)}">
+        <div class="college-card-top"><div class="school-chip">${esc(e.school)}</div><span class="pill ${e.site_color||'amber'}">${esc(e.site)}</span></div>
+        <div class="college-date">${esc(prettyDate(e.date))} · ${esc(e.time||'TBA')}</div>
+        <h3>${esc(e.sport)}</h3>
+        <div class="opponent">vs. / at <b>${esc(e.opponent||'TBA')}</b></div>
+        <div class="location">${esc(e.location||'')}</div>
+        <div class="college-bottom">
+          <span class="pill ${e.site_color||'amber'}">${esc(e.site_test||'SITE REVIEW')}</span>
+          <span class="pill ${e.phase==='EXHIBITION'?'amber':'blue'}">${esc(e.phase||'')}</span>
+          ${e.status==='FINAL'?'<span class="pill green">FINAL</span>':''}
+        </div>
+      </article>`).join(''):'<div class="empty-state">No matching Nebraska/Creighton events in the current Today + 7 window.</div>';
+  }
+
+  async function loadCollege(){
+    try{
+      const r=await fetch(`data/nebraska-collegiate-live.json?v=${Date.now()}`,{cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      collegeData=await r.json();
+      const label=document.getElementById('collegeWindowLabel');
+      const stamp=document.getElementById('collegeDataStamp');
+      if(label) label.textContent=`${prettyDate(collegeData.window_start)} – ${prettyDate(collegeData.window_end)}`;
+      if(stamp) stamp.textContent=`Official schedules · refreshed ${fmtStamp(collegeData.generated_at)}`;
+
+      const health=document.getElementById('collegeSourceHealth');
+      if(health){
+        const src=collegeData.sources||[];
+        const ok=src.filter(x=>x.ok).length;
+        health.innerHTML=`<b>Live schedule feed:</b> ${ok}/${src.length} official Nebraska/Creighton schedule sources healthy · ${collegeData.events.length} events in Today + 7.`;
+      }
+
+      // Update sport dropdown from live event set.
+      const select=document.getElementById('collegeSport');
+      if(select){
+        const sports=[...new Set((collegeData.events||[]).map(e=>e.sport))].sort();
+        select.innerHTML='<option value="all">All sports</option>'+sports.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');
+        select.onchange=e=>{collegeSport=e.target.value; renderCollege();};
+      }
+
+      document.querySelectorAll('.college-filter').forEach(btn=>{
+        btn.onclick=()=>{
+          document.querySelectorAll('.college-filter').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          collegeFilter=btn.dataset.collegeFilter||'all';
+          renderCollege();
+        };
+      });
+      renderCollege();
+    }catch(e){
+      const grid=document.getElementById('collegeEvents');
+      if(grid) grid.innerHTML='<div class="empty-state">Live collegiate schedule data not generated yet. Run Refresh Nebraska Collegiate.</div>';
+    }
+  }
+
+  window.loadLiveCatalog=loadLiveCatalog;
+  window.loadCollege=loadCollege;
+  loadLiveCatalog();
+  loadCollege();
+
+  const refresh=document.getElementById('refreshReviewBtn');
+  if(refresh) refresh.addEventListener('click',()=>{
+    setTimeout(loadLiveCatalog,350);
+    setTimeout(loadCollege,400);
+  });
 })();
 </script>
 </main>
