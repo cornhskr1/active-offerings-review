@@ -473,6 +473,28 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   border:1px solid #f0d7a2;background:#fff9ec;color:#75520f;
   border-radius:10px;padding:9px 11px;font-size:11px;margin:6px 0;
 }
+
+/* Catalog country + governing body header refinement */
+.catalog-group-head{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.catalog-country-label{
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.055em;
+  color:#1f3a56;
+}
+.catalog-governing-label{
+  font-weight:850;
+  color:#24364a;
+}
+.catalog-group-sep{
+  color:#8aa0b5;
+  font-weight:900;
+}
 </style>
 </head>
 <body>
@@ -1782,12 +1804,20 @@ if(us) us.addEventListener('input',e=>{
     raw=stripCatalogTocContamination(raw);
 
     const groups=[];
-    let current={name:null,items:[],notes:[]};
+    let current={country:null,name:null,items:[],notes:[]};
     groups.push(current);
+    let pendingCountry=null;
 
-    function startGroup(name){
-      current={name:cleanCatalogLine(name),items:[],notes:[]};
+    function startGroup(name,countryName=null){
+      current={
+        country:countryName||pendingCountry||null,
+        name:cleanCatalogLine(name)||null,
+        items:[],
+        notes:[]
+      };
       groups.push(current);
+      pendingCountry=null;
+      return current;
     }
 
     for(let i=0;i<raw.length;i++){
@@ -1796,16 +1826,29 @@ if(us) us.addEventListener('input',e=>{
       const parts=line.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
       const nextParts=next.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
 
-      // Pipe-delimited rows are always entries. Gender designation is discarded visually.
+      // Country names mark the NEXT governing-body/group header.
+      if(parts.length===1 && isCatalogCountry(line)){
+        pendingCountry=line;
+        continue;
+      }
+
+      // Pipe-delimited rows are league/event entries.
+      // Gender designation is intentionally discarded visually.
       if(parts.length>=2){
         const gender=catalogGender(parts[parts.length-1]);
         const name=gender ? parts.slice(0,-1).join(' | ') : parts.join(' | ');
+
+        // If a country was encountered and there is no governing-body heading,
+        // create a country-only group before adding the event.
+        if(pendingCountry){
+          startGroup(null,pendingCountry);
+        }
+
         if(name) current.items.push(name);
         continue;
       }
 
-      // If a plain heading is immediately repeated by the next pipe-delimited entry,
-      // suppress the duplicate heading and let the entry stand alone.
+      // Suppress a duplicated plain heading if the following pipe row repeats it.
       if(
         nextParts.length>=2 &&
         catalogGender(nextParts[nextParts.length-1]) &&
@@ -1814,23 +1857,37 @@ if(us) us.addEventListener('input',e=>{
         continue;
       }
 
-      // Restriction / condition text stays attached as a note.
+      // Restrictions stay attached to the current group.
       if(isCatalogRestrictionLine(line)){
         current.notes.push(line);
         continue;
       }
 
-      // Plain lines act as consistent group headings when more content follows.
-      // If several plain lines occur consecutively, treat them as entries in the
-      // current general group rather than generating empty headers.
+      // A plain heading followed by structured entries is a governing body /
+      // competition-family header. Attach any pending country to it.
       if(nextParts.length>=2){
         startGroup(line);
-      }else{
-        current.items.push(line);
+        continue;
       }
+
+      // If we have a pending country and encounter another plain line before
+      // structured entries, treat this line as the governing body.
+      if(pendingCountry){
+        startGroup(line);
+        continue;
+      }
+
+      // Otherwise preserve the plain line as a normal approved entry.
+      if(line) current.items.push(line);
     }
 
-    return groups.filter(g=>g.items.length || g.notes.length);
+    // If a trailing country was found with no following body/event, preserve it
+    // only as a header rather than misclassifying it as an event.
+    if(pendingCountry){
+      startGroup(null,pendingCountry);
+    }
+
+    return groups.filter(g=>g.items.length || g.notes.length || g.name || g.country);
   }
 
   function renderCatalogSection(section,i){
@@ -1838,7 +1895,11 @@ if(us) us.addEventListener('input',e=>{
 
     const groupHtml=groups.map(g=>`
       <div class="catalog-group-block">
-        ${g.name?`<div class="catalog-group-head">${esc(g.name)}</div>`:''}
+        ${(g.country||g.name)?`<div class="catalog-group-head">
+          ${g.country?`<span class="catalog-country-label">${esc(g.country)}</span>`:''}
+          ${g.country&&g.name?`<span class="catalog-group-sep">·</span>`:''}
+          ${g.name?`<span class="catalog-governing-label">${esc(g.name)}</span>`:''}
+        </div>`:''}
         ${g.items.length?`<div class="catalog-entry-grid">
           ${g.items.map(item=>`<div class="catalog-entry">${esc(item)}</div>`).join('')}
         </div>`:''}
