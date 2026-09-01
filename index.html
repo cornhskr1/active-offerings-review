@@ -428,6 +428,51 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .pq-event-time{margin-left:auto;font-size:10px;color:var(--muted);white-space:nowrap}
 .pq-sport-tag{display:inline-flex;align-items:center;border:1px solid #dbe5ef;background:#f7fafc;border-radius:999px;padding:2px 7px;font-size:9px;font-weight:900;letter-spacing:.035em;text-transform:uppercase;color:#36516b}
 .pq-empty-day{padding:10px 12px;font-size:11px;color:var(--muted)}
+
+/* Daily Sports Focus */
+.daily-focus-summary{
+  display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 10px;
+}
+.daily-focus-stat{
+  border:1px solid var(--line);background:#fff;border-radius:999px;
+  padding:4px 9px;font-size:10px;font-weight:850;color:var(--muted);
+}
+.daily-focus-heading{
+  margin:11px 0 6px;font-size:11px;font-weight:950;letter-spacing:.06em;
+  text-transform:uppercase;color:#36516b;
+}
+.focus-league{
+  border:1px solid #e1e8ef;border-radius:11px;background:#fff;margin:6px 0;overflow:hidden;
+}
+.focus-league>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:9px 11px;font-weight:850;color:#17283b;
+}
+.focus-league>summary::-webkit-details-marker{display:none}
+.focus-league>summary:before{content:"▸";font-size:10px;color:var(--muted)}
+.focus-league[open]>summary:before{transform:rotate(90deg)}
+.focus-league-title{flex:1}
+.focus-league-meta{font-size:10px;color:var(--muted);font-weight:750}
+.focus-events{padding:0 11px 8px}
+.focus-event{
+  display:grid;grid-template-columns:82px 1fr auto;gap:8px;align-items:center;
+  border-top:1px solid #edf1f5;padding:7px 2px;font-size:11px;
+}
+.focus-event:first-child{border-top:0}
+.focus-event-name{font-weight:750}
+.focus-event-time{font-size:10px;color:var(--muted)}
+.focus-event-status{white-space:nowrap}
+.attention-block{
+  border-top:1px solid #e6edf4;margin-top:10px;padding-top:5px;
+}
+.focus-no-attention{
+  border:1px solid #cfe8d7;background:#f4fbf6;color:#28623a;
+  border-radius:10px;padding:9px 11px;font-size:11px;font-weight:750;
+}
+.focus-manual{
+  border:1px solid #f0d7a2;background:#fff9ec;color:#75520f;
+  border-radius:10px;padding:9px 11px;font-size:11px;margin:6px 0;
+}
 </style>
 </head>
 <body>
@@ -2396,7 +2441,7 @@ if(us) us.addEventListener('input',e=>{
 
 // Dynamic risk-driven Priority Queue.
 (function(){
-  let PQ_DATA=null, PQ_FILTER='all', PQ_SEARCH='';
+  let PQ_DATA=null, FOCUS_DATA=null, PQ_FILTER='all', PQ_SEARCH='';
 
   function pe(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
   function ptime(iso){
@@ -2432,10 +2477,10 @@ if(us) us.addEventListener('input',e=>{
 
   function renderPriorityQueue(){
     const q=document.getElementById('reviewQueue');
-    if(!q || !PQ_DATA) return;
+    if(!q || !PQ_DATA || !FOCUS_DATA) return;
     const search=PQ_SEARCH.toLowerCase();
 
-    const cards=(PQ_DATA.cards||[]).filter(c=>{
+    const riskCards=(PQ_DATA.cards||[]).filter(c=>{
       if(PQ_FILTER==='red' && c.severity!=='RED') return false;
       if(PQ_FILTER==='amber' && c.severity!=='AMBER') return false;
       const hay=`${c.sport||''} ${c.league||''} ${c.event||''} ${(c.athletes||[]).join(' ')} ${c.reason||''}`.toLowerCase();
@@ -2447,18 +2492,29 @@ if(us) us.addEventListener('input',e=>{
       const get=t=>p.find(x=>x.type===t)?.value;
       return `${get('year')}-${get('month')}-${get('day')}`;
     };
-
+    const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
     const now=new Date();
     const dayKeys=[];
     for(let i=0;i<8;i++) dayKeys.push(dateKey(new Date(now.getTime()+i*86400000)));
 
-    const buckets=Object.fromEntries(dayKeys.map(k=>[k,[]]));
-    cards.forEach(c=>{
+    const scheduleBuckets=Object.fromEntries(dayKeys.map(k=>[k,[]]));
+    (FOCUS_DATA.events||[]).forEach(e=>{
+      if(!e.start_time || e.status==='COMPLETED') return;
+      const d=new Date(e.start_time);
+      if(Number.isNaN(d.getTime())) return;
+      const k=dateKey(d);
+      const hay=`${e.sport||''} ${e.league||''} ${e.name||''} ${e.region||''}`.toLowerCase();
+      if(search && !hay.includes(search)) return;
+      if(scheduleBuckets[k]) scheduleBuckets[k].push(e);
+    });
+
+    const riskBuckets=Object.fromEntries(dayKeys.map(k=>[k,[]]));
+    riskCards.forEach(c=>{
       if(!c.start_time) return;
       const d=new Date(c.start_time);
       if(Number.isNaN(d.getTime())) return;
       const k=dateKey(d);
-      if(buckets[k]) buckets[k].push(c);
+      if(riskBuckets[k]) riskBuckets[k].push(c);
     });
 
     const dateLabel=(key)=>{
@@ -2473,16 +2529,106 @@ if(us) us.addEventListener('input',e=>{
       return new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit'}).format(d);
     };
 
+    function riskForEvent(e, risks){
+      const en=norm(e.name), el=norm(e.league);
+      return risks.filter(r=>{
+        const rn=norm(r.event), rl=norm(r.league);
+        return (rn && (rn===en || rn.includes(en) || en.includes(rn))) ||
+               (rl && el && rl===el && rn && en && (rn.includes(en) || en.includes(rn)));
+      });
+    }
+
+    const coverageGaps=FOCUS_DATA.coverage_gaps||[];
+
     q.innerHTML=dayKeys.map((key,idx)=>{
-      const items=(buckets[key]||[]).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
-      const rows=items.length?items.map(c=>{
+      const events=(scheduleBuckets[key]||[]).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+      const risks=(riskBuckets[key]||[]).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+
+      const leagues={};
+      events.forEach(e=>{
+        const league=e.league||'Other';
+        (leagues[league] ||= {sport:e.sport||'Sport',items:[]}).items.push(e);
+      });
+
+      const leagueHtml=Object.entries(leagues)
+        .sort((a,b)=>a[0].localeCompare(b[0]))
+        .map(([league,g])=>{
+          const leagueRisks=g.items.flatMap(e=>riskForEvent(e,risks));
+          const riskCount=new Set(leagueRisks.map(r=>r.key||`${r.event}|${r.type}`)).size;
+          const rows=g.items.map(e=>{
+            const er= riskForEvent(e,risks);
+            const sev=er.some(x=>x.severity==='RED')?'RED':er.length?'AMBER':'GREEN';
+            const pill=sev==='RED'
+              ? '<span class="pill red">ATTENTION</span>'
+              : sev==='AMBER'
+                ? '<span class="pill amber">REVIEW</span>'
+                : '<span class="pill green">NORMAL MONITOR</span>';
+            return `<div class="focus-event">
+              <div class="focus-event-time">${pe(eventTime(e.start_time))}</div>
+              <div class="focus-event-name">${pe(e.name)}</div>
+              <div class="focus-event-status">${pill}</div>
+            </div>`;
+          }).join('');
+          return `<details class="focus-league">
+            <summary>
+              <span class="pq-sport-tag">${pe(g.sport)}</span>
+              <span class="focus-league-title">${pe(league)}</span>
+              <span class="focus-league-meta">${g.items.length} event${g.items.length===1?'':'s'}${riskCount?` · ${riskCount} attention`:''}</span>
+            </summary>
+            <div class="focus-events">${rows}</div>
+          </details>`;
+        }).join('');
+
+      const attentionHtml=risks.length?risks.map(c=>{
         const athletes=(c.athletes||[]).length?`<div class="pq-meta"><b>Athletes:</b> ${pe((c.athletes||[]).join(', '))}</div>`:'';
-        return `<div class="pq-event-row"><details><summary><span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span><span class="pq-sport-tag">${pe(c.sport||c.league||'Event')}</span><span class="pq-event-title">${pe(c.event||c.title||'Upcoming event')}</span><span class="pq-event-time">${pe(eventTime(c.start_time))}</span></summary>${athletes}<p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p><div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div></details></div>`;
-      }).join(''):`<div class="pq-empty-day">No priority triggers for this date.</div>`;
-      return `<details class="pq-day-group" ${idx===0?'open':''}><summary><span class="pq-day-name">${relativeName(idx)}</span><span class="pq-day-date">${dateLabel(key)}</span><span class="pq-day-count">${items.length} event${items.length===1?'':'s'}</span></summary><div class="pq-day-body">${rows}</div></details>`;
+        return `<div class="pq-event-row"><details><summary>
+          <span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span>
+          <span class="pq-sport-tag">${pe(c.sport||'Sport')}</span>
+          <span class="pq-event-title"><b>${pe(c.league||'League')}</b> · ${pe(c.event||c.title||'Upcoming event')}</span>
+          <span class="pq-event-time">${pe(eventTime(c.start_time))}</span>
+        </summary>
+        ${athletes}
+        <p><b>League / competition:</b> ${pe(c.league||'Not resolved')}</p>
+        <p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p>
+        <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div>
+        </details></div>`;
+      }).join(''):`<div class="focus-no-attention">No red or amber Priority Queue exceptions identified for this date. Use Primary Focus below to guide the day's normal active-offerings review.</div>`;
+
+      const sportCount=new Set(events.map(e=>e.sport)).size;
+      const leagueCount=Object.keys(leagues).length;
+
+      // Tennis remains an explicit focus when its mapped adapter has not returned events.
+      const tennisMapped=events.some(e=>e.sport==='Tennis');
+      const tennisGap=coverageGaps.some(g=>String(g.area).toLowerCase()==='tennis');
+      const tennisManual=(!tennisMapped && tennisGap)
+        ? `<div class="focus-manual"><b>Tennis focus:</b> Tennis is approved/in-season but the automated match adapter did not resolve activity for this date. Check current ATP/WTA/ITF/UTR/Grand Slam draws manually.</div>`
+        : '';
+
+      return `<details class="pq-day-group" ${idx===0?'open':''}>
+        <summary>
+          <span class="pq-day-name">${relativeName(idx)}</span>
+          <span class="pq-day-date">${dateLabel(key)}</span>
+          <span class="pq-day-count">${events.length} mapped · ${risks.length} attention</span>
+        </summary>
+        <div class="pq-day-body">
+          <div class="daily-focus-summary">
+            <span class="daily-focus-stat">${events.length} mapped events</span>
+            <span class="daily-focus-stat">${leagueCount} active leagues</span>
+            <span class="daily-focus-stat">${sportCount} sports</span>
+            <span class="daily-focus-stat">${risks.length} attention required</span>
+          </div>
+
+          <div class="daily-focus-heading">Attention Required</div>
+          <div class="attention-block">${attentionHtml}</div>
+
+          <div class="daily-focus-heading">Primary Focus — Approved / In-Season Activity</div>
+          ${tennisManual}
+          ${leagueHtml || '<div class="pq-empty-day">No mapped approved events were returned for this date.</div>'}
+        </div>
+      </details>`;
     }).join('');
 
-    const actualCount=dayKeys.reduce((n,k)=>n+(buckets[k]?.length||0),0);
+    const actualCount=dayKeys.reduce((n,k)=>n+(riskBuckets[k]?.length||0),0);
     const cnt=document.getElementById('reviewCount');
     if(cnt) cnt.textContent=`${actualCount} current priority triggers`;
 
@@ -2496,9 +2642,15 @@ if(us) us.addEventListener('input',e=>{
   }
 
   async function loadPriorityQueue(){
-    const r=await fetch(`data/priority-queue.json?v=${Date.now()}`,{cache:'no-store'});
-    if(!r.ok) throw new Error(`Priority queue HTTP ${r.status}`);
-    PQ_DATA=await r.json();
+    const suffix=`?v=${Date.now()}`;
+    const [pr,gr]=await Promise.all([
+      fetch(`data/priority-queue.json${suffix}`,{cache:'no-store'}),
+      fetch(`data/global-schedule.json${suffix}`,{cache:'no-store'})
+    ]);
+    if(!pr.ok) throw new Error(`Priority queue HTTP ${pr.status}`);
+    if(!gr.ok) throw new Error(`Global schedule HTTP ${gr.status}`);
+    PQ_DATA=await pr.json();
+    FOCUS_DATA=await gr.json();
     renderPriorityQueue();
     return PQ_DATA;
   }
