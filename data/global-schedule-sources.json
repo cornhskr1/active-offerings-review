@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "window_days": 7,
-  "note": "Only adapters with a dependable public schedule endpoint are listed. Approved catalog areas without an adapter remain visible as coverage gaps rather than being treated as clear.",
+  "note": "Mapped public schedule adapters support the Daily Sports Focus. Areas without a dependable adapter remain visible as coverage gaps rather than being treated as clear.",
   "sources": [
     {
       "id": "mlb",
@@ -203,6 +203,28 @@
       "catalog_terms": [
         "NCAA Volleyball",
         "Division I Volleyball"
+      ]
+    },
+    {
+      "id": "atp-tennis",
+      "sport": "Tennis",
+      "league": "ATP",
+      "region": "International",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+      "catalog_terms": [
+        "Tennis",
+        "ATP"
+      ]
+    },
+    {
+      "id": "wta-tennis",
+      "sport": "Tennis",
+      "league": "WTA",
+      "region": "International",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "catalog_terms": [
+        "Tennis",
+        "WTA"
       ]
     }
   ]
