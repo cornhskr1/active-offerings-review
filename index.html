@@ -160,6 +160,27 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   color:#fff;
   border-color:var(--nav);
 }
+
+.schedule-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.schedule-stamp{text-align:right;display:flex;flex-direction:column;gap:2px}
+.schedule-stamp b{font-size:18px}.schedule-stamp span{font-size:11px;color:var(--muted)}
+.schedule-toolbar{display:grid;gap:9px;margin:12px 0}
+.schedule-filters{display:flex;gap:7px;flex-wrap:wrap}
+.schedule-filter{border:1px solid var(--line);background:#fff;color:#2563eb;border-radius:9px;padding:7px 10px;font-weight:800;cursor:pointer}
+.schedule-filter.active{background:var(--nav);color:#fff;border-color:var(--nav)}
+.schedule-day{margin-top:15px}
+.schedule-day-title{font-size:15px;font-weight:900;color:var(--nav);padding-bottom:6px;border-bottom:2px solid var(--teal)}
+.schedule-event-row{display:grid;grid-template-columns:92px 130px minmax(220px,1fr) 130px 190px;gap:9px;padding:9px 4px;border-bottom:1px solid var(--line);align-items:start}
+.schedule-event-time{font-weight:800}.schedule-event-league{font-weight:850}.schedule-event-name{font-weight:700}
+.schedule-event-meta{font-size:11px;color:var(--muted);margin-top:3px}
+.schedule-flags{display:flex;gap:5px;flex-wrap:wrap}
+.schedule-gaps{margin-top:13px;border-top:1px solid var(--line);padding-top:10px}.schedule-gaps summary{cursor:pointer;font-weight:850;color:var(--nav)}
+@media(max-width:850px){
+ .schedule-event-row{grid-template-columns:82px 1fr}
+ .schedule-event-row>div:nth-child(n+3){grid-column:2}
+ .schedule-head{flex-direction:column}.schedule-stamp{text-align:left}
+ .schedule-filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}.schedule-filter{white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -1739,6 +1760,194 @@ if(us) us.addEventListener('input',e=>{
     box.innerHTML=chips.length?chips.join(''):'<span class="small">No tennis U18 records currently loaded.</span>';
   }
   populateTennisU18();
+})();
+
+
+// Approved Sports Schedule + fail-soft master Refresh Review controller.
+(function(){
+  let GS_DATA=null, GS_FILTER='all', GS_SEARCH='';
+  const TZ='America/Chicago';
+
+  function ge(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function localParts(iso){
+    const d=new Date(iso);
+    const parts=new Intl.DateTimeFormat('en-US',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+    const m={}; parts.forEach(p=>{if(p.type!=='literal')m[p.type]=p.value;});
+    return `${m.year}-${m.month}-${m.day}`;
+  }
+  function todayLocal(){
+    const d=new Date();
+    const parts=new Intl.DateTimeFormat('en-US',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+    const m={};parts.forEach(p=>{if(p.type!=='literal')m[p.type]=p.value;});
+    return `${m.year}-${m.month}-${m.day}`;
+  }
+  function fmtTime(iso){
+    if(!iso) return 'TBA';
+    return new Intl.DateTimeFormat('en-US',{timeZone:TZ,hour:'numeric',minute:'2-digit'}).format(new Date(iso));
+  }
+  function fmtDateKey(key){
+    const [y,m,d]=key.split('-').map(Number);
+    return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
+  }
+  function fmtStamp(iso){
+    if(!iso)return 'Unknown';
+    return new Intl.DateTimeFormat('en-US',{timeZone:TZ,month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(iso));
+  }
+
+  function renderGlobalSchedule(){
+    const body=document.getElementById('globalScheduleBody');
+    if(!body || !GS_DATA) return;
+    const today=todayLocal();
+    const q=GS_SEARCH.toLowerCase();
+    let events=(GS_DATA.events||[]).filter(e=>{
+      const hay=`${e.sport||''} ${e.league||''} ${e.name||''} ${e.region||''} ${e.location||''}`.toLowerCase();
+      if(q && !hay.includes(q)) return false;
+      if(GS_FILTER==='today' && localParts(e.start_time)!==today) return false;
+      if(GS_FILTER==='live' && e.status!=='LIVE') return false;
+      if(GS_FILTER==='u18' && !e.u18_risk) return false;
+      if(GS_FILTER==='restricted' && !e.restriction_risk) return false;
+      if(!['all','today','live','u18','restricted'].includes(GS_FILTER) && e.sport!==GS_FILTER) return false;
+      return true;
+    });
+
+    const grouped={};
+    events.forEach(e=>{
+      const k=e.start_time?localParts(e.start_time):'TBA';
+      (grouped[k] ||= []).push(e);
+    });
+
+    const keys=Object.keys(grouped).sort();
+    body.innerHTML=keys.length?keys.map(k=>`
+      <section class="schedule-day">
+        <div class="schedule-day-title">${k==='TBA'?'Date TBA':ge(fmtDateKey(k))}${k===today?' · TODAY':''}</div>
+        ${grouped[k].map(e=>`
+          <div class="schedule-event-row">
+            <div class="schedule-event-time">${ge(fmtTime(e.start_time))}</div>
+            <div><div class="schedule-event-league">${ge(e.league)}</div><div class="schedule-event-meta">${ge(e.region||'')}</div></div>
+            <div><div class="schedule-event-name">${ge(e.name)}</div><div class="schedule-event-meta">${ge(e.location||'')}</div></div>
+            <div><span class="pill ${e.status==='LIVE'?'red':e.status==='COMPLETED'?'green':'blue'}">${ge(e.status)}</span></div>
+            <div class="schedule-flags">
+              ${e.u18_risk?'<span class="pill red">U18 RISK</span>':''}
+              ${e.restriction_risk?'<span class="pill amber">RESTRICTION</span>':''}
+            </div>
+          </div>`).join('')}
+      </section>`).join(''):'<div class="empty-state">No mapped approved events match the current filters.</div>';
+
+    const count=document.getElementById('globalScheduleCount');
+    const stamp=document.getElementById('globalScheduleStamp');
+    if(count) count.textContent=`${events.length} events`;
+    if(stamp) stamp.textContent=`source data ${fmtStamp(GS_DATA.generated_at)}`;
+
+    const gaps=document.getElementById('globalScheduleGaps');
+    if(gaps) gaps.innerHTML=(GS_DATA.coverage_gaps||[]).length
+      ? (GS_DATA.coverage_gaps||[]).map(x=>`<span class="event-chip"><b>${ge(x.area)}</b> · ${ge(x.state)}</span>`).join('')
+      : '<span class="small">No catalog schedule-adapter gaps reported.</span>';
+
+    const health=document.getElementById('globalScheduleSourceHealth');
+    if(health){
+      const src=GS_DATA.sources||[];
+      const approved=src.filter(x=>x.approved_catalog===true);
+      const ok=approved.filter(x=>x.ok).length;
+      health.innerHTML=`<b>Mapped schedule coverage:</b> ${ok}/${approved.length} approved schedule adapters healthy · ${GS_DATA.event_count||0} events in the full Today + 7 feed. Areas without an adapter remain listed below as coverage gaps.`;
+    }
+  }
+
+  async function loadGlobalSchedule(){
+    const r=await fetch(`data/global-schedule.json?v=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) throw new Error(`Global schedule HTTP ${r.status}`);
+    GS_DATA=await r.json();
+    renderGlobalSchedule();
+    return GS_DATA;
+  }
+  window.loadGlobalSchedule=loadGlobalSchedule;
+
+  document.querySelectorAll('.schedule-filter').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.schedule-filter').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active'); GS_FILTER=b.dataset.sfilter||'all'; renderGlobalSchedule();
+  }));
+  const gs=document.getElementById('globalScheduleSearch');
+  if(gs) gs.addEventListener('input',e=>{GS_SEARCH=e.target.value;renderGlobalSchedule();});
+  loadGlobalSchedule().catch(()=>{});
+
+  async function refreshCoreFiles(){
+    const suffix=`?v=${Date.now()}`;
+    const statusRes=await fetch(`data/status.json${suffix}`,{cache:'no-store'});
+    if(!statusRes.ok) throw new Error(`status ${statusRes.status}`);
+    const status=await statusRes.json();
+
+    const dataEl=document.getElementById('dataRefreshed');
+    if(dataEl && status.generated_at) dataEl.textContent=fmtStamp(status.generated_at);
+    const fresh=document.getElementById('sourceFreshnessValue');
+    if(fresh){
+      const checked=Array.isArray(status.sources)?status.sources.filter(s=>s.checked_at).length:0;
+      const total=Array.isArray(status.sources)?status.sources.length:0;
+      fresh.textContent=total?`${checked} / ${total}`:'—';
+    }
+
+    try{
+      const rr=await fetch(`data/review-data.json${suffix}`,{cache:'no-store'});
+      if(rr.ok){
+        const review=await rr.json();
+        window.ACTIVE_OFFERINGS_REVIEW_DATA=review;
+        document.dispatchEvent(new CustomEvent('activeOfferingsDataRefreshed',{detail:review}));
+      }
+    }catch(_){}
+    return status;
+  }
+
+  async function masterRefreshReview(){
+    const btn=document.getElementById('refreshReviewBtn');
+    const result=document.getElementById('refreshResult');
+    const reviewEl=document.getElementById('reviewPerformed');
+    if(!btn || btn.disabled) return;
+
+    btn.disabled=true;
+    btn.classList.remove('success');
+    btn.textContent='↻ Refreshing…';
+    if(result){result.className='refresh-result';result.textContent='Refreshing all published review feeds…';}
+
+    const jobs=[
+      ['core review data', refreshCoreFiles],
+      ['current NRGC catalog', ()=>window.loadLiveCatalog?window.loadLiveCatalog():Promise.resolve()],
+      ['Nebraska collegiate', ()=>window.loadCollege?window.loadCollege():Promise.resolve()],
+      ['NCAA Football age discovery', ()=>window.renderNCAAAgeDiscovery?window.renderNCAAAgeDiscovery():Promise.resolve()],
+      ['restriction watch', ()=>window.loadCleanRestrictionWatch?window.loadCleanRestrictionWatch():Promise.resolve()],
+      ['approved sports schedule', loadGlobalSchedule]
+    ];
+
+    const results=await Promise.allSettled(jobs.map(x=>Promise.resolve().then(x[1])));
+    const good=results.filter(x=>x.status==='fulfilled').length;
+    const failed=jobs.filter((_,i)=>results[i].status==='rejected').map(x=>x[0]);
+
+    const reviewed=new Date();
+    localStorage.setItem('activeOfferingsLastReview',reviewed.toISOString());
+    if(reviewEl) reviewEl.textContent=fmtStamp(reviewed.toISOString());
+
+    if(failed.length===0){
+      btn.classList.add('success');
+      btn.textContent='✓ Review Refreshed';
+      if(result){result.className='refresh-result ok';result.textContent=`Refresh complete · ${good}/${jobs.length} review feeds loaded`;}
+    }else{
+      btn.textContent='↻ Refresh Review';
+      if(result){result.className='refresh-result warn';result.textContent=`Refresh completed with ${failed.length} feed issue${failed.length===1?'':'s'}: ${failed.join(', ')}. Other feeds were refreshed.`;}
+    }
+
+    setTimeout(()=>{
+      btn.classList.remove('success');
+      btn.textContent='↻ Refresh Review';
+      btn.disabled=false;
+    }, failed.length?1000:2200);
+  }
+
+  // Clone the button to remove all legacy click listeners, then attach ONE controller.
+  const oldBtn=document.getElementById('refreshReviewBtn');
+  if(oldBtn){
+    const newBtn=oldBtn.cloneNode(true);
+    oldBtn.replaceWith(newBtn);
+    newBtn.disabled=false;
+    newBtn.textContent='↻ Refresh Review';
+    newBtn.addEventListener('click',masterRefreshReview);
+  }
 })();
 </script>
 </main>
