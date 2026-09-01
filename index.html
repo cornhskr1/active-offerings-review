@@ -338,6 +338,28 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   .catalog-country-block{padding-left:12px;padding-right:12px}
   .live-catalog-section>.catalog-sport-head{padding:14px}
 }
+
+.catalog-notes{
+  margin:4px 18px 14px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:#f8fafc;
+  border-left:4px solid #d6dee8;
+  font-size:11px;
+  line-height:1.55;
+  color:#41566c;
+}
+.catalog-notes>div+div{margin-top:3px}
+
+/* Catalog restriction emphasis */
+.catalog-restriction-note{
+  color:#b42318 !important;
+  font-weight:900 !important;
+}
+.catalog-restriction-note::before{
+  content:"⚠ ";
+  font-weight:900;
+}
 </style>
 </head>
 <body>
@@ -1582,69 +1604,168 @@ if(us) us.addEventListener('input',e=>{
     return `<span class="catalog-gender-badge ${gender}" title="${label}" aria-label="${label}">${restroomPersonSvg(gender)}</span>`;
   }
 
+
+  const CATALOG_COUNTRIES=new Set([
+    "argentina","australia","austria","belgium","brazil","canada","chile","china","colombia",
+    "croatia","czech republic","czechia","denmark","ecuador","england","estonia","finland",
+    "france","germany","greece","hungary","iceland","india","ireland","israel","italy","japan",
+    "latvia","lithuania","mexico","netherlands","new zealand","northern ireland","norway",
+    "peru","philippines","poland","portugal","puerto rico","romania","scotland","serbia",
+    "slovakia","slovenia","south africa","south korea","spain","sweden","switzerland",
+    "turkey","ukraine","united arab emirates","united kingdom","united states","uruguay",
+    "venezuela","wales"
+  ]);
+
+  function isCatalogCountry(line){
+    return CATALOG_COUNTRIES.has(cleanCatalogLine(line).toLowerCase());
+  }
+
+  function sameCatalogLabel(a,b){
+    const n=x=>cleanCatalogLine(x)
+      .toLowerCase()
+      .replace(/\([^)]*\)/g,' ')
+      .replace(/[^a-z0-9]+/g,' ')
+      .replace(/\s+/g,' ')
+      .trim();
+    const aa=n(a),bb=n(b);
+    return aa && bb && (aa===bb || aa.includes(bb) || bb.includes(aa));
+  }
+
+  function stripCatalogTocContamination(lines){
+    const out=[];
+    for(let i=0;i<lines.length;i++){
+      const cur=cleanCatalogLine(lines[i]);
+      const next=cleanCatalogLine(lines[i+1]||'');
+      // Known PDF TOC contamination signature.
+      if(
+        /^international-level competitions$/i.test(cur) &&
+        /^table of contents\b/i.test(next)
+      ) break;
+      if(/^table of contents\b/i.test(cur)) break;
+      out.push(cur);
+    }
+    return out;
+  }
+
+
+  function isCatalogRestrictionLine(line){
+    const s=cleanCatalogLine(line).toUpperCase();
+    return (
+      /\bNO\b.*\bWAGER/.test(s) ||
+      /\bWAGER LIMIT\b/.test(s) ||
+      /\bMARKETS?\b.*\b(CLOSE|LIMIT|DISABLE|REMOVE)/.test(s) ||
+      /\bMUST\b.*\b(CLOSE|DISABLE|REMOVE)/.test(s) ||
+      /\bPROHIBIT/.test(s) ||
+      /\bRESTRICT/.test(s) ||
+      /\bNOT PERMISSIBLE\b/.test(s) ||
+      /\bNO PROPOSITION\b/.test(s) ||
+      /\bNO PLAYER PROPOSITION\b/.test(s) ||
+      /\bNO IN-GAME\b/.test(s)
+    );
+  }
+
   function parseCatalogSection(section){
-    const raw=(section.lines||[]).map(cleanCatalogLine).filter(x=>!isCatalogJunk(x));
+    let raw=(section.lines||[]).map(cleanCatalogLine).filter(x=>!isCatalogJunk(x));
+    raw=stripCatalogTocContamination(raw);
+
     const countries=[];
     const byName=new Map();
-    let current=null;
-    const ungrouped=[];
+    let currentCountry=null;
+    const generalItems=[];
+    const notes=[];
 
     function country(name){
       name=cleanCatalogLine(name);
-      if(!name) name='Other / General';
       if(!byName.has(name)){
         const obj={name,items:[]};
         byName.set(name,obj);
         countries.push(obj);
       }
-      current=byName.get(name);
-      return current;
+      currentCountry=byName.get(name);
+      return currentCountry;
     }
 
-    raw.forEach(line=>{
+    for(let i=0;i<raw.length;i++){
+      const line=raw[i];
+      const next=raw[i+1]||'';
       const parts=line.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
 
-      if(parts.length>=3){
-        // Most structured form: Country | League/Event | Gender
-        const maybeGender=parts[parts.length-1];
-        const gender=catalogGender(maybeGender);
-        const c=parts[0];
-        const league=parts.slice(1,gender?parts.length-1:parts.length).join(' | ');
-        country(c).items.push({name:league,gender,genderRaw:gender?maybeGender:null});
-        return;
+      // Actual country headers only.
+      if(parts.length===1 && isCatalogCountry(line)){
+        country(line);
+        continue;
       }
 
-      if(parts.length===2){
-        const gender=catalogGender(parts[1]);
-        if(gender){
-          // Common form after a country heading: League/Event | Male/Female
-          (current||country('Other / General')).items.push({
-            name:parts[0],gender,genderRaw:parts[1]
+      if(parts.length>=2){
+        const last=parts[parts.length-1];
+        const gender=catalogGender(last);
+
+        // Structured line beginning with an actual country:
+        // Country | League/Event | Male/Female
+        if(isCatalogCountry(parts[0]) && parts.length>=3){
+          const c=country(parts[0]);
+          c.items.push({
+            name:parts.slice(1,gender?parts.length-1:parts.length).join(' | '),
+            gender,
+            genderRaw:gender?last:null
           });
-        }else{
-          // Treat first part as country and second as event if not gender-tagged.
-          country(parts[0]).items.push({name:parts[1],gender:null,genderRaw:null});
+          continue;
         }
-        return;
+
+        // Normal league/event line: League/Event | Male/Female
+        if(gender){
+          const item={name:parts.slice(0,-1).join(' | '),gender,genderRaw:last};
+          if(currentCountry) currentCountry.items.push(item);
+          else generalItems.push(item);
+          continue;
+        }
+
+        // Non-gender pipe line; preserve as event/league instead of inventing a country.
+        const item={name:parts.join(' | '),gender:null,genderRaw:null};
+        if(currentCountry) currentCountry.items.push(item);
+        else generalItems.push(item);
+        continue;
       }
 
-      // A plain line immediately preceding pipe-delimited rows is usually a country.
-      // Preserve explanatory/other lines separately if it doesn't gain children.
-      country(line);
-    });
+      // Suppress duplicate plain headings when the next row repeats the same league
+      // with its Male/Female designation.
+      const nextParts=next.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
+      if(
+        nextParts.length>=2 &&
+        catalogGender(nextParts[nextParts.length-1]) &&
+        sameCatalogLabel(line,nextParts.slice(0,-1).join(' | '))
+      ){
+        continue;
+      }
 
-    // Plain headings with no child entries are not useful as empty country blocks.
-    // Preserve them as ungrouped information only if they are not duplicated.
-    const populated=countries.filter(c=>c.items.length);
-    countries.filter(c=>!c.items.length).forEach(c=>{
-      if(!populated.some(x=>x.name===c.name)) ungrouped.push(c.name);
-    });
+      // Plain non-country lines are informational headings/notes, not countries.
+      // Keep only concise items that are not obvious parser debris.
+      if(line && !/^international domestic leagues$/i.test(line)){
+        notes.push(line);
+      }
+    }
 
-    return {countries:populated,ungrouped};
+    return {
+      countries:countries.filter(c=>c.items.length),
+      generalItems,
+      notes
+    };
   }
 
   function renderCatalogSection(section,i){
     const parsed=parseCatalogSection(section);
+
+    const general=parsed.generalItems.length ? `
+      <div class="catalog-country-block">
+        <div class="catalog-league-grid">
+          ${parsed.generalItems.map(item=>`
+            <div class="catalog-league-card">
+              ${genderBadge(item.gender,item.genderRaw)}
+              <div class="catalog-league-name">${esc(item.name)}</div>
+            </div>`).join('')}
+        </div>
+      </div>` : '';
+
     const countries=parsed.countries.map(c=>`
       <div class="catalog-country-block">
         <div class="catalog-country-head">${esc(c.name)}</div>
@@ -1657,8 +1778,8 @@ if(us) us.addEventListener('input',e=>{
         </div>
       </div>`).join('');
 
-    const ungrouped=parsed.ungrouped.length
-      ? `<div class="catalog-ungrouped">${parsed.ungrouped.map(x=>esc(x)).join('<br>')}</div>`
+    const notes=parsed.notes.length
+      ? `<div class="catalog-notes">${parsed.notes.map(x=>`<div class="${isCatalogRestrictionLine(x)?'catalog-restriction-note':''}">${esc(x)}</div>`).join('')}</div>`
       : '';
 
     return `
@@ -1672,8 +1793,9 @@ if(us) us.addEventListener('input',e=>{
             <div class="catalog-sport-sub">Approved catalog events</div>
           </div>
         </div>
+        ${general}
         ${countries}
-        ${ungrouped}
+        ${notes}
         <div class="catalog-return-wrap">
           <button type="button" class="catalog-return-top" data-catalog-top>↑ Back to catalog top</button>
         </div>
