@@ -107,6 +107,53 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .age-details{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px;background:#fff}
 .age-details summary{font-weight:900;cursor:pointer;color:var(--nav)}
 #ncaaAgeTeamCoverage td,#ncaaAgeTeamCoverage th{white-space:nowrap}
+
+.restriction-toolbar{display:grid;gap:10px;margin:12px 0}
+.restriction-filter-row{display:flex;gap:7px;flex-wrap:wrap}
+.restriction-filter{
+  border:1px solid var(--line);background:#fff;color:#2563eb;border-radius:9px;
+  padding:8px 11px;font-weight:800;cursor:pointer
+}
+.restriction-filter.active{background:var(--nav);color:#fff;border-color:var(--nav)}
+.restriction-stats{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.restriction-stat{border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:11px;color:var(--muted);background:#f8fafc}
+.restriction-table-clean td{vertical-align:top}
+.restriction-table-clean .league-event{font-weight:850;min-width:190px}
+.restriction-table-clean .staff-action-cell{min-width:240px;line-height:1.45}
+.catalog-exact details{font-size:11px}
+.catalog-exact summary{cursor:pointer;color:#2563eb;font-weight:800}
+.catalog-exact div{margin-top:5px;color:var(--muted);max-width:520px}
+.legacy-restriction-card{display:none!important}
+@media(max-width:760px){
+  .restriction-table-clean{min-width:820px}
+  .restriction-filter-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+  .restriction-filter{white-space:nowrap}
+}
+
+.coverage-operational-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}
+.coverage-op-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px}
+.coverage-op-card h3{font-size:15px;margin:8px 0 5px}
+.coverage-op-card p{font-size:12px;color:var(--muted);margin:0}
+.green-border{border-top:3px solid #157347}
+.coverage-dim-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.coverage-dim-grid>div{border:1px solid var(--line);border-radius:9px;padding:11px;display:flex;flex-direction:column;gap:5px}
+.coverage-dim-grid span{font-size:12px;color:var(--muted)}
+.tennis-monitor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tennis-monitor-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}
+.tennis-monitor-card h3{margin:7px 0 4px}
+.tennis-monitor-card p{font-size:12px;color:var(--muted)}
+.tennis-monitor-card b,.tennis-monitor-card span{font-size:11px}
+.tennis-risk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.tennis-risk-grid>div{border:1px solid var(--line);border-radius:10px;padding:12px}
+.tennis-risk-grid h3{font-size:15px;margin:8px 0 4px}
+.tennis-risk-grid p{font-size:12px;color:var(--muted);margin:0}
+@media(max-width:950px){
+  .coverage-operational-grid,.coverage-dim-grid,.tennis-risk-grid{grid-template-columns:repeat(2,1fr)}
+  .tennis-monitor-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .coverage-operational-grid,.coverage-dim-grid,.tennis-risk-grid,.tennis-monitor-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -114,7 +161,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="wrap">
 <div class="brand">Nebraska Authorized Sports Wagering Menu · Active Review Tool</div>
 <h1>Active Offerings Review System</h1>
-<div class="subtitle">Full catalog intelligence · schedules · restrictions · U18 discovery · coverage control · tennis monitoring</div>
+<div class="subtitle">Public-source compliance review for approved events, restrictions, schedules, and U18 exposure</div>
 <div class="legend">
 <span class="pill red">RED = NOT PERMISSIBLE</span>
 <span class="pill green">GREEN = PERMISSIBLE</span>
@@ -122,11 +169,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 </div>
 </header>
-<div style="max-width:1200px;margin:10px auto 0;padding:0 16px">
-<div style="background:#eef6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;font-size:12px;color:#1e3a5f">
-<b>Public-data compliance reference:</b> this site is designed to use only public regulatory, schedule, roster, draw, and athlete-profile information. Internal audit notes, patron information, and confidential operator materials should not be stored here.
-  </div>
-</div>
+<div style="max-width:1200px;margin:10px auto 0;padding:0 16px"><b>Source basis:</b> NRGC catalog and official public sports sources. Internal audit, patron, and confidential operator information are intentionally excluded.</div>
 <main class="wrap">
 <div class="topline"><div id="catalogSourceBanner">
 <b>Current catalog source:</b> <span id="catalogSourceLabel">Loading current NRGC catalog…</span>
@@ -137,7 +180,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <button data-panel="college">Nebraska Collegiate</button>
 <button data-panel="restrictions">Restriction Watch</button>
 <button data-panel="u18">Known U18</button>
-<button data-panel="tennis">Tennis Watch</button><button data-panel="coverage">Coverage Control</button><button data-panel="catalog">Catalog Intelligence</button>
+<button data-panel="tennis">Tennis Watch</button><button data-panel="coverage">Coverage Control</button><button data-panel="catalog">Approved Catalog Events</button>
 </div>
 <section class="panel active" id="today">
 <div class="dashboard-hero">
@@ -282,7 +325,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 <div class="two-col" style="margin-top:12px">
 <div>
-<div class="section-title" style="font-size:16px">Known U18 NCAA Football</div>
+<div class="section-title" style="font-size:16px">Verified U18 NCAA Football</div>
 <div class="review-grid-cards" id="ncaaFootballU18"></div>
 </div>
 <div>
@@ -303,7 +346,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 <div id="ncaaAgeDiscovery" style="margin-top:18px">
 <div class="section-title" style="font-size:18px">NCAA Football Age Discovery</div>
-<p class="small">Batch roster-first screening of freshman/reclassification candidates. Official DOB or explicit official age evidence is required for VERIFIED U18 / VERIFIED 18+. Unresolved candidates stay amber.</p>
+<p class="small">Batch roster-first screening of freshman/reclassification candidates. Automated VERIFIED status requires explicit birth information from the official player bio plus plausibility checks. Ambiguous dates and class conflicts stay amber.</p>
 <div class="metrics" id="ncaaAgeSummary" style="margin-top:10px">
 <div class="metric"><b>—</b><span>waiting for first v4 run</span></div>
 </div>
@@ -370,10 +413,22 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </section>
 <section class="panel" id="restrictions">
 <div class="card" id="liveRestrictionCard">
-<div class="section-title">Live Catalog Restrictions</div>
-<p class="small">Extracted from the currently posted NRGC Authorized Sports Wagering Menu.</p>
+<div class="section-title">Restriction Watch</div>
+<p class="small">Operational view of restrictions extracted from the currently posted NRGC Authorized Sports Wagering Menu. Use “Catalog text” only when the exact wording is needed.</p>
+<div class="restriction-toolbar">
+<input id="liveRestrictionSearch" placeholder="Search sport, league/event, restriction..." type="search"/>
+<div class="restriction-filter-row">
+<button class="restriction-filter active" data-rfilter="all">All</button>
+<button class="restriction-filter" data-rfilter="not-permissible">Not Permissible</button>
+<button class="restriction-filter" data-rfilter="limit">Wager Limit</button>
+<button class="restriction-filter" data-rfilter="timing">Market Timing</button>
+<button class="restriction-filter" data-rfilter="market-type">Market-Type Restriction</button>
+<button class="restriction-filter" data-rfilter="ncaa">NCAA</button>
+</div>
+</div>
+<div class="restriction-stats" id="liveRestrictionStats"></div>
 <div id="liveRestrictionTable"><div class="empty-state">Waiting for catalog sync…</div></div>
-</div><div class="card">
+</div><div class="card legacy-restriction-card">
 <div class="section-title">Catalog Restriction Watch</div>
 <p class="small">Search the MASTER menu by sport, league/event, or exact restriction. Restriction Type is taken from the catalog's restriction wording whenever available.</p>
 <input id="restrictionSearch" placeholder="Search sport, country, league, restriction..." type="search"/>
@@ -383,18 +438,18 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <section class="panel" id="u18">
 <div class="dashboard-hero">
 <div><div class="eyebrow">CATALOG-WIDE PARTICIPANT DISCOVERY</div><h2>Known U18 Registry</h2>
-<p>Only verified U18 athletes are shown here. Missing DOB is never treated as clearance.</p></div>
-<div class="hero-date"><b>24</b><span>verified records loaded</span></div>
+<p>Known U18 athletes maintained for active-offerings review. Exact age is shown only where it is available in the registry; missing age is never treated as clearance.</p></div>
+<div class="hero-date"><b>64</b><span>known U18 records loaded</span></div>
 </div>
 <div class="metrics">
 <div class="metric"><b>11</b><span>tennis U18 records</span></div>
-<div class="metric"><b>11</b><span>soccer U18 records</span></div>
+<div class="metric"><b>50</b><span>soccer U18 records</span></div>
 <div class="metric"><b>2</b><span>basketball U18 records</span></div>
-<div class="metric"><b>4</b><span>participant coverage states</span></div>
-<div class="metric"><b>0</b><span>missing DOB records shown as cleared</span></div>
+<div class="metric"><b>1</b><span>football U18 records</span></div>
+<div class="metric"><b>39</b><span>known U18 records without exact age shown</span></div>
 </div>
 <div class="card">
-<div class="section-title">Verified U18 Athletes</div>
+<div class="section-title">Known U18 Athletes</div>
 <input id="u18Search" placeholder="Search athlete, team, league, sport, country..." type="search"/>
 <div style="overflow:auto;margin-top:10px"><table id="u18Table"><thead><tr><th>Sport</th><th>Country</th><th>League/Event</th><th>Team</th><th>Athlete</th><th>Age</th><th>Current Review Lane</th><th>Status</th></tr></thead>
 <tbody><tr data-u18search="football united states ncaa fbs usc ethan boobie feaster 17 reclassified freshman">
@@ -448,7 +503,7 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <td>Tennis</td><td>Great Britain</td><td><b>WTA / ITF</b></td><td>Individual</td><td><b>Mika Stojsavljevic</b></td>
 <td><span class="pill amber">17</span></td><td>Professional tour participant</td><td><span class="pill green">VERIFIED</span></td></tr><tr data-u18search="tennis united states wta / us open individual julieta pareja 17 us open qualifying final today verified">
 <td>Tennis</td><td>United States</td><td><b>WTA / US Open</b></td><td>Individual</td><td><b>Julieta Pareja</b></td>
-<td><span class="pill amber">17</span></td><td>US Open qualifying final today</td><td><span class="pill green">VERIFIED</span></td></tr></tbody></table></div>
+<td><span class="pill amber">17</span></td><td>US Open qualifying final today</td><td><span class="pill green">VERIFIED</span></td></tr><tr data-u18search="soccer germany bundesliga bayern munich erblin osmani u18 roster known u18"><td>Soccer</td><td>Germany</td><td><b>Bundesliga</b></td><td>Bayern Munich</td><td><b>Erblin Osmani</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer germany bundesliga bayern munich cassiano kiala u18 roster known u18"><td>Soccer</td><td>Germany</td><td><b>Bundesliga</b></td><td>Bayern Munich</td><td><b>Cassiano Kiala</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer germany bundesliga bayern munich maycon cardozo u18 roster known u18"><td>Soccer</td><td>Germany</td><td><b>Bundesliga</b></td><td>Bayern Munich</td><td><b>Maycon Cardozo</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer germany bundesliga borussia dortmund mathis albert u18 roster known u18"><td>Soccer</td><td>Germany</td><td><b>Bundesliga</b></td><td>Borussia Dortmund</td><td><b>Mathis Albert</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer germany bundesliga bayer leverkusen kennet eichhorn u18 roster known u18"><td>Soccer</td><td>Germany</td><td><b>Bundesliga</b></td><td>Bayer Leverkusen</td><td><b>Kennet Eichhorn</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer germany bundesliga union berlin linus güther u18 roster known u18"><td>Soccer</td><td>Germany</td><td><b>Bundesliga</b></td><td>Union Berlin</td><td><b>Linus Güther</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer belgium jupiler pro league royal antwerp xander dierckx u18 roster known u18"><td>Soccer</td><td>Belgium</td><td><b>Jupiler Pro League</b></td><td>Royal Antwerp</td><td><b>Xander Dierckx</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer belgium jupiler pro league club brugge wisdom mike u18 roster known u18"><td>Soccer</td><td>Belgium</td><td><b>Jupiler Pro League</b></td><td>Club Brugge</td><td><b>Wisdom Mike</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer belgium jupiler pro league kvc westerlo dino delić u18 roster known u18"><td>Soccer</td><td>Belgium</td><td><b>Jupiler Pro League</b></td><td>KVC Westerlo</td><td><b>Dino Delić</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer netherlands eredivisie ajax abdellah ouazane u18 roster known u18"><td>Soccer</td><td>Netherlands</td><td><b>Eredivisie</b></td><td>Ajax</td><td><b>Abdellah Ouazane</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 rc lens mezian mesloub u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>RC Lens</td><td><b>Mezian Mesloub</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 ogc nice junior mandza u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>OGC Nice</td><td><b>Junior Mandza</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 ogc nice martin ponsot u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>OGC Nice</td><td><b>Martin Ponsot</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 estac troyes idrissa soukouna u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>ESTAC Troyes</td><td><b>Idrissa Soukouna</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 aj auxerre ackah-tidiane zoukrou u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>AJ Auxerre</td><td><b>Ackah-Tidiane Zoukrou</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 angers jules bouffandeau u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>Angers</td><td><b>Jules Bouffandeau</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer france ligue 1 olympique lyonnais adil hamdani u18 roster known u18"><td>Soccer</td><td>France</td><td><b>Ligue 1</b></td><td>Olympique Lyonnais</td><td><b>Adil Hamdani</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer denmark danish superliga brøndby if raphael canut u18 roster known u18"><td>Soccer</td><td>Denmark</td><td><b>Danish Superliga</b></td><td>Brøndby IF</td><td><b>Raphael Canut</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer portugal primeira liga benfica josé neto u18 roster known u18"><td>Soccer</td><td>Portugal</td><td><b>Primeira Liga</b></td><td>Benfica</td><td><b>José Neto</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer spain la liga atlético madrid jorge domínguez u18 roster known u18"><td>Soccer</td><td>Spain</td><td><b>La Liga</b></td><td>Atlético Madrid</td><td><b>Jorge Domínguez</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer spain la liga levante marc santos u18 roster known u18"><td>Soccer</td><td>Spain</td><td><b>La Liga</b></td><td>Levante</td><td><b>Marc Santos</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer italy serie a as roma antonio arena u18 roster known u18"><td>Soccer</td><td>Italy</td><td><b>Serie A</b></td><td>AS Roma</td><td><b>Antonio Arena</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer poland ekstraklasa pogoń szczecin natan ława u18 roster known u18"><td>Soccer</td><td>Poland</td><td><b>Ekstraklasa</b></td><td>Pogoń Szczecin</td><td><b>Natan Ława</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer poland ekstraklasa pogoń szczecin alex pesković u18 roster known u18"><td>Soccer</td><td>Poland</td><td><b>Ekstraklasa</b></td><td>Pogoń Szczecin</td><td><b>Alex Pesković</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer poland ekstraklasa górnik zabrze wiktor kania u18 roster known u18"><td>Soccer</td><td>Poland</td><td><b>Ekstraklasa</b></td><td>Górnik Zabrze</td><td><b>Wiktor Kania</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer poland ekstraklasa gks katowice wojciech monica u18 roster known u18"><td>Soccer</td><td>Poland</td><td><b>Ekstraklasa</b></td><td>GKS Katowice</td><td><b>Wojciech Monica</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer poland ekstraklasa śląsk wrocław dominik klint u18 roster known u18"><td>Soccer</td><td>Poland</td><td><b>Ekstraklasa</b></td><td>Śląsk Wrocław</td><td><b>Dominik Klint</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league arsenal max dowman u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Arsenal</td><td><b>Max Dowman</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league aston villa brian madjo u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Aston Villa</td><td><b>Brian Madjo</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league crystal palace joel drakes-thomas u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Crystal Palace</td><td><b>Joel Drakes-Thomas</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league tottenham hotspur luca williams-barnett u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Tottenham Hotspur</td><td><b>Luca Williams-Barnett</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league chelsea reggie watson u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Chelsea</td><td><b>Reggie Watson</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league manchester united jj gabriel u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Manchester United</td><td><b>JJ Gabriel</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer england premier league nottingham forest kalum thompson u18 roster known u18"><td>Soccer</td><td>England</td><td><b>Premier League</b></td><td>Nottingham Forest</td><td><b>Kalum Thompson</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer united states mls new york red bulls adri mehmeti u18 roster known u18"><td>Soccer</td><td>United States</td><td><b>MLS</b></td><td>New York Red Bulls</td><td><b>Adri Mehmeti</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer united states mls fc cincinnati ademar chávez u18 roster known u18"><td>Soccer</td><td>United States</td><td><b>MLS</b></td><td>FC Cincinnati</td><td><b>Ademar Chávez</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer united states mls real salt lake van parker u18 roster known u18"><td>Soccer</td><td>United States</td><td><b>MLS</b></td><td>Real Salt Lake</td><td><b>Van Parker</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer united states mls d.c. united kamil castillo u18 roster known u18"><td>Soccer</td><td>United States</td><td><b>MLS</b></td><td>D.C. United</td><td><b>Kamil Castillo</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr><tr data-u18search="soccer united states mls d.c. united oscar avilez u18 roster known u18"><td>Soccer</td><td>United States</td><td><b>MLS</b></td><td>D.C. United</td><td><b>Oscar Avilez</b></td><td><span class="pill amber">U18</span></td><td>Known U18 roster watch</td><td><span class="pill amber">KNOWN U18</span></td></tr></tbody></table></div>
 </div>
 <div class="card">
 <div class="section-title">Roster / Participant Coverage Standard</div>
@@ -461,232 +516,173 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div></section>
 <section class="panel" id="tennis">
 <div class="dashboard-hero tennis-hero">
-<div><div class="eyebrow">PARTICIPANT-LEVEL TENNIS MONITOR</div><h2>Tennis Watch</h2>
-<p>Tournament → draw / entry list → player profile → age → event-day U18 flag. ITF, ATP, WTA, UTR, and Grand Slams are separate review lanes.</p></div>
-<div class="hero-date"><b>HIGH</b><span>participant-volume risk</span></div>
-</div>
-<div class="callout amber"><b>Operating rule:</b> tennis is never cleared simply because the tournament is approved. The field must be aligned to official player profiles; unresolved ages remain a review condition.</div>
-<div class="card">
-<div class="section-title">Today · Known U18 Tennis Trigger</div>
-<article class="tennis-alert">
-<div><span class="pill amber">U18 ATHLETE</span><span class="pill blue">US OPEN QUALIFYING</span></div>
-<h3>Julieta Pareja (17) vs Lucrezia Stefanini</h3>
-<p><b>Final qualifying round · Aug. 27.</b> WTA lists Pareja as 17 with a Feb. 18, 2009 birthday. This belongs in Review Today and in Tennis Watch.</p>
-<div class="staff-action"><b>Staff check</b><span>Search Julieta Pareja by name on each SWSP and verify athlete-specific performance/nonperformance wagering is not offered.</span></div>
-</article>
-</div>
-<div class="card"><div class="section-title">Approved Tennis Review Lanes</div><div class="tennis-grid">
-<article class="tennis-card">
-<div class="tennis-head"><b>ITF World Tennis Tour — Men</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>ITF</span><span>Men</span></div>
-<div class="source-row"><span>Schedule / field</span><b>Official ITF tournament calendar + draws</b></div>
-<div class="source-row"><span>Age verification</span><b>ITF player profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill amber">PARTICIPANT SCREENING</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>ITF World Tennis Tour — Women</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>ITF</span><span>Women</span></div>
-<div class="source-row"><span>Schedule / field</span><b>Official ITF tournament calendar + draws</b></div>
-<div class="source-row"><span>Age verification</span><b>ITF player profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill amber">PARTICIPANT SCREENING</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>ATP Tour</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>ATP</span><span>Men</span></div>
-<div class="source-row"><span>Schedule / field</span><b>ATP tournament calendar / daily schedule</b></div>
-<div class="source-row"><span>Age verification</span><b>ATP + ITF profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill green">SOURCE MAPPED</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>ATP Challenger Tour</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>ATP</span><span>Men</span></div>
-<div class="source-row"><span>Schedule / field</span><b>ATP Challenger calendar / draws</b></div>
-<div class="source-row"><span>Age verification</span><b>ATP + ITF profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill green">SOURCE MAPPED</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>WTA Tour</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>WTA</span><span>Women</span></div>
-<div class="source-row"><span>Schedule / field</span><b>WTA tournaments / scores / draws</b></div>
-<div class="source-row"><span>Age verification</span><b>WTA + ITF profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill green">SOURCE MAPPED</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>UTR Pro Tennis Tour — Men</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>UTR Sports</span><span>Men</span></div>
-<div class="source-row"><span>Schedule / field</span><b>UTR event schedule</b></div>
-<div class="source-row"><span>Age verification</span><b>UTR participant profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill amber">SOURCE MAPPING</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>UTR Pro Tennis Tour — Women</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>UTR Sports</span><span>Women</span></div>
-<div class="source-row"><span>Schedule / field</span><b>UTR event schedule</b></div>
-<div class="source-row"><span>Age verification</span><b>UTR participant profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill amber">SOURCE MAPPING</span></div>
-</article>
-<article class="tennis-card">
-<div class="tennis-head"><b>Grand Slam Tennis</b><span class="pill amber">HIGH U18 RISK</span></div>
-<div class="tennis-meta"><span>Grand Slam Board</span><span>Men &amp; Women</span></div>
-<div class="source-row"><span>Schedule / field</span><b>Official Slam draws / order of play</b></div>
-<div class="source-row"><span>Age verification</span><b>ATP/WTA/ITF + event profiles</b></div>
-<div class="source-row"><span>Coverage</span><span class="pill green">SOURCE MAPPED</span></div>
-</article></div></div>
-<div class="card">
-<div class="section-title">Verified U18 Tennis Watchlist</div>
-<div class="chip-list">
-<span class="event-chip"><b>Julieta Pareja</b> · 17 · WTA / US Open</span><span class="event-chip"><b>Hannah Klugman</b> · 17 · WTA / ITF</span><span class="event-chip"><b>Mika Stojsavljevic</b> · 17 · WTA / ITF</span><span class="event-chip"><b>Moise Kouame</b> · 17 · ATP / ITF</span><span class="event-chip"><b>Cruz Hewitt</b> · 17 · ATP / ITF</span><span class="event-chip"><b>Ivan Ivanov</b> · 17 · ATP / ITF</span><span class="event-chip"><b>Jordan Lee</b> · 16 · ATP / US Open</span><span class="event-chip"><b>Michael Antonius</b> · 16 · ATP / US Open</span><span class="event-chip"><b>Andrew Johnson</b> · 16 · ATP / US Open</span><span class="event-chip"><b>Jack Secord</b> · 17 · ATP / US Open</span><span class="event-chip"><b>Jordyn Hazelitt</b> · 16 · USTA / Pro Circuit</span>
-</div>
-</div>
-<div class="card">
-<div class="section-title">How the Tennis Engine Should Work</div>
-<div class="pipeline">
-<div><b>1</b><span>Approved tennis event from catalog</span></div><div class="arrow">→</div>
-<div><b>2</b><span>Official draw / entry list</span></div><div class="arrow">→</div>
-<div><b>3</b><span>Official player profile / DOB</span></div><div class="arrow">→</div>
-<div><b>4</b><span>Age on event date</span></div><div class="arrow">→</div>
-<div><b>5</b><span>U18 name pushed to Review Today</span></div>
-</div>
-</div></section><section class="panel" id="coverage">
-<div class="dashboard-hero">
 <div>
-<div class="eyebrow">UNKNOWN-UNKNOWN CONTROL</div>
-<h2>Coverage Control</h2>
-<p>The system does not treat “0 known U18” as clearance. Every approved league/event is tracked for schedule coverage, participant coverage, DOB coverage, and source freshness.</p>
+<div class="eyebrow">TENNIS PARTICIPANT REVIEW</div>
+<h2>Tennis Watch</h2>
+<p>High-volume participant screening for approved professional tennis events. The review model is tournament → draw/field → official player profile → age on event date → U18 / unresolved trigger.</p>
 </div>
-<div class="hero-date"><b>Coverage ≠ Count</b><span>Blind spots are review triggers</span></div>
+<div class="hero-date"><b>HIGH PRIORITY</b><span>Large U18 participant universe</span></div>
 </div>
 <div class="callout amber">
-<b>Never Green by Absence:</b> a league with zero known U18 athletes stays amber until its relevant roster, field, draw, or entry list has been sufficiently screened.
-  </div>
-<div class="metrics">
-<div class="metric"><b>1</b><span>known NCAA football U18</span></div>
-<div class="metric"><b>3</b><span>known NCAA U18 overall</span></div>
-<div class="metric"><b>24</b><span>catalog sport sections in inventory</span></div>
-<div class="metric"><b>4</b><span>coverage dimensions per league</span></div>
-<div class="metric"><b>5</b><span>coverage states</span></div>
+<b>Tennis rule:</b> an approved tournament is never treated as clear simply because the event itself is approved. Player-specific markets must still be screened for U18 participants, and missing DOB information remains a review condition.
 </div>
 <div class="card">
-<div class="section-title">Coverage States</div>
-<div class="coverage-status-grid">
-<div><span class="pill green">SCREENED</span><b>Current cycle reviewed</b><p>Relevant participant list and age evidence are sufficiently complete for this review cycle.</p></div>
-<div><span class="pill amber">PARTIAL</span><b>Some participants unresolved</b><p>Known U18s are surfaced, but age coverage is incomplete.</p></div>
-<div><span class="pill amber">UNMAPPED</span><b>Participant source needed</b><p>Approved league/event has no dependable participant source mapped yet.</p></div>
-<div><span class="pill amber">STALE</span><b>Source freshness problem</b><p>Source may be official, but it is too old to support current clearance.</p></div>
-<div><span class="pill amber">CONFLICT</span><b>Sources disagree</b><p>Age, roster, team, or schedule sources conflict and require manual resolution.</p></div>
+<div class="section-title">Approved Tennis Monitoring Lanes</div>
+<div class="tennis-monitor-grid">
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>ITF Men</h3><p>Official ITF tournament calendar, draws, acceptance lists, and player profiles.</p><b>Primary age source:</b><span> ITF official player profile</span></div>
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>ITF Women</h3><p>Official ITF tournament calendar, draws, acceptance lists, and player profiles.</p><b>Primary age source:</b><span> ITF official player profile</span></div>
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>ATP</h3><p>ATP Tour and ATP Challenger current tournaments, draws, and player profiles.</p><b>Age fallback:</b><span> ITF profile where available</span></div>
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>WTA</h3><p>WTA current tournaments, draws, and player profiles.</p><b>Age fallback:</b><span> ITF profile where available</span></div>
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>UTR Men</h3><p>UTR Pro Tennis Tour event schedule and participant field.</p><b>Coverage concern:</b><span> DOB/profile completeness can be limited</span></div>
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>UTR Women</h3><p>UTR Pro Tennis Tour event schedule and participant field.</p><b>Coverage concern:</b><span> DOB/profile completeness can be limited</span></div>
+<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>Grand Slams</h3><p>Australian Open, Roland-Garros, Wimbledon, and US Open draws / order of play.</p><b>Age sources:</b><span> ATP / WTA / ITF / official event profiles</span></div>
 </div>
 </div>
 <div class="card">
-<div class="section-title">High-Priority Coverage Lanes</div>
+<div class="section-title">Tennis Review Workflow</div>
+<div class="pipeline tennis-pipeline">
+<div><b>1</b><span>Approved catalog event</span></div><div class="arrow">→</div>
+<div><b>2</b><span>Current draw / entry list</span></div><div class="arrow">→</div>
+<div><b>3</b><span>Official player profile</span></div><div class="arrow">→</div>
+<div><b>4</b><span>Age on event date</span></div><div class="arrow">→</div>
+<div><b>5</b><span>Review Today trigger</span></div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">Current Tennis Risk Queue</div>
+<div class="tennis-risk-grid">
+<div>
+<span class="pill red">VERIFIED U18</span>
+<h3>Known U18 participants</h3>
+<p>Any verified U18 participant in an active or upcoming approved event should appear in Review Today beside the event/match.</p>
+</div>
+<div>
+<span class="pill amber">AGE REVIEW</span>
+<h3>Unresolved DOB / profile</h3>
+<p>Player appears in a draw or entry list but age could not be verified from the preferred official source.</p>
+</div>
+<div>
+<span class="pill amber">DRAW CHANGE</span>
+<h3>Late entrant / qualifier</h3>
+<p>Qualifiers, lucky losers, withdrawals, and replacements can change the U18 exposure after the initial field review.</p>
+</div>
+<div>
+<span class="pill amber">SOURCE ISSUE</span>
+<h3>Stale or incomplete field</h3>
+<p>Official source exists but has not yet published a complete/current participant list.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">Known U18 Tennis Registry</div>
+<div class="chip-list" id="tennisKnownU18"></div>
+</div>
+</section><section class="panel" id="coverage">
+<div class="dashboard-hero">
+<div>
+<div class="eyebrow">MONITORING COVERAGE</div>
+<h2>Coverage Control</h2>
+<p>Shows where the system has enough source coverage to support review and, just as importantly, where schedule, participant, or age coverage is still incomplete.</p>
+</div>
+<div class="hero-date"><b>Never Green by Absence</b><span>Unknown coverage stays visible</span></div>
+</div>
+<div class="callout amber">
+<b>Coverage rule:</b> zero known U18 athletes does not mean a league is clear. A league must have current schedule/participant sources and adequate age screening before the monitoring state can improve.
+</div>
+<div class="coverage-operational-grid">
+<div class="coverage-op-card green-border">
+<span class="pill green">FULLY MONITORED</span>
+<h3>Current sources + adequate screening</h3>
+<p>Schedule/event source is current, participant source is current, and the required age/risk review has been completed for the current cycle.</p>
+</div>
+<div class="coverage-op-card amber-border">
+<span class="pill amber">PARTIAL COVERAGE</span>
+<h3>Source exists, review incomplete</h3>
+<p>One or more required dimensions remain incomplete, such as roster DOB screening or participant-list coverage.</p>
+</div>
+<div class="coverage-op-card amber-border">
+<span class="pill amber">UNMAPPED</span>
+<h3>Source still needs mapping</h3>
+<p>No dependable official schedule, roster, draw, entry-list, or participant source has been mapped yet.</p>
+</div>
+<div class="coverage-op-card red-border">
+<span class="pill red">SOURCE ISSUE</span>
+<h3>Mapped source failed or conflicted</h3>
+<p>Official source is unavailable, stale, changed structure, or conflicts with another authoritative source.</p>
+</div>
+</div>
+<div class="card">
+<div class="section-title">Priority Coverage Areas</div>
 <div style="overflow:auto">
-<table>
-<thead><tr><th>League / Area</th><th>Schedule</th><th>Participants</th><th>DOB / Age</th><th>Freshness</th><th>Known U18</th><th>Coverage Status</th><th>Next Action</th></tr></thead>
+<table class="coverage-priority-table">
+<thead>
+<tr>
+<th>Area</th><th>Schedule / Event</th><th>Participants</th><th>Age / U18</th><th>Current State</th><th>Primary Next Action</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td><b>NCAA Football · FBS/FCS</b></td>
-<td><span class="pill green">MAPPED</span></td>
+<td><b>NCAA Football</b></td>
+<td><span class="pill green">BATCH MAPPED</span></td>
+<td><span class="pill green">ROSTERS MAPPED</span></td>
+<td><span class="pill amber">AGE DISCOVERY</span></td>
+<td><span class="pill amber">PARTIAL COVERAGE</span></td>
+<td>Continue batch freshman/reclassification age screening and surface verified U18/unresolved names.</td>
+</tr>
+<tr>
+<td><b>NCAA Basketball</b></td>
 <td><span class="pill amber">PARTIAL</span></td>
 <td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill amber">VARIES</span></td>
-<td><b>1</b> · Ethan “Boobie” Feaster, USC</td>
 <td><span class="pill amber">HIGH PRIORITY</span></td>
-<td>Screen freshmen, true freshmen, reclassified players, early enrollees, and unresolved DOBs across approved rosters.</td>
+<td><span class="pill amber">PARTIAL COVERAGE</span></td>
+<td>Build the same roster-first age discovery pipeline used for NCAA Football.</td>
 </tr>
 <tr>
-<td><b>NCAA Men's Basketball</b></td>
-<td><span class="pill green">MAPPED</span></td>
-<td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill amber">VARIES</span></td>
-<td><b>2</b> · JoJo Boumtje Boumtje, Marcus Spears Jr.</td>
+<td><b>Tennis</b></td>
+<td><span class="pill green">TOUR SOURCES</span></td>
+<td><span class="pill amber">DRAW / FIELD REVIEW</span></td>
 <td><span class="pill amber">HIGH PRIORITY</span></td>
-<td>Continue reclassification/freshman screening and persistent futures/award watch.</td>
+<td><span class="pill amber">PARTIAL COVERAGE</span></td>
+<td>Align active draws/fields with official player profiles and calculate age on event date.</td>
 </tr>
 <tr>
-<td><b>ITF Men / Women</b></td>
-<td><span class="pill green">MAPPED</span></td>
-<td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill green">CURRENT</span></td>
-<td>Multiple verified U18 professionals</td>
-<td><span class="pill amber">HIGH PRIORITY</span></td>
-<td>Align each current draw/acceptance list to ITF player profiles and calculate age on event date.</td>
+<td><b>International Soccer</b></td>
+<td><span class="pill amber">EXPANDING</span></td>
+<td><span class="pill amber">ROSTER COVERAGE</span></td>
+<td><span class="pill amber">KNOWN U18</span></td>
+<td><span class="pill amber">PARTIAL COVERAGE</span></td>
+<td>Map league/team official schedules and rosters for the approved catalog leagues with known U18 exposure.</td>
 </tr>
 <tr>
-<td><b>ATP / WTA / Grand Slams</b></td>
-<td><span class="pill green">MAPPED</span></td>
-<td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill amber">PARTIAL</span></td>
-<td><span class="pill green">CURRENT</span></td>
-<td>Verified U18 tour participants loaded</td>
-<td><span class="pill amber">HIGH PRIORITY</span></td>
-<td>Daily draw/order-of-play screening during active tournaments.</td>
-</tr>
-<tr>
-<td><b>UTR Pro Tennis Tour</b></td>
-<td><span class="pill amber">UNMAPPED</span></td>
-<td><span class="pill amber">UNMAPPED</span></td>
-<td><span class="pill amber">UNMAPPED</span></td>
-<td><span class="pill amber">UNVERIFIED</span></td>
-<td>Unknown</td>
-<td><span class="pill amber">BLIND SPOT</span></td>
-<td>Map official schedule, field, and profile sources before any green coverage state is possible.</td>
-</tr>
-<tr>
-<td><b>MLS</b></td>
-<td><span class="pill green">MAPPED</span></td>
-<td><span class="pill green">MAPPED</span></td>
-<td><span class="pill amber">ONGOING</span></td>
-<td><span class="pill green">CURRENT</span></td>
-<td>Known first-team U18 registry loaded</td>
-<td><span class="pill amber">ONGOING SCREEN</span></td>
-<td>Refresh roster changes/signings and re-check upcoming fixtures.</td>
-</tr>
-<tr>
-<td><b>Remaining Catalog Leagues</b></td>
+<td><b>Remaining Approved Catalog</b></td>
 <td><span class="pill amber">VARIES</span></td>
 <td><span class="pill amber">VARIES</span></td>
 <td><span class="pill amber">VARIES</span></td>
-<td><span class="pill amber">VARIES</span></td>
-<td>Do not infer zero</td>
 <td><span class="pill amber">INVENTORY ACTIVE</span></td>
-<td>Map schedule and participant sources league by league using the catalog as the master checklist.</td>
+<td>Use Approved Catalog Events as the master checklist and add source adapters by risk priority.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="card">
-<div class="section-title">NCAA Football Discovery Protocol</div>
-<div class="pipeline">
-<div><b>1</b><span>Approved FBS / FCS roster</span></div><div class="arrow">→</div>
-<div><b>2</b><span>Freshman / true freshman / reclassified / early enrollee filter</span></div><div class="arrow">→</div>
-<div><b>3</b><span>Official bio + DOB/age evidence</span></div><div class="arrow">→</div>
-<div><b>4</b><span>Upcoming schedule</span></div><div class="arrow">→</div>
-<div><b>5</b><span>Name-level SWSP market review</span></div>
-</div>
-<div class="callout" style="margin-top:12px">
-<b>Feaster is the model case:</b> USC's official bio explicitly says he reclassified, skipped his senior year of high school, and begins college at 17. That type of biography language should be treated as a discovery keyword, not something staff has to stumble across manually.
-    </div>
-</div>
-<div class="card">
-<div class="section-title">Two-Way Detection</div>
-<div class="two-col">
-<div class="rule-tile amber-border"><span class="pill amber">ROSTER-FIRST</span><b>Athlete → age → event → market</b><span>Find U18 athletes independently, then tell staff exactly which upcoming events and names to search on each SWSP.</span></div>
-<div class="rule-tile amber-border"><span class="pill amber">MARKET-FIRST</span><b>Market → athlete → age verification</b><span>If staff encounters an athlete-specific market first, the athlete name becomes an immediate age-verification query.</span></div>
+<div class="section-title">Coverage Dimensions</div>
+<div class="coverage-dim-grid">
+<div><b>Schedule / Event</b><span>Do we know what is active now and during Today + 7?</span></div>
+<div><b>Participant</b><span>Do we have the roster, draw, entry list, fight card, field, or other participant list?</span></div>
+<div><b>Age / Risk</b><span>Have relevant participants been screened for U18 or other catalog-specific risk?</span></div>
+<div><b>Freshness</b><span>Was the source checked recently enough to support the current review?</span></div>
 </div>
 </div>
 </section><section class="panel" id="catalog"><div class="card" id="liveCatalogCard">
-<div class="section-title">Current NRGC Catalog</div>
-<div class="coverage-bars" id="liveCatalogSummary">
-<div><span>Status</span><b>Waiting for first catalog workflow run…</b></div>
-</div>
+<div class="section-title">Approved Catalog Events</div>
+<div class="coverage-bars" id="liveCatalogSummary"><div><span>Current source</span><b id="catalogSummarySource">Loading NRGC catalog…</b></div><div><span>Last synced</span><b id="catalogSummarySync">—</b></div><div><span>Restriction signals</span><b id="catalogSummaryRestrictions">—</b></div></div>
 <input id="liveCatalogSearch" placeholder="Search the current NRGC catalog..." type="search"/>
 <div class="sport-buttons" id="liveCatalogSportButtons"></div>
 <div id="liveCatalogBody" style="margin-top:12px"></div>
 </div>
 <div class="card">
-<div class="section-title">Catalog Intelligence Explorer</div>
+<div class="section-title">Approved Catalog Events</div>
 <p class="small">Full MASTER menu retained, but the explorer now functions as an intelligence directory: restrictions are highlighted, known U18s are cross-referenced, and source-coverage status is visible.</p>
 <input id="catalogSearch" placeholder="Search the entire catalog: Brazil, NBA, Serie B, NO PROPOSITION, UFC..." type="search"/>
 <div class="sport-buttons"><button class="sport-button" data-target="cat-aussie-rules">Aussie Rules</button><button class="sport-button" data-target="cat-baseball">Baseball</button><button class="sport-button" data-target="cat-basketball">Basketball</button><button class="sport-button" data-target="cat-bowling">Bowling</button><button class="sport-button" data-target="cat-boxing">Boxing</button><button class="sport-button" data-target="cat-combat-sports">Combat Sports</button><button class="sport-button" data-target="cat-cricket">Cricket</button><button class="sport-button" data-target="cat-cycling">Cycling</button><button class="sport-button" data-target="cat-darts">Darts</button><button class="sport-button" data-target="cat-esports">Esports</button><button class="sport-button" data-target="cat-football">Football</button><button class="sport-button" data-target="cat-golf">Golf</button><button class="sport-button" data-target="cat-ice-hockey">Ice Hockey</button><button class="sport-button" data-target="cat-lacrosse">Lacrosse</button><button class="sport-button" data-target="cat-motorsports">Motorsports</button><button class="sport-button" data-target="cat-national-collegiate-athletic-association-ncaa">National Collegiate Athletic Association (NCAA)</button><button class="sport-button" data-target="cat-olympics">Olympics</button><button class="sport-button" data-target="cat-rodeo">Rodeo</button><button class="sport-button" data-target="cat-rugby">Rugby</button><button class="sport-button" data-target="cat-soccer">Soccer</button><button class="sport-button" data-target="cat-surfing">Surfing</button><button class="sport-button" data-target="cat-table-tennis">Table Tennis</button><button class="sport-button" data-target="cat-tennis">Tennis</button><button class="sport-button" data-target="cat-volleyball">Volleyball</button></div>
@@ -1388,7 +1384,7 @@ if(us) us.addEventListener('input',e=>{
         <div><span>Parsed lines</span><b>${esc(d.line_count||0)}</b></div>
         <div><span>Restriction signals</span><b>${esc((d.restrictions||[]).length)}</b></div>`;
 
-      const sections=d.sections||[];
+      const sections=d.sections||[]; window.__currentCatalogSections=sections;
       const btns=document.getElementById('liveCatalogSportButtons');
       const body=document.getElementById('liveCatalogBody');
       if(btns && body){
@@ -1507,6 +1503,269 @@ if(us) us.addEventListener('input',e=>{
     setTimeout(loadLiveCatalog,350);
     setTimeout(loadCollege,400);
   });
+})();
+
+
+// Clean operational Restriction Watch renderer.
+(function(){
+  let restrictionData=[];
+  let restrictionFilter='all';
+  let restrictionSearch='';
+
+  function resc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+  function classifyRestriction(text,sport){
+    const up=(text||'').toUpperCase();
+    if((sport||'').toUpperCase().includes('NCAA') || up.includes('NEBRASKA COLLEGIATE') || up.includes('COLLEGIATE')){
+      return 'ncaa';
+    }
+    if(up.includes('WAGER LIMIT') || /\$\s*[\d,]+\s*WAGER/.test(up)) return 'limit';
+    if(up.includes('CLOSE') || up.includes('PRIOR TO EVENT') || up.includes('BEFORE') && (up.includes('MARKET')||up.includes('FUTURE'))) return 'timing';
+    if(up.includes('NO PROPOSITION') || up.includes('NO PLAYER PROPOSITION') || up.includes('NO IN-GAME') || up.includes('MARKETS LIMITED') || up.includes('MONEYLINE')){
+      return 'market-type';
+    }
+    if(up.includes('NO ') || up.includes('NOT PERMISSIBLE') || up.includes('PROHIBIT')) return 'not-permissible';
+    return 'market-type';
+  }
+
+  function restrictionPhrase(text){
+    const t=(text||'').trim();
+    const patterns=[
+      /NO PLAYER PROPOSITION WAGERS?/i,
+      /NO PROPOSITION WAGERS?/i,
+      /NO IN-GAME WAGERS?/i,
+      /\$[\d,]+\s+WAGER LIMIT/i,
+      /MARKETS? MUST CLOSE[^|.;]*/i,
+      /MARKETS? LIMITED TO[^|.;]*/i,
+      /MUST BE (?:DISABLED|REMOVED)[^|.;]*/i,
+      /NOT PERMISSIBLE[^|.;]*/i
+    ];
+    for(const p of patterns){
+      const m=t.match(p); if(m) return m[0].trim();
+    }
+    // If no compact phrase can be isolated, retain the full restriction wording.
+    return t;
+  }
+
+  function leagueEvent(text,restriction){
+    let t=(text||'').trim();
+    if(restriction && restriction!==t){
+      const idx=t.toUpperCase().indexOf(restriction.toUpperCase());
+      if(idx>=0) t=t.slice(0,idx);
+    }
+    t=t.replace(/\s*[-–—|:]\s*$/,'').trim();
+    // Improve ambiguous catalog sub-items.
+    const low=t.toLowerCase();
+    if(low==='draft') return 'Major League Baseball (MLB) — Draft';
+    if(low==='spring training') return 'Major League Baseball (MLB) — Spring Training';
+    if(!t) return 'General / Catalog-wide';
+    return t;
+  }
+
+  function staffAction(restriction,text){
+    const up=(restriction||text||'').toUpperCase();
+    if(up.includes('NO PLAYER PROPOSITION')) return 'Confirm player proposition markets are disabled.';
+    if(up.includes('NO PROPOSITION')) return 'Confirm proposition markets are not offered.';
+    if(up.includes('NO IN-GAME')) return 'Confirm live / in-game wagering is disabled.';
+    if(up.includes('WAGER LIMIT')) return 'Verify the configured maximum wager does not exceed the catalog limit.';
+    if(up.includes('CLOSE') || up.includes('PRIOR TO EVENT')) return 'Verify the market closes by the required catalog cutoff.';
+    if(up.includes('MARKETS LIMITED TO')) return 'Confirm only the specifically authorized market types are available.';
+    if(up.includes('FUTURE') && (up.includes('REMOVE')||up.includes('DISABLE')||up.includes('BEFORE'))) return 'Compare the event schedule to the futures cutoff and confirm the market is disabled on time.';
+    if(up.includes('NOT PERMISSIBLE') || up.startsWith('NO ')) return 'Confirm the restricted offering is not active on the SWSP platform.';
+    return 'Review active markets against this catalog restriction.';
+  }
+
+  function renderRestrictionWatch(){
+    const target=document.getElementById('liveRestrictionTable');
+    if(!target) return;
+    const q=restrictionSearch.toLowerCase();
+    const rows=restrictionData.filter(x=>{
+      if(restrictionFilter!=='all' && x.category!==restrictionFilter) return false;
+      if(q && !x.search.includes(q)) return false;
+      return true;
+    });
+
+    const stats=document.getElementById('liveRestrictionStats');
+    if(stats){
+      const cats={};
+      restrictionData.forEach(x=>cats[x.category]=(cats[x.category]||0)+1);
+      stats.innerHTML=[
+        `<span class="restriction-stat"><b>${restrictionData.length}</b> current restriction signals</span>`,
+        `<span class="restriction-stat"><b>${cats['market-type']||0}</b> market-type</span>`,
+        `<span class="restriction-stat"><b>${cats['timing']||0}</b> timing</span>`,
+        `<span class="restriction-stat"><b>${cats['limit']||0}</b> limits</span>`
+      ].join('');
+    }
+
+    target.innerHTML=rows.length?`
+      <div style="overflow:auto">
+      <table class="restriction-table-clean">
+        <thead><tr><th>Sport</th><th>League / Event</th><th>Restriction</th><th>Staff Action</th><th>Catalog Text</th></tr></thead>
+        <tbody>${rows.map(x=>`
+          <tr>
+            <td><b>${resc(x.sport)}</b></td>
+            <td class="league-event">${resc(x.league)}</td>
+            <td><span class="pill ${x.category==='not-permissible'?'red':'amber'}">${resc(x.restriction)}</span></td>
+            <td class="staff-action-cell">${resc(x.action)}</td>
+            <td class="catalog-exact"><details><summary>View text</summary><div>${resc(x.text)}</div></details></td>
+          </tr>`).join('')}</tbody>
+      </table></div>`:
+      '<div class="empty-state">No restrictions match the current filter.</div>';
+  }
+
+  async function loadCleanRestrictionWatch(){
+    try{
+      const r=await fetch(`data/catalog-live.json?v=${Date.now()}`,{cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d=await r.json();
+      restrictionData=(d.restrictions||[]).map(x=>{
+        const restriction=restrictionPhrase(x.text);
+        const league=leagueEvent(x.text,restriction);
+        const category=classifyRestriction(x.text,x.sport);
+        return {
+          sport:x.sport||'',
+          text:x.text||'',
+          restriction,
+          league,
+          category,
+          action:staffAction(restriction,x.text),
+          search:`${x.sport||''} ${league} ${restriction} ${x.text||''}`.toLowerCase()
+        };
+      });
+      renderRestrictionWatch();
+    }catch(e){
+      const target=document.getElementById('liveRestrictionTable');
+      if(target) target.innerHTML='<div class="empty-state">Live catalog restrictions are not available yet. Run Update NRGC Catalog.</div>';
+    }
+  }
+
+  document.querySelectorAll('.restriction-filter').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.restriction-filter').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      restrictionFilter=btn.dataset.rfilter||'all';
+      renderRestrictionWatch();
+    });
+  });
+  const search=document.getElementById('liveRestrictionSearch');
+  if(search) search.addEventListener('input',e=>{restrictionSearch=e.target.value;renderRestrictionWatch();});
+
+  window.loadCleanRestrictionWatch=loadCleanRestrictionWatch;
+  loadCleanRestrictionWatch();
+  const rr=document.getElementById('refreshReviewBtn');
+  if(rr) rr.addEventListener('click',()=>setTimeout(loadCleanRestrictionWatch,500));
+})();
+
+
+// Re-bind Known U18 search after registry additions.
+(function(){
+ const s=document.getElementById('u18Search');
+ if(!s) return;
+ s.addEventListener('input',()=>{
+   const q=s.value.toLowerCase();
+   document.querySelectorAll('#u18Table tbody tr').forEach(tr=>{
+     tr.style.display=(!q || (tr.dataset.u18search||tr.textContent.toLowerCase()).includes(q))?'':'none';
+   });
+ });
+})();
+
+
+// Consolidated catalog naming / operational presentation.
+(function(){
+  function simplifyNCAA(section){
+    const sport=(section.sport||'').trim();
+    const lines=section.lines||[];
+    const joined=lines.join(' ');
+
+    if(!/National Collegiate Athletic Association|NCAA/i.test(sport+' '+joined)) return sport;
+
+    // Prefer obvious sport context from the section lines.
+    const candidates=[
+      ['Baseball',/\bbaseball\b/i],
+      ['Basketball',/\bbasketball\b/i],
+      ['Football',/\bfootball\b/i],
+      ['Ice Hockey',/\bice hockey\b|\bhockey\b/i],
+      ['Lacrosse',/\blacrosse\b/i],
+      ['Soccer',/\bsoccer\b/i],
+      ['Volleyball',/\bvolleyball\b/i],
+      ['Softball',/\bsoftball\b/i],
+      ['Wrestling',/\bwrestling\b/i]
+    ];
+    for(const [label,re] of candidates){
+      if(re.test(joined) || re.test(sport)) return `NCAA ${label}`;
+    }
+
+    // If catalog parser created one giant NCAA section, split labels later by content;
+    // keep generic NCAA only as the fallback, never the long formal phrase.
+    return 'NCAA';
+  }
+
+  function rebuildCatalogButtonsWithSimpleLabels(){
+    if(!window.__currentCatalogSections) return;
+    const sections=window.__currentCatalogSections;
+    const btns=document.getElementById('liveCatalogSportButtons');
+    if(!btns) return;
+
+    btns.innerHTML=sections.map((s,i)=>{
+      const label=simplifyNCAA(s);
+      return `<button class="sport-button live-cat-btn" data-live-cat="${i}">${label.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</button>`;
+    }).join('');
+
+    document.querySelectorAll('.live-cat-btn').forEach(b=>b.onclick=()=>{
+      const idx=b.dataset.liveCat;
+      const target=document.querySelector(`.live-catalog-section[data-live-index="${idx}"]`);
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  }
+
+  // Wrap/augment loadLiveCatalog so summary removes page/line/date clutter
+  const original=window.loadLiveCatalog;
+  if(original){
+    window.loadLiveCatalog=async function(){
+      await original();
+
+      try{
+        const r=await fetch(`data/catalog-live.json?v=${Date.now()}`,{cache:'no-store'});
+        if(!r.ok) return;
+        const d=await r.json();
+        window.__currentCatalogSections=d.sections||[];
+
+        const src=document.getElementById('catalogSummarySource');
+        const sync=document.getElementById('catalogSummarySync');
+        const rest=document.getElementById('catalogSummaryRestrictions');
+        if(src) src.textContent='NRGC Authorized Sports Wagering Menu';
+        if(sync) sync.textContent=new Date(d.generated_at).toLocaleString('en-US',{
+          timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'
+        });
+        if(rest) rest.textContent=(d.restrictions||[]).length;
+
+        rebuildCatalogButtonsWithSimpleLabels();
+      }catch(_){}
+    };
+  }
+
+  // Re-run after page load so revised renderer is used.
+  setTimeout(()=>{ if(window.loadLiveCatalog) window.loadLiveCatalog(); },250);
+})();
+
+// Populate Tennis Watch from the Known U18 registry.
+(function(){
+  function populateTennisU18(){
+    const box=document.getElementById('tennisKnownU18');
+    if(!box) return;
+    const chips=[];
+    document.querySelectorAll('#u18Table tbody tr').forEach(tr=>{
+      const tds=tr.querySelectorAll('td');
+      if(tds.length<8) return;
+      if(tds[0].textContent.trim()!=='Tennis') return;
+      const name=tds[4].textContent.trim();
+      const age=tds[5].textContent.trim();
+      const league=tds[2].textContent.trim();
+      chips.push(`<span class="event-chip"><b>${name}</b> · ${age} · ${league}</span>`);
+    });
+    box.innerHTML=chips.length?chips.join(''):'<span class="small">No tennis U18 records currently loaded.</span>';
+  }
+  populateTennisU18();
 })();
 </script>
 </main>
