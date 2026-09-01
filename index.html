@@ -103,6 +103,10 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 #liveNcaaFootball .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:850px){#liveNcaaFootball .two-col{grid-template-columns:1fr}}
 #ncfCoverageTable td,#ncfCoverageTable th{white-space:nowrap}
+
+.age-details{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px;background:#fff}
+.age-details summary{font-weight:900;cursor:pointer;color:var(--nav)}
+#ncaaAgeTeamCoverage td,#ncaaAgeTeamCoverage th{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -297,7 +301,21 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 </div>
 <div id="ncaaFootballCoverage" style="overflow:auto"></div>
 </div>
+<div id="ncaaAgeDiscovery" style="margin-top:18px">
+<div class="section-title" style="font-size:18px">NCAA Football Age Discovery</div>
+<p class="small">Batch roster-first screening of freshman/reclassification candidates. Official DOB or explicit official age evidence is required for VERIFIED U18 / VERIFIED 18+. Unresolved candidates stay amber.</p>
+<div class="metrics" id="ncaaAgeSummary" style="margin-top:10px">
+<div class="metric"><b>—</b><span>waiting for first v4 run</span></div>
 </div>
+<details class="age-details" open="">
+<summary>Verified U18 / Age Review Needed</summary>
+<div class="review-grid-cards" id="ncaaAgeAlerts" style="margin-top:10px"></div>
+</details>
+<details class="age-details">
+<summary>Team Screening Coverage</summary>
+<div id="ncaaAgeTeamCoverage" style="overflow:auto;margin-top:10px"></div>
+</details>
+</div></div>
 <div class="two-col">
 <div class="card">
 <div class="section-title">Nebraska Futures Cutoff</div>
@@ -1439,6 +1457,71 @@ if(us) us.addEventListener('input',e=>{
   document.addEventListener('activeOfferingsDataRefreshed', renderNcaaFootball);
   const btn=document.getElementById('refreshReviewBtn');
   if(btn) btn.addEventListener('click', ()=>setTimeout(renderNcaaFootball, 500));
+})();
+
+
+(function(){
+  function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  async function renderNCAAAgeDiscovery(){
+    const box=document.getElementById('ncaaAgeSummary');
+    if(!box) return;
+    try{
+      const r=await fetch(`data/ncaa-football-age-review.json?v=${Date.now()}`,{cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d=await r.json();
+      box.innerHTML=`
+        <div class="metric"><b>${esc(d.candidates_extracted||0)}</b><span>high-risk roster candidates</span></div>
+        <div class="metric"><b>${esc(d.bios_screened||0)}</b><span>official bios screened</span></div>
+        <div class="metric"><b>${esc(d.verified_u18_count||0)}</b><span>verified U18</span></div>
+        <div class="metric"><b>${esc(d.verified_18plus_count||0)}</b><span>verified 18+</span></div>
+        <div class="metric"><b>${esc(d.age_review_needed_count||0)}</b><span>age review needed</span></div>
+        <div class="metric"><b>${esc(d.unresolved_count||0)}</b><span>unresolved age</span></div>`;
+      const alerts=document.getElementById('ncaaAgeAlerts');
+      if(alerts){
+        const u18=(d.verified_u18||[]);
+        const pending=[...(d.age_review_needed||[]),...(d.unresolved||[])];
+        const rows=[];
+        u18.forEach(p=>rows.push(`
+          <article class="review-card">
+            <div class="review-top"><span class="pill red">VERIFIED U18</span><span class="review-date">${esc(p.team)}</span></div>
+            <div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div>
+            <h3>${esc(p.name)}${p.calculated_age!=null?' · '+esc(p.calculated_age):''}</h3>
+            <p><b>Official evidence:</b> ${esc(p.age_evidence||'Verified official age evidence')}</p>
+            <div class="staff-action"><b>Staff check</b><span>Search athlete-specific markets and upcoming schedule immediately.</span></div>
+          </article>`));
+        pending.slice(0,80).forEach(p=>rows.push(`
+          <article class="review-card">
+            <div class="review-top"><span class="pill amber">${esc(p.age_status)}</span><span class="review-date">${esc(p.team)}</span></div>
+            <div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div>
+            <h3>${esc(p.name||'Roster candidate')}</h3>
+            <p>${esc(p.age_evidence||'Official age evidence not resolved.')}</p>
+          </article>`));
+        alerts.innerHTML=rows.length?rows.join(''):'<div class="empty-state">No U18 or unresolved high-risk candidates returned by the latest run.</div>';
+      }
+      const teams=document.getElementById('ncaaAgeTeamCoverage');
+      if(teams){
+        const rows=(d.team_metrics||[]).sort((a,b)=>(a.team||'').localeCompare(b.team||'')).map(t=>`
+          <tr>
+            <td><b>${esc(t.team)}</b></td>
+            <td>${esc(t.conference||'')}</td>
+            <td>${esc(t.candidates||0)}</td>
+            <td>${esc(t.verified_u18||0)}</td>
+            <td>${esc(t.verified_18plus||0)}</td>
+            <td>${esc(t.review_needed||0)}</td>
+            <td>${esc(t.unresolved||0)}</td>
+            <td><span class="pill ${t.age_coverage==='SCREENED HIGH-RISK COHORT'?'green':'amber'}">${esc(t.age_coverage||'PARTIAL')}</span></td>
+          </tr>`).join('');
+        teams.innerHTML=`<table><thead><tr><th>Team</th><th>Conference</th><th>Candidates</th><th>U18</th><th>18+</th><th>Review</th><th>Unresolved</th><th>Age Coverage</th></tr></thead><tbody>${rows}</tbody></table>`;
+      }
+    }catch(e){
+      box.innerHTML='<div class="metric"><b>—</b><span>Run Refresh NCAA Football once after uploading v4 files.</span></div>';
+    }
+  }
+  window.renderNCAAAgeDiscovery=renderNCAAAgeDiscovery;
+  renderNCAAAgeDiscovery();
+  document.addEventListener('activeOfferingsDataRefreshed',renderNCAAAgeDiscovery);
+  const btn=document.getElementById('refreshReviewBtn');
+  if(btn) btn.addEventListener('click',()=>setTimeout(renderNCAAAgeDiscovery,650));
 })();
 </script>
 </main>
