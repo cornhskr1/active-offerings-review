@@ -2000,6 +2000,25 @@ if(us) us.addEventListener('input',e=>{
     const search=PQ_SEARCH.toLowerCase();
 
     const cards=(PQ_DATA.cards||[]).filter(c=>{
+      // Hard front-end exclusion for stale MLB restriction cards.
+      if(
+        c.type==='CATALOG RESTRICTION' &&
+        String(c.league||'').trim().toUpperCase()==='MLB'
+      ){
+        const ev=String(c.event||'').toLowerCase();
+        const special=['draft','spring training','preseason','pre-season'].some(x=>ev.includes(x));
+        if(!special) return false;
+      }
+
+      // Generic NCAA Football catalog restrictions are never rendered as
+      // Priority Queue cards. Real NCAA risks have dedicated card types.
+      if(
+        c.type==='CATALOG RESTRICTION' &&
+        String(c.league||'').trim().toUpperCase()==='NCAA FOOTBALL'
+      ){
+        return false;
+      }
+
       if(PQ_FILTER==='red' && c.severity!=='RED') return false;
       if(PQ_FILTER==='amber' && c.severity!=='AMBER') return false;
       const hay=`${c.sport||''} ${c.league||''} ${c.team||''} ${c.athlete||''} ${c.event||''} ${c.title||''}`.toLowerCase();
