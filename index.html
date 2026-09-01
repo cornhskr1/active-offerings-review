@@ -181,6 +181,9 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
  .schedule-head{flex-direction:column}.schedule-stamp{text-align:left}
  .schedule-filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}.schedule-filter{white-space:nowrap}
 }
+
+.pq-names{margin:8px 0}.pq-names summary{cursor:pointer;font-size:11px;font-weight:850;color:var(--nav)}
+.pq-names>div{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
 </style>
 </head>
 <body>
@@ -1915,7 +1918,8 @@ if(us) us.addEventListener('input',e=>{
       ['Nebraska collegiate', ()=>window.loadCollege?window.loadCollege():Promise.resolve()],
       ['NCAA Football age discovery', ()=>window.renderNCAAAgeDiscovery?window.renderNCAAAgeDiscovery():Promise.resolve()],
       ['restriction watch', ()=>window.loadCleanRestrictionWatch?window.loadCleanRestrictionWatch():Promise.resolve()],
-      ['approved sports schedule', loadGlobalSchedule]
+      ['approved sports schedule', loadGlobalSchedule],
+      ['dynamic priority queue', ()=>window.loadPriorityQueue?window.loadPriorityQueue():Promise.resolve()]
     ];
 
     const results=await Promise.allSettled(jobs.map(x=>Promise.resolve().then(x[1])));
@@ -1951,6 +1955,94 @@ if(us) us.addEventListener('input',e=>{
     newBtn.textContent='↻ Refresh Review';
     newBtn.addEventListener('click',masterRefreshReview);
   }
+})();
+
+
+// Dynamic risk-driven Priority Queue.
+(function(){
+  let PQ_DATA=null, PQ_FILTER='all', PQ_SEARCH='';
+
+  function pe(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function ptime(iso){
+    if(!iso) return '';
+    const d=new Date(iso);
+    if(Number.isNaN(d.getTime())) return iso;
+    return new Intl.DateTimeFormat('en-US',{
+      timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'
+    }).format(d);
+  }
+
+  function cardHtml(c){
+    const red=c.severity==='RED';
+    const age=(c.age!==null && c.age!==undefined)?` · ${pe(c.age)}`:'';
+    const when=c.start_time?ptime(c.start_time):'Watch list';
+    const names=(c.names||[]).length
+      ? `<details class="pq-names"><summary>Known U18 names (${c.names.length})</summary><div>${c.names.map(n=>`<span class="event-chip">${pe(n)}</span>`).join('')}</div></details>`
+      : '';
+    return `
+      <article class="review-card pq-card" data-pqseverity="${pe(c.severity)}" data-pqtype="${pe(c.type)}" data-pqsearch="${pe(`${c.sport||''} ${c.league||''} ${c.team||''} ${c.athlete||''} ${c.event||''} ${c.title||''}`.toLowerCase())}">
+        <div class="review-top">
+          <span class="pill ${red?'red':'amber'}">${pe(c.type)}</span>
+          <span class="review-date">${pe(when)}</span>
+        </div>
+        <div class="review-sport">${pe(c.sport||'')} ${c.league?'· '+pe(c.league):''}</div>
+        <h3>${pe(c.title||c.event||'Review item')}${age}</h3>
+        ${c.event?`<p><b>Event:</b> ${pe(c.event)}</p>`:''}
+        <p><b>Why it surfaced:</b> ${pe(c.reason||'Risk condition matched.')}</p>
+        ${names}
+        <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div>
+      </article>`;
+  }
+
+  function renderPriorityQueue(){
+    const q=document.getElementById('reviewQueue');
+    if(!q || !PQ_DATA) return;
+    const search=PQ_SEARCH.toLowerCase();
+
+    const cards=(PQ_DATA.cards||[]).filter(c=>{
+      if(PQ_FILTER==='red' && c.severity!=='RED') return false;
+      if(PQ_FILTER==='amber' && c.severity!=='AMBER') return false;
+      const hay=`${c.sport||''} ${c.league||''} ${c.team||''} ${c.athlete||''} ${c.event||''} ${c.title||''}`.toLowerCase();
+      return !search || hay.includes(search);
+    });
+
+    q.innerHTML=cards.length
+      ? cards.map(cardHtml).join('')
+      : '<div class="empty-state">No dynamic priority items match the current filter. This does not override Coverage Control.</div>';
+
+    const cnt=document.getElementById('reviewCount');
+    if(cnt) cnt.textContent=`${cards.length} items`;
+
+    // Existing filter counters, if present.
+    const red=document.querySelector('[data-review-filter="red"] .count');
+    const amber=document.querySelector('[data-review-filter="amber"] .count');
+    if(red) red.textContent=PQ_DATA.red_count||0;
+    if(amber) amber.textContent=PQ_DATA.amber_count||0;
+  }
+
+  async function loadPriorityQueue(){
+    const r=await fetch(`data/priority-queue.json?v=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) throw new Error(`Priority queue HTTP ${r.status}`);
+    PQ_DATA=await r.json();
+    renderPriorityQueue();
+    return PQ_DATA;
+  }
+  window.loadPriorityQueue=loadPriorityQueue;
+
+  // Rebind existing queue controls if present.
+  document.querySelectorAll('[data-review-filter]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const f=btn.dataset.reviewFilter||'all';
+      if(f==='all'||f==='red'||f==='amber'){
+        PQ_FILTER=f;
+        renderPriorityQueue();
+      }
+    });
+  });
+  const rs=document.getElementById('reviewSearch');
+  if(rs) rs.addEventListener('input',e=>{PQ_SEARCH=e.target.value;renderPriorityQueue();});
+
+  loadPriorityQueue().catch(()=>{});
 })();
 </script>
 </main>
