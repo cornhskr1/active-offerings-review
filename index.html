@@ -360,6 +360,54 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   content:"⚠ ";
   font-weight:900;
 }
+
+/* Standardized Approved Catalog Events */
+.catalog-gender-badge,.catalog-gender-text{display:none!important}
+.catalog-group-block{
+  padding:0 18px 14px;
+  border-top:1px solid #edf1f5;
+}
+.catalog-group-block:first-of-type{border-top:0}
+.catalog-group-head{
+  margin:14px 0 9px;
+  padding:9px 12px;
+  border-radius:10px;
+  background:#f3f6fa;
+  border-left:4px solid #6d8298;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.04em;
+  color:#24364a;
+}
+.catalog-entry-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:8px;
+}
+.catalog-entry{
+  padding:10px 12px;
+  border:1px solid #e0e7ef;
+  border-radius:10px;
+  background:#fff;
+  font-size:12px;
+  line-height:1.35;
+  font-weight:750;
+  color:#17283b;
+}
+.catalog-entry:hover{background:#fbfdff}
+.catalog-restriction-note{
+  color:#b42318!important;
+  font-weight:900!important;
+  background:#fff5f4;
+  border:1px solid #f5c8c3;
+  border-left:4px solid #b42318;
+  border-radius:9px;
+  padding:9px 11px;
+  margin-top:8px;
+}
+.catalog-restriction-note::before{content:"⚠ ";font-weight:900}
+.catalog-notes{background:transparent!important;border:0!important;padding:0!important}
+@media(max-width:700px){.catalog-entry-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1668,68 +1716,31 @@ if(us) us.addEventListener('input',e=>{
     let raw=(section.lines||[]).map(cleanCatalogLine).filter(x=>!isCatalogJunk(x));
     raw=stripCatalogTocContamination(raw);
 
-    const countries=[];
-    const byName=new Map();
-    let currentCountry=null;
-    const generalItems=[];
-    const notes=[];
+    const groups=[];
+    let current={name:null,items:[],notes:[]};
+    groups.push(current);
 
-    function country(name){
-      name=cleanCatalogLine(name);
-      if(!byName.has(name)){
-        const obj={name,items:[]};
-        byName.set(name,obj);
-        countries.push(obj);
-      }
-      currentCountry=byName.get(name);
-      return currentCountry;
+    function startGroup(name){
+      current={name:cleanCatalogLine(name),items:[],notes:[]};
+      groups.push(current);
     }
 
     for(let i=0;i<raw.length;i++){
       const line=raw[i];
       const next=raw[i+1]||'';
       const parts=line.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
-
-      // Actual country headers only.
-      if(parts.length===1 && isCatalogCountry(line)){
-        country(line);
-        continue;
-      }
-
-      if(parts.length>=2){
-        const last=parts[parts.length-1];
-        const gender=catalogGender(last);
-
-        // Structured line beginning with an actual country:
-        // Country | League/Event | Male/Female
-        if(isCatalogCountry(parts[0]) && parts.length>=3){
-          const c=country(parts[0]);
-          c.items.push({
-            name:parts.slice(1,gender?parts.length-1:parts.length).join(' | '),
-            gender,
-            genderRaw:gender?last:null
-          });
-          continue;
-        }
-
-        // Normal league/event line: League/Event | Male/Female
-        if(gender){
-          const item={name:parts.slice(0,-1).join(' | '),gender,genderRaw:last};
-          if(currentCountry) currentCountry.items.push(item);
-          else generalItems.push(item);
-          continue;
-        }
-
-        // Non-gender pipe line; preserve as event/league instead of inventing a country.
-        const item={name:parts.join(' | '),gender:null,genderRaw:null};
-        if(currentCountry) currentCountry.items.push(item);
-        else generalItems.push(item);
-        continue;
-      }
-
-      // Suppress duplicate plain headings when the next row repeats the same league
-      // with its Male/Female designation.
       const nextParts=next.split('|').map(x=>cleanCatalogLine(x)).filter(Boolean);
+
+      // Pipe-delimited rows are always entries. Gender designation is discarded visually.
+      if(parts.length>=2){
+        const gender=catalogGender(parts[parts.length-1]);
+        const name=gender ? parts.slice(0,-1).join(' | ') : parts.join(' | ');
+        if(name) current.items.push(name);
+        continue;
+      }
+
+      // If a plain heading is immediately repeated by the next pipe-delimited entry,
+      // suppress the duplicate heading and let the entry stand alone.
       if(
         nextParts.length>=2 &&
         catalogGender(nextParts[nextParts.length-1]) &&
@@ -1738,49 +1749,38 @@ if(us) us.addEventListener('input',e=>{
         continue;
       }
 
-      // Plain non-country lines are informational headings/notes, not countries.
-      // Keep only concise items that are not obvious parser debris.
-      if(line && !/^international domestic leagues$/i.test(line)){
-        notes.push(line);
+      // Restriction / condition text stays attached as a note.
+      if(isCatalogRestrictionLine(line)){
+        current.notes.push(line);
+        continue;
+      }
+
+      // Plain lines act as consistent group headings when more content follows.
+      // If several plain lines occur consecutively, treat them as entries in the
+      // current general group rather than generating empty headers.
+      if(nextParts.length>=2){
+        startGroup(line);
+      }else{
+        current.items.push(line);
       }
     }
 
-    return {
-      countries:countries.filter(c=>c.items.length),
-      generalItems,
-      notes
-    };
+    return groups.filter(g=>g.items.length || g.notes.length);
   }
 
   function renderCatalogSection(section,i){
-    const parsed=parseCatalogSection(section);
+    const groups=parseCatalogSection(section);
 
-    const general=parsed.generalItems.length ? `
-      <div class="catalog-country-block">
-        <div class="catalog-league-grid">
-          ${parsed.generalItems.map(item=>`
-            <div class="catalog-league-card">
-              ${genderBadge(item.gender,item.genderRaw)}
-              <div class="catalog-league-name">${esc(item.name)}</div>
-            </div>`).join('')}
-        </div>
-      </div>` : '';
-
-    const countries=parsed.countries.map(c=>`
-      <div class="catalog-country-block">
-        <div class="catalog-country-head">${esc(c.name)}</div>
-        <div class="catalog-league-grid">
-          ${c.items.map(item=>`
-            <div class="catalog-league-card">
-              ${genderBadge(item.gender,item.genderRaw)}
-              <div class="catalog-league-name">${esc(item.name)}</div>
-            </div>`).join('')}
-        </div>
+    const groupHtml=groups.map(g=>`
+      <div class="catalog-group-block">
+        ${g.name?`<div class="catalog-group-head">${esc(g.name)}</div>`:''}
+        ${g.items.length?`<div class="catalog-entry-grid">
+          ${g.items.map(item=>`<div class="catalog-entry">${esc(item)}</div>`).join('')}
+        </div>`:''}
+        ${g.notes.length?`<div class="catalog-notes">
+          ${g.notes.map(x=>`<div class="catalog-restriction-note">${esc(x)}</div>`).join('')}
+        </div>`:''}
       </div>`).join('');
-
-    const notes=parsed.notes.length
-      ? `<div class="catalog-notes">${parsed.notes.map(x=>`<div class="${isCatalogRestrictionLine(x)?'catalog-restriction-note':''}">${esc(x)}</div>`).join('')}</div>`
-      : '';
 
     return `
       <section class="catalog-sport live-catalog-section"
@@ -1793,9 +1793,7 @@ if(us) us.addEventListener('input',e=>{
             <div class="catalog-sport-sub">Approved catalog events</div>
           </div>
         </div>
-        ${general}
-        ${countries}
-        ${notes}
+        ${groupHtml}
         <div class="catalog-return-wrap">
           <button type="button" class="catalog-return-top" data-catalog-top>↑ Back to catalog top</button>
         </div>
@@ -2418,29 +2416,46 @@ if(us) us.addEventListener('input',e=>{
     const search=PQ_SEARCH.toLowerCase();
 
     const cards=(PQ_DATA.cards||[]).filter(c=>{
-      if(c.type==='CATALOG RESTRICTION' && String(c.league||'').trim().toUpperCase()==='MLB'){
-        const ev=String(c.event||'').toLowerCase();
-        const special=['draft','spring training','preseason','pre-season'].some(x=>ev.includes(x));
-        if(!special) return false;
-      }
-      if(c.type==='CATALOG RESTRICTION' && String(c.league||'').trim().toUpperCase()==='NCAA FOOTBALL') return false;
       if(PQ_FILTER==='red' && c.severity!=='RED') return false;
       if(PQ_FILTER==='amber' && c.severity!=='AMBER') return false;
-      const hay=`${c.sport||''} ${c.league||''} ${c.team||''} ${c.athlete||''} ${c.event||''} ${c.title||''}`.toLowerCase();
+      const hay=`${c.sport||''} ${c.league||''} ${c.event||''} ${(c.athletes||[]).join(' ')} ${c.reason||''}`.toLowerCase();
       return !search || hay.includes(search);
     });
 
     const groups={};
-    cards.forEach(c=>{const sport=c.sport||c.league||'Other';(groups[sport] ||= []).push(c);});
+    cards.forEach(c=>{
+      const sport=c.sport||c.league||'Other';
+      (groups[sport] ||= []).push(c);
+    });
 
     q.innerHTML=Object.entries(groups)
-      .sort((a,b)=>b[1].length-a[1].length || a[0].localeCompare(b[0]))
+      .sort((a,b)=>a[0].localeCompare(b[0]))
       .map(([sport,items])=>{
-        const redCount=items.filter(x=>x.severity==='RED').length;
-        const amberCount=items.filter(x=>x.severity==='AMBER').length;
-        const rows=items.map(c=>`<div class="pq-compact-row"><details><summary><span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span> ${pe(c.title||c.event||'Review item')}</summary><div class="pq-meta">${c.start_time?pe(ptime(c.start_time)):'Watch list'}${c.event?' · '+pe(c.event):''}</div><p><b>Why it surfaced:</b> ${pe(c.reason||'Risk condition matched.')}</p><div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div></details></div>`).join('');
-        return `<details class="pq-sport-group"><summary><span class="acc-title">${pe(sport)}</span><span class="acc-count">${items.length} total · ${redCount} red · ${amberCount} amber</span></summary><div class="pq-group-body">${rows}</div></details>`;
-      }).join('') || '<div class="empty-state">No dynamic priority items match the current filter. This does not override Coverage Control.</div>';
+        const rows=items.map(c=>{
+          const athleteText=(c.athletes||[]).length
+            ? `<div class="pq-meta"><b>Athletes:</b> ${pe((c.athletes||[]).join(', '))}</div>` : '';
+          return `<div class="pq-compact-row">
+            <details>
+              <summary>
+                <span class="pill ${c.severity==='RED'?'red':'amber'}">${pe(c.type)}</span>
+                ${pe(c.event||c.title||'Upcoming event')}
+              </summary>
+              <div class="pq-meta">${c.start_time?pe(ptime(c.start_time)):'Upcoming'}</div>
+              ${athleteText}
+              <p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p>
+              <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div>
+            </details>
+          </div>`;
+        }).join('');
+
+        return `<details class="pq-sport-group">
+          <summary>
+            <span class="acc-title">${pe(sport)}</span>
+            <span class="acc-count">${items.length} upcoming event${items.length===1?'':'s'}</span>
+          </summary>
+          <div class="pq-group-body">${rows}</div>
+        </details>`;
+      }).join('') || '<div class="empty-state">No Today + 7 events currently meet Priority Queue criteria.</div>';
 
     const cnt=document.getElementById('reviewCount');
     if(cnt) cnt.textContent=`${cards.length} current priority triggers`;
