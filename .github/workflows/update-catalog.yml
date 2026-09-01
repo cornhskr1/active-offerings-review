@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "active-offerings-pages"
+  group: "active-offerings-data-and-pages"
   cancel-in-progress: false
 
 jobs:
@@ -25,6 +25,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Install catalog parser
         run: python3 -m pip install --quiet requests beautifulsoup4 pypdf
@@ -36,12 +43,16 @@ jobs:
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add data/catalog-current.pdf data/catalog-live.json data/catalog-status.json
+
           if git diff --cached --quiet; then
             echo "Catalog content unchanged."
           else
             git commit -m "Update current NRGC sports wagering catalog"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
 
       - name: Configure GitHub Pages
