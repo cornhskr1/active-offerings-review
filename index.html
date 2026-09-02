@@ -544,6 +544,14 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .completed-gap-note{margin-top:9px;padding:8px 10px;border:1px solid #f0d7a2;background:#fff9ec;border-radius:9px;font-size:10px;color:#75520f}
 @media(max-width:950px){.catalog-entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:700px){.ncaa-focus-summary,.catalog-entry-grid{grid-template-columns:1fr!important}}
+
+.ncaa-conf-list{display:grid;gap:8px;margin-top:10px}
+.ncaa-conf{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.ncaa-conf>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;background:#f8fafc;font-weight:900;color:var(--nav)}
+.ncaa-conf>summary::-webkit-details-marker{display:none}.ncaa-conf>summary:before{content:"▸";font-size:11px;color:var(--muted)}.ncaa-conf[open]>summary:before{content:"▾"}
+.ncaa-conf-name{flex:1}.ncaa-conf-meta{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ncaa-conf-chip{border:1px solid #dbe4ed;background:#fff;border-radius:999px;padding:3px 7px;font-size:9px;font-weight:850;color:var(--muted)}
+.ncaa-conf-body{padding:0 10px 10px;overflow:auto}.ncaa-conf-body table{width:100%;font-size:11px}.ncaa-conf-body th{font-size:9px}
 </style>
 </head>
 <body>
@@ -1391,16 +1399,18 @@ if(us) us.addEventListener('input',e=>{
   let ncfSearch = '';
 
   function applyNCFFilters(){
-    document.querySelectorAll('#ncfCoverageTable tbody tr').forEach(tr=>{
-      const mapped = tr.dataset.mapped === '1';
-      const known = +(tr.dataset.known || '0');
-      const txt = (tr.dataset.search || '');
-      let show = true;
-      if(ncfFilter === 'mapped') show = mapped;
-      else if(ncfFilter === 'unmapped') show = !mapped;
-      else if(ncfFilter === 'u18') show = known > 0;
-      if(ncfSearch && !txt.includes(ncfSearch)) show = false;
-      tr.style.display = show ? '' : 'none';
+    document.querySelectorAll('.ncfCoverageTable tbody tr').forEach(tr=>{
+      const mapped=tr.dataset.mapped==='1';
+      const known=Number(tr.dataset.known||0)>0;
+      const hay=tr.dataset.search||'';
+      const matchFilter=ncfFilter==='all'||(ncfFilter==='mapped'&&mapped)||(ncfFilter==='unmapped'&&!mapped)||(ncfFilter==='u18'&&known);
+      const matchSearch=!ncfSearch||hay.includes(ncfSearch);
+      tr.style.display=(matchFilter&&matchSearch)?'':'none';
+    });
+    document.querySelectorAll('.ncaa-conf').forEach(d=>{
+      const visible=[...d.querySelectorAll('tbody tr')].some(tr=>tr.style.display!=='none');
+      d.style.display=visible?'':'none';
+      if(ncfSearch && visible) d.open=true;
     });
   }
 
@@ -1446,19 +1456,45 @@ if(us) us.addEventListener('input',e=>{
 
       const c=document.getElementById('ncaaFootballCoverage');
       if(c){
-        const rows = alerts.sort((a,b)=>(a.team || '').localeCompare(b.team || '')).map(x => `
-          <tr data-mapped="${x.mapped ? '1' : '0'}" data-known="${esc(x.known_u18_count)}" data-search="${esc(((x.team || '')+' '+(x.conference || '')).toLowerCase())}">
-            <td><b>${esc(x.team)}</b></td>
-            <td>${esc(x.conference || '')}</td>
-            <td><span class="pill ${x.mapped ? 'green' : 'amber'}">${x.mapped ? 'MAPPED' : 'UNMAPPED'}</span></td>
-            <td><span class="pill ${x.schedule_ok ? 'green' : 'amber'}">${x.schedule_ok ? 'OK' : 'CHECK'}</span></td>
-            <td><span class="pill ${x.participants_ok ? 'green' : 'amber'}">${x.participants_ok ? 'OK' : 'CHECK'}</span></td>
-            <td><span class="pill amber">${esc(x.age_coverage)}</span></td>
-            <td>${esc(x.known_u18_count)}</td>
-            <td><span class="pill amber">${esc(x.coverage_state)}</span></td>
-          </tr>`).join('');
+        const groups={};
+        alerts.forEach(x=>{
+          const conf=x.conference||'Other / Independent';
+          (groups[conf] ||= []).push(x);
+        });
 
-        c.innerHTML = `<table id="ncfCoverageTable"><thead><tr><th>Team</th><th>Conference</th><th>Mapping</th><th>Schedule</th><th>Roster</th><th>Age Coverage</th><th>Known U18</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+        c.classList.add('ncaa-conf-list');
+        c.innerHTML=Object.keys(groups).sort((a,b)=>a.localeCompare(b)).map(conf=>{
+          const arr=groups[conf].sort((a,b)=>String(a.team||'').localeCompare(String(b.team||'')));
+          const mapped=arr.filter(x=>x.mapped).length;
+          const partial=arr.filter(x=>String(x.age_coverage||'').toUpperCase()==='PARTIAL'||String(x.coverage_state||'').toUpperCase()==='PARTIAL').length;
+          const known=arr.reduce((n,x)=>n+Number(x.known_u18_count||0),0);
+
+          const rows=arr.map(x=>`
+            <tr data-mapped="${x.mapped?'1':'0'}" data-known="${esc(x.known_u18_count)}" data-search="${esc(((x.team||'')+' '+(x.conference||'')).toLowerCase())}">
+              <td><b>${esc(x.team)}</b></td>
+              <td><span class="pill ${x.mapped?'green':'amber'}">${x.mapped?'MAPPED':'UNMAPPED'}</span></td>
+              <td><span class="pill ${x.schedule_ok?'green':'amber'}">${x.schedule_ok?'OK':'CHECK'}</span></td>
+              <td><span class="pill ${x.participants_ok?'green':'amber'}">${x.participants_ok?'OK':'CHECK'}</span></td>
+              <td><span class="pill ${String(x.age_coverage||'').toUpperCase()==='PARTIAL'?'amber':'green'}">${esc(x.age_coverage||'UNKNOWN')}</span></td>
+              <td>${esc(x.known_u18_count||0)}</td>
+              <td><span class="pill ${String(x.coverage_state||'').toUpperCase()==='PARTIAL'?'amber':'green'}">${esc(x.coverage_state||'UNKNOWN')}</span></td>
+            </tr>`).join('');
+
+          return `<details class="ncaa-conf">
+            <summary>
+              <span class="ncaa-conf-name">${esc(conf)}</span>
+              <span class="ncaa-conf-meta">
+                <span class="ncaa-conf-chip">${arr.length} teams</span>
+                <span class="ncaa-conf-chip">${mapped} mapped</span>
+                <span class="ncaa-conf-chip">${partial} partial age</span>
+                <span class="ncaa-conf-chip">${known} known U18</span>
+              </span>
+            </summary>
+            <div class="ncaa-conf-body">
+              <table class="ncfCoverageTable"><thead><tr><th>Team</th><th>Mapping</th><th>Schedule</th><th>Roster</th><th>Age Coverage</th><th>Known U18</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>
+            </div>
+          </details>`;
+        }).join('');
         applyNCFFilters();
       }
 
