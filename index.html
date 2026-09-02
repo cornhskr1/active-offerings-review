@@ -519,6 +519,31 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .completed-time{color:var(--muted);font-size:10px}
 .completed-event-name{font-weight:750}
 .completed-status{white-space:nowrap}
+
+#ncaaAgeAlerts{display:block!important}
+.ncaa-focus-summary{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%;margin:10px 0 12px}
+.ncaa-focus-chip{display:flex!important;align-items:center!important;width:auto!important;height:auto!important;min-height:0!important;border:1px solid var(--line)!important;border-radius:10px!important;padding:9px 11px!important;background:#f8fafc!important;font-size:11px!important;font-weight:850!important;color:#41566c!important}
+.ncaa-focus-chip strong{font-size:16px;color:var(--nav);margin-right:5px}
+.ncaa-research-backlog{width:100%}
+.ncaa-backlog-groups{display:grid;gap:8px;padding:8px 12px 12px}
+.ncaa-backlog-subgroup{border:1px solid #e5ebf1;border-radius:10px;overflow:hidden}
+.ncaa-backlog-subgroup>summary{cursor:pointer;padding:9px 11px;font-weight:850;background:#fafbfd;color:var(--nav)}
+.ncaa-backlog-subgroup.low>summary{border-left:4px solid #5b8f69}
+.ncaa-backlog-subgroup.unknown>summary{border-left:4px solid #d39a35}
+#liveCatalogBody{gap:14px!important}
+.live-catalog-section{border-radius:14px!important;box-shadow:0 2px 10px rgba(15,23,42,.045)!important}
+.catalog-sport-head{padding:15px 18px!important}
+.catalog-group-block{padding:12px 16px 14px!important;border-top:1px solid #edf1f5!important}
+.catalog-group-block:nth-child(even){background:#fbfcfd}
+.catalog-group-head{margin:0 0 9px!important;padding:8px 10px!important;border-radius:8px!important;background:#f1f5f9!important;border-left:4px solid #70869c!important}
+.catalog-country-label,.catalog-governing-label{font-size:12px!important}
+.catalog-entry-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+.catalog-entry{min-height:38px;display:flex;align-items:center;padding:8px 10px!important;font-size:11px!important;font-weight:720!important;box-shadow:none!important}
+.catalog-restriction-note{font-size:11px!important;line-height:1.45!important;margin-top:7px!important}
+.futures-status-note,.completed-source-note{font-size:10px;color:var(--muted);margin:5px 0 10px}
+.completed-gap-note{margin-top:9px;padding:8px 10px;border:1px solid #f0d7a2;background:#fff9ec;border-radius:9px;font-size:10px;color:#75520f}
+@media(max-width:950px){.catalog-entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){.ncaa-focus-summary,.catalog-entry-grid{grid-template-columns:1fr!important}}
 </style>
 </head>
 <body>
@@ -727,12 +752,12 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="two-col">
 <div class="card">
 <div class="section-title">Nebraska Futures Cutoff</div>
-<div class="callout amber"><b>Important:</b> an exhibition happening today is not automatically the regular-season futures cutoff. Nebraska volleyball's official regular-season opener is Aug. 29 vs. UNLV.</div>
-<table><thead><tr><th>Program</th><th>Competition trigger</th><th>Status</th><th>Staff action</th></tr></thead><tbody>
-<tr><td><b>Nebraska Women's Soccer</b></td><td>Regular season already began</td><td><span class="pill red">CUTOFF PASSED</span></td><td>Regular-season futures involving Nebraska must be disabled.</td></tr>
-<tr><td><b>Nebraska Volleyball</b></td><td>Aug. 29 vs UNLV</td><td><span class="pill amber">CUTOFF APPROACHING</span></td><td>Disable regular-season futures before the Aug. 29 opener.</td></tr>
-<tr><td><b>Nebraska Football</b></td><td>Sept. 5 first regular-season contest</td><td><span class="pill amber">CUTOFF APPROACHING</span></td><td>Disable regular-season futures before first contest.</td></tr>
-</tbody></table>
+<div class="callout amber"><b>Rule logic:</b> regular-season futures involving a Nebraska collegiate team must be disabled before that team's first regular-season contest.</div>
+<table><thead><tr><th>Program</th><th>First regular-season contest</th><th>Status</th><th>Staff action</th></tr></thead><tbody>
+<tr class="future-row" data-cutoff="2026-08-12"><td><b>Nebraska Women's Soccer</b></td><td>Aug. 12 at Louisville</td><td class="future-status"></td><td class="future-action"></td></tr>
+<tr class="future-row" data-cutoff="2026-08-29"><td><b>Nebraska Volleyball</b></td><td>Aug. 29 vs. UNLV</td><td class="future-status"></td><td class="future-action"></td></tr>
+<tr class="future-row" data-cutoff="2026-09-05"><td><b>Nebraska Football</b></td><td>Sept. 5 vs. Ohio</td><td class="future-status"></td><td class="future-action"></td></tr>
+</tbody></table><div class="futures-status-note">Status updates automatically using America/Chicago calendar dates.</div>
 </div>
 <div class="card">
 <div class="section-title">Catalog-Wide Coverage</div>
@@ -1119,23 +1144,10 @@ if(legacyCatalogSearch) legacyCatalogSearch.addEventListener('input',e=>{
 });
 
 // Nebraska collegiate futures cutoff engine.
-// Before first regular-season contest = amber. On/after cutoff = red.
-const today = new Date();
-today.setHours(0,0,0,0);
-document.querySelectorAll('.future-row').forEach(row=>{
- const cutoff = new Date(row.dataset.cutoff+'T00:00:00');
- const status = row.querySelector('.future-status');
- const action = row.querySelector('.future-action');
- const ms = cutoff - today;
- const days = Math.ceil(ms/86400000);
- if (today >= cutoff) {
-   status.innerHTML='<span class="pill red">NOT PERMISSIBLE</span>';
-   action.innerHTML='<b>Regular-season futures must be disabled.</b>';
- } else {
-   status.innerHTML='<span class="pill amber">CUTOFF APPROACHING</span>';
-   action.innerHTML='<b>Disable before first contest.</b> '+days+' day'+(days===1?'':'s')+' remaining.';
- }
-});
+(function(){
+ const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const g=t=>p.find(x=>x.type===t)?.value;const today=`${g('year')}-${g('month')}-${g('day')}`;
+ document.querySelectorAll('.future-row').forEach(row=>{const cutoff=row.dataset.cutoff,status=row.querySelector('.future-status'),action=row.querySelector('.future-action');if(!cutoff||!status||!action)return;const days=Math.ceil((new Date(`${cutoff}T12:00:00`)-new Date(`${today}T12:00:00`))/86400000);if(today>=cutoff){status.innerHTML='<span class="pill red">CUTOFF PASSED</span>';action.innerHTML='<b>Regular-season futures must be disabled.</b>';}else{status.innerHTML='<span class="pill amber">CUTOFF APPROACHING</span>';action.innerHTML='<b>Disable before first contest.</b> '+days+' day'+(days===1?'':'s')+' remaining.';}});})();
 
 // Review Today filters
 document.querySelectorAll('.queue-filter').forEach(btn=>btn.addEventListener('click',()=>{
@@ -1372,172 +1384,7 @@ if(us) us.addEventListener('input',e=>{
 })();
 
 
-// Event lifecycle: active queue -> Completed Today -> removed next day
-(function(){
-  const CENTRAL_TZ='America/Chicago';
-
-  function centralParts(d=new Date()){
-    const parts=new Intl.DateTimeFormat('en-US',{
-      timeZone:CENTRAL_TZ,
-      year:'numeric',month:'2-digit',day:'2-digit',
-      hour:'2-digit',minute:'2-digit',second:'2-digit',
-      hour12:false
-    }).formatToParts(d);
-    const x={};
-    parts.forEach(p=>{if(p.type!=='literal') x[p.type]=p.value});
-    return {
-      year:+x.year, month:+x.month, day:+x.day,
-      hour:+x.hour, minute:+x.minute, second:+x.second
-    };
-  }
-
-  function dayNum(y,m,d){ return Math.floor(Date.UTC(y,m-1,d)/86400000); }
-
-  // Convert a displayed local event time into Central time.
-  // This is intentionally simple for current US daylight time; adapter ISO timestamps will replace this later.
-  function toCentralHour(hour, zone){
-    zone=(zone||'CT').toUpperCase();
-    if(zone==='ET') return hour-1;
-    if(zone==='MT') return hour+1;
-    if(zone==='PT') return hour+2;
-    return hour;
-  }
-
-  function cloneForCompleted(card){
-    const clone=card.cloneNode(true);
-    clone.classList.remove('hide','date-expired');
-    clone.style.display='';
-    clone.classList.add('completed-event');
-    const top=clone.querySelector('.review-top');
-    if(top){
-      const status=top.querySelector('.pill');
-      if(status){
-        status.className='pill green';
-        status.textContent='COMPLETED';
-      }
-    }
-    return clone;
-  }
-
-  function applyEventLifecycle(){
-    const now=centralParts();
-    const todayN=dayNum(now.year,now.month,now.day);
-    const nowMinutes=now.hour*60+now.minute+(now.second/60);
-
-    const completedBox=document.getElementById('completedTodayQueue');
-    const empty=document.getElementById('completedTodayEmpty');
-    if(completedBox) completedBox.innerHTML='';
-
-    let activeVisible=0;
-    let completedCount=0;
-
-    document.querySelectorAll('#reviewQueue .review-card').forEach(card=>{
-      const iso=card.dataset.eventDate;
-      if(!iso){
-        // Undated persistent alert remains active.
-        card.style.display = card.classList.contains('hide') ? 'none' : '';
-        if(!card.classList.contains('hide')) activeVisible++;
-        return;
-      }
-
-      const m=iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-      if(!m) return;
-      const eventN=dayNum(+m[1],+m[2],+m[3]);
-
-      // Past calendar day: remove entirely.
-      if(eventN < todayN){
-        card.dataset.lifecycle='expired';
-        card.style.display='none';
-        return;
-      }
-
-      // Future event inside Today+7 stays active.
-      if(eventN > todayN){
-        card.dataset.lifecycle='upcoming';
-        if(card.dataset.dateVisible!=='0' && !card.classList.contains('hide')){
-          card.style.display='';
-          activeVisible++;
-        } else {
-          card.style.display='none';
-        }
-        return;
-      }
-
-      // Event is today. If we know a final-status attribute, it wins.
-      if((card.dataset.eventStatus||'').toUpperCase()==='FINAL'){
-        card.dataset.lifecycle='completed';
-        card.style.display='none';
-        if(completedBox){
-          completedBox.appendChild(cloneForCompleted(card));
-          completedCount++;
-        }
-        return;
-      }
-
-      // If start time is known, estimate completion.
-      if(card.dataset.startHour!==undefined){
-        let h=+card.dataset.startHour;
-        const min=+(card.dataset.startMinute||0);
-        h=toCentralHour(h,card.dataset.startZone||'CT');
-        let startMin=h*60+min;
-
-        // Handle converted times crossing midnight.
-        if(startMin<0) startMin+=1440;
-        if(startMin>=1440) startMin-=1440;
-
-        const duration=(+card.dataset.durationHours||3.5)*60;
-        const estimatedEnd=startMin+duration;
-
-        if(nowMinutes >= estimatedEnd){
-          card.dataset.lifecycle='completed';
-          card.style.display='none';
-          if(completedBox){
-            completedBox.appendChild(cloneForCompleted(card));
-            completedCount++;
-          }
-        } else {
-          card.dataset.lifecycle=(nowMinutes>=startMin)?'active':'upcoming';
-          if(card.dataset.dateVisible!=='0' && !card.classList.contains('hide')){
-            card.style.display='';
-            activeVisible++;
-          } else {
-            card.style.display='none';
-          }
-        }
-      } else {
-        // Same-day event without a start time remains visible for the day.
-        card.dataset.lifecycle='today-time-unknown';
-        if(card.dataset.dateVisible!=='0' && !card.classList.contains('hide')){
-          card.style.display='';
-          activeVisible++;
-        } else {
-          card.style.display='none';
-        }
-      }
-    });
-
-    const count=document.getElementById('priorityTriggerCount');
-    if(count) count.textContent=activeVisible;
-
-    if(empty) empty.style.display = completedCount ? 'none' : '';
-  }
-
-  window.applyEventLifecycle=applyEventLifecycle;
-
-  // Run after existing date-window logic.
-  setTimeout(applyEventLifecycle,50);
-
-  const refresh=document.getElementById('refreshReviewBtn');
-  if(refresh) refresh.addEventListener('click',()=>setTimeout(applyEventLifecycle,800));
-
-  document.addEventListener('activeOfferingsDataRefreshed',()=>setTimeout(applyEventLifecycle,100));
-
-  // Re-evaluate every minute while the page stays open.
-  setInterval(applyEventLifecycle,60000);
-})();
-
-
-// NCAA Football full-inventory renderer
+// Legacy review-card completion lifecycle removed.\n\n// NCAA Football full-inventory renderer
 (function(){
   function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
   let ncfFilter = 'all';
@@ -1661,79 +1508,31 @@ if(us) us.addEventListener('input',e=>{
       if(alerts){
         const u18=(d.verified_u18||[]);
         const pending=[...(d.age_review_needed||[]),...(d.unresolved||[])];
+        const classText=p=>String(p.class||p.class_year||'').trim();
+        const lower=p=>classText(p).toLowerCase();
+        const evidence=p=>String(p.age_evidence||p.u18_risk_reason||'').toLowerCase();
+        const isFreshman=p=>lower(p).includes('freshman')||evidence(p).includes('staff-reviewed class: freshman')||String(p.u18_risk_tier||'').toUpperCase()==='HIGH';
+        const isSophPlus=p=>/(sophomore|junior|senior|fifth|graduate|post-baccalaureate)/.test(lower(p));
+        const focus=pending.filter(isFreshman);
+        const lowRisk=pending.filter(p=>!isFreshman(p)&&isSophPlus(p));
+        const unknown=pending.filter(p=>!isFreshman(p)&&!isSophPlus(p));
 
-        const isHighRisk=p=>{
-          const tier=String(p.u18_risk_tier||'').toUpperCase();
-          const verification=String(p.verification_status||'').toUpperCase();
-          const cls=String(p.class||p.class_year||'').toLowerCase();
-          const evidence=String(p.age_evidence||'').toLowerCase();
-          return tier==='HIGH' || verification==='UNVERIFIED' ||
-                 (cls.includes('freshman') && !cls.includes('redshirt')) ||
-                 evidence.includes('staff-reviewed class: freshman');
-        };
+        const active=[];
+        u18.forEach(p=>active.push(`<article class="review-card"><div class="review-top"><span class="pill red">VERIFIED U18</span><span class="review-date">${esc(p.team)}</span></div><div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div><h3>${esc(p.name)}${p.calculated_age!=null?' · '+esc(p.calculated_age):''}</h3><p><b>Official evidence:</b> ${esc(p.age_evidence||'Verified official age evidence')}</p><div class="staff-action"><b>Staff check</b><span>Search athlete-specific markets and upcoming schedule immediately.</span></div></article>`));
+        focus.forEach(p=>active.push(`<article class="review-card"><div class="review-top"><span class="pill amber">UNVERIFIED — HIGH U18 RISK</span><span class="review-date">${esc(p.team)}</span></div><div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div><h3>${esc(p.name||'Roster candidate')}</h3><p>${esc(p.age_evidence||p.u18_risk_reason||'Freshman/high-risk age evidence remains unresolved.')}</p><div class="staff-action"><b>Research status</b><span>Continue DOB/age verification. Do not treat class status as age clearance.</span></div></article>`));
 
-        const focus=pending.filter(isHighRisk);
-        const backlog=pending.filter(p=>!isHighRisk(p));
+        const rows=(arr,status)=>arr.map(p=>`<tr><td><b>${esc(p.name||'Roster candidate')}</b></td><td>${esc(p.team||'')}</td><td>${esc(classText(p)||'Not resolved')}</td><td>${esc(status)}</td><td>${esc(p.age_evidence||p.u18_risk_reason||'Official age/class evidence not resolved.')}</td></tr>`).join('');
 
-        const rows=[];
-        u18.forEach(p=>rows.push(`
-          <article class="review-card">
-            <div class="review-top"><span class="pill red">VERIFIED U18</span><span class="review-date">${esc(p.team)}</span></div>
-            <div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div>
-            <h3>${esc(p.name)}${p.calculated_age!=null?' · '+esc(p.calculated_age):''}</h3>
-            <p><b>Official evidence:</b> ${esc(p.age_evidence||'Verified official age evidence')}</p>
-            <div class="staff-action"><b>Staff check</b><span>Search athlete-specific markets and upcoming schedule immediately.</span></div>
-          </article>`));
-
-        focus.forEach(p=>rows.push(`
-          <article class="review-card">
-            <div class="review-top"><span class="pill amber">UNVERIFIED — HIGH U18 RISK</span><span class="review-date">${esc(p.team)}</span></div>
-            <div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div>
-            <h3>${esc(p.name||'Roster candidate')}</h3>
-            <p>${esc(p.age_evidence||p.u18_risk_reason||'Freshman/high-risk age evidence remains unresolved.')}</p>
-            <div class="staff-action"><b>Research status</b><span>Continue DOB/age verification. Do not treat class status as age clearance.</span></div>
-          </article>`));
-
-        const backlogRows=backlog.map(p=>`
-          <tr>
-            <td><b>${esc(p.name||'Roster candidate')}</b></td>
-            <td>${esc(p.team||'')}</td>
-            <td>${esc(p.class||p.class_year||'Not resolved')}</td>
-            <td>${esc(p.u18_risk_tier||p.age_status||'UNRESOLVED')}</td>
-            <td>${esc(p.age_evidence||p.u18_risk_reason||'Official age evidence not resolved.')}</td>
-          </tr>`).join('');
-
-        alerts.innerHTML=`
-          <div class="ncaa-focus-summary">
-            <span class="ncaa-focus-chip">${u18.length} verified U18</span>
-            <span class="ncaa-focus-chip">${focus.length} active high-risk / freshman reviews</span>
-            <span class="ncaa-focus-chip">${backlog.length} broader research backlog</span>
-          </div>
-          ${rows.length?rows.join(''):'<div class="empty-state">No verified U18 or high-risk freshman cases currently loaded.</div>'}
-          <details class="ncaa-research-backlog">
-            <summary>Broader Research Backlog · ${backlog.length} athletes</summary>
-            <div class="ncaa-backlog-table">
-              ${backlog.length?`<table>
-                <thead><tr><th>Athlete</th><th>Team</th><th>Class</th><th>Risk / Status</th><th>Basis</th></tr></thead>
-                <tbody>${backlogRows}</tbody>
-              </table>`:'<div class="empty-state">No broader unresolved research cases.</div>'}
-            </div>
-          </details>`;
-      }
-      const teams=document.getElementById('ncaaAgeTeamCoverage');
-      if(teams){
-        const rows=(d.team_metrics||[]).sort((a,b)=>(a.team||'').localeCompare(b.team||'')).map(t=>`
-          <tr>
-            <td><b>${esc(t.team)}</b></td>
-            <td>${esc(t.conference||'')}</td>
-            <td>${esc(t.candidates||0)}</td>
-            <td>${esc(t.verified_u18||0)}</td>
-            <td>${esc(t.verified_18plus||0)}</td>
-            <td>${esc(t.review_needed||0)}</td>
-            <td>${esc(t.unresolved||0)}</td>
-            <td><span class="pill ${t.age_coverage==='SCREENED HIGH-RISK COHORT'?'green':'amber'}">${esc(t.age_coverage||'PARTIAL')}</span></td>
-          </tr>`).join('');
-        teams.innerHTML=`<table><thead><tr><th>Team</th><th>Conference</th><th>Candidates</th><th>U18</th><th>18+</th><th>Review</th><th>Unresolved</th><th>Age Coverage</th></tr></thead><tbody>${rows}</tbody></table>`;
+        alerts.innerHTML=`<div class="ncaa-focus-summary">
+          <div class="ncaa-focus-chip"><strong>${u18.length}</strong> verified U18</div>
+          <div class="ncaa-focus-chip"><strong>${focus.length}</strong> freshman / high-risk reviews</div>
+          <div class="ncaa-focus-chip"><strong>${lowRisk.length+unknown.length}</strong> broader research records</div>
+        </div>
+        ${active.length?`<div class="review-grid-cards">${active.join('')}</div>`:'<div class="empty-state">No verified U18 or high-risk freshman cases currently loaded.</div>'}
+        <details class="ncaa-research-backlog"><summary>Broader Research Backlog · ${lowRisk.length+unknown.length} athletes</summary><div class="ncaa-backlog-groups">
+          <details class="ncaa-backlog-subgroup low"><summary>Low U18 Risk — Sophomore or Above · ${lowRisk.length}</summary><div class="ncaa-backlog-table">${lowRisk.length?`<table><thead><tr><th>Athlete</th><th>Team</th><th>Class</th><th>Status</th><th>Basis</th></tr></thead><tbody>${rows(lowRisk,'LOW')}</tbody></table>`:'<div class="empty-state">No sophomore-or-above cases loaded.</div>'}</div></details>
+          <details class="ncaa-backlog-subgroup unknown"><summary>Unknown — Class / DOB Not Resolved · ${unknown.length}</summary><div class="ncaa-backlog-table">${unknown.length?`<table><thead><tr><th>Athlete</th><th>Team</th><th>Class</th><th>Status</th><th>Basis</th></tr></thead><tbody>${rows(unknown,'UNKNOWN')}</tbody></table>`:'<div class="empty-state">No fully unresolved cases loaded.</div>'}</div></details>
+        </div></details>`;
       }
     }catch(e){
       box.innerHTML='<div class="metric"><b>—</b><span>Run Refresh NCAA Football once after uploading v4 files.</span></div>';
@@ -1805,16 +1604,7 @@ if(us) us.addEventListener('input',e=>{
   }
 
 
-  const CATALOG_COUNTRIES=new Set([
-    "argentina","australia","austria","belgium","brazil","canada","chile","china","colombia",
-    "croatia","czech republic","czechia","denmark","ecuador","england","estonia","finland",
-    "france","germany","greece","hungary","iceland","india","ireland","israel","italy","japan",
-    "latvia","lithuania","mexico","netherlands","new zealand","northern ireland","norway",
-    "peru","philippines","poland","portugal","puerto rico","romania","scotland","serbia",
-    "slovakia","slovenia","south africa","south korea","spain","sweden","switzerland",
-    "turkey","ukraine","united arab emirates","united kingdom","united states","uruguay",
-    "venezuela","wales"
-  ]);
+  const CATALOG_COUNTRIES=new Set(["afghanistan","albania","algeria","american samoa","andorra","angola","anguilla","antarctica","antigua and barbuda","arab republic of egypt","argentina","argentine republic","armenia","aruba","australia","austria","azerbaijan","bahamas","bahrain","bangladesh","barbados","belarus","belgium","belize","benin","bermuda","bhutan","bolivarian republic of venezuela","bolivia","bolivia, plurinational state of","bonaire, sint eustatius and saba","bosnia and herzegovina","botswana","bouvet island","brazil","british indian ocean territory","british virgin islands","brunei darussalam","bulgaria","burkina faso","burundi","cabo verde","cambodia","cameroon","canada","cayman islands","central african republic","chad","chile","china","christmas island","cocos (keeling) islands","colombia","commonwealth of dominica","commonwealth of the bahamas","commonwealth of the northern mariana islands","comoros","congo","congo, the democratic republic of the","cook islands","costa rica","croatia","cuba","cura\u00e7ao","cyprus","czech republic","czechia","c\u00f4te d'ivoire","democratic people's republic of korea","democratic republic of sao tome and principe","democratic republic of timor-leste","democratic socialist republic of sri lanka","denmark","djibouti","dominica","dominican republic","eastern republic of uruguay","ecuador","egypt","el salvador","england","equatorial guinea","eritrea","estonia","eswatini","ethiopia","falkland islands (malvinas)","faroe islands","federal democratic republic of ethiopia","federal democratic republic of nepal","federal republic of germany","federal republic of nigeria","federal republic of somalia","federated states of micronesia","federative republic of brazil","fiji","finland","france","french guiana","french polynesia","french republic","french southern territories","gabon","gabonese republic","gambia","georgia","germany","ghana","gibraltar","grand duchy of luxembourg","greece","greenland","grenada","guadeloupe","guam","guatemala","guernsey","guinea","guinea-bissau","guyana","haiti","hashemite kingdom of jordan","heard island and mcdonald islands","hellenic republic","holy see (vatican city state)","honduras","hong kong","hong kong special administrative region of china","hungary","iceland","independent state of papua new guinea","independent state of samoa","india","indonesia","iran","iran, islamic republic of","iraq","ireland","islamic republic of afghanistan","islamic republic of iran","islamic republic of mauritania","islamic republic of pakistan","isle of man","israel","italian republic","italy","jamaica","japan","jersey","jordan","kazakhstan","kenya","kingdom of bahrain","kingdom of belgium","kingdom of bhutan","kingdom of cambodia","kingdom of denmark","kingdom of eswatini","kingdom of lesotho","kingdom of morocco","kingdom of norway","kingdom of saudi arabia","kingdom of spain","kingdom of sweden","kingdom of thailand","kingdom of tonga","kingdom of the netherlands","kiribati","korea, democratic people's republic of","korea, republic of","kosovo","kuwait","kyrgyz republic","kyrgyzstan","lao people's democratic republic","laos","latvia","lebanese republic","lebanon","lesotho","liberia","libya","liechtenstein","lithuania","luxembourg","macao","macao special administrative region of china","madagascar","malawi","malaysia","maldives","mali","malta","marshall islands","martinique","mauritania","mauritius","mayotte","mexico","micronesia, federated states of","moldova","moldova, republic of","monaco","mongolia","montenegro","montserrat","morocco","mozambique","myanmar","namibia","nauru","nepal","netherlands","new caledonia","new zealand","nicaragua","niger","nigeria","niue","norfolk island","north korea","north macedonia","northern ireland","northern mariana islands","norway","oman","pakistan","palau","palestine, state of","panama","papua new guinea","paraguay","people's democratic republic of algeria","people's republic of bangladesh","people's republic of china","peru","philippines","pitcairn","plurinational state of bolivia","poland","portugal","portuguese republic","principality of andorra","principality of liechtenstein","principality of monaco","puerto rico","qatar","republic of albania","republic of angola","republic of armenia","republic of austria","republic of azerbaijan","republic of belarus","republic of benin","republic of bosnia and herzegovina","republic of botswana","republic of bulgaria","republic of burundi","republic of cabo verde","republic of cameroon","republic of chad","republic of chile","republic of colombia","republic of costa rica","republic of croatia","republic of cuba","republic of cyprus","republic of c\u00f4te d'ivoire","republic of djibouti","republic of ecuador","republic of el salvador","republic of equatorial guinea","republic of estonia","republic of fiji","republic of finland","republic of ghana","republic of guatemala","republic of guinea","republic of guinea-bissau","republic of guyana","republic of haiti","republic of honduras","republic of iceland","republic of india","republic of indonesia","republic of iraq","republic of kazakhstan","republic of kenya","republic of kiribati","republic of latvia","republic of liberia","republic of lithuania","republic of madagascar","republic of malawi","republic of maldives","republic of mali","republic of malta","republic of mauritius","republic of moldova","republic of mozambique","republic of myanmar","republic of namibia","republic of nauru","republic of nicaragua","republic of north macedonia","republic of palau","republic of panama","republic of paraguay","republic of peru","republic of poland","republic of san marino","republic of senegal","republic of serbia","republic of seychelles","republic of sierra leone","republic of singapore","republic of slovenia","republic of south africa","republic of south sudan","republic of suriname","republic of tajikistan","republic of trinidad and tobago","republic of tunisia","republic of t\u00fcrkiye","republic of uganda","republic of uzbekistan","republic of vanuatu","republic of yemen","republic of zambia","republic of zimbabwe","republic of the congo","republic of the gambia","republic of the marshall islands","republic of the niger","republic of the philippines","republic of the sudan","romania","russia","russian federation","rwanda","rwandese republic","r\u00e9union","saint barth\u00e9lemy","saint helena, ascension and tristan da cunha","saint kitts and nevis","saint lucia","saint martin (french part)","saint pierre and miquelon","saint vincent and the grenadines","samoa","san marino","sao tome and principe","saudi arabia","scotland","senegal","serbia","seychelles","sierra leone","singapore","sint maarten (dutch part)","slovak republic","slovakia","slovenia","socialist republic of viet nam","solomon islands","somalia","south africa","south georgia and the south sandwich islands","south korea","south sudan","spain","sri lanka","state of israel","state of kuwait","state of qatar","sudan","sultanate of oman","suriname","svalbard and jan mayen","sweden","swiss confederation","switzerland","syria","syrian arab republic","taiwan","taiwan, province of china","tajikistan","tanzania","tanzania, united republic of","thailand","timor-leste","togo","togolese republic","tokelau","tonga","trinidad and tobago","tunisia","turkey","turkmenistan","turks and caicos islands","tuvalu","t\u00fcrkiye","uganda","ukraine","union of the comoros","united arab emirates","united kingdom","united kingdom of great britain and northern ireland","united mexican states","united republic of tanzania","united states","united states minor outlying islands","united states of america","uruguay","uzbekistan","vanuatu","venezuela","venezuela, bolivarian republic of","viet nam","vietnam","virgin islands of the united states","virgin islands, british","virgin islands, u.s.","wales","wallis and futuna","western sahara","yemen","zambia","zimbabwe","the state of eritrea","the state of palestine","\u00e5land islands"]);
 
   function isCatalogCountry(line){
     return CATALOG_COUNTRIES.has(cleanCatalogLine(line).toLowerCase());
@@ -2865,107 +2655,26 @@ function ncaaRiskTierClass(rec){
 })();
 
 
-// Completed Today — mapped schedule-driven renderer.
+// Completed Today — schedule-driven renderer.
 (function(){
-  const TZ='America/Chicago';
-
-  function ce(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-
-  function localDateKey(date){
-    const p=new Intl.DateTimeFormat('en-CA',{
-      timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'
-    }).formatToParts(date);
-    const get=t=>p.find(x=>x.type===t)?.value;
-    return `${get('year')}-${get('month')}-${get('day')}`;
-  }
-
-  function fmtTime(iso){
-    if(!iso) return 'TBA';
-    const d=new Date(iso);
-    if(Number.isNaN(d.getTime())) return 'TBA';
-    return new Intl.DateTimeFormat('en-US',{
-      timeZone:TZ,hour:'numeric',minute:'2-digit'
-    }).format(d);
-  }
-
-  function estimatedDurationHours(sport){
-    const s=String(sport||'').toLowerCase();
-    if(s.includes('football')) return 4;
-    if(s.includes('basketball')) return 3;
-    if(s.includes('soccer')) return 2.5;
-    if(s.includes('volleyball')) return 3;
-    if(s.includes('tennis')) return 4;
-    if(s.includes('baseball')) return 3.5;
-    if(s.includes('hockey')) return 3;
-    return 3.5;
-  }
-
-  function isCompletedTodayEvent(e,now,todayKey){
-    if(!e.start_time) return false;
-    const start=new Date(e.start_time);
-    if(Number.isNaN(start.getTime()) || localDateKey(start)!==todayKey) return false;
-
-    if(String(e.status||'').toUpperCase()==='COMPLETED') return true;
-
-    // Conservative fallback when final-state feed is missing.
-    if(String(e.status||'').toUpperCase()==='UPCOMING') return false;
-    const end=new Date(start.getTime()+estimatedDurationHours(e.sport)*3600000);
-    return now>=end;
-  }
-
-  async function renderCompletedTodayLive(){
-    const box=document.getElementById('completedTodayQueue');
-    const empty=document.getElementById('completedTodayEmpty');
-    if(!box) return;
-
-    try{
-      const r=await fetch(`data/global-schedule.json?v=${Date.now()}`,{cache:'no-store'});
-      if(!r.ok) throw new Error(`HTTP ${r.status}`);
-      const d=await r.json();
-
-      const now=new Date();
-      const todayKey=localDateKey(now);
-      const completed=(d.events||[])
-        .filter(e=>isCompletedTodayEvent(e,now,todayKey))
-        .sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
-
-      const groups={};
-      completed.forEach(e=>{
-        const key=`${e.sport||'Sport'}|${e.league||'Other'}`;
-        (groups[key] ||= {sport:e.sport||'Sport',league:e.league||'Other',items:[]}).items.push(e);
-      });
-
-      box.innerHTML=Object.values(groups).map(g=>`
-        <details class="completed-league" open>
-          <summary>
-            <span class="pq-sport-tag">${ce(g.sport)}</span>
-            <span>${ce(g.league)}</span>
-            <span class="completed-count">${g.items.length} completed</span>
-          </summary>
-          ${g.items.map(e=>`
-            <div class="completed-row">
-              <div class="completed-time">${ce(fmtTime(e.start_time))}</div>
-              <div class="completed-event-name">${ce(e.name)}</div>
-              <div class="completed-status"><span class="pill green">COMPLETED</span></div>
-            </div>`).join('')}
-        </details>`).join('');
-
-      if(empty) empty.style.display=completed.length?'none':'';
-    }catch(err){
-      if(empty){
-        empty.style.display='';
-        empty.textContent='Completed-event data could not be loaded from the mapped schedule feed.';
-      }
-    }
-  }
-
-  window.renderCompletedTodayLive=renderCompletedTodayLive;
-  renderCompletedTodayLive();
-
-  const refresh=document.getElementById('refreshReviewBtn');
-  if(refresh) refresh.addEventListener('click',()=>setTimeout(renderCompletedTodayLive,700));
-
-  setInterval(renderCompletedTodayLive,60000);
+ const TZ='America/Chicago';
+ const ce=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+ function key(d){const p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);const g=t=>p.find(x=>x.type===t)?.value;return `${g('year')}-${g('month')}-${g('day')}`;}
+ function time(iso){const d=new Date(iso);return Number.isNaN(d.getTime())?'TBA':new Intl.DateTimeFormat('en-US',{timeZone:TZ,hour:'numeric',minute:'2-digit'}).format(d);}
+ function dur(s){s=String(s||'').toLowerCase();if(s.includes('football'))return 4;if(s.includes('basketball'))return 3;if(s.includes('soccer'))return 2.5;if(s.includes('volleyball'))return 3;if(s.includes('tennis'))return 4;if(s.includes('baseball'))return 3.5;if(s.includes('hockey'))return 3;return 3.5;}
+ function done(e,now,today){if(!e.start_time)return false;const st=new Date(e.start_time);if(Number.isNaN(st.getTime())||key(st)!==today)return false;const s=String(e.status||'').toUpperCase();if(s==='COMPLETED')return true;if(s==='LIVE')return false;return now>=new Date(st.getTime()+dur(e.sport)*3600000);}
+ async function renderCompletedTodayLive(){
+   const box=document.getElementById('completedTodayQueue'),empty=document.getElementById('completedTodayEmpty');if(!box)return;
+   try{
+     const r=await fetch(`data/global-schedule.json?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`HTTP ${r.status}`);const d=await r.json();
+     const now=new Date(),today=key(now);const completed=(d.events||[]).filter(e=>done(e,now,today)).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+     const groups={};completed.forEach(e=>{const k=`${e.sport||'Sport'}|${e.league||'Other'}`;(groups[k]||={sport:e.sport||'Sport',league:e.league||'Other',items:[]}).items.push(e)});
+     const gaps=(d.coverage_gaps||[]).filter(g=>['KBO','NPB'].includes(String(g.area||'').toUpperCase())).map(g=>String(g.area).toUpperCase());
+     box.innerHTML=`<div class="completed-source-note">${completed.length} mapped event${completed.length===1?'':'s'} completed today</div>${Object.values(groups).map(g=>`<details class="completed-league" open><summary><span class="pq-sport-tag">${ce(g.sport)}</span><span>${ce(g.league)}</span><span class="completed-count">${g.items.length} completed</span></summary>${g.items.map(e=>`<div class="completed-row"><div class="completed-time">${ce(time(e.start_time))}</div><div class="completed-event-name">${ce(e.name)}</div><div class="completed-status"><span class="pill green">COMPLETED</span></div></div>`).join('')}</details>`).join('')}${gaps.length?`<div class="completed-gap-note"><b>Coverage pending:</b> ${ce(gaps.join(', '))}. Completed games from these leagues may not yet appear automatically.</div>`:''}`;
+     if(empty){empty.style.display=completed.length?'none':'';if(!completed.length)empty.textContent='No completed events were returned by the currently mapped schedule adapters for today.';}
+   }catch(e){if(empty){empty.style.display='';empty.textContent='Completed-event data could not be loaded from the mapped schedule feed.';}}
+ }
+ window.renderCompletedTodayLive=renderCompletedTodayLive;renderCompletedTodayLive();setInterval(renderCompletedTodayLive,60000);
 })();
 </script>
 </main>
