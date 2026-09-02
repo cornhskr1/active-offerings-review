@@ -541,6 +541,51 @@ for t in itf:
 utr,utr_health=extract_utr(age_index,known_index)
 tournaments.extend(utr)
 
+
+# Operational tournament screening summary
+for t in tournaments:
+    participants=t.get("participants",[])
+    screened=sum(1 for p in participants if isinstance(p,dict) and p.get("age_status") in ("VERIFIED U18","VERIFIED 18+"))
+    unresolved=sum(1 for p in participants if isinstance(p,dict) and p.get("age_status")=="UNRESOLVED")
+    total=len(participants)
+    t["screened_count"]=screened
+    t["unresolved_count"]=unresolved
+    t["screening_pct"]=round((screened/total)*100) if total else 0
+
+    # Today / next-event awareness
+    today_matches=0
+    upcoming_matches=0
+    next_start=None
+    for e in t.get("events",[]):
+        st=e.get("start_time")
+        if not st: continue
+        try:
+            dt=datetime.datetime.fromisoformat(st.replace("Z","+00:00")).astimezone(TZ)
+            if dt.date()==TODAY: today_matches+=1
+            if TODAY<=dt.date()<=END:
+                upcoming_matches+=1
+                if next_start is None or dt<next_start:
+                    next_start=dt
+        except Exception:
+            pass
+
+    t["today_matches"]=today_matches
+    t["upcoming_matches"]=upcoming_matches
+    t["next_start_time"]=next_start.isoformat() if next_start else None
+
+    if t.get("verified_u18"):
+        t["operational_status"]="ACTION REQUIRED"
+    elif t.get("draw_changed"):
+        t["operational_status"]="RE-SCREEN"
+    elif total and unresolved:
+        t["operational_status"]="AGE REVIEW"
+    elif total and screened==total:
+        t["operational_status"]="SCREENED"
+    elif total==0:
+        t["operational_status"]="SOURCE GAP"
+    else:
+        t["operational_status"]="MONITOR"
+
 # risk queue
 prev_sig={x.get("id"):x.get("draw_signature") for x in previous.get("tournaments",[])}
 risks=[]
