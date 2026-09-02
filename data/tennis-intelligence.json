@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-09-02T21:31:23.731563+00:00",
+  "generated_at": "2026-09-02T21:39:27.733866+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-02",
   "window_end": "2026-09-09",
@@ -103,8 +103,8 @@
         }
       ],
       "draw_signature": "a1c597f2fcde36aa",
-      "draw_changed": true,
-      "risk_status": "AMBER"
+      "draw_changed": false,
+      "risk_status": "NORMAL"
     },
     {
       "id": "46a62ce3bfe4",
@@ -475,34 +475,11 @@
         }
       ],
       "draw_signature": "b1453fcbe213cef6",
-      "draw_changed": true,
-      "risk_status": "AMBER"
+      "draw_changed": false,
+      "risk_status": "NORMAL"
     }
   ],
-  "risk_queue": [
-    {
-      "severity": "AMBER",
-      "type": "DRAW CHANGE",
-      "lane": "atp",
-      "tournament": "ATP",
-      "event": null,
-      "start_time": "2026-08-24T04:00Z",
-      "player": null,
-      "reason": "Scheduled participant/draw signature changed since the last refresh.",
-      "staff_action": "Re-screen the current field for U18 exposure."
-    },
-    {
-      "severity": "AMBER",
-      "type": "DRAW CHANGE",
-      "lane": "wta",
-      "tournament": "WTA",
-      "event": null,
-      "start_time": "2026-08-24T04:00Z",
-      "player": null,
-      "reason": "Scheduled participant/draw signature changed since the last refresh.",
-      "staff_action": "Re-screen the current field for U18 exposure."
-    }
-  ],
+  "risk_queue": [],
   "known_u18_registry": [
     {
       "name": "Cruz Hewitt",
@@ -582,6 +559,129 @@
       "status": "VERIFIED U18"
     }
   ],
+  "live_u18_registry": [
+    {
+      "name": "Andrew Johnson",
+      "age": 16,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Cruz Hewitt",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Hannah Klugman",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Ivan Ivanov",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Jack Secord",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Jordan Lee",
+      "age": 16,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Jordyn Hazelitt",
+      "age": 16,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Julieta Pareja",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Michael Antonius",
+      "age": 16,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Mika Stojsavljevic",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    },
+    {
+      "name": "Moise Kouame",
+      "age": 17,
+      "birth_year": null,
+      "age_status": "VERIFIED U18",
+      "source": "Known U18 registry",
+      "source_url": null,
+      "registry_scope": "SEEDED",
+      "evidence": "Previously verified U18 record.",
+      "current_exposure": false
+    }
+  ],
   "summary": {
     "lanes": 7,
     "tournaments": 14,
@@ -589,11 +689,14 @@
     "participants_screened": 5,
     "verified_u18_participants": 0,
     "red_risk_items": 0,
-    "draw_changes": 2,
+    "draw_changes": 0,
     "atp_age_index": 0,
     "wta_age_index": 0,
     "itf_tournaments": 0,
-    "utr_tournaments": 12
+    "utr_tournaments": 12,
+    "live_u18_registry": 11,
+    "current_u18_exposure": 0,
+    "broader_u18_watchlist": 11
   },
   "source_health": {
     "atp_rankings": {
@@ -650,6 +753,20 @@
         "ok": true,
         "url": "https://app.utrsports.net/club/12084?tab=info",
         "events": 3
+      }
+    ],
+    "itf_junior_rankings": [
+      {
+        "gender": "Girls",
+        "ok": true,
+        "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=G",
+        "verified_u18": 0
+      },
+      {
+        "gender": "Boys",
+        "ok": true,
+        "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=B",
+        "verified_u18": 0
       }
     ]
   },
