@@ -29,6 +29,11 @@ UTR_CLUBS={
  "Asia & Pacific":"https://app.utrsports.net/club/12084?tab=info",
 }
 
+ITF_JUNIOR_RANKINGS={
+ "Girls":"https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=G",
+ "Boys":"https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=B",
+}
+
 def load(path,default):
     try:return json.loads(path.read_text(encoding="utf-8"))
     except Exception:return default
@@ -314,12 +319,123 @@ def extract_utr(age_index,known_index):
         except Exception as e:health.append({"region":region,"ok":False,"url":url,"events":0,"error":str(e)[:180]})
     return out,health
 
+
+# ------------------------------------------------------------------
+# LIVE ITF JUNIOR U18 WATCHLIST
+# ------------------------------------------------------------------
+def scrape_itf_junior_u18_watchlist():
+    """
+    Builds a broader official U18 watchlist from the ITF junior rankings.
+    2009+ birth years are unambiguously U18 during 2026.
+    2008 birth years are only included if an official ITF profile explicitly
+    verifies age < 18.
+    """
+    records={}
+    health=[]
+    for gender,url in ITF_JUNIOR_RANKINGS.items():
+        try:
+            soup=BeautifulSoup(get(url).text,"html.parser")
+            count=0
+
+            # First collect explicit profile links and visible names.
+            profile_links={}
+            for a in soup.find_all("a",href=re.compile(r"/en/players/",re.I)):
+                name=" ".join(a.stripped_strings).strip()
+                if name and 3 < len(name) < 80:
+                    profile_links[norm(name)]=(name,urljoin("https://www.itftennis.com",a["href"]))
+
+            # Parse ranking table rows with Year of Birth.
+            for tr in soup.find_all("tr"):
+                cells=[" ".join(td.stripped_strings).strip() for td in tr.find_all(["td","th"])]
+                if len(cells)<3: continue
+                row=" | ".join(cells)
+                yobm=re.search(r'\b(2008|2009|2010|2011|2012)\b',row)
+                if not yobm: continue
+                yob=int(yobm.group(1))
+
+                a=tr.find("a",href=re.compile(r"/en/players/",re.I))
+                name=" ".join(a.stripped_strings).strip() if a else ""
+                if not name:
+                    # best effort: choose a text cell that looks like a full player name
+                    for c in cells:
+                        if len(c.split())>=2 and not re.search(r'^\d+(?:\.\d+)?$',c) and c not in ("Boys","Girls"):
+                            name=c
+                            break
+                if not name: continue
+
+                rec={
+                    "name":name,
+                    "age":None,
+                    "birth_year":yob,
+                    "age_status":"UNRESOLVED",
+                    "source":"ITF official junior rankings",
+                    "source_url":url,
+                    "gender":gender,
+                    "registry_scope":"BROADER WATCHLIST",
+                    "evidence":f"ITF junior rankings list year of birth {yob}."
+                }
+
+                # Anyone born 2009+ is guaranteed U18 during calendar year 2026.
+                if yob>=2009:
+                    rec["age_status"]="VERIFIED U18"
+                    rec["evidence"]=f"Official ITF junior rankings list year of birth {yob}; athlete cannot be 18 during 2026."
+                else:
+                    # 2008 requires explicit current age/profile evidence.
+                    link=None
+                    if a:
+                        link=urljoin("https://www.itftennis.com",a["href"])
+                    elif norm(name) in profile_links:
+                        link=profile_links[norm(name)][1]
+                    if link:
+                        try:
+                            text=" ".join(BeautifulSoup(get(link,18).text,"html.parser").stripped_strings)
+                            am=re.search(r'\bAge\s*:\s*(1[4-9]|2\d)\b',text,re.I)
+                            if am:
+                                age=int(am.group(1))
+                                rec.update(age=age,age_status="VERIFIED U18" if age<18 else "VERIFIED 18+",
+                                           source="ITF official player profile",
+                                           source_url=link,
+                                           evidence=f"Official ITF player profile lists age {age}.")
+                        except Exception:
+                            pass
+
+                if rec["age_status"]=="VERIFIED U18":
+                    records[norm(name)]=rec
+                    count+=1
+
+            # Some ITF ranking pages expose player names/profile links outside table rows.
+            # For those, inspect visible profiles only when no table record was produced.
+            for k,(name,link) in list(profile_links.items())[:30]:
+                if k in records: continue
+                try:
+                    text=" ".join(BeautifulSoup(get(link,15).text,"html.parser").stripped_strings)
+                    am=re.search(r'\bAge\s*:\s*(1[4-9]|2\d)\b',text,re.I)
+                    if am and int(am.group(1))<18:
+                        age=int(am.group(1))
+                        records[k]={
+                            "name":name,"age":age,"birth_year":None,
+                            "age_status":"VERIFIED U18",
+                            "source":"ITF official player profile","source_url":link,
+                            "gender":gender,"registry_scope":"BROADER WATCHLIST",
+                            "evidence":f"Official ITF player profile lists age {age}."
+                        }
+                        count+=1
+                except Exception:
+                    pass
+
+            health.append({"gender":gender,"ok":True,"url":url,"verified_u18":count})
+        except Exception as e:
+            health.append({"gender":gender,"ok":False,"url":url,"verified_u18":0,"error":str(e)[:180]})
+    return list(records.values()),health
+
 # ------------------------------------------------------------------
 # MAIN
 # ------------------------------------------------------------------
 known=load(DATA/"tennis-known-u18.json",{}).get("records",[])
 schedule=load(DATA/"global-schedule.json",{})
 previous=load(DATA/"tennis-intelligence.json",{})
+
+junior_watchlist,junior_health=scrape_itf_junior_u18_watchlist()
 
 known_index={}
 for x in known:
@@ -444,6 +560,40 @@ lanes=[
 ]
 for l in lanes:l["active_tournaments"]=sum(t.get("lane")==l["id"] for t in tournaments)
 
+
+# Build a live registry: seeded known U18 + dynamically discovered official U18.
+registry={}
+for x in known:
+    registry[norm(x["name"])]={
+      "name":x["name"],"age":x.get("age"),"birth_year":None,
+      "age_status":"VERIFIED U18","source":"Known U18 registry",
+      "source_url":None,"registry_scope":"SEEDED",
+      "evidence":"Previously verified U18 record."
+    }
+for x in junior_watchlist:
+    registry[norm(x["name"])]=x
+for t in tournaments:
+    for p in t.get("participants",[]):
+        if isinstance(p,dict) and p.get("age_status")=="VERIFIED U18":
+            k=norm(p["name"])
+            rec={**p,"registry_scope":"CURRENT / PRO EXPOSURE"}
+            registry[k]={**registry.get(k,{}),**rec}
+
+# Mark which registry athletes are currently tied to a professional mapped event/tournament.
+current_exposure=set()
+for t in tournaments:
+    for p in t.get("verified_u18",[]):
+        current_exposure.add(norm(p["name"]))
+for k,v in registry.items():
+    v["current_exposure"]=k in current_exposure
+    if v["current_exposure"]:
+        v["registry_scope"]="CURRENT / PRO EXPOSURE"
+
+live_u18_registry=sorted(
+    registry.values(),
+    key=lambda x:(not x.get("current_exposure"), str(x.get("name","")).lower())
+)
+
 summary={
  "lanes":len(lanes),"tournaments":len(tournaments),"exact_matches":len(mapped),
  "participants_screened":sum(len(t.get("participants",[])) for t in tournaments),
@@ -451,7 +601,10 @@ summary={
  "red_risk_items":sum(r["severity"]=="RED" for r in risks),
  "draw_changes":sum(r["type"]=="DRAW CHANGE" for r in risks),
  "atp_age_index":len(atp_index),"wta_age_index":len(wta_index),
- "itf_tournaments":len(itf),"utr_tournaments":len(utr)
+ "itf_tournaments":len(itf),"utr_tournaments":len(utr),
+ "live_u18_registry":len(live_u18_registry),
+ "current_u18_exposure":sum(1 for x in live_u18_registry if x.get("current_exposure")),
+ "broader_u18_watchlist":sum(1 for x in live_u18_registry if not x.get("current_exposure"))
 }
 
 out={
@@ -459,11 +612,14 @@ out={
  "window_start":TODAY.isoformat(),"window_end":END.isoformat(),
  "lanes":lanes,"tournaments":sorted(tournaments,key=lambda t:(t.get("risk_status")!="RED",t.get("lane",""),t.get("tournament",""))),
  "risk_queue":sorted(risks,key=lambda r:(r["severity"]!="RED",r.get("start_time") or "")),
- "known_u18_registry":known,"summary":summary,
+ "known_u18_registry":known,
+ "live_u18_registry":live_u18_registry,
+ "summary":summary,
  "source_health":{
    "atp_rankings":atp_rank_health,"wta_rankings":wta_rank_health,
    "atp_calendar":atp_cal_health,"wta_calendar":wta_cal_health,
-   "itf":itf_health,"utr":utr_health
+   "itf":itf_health,"utr":utr_health,
+   "itf_junior_rankings":junior_health
  },
  "methodology":{
    "schedule":"ATP/WTA exact matches use the mapped Today + 7 scoreboard feed and are cross-checked to official tour calendar coverage. ITF and UTR tournament discovery uses official sites.",
