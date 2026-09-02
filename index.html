@@ -592,6 +592,16 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .tennis-u18-banner{margin:8px 0;padding:9px 10px;border-radius:8px;background:#fff1f0;border:1px solid #f5b7b1;color:#8a1c13;font-weight:900;font-size:11px}
 .tennis-source-badge{font-size:9px;color:var(--muted);font-weight:750}
 .tennis-participant-status{white-space:nowrap}
+
+.tennis-registry-groups{display:grid;gap:10px}
+.tennis-registry-group{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+.tennis-registry-group>summary{cursor:pointer;list-style:none;padding:9px 11px;background:#f8fafc;font-weight:900;color:var(--nav)}
+.tennis-registry-group>summary::-webkit-details-marker{display:none}
+.tennis-registry-group>summary:before{content:"▸";margin-right:7px}
+.tennis-registry-group[open]>summary:before{content:"▾"}
+.tennis-registry-list{display:flex;gap:6px;flex-wrap:wrap;padding:9px 11px}
+.tennis-registry-chip{border:1px solid #dbe4ed;border-radius:999px;padding:5px 8px;font-size:10px;background:#fff}
+.tennis-registry-chip.current{border-color:#efb0aa;background:#fff4f2;color:#8a1c13}
 </style>
 </head>
 <body>
@@ -984,8 +994,8 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="tennis-risk-list" id="tennisIntelRisks"></div>
 </div>
 <div class="card">
-<div class="section-title">Known U18 Tennis Registry</div>
-<div class="chip-list" id="tennisKnownU18"></div>
+<div class="section-title">Live Verified U18 Tennis Registry</div>
+<p class="small">Built from the existing verified seed list plus official ITF junior rankings/profiles and current professional-event participant screening. Current pro exposure is shown first.</p><div class="chip-list" id="tennisKnownU18"></div>
 </div>
 <div class="card">
 <div class="section-title">Live Tennis Source Health</div>
@@ -2838,6 +2848,8 @@ function ncaaRiskTierClass(rec){
       });
       (d.source_health?.itf||[]).forEach(x=>rows.push(`<div class="tennis-source-health-row"><b>${te(laneLabel(x.lane,d))}</b> · <span class="pill ${x.ok?'green':'red'}">${x.ok?'OK':'SOURCE ISSUE'}</span> · ${te(x.events||0)} tournaments</div>`));
       (d.source_health?.utr||[]).forEach(x=>rows.push(`<div class="tennis-source-health-row"><b>UTR ${te(x.region)}</b> · <span class="pill ${x.ok?'green':'red'}">${x.ok?'OK':'SOURCE ISSUE'}</span> · ${te(x.events||0)} events</div>`));
+
+      (d.source_health?.itf_junior_rankings||[]).forEach(x=>rows.push(`<div class="tennis-source-health-row"><b>ITF Juniors · ${te(x.gender)}</b> · <span class="pill ${x.ok?'green':'red'}">${x.ok?'OK':'SOURCE ISSUE'}</span> · ${te(x.verified_u18||0)} verified U18 discovered</div>`));
       health.innerHTML=rows.join('');
     }
 
@@ -2851,7 +2863,22 @@ function ncaaRiskTierClass(rec){
       </div>`).join(''):'<div class="empty-state">No current tennis risk triggers.</div>';
 
     const known=document.getElementById('tennisKnownU18');
-    if(known) known.innerHTML=(d.known_u18_registry||[]).map(x=>`<span class="event-chip"><b>${te(x.name)}</b> · ${te(x.age)} · ${te(x.lane)}</span>`).join('');
+    if(known){
+      const reg=d.live_u18_registry||d.known_u18_registry||[];
+      const current=reg.filter(x=>x.current_exposure);
+      const broader=reg.filter(x=>!x.current_exposure);
+      const chips=arr=>arr.map(x=>`<span class="tennis-registry-chip ${x.current_exposure?'current':''}"><b>${te(x.name)}</b>${x.age!=null?' · '+te(x.age):x.birth_year?' · born '+te(x.birth_year):''} · ${te(x.source||'official source')}</span>`).join('');
+      known.innerHTML=`<div class="tennis-registry-groups">
+        <details class="tennis-registry-group" open>
+          <summary>Current / Professional Exposure · ${current.length}</summary>
+          <div class="tennis-registry-list">${current.length?chips(current):'<span class="small">No verified U18 athlete is currently tied to a mapped professional event.</span>'}</div>
+        </details>
+        <details class="tennis-registry-group">
+          <summary>Broader Verified U18 Watchlist · ${broader.length}</summary>
+          <div class="tennis-registry-list">${broader.length?chips(broader):'<span class="small">No additional verified U18 records returned.</span>'}</div>
+        </details>
+      </div>`;
+    }
   }
 
   async function loadTennisIntel(){
