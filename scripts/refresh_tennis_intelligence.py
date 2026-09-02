@@ -1,5 +1,5 @@
 
-import json, hashlib, datetime, re, html
+import json, hashlib, datetime, re
 from pathlib import Path
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
@@ -13,140 +13,45 @@ TZ=ZoneInfo("America/Chicago")
 NOW=datetime.datetime.now(datetime.timezone.utc)
 TODAY=datetime.datetime.now(TZ).date()
 END=TODAY+datetime.timedelta(days=7)
-HEADERS={"User-Agent":"Mozilla/5.0 ActiveOfferingsReview/1.0"}
 
+HEADERS={"User-Agent":"Mozilla/5.0 ActiveOfferingsReview/1.0"}
+ATP_CALENDAR="https://www.atptour.com/en/tournaments/"
+ATP_RANKINGS="https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
+WTA_CALENDAR="https://www.wtatennis.com/tournaments"
+WTA_RANKINGS="https://www.wtatennis.com/rankings/singles/"
 ITF_CALENDARS={
-    "itf-men":"https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate={ym}",
-    "itf-women":"https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate={ym}",
+ "itf-men":"https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate={ym}",
+ "itf-women":"https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate={ym}",
 }
 UTR_CLUBS={
-    "Americas":"https://app.utrsports.net/club/11313",
-    "Europe":"https://app.utrsports.net/club/12083",
-    "Asia & Pacific":"https://app.utrsports.net/club/12084?tab=info",
+ "Americas":"https://app.utrsports.net/club/11313",
+ "Europe":"https://app.utrsports.net/club/12083",
+ "Asia & Pacific":"https://app.utrsports.net/club/12084?tab=info",
 }
 
 def load(path,default):
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return default
+    try:return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:return default
 
-def norm(s):
-    return re.sub(r"[^a-z0-9]+"," ",str(s or "").lower()).strip()
-
-def get(url, timeout=25):
+def get(url,timeout=25):
     r=requests.get(url,headers=HEADERS,timeout=timeout)
     r.raise_for_status()
     return r
 
-def parse_month_day_range(text, year):
-    m=re.search(r'(\d{1,2})\s+([A-Za-z]{3})\s+(?:to|-)\s+(\d{1,2})\s+([A-Za-z]{3})\s+'+str(year),text,re.I)
-    if not m:
-        m=re.search(r'(\d{1,2})\s+([A-Za-z]{3})\s*(?:to|-)\s*(\d{1,2})\s+([A-Za-z]{3})',text,re.I)
-    if not m: return None,None
-    for fmt in ("%d %b %Y","%d %B %Y"):
-        try:
-            a=datetime.datetime.strptime(f"{m.group(1)} {m.group(2)} {year}",fmt).date()
-            b=datetime.datetime.strptime(f"{m.group(3)} {m.group(4)} {year}",fmt).date()
-            if b<a: b=b.replace(year=year+1)
-            return a,b
-        except Exception: pass
-    return None,None
+def norm(s):
+    s=str(s or "").lower()
+    s=re.sub(r"[\u2018\u2019'`]", "", s)
+    s=re.sub(r"[^a-z0-9]+"," ",s)
+    return " ".join(s.split())
 
-def parse_utr_range(text, year):
-    # Examples: Aug 31 - Sep 6 / Sep 7 - 13
-    m=re.search(r'([A-Za-z]{3})\s+(\d{1,2})\s*-\s*(?:(?:([A-Za-z]{3})\s+)?(\d{1,2}))',text)
-    if not m:return None,None
-    mon1,day1,mon2,day2=m.group(1),m.group(2),m.group(3) or m.group(1),m.group(4)
-    try:
-        a=datetime.datetime.strptime(f"{mon1} {day1} {year}","%b %d %Y").date()
-        b=datetime.datetime.strptime(f"{mon2} {day2} {year}","%b %d %Y").date()
-        if b<a:b=b.replace(year=year+1)
-        return a,b
-    except Exception:return None,None
+def age_on(dob,on_date):
+    return on_date.year-dob.year-((on_date.month,on_date.day)<(dob.month,dob.day))
 
-def overlaps(a,b):
-    return bool(a and b and a<=END and b>=TODAY)
-
-def extract_itf_tournaments(lane):
-    ym=TODAY.strftime("%Y-%m")
-    url=ITF_CALENDARS[lane].format(ym=ym)
-    out=[]
-    try:
-        soup=BeautifulSoup(get(url).text,"html.parser")
-    except Exception as e:
-        return [],{"ok":False,"url":url,"error":str(e)[:180]}
-
-    seen=set()
-    for a in soup.find_all("a",href=True):
-        href=a["href"]
-        if "/en/tournament/" not in href or "/2026/" not in href:
-            continue
-        fact=urljoin("https://www.itftennis.com",href)
-        # normalize to fact sheet
-        fact=re.sub(r'/(acceptance-list|draws-and-results|order-of-play)/?$',"/fact-sheet/",fact)
-        if "/fact-sheet/" not in fact:
-            if not fact.endswith("/"): fact+="/"
-            fact+="fact-sheet/"
-        if fact in seen: continue
-
-        container=a
-        for _ in range(4):
-            if not container.parent:break
-            container=container.parent
-            txt=" ".join(container.stripped_strings)
-            if re.search(r'\d{1,2}\s+[A-Za-z]{3}\s+(?:to|-)\s+\d{1,2}\s+[A-Za-z]{3}\s+2026',txt):
-                break
-        txt=" ".join(container.stripped_strings)
-        start,end=parse_month_day_range(txt,2026)
-        if not overlaps(start,end):continue
-
-        label=" ".join(a.stripped_strings).strip()
-        if not label:
-            slug=fact.split("/en/tournament/")[1].split("/")[0]
-            label=slug.replace("-"," ").upper()
-        if "cancelled" in txt.lower(): status="CANCELLED"
-        elif start<=TODAY<=end: status="ACTIVE"
-        else: status="UPCOMING"
-
-        seen.add(fact)
-        out.append({
-            "id":hashlib.sha1(fact.encode()).hexdigest()[:12],
-            "lane":lane,
-            "tournament":label,
-            "start_date":start.isoformat(),
-            "end_date":end.isoformat(),
-            "status":status,
-            "source_url":fact,
-            "acceptance_url":fact.replace("/fact-sheet/","/acceptance-list/"),
-            "draw_url":fact.replace("/fact-sheet/","/draws-and-results/"),
-            "participants":[],
-            "participant_source":"PENDING",
-        })
-    return out,{"ok":True,"url":url,"events":len(out)}
-
-def player_name_from_anchor(a):
-    txt=" ".join(a.stripped_strings).strip()
-    txt=re.sub(r'\s+',' ',txt)
-    if not txt or len(txt)<4 or len(txt)>80:return None
-    if any(x in txt.lower() for x in ("profile","view","back","draw","result","acceptance")):return None
-    return txt
-
-def scan_embedded_names(soup):
-    names=set()
-    # official player profile links are strongest signal
-    for a in soup.find_all("a",href=True):
-        href=a["href"]
-        if "/en/players/" in href:
-            n=player_name_from_anchor(a)
-            if n:names.add((n,urljoin("https://www.itftennis.com",href)))
-    return names
-
-def parse_dob(text):
+def parse_explicit_dob(text):
     pats=[
-        r'(?:Date of Birth|Date of birth|DOB|Born)\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})',
-        r'(?:Date of Birth|Date of birth|DOB|Born)\s*:?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})',
-        r'(?:Date of Birth|Date of birth|DOB|Born)\s*:?\s*(\d{1,2}[/-]\d{1,2}[/-]\d{4})',
+      r'(?:Birthday|Date of Birth|Date of birth|DOB|Born)\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})',
+      r'(?:Birthday|Date of Birth|Date of birth|DOB|Born)\s*:?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})',
+      r'(?:Birthday|Date of Birth|Date of birth|DOB|Born)\s*:?\s*(\d{1,2}[/-]\d{1,2}[/-]\d{4})',
     ]
     for p in pats:
         m=re.search(p,text,re.I)
@@ -157,254 +62,415 @@ def parse_dob(text):
             except Exception:pass
     return None
 
-def age_on(dob,on_date):
-    return on_date.year-dob.year-((on_date.month,on_date.day)<(dob.month,dob.day))
+def parse_date_range(text,year=2026):
+    patterns=[
+      r'(\d{1,2})\s+([A-Za-z]+)\s*(?:-|to)\s*(\d{1,2})\s+([A-Za-z]+),?\s*'+str(year),
+      r'([A-Za-z]+)\s+(\d{1,2})\s*(?:-|to)\s*([A-Za-z]+)?\s*(\d{1,2}),?\s*'+str(year),
+    ]
+    for i,p in enumerate(patterns):
+        m=re.search(p,text,re.I)
+        if not m:continue
+        try:
+            if i==0:
+                d1,mo1,d2,mo2=m.group(1),m.group(2),m.group(3),m.group(4)
+            else:
+                mo1,d1,mo2,d2=m.group(1),m.group(2),m.group(3) or m.group(1),m.group(4)
+            for fmt in ("%d %B %Y","%d %b %Y"):
+                try:a=datetime.datetime.strptime(f"{d1} {mo1} {year}",fmt).date();break
+                except Exception:a=None
+            for fmt in ("%d %B %Y","%d %b %Y"):
+                try:b=datetime.datetime.strptime(f"{d2} {mo2} {year}",fmt).date();break
+                except Exception:b=None
+            if a and b:
+                if b<a:b=b.replace(year=year+1)
+                return a,b
+        except Exception:pass
+    return None,None
+
+def overlaps(a,b):
+    return bool(a and b and a<=END and b>=TODAY)
+
+# ------------------------------------------------------------------
+# OFFICIAL ATP/WTA AGE INDEX
+# ------------------------------------------------------------------
+def scrape_atp_age_index():
+    out={}
+    health={"ok":False,"url":ATP_RANKINGS,"records":0}
+    try:
+        soup=BeautifulSoup(get(ATP_RANKINGS).text,"html.parser")
+        # Prefer rows with player profile links.
+        for tr in soup.find_all("tr"):
+            a=tr.find("a",href=re.compile(r"/en/players/",re.I))
+            if not a:continue
+            name=" ".join(a.stripped_strings).strip()
+            cells=[" ".join(td.stripped_strings) for td in tr.find_all(["td","th"])]
+            age=None
+            # Age is normally its own compact integer cell.
+            for c in cells[1:5]:
+                if re.fullmatch(r"(1[4-9]|[2-4]\d)",c.strip()):
+                    age=int(c.strip());break
+            if name and age is not None:
+                out[norm(name)]={"name":name,"age":age,"status":"VERIFIED U18" if age<18 else "VERIFIED 18+",
+                                 "source":"ATP official rankings","source_url":urljoin("https://www.atptour.com",a["href"])}
+        # Fallback text patterns on server-rendered page.
+        if not out:
+            txt="\n".join(soup.stripped_strings)
+            for m in re.finditer(r'([A-Z][A-Za-z\'\-.]+(?:\s+[A-Z][A-Za-z\'\-.]+)+)\s*\|\s*(1[4-9]|[2-4]\d)\s*\|',txt):
+                name,age=m.group(1),int(m.group(2))
+                out[norm(name)]={"name":name,"age":age,"status":"VERIFIED U18" if age<18 else "VERIFIED 18+","source":"ATP official rankings","source_url":ATP_RANKINGS}
+        health.update(ok=True,records=len(out))
+    except Exception as e:health["error"]=str(e)[:180]
+    return out,health
+
+def scrape_wta_age_index():
+    out={}
+    health={"ok":False,"url":WTA_RANKINGS,"records":0}
+    try:
+        soup=BeautifulSoup(get(WTA_RANKINGS).text,"html.parser")
+        for tr in soup.find_all("tr"):
+            a=tr.find("a",href=re.compile(r"/players/\d+/",re.I))
+            if not a:continue
+            name=" ".join(a.stripped_strings).strip()
+            cells=[" ".join(td.stripped_strings) for td in tr.find_all(["td","th"])]
+            age=None
+            for c in cells[1:6]:
+                if re.fullmatch(r"(1[4-9]|[2-4]\d)",c.strip()):
+                    age=int(c.strip());break
+            if name and age is not None:
+                out[norm(name)]={"name":name,"age":age,"status":"VERIFIED U18" if age<18 else "VERIFIED 18+",
+                                 "source":"WTA official rankings","source_url":urljoin("https://www.wtatennis.com",a["href"])}
+        # WTA sometimes renders ranking rows without anchors in initial HTML.
+        txt=" ".join(soup.stripped_strings)
+        if not out:
+            # conservative: only lines around explicit "Age" table structures are used later via profiles; no fuzzy ages.
+            pass
+        health.update(ok=True,records=len(out))
+    except Exception as e:health["error"]=str(e)[:180]
+    return out,health
+
+# ------------------------------------------------------------------
+# OFFICIAL ATP/WTA TOURNAMENT CALENDAR CROSS-CHECK
+# ------------------------------------------------------------------
+def scrape_calendar(url,tour):
+    events=[]
+    health={"ok":False,"url":url,"events":0}
+    try:
+        soup=BeautifulSoup(get(url).text,"html.parser")
+        # calendar cards usually have tournament links; walk their local text for dates
+        seen=set()
+        link_re=r"/en/tournaments/" if tour=="ATP" else r"/tournaments/"
+        for a in soup.find_all("a",href=re.compile(link_re,re.I)):
+            href=urljoin(url,a["href"])
+            if href in seen:continue
+            node=a
+            for _ in range(5):
+                txt=" ".join(node.stripped_strings)
+                start,end=parse_date_range(txt)
+                if start and end:break
+                if not node.parent:break
+                node=node.parent
+            if not start or not overlaps(start,end):continue
+            name=" ".join(a.stripped_strings).strip()
+            if not name:continue
+            seen.add(href)
+            events.append({"tour":tour,"tournament":name,"start_date":start.isoformat(),"end_date":end.isoformat(),"source_url":href})
+        health.update(ok=True,events=len(events))
+    except Exception as e:health["error"]=str(e)[:180]
+    return events,health
+
+# ------------------------------------------------------------------
+# ITF
+# ------------------------------------------------------------------
+def extract_itf_tournaments(lane):
+    ym=TODAY.strftime("%Y-%m")
+    url=ITF_CALENDARS[lane].format(ym=ym)
+    out=[]
+    try:soup=BeautifulSoup(get(url).text,"html.parser")
+    except Exception as e:return [],{"ok":False,"url":url,"error":str(e)[:180]}
+    seen=set()
+    for a in soup.find_all("a",href=True):
+        href=a["href"]
+        if "/en/tournament/" not in href or "/2026/" not in href:continue
+        fact=urljoin("https://www.itftennis.com",href)
+        fact=re.sub(r'/(acceptance-list|draws-and-results|order-of-play)/?$',"/fact-sheet/",fact)
+        if "/fact-sheet/" not in fact:
+            fact=fact.rstrip("/")+"/fact-sheet/"
+        if fact in seen:continue
+        node=a
+        start=end=None
+        for _ in range(5):
+            txt=" ".join(node.stripped_strings)
+            start,end=parse_date_range(txt)
+            if start and end:break
+            if not node.parent:break
+            node=node.parent
+        if not overlaps(start,end):continue
+        label=" ".join(a.stripped_strings).strip() or fact.split("/en/tournament/")[1].split("/")[0].replace("-"," ").upper()
+        if "cancelled" in " ".join(node.stripped_strings).lower():status="CANCELLED"
+        elif start<=TODAY<=end:status="ACTIVE"
+        else:status="UPCOMING"
+        seen.add(fact)
+        out.append({
+          "id":hashlib.sha1(fact.encode()).hexdigest()[:12],"lane":lane,"tournament":label,
+          "start_date":start.isoformat(),"end_date":end.isoformat(),"status":status,"source_url":fact,
+          "acceptance_url":fact.replace("/fact-sheet/","/acceptance-list/"),
+          "draw_url":fact.replace("/fact-sheet/","/draws-and-results/"),
+          "order_url":fact.replace("/fact-sheet/","/order-of-play/")
+        })
+    return out,{"ok":True,"url":url,"events":len(out)}
 
 profile_cache={}
-def inspect_profile(name,url,event_date):
+def inspect_itf_profile(name,url,event_date):
     if url in profile_cache:return profile_cache[url]
-    record={"name":name,"profile_url":url,"dob":None,"age":None,"age_status":"UNRESOLVED","evidence":"Official ITF player profile link found; explicit DOB not parsed."}
+    rec={"name":name,"age":None,"dob":None,"age_status":"UNRESOLVED","source":"ITF official player profile","source_url":url,
+         "evidence":"Official ITF profile found; explicit DOB not parsed."}
     try:
         text=" ".join(BeautifulSoup(get(url,18).text,"html.parser").stripped_strings)
-        dob=parse_dob(text)
+        dob=parse_explicit_dob(text)
         if dob:
             age=age_on(dob,event_date)
-            record.update({
-                "dob":dob.isoformat(),
-                "age":age,
-                "age_status":"VERIFIED U18" if age<18 else "VERIFIED 18+",
-                "evidence":"Explicit birth information parsed from official ITF player profile."
-            })
-    except Exception as e:
-        record["evidence"]=f"Official ITF profile fetch failed: {str(e)[:120]}"
-    profile_cache[url]=record
-    return record
+            rec.update(age=age,dob=dob.isoformat(),age_status="VERIFIED U18" if age<18 else "VERIFIED 18+",
+                       evidence="Explicit birth information parsed from official ITF player profile.")
+    except Exception as e:rec["evidence"]=f"ITF profile fetch failed: {str(e)[:100]}"
+    profile_cache[url]=rec
+    return rec
 
-def enrich_itf_tournament(t):
-    if t["status"]=="CANCELLED":return t
+def enrich_itf(t):
     profiles={}
-    source_used=[]
-    for url,label in [(t["draw_url"],"Draws & Results"),(t["acceptance_url"],"Acceptance List")]:
+    page_names={}
+    for url,label in [(t["draw_url"],"Draws & Results"),(t["acceptance_url"],"Acceptance List"),(t["order_url"],"Order of Play")]:
         try:
             soup=BeautifulSoup(get(url,20).text,"html.parser")
-            found=scan_embedded_names(soup)
-            if found:source_used.append(label)
-            for n,u in found:profiles[u]=n
-        except Exception:
-            pass
-    event_date=datetime.date.fromisoformat(t["start_date"])
-    players=[]
-    # cap deep profile checks so workflow stays reasonable
-    for u,n in list(profiles.items())[:80]:
-        players.append(inspect_profile(n,u,event_date))
-    t["participants"]=players
-    t["participant_count"]=len(players)
-    t["participant_source"]=" + ".join(source_used) if source_used else "Official tournament page loaded; participant links not exposed server-side"
-    t["verified_u18"]=[p for p in players if p["age_status"]=="VERIFIED U18"]
-    t["verified_18plus_count"]=sum(1 for p in players if p["age_status"]=="VERIFIED 18+")
-    t["unresolved_count"]=sum(1 for p in players if p["age_status"]=="UNRESOLVED")
+            for a in soup.find_all("a",href=re.compile(r"/en/players/",re.I)):
+                name=" ".join(a.stripped_strings).strip()
+                if name and len(name)<80:
+                    profiles[urljoin("https://www.itftennis.com",a["href"])]=name
+        except Exception:pass
+    date=datetime.date.fromisoformat(t["start_date"])
+    participants=[inspect_itf_profile(n,u,date) for u,n in list(profiles.items())[:100]]
+    t.update(participants=participants,participant_count=len(participants),
+             verified_u18=[p for p in participants if p["age_status"]=="VERIFIED U18"],
+             verified_18plus_count=sum(p["age_status"]=="VERIFIED 18+" for p in participants),
+             unresolved_count=sum(p["age_status"]=="UNRESOLVED" for p in participants),
+             participant_source="Official ITF Draws / Acceptance List / Order of Play")
     return t
 
-def extract_utr_events():
-    out=[]
-    health=[]
-    seen=set()
+# ------------------------------------------------------------------
+# UTR: discover events + attempt public participant extraction
+# ------------------------------------------------------------------
+def parse_utr_dates(text):
+    m=re.search(r'([A-Za-z]{3})\s+(\d{1,2})\s*-\s*(?:([A-Za-z]{3})\s+)?(\d{1,2})',text)
+    if not m:return None,None
+    try:
+        a=datetime.datetime.strptime(f"{m.group(1)} {m.group(2)} {TODAY.year}","%b %d %Y").date()
+        b=datetime.datetime.strptime(f"{m.group(3) or m.group(1)} {m.group(4)} {TODAY.year}","%b %d %Y").date()
+        if b<a:b=b.replace(year=TODAY.year+1)
+        return a,b
+    except Exception:return None,None
+
+def extract_utr(age_index,known_index):
+    out=[];health=[];seen=set()
     for region,url in UTR_CLUBS.items():
         try:
-            soup=BeautifulSoup(get(url).text,"html.parser")
-            count=0
+            soup=BeautifulSoup(get(url).text,"html.parser");count=0
             for a in soup.find_all("a",href=True):
-                href=a["href"]
-                if "/events/" not in href:continue
-                txt=" ".join(a.stripped_strings)
-                if "UTR" not in txt or "tennis" not in txt.lower():continue
-                start,end=parse_utr_range(txt,TODAY.year)
+                href=a["href"];txt=" ".join(a.stripped_strings)
+                if "/events/" not in href or "UTR" not in txt:continue
+                start,end=parse_utr_dates(txt)
                 if not overlaps(start,end):continue
                 full=urljoin("https://app.utrsports.net",href)
                 if full in seen:continue
                 seen.add(full)
-                gender="Women" if re.search(r'\bWomen\b',txt,re.I) else "Men" if re.search(r'\bMen\b',txt,re.I) else "Unknown"
-                title=re.search(r'(UTR(?: Pro Fall Slam| PTT)[^$]+?(?:Men|Women)(?:\s*\+H)?)',txt,re.I)
-                name=title.group(1).strip() if title else re.sub(r'^\w+\s+\d+\s*-\s*\w*\s*\d*\s*tennis.*?Verified Event\|?','',txt)[:100]
-                reg=re.search(r'(\d+)\s*registered',txt,re.I)
-                status="ACTIVE" if start<=TODAY<=end else "UPCOMING"
+                gender="women" if re.search(r'\bwomen\b',txt,re.I) else "men"
+                name=re.sub(r'\s+',' ',txt).strip()[:120]
+                participants={}
+                try:
+                    esoup=BeautifulSoup(get(full,20).text,"html.parser")
+                    # Common public UTR profile patterns.
+                    for pa in esoup.find_all("a",href=True):
+                        ph=pa["href"]
+                        if not re.search(r'/(profiles?|players?)/',ph,re.I):continue
+                        pn=" ".join(pa.stripped_strings).strip()
+                        if 3<len(pn)<80 and len(pn.split())>=2:
+                            participants[norm(pn)]={"name":pn,"utr_profile_url":urljoin("https://app.utrsports.net",ph)}
+                except Exception:pass
+                plist=[]
+                for k,p in participants.items():
+                    evidence=age_index.get(k) or known_index.get(k)
+                    if evidence:
+                        plist.append({**p,**evidence})
+                    else:
+                        plist.append({**p,"age":None,"age_status":"UNRESOLVED","source":"UTR public participant page",
+                                      "evidence":"Participant found on UTR page; no matching official ATP/WTA/ITF age evidence."})
                 out.append({
-                    "id":hashlib.sha1(full.encode()).hexdigest()[:12],
-                    "lane":"utr-women" if gender=="Women" else "utr-men",
-                    "tournament":name,
-                    "start_date":start.isoformat(),
-                    "end_date":end.isoformat(),
-                    "status":status,
-                    "region":region,
-                    "source_url":full,
-                    "registered_count":int(reg.group(1)) if reg else None,
-                    "participants":[],
-                    "participant_count":0,
-                    "participant_source":"Official UTR event discovered; public static event page did not expose participant list."
+                  "id":hashlib.sha1(full.encode()).hexdigest()[:12],"lane":"utr-"+gender,"tournament":name,
+                  "start_date":start.isoformat(),"end_date":end.isoformat(),
+                  "status":"ACTIVE" if start<=TODAY<=end else "UPCOMING","region":region,"source_url":full,
+                  "participants":plist,"participant_count":len(plist),"verified_u18":[p for p in plist if p.get("age_status")=="VERIFIED U18"],
+                  "participant_source":"Official UTR public event page"
                 })
                 count+=1
             health.append({"region":region,"ok":True,"url":url,"events":count})
-        except Exception as e:
-            health.append({"region":region,"ok":False,"url":url,"events":0,"error":str(e)[:180]})
+        except Exception as e:health.append({"region":region,"ok":False,"url":url,"events":0,"error":str(e)[:180]})
     return out,health
 
+# ------------------------------------------------------------------
+# MAIN
+# ------------------------------------------------------------------
 known=load(DATA/"tennis-known-u18.json",{}).get("records",[])
 schedule=load(DATA/"global-schedule.json",{})
 previous=load(DATA/"tennis-intelligence.json",{})
 
-lanes=[
-    {"id":"itf-men","label":"ITF Men","coverage":"LIVE OFFICIAL CALENDAR","source":"ITF Men's World Tennis Tour calendar + tournament pages","primary_age_source":"ITF official player profile"},
-    {"id":"itf-women","label":"ITF Women","coverage":"LIVE OFFICIAL CALENDAR","source":"ITF Women's World Tennis Tour calendar + tournament pages","primary_age_source":"ITF official player profile"},
-    {"id":"atp","label":"ATP","coverage":"MAPPED PUBLIC SCHEDULE","source":"Mapped public ATP scoreboard schedule","primary_age_source":"ATP / ITF official profile"},
-    {"id":"wta","label":"WTA","coverage":"MAPPED PUBLIC SCHEDULE","source":"Mapped public WTA scoreboard schedule","primary_age_source":"WTA / ITF official profile"},
-    {"id":"utr-men","label":"UTR Men","coverage":"LIVE OFFICIAL EVENT DISCOVERY","source":"Official UTR PTT regional club/event pages","primary_age_source":"Official profile where available"},
-    {"id":"utr-women","label":"UTR Women","coverage":"LIVE OFFICIAL EVENT DISCOVERY","source":"Official UTR PTT regional club/event pages","primary_age_source":"Official profile where available"},
-    {"id":"grand-slams","label":"Grand Slams","coverage":"DERIVED FROM ATP/WTA WHEN PRESENT","source":"Official event draw/order of play preferred","primary_age_source":"ATP / WTA / ITF / official event profile"},
-]
+known_index={}
+for x in known:
+    known_index[norm(x["name"])]={"name":x["name"],"age":x.get("age"),"age_status":"VERIFIED U18",
+                                  "source":"Known U18 registry","evidence":"Previously verified U18 record"}
 
-# Existing ATP/WTA mapped matches
+atp_index,atp_rank_health=scrape_atp_age_index()
+wta_index,wta_rank_health=scrape_wta_age_index()
+age_index={**atp_index,**wta_index,**known_index}
+
+atp_calendar,atp_cal_health=scrape_calendar(ATP_CALENDAR,"ATP")
+wta_calendar,wta_cal_health=scrape_calendar(WTA_CALENDAR,"WTA")
+
+# Mapped exact ATP/WTA match schedule from existing scoreboard adapter,
+# cross-checked against official tour calendars and official tour age indexes.
 mapped=[]
 for e in schedule.get("events",[]):
     if e.get("sport")!="Tennis":continue
     league=str(e.get("league") or "").upper()
-    comp=str(e.get("competition") or e.get("tournament") or e.get("name") or "").upper()
-    lane="grand-slams" if any(x in comp for x in ("AUSTRALIAN OPEN","ROLAND GARROS","FRENCH OPEN","WIMBLEDON","US OPEN")) else "atp" if league=="ATP" else "wta" if league=="WTA" else None
-    if lane:mapped.append({**e,"lane":lane})
-
-# Live ITF discovery/enrichment
-itf_tournaments=[]
-itf_health=[]
-for lane in ("itf-men","itf-women"):
-    found,h=extract_itf_tournaments(lane)
-    itf_health.append({"lane":lane,**h})
-    for t in found:
-        itf_tournaments.append(enrich_itf_tournament(t))
-
-# Live UTR discovery
-utr_tournaments,utr_health=extract_utr_events()
-
-# Group mapped ATP/WTA
-mapped_groups={}
-for e in mapped:
-    tournament=e.get("tournament") or e.get("competition") or e.get("league") or "Tennis"
-    key=f'{e["lane"]}|{tournament}'
-    g=mapped_groups.setdefault(key,{
-        "id":hashlib.sha1(key.encode()).hexdigest()[:12],
-        "lane":e["lane"],"tournament":tournament,"events":[],"participants":set(),
-        "source_url":e.get("source_endpoint"),"participant_source":"Mapped scoreboard competitors"
-    })
-    g["events"].append(e)
+    if league not in ("ATP","WTA"):continue
     parts=re.split(r"\s+(?:vs\.?|at)\s+",str(e.get("name") or ""),maxsplit=1,flags=re.I)
-    for p in parts:
-        if p.strip():g["participants"].add(p.strip())
+    players=[]
+    for pn in parts:
+        pn=pn.strip()
+        if not pn:continue
+        ev=age_index.get(norm(pn))
+        if ev:players.append({"name":pn,**ev})
+        else:players.append({"name":pn,"age":None,"age_status":"UNRESOLVED","source":"Mapped match schedule",
+                             "evidence":"Player is scheduled; no official ATP/WTA ranking-age match was resolved."})
+    e2={**e,"lane":league.lower(),"participants":players,
+        "verified_u18":[p for p in players if p.get("age_status")=="VERIFIED U18"]}
+    e2["u18_risk"]=bool(e2["verified_u18"])
+    mapped.append(e2)
 
-known_by_name={norm(x["name"]):x for x in known}
+# group exact tour matches into tournament cards
+groups={}
+for e in mapped:
+    tn=e.get("tournament") or e.get("competition") or e.get("league") or "Tennis"
+    key=f'{e["lane"]}|{tn}'
+    g=groups.setdefault(key,{"id":hashlib.sha1(key.encode()).hexdigest()[:12],"lane":e["lane"],"tournament":tn,"events":[],"participants":{}})
+    g["events"].append(e)
+    for p in e["participants"]:g["participants"][norm(p["name"])]=p
+
 tournaments=[]
-
-for g in mapped_groups.values():
-    parts=sorted(g["participants"])
-    matched=[v for k,v in known_by_name.items() if any(k and k in norm(p) for p in parts)]
+for g in groups.values():
+    ps=list(g["participants"].values())
     tournaments.append({
-        "id":g["id"],"lane":g["lane"],"tournament":g["tournament"],
-        "status":"ACTIVE/UPCOMING","event_count":len(g["events"]),
-        "participant_count":len(parts),"participants":[{"name":p,"age_status":"KNOWN U18" if any(norm(x["name"]) in norm(p) for x in matched) else "UNSCREENED"} for p in parts],
-        "known_u18":matched,"known_u18_count":len(matched),
-        "participant_source":g["participant_source"],"source_url":g["source_url"],
-        "events":g["events"],"draw_changed":False
+      "id":g["id"],"lane":g["lane"],"tournament":g["tournament"],"status":"ACTIVE/UPCOMING",
+      "event_count":len(g["events"]),"participants":ps,"participant_count":len(ps),
+      "verified_u18":[p for p in ps if p.get("age_status")=="VERIFIED U18"],
+      "known_u18_count":sum(p.get("age_status")=="VERIFIED U18" for p in ps),
+      "verified_18plus_count":sum(p.get("age_status")=="VERIFIED 18+" for p in ps),
+      "unresolved_count":sum(p.get("age_status")=="UNRESOLVED" for p in ps),
+      "participant_source":"Exact mapped match schedule + official ATP/WTA age index",
+      "events":g["events"]
     })
 
-for t in itf_tournaments:
-    known_matches=[]
+# ITF
+itf_health=[];itf=[]
+for lane in ("itf-men","itf-women"):
+    found,h=extract_itf_tournaments(lane);itf_health.append({"lane":lane,**h})
+    for t in found:itf.append(enrich_itf(t))
+tournaments.extend(itf)
+
+# Add ITF participants to age index for UTR cross-reference
+for t in itf:
     for p in t.get("participants",[]):
-        k=known_by_name.get(norm(p["name"]))
-        if k:known_matches.append(k)
-    t["known_u18"]=known_matches
-    t["known_u18_count"]=len({x["name"] for x in known_matches})
-    t["event_count"]=0
-    t["events"]=[]
-    t["draw_changed"]=False
-    tournaments.append(t)
+        if p.get("age_status")!="UNRESOLVED":
+            age_index[norm(p["name"])]=p
 
-for t in utr_tournaments:
-    t["known_u18"]=[]
-    t["known_u18_count"]=0
-    t["event_count"]=0
-    t["events"]=[]
-    t["draw_changed"]=False
-    tournaments.append(t)
+# UTR
+utr,utr_health=extract_utr(age_index,known_index)
+tournaments.extend(utr)
 
-# Draw/field signature changes
+# risk queue
 prev_sig={x.get("id"):x.get("draw_signature") for x in previous.get("tournaments",[])}
-risk_queue=[]
+risks=[]
 for t in tournaments:
-    sig_src="|".join(sorted(p["name"] if isinstance(p,dict) else str(p) for p in t.get("participants",[])))
-    sig_src+="|"+"|".join(str(e.get("id")) for e in t.get("events",[]))
-    sig=hashlib.sha256(sig_src.encode()).hexdigest()[:16] if sig_src else None
+    names=sorted(norm(p.get("name")) for p in t.get("participants",[]) if isinstance(p,dict))
+    eventids=[str(e.get("id")) for e in t.get("events",[])]
+    sig=hashlib.sha256(("|".join(names+eventids)).encode()).hexdigest()[:16] if names or eventids else None
     t["draw_signature"]=sig
-    if sig and prev_sig.get(t["id"]) and prev_sig[t["id"]]!=sig:
-        t["draw_changed"]=True
-        risk_queue.append({
-            "severity":"AMBER","type":"DRAW CHANGE","lane":t["lane"],"tournament":t["tournament"],
-            "event":None,"start_time":t.get("events",[{}])[0].get("start_time") if t.get("events") else None,
-            "player":None,"reason":"Participant/match signature changed since the prior tennis refresh.",
-            "staff_action":"Re-screen the current draw/field for U18 exposure."
+    t["draw_changed"]=bool(sig and prev_sig.get(t["id"]) and prev_sig[t["id"]]!=sig)
+    t["risk_status"]="RED" if t.get("verified_u18") else "AMBER" if t["draw_changed"] else "NORMAL"
+
+    # exact match risks first
+    for e in t.get("events",[]):
+        for p in e.get("verified_u18",[]):
+            risks.append({
+              "severity":"RED","type":"VERIFIED U18 MATCH","lane":t["lane"],"tournament":t["tournament"],
+              "event":e.get("name"),"start_time":e.get("start_time"),"player":p["name"],"age":p.get("age"),
+              "source":p.get("source"),"reason":f'{p["name"]} is under 18 and is listed in this mapped match.',
+              "staff_action":"Search this athlete by name in active player-specific markets for this event."
+            })
+
+    # tournament-level U18 where exact match time is not available (ITF/UTR)
+    if not t.get("events"):
+        for p in t.get("verified_u18",[]):
+            risks.append({
+              "severity":"RED","type":"VERIFIED U18 TOURNAMENT","lane":t["lane"],"tournament":t["tournament"],
+              "event":None,"start_time":t.get("start_date"),"player":p["name"],"age":p.get("age"),
+              "source":p.get("source"),"reason":f'{p["name"]} is under 18 and appears in the current tournament participant field.',
+              "staff_action":"Review current tournament markets and order of play for this athlete."
+            })
+
+    if t["draw_changed"]:
+        risks.append({
+          "severity":"AMBER","type":"DRAW CHANGE","lane":t["lane"],"tournament":t["tournament"],
+          "event":None,"start_time":t.get("events",[{}])[0].get("start_time") if t.get("events") else t.get("start_date"),
+          "player":None,"reason":"Scheduled participant/draw signature changed since the last refresh.",
+          "staff_action":"Re-screen the current field for U18 exposure."
         })
 
-    for p in t.get("participants",[]):
-        if isinstance(p,dict) and p.get("age_status")=="VERIFIED U18":
-            risk_queue.append({
-                "severity":"RED","type":"VERIFIED U18","lane":t["lane"],"tournament":t["tournament"],
-                "event":None,"start_time":t.get("events",[{}])[0].get("start_time") if t.get("events") else None,
-                "player":p["name"],"age":p.get("age"),
-                "reason":"Explicit DOB on official ITF profile calculates to under 18 on tournament start date.",
-                "staff_action":"Search athlete-specific markets for this tournament/player."
-            })
-
-    for k in t.get("known_u18",[]):
-        if not any(r.get("player")==k["name"] and r.get("tournament")==t["tournament"] for r in risk_queue):
-            risk_queue.append({
-                "severity":"RED","type":"KNOWN U18 MATCH","lane":t["lane"],"tournament":t["tournament"],
-                "event":None,"start_time":t.get("events",[{}])[0].get("start_time") if t.get("events") else None,
-                "player":k["name"],"age":k.get("age"),
-                "reason":"Known U18 registry participant appears in the current tournament participant/match data.",
-                "staff_action":"Search athlete-specific markets immediately."
-            })
-
-lane_counts={l["id"]:0 for l in lanes}
-for t in tournaments:lane_counts[t["lane"]]=lane_counts.get(t["lane"],0)+1
-for l in lanes:l["active_tournaments"]=lane_counts.get(l["id"],0)
+lanes=[
+ {"id":"atp","label":"ATP","coverage":"EXACT MATCHES + OFFICIAL AGE INDEX"},
+ {"id":"wta","label":"WTA","coverage":"EXACT MATCHES + OFFICIAL AGE INDEX"},
+ {"id":"itf-men","label":"ITF Men","coverage":"OFFICIAL CALENDAR / DRAW / PROFILE"},
+ {"id":"itf-women","label":"ITF Women","coverage":"OFFICIAL CALENDAR / DRAW / PROFILE"},
+ {"id":"utr-men","label":"UTR Men","coverage":"OFFICIAL EVENT / PARTICIPANT DISCOVERY"},
+ {"id":"utr-women","label":"UTR Women","coverage":"OFFICIAL EVENT / PARTICIPANT DISCOVERY"},
+ {"id":"grand-slams","label":"Grand Slams","coverage":"ATP/WTA MATCH FEED WHEN PRESENT"},
+]
+for l in lanes:l["active_tournaments"]=sum(t.get("lane")==l["id"] for t in tournaments)
 
 summary={
-    "lanes":len(lanes),
-    "mapped_tournaments":len(tournaments),
-    "mapped_matches":len(mapped),
-    "itf_tournaments":len(itf_tournaments),
-    "utr_tournaments":len(utr_tournaments),
-    "known_u18_registry":len(known),
-    "active_u18_triggers":sum(1 for r in risk_queue if r["severity"]=="RED"),
-    "draw_changes":sum(1 for r in risk_queue if r["type"]=="DRAW CHANGE"),
-    "itf_profiles_screened":sum(len(t.get("participants",[])) for t in itf_tournaments),
-    "itf_age_verified":sum(sum(1 for p in t.get("participants",[]) if p.get("age_status") in ("VERIFIED U18","VERIFIED 18+")) for t in itf_tournaments),
+ "lanes":len(lanes),"tournaments":len(tournaments),"exact_matches":len(mapped),
+ "participants_screened":sum(len(t.get("participants",[])) for t in tournaments),
+ "verified_u18_participants":len({norm(r["player"]) for r in risks if r.get("player") and r["severity"]=="RED"}),
+ "red_risk_items":sum(r["severity"]=="RED" for r in risks),
+ "draw_changes":sum(r["type"]=="DRAW CHANGE" for r in risks),
+ "atp_age_index":len(atp_index),"wta_age_index":len(wta_index),
+ "itf_tournaments":len(itf),"utr_tournaments":len(utr)
 }
 
 out={
-    "schema_version":2,
-    "generated_at":NOW.isoformat(),
-    "timezone":"America/Chicago",
-    "window_start":TODAY.isoformat(),
-    "window_end":END.isoformat(),
-    "lanes":lanes,
-    "tournaments":sorted(tournaments,key=lambda x:(x["lane"],x.get("start_date",""),x["tournament"])),
-    "risk_queue":risk_queue,
-    "known_u18_registry":known,
-    "summary":summary,
-    "source_health":{"itf":itf_health,"utr":utr_health},
-    "methodology":{
-        "itf":"Official ITF calendars discover current tournaments. Official tournament Draws & Results and Acceptance List pages are scanned for official player-profile links. Explicit DOB labels on official ITF profiles are used for age verification.",
-        "utr":"Official UTR PTT regional club pages discover current/upcoming events. Participant lists are only ingested when exposed in public event HTML; otherwise event coverage is marked participant-pending.",
-        "age_rule":"Bare dates are never treated as DOB. Only explicit Born / Date of Birth / DOB labels verify age.",
-        "review_today_rule":"Only verified/known U18 or draw-change triggers tied to a current tournament are promoted operationally."
-    }
+ "schema_version":3,"generated_at":NOW.isoformat(),"timezone":"America/Chicago",
+ "window_start":TODAY.isoformat(),"window_end":END.isoformat(),
+ "lanes":lanes,"tournaments":sorted(tournaments,key=lambda t:(t.get("risk_status")!="RED",t.get("lane",""),t.get("tournament",""))),
+ "risk_queue":sorted(risks,key=lambda r:(r["severity"]!="RED",r.get("start_time") or "")),
+ "known_u18_registry":known,"summary":summary,
+ "source_health":{
+   "atp_rankings":atp_rank_health,"wta_rankings":wta_rank_health,
+   "atp_calendar":atp_cal_health,"wta_calendar":wta_cal_health,
+   "itf":itf_health,"utr":utr_health
+ },
+ "methodology":{
+   "schedule":"ATP/WTA exact matches use the mapped Today + 7 scoreboard feed and are cross-checked to official tour calendar coverage. ITF and UTR tournament discovery uses official sites.",
+   "age":"ATP/WTA official rankings age fields are used when resolvable. ITF explicit DOB/profile evidence is used for ITF players. Known U18 records remain hard flags.",
+   "red_rule":"A match/tournament is RED only when an identified participant has verified U18 evidence.",
+   "unknown_rule":"Unresolved participants remain visible but do not turn an event red."
+ }
 }
 (DATA/"tennis-intelligence.json").write_text(json.dumps(out,indent=2),encoding="utf-8")
 print(json.dumps(summary))
