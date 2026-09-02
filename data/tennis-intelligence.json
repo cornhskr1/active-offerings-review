@@ -1,64 +1,50 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-09-02T21:29:32.929437+00:00",
+  "schema_version": 3,
+  "generated_at": "2026-09-02T21:31:23.731563+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-02",
   "window_end": "2026-09-09",
   "lanes": [
     {
-      "id": "itf-men",
-      "label": "ITF Men",
-      "coverage": "LIVE OFFICIAL CALENDAR",
-      "source": "ITF Men's World Tennis Tour calendar + tournament pages",
-      "primary_age_source": "ITF official player profile",
-      "active_tournaments": 0
-    },
-    {
-      "id": "itf-women",
-      "label": "ITF Women",
-      "coverage": "LIVE OFFICIAL CALENDAR",
-      "source": "ITF Women's World Tennis Tour calendar + tournament pages",
-      "primary_age_source": "ITF official player profile",
-      "active_tournaments": 0
-    },
-    {
       "id": "atp",
       "label": "ATP",
-      "coverage": "MAPPED PUBLIC SCHEDULE",
-      "source": "Mapped public ATP scoreboard schedule",
-      "primary_age_source": "ATP / ITF official profile",
+      "coverage": "EXACT MATCHES + OFFICIAL AGE INDEX",
       "active_tournaments": 1
     },
     {
       "id": "wta",
       "label": "WTA",
-      "coverage": "MAPPED PUBLIC SCHEDULE",
-      "source": "Mapped public WTA scoreboard schedule",
-      "primary_age_source": "WTA / ITF official profile",
+      "coverage": "EXACT MATCHES + OFFICIAL AGE INDEX",
       "active_tournaments": 1
+    },
+    {
+      "id": "itf-men",
+      "label": "ITF Men",
+      "coverage": "OFFICIAL CALENDAR / DRAW / PROFILE",
+      "active_tournaments": 0
+    },
+    {
+      "id": "itf-women",
+      "label": "ITF Women",
+      "coverage": "OFFICIAL CALENDAR / DRAW / PROFILE",
+      "active_tournaments": 0
     },
     {
       "id": "utr-men",
       "label": "UTR Men",
-      "coverage": "LIVE OFFICIAL EVENT DISCOVERY",
-      "source": "Official UTR PTT regional club/event pages",
-      "primary_age_source": "Official profile where available",
+      "coverage": "OFFICIAL EVENT / PARTICIPANT DISCOVERY",
       "active_tournaments": 6
     },
     {
       "id": "utr-women",
       "label": "UTR Women",
-      "coverage": "LIVE OFFICIAL EVENT DISCOVERY",
-      "source": "Official UTR PTT regional club/event pages",
-      "primary_age_source": "Official profile where available",
+      "coverage": "OFFICIAL EVENT / PARTICIPANT DISCOVERY",
       "active_tournaments": 6
     },
     {
       "id": "grand-slams",
       "label": "Grand Slams",
-      "coverage": "DERIVED FROM ATP/WTA WHEN PRESENT",
-      "source": "Official event draw/order of play preferred",
-      "primary_age_source": "ATP / WTA / ITF / official event profile",
+      "coverage": "ATP/WTA MATCH FEED WHEN PRESENT",
       "active_tournaments": 0
     }
   ],
@@ -69,17 +55,21 @@
       "tournament": "ATP",
       "status": "ACTIVE/UPCOMING",
       "event_count": 1,
-      "participant_count": 1,
       "participants": [
         {
           "name": "US Open",
-          "age_status": "UNSCREENED"
+          "age": null,
+          "age_status": "UNRESOLVED",
+          "source": "Mapped match schedule",
+          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
         }
       ],
-      "known_u18": [],
+      "participant_count": 1,
+      "verified_u18": [],
       "known_u18_count": 0,
-      "participant_source": "Mapped scoreboard competitors",
-      "source_url": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+      "verified_18plus_count": 0,
+      "unresolved_count": 1,
+      "participant_source": "Exact mapped match schedule + official ATP/WTA age index",
       "events": [
         {
           "id": "189-2026",
@@ -99,251 +89,226 @@
           "u18_risk": false,
           "restriction_signals": [],
           "restriction_risk": false,
-          "lane": "atp"
+          "lane": "atp",
+          "participants": [
+            {
+              "name": "US Open",
+              "age": null,
+              "age_status": "UNRESOLVED",
+              "source": "Mapped match schedule",
+              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+            }
+          ],
+          "verified_u18": []
         }
       ],
-      "draw_changed": false,
-      "draw_signature": "b07edf94dce87e55"
+      "draw_signature": "a1c597f2fcde36aa",
+      "draw_changed": true,
+      "risk_status": "AMBER"
     },
     {
       "id": "46a62ce3bfe4",
       "lane": "utr-men",
-      "tournament": "UTR PTT Frankfurt Men",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR PTT Frankfurt Men $55 Division Fees Frankfu",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Europe",
       "source_url": "https://app.utrsports.net/events/369304",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "9ed3218b56f8",
       "lane": "utr-men",
-      "tournament": "UTR PTT Saitama Men",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR PTT Saitama Men $55 Division Fees Kawaguchi",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Asia & Pacific",
       "source_url": "https://app.utrsports.net/events/369300",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "e3029fbe0b4d",
       "lane": "utr-men",
-      "tournament": "UTR Pro Fall Slam Miami Men",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR Pro Fall Slam Miami Men Free\u2013$55 Division F",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Americas",
       "source_url": "https://app.utrsports.net/events/368442",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "4e12621b837d",
       "lane": "utr-men",
-      "tournament": "UTR Pro Fall Slam Waco Men",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR Pro Fall Slam Waco Men Free\u2013$55 Division Fe",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Americas",
       "source_url": "https://app.utrsports.net/events/368470",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "d5cf34907a73",
       "lane": "utr-men",
-      "tournament": "UTR PTT Sydney Men",
+      "tournament": "Sep 7 - 13 Sep 7 - 13, 2026 tennis Tournament | Verified Event | UTR PTT Sydney Men $55 Division Fees Penrith, Australia",
       "start_date": "2026-09-07",
       "end_date": "2026-09-13",
       "status": "UPCOMING",
       "region": "Asia & Pacific",
       "source_url": "https://app.utrsports.net/events/371772",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "2673a986882c",
       "lane": "utr-men",
-      "tournament": "UTR Pro Fall Slam Tallahassee Men",
+      "tournament": "Sep 7 - 13 Sep 7 - 13, 2026 tennis Tournament | Verified Event | UTR Pro Fall Slam Tallahassee Men $55 Division Fees Tal",
       "start_date": "2026-09-07",
       "end_date": "2026-09-13",
       "status": "UPCOMING",
       "region": "Americas",
       "source_url": "https://app.utrsports.net/events/368666",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "d9b527dc7814",
       "lane": "utr-women",
-      "tournament": "UTR PTT Frankfurt Women",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR PTT Frankfurt Women $55 Division Fees Frank",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Europe",
       "source_url": "https://app.utrsports.net/events/369305",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "7ff749a2af99",
       "lane": "utr-women",
-      "tournament": "UTR PTT Skopje Women+H",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR PTT Skopje Women+H $55 Division Fees Skopje",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Europe",
       "source_url": "https://app.utrsports.net/events/368529",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "8748e37eaeb6",
       "lane": "utr-women",
-      "tournament": "UTR Pro Fall Slam Miami Women",
+      "tournament": "Aug 31 - Sep 6 Aug 31 - Sep 6, 2026 tennis Tournament | Verified Event | UTR Pro Fall Slam Miami Women Free\u2013$55 Division",
       "start_date": "2026-08-31",
       "end_date": "2026-09-06",
       "status": "ACTIVE",
       "region": "Americas",
       "source_url": "https://app.utrsports.net/events/368443",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "533591c969cf",
       "lane": "utr-women",
-      "tournament": "UTR PTT Sydney Women",
+      "tournament": "Sep 7 - 13 Sep 7 - 13, 2026 tennis Tournament | Verified Event | UTR PTT Sydney Women $55 Division Fees Penrith, Austral",
       "start_date": "2026-09-07",
       "end_date": "2026-09-13",
       "status": "UPCOMING",
       "region": "Asia & Pacific",
       "source_url": "https://app.utrsports.net/events/371774",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "0f802b458ec0",
       "lane": "utr-women",
-      "tournament": "UTR Pro Fall Slam Knoxville Women",
+      "tournament": "Sep 7 - 13 Sep 7 - 13, 2026 tennis Tournament | Verified Event | UTR Pro Fall Slam Knoxville Women $55 Division Fees Kno",
       "start_date": "2026-09-07",
       "end_date": "2026-09-13",
       "status": "UPCOMING",
       "region": "Americas",
       "source_url": "https://app.utrsports.net/events/368447",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "29ed3cfaef9f",
       "lane": "utr-women",
-      "tournament": "UTR Pro Fall Slam Tallahassee Women",
+      "tournament": "Sep 7 - 13 Sep 7 - 13, 2026 tennis Tournament | Verified Event | UTR Pro Fall Slam Tallahassee Women $55 Division Fees T",
       "start_date": "2026-09-07",
       "end_date": "2026-09-13",
       "status": "UPCOMING",
       "region": "Americas",
       "source_url": "https://app.utrsports.net/events/368668",
-      "registered_count": null,
       "participants": [],
       "participant_count": 0,
-      "participant_source": "Official UTR event discovered; public static event page did not expose participant list.",
-      "known_u18": [],
-      "known_u18_count": 0,
-      "event_count": 0,
-      "events": [],
+      "verified_u18": [],
+      "participant_source": "Official UTR public event page",
+      "draw_signature": null,
       "draw_changed": false,
-      "draw_signature": "cbe5cfdf7c2118a9"
+      "risk_status": "NORMAL"
     },
     {
       "id": "3beffb1858de",
@@ -351,29 +316,42 @@
       "tournament": "WTA",
       "status": "ACTIVE/UPCOMING",
       "event_count": 4,
-      "participant_count": 4,
       "participants": [
         {
+          "name": "US Open",
+          "age": null,
+          "age_status": "UNRESOLVED",
+          "source": "Mapped match schedule",
+          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+        },
+        {
           "name": "ATIK Antalya Open",
-          "age_status": "UNSCREENED"
+          "age": null,
+          "age_status": "UNRESOLVED",
+          "source": "Mapped match schedule",
+          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
         },
         {
           "name": "Kia Open",
-          "age_status": "UNSCREENED"
+          "age": null,
+          "age_status": "UNRESOLVED",
+          "source": "Mapped match schedule",
+          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
         },
         {
           "name": "Montreux Nestl\u00e9 Open",
-          "age_status": "UNSCREENED"
-        },
-        {
-          "name": "US Open",
-          "age_status": "UNSCREENED"
+          "age": null,
+          "age_status": "UNRESOLVED",
+          "source": "Mapped match schedule",
+          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
         }
       ],
-      "known_u18": [],
+      "participant_count": 4,
+      "verified_u18": [],
       "known_u18_count": 0,
-      "participant_source": "Mapped scoreboard competitors",
-      "source_url": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "verified_18plus_count": 0,
+      "unresolved_count": 4,
+      "participant_source": "Exact mapped match schedule + official ATP/WTA age index",
       "events": [
         {
           "id": "189-2026",
@@ -393,7 +371,17 @@
           "u18_risk": false,
           "restriction_signals": [],
           "restriction_risk": false,
-          "lane": "wta"
+          "lane": "wta",
+          "participants": [
+            {
+              "name": "US Open",
+              "age": null,
+              "age_status": "UNRESOLVED",
+              "source": "Mapped match schedule",
+              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+            }
+          ],
+          "verified_u18": []
         },
         {
           "id": "1076-2026",
@@ -413,7 +401,17 @@
           "u18_risk": false,
           "restriction_signals": [],
           "restriction_risk": false,
-          "lane": "wta"
+          "lane": "wta",
+          "participants": [
+            {
+              "name": "ATIK Antalya Open",
+              "age": null,
+              "age_status": "UNRESOLVED",
+              "source": "Mapped match schedule",
+              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+            }
+          ],
+          "verified_u18": []
         },
         {
           "id": "964-2026",
@@ -433,7 +431,17 @@
           "u18_risk": false,
           "restriction_signals": [],
           "restriction_risk": false,
-          "lane": "wta"
+          "lane": "wta",
+          "participants": [
+            {
+              "name": "Kia Open",
+              "age": null,
+              "age_status": "UNRESOLVED",
+              "source": "Mapped match schedule",
+              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+            }
+          ],
+          "verified_u18": []
         },
         {
           "id": "998-2026",
@@ -453,14 +461,48 @@
           "u18_risk": false,
           "restriction_signals": [],
           "restriction_risk": false,
-          "lane": "wta"
+          "lane": "wta",
+          "participants": [
+            {
+              "name": "Montreux Nestl\u00e9 Open",
+              "age": null,
+              "age_status": "UNRESOLVED",
+              "source": "Mapped match schedule",
+              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+            }
+          ],
+          "verified_u18": []
         }
       ],
-      "draw_changed": false,
-      "draw_signature": "3a1cee0a5dfda153"
+      "draw_signature": "b1453fcbe213cef6",
+      "draw_changed": true,
+      "risk_status": "AMBER"
     }
   ],
-  "risk_queue": [],
+  "risk_queue": [
+    {
+      "severity": "AMBER",
+      "type": "DRAW CHANGE",
+      "lane": "atp",
+      "tournament": "ATP",
+      "event": null,
+      "start_time": "2026-08-24T04:00Z",
+      "player": null,
+      "reason": "Scheduled participant/draw signature changed since the last refresh.",
+      "staff_action": "Re-screen the current field for U18 exposure."
+    },
+    {
+      "severity": "AMBER",
+      "type": "DRAW CHANGE",
+      "lane": "wta",
+      "tournament": "WTA",
+      "event": null,
+      "start_time": "2026-08-24T04:00Z",
+      "player": null,
+      "reason": "Scheduled participant/draw signature changed since the last refresh.",
+      "staff_action": "Re-screen the current field for U18 exposure."
+    }
+  ],
   "known_u18_registry": [
     {
       "name": "Cruz Hewitt",
@@ -542,17 +584,40 @@
   ],
   "summary": {
     "lanes": 7,
-    "mapped_tournaments": 14,
-    "mapped_matches": 5,
+    "tournaments": 14,
+    "exact_matches": 5,
+    "participants_screened": 5,
+    "verified_u18_participants": 0,
+    "red_risk_items": 0,
+    "draw_changes": 2,
+    "atp_age_index": 0,
+    "wta_age_index": 0,
     "itf_tournaments": 0,
-    "utr_tournaments": 12,
-    "known_u18_registry": 11,
-    "active_u18_triggers": 0,
-    "draw_changes": 0,
-    "itf_profiles_screened": 0,
-    "itf_age_verified": 0
+    "utr_tournaments": 12
   },
   "source_health": {
+    "atp_rankings": {
+      "ok": false,
+      "url": "https://www.atptour.com/en/rankings/singles?rankRange=1-1000",
+      "records": 0,
+      "error": "403 Client Error: Forbidden for url: https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
+    },
+    "wta_rankings": {
+      "ok": true,
+      "url": "https://www.wtatennis.com/rankings/singles/",
+      "records": 0
+    },
+    "atp_calendar": {
+      "ok": false,
+      "url": "https://www.atptour.com/en/tournaments/",
+      "events": 0,
+      "error": "403 Client Error: Forbidden for url: https://www.atptour.com/en/tournaments/"
+    },
+    "wta_calendar": {
+      "ok": true,
+      "url": "https://www.wtatennis.com/tournaments",
+      "events": 0
+    },
     "itf": [
       {
         "lane": "itf-men",
@@ -589,9 +654,9 @@
     ]
   },
   "methodology": {
-    "itf": "Official ITF calendars discover current tournaments. Official tournament Draws & Results and Acceptance List pages are scanned for official player-profile links. Explicit DOB labels on official ITF profiles are used for age verification.",
-    "utr": "Official UTR PTT regional club pages discover current/upcoming events. Participant lists are only ingested when exposed in public event HTML; otherwise event coverage is marked participant-pending.",
-    "age_rule": "Bare dates are never treated as DOB. Only explicit Born / Date of Birth / DOB labels verify age.",
-    "review_today_rule": "Only verified/known U18 or draw-change triggers tied to a current tournament are promoted operationally."
+    "schedule": "ATP/WTA exact matches use the mapped Today + 7 scoreboard feed and are cross-checked to official tour calendar coverage. ITF and UTR tournament discovery uses official sites.",
+    "age": "ATP/WTA official rankings age fields are used when resolvable. ITF explicit DOB/profile evidence is used for ITF players. Known U18 records remain hard flags.",
+    "red_rule": "A match/tournament is RED only when an identified participant has verified U18 evidence.",
+    "unknown_rule": "Unresolved participants remain visible but do not turn an event red."
   }
 }
