@@ -71,6 +71,20 @@ def parse_event(source, ev):
         name=f"{participant_names[0]} vs {participant_names[1]}"
     dt=ev.get("date")
     status,detail=event_status(ev)
+
+    event_league=ev.get("league") or {}
+    competition=(
+        event_league.get("name")
+        or event_league.get("abbreviation")
+        or (comp.get("type") or {}).get("text")
+        or source.get("league")
+    )
+    tournament=(
+        (ev.get("tournament") or {}).get("name")
+        if isinstance(ev.get("tournament"),dict)
+        else ev.get("tournament")
+    ) or competition
+
     venue=(comp.get("venue") or {}).get("fullName")
     address=(comp.get("venue") or {}).get("address") or {}
     location=", ".join(x for x in [address.get("city"),address.get("state"),address.get("country")] if x)
@@ -83,6 +97,8 @@ def parse_event(source, ev):
         "source_id":source["id"],
         "sport":source["sport"],
         "league":source["league"],
+        "competition":competition,
+        "tournament":tournament,
         "region":source.get("region"),
         "name":name,
         "start_time":dt,
@@ -235,13 +251,6 @@ if CATALOG:
                 "area":area,
                 "state":"SCHEDULE ADAPTER PENDING",
                 "note":"Approved catalog area is recognized but not yet included in the automated global schedule feed."
-            })
-    for label, terms in [("KBO",["kbo","korea baseball organization"]),("NPB",["npb","nippon professional baseball"])]:
-        if any(term in CATALOG for term in terms):
-            coverage_gaps.append({
-                "area":label,
-                "state":"SCHEDULE ADAPTER PENDING",
-                "note":f"{label} is approved/in catalog but is not yet mapped to a dependable automated schedule/results adapter."
             })
 
 out={
