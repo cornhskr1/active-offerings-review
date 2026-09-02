@@ -602,6 +602,49 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .tennis-registry-list{display:flex;gap:6px;flex-wrap:wrap;padding:9px 11px}
 .tennis-registry-chip{border:1px solid #dbe4ed;border-radius:999px;padding:5px 8px;font-size:10px;background:#fff}
 .tennis-registry-chip.current{border-color:#efb0aa;background:#fff4f2;color:#8a1c13}
+
+/* Tennis workspace cleanup */
+.tennis-tournament-list{gap:6px}
+.tennis-tournament{border-radius:10px}
+.tennis-tournament>summary{
+  padding:8px 10px!important;
+  min-height:38px;
+}
+.tennis-tournament-title{
+  font-size:12px;
+  line-height:1.2;
+  font-weight:900;
+}
+.tennis-tournament-meta{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:700;
+}
+.tennis-tournament-body{
+  padding:8px 10px!important;
+}
+.tennis-event-row{
+  padding:6px 2px!important;
+  font-size:10px!important;
+}
+.tennis-mini{
+  font-size:9px!important;
+  white-space:nowrap;
+}
+.tennis-profile-table{
+  margin-top:6px!important;
+}
+.tennis-workspace-note{
+  margin:0 0 8px;
+  color:var(--muted);
+  font-size:10px;
+}
+@media(max-width:800px){
+  .tennis-tournament>summary{align-items:flex-start;flex-wrap:wrap}
+  .tennis-mini{width:100%;padding-left:28px}
+}
 </style>
 </head>
 <body>
@@ -2778,6 +2821,36 @@ function ncaaRiskTierClass(rec){
     return (data.lanes||[]).find(x=>x.id===id)?.label || id;
   }
 
+
+  function cleanTournamentTitle(raw,lane){
+    let s=String(raw||'').replace(/\s+/g,' ').trim();
+
+    // UTR raw page-text cleanup.
+    s=s.replace(/^(?:[A-Za-z]{3}\s+\d{1,2}\s*-\s*(?:[A-Za-z]{3}\s+)?\d{1,2}\s*)+/i,'');
+    s=s.replace(/\b2026\s+tennis\s+Tournament\s*\|\s*Verified Event\s*\|\s*/i,'');
+    s=s.replace(/\btennis\s+Tournament\s*\|\s*Verified Event\s*\|\s*/i,'');
+    s=s.split(/\s+(?:Free–?\$?\d+|\$?\d+\s+Division Fees?|Division Fees?|Fees)\b/i)[0].trim();
+    s=s.replace(/\s*\|\s*$/,'').trim();
+
+    // Don't show a useless tour-only tournament name as if it were a real event title.
+    const l=String(lane||'').toUpperCase();
+    if((s==='ATP'||s==='WTA') && l===s){
+      return `${s} Tour — mapped matches`;
+    }
+    return s || `${l||'Tennis'} event`;
+  }
+
+  function compactDateRange(start,end){
+    if(!start)return '';
+    const opts={month:'short',day:'numeric'};
+    const a=new Date(`${start}T12:00:00`);
+    const b=end?new Date(`${end}T12:00:00`):null;
+    const aa=a.toLocaleDateString('en-US',opts);
+    if(!b)return aa;
+    const bb=b.toLocaleDateString('en-US',opts);
+    return `${aa}–${bb}`;
+  }
+
   function renderTennisIntel(){
     const d=TENNIS_INTEL;if(!d)return;
     const s=d.summary||{};
@@ -2814,14 +2887,16 @@ function ncaaRiskTierClass(rec){
       return `<details class="tennis-tournament ${t.risk_status==='RED'?'red-risk':''}" ${t.risk_status==='RED'||t.draw_changed?'open':''}>
         <summary>
           <span class="pq-sport-tag">${te(laneLabel(t.lane,d))}</span>
-          <span class="tennis-tournament-title">${te(t.tournament)}</span>
+          <span class="tennis-tournament-title">
+            ${te(cleanTournamentTitle(t.tournament,laneLabel(t.lane,d)))}
+            <span class="tennis-tournament-meta">${te([compactDateRange(t.start_date,t.end_date),t.location||t.region||''].filter(Boolean).join(' · '))}</span>
+          </span>
           ${t.risk_status==='RED'?'<span class="pill red">U18 RISK</span>':t.draw_changed?'<span class="pill amber">DRAW CHANGE</span>':'<span class="pill green">MONITOR</span>'}
           <span class="tennis-mini">${te(t.event_count||0)} matches · ${te(t.participant_count||0)} participants</span>
         </summary>
         <div class="tennis-tournament-body">
           ${u18.length?`<div class="tennis-u18-banner">U18 EXPOSURE — ${te(u18.map(p=>`${p.name}${p.age!=null?' · age '+p.age:''}`).join(' | '))}</div>`:''}
-          ${t.start_date?`<p><b>Dates:</b> ${te(t.start_date)} → ${te(t.end_date)} · <b>Status:</b> ${te(t.status||'')}</p>`:''}
-          <p><b>Screening source:</b> ${te(t.participant_source||'Not available')}</p>
+          <p class="tennis-workspace-note"><b>Status:</b> ${te(t.status||'MONITOR')} · <b>Screening:</b> ${te(t.participant_source||'Not available')}</p>
           ${(t.events||[]).map(e=>{
             const eu=e.verified_u18||[];
             return `<div class="tennis-event-row">
