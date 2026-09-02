@@ -261,6 +261,32 @@ def enrich_itf(t):
     return t
 
 # ------------------------------------------------------------------
+# UTR display cleanup
+# ------------------------------------------------------------------
+def clean_utr_title(raw):
+    txt=re.sub(r'\s+',' ',str(raw or '')).strip()
+
+    # Remove repeated leading date ranges.
+    txt=re.sub(r'^(?:[A-Za-z]{3}\s+\d{1,2}\s*-\s*(?:[A-Za-z]{3}\s+)?\d{1,2}\s*)+','',txt,flags=re.I)
+    txt=re.sub(r'^\d{1,2}\s+[A-Za-z]{3}\s*-\s*\d{1,2}\s+[A-Za-z]{3}\s*','',txt,flags=re.I)
+
+    # Remove generic page furniture.
+    txt=re.sub(r'\b2026\s+tennis\s+Tournament\s*\|\s*Verified Event\s*\|\s*','',txt,flags=re.I)
+    txt=re.sub(r'\btennis\s+Tournament\s*\|\s*Verified Event\s*\|\s*','',txt,flags=re.I)
+
+    # Trim fee / division boilerplate.
+    txt=re.split(r'\s+(?:Free–?\$?\d+|\$?\d+\s+Division Fees?|Division Fees?|Fees)\b',txt,1,flags=re.I)[0]
+    txt=re.sub(r'\s*\|\s*$','',txt).strip(" -|")
+
+    # Remove a duplicated trailing city if it simply repeats the event name.
+    words=txt.split()
+    if len(words)>=2 and words[-1].lower() in {w.lower() for w in words[:-1]}:
+        # only remove a single obvious repeat at the end
+        txt=" ".join(words[:-1])
+
+    return txt.strip()
+
+# ------------------------------------------------------------------
 # UTR: discover events + attempt public participant extraction
 # ------------------------------------------------------------------
 def parse_utr_dates(text):
@@ -287,7 +313,7 @@ def extract_utr(age_index,known_index):
                 if full in seen:continue
                 seen.add(full)
                 gender="women" if re.search(r'\bwomen\b',txt,re.I) else "men"
-                name=re.sub(r'\s+',' ',txt).strip()[:120]
+                name=clean_utr_title(txt)[:100]
                 participants={}
                 try:
                     esoup=BeautifulSoup(get(full,20).text,"html.parser")
@@ -307,10 +333,15 @@ def extract_utr(age_index,known_index):
                     else:
                         plist.append({**p,"age":None,"age_status":"UNRESOLVED","source":"UTR public participant page",
                                       "evidence":"Participant found on UTR page; no matching official ATP/WTA/ITF age evidence."})
+                city=None
+                cm=re.search(r'(?:UTR(?: PTT| Pro Fall Slam)?\s+)([A-Za-z .\'-]+?)(?:\s+(?:Men|Women)(?:\+H)?$)',name,re.I)
+                if cm:
+                    city=cm.group(1).strip()
+
                 out.append({
                   "id":hashlib.sha1(full.encode()).hexdigest()[:12],"lane":"utr-"+gender,"tournament":name,
                   "start_date":start.isoformat(),"end_date":end.isoformat(),
-                  "status":"ACTIVE" if start<=TODAY<=end else "UPCOMING","region":region,"source_url":full,
+                  "status":"ACTIVE" if start<=TODAY<=end else "UPCOMING","region":region,"location":city or region,"source_url":full,
                   "participants":plist,"participant_count":len(plist),"verified_u18":[p for p in plist if p.get("age_status")=="VERIFIED U18"],
                   "participant_source":"Official UTR public event page"
                 })
