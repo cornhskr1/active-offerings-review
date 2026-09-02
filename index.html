@@ -578,6 +578,20 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .tennis-method{font-size:10px;color:var(--muted);margin-top:7px}
 @media(max-width:900px){.tennis-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:650px){.tennis-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tennis-event-row{grid-template-columns:1fr}}
+
+.tennis-source-link{font-size:10px;font-weight:800}
+.tennis-profile-table{width:100%;font-size:10px;margin-top:8px}
+.tennis-profile-table th{font-size:9px}
+.tennis-profile-table td{vertical-align:top}
+.tennis-source-health{display:grid;gap:6px;margin-top:8px}
+.tennis-source-health-row{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:10px;background:#fafbfd}
+.tennis-verified-count{font-weight:900;color:#365d41}
+
+.tennis-tournament.red-risk{border:2px solid #b42318;box-shadow:0 0 0 2px rgba(180,35,24,.05)}
+.tennis-tournament.red-risk>summary{background:#fff1f0}
+.tennis-u18-banner{margin:8px 0;padding:9px 10px;border-radius:8px;background:#fff1f0;border:1px solid #f5b7b1;color:#8a1c13;font-weight:900;font-size:11px}
+.tennis-source-badge{font-size:9px;color:var(--muted);font-weight:750}
+.tennis-participant-status{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -950,11 +964,6 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="callout amber">
 <b>Tennis rule:</b> an approved tournament is never treated as clear simply because the event itself is approved. Player-specific markets must still be screened for U18 participants, and missing DOB information remains a review condition.
 </div>
-
-
-
-
-
 <div class="card">
 <div class="section-title">Tennis Coverage Summary</div>
 <div class="small" id="tennisIntelStamp">Loading tennis intelligence…</div>
@@ -979,6 +988,10 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="chip-list" id="tennisKnownU18"></div>
 </div>
 <div class="card">
+<div class="section-title">Live Tennis Source Health</div>
+<p class="small">Shows whether the official ITF calendars/tournament pages and UTR regional event pages were successfully reached on the latest refresh.</p>
+<div class="tennis-source-health" id="tennisSourceHealth"></div>
+</div><div class="card">
 <div class="section-title">Review Method</div>
 <div class="pipeline tennis-pipeline">
 <div><b>1</b><span>Approved event</span></div><div class="arrow">→</div>
@@ -2760,11 +2773,11 @@ function ncaaRiskTierClass(rec){
     const s=d.summary||{};
     const sum=document.getElementById('tennisIntelSummary');
     if(sum) sum.innerHTML=[
-      [s.lanes||0,'lanes'],
-      [s.mapped_tournaments||0,'mapped tournaments'],
-      [s.mapped_matches||0,'mapped matches'],
-      [s.known_u18_registry||0,'known U18'],
-      [s.active_u18_matches||0,'U18 match triggers'],
+      [s.tournaments||0,'Today + 7 tournaments'],
+      [s.exact_matches||0,'exact matches'],
+      [s.participants_screened||0,'participants screened'],
+      [s.verified_u18_participants||0,'verified U18 players'],
+      [s.red_risk_items||0,'red risk items'],
       [s.draw_changes||0,'draw changes']
     ].map(x=>`<div class="tennis-summary-box"><b>${te(x[0])}</b><span>${te(x[1])}</span></div>`).join('');
 
@@ -2786,20 +2799,47 @@ function ncaaRiskTierClass(rec){
       </details>`).join('');
 
     const tournaments=document.getElementById('tennisIntelTournaments');
-    if(tournaments) tournaments.innerHTML=(d.tournaments||[]).length?(d.tournaments||[]).map(t=>`
-      <details class="tennis-tournament" ${t.known_u18_count||t.draw_changed?'open':''}>
+    if(tournaments) tournaments.innerHTML=(d.tournaments||[]).length?(d.tournaments||[]).map(t=>{
+      const u18=t.verified_u18||[];
+      return `<details class="tennis-tournament ${t.risk_status==='RED'?'red-risk':''}" ${t.risk_status==='RED'||t.draw_changed?'open':''}>
         <summary>
           <span class="pq-sport-tag">${te(laneLabel(t.lane,d))}</span>
           <span class="tennis-tournament-title">${te(t.tournament)}</span>
-          <span class="tennis-mini">${te(t.event_count)} matches · ${te(t.known_u18_count)} known U18${t.draw_changed?' · DRAW CHANGED':''}</span>
+          ${t.risk_status==='RED'?'<span class="pill red">U18 RISK</span>':t.draw_changed?'<span class="pill amber">DRAW CHANGE</span>':'<span class="pill green">MONITOR</span>'}
+          <span class="tennis-mini">${te(t.event_count||0)} matches · ${te(t.participant_count||0)} participants</span>
         </summary>
         <div class="tennis-tournament-body">
-          ${t.location?`<p><b>Location:</b> ${te(t.location)}</p>`:''}
-          <p><b>Participants observed:</b> ${te(t.participant_count)} · <b>Today:</b> ${te(t.today_count)} · <b>Live:</b> ${te(t.live_count)}</p>
-          ${t.known_u18_count?`<p><b>Known U18:</b> ${te((t.known_u18||[]).map(x=>`${x.name} (${x.age})`).join(', '))}</p>`:''}
-          ${(t.events||[]).map(e=>`<div class="tennis-event-row"><span>${te(ttime(e.start_time))}</span><span><b>${te(e.name)}</b></span><span class="pill ${e.verified_u18_risk?'red':e.status==='LIVE'?'amber':'green'}">${e.verified_u18_risk?'U18 RISK':te(e.status||'UPCOMING')}</span></div>`).join('')}
+          ${u18.length?`<div class="tennis-u18-banner">U18 EXPOSURE — ${te(u18.map(p=>`${p.name}${p.age!=null?' · age '+p.age:''}`).join(' | '))}</div>`:''}
+          ${t.start_date?`<p><b>Dates:</b> ${te(t.start_date)} → ${te(t.end_date)} · <b>Status:</b> ${te(t.status||'')}</p>`:''}
+          <p><b>Screening source:</b> ${te(t.participant_source||'Not available')}</p>
+          ${(t.events||[]).map(e=>{
+            const eu=e.verified_u18||[];
+            return `<div class="tennis-event-row">
+              <span>${te(ttime(e.start_time))}</span>
+              <span><b>${te(e.name)}</b>${eu.length?`<div class="tennis-source-badge">U18: ${te(eu.map(x=>`${x.name} (${x.age})`).join(', '))}</div>`:''}</span>
+              <span class="pill ${eu.length?'red':e.status==='LIVE'?'amber':'green'}">${eu.length?'U18 RISK':te(e.status||'UPCOMING')}</span>
+            </div>`;
+          }).join('')}
+          ${(t.participants||[]).length?`<div style="overflow:auto"><table class="tennis-profile-table"><thead><tr><th>Participant</th><th>Age</th><th>Status</th><th>Source / Evidence</th></tr></thead><tbody>${(t.participants||[]).map(p=>`<tr>
+            <td><b>${te(p.name||p)}</b></td>
+            <td>${te(p.age??'—')}</td>
+            <td class="tennis-participant-status"><span class="pill ${p.age_status==='VERIFIED U18'?'red':p.age_status==='VERIFIED 18+'?'green':'amber'}">${te(p.age_status||'UNRESOLVED')}</span></td>
+            <td><b>${te(p.source||'')}</b>${p.evidence?` · ${te(p.evidence)}`:''}</td>
+          </tr>`).join('')}</tbody></table></div>`:''}
         </div>
-      </details>`).join(''):'<div class="empty-state">No mapped ATP/WTA tennis events are currently present in the Today + 7 schedule feed.</div>';
+      </details>`;
+    }).join(''):'<div class="empty-state">No tennis tournaments were returned for the Today + 7 window.</div>';
+
+    const health=document.getElementById('tennisSourceHealth');
+    if(health){
+      const rows=[];
+      [['ATP rankings',d.source_health?.atp_rankings],['WTA rankings',d.source_health?.wta_rankings],['ATP calendar',d.source_health?.atp_calendar],['WTA calendar',d.source_health?.wta_calendar]].forEach(([label,x])=>{
+        if(x) rows.push(`<div class="tennis-source-health-row"><b>${te(label)}</b> · <span class="pill ${x.ok?'green':'red'}">${x.ok?'OK':'SOURCE ISSUE'}</span> · ${te(x.records??x.events??0)} records</div>`);
+      });
+      (d.source_health?.itf||[]).forEach(x=>rows.push(`<div class="tennis-source-health-row"><b>${te(laneLabel(x.lane,d))}</b> · <span class="pill ${x.ok?'green':'red'}">${x.ok?'OK':'SOURCE ISSUE'}</span> · ${te(x.events||0)} tournaments</div>`));
+      (d.source_health?.utr||[]).forEach(x=>rows.push(`<div class="tennis-source-health-row"><b>UTR ${te(x.region)}</b> · <span class="pill ${x.ok?'green':'red'}">${x.ok?'OK':'SOURCE ISSUE'}</span> · ${te(x.events||0)} events</div>`));
+      health.innerHTML=rows.join('');
+    }
 
     const risks=document.getElementById('tennisIntelRisks');
     if(risks) risks.innerHTML=(d.risk_queue||[]).length?(d.risk_queue||[]).map(r=>`
