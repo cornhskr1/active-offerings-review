@@ -549,6 +549,88 @@ print(json.dumps({
 }))
 
 
+
+CLASS_HIGH = {
+    "freshman", "true freshman", "first year", "first-year", "early enrollee",
+    "early-enrollee", "reclassified", "reclass"
+}
+CLASS_MEDIUM = {
+    "redshirt freshman", "rs freshman", "r-fr", "rfr", "sophomore", "soph",
+    "redshirt sophomore", "rs sophomore"
+}
+CLASS_LOW = {
+    "junior", "jr", "redshirt junior", "senior", "sr", "redshirt senior",
+    "fifth year", "fifth-year", "5th year", "graduate", "grad",
+    "post-baccalaureate", "post baccalaureate"
+}
+
+def normalize_class_text(value):
+    text=str(value or "").strip().lower()
+    return re.sub(r"\s+"," ",text)
+
+def classify_class_history(class_text=None, bio_text=None):
+    cls=normalize_class_text(class_text)
+    bio=normalize_class_text(bio_text)
+    hay=f"{cls} {bio}".strip()
+
+    if any(term in hay for term in ("reclass","skipped senior year","early enrollee","early-enrollee")):
+        return "HIGH","Reclassification/early-enrollee signal"
+
+    low_terms=(
+        "fifth year","fifth-year","5th year","graduate","grad student",
+        "graduate student","post-baccalaureate","post baccalaureate",
+        "three seasons","3 seasons","four seasons","4 seasons",
+        "two seasons","2 seasons","multi-year transfer","multi year transfer"
+    )
+    if any(term in hay for term in low_terms):
+        return "LOW","Multi-year collegiate history"
+
+    if any(term == cls or term in cls for term in CLASS_LOW):
+        return "LOW",f"Official roster class: {class_text}"
+
+    if any(term == cls or term in cls for term in CLASS_HIGH):
+        return "HIGH",f"Official roster class: {class_text}"
+
+    if any(term == cls or term in cls for term in CLASS_MEDIUM):
+        return "MEDIUM",f"Official roster class: {class_text}"
+
+    if "transfer" in hay:
+        return "MEDIUM","Transfer status; prior collegiate history not fully resolved"
+
+    return "UNKNOWN","No reliable DOB or class/history risk signal found"
+
+def apply_class_history_risk(record):
+    if not isinstance(record,dict):
+        return record
+
+    # Never override actual verified age evidence.
+    if record.get("verified_u18") is True or record.get("age_status")=="VERIFIED U18":
+        record["u18_risk_tier"]="VERIFIED_U18"
+        record["u18_risk_reason"]="Verified age evidence"
+        return record
+
+    if record.get("verified_18_plus") is True or record.get("age_status")=="VERIFIED 18+":
+        record["u18_risk_tier"]="VERIFIED_18_PLUS"
+        record["u18_risk_reason"]="Verified age evidence"
+        return record
+
+    class_text=(
+        record.get("class")
+        or record.get("class_year")
+        or record.get("academic_year")
+        or record.get("year")
+    )
+    bio_text=" ".join(str(record.get(k) or "") for k in (
+        "bio","bio_text","notes","history","transfer_history","age_evidence"
+    ))
+
+    tier,reason=classify_class_history(class_text,bio_text)
+    record["u18_risk_tier"]=tier
+    record["u18_risk_reason"]=reason
+    record["class_history_basis"]={"class":class_text,"reason":reason}
+    return record
+
+
 def enrich_age_review_file():
     p = DATA / "ncaa-football-age-review.json"
     if not p.exists():
@@ -702,5 +784,13 @@ def apply_staff_vetting_overrides():
     review_path.write_text(json.dumps(data,indent=2,ensure_ascii=False),encoding="utf-8")
 
 # Run both post-processors after the scraper output exists.
+
+# Post-processing order is intentional:
+# 1. Class/history risk enrichment
+# 2. Staff-reviewed age/class overrides
+
+# Post-processing order is intentional:
+# 1. Class/history risk enrichment
+# 2. Staff-reviewed age/class overrides
 enrich_age_review_file()
 apply_staff_vetting_overrides()
