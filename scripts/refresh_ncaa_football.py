@@ -596,3 +596,111 @@ def enrich_age_review_file():
     p.write_text(json.dumps(data,indent=2,ensure_ascii=False),encoding="utf-8")
 
 
+
+
+def _staff_norm_name(value):
+    value=str(value or "").lower().replace("’","'").replace("“",'"').replace("”",'"')
+    value=re.sub(r'["\']',"",value)
+    value=re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?","",value)
+    value=re.sub(r"[^a-z0-9]+"," ",value)
+    return re.sub(r"\s+"," ",value).strip()
+
+def apply_staff_vetting_overrides():
+    override_path=DATA/"ncaa-football-staff-vetting.json"
+    review_path=DATA/"ncaa-football-age-review.json"
+    if not override_path.exists() or not review_path.exists():
+        return
+
+    overrides=json.loads(override_path.read_text(encoding="utf-8")).get("records",[])
+    data=json.loads(review_path.read_text(encoding="utf-8"))
+    by_name={_staff_norm_name(x.get("athlete")):x for x in overrides if x.get("athlete")}
+
+    # Gather every generated athlete record, update matches, and preserve team/source fields.
+    matched={}
+    def update(rec):
+        if not isinstance(rec,dict):
+            return rec
+        key=_staff_norm_name(rec.get("name") or rec.get("athlete"))
+        ov=by_name.get(key)
+        if not ov:
+            return rec
+        matched[key]=rec
+        rec["staff_vetted"]=True
+        rec["staff_vetting_basis"]=ov.get("basis")
+        rec["verification_status"]=ov.get("verification_status")
+        rec["u18_risk_tier"]=ov.get("risk_tier")
+        rec["u18_risk_reason"]=ov.get("basis")
+        rec["age_evidence"]=ov.get("basis")
+
+        if ov.get("age") is not None:
+            rec["calculated_age"]=ov.get("age")
+            rec["age"]=ov.get("age")
+            rec["verified_18_plus"]=True
+            rec["verified_u18"]=False
+            rec["age_status"]="VERIFIED 18+"
+        else:
+            # Critical rule: class-only research never verifies age.
+            rec["verified_18_plus"]=False
+            rec["verified_u18"]=False
+            if ov.get("class"):
+                rec["class"]=ov.get("class")
+                rec["class_year"]=ov.get("class")
+            if ov.get("verification_status")=="UNVERIFIED":
+                rec["age_status"]="UNVERIFIED"
+        return rec
+
+    for bucket in ("verified_u18","verified_18plus","age_review_needed","unresolved","players","records","candidates"):
+        vals=data.get(bucket)
+        if isinstance(vals,list):
+            data[bucket]=[update(x) for x in vals]
+
+    # Move exact-age 18+ staff reviews into verified_18plus.
+    verified18=data.get("verified_18plus") if isinstance(data.get("verified_18plus"),list) else []
+    exact_names={_staff_norm_name(x.get("athlete")) for x in overrides if x.get("verification_status")=="VERIFIED_18_PLUS"}
+
+    def is_exact_verified(rec):
+        return _staff_norm_name(rec.get("name") or rec.get("athlete")) in exact_names
+
+    # Pull matching rows from unresolved buckets into verified list.
+    for bucket in ("age_review_needed","unresolved"):
+        vals=data.get(bucket) if isinstance(data.get(bucket),list) else []
+        keep=[]
+        for rec in vals:
+            if isinstance(rec,dict) and is_exact_verified(rec):
+                if not any(_staff_norm_name(x.get("name") or x.get("athlete"))==_staff_norm_name(rec.get("name") or rec.get("athlete")) for x in verified18 if isinstance(x,dict)):
+                    verified18.append(rec)
+            else:
+                keep.append(rec)
+        data[bucket]=keep
+
+    data["verified_18plus"]=verified18
+    data["verified_18plus_count"]=len(verified18)
+    data["age_review_needed_count"]=len(data.get("age_review_needed") or [])
+    data["unresolved_count"]=len(data.get("unresolved") or [])
+
+    # Dedicated staff audit trail. Freshmen remain visibly UNVERIFIED.
+    staff_rows=[]
+    for ov in overrides:
+        staff_rows.append({
+            "name":ov.get("athlete"),
+            "age":ov.get("age"),
+            "class":ov.get("class"),
+            "verification_status":ov.get("verification_status"),
+            "u18_risk_tier":ov.get("risk_tier"),
+            "u18_risk_reason":ov.get("basis"),
+            "staff_vetted":True,
+            "staff_vetting_basis":ov.get("basis")
+        })
+    data["staff_vetted_records"]=staff_rows
+
+    counts={}
+    for row in staff_rows:
+        tier=row.get("u18_risk_tier") or "UNKNOWN"
+        counts[tier]=counts.get(tier,0)+1
+    data["staff_vetting_counts"]=counts
+
+    review_path.write_text(json.dumps(data,indent=2,ensure_ascii=False),encoding="utf-8")
+
+# Run both post-processors after the scraper output exists.
+enrich_age_review_file()
+apply_staff_vetting_overrides()
