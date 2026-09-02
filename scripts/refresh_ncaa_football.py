@@ -569,35 +569,32 @@ def normalize_class_text(value):
     return re.sub(r"\s+"," ",text)
 
 def classify_class_history(class_text=None, bio_text=None):
+    """Freshman = HIGH; Sophomore or above = LOW; no usable class = UNKNOWN."""
     cls=normalize_class_text(class_text)
     bio=normalize_class_text(bio_text)
     hay=f"{cls} {bio}".strip()
 
-    if any(term in hay for term in ("reclass","skipped senior year","early enrollee","early-enrollee")):
-        return "HIGH","Reclassification/early-enrollee signal"
+    if any(term in hay for term in (
+        "reclass","skipped senior year","early enrollee","early-enrollee",
+        "true freshman","redshirt freshman","rs freshman","r-fr","rfr","freshman"
+    )):
+        return "HIGH", f"Freshman/high-risk class status: {class_text or 'reclassification signal'}"
 
-    low_terms=(
+    if any(term in hay for term in (
+        "sophomore","soph","redshirt sophomore","rs sophomore",
+        "junior","redshirt junior","senior","redshirt senior",
         "fifth year","fifth-year","5th year","graduate","grad student",
         "graduate student","post-baccalaureate","post baccalaureate",
-        "three seasons","3 seasons","four seasons","4 seasons",
-        "two seasons","2 seasons","multi-year transfer","multi year transfer"
-    )
-    if any(term in hay for term in low_terms):
-        return "LOW","Multi-year collegiate history"
-
-    if any(term == cls or term in cls for term in CLASS_LOW):
-        return "LOW",f"Official roster class: {class_text}"
-
-    if any(term == cls or term in cls for term in CLASS_HIGH):
-        return "HIGH",f"Official roster class: {class_text}"
-
-    if any(term == cls or term in cls for term in CLASS_MEDIUM):
-        return "MEDIUM",f"Official roster class: {class_text}"
+        "two seasons","2 seasons","three seasons","3 seasons","four seasons","4 seasons",
+        "multi-year transfer","multi year transfer"
+    )):
+        return "LOW", f"Sophomore-or-above / multi-year collegiate status: {class_text or 'history resolved'}"
 
     if "transfer" in hay:
-        return "MEDIUM","Transfer status; prior collegiate history not fully resolved"
+        return "UNKNOWN","Transfer status found, but class/age history is not resolved"
 
-    return "UNKNOWN","No reliable DOB or class/history risk signal found"
+    return "UNKNOWN","No reliable DOB/age or class status found"
+
 
 def apply_class_history_risk(record):
     if not isinstance(record,dict):
@@ -669,9 +666,9 @@ def enrich_age_review_file():
     data["risk_tier_counts"]=counts
     data["risk_methodology"]={
         "purpose":"Risk-screen unresolved NCAA age cases when exact DOB is unavailable.",
-        "high":["Freshman","True Freshman","Reclassified","Early Enrollee"],
-        "medium":["Redshirt Freshman","Sophomore","Transfer with limited prior history"],
-        "low":["Junior","Senior","Fifth Year","Graduate","Multi-year collegiate history"],
+        "high":["Freshman","Redshirt Freshman","True Freshman","Reclassified","Early Enrollee"],
+        "medium":[],
+        "low":["Sophomore","Redshirt Sophomore","Junior","Senior","Fifth Year","Graduate","Multi-year collegiate history"],
         "important":"Class/history is a screening heuristic and is not age verification."
     }
 

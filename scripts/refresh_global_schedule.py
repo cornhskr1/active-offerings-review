@@ -236,6 +236,13 @@ if CATALOG:
                 "state":"SCHEDULE ADAPTER PENDING",
                 "note":"Approved catalog area is recognized but not yet included in the automated global schedule feed."
             })
+    for label, terms in [("KBO",["kbo","korea baseball organization"]),("NPB",["npb","nippon professional baseball"])]:
+        if any(term in CATALOG for term in terms):
+            coverage_gaps.append({
+                "area":label,
+                "state":"SCHEDULE ADAPTER PENDING",
+                "note":f"{label} is approved/in catalog but is not yet mapped to a dependable automated schedule/results adapter."
+            })
 
 out={
     "schema_version":1,
