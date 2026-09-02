@@ -17,7 +17,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -32,6 +32,9 @@ jobs:
         run: |
           git fetch origin main
           git reset --hard origin/main
+
+      - name: Install tennis dependencies
+        run: python3 -m pip install --quiet requests beautifulsoup4
 
       - name: Refresh tennis intelligence
         run: python3 scripts/refresh_tennis_intelligence.py
