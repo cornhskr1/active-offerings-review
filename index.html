@@ -552,6 +552,32 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .ncaa-conf-name{flex:1}.ncaa-conf-meta{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .ncaa-conf-chip{border:1px solid #dbe4ed;background:#fff;border-radius:999px;padding:3px 7px;font-size:9px;font-weight:850;color:var(--muted)}
 .ncaa-conf-body{padding:0 10px 10px;overflow:auto}.ncaa-conf-body table{width:100%;font-size:11px}.ncaa-conf-body th{font-size:9px}
+
+/* Tennis Intelligence */
+.tennis-summary-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:10px 0}
+.tennis-summary-box{border:1px solid var(--line);border-radius:10px;background:#f8fafc;padding:9px 10px}
+.tennis-summary-box b{display:block;font-size:18px;color:var(--nav)}
+.tennis-summary-box span{font-size:9px;text-transform:uppercase;letter-spacing:.045em;color:var(--muted);font-weight:850}
+.tennis-lane-list,.tennis-tournament-list{display:grid;gap:8px}
+.tennis-lane,.tennis-tournament{border:1px solid var(--line);border-radius:11px;background:#fff;overflow:hidden}
+.tennis-lane>summary,.tennis-tournament>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:10px 12px;background:#f8fafc;font-weight:900;color:var(--nav)}
+.tennis-lane>summary::-webkit-details-marker,.tennis-tournament>summary::-webkit-details-marker{display:none}
+.tennis-lane>summary:before,.tennis-tournament>summary:before{content:"▸";font-size:10px;color:var(--muted)}
+.tennis-lane[open]>summary:before,.tennis-tournament[open]>summary:before{content:"▾"}
+.tennis-lane-title,.tennis-tournament-title{flex:1}
+.tennis-mini{font-size:10px;color:var(--muted);font-weight:750}
+.tennis-lane-body,.tennis-tournament-body{padding:9px 12px}
+.tennis-event-row{display:grid;grid-template-columns:80px 1fr auto;gap:8px;align-items:center;padding:7px 2px;border-top:1px solid #edf1f5;font-size:11px}
+.tennis-event-row:first-child{border-top:0}
+.tennis-risk-list{display:grid;gap:8px}
+.tennis-risk-item{border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#fff}
+.tennis-risk-item.red{border-left:5px solid #b42318}
+.tennis-risk-item.amber{border-left:5px solid #b7791f}
+.tennis-risk-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tennis-risk-head b{flex:1}
+.tennis-method{font-size:10px;color:var(--muted);margin-top:7px}
+@media(max-width:900px){.tennis-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.tennis-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tennis-event-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -924,56 +950,44 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="callout amber">
 <b>Tennis rule:</b> an approved tournament is never treated as clear simply because the event itself is approved. Player-specific markets must still be screened for U18 participants, and missing DOB information remains a review condition.
 </div>
+
+
+
+
+
 <div class="card">
-<div class="section-title">Approved Tennis Monitoring Lanes</div>
-<div class="tennis-monitor-grid">
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>ITF Men</h3><p>Official ITF tournament calendar, draws, acceptance lists, and player profiles.</p><b>Primary age source:</b><span> ITF official player profile</span></div>
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>ITF Women</h3><p>Official ITF tournament calendar, draws, acceptance lists, and player profiles.</p><b>Primary age source:</b><span> ITF official player profile</span></div>
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>ATP</h3><p>ATP Tour and ATP Challenger current tournaments, draws, and player profiles.</p><b>Age fallback:</b><span> ITF profile where available</span></div>
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>WTA</h3><p>WTA current tournaments, draws, and player profiles.</p><b>Age fallback:</b><span> ITF profile where available</span></div>
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>UTR Men</h3><p>UTR Pro Tennis Tour event schedule and participant field.</p><b>Coverage concern:</b><span> DOB/profile completeness can be limited</span></div>
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>UTR Women</h3><p>UTR Pro Tennis Tour event schedule and participant field.</p><b>Coverage concern:</b><span> DOB/profile completeness can be limited</span></div>
-<div class="tennis-monitor-card"><span class="pill amber">HIGH</span><h3>Grand Slams</h3><p>Australian Open, Roland-Garros, Wimbledon, and US Open draws / order of play.</p><b>Age sources:</b><span> ATP / WTA / ITF / official event profiles</span></div>
-</div>
+<div class="section-title">Tennis Coverage Summary</div>
+<div class="small" id="tennisIntelStamp">Loading tennis intelligence…</div>
+<div class="tennis-summary-grid" id="tennisIntelSummary"></div>
 </div>
 <div class="card">
-<div class="section-title">Tennis Review Workflow</div>
-<div class="pipeline tennis-pipeline">
-<div><b>1</b><span>Approved catalog event</span></div><div class="arrow">→</div>
-<div><b>2</b><span>Current draw / entry list</span></div><div class="arrow">→</div>
-<div><b>3</b><span>Official player profile</span></div><div class="arrow">→</div>
-<div><b>4</b><span>Age on event date</span></div><div class="arrow">→</div>
-<div><b>5</b><span>Review Today trigger</span></div>
+<div class="section-title">Monitoring Lanes</div>
+<p class="small">Seven approved monitoring lanes. Mapped lanes show current Today + 7 tournament/match activity; unmapped lanes remain visible as source work instead of being treated as clear.</p>
+<div class="tennis-lane-list" id="tennisIntelLanes"></div>
 </div>
+<div class="card">
+<div class="section-title">Current Tournament Workspace</div>
+<p class="small">Expand a tournament to see mapped matches, participant names, known U18 exposure, and draw-change status.</p>
+<div class="tennis-tournament-list" id="tennisIntelTournaments"></div>
 </div>
 <div class="card">
 <div class="section-title">Current Tennis Risk Queue</div>
-<div class="tennis-risk-grid">
-<div>
-<span class="pill red">VERIFIED U18</span>
-<h3>Known U18 participants</h3>
-<p>Any verified U18 participant in an active or upcoming approved event should appear in Review Today beside the event/match.</p>
-</div>
-<div>
-<span class="pill amber">AGE REVIEW</span>
-<h3>Unresolved DOB / profile</h3>
-<p>Player appears in a draw or entry list but age could not be verified from the preferred official source.</p>
-</div>
-<div>
-<span class="pill amber">DRAW CHANGE</span>
-<h3>Late entrant / qualifier</h3>
-<p>Qualifiers, lucky losers, withdrawals, and replacements can change the U18 exposure after the initial field review.</p>
-</div>
-<div>
-<span class="pill amber">SOURCE ISSUE</span>
-<h3>Stale or incomplete field</h3>
-<p>Official source exists but has not yet published a complete/current participant list.</p>
-</div>
-</div>
+<div class="tennis-risk-list" id="tennisIntelRisks"></div>
 </div>
 <div class="card">
 <div class="section-title">Known U18 Tennis Registry</div>
 <div class="chip-list" id="tennisKnownU18"></div>
+</div>
+<div class="card">
+<div class="section-title">Review Method</div>
+<div class="pipeline tennis-pipeline">
+<div><b>1</b><span>Approved event</span></div><div class="arrow">→</div>
+<div><b>2</b><span>Current draw / match</span></div><div class="arrow">→</div>
+<div><b>3</b><span>Official player profile</span></div><div class="arrow">→</div>
+<div><b>4</b><span>Age / DOB screen</span></div><div class="arrow">→</div>
+<div><b>5</b><span>Review Today trigger</span></div>
+</div>
+<div class="tennis-method">Primary age source: official ITF player profile where available. Unknown ages remain unresolved rather than inferred.</div>
 </div>
 </section><section class="panel" id="coverage">
 <div class="dashboard-hero">
@@ -2180,25 +2194,8 @@ if(us) us.addEventListener('input',e=>{
   setTimeout(()=>{ if(window.loadLiveCatalog) window.loadLiveCatalog(); },250);
 })();
 
-// Populate Tennis Watch from the Known U18 registry.
-(function(){
-  function populateTennisU18(){
-    const box=document.getElementById('tennisKnownU18');
-    if(!box) return;
-    const chips=[];
-    document.querySelectorAll('#u18Table tbody tr').forEach(tr=>{
-      const tds=tr.querySelectorAll('td');
-      if(tds.length<8) return;
-      if(tds[0].textContent.trim()!=='Tennis') return;
-      const name=tds[4].textContent.trim();
-      const age=tds[5].textContent.trim();
-      const league=tds[2].textContent.trim();
-      chips.push(`<span class="event-chip"><b>${name}</b> · ${age} · ${league}</span>`);
-    });
-    box.innerHTML=chips.length?chips.join(''):'<span class="small">No tennis U18 records currently loaded.</span>';
-  }
-  populateTennisU18();
-})();
+// Tennis Watch is now driven by tennis-intelligence.json.
+
 
 
 // Approved Sports Schedule + fail-soft master Refresh Review controller.
@@ -2352,7 +2349,8 @@ if(us) us.addEventListener('input',e=>{
       ['restriction watch', ()=>window.loadCleanRestrictionWatch?window.loadCleanRestrictionWatch():Promise.resolve()],
       ['approved sports schedule', loadGlobalSchedule],
       ['dynamic priority queue', ()=>window.loadPriorityQueue?window.loadPriorityQueue():Promise.resolve()],
-      ['NCAA age vetting', ()=>window.loadNCAAVetting?window.loadNCAAVetting():Promise.resolve()]
+      ['NCAA age vetting', ()=>window.loadNCAAVetting?window.loadNCAAVetting():Promise.resolve()],
+      ['tennis intelligence', ()=>window.loadTennisIntel?window.loadTennisIntel():Promise.resolve()]
     ];
 
     const results=await Promise.allSettled(jobs.map(x=>Promise.resolve().then(x[1])));
@@ -2393,7 +2391,7 @@ if(us) us.addEventListener('input',e=>{
 
 // Dynamic risk-driven Priority Queue.
 (function(){
-  let PQ_DATA=null, FOCUS_DATA=null, PQ_FILTER='all', PQ_SEARCH='';
+  let PQ_DATA=null, FOCUS_DATA=null, TENNIS_FOCUS=null, PQ_FILTER='all', PQ_SEARCH='';
 
   function pe(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
   function ptime(iso){
@@ -2438,6 +2436,33 @@ if(us) us.addEventListener('input',e=>{
       const hay=`${c.sport||''} ${c.league||''} ${c.event||''} ${(c.athletes||[]).join(' ')} ${c.reason||''}`.toLowerCase();
       return !search || hay.includes(search);
     });
+
+
+    if(TENNIS_FOCUS){
+      (TENNIS_FOCUS.risk_queue||[]).forEach(r=>{
+        if(!r.start_time || !['VERIFIED U18','DRAW CHANGE'].includes(r.type)) return;
+        const card={
+          key:`tennis|${r.type}|${r.tournament}|${r.event||''}|${r.player||''}`,
+          severity:r.severity,
+          type:r.type,
+          sport:'Tennis',
+          league:laneLabelForDaily(r.lane),
+          event:r.event || r.tournament,
+          start_time:r.start_time,
+          athletes:r.player?[r.player]:[],
+          reason:r.reason,
+          staff_action:r.staff_action
+        };
+        const hay=`${card.sport} ${card.league} ${card.event} ${(card.athletes||[]).join(' ')}`.toLowerCase();
+        if((!search||hay.includes(search)) && !(PQ_FILTER==='red'&&card.severity!=='RED') && !(PQ_FILTER==='amber'&&card.severity!=='AMBER')){
+          riskCards.push(card);
+        }
+      });
+    }
+
+    function laneLabelForDaily(id){
+      return (TENNIS_FOCUS?.lanes||[]).find(x=>x.id===id)?.label || id || 'Tennis';
+    }
 
     const dateKey=(date)=>{
       const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date);
@@ -2595,14 +2620,16 @@ if(us) us.addEventListener('input',e=>{
 
   async function loadPriorityQueue(){
     const suffix=`?v=${Date.now()}`;
-    const [pr,gr]=await Promise.all([
+    const [pr,gr,tr]=await Promise.all([
       fetch(`data/priority-queue.json${suffix}`,{cache:'no-store'}),
-      fetch(`data/global-schedule.json${suffix}`,{cache:'no-store'})
+      fetch(`data/global-schedule.json${suffix}`,{cache:'no-store'}),
+      fetch(`data/tennis-intelligence.json${suffix}`,{cache:'no-store'}).catch(()=>null)
     ]);
     if(!pr.ok) throw new Error(`Priority queue HTTP ${pr.status}`);
     if(!gr.ok) throw new Error(`Global schedule HTTP ${gr.status}`);
     PQ_DATA=await pr.json();
     FOCUS_DATA=await gr.json();
+    TENNIS_FOCUS=(tr&&tr.ok)?await tr.json():null;
     renderPriorityQueue();
     return PQ_DATA;
   }
@@ -2711,6 +2738,92 @@ function ncaaRiskTierClass(rec){
    }catch(e){if(empty){empty.style.display='';empty.textContent='Completed-event data could not be loaded from the mapped schedule feed.';}}
  }
  window.renderCompletedTodayLive=renderCompletedTodayLive;renderCompletedTodayLive();setInterval(renderCompletedTodayLive,60000);
+})();
+
+
+(function(){
+  const TZ='America/Chicago';
+  let TENNIS_INTEL=null;
+
+  function te(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function ttime(iso){
+    if(!iso)return 'TBA';
+    const d=new Date(iso); if(Number.isNaN(d.getTime()))return 'TBA';
+    return new Intl.DateTimeFormat('en-US',{timeZone:TZ,month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(d);
+  }
+  function laneLabel(id,data){
+    return (data.lanes||[]).find(x=>x.id===id)?.label || id;
+  }
+
+  function renderTennisIntel(){
+    const d=TENNIS_INTEL;if(!d)return;
+    const s=d.summary||{};
+    const sum=document.getElementById('tennisIntelSummary');
+    if(sum) sum.innerHTML=[
+      [s.lanes||0,'lanes'],
+      [s.mapped_tournaments||0,'mapped tournaments'],
+      [s.mapped_matches||0,'mapped matches'],
+      [s.known_u18_registry||0,'known U18'],
+      [s.active_u18_matches||0,'U18 match triggers'],
+      [s.draw_changes||0,'draw changes']
+    ].map(x=>`<div class="tennis-summary-box"><b>${te(x[0])}</b><span>${te(x[1])}</span></div>`).join('');
+
+    const stamp=document.getElementById('tennisIntelStamp');
+    if(stamp) stamp.textContent=`Today + 7 tennis intelligence · source generated ${ttime(d.generated_at)}`;
+
+    const lanes=document.getElementById('tennisIntelLanes');
+    if(lanes) lanes.innerHTML=(d.lanes||[]).map(l=>`
+      <details class="tennis-lane">
+        <summary>
+          <span class="tennis-lane-title">${te(l.label)}</span>
+          <span class="pill ${String(l.coverage).includes('PENDING')?'amber':'green'}">${te(l.coverage)}</span>
+          <span class="tennis-mini">${te(l.active_tournaments||0)} mapped tournament${Number(l.active_tournaments)===1?'':'s'}</span>
+        </summary>
+        <div class="tennis-lane-body">
+          <p><b>Schedule / draw source:</b> ${te(l.source)}</p>
+          <p><b>Primary age source:</b> ${te(l.primary_age_source)}</p>
+        </div>
+      </details>`).join('');
+
+    const tournaments=document.getElementById('tennisIntelTournaments');
+    if(tournaments) tournaments.innerHTML=(d.tournaments||[]).length?(d.tournaments||[]).map(t=>`
+      <details class="tennis-tournament" ${t.known_u18_count||t.draw_changed?'open':''}>
+        <summary>
+          <span class="pq-sport-tag">${te(laneLabel(t.lane,d))}</span>
+          <span class="tennis-tournament-title">${te(t.tournament)}</span>
+          <span class="tennis-mini">${te(t.event_count)} matches · ${te(t.known_u18_count)} known U18${t.draw_changed?' · DRAW CHANGED':''}</span>
+        </summary>
+        <div class="tennis-tournament-body">
+          ${t.location?`<p><b>Location:</b> ${te(t.location)}</p>`:''}
+          <p><b>Participants observed:</b> ${te(t.participant_count)} · <b>Today:</b> ${te(t.today_count)} · <b>Live:</b> ${te(t.live_count)}</p>
+          ${t.known_u18_count?`<p><b>Known U18:</b> ${te((t.known_u18||[]).map(x=>`${x.name} (${x.age})`).join(', '))}</p>`:''}
+          ${(t.events||[]).map(e=>`<div class="tennis-event-row"><span>${te(ttime(e.start_time))}</span><span><b>${te(e.name)}</b></span><span class="pill ${e.verified_u18_risk?'red':e.status==='LIVE'?'amber':'green'}">${e.verified_u18_risk?'U18 RISK':te(e.status||'UPCOMING')}</span></div>`).join('')}
+        </div>
+      </details>`).join(''):'<div class="empty-state">No mapped ATP/WTA tennis events are currently present in the Today + 7 schedule feed.</div>';
+
+    const risks=document.getElementById('tennisIntelRisks');
+    if(risks) risks.innerHTML=(d.risk_queue||[]).length?(d.risk_queue||[]).map(r=>`
+      <div class="tennis-risk-item ${r.severity==='RED'?'red':'amber'}">
+        <div class="tennis-risk-head"><span class="pill ${r.severity==='RED'?'red':'amber'}">${te(r.type)}</span><b>${te(r.player||r.tournament||laneLabel(r.lane,d))}</b>${r.start_time?`<span class="tennis-mini">${te(ttime(r.start_time))}</span>`:''}</div>
+        ${r.event?`<p>${te(r.event)}</p>`:''}
+        <p><b>Why:</b> ${te(r.reason)}</p>
+        <div class="staff-action"><b>Staff check</b><span>${te(r.staff_action)}</span></div>
+      </div>`).join(''):'<div class="empty-state">No current tennis risk triggers.</div>';
+
+    const known=document.getElementById('tennisKnownU18');
+    if(known) known.innerHTML=(d.known_u18_registry||[]).map(x=>`<span class="event-chip"><b>${te(x.name)}</b> · ${te(x.age)} · ${te(x.lane)}</span>`).join('');
+  }
+
+  async function loadTennisIntel(){
+    const r=await fetch(`data/tennis-intelligence.json?v=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) throw new Error(`Tennis intelligence HTTP ${r.status}`);
+    TENNIS_INTEL=await r.json();
+    window.TENNIS_INTEL=TENNIS_INTEL;
+    renderTennisIntel();
+    return TENNIS_INTEL;
+  }
+  window.loadTennisIntel=loadTennisIntel;
+  loadTennisIntel().catch(()=>{});
 })();
 </script>
 </main>
