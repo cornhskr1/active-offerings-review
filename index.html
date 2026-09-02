@@ -495,6 +495,30 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   color:#8aa0b5;
   font-weight:900;
 }
+
+/* NCAA age discovery focus */
+.ncaa-focus-summary{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.ncaa-focus-chip{border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:10px;font-weight:850;background:#fff;color:var(--muted)}
+.ncaa-research-backlog{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.ncaa-research-backlog>summary{cursor:pointer;list-style:none;padding:11px 13px;font-weight:900;color:var(--nav);background:#f8fafc}
+.ncaa-research-backlog>summary::-webkit-details-marker{display:none}
+.ncaa-research-backlog>summary:before{content:"▸";margin-right:8px}
+.ncaa-research-backlog[open]>summary:before{content:"▾"}
+.ncaa-backlog-table{overflow:auto;padding:8px 12px 12px}
+.ncaa-backlog-table table{width:100%;font-size:11px}
+
+/* Completed Today rebuilt from mapped schedule */
+.completed-list{display:grid;gap:8px}
+.completed-league{border:1px solid var(--line);border-radius:11px;background:#fff;overflow:hidden}
+.completed-league>summary{cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center;padding:9px 11px;font-weight:850;color:var(--nav);background:#f8fafc}
+.completed-league>summary::-webkit-details-marker{display:none}
+.completed-league>summary:before{content:"▸";font-size:10px}
+.completed-league[open]>summary:before{content:"▾"}
+.completed-count{margin-left:auto;font-size:10px;color:var(--muted)}
+.completed-row{display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:9px;align-items:center;padding:8px 11px;border-top:1px solid #edf1f5;font-size:11px}
+.completed-time{color:var(--muted);font-size:10px}
+.completed-event-name{font-weight:750}
+.completed-status{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -655,8 +679,8 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
   When an official final-status feed is unavailable, the site uses an estimated sport-specific completion window rather than leaving events active until midnight.
 </div><div class="card" id="completedTodayCard">
 <div class="section-title">Completed Today</div>
-<p class="small">Events move here after a final status is received or, when no final-status feed is available, after the sport-specific estimated completion window.</p>
-<div class="review-grid-cards" id="completedTodayQueue"></div>
+<p class="small">Mapped approved events that have completed today. Official final status is used when available; otherwise a conservative sport-specific completion estimate is used.</p>
+<div class="completed-list" id="completedTodayQueue"></div>
 <div class="empty-state" id="completedTodayEmpty">No reviewed events have completed yet today.</div>
 </div><div class="card" id="liveNcaaFootball">
 <div class="section-title">Live NCAA Football Intelligence</div>
@@ -1637,6 +1661,20 @@ if(us) us.addEventListener('input',e=>{
       if(alerts){
         const u18=(d.verified_u18||[]);
         const pending=[...(d.age_review_needed||[]),...(d.unresolved||[])];
+
+        const isHighRisk=p=>{
+          const tier=String(p.u18_risk_tier||'').toUpperCase();
+          const verification=String(p.verification_status||'').toUpperCase();
+          const cls=String(p.class||p.class_year||'').toLowerCase();
+          const evidence=String(p.age_evidence||'').toLowerCase();
+          return tier==='HIGH' || verification==='UNVERIFIED' ||
+                 (cls.includes('freshman') && !cls.includes('redshirt')) ||
+                 evidence.includes('staff-reviewed class: freshman');
+        };
+
+        const focus=pending.filter(isHighRisk);
+        const backlog=pending.filter(p=>!isHighRisk(p));
+
         const rows=[];
         u18.forEach(p=>rows.push(`
           <article class="review-card">
@@ -1646,14 +1684,41 @@ if(us) us.addEventListener('input',e=>{
             <p><b>Official evidence:</b> ${esc(p.age_evidence||'Verified official age evidence')}</p>
             <div class="staff-action"><b>Staff check</b><span>Search athlete-specific markets and upcoming schedule immediately.</span></div>
           </article>`));
-        pending.slice(0,80).forEach(p=>rows.push(`
+
+        focus.forEach(p=>rows.push(`
           <article class="review-card">
-            <div class="review-top"><span class="pill amber">${esc(p.age_status)}</span><span class="review-date">${esc(p.team)}</span></div>
+            <div class="review-top"><span class="pill amber">UNVERIFIED — HIGH U18 RISK</span><span class="review-date">${esc(p.team)}</span></div>
             <div class="review-sport">NCAA Football · ${esc(p.conference||'')}</div>
             <h3>${esc(p.name||'Roster candidate')}</h3>
-            <p>${esc(p.age_evidence||'Official age evidence not resolved.')}</p>
+            <p>${esc(p.age_evidence||p.u18_risk_reason||'Freshman/high-risk age evidence remains unresolved.')}</p>
+            <div class="staff-action"><b>Research status</b><span>Continue DOB/age verification. Do not treat class status as age clearance.</span></div>
           </article>`));
-        alerts.innerHTML=rows.length?rows.join(''):'<div class="empty-state">No U18 or unresolved high-risk candidates returned by the latest run.</div>';
+
+        const backlogRows=backlog.map(p=>`
+          <tr>
+            <td><b>${esc(p.name||'Roster candidate')}</b></td>
+            <td>${esc(p.team||'')}</td>
+            <td>${esc(p.class||p.class_year||'Not resolved')}</td>
+            <td>${esc(p.u18_risk_tier||p.age_status||'UNRESOLVED')}</td>
+            <td>${esc(p.age_evidence||p.u18_risk_reason||'Official age evidence not resolved.')}</td>
+          </tr>`).join('');
+
+        alerts.innerHTML=`
+          <div class="ncaa-focus-summary">
+            <span class="ncaa-focus-chip">${u18.length} verified U18</span>
+            <span class="ncaa-focus-chip">${focus.length} active high-risk / freshman reviews</span>
+            <span class="ncaa-focus-chip">${backlog.length} broader research backlog</span>
+          </div>
+          ${rows.length?rows.join(''):'<div class="empty-state">No verified U18 or high-risk freshman cases currently loaded.</div>'}
+          <details class="ncaa-research-backlog">
+            <summary>Broader Research Backlog · ${backlog.length} athletes</summary>
+            <div class="ncaa-backlog-table">
+              ${backlog.length?`<table>
+                <thead><tr><th>Athlete</th><th>Team</th><th>Class</th><th>Risk / Status</th><th>Basis</th></tr></thead>
+                <tbody>${backlogRows}</tbody>
+              </table>`:'<div class="empty-state">No broader unresolved research cases.</div>'}
+            </div>
+          </details>`;
       }
       const teams=document.getElementById('ncaaAgeTeamCoverage');
       if(teams){
@@ -2797,6 +2862,110 @@ function ncaaRiskTierClass(rec){
   window.loadNCAAVetting=loadNCAAVetting;
   document.querySelectorAll('[data-vet-filter]').forEach(b=>b.addEventListener('click',()=>{VET_FILTER=b.dataset.vetFilter||'all';renderVetting();}));
   loadNCAAVetting().catch(err=>{const s=document.getElementById('ncaaVettingStatus');if(s) s.textContent=`NCAA age-vetting data unavailable: ${err.message}`;});
+})();
+
+
+// Completed Today — mapped schedule-driven renderer.
+(function(){
+  const TZ='America/Chicago';
+
+  function ce(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+  function localDateKey(date){
+    const p=new Intl.DateTimeFormat('en-CA',{
+      timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'
+    }).formatToParts(date);
+    const get=t=>p.find(x=>x.type===t)?.value;
+    return `${get('year')}-${get('month')}-${get('day')}`;
+  }
+
+  function fmtTime(iso){
+    if(!iso) return 'TBA';
+    const d=new Date(iso);
+    if(Number.isNaN(d.getTime())) return 'TBA';
+    return new Intl.DateTimeFormat('en-US',{
+      timeZone:TZ,hour:'numeric',minute:'2-digit'
+    }).format(d);
+  }
+
+  function estimatedDurationHours(sport){
+    const s=String(sport||'').toLowerCase();
+    if(s.includes('football')) return 4;
+    if(s.includes('basketball')) return 3;
+    if(s.includes('soccer')) return 2.5;
+    if(s.includes('volleyball')) return 3;
+    if(s.includes('tennis')) return 4;
+    if(s.includes('baseball')) return 3.5;
+    if(s.includes('hockey')) return 3;
+    return 3.5;
+  }
+
+  function isCompletedTodayEvent(e,now,todayKey){
+    if(!e.start_time) return false;
+    const start=new Date(e.start_time);
+    if(Number.isNaN(start.getTime()) || localDateKey(start)!==todayKey) return false;
+
+    if(String(e.status||'').toUpperCase()==='COMPLETED') return true;
+
+    // Conservative fallback when final-state feed is missing.
+    if(String(e.status||'').toUpperCase()==='UPCOMING') return false;
+    const end=new Date(start.getTime()+estimatedDurationHours(e.sport)*3600000);
+    return now>=end;
+  }
+
+  async function renderCompletedTodayLive(){
+    const box=document.getElementById('completedTodayQueue');
+    const empty=document.getElementById('completedTodayEmpty');
+    if(!box) return;
+
+    try{
+      const r=await fetch(`data/global-schedule.json?v=${Date.now()}`,{cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d=await r.json();
+
+      const now=new Date();
+      const todayKey=localDateKey(now);
+      const completed=(d.events||[])
+        .filter(e=>isCompletedTodayEvent(e,now,todayKey))
+        .sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+
+      const groups={};
+      completed.forEach(e=>{
+        const key=`${e.sport||'Sport'}|${e.league||'Other'}`;
+        (groups[key] ||= {sport:e.sport||'Sport',league:e.league||'Other',items:[]}).items.push(e);
+      });
+
+      box.innerHTML=Object.values(groups).map(g=>`
+        <details class="completed-league" open>
+          <summary>
+            <span class="pq-sport-tag">${ce(g.sport)}</span>
+            <span>${ce(g.league)}</span>
+            <span class="completed-count">${g.items.length} completed</span>
+          </summary>
+          ${g.items.map(e=>`
+            <div class="completed-row">
+              <div class="completed-time">${ce(fmtTime(e.start_time))}</div>
+              <div class="completed-event-name">${ce(e.name)}</div>
+              <div class="completed-status"><span class="pill green">COMPLETED</span></div>
+            </div>`).join('')}
+        </details>`).join('');
+
+      if(empty) empty.style.display=completed.length?'none':'';
+    }catch(err){
+      if(empty){
+        empty.style.display='';
+        empty.textContent='Completed-event data could not be loaded from the mapped schedule feed.';
+      }
+    }
+  }
+
+  window.renderCompletedTodayLive=renderCompletedTodayLive;
+  renderCompletedTodayLive();
+
+  const refresh=document.getElementById('refreshReviewBtn');
+  if(refresh) refresh.addEventListener('click',()=>setTimeout(renderCompletedTodayLive,700));
+
+  setInterval(renderCompletedTodayLive,60000);
 })();
 </script>
 </main>
