@@ -1,90 +1,89 @@
 {
-  "generated_at": "2026-09-04T12:36:21.277050+00:00",
+  "generated_at": "2026-09-04T15:30:21.120292+00:00",
   "source_count": 7,
-  "healthy_count": 6,
+  "healthy_count": 5,
   "sources": [
     {
       "id": "nrgc_catalog",
       "name": "NRGC Sports Betting / Catalog",
       "url": "https://nrgc.nebraska.gov/gaming/sports-betting",
       "priority": "CRITICAL",
-      "checked_at": "2026-09-04T12:36:18.685328+00:00",
+      "checked_at": "2026-09-04T15:29:53.867378+00:00",
       "http_status": 200,
       "final_url": "https://nrgc.nebraska.gov/gaming/sports-betting",
       "ok": true,
       "content_type": "text/html; charset=UTF-8",
-      "elapsed_ms": 375
+      "elapsed_ms": 327
     },
     {
       "id": "nebraska_athletics",
       "name": "Nebraska Athletics",
       "url": "https://huskers.com/",
       "priority": "HIGH",
-      "checked_at": "2026-09-04T12:36:19.060449+00:00",
+      "checked_at": "2026-09-04T15:29:54.194586+00:00",
       "http_status": 200,
       "final_url": "https://huskers.com/",
       "ok": true,
       "content_type": "text/html;charset=utf-8",
-      "elapsed_ms": 324
+      "elapsed_ms": 301
     },
     {
       "id": "creighton_athletics",
       "name": "Creighton Athletics",
       "url": "https://gocreighton.com/",
       "priority": "HIGH",
-      "checked_at": "2026-09-04T12:36:19.384582+00:00",
-      "http_status": 200,
-      "final_url": "https://gocreighton.com/",
-      "ok": true,
-      "content_type": "text/html;charset=utf-8",
-      "elapsed_ms": 629
+      "checked_at": "2026-09-04T15:29:54.495688+00:00",
+      "http_status": null,
+      "ok": false,
+      "error": "The read operation timed out",
+      "elapsed_ms": 25236
     },
     {
       "id": "itf",
       "name": "International Tennis Federation",
       "url": "https://www.itftennis.com/",
       "priority": "CRITICAL",
-      "checked_at": "2026-09-04T12:36:20.014333+00:00",
+      "checked_at": "2026-09-04T15:30:19.732328+00:00",
       "http_status": 200,
       "final_url": "https://www.itftennis.com/en/",
       "ok": true,
       "content_type": "text/html; charset=utf-8",
-      "elapsed_ms": 603
+      "elapsed_ms": 1014
     },
     {
       "id": "atp",
       "name": "ATP Tour",
       "url": "https://www.atptour.com/",
       "priority": "CRITICAL",
-      "checked_at": "2026-09-04T12:36:20.617405+00:00",
+      "checked_at": "2026-09-04T15:30:20.746369+00:00",
       "http_status": 403,
       "ok": false,
       "error": "HTTP 403",
-      "elapsed_ms": 135
+      "elapsed_ms": 48
     },
     {
       "id": "wta",
       "name": "WTA",
       "url": "https://www.wtatennis.com/",
       "priority": "CRITICAL",
-      "checked_at": "2026-09-04T12:36:20.752779+00:00",
+      "checked_at": "2026-09-04T15:30:20.795228+00:00",
       "http_status": 200,
       "final_url": "https://www.wtatennis.com/",
       "ok": true,
       "content_type": "text/html;charset=utf-8",
-      "elapsed_ms": 330
+      "elapsed_ms": 227
     },
     {
       "id": "mls",
       "name": "Major League Soccer",
       "url": "https://www.mlssoccer.com/",
       "priority": "HIGH",
-      "checked_at": "2026-09-04T12:36:21.083310+00:00",
+      "checked_at": "2026-09-04T15:30:21.022705+00:00",
       "http_status": 200,
       "final_url": "https://www.mlssoccer.com/",
       "ok": true,
       "content_type": "text/html",
-      "elapsed_ms": 193
+      "elapsed_ms": 97
     }
   ]
 }
