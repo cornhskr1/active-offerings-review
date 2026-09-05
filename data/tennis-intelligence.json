@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-09-05T13:28:20.694528+00:00",
+  "generated_at": "2026-09-05T14:28:21.460764+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-05",
   "window_end": "2026-09-12",
@@ -417,7 +417,7 @@
       "lane": "wta",
       "tournament": "WTA",
       "status": "ACTIVE/UPCOMING",
-      "event_count": 4,
+      "event_count": 5,
       "participants": [
         {
           "name": "US Open",
@@ -477,6 +477,36 @@
           "participants": [
             {
               "name": "US Open",
+              "age": null,
+              "age_status": "UNRESOLVED",
+              "source": "Mapped match schedule",
+              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
+            }
+          ],
+          "verified_u18": []
+        },
+        {
+          "id": "1076-2026",
+          "source_id": "wta-tennis",
+          "sport": "Tennis",
+          "league": "WTA",
+          "competition": "WTA",
+          "tournament": "WTA",
+          "region": "International",
+          "name": "ATIK Antalya Open",
+          "start_time": "2026-09-06T04:00Z",
+          "status": "UPCOMING",
+          "status_detail": "TBD",
+          "location": null,
+          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+          "u18_matches": [],
+          "u18_risk": false,
+          "restriction_signals": [],
+          "restriction_risk": false,
+          "lane": "wta",
+          "participants": [
+            {
+              "name": "ATIK Antalya Open",
               "age": null,
               "age_status": "UNRESOLVED",
               "source": "Mapped match schedule",
@@ -578,16 +608,28 @@
       ],
       "screened_count": 0,
       "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 3,
-      "next_start_time": "2026-09-06T23:00:00-05:00",
+      "today_matches": 1,
+      "upcoming_matches": 4,
+      "next_start_time": "2026-09-05T23:00:00-05:00",
       "operational_status": "AGE REVIEW",
-      "draw_signature": "b1453fcbe213cef6",
-      "draw_changed": false,
-      "risk_status": "NORMAL"
+      "draw_signature": "4bb41565c862e01a",
+      "draw_changed": true,
+      "risk_status": "AMBER"
     }
   ],
-  "risk_queue": [],
+  "risk_queue": [
+    {
+      "severity": "AMBER",
+      "type": "DRAW CHANGE",
+      "lane": "wta",
+      "tournament": "WTA",
+      "event": null,
+      "start_time": "2026-08-24T04:00Z",
+      "player": null,
+      "reason": "Scheduled participant/draw signature changed since the last refresh.",
+      "staff_action": "Re-screen the current field for U18 exposure."
+    }
+  ],
   "known_u18_registry": [
     {
       "name": "Cruz Hewitt",
@@ -793,11 +835,11 @@
   "summary": {
     "lanes": 7,
     "tournaments": 14,
-    "exact_matches": 5,
+    "exact_matches": 6,
     "participants_screened": 5,
     "verified_u18_participants": 0,
     "red_risk_items": 0,
-    "draw_changes": 0,
+    "draw_changes": 1,
     "atp_age_index": 0,
     "wta_age_index": 0,
     "itf_tournaments": 0,
