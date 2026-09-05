@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-09-05T14:28:21.460764+00:00",
+  "generated_at": "2026-09-05T15:28:42.811683+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-05",
   "window_end": "2026-09-12",
@@ -417,7 +417,7 @@
       "lane": "wta",
       "tournament": "WTA",
       "status": "ACTIVE/UPCOMING",
-      "event_count": 5,
+      "event_count": 4,
       "participants": [
         {
           "name": "US Open",
@@ -434,14 +434,14 @@
           "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
         },
         {
-          "name": "Kia Open",
+          "name": "Montreux Nestl\u00e9 Open",
           "age": null,
           "age_status": "UNRESOLVED",
           "source": "Mapped match schedule",
           "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
         },
         {
-          "name": "Montreux Nestl\u00e9 Open",
+          "name": "Kia Open",
           "age": null,
           "age_status": "UNRESOLVED",
           "source": "Mapped match schedule",
@@ -496,7 +496,7 @@
           "name": "ATIK Antalya Open",
           "start_time": "2026-09-06T04:00Z",
           "status": "UPCOMING",
-          "status_detail": "TBD",
+          "status_detail": "9/6 - 4:00 AM EDT",
           "location": null,
           "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
           "u18_matches": [],
@@ -516,17 +516,17 @@
           "verified_u18": []
         },
         {
-          "id": "1076-2026",
+          "id": "998-2026",
           "source_id": "wta-tennis",
           "sport": "Tennis",
           "league": "WTA",
           "competition": "WTA",
           "tournament": "WTA",
           "region": "International",
-          "name": "ATIK Antalya Open",
-          "start_time": "2026-09-07T04:00Z",
+          "name": "Montreux Nestl\u00e9 Open",
+          "start_time": "2026-09-06T04:00Z",
           "status": "UPCOMING",
-          "status_detail": "TBD",
+          "status_detail": "9/6 - 5:00 AM EDT",
           "location": null,
           "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
           "u18_matches": [],
@@ -536,7 +536,7 @@
           "lane": "wta",
           "participants": [
             {
-              "name": "ATIK Antalya Open",
+              "name": "Montreux Nestl\u00e9 Open",
               "age": null,
               "age_status": "UNRESOLVED",
               "source": "Mapped match schedule",
@@ -574,45 +574,15 @@
             }
           ],
           "verified_u18": []
-        },
-        {
-          "id": "998-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "competition": "WTA",
-          "tournament": "WTA",
-          "region": "International",
-          "name": "Montreux Nestl\u00e9 Open",
-          "start_time": "2026-09-07T04:00Z",
-          "status": "UPCOMING",
-          "status_detail": "TBD",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "Montreux Nestl\u00e9 Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
         }
       ],
       "screened_count": 0,
       "screening_pct": 0,
-      "today_matches": 1,
-      "upcoming_matches": 4,
+      "today_matches": 2,
+      "upcoming_matches": 3,
       "next_start_time": "2026-09-05T23:00:00-05:00",
       "operational_status": "AGE REVIEW",
-      "draw_signature": "4bb41565c862e01a",
+      "draw_signature": "081635466764674e",
       "draw_changed": true,
       "risk_status": "AMBER"
     }
@@ -835,7 +805,7 @@
   "summary": {
     "lanes": 7,
     "tournaments": 14,
-    "exact_matches": 6,
+    "exact_matches": 5,
     "participants_screened": 5,
     "verified_u18_participants": 0,
     "red_risk_items": 0,
