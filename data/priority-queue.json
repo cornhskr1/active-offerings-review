@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-05T00:34:51.262142+00:00",
-  "card_count": 61,
+  "generated_at": "2026-09-05T01:22:48.265219+00:00",
+  "card_count": 63,
   "red_count": 55,
-  "amber_count": 6,
+  "amber_count": 8,
   "cards": [
     {
       "key": "event|761770",
@@ -75,7 +75,7 @@
       "league": "NCAA Football",
       "event": "Fresno State Bulldogs at USC Trojans",
       "start_time": "2026-09-05T01:00Z",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "title": "Fresno State Bulldogs at USC Trojans · 1 athlete",
       "athletes": [
         "Ethan \"Boobie\" Feaster"
@@ -1283,24 +1283,80 @@
       "league": "NCAA Football",
       "event": "Miami Hurricanes at Stanford Cardinal",
       "start_time": "2026-09-05T01:00Z",
-      "status": "UPCOMING",
-      "title": "Miami Hurricanes at Stanford Cardinal · 4 athletes",
+      "status": "LIVE",
+      "title": "Miami Hurricanes at Stanford Cardinal · 13 athletes",
       "athletes": [
+        "Vinny Gonzalez",
+        "JJ Dunnigan",
+        "Logan Nagle",
+        "Joel Ervin",
+        "Vance Diepenbrock",
+        "Ralph Scroggins",
+        "Jack Nickel",
+        "Tyran Evans",
+        "Fred Sainteus",
         "Jason Hill Jr",
-        "Devin Mignery",
+        "Zaiden Mcdonald",
         "Langdon Horace",
-        "Zaiden Mcdonald"
+        "Devin Mignery"
       ],
       "triggers": [
+        "High-risk unresolved age — Vinny Gonzalez (Miami)",
+        "High-risk unresolved age — JJ Dunnigan (Miami)",
+        "High-risk unresolved age — Logan Nagle (Miami)",
+        "High-risk unresolved age — Joel Ervin (Miami)",
+        "High-risk unresolved age — Vance Diepenbrock (Miami)",
+        "High-risk unresolved age — Ralph Scroggins (Miami)",
+        "High-risk unresolved age — Jack Nickel (Miami)",
+        "High-risk unresolved age — Tyran Evans (Miami)",
+        "High-risk unresolved age — Fred Sainteus (Miami)",
         "High-risk unresolved age — Jason Hill Jr (Stanford)",
-        "High-risk unresolved age — Devin Mignery (Stanford)",
+        "High-risk unresolved age — Zaiden Mcdonald (Stanford)",
         "High-risk unresolved age — Langdon Horace (Stanford)",
-        "High-risk unresolved age — Zaiden Mcdonald (Stanford)"
+        "High-risk unresolved age — Devin Mignery (Stanford)"
       ],
       "staff_actions": [
         "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
       ],
-      "reason": "High-risk unresolved age — Jason Hill Jr (Stanford) | High-risk unresolved age — Devin Mignery (Stanford) | High-risk unresolved age — Langdon Horace (Stanford) | High-risk unresolved age — Zaiden Mcdonald (Stanford)",
+      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Fred Sainteus (Miami) | High-risk unresolved age — Jason Hill Jr (Stanford) | High-risk unresolved age — Zaiden Mcdonald (Stanford) | High-risk unresolved age — Langdon Horace (Stanford) | High-risk unresolved age — Devin Mignery (Stanford)",
+      "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
+    },
+    {
+      "key": "event|401858207",
+      "severity": "AMBER",
+      "type": "NCAA AGE REVIEW",
+      "sport": "Football",
+      "league": "NCAA Football",
+      "event": "Miami (OH) RedHawks at Pittsburgh Panthers",
+      "start_time": "2026-09-05T16:30Z",
+      "status": "UPCOMING",
+      "title": "Miami (OH) RedHawks at Pittsburgh Panthers · 9 athletes",
+      "athletes": [
+        "Vinny Gonzalez",
+        "JJ Dunnigan",
+        "Logan Nagle",
+        "Joel Ervin",
+        "Vance Diepenbrock",
+        "Ralph Scroggins",
+        "Jack Nickel",
+        "Tyran Evans",
+        "Fred Sainteus"
+      ],
+      "triggers": [
+        "High-risk unresolved age — Vinny Gonzalez (Miami)",
+        "High-risk unresolved age — JJ Dunnigan (Miami)",
+        "High-risk unresolved age — Logan Nagle (Miami)",
+        "High-risk unresolved age — Joel Ervin (Miami)",
+        "High-risk unresolved age — Vance Diepenbrock (Miami)",
+        "High-risk unresolved age — Ralph Scroggins (Miami)",
+        "High-risk unresolved age — Jack Nickel (Miami)",
+        "High-risk unresolved age — Tyran Evans (Miami)",
+        "High-risk unresolved age — Fred Sainteus (Miami)"
+      ],
+      "staff_actions": [
+        "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
+      ],
+      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Fred Sainteus (Miami)",
       "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
     },
     {
@@ -1365,6 +1421,44 @@
       ],
       "reason": "NFL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START | NFL Preseason - NO PLAYER PROPOSITION WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active SWSP markets comply."
+    },
+    {
+      "key": "event|401858213",
+      "severity": "AMBER",
+      "type": "NCAA AGE REVIEW",
+      "sport": "Football",
+      "league": "NCAA Football",
+      "event": "Florida A&M Rattlers at Miami Hurricanes",
+      "start_time": "2026-09-11T00:00Z",
+      "status": "UPCOMING",
+      "title": "Florida A&M Rattlers at Miami Hurricanes · 9 athletes",
+      "athletes": [
+        "Vinny Gonzalez",
+        "JJ Dunnigan",
+        "Logan Nagle",
+        "Joel Ervin",
+        "Vance Diepenbrock",
+        "Ralph Scroggins",
+        "Jack Nickel",
+        "Tyran Evans",
+        "Fred Sainteus"
+      ],
+      "triggers": [
+        "High-risk unresolved age — Vinny Gonzalez (Miami)",
+        "High-risk unresolved age — JJ Dunnigan (Miami)",
+        "High-risk unresolved age — Logan Nagle (Miami)",
+        "High-risk unresolved age — Joel Ervin (Miami)",
+        "High-risk unresolved age — Vance Diepenbrock (Miami)",
+        "High-risk unresolved age — Ralph Scroggins (Miami)",
+        "High-risk unresolved age — Jack Nickel (Miami)",
+        "High-risk unresolved age — Tyran Evans (Miami)",
+        "High-risk unresolved age — Fred Sainteus (Miami)"
+      ],
+      "staff_actions": [
+        "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
+      ],
+      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Fred Sainteus (Miami)",
+      "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
     },
     {
       "key": "event|401872657",
