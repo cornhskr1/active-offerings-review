@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-05T04:24:21.293543+00:00",
-  "card_count": 58,
-  "red_count": 51,
-  "amber_count": 7,
+  "generated_at": "2026-09-05T05:23:14.876995+00:00",
+  "card_count": 79,
+  "red_count": 71,
+  "amber_count": 8,
   "cards": [
     {
       "key": "event|ne|Nebraska|Football|2026-09-05|Ohio",
@@ -1170,50 +1170,464 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401858206",
-      "severity": "AMBER",
-      "type": "NCAA AGE REVIEW",
-      "sport": "Football",
-      "league": "NCAA Football",
-      "event": "Miami Hurricanes at Stanford Cardinal",
-      "start_time": "2026-09-05T01:00Z",
-      "status": "LIVE",
-      "title": "Miami Hurricanes at Stanford Cardinal · 13 athletes",
+      "key": "event|401884795",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Bundesliga",
+      "event": "Bayer Leverkusen at FC Augsburg",
+      "start_time": "2026-09-12T13:30Z",
+      "status": "UPCOMING",
+      "title": "Bayer Leverkusen at FC Augsburg · 1 athlete",
       "athletes": [
-        "Vinny Gonzalez",
-        "JJ Dunnigan",
-        "Logan Nagle",
-        "Joel Ervin",
-        "Vance Diepenbrock",
-        "Ralph Scroggins",
-        "Jack Nickel",
-        "Tyran Evans",
-        "Fred Sainteus",
-        "Jason Hill Jr",
-        "Zaiden Mcdonald",
-        "Langdon Horace",
-        "Devin Mignery"
+        "Kennet Eichhorn"
       ],
       "triggers": [
-        "High-risk unresolved age — Vinny Gonzalez (Miami)",
-        "High-risk unresolved age — JJ Dunnigan (Miami)",
-        "High-risk unresolved age — Logan Nagle (Miami)",
-        "High-risk unresolved age — Joel Ervin (Miami)",
-        "High-risk unresolved age — Vance Diepenbrock (Miami)",
-        "High-risk unresolved age — Ralph Scroggins (Miami)",
-        "High-risk unresolved age — Jack Nickel (Miami)",
-        "High-risk unresolved age — Tyran Evans (Miami)",
-        "High-risk unresolved age — Fred Sainteus (Miami)",
-        "High-risk unresolved age — Jason Hill Jr (Stanford)",
-        "High-risk unresolved age — Zaiden Mcdonald (Stanford)",
-        "High-risk unresolved age — Langdon Horace (Stanford)",
-        "High-risk unresolved age — Devin Mignery (Stanford)"
+        "Known U18 — Kennet Eichhorn (Bayer Leverkusen)"
       ],
       "staff_actions": [
-        "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Fred Sainteus (Miami) | High-risk unresolved age — Jason Hill Jr (Stanford) | High-risk unresolved age — Zaiden Mcdonald (Stanford) | High-risk unresolved age — Langdon Horace (Stanford) | High-risk unresolved age — Devin Mignery (Stanford)",
-      "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
+      "reason": "Known U18 — Kennet Eichhorn (Bayer Leverkusen)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401884799",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Bundesliga",
+      "event": "SC Paderborn 07 at Borussia Dortmund",
+      "start_time": "2026-09-12T13:30Z",
+      "status": "UPCOMING",
+      "title": "SC Paderborn 07 at Borussia Dortmund · 1 athlete",
+      "athletes": [
+        "Mathis Albert"
+      ],
+      "triggers": [
+        "Known U18 — Mathis Albert (Borussia Dortmund)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Mathis Albert (Borussia Dortmund)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401879283",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "event": "Hull City at Chelsea",
+      "start_time": "2026-09-12T14:00Z",
+      "status": "UPCOMING",
+      "title": "Hull City at Chelsea · 1 athlete",
+      "athletes": [
+        "Reggie Watson"
+      ],
+      "triggers": [
+        "Known U18 — Reggie Watson (Chelsea)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Reggie Watson (Chelsea)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401879281",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "event": "Ipswich Town at Crystal Palace",
+      "start_time": "2026-09-12T14:00Z",
+      "status": "UPCOMING",
+      "title": "Ipswich Town at Crystal Palace · 1 athlete",
+      "athletes": [
+        "Joel Drakes-Thomas"
+      ],
+      "triggers": [
+        "Known U18 — Joel Drakes-Thomas (Crystal Palace)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Joel Drakes-Thomas (Crystal Palace)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401879284",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "event": "Nottingham Forest at Aston Villa",
+      "start_time": "2026-09-12T14:00Z",
+      "status": "UPCOMING",
+      "title": "Nottingham Forest at Aston Villa · 2 athletes",
+      "athletes": [
+        "Brian Madjo",
+        "Kalum Thompson"
+      ],
+      "triggers": [
+        "Known U18 — Brian Madjo (Aston Villa)",
+        "Known U18 — Kalum Thompson (Nottingham Forest)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Brian Madjo (Aston Villa) | Known U18 — Kalum Thompson (Nottingham Forest)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401878994",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Jupiler Pro League",
+      "event": "Standard Liege at KVC Westerlo",
+      "start_time": "2026-09-12T16:15Z",
+      "status": "UPCOMING",
+      "title": "Standard Liege at KVC Westerlo · 1 athlete",
+      "athletes": [
+        "Dino Delić"
+      ],
+      "triggers": [
+        "Known U18 — Dino Delić (KVC Westerlo)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Dino Delić (KVC Westerlo)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401879277",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "event": "Everton at Tottenham Hotspur",
+      "start_time": "2026-09-12T16:30Z",
+      "status": "UPCOMING",
+      "title": "Everton at Tottenham Hotspur · 1 athlete",
+      "athletes": [
+        "Luca Williams-Barnett"
+      ],
+      "triggers": [
+        "Known U18 — Luca Williams-Barnett (Tottenham Hotspur)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Luca Williams-Barnett (Tottenham Hotspur)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401875608",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Eredivisie",
+      "event": "Ajax Amsterdam at Fortuna Sittard",
+      "start_time": "2026-09-12T18:00Z",
+      "status": "UPCOMING",
+      "title": "Ajax Amsterdam at Fortuna Sittard · 1 athlete",
+      "athletes": [
+        "Abdellah Ouazane"
+      ],
+      "triggers": [
+        "Known U18 — Abdellah Ouazane (Ajax)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Abdellah Ouazane (Ajax)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401876464",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Ligue 1",
+      "event": "Angers at Le Havre AC",
+      "start_time": "2026-09-12T18:45Z",
+      "status": "UPCOMING",
+      "title": "Angers at Le Havre AC · 1 athlete",
+      "athletes": [
+        "Jules Bouffandeau"
+      ],
+      "triggers": [
+        "Known U18 — Jules Bouffandeau (Angers)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Jules Bouffandeau (Angers)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401876466",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Ligue 1",
+      "event": "Nice at AJ Auxerre",
+      "start_time": "2026-09-12T18:45Z",
+      "status": "UPCOMING",
+      "title": "Nice at AJ Auxerre · 3 athletes",
+      "athletes": [
+        "Junior Mandza",
+        "Martin Ponsot",
+        "Ackah-Tidiane Zoukrou"
+      ],
+      "triggers": [
+        "Known U18 — Junior Mandza (OGC Nice)",
+        "Known U18 — Martin Ponsot (OGC Nice)",
+        "Known U18 — Ackah-Tidiane Zoukrou (AJ Auxerre)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Junior Mandza (OGC Nice) | Known U18 — Martin Ponsot (OGC Nice) | Known U18 — Ackah-Tidiane Zoukrou (AJ Auxerre)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401878779",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "event": "Arsenal at Sunderland",
+      "start_time": "2026-09-12T19:00Z",
+      "status": "UPCOMING",
+      "title": "Arsenal at Sunderland · 1 athlete",
+      "athletes": [
+        "Max Dowman"
+      ],
+      "triggers": [
+        "Known U18 — Max Dowman (Arsenal)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Max Dowman (Arsenal)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761803",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Atlanta United FC at D.C. United",
+      "start_time": "2026-09-12T23:30Z",
+      "status": "UPCOMING",
+      "title": "Atlanta United FC at D.C. United · 2 athletes",
+      "athletes": [
+        "Kamil Castillo",
+        "Oscar Avilez"
+      ],
+      "triggers": [
+        "Known U18 — Kamil Castillo (D.C. United)",
+        "Known U18 — Oscar Avilez (D.C. United)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761802",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Charlotte FC at FC Cincinnati",
+      "start_time": "2026-09-12T23:30Z",
+      "status": "UPCOMING",
+      "title": "Charlotte FC at FC Cincinnati · 1 athlete",
+      "athletes": [
+        "Ademar Chávez"
+      ],
+      "triggers": [
+        "Known U18 — Ademar Chávez (FC Cincinnati)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Ademar Chávez (FC Cincinnati)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761800",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Nashville SC at Inter Miami CF",
+      "start_time": "2026-09-12T23:30Z",
+      "status": "UPCOMING",
+      "title": "Nashville SC at Inter Miami CF · 1 athlete",
+      "athletes": [
+        "Alexander Shaw"
+      ],
+      "triggers": [
+        "Known U18 — Alexander Shaw (Inter Miami CF)",
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
+        "Review the applicable catalog restriction and confirm active SWSP markets comply."
+      ],
+      "reason": "Known U18 — Alexander Shaw (Inter Miami CF) | International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active SWSP markets comply."
+    },
+    {
+      "key": "event|761804",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Red Bull New York at Columbus Crew",
+      "start_time": "2026-09-12T23:30Z",
+      "status": "UPCOMING",
+      "title": "Red Bull New York at Columbus Crew · 2 athletes",
+      "athletes": [
+        "Matthew Dos Santos",
+        "Tristan Brown"
+      ],
+      "triggers": [
+        "Known U18 — Matthew Dos Santos (Red Bull New York)",
+        "Known U18 — Tristan Brown (Columbus Crew)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Matthew Dos Santos (Red Bull New York) | Known U18 — Tristan Brown (Columbus Crew)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761801",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Toronto FC at Orlando City SC",
+      "start_time": "2026-09-12T23:30Z",
+      "status": "UPCOMING",
+      "title": "Toronto FC at Orlando City SC · 1 athlete",
+      "athletes": [
+        "Gustavo Caraballo"
+      ],
+      "triggers": [
+        "Known U18 — Gustavo Caraballo (Orlando City SC)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Gustavo Caraballo (Orlando City SC)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761807",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Minnesota United FC at St. Louis CITY SC",
+      "start_time": "2026-09-13T00:30Z",
+      "status": "UPCOMING",
+      "title": "Minnesota United FC at St. Louis CITY SC · 3 athletes",
+      "athletes": [
+        "Darius Randell",
+        "Kamil Castillo",
+        "Oscar Avilez"
+      ],
+      "triggers": [
+        "Known U18 — Darius Randell (Minnesota United FC)",
+        "Known U18 — Kamil Castillo (D.C. United)",
+        "Known U18 — Oscar Avilez (D.C. United)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Darius Randell (Minnesota United FC) | Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761808",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "CF Montréal at Colorado Rapids",
+      "start_time": "2026-09-13T01:30Z",
+      "status": "UPCOMING",
+      "title": "CF Montréal at Colorado Rapids · 1 athlete",
+      "athletes": [
+        "Samsy Keita"
+      ],
+      "triggers": [
+        "Known U18 — Samsy Keita (CF Montréal)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Samsy Keita (CF Montréal)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761809",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "New York City FC at Real Salt Lake",
+      "start_time": "2026-09-13T01:30Z",
+      "status": "UPCOMING",
+      "title": "New York City FC at Real Salt Lake · 2 athletes",
+      "athletes": [
+        "Seymour Reid",
+        "Van Parker"
+      ],
+      "triggers": [
+        "Known U18 — Seymour Reid (New York City FC)",
+        "Known U18 — Van Parker (Real Salt Lake)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Seymour Reid (New York City FC) | Known U18 — Van Parker (Real Salt Lake)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|761810",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "league": "MLS",
+      "event": "Houston Dynamo FC at San Jose Earthquakes",
+      "start_time": "2026-09-13T02:30Z",
+      "status": "UPCOMING",
+      "title": "Houston Dynamo FC at San Jose Earthquakes · 2 athletes",
+      "athletes": [
+        "Kaedren Spivey",
+        "Matthew Arana"
+      ],
+      "triggers": [
+        "Known U18 — Kaedren Spivey (San Jose Earthquakes)",
+        "Known U18 — Matthew Arana (Houston Dynamo FC)"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Kaedren Spivey (San Jose Earthquakes) | Known U18 — Matthew Arana (Houston Dynamo FC)",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
       "key": "event|401858207",
@@ -1374,6 +1788,64 @@
       ],
       "reason": "NFL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START | NFL Preseason - NO PLAYER PROPOSITION WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active SWSP markets comply."
+    },
+    {
+      "key": "event|401885441",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "league": "Primeira Liga",
+      "event": "Alverca at C.D. Nacional",
+      "start_time": "2026-09-12T14:30Z",
+      "status": "UPCOMING",
+      "title": "Alverca at C.D. Nacional",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active SWSP markets comply."
+      ],
+      "reason": "Liga Nacional | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active SWSP markets comply."
+    },
+    {
+      "key": "event|401866417",
+      "severity": "AMBER",
+      "type": "NCAA AGE REVIEW",
+      "sport": "Football",
+      "league": "NCAA Football",
+      "event": "Holy Cross Crusaders at Miami (OH) RedHawks",
+      "start_time": "2026-09-12T17:00Z",
+      "status": "UPCOMING",
+      "title": "Holy Cross Crusaders at Miami (OH) RedHawks · 9 athletes",
+      "athletes": [
+        "Vinny Gonzalez",
+        "JJ Dunnigan",
+        "Logan Nagle",
+        "Joel Ervin",
+        "Vance Diepenbrock",
+        "Ralph Scroggins",
+        "Jack Nickel",
+        "Tyran Evans",
+        "Fred Sainteus"
+      ],
+      "triggers": [
+        "High-risk unresolved age — Vinny Gonzalez (Miami)",
+        "High-risk unresolved age — JJ Dunnigan (Miami)",
+        "High-risk unresolved age — Logan Nagle (Miami)",
+        "High-risk unresolved age — Joel Ervin (Miami)",
+        "High-risk unresolved age — Vance Diepenbrock (Miami)",
+        "High-risk unresolved age — Ralph Scroggins (Miami)",
+        "High-risk unresolved age — Jack Nickel (Miami)",
+        "High-risk unresolved age — Tyran Evans (Miami)",
+        "High-risk unresolved age — Fred Sainteus (Miami)"
+      ],
+      "staff_actions": [
+        "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
+      ],
+      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Fred Sainteus (Miami)",
+      "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
     }
   ]
 }
