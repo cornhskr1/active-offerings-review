@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-09-05T15:28:42.811683+00:00",
+  "generated_at": "2026-09-05T16:30:03.675820+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-05",
   "window_end": "2026-09-12",
@@ -583,23 +583,11 @@
       "next_start_time": "2026-09-05T23:00:00-05:00",
       "operational_status": "AGE REVIEW",
       "draw_signature": "081635466764674e",
-      "draw_changed": true,
-      "risk_status": "AMBER"
+      "draw_changed": false,
+      "risk_status": "NORMAL"
     }
   ],
-  "risk_queue": [
-    {
-      "severity": "AMBER",
-      "type": "DRAW CHANGE",
-      "lane": "wta",
-      "tournament": "WTA",
-      "event": null,
-      "start_time": "2026-08-24T04:00Z",
-      "player": null,
-      "reason": "Scheduled participant/draw signature changed since the last refresh.",
-      "staff_action": "Re-screen the current field for U18 exposure."
-    }
-  ],
+  "risk_queue": [],
   "known_u18_registry": [
     {
       "name": "Cruz Hewitt",
@@ -809,7 +797,7 @@
     "participants_screened": 5,
     "verified_u18_participants": 0,
     "red_risk_items": 0,
-    "draw_changes": 1,
+    "draw_changes": 0,
     "atp_age_index": 0,
     "wta_age_index": 0,
     "itf_tournaments": 0,
