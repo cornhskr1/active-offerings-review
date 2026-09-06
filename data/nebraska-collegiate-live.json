@@ -1,55 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-06T03:24:43.690430+00:00",
+  "generated_at": "2026-09-06T06:29:13.889465+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-09-05",
-  "window_end": "2026-09-12",
+  "window_start": "2026-09-06",
+  "window_end": "2026-09-13",
   "events": [
-    {
-      "school": "Creighton",
-      "sport": "Volleyball",
-      "date": "2026-09-05",
-      "time": "3:00 PM",
-      "site": "HOME",
-      "opponent": "Pepperdine",
-      "location": "Omaha, Neb. (Wayne and Eileen Ryan Athletic Center and D.J. Sokol Arena)",
-      "phase": "REGULAR SEASON",
-      "status": "FINAL",
-      "result": "W 3-1",
-      "source_url": "https://gocreighton.com/sports/womens-volleyball/schedule/text",
-      "site_test": "NOT PERMISSIBLE",
-      "site_color": "red"
-    },
-    {
-      "school": "Creighton",
-      "sport": "Volleyball",
-      "date": "2026-09-05",
-      "time": "5:30 PM",
-      "site": "NEUTRAL",
-      "opponent": "Tulsa vs. Arizona",
-      "location": "Omaha, Neb. (Wayne and Eileen Ryan Athletic Center and D.J. Sokol Arena)",
-      "phase": "REGULAR SEASON",
-      "status": "FINAL",
-      "result": "N -",
-      "source_url": "https://gocreighton.com/sports/womens-volleyball/schedule/text",
-      "site_test": "SITE TEST PASSES",
-      "site_color": "green"
-    },
-    {
-      "school": "Nebraska",
-      "sport": "Football",
-      "date": "2026-09-05",
-      "time": "TBA",
-      "site": "HOME",
-      "opponent": "Ohio",
-      "location": "Lincoln, Neb. / Memorial Stadium",
-      "phase": "REGULAR SEASON",
-      "status": "FINAL",
-      "result": "W",
-      "source_url": "https://huskers.com/sports/football/schedule",
-      "site_test": "NOT PERMISSIBLE",
-      "site_color": "red"
-    },
     {
       "school": "Creighton",
       "sport": "Volleyball",
@@ -289,6 +244,66 @@
       "source_url": "https://huskers.com/sports/football/schedule",
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red"
+    },
+    {
+      "school": "Creighton",
+      "sport": "Women's Soccer",
+      "date": "2026-09-13",
+      "time": "1:00 P.M.",
+      "site": "HOME",
+      "opponent": "Gonzaga",
+      "location": "Omaha, Neb. (Morrison Stadium)",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "-",
+      "source_url": "https://gocreighton.com/sports/womens-soccer/schedule/text",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Women's Soccer",
+      "date": "2026-09-13",
+      "time": "1:00 PM CDT",
+      "site": "AWAY",
+      "opponent": "Iowa",
+      "location": "Iowa City, Iowa",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/soccer/schedule/season/2026",
+      "site_test": "SITE TEST PASSES",
+      "site_color": "green"
+    },
+    {
+      "school": "Creighton",
+      "sport": "Volleyball",
+      "date": "2026-09-13",
+      "time": "2:30 PM",
+      "site": "AWAY",
+      "opponent": "Rice",
+      "location": "Houston, Texas",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "-",
+      "source_url": "https://gocreighton.com/sports/womens-volleyball/schedule/text",
+      "site_test": "SITE TEST PASSES",
+      "site_color": "green"
+    },
+    {
+      "school": "Creighton",
+      "sport": "Men's Soccer",
+      "date": "2026-09-13",
+      "time": "4:00 PM",
+      "site": "HOME",
+      "opponent": "Yale",
+      "location": "Omaha, Neb. (Morrison Stadium)",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "-",
+      "source_url": "https://gocreighton.com/sports/mens-soccer/schedule/text",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red"
     }
   ],
   "sources": [
@@ -297,7 +312,7 @@
       "sport": "Football",
       "url": "https://huskers.com/sports/football/schedule",
       "ok": true,
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "school": "Nebraska",
@@ -311,7 +326,7 @@
       "sport": "Women's Soccer",
       "url": "https://huskers.com/sports/soccer/schedule/season/2026",
       "ok": true,
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "school": "Nebraska",
@@ -332,21 +347,21 @@
       "sport": "Men's Soccer",
       "url": "https://gocreighton.com/sports/mens-soccer/schedule/text",
       "ok": true,
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "school": "Creighton",
       "sport": "Women's Soccer",
       "url": "https://gocreighton.com/sports/womens-soccer/schedule/text",
       "ok": true,
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "school": "Creighton",
       "sport": "Volleyball",
       "url": "https://gocreighton.com/sports/womens-volleyball/schedule/text",
       "ok": true,
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "school": "Creighton",
