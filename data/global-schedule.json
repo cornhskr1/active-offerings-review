@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-06T12:23:25.043137+00:00",
+  "generated_at": "2026-09-06T13:18:33.386480+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-06",
   "window_end": "2026-09-13",
-  "event_count": 877,
+  "event_count": 878,
   "events": [
     {
       "id": "189-2026",
@@ -112,7 +112,7 @@
       "name": "KAA Gent at Cercle Brugge KSV",
       "start_time": "2026-09-06T11:30Z",
       "status": "LIVE",
-      "status_detail": "HT",
+      "status_detail": "90'+1'",
       "location": "Jan Breydel Stadium \u00b7 Brugge, Belgium",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/scoreboard",
       "u18_matches": [],
@@ -131,7 +131,7 @@
       "name": "AC Horsens at S\u00f8nderjyske Fodbold",
       "start_time": "2026-09-06T12:00Z",
       "status": "LIVE",
-      "status_detail": "19'",
+      "status_detail": "58'",
       "location": "Sydbank Park \u00b7 Haderslev, Denmark",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/scoreboard",
       "u18_matches": [],
@@ -149,8 +149,8 @@
       "region": "Netherlands",
       "name": "AZ Alkmaar at Heerenveen",
       "start_time": "2026-09-06T12:30Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
+      "status": "LIVE",
+      "status_detail": "HT",
       "location": "Abe Lenstra Stadion \u00b7 Heerenveen, Netherlands",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/scoreboard",
       "u18_matches": [],
@@ -168,8 +168,8 @@
       "region": "Netherlands",
       "name": "SC Cambuur at Telstar",
       "start_time": "2026-09-06T12:30Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
+      "status": "LIVE",
+      "status_detail": "45'+3'",
       "location": "711 Stadion \u00b7 Velsen-Zuid, Netherlands",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/scoreboard",
       "u18_matches": [],
@@ -187,8 +187,8 @@
       "region": "France",
       "name": "Strasbourg at Troyes",
       "start_time": "2026-09-06T13:00Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
+      "status": "LIVE",
+      "status_detail": "19'",
       "location": "Stade de l'Aube \u00b7 Paris, France",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/scoreboard",
       "u18_matches": [],
@@ -206,8 +206,8 @@
       "region": "England",
       "name": "Manchester United at Everton",
       "start_time": "2026-09-06T13:00Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
+      "status": "LIVE",
+      "status_detail": "18'",
       "location": "Hill Dickinson Stadium \u00b7 Liverpool, England",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
       "u18_matches": [],
@@ -225,8 +225,8 @@
       "region": "Italy",
       "name": "Monza at Parma",
       "start_time": "2026-09-06T13:00Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
+      "status": "LIVE",
+      "status_detail": "18'",
       "location": "Ennio Tardini \u00b7 Parma, Italy",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard",
       "u18_matches": [],
@@ -244,8 +244,8 @@
       "region": "Italy",
       "name": "Venezia at Frosinone",
       "start_time": "2026-09-06T13:00Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
+      "status": "LIVE",
+      "status_detail": "15'",
       "location": "Stadio Benito Stirpe \u00b7 Frosinone, Italy",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard",
       "u18_matches": [],
@@ -2414,6 +2414,25 @@
       "status_detail": "9/7 - 10:05 PM EDT",
       "location": "Sutter Health Park \u00b7 Sacramento, California",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "401875619",
+      "source_id": "eredivisie",
+      "sport": "Soccer",
+      "league": "Eredivisie",
+      "competition": "Eredivisie",
+      "tournament": "Eredivisie",
+      "region": "Netherlands",
+      "name": "Go Ahead Eagles at FC Utrecht",
+      "start_time": "2026-09-08T12:00Z",
+      "status": "COMPLETED",
+      "status_detail": "Susp",
+      "location": "Stadion Galgenwaard \u00b7 Utrecht, Netherlands",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -16736,7 +16755,7 @@
       "ok": true,
       "events": 106,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "nfl",
@@ -16752,7 +16771,7 @@
       "ok": true,
       "events": 15,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "ncaa-football",
@@ -16768,7 +16787,7 @@
       "ok": true,
       "events": 35,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "nba",
@@ -16784,7 +16803,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "wnba",
@@ -16800,7 +16819,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -16816,7 +16835,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -16832,7 +16851,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "nhl",
@@ -16848,7 +16867,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "mls",
@@ -16864,7 +16883,7 @@
       "ok": true,
       "events": 29,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "epl",
@@ -16879,7 +16898,7 @@
       "ok": true,
       "events": 11,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "bundesliga",
@@ -16894,7 +16913,7 @@
       "ok": true,
       "events": 11,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "laliga",
@@ -16909,7 +16928,7 @@
       "ok": true,
       "events": 15,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "seriea",
@@ -16924,7 +16943,7 @@
       "ok": true,
       "events": 13,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "ligue1",
@@ -16939,7 +16958,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "eredivisie",
@@ -16952,9 +16971,9 @@
       ],
       "approved_catalog": true,
       "ok": true,
-      "events": 15,
+      "events": 16,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "primeira",
@@ -16969,7 +16988,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "belgium",
@@ -16985,7 +17004,7 @@
       "ok": true,
       "events": 13,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "denmark",
@@ -17001,7 +17020,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -17017,7 +17036,7 @@
       "ok": true,
       "events": 575,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "atp-tennis",
@@ -17033,7 +17052,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     },
     {
       "id": "wta-tennis",
@@ -17049,7 +17068,7 @@
       "ok": true,
       "events": 5,
       "errors": [],
-      "checked_at": "2026-09-06T12:23:25.043137+00:00"
+      "checked_at": "2026-09-06T13:18:33.386480+00:00"
     }
   ],
   "coverage_gaps": [
