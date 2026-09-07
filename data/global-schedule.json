@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-07T21:19:34.759790+00:00",
+  "generated_at": "2026-09-07T22:19:30.542076+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-07",
   "window_end": "2026-09-14",
@@ -320,8 +320,8 @@
       "region": "United States",
       "name": "Minnesota Twins at Detroit Tigers",
       "start_time": "2026-09-07T19:10Z",
-      "status": "LIVE",
-      "status_detail": "Top 8th",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "location": "Comerica Park \u00b7 Detroit, Michigan",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
       "u18_matches": [],
@@ -358,8 +358,8 @@
       "region": "Spain",
       "name": "Real Sociedad at Elche",
       "start_time": "2026-09-07T19:30Z",
-      "status": "LIVE",
-      "status_detail": "89'",
+      "status": "COMPLETED",
+      "status_detail": "FT",
       "location": "Estadio Mart\u00ednez Valero \u00b7 Elche, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
       "u18_matches": [],
@@ -377,8 +377,8 @@
       "region": "United States",
       "name": "Indiana Hoosiers at Southern Indiana Screaming Eagles",
       "start_time": "2026-09-07T20:00Z",
-      "status": "LIVE",
-      "status_detail": "1st Set",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "location": "Liberty Arena (IN) \u00b7 Evansville, Indiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
@@ -396,8 +396,8 @@
       "region": "United States",
       "name": "Penn State Nittany Lions at DePaul Blue Demons",
       "start_time": "2026-09-07T20:00Z",
-      "status": "LIVE",
-      "status_detail": "1st Set",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "location": "McGrath-Phillips Arena \u00b7 Chicago, Illinois",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
@@ -416,7 +416,7 @@
       "name": "Washington Nationals at San Diego Padres",
       "start_time": "2026-09-07T21:10Z",
       "status": "LIVE",
-      "status_detail": "Bot 1st",
+      "status_detail": "Bot 4th",
       "location": "Petco Park \u00b7 San Diego, California",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
       "u18_matches": [],
@@ -805,6 +805,25 @@
       "restriction_risk": false
     },
     {
+      "id": "401897516",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "competition": "NCAA Volleyball",
+      "tournament": "NCAA Volleyball",
+      "region": "United States",
+      "name": "Alcorn State Braves at Louisiana Tech Bulldogs",
+      "start_time": "2026-09-08T22:30Z",
+      "status": "UPCOMING",
+      "status_detail": "9/8 - 6:30 PM EDT",
+      "location": "Thomas Assembly Center \u00b7 Ruston, Louisiana",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401883562",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -1179,25 +1198,6 @@
       "status_detail": "9/8 - 7:15 PM EDT",
       "location": "Truist Park \u00b7 Atlanta, Georgia",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
-      "id": "401897516",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "competition": "NCAA Volleyball",
-      "tournament": "NCAA Volleyball",
-      "region": "United States",
-      "name": "Alcorn State Braves at Louisiana Tech Bulldogs",
-      "start_time": "2026-09-08T23:30Z",
-      "status": "UPCOMING",
-      "status_detail": "9/8 - 7:30 PM EDT",
-      "location": "Thomas Assembly Center \u00b7 Ruston, Louisiana",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -15333,7 +15333,7 @@
       "ok": true,
       "events": 101,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "nfl",
@@ -15349,7 +15349,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "ncaa-football",
@@ -15365,7 +15365,7 @@
       "ok": true,
       "events": 32,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "nba",
@@ -15381,7 +15381,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "wnba",
@@ -15397,7 +15397,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -15413,7 +15413,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -15429,7 +15429,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "nhl",
@@ -15445,7 +15445,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "mls",
@@ -15461,7 +15461,7 @@
       "ok": true,
       "events": 29,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "epl",
@@ -15476,7 +15476,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "bundesliga",
@@ -15491,7 +15491,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "laliga",
@@ -15506,7 +15506,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "seriea",
@@ -15521,7 +15521,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "ligue1",
@@ -15536,7 +15536,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "eredivisie",
@@ -15551,7 +15551,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "primeira",
@@ -15566,7 +15566,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "belgium",
@@ -15582,7 +15582,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "denmark",
@@ -15598,7 +15598,7 @@
       "ok": true,
       "events": 7,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -15614,7 +15614,7 @@
       "ok": true,
       "events": 523,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "atp-tennis",
@@ -15630,7 +15630,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     },
     {
       "id": "wta-tennis",
@@ -15646,7 +15646,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-07T21:19:34.759790+00:00"
+      "checked_at": "2026-09-07T22:19:30.542076+00:00"
     }
   ],
   "coverage_gaps": [
