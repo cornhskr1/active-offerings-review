@@ -44,6 +44,17 @@ def load(path,default):
     try:return json.loads(path.read_text(encoding="utf-8"))
     except Exception:return default
 
+AGE_CACHE_PATH=DATA/"tennis-age-cache.json"
+
+def load_age_cache():
+    raw=load(AGE_CACHE_PATH,{"schema_version":1,"records":{}})
+    records=raw.get("records") or {}
+    # Normalize old/list forms defensively.
+    if isinstance(records,list):
+        records={norm(x.get("name")):x for x in records if x.get("name")}
+    return records
+
+
 def norm(s):
     s=str(s or "").lower()
     s=re.sub(r"[\u2018\u2019'`]", "",s)
@@ -616,34 +627,40 @@ with sync_playwright() as pw:
         ded[(t["tour_id"],norm(t["tournament"]),t["start_date"])]=t
     tournaments=list(ded.values())
 
-    # Tournament entrant linkage + automatic age resolution.
-    # Order: known U18 -> official rankings -> exact official profile -> unresolved only.
+    # Tournament entrant linkage + FAST age resolution.
+    # Order: known U18 -> persistent age cache -> ATP/WTA bulk ranking ages -> unresolved.
+    # Individual player profiles are intentionally NOT opened here.
+    persistent_age_cache=load_age_cache()
+
+    # Promote current bulk ATP/WTA ranking results into the persistent cache in memory
+    # so they can immediately resolve tournament entrants during this run.
+    for k,v in broad_age_index.items():
+        persistent_age_cache[k]={**persistent_age_cache.get(k,{}),**v,
+          "last_verified":NOW.isoformat(),"verification_method":"bulk_official_ranking"}
+
     for t in tournaments:
         people=participant_links(browser,t)
         t["participants_extracted"]=len(people)
         t["participant_extraction_status"]="EXTRACTED" if people else "NO PARTICIPANT FIELD EXTRACTED"
-        # ITF fact sheets publish expected draw sizes; the UI can distinguish a
-        # genuinely missing participant field from a partial extraction.
         t["participant_field_complete"]=False
         parts=[]
-        on_date=datetime.date.fromisoformat(t["start_date"])
         for p in people:
             k=norm(p["name"])
             if k in u18_index:
                 parts.append({**p,**u18_index[k]})
                 continue
+            cached=persistent_age_cache.get(k)
+            if cached and cached.get("age_status") in ("VERIFIED U18","VERIFIED 18+"):
+                parts.append({**p,**cached})
+                continue
             if k in broad_age_index:
                 parts.append({**p,**broad_age_index[k]})
                 continue
 
-            profile_result=resolve_profile_age(browser,p,on_date)
-            if profile_result:
-                parts.append({**p,**profile_result})
-            else:
-                parts.append({**p,"age":None,"dob":None,"age_status":"UNRESOLVED",
-                    "source":t["participant_source"],
-                    "source_url":p.get("profile_url") or t.get("source_url"),
-                    "evidence":"Participant is linked to the official tournament field, but explicit age/DOB was not resolved from the official ranking/profile sources."})
+            parts.append({**p,"age":None,"dob":None,"age_status":"UNRESOLVED",
+                "source":t["participant_source"],
+                "source_url":p.get("profile_url") or t.get("source_url"),
+                "evidence":"Participant is linked to the official tournament field. Age is not yet in the official ranking index or persistent age cache; queued for Deep Tennis Age Scan."})
 
         # Deduplicate by normalized athlete name.
         dedup={}
@@ -665,6 +682,14 @@ with sync_playwright() as pw:
             t["status_color"]="GREEN";t["regulatory_status"]="OK — PARTICIPANT FIELD AGE-RESOLVED"
         else:
             t["status_color"]="AMBER";t["regulatory_status"]="MANUAL REVIEW — UNRESOLVED AGE COVERAGE"
+
+    # Persist cheap bulk official age resolutions. Deep scan will add profile-based
+    # resolutions to the same cache without forcing this refresh to wait on them.
+    AGE_CACHE_PATH.write_text(json.dumps({
+      "schema_version":1,
+      "generated_at":NOW.isoformat(),
+      "records":persistent_age_cache
+    },indent=2,ensure_ascii=False),encoding="utf-8")
 
     browser.close()
 
@@ -691,7 +716,9 @@ summary={"tournaments_mapped":len(tournaments),
  "amber_tournaments":sum(t["status_color"]=="AMBER" for t in tournaments),
  "green_tournaments":sum(t["status_color"]=="GREEN" for t in tournaments),
  "participants_found":sum(t["participant_count"] for t in tournaments),
- "verified_u18_players":len(exposure)}
+ "verified_u18_players":len(exposure),
+ "unresolved_participants":sum(t["unresolved_count"] for t in tournaments),
+ "age_cache_records":len(persistent_age_cache)}
 
 out={"schema_version":5,"generated_at":NOW.isoformat(),"timezone":"America/Chicago",
  "window_start":TODAY.isoformat(),"window_end":END.isoformat(),"tour_families":FAMILIES,
@@ -702,7 +729,8 @@ out={"schema_version":5,"generated_at":NOW.isoformat(),"timezone":"America/Chica
    "amber":"Tournament is mapped, but one or more participant ages remain unresolved after official ranking/profile checks.",
    "green":"Official participant field was obtained and every listed entrant was resolved as 18+.",
    "scope":"Main draw, qualifying, doubles, wild cards, acceptance lists, accepted alternates and order of play are in scope.",
-   "discovery":"Official ATP/WTA/ITF/UTR pages are rendered in Chromium so JavaScript-loaded calendars and participant links are visible."
+   "discovery":"Official ATP/WTA/ITF/UTR pages are rendered in Chromium so JavaScript-loaded calendars and participant links are visible.",
+   "age_architecture":"Fast refresh uses known U18 records, persistent cache, and bulk official ranking ages. Individual unresolved profiles are handled separately by Deep Tennis Age Scan."
  }}
 (DATA/"tennis-intelligence.json").write_text(json.dumps(out,indent=2,ensure_ascii=False),encoding="utf-8")
 print(json.dumps(summary))
