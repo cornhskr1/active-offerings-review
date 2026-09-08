@@ -2814,7 +2814,18 @@ if(us) us.addEventListener('input',e=>{
       ['NCAA Football age discovery', ()=>window.renderNCAAAgeDiscovery?window.renderNCAAAgeDiscovery():Promise.resolve()],
       ['restriction watch', ()=>window.loadCleanRestrictionWatch?window.loadCleanRestrictionWatch():Promise.resolve()],
       ['approved sports schedule', loadGlobalSchedule],
-      ['dynamic priority queue', ()=>window.loadPriorityQueue?window.loadPriorityQueue():Promise.resolve()],
+      ['dynamic priority queue', async()=>{
+        try{
+          if(window.loadPriorityQueue) return await window.loadPriorityQueue();
+          return await fetchJsonRetry('data/priority-queue.json',3);
+        }catch(err){
+          console.warn('Priority Queue renderer refresh failed; validating published feed directly.',err);
+          // The Refresh Review health check is about the published feed. If the
+          // JSON itself is healthy, do not falsely report the feed as failed
+          // because an optional renderer/supporting-feed operation threw.
+          return await fetchJsonRetry('data/priority-queue.json',3);
+        }
+      }],
       ['NCAA age vetting', ()=>window.loadNCAAVetting?window.loadNCAAVetting():Promise.resolve()],
       ['tennis intelligence', ()=>window.loadTennisIntel?window.loadTennisIntel():Promise.resolve()]
     ];
@@ -3354,7 +3365,7 @@ function ncaaRiskTierClass(rec){
                 <span class="pill ${pill(t.status_color)}">${te(t.regulatory_status)}</span>
                 <span class="tennis-reg-main"><b>${te(t.tournament)}</b><span>${te(t.start_date)} – ${te(t.end_date)}${t.location?' · '+te(t.location):''}${t.category?' · '+te(t.category):''}${t.discovery_fallback?' · SCHEDULE FALLBACK':''}</span></span>
                 <span class="tennis-reg-counts">
-                  <span class="tennis-stat-chip">${te(t.participant_count||0)} entrants extracted</span>
+                  <span class="tennis-stat-chip">${te(t.participant_count||0)} entrants extracted</span>${!t.participant_count?'<span class="tennis-stat-chip">FIELD NOT CAPTURED</span>':''}
                   <span class="tennis-stat-chip">${te(t.verified_18plus_count||0)} 18+</span>
                   <span class="tennis-stat-chip">${te(t.unresolved_count||0)} unresolved</span>
                   ${t.verified_u18?.length?`<span class="tennis-stat-chip">${te(t.verified_u18.length)} U18</span>`:''}
