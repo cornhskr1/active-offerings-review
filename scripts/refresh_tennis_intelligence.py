@@ -99,9 +99,13 @@ class Browser:
             links=self.page.locator("a").evaluate_all(
                 """els=>els.map(a=>({text:(a.innerText||'').trim(),href:a.href||'',parent:(a.closest('tr,article,li,section,div')?.innerText||'').trim()}))"""
             )
-            return {"ok":True,"url":self.page.url,"text":text,"links":links}
+            rows=self.page.locator("tr").evaluate_all(
+                """els=>els.map(tr=>({cells:[...tr.querySelectorAll('th,td')].map(x=>(x.innerText||'').trim()),text:(tr.innerText||'').trim()}))"""
+            )
+            html=self.page.content()
+            return {"ok":True,"url":self.page.url,"text":text,"links":links,"rows":rows,"html":html}
         except Exception as e:
-            return {"ok":False,"url":url,"text":"","links":[],"error":str(e)[:180]}
+            return {"ok":False,"url":url,"text":"","links":[],"rows":[],"html":"","error":str(e)[:180]}
 
 def clean_tournament_name(text):
     s=" ".join(str(text or "").split())
@@ -185,34 +189,161 @@ def fallback_global_schedule():
         })
     return out
 
-def participant_links(browser,t):
-    urls=[t.get("source_url")]
-    tid=t["tour_id"]
-    if tid.startswith("itf-"):
-        urls=[t.get("acceptance_url"),t.get("draw_url"),t.get("order_url"),t.get("source_url")]
-        pat=r"/en/players/"
-    elif tid.startswith("atp"):
-        pat=r"/en/players/"
-        urls += [str(t.get("source_url","")).rstrip("/")+"/draws"]
-    elif tid.startswith("wta"):
-        pat=r"/players/"
-        urls += [str(t.get("source_url","")).rstrip("/")+"/players",str(t.get("source_url","")).rstrip("/")+"/draws"]
-    else:
-        pat=r"/(profile|profiles|player|players)/"
+def clean_player_name(name):
+    name=" ".join(str(name or "").split()).strip(" -|,")
+    name=re.sub(r"^[A-Z]{3}\s*", "", name).strip()
+    return name
 
+def plausible_player(name):
+    name=clean_player_name(name)
+    if len(name)<4 or len(name)>80 or len(name.split())<2:
+        return False
+    bad=(
+      "player list","tournament","acceptance list","draws","results","order of play",
+      "official website","singles","doubles","qualifying","withdrawal","alternate",
+      "seed #","prize","ranking","currently playing","eliminated"
+    )
+    return not any(x in name.lower() for x in bad)
+
+def add_person(found,name,url=None,source=None):
+    name=clean_player_name(name)
+    if not plausible_player(name):return
+    # Doubles listings sometimes contain surname-only pairs. Do not invent full
+    # identities from those; singles/qualifying pages provide full names.
+    if " & " in name or "&" in name:return
+    k=norm(name)
+    rec=found.get(k,{"name":name})
+    if url and not rec.get("profile_url"):rec["profile_url"]=url
+    if source:rec["participant_evidence"]=source
+    found[k]=rec
+
+def wta_player_list_url(url):
+    m=re.search(r'https?://(?:www\.)?wtatennis\.com/tournaments/(\d+)/([^/]+)/(\d{4})',str(url or ''),re.I)
+    if not m:return str(url or '').rstrip("/")+"/player-list"
+    return f"https://www.wtatennis.com/tournaments/{m.group(1)}/{m.group(2)}/{m.group(3)}/player-list"
+
+def wta_draw_url(url):
+    m=re.search(r'https?://(?:www\.)?wtatennis\.com/tournaments/(\d+)/([^/]+)/(\d{4})',str(url or ''),re.I)
+    if not m:return None
+    return f"https://www.wtatennis.com/tournament/{m.group(1)}/{m.group(2)}/{m.group(3)}/draws"
+
+def atp_draw_urls(url):
+    u=str(url or '').rstrip("/")
+    if u.endswith("/overview"):
+        root=u[:-len("/overview")]
+    else:
+        root=u
+    return [root+"/draws",root+"/results",u]
+
+def extract_wta_text(found,snap):
+    """WTA player-list pages expose full singles/qualifying names in rendered text."""
+    lines=[" ".join(x.split()) for x in str(snap.get("text") or "").splitlines() if x.strip()]
+    status_words={"playing","eliminated","upcoming","finished","suspended"}
+    meta_words={"filter","all players","currently playing","player list coming soon. please check back for updates."}
+    for i,line in enumerate(lines):
+        if line.lower() not in status_words:continue
+        # The next meaningful line is normally the player's displayed name.
+        for nxt in lines[i+1:i+5]:
+            low=nxt.lower()
+            if low in status_words or low in meta_words:continue
+            if re.fullmatch(r"[A-Z]{3}",nxt):continue
+            if re.match(r"^(Seed #|Wild Card|Qualifier|Lucky Loser)",nxt,re.I):continue
+            if "&" not in nxt:
+                add_person(found,nxt,source="WTA official player list")
+            break
+
+def extract_itf_table_text(found,snap):
+    """Extract names from ITF table Player cells even when player anchors are absent."""
+    for row in snap.get("rows",[]):
+        cells=row.get("cells") or []
+        if len(cells)<2:continue
+        txt=" ".join(cells)
+        # Exclude players explicitly shown as withdrawn.
+        if re.search(r"\bwithdraw(al|n)?\b|Automatic Withdrawal|\bAW[A-Z]{0,3}\b",txt,re.I):
+            continue
+        player_cell=cells[1]
+        # ITF rendered text can concatenate country code + player + next country code.
+        # Insert separators where a player surname runs into the next 3-letter code.
+        x=re.sub(r"([a-zà-öø-ÿ])([A-Z]{3})(?=[A-ZÀ-ÖØ-Þ])",r"\1|\2",player_cell)
+        chunks=x.split("|")
+        for chunk in chunks:
+            m=re.match(r"^\s*[A-Z]{3}\s*(.+?)\s*$",chunk)
+            if m:
+                name=m.group(1).strip()
+                # Remove trailing ranking columns accidentally included in a cell.
+                name=re.sub(r"\s+\d+(?:\s+\d+)*\s*$","",name).strip()
+                add_person(found,name,source="ITF official participant table")
+
+def extract_embedded_names(found,html,source):
+    """Fallback for JS apps such as UTR where names may live in hydrated JSON."""
+    text=str(html or "")
+    for m in re.finditer(r'"firstName"\s*:\s*"([^"]{2,40})".{0,240}?"lastName"\s*:\s*"([^"]{2,50})"',text,re.I|re.S):
+        add_person(found,f"{m.group(1)} {m.group(2)}",source=source)
+    for m in re.finditer(r'"(?:displayName|fullName|playerName)"\s*:\s*"([^"]{4,80})"',text,re.I):
+        add_person(found,m.group(1),source=source)
+
+def participant_links(browser,t):
+    tid=t["tour_id"]
     found={}
-    for url in urls:
-        if not url:continue
-        snap=browser.snapshot(url,1200)
-        if not snap["ok"]:continue
-        for a in snap["links"]:
-            if not re.search(pat,a["href"],re.I):continue
-            name=" ".join(a["text"].split())
-            # ITF lists frequently prefix the linked athlete with a three-letter nation code.
-            name=re.sub(r"^[A-Z]{3}\s+", "", name).strip()
-            if len(name.split())<2 or len(name)>80:continue
-            if any(x in name.lower() for x in ("draw","profile","results","schedule","player profile")):continue
-            found[norm(name)]={"name":name,"profile_url":a["href"]}
+
+    if tid.startswith("itf-"):
+        # Draw / order of play are the best evidence of actual participation.
+        primary=[t.get("draw_url"),t.get("order_url")]
+        primary_count=0
+        for url in primary:
+            if not url:continue
+            snap=browser.snapshot(url,1100)
+            if not snap.get("ok"):continue
+            for a in snap.get("links",[]):
+                if re.search(r"/en/players/",a.get("href",""),re.I):
+                    before=len(found); add_person(found,a.get("text"),a.get("href"),"ITF draw/order of play")
+                    primary_count += len(found)-before
+            extract_itf_table_text(found,snap)
+
+        # Acceptance List is a fallback / supplement, but withdrawals are excluded.
+        if primary_count==0 or len(found)<8:
+            url=t.get("acceptance_url")
+            if url:
+                snap=browser.snapshot(url,1100)
+                if snap.get("ok"):
+                    for a in snap.get("links",[]):
+                        parent=a.get("parent","")
+                        if re.search(r"/en/players/",a.get("href",""),re.I) and not re.search(r"withdraw|Automatic Withdrawal",parent,re.I):
+                            add_person(found,a.get("text"),a.get("href"),"ITF acceptance list")
+                    extract_itf_table_text(found,snap)
+
+    elif tid.startswith("wta"):
+        urls=[wta_player_list_url(t.get("source_url")),wta_draw_url(t.get("source_url")),t.get("source_url")]
+        for url in urls:
+            if not url:continue
+            snap=browser.snapshot(url,1200)
+            if not snap.get("ok"):continue
+            for a in snap.get("links",[]):
+                if re.search(r"/players/",a.get("href",""),re.I):
+                    add_person(found,a.get("text"),a.get("href"),"WTA official player/draw page")
+            extract_wta_text(found,snap)
+            extract_embedded_names(found,snap.get("html"),"WTA rendered tournament data")
+
+    elif tid.startswith("atp"):
+        for url in atp_draw_urls(t.get("source_url")):
+            snap=browser.snapshot(url,1300)
+            if not snap.get("ok"):continue
+            for a in snap.get("links",[]):
+                if re.search(r"/en/players/",a.get("href",""),re.I):
+                    add_person(found,a.get("text"),a.get("href"),"ATP official draw/results page")
+            extract_embedded_names(found,snap.get("html"),"ATP rendered tournament data")
+
+    else:
+        # UTR Pro Tennis Tour
+        url=t.get("source_url")
+        if url:
+            snap=browser.snapshot(url,1500)
+            if snap.get("ok"):
+                for a in snap.get("links",[]):
+                    if re.search(r"/(profile|profiles|player|players)/",a.get("href",""),re.I):
+                        add_person(found,a.get("text"),a.get("href"),"UTR official event page")
+                extract_embedded_names(found,snap.get("html"),"UTR rendered event data")
+
     return list(found.values())
 
 PROFILE_AGE_CACHE={}
@@ -223,21 +354,21 @@ def age_from_dob(dob,on_date):
 def parse_age_evidence(text,on_date):
     txt=" ".join(str(text or "").split())
 
-    # Direct age labels are common on ITF and WTA profiles.
-    patterns=[
-      r'\\bAge\\s*:?\\s*(1[4-9]|[2-4]\\d)\\b',
-      r'\\bAge\\s+(1[4-9]|[2-4]\\d)\\b'
-    ]
-    for pat in patterns:
+    # Explicit age labels.
+    for pat in (
+      r'\bAge\s*:?\s*(1[4-9]|[2-4]\d)\b',
+      r'\bage\s+(1[4-9]|[2-4]\d)\s*(?:years?|yrs?)?\b'
+    ):
         m=re.search(pat,txt,re.I)
         if m:
-            return int(m.group(1)),None,f"Official profile lists age {m.group(1)}."
+            age=int(m.group(1))
+            return age,None,f"Official profile lists age {age}."
 
-    # Explicit birth fields only; bare dates are intentionally ignored.
+    # Explicit DOB fields only. Bare dates elsewhere on the page are ignored.
     dob_patterns=[
-      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\\s*:?\\s*(\\d{1,2}\\s+[A-Za-z]+\\s+\\d{4})',
-      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\\s*:?\\s*([A-Za-z]+\\s+\\d{1,2},?\\s+\\d{4})',
-      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\\s*:?\\s*(\\d{4}-\\d{2}-\\d{2})'
+      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})',
+      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\s*:?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})',
+      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\s*:?\s*(\d{4}-\d{2}-\d{2})'
     ]
     for pat in dob_patterns:
         m=re.search(pat,txt,re.I)
@@ -282,21 +413,29 @@ def resolve_profile_age(browser,person,on_date):
     return result
 
 def ranking_age_index(browser,url,profile_pattern,source):
-    """Build one broad age index before individual profile lookups."""
+    """Build a broad official ranking-age index before individual profile lookups."""
     out={}; snap=browser.snapshot(url,2200)
     health={'ok':snap.get('ok',False),'records':0,'url':url,'error':snap.get('error')}
     if not snap.get('ok'):
         return out,health
     for a in snap.get('links',[]):
         if not re.search(profile_pattern,a.get('href',''),re.I):continue
-        name=" ".join(str(a.get('text') or '').split())
-        name=re.sub(r"^[A-Z]{3}\\s+", "", name).strip()
-        if len(name.split())<2 or len(name)>80:continue
+        name=clean_player_name(a.get('text'))
+        if not plausible_player(name):continue
         row=" ".join(str(a.get('parent') or '').split())
-        # Ranking tables normally show age as a standalone integer near the player.
-        vals=[int(x) for x in re.findall(r'(?<!\\d)(1[4-9]|[2-4]\\d)(?!\\d)',row)]
-        if not vals:continue
-        age=vals[0]
+
+        age=None
+        explicit=re.search(r'\bAge\s*:?\s*(1[4-9]|[2-4]\d)\b',row,re.I)
+        if explicit:
+            age=int(explicit.group(1))
+        else:
+            # Ranking tables often display age as a standalone 2-digit column.
+            # Keep this conservative: only 16-40 and prefer a value near the player name.
+            values=[int(x) for x in re.findall(r'(?<!\d)(1[6-9]|[2-3]\d|40)(?!\d)',row)]
+            if values:
+                age=values[0]
+
+        if age is None:continue
         out[norm(name)]={
           'name':name,'age':age,'dob':None,
           'age_status':'VERIFIED U18' if age<18 else 'VERIFIED 18+',
@@ -396,6 +535,8 @@ with sync_playwright() as pw:
     # Order: known U18 -> official rankings -> exact official profile -> unresolved only.
     for t in tournaments:
         people=participant_links(browser,t)
+        t["participants_extracted"]=len(people)
+        t["participant_extraction_status"]="EXTRACTED" if people else "NO PARTICIPANT FIELD EXTRACTED"
         parts=[]
         on_date=datetime.date.fromisoformat(t["start_date"])
         for p in people:
@@ -432,7 +573,7 @@ with sync_playwright() as pw:
 
         if t["verified_u18"]:
             t["status_color"]="RED";t["regulatory_status"]="NOT PERMISSIBLE — U18 EXPOSURE"
-        elif parts and t["unresolved_count"]==0:
+        elif len(parts)>=4 and t["unresolved_count"]==0:
             t["status_color"]="GREEN";t["regulatory_status"]="OK — PARTICIPANT FIELD AGE-RESOLVED"
         else:
             t["status_color"]="AMBER";t["regulatory_status"]="MANUAL REVIEW — UNRESOLVED AGE COVERAGE"
