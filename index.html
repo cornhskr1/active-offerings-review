@@ -670,6 +670,253 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 .tennis-age-review-item{border:1px solid #efd29b;border-radius:10px;padding:9px 10px;background:#fffaf0}
 .tennis-gap-item{border:1px solid var(--line);border-radius:9px;padding:8px 9px;background:#fafbfd;font-size:10px}
 @media(max-width:850px){.tennis-ops-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.tennis-op-event>summary{grid-template-columns:1fr}}
+
+/* ============================================================
+   ACTIVE OFFERINGS REVIEW SYSTEM — AGENCY COMMAND CENTER THEME
+   Brand: black / charcoal / white.
+   Semantic colors are operational and never decorative:
+   GREEN = OK, AMBER = REVIEW, RED = NOT PERMISSIBLE.
+   ============================================================ */
+:root{
+  --agency-black:#111214;
+  --agency-charcoal:#25282c;
+  --agency-charcoal-2:#35393e;
+  --agency-white:#ffffff;
+  --agency-bg:#f1f2f3;
+  --agency-line:#d9dde1;
+  --agency-red:#b42318;
+  --agency-red-bg:#fff1f0;
+  --agency-amber:#a86608;
+  --agency-amber-bg:#fff7e6;
+  --agency-green:#267342;
+  --agency-green-bg:#eef8f1;
+  --nav:#17191c!important;
+  --line:#d9dde1!important;
+  --muted:#69717a!important;
+}
+html{background:var(--agency-bg)}
+body{
+  background:var(--agency-bg)!important;
+  color:#202327!important;
+}
+header,.site-header,.app-header{
+  background:linear-gradient(135deg,var(--agency-black),var(--agency-charcoal))!important;
+  color:#fff!important;
+}
+body:before{
+  content:"";
+  display:block;
+  position:fixed;
+  z-index:9999;
+  top:0;left:0;right:0;
+  height:4px;
+  background:var(--agency-red);
+  pointer-events:none;
+}
+.wrap{max-width:1500px!important}
+.topline{
+  background:#fff!important;
+  border:1px solid var(--agency-line)!important;
+  border-radius:10px!important;
+  box-shadow:0 2px 10px rgba(0,0,0,.035)!important;
+}
+.nav{
+  background:var(--agency-charcoal)!important;
+  border-radius:10px!important;
+  padding:4px!important;
+  gap:3px!important;
+  box-shadow:0 3px 12px rgba(0,0,0,.08)!important;
+}
+.nav button{
+  color:#dfe3e7!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:7px!important;
+}
+.nav button:hover{background:#3a3e43!important;color:#fff!important}
+.nav button.active{
+  background:#fff!important;
+  color:#111214!important;
+  box-shadow:inset 0 -3px 0 var(--agency-red),0 1px 5px rgba(0,0,0,.15)!important;
+}
+.dashboard-hero{
+  background:linear-gradient(135deg,#151719,#2c3034)!important;
+  color:#fff!important;
+  border:0!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.14)!important;
+}
+.dashboard-hero h2,.dashboard-hero p,.dashboard-hero .eyebrow{color:#fff!important}
+.hero-date{background:#fff!important;color:#1c2024!important;border:0!important}
+.card,.review-card,.live-catalog-section{
+  background:#fff!important;
+  border:1px solid var(--agency-line)!important;
+  box-shadow:0 2px 10px rgba(17,18,20,.045)!important;
+}
+.section-title{
+  color:#181b1e!important;
+  font-weight:900!important;
+  letter-spacing:-.015em!important;
+}
+.section-title:after{
+  content:"";
+  display:block;
+  width:34px;height:3px;
+  background:var(--agency-red);
+  margin-top:6px;
+  border-radius:999px;
+}
+button,.refresh-review-btn{
+  font-family:inherit;
+}
+.refresh-review-btn{
+  background:#fff!important;color:#141618!important;border:0!important;
+}
+.filter-bar button,.queue-filter,.schedule-filter,.ncf-filter{
+  background:#fff!important;color:#353a40!important;border:1px solid var(--agency-line)!important;
+}
+.filter-bar button.active,.queue-filter.active,.schedule-filter.active,.ncf-filter.active{
+  background:var(--agency-charcoal)!important;color:#fff!important;border-color:var(--agency-charcoal)!important;
+}
+
+/* Semantic status system */
+.pill.green{
+  background:var(--agency-green-bg)!important;
+  color:var(--agency-green)!important;
+  border:1px solid #b9dac5!important;
+}
+.pill.amber{
+  background:var(--agency-amber-bg)!important;
+  color:#865307!important;
+  border:1px solid #e8c47e!important;
+}
+.pill.red{
+  background:var(--agency-red-bg)!important;
+  color:var(--agency-red)!important;
+  border:1px solid #e9aaa5!important;
+}
+.green-border{border-left-color:var(--agency-green)!important}
+.amber-border{border-left-color:var(--agency-amber)!important}
+.red-border{border-left-color:var(--agency-red)!important}
+.callout.red{background:var(--agency-red-bg)!important;border-color:#e9aaa5!important;color:#7f1d16!important}
+.callout.amber{background:var(--agency-amber-bg)!important;border-color:#e8c47e!important;color:#694509!important}
+
+/* Red is reserved for NOT PERMISSIBLE. Source issues are review conditions. */
+.coverage-op-card.red-border{
+  border-left-color:var(--agency-amber)!important;
+  background:var(--agency-amber-bg)!important;
+}
+.coverage-op-card.red-border .pill.red{
+  background:var(--agency-amber-bg)!important;
+  color:#865307!important;
+  border-color:#e8c47e!important;
+}
+
+/* Executive Command Center */
+#legacyTodayMetrics{display:none!important}
+.executive-command{
+  margin:14px 0;
+  background:#fff;
+  border:1px solid var(--agency-line);
+  border-radius:14px;
+  box-shadow:0 7px 22px rgba(17,18,20,.07);
+  overflow:hidden;
+}
+.command-heading{
+  display:flex;justify-content:space-between;gap:18px;align-items:flex-start;
+  padding:16px 18px;
+  border-bottom:1px solid #eceff1;
+}
+.command-heading h3{margin:2px 0 4px;font-size:22px;color:#141618}
+.command-heading p{margin:0;color:#626a72;font-size:12px}
+.command-eyebrow{font-size:9px;font-weight:950;letter-spacing:.12em;color:var(--agency-red)}
+.semantic-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.legend-item{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 7px;border:1px solid var(--agency-line);border-radius:999px;
+  font-size:9px;color:#59616a;background:#fff;white-space:nowrap
+}
+.legend-item i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.legend-item.ok i{background:var(--agency-green)}
+.legend-item.review i{background:var(--agency-amber)}
+.legend-item.no i{background:var(--agency-red)}
+.command-metrics{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  border-bottom:1px solid #eceff1;
+}
+.command-metric{padding:13px 15px;border-right:1px solid #eceff1}
+.command-metric:last-child{border-right:0}
+.command-metric span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:#717982;font-weight:900}
+.command-metric b{display:block;font-size:25px;line-height:1.1;margin:4px 0;color:#1a1d20}
+.command-metric small{font-size:9px;color:#858c93}
+.command-metric.no{box-shadow:inset 0 4px 0 var(--agency-red)}
+.command-metric.review{box-shadow:inset 0 4px 0 var(--agency-amber)}
+.command-metric.neutral{box-shadow:inset 0 4px 0 #353a40}
+.command-bottom{display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:14px;padding:14px 18px}
+.command-subtitle{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#4a5158;margin-bottom:7px}
+.command-timeline{display:grid;gap:5px}
+.timeline-item{display:grid;grid-template-columns:12px 1fr;gap:8px;align-items:start;font-size:10px;color:#42484f}
+.timeline-dot{width:8px;height:8px;border-radius:50%;margin-top:3px;background:#69717a}
+.timeline-item.red .timeline-dot{background:var(--agency-red)}
+.timeline-item.amber .timeline-dot{background:var(--agency-amber)}
+.timeline-item.green .timeline-dot{background:var(--agency-green)}
+.command-empty{font-size:10px;color:#7c848c}
+.command-scope{
+  padding:11px 12px;border-radius:10px;background:#f5f6f7;border:1px solid #e2e5e8;
+  display:flex;flex-direction:column;gap:4px;font-size:10px;color:#555d65
+}
+.command-scope b{color:#15181b;font-size:11px}
+
+/* Impact + lifecycle */
+.regulatory-impact-card{border-top:4px solid var(--agency-charcoal)!important}
+.impact-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:10px 0}
+.impact-stat{padding:9px 10px;border:1px solid var(--agency-line);border-radius:9px;background:#f8f9fa}
+.impact-stat b{display:block;font-size:19px;color:#1b1e21}
+.impact-stat span{font-size:9px;text-transform:uppercase;color:#717982;font-weight:850}
+.lifecycle-strip{
+  display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  padding:9px 10px;background:#f4f5f6;border-radius:9px;font-size:10px;color:#4e555c
+}
+.lifecycle-strip span{display:flex;align-items:center;gap:5px;font-weight:850}
+.lifecycle-strip i{font-style:normal;width:18px;height:18px;border-radius:50%;background:#25282c;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:9px}
+
+/* Alert evidence + disposition */
+.alert-tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:9px;padding-top:8px;border-top:1px solid #eceff1}
+.alert-tools button{
+  border:1px solid var(--agency-line);background:#fff;color:#2b3035;border-radius:7px;padding:5px 8px;font-size:9px;font-weight:850;cursor:pointer
+}
+.alert-tools button:hover{background:#f3f4f5}
+.alert-disposition{
+  border:1px solid var(--agency-line);border-radius:7px;background:#fff;color:#2b3035;padding:5px 7px;font-size:9px;font-weight:800
+}
+.scope-note{display:block;margin-top:5px;font-size:9px;font-weight:850;color:#5d646b}
+.evidence-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:10000;justify-content:flex-end}
+.evidence-overlay.open{display:flex}
+.evidence-drawer{height:100%;width:min(520px,94vw);background:#fff;box-shadow:-12px 0 30px rgba(0,0,0,.2);overflow:auto;padding:18px}
+.evidence-head{display:flex;justify-content:space-between;gap:12px;align-items:start;border-bottom:1px solid #e5e8ea;padding-bottom:12px;margin-bottom:12px}
+.evidence-head h3{margin:3px 0 0}
+.evidence-close{border:0;background:#202327;color:#fff;width:32px;height:32px;border-radius:50%;font-size:20px;cursor:pointer}
+.evidence-grid{display:grid;gap:9px}
+.evidence-row{padding:9px 10px;border:1px solid #e2e5e8;border-radius:9px;background:#fafbfb}
+.evidence-row span{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.07em;color:#7a828a;font-weight:900;margin-bottom:3px}
+.evidence-row b,.evidence-row div{font-size:11px;color:#272b2f}
+.evidence-status{margin-bottom:10px}
+
+/* Daily focus semantic labels */
+.focus-event{border-color:#e4e7e9!important}
+.focus-event-status{min-width:108px;text-align:right}
+
+/* tighter executive polish across mobile */
+@media(max-width:950px){
+  .command-heading{flex-direction:column}
+  .semantic-legend{justify-content:flex-start}
+  .command-metrics,.impact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .command-metric{border-bottom:1px solid #eceff1}
+  .command-bottom{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .command-metrics,.impact-grid{grid-template-columns:1fr}
+  .command-metric{border-right:0}
+}
 </style>
 </head>
 <body>
@@ -715,8 +962,50 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div><span>Underlying data</span><b id="dataRefreshed">Loading status…</b></div>
 </div>
 <div aria-live="polite" class="refresh-result" id="refreshResult"></div>
-</div></div>
-<div class="metrics">
+</div></div><div class="executive-command" id="executiveCommand">
+<div class="command-heading">
+<div>
+<div class="command-eyebrow">REGULATORY SURVEILLANCE COMMAND CENTER</div>
+<h3>Daily Risk Brief</h3>
+<p>What requires attention across <b>all licensed sportsbook platforms</b> right now.</p>
+</div>
+<div aria-label="Risk color legend" class="semantic-legend">
+<span class="legend-item ok"><i></i><b>GREEN</b> OK · no review required</span>
+<span class="legend-item review"><i></i><b>AMBER</b> review required</span>
+<span class="legend-item no"><i></i><b>RED</b> not permissible</span>
+</div>
+</div>
+<div class="command-metrics">
+<div class="command-metric no">
+<span>Not Permissible</span><b id="cmdRed">—</b><small>current red conditions</small>
+</div>
+<div class="command-metric review">
+<span>Manual Review</span><b id="cmdAmber">—</b><small>current amber conditions</small>
+</div>
+<div class="command-metric neutral">
+<span>Mapped Coverage</span><b id="cmdCoverage">—</b><small>healthy approved feeds</small>
+</div>
+<div class="command-metric neutral">
+<span>Reviewed Today</span><b id="cmdReviewed">0</b><small>staff dispositions</small>
+</div>
+<div class="command-metric neutral">
+<span>New Since Review</span><b id="cmdChanged">—</b><small>new risk signals</small>
+</div>
+</div>
+<div class="command-bottom">
+<div>
+<div class="command-subtitle">What changed / what matters</div>
+<div class="command-timeline" id="commandTimeline">
+<div class="command-empty">Waiting for current review feeds…</div>
+</div>
+</div>
+<div class="command-scope">
+<b>Review scope</b>
+<span>Every applicable risk is reviewed equally across all licensed sportsbook platforms.</span>
+</div>
+</div>
+</div>
+<div class="metrics" id="legacyTodayMetrics">
 <div class="metric"><b>24</b><span>catalog sport sections</span></div>
 <div class="metric"><b>56</b><span>restriction / condition records</span></div>
 <div class="metric"><b>24</b><span>verified known U18 records</span></div>
@@ -825,7 +1114,23 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <p><b>Known U18:</b> Ethan “Boobie” Feaster (17), WR.</p>
 <p><b>Why:</b> USC states Feaster reclassified, skipped his senior year of high school, and begins his freshman campaign at 17.</p>
 <div class="staff-action"><b>Staff check</b><span>Search Feaster by name on each SWSP and document any athlete-specific markets for regulatory review.</span></div>
-</article></div></div><div class="callout completion-window-note">
+</article></div></div><div class="card regulatory-impact-card">
+<div class="section-title">Regulatory Impact &amp; Review Lifecycle</div>
+<p class="small">Operational counts are generated from current risk signals and staff dispositions. Disposition controls are stored in this browser for the current review workstation.</p>
+<div class="impact-grid">
+<div class="impact-stat"><b id="impactRed">—</b><span>not permissible signals</span></div>
+<div class="impact-stat"><b id="impactAmber">—</b><span>manual review signals</span></div>
+<div class="impact-stat"><b id="impactReviewed">0</b><span>reviewed today</span></div>
+<div class="impact-stat"><b id="impactInquiry">0</b><span>inquiry sent</span></div>
+<div class="impact-stat"><b id="impactResolved">0</b><span>resolved today</span></div>
+</div>
+<div aria-label="Alert lifecycle" class="lifecycle-strip">
+<span><i>1</i>Detected</span><b>→</b>
+<span><i>2</i>Staff Reviewed</span><b>→</b>
+<span><i>3</i>Inquiry Sent</span><b>→</b>
+<span><i>4</i>Resolved</span>
+</div>
+</div><div class="callout completion-window-note">
 <b>Event lifecycle:</b> Review Today keeps upcoming and active events visible. Completed events move to <b>Completed Today</b>. 
   When an official final-status feed is unavailable, the site uses an estimated sport-specific completion window rather than leaving events active until midnight.
 </div><div class="card" id="completedTodayCard">
@@ -1042,13 +1347,6 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <div class="callout amber">
 <b>Tennis rule:</b> an approved tournament is never treated as clear simply because the event itself is approved. Player-specific markets must still be screened for U18 participants, and missing DOB information remains a review condition.
 </div>
-
-
-
-
-
-
-
 <div class="card tennis-ops-card">
 <div class="section-title">Today's Tennis Situation</div>
 <p class="small">What is active now, what contains verified U18 exposure, and what still needs participant-age review.</p>
@@ -1107,8 +1405,8 @@ header{background:linear-gradient(180deg,#ffffff 0%,#f9fbfc 100%)}
 <h3>Source still needs mapping</h3>
 <p>No dependable official schedule, roster, draw, entry-list, or participant source has been mapped yet.</p>
 </div>
-<div class="coverage-op-card red-border">
-<span class="pill red">SOURCE ISSUE</span>
+<div class="coverage-op-card amber-border">
+<span class="pill amber">SOURCE ISSUE</span>
 <h3>Mapped source failed or conflicted</h3>
 <p>Official source is unavailable, stale, changed structure, or conflicts with another authoritative source.</p>
 </div>
@@ -2511,7 +2809,7 @@ if(us) us.addEventListener('input',e=>{
         ${c.event?`<p><b>Event:</b> ${pe(c.event)}</p>`:''}
         <p><b>Why it surfaced:</b> ${pe(c.reason||'Risk condition matched.')}</p>
         ${names}
-        <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div>
+        <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active offering.')}</span><span class="scope-note">Scope: review across all licensed sportsbook platforms.</span></div>
       </article>`;
   }
 
@@ -2626,10 +2924,10 @@ if(us) us.addEventListener('input',e=>{
             const er= riskForEvent(e,risks);
             const sev=er.some(x=>x.severity==='RED')?'RED':er.length?'AMBER':'GREEN';
             const pill=sev==='RED'
-              ? '<span class="pill red">ATTENTION</span>'
+              ? '<span class="pill red">NOT PERMISSIBLE</span>'
               : sev==='AMBER'
-                ? '<span class="pill amber">REVIEW</span>'
-                : '<span class="pill green">NORMAL MONITOR</span>';
+                ? '<span class="pill amber">REVIEW REQUIRED</span>'
+                : '<span class="pill green">OK · NO REVIEW</span>';
             return `<div class="focus-event">
               <div class="focus-event-time">${pe(eventTime(e.start_time))}</div>
               <div class="focus-event-name">${pe(e.name)}</div>
@@ -2657,7 +2955,7 @@ if(us) us.addEventListener('input',e=>{
         ${athletes}
         <p><b>League / competition:</b> ${pe(c.league||'Not resolved')}</p>
         <p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p>
-        <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active SWSP offering.')}</span></div>
+        <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active offering.')}</span><span class="scope-note">Scope: review across all licensed sportsbook platforms.</span></div>
         </details></div>`;
       }).join(''):`<div class="focus-no-attention">No red or amber Priority Queue exceptions identified for this date. Use Primary Focus below to guide the day's normal active-offerings review.</div>`;
 
@@ -2694,6 +2992,11 @@ if(us) us.addEventListener('input',e=>{
         </div>
       </details>`;
     }).join('');
+
+    window.__AORS_CURRENT_RISKS=riskCards;
+    window.__AORS_FOCUS_DATA=FOCUS_DATA;
+    window.__AORS_TENNIS_DATA=TENNIS_FOCUS;
+    if(window.renderExecutiveCommandCenter) setTimeout(window.renderExecutiveCommandCenter,0);
 
     const actualCount=dayKeys.reduce((n,k)=>n+(riskBuckets[k]?.length||0),0);
     const cnt=document.getElementById('reviewCount');
@@ -2986,7 +3289,186 @@ function ncaaRiskTierClass(rec){
   window.loadTennisIntel=loadTennisIntel;
   loadTennisIntel().catch(()=>{});
 })();
+
+
+// Executive Command Center + evidence / review lifecycle.
+(function(){
+  const TZ='America/Chicago';
+  const STORAGE='aorsAlertDispositionsV2';
+  const BASELINE='aorsLastReviewAlertKeysV2';
+
+  function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function todayKey(){
+    const p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    const g=t=>p.find(x=>x.type===t)?.value;
+    return `${g('year')}-${g('month')}-${g('day')}`;
+  }
+  function loadStates(){
+    try{return JSON.parse(localStorage.getItem(STORAGE)||'{}')}catch(_){return{}}
+  }
+  function saveStates(x){localStorage.setItem(STORAGE,JSON.stringify(x))}
+  function keyFor(c){return `${c.type||''}|${c.league||''}|${c.event||c.title||''}|${c.start_time||''}`}
+
+  function currentRiskKeys(){
+    return (window.__AORS_CURRENT_RISKS||[]).map(keyFor);
+  }
+
+  function statsToday(){
+    const states=loadStates(),today=todayKey();
+    let reviewed=0,inquiry=0,resolved=0;
+    Object.values(states).forEach(x=>{
+      if(!x||String(x.date||'')!==today)return;
+      if(['REVIEWED','INQUIRY_SENT','RESOLVED'].includes(x.status)) reviewed++;
+      if(x.status==='INQUIRY_SENT') inquiry++;
+      if(x.status==='RESOLVED') resolved++;
+    });
+    return {reviewed,inquiry,resolved};
+  }
+
+  function setText(id,value){
+    const el=document.getElementById(id);if(el)el.textContent=String(value);
+  }
+
+  function renderExecutiveCommandCenter(){
+    const risks=window.__AORS_CURRENT_RISKS||[];
+    const focus=window.__AORS_FOCUS_DATA||{};
+    const red=risks.filter(x=>x.severity==='RED').length;
+    const amber=risks.filter(x=>x.severity==='AMBER').length;
+
+    const approved=(focus.sources||[]).filter(x=>x.approved_catalog===true);
+    const healthy=approved.filter(x=>x.ok).length;
+    const coverage=approved.length?Math.round(healthy/approved.length*100):null;
+
+    let baseline=[];
+    try{baseline=JSON.parse(localStorage.getItem(BASELINE)||'[]')}catch(_){}
+    const current=currentRiskKeys();
+    const newKeys=current.filter(k=>!baseline.includes(k));
+    const st=statsToday();
+
+    setText('cmdRed',red);
+    setText('cmdAmber',amber);
+    setText('cmdCoverage',coverage===null?'—':`${coverage}%`);
+    setText('cmdReviewed',st.reviewed);
+    setText('cmdChanged',baseline.length?newKeys.length:current.length);
+    setText('impactRed',red);
+    setText('impactAmber',amber);
+    setText('impactReviewed',st.reviewed);
+    setText('impactInquiry',st.inquiry);
+    setText('impactResolved',st.resolved);
+
+    const tl=document.getElementById('commandTimeline');
+    if(tl){
+      const items=[];
+      const newly=risks.filter(r=>newKeys.includes(keyFor(r)));
+      newly.slice(0,3).forEach(r=>items.push({
+        cls:r.severity==='RED'?'red':'amber',
+        text:`${r.severity==='RED'?'Not permissible':'Review required'}: ${r.league||r.sport||'Event'} · ${r.event||r.title||r.type}`
+      }));
+      const draw=risks.find(r=>String(r.type||'').toUpperCase().includes('DRAW CHANGE'));
+      if(draw)items.push({cls:'amber',text:`Draw/participant change requires re-screening: ${draw.event||draw.title||draw.league||'Tennis'}`});
+      if(coverage!==null)items.push({
+        cls:coverage===100?'green':'amber',
+        text:`Mapped approved schedule coverage: ${healthy}/${approved.length} healthy feeds (${coverage}%).`
+      });
+      if(st.resolved)items.push({cls:'green',text:`${st.resolved} alert${st.resolved===1?'':'s'} marked resolved today on this review workstation.`});
+
+      tl.innerHTML=items.length?items.slice(0,5).map(x=>`<div class="timeline-item ${x.cls}"><i class="timeline-dot"></i><span>${esc(x.text)}</span></div>`).join('')
+        : '<div class="command-empty">No current risk-change signals loaded.</div>';
+    }
+
+    hydrateDispositionControls();
+  }
+  window.renderExecutiveCommandCenter=renderExecutiveCommandCenter;
+
+  function hydrateDispositionControls(){
+    const states=loadStates();
+    document.querySelectorAll('.alert-tools').forEach(box=>{
+      const key=box.dataset.alertKey||'';
+      const sel=box.querySelector('.alert-disposition');
+      if(sel)sel.value=states[key]?.status||'DETECTED';
+    });
+  }
+
+  document.addEventListener('change',e=>{
+    const sel=e.target.closest?.('.alert-disposition');
+    if(!sel)return;
+    const box=sel.closest('.alert-tools');
+    if(!box)return;
+    const states=loadStates();
+    states[box.dataset.alertKey]={
+      status:sel.value,
+      date:todayKey(),
+      updated_at:new Date().toISOString()
+    };
+    saveStates(states);
+    renderExecutiveCommandCenter();
+  });
+
+  // Store current alert set immediately BEFORE a manual refresh. The post-refresh
+  // dataset is then compared against this baseline to identify what changed.
+  document.addEventListener('pointerdown',e=>{
+    if(e.target.closest?.('#refreshReviewBtn')){
+      localStorage.setItem(BASELINE,JSON.stringify(currentRiskKeys()));
+    }
+  },true);
+
+  function openEvidence(btn){
+    const overlay=document.getElementById('evidenceOverlay');
+    const body=document.getElementById('evidenceBody');
+    if(!overlay||!body)return;
+    const sev=btn.dataset.severity||'AMBER';
+    const status=sev==='RED'?'NOT PERMISSIBLE':'REVIEW REQUIRED';
+    const cls=sev==='RED'?'red':'amber';
+    body.innerHTML=`
+      <div class="evidence-status"><span class="pill ${cls}">${esc(status)}</span></div>
+      <div class="evidence-grid">
+        <div class="evidence-row"><span>Condition</span><b>${esc(btn.dataset.type||'Review condition')}</b></div>
+        <div class="evidence-row"><span>Sport / Competition</span><div>${esc([btn.dataset.sport,btn.dataset.league].filter(Boolean).join(' · ')||'Not resolved')}</div></div>
+        <div class="evidence-row"><span>Event</span><div>${esc(btn.dataset.event||'Not resolved')}</div></div>
+        <div class="evidence-row"><span>Athlete(s)</span><div>${esc(btn.dataset.athletes||'No athlete-specific trigger')}</div></div>
+        <div class="evidence-row"><span>Event Time</span><div>${esc(btn.dataset.time||'Not resolved')}</div></div>
+        <div class="evidence-row"><span>Why the system flagged it</span><div>${esc(btn.dataset.reason||'Risk condition matched current data.')}</div></div>
+        <div class="evidence-row"><span>Review Scope</span><b>All licensed sportsbook platforms</b></div>
+        <div class="evidence-row"><span>Recommended Staff Check</span><div>${esc(btn.dataset.action||'Review the active offering across all licensed sportsbook platforms.')}</div></div>
+        <div class="evidence-row"><span>Evidence Chain</span><div>Current NRGC catalog restriction / condition + mapped public event, schedule, participant, or age intelligence used by the Active Offerings Review System.</div></div>
+      </div>`;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+  }
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest?.('.evidence-btn');
+    if(btn){openEvidence(btn);return}
+    if(e.target.closest?.('#evidenceClose')||e.target.id==='evidenceOverlay'){
+      const o=document.getElementById('evidenceOverlay');
+      if(o){o.classList.remove('open');o.setAttribute('aria-hidden','true')}
+    }
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      const o=document.getElementById('evidenceOverlay');
+      if(o){o.classList.remove('open');o.setAttribute('aria-hidden','true')}
+    }
+  });
+
+  // Rehydrate whenever dynamic feeds rerender.
+  document.addEventListener('activeOfferingsDataRefreshed',()=>setTimeout(renderExecutiveCommandCenter,250));
+  setInterval(()=>renderExecutiveCommandCenter(),60000);
+  setTimeout(renderExecutiveCommandCenter,900);
+})();
 </script>
 </main>
-</body>
+<div aria-hidden="true" class="evidence-overlay" id="evidenceOverlay">
+<div aria-labelledby="evidenceTitle" aria-modal="true" class="evidence-drawer" role="dialog">
+<div class="evidence-head">
+<div>
+<div class="command-eyebrow">ALERT EVIDENCE</div>
+<h3 id="evidenceTitle">Regulatory Review Basis</h3>
+</div>
+<button class="evidence-close" id="evidenceClose" type="button">×</button>
+</div>
+<div id="evidenceBody"></div>
+</div>
+</div></body>
 </html>
