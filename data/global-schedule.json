@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-08T18:24:05.658622+00:00",
+  "generated_at": "2026-09-08T19:18:58.776656+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-08",
   "window_end": "2026-09-15",
@@ -122,8 +122,8 @@
       "region": "United States",
       "name": "Rutgers-Camden Scarlet Raptors at Delaware State Hornets",
       "start_time": "2026-09-08T16:00Z",
-      "status": "COMPLETED",
-      "status_detail": "Final",
+      "status": "LIVE",
+      "status_detail": "1st Set",
       "season_stage": "REGULAR SEASON",
       "location": "Memorial Hall (DE) \u00b7 Dover, Delaware",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
@@ -140,8 +140,8 @@
       "region": "Netherlands",
       "name": "Excelsior at NEC Nijmegen",
       "start_time": "2026-09-08T16:45Z",
-      "status": "LIVE",
-      "status_detail": "81'",
+      "status": "COMPLETED",
+      "status_detail": "FT",
       "season_stage": null,
       "location": "Goffertstadion \u00b7 Nijmegen, Netherlands",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/scoreboard",
@@ -773,7 +773,7 @@
       "status": "UPCOMING",
       "status_detail": "9/8 - 7:30 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "University Center \u00b7 Hammond, Louisiana",
+      "location": "Pride Roofing University Center \u00b7 Hammond, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -1763,7 +1763,7 @@
       "status": "UPCOMING",
       "status_detail": "9/9 - 9:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Moody Coliseum (Dallas) \u00b7 Dallas, Texas",
+      "location": "Moody Coliseum \u00b7 Dallas, Texas",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -3113,7 +3113,7 @@
       "status": "UPCOMING",
       "status_detail": "9/11 - 10:00 AM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "SECU Arena \u00b7 Towson, Maryland",
+      "location": "TU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -3707,7 +3707,7 @@
       "status": "UPCOMING",
       "status_detail": "9/11 - 1:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "University Center \u00b7 Hammond, Louisiana",
+      "location": "Pride Roofing University Center \u00b7 Hammond, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -3977,7 +3977,7 @@
       "status": "UPCOMING",
       "status_detail": "9/11 - 2:30 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "SECU Arena \u00b7 Towson, Maryland",
+      "location": "TU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -5047,6 +5047,24 @@
       "restriction_risk": false
     },
     {
+      "id": "401887437",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "Davidson Wildcats at Elon Phoenix",
+      "start_time": "2026-09-11T22:00Z",
+      "status": "UPCOMING",
+      "status_detail": "9/11 - 6:00 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "Schar Center \u00b7 Elon, North Carolina",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401887464",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -5507,7 +5525,7 @@
       "status": "UPCOMING",
       "status_detail": "9/11 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "SECU Arena \u00b7 Towson, Maryland",
+      "location": "TU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -5598,24 +5616,6 @@
       "status_detail": "9/11 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
       "location": "McGrath-Phillips Arena \u00b7 Chicago, Illinois",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
-      "id": "401887437",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "region": "United States",
-      "name": "Davidson Wildcats at Elon Phoenix",
-      "start_time": "2026-09-11T23:00Z",
-      "status": "UPCOMING",
-      "status_detail": "9/11 - 7:00 PM EDT",
-      "season_stage": "REGULAR SEASON",
-      "location": "Schar Center \u00b7 Elon, North Carolina",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -6371,7 +6371,7 @@
       "status": "UPCOMING",
       "status_detail": "9/11 - 8:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "University Center \u00b7 Hammond, Louisiana",
+      "location": "Pride Roofing University Center \u00b7 Hammond, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -7883,7 +7883,7 @@
       "status": "UPCOMING",
       "status_detail": "9/12 - 12:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Bodford Arena \u00b7 Greensboro, North Carolina",
+      "location": "Fleming Gymnasium \u00b7 Greensboro, North Carolina",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -7919,7 +7919,7 @@
       "status": "UPCOMING",
       "status_detail": "9/12 - 12:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "SECU Arena \u00b7 Towson, Maryland",
+      "location": "TU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -8765,7 +8765,7 @@
       "status": "UPCOMING",
       "status_detail": "9/12 - 2:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "University Center \u00b7 Hammond, Louisiana",
+      "location": "Pride Roofing University Center \u00b7 Hammond, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -10079,7 +10079,7 @@
       "status": "UPCOMING",
       "status_detail": "9/12 - 4:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "SECU Arena \u00b7 Towson, Maryland",
+      "location": "TU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -10691,7 +10691,7 @@
       "status": "UPCOMING",
       "status_detail": "9/12 - 6:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Bodford Arena \u00b7 Greensboro, North Carolina",
+      "location": "Fleming Gymnasium \u00b7 Greensboro, North Carolina",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -12671,7 +12671,7 @@
       "status": "UPCOMING",
       "status_detail": "9/13 - 2:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "SECU Arena \u00b7 Towson, Maryland",
+      "location": "TU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -12941,7 +12941,7 @@
       "status": "UPCOMING",
       "status_detail": "9/13 - 3:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Howard McCasland Field House \u00b7 Norman, Oklahoma",
+      "location": "Howard Mccasland Field House \u00b7 Norman, Oklahoma",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -12995,7 +12995,7 @@
       "status": "UPCOMING",
       "status_detail": "9/13 - 3:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "University Center \u00b7 Hammond, Louisiana",
+      "location": "Pride Roofing University Center \u00b7 Hammond, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -14489,7 +14489,7 @@
       "status": "UPCOMING",
       "status_detail": "9/15 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Howard McCasland Field House \u00b7 Norman, Oklahoma",
+      "location": "Howard Mccasland Field House \u00b7 Norman, Oklahoma",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -14759,7 +14759,7 @@
       "status": "UPCOMING",
       "status_detail": "9/15 - 7:30 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "University Center \u00b7 Hammond, Louisiana",
+      "location": "Pride Roofing University Center \u00b7 Hammond, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -14980,7 +14980,7 @@
       "ok": true,
       "events": 105,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "nfl",
@@ -14996,7 +14996,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "ncaa-football",
@@ -15012,7 +15012,7 @@
       "ok": true,
       "events": 31,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "nba",
@@ -15028,7 +15028,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "wnba",
@@ -15044,7 +15044,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -15060,7 +15060,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -15076,7 +15076,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "nhl",
@@ -15092,7 +15092,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "mls",
@@ -15108,7 +15108,7 @@
       "ok": true,
       "events": 29,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "epl",
@@ -15123,7 +15123,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "bundesliga",
@@ -15138,7 +15138,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "laliga",
@@ -15153,7 +15153,7 @@
       "ok": true,
       "events": 13,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "seriea",
@@ -15168,7 +15168,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "ligue1",
@@ -15183,7 +15183,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "eredivisie",
@@ -15198,7 +15198,7 @@
       "ok": true,
       "events": 13,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "primeira",
@@ -15213,7 +15213,7 @@
       "ok": true,
       "events": 11,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "belgium",
@@ -15229,7 +15229,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "denmark",
@@ -15245,7 +15245,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -15261,7 +15261,7 @@
       "ok": true,
       "events": 550,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "atp-tennis",
@@ -15277,7 +15277,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     },
     {
       "id": "wta-tennis",
@@ -15293,7 +15293,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-08T18:24:05.658622+00:00"
+      "checked_at": "2026-09-08T19:18:58.776656+00:00"
     }
   ],
   "coverage_gaps": [
