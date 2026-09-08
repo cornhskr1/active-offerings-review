@@ -19,6 +19,9 @@ ATP_CALENDAR="https://www.atptour.com/en/tournaments/"
 ATP_RANKINGS="https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
 WTA_CALENDAR="https://www.wtatennis.com/tournaments"
 WTA_RANKINGS="https://www.wtatennis.com/rankings/singles/"
+WTA_125_CALENDAR="https://www.wtatennis.com/tournaments/wta-125"
+ATP_CHALLENGER_CALENDAR="https://www.atptour.com/en/atp-challenger-tour"
+UTR_PRO_HOME="https://www.utrsports.net/pages/pro-tennis"
 ITF_CALENDARS={
  "itf-men":"https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate={ym}",
  "itf-women":"https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate={ym}",
@@ -459,6 +462,71 @@ def scrape_itf_junior_u18_watchlist():
             health.append({"gender":gender,"ok":False,"url":url,"verified_u18":0,"error":str(e)[:180]})
     return list(records.values()),health
 
+
+# ------------------------------------------------------------------
+# TOUR / TOURNAMENT UNIVERSE
+# ------------------------------------------------------------------
+TOUR_FAMILIES=[
+  {"id":"atp","gender":"MEN","tour":"ATP Tour","level":"Tour-level","schedule_source":ATP_CALENDAR},
+  {"id":"atp-challenger","gender":"MEN","tour":"ATP Challenger Tour","level":"Challenger","schedule_source":ATP_CHALLENGER_CALENDAR},
+  {"id":"itf-men","gender":"MEN","tour":"ITF Men's World Tennis Tour","level":"M15 / M25","schedule_source":ITF_CALENDARS["itf-men"].format(ym=TODAY.strftime("%Y-%m"))},
+  {"id":"utr-men","gender":"MEN","tour":"UTR Pro Tennis Tour Men","level":"UTR PTT","schedule_source":UTR_PRO_HOME},
+  {"id":"wta","gender":"WOMEN","tour":"WTA Tour","level":"WTA 250 / 500 / 1000","schedule_source":WTA_CALENDAR},
+  {"id":"wta-125","gender":"WOMEN","tour":"WTA 125","level":"WTA 125","schedule_source":WTA_125_CALENDAR},
+  {"id":"itf-women","gender":"WOMEN","tour":"ITF Women's World Tennis Tour","level":"W15 / W35 / W50 / W75 / W100","schedule_source":ITF_CALENDARS["itf-women"].format(ym=TODAY.strftime("%Y-%m"))},
+  {"id":"utr-women","gender":"WOMEN","tour":"UTR Pro Tennis Tour Women","level":"UTR PTT","schedule_source":UTR_PRO_HOME},
+  {"id":"grand-slams","gender":"MEN + WOMEN","tour":"Grand Slams","level":"Grand Slam","schedule_source":"Official tournament / ATP / WTA / ITF sources"},
+]
+
+def scrape_wta_125_calendar():
+    events=[]; health={"ok":False,"url":WTA_125_CALENDAR,"events":0}
+    try:
+        soup=BeautifulSoup(get(WTA_125_CALENDAR).text,"html.parser")
+        seen=set()
+        for a in soup.find_all("a",href=re.compile(r"/tournaments/",re.I)):
+            href=urljoin("https://www.wtatennis.com",a.get("href",""))
+            name=" ".join(a.stripped_strings).strip()
+            if not href or href in seen or not name: continue
+            node=a; start=end=None
+            for _ in range(6):
+                txt=" ".join(node.stripped_strings)
+                start,end=parse_date_range(txt)
+                if start and end: break
+                if not node.parent: break
+                node=node.parent
+            if overlaps(start,end):
+                seen.add(href)
+                events.append({"lane":"wta-125","tour":"WTA 125","tournament":name,
+                               "start_date":start.isoformat(),"end_date":end.isoformat(),
+                               "status":"ACTIVE" if start<=TODAY<=end else "UPCOMING",
+                               "source_url":href,"participants":[],"participant_count":0})
+        health.update(ok=True,events=len(events))
+    except Exception as e:
+        health["error"]=str(e)[:180]
+    return events,health
+
+def scrape_wta_tournament_players(t):
+    """WTA tournament overview pages often expose a public 'Who's Playing' list."""
+    url=t.get("source_url")
+    if not url: return t
+    try:
+        soup=BeautifulSoup(get(url,20).text,"html.parser")
+        txt=" ".join(soup.stripped_strings)
+        players=[]
+        # Prefer profile links.
+        seen=set()
+        for a in soup.find_all("a",href=re.compile(r"/players/",re.I)):
+            name=" ".join(a.stripped_strings).strip()
+            if len(name.split())>=2 and 3<len(name)<70:
+                k=norm(name)
+                if k in seen: continue
+                seen.add(k)
+                players.append({"name":name,"profile_url":urljoin("https://www.wtatennis.com",a["href"])})
+        t["raw_participants"]=players
+    except Exception:
+        t["raw_participants"]=[]
+    return t
+
 # ------------------------------------------------------------------
 # MAIN
 # ------------------------------------------------------------------
@@ -479,6 +547,7 @@ age_index={**atp_index,**wta_index,**known_index}
 
 atp_calendar,atp_cal_health=scrape_calendar(ATP_CALENDAR,"ATP")
 wta_calendar,wta_cal_health=scrape_calendar(WTA_CALENDAR,"WTA")
+wta125_calendar,wta125_health=scrape_wta_125_calendar()
 
 # Mapped exact ATP/WTA match schedule from existing scoreboard adapter,
 # cross-checked against official tour calendars and official tour age indexes.
@@ -523,6 +592,26 @@ for g in groups.values():
       "participant_source":"Exact mapped match schedule + official ATP/WTA age index",
       "events":g["events"]
     })
+
+# WTA 125 official tournament mapping + participant cross-check where public player lists are exposed.
+for t in wta125_calendar:
+    t=scrape_wta_tournament_players(t)
+    plist=[]
+    for p in t.get("raw_participants",[]):
+        ev=age_index.get(norm(p["name"]))
+        if ev:
+            plist.append({**p,**ev})
+        else:
+            plist.append({**p,"age":None,"age_status":"UNRESOLVED","source":"WTA official tournament player list",
+                          "evidence":"Player listed by WTA; age not resolved from official age index."})
+    t["participants"]=plist
+    t["participant_count"]=len(plist)
+    t["verified_u18"]=[p for p in plist if p.get("age_status")=="VERIFIED U18"]
+    t["verified_18plus_count"]=sum(p.get("age_status")=="VERIFIED 18+" for p in plist)
+    t["unresolved_count"]=sum(p.get("age_status")=="UNRESOLVED" for p in plist)
+    t["participant_source"]="WTA official tournament player list + official age index"
+    t["id"]=hashlib.sha1((t["source_url"]+"|wta125").encode()).hexdigest()[:12]
+    tournaments.append(t)
 
 # ITF
 itf_health=[];itf=[]
@@ -625,15 +714,7 @@ for t in tournaments:
           "staff_action":"Re-screen the current field for U18 exposure."
         })
 
-lanes=[
- {"id":"atp","label":"ATP","coverage":"EXACT MATCHES + OFFICIAL AGE INDEX"},
- {"id":"wta","label":"WTA","coverage":"EXACT MATCHES + OFFICIAL AGE INDEX"},
- {"id":"itf-men","label":"ITF Men","coverage":"OFFICIAL CALENDAR / DRAW / PROFILE"},
- {"id":"itf-women","label":"ITF Women","coverage":"OFFICIAL CALENDAR / DRAW / PROFILE"},
- {"id":"utr-men","label":"UTR Men","coverage":"OFFICIAL EVENT / PARTICIPANT DISCOVERY"},
- {"id":"utr-women","label":"UTR Women","coverage":"OFFICIAL EVENT / PARTICIPANT DISCOVERY"},
- {"id":"grand-slams","label":"Grand Slams","coverage":"ATP/WTA MATCH FEED WHEN PRESENT"},
-]
+lanes=[dict(x) for x in TOUR_FAMILIES]
 for l in lanes:l["active_tournaments"]=sum(t.get("lane")==l["id"] for t in tournaments)
 
 
@@ -678,6 +759,7 @@ summary={
  "draw_changes":sum(r["type"]=="DRAW CHANGE" for r in risks),
  "atp_age_index":len(atp_index),"wta_age_index":len(wta_index),
  "itf_tournaments":len(itf),"utr_tournaments":len(utr),
+ "wta125_tournaments":len(wta125_calendar),
  "live_u18_registry":len(live_u18_registry),
  "current_u18_exposure":sum(1 for x in live_u18_registry if x.get("current_exposure")),
  "broader_u18_watchlist":sum(1 for x in live_u18_registry if not x.get("current_exposure"))
@@ -686,6 +768,7 @@ summary={
 out={
  "schema_version":3,"generated_at":NOW.isoformat(),"timezone":"America/Chicago",
  "window_start":TODAY.isoformat(),"window_end":END.isoformat(),
+ "tour_families":TOUR_FAMILIES,
  "lanes":lanes,"tournaments":sorted(tournaments,key=lambda t:(t.get("risk_status")!="RED",t.get("lane",""),t.get("tournament",""))),
  "risk_queue":sorted(risks,key=lambda r:(r["severity"]!="RED",r.get("start_time") or "")),
  "known_u18_registry":known,
@@ -695,6 +778,7 @@ out={
    "atp_rankings":atp_rank_health,"wta_rankings":wta_rank_health,
    "atp_calendar":atp_cal_health,"wta_calendar":wta_cal_health,
    "itf":itf_health,"utr":utr_health,
+   "wta_125":wta125_health,
    "itf_junior_rankings":junior_health
  },
  "methodology":{

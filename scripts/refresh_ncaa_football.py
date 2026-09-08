@@ -60,7 +60,25 @@ def validate_football_page(result, kind):
     return "roster" in txt or "roster" in url
 
 def discover(team, kind):
+    # Manual/direct official URLs take precedence. This is especially important
+    # for newly-added FBS programs whose official sites are already known.
+    direct = team.get(f"{kind}_url")
+    if direct:
+        try:
+            r=fetch(direct)
+            if validate_football_page(r,kind):
+                root=f"{urlparse(r['final_url']).scheme}://{urlparse(r['final_url']).netloc}"
+                return {"ok":True,"url":r["final_url"],"html":r["html"],"root":root}
+        except Exception:
+            pass
+
     roots = team.get("candidate_roots", [])
+    # If candidate_roots were not supplied, derive the official root.
+    if not roots and team.get("official_site"):
+        u=urlparse(team["official_site"])
+        if u.scheme and u.netloc:
+            roots=[f"{u.scheme}://{u.netloc}"]
+
     defaults = CFG["path_candidates"][kind]
     overrides = (team.get("path_overrides") or {}).get(kind, [])
     candidates = overrides + [p for p in defaults if p not in overrides]

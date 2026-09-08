@@ -165,17 +165,35 @@ for source in SOURCES:
 # Sort by date/time with TBA last.
 events.sort(key=lambda e:(e["date"], e["time"]=="TBA", e["time"], e["school"], e["sport"]))
 
+
+NEBRASKA_VENUE_TERMS=[
+    "lincoln, neb","lincoln, ne","omaha, neb","omaha, ne",
+    "bob devaney","devaney sports center","memorial stadium",
+    "pinnacle bank arena","hawks field","bowlin stadium",
+    "barbara hibner","morrison stadium","dj sokol","chi health center omaha"
+]
+
+def played_in_nebraska(e):
+    loc=(e.get("location") or "").lower()
+    # Location controls the regulatory test. An athletics-site HOME/AWAY/NEUTRAL
+    # designation cannot override an event physically played in Nebraska.
+    return any(term in loc for term in NEBRASKA_VENUE_TERMS)
+
 # Regulatory site-location determination.
 for e in events:
-    if e["site"]=="HOME":
+    e["played_in_nebraska"]=played_in_nebraska(e)
+    if e["played_in_nebraska"] or e["site"]=="HOME":
         e["site_test"]="NOT PERMISSIBLE"
         e["site_color"]="red"
+        e["regulatory_site_label"]="PLAYED IN NEBRASKA"
     elif e["site"] in ("AWAY","NEUTRAL"):
-        e["site_test"]="SITE TEST PASSES"
+        e["site_test"]="OK · SITE TEST PASSES"
         e["site_color"]="green"
+        e["regulatory_site_label"]=e["site"]
     else:
-        e["site_test"]="SITE REVIEW"
+        e["site_test"]="MANUAL SITE REVIEW"
         e["site_color"]="amber"
+        e["regulatory_site_label"]="LOCATION REVIEW"
 
 out={
     "schema_version":1,

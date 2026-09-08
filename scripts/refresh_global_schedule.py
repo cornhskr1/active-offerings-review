@@ -87,6 +87,20 @@ def parse_event(source, ev):
         season_stage="POSTSEASON"
     else:
         season_stage=None
+
+    # NFL 2026 fallback: some public schedule payloads omit season type.
+    # The 2026 regular season begins Sept. 9, 2026. Do not let a PRESEASON
+    # catalog restriction bleed into Week 1+ merely because season_stage is blank.
+    if source.get("league")=="NFL" and not season_stage and dt:
+        try:
+            event_date=datetime.datetime.fromisoformat(str(dt).replace("Z","+00:00")).date()
+            if event_date >= datetime.date(2026,9,9):
+                season_stage="REGULAR SEASON"
+            elif datetime.date(2026,8,1) <= event_date < datetime.date(2026,9,9):
+                season_stage="PRESEASON"
+        except Exception:
+            pass
+
     venue=(comp.get("venue") or {}).get("fullName")
     address=(comp.get("venue") or {}).get("address") or {}
     location=", ".join(x for x in [address.get("city"),address.get("state"),address.get("country")] if x)
@@ -184,7 +198,16 @@ def restriction_applies(ev, x):
     restriction_text=" ".join(str(x.get(k) or "") for k in ("restriction","text","catalog_text","league","event","sport")).lower()
 
     if sport=="football" and "nfl" in league:
-        if ("preseason" in restriction_text or "pre-season" in restriction_text) and stage and stage!="PRESEASON":
+        if not stage and ev.get("start_time"):
+            try:
+                ed=datetime.datetime.fromisoformat(str(ev["start_time"]).replace("Z","+00:00")).date()
+                if ed >= datetime.date(2026,9,9):
+                    stage="REGULAR SEASON"
+                elif datetime.date(2026,8,1) <= ed < datetime.date(2026,9,9):
+                    stage="PRESEASON"
+            except Exception:
+                pass
+        if ("preseason" in restriction_text or "pre-season" in restriction_text) and stage!="PRESEASON":
             return False
         if ("postseason" in restriction_text or "playoff" in restriction_text) and stage and stage!="POSTSEASON":
             return False
