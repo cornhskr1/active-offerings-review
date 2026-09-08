@@ -1,6 +1,6 @@
 {
-  "schema_version": 3,
-  "generated_at": "2026-09-08T13:33:46.528184+00:00",
+  "schema_version": 4,
+  "generated_at": "2026-09-08T14:34:26.119811+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-08",
   "window_end": "2026-09-15",
@@ -8,1181 +8,243 @@
     {
       "id": "atp",
       "gender": "MEN",
-      "tour": "ATP Tour",
-      "level": "Tour-level",
-      "schedule_source": "https://www.atptour.com/en/tournaments/"
+      "tour": "ATP Tour"
     },
     {
       "id": "atp-challenger",
       "gender": "MEN",
-      "tour": "ATP Challenger Tour",
-      "level": "Challenger",
-      "schedule_source": "https://www.atptour.com/en/atp-challenger-tour"
+      "tour": "ATP Challenger Tour"
     },
     {
       "id": "itf-men",
       "gender": "MEN",
-      "tour": "ITF Men's World Tennis Tour",
-      "level": "M15 / M25",
-      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate=2026-09"
+      "tour": "ITF Men's World Tennis Tour"
     },
     {
       "id": "utr-men",
       "gender": "MEN",
-      "tour": "UTR Pro Tennis Tour Men",
-      "level": "UTR PTT",
-      "schedule_source": "https://www.utrsports.net/pages/pro-tennis"
+      "tour": "UTR Pro Tennis Tour"
     },
     {
       "id": "wta",
       "gender": "WOMEN",
-      "tour": "WTA Tour",
-      "level": "WTA 250 / 500 / 1000",
-      "schedule_source": "https://www.wtatennis.com/tournaments"
+      "tour": "WTA Tour"
     },
     {
       "id": "wta-125",
       "gender": "WOMEN",
-      "tour": "WTA 125",
-      "level": "WTA 125",
-      "schedule_source": "https://www.wtatennis.com/tournaments/wta-125"
+      "tour": "WTA 125"
     },
     {
       "id": "itf-women",
       "gender": "WOMEN",
-      "tour": "ITF Women's World Tennis Tour",
-      "level": "W15 / W35 / W50 / W75 / W100",
-      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate=2026-09"
+      "tour": "ITF Women's World Tennis Tour"
     },
     {
       "id": "utr-women",
       "gender": "WOMEN",
-      "tour": "UTR Pro Tennis Tour Women",
-      "level": "UTR PTT",
-      "schedule_source": "https://www.utrsports.net/pages/pro-tennis"
-    },
-    {
-      "id": "grand-slams",
-      "gender": "MEN + WOMEN",
-      "tour": "Grand Slams",
-      "level": "Grand Slam",
-      "schedule_source": "Official tournament / ATP / WTA / ITF sources"
+      "tour": "UTR Pro Tennis Tour"
     }
   ],
-  "lanes": [
-    {
-      "id": "atp",
-      "gender": "MEN",
-      "tour": "ATP Tour",
-      "level": "Tour-level",
-      "schedule_source": "https://www.atptour.com/en/tournaments/",
-      "active_tournaments": 1
-    },
-    {
-      "id": "atp-challenger",
-      "gender": "MEN",
-      "tour": "ATP Challenger Tour",
-      "level": "Challenger",
-      "schedule_source": "https://www.atptour.com/en/atp-challenger-tour",
-      "active_tournaments": 0
-    },
-    {
-      "id": "itf-men",
-      "gender": "MEN",
-      "tour": "ITF Men's World Tennis Tour",
-      "level": "M15 / M25",
-      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate=2026-09",
-      "active_tournaments": 0
-    },
-    {
-      "id": "utr-men",
-      "gender": "MEN",
-      "tour": "UTR Pro Tennis Tour Men",
-      "level": "UTR PTT",
-      "schedule_source": "https://www.utrsports.net/pages/pro-tennis",
-      "active_tournaments": 8
-    },
-    {
-      "id": "wta",
-      "gender": "WOMEN",
-      "tour": "WTA Tour",
-      "level": "WTA 250 / 500 / 1000",
-      "schedule_source": "https://www.wtatennis.com/tournaments",
-      "active_tournaments": 1
-    },
-    {
-      "id": "wta-125",
-      "gender": "WOMEN",
-      "tour": "WTA 125",
-      "level": "WTA 125",
-      "schedule_source": "https://www.wtatennis.com/tournaments/wta-125",
-      "active_tournaments": 0
-    },
-    {
-      "id": "itf-women",
-      "gender": "WOMEN",
-      "tour": "ITF Women's World Tennis Tour",
-      "level": "W15 / W35 / W50 / W75 / W100",
-      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate=2026-09",
-      "active_tournaments": 0
-    },
-    {
-      "id": "utr-women",
-      "gender": "WOMEN",
-      "tour": "UTR Pro Tennis Tour Women",
-      "level": "UTR PTT",
-      "schedule_source": "https://www.utrsports.net/pages/pro-tennis",
-      "active_tournaments": 5
-    },
-    {
-      "id": "grand-slams",
-      "gender": "MEN + WOMEN",
-      "tour": "Grand Slams",
-      "level": "Grand Slam",
-      "schedule_source": "Official tournament / ATP / WTA / ITF sources",
-      "active_tournaments": 0
-    }
-  ],
-  "tournaments": [
-    {
-      "id": "c2fa141864dc",
-      "lane": "atp",
-      "tournament": "ATP",
-      "status": "ACTIVE/UPCOMING",
-      "event_count": 1,
-      "participants": [
-        {
-          "name": "US Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        }
-      ],
-      "participant_count": 1,
-      "verified_u18": [],
-      "known_u18_count": 0,
-      "verified_18plus_count": 0,
-      "unresolved_count": 1,
-      "participant_source": "Exact mapped match schedule + official ATP/WTA age index",
-      "events": [
-        {
-          "id": "189-2026",
-          "source_id": "atp-tennis",
-          "sport": "Tennis",
-          "league": "ATP",
-          "region": "International",
-          "name": "US Open",
-          "start_time": "2026-08-24T04:00Z",
-          "status": "COMPLETED",
-          "status_detail": "Final",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "atp",
-          "participants": [
-            {
-              "name": "US Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        }
-      ],
-      "screened_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "AGE REVIEW",
-      "draw_signature": "a1c597f2fcde36aa",
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "2b82d8664177",
-      "lane": "utr-men",
-      "tournament": ", UTR PTT Budapest Men",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-20",
-      "status": "UPCOMING",
-      "region": "Europe",
-      "location": "Budapest",
-      "source_url": "https://app.utrsports.net/events/368537",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "23bb579af5d2",
-      "lane": "utr-men",
-      "tournament": ", UTR PTT Chicago Men",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-18",
-      "status": "UPCOMING",
-      "region": "Americas",
-      "location": "Chicago",
-      "source_url": "https://app.utrsports.net/events/368478",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "943561cbabd8",
-      "lane": "utr-men",
-      "tournament": ", UTR PTT Essen Men",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-20",
-      "status": "UPCOMING",
-      "region": "Europe",
-      "location": "Essen",
-      "source_url": "https://app.utrsports.net/events/368354",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "0a79213c0510",
-      "lane": "utr-men",
-      "tournament": ", UTR PTT Sydney Men",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-20",
-      "status": "UPCOMING",
-      "region": "Asia & Pacific",
-      "location": "Sydney",
-      "source_url": "https://app.utrsports.net/events/371775",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "d5cf34907a73",
-      "lane": "utr-men",
-      "tournament": ", UTR PTT Sydney Men",
-      "start_date": "2026-09-07",
-      "end_date": "2026-09-13",
-      "status": "ACTIVE",
-      "region": "Asia & Pacific",
-      "location": "Sydney",
-      "source_url": "https://app.utrsports.net/events/371772",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "1aa6bcf86cc4",
-      "lane": "utr-men",
-      "tournament": ", UTR Pro Fall Slam Knoxville Men",
-      "start_date": "2026-09-07",
-      "end_date": "2026-09-13",
-      "status": "ACTIVE",
-      "region": "Americas",
-      "location": "Knoxville",
-      "source_url": "https://app.utrsports.net/events/368444",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "ea62c3211dd8",
-      "lane": "utr-men",
-      "tournament": ", UTR Pro Fall Slam Newport Beach Men",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-20",
-      "status": "UPCOMING",
-      "region": "Americas",
-      "location": "Newport Beach",
-      "source_url": "https://app.utrsports.net/events/367443",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "2673a986882c",
-      "lane": "utr-men",
-      "tournament": ", UTR Pro Fall Slam Tallahassee Men",
-      "start_date": "2026-09-07",
-      "end_date": "2026-09-13",
-      "status": "ACTIVE",
-      "region": "Americas",
-      "location": "Tallahassee",
-      "source_url": "https://app.utrsports.net/events/368666",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "6b196de89038",
-      "lane": "utr-women",
-      "tournament": ", UTR PTT Budapest Women",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-20",
-      "status": "UPCOMING",
-      "region": "Europe",
-      "location": "Budapest",
-      "source_url": "https://app.utrsports.net/events/368534",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "84aabf6b8e96",
-      "lane": "utr-women",
-      "tournament": ", UTR PTT Chicago Women",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-18",
-      "status": "UPCOMING",
-      "region": "Americas",
-      "location": "Chicago",
-      "source_url": "https://app.utrsports.net/events/368482",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "a5aa6e4fcd4a",
-      "lane": "utr-women",
-      "tournament": ", UTR PTT Sydney Women",
-      "start_date": "2026-09-14",
-      "end_date": "2026-09-20",
-      "status": "UPCOMING",
-      "region": "Asia & Pacific",
-      "location": "Sydney",
-      "source_url": "https://app.utrsports.net/events/371776",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "533591c969cf",
-      "lane": "utr-women",
-      "tournament": ", UTR PTT Sydney Women",
-      "start_date": "2026-09-07",
-      "end_date": "2026-09-13",
-      "status": "ACTIVE",
-      "region": "Asia & Pacific",
-      "location": "Sydney",
-      "source_url": "https://app.utrsports.net/events/371774",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "29ed3cfaef9f",
-      "lane": "utr-women",
-      "tournament": ", UTR Pro Fall Slam Tallahassee Women",
-      "start_date": "2026-09-07",
-      "end_date": "2026-09-13",
-      "status": "ACTIVE",
-      "region": "Americas",
-      "location": "Tallahassee",
-      "source_url": "https://app.utrsports.net/events/368668",
-      "participants": [],
-      "participant_count": 0,
-      "verified_u18": [],
-      "participant_source": "Official UTR public event page",
-      "screened_count": 0,
-      "unresolved_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 0,
-      "next_start_time": null,
-      "operational_status": "SOURCE GAP",
-      "draw_signature": null,
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    },
-    {
-      "id": "3beffb1858de",
-      "lane": "wta",
-      "tournament": "WTA",
-      "status": "ACTIVE/UPCOMING",
-      "event_count": 9,
-      "participants": [
-        {
-          "name": "US Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "ATIK Antalya Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "Montreux Nestl\u00e9 Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "Kia Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "Guadalajara Open Akron presented by Santander",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "BBVA Open Internacional De Valencia",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "Caldas da Rainha Ladies Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "SP Open",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        },
-        {
-          "name": "Zavarovalnica Triglav Ljubljana",
-          "age": null,
-          "age_status": "UNRESOLVED",
-          "source": "Mapped match schedule",
-          "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-        }
-      ],
-      "participant_count": 9,
-      "verified_u18": [],
-      "known_u18_count": 0,
-      "verified_18plus_count": 0,
-      "unresolved_count": 9,
-      "participant_source": "Exact mapped match schedule + official ATP/WTA age index",
-      "events": [
-        {
-          "id": "189-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "US Open",
-          "start_time": "2026-08-24T04:00Z",
-          "status": "COMPLETED",
-          "status_detail": "Final",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "US Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "1076-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "ATIK Antalya Open",
-          "start_time": "2026-09-06T04:00Z",
-          "status": "COMPLETED",
-          "status_detail": "Final",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "ATIK Antalya Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "998-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "Montreux Nestl\u00e9 Open",
-          "start_time": "2026-09-06T04:00Z",
-          "status": "COMPLETED",
-          "status_detail": "Final",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "Montreux Nestl\u00e9 Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "964-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "Kia Open",
-          "start_time": "2026-09-07T04:00Z",
-          "status": "COMPLETED",
-          "status_detail": "Final",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "Kia Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "887-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "Guadalajara Open Akron presented by Santander",
-          "start_time": "2026-09-13T04:00Z",
-          "status": "UPCOMING",
-          "status_detail": "TBD",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "Guadalajara Open Akron presented by Santander",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "871-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "BBVA Open Internacional De Valencia",
-          "start_time": "2026-09-14T04:00Z",
-          "status": "UPCOMING",
-          "status_detail": "TBD",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "BBVA Open Internacional De Valencia",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "1024-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "Caldas da Rainha Ladies Open",
-          "start_time": "2026-09-14T04:00Z",
-          "status": "UPCOMING",
-          "status_detail": "TBD",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "Caldas da Rainha Ladies Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "1005-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "SP Open",
-          "start_time": "2026-09-14T04:00Z",
-          "status": "UPCOMING",
-          "status_detail": "TBD",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "SP Open",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        },
-        {
-          "id": "786-2026",
-          "source_id": "wta-tennis",
-          "sport": "Tennis",
-          "league": "WTA",
-          "region": "International",
-          "name": "Zavarovalnica Triglav Ljubljana",
-          "start_time": "2026-09-14T04:00Z",
-          "status": "UPCOMING",
-          "status_detail": "TBD",
-          "season_stage": "REGULAR SEASON",
-          "location": null,
-          "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
-          "u18_matches": [],
-          "u18_risk": false,
-          "restriction_signals": [],
-          "restriction_risk": false,
-          "lane": "wta",
-          "participants": [
-            {
-              "name": "Zavarovalnica Triglav Ljubljana",
-              "age": null,
-              "age_status": "UNRESOLVED",
-              "source": "Mapped match schedule",
-              "evidence": "Player is scheduled; no official ATP/WTA ranking-age match was resolved."
-            }
-          ],
-          "verified_u18": []
-        }
-      ],
-      "screened_count": 0,
-      "screening_pct": 0,
-      "today_matches": 0,
-      "upcoming_matches": 5,
-      "next_start_time": "2026-09-12T23:00:00-05:00",
-      "operational_status": "AGE REVIEW",
-      "draw_signature": "08b8360612585138",
-      "draw_changed": false,
-      "risk_status": "NORMAL"
-    }
-  ],
+  "summary": {
+    "tournaments_mapped": 0,
+    "men_tournaments": 0,
+    "women_tournaments": 0,
+    "red_tournaments": 0,
+    "amber_tournaments": 0,
+    "green_tournaments": 0,
+    "participants_found": 0,
+    "verified_u18_players": 0
+  },
+  "tournaments": [],
   "risk_queue": [],
-  "known_u18_registry": [
-    {
-      "name": "Cruz Hewitt",
-      "age": 17,
-      "country": "Australia",
-      "lane": "ATP / ITF",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Ivan Ivanov",
-      "age": 17,
-      "country": "Bulgaria",
-      "lane": "ATP / ITF",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Moise Kouame",
-      "age": 17,
-      "country": "France",
-      "lane": "ATP / ITF",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Andrew Johnson",
-      "age": 16,
-      "country": "United States",
-      "lane": "ATP / US Open",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Jack Secord",
-      "age": 17,
-      "country": "United States",
-      "lane": "ATP / US Open",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Jordan Lee",
-      "age": 16,
-      "country": "United States",
-      "lane": "ATP / US Open",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Michael Antonius",
-      "age": 16,
-      "country": "United States",
-      "lane": "ATP / US Open",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Jordyn Hazelitt",
-      "age": 16,
-      "country": "United States",
-      "lane": "USTA / Pro Circuit",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Hannah Klugman",
-      "age": 17,
-      "country": "Great Britain",
-      "lane": "WTA / ITF",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Mika Stojsavljevic",
-      "age": 17,
-      "country": "Great Britain",
-      "lane": "WTA / ITF",
-      "status": "VERIFIED U18"
-    },
-    {
-      "name": "Julieta Pareja",
-      "age": 17,
-      "country": "United States",
-      "lane": "WTA / US Open",
-      "status": "VERIFIED U18"
-    }
-  ],
   "live_u18_registry": [
     {
       "name": "Andrew Johnson",
       "age": 16,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Cruz Hewitt",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Hannah Klugman",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Ivan Ivanov",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Jack Secord",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Jordan Lee",
       "age": 16,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Jordyn Hazelitt",
       "age": 16,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Julieta Pareja",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Michael Antonius",
       "age": 16,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Mika Stojsavljevic",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     },
     {
       "name": "Moise Kouame",
       "age": 17,
-      "birth_year": null,
       "age_status": "VERIFIED U18",
-      "source": "Known U18 registry",
+      "source": "Verified U18 seed registry",
       "source_url": null,
-      "registry_scope": "SEEDED",
-      "evidence": "Previously verified U18 record.",
+      "evidence": "Previously verified U18 registry record.",
       "current_exposure": false
     }
   ],
-  "summary": {
-    "lanes": 9,
-    "tournaments": 15,
-    "exact_matches": 10,
-    "participants_screened": 10,
-    "verified_u18_participants": 0,
-    "red_risk_items": 0,
-    "draw_changes": 0,
-    "atp_age_index": 0,
-    "wta_age_index": 0,
-    "itf_tournaments": 0,
-    "utr_tournaments": 13,
-    "wta125_tournaments": 0,
-    "live_u18_registry": 11,
-    "current_u18_exposure": 0,
-    "broader_u18_watchlist": 11
-  },
   "source_health": {
-    "atp_rankings": {
-      "ok": false,
-      "url": "https://www.atptour.com/en/rankings/singles?rankRange=1-1000",
-      "records": 0,
-      "error": "403 Client Error: Forbidden for url: https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
-    },
-    "wta_rankings": {
-      "ok": true,
-      "url": "https://www.wtatennis.com/rankings/singles/",
-      "records": 0
-    },
     "atp_calendar": {
       "ok": false,
-      "url": "https://www.atptour.com/en/tournaments/",
       "events": 0,
+      "url": "https://www.atptour.com/en/tournaments/",
       "error": "403 Client Error: Forbidden for url: https://www.atptour.com/en/tournaments/"
+    },
+    "atp_challenger": {
+      "ok": false,
+      "events": 0,
+      "url": "https://www.atptour.com/en/atp-challenger-tour",
+      "error": "403 Client Error: Forbidden for url: https://www.atptour.com/en/atp-challenger-tour"
     },
     "wta_calendar": {
       "ok": true,
-      "url": "https://www.wtatennis.com/tournaments",
-      "events": 0
+      "events": 0,
+      "url": "https://www.wtatennis.com/tournaments"
     },
-    "itf": [
-      {
-        "lane": "itf-men",
-        "ok": true,
-        "url": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate=2026-09",
-        "events": 0
-      },
-      {
-        "lane": "itf-women",
-        "ok": true,
-        "url": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate=2026-09",
-        "events": 0
-      }
-    ],
-    "utr": [
-      {
-        "region": "Americas",
-        "ok": true,
-        "url": "https://app.utrsports.net/club/11313",
-        "events": 6
-      },
-      {
-        "region": "Europe",
-        "ok": true,
-        "url": "https://app.utrsports.net/club/12083",
-        "events": 3
-      },
-      {
-        "region": "Asia & Pacific",
-        "ok": true,
-        "url": "https://app.utrsports.net/club/12084?tab=info",
-        "events": 4
-      }
-    ],
     "wta_125": {
       "ok": true,
-      "url": "https://www.wtatennis.com/tournaments/wta-125",
-      "events": 0
+      "events": 0,
+      "url": "https://www.wtatennis.com/tournaments/wta-125"
     },
-    "itf_junior_rankings": [
+    "itf_men": {
+      "ok": true,
+      "events": 0,
+      "url": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate=2026-09"
+    },
+    "itf_women": {
+      "ok": true,
+      "events": 0,
+      "url": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate=2026-09"
+    },
+    "utr": [
       {
-        "gender": "Girls",
-        "ok": true,
-        "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=G",
-        "verified_u18": 0
+        "ok": false,
+        "region": "Americas",
+        "events": 0,
+        "url": "https://app.utrsports.net/club/11313",
+        "error": "nothing to repeat at position 15"
       },
       {
-        "gender": "Boys",
+        "ok": false,
+        "region": "Europe",
+        "events": 0,
+        "url": "https://app.utrsports.net/club/12083",
+        "error": "nothing to repeat at position 15"
+      },
+      {
+        "ok": false,
+        "region": "Asia & Pacific",
+        "events": 0,
+        "url": "https://app.utrsports.net/club/12084?tab=info",
+        "error": "nothing to repeat at position 15"
+      }
+    ],
+    "atp_age": {
+      "ok": false,
+      "records": 0,
+      "url": "https://www.atptour.com/en/rankings/singles?rankRange=1-1000",
+      "error": "403 Client Error: Forbidden for url: https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
+    },
+    "wta_age": {
+      "ok": true,
+      "records": 0,
+      "url": "https://www.wtatennis.com/rankings/singles/"
+    },
+    "itf_juniors": [
+      {
         "ok": true,
-        "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=B",
-        "verified_u18": 0
+        "gender": "MEN",
+        "verified_u18": 0,
+        "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=B"
+      },
+      {
+        "ok": true,
+        "gender": "WOMEN",
+        "verified_u18": 0,
+        "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=G"
       }
     ]
   },
   "methodology": {
-    "schedule": "ATP/WTA exact matches use the mapped Today + 7 scoreboard feed and are cross-checked to official tour calendar coverage. ITF and UTR tournament discovery uses official sites.",
-    "age": "ATP/WTA official rankings age fields are used when resolvable. ITF explicit DOB/profile evidence is used for ITF players. Known U18 records remain hard flags.",
-    "red_rule": "A match/tournament is RED only when an identified participant has verified U18 evidence.",
-    "unknown_rule": "Unresolved participants remain visible but do not turn an event red."
+    "red": "Verified U18 athlete appears on an official professional tournament entry/acceptance/player/draw/order-of-play source.",
+    "amber": "Tournament is mapped but participant list or age coverage is incomplete.",
+    "green": "Participant field was obtained and every listed participant was verified 18+.",
+    "scope": "Main draw, qualifying, doubles, wild cards, accepted alternates/acceptance lists, and order-of-play participants are in scope."
   }
 }
