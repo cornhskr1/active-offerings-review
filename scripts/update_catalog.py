@@ -199,12 +199,57 @@ restriction_patterns = [
     r"\bNOT PERMISSIBLE\b", r"\bNO PROPOSITION\b", r"\bNO PLAYER PROPOSITION\b",
     r"\bNO IN-GAME\b"
 ]
+def restriction_scope(section,text):
+    up=text.upper()
+
+    # General professional/international U18 restriction. This is not a
+    # Volleyball restriction merely because PDF extraction encountered the
+    # line while the Volleyball section was open.
+    if (
+        ("UNDER 18" in up or "U18" in up or "18 YEARS" in up)
+        and ("PROFESSIONAL" in up or "INTERNATIONAL" in up)
+        and ("ATHLETE" in up or "PLAYER" in up)
+    ):
+        return {
+            "scope_sport":"All Professional / International Sports",
+            "scope_type":"GENERAL_U18_PRO",
+            "scope_label":"Professional / International — U18 Athlete Restriction"
+        }
+
+    # Nebraska collegiate restrictions are NCAA regulatory scope even when
+    # their extracted PDF section is broader.
+    if "NEBRASKA" in up and ("COLLEGIATE" in up or "NCAA" in up):
+        return {
+            "scope_sport":"NCAA",
+            "scope_type":"NEBRASKA_COLLEGIATE",
+            "scope_label":"Nebraska Collegiate"
+        }
+
+    # Explicit league/sport names win over inherited PDF section.
+    explicit=[
+        ("NFL","Football"),("MLB","Baseball"),("NBA","Basketball"),
+        ("WNBA","Basketball"),("NHL","Ice Hockey"),("MLS","Soccer"),
+        ("NCAA FOOTBALL","NCAA Football"),("NCAA BASKETBALL","NCAA Basketball")
+    ]
+    for token,label in explicit:
+        if token in up:
+            return {"scope_sport":label,"scope_type":"EXPLICIT","scope_label":label}
+
+    return {"scope_sport":section,"scope_type":"SECTION","scope_label":section}
+
 restrictions=[]
 for sec in sections:
     for line in sec["lines"]:
         up=line.upper()
         if any(re.search(p,up) for p in restriction_patterns):
-            restrictions.append({"sport":sec["sport"],"text":line})
+            scope=restriction_scope(sec["sport"],line)
+            restrictions.append({
+                "sport":scope["scope_sport"],
+                "catalog_section":sec["sport"],
+                "scope_type":scope["scope_type"],
+                "scope_label":scope["scope_label"],
+                "text":line
+            })
 
 sha = hashlib.sha256(pdf.content).hexdigest()
 out = {

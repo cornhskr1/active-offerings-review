@@ -9,13 +9,25 @@ NOW = datetime.datetime.now(datetime.timezone.utc)
 def nfl_restriction_is_in_scope(event, restriction):
     sport=str(event.get("sport") or "").lower()
     league=str(event.get("league") or "").lower()
-    if sport!="football" or "nfl" not in league:
+    if sport!="football" or league!="nfl":
         return True
     stage=str(event.get("season_stage") or "").upper()
-    text=" ".join(str(restriction.get(k) or "") for k in ("restriction","text","catalog_text","league","event","sport")).lower()
-    if ("preseason" in text or "pre-season" in text) and stage and stage!="PRESEASON": return False
-    if ("postseason" in text or "playoff" in text) and stage and stage!="POSTSEASON": return False
-    if "regular season" in text and stage and stage!="REGULAR SEASON": return False
+    if event.get("start_time"):
+        try:
+            ed=datetime.datetime.fromisoformat(str(event["start_time"]).replace("Z","+00:00")).date()
+            if ed >= datetime.date(2026,9,9):
+                stage="REGULAR SEASON"
+            elif datetime.date(2026,8,1) <= ed < datetime.date(2026,9,9):
+                stage="PRESEASON"
+        except Exception:
+            pass
+    text=str(restriction or "").lower()
+    if ("preseason" in text or "pre-season" in text) and stage!="PRESEASON":
+        return False
+    if ("postseason" in text or "playoff" in text) and stage!="POSTSEASON":
+        return False
+    if "regular season" in text and stage!="REGULAR SEASON":
+        return False
     return True
 
 def load(name, default):
@@ -148,7 +160,10 @@ for player in age_records:
 
 # D) Nebraska collegiate home/site restrictions.
 for ev in college.get("events",[]):
-    if ev.get("status")=="FINAL" or ev.get("site")!="HOME":
+    if ev.get("status")=="FINAL":
+        continue
+    is_nebraska_site=bool(ev.get("played_in_nebraska") or ev.get("site_test")=="NOT PERMISSIBLE")
+    if not is_nebraska_site:
         continue
     # Match or synthesize an event-shaped object for the operational queue.
     ev_obj={
@@ -181,11 +196,14 @@ for ev in schedule.get("events",[]):
     if league=="NCAA FOOTBALL":
         continue
 
+    raw_signals=ev.get("restriction_signals") or []
+    signals=[s for s in raw_signals if nfl_restriction_is_in_scope(ev,s)]
+    if not signals:
+        continue
     c=ensure_event(ev,"AMBER","CATALOG RESTRICTION")
-    signals=ev.get("restriction_signals") or []
     for sig in signals[:4]:
         push_unique(c["triggers"], str(sig))
-    push_unique(c["staff_actions"], "Review the applicable catalog restriction and confirm active SWSP markets comply.")
+    push_unique(c["staff_actions"], "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms.")
 
 # Finalize event cards.
 cards=[]

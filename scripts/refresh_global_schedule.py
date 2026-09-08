@@ -88,10 +88,10 @@ def parse_event(source, ev):
     else:
         season_stage=None
 
-    # NFL 2026 fallback: some public schedule payloads omit season type.
-    # The 2026 regular season begins Sept. 9, 2026. Do not let a PRESEASON
-    # catalog restriction bleed into Week 1+ merely because season_stage is blank.
-    if source.get("league")=="NFL" and not season_stage and dt:
+    # NFL 2026 authoritative date-stage fallback for this review system.
+    # The source payload has shown inconsistent stage metadata. For the 2026
+    # season, use the actual event date as the final scope control.
+    if source.get("league")=="NFL" and dt:
         try:
             event_date=datetime.datetime.fromisoformat(str(dt).replace("Z","+00:00")).date()
             if event_date >= datetime.date(2026,9,9):
@@ -192,13 +192,17 @@ if cat_path.exists():
         pass
 
 def restriction_applies(ev, x):
-    sport=str(ev.get("sport") or "").lower()
-    league=str(ev.get("league") or "").lower()
+    text=(x.get("text") or "").lower()
+    scope=str(x.get("scope_sport") or x.get("sport") or "").lower()
+    esport=(ev.get("sport") or "").lower()
+    league=(ev.get("league") or "").lower()
+    name=(ev.get("name") or "").lower()
     stage=str(ev.get("season_stage") or "").upper()
-    restriction_text=" ".join(str(x.get(k) or "") for k in ("restriction","text","catalog_text","league","event","sport")).lower()
+    hay=f"{league} {name}"
 
-    if sport=="football" and "nfl" in league:
-        if not stage and ev.get("start_time"):
+    # NFL: restriction applicability is stage-aware FIRST.
+    if esport=="football" and league=="nfl":
+        if ev.get("start_time"):
             try:
                 ed=datetime.datetime.fromisoformat(str(ev["start_time"]).replace("Z","+00:00")).date()
                 if ed >= datetime.date(2026,9,9):
@@ -207,55 +211,56 @@ def restriction_applies(ev, x):
                     stage="PRESEASON"
             except Exception:
                 pass
-        if ("preseason" in restriction_text or "pre-season" in restriction_text) and stage!="PRESEASON":
+
+        preseason_rule=("preseason" in text or "pre-season" in text)
+        postseason_rule=("postseason" in text or "playoff" in text)
+        regular_rule=("regular season" in text)
+
+        if preseason_rule and stage!="PRESEASON":
             return False
-        if ("postseason" in restriction_text or "playoff" in restriction_text) and stage and stage!="POSTSEASON":
+        if postseason_rule and stage!="POSTSEASON":
             return False
-        if "regular season" in restriction_text and stage and stage!="REGULAR SEASON":
+        if regular_rule and stage!="REGULAR SEASON":
             return False
 
-    text=(x.get("text") or "").lower()
-    rsport=(x.get("sport") or "").lower()
-    esport=(ev.get("sport") or "").lower()
-    league=(ev.get("league") or "").lower()
-    name=(ev.get("name") or "").lower()
-    hay=f"{league} {name}"
+        # Any Football-section restriction that is explicitly preseason-only
+        # is now exhausted above. Do not match it through generic token overlap.
+        if preseason_rule:
+            return stage=="PRESEASON"
+
+    # Generic professional/international U18 rules do NOT create a catalog
+    # restriction card by league alone. U18 exposure is handled by participant
+    # intelligence, where an actual under-18 participant must be linked.
+    if x.get("scope_type")=="GENERAL_U18_PRO":
+        return False
 
     sport_related = (
-        not rsport
-        or rsport in esport
-        or esport in rsport
+        not scope
+        or scope in esport
+        or esport in scope
         or (league and league in text)
     )
     if not sport_related:
         return False
 
-    # Baseball restrictions are special-event specific.
-    # Do not allow Draft or Spring Training restrictions to bleed into
-    # normal MLB regular-season games.
-    if esport == "baseball":
+    # MLB special-event restrictions stay event-specific.
+    if esport=="baseball":
         if "draft" in text:
             return "draft" in hay
-
         if "spring training" in text or "preseason" in text or "pre-season" in text:
             return any(k in hay for k in ("spring training","preseason","pre-season"))
-
-        special_terms=("all-star","home run derby","world baseball classic")
-        for term in special_terms:
+        for term in ("all-star","home run derby","world baseball classic"):
             if term in text:
                 return term in hay
-
-        # For ordinary MLB scheduled games, do not inherit unrelated
-        # Baseball-section restriction language.
-        if league == "mlb":
+        if league=="mlb":
             return False
 
-    # A restriction explicitly naming the scheduled league can apply league-wide.
+    # Explicit league name can apply league-wide, after stage/special-event controls.
     if league and league in text:
         return True
 
-    # Otherwise require meaningful event wording overlap rather than just sport.
-    tokens=[t for t in re.findall(r"[a-z0-9]+", name) if len(t)>=5]
+    # Otherwise require meaningful event-word overlap, not just same sport.
+    tokens=[t for t in re.findall(r"[a-z0-9]+",name) if len(t)>=5]
     return any(t in text for t in tokens)
 
 for ev in events:

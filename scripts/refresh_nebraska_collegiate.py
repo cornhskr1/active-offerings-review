@@ -167,33 +167,39 @@ events.sort(key=lambda e:(e["date"], e["time"]=="TBA", e["time"], e["school"], e
 
 
 NEBRASKA_VENUE_TERMS=[
-    "lincoln, neb","lincoln, ne","omaha, neb","omaha, ne",
+    "lincoln, neb","lincoln, ne","lincoln, nebraska",
+    "omaha, neb","omaha, ne","omaha, nebraska",
     "bob devaney","devaney sports center","memorial stadium",
     "pinnacle bank arena","hawks field","bowlin stadium",
-    "barbara hibner","morrison stadium","dj sokol","chi health center omaha"
+    "barbara hibner","morrison stadium","dj sokol",
+    "chi health center omaha","charles schwab field",
+    "haymarket park","seacrest field"
 ]
 
 def played_in_nebraska(e):
-    loc=(e.get("location") or "").lower()
-    # Location controls the regulatory test. An athletics-site HOME/AWAY/NEUTRAL
-    # designation cannot override an event physically played in Nebraska.
-    return any(term in loc for term in NEBRASKA_VENUE_TERMS)
+    loc=re.sub(r"\s+"," ",str(e.get("location") or "")).lower()
+    if any(term in loc for term in NEBRASKA_VENUE_TERMS):
+        return True
+    # State-name / abbreviation fallback when a venue string is more generic.
+    return bool(re.search(r"\bnebraska\b|\bneb\.?(?:\s|$)",loc))
 
-# Regulatory site-location determination.
+# Regulatory determination:
+# a Nebraska collegiate participant + event physically played in Nebraska = RED.
+# The source site's HOME/AWAY/NEUTRAL tag is informational only.
 for e in events:
     e["played_in_nebraska"]=played_in_nebraska(e)
-    if e["played_in_nebraska"] or e["site"]=="HOME":
+    if e["played_in_nebraska"]:
         e["site_test"]="NOT PERMISSIBLE"
         e["site_color"]="red"
         e["regulatory_site_label"]="PLAYED IN NEBRASKA"
-    elif e["site"] in ("AWAY","NEUTRAL"):
-        e["site_test"]="OK · SITE TEST PASSES"
+    elif e.get("location"):
+        e["site_test"]="OK · OUTSIDE NEBRASKA"
         e["site_color"]="green"
-        e["regulatory_site_label"]=e["site"]
+        e["regulatory_site_label"]="OUTSIDE NEBRASKA"
     else:
-        e["site_test"]="MANUAL SITE REVIEW"
+        e["site_test"]="MANUAL LOCATION REVIEW"
         e["site_color"]="amber"
-        e["regulatory_site_label"]="LOCATION REVIEW"
+        e["regulatory_site_label"]="LOCATION UNRESOLVED"
 
 out={
     "schema_version":1,
