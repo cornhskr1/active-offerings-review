@@ -17,7 +17,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 25
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -46,7 +46,7 @@ jobs:
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/tennis-intelligence.json
+          git add data/tennis-intelligence.json data/tennis-age-cache.json
 
           if git diff --cached --quiet; then
             echo "No tennis intelligence changes to commit."
