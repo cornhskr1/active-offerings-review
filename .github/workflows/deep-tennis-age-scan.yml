@@ -15,7 +15,7 @@ concurrency:
 jobs:
   deep-age-scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
 
       - name: Resolve unresolved tennis ages
         env:
-          TENNIS_AGE_BATCH: "120"
+          TENNIS_AGE_BATCH: "100"
         run: python3 scripts/refresh_tennis_age_scan.py
 
       - name: Commit age cache
