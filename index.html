@@ -970,6 +970,20 @@ button,.refresh-review-btn{
 .tennis-reg-table th,.tennis-reg-table td{text-align:left;padding:7px;border-bottom:1px solid #edf0f2}
 .tennis-reg-table th{font-size:8px;text-transform:uppercase;color:#6b737c;background:#f8f9fa}
 @media(max-width:760px){.tennis-reg-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.tennis-reg-event>summary{grid-template-columns:1fr}.tennis-reg-counts{justify-content:flex-start}}
+
+.review-workflow-compact{display:grid;grid-template-columns:minmax(0,2fr) auto;gap:10px;align-items:center}
+.review-workflow-copy{font-size:10px;color:#555d65}
+.review-workflow-stats{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.review-workflow-stats span{border:1px solid var(--agency-line);border-radius:8px;background:#f8f9fa;padding:6px 8px;font-size:9px;color:#666e76}
+.review-workflow-stats b{font-size:13px;color:#181b1e;margin-right:3px}
+.review-workflow-steps{grid-column:1/-1;display:flex;gap:7px;align-items:center;justify-content:center;padding:6px 8px;background:#f4f5f6;border-radius:8px;font-size:9px;color:#515960}
+.review-workflow-steps i{font-style:normal;color:#8a9198}
+.tennis-exception-toolbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.tennis-exception-toolbar button{border:1px solid var(--agency-line);background:#fff;border-radius:7px;padding:5px 8px;font-size:9px;font-weight:850;cursor:pointer}
+.tennis-exception-toolbar button:hover{background:#f4f5f6}
+.tennis-verified-row{display:none}
+.tennis-reg-body.show-verified .tennis-verified-row{display:table-row}
+@media(max-width:760px){.review-workflow-compact{grid-template-columns:1fr}.review-workflow-stats{justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -1168,20 +1182,15 @@ button,.refresh-review-btn{
 <p><b>Why:</b> USC states Feaster reclassified, skipped his senior year of high school, and begins his freshman campaign at 17.</p>
 <div class="staff-action"><b>Staff check</b><span>Search Feaster by name on each SWSP and document any athlete-specific markets for regulatory review.</span></div>
 </article></div></div><div class="card regulatory-impact-card">
-<div class="section-title">Regulatory Impact &amp; Review Lifecycle</div>
-<p class="small">Operational counts are generated from current risk signals and staff dispositions. Disposition controls are stored in this browser for the current review workstation.</p><div class="lifecycle-help"><b>How to use this:</b> Open any RED or AMBER item in Review Today. Use <b>Evidence</b> to see why it was flagged, then move the item from <b>Detected → Staff Reviewed → Inquiry Sent → Resolved</b> as appropriate. GREEN items require no disposition.</div>
-<div class="impact-grid">
-<div class="impact-stat"><b id="impactRed">—</b><span>not permissible signals</span></div>
-<div class="impact-stat"><b id="impactAmber">—</b><span>manual review signals</span></div>
-<div class="impact-stat"><b id="impactReviewed">0</b><span>reviewed today</span></div>
-<div class="impact-stat"><b id="impactInquiry">0</b><span>inquiry sent</span></div>
-<div class="impact-stat"><b id="impactResolved">0</b><span>resolved today</span></div>
+<div class="section-title">Review Workflow</div>
+<div class="review-workflow-compact">
+<div class="review-workflow-copy"><b>RED / AMBER only:</b> open the alert, review its Evidence, then update the disposition when staff action occurs. GREEN requires no action.</div>
+<div class="review-workflow-stats">
+<span><b id="impactReviewed">0</b> Reviewed</span>
+<span><b id="impactInquiry">0</b> Inquiry Sent</span>
+<span><b id="impactResolved">0</b> Resolved</span>
 </div>
-<div aria-label="Alert lifecycle" class="lifecycle-strip">
-<span><i>1</i>Detected</span><b>→</b>
-<span><i>2</i>Staff Reviewed</span><b>→</b>
-<span><i>3</i>Inquiry Sent</span><b>→</b>
-<span><i>4</i>Resolved</span>
+<div class="review-workflow-steps"><b>Detected</b><i>→</i><b>Staff Reviewed</b><i>→</i><b>Inquiry Sent</b><i>→</i><b>Resolved</b></div>
 </div>
 </div><div class="callout completion-window-note">
 <b>Event lifecycle:</b> Review Today keeps upcoming and active events visible. Completed events move to <b>Completed Today</b>. 
@@ -1400,13 +1409,6 @@ button,.refresh-review-btn{
 <div class="callout amber">
 <b>Tennis rule:</b> an approved tournament is never treated as clear simply because the event itself is approved. Player-specific markets must still be screened for U18 participants, and missing DOB information remains a review condition.
 </div>
-
-
-
-
-
-
-
 <div class="card">
 <div class="section-title">Professional Tennis — Today + 7</div>
 <p class="small">Regulatory view: map the professional tournament first, identify the official participant field, then verify ages. RED means a verified U18 athlete is entered in that tournament. AMBER means participant/age coverage is incomplete. GREEN is reserved for a fully resolved entrant field. This build will not turn a tournament green merely because no U18 was found.</p>
@@ -2412,6 +2414,8 @@ if(us) us.addEventListener('input',e=>{
         };
       });
       renderCollege();
+      // Review Today inherits the same in-state determination.
+      if(PQ_DATA && FOCUS_DATA) renderPriorityQueue();
     }catch(e){
       const grid=document.getElementById('collegeEvents');
       if(grid) grid.innerHTML='<div class="empty-state">Live collegiate schedule data not generated yet. Run Refresh Nebraska Collegiate.</div>';
@@ -2887,6 +2891,27 @@ if(us) us.addEventListener('input',e=>{
       </article>`;
   }
 
+  function collegeInStateRiskForScheduleEvent(e){
+    if(!collegeData || !e?.start_time)return null;
+    const clean=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+    const en=clean(e.name||'');
+    const school=en.includes('nebraska cornhuskers')?'Nebraska':en.includes('creighton bluejays')?'Creighton':null;
+    if(!school)return null;
+    const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(e.start_time));
+    const get=t=>p.find(x=>x.type===t)?.value;
+    const k=`${get('year')}-${get('month')}-${get('day')}`;
+    const match=(collegeData.events||[]).find(c=>c.school===school && c.date===k && nebraskaRegulatorySite(c).color==='red');
+    if(!match)return null;
+    return {
+      key:`college-instate|${school}|${k}|${match.sport}|${match.opponent}`,
+      severity:'RED',type:'NEBRASKA COLLEGIATE — IN STATE',
+      sport:e.sport||match.sport||'NCAA',league:e.league||'NCAA',event:e.name,
+      start_time:e.start_time,athletes:[],
+      reason:`${school} is participating in a collegiate event played in Nebraska (${match.location||'Nebraska'}).`,
+      staff_action:'Event is not permissible for wagering. Verify the event is not offered across all licensed sportsbook platforms.'
+    };
+  }
+
   function renderPriorityQueue(){
     const q=document.getElementById('reviewQueue');
     if(!q || !PQ_DATA || !FOCUS_DATA) return;
@@ -2921,6 +2946,15 @@ if(us) us.addEventListener('input',e=>{
         }
       });
     }
+
+    // Nebraska Collegiate regulatory determinations are authoritative here too.
+    // This prevents Review Today from showing a Nebraska in-state event as GREEN.
+    (FOCUS_DATA.events||[]).forEach(e=>{
+      const c=collegeInStateRiskForScheduleEvent(e);
+      if(!c)return;
+      const hay=`${c.sport} ${c.league} ${c.event}`.toLowerCase();
+      if((!search||hay.includes(search)) && !(PQ_FILTER==='amber')) riskCards.push(c);
+    });
 
     function laneLabelForDaily(id){
       return (TENNIS_FOCUS?.lanes||[]).find(x=>x.id===id)?.label || id || 'Tennis';
@@ -3320,11 +3354,14 @@ function ncaaRiskTierClass(rec){
                     : t.status_color==='GREEN'
                     ? 'Participant field obtained and all listed entrants were verified 18+.'
                     : t.participant_count
-                    ? `${t.unresolved_count||0} participant age(s) remain unresolved. Manual review required.`
+                    ? `${t.unresolved_count||0} participant age(s) remain unresolved after automated official-profile/ranking checks. Manual review required.`
                     : 'Tournament mapped, but a usable public participant field was not extracted. Manual review required.'
                 )}</div>
                 <div class="small"><b>Participant source:</b> ${te(t.participant_source||'Official tournament source')}</div>
-                ${(t.participants||[]).length?`<div style="overflow:auto;margin-top:8px"><table class="tennis-reg-table"><thead><tr><th>Participant</th><th>Age</th><th>Status</th><th>Evidence</th></tr></thead><tbody>${t.participants.map(p=>`<tr><td><b>${te(p.name)}</b></td><td>${te(p.age??'—')}</td><td><span class="pill ${p.age_status==='VERIFIED U18'?'red':p.age_status==='VERIFIED 18+'?'green':'amber'}">${te(p.age_status||'UNRESOLVED')}</span></td><td>${te(p.source||'')}${p.evidence?' · '+te(p.evidence):''}</td></tr>`).join('')}</tbody></table></div>`:''}
+                ${(t.participants||[]).length?`<div class="tennis-exception-toolbar">
+                  <span class="small"><b>Exception view:</b> showing U18 + unresolved by default. ${te(t.verified_18plus_count||0)} verified 18+ hidden.</span>
+                  ${(t.verified_18plus_count||0)?`<button type="button" class="tennis-toggle-verified">Show verified 18+</button>`:''}
+                </div><div style="overflow:auto;margin-top:8px"><table class="tennis-reg-table"><thead><tr><th>Participant</th><th>Age</th><th>Status</th><th>Evidence</th></tr></thead><tbody>${t.participants.map(p=>`<tr class="${p.age_status==='VERIFIED 18+'?'tennis-verified-row':''}"><td><b>${te(p.name)}</b></td><td>${te(p.age??'—')}</td><td><span class="pill ${p.age_status==='VERIFIED U18'?'red':p.age_status==='VERIFIED 18+'?'green':'amber'}">${te(p.age_status||'UNRESOLVED')}</span></td><td>${te(p.source||'')}${p.evidence?' · '+te(p.evidence):''}</td></tr>`).join('')}</tbody></table></div>`:''}
               </div>
             </details>`).join(''):'<div class="empty-state">No tournament mapped in the current Today + 7 window from this official tour source.</div>'}</div>
         </section>`;
@@ -3332,6 +3369,14 @@ function ncaaRiskTierClass(rec){
     };
     renderGender('MEN','tennisMenReg');
     renderGender('WOMEN','tennisWomenReg');
+    document.querySelectorAll('.tennis-toggle-verified').forEach(btn=>{
+      btn.onclick=()=>{
+        const body=btn.closest('.tennis-reg-body');
+        if(!body)return;
+        const show=body.classList.toggle('show-verified');
+        btn.textContent=show?'Hide verified 18+':'Show verified 18+';
+      };
+    });
 
     const known=document.getElementById('tennisKnownU18');
     if(known){
