@@ -1409,7 +1409,7 @@ button,.refresh-review-btn{
 
 <div class="card">
 <div class="section-title">Professional Tennis — Today + 7</div>
-<p class="small">Regulatory view: map the professional tournament first, identify the official participant field, then verify ages. RED means a verified U18 athlete is entered in that tournament. AMBER means participant/age coverage is incomplete. GREEN means the participant field was obtained and all listed entrants were verified 18+.</p>
+<p class="small">Regulatory view: map the professional tournament first, identify the official participant field, then verify ages. RED means a verified U18 athlete is entered in that tournament. AMBER means participant/age coverage is incomplete. GREEN is reserved for a fully resolved entrant field. This build will not turn a tournament green merely because no U18 was found.</p>
 <div class="tennis-reg-summary" id="tennisRegSummary"></div>
 </div>
 <div class="card">
@@ -2339,7 +2339,7 @@ if(us) us.addEventListener('input',e=>{
   let collegeSport='all';
 
   function nebraskaRegulatorySite(e){
-    const loc=String(e.location||'').toLowerCase();
+    const loc=`${String(e.location||'')} ${String(e.opponent||'')}`.toLowerCase();
     const inNebraska=Boolean(
       e.played_in_nebraska ||
       /lincoln,\s*(neb|ne)\b/.test(loc) ||
@@ -3305,7 +3305,7 @@ function ncaaRiskTierClass(rec){
             <details class="tennis-reg-event ${String(t.status_color||'AMBER').toLowerCase()}" ${t.status_color==='RED'?'open':''}>
               <summary>
                 <span class="pill ${pill(t.status_color)}">${te(t.regulatory_status)}</span>
-                <span class="tennis-reg-main"><b>${te(t.tournament)}</b><span>${te(t.start_date)} – ${te(t.end_date)}${t.location?' · '+te(t.location):''}${t.category?' · '+te(t.category):''}</span></span>
+                <span class="tennis-reg-main"><b>${te(t.tournament)}</b><span>${te(t.start_date)} – ${te(t.end_date)}${t.location?' · '+te(t.location):''}${t.category?' · '+te(t.category):''}${t.discovery_fallback?' · SCHEDULE FALLBACK':''}</span></span>
                 <span class="tennis-reg-counts">
                   <span class="tennis-stat-chip">${te(t.participant_count||0)} entrants</span>
                   <span class="tennis-stat-chip">${te(t.verified_18plus_count||0)} 18+</span>
@@ -3351,7 +3351,7 @@ function ncaaRiskTierClass(rec){
         if(Array.isArray(v)){
           v.forEach(x=>rows.push(`<div class="tennis-gap-item"><b>${te(k.replaceAll('_',' '))}${x.region?' · '+te(x.region):x.gender?' · '+te(x.gender):''}</b> · <span class="pill ${x.ok?'green':'amber'}">${x.ok?'SOURCE OK':'SOURCE ISSUE'}</span> · ${te(x.events??x.verified_u18??0)} records/events</div>`));
         }else{
-          rows.push(`<div class="tennis-gap-item"><b>${te(k.replaceAll('_',' '))}</b> · <span class="pill ${v.ok?'green':'amber'}">${v.ok?'SOURCE OK':'SOURCE ISSUE'}</span> · ${te(v.events??v.records??0)} records/events</div>`);
+          rows.push(`<div class="tennis-gap-item"><b>${te(k.replaceAll('_',' '))}</b> · <span class="pill ${(v.ok && Number(v.events??v.records??1)>0)?'green':'amber'}">${(v.ok && Number(v.events??v.records??1)>0)?'SOURCE OK':'SOURCE REVIEW'}</span> · ${te(v.events??v.records??0)} records/events</div>`);
         }
       });
       health.innerHTML=rows.join('');
