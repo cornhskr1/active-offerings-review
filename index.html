@@ -917,6 +917,29 @@ button,.refresh-review-btn{
   .command-metrics,.impact-grid{grid-template-columns:1fr}
   .command-metric{border-right:0}
 }
+
+/* Comprehensive repair pass */
+.refresh-meta b,.refresh-meta span,.refresh-panel b,.refresh-panel span{
+  color:#343a40!important;
+}
+.dashboard-hero .refresh-panel,.dashboard-hero .refresh-card{
+  color:#22272b!important;
+}
+.lifecycle-help{
+  margin:8px 0 12px;padding:10px 12px;border:1px solid #e1e5e8;
+  border-radius:9px;background:#f8f9fa;font-size:10px;line-height:1.45;color:#505860
+}
+.lifecycle-help b{color:#1d2125}
+.pq-event-row .alert-tools{margin:8px 0 0 0}
+.neb-regulatory-label{font-size:9px;font-weight:950;letter-spacing:.04em}
+.tennis-tour-map{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.tennis-tour-column{border:1px solid var(--agency-line);border-radius:12px;overflow:hidden;background:#fff}
+.tennis-tour-column h3{margin:0;padding:10px 12px;background:#25282c;color:#fff;font-size:13px}
+.tennis-tour-lane{padding:8px 10px;border-top:1px solid #edf0f2;display:grid;grid-template-columns:1fr auto;gap:8px}
+.tennis-tour-lane:first-of-type{border-top:0}
+.tennis-tour-lane b{font-size:11px}
+.tennis-tour-lane span{font-size:9px;color:var(--muted)}
+@media(max-width:760px){.tennis-tour-map{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1116,7 +1139,7 @@ button,.refresh-review-btn{
 <div class="staff-action"><b>Staff check</b><span>Search Feaster by name on each SWSP and document any athlete-specific markets for regulatory review.</span></div>
 </article></div></div><div class="card regulatory-impact-card">
 <div class="section-title">Regulatory Impact &amp; Review Lifecycle</div>
-<p class="small">Operational counts are generated from current risk signals and staff dispositions. Disposition controls are stored in this browser for the current review workstation.</p>
+<p class="small">Operational counts are generated from current risk signals and staff dispositions. Disposition controls are stored in this browser for the current review workstation.</p><div class="lifecycle-help"><b>How to use this:</b> Open any RED or AMBER item in Review Today. Use <b>Evidence</b> to see why it was flagged, then move the item from <b>Detected → Staff Reviewed → Inquiry Sent → Resolved</b> as appropriate. GREEN items require no disposition.</div>
 <div class="impact-grid">
 <div class="impact-stat"><b id="impactRed">—</b><span>not permissible signals</span></div>
 <div class="impact-stat"><b id="impactAmber">—</b><span>manual review signals</span></div>
@@ -1347,7 +1370,14 @@ button,.refresh-review-btn{
 <div class="callout amber">
 <b>Tennis rule:</b> an approved tournament is never treated as clear simply because the event itself is approved. Player-specific markets must still be screened for U18 participants, and missing DOB information remains a review condition.
 </div>
-<div class="card tennis-ops-card">
+<div class="card">
+<div class="section-title">Professional Tennis Tour Map</div>
+<p class="small">The system maps tournament schedules first, then participants, then official age evidence. RED only appears when a verified U18 athlete is tied to current professional activity.</p>
+<div class="tennis-tour-map" id="tennisTourMap">
+<div class="tennis-tour-column"><h3>MEN</h3><div id="tennisMenTours"></div></div>
+<div class="tennis-tour-column"><h3>WOMEN</h3><div id="tennisWomenTours"></div></div>
+</div>
+</div><div class="card tennis-ops-card">
 <div class="section-title">Today's Tennis Situation</div>
 <p class="small">What is active now, what contains verified U18 exposure, and what still needs participant-age review.</p>
 <div class="tennis-ops-summary" id="tennisOpsSummary"></div>
@@ -2042,7 +2072,7 @@ if(us) us.addEventListener('input',e=>{
   }
 
 
-  const CATALOG_COUNTRIES=new Set(["afghanistan","albania","algeria","american samoa","andorra","angola","anguilla","antarctica","antigua and barbuda","arab republic of egypt","argentina","argentine republic","armenia","aruba","australia","austria","azerbaijan","bahamas","bahrain","bangladesh","barbados","belarus","belgium","belize","benin","bermuda","bhutan","bolivarian republic of venezuela","bolivia","bolivia, plurinational state of","bonaire, sint eustatius and saba","bosnia and herzegovina","botswana","bouvet island","brazil","british indian ocean territory","british virgin islands","brunei darussalam","bulgaria","burkina faso","burundi","cabo verde","cambodia","cameroon","canada","cayman islands","central african republic","chad","chile","china","christmas island","cocos (keeling) islands","colombia","commonwealth of dominica","commonwealth of the bahamas","commonwealth of the northern mariana islands","comoros","congo","congo, the democratic republic of the","cook islands","costa rica","croatia","cuba","cura\u00e7ao","cyprus","czech republic","czechia","c\u00f4te d'ivoire","democratic people's republic of korea","democratic republic of sao tome and principe","democratic republic of timor-leste","democratic socialist republic of sri lanka","denmark","djibouti","dominica","dominican republic","eastern republic of uruguay","ecuador","egypt","el salvador","england","equatorial guinea","eritrea","estonia","eswatini","ethiopia","falkland islands (malvinas)","faroe islands","federal democratic republic of ethiopia","federal democratic republic of nepal","federal republic of germany","federal republic of nigeria","federal republic of somalia","federated states of micronesia","federative republic of brazil","fiji","finland","france","french guiana","french polynesia","french republic","french southern territories","gabon","gabonese republic","gambia","georgia","germany","ghana","gibraltar","grand duchy of luxembourg","greece","greenland","grenada","guadeloupe","guam","guatemala","guernsey","guinea","guinea-bissau","guyana","haiti","hashemite kingdom of jordan","heard island and mcdonald islands","hellenic republic","holy see (vatican city state)","honduras","hong kong","hong kong special administrative region of china","hungary","iceland","independent state of papua new guinea","independent state of samoa","india","indonesia","iran","iran, islamic republic of","iraq","ireland","islamic republic of afghanistan","islamic republic of iran","islamic republic of mauritania","islamic republic of pakistan","isle of man","israel","italian republic","italy","jamaica","japan","jersey","jordan","kazakhstan","kenya","kingdom of bahrain","kingdom of belgium","kingdom of bhutan","kingdom of cambodia","kingdom of denmark","kingdom of eswatini","kingdom of lesotho","kingdom of morocco","kingdom of norway","kingdom of saudi arabia","kingdom of spain","kingdom of sweden","kingdom of thailand","kingdom of tonga","kingdom of the netherlands","kiribati","korea, democratic people's republic of","korea, republic of","kosovo","kuwait","kyrgyz republic","kyrgyzstan","lao people's democratic republic","laos","latvia","lebanese republic","lebanon","lesotho","liberia","libya","liechtenstein","lithuania","luxembourg","macao","macao special administrative region of china","madagascar","malawi","malaysia","maldives","mali","malta","marshall islands","martinique","mauritania","mauritius","mayotte","mexico","micronesia, federated states of","moldova","moldova, republic of","monaco","mongolia","montenegro","montserrat","morocco","mozambique","myanmar","namibia","nauru","nepal","netherlands","new caledonia","new zealand","nicaragua","niger","nigeria","niue","norfolk island","north korea","north macedonia","northern ireland","northern mariana islands","norway","oman","pakistan","palau","palestine, state of","panama","papua new guinea","paraguay","people's democratic republic of algeria","people's republic of bangladesh","people's republic of china","peru","philippines","pitcairn","plurinational state of bolivia","poland","portugal","portuguese republic","principality of andorra","principality of liechtenstein","principality of monaco","puerto rico","qatar","republic of albania","republic of angola","republic of armenia","republic of austria","republic of azerbaijan","republic of belarus","republic of benin","republic of bosnia and herzegovina","republic of botswana","republic of bulgaria","republic of burundi","republic of cabo verde","republic of cameroon","republic of chad","republic of chile","republic of colombia","republic of costa rica","republic of croatia","republic of cuba","republic of cyprus","republic of c\u00f4te d'ivoire","republic of djibouti","republic of ecuador","republic of el salvador","republic of equatorial guinea","republic of estonia","republic of fiji","republic of finland","republic of ghana","republic of guatemala","republic of guinea","republic of guinea-bissau","republic of guyana","republic of haiti","republic of honduras","republic of iceland","republic of india","republic of indonesia","republic of iraq","republic of kazakhstan","republic of kenya","republic of kiribati","republic of latvia","republic of liberia","republic of lithuania","republic of madagascar","republic of malawi","republic of maldives","republic of mali","republic of malta","republic of mauritius","republic of moldova","republic of mozambique","republic of myanmar","republic of namibia","republic of nauru","republic of nicaragua","republic of north macedonia","republic of palau","republic of panama","republic of paraguay","republic of peru","republic of poland","republic of san marino","republic of senegal","republic of serbia","republic of seychelles","republic of sierra leone","republic of singapore","republic of slovenia","republic of south africa","republic of south sudan","republic of suriname","republic of tajikistan","republic of trinidad and tobago","republic of tunisia","republic of t\u00fcrkiye","republic of uganda","republic of uzbekistan","republic of vanuatu","republic of yemen","republic of zambia","republic of zimbabwe","republic of the congo","republic of the gambia","republic of the marshall islands","republic of the niger","republic of the philippines","republic of the sudan","romania","russia","russian federation","rwanda","rwandese republic","r\u00e9union","saint barth\u00e9lemy","saint helena, ascension and tristan da cunha","saint kitts and nevis","saint lucia","saint martin (french part)","saint pierre and miquelon","saint vincent and the grenadines","samoa","san marino","sao tome and principe","saudi arabia","scotland","senegal","serbia","seychelles","sierra leone","singapore","sint maarten (dutch part)","slovak republic","slovakia","slovenia","socialist republic of viet nam","solomon islands","somalia","south africa","south georgia and the south sandwich islands","south korea","south sudan","spain","sri lanka","state of israel","state of kuwait","state of qatar","sudan","sultanate of oman","suriname","svalbard and jan mayen","sweden","swiss confederation","switzerland","syria","syrian arab republic","taiwan","taiwan, province of china","tajikistan","tanzania","tanzania, united republic of","thailand","timor-leste","togo","togolese republic","tokelau","tonga","trinidad and tobago","tunisia","turkey","turkmenistan","turks and caicos islands","tuvalu","t\u00fcrkiye","uganda","ukraine","union of the comoros","united arab emirates","united kingdom","united kingdom of great britain and northern ireland","united mexican states","united republic of tanzania","united states","united states minor outlying islands","united states of america","uruguay","uzbekistan","vanuatu","venezuela","venezuela, bolivarian republic of","viet nam","vietnam","virgin islands of the united states","virgin islands, british","virgin islands, u.s.","wales","wallis and futuna","western sahara","yemen","zambia","zimbabwe","the state of eritrea","the state of palestine","\u00e5land islands"]);
+  const CATALOG_COUNTRIES=new Set(["korea","afghanistan","albania","algeria","american samoa","andorra","angola","anguilla","antarctica","antigua and barbuda","arab republic of egypt","argentina","argentine republic","armenia","aruba","australia","austria","azerbaijan","bahamas","bahrain","bangladesh","barbados","belarus","belgium","belize","benin","bermuda","bhutan","bolivarian republic of venezuela","bolivia","bolivia, plurinational state of","bonaire, sint eustatius and saba","bosnia and herzegovina","botswana","bouvet island","brazil","british indian ocean territory","british virgin islands","brunei darussalam","bulgaria","burkina faso","burundi","cabo verde","cambodia","cameroon","canada","cayman islands","central african republic","chad","chile","china","christmas island","cocos (keeling) islands","colombia","commonwealth of dominica","commonwealth of the bahamas","commonwealth of the northern mariana islands","comoros","congo","congo, the democratic republic of the","cook islands","costa rica","croatia","cuba","cura\u00e7ao","cyprus","czech republic","czechia","c\u00f4te d'ivoire","democratic people's republic of korea","democratic republic of sao tome and principe","democratic republic of timor-leste","democratic socialist republic of sri lanka","denmark","djibouti","dominica","dominican republic","eastern republic of uruguay","ecuador","egypt","el salvador","england","equatorial guinea","eritrea","estonia","eswatini","ethiopia","falkland islands (malvinas)","faroe islands","federal democratic republic of ethiopia","federal democratic republic of nepal","federal republic of germany","federal republic of nigeria","federal republic of somalia","federated states of micronesia","federative republic of brazil","fiji","finland","france","french guiana","french polynesia","french republic","french southern territories","gabon","gabonese republic","gambia","georgia","germany","ghana","gibraltar","grand duchy of luxembourg","greece","greenland","grenada","guadeloupe","guam","guatemala","guernsey","guinea","guinea-bissau","guyana","haiti","hashemite kingdom of jordan","heard island and mcdonald islands","hellenic republic","holy see (vatican city state)","honduras","hong kong","hong kong special administrative region of china","hungary","iceland","independent state of papua new guinea","independent state of samoa","india","indonesia","iran","iran, islamic republic of","iraq","ireland","islamic republic of afghanistan","islamic republic of iran","islamic republic of mauritania","islamic republic of pakistan","isle of man","israel","italian republic","italy","jamaica","japan","jersey","jordan","kazakhstan","kenya","kingdom of bahrain","kingdom of belgium","kingdom of bhutan","kingdom of cambodia","kingdom of denmark","kingdom of eswatini","kingdom of lesotho","kingdom of morocco","kingdom of norway","kingdom of saudi arabia","kingdom of spain","kingdom of sweden","kingdom of thailand","kingdom of tonga","kingdom of the netherlands","kiribati","korea, democratic people's republic of","korea, republic of","kosovo","kuwait","kyrgyz republic","kyrgyzstan","lao people's democratic republic","laos","latvia","lebanese republic","lebanon","lesotho","liberia","libya","liechtenstein","lithuania","luxembourg","macao","macao special administrative region of china","madagascar","malawi","malaysia","maldives","mali","malta","marshall islands","martinique","mauritania","mauritius","mayotte","mexico","micronesia, federated states of","moldova","moldova, republic of","monaco","mongolia","montenegro","montserrat","morocco","mozambique","myanmar","namibia","nauru","nepal","netherlands","new caledonia","new zealand","nicaragua","niger","nigeria","niue","norfolk island","north korea","north macedonia","northern ireland","northern mariana islands","norway","oman","pakistan","palau","palestine, state of","panama","papua new guinea","paraguay","people's democratic republic of algeria","people's republic of bangladesh","people's republic of china","peru","philippines","pitcairn","plurinational state of bolivia","poland","portugal","portuguese republic","principality of andorra","principality of liechtenstein","principality of monaco","puerto rico","qatar","republic of albania","republic of angola","republic of armenia","republic of austria","republic of azerbaijan","republic of belarus","republic of benin","republic of bosnia and herzegovina","republic of botswana","republic of bulgaria","republic of burundi","republic of cabo verde","republic of cameroon","republic of chad","republic of chile","republic of colombia","republic of costa rica","republic of croatia","republic of cuba","republic of cyprus","republic of c\u00f4te d'ivoire","republic of djibouti","republic of ecuador","republic of el salvador","republic of equatorial guinea","republic of estonia","republic of fiji","republic of finland","republic of ghana","republic of guatemala","republic of guinea","republic of guinea-bissau","republic of guyana","republic of haiti","republic of honduras","republic of iceland","republic of india","republic of indonesia","republic of iraq","republic of kazakhstan","republic of kenya","republic of kiribati","republic of latvia","republic of liberia","republic of lithuania","republic of madagascar","republic of malawi","republic of maldives","republic of mali","republic of malta","republic of mauritius","republic of moldova","republic of mozambique","republic of myanmar","republic of namibia","republic of nauru","republic of nicaragua","republic of north macedonia","republic of palau","republic of panama","republic of paraguay","republic of peru","republic of poland","republic of san marino","republic of senegal","republic of serbia","republic of seychelles","republic of sierra leone","republic of singapore","republic of slovenia","republic of south africa","republic of south sudan","republic of suriname","republic of tajikistan","republic of trinidad and tobago","republic of tunisia","republic of t\u00fcrkiye","republic of uganda","republic of uzbekistan","republic of vanuatu","republic of yemen","republic of zambia","republic of zimbabwe","republic of the congo","republic of the gambia","republic of the marshall islands","republic of the niger","republic of the philippines","republic of the sudan","romania","russia","russian federation","rwanda","rwandese republic","r\u00e9union","saint barth\u00e9lemy","saint helena, ascension and tristan da cunha","saint kitts and nevis","saint lucia","saint martin (french part)","saint pierre and miquelon","saint vincent and the grenadines","samoa","san marino","sao tome and principe","saudi arabia","scotland","senegal","serbia","seychelles","sierra leone","singapore","sint maarten (dutch part)","slovak republic","slovakia","slovenia","socialist republic of viet nam","solomon islands","somalia","south africa","south georgia and the south sandwich islands","south korea","south sudan","spain","sri lanka","state of israel","state of kuwait","state of qatar","sudan","sultanate of oman","suriname","svalbard and jan mayen","sweden","swiss confederation","switzerland","syria","syrian arab republic","taiwan","taiwan, province of china","tajikistan","tanzania","tanzania, united republic of","thailand","timor-leste","togo","togolese republic","tokelau","tonga","trinidad and tobago","tunisia","turkey","turkmenistan","turks and caicos islands","tuvalu","t\u00fcrkiye","uganda","ukraine","union of the comoros","united arab emirates","united kingdom","united kingdom of great britain and northern ireland","united mexican states","united republic of tanzania","united states","united states minor outlying islands","united states of america","uruguay","uzbekistan","vanuatu","venezuela","venezuela, bolivarian republic of","viet nam","vietnam","virgin islands of the united states","virgin islands, british","virgin islands, u.s.","wales","wallis and futuna","western sahara","yemen","zambia","zimbabwe","the state of eritrea","the state of palestine","\u00e5land islands"]);
 
   function isCatalogCountry(line){
     return CATALOG_COUNTRIES.has(cleanCatalogLine(line).toLowerCase());
@@ -2828,7 +2858,7 @@ if(us) us.addEventListener('input',e=>{
 
     if(TENNIS_FOCUS){
       (TENNIS_FOCUS.risk_queue||[]).forEach(r=>{
-        if(!r.start_time || !['VERIFIED U18','DRAW CHANGE'].includes(r.type)) return;
+        if(!r.start_time || !['VERIFIED U18','VERIFIED U18 MATCH','VERIFIED U18 TOURNAMENT','KNOWN U18 MATCH','DRAW CHANGE'].includes(r.type)) return;
         const card={
           key:`tennis|${r.type}|${r.tournament}|${r.event||''}|${r.player||''}`,
           severity:r.severity,
@@ -2956,6 +2986,24 @@ if(us) us.addEventListener('input',e=>{
         <p><b>League / competition:</b> ${pe(c.league||'Not resolved')}</p>
         <p><b>Why it surfaced:</b> ${pe(c.reason||'Operational risk condition matched.')}</p>
         <div class="staff-action"><b>Staff check</b><span>${pe(c.staff_action||'Review the active offering.')}</span><span class="scope-note">Scope: review across all licensed sportsbook platforms.</span></div>
+        <div class="alert-tools" data-alert-key="${pe(`${c.type||''}|${c.league||''}|${c.event||c.title||''}|${c.start_time||''}`)}">
+          <button type="button" class="evidence-btn"
+            data-severity="${pe(c.severity||'AMBER')}"
+            data-type="${pe(c.type||'Review condition')}"
+            data-sport="${pe(c.sport||'')}"
+            data-league="${pe(c.league||'')}"
+            data-event="${pe(c.event||c.title||'')}"
+            data-time="${pe(c.start_time||'')}"
+            data-athletes="${pe((c.athletes||[]).join(', '))}"
+            data-reason="${pe(c.reason||'Risk condition matched.')}"
+            data-action="${pe(c.staff_action||'Review the active offering.')}">Evidence</button>
+          <select class="alert-disposition" aria-label="Review disposition">
+            <option value="DETECTED">Detected</option>
+            <option value="REVIEWED">Staff Reviewed</option>
+            <option value="INQUIRY_SENT">Inquiry Sent</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+        </div>
         </details></div>`;
       }).join(''):`<div class="focus-no-attention">No red or amber Priority Queue exceptions identified for this date. Use Primary Focus below to guide the day's normal active-offerings review.</div>`;
 
@@ -3183,6 +3231,19 @@ function ncaaRiskTierClass(rec){
     const s=d.summary||{};
     const tournaments=d.tournaments||[];
     const risks=d.risk_queue||[];
+
+    const fam=d.tour_families||d.lanes||[];
+    const laneCount=id=>tournaments.filter(t=>t.lane===id).length;
+    const renderTours=(gender,target)=>{
+      const el=document.getElementById(target); if(!el)return;
+      const rows=fam.filter(x=>String(x.gender||'').includes(gender));
+      el.innerHTML=rows.map(x=>`<div class="tennis-tour-lane">
+        <div><b>${te(x.tour||x.label||x.id)}</b><span>${te(x.level||x.coverage||'')}</span></div>
+        <span class="pill ${laneCount(x.id)?'green':'amber'}">${laneCount(x.id)?laneCount(x.id)+' mapped':'SOURCE CHECK'}</span>
+      </div>`).join('');
+    };
+    renderTours('MEN','tennisMenTours');
+    renderTours('WOMEN','tennisWomenTours');
 
     const ops=document.getElementById('tennisOpsSummary');
     if(ops) ops.innerHTML=[
