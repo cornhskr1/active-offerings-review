@@ -192,76 +192,69 @@ if cat_path.exists():
         pass
 
 def restriction_applies(ev, x):
-    text=(x.get("text") or "").lower()
-    scope=str(x.get("scope_sport") or x.get("sport") or "").lower()
-    esport=(ev.get("sport") or "").lower()
-    league=(ev.get("league") or "").lower()
-    name=(ev.get("name") or "").lower()
+    text=str(x.get("text") or "").lower()
+    esport=str(ev.get("sport") or "").lower()
+    league=str(ev.get("league") or "").lower()
+    name=str(ev.get("name") or "").lower()
     stage=str(ev.get("season_stage") or "").upper()
+    scope_type=str(x.get("scope_type") or "")
+    scope_sport=str(x.get("sport") or "").lower()
     hay=f"{league} {name}"
 
-    # NFL: restriction applicability is stage-aware FIRST.
-    if esport=="football" and league=="nfl":
-        if ev.get("start_time"):
-            try:
-                ed=datetime.datetime.fromisoformat(str(ev["start_time"]).replace("Z","+00:00")).date()
-                if ed >= datetime.date(2026,9,9):
-                    stage="REGULAR SEASON"
-                elif datetime.date(2026,8,1) <= ed < datetime.date(2026,9,9):
-                    stage="PRESEASON"
-            except Exception:
-                pass
+    # General professional/international U18 language is NOT a league-wide
+    # schedule restriction. It requires an actual participant-age match.
+    if scope_type=="GENERAL_U18_PRO":
+        return False
+
+    # NFL event-specific controls. "NFL Draft" must never attach to NFL games.
+    if league=="nfl":
+        if "draft" in text:
+            return "draft" in name
 
         preseason_rule=("preseason" in text or "pre-season" in text)
         postseason_rule=("postseason" in text or "playoff" in text)
         regular_rule=("regular season" in text)
 
-        if preseason_rule and stage!="PRESEASON":
-            return False
-        if postseason_rule and stage!="POSTSEASON":
-            return False
-        if regular_rule and stage!="REGULAR SEASON":
-            return False
-
-        # Any Football-section restriction that is explicitly preseason-only
-        # is now exhausted above. Do not match it through generic token overlap.
         if preseason_rule:
             return stage=="PRESEASON"
+        if postseason_rule:
+            return stage=="POSTSEASON"
+        if regular_rule:
+            return stage=="REGULAR SEASON"
 
-    # Generic professional/international U18 rules do NOT create a catalog
-    # restriction card by league alone. U18 exposure is handled by participant
-    # intelligence, where an actual under-18 participant must be linked.
-    if x.get("scope_type")=="GENERAL_U18_PRO":
-        return False
-
-    sport_related = (
-        not scope
-        or scope in esport
-        or esport in scope
-        or (league and league in text)
-    )
-    if not sport_related:
-        return False
-
-    # MLB special-event restrictions stay event-specific.
-    if esport=="baseball":
+    # MLB event-specific restrictions.
+    if league=="mlb":
         if "draft" in text:
-            return "draft" in hay
+            return "draft" in name
         if "spring training" in text or "preseason" in text or "pre-season" in text:
-            return any(k in hay for k in ("spring training","preseason","pre-season"))
-        for term in ("all-star","home run derby","world baseball classic"):
-            if term in text:
-                return term in hay
-        if league=="mlb":
-            return False
+            return any(k in name for k in ("spring training","preseason","pre-season"))
 
-    # Explicit league name can apply league-wide, after stage/special-event controls.
+    # Explicit named special-event restrictions require the named event.
+    special_terms=[
+        "draft","all-star","home run derby","world baseball classic",
+        "preseason","pre-season","spring training"
+    ]
+    for term in special_terms:
+        if term in text:
+            return term in hay
+
+    # Restriction tied to an explicitly named league/event.
     if league and league in text:
         return True
 
-    # Otherwise require meaningful event-word overlap, not just same sport.
-    tokens=[t for t in re.findall(r"[a-z0-9]+",name) if len(t)>=5]
-    return any(t in text for t in tokens)
+    # Sport-level restriction can apply only when it is genuinely sport-wide.
+    if scope_sport and scope_sport==esport:
+        generic_event_words=["restriction","no proposition wagers","no player proposition wagers","no in-game wagers"]
+        if any(g in text for g in generic_event_words) and not any(t in text for t in special_terms):
+            # If the text contains a distinct league/event name not present in this
+            # event, do not spread it across the entire sport.
+            tokens=[t for t in re.findall(r"[a-z0-9]+",text) if len(t)>=5]
+            ev_tokens=set(re.findall(r"[a-z0-9]+",hay))
+            named=[t for t in tokens if t not in {"restriction","markets","wagers","player","proposition","event","games","close","prior","start","hours","hour"}]
+            if named and not any(t in ev_tokens for t in named):
+                return False
+
+    return False
 
 for ev in events:
     rel=[]

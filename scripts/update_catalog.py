@@ -68,7 +68,7 @@ def date_key(item):
     if y < 100: y += 2000
     return (y,int(m),int(d))
 
-label, pdf_url = sorted(candidates, key=date_key, reverse=True)[0]
+source_label, pdf_url = sorted(candidates, key=date_key, reverse=True)[0]
 pdf = requests.get(pdf_url, headers=HEADERS, timeout=60)
 pdf.raise_for_status()
 pdf_path = DATA/"catalog-current.pdf"
@@ -95,7 +95,7 @@ for line in all_lines:
 all_lines=dedup
 
 version = None
-for source in (label, " ".join(all_lines[:80])):
+for source in (source_label, " ".join(all_lines[:80])):
     m = re.search(r"(\d{1,2})[./-](\d{1,2})[./-](\d{2,4})", source)
     if m:
         mm,dd,yy = map(int,m.groups())
@@ -160,15 +160,15 @@ for page_index in range(content_start, len(raw_pages)):
         is_ncaa_subsection = indent == 0 and heading in NCAA_SUBSECTIONS
 
         if is_top_level or is_ncaa_subsection:
-            label = heading
-            if label == "National Collegiate Athletic Association (NCAA)":
-                label = "NCAA"
+            section_label = heading
+            if section_label == "National Collegiate Athletic Association (NCAA)":
+                section_label = "NCAA"
 
             if current and current["lines"]:
                 sections.append(current)
 
             current={
-                "sport":label,
+                "sport":section_label,
                 "lines":[],
                 "page_start":page_index+1
             }
@@ -256,7 +256,7 @@ out = {
     "schema_version":1,
     "generated_at":NOW.isoformat(),
     "source_page":PAGE_URL,
-    "source_label":label,
+    "source_label":source_label,
     "pdf_url":pdf_url,
     "menu_version":version,
     "sha256":sha,
@@ -271,7 +271,7 @@ out = {
 # Lightweight status file for header/banner use.
 (DATA/"catalog-status.json").write_text(json.dumps({
     "generated_at":NOW.isoformat(),
-    "source_label":label,
+    "source_label":source_label,
     "menu_version":version,
     "pdf_url":pdf_url,
     "page_count":len(reader.pages),
@@ -281,7 +281,7 @@ out = {
 },indent=2),encoding="utf-8")
 
 print(json.dumps({
-    "source_label":label,
+    "source_label":source_label,
     "menu_version":version,
     "page_count":len(reader.pages),
     "lines":len(all_lines),

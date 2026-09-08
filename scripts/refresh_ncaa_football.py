@@ -513,7 +513,7 @@ football_out = {
     "sport":"NCAA Football",
     "scope":"FBS auto-mapping + age discovery",
     "teams_total":len(team_results),
-    "teams_mapped":sum(1 for t in team_results if t["mapping_status"]=="AUTO-MAPPED"),
+    "teams_mapped":sum(1 for t in team_results if t["mapping_status"]!="UNRESOLVED"),
     "teams_partial":sum(1 for t in team_results if t["mapping_status"]=="PARTIAL"),
     "teams_unmapped":sum(1 for t in team_results if t["mapping_status"]=="UNRESOLVED"),
     "known_u18":[

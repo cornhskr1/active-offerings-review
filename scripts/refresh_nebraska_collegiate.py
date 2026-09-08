@@ -135,6 +135,19 @@ def parse_nebraska(src, source):
                 result=x; status="FINAL"; break
 
         phase="EXHIBITION" if any("exhibition" in x.lower() for x in block) else "REGULAR SEASON"
+
+        # Guard against the Nebraska page's decorative Home/Away/Neutral labels
+        # being mistaken for the start of a new event. A malformed block typically
+        # shifts the venue into "opponent" and the weekday into "location".
+        weekday_loc=loc.lower() in {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"}
+        opponent_looks_like_venue=bool(
+            re.search(r"\b(lincoln|omaha),\s*(neb|ne)\b",opp,re.I)
+            or any(v in opp.lower() for v in ("sports center","stadium","arena","field"))
+        )
+        if weekday_loc or opponent_looks_like_venue:
+            i += max(1,date_idx+2)
+            continue
+
         if TODAY <= date <= END:
             events.append({
                 "school":source["school"],"sport":source["sport"],"date":date.isoformat(),

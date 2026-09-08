@@ -11,23 +11,21 @@ def nfl_restriction_is_in_scope(event, restriction):
     league=str(event.get("league") or "").lower()
     if sport!="football" or league!="nfl":
         return True
+
     stage=str(event.get("season_stage") or "").upper()
-    if event.get("start_time"):
-        try:
-            ed=datetime.datetime.fromisoformat(str(event["start_time"]).replace("Z","+00:00")).date()
-            if ed >= datetime.date(2026,9,9):
-                stage="REGULAR SEASON"
-            elif datetime.date(2026,8,1) <= ed < datetime.date(2026,9,9):
-                stage="PRESEASON"
-        except Exception:
-            pass
+    name=str(event.get("name") or "").lower()
     text=str(restriction or "").lower()
-    if ("preseason" in text or "pre-season" in text) and stage!="PRESEASON":
-        return False
-    if ("postseason" in text or "playoff" in text) and stage!="POSTSEASON":
-        return False
-    if "regular season" in text and stage!="REGULAR SEASON":
-        return False
+
+    # NFL Draft is a separate event, never a restriction on an NFL game.
+    if "draft" in text:
+        return "draft" in name
+
+    if ("preseason" in text or "pre-season" in text):
+        return stage=="PRESEASON"
+    if ("postseason" in text or "playoff" in text):
+        return stage=="POSTSEASON"
+    if "regular season" in text:
+        return stage=="REGULAR SEASON"
     return True
 
 def load(name, default):
