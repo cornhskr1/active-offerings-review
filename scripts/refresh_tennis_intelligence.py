@@ -92,9 +92,27 @@ class Browser:
     def close(self): self.browser.close()
 
     def snapshot(self,url,wait=1800):
+        payloads=[]
+        def on_response(resp):
+            try:
+                ctype=(resp.headers.get("content-type") or "").lower()
+                u=resp.url.lower()
+                if ("json" not in ctype and not any(x in u for x in ("/api/","graphql","query","draw","player","acceptance"))):
+                    return
+                data=resp.json()
+                # Keep payload collection bounded.
+                if len(payloads)<80:
+                    payloads.append({"url":resp.url,"data":data})
+            except Exception:
+                pass
+
         try:
+            self.page.on("response",on_response)
             self.page.goto(url,wait_until="domcontentloaded",timeout=35000)
             self.page.wait_for_timeout(wait)
+            # Give JS-heavy sports sites one extra opportunity to settle.
+            try:self.page.wait_for_load_state("networkidle",timeout=5000)
+            except Exception:pass
             text=self.page.locator("body").inner_text(timeout=8000)
             links=self.page.locator("a").evaluate_all(
                 """els=>els.map(a=>({text:(a.innerText||'').trim(),href:a.href||'',parent:(a.closest('tr,article,li,section,div')?.innerText||'').trim()}))"""
@@ -103,9 +121,12 @@ class Browser:
                 """els=>els.map(tr=>({cells:[...tr.querySelectorAll('th,td')].map(x=>(x.innerText||'').trim()),text:(tr.innerText||'').trim()}))"""
             )
             html=self.page.content()
-            return {"ok":True,"url":self.page.url,"text":text,"links":links,"rows":rows,"html":html}
+            return {"ok":True,"url":self.page.url,"text":text,"links":links,"rows":rows,"html":html,"payloads":payloads}
         except Exception as e:
-            return {"ok":False,"url":url,"text":"","links":[],"rows":[],"html":"","error":str(e)[:180]}
+            return {"ok":False,"url":url,"text":"","links":[],"rows":[],"html":"","payloads":payloads,"error":str(e)[:180]}
+        finally:
+            try:self.page.remove_listener("response",on_response)
+            except Exception:pass
 
 def clean_tournament_name(text):
     s=" ".join(str(text or "").split())
@@ -235,6 +256,64 @@ def atp_draw_urls(url):
         root=u
     return [root+"/draws",root+"/results",u]
 
+def split_camel_name(name):
+    """ITF draw text sometimes renders NinoEhrenschneider without a space."""
+    s=clean_player_name(name)
+    s=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])"," ",s)
+    return " ".join(s.split())
+
+def extract_itf_draw_text(found,snap):
+    lines=[" ".join(x.split()) for x in str(snap.get("text") or "").splitlines() if x.strip()]
+    for i,line in enumerate(lines):
+        if not re.match(r"^Entry status\\s*:",line,re.I):
+            continue
+        for cand in lines[i+1:i+8]:
+            x=cand.strip()
+            if re.fullmatch(r"[A-Z]{3}",x):continue
+            if x.upper()=="H2H":continue
+            if re.fullmatch(r"(?:\\d+\\s*){1,6}",x):continue
+            if re.match(r"^(?:Entry status|Print|Main Draw|Qualifying|Singles|Doubles)",x,re.I):break
+            x=re.sub(r"\\s*\\[[0-9]+\\]\\s*$","",x)
+            x=re.sub(r"\\s*\\((?:WC|Q|LL|JR|DA|SE|ALT)\\)\\s*$","",x,flags=re.I)
+            x=split_camel_name(x)
+            if plausible_player(x):
+                add_person(found,x,source="ITF official draw text")
+                break
+
+def extract_json_people(found,payloads,source):
+    """Recursively find player-shaped objects in rendered XHR/JSON responses."""
+    first_keys=("firstName","firstname","first_name","givenName","given_name","forename")
+    last_keys=("lastName","lastname","last_name","familyName","family_name","surname")
+    full_keys=("fullName","displayName","playerName","name")
+
+    def walk(obj,depth=0):
+        if depth>12:return
+        if isinstance(obj,dict):
+            first=next((obj.get(k) for k in first_keys if isinstance(obj.get(k),str)),None)
+            last=next((obj.get(k) for k in last_keys if isinstance(obj.get(k),str)),None)
+            profile=None
+            for k in ("profileUrl","profileURL","url","href","playerUrl"):
+                if isinstance(obj.get(k),str) and ("player" in obj[k].lower() or "profile" in obj[k].lower()):
+                    profile=obj[k];break
+            if first and last:
+                add_person(found,f"{first} {last}",profile,source)
+            else:
+                # Only accept a generic `name` from objects that look player-ish.
+                playerish=any(k.lower().startswith(("player","athlete","competitor","participant","entrant")) for k in obj.keys())
+                if playerish:
+                    for k in full_keys:
+                        val=obj.get(k)
+                        if isinstance(val,str) and plausible_player(val):
+                            add_person(found,val,profile,source)
+                            break
+            for v in obj.values():walk(v,depth+1)
+        elif isinstance(obj,list):
+            for v in obj:walk(v,depth+1)
+
+    for item in payloads or []:
+        try:walk(item.get("data"))
+        except Exception:pass
+
 def extract_wta_text(found,snap):
     """WTA player-list pages expose full singles/qualifying names in rendered text."""
     lines=[" ".join(x.split()) for x in str(snap.get("text") or "").splitlines() if x.strip()]
@@ -269,7 +348,7 @@ def extract_itf_table_text(found,snap):
         for chunk in chunks:
             m=re.match(r"^\s*[A-Z]{3}\s*(.+?)\s*$",chunk)
             if m:
-                name=m.group(1).strip()
+                name=split_camel_name(m.group(1).strip())
                 # Remove trailing ranking columns accidentally included in a cell.
                 name=re.sub(r"\s+\d+(?:\s+\d+)*\s*$","",name).strip()
                 add_person(found,name,source="ITF official participant table")
@@ -292,57 +371,63 @@ def participant_links(browser,t):
         primary_count=0
         for url in primary:
             if not url:continue
-            snap=browser.snapshot(url,1100)
+            snap=browser.snapshot(url,2600)
             if not snap.get("ok"):continue
             for a in snap.get("links",[]):
                 if re.search(r"/en/players/",a.get("href",""),re.I):
                     before=len(found); add_person(found,a.get("text"),a.get("href"),"ITF draw/order of play")
                     primary_count += len(found)-before
             extract_itf_table_text(found,snap)
+            extract_itf_draw_text(found,snap)
+            extract_json_people(found,snap.get("payloads"),"ITF rendered draw data")
 
         # Acceptance List is a fallback / supplement, but withdrawals are excluded.
         if primary_count==0 or len(found)<8:
             url=t.get("acceptance_url")
             if url:
-                snap=browser.snapshot(url,1100)
+                snap=browser.snapshot(url,2600)
                 if snap.get("ok"):
                     for a in snap.get("links",[]):
                         parent=a.get("parent","")
                         if re.search(r"/en/players/",a.get("href",""),re.I) and not re.search(r"withdraw|Automatic Withdrawal",parent,re.I):
                             add_person(found,a.get("text"),a.get("href"),"ITF acceptance list")
                     extract_itf_table_text(found,snap)
+                    extract_json_people(found,snap.get("payloads"),"ITF rendered acceptance data")
 
     elif tid.startswith("wta"):
         urls=[wta_player_list_url(t.get("source_url")),wta_draw_url(t.get("source_url")),t.get("source_url")]
         for url in urls:
             if not url:continue
-            snap=browser.snapshot(url,1200)
+            snap=browser.snapshot(url,2600)
             if not snap.get("ok"):continue
             for a in snap.get("links",[]):
                 if re.search(r"/players/",a.get("href",""),re.I):
                     add_person(found,a.get("text"),a.get("href"),"WTA official player/draw page")
             extract_wta_text(found,snap)
             extract_embedded_names(found,snap.get("html"),"WTA rendered tournament data")
+            extract_json_people(found,snap.get("payloads"),"WTA rendered tournament data")
 
     elif tid.startswith("atp"):
         for url in atp_draw_urls(t.get("source_url")):
-            snap=browser.snapshot(url,1300)
+            snap=browser.snapshot(url,2600)
             if not snap.get("ok"):continue
             for a in snap.get("links",[]):
                 if re.search(r"/en/players/",a.get("href",""),re.I):
                     add_person(found,a.get("text"),a.get("href"),"ATP official draw/results page")
             extract_embedded_names(found,snap.get("html"),"ATP rendered tournament data")
+            extract_json_people(found,snap.get("payloads"),"ATP rendered tournament data")
 
     else:
         # UTR Pro Tennis Tour
         url=t.get("source_url")
         if url:
-            snap=browser.snapshot(url,1500)
+            snap=browser.snapshot(url,2800)
             if snap.get("ok"):
                 for a in snap.get("links",[]):
                     if re.search(r"/(profile|profiles|player|players)/",a.get("href",""),re.I):
                         add_person(found,a.get("text"),a.get("href"),"UTR official event page")
                 extract_embedded_names(found,snap.get("html"),"UTR rendered event data")
+                extract_json_people(found,snap.get("payloads"),"UTR rendered event data")
 
     return list(found.values())
 
@@ -537,6 +622,9 @@ with sync_playwright() as pw:
         people=participant_links(browser,t)
         t["participants_extracted"]=len(people)
         t["participant_extraction_status"]="EXTRACTED" if people else "NO PARTICIPANT FIELD EXTRACTED"
+        # ITF fact sheets publish expected draw sizes; the UI can distinguish a
+        # genuinely missing participant field from a partial extraction.
+        t["participant_field_complete"]=False
         parts=[]
         on_date=datetime.date.fromisoformat(t["start_date"])
         for p in people:
