@@ -1,50 +1,145 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-09-08T12:39:15.280011+00:00",
+  "generated_at": "2026-09-08T13:25:49.983815+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-08",
   "window_end": "2026-09-15",
-  "lanes": [
+  "tour_families": [
     {
       "id": "atp",
-      "label": "ATP",
-      "coverage": "EXACT MATCHES + OFFICIAL AGE INDEX",
-      "active_tournaments": 1
+      "gender": "MEN",
+      "tour": "ATP Tour",
+      "level": "Tour-level",
+      "schedule_source": "https://www.atptour.com/en/tournaments/"
     },
     {
-      "id": "wta",
-      "label": "WTA",
-      "coverage": "EXACT MATCHES + OFFICIAL AGE INDEX",
-      "active_tournaments": 1
+      "id": "atp-challenger",
+      "gender": "MEN",
+      "tour": "ATP Challenger Tour",
+      "level": "Challenger",
+      "schedule_source": "https://www.atptour.com/en/atp-challenger-tour"
     },
     {
       "id": "itf-men",
-      "label": "ITF Men",
-      "coverage": "OFFICIAL CALENDAR / DRAW / PROFILE",
-      "active_tournaments": 0
+      "gender": "MEN",
+      "tour": "ITF Men's World Tennis Tour",
+      "level": "M15 / M25",
+      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate=2026-09"
+    },
+    {
+      "id": "utr-men",
+      "gender": "MEN",
+      "tour": "UTR Pro Tennis Tour Men",
+      "level": "UTR PTT",
+      "schedule_source": "https://www.utrsports.net/pages/pro-tennis"
+    },
+    {
+      "id": "wta",
+      "gender": "WOMEN",
+      "tour": "WTA Tour",
+      "level": "WTA 250 / 500 / 1000",
+      "schedule_source": "https://www.wtatennis.com/tournaments"
+    },
+    {
+      "id": "wta-125",
+      "gender": "WOMEN",
+      "tour": "WTA 125",
+      "level": "WTA 125",
+      "schedule_source": "https://www.wtatennis.com/tournaments/wta-125"
     },
     {
       "id": "itf-women",
-      "label": "ITF Women",
-      "coverage": "OFFICIAL CALENDAR / DRAW / PROFILE",
+      "gender": "WOMEN",
+      "tour": "ITF Women's World Tennis Tour",
+      "level": "W15 / W35 / W50 / W75 / W100",
+      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate=2026-09"
+    },
+    {
+      "id": "utr-women",
+      "gender": "WOMEN",
+      "tour": "UTR Pro Tennis Tour Women",
+      "level": "UTR PTT",
+      "schedule_source": "https://www.utrsports.net/pages/pro-tennis"
+    },
+    {
+      "id": "grand-slams",
+      "gender": "MEN + WOMEN",
+      "tour": "Grand Slams",
+      "level": "Grand Slam",
+      "schedule_source": "Official tournament / ATP / WTA / ITF sources"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "atp",
+      "gender": "MEN",
+      "tour": "ATP Tour",
+      "level": "Tour-level",
+      "schedule_source": "https://www.atptour.com/en/tournaments/",
+      "active_tournaments": 1
+    },
+    {
+      "id": "atp-challenger",
+      "gender": "MEN",
+      "tour": "ATP Challenger Tour",
+      "level": "Challenger",
+      "schedule_source": "https://www.atptour.com/en/atp-challenger-tour",
+      "active_tournaments": 0
+    },
+    {
+      "id": "itf-men",
+      "gender": "MEN",
+      "tour": "ITF Men's World Tennis Tour",
+      "level": "M15 / M25",
+      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/?categories=All&startdate=2026-09",
       "active_tournaments": 0
     },
     {
       "id": "utr-men",
-      "label": "UTR Men",
-      "coverage": "OFFICIAL EVENT / PARTICIPANT DISCOVERY",
+      "gender": "MEN",
+      "tour": "UTR Pro Tennis Tour Men",
+      "level": "UTR PTT",
+      "schedule_source": "https://www.utrsports.net/pages/pro-tennis",
       "active_tournaments": 8
     },
     {
+      "id": "wta",
+      "gender": "WOMEN",
+      "tour": "WTA Tour",
+      "level": "WTA 250 / 500 / 1000",
+      "schedule_source": "https://www.wtatennis.com/tournaments",
+      "active_tournaments": 1
+    },
+    {
+      "id": "wta-125",
+      "gender": "WOMEN",
+      "tour": "WTA 125",
+      "level": "WTA 125",
+      "schedule_source": "https://www.wtatennis.com/tournaments/wta-125",
+      "active_tournaments": 0
+    },
+    {
+      "id": "itf-women",
+      "gender": "WOMEN",
+      "tour": "ITF Women's World Tennis Tour",
+      "level": "W15 / W35 / W50 / W75 / W100",
+      "schedule_source": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/?categories=All&startdate=2026-09",
+      "active_tournaments": 0
+    },
+    {
       "id": "utr-women",
-      "label": "UTR Women",
-      "coverage": "OFFICIAL EVENT / PARTICIPANT DISCOVERY",
+      "gender": "WOMEN",
+      "tour": "UTR Pro Tennis Tour Women",
+      "level": "UTR PTT",
+      "schedule_source": "https://www.utrsports.net/pages/pro-tennis",
       "active_tournaments": 5
     },
     {
       "id": "grand-slams",
-      "label": "Grand Slams",
-      "coverage": "ATP/WTA MATCH FEED WHEN PRESENT",
+      "gender": "MEN + WOMEN",
+      "tour": "Grand Slams",
+      "level": "Grand Slam",
+      "schedule_source": "Official tournament / ATP / WTA / ITF sources",
       "active_tournaments": 0
     }
   ],
@@ -991,7 +1086,7 @@
     }
   ],
   "summary": {
-    "lanes": 7,
+    "lanes": 9,
     "tournaments": 15,
     "exact_matches": 10,
     "participants_screened": 10,
@@ -1002,6 +1097,7 @@
     "wta_age_index": 0,
     "itf_tournaments": 0,
     "utr_tournaments": 13,
+    "wta125_tournaments": 0,
     "live_u18_registry": 11,
     "current_u18_exposure": 0,
     "broader_u18_watchlist": 11
@@ -1063,6 +1159,11 @@
         "events": 4
       }
     ],
+    "wta_125": {
+      "ok": true,
+      "url": "https://www.wtatennis.com/tournaments/wta-125",
+      "events": 0
+    },
     "itf_junior_rankings": [
       {
         "gender": "Girls",
