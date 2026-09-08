@@ -208,10 +208,103 @@ def participant_links(browser,t):
         for a in snap["links"]:
             if not re.search(pat,a["href"],re.I):continue
             name=" ".join(a["text"].split())
+            # ITF lists frequently prefix the linked athlete with a three-letter nation code.
+            name=re.sub(r"^[A-Z]{3}\s+", "", name).strip()
             if len(name.split())<2 or len(name)>80:continue
             if any(x in name.lower() for x in ("draw","profile","results","schedule","player profile")):continue
             found[norm(name)]={"name":name,"profile_url":a["href"]}
     return list(found.values())
+
+PROFILE_AGE_CACHE={}
+
+def age_from_dob(dob,on_date):
+    return on_date.year-dob.year-((on_date.month,on_date.day)<(dob.month,dob.day))
+
+def parse_age_evidence(text,on_date):
+    txt=" ".join(str(text or "").split())
+
+    # Direct age labels are common on ITF and WTA profiles.
+    patterns=[
+      r'\\bAge\\s*:?\\s*(1[4-9]|[2-4]\\d)\\b',
+      r'\\bAge\\s+(1[4-9]|[2-4]\\d)\\b'
+    ]
+    for pat in patterns:
+        m=re.search(pat,txt,re.I)
+        if m:
+            return int(m.group(1)),None,f"Official profile lists age {m.group(1)}."
+
+    # Explicit birth fields only; bare dates are intentionally ignored.
+    dob_patterns=[
+      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\\s*:?\\s*(\\d{1,2}\\s+[A-Za-z]+\\s+\\d{4})',
+      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\\s*:?\\s*([A-Za-z]+\\s+\\d{1,2},?\\s+\\d{4})',
+      r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\\s*:?\\s*(\\d{4}-\\d{2}-\\d{2})'
+    ]
+    for pat in dob_patterns:
+        m=re.search(pat,txt,re.I)
+        if not m:continue
+        raw=m.group(1)
+        for fmt in ('%d %B %Y','%d %b %Y','%B %d, %Y','%B %d %Y','%b %d, %Y','%Y-%m-%d'):
+            try:
+                dob=datetime.datetime.strptime(raw,fmt).date()
+                age=age_from_dob(dob,on_date)
+                if 14 <= age <= 45:
+                    return age,dob.isoformat(),f"Official profile lists date of birth {dob.isoformat()}."
+            except Exception:
+                pass
+    return None,None,None
+
+def resolve_profile_age(browser,person,on_date):
+    url=person.get('profile_url')
+    if not url:
+        return None
+    if url in PROFILE_AGE_CACHE:
+        return PROFILE_AGE_CACHE[url]
+
+    # Full browser rendering is used because official tennis profiles may be JS-rendered.
+    snap=browser.snapshot(url,350)
+    if not snap.get('ok'):
+        PROFILE_AGE_CACHE[url]=None
+        return None
+    age,dob,evidence=parse_age_evidence(snap.get('text',''),on_date)
+    if age is None:
+        PROFILE_AGE_CACHE[url]=None
+        return None
+    result={
+      'name':person.get('name'),
+      'age':age,
+      'dob':dob,
+      'age_status':'VERIFIED U18' if age<18 else 'VERIFIED 18+',
+      'source':'Official player profile',
+      'source_url':url,
+      'evidence':evidence
+    }
+    PROFILE_AGE_CACHE[url]=result
+    return result
+
+def ranking_age_index(browser,url,profile_pattern,source):
+    """Build one broad age index before individual profile lookups."""
+    out={}; snap=browser.snapshot(url,2200)
+    health={'ok':snap.get('ok',False),'records':0,'url':url,'error':snap.get('error')}
+    if not snap.get('ok'):
+        return out,health
+    for a in snap.get('links',[]):
+        if not re.search(profile_pattern,a.get('href',''),re.I):continue
+        name=" ".join(str(a.get('text') or '').split())
+        name=re.sub(r"^[A-Z]{3}\\s+", "", name).strip()
+        if len(name.split())<2 or len(name)>80:continue
+        row=" ".join(str(a.get('parent') or '').split())
+        # Ranking tables normally show age as a standalone integer near the player.
+        vals=[int(x) for x in re.findall(r'(?<!\\d)(1[4-9]|[2-4]\\d)(?!\\d)',row)]
+        if not vals:continue
+        age=vals[0]
+        out[norm(name)]={
+          'name':name,'age':age,'dob':None,
+          'age_status':'VERIFIED U18' if age<18 else 'VERIFIED 18+',
+          'source':source,'source_url':a.get('href'),
+          'evidence':f'{source} lists age {age}.'
+        }
+    health['records']=len(out)
+    return out,health
 
 def junior_u18_index(browser):
     out={}; health=[]
@@ -279,6 +372,13 @@ with sync_playwright() as pw:
     health["itf_juniors"]=junior_health
     u18_index={**juniors,**seed_index}
 
+    # Resolve the easy majority in bulk before opening individual profiles.
+    atp_age,atp_age_health=ranking_age_index(browser,ATP_RANK,r"/en/players/","ATP official rankings")
+    wta_age,wta_age_health=ranking_age_index(browser,WTA_RANK,r"/players/","WTA official rankings")
+    health["atp_age_index"]=atp_age_health
+    health["wta_age_index"]=wta_age_health
+    broad_age_index={**atp_age,**wta_age}
+
     # If ATP/WTA official calendar discovery failed, keep the page useful with the
     # mapped public schedule while clearly identifying it as a fallback.
     if not any(t["tour_id"]=="atp" for t in tournaments) or not any(t["tour_id"]=="wta" for t in tournaments):
@@ -292,29 +392,50 @@ with sync_playwright() as pw:
         ded[(t["tour_id"],norm(t["tournament"]),t["start_date"])]=t
     tournaments=list(ded.values())
 
-    # Tournament entrant linkage
+    # Tournament entrant linkage + automatic age resolution.
+    # Order: known U18 -> official rankings -> exact official profile -> unresolved only.
     for t in tournaments:
         people=participant_links(browser,t)
         parts=[]
+        on_date=datetime.date.fromisoformat(t["start_date"])
         for p in people:
             k=norm(p["name"])
             if k in u18_index:
                 parts.append({**p,**u18_index[k]})
+                continue
+            if k in broad_age_index:
+                parts.append({**p,**broad_age_index[k]})
+                continue
+
+            profile_result=resolve_profile_age(browser,p,on_date)
+            if profile_result:
+                parts.append({**p,**profile_result})
             else:
-                parts.append({**p,"age":None,"age_status":"UNRESOLVED",
+                parts.append({**p,"age":None,"dob":None,"age_status":"UNRESOLVED",
                     "source":t["participant_source"],
-                    "evidence":"Official tournament participant link found; age not yet verified."})
+                    "source_url":p.get("profile_url") or t.get("source_url"),
+                    "evidence":"Participant is linked to the official tournament field, but explicit age/DOB was not resolved from the official ranking/profile sources."})
+
+        # Deduplicate by normalized athlete name.
+        dedup={}
+        for person in parts:
+            dedup[norm(person.get("name"))]=person
+        parts=list(dedup.values())
+        parts.sort(key=lambda p:(0 if p.get("age_status")=="VERIFIED U18" else 1 if p.get("age_status")=="UNRESOLVED" else 2,p.get("name","")))
+
         t["participants"]=parts
         t["participant_count"]=len(parts)
-        t["verified_u18"]=[p for p in parts if p["age_status"]=="VERIFIED U18"]
-        t["verified_18plus_count"]=0
-        t["unresolved_count"]=sum(p["age_status"]=="UNRESOLVED" for p in parts)
+        t["verified_u18"]=[p for p in parts if p.get("age_status")=="VERIFIED U18"]
+        t["verified_18plus_count"]=sum(p.get("age_status")=="VERIFIED 18+" for p in parts)
+        t["unresolved_count"]=sum(p.get("age_status")=="UNRESOLVED" for p in parts)
+        t["age_resolution_pct"]=round(((len(parts)-t["unresolved_count"])/len(parts))*100) if parts else 0
+
         if t["verified_u18"]:
             t["status_color"]="RED";t["regulatory_status"]="NOT PERMISSIBLE — U18 EXPOSURE"
+        elif parts and t["unresolved_count"]==0:
+            t["status_color"]="GREEN";t["regulatory_status"]="OK — PARTICIPANT FIELD AGE-RESOLVED"
         else:
-            # We intentionally do not create GREEN merely because no U18 was found.
-            # Without complete official age resolution, that would be a false clearance.
-            t["status_color"]="AMBER";t["regulatory_status"]="MANUAL REVIEW — PARTICIPANT/AGE COVERAGE"
+            t["status_color"]="AMBER";t["regulatory_status"]="MANUAL REVIEW — UNRESOLVED AGE COVERAGE"
 
     browser.close()
 
@@ -339,7 +460,7 @@ summary={"tournaments_mapped":len(tournaments),
  "women_tournaments":sum(t["gender"]=="WOMEN" for t in tournaments),
  "red_tournaments":sum(t["status_color"]=="RED" for t in tournaments),
  "amber_tournaments":sum(t["status_color"]=="AMBER" for t in tournaments),
- "green_tournaments":0,
+ "green_tournaments":sum(t["status_color"]=="GREEN" for t in tournaments),
  "participants_found":sum(t["participant_count"] for t in tournaments),
  "verified_u18_players":len(exposure)}
 
@@ -349,8 +470,8 @@ out={"schema_version":5,"generated_at":NOW.isoformat(),"timezone":"America/Chica
  "live_u18_registry":registry,"source_health":health,
  "methodology":{
    "red":"Verified U18 athlete is linked by an official professional tournament participant source.",
-   "amber":"Tournament is mapped, but entrant/age coverage is incomplete.",
-   "green":"Reserved for fully resolved participant fields. This build deliberately does not infer clearance from absence of a U18 match.",
+   "amber":"Tournament is mapped, but one or more participant ages remain unresolved after official ranking/profile checks.",
+   "green":"Official participant field was obtained and every listed entrant was resolved as 18+.",
    "scope":"Main draw, qualifying, doubles, wild cards, acceptance lists, accepted alternates and order of play are in scope.",
    "discovery":"Official ATP/WTA/ITF/UTR pages are rendered in Chromium so JavaScript-loaded calendars and participant links are visible."
  }}
