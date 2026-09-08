@@ -72,19 +72,21 @@ def parse_event(source, ev):
     dt=ev.get("date")
     status,detail=event_status(ev)
 
-    event_league=ev.get("league") or {}
-    competition=(
-        event_league.get("name")
-        or event_league.get("abbreviation")
+    season_type=(
+        (ev.get("season") or {}).get("type")
+        or (comp.get("type") or {}).get("abbreviation")
+        or (comp.get("type") or {}).get("name")
         or (comp.get("type") or {}).get("text")
-        or source.get("league")
     )
-    tournament=(
-        (ev.get("tournament") or {}).get("name")
-        if isinstance(ev.get("tournament"),dict)
-        else ev.get("tournament")
-    ) or competition
-
+    season_slug=str(season_type or "").upper()
+    if season_slug in ("1","PRE","PRESEASON") or "PRESEASON" in season_slug:
+        season_stage="PRESEASON"
+    elif season_slug in ("2","REG","REGULAR","REGULAR SEASON") or "REGULAR" in season_slug:
+        season_stage="REGULAR SEASON"
+    elif season_slug in ("3","POST","POSTSEASON","PLAYOFFS") or "POST" in season_slug or "PLAYOFF" in season_slug:
+        season_stage="POSTSEASON"
+    else:
+        season_stage=None
     venue=(comp.get("venue") or {}).get("fullName")
     address=(comp.get("venue") or {}).get("address") or {}
     location=", ".join(x for x in [address.get("city"),address.get("state"),address.get("country")] if x)
@@ -97,13 +99,12 @@ def parse_event(source, ev):
         "source_id":source["id"],
         "sport":source["sport"],
         "league":source["league"],
-        "competition":competition,
-        "tournament":tournament,
         "region":source.get("region"),
         "name":name,
         "start_time":dt,
         "status":status,
         "status_detail":detail,
+        "season_stage":season_stage,
         "location":location or None,
         "source_endpoint":source["endpoint"]
     }
@@ -177,6 +178,19 @@ if cat_path.exists():
         pass
 
 def restriction_applies(ev, x):
+    sport=str(ev.get("sport") or "").lower()
+    league=str(ev.get("league") or "").lower()
+    stage=str(ev.get("season_stage") or "").upper()
+    restriction_text=" ".join(str(x.get(k) or "") for k in ("restriction","text","catalog_text","league","event","sport")).lower()
+
+    if sport=="football" and "nfl" in league:
+        if ("preseason" in restriction_text or "pre-season" in restriction_text) and stage and stage!="PRESEASON":
+            return False
+        if ("postseason" in restriction_text or "playoff" in restriction_text) and stage and stage!="POSTSEASON":
+            return False
+        if "regular season" in restriction_text and stage and stage!="REGULAR SEASON":
+            return False
+
     text=(x.get("text") or "").lower()
     rsport=(x.get("sport") or "").lower()
     esport=(ev.get("sport") or "").lower()

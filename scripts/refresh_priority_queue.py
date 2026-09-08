@@ -6,6 +6,18 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 NOW = datetime.datetime.now(datetime.timezone.utc)
 
+def nfl_restriction_is_in_scope(event, restriction):
+    sport=str(event.get("sport") or "").lower()
+    league=str(event.get("league") or "").lower()
+    if sport!="football" or "nfl" not in league:
+        return True
+    stage=str(event.get("season_stage") or "").upper()
+    text=" ".join(str(restriction.get(k) or "") for k in ("restriction","text","catalog_text","league","event","sport")).lower()
+    if ("preseason" in text or "pre-season" in text) and stage and stage!="PRESEASON": return False
+    if ("postseason" in text or "playoff" in text) and stage and stage!="POSTSEASON": return False
+    if "regular season" in text and stage and stage!="REGULAR SEASON": return False
+    return True
+
 def load(name, default):
     p = DATA/name
     if not p.exists():
