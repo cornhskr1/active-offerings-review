@@ -3137,18 +3137,31 @@ if(us) us.addEventListener('input',e=>{
     });
   }
 
+  async function fetchJsonRetry(url,attempts=2){
+    let last=null;
+    for(let i=0;i<attempts;i++){
+      try{
+        const r=await fetch(`${url}${url.includes('?')?'&':'?'}v=${Date.now()}`,{cache:'no-store'});
+        if(r.ok)return await r.json();
+        last=new Error(`${url} HTTP ${r.status}`);
+      }catch(e){last=e}
+      await new Promise(res=>setTimeout(res,250*(i+1)));
+    }
+    throw last||new Error(`Unable to load ${url}`);
+  }
+
   async function loadPriorityQueue(){
-    const suffix=`?v=${Date.now()}`;
-    const [pr,gr,tr]=await Promise.all([
-      fetch(`data/priority-queue.json${suffix}`,{cache:'no-store'}),
-      fetch(`data/global-schedule.json${suffix}`,{cache:'no-store'}),
-      fetch(`data/tennis-intelligence.json${suffix}`,{cache:'no-store'}).catch(()=>null)
-    ]);
-    if(!pr.ok) throw new Error(`Priority queue HTTP ${pr.status}`);
-    if(!gr.ok) throw new Error(`Global schedule HTTP ${gr.status}`);
-    PQ_DATA=await pr.json();
-    FOCUS_DATA=await gr.json();
-    TENNIS_FOCUS=(tr&&tr.ok)?await tr.json():null;
+    // Priority Queue is authoritative. Schedule/Tennis are supporting display
+    // feeds; a transient supporting-feed miss should not report the queue itself
+    // as failed when the published priority-queue.json is healthy.
+    PQ_DATA=await fetchJsonRetry('data/priority-queue.json',3);
+
+    try{FOCUS_DATA=await fetchJsonRetry('data/global-schedule.json',2)}
+    catch(_){FOCUS_DATA=FOCUS_DATA||{events:[],sources:[]}}
+
+    try{TENNIS_FOCUS=await fetchJsonRetry('data/tennis-intelligence.json',2)}
+    catch(_){TENNIS_FOCUS=TENNIS_FOCUS||null}
+
     renderPriorityQueue();
     return PQ_DATA;
   }
@@ -3341,7 +3354,7 @@ function ncaaRiskTierClass(rec){
                 <span class="pill ${pill(t.status_color)}">${te(t.regulatory_status)}</span>
                 <span class="tennis-reg-main"><b>${te(t.tournament)}</b><span>${te(t.start_date)} – ${te(t.end_date)}${t.location?' · '+te(t.location):''}${t.category?' · '+te(t.category):''}${t.discovery_fallback?' · SCHEDULE FALLBACK':''}</span></span>
                 <span class="tennis-reg-counts">
-                  <span class="tennis-stat-chip">${te(t.participant_count||0)} entrants</span>
+                  <span class="tennis-stat-chip">${te(t.participant_count||0)} entrants extracted</span>
                   <span class="tennis-stat-chip">${te(t.verified_18plus_count||0)} 18+</span>
                   <span class="tennis-stat-chip">${te(t.unresolved_count||0)} unresolved</span>
                   ${t.verified_u18?.length?`<span class="tennis-stat-chip">${te(t.verified_u18.length)} U18</span>`:''}
