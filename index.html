@@ -93,9 +93,167 @@ function severityColor(s){return String(s).toUpperCase()==='RED'?'red':String(s)
 async function fetchJson(url,tries=3){let err;for(let i=0;i<tries;i++){try{const r=await fetch(`${url}?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`${r.status}`);return await r.json()}catch(e){err=e;await new Promise(res=>setTimeout(res,250*(i+1)))}}throw err}
 async function loadAll(){const btn=document.getElementById('refreshBtn');btn.disabled=true;btn.textContent='Refreshing…';const results=await Promise.all(Object.entries(FILES).map(async([k,u])=>{try{DATA[k]=await fetchJson(u);return[k,true]}catch(e){console.warn(k,e);return[k,false]}}));const bad=results.filter(x=>!x[1]).map(x=>x[0]);renderAll();document.getElementById('reviewTime').textContent=fmtDateTime(new Date());const times=['global','priority','college','catalog','ncaa','tennis'].map(k=>DATA[k]?.generated_at).filter(Boolean).map(x=>new Date(x).getTime()).filter(Number.isFinite);document.getElementById('dataTime').textContent=times.length?fmtDateTime(Math.max(...times)):'—';const st=document.getElementById('refreshStatus');if(!bad.length){st.className='refresh-status status-ok';st.textContent=`Refresh complete · ${results.length}/${results.length} public feeds loaded.`}else{st.className='refresh-status status-warn';st.textContent=`Refresh complete with ${bad.length} feed issue${bad.length===1?'':'s'}: ${bad.join(', ')}.`}btn.disabled=false;btn.textContent='↻ Refresh Review'}
 function renderAll(){renderToday();renderCollege();renderRestrictions();renderU18();renderTennis();renderNcaa();renderCoverage();renderCatalog()}
-function renderToday(){const global=DATA.global||{events:[]}, pq=DATA.priority||{cards:[]};const events=(global.events||[]).filter(e=>e.status!=='COMPLETED');const cards=pq.cards||[];const red=cards.filter(c=>c.severity==='RED').length, amber=cards.filter(c=>c.severity==='AMBER').length;document.getElementById('todayMetrics').innerHTML=[[events.length,'mapped upcoming/active'],[red,'not permissible'],[amber,'manual review'],[new Set(events.map(e=>e.league)).size,'active leagues'],[(DATA.tennis?.summary||{}).verified_u18_players||0,'tennis U18 exposure']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const start=global.window_start||todayKey();let html='';for(let i=0;i<8;i++){const key=addDays(start,i);const dayEvents=events.filter(e=>ctKey(e.start_time)===key);const dayCards=cards.filter(c=>ctKey(c.start_time)===key);const leagueGroups={};dayEvents.forEach(e=>{const k=`${e.sport} · ${e.league}`;(leagueGroups[k]??=[]).push(e)});const title=i===0?'Today':i===1?'Tomorrow':prettyDay(key);html+=`<details class="day" ${i<2?'open':''}><summary><span>${esc(title)} <span class="row-meta">${esc(prettyDay(key))}</span></span><span>${dayEvents.length} mapped · ${dayCards.length} attention</span></summary><div class="day-body">`;
-if(dayCards.length){html+=`<div class="subhead">Attention Required</div><div class="alert-list">`+dayCards.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(c=>{const col=severityColor(c.severity);const who=(c.athletes||[]).length?` · ${(c.athletes||[]).join(', ')}`:'';return `<div class="alert-row">${pill(col,c.severity==='RED'?'NOT PERMISSIBLE':'REVIEW REQUIRED')}${pill('blue',c.sport||'EVENT')}<div><b>${esc(c.league?`${c.league} · `:'')}${esc(c.event||c.title||'')}</b><div class="row-meta">${esc(c.reason||'')}${esc(who)}</div><div class="staff-action"><b>Staff check:</b> ${esc(c.staff_action||'Review the active offering.')} <b>Scope:</b> all licensed sportsbook platforms.</div></div><span class="row-meta">${esc(eventTime(c.start_time))}</span></div>`}).join('')+`</div>`}else html+=`<div class="empty">No RED or AMBER attention items for this date.</div>`;
-html+=`<div class="subhead" style="margin-top:12px">Primary Focus — Mapped Activity</div>`;const groupKeys=Object.keys(leagueGroups).sort();if(!groupKeys.length)html+=`<div class="empty">No mapped upcoming events.</div>`;else groupKeys.forEach(g=>{const arr=leagueGroups[g];html+=`<details class="league-group"><summary><span>${esc(g)}</span><span>${arr.length} event${arr.length===1?'':'s'}</span></summary><div class="league-events">${arr.map(e=>`<div class="event-row">${pill('green','OK · NO REVIEW')}${pill('blue',e.sport)}<div><b>${esc(e.name)}</b><div class="row-meta">${esc(e.season_stage||'')}</div></div><span class="row-meta">${esc(eventTime(e.start_time))}</span></div>`).join('')}</div></details>`});html+=`</div></details>`}document.getElementById('todayDays').innerHTML=html}
+function normSportName(v){
+  return String(v||'').toLowerCase()
+    .replace(/women'?s|men'?s/g,'')
+    .replace(/[^a-z0-9]+/g,' ')
+    .trim();
+}
+function collegeSchoolAliases(school){
+  const s=String(school||'').toLowerCase();
+  if(s==='nebraska') return ['nebraska','cornhuskers','huskers'];
+  if(s==='creighton') return ['creighton','bluejays'];
+  return [s];
+}
+function globalMatchesCollege(e,c){
+  if(!e||!c)return false;
+  if(ctKey(e.start_time)!==String(c.date||''))return false;
+  const es=normSportName(e.sport), cs=normSportName(c.sport);
+  if(es && cs && es!==cs && !es.includes(cs) && !cs.includes(es))return false;
+  const hay=`${e.name||''} ${e.location||''}`.toLowerCase();
+  return collegeSchoolAliases(c.school).some(a=>a && hay.includes(a));
+}
+function collegeRegulatoryMatch(e){
+  const college=(DATA.college?.events||[]);
+  return college.find(c=>globalMatchesCollege(e,c))||null;
+}
+function collegeAttentionForDate(key,events){
+  const college=(DATA.college?.events||[]).filter(c=>
+    String(c.date||'')===key &&
+    (c.played_in_nebraska===true || c.site_test==='NOT PERMISSIBLE')
+  );
+  return college.map(c=>{
+    const g=events.find(e=>globalMatchesCollege(e,c));
+    return {
+      severity:'RED',
+      type:'NEBRASKA COLLEGIATE — IN-STATE',
+      sport:c.sport||g?.sport||'NCAA',
+      league:g?.league||'Nebraska Collegiate',
+      event:g?.name || `${c.school} ${c.sport} vs. ${c.opponent||'TBA'}`,
+      start_time:g?.start_time || `${c.date}T12:00:00`,
+      reason:`${c.school} is participating in a collegiate event played in Nebraska${c.location?` · ${c.location}`:''}.`,
+      staff_action:'Confirm the event is not offered for wagering across all licensed sportsbook platforms.',
+      source:'Nebraska Collegiate'
+    };
+  });
+}
+function isSameAttention(a,b){
+  const ae=String(a?.event||a?.title||'').toLowerCase();
+  const be=String(b?.event||b?.title||'').toLowerCase();
+  if(ae && be && ae===be)return true;
+  return ctKey(a?.start_time)===ctKey(b?.start_time) &&
+    String(a?.sport||'').toLowerCase()===String(b?.sport||'').toLowerCase() &&
+    ae && be && (ae.includes(be)||be.includes(ae));
+}
+function renderToday(){
+  const global=DATA.global||{events:[]}, pq=DATA.priority||{cards:[]};
+  const events=(global.events||[]).filter(e=>e.status!=='COMPLETED');
+  const baseCards=pq.cards||[];
+
+  // Nebraska Collegiate is authoritative for the regulatory site determination.
+  const collegeRed=(DATA.college?.events||[]).filter(c=>
+    c.played_in_nebraska===true || c.site_test==='NOT PERMISSIBLE'
+  );
+  const red=baseCards.filter(c=>c.severity==='RED').length + collegeRed.length;
+  const amber=baseCards.filter(c=>c.severity==='AMBER').length;
+
+  document.getElementById('todayMetrics').innerHTML=[
+    [events.length,'mapped upcoming/active'],
+    [red,'not permissible'],
+    [amber,'manual review'],
+    [new Set(events.map(e=>e.league)).size,'active leagues'],
+    [(DATA.tennis?.summary||{}).verified_u18_players||0,'tennis U18 exposure']
+  ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+
+  const start=global.window_start||todayKey();
+  let html='';
+
+  for(let i=0;i<8;i++){
+    const key=addDays(start,i);
+    const dayEvents=events.filter(e=>ctKey(e.start_time)===key);
+    const pqCards=baseCards.filter(c=>ctKey(c.start_time)===key);
+    const collegeCards=collegeAttentionForDate(key,dayEvents);
+
+    // Add Nebraska collegiate RED alerts unless Priority Queue already contains
+    // the same event. This avoids duplicate Attention Required rows.
+    const dayCards=[...pqCards];
+    collegeCards.forEach(c=>{
+      if(!dayCards.some(x=>isSameAttention(x,c)))dayCards.push(c);
+    });
+
+    const leagueGroups={};
+    dayEvents.forEach(e=>{
+      const k=`${e.sport} · ${e.league}`;
+      (leagueGroups[k]??=[]).push(e);
+    });
+
+    const title=i===0?'Today':i===1?'Tomorrow':prettyDay(key);
+    html+=`<details class="day" ${i<2?'open':''}>
+      <summary>
+        <span>${esc(title)} <span class="row-meta">${esc(prettyDay(key))}</span></span>
+        <span>${dayEvents.length} mapped · ${dayCards.length} attention</span>
+      </summary>
+      <div class="day-body">`;
+
+    if(dayCards.length){
+      html+=`<div class="subhead">Attention Required</div><div class="alert-list">`+
+      dayCards.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(c=>{
+        const col=severityColor(c.severity);
+        const who=(c.athletes||[]).length?` · ${(c.athletes||[]).join(', ')}`:'';
+        return `<div class="alert-row">
+          ${pill(col,c.severity==='RED'?'NOT PERMISSIBLE':'REVIEW REQUIRED')}
+          ${pill('blue',c.sport||'EVENT')}
+          <div>
+            <b>${esc(c.league?`${c.league} · `:'')}${esc(c.event||c.title||'')}</b>
+            <div class="row-meta">${esc(c.reason||'')}${esc(who)}</div>
+            <div class="staff-action"><b>Staff check:</b> ${esc(c.staff_action||'Review the active offering.')} <b>Scope:</b> all licensed sportsbook platforms.</div>
+          </div>
+          <span class="row-meta">${esc(eventTime(c.start_time))}</span>
+        </div>`;
+      }).join('')+`</div>`;
+    }else{
+      html+=`<div class="empty">No RED or AMBER attention items for this date.</div>`;
+    }
+
+    html+=`<div class="subhead" style="margin-top:12px">Primary Focus — Mapped Activity</div>`;
+    const groupKeys=Object.keys(leagueGroups).sort();
+
+    if(!groupKeys.length){
+      html+=`<div class="empty">No mapped upcoming events.</div>`;
+    }else{
+      groupKeys.forEach(g=>{
+        const arr=leagueGroups[g];
+        html+=`<details class="league-group">
+          <summary><span>${esc(g)}</span><span>${arr.length} event${arr.length===1?'':'s'}</span></summary>
+          <div class="league-events">`+
+          arr.map(e=>{
+            const c=collegeRegulatoryMatch(e);
+            const reg=c?collegeReg(c):null;
+            const color=reg?.c||'green';
+            const label=reg?.c==='red'?'NOT PERMISSIBLE':
+                        reg?.c==='amber'?'REVIEW REQUIRED':'OK · NO REVIEW';
+            const meta=c
+              ? `${e.season_stage||''}${c.location?` · ${c.location}`:''}`
+              : (e.season_stage||'');
+            return `<div class="event-row">
+              ${pill(color,label)}
+              ${pill('blue',e.sport)}
+              <div>
+                <b>${esc(e.name)}</b>
+                <div class="row-meta">${esc(meta)}</div>
+              </div>
+              <span class="row-meta">${esc(eventTime(e.start_time))}</span>
+            </div>`;
+          }).join('')+
+          `</div></details>`;
+      });
+    }
+
+    html+=`</div></details>`;
+  }
+
+  document.getElementById('todayDays').innerHTML=html;
+}
 function collegeReg(e){if(e.played_in_nebraska||e.site_test==='NOT PERMISSIBLE')return{c:'red',label:'PLAYED IN NEBRASKA',test:'NOT PERMISSIBLE'};if(e.location)return{c:'green',label:'OUTSIDE NEBRASKA',test:'OK · NO REVIEW'};return{c:'amber',label:'LOCATION REVIEW',test:'MANUAL REVIEW'}}
 function renderCollege(){const events=DATA.college?.events||[];const school=document.getElementById('collegeSchool').value||'all', status=document.getElementById('collegeStatus').value||'all';const arr=events.filter(e=>(school==='all'||e.school===school)&& (status==='all'||collegeReg(e).c===status));document.getElementById('collegeGrid').innerHTML=arr.length?arr.map(e=>{const r=collegeReg(e);return `<article class="college-card ${r.c}"><div class="college-top"><b>${esc(e.school)}</b>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.date)} · ${esc(e.time||'TBA')}</div><h3>${esc(e.sport)}</h3><div>vs. / at <b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div><div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}</div></article>`}).join(''):`<div class="empty">No matching events.</div>`}
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
