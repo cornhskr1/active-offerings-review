@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T03:26:13.991981+00:00",
+  "generated_at": "2026-09-09T06:32:18.386607+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-09-08",
-  "window_end": "2026-09-15",
+  "window_start": "2026-09-09",
+  "window_end": "2026-09-16",
   "events": [
     {
       "school": "Nebraska",
@@ -208,6 +208,57 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Creighton",
+      "sport": "Volleyball",
+      "date": "2026-09-16",
+      "time": "6:00 PM",
+      "site": "AWAY",
+      "opponent": "Nebraska",
+      "location": "Lincoln, NE",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "-",
+      "source_url": "https://gocreighton.com/sports/womens-volleyball/schedule/text",
+      "played_in_nebraska": true,
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Volleyball",
+      "date": "2026-09-16",
+      "time": "6:00 PM CDT",
+      "site": "HOME",
+      "opponent": "Sold Out",
+      "location": "Creighton",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/volleyball/schedule?view=list",
+      "played_in_nebraska": false,
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA"
+    },
+    {
+      "school": "Creighton",
+      "sport": "Women's Soccer",
+      "date": "2026-09-16",
+      "time": "7:00 P.M.",
+      "site": "AWAY",
+      "opponent": "Omaha",
+      "location": "Omaha, Neb.",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "-",
+      "source_url": "https://gocreighton.com/sports/womens-soccer/schedule/text",
+      "played_in_nebraska": true,
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
     }
   ],
   "sources": [
@@ -223,7 +274,7 @@
       "sport": "Volleyball",
       "url": "https://huskers.com/sports/volleyball/schedule?view=list",
       "ok": true,
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "school": "Nebraska",
@@ -258,14 +309,14 @@
       "sport": "Women's Soccer",
       "url": "https://gocreighton.com/sports/womens-soccer/schedule/text",
       "ok": true,
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "school": "Creighton",
       "sport": "Volleyball",
       "url": "https://gocreighton.com/sports/womens-volleyball/schedule/text",
       "ok": true,
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "school": "Creighton",
