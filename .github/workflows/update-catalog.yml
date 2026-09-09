@@ -7,62 +7,38 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "active-offerings-data-and-pages"
+  group: active-offerings-data
   cancel-in-progress: false
 
 jobs:
-  update:
+  refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Sync latest main
         run: |
           git fetch origin main
           git reset --hard origin/main
-
-      - name: Install catalog parser
+      - name: Install dependencies
         run: python3 -m pip install --quiet requests beautifulsoup4 pypdf
-
-      - name: Discover and parse current NRGC catalog
+      - name: Run refresh
         run: python3 scripts/update_catalog.py
-
-      - name: Commit current catalog data
+      - name: Commit refreshed data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git add data/catalog-current.pdf data/catalog-live.json data/catalog-status.json
-
           if git diff --cached --quiet; then
-            echo "Catalog content unchanged."
-          else
-            git commit -m "Update current NRGC sports wagering catalog"
-            git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
+            echo "No changes to commit."
+            exit 0
           fi
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "."
-
-      - name: Deploy GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          git commit -m "Update current NRGC sports wagering catalog"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

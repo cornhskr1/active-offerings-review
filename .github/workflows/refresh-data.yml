@@ -2,23 +2,31 @@ name: Refresh public data
 
 on:
   schedule:
-    # Every 3 hours. GitHub scheduled workflows use UTC.
     - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: active-offerings-data
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Refresh public source status
+        with:
+          fetch-depth: 0
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - name: Run refresh
         run: python3 scripts/refresh_public_data.py
-
       - name: Commit refreshed data
         run: |
           git config user.name "active-offerings-bot"
@@ -26,7 +34,9 @@ jobs:
           git add data/status.json data/review-data.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
-          else
-            git commit -m "Refresh public source status"
-            git push
+            exit 0
           fi
+          git commit -m "Refresh public source status"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
