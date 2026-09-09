@@ -56,7 +56,9 @@ def load_age_cache():
 
 
 def norm(s):
-    s=str(s or "").lower()
+    s=str(s or "")
+    s=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])", " ", s)
+    s=s.lower()
     s=re.sub(r"[\u2018\u2019'`]", "",s)
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
@@ -224,7 +226,8 @@ def fallback_global_schedule():
 def clean_player_name(name):
     name=" ".join(str(name or "").split()).strip(" -|,")
     name=re.sub(r"^[A-Z]{3}\s*", "", name).strip()
-    return name
+    name=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])", " ", name)
+    return " ".join(name.split())
 
 def plausible_player(name):
     name=clean_player_name(name)

@@ -25,7 +25,9 @@ def load(path,default):
     except Exception:return default
 
 def norm(s):
-    s=str(s or "").lower()
+    s=str(s or "")
+    s=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])", " ", s)
+    s=s.lower()
     s=re.sub(r"[\u2018\u2019'`]", "",s)
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
@@ -297,16 +299,29 @@ for t in intel.get("tournaments",[]):
         key=norm(name)
         if cache.get(key,{}).get("age_status") in ("VERIFIED U18","VERIFIED 18+"):
             continue
+        previous=cache.get(key,{})
         queue[key]={
           "name":name,
           "profile_url":p.get("profile_url") or p.get("source_url"),
           "event_date":event_date,
           "gender":gender,
           "tournament":t.get("tournament"),
-          "tour":t.get("tour")
+          "tour":t.get("tour"),
+          "attempt_count":int(previous.get("attempt_count",0) or 0),
+          "last_attempt":previous.get("last_attempt")
         }
 
-items=list(queue.values())[:BATCH_SIZE]
+# Always work untouched candidates first, then older/lower-attempt candidates.
+# This prevents repeat runs from researching the same first batch forever.
+items=sorted(
+    queue.values(),
+    key=lambda x:(
+        int(x.get("attempt_count",0)),
+        0 if x.get("profile_url") else 1,
+        str(x.get("last_attempt") or ""),
+        norm(x.get("name"))
+    )
+)[:BATCH_SIZE]
 resolved=0
 not_found=0
 
