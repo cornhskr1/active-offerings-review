@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-10T03:21:15.040912+00:00",
+  "generated_at": "2026-09-10T04:21:16.245307+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-09",
   "window_end": "2026-09-16",
@@ -734,8 +734,8 @@
       "region": "United States",
       "name": "New England Patriots at Seattle Seahawks",
       "start_time": "2026-09-10T00:20Z",
-      "status": "LIVE",
-      "status_detail": "0:44 - 4th",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
       "location": "Lumen Field \u00b7 Seattle, WA, USA",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
@@ -824,8 +824,8 @@
       "region": "United States",
       "name": "Texas A&M Aggies at Stanford Cardinal",
       "start_time": "2026-09-10T01:00Z",
-      "status": "LIVE",
-      "status_detail": "3rd Set",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
       "location": "State Farm Field House \u00b7 Kissimmee, Florida",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
@@ -843,7 +843,7 @@
       "name": "Texas Longhorns at SMU Mustangs",
       "start_time": "2026-09-10T01:00Z",
       "status": "LIVE",
-      "status_detail": "3rd Set",
+      "status_detail": "4th Set",
       "season_stage": "REGULAR SEASON",
       "location": "Moody Coliseum \u00b7 Dallas, Texas",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
@@ -860,8 +860,8 @@
       "region": "United States",
       "name": "UC Riverside Highlanders at Northern Arizona Lumberjacks",
       "start_time": "2026-09-10T01:00Z",
-      "status": "LIVE",
-      "status_detail": "3rd Set",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
       "location": "Rolle Activity Center \u00b7 Flagstaff, Arizona",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
@@ -878,8 +878,8 @@
       "region": "United States",
       "name": "UCLA Bruins at Utah State Aggies",
       "start_time": "2026-09-10T01:00Z",
-      "status": "LIVE",
-      "status_detail": "3rd Set",
+      "status": "COMPLETED",
+      "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
       "location": "Wayne Estes Center \u00b7 Logan, Utah",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
@@ -897,7 +897,7 @@
       "name": "Cincinnati Reds at Los Angeles Dodgers",
       "start_time": "2026-09-10T02:10Z",
       "status": "LIVE",
-      "status_detail": "Bot 4th",
+      "status_detail": "Top 8th",
       "season_stage": "REGULAR SEASON",
       "location": "Dodger Stadium \u00b7 Los Angeles, California",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -915,7 +915,7 @@
       "name": "LA Galaxy at Vancouver Whitecaps",
       "start_time": "2026-09-10T02:30Z",
       "status": "LIVE",
-      "status_detail": "41'",
+      "status_detail": "81'",
       "season_stage": null,
       "location": "BC Place \u00b7 Vancouver, Canada",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard",
@@ -933,7 +933,7 @@
       "name": "Red Bull New York at LAFC",
       "start_time": "2026-09-10T02:30Z",
       "status": "LIVE",
-      "status_detail": "40'",
+      "status_detail": "79'",
       "season_stage": null,
       "location": "BMO Stadium \u00b7 Los Angeles, California, USA",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard",
@@ -951,7 +951,7 @@
       "name": "San Jose Earthquakes at San Diego FC",
       "start_time": "2026-09-10T02:30Z",
       "status": "LIVE",
-      "status_detail": "40'",
+      "status_detail": "75'",
       "season_stage": null,
       "location": "Snapdragon Stadium \u00b7 San Diego, California, USA",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard",
@@ -969,7 +969,7 @@
       "name": "St. Louis CITY SC at Portland Timbers",
       "start_time": "2026-09-10T02:30Z",
       "status": "LIVE",
-      "status_detail": "41'",
+      "status_detail": "77'",
       "season_stage": null,
       "location": "Providence Park \u00b7 Portland, Oregon, USA",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard",
@@ -1123,42 +1123,6 @@
       "restriction_risk": false
     },
     {
-      "id": "401899899",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "region": "United States",
-      "name": "Eastern Kentucky Colonels at James Madison Dukes",
-      "start_time": "2026-09-10T19:00Z",
-      "status": "UPCOMING",
-      "status_detail": "9/10 - 3:00 PM EDT",
-      "season_stage": "REGULAR SEASON",
-      "location": "E.A. Diddle Arena \u00b7 Bowling Green, Kentucky",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
-      "id": "401903542",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "region": "United States",
-      "name": "South Carolina State Bulldogs at Tuskegee Golden Tigers",
-      "start_time": "2026-09-10T19:00Z",
-      "status": "UPCOMING",
-      "status_detail": "9/10 - 3:00 PM EDT",
-      "season_stage": "REGULAR SEASON",
-      "location": "Daniel \"Chappie\" James Center \u00b7 Tuskegee, Alabama",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
       "id": "401885474",
       "source_id": "primeira",
       "sport": "Soccer",
@@ -1188,6 +1152,24 @@
       "status_detail": "9/10 - 4:00 PM EDT",
       "season_stage": "REGULAR SEASON",
       "location": "James A. Rhodes Arena \u00b7 Akron, Ohio",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "401899899",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "Eastern Kentucky Colonels at James Madison Dukes",
+      "start_time": "2026-09-10T20:00Z",
+      "status": "UPCOMING",
+      "status_detail": "9/10 - 4:00 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "E.A. Diddle Arena \u00b7 Bowling Green, Kentucky",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -1260,6 +1242,24 @@
       "status_detail": "9/10 - 5:00 PM EDT",
       "season_stage": "REGULAR SEASON",
       "location": "Gentile Arena \u00b7 Chicago, Illinois",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "401898283",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "Central Connecticut Blue Devils at Iona Gaels",
+      "start_time": "2026-09-10T21:00Z",
+      "status": "UPCOMING",
+      "status_detail": "9/10 - 5:00 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "Hynes Athletics Center \u00b7 New Rochelle, New York",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -1411,42 +1411,6 @@
       "restriction_risk": false
     },
     {
-      "id": "401888428",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "region": "United States",
-      "name": "Saint Mary's Gaels at Eastern Washington Eagles",
-      "start_time": "2026-09-10T21:30Z",
-      "status": "UPCOMING",
-      "status_detail": "9/10 - 5:30 PM EDT",
-      "season_stage": "REGULAR SEASON",
-      "location": "Bronco Gym \u00b7 Boise, Idaho",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
-      "id": "401898283",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "region": "United States",
-      "name": "Central Connecticut Blue Devils at Iona Gaels",
-      "start_time": "2026-09-10T22:00Z",
-      "status": "UPCOMING",
-      "status_detail": "9/10 - 6:00 PM EDT",
-      "season_stage": "REGULAR SEASON",
-      "location": "Hynes Athletics Center \u00b7 New Rochelle, New York",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
       "id": "401900490",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -1555,6 +1519,24 @@
       "restriction_risk": false
     },
     {
+      "id": "401903542",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "South Carolina State Bulldogs at Tuskegee Golden Tigers",
+      "start_time": "2026-09-10T22:00Z",
+      "status": "UPCOMING",
+      "status_detail": "9/10 - 6:00 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "Daniel \"Chappie\" James Center \u00b7 Tuskegee, Alabama",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401892412",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -1656,6 +1638,24 @@
       "status_detail": "9/10 - 6:30 PM EDT",
       "season_stage": "REGULAR SEASON",
       "location": "James A. Rhodes Arena \u00b7 Akron, Ohio",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "401888428",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "Saint Mary's Gaels at Eastern Washington Eagles",
+      "start_time": "2026-09-10T22:30Z",
+      "status": "UPCOMING",
+      "status_detail": "9/10 - 6:30 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "Bronco Gym \u00b7 Boise, Idaho",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -1951,6 +1951,24 @@
       "restriction_risk": false
     },
     {
+      "id": "401897128",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "UC Santa Barbara Gauchos at Wyoming Cowboys",
+      "start_time": "2026-09-11T00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "9/10 - 8:00 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "Uniwyo Sports Complex \u00b7 Laramie, Wyoming",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401897689",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -2106,24 +2124,6 @@
       "status_detail": "9/10 - 9:00 PM EDT",
       "season_stage": "REGULAR SEASON",
       "location": "Desert Financial Arena \u00b7 Tempe, Arizona",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
-      "id": "401897128",
-      "source_id": "ncaa-volleyball",
-      "sport": "Volleyball",
-      "league": "NCAA Volleyball",
-      "region": "United States",
-      "name": "UC Santa Barbara Gauchos at Wyoming Cowboys",
-      "start_time": "2026-09-11T01:00Z",
-      "status": "UPCOMING",
-      "status_detail": "9/10 - 9:00 PM EDT",
-      "season_stage": "REGULAR SEASON",
-      "location": "Uniwyo Sports Complex \u00b7 Laramie, Wyoming",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -14710,7 +14710,7 @@
       "ok": true,
       "events": 105,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "nfl",
@@ -14726,7 +14726,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "ncaa-football",
@@ -14742,7 +14742,7 @@
       "ok": true,
       "events": 31,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "nba",
@@ -14758,7 +14758,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "wnba",
@@ -14774,7 +14774,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -14790,7 +14790,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -14806,7 +14806,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "nhl",
@@ -14822,7 +14822,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "mls",
@@ -14838,7 +14838,7 @@
       "ok": true,
       "events": 29,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "epl",
@@ -14853,7 +14853,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "bundesliga",
@@ -14868,7 +14868,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "laliga",
@@ -14883,7 +14883,7 @@
       "ok": true,
       "events": 17,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "seriea",
@@ -14898,7 +14898,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "ligue1",
@@ -14913,7 +14913,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "eredivisie",
@@ -14928,7 +14928,7 @@
       "ok": true,
       "events": 11,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "primeira",
@@ -14943,7 +14943,7 @@
       "ok": true,
       "events": 11,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "belgium",
@@ -14959,7 +14959,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "denmark",
@@ -14975,7 +14975,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -14991,7 +14991,7 @@
       "ok": true,
       "events": 533,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "atp-tennis",
@@ -15007,7 +15007,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     },
     {
       "id": "wta-tennis",
@@ -15023,7 +15023,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-10T03:21:15.040912+00:00"
+      "checked_at": "2026-09-10T04:21:16.245307+00:00"
     }
   ],
   "coverage_gaps": [
