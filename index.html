@@ -460,7 +460,7 @@ function renderTennis(){
 
   const cr=cache.records||{};
   document.getElementById('tennisCacheStatus').innerHTML=
-    `<b>Screening model:</b> Unknown DOB ≠ manual review. Tournament entrants are cross-matched against the verified U18 registry and junior-age watch universe. <b>Age cache:</b> ${Object.keys(cr).length} researched player records.`;
+    `<b>Screening model:</b> Unknown DOB ≠ manual review. Tournament entrants are cross-matched against the verified U18 registry and junior-age watch universe. “Cleared by U18 screen” means no U18 risk match was identified; it does not assert a verified adult DOB. <b>Age cache:</b> ${Object.keys(cr).length} researched player records.`;
 
   const schemaIssue = state.tournaments.length>0 && state.screened===0;
 
@@ -469,7 +469,10 @@ function renderTennis(){
     redContainer.innerHTML=`<div class="exception-note"><b>DATA/SCHEMA REVIEW REQUIRED.</b> Tournaments are mapped, but no participant fields were captured in the current feed. U18 exposure is therefore not shown as actionable until participant linkage is available.</div>`;
   }else{
     redContainer.innerHTML=state.red.length?state.red.map(t=>
-      `<div class="u18-banner"><b>${esc(t.tour)} · ${esc(t.tournament)}</b> — ${(t.verified_u18||[]).map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`
+      `<div class="u18-banner">
+        <b>${esc(t.tour)} · ${esc(t.tournament)}</b> — ${(t.verified_u18||[]).map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}
+        <div style="margin-top:4px;font-weight:600"><b>Staff action:</b> Review athlete-specific performance/nonperformance markets involving the identified U18 participant(s) across all licensed sportsbook platforms.</div>
+      </div>`
     ).join(''):`<div class="empty">No verified U18 professional tournament exposure in the current window.</div>`;
   }
 
@@ -537,14 +540,18 @@ function renderTournament(t){
   }
 
   let note='';
+  const largeAcceptancePool=participantCount>200 && String(t.participant_field_basis||'').toLowerCase().includes('acceptance');
+  if(largeAcceptancePool){
+    note+=`<div class="exception-note"><b>FIELD QUALITY NOTE.</b> This is a large pre-draw acceptance pool, not a final active draw. U18 matches remain actionable, but the entrant count should not be interpreted as the final tournament field.</div>`;
+  }
   if(c==='red'){
-    note=`<div class="u18-banner">Verified U18 exposure: ${u18.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`;
+    note+=`<div class="u18-banner">Verified U18 exposure: ${u18.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`;
   }else if(!fieldCaptured){
-    note=`<div class="exception-note"><b>AMBER — PARTICIPANT FIELD NOT CAPTURED.</b> No U18 clearance is inferred. Refresh Tennis Intelligence / source follow-up is required.</div>`;
+    note+=`<div class="exception-note"><b>AMBER — PARTICIPANT FIELD NOT CAPTURED.</b> No U18 clearance is inferred. Refresh Tennis Intelligence / source follow-up is required.</div>`;
   }else if(targeted.length){
-    note=`<div class="exception-note">${targeted.length} targeted U18 check${targeted.length===1?'':'s'} remain. Only these athletes require age research.</div>`;
+    note+=`<div class="exception-note">${targeted.length} targeted U18 check${targeted.length===1?'':'s'} remain. Only these athletes require age research.</div>`;
   }else{
-    note=`<div class="verified-note">Participant field captured. No verified U18 exposure or targeted U18 candidate identified.</div>`;
+    note+=`<div class="verified-note">Participant field captured and screened. No verified U18 exposure or targeted U18 candidate identified.</div>`;
   }
 
   const exceptionRows=[...u18,...targeted];
@@ -559,14 +566,14 @@ function renderTournament(t){
       <span class="tournament-name"><b>${esc(t.tournament||'Unnamed tournament')}</b><span>${esc(t.start_date||'')} → ${esc(t.end_date||'')}${t.location?' · '+esc(t.location):''}${t.category?' · '+esc(t.category):''}</span></span>
       <span class="tournament-counts">
         ${pill('gray',`${participantCount} entrants screened`)}
-        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} no U18 indicator`):pill('amber','FIELD NOT CAPTURED')}
+        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} cleared by U18 screen`):pill('amber','FIELD NOT CAPTURED')}
         ${targeted.length?pill('amber',`${targeted.length} targeted`):''}
         ${u18.length&&participantCount>0?pill('red',`${u18.length} U18`):''}
       </span>
     </summary>
     <div class="tournament-body">
       ${note}
-      <div class="small"><b>Participant source:</b> ${esc(t.participant_source||'Official tournament source')}</div>
+      <div class="small"><b>Participant field:</b> ${esc(t.participant_field_basis||t.participant_source||'Official tournament source')}</div>
       ${table}
     </div>
   </details>`;
