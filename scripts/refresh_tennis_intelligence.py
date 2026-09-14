@@ -13,8 +13,8 @@ NOW=datetime.datetime.now(datetime.timezone.utc)
 TODAY=datetime.datetime.now(TZ).date()
 END=TODAY+datetime.timedelta(days=7)
 
-ATP_CAL="https://www.atptour.com/en/tournaments/"
-ATP_CHAL="https://www.atptour.com/en/atp-challenger-tour/calendar"
+ATP_CAL="https://www.atptour.com/en/scores/current"
+ATP_CHAL="https://www.atptour.com/en/scores/current-challenger"
 ATP_CHAL_ARCHIVE=f"https://www.atptour.com/en/scores/results-archive?tournamentType=ch&year={TODAY.year}"
 ATP_RANK="https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
 WTA_CAL="https://www.wtatennis.com/tournaments"
@@ -344,6 +344,212 @@ def discover_wta_from_visible_links(browser):
           "participant_source":"WTA official tournament page"
         })
     return out,{"ok":True,"events":len(out),"url":WTA_CAL,"candidate_links":len(candidates)}
+
+def tournament_page_dates(browser,url):
+    """Resolve an official tournament page to a Today+7 date range."""
+    snap=browser.snapshot(url,650)
+    if not snap.get("ok"):
+        return None,None,""
+    text=" ".join(str(snap.get("text") or "").split())
+
+    # ATP/WTA commonly expose ranges in these forms.
+    patterns=[
+      r'([A-Za-z]+\s+\d{1,2})\s*[-–]\s*([A-Za-z]+\s+\d{1,2}),?\s*(\d{4})',
+      r'(\d{1,2})\s*[-–]\s*(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})',
+      r'(\d{1,2})\s+([A-Za-z]+)\s+(?:to|[-–])\s+(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})'
+    ]
+    for i,p in enumerate(patterns):
+        m=re.search(p,text,re.I)
+        if not m:continue
+        try:
+            if i==0:
+                a,b,y=m.groups()
+                st=parse_date(f"{a} {y}");en=parse_date(f"{b} {y}")
+            elif i==1:
+                d1,d2,mon,y=m.groups()
+                st=parse_date(f"{d1} {mon} {y}");en=parse_date(f"{d2} {mon} {y}")
+            else:
+                d1,m1,d2,m2,y=m.groups()
+                st=parse_date(f"{d1} {m1} {y}");en=parse_date(f"{d2} {m2} {y}")
+            if st and en:
+                return st,en,text
+        except Exception:
+            pass
+    return None,None,text
+
+def discover_atp_current(browser,url,tid,tour):
+    """Discover ATP current events from the purpose-built scores/current page."""
+    snap=browser.snapshot(url,2600)
+    out=[];seen=set();candidates=[]
+    health={"ok":snap.get("ok",False),"events":0,"url":url,
+            "candidate_tournament_links":0,"error":snap.get("error")}
+    if not snap.get("ok"):
+        return out,health
+
+    # Current pages expose tournament tabs/links. We intentionally don't require
+    # the date to be present in the tab itself; the official tournament page
+    # resolves the dates.
+    for a in snap.get("links",[]):
+        href=str(a.get("href") or "")
+        text=" ".join(str(a.get("text") or "").split())
+        if not re.search(r'/en/tournaments/',href,re.I):
+            continue
+        if any(x in href.lower() for x in ("/overview","/draws","/results")):
+            href=re.sub(r'/(overview|draws|results)/?$', '/overview', href, flags=re.I)
+        if href in seen:continue
+        # Exclude generic tournament directory links.
+        if re.search(r'/en/tournaments/?$',href,re.I):continue
+        seen.add(href)
+        candidates.append((text,href))
+
+    health["candidate_tournament_links"]=len(candidates)
+
+    for text,href in candidates[:30]:
+        st,en,page_text=tournament_page_dates(browser,href)
+        if not overlaps(st,en):
+            continue
+
+        # Prefer tab/link text; fall back to tournament page heading patterns.
+        name=clean_tournament_name(text)
+        if not name or len(name)<3:
+            m=re.search(r'\b([A-Z][A-Za-z0-9 .&\'-]{3,80})\b',page_text)
+            name=clean_tournament_name(m.group(1) if m else "ATP Tournament")
+
+        category=""
+        cm=re.search(r'\bATP\s*(250|500|1000)\b',page_text,re.I)
+        if cm:category=f"ATP {cm.group(1)}"
+        if tid=="atp-challenger":
+            cm=re.search(r'\bChallenger\s*(50|75|100|125|175)\b',page_text,re.I)
+            if cm:category=f"Challenger {cm.group(1)}"
+
+        out.append({
+          "id":hashlib.sha1(f"{tid}|{href}|{st}".encode()).hexdigest()[:12],
+          "tour_id":tid,"tour":tour,"gender":"MEN",
+          "tournament":name,
+          "start_date":st.isoformat(),"end_date":en.isoformat(),
+          "location":"","category":category,
+          "status":"ACTIVE" if st<=TODAY<=en else "UPCOMING",
+          "source_url":href,"participants":[],
+          "participant_source":f"{tour} official current scores / tournament page"
+        })
+
+    # de-dupe by tournament URL after page canonicalization
+    dedup={}
+    for t in out:
+        dedup[t["source_url"]]=t
+    out=list(dedup.values())
+    health["events"]=len(out)
+    return out,health
+
+def discover_wta_lane(browser,url,tid,tour):
+    """Discover one dedicated WTA calendar lane (Tour or WTA 125)."""
+    snap=browser.snapshot(url,3500)
+    out=[];seen=set();candidates=[]
+    health={"ok":snap.get("ok",False),"events":0,"url":url,
+            "candidate_tournament_links":0,"payload_candidates":0,
+            "error":snap.get("error")}
+    if not snap.get("ok"):
+        return out,health
+
+    # First: rendered tournament links. Dedicated WTA 125 page means no
+    # post-hoc level classification is needed.
+    for a in snap.get("links",[]):
+        href=str(a.get("href") or "")
+        text=" ".join(str(a.get("text") or "").split())
+        if not re.search(r'/tournaments/\d+/[^/]+/2026(?:/|$)',href,re.I):
+            continue
+        if href in seen:continue
+        seen.add(href)
+        candidates.append((text,href,a.get("parent") or ""))
+
+    health["candidate_tournament_links"]=len(candidates)
+
+    # If the rendered card already contains a current date, use it directly.
+    used=set()
+    for text,href,parent in candidates:
+        st,en=date_range(parent)
+        if not overlaps(st,en):continue
+        name=clean_tournament_name(text)
+        if not name:continue
+        out.append({
+          "id":hashlib.sha1(f"{tid}|{href}|{st}".encode()).hexdigest()[:12],
+          "tour_id":tid,"tour":tour,"gender":"WOMEN",
+          "tournament":name,"start_date":st.isoformat(),"end_date":en.isoformat(),
+          "location":"","category":"WTA 125" if tid=="wta-125" else "",
+          "status":"ACTIVE" if st<=TODAY<=en else "UPCOMING",
+          "source_url":href,"participants":[],
+          "participant_source":f"{tour} official tournament calendar"
+        })
+        used.add(href)
+
+    # Follow unresolved candidate links to their official tournament page.
+    for text,href,parent in candidates[:100]:
+        if href in used:continue
+        st,en,page_text=tournament_page_dates(browser,href)
+        if not overlaps(st,en):continue
+        name=clean_tournament_name(text)
+        if not name or len(name)<3:
+            # Prefer a title-like line from page content.
+            lines=[" ".join(x.split()) for x in page_text.splitlines() if x.strip()]
+            name=next((x for x in lines if 3<len(x)<90 and not re.search(r'^(Scores|Draws|Order|News|Players)',x,re.I)),"WTA Tournament")
+        category="WTA 125" if tid=="wta-125" else ""
+        if tid=="wta":
+            cm=re.search(r'\bWTA\s*(250|500|1000)\b',page_text,re.I)
+            if cm:category=f"WTA {cm.group(1)}"
+        out.append({
+          "id":hashlib.sha1(f"{tid}|{href}|{st}".encode()).hexdigest()[:12],
+          "tour_id":tid,"tour":tour,"gender":"WOMEN",
+          "tournament":name,"start_date":st.isoformat(),"end_date":en.isoformat(),
+          "location":"","category":category,
+          "status":"ACTIVE" if st<=TODAY<=en else "UPCOMING",
+          "source_url":href,"participants":[],
+          "participant_source":f"{tour} official tournament calendar"
+        })
+
+    # Last fallback: inspect official network JSON for current tournaments.
+    if not out:
+        dicts=[]
+        for p in snap.get("payloads",[]):
+            dicts.extend(list(walk_json_dicts(p.get("data"))))
+        health["payload_candidates"]=len(dicts)
+        for d in dicts:
+            name=_dict_first(d,("tournamentName","name","title","displayName","eventName"))
+            st=parse_json_date(_dict_first(d,("startDate","start_date","dateFrom","start","eventStartDate")))
+            en=parse_json_date(_dict_first(d,("endDate","end_date","dateTo","end","eventEndDate"))) or st
+            if not (name and overlaps(st,en)):continue
+
+            level=str(_dict_first(d,("level","tournamentLevel","category","tier","levelName")) or "")
+            if tid=="wta-125" and not re.search(r'\b125\b',level,re.I):
+                continue
+            if tid=="wta" and re.search(r'\b125\b',level,re.I):
+                continue
+
+            did=_dict_first(d,("tournamentId","id","eventId"))
+            slug=_dict_first(d,("slug","urlSlug","seoSlug"))
+            href=_dict_first(d,("url","href","path","tournamentUrl"))
+            if isinstance(href,str) and href.startswith("/"):
+                href=urljoin("https://www.wtatennis.com",href)
+            if not href and did and slug:
+                href=f"https://www.wtatennis.com/tournaments/{did}/{slug}/{TODAY.year}"
+            if not href:continue
+            out.append({
+              "id":hashlib.sha1(f"{tid}|{href}|{st}".encode()).hexdigest()[:12],
+              "tour_id":tid,"tour":tour,"gender":"WOMEN",
+              "tournament":" ".join(str(name).split()),
+              "start_date":st.isoformat(),"end_date":en.isoformat(),
+              "location":str(_dict_first(d,("location","city","hostCity")) or ""),
+              "category":level,
+              "status":"ACTIVE" if st<=TODAY<=en else "UPCOMING",
+              "source_url":str(href),"participants":[],
+              "participant_source":f"{tour} official calendar data"
+            })
+
+    dedup={}
+    for t in out:
+        dedup[t["source_url"]]=t
+    out=list(dedup.values())
+    health["events"]=len(out)
+    return out,health
 
 def discover_atp_challenger(browser):
     """ATP Challenger discovery from official results archive, with calendar fallback."""
@@ -765,8 +971,6 @@ def participant_links(browser,t):
     # WTA: visible player list / draw first.
     # -----------------------------------------
     if tid.startswith("wta"):
-        classify_wta_tournament(browser,t)
-        tid=t["tour_id"]
         found={}
         urls=[
             wta_player_list_url(t.get("source_url")),
@@ -1029,17 +1233,22 @@ with sync_playwright() as pw:
     browser=Browser(pw)
     tournaments=[]; health={}
 
-    x,h=discover_generic(browser,ATP_CAL,"atp","ATP Tour","MEN",r"/en/tournaments/");tournaments+=x;health["atp"]=h
-    x,h=discover_atp_challenger(browser);tournaments+=x;health["atp_challenger"]=h
-
-    x,h=discover_wta_from_payloads(browser)
+    x,h=discover_atp_current(browser,ATP_CAL,"atp","ATP Tour");tournaments+=x;health["atp"]=h
+    x,h=discover_atp_current(browser,ATP_CHAL,"atp-challenger","ATP Challenger Tour")
     if not x:
-        x,h2=discover_wta_from_visible_links(browser)
-        h={"payload":h,"visible_fallback":h2,"ok":h2.get("ok",False),"events":len(x),"url":WTA_CAL}
+        # Preserve the official results archive as a secondary fallback.
+        x2,h2=discover_atp_challenger(browser)
+        if x2:x=x2
+        h={"current_page":h,"archive_fallback":h2,"ok":h.get("ok") or h2.get("ok"),
+           "events":len(x),"url":ATP_CHAL,
+           "candidate_tournament_links":h.get("candidate_tournament_links",0)}
+    tournaments+=x;health["atp_challenger"]=h
+
+    x,h=discover_wta_lane(browser,WTA_CAL,"wta","WTA Tour")
     tournaments+=x;health["wta"]=h
-    health["wta_125"]={"ok":h.get("ok",False),
-      "events":sum(t.get("tour_id")=="wta-125" for t in x),
-      "url":WTA_CAL,"method":"classified from official WTA calendar/tournament data"}
+
+    x,h=discover_wta_lane(browser,WTA_125,"wta-125","WTA 125")
+    tournaments+=x;health["wta_125"]=h
     x,h=discover_itf(browser,ITF_MEN,"itf-men","ITF Men's World Tennis Tour","MEN");tournaments+=x;health["itf_men"]=h
     x,h=discover_itf(browser,ITF_WOMEN,"itf-women","ITF Women's World Tennis Tour","WOMEN");tournaments+=x;health["itf_women"]=h
 
@@ -1367,13 +1576,16 @@ for t in tournaments:
         critical_issues.append(f"IMPLAUSIBLE_ACTIVE_FIELD_SIZE: {t.get('tour')} | {t.get('tournament')} | {t.get('participant_count')}")
 
 chal_health=health.get("atp_challenger") or {}
-if int(chal_health.get("calendar_overlap_mentions") or 0)>0 and not any(t.get("tour_id")=="atp-challenger" for t in tournaments):
-    critical_issues.append("ATP_CHALLENGER_OFFICIAL_SOURCE_HAS_CURRENT_EVENTS_BUT_DISCOVERY_RETURNED_ZERO")
+if chal_health.get("ok") and int(chal_health.get("candidate_tournament_links") or 0)>0 and not any(t.get("tour_id")=="atp-challenger" for t in tournaments):
+    critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
 
-wta_events=[t for t in tournaments if t.get("tour_id") in ("wta","wta-125")]
 wta_health=health.get("wta") or {}
-if wta_health.get("ok") and not wta_events:
-    critical_issues.append("WTA_OFFICIAL_CALENDAR_LOADED_BUT_DISCOVERY_RETURNED_ZERO")
+if wta_health.get("ok") and int(wta_health.get("candidate_tournament_links") or 0)>0 and not any(t.get("tour_id")=="wta" for t in tournaments):
+    critical_issues.append("WTA_CURRENT_CALENDAR_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+
+wta125_health=health.get("wta_125") or {}
+if wta125_health.get("ok") and int(wta125_health.get("candidate_tournament_links") or 0)>0 and not any(t.get("tour_id")=="wta-125" for t in tournaments):
+    critical_issues.append("WTA125_CALENDAR_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
 
 # Coverage gaps are visible quality warnings, not fatal.
 for family in FAMILIES:
