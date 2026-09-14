@@ -146,25 +146,88 @@ async function fetchJson(url,timeoutMs=8000){
   }
 }
 
-async function loadAll(){const btn=document.getElementById('refreshBtn');btn.disabled=true;btn.textContent='Refreshing…';const results=await Promise.all(Object.entries(FILES).map(async([k,u])=>{try{DATA[k]=await fetchJson(u);return[k,true]}catch(e){console.warn(k,e);return[k,false]}}));const bad=results.filter(x=>!x[1]).map(x=>x[0]);renderAll();document.getElementById('reviewTime').textContent=fmtDateTime(new Date());const times=['global','priority','college','catalog','ncaa','tennis'].map(k=>DATA[k]?.generated_at).filter(Boolean).map(x=>new Date(x).getTime()).filter(Number.isFinite);document.getElementById('dataTime').textContent=times.length?fmtDateTime(Math.max(...times)):'—';const st=document.getElementById('refreshStatus');
-const current=todayKey();
-const globalEnd=DATA.global?.window_end||'';
-const globalStart=DATA.global?.window_start||'';
-const scheduleBehind=Boolean(globalEnd && globalEnd<addDays(current,7));
-const scheduleStartsPast=Boolean(globalStart && globalStart<current);
+async function loadAll(){
+  const btn=document.getElementById('refreshBtn');
+  const st=document.getElementById('refreshStatus');
+  btn.disabled=true;
+  btn.textContent='Refreshing…';
+  st.className='refresh-status';
+  st.textContent='Loading current public data…';
 
-if(bad.length){
-  st.className='refresh-status status-warn';
-  st.textContent=`Refresh complete with ${bad.length} feed issue${bad.length===1?'':'s'}: ${bad.join(', ')}.`;
-}else if(scheduleBehind||scheduleStartsPast){
-  st.className='refresh-status status-warn';
-  st.textContent=`All ${results.length} feeds loaded, but schedule coverage is stale. Run Refresh Approved Sports Schedule.`;
-}else{
-  st.className='refresh-status status-ok';
-  st.textContent=`Refresh complete · ${results.length}/${results.length} public feeds loaded and current.`;
+  let results=[];
+  try{
+    results=await Promise.all(Object.entries(FILES).map(async([k,u])=>{
+      try{
+        DATA[k]=await fetchJson(u,8000);
+        return [k,true];
+      }catch(e){
+        console.warn(`Feed load failed: ${k}`,e);
+        return [k,false];
+      }
+    }));
+
+    const bad=results.filter(x=>!x[1]).map(x=>x[0]);
+
+    // Rendering errors must not strand the Refresh button.
+    try{
+      renderAll();
+    }catch(renderErr){
+      console.error('Render failure',renderErr);
+      st.className='refresh-status status-warn';
+      st.textContent=`Public feeds loaded, but the page hit a display error: ${renderErr.message||renderErr}`;
+      return;
+    }
+
+    document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
+
+    const times=['global','priority','college','catalog','ncaa','tennis']
+      .map(k=>DATA[k]?.generated_at)
+      .filter(Boolean)
+      .map(x=>new Date(x).getTime())
+      .filter(Number.isFinite);
+
+    document.getElementById('dataTime').textContent=
+      times.length?fmtDateTime(Math.max(...times)):'—';
+
+    const current=todayKey();
+    const globalEnd=DATA.global?.window_end||'';
+    const globalStart=DATA.global?.window_start||'';
+    const scheduleBehind=Boolean(globalEnd && globalEnd<addDays(current,7));
+    const scheduleStartsPast=Boolean(globalStart && globalStart<current);
+
+    if(bad.length){
+      st.className='refresh-status status-warn';
+      st.textContent=`Refresh complete with ${bad.length} feed issue${bad.length===1?'':'s'}: ${bad.join(', ')}.`;
+    }else if(scheduleBehind||scheduleStartsPast){
+      st.className='refresh-status status-warn';
+      st.textContent=`All ${results.length} feeds loaded, but schedule coverage is stale. Run Refresh Approved Sports Schedule.`;
+    }else{
+      st.className='refresh-status status-ok';
+      st.textContent=`Refresh complete · ${results.length}/${results.length} public feeds loaded and current.`;
+    }
+  }catch(e){
+    console.error('Refresh Review failure',e);
+    st.className='refresh-status status-warn';
+    st.textContent=`Refresh Review encountered an error: ${e.message||e}`;
+  }finally{
+    btn.disabled=false;
+    btn.textContent='↻ Refresh Review';
+  }
 }
-btn.disabled=false;btn.textContent='↻ Refresh Review'}
-function renderAll(){renderToday();renderCollege();renderRestrictions();renderU18();renderTennis();renderNcaa();renderCoverage();renderCatalog()}
+function safeRender(name,fn){
+  try{fn()}
+  catch(e){console.error(`${name} render failed`,e)}
+}
+function renderAll(){
+  safeRender('Review Today',renderToday);
+  safeRender('Nebraska Collegiate',renderCollege);
+  safeRender('Restriction Watch',renderRestrictions);
+  safeRender('Known U18',renderU18);
+  safeRender('Tennis Watch',renderTennis);
+  safeRender('NCAA Football',renderNcaa);
+  safeRender('Coverage Control',renderCoverage);
+  safeRender('Approved Catalog',renderCatalog);
+}
 function normCollegeSport(v){
   return String(v||'').toLowerCase()
     .replace(/women'?s|men'?s/g,'')
@@ -431,12 +494,32 @@ function renderTennisGender(g,target,state){
     return;
   }
 
-  el.innerHTML=fam.map(f=>{
+  try{
+    el.innerHTML=fam.map(f=>{
     const ts=tours.filter(t=>t.tour_id===f.id);
     const body=ts.length?ts.map(renderTournament).join(''):
       `<div class="empty" style="margin:10px">No tournament mapped from this tour in the current window.</div>`;
     return `<section class="tennis-tour"><div class="tennis-tour-head"><span>${esc(f.tour)}</span><span>${ts.length} tournament${ts.length===1?'':'s'}</span></div>${body}</section>`;
   }).join('');
+  }catch(e){
+    console.error(`Tennis ${g} render failed`,e);
+    el.innerHTML=`<div class="exception-note"><b>AMBER — DISPLAY ERROR.</b> ${esc(e.message||String(e))}</div>`;
+  }
+}
+
+function participantRow(p){
+  const status=String(p.age_status||p.screening_status||'').toUpperCase();
+  const color=status==='VERIFIED U18'?'red':
+              status==='TARGETED REVIEW'||status==='TARGETED_REVIEW'?'amber':'green';
+  const label=status==='VERIFIED U18'?'VERIFIED U18':
+              (status==='TARGETED REVIEW'||status==='TARGETED_REVIEW')?'TARGETED REVIEW':
+              status==='VERIFIED 18+'?'VERIFIED 18+':'NO U18 INDICATOR';
+  return `<tr>
+    <td><b>${esc(p.name||'Unknown')}</b></td>
+    <td>${p.age!=null?esc(p.age):'—'}</td>
+    <td>${pill(color,label)}</td>
+    <td>${esc(p.candidate_reason||p.evidence||p.source||'')}</td>
+  </tr>`;
 }
 
 function renderTournament(t){
