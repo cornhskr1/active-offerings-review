@@ -29,9 +29,9 @@ jobs:
         run: |
           python3 -m pip install --quiet playwright
           python3 -m playwright install --with-deps chromium
-      - name: Resolve unresolved tennis ages
+      - name: Resolve targeted tennis age exceptions
         env:
-          TENNIS_AGE_BATCH: "120"
+          TENNIS_AGE_BATCH: "60"
         run: python3 scripts/refresh_tennis_age_scan.py
       - name: Commit age cache
         run: |
