@@ -374,86 +374,165 @@ def extract_embedded_names(found,html,source):
 
 def participant_links(browser,t):
     tid=t["tour_id"]
-    found={}
 
-    if tid.startswith("itf-"):
-        # Draw / order of play are the best evidence of the active competition field.
-        # IMPORTANT: count ALL names extracted from those pages, not just clickable
-        # profile links. The old logic under-counted draw participants and then
-        # unnecessarily swallowed the much larger Acceptance List.
-        primary=[t.get("draw_url"),t.get("order_url")]
-        for url in primary:
-            if not url:continue
-            snap=browser.snapshot(url,2600)
-            if not snap.get("ok"):continue
-            for a in snap.get("links",[]):
-                if re.search(r"/en/players/",a.get("href",""),re.I):
-                    add_person(found,a.get("text"),a.get("href"),"ITF draw/order of play")
+    def take_visible_players(snap, found, source, include_itf_draw_text=False):
+        for a in snap.get("links",[]):
+            href=a.get("href","")
+            if (
+                (tid.startswith("itf-") and re.search(r"/en/players/",href,re.I))
+                or (tid.startswith("wta") and re.search(r"/players/",href,re.I))
+                or (tid.startswith("atp") and re.search(r"/en/players/",href,re.I))
+                or (tid.startswith("utr") and re.search(r"/(profile|profiles|player|players)/",href,re.I))
+            ):
+                add_person(found,a.get("text"),href,source)
+
+        if tid.startswith("itf-"):
             extract_itf_table_text(found,snap)
-            extract_itf_draw_text(found,snap)
-            extract_json_people(found,snap.get("payloads"),"ITF rendered draw data")
-
-        primary_count=len(found)
-
-        # If a meaningful draw/order-of-play field is available, STOP HERE.
-        # Do not contaminate it with hundreds of acceptance-list alternates.
-        if primary_count>=4:
-            t["participant_field_basis"]="ITF draw / order of play"
-        else:
-            # Pre-draw fallback: use the Acceptance List, excluding explicit
-            # withdrawals. This remains regulatory-relevant because accepted
-            # entrants/alternates were intentionally included in scope, but the
-            # UI will label the source honestly as an acceptance pool.
-            url=t.get("acceptance_url")
-            if url:
-                snap=browser.snapshot(url,2600)
-                if snap.get("ok"):
-                    for a in snap.get("links",[]):
-                        parent=a.get("parent","")
-                        if re.search(r"/en/players/",a.get("href",""),re.I) and not re.search(r"withdraw|Automatic Withdrawal",parent,re.I):
-                            add_person(found,a.get("text"),a.get("href"),"ITF acceptance list")
-                    extract_itf_table_text(found,snap)
-                    extract_json_people(found,snap.get("payloads"),"ITF rendered acceptance data")
-            t["participant_field_basis"]="ITF acceptance list / pre-draw pool"
-
-    elif tid.startswith("wta"):
-        t["participant_field_basis"]="WTA player list / draw"
-        urls=[wta_player_list_url(t.get("source_url")),wta_draw_url(t.get("source_url")),t.get("source_url")]
-        for url in urls:
-            if not url:continue
-            snap=browser.snapshot(url,2600)
-            if not snap.get("ok"):continue
-            for a in snap.get("links",[]):
-                if re.search(r"/players/",a.get("href",""),re.I):
-                    add_person(found,a.get("text"),a.get("href"),"WTA official player/draw page")
+            if include_itf_draw_text:
+                extract_itf_draw_text(found,snap)
+        elif tid.startswith("wta"):
             extract_wta_text(found,snap)
-            extract_embedded_names(found,snap.get("html"),"WTA rendered tournament data")
-            extract_json_people(found,snap.get("payloads"),"WTA rendered tournament data")
 
-    elif tid.startswith("atp"):
-        t["participant_field_basis"]="ATP draw / results"
-        for url in atp_draw_urls(t.get("source_url")):
-            snap=browser.snapshot(url,2600)
-            if not snap.get("ok"):continue
-            for a in snap.get("links",[]):
-                if re.search(r"/en/players/",a.get("href",""),re.I):
-                    add_person(found,a.get("text"),a.get("href"),"ATP official draw/results page")
-            extract_embedded_names(found,snap.get("html"),"ATP rendered tournament data")
-            extract_json_people(found,snap.get("payloads"),"ATP rendered tournament data")
+        extract_embedded_names(found,snap.get("html"),source)
 
-    else:
-        # UTR Pro Tennis Tour
-        t["participant_field_basis"]="UTR event participant data"
-        url=t.get("source_url")
+    # -----------------------------------------
+    # ITF: active draw is separate from acceptance pool.
+    # -----------------------------------------
+    if tid.startswith("itf-"):
+        draw_found={}
+        draw_url=t.get("draw_url")
+        if draw_url:
+            snap=browser.snapshot(draw_url,2600)
+            if snap.get("ok"):
+                take_visible_players(
+                    snap,draw_found,
+                    "ITF official draw",
+                    include_itf_draw_text=True
+                )
+
+        # If draw alone is thin, add today's order-of-play names as corroborating
+        # active participants. Never use broad JSON/XHR payloads for ITF field size.
+        if len(draw_found)<8 and t.get("order_url"):
+            snap=browser.snapshot(t.get("order_url"),2600)
+            if snap.get("ok"):
+                take_visible_players(
+                    snap,draw_found,
+                    "ITF draw / order of play",
+                    include_itf_draw_text=True
+                )
+
+        if len(draw_found)>=8:
+            t["participant_field_basis"]="ITF draw / order of play"
+            t["participant_field_type"]="DRAW"
+            t["participant_field_confidence"]="HIGH" if len(draw_found)>=16 else "MEDIUM"
+            t["participant_field_expected_min"]=16
+            return list(draw_found.values())
+
+        # Pre-draw fallback: Acceptance List is deliberately kept separate.
+        acceptance_found={}
+        url=t.get("acceptance_url")
         if url:
-            snap=browser.snapshot(url,2800)
+            snap=browser.snapshot(url,2600)
             if snap.get("ok"):
                 for a in snap.get("links",[]):
-                    if re.search(r"/(profile|profiles|player|players)/",a.get("href",""),re.I):
-                        add_person(found,a.get("text"),a.get("href"),"UTR official event page")
-                extract_embedded_names(found,snap.get("html"),"UTR rendered event data")
+                    parent=a.get("parent","")
+                    if (
+                        re.search(r"/en/players/",a.get("href",""),re.I)
+                        and not re.search(r"withdraw|Automatic Withdrawal",parent,re.I)
+                    ):
+                        add_person(
+                            acceptance_found,
+                            a.get("text"),
+                            a.get("href"),
+                            "ITF acceptance list"
+                        )
+                extract_itf_table_text(acceptance_found,snap)
+                # No JSON/XHR here. Acceptance-list network payloads can contain
+                # hundreds of alternates/withdrawals and inflate the pool.
+
+        t["participant_field_basis"]="ITF acceptance list / pre-draw pool"
+        t["participant_field_type"]="ACCEPTANCE_POOL"
+        t["participant_field_confidence"]="LOW"
+        t["participant_field_expected_min"]=None
+        return list(acceptance_found.values())
+
+    # -----------------------------------------
+    # WTA: visible player list / draw first.
+    # -----------------------------------------
+    if tid.startswith("wta"):
+        found={}
+        urls=[
+            wta_player_list_url(t.get("source_url")),
+            wta_draw_url(t.get("source_url")),
+            t.get("source_url")
+        ]
+        for url in urls:
+            if not url:continue
+            snap=browser.snapshot(url,2400)
+            if not snap.get("ok"):continue
+            take_visible_players(snap,found,"WTA official player list / draw")
+            if len(found)>=16:
+                break
+
+        # JSON is fallback only when visible pages produced almost nothing.
+        if len(found)<4:
+            for url in urls:
+                if not url:continue
+                snap=browser.snapshot(url,1800)
+                if snap.get("ok"):
+                    extract_json_people(found,snap.get("payloads"),"WTA rendered tournament data")
+                if len(found)>=16:
+                    break
+
+        t["participant_field_basis"]="WTA player list / draw"
+        t["participant_field_type"]="PLAYER_LIST"
+        t["participant_field_expected_min"]=16
+        t["participant_field_confidence"]="HIGH" if 16<=len(found)<=192 else ("MEDIUM" if 8<=len(found)<16 else "LOW")
+        return list(found.values())
+
+    # -----------------------------------------
+    # ATP / Challenger: draw/results visible first.
+    # -----------------------------------------
+    if tid.startswith("atp"):
+        found={}
+        urls=atp_draw_urls(t.get("source_url"))
+        for url in urls:
+            snap=browser.snapshot(url,2400)
+            if not snap.get("ok"):continue
+            take_visible_players(snap,found,"ATP official draw / results")
+            if len(found)>=16:
+                break
+
+        if len(found)<4:
+            for url in urls:
+                snap=browser.snapshot(url,1800)
+                if snap.get("ok"):
+                    extract_json_people(found,snap.get("payloads"),"ATP rendered tournament data")
+                if len(found)>=16:
+                    break
+
+        t["participant_field_basis"]="ATP draw / results"
+        t["participant_field_type"]="DRAW"
+        t["participant_field_expected_min"]=16
+        t["participant_field_confidence"]="HIGH" if 16<=len(found)<=192 else ("MEDIUM" if 8<=len(found)<16 else "LOW")
+        return list(found.values())
+
+    # -----------------------------------------
+    # UTR: event participant data.
+    # -----------------------------------------
+    found={}
+    url=t.get("source_url")
+    if url:
+        snap=browser.snapshot(url,2400)
+        if snap.get("ok"):
+            take_visible_players(snap,found,"UTR official event participant data")
+            if len(found)<4:
                 extract_json_people(found,snap.get("payloads"),"UTR rendered event data")
 
+    t["participant_field_basis"]="UTR event participant data"
+    t["participant_field_type"]="PLAYER_LIST"
+    t["participant_field_expected_min"]=8
+    t["participant_field_confidence"]="HIGH" if 8<=len(found)<=128 else ("MEDIUM" if 4<=len(found)<8 else "LOW")
     return list(found.values())
 
 PROFILE_AGE_CACHE={}
@@ -769,7 +848,27 @@ with sync_playwright() as pw:
 
         t["participants"]=parts
         t["participant_count"]=len(parts)
-        t["field_captured"]=len(parts)>=4
+
+        field_type=str(t.get("participant_field_type") or "INCOMPLETE")
+        confidence=str(t.get("participant_field_confidence") or "LOW")
+        expected_min=t.get("participant_field_expected_min")
+
+        # "Captured" now means credible enough to support a GREEN clearance.
+        # Acceptance pools can identify a RED U18, but they can never clear a
+        # tournament because they are not the final active competition field.
+        if field_type=="ACCEPTANCE_POOL":
+            t["field_captured"]=False
+            t["field_completeness"]="PRE_DRAW_POOL"
+        elif confidence=="HIGH":
+            t["field_captured"]=True
+            t["field_completeness"]="COMPLETE_ENOUGH_FOR_SCREEN"
+        elif confidence=="MEDIUM":
+            t["field_captured"]=False
+            t["field_completeness"]="PARTIAL"
+        else:
+            t["field_captured"]=False
+            t["field_completeness"]="INCOMPLETE"
+
         t["verified_u18"]=[p for p in parts if p.get("screening_status")=="VERIFIED_U18"]
         t["targeted_review"]=[p for p in parts if p.get("screening_status")=="TARGETED_REVIEW"]
         t["targeted_review_count"]=len(t["targeted_review"])
@@ -780,6 +879,8 @@ with sync_playwright() as pw:
         # Tournament regulatory status is based on U18 screening, not universal DOB coverage.
         if t["verified_u18"]:
             t["status_color"]="RED";t["regulatory_status"]="NOT PERMISSIBLE — U18 EXPOSURE"
+        elif t.get("participant_field_type")=="ACCEPTANCE_POOL":
+            t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — PRE-DRAW ACCEPTANCE POOL"
         elif not t["field_captured"]:
             t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — PARTICIPANT FIELD INCOMPLETE"
         elif t["targeted_review_count"]:
@@ -854,6 +955,10 @@ schedule_out={
     "verified_u18_count":len(t.get("verified_u18",[])),
     "targeted_review_count":t.get("targeted_review_count",0),
     "field_captured":t.get("field_captured",False),
+    "participant_field_type":t.get("participant_field_type"),
+    "participant_field_basis":t.get("participant_field_basis"),
+    "participant_field_confidence":t.get("participant_field_confidence"),
+    "field_completeness":t.get("field_completeness"),
     "source_url":t.get("source_url")
  } for t in tournaments]
 }
