@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, re, datetime, hashlib
+import json, re, datetime, hashlib, difflib
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
@@ -56,9 +56,7 @@ def load_age_cache():
 
 
 def norm(s):
-    s=str(s or "")
-    s=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])", " ", s)
-    s=s.lower()
+    s=str(s or "").lower()
     s=re.sub(r"[\u2018\u2019'`]", "",s)
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
@@ -226,8 +224,7 @@ def fallback_global_schedule():
 def clean_player_name(name):
     name=" ".join(str(name or "").split()).strip(" -|,")
     name=re.sub(r"^[A-Z]{3}\s*", "", name).strip()
-    name=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])", " ", name)
-    return " ".join(name.split())
+    return name
 
 def plausible_player(name):
     name=clean_player_name(name)
@@ -544,11 +541,17 @@ def ranking_age_index(browser,url,profile_pattern,source):
     health['records']=len(out)
     return out,health
 
-def junior_u18_index(browser):
-    out={}; health=[]
+def junior_watch_index(browser):
+    """Build two junior layers:
+    - verified U18: safe to create RED when linked to a professional tournament
+    - targeted candidates: plausibly U18 and worth a narrow profile check
+    """
+    verified={}
+    candidates={}
+    health=[]
     for gender,url in [("MEN",ITF_JB),("WOMEN",ITF_JG)]:
         snap=browser.snapshot(url,2000)
-        count=0
+        vc=0; cc=0
         if snap["ok"]:
             for a in snap["links"]:
                 if "/en/players/" not in a["href"]:continue
@@ -557,13 +560,49 @@ def junior_u18_index(browser):
                 name=" ".join(a["text"].split())
                 if not m or len(name.split())<2:continue
                 yob=int(m.group(1))
+                rec={
+                  "name":name,"gender":gender,"birth_year":yob,
+                  "source":"ITF official junior rankings","source_url":a["href"]
+                }
+                # In 2026, 2009+ birth years are unambiguously under 18.
                 if yob>=2009:
-                    out[norm(name)]={"name":name,"age":YEAR-yob,"age_status":"VERIFIED U18",
-                        "source":"ITF official junior rankings","source_url":a["href"],
-                        "evidence":f"Official ITF junior ranking lists birth year {yob}."}
-                    count+=1
-        health.append({"ok":snap["ok"],"gender":gender,"verified_u18":count,"url":url,"error":snap.get("error")})
-    return out,health
+                    rec.update({
+                      "age":YEAR-yob,
+                      "age_status":"VERIFIED U18",
+                      "evidence":f"Official ITF junior ranking lists birth year {yob}."
+                    })
+                    verified[norm(name)]=rec;vc+=1
+                else:
+                    # 2008 may be age 17 or 18 depending birthday: targeted review only.
+                    rec.update({
+                      "age":None,
+                      "age_status":"TARGETED REVIEW",
+                      "candidate_reason":f"ITF junior ranking lists birth year {yob}; exact DOB needed.",
+                      "evidence":f"Official ITF junior ranking lists birth year {yob}."
+                    })
+                    candidates[norm(name)]=rec;cc+=1
+        health.append({"ok":snap["ok"],"gender":gender,"verified_u18":vc,
+                       "targeted_candidates":cc,"url":url,"error":snap.get("error")})
+    return verified,candidates,health
+
+def fuzzy_watch_match(name,watch):
+    """Conservative fuzzy match used only to create AMBER targeted review, never RED."""
+    key=norm(name)
+    toks=key.split()
+    if len(toks)<2:return None
+    first=toks[0]; last=toks[-1]
+    scored=[]
+    for wk,rec in watch.items():
+        wt=wk.split()
+        if len(wt)<2:continue
+        # Require same surname and same first initial before similarity is considered.
+        if wt[-1]!=last or wt[0][:1]!=first[:1]:continue
+        score=difflib.SequenceMatcher(None,key,wk).ratio()
+        if score>=0.90:
+            scored.append((score,rec))
+    if len(scored)==1:
+        return scored[0][1]
+    return None
 
 YEAR=TODAY.year
 seed=load(DATA/"tennis-known-u18.json",{}).get("records",[])
@@ -606,9 +645,9 @@ with sync_playwright() as pw:
         utr_health.append({"ok":snap["ok"],"region":region,"events":count,"url":url,"error":snap.get("error")})
     tournaments+=utr_events;health["utr"]=utr_health
 
-    juniors,junior_health=junior_u18_index(browser)
+    junior_u18,junior_candidates,junior_health=junior_watch_index(browser)
     health["itf_juniors"]=junior_health
-    u18_index={**juniors,**seed_index}
+    u18_index={**junior_u18,**seed_index}
 
     # Resolve the easy majority in bulk before opening individual profiles.
     atp_age,atp_age_health=ranking_age_index(browser,ATP_RANK,r"/en/players/","ATP official rankings")
@@ -647,44 +686,91 @@ with sync_playwright() as pw:
         t["participant_extraction_status"]="EXTRACTED" if people else "NO PARTICIPANT FIELD EXTRACTED"
         t["participant_field_complete"]=False
         parts=[]
+        targeted=[]
         for p in people:
             k=norm(p["name"])
+
+            # 1. Exact verified U18 universe / persistent U18 cache.
             if k in u18_index:
-                parts.append({**p,**u18_index[k]})
-                continue
-            cached=persistent_age_cache.get(k)
-            if cached and cached.get("age_status") in ("VERIFIED U18","VERIFIED 18+"):
-                parts.append({**p,**cached})
-                continue
-            if k in broad_age_index:
-                parts.append({**p,**broad_age_index[k]})
+                rec={**p,**u18_index[k],"screening_status":"VERIFIED_U18"}
+                parts.append(rec)
                 continue
 
-            parts.append({**p,"age":None,"dob":None,"age_status":"UNRESOLVED",
+            cached=persistent_age_cache.get(k)
+            if cached and cached.get("age_status")=="VERIFIED U18":
+                parts.append({**p,**cached,"screening_status":"VERIFIED_U18"})
+                continue
+
+            # 2. Known adult evidence clears the player from targeted review.
+            if cached and cached.get("age_status")=="VERIFIED 18+":
+                parts.append({**p,**cached,"screening_status":"NO_U18_INDICATOR"})
+                continue
+            if k in broad_age_index and broad_age_index[k].get("age_status")=="VERIFIED 18+":
+                parts.append({**p,**broad_age_index[k],"screening_status":"NO_U18_INDICATOR"})
+                continue
+
+            # 3. Exact junior-watch candidate (e.g. 2008 birth year).
+            cand=junior_candidates.get(k)
+            if cand:
+                rec={**p,**cand,
+                     "screening_status":"TARGETED_REVIEW",
+                     "age_status":"TARGETED REVIEW",
+                     "source_url":p.get("profile_url") or cand.get("source_url"),
+                     "candidate_reason":cand.get("candidate_reason") or "Junior-age signal requires exact DOB verification."}
+                parts.append(rec);targeted.append(rec)
+                continue
+
+            # 4. Conservative fuzzy collision with a U18/junior watch name.
+            fuzzy=fuzzy_watch_match(p["name"],{**u18_index,**junior_candidates})
+            if fuzzy:
+                rec={**p,
+                     "age":None,"dob":None,
+                     "age_status":"TARGETED REVIEW",
+                     "screening_status":"TARGETED_REVIEW",
+                     "source":fuzzy.get("source") or t["participant_source"],
+                     "source_url":p.get("profile_url") or fuzzy.get("source_url"),
+                     "candidate_reason":f"Possible identity match to junior/U18 watchlist athlete {fuzzy.get('name')}.",
+                     "evidence":"Name collision with the junior/U18 watch universe requires confirmation."}
+                parts.append(rec);targeted.append(rec)
+                continue
+
+            # 5. No U18 indicator. Unknown DOB alone is NOT a manual-review condition.
+            parts.append({**p,
+                "age":None,"dob":None,
+                "age_status":"NO U18 INDICATOR",
+                "screening_status":"NO_U18_INDICATOR",
                 "source":t["participant_source"],
                 "source_url":p.get("profile_url") or t.get("source_url"),
-                "evidence":"Participant is linked to the official tournament field. Age is not yet in the official ranking index or persistent age cache; queued for Deep Tennis Age Scan."})
+                "evidence":"No exact or conservative fuzzy match to the verified U18 / junior-age watch universe."})
 
         # Deduplicate by normalized athlete name.
         dedup={}
         for person in parts:
             dedup[norm(person.get("name"))]=person
         parts=list(dedup.values())
-        parts.sort(key=lambda p:(0 if p.get("age_status")=="VERIFIED U18" else 1 if p.get("age_status")=="UNRESOLVED" else 2,p.get("name","")))
+        parts.sort(key=lambda p:(0 if p.get("screening_status")=="VERIFIED_U18"
+                                 else 1 if p.get("screening_status")=="TARGETED_REVIEW"
+                                 else 2,p.get("name","")))
 
         t["participants"]=parts
         t["participant_count"]=len(parts)
-        t["verified_u18"]=[p for p in parts if p.get("age_status")=="VERIFIED U18"]
+        t["field_captured"]=len(parts)>=4
+        t["verified_u18"]=[p for p in parts if p.get("screening_status")=="VERIFIED_U18"]
+        t["targeted_review"]=[p for p in parts if p.get("screening_status")=="TARGETED_REVIEW"]
+        t["targeted_review_count"]=len(t["targeted_review"])
         t["verified_18plus_count"]=sum(p.get("age_status")=="VERIFIED 18+" for p in parts)
-        t["unresolved_count"]=sum(p.get("age_status")=="UNRESOLVED" for p in parts)
-        t["age_resolution_pct"]=round(((len(parts)-t["unresolved_count"])/len(parts))*100) if parts else 0
+        t["no_u18_indicator_count"]=sum(p.get("screening_status")=="NO_U18_INDICATOR" for p in parts)
+        t["unresolved_count"]=t["targeted_review_count"]
 
+        # Tournament regulatory status is based on U18 screening, not universal DOB coverage.
         if t["verified_u18"]:
             t["status_color"]="RED";t["regulatory_status"]="NOT PERMISSIBLE — U18 EXPOSURE"
-        elif len(parts)>=4 and t["unresolved_count"]==0:
-            t["status_color"]="GREEN";t["regulatory_status"]="OK — PARTICIPANT FIELD AGE-RESOLVED"
+        elif not t["field_captured"]:
+            t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — PARTICIPANT FIELD INCOMPLETE"
+        elif t["targeted_review_count"]:
+            t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — TARGETED U18 CHECK"
         else:
-            t["status_color"]="AMBER";t["regulatory_status"]="MANUAL REVIEW — UNRESOLVED AGE COVERAGE"
+            t["status_color"]="GREEN";t["regulatory_status"]="OK — NO U18 EXPOSURE IDENTIFIED"
 
     # Persist cheap bulk official age resolutions. Deep scan will add profile-based
     # resolutions to the same cache without forcing this refresh to wait on them.
@@ -698,8 +784,22 @@ with sync_playwright() as pw:
 
 exposure={norm(p["name"]) for t in tournaments for p in t.get("verified_u18",[])}
 registry=[]
-for k,p in u18_index.items():registry.append({**p,"current_exposure":k in exposure})
+for k,p in u18_index.items():
+    registry.append({**p,"current_exposure":k in exposure})
 registry.sort(key=lambda x:(not x["current_exposure"],x["name"]))
+
+exceptions=[]
+for t in tournaments:
+    for p in t.get("targeted_review",[]):
+        exceptions.append({
+          "id":hashlib.sha1(f"{t['id']}|{norm(p.get('name'))}".encode()).hexdigest()[:14],
+          "tour_id":t["tour_id"],"tour":t["tour"],"gender":t["gender"],
+          "tournament":t["tournament"],"tournament_id":t["id"],
+          "start_date":t["start_date"],"end_date":t["end_date"],
+          "name":p.get("name"),"profile_url":p.get("profile_url") or p.get("source_url"),
+          "source":p.get("source"),"candidate_reason":p.get("candidate_reason"),
+          "evidence":p.get("evidence")
+        })
 
 risks=[]
 for t in tournaments:
@@ -718,22 +818,58 @@ summary={"tournaments_mapped":len(tournaments),
  "red_tournaments":sum(t["status_color"]=="RED" for t in tournaments),
  "amber_tournaments":sum(t["status_color"]=="AMBER" for t in tournaments),
  "green_tournaments":sum(t["status_color"]=="GREEN" for t in tournaments),
- "participants_found":sum(t["participant_count"] for t in tournaments),
+ "participants_screened":sum(t["participant_count"] for t in tournaments),
  "verified_u18_players":len(exposure),
- "unresolved_participants":sum(t["unresolved_count"] for t in tournaments),
+ "targeted_review_candidates":len(exceptions),
+ "field_gaps":sum(not t.get("field_captured") for t in tournaments),
+ "no_u18_indicator_count":sum(t.get("no_u18_indicator_count",0) for t in tournaments),
  "age_cache_records":len(persistent_age_cache)}
 
-out={"schema_version":5,"generated_at":NOW.isoformat(),"timezone":"America/Chicago",
+schedule_out={
+ "schema_version":1,"generated_at":NOW.isoformat(),"timezone":"America/Chicago",
+ "window_start":TODAY.isoformat(),"window_end":END.isoformat(),
+ "tour_families":FAMILIES,
+ "tournaments":[{
+    "id":t["id"],"tour_id":t["tour_id"],"tour":t["tour"],"gender":t["gender"],
+    "tournament":t["tournament"],"start_date":t["start_date"],"end_date":t["end_date"],
+    "location":t.get("location"),"category":t.get("category"),
+    "status":t.get("status"),"status_color":t.get("status_color"),
+    "regulatory_status":t.get("regulatory_status"),
+    "participant_count":t.get("participant_count",0),
+    "verified_u18_count":len(t.get("verified_u18",[])),
+    "targeted_review_count":t.get("targeted_review_count",0),
+    "field_captured":t.get("field_captured",False),
+    "source_url":t.get("source_url")
+ } for t in tournaments]
+}
+
+registry_out={
+ "schema_version":1,"generated_at":NOW.isoformat(),
+ "verified_u18":registry,
+ "junior_targeted_candidates":list(junior_candidates.values()),
+ "source_health":health.get("itf_juniors",[])
+}
+
+exceptions_out={
+ "schema_version":1,"generated_at":NOW.isoformat(),
+ "count":len(exceptions),"exceptions":exceptions
+}
+
+out={"schema_version":6,"generated_at":NOW.isoformat(),"timezone":"America/Chicago",
  "window_start":TODAY.isoformat(),"window_end":END.isoformat(),"tour_families":FAMILIES,
  "summary":summary,"tournaments":tournaments,"risk_queue":risks,
- "live_u18_registry":registry,"source_health":health,
+ "live_u18_registry":registry,"targeted_exceptions":exceptions,"source_health":health,
  "methodology":{
-   "red":"Verified U18 athlete is linked by an official professional tournament participant source.",
-   "amber":"Tournament is mapped, but one or more participant ages remain unresolved after official ranking/profile checks.",
-   "green":"Official participant field was obtained and every listed entrant was resolved as 18+.",
+   "red":"Verified U18 athlete is linked to an official professional tournament participant field.",
+   "amber":"Participant field is incomplete OR a small targeted U18 candidate remains unresolved.",
+   "green":"Participant field was captured and U18 screening found no verified exposure or targeted U18 candidate.",
+   "important":"Unknown DOB alone does not create manual review. Only a specific U18/junior-age indicator creates a targeted age exception.",
    "scope":"Main draw, qualifying, doubles, wild cards, acceptance lists, accepted alternates and order of play are in scope.",
-   "discovery":"Official ATP/WTA/ITF/UTR pages are rendered in Chromium so JavaScript-loaded calendars and participant links are visible.",
-   "age_architecture":"Fast refresh uses known U18 records, persistent cache, and bulk official ranking ages. Individual unresolved profiles are handled separately by Deep Tennis Age Scan."
+   "screening":"Tournament entrants are cross-matched against a dynamic verified-U18 registry and an ITF junior-age candidate universe."
  }}
+
+(DATA/"tennis-schedule.json").write_text(json.dumps(schedule_out,indent=2,ensure_ascii=False),encoding="utf-8")
+(DATA/"tennis-u18-registry.json").write_text(json.dumps(registry_out,indent=2,ensure_ascii=False),encoding="utf-8")
+(DATA/"tennis-exceptions.json").write_text(json.dumps(exceptions_out,indent=2,ensure_ascii=False),encoding="utf-8")
 (DATA/"tennis-intelligence.json").write_text(json.dumps(out,indent=2,ensure_ascii=False),encoding="utf-8")
 print(json.dumps(summary))

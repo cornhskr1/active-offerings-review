@@ -12,9 +12,9 @@ TZ=ZoneInfo("America/Chicago")
 NOW=datetime.datetime.now(datetime.timezone.utc)
 TODAY=datetime.datetime.now(TZ).date()
 
-INTEL_PATH=DATA/"tennis-intelligence.json"
+EXCEPTIONS_PATH=DATA/"tennis-exceptions.json"
 CACHE_PATH=DATA/"tennis-age-cache.json"
-BATCH_SIZE=int(os.environ.get("TENNIS_AGE_BATCH","120"))
+BATCH_SIZE=int(os.environ.get("TENNIS_AGE_BATCH","60"))
 
 ATP_PLAYERS="https://www.atptour.com/en/players"
 WTA_PLAYERS="https://www.wtatennis.com/players"
@@ -25,9 +25,7 @@ def load(path,default):
     except Exception:return default
 
 def norm(s):
-    s=str(s or "")
-    s=re.sub(r"(?<=[a-zà-öø-ÿ])(?=[A-ZÀ-ÖØ-Þ])", " ", s)
-    s=s.lower()
+    s=str(s or "").lower()
     s=re.sub(r"[\u2018\u2019'`]", "",s)
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
@@ -284,44 +282,28 @@ def resolve_official_profile(browser,name,profile_url,on_date,gender=None):
 
     return None
 
-intel=load(INTEL_PATH,{"tournaments":[]})
+exceptions_doc=load(EXCEPTIONS_PATH,{"exceptions":[]})
 cache_doc=load(CACHE_PATH,{"schema_version":1,"records":{}})
 cache=cache_doc.get("records") or {}
 
 queue={}
-for t in intel.get("tournaments",[]):
-    event_date=t.get("start_date") or TODAY.isoformat()
-    gender=t.get("gender")
-    for p in t.get("participants",[]):
-        if p.get("age_status")!="UNRESOLVED":continue
-        name=p.get("name")
-        if not name:continue
-        key=norm(name)
-        if cache.get(key,{}).get("age_status") in ("VERIFIED U18","VERIFIED 18+"):
-            continue
-        previous=cache.get(key,{})
-        queue[key]={
-          "name":name,
-          "profile_url":p.get("profile_url") or p.get("source_url"),
-          "event_date":event_date,
-          "gender":gender,
-          "tournament":t.get("tournament"),
-          "tour":t.get("tour"),
-          "attempt_count":int(previous.get("attempt_count",0) or 0),
-          "last_attempt":previous.get("last_attempt")
-        }
+for x in exceptions_doc.get("exceptions",[]):
+    name=x.get("name")
+    if not name:continue
+    key=norm(name)
+    if cache.get(key,{}).get("age_status") in ("VERIFIED U18","VERIFIED 18+"):
+        continue
+    queue[key]={
+      "name":name,
+      "profile_url":x.get("profile_url"),
+      "event_date":x.get("start_date") or TODAY.isoformat(),
+      "gender":x.get("gender"),
+      "tournament":x.get("tournament"),
+      "tour":x.get("tour"),
+      "candidate_reason":x.get("candidate_reason")
+    }
 
-# Always work untouched candidates first, then older/lower-attempt candidates.
-# This prevents repeat runs from researching the same first batch forever.
-items=sorted(
-    queue.values(),
-    key=lambda x:(
-        int(x.get("attempt_count",0)),
-        0 if x.get("profile_url") else 1,
-        str(x.get("last_attempt") or ""),
-        norm(x.get("name"))
-    )
-)[:BATCH_SIZE]
+items=list(queue.values())[:BATCH_SIZE]
 resolved=0
 not_found=0
 
