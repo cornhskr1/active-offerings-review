@@ -15,6 +15,7 @@ END=TODAY+datetime.timedelta(days=7)
 
 ATP_CAL="https://www.atptour.com/en/tournaments/"
 ATP_CHAL="https://www.atptour.com/en/atp-challenger-tour/calendar"
+ATP_CHAL_ARCHIVE=f"https://www.atptour.com/en/scores/results-archive?tournamentType=ch&year={TODAY.year}"
 ATP_RANK="https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
 WTA_CAL="https://www.wtatennis.com/tournaments"
 WTA_125="https://www.wtatennis.com/tournaments/wta-125"
@@ -177,46 +178,240 @@ def calendar_overlap_mentions(text):
         if overlaps(a,b):count+=1
     return count
 
-def discover_atp_challenger(browser):
-    """Dedicated ATP Challenger adapter using the official Challenger calendar."""
-    snap=browser.snapshot(ATP_CHAL,2200)
-    out=[]
-    health={"ok":snap.get("ok",False),"events":0,"url":ATP_CHAL,
-            "calendar_overlap_mentions":calendar_overlap_mentions(snap.get("text","")),
+def _dict_first(d,keys):
+    for k in keys:
+        if k in d and d.get(k) not in (None,""):
+            return d.get(k)
+    # case-insensitive key fallback
+    low={str(k).lower():k for k in d.keys()}
+    for k in keys:
+        real=low.get(str(k).lower())
+        if real is not None and d.get(real) not in (None,""):
+            return d.get(real)
+    return None
+
+def parse_json_date(v):
+    if not v:return None
+    s=str(v).strip()
+    # ISO timestamps / dates
+    m=re.match(r'^(\d{4}-\d{2}-\d{2})',s)
+    if m:return parse_date(m.group(1))
+    # common web date strings
+    for piece in (s, s[:20]):
+        d=parse_date(piece)
+        if d:return d
+    return None
+
+def walk_json_dicts(obj):
+    if isinstance(obj,dict):
+        yield obj
+        for v in obj.values():
+            yield from walk_json_dicts(v)
+    elif isinstance(obj,list):
+        for v in obj:
+            yield from walk_json_dicts(v)
+
+def discover_wta_from_payloads(browser):
+    """Discover WTA/WTA125 tournaments from official calendar network/embedded data."""
+    snap=browser.snapshot(WTA_CAL,3500)
+    out=[]; seen=set()
+    health={"ok":snap.get("ok",False),"events":0,"url":WTA_CAL,"payload_candidates":0,
             "error":snap.get("error")}
     if not snap.get("ok"):
         return out,health
 
-    seen=set()
-    for a in snap.get("links",[]):
-        href=a.get("href","")
-        if "/en/tournaments/" not in href:continue
-        parent=a.get("parent") or a.get("text") or ""
-        start,end=date_range(parent)
-        if not overlaps(start,end):continue
-        name=clean_tournament_name(a.get("text"))
-        if not name or href in seen:continue
-        seen.add(href)
+    dicts=[]
+    for p in snap.get("payloads",[]):
+        dicts.extend(list(walk_json_dicts(p.get("data"))))
 
-        level=""
-        lm=re.search(r'Challenger\s+(\d+)',parent,re.I)
-        if lm: level=f"Challenger {lm.group(1)}"
-        location=""
-        # ATP calendar cards generally start with city/country before event name.
-        lines=[" ".join(x.split()) for x in parent.splitlines() if x.strip()]
-        if lines:
-            location=lines[0][:100]
+    # Also inspect JSON-looking scripts embedded in HTML.
+    html=snap.get("html") or ""
+    for m in re.finditer(r'<script[^>]*type=["\']application/json["\'][^>]*>(.*?)</script>',html,re.I|re.S):
+        try:
+            data=json.loads(m.group(1))
+            dicts.extend(list(walk_json_dicts(data)))
+        except Exception:
+            pass
 
+    health["payload_candidates"]=len(dicts)
+
+    for d in dicts:
+        name=_dict_first(d,(
+          "tournamentName","name","title","displayName","eventName","sponsorTitle"
+        ))
+        start=parse_json_date(_dict_first(d,(
+          "startDate","start_date","dateFrom","fromDate","start","eventStartDate"
+        )))
+        end=parse_json_date(_dict_first(d,(
+          "endDate","end_date","dateTo","toDate","end","eventEndDate"
+        )))
+        if not (name and start):
+            continue
+        if not end:end=start
+        if not overlaps(start,end):
+            continue
+
+        tid=_dict_first(d,("tournamentId","tournamentID","id","eventId"))
+        slug=_dict_first(d,("slug","urlSlug","seoSlug"))
+        url=_dict_first(d,("url","href","path","tournamentUrl"))
+        if isinstance(url,str) and url.startswith("/"):
+            url=urljoin("https://www.wtatennis.com",url)
+        if not url and tid and slug:
+            url=f"https://www.wtatennis.com/tournaments/{tid}/{slug}/{TODAY.year}"
+        if not url or "wtatennis.com" not in str(url):
+            continue
+
+        key=str(url)
+        if key in seen:continue
+        seen.add(key)
+
+        level=str(_dict_first(d,("level","tournamentLevel","category","tier","levelName")) or "")
+        is125=bool(re.search(r'\b125\b',level,re.I))
+        tour_id="wta-125" if is125 else "wta"
+        tour="WTA 125" if is125 else "WTA Tour"
+        location=str(_dict_first(d,("location","city","venueCity","hostCity")) or "")
         out.append({
-          "id":hashlib.sha1(f"atp-challenger|{href}|{start}".encode()).hexdigest()[:12],
-          "tour_id":"atp-challenger","tour":"ATP Challenger Tour","gender":"MEN",
-          "tournament":name,"start_date":start.isoformat(),"end_date":end.isoformat(),
+          "id":hashlib.sha1(f"{tour_id}|{url}|{start}".encode()).hexdigest()[:12],
+          "tour_id":tour_id,"tour":tour,"gender":"WOMEN",
+          "tournament":" ".join(str(name).split()),
+          "start_date":start.isoformat(),"end_date":end.isoformat(),
           "location":location,"category":level,
           "status":"ACTIVE" if start<=TODAY<=end else "UPCOMING",
-          "source_url":href,"participants":[],
-          "participant_source":"ATP Challenger official calendar / tournament page"
+          "source_url":str(url),"participants":[],
+          "participant_source":"WTA official calendar/tournament data"
         })
+
     health["events"]=len(out)
+    return out,health
+
+def discover_wta_from_visible_links(browser):
+    """Fallback: official tournament links, verified by visiting each candidate page."""
+    snap=browser.snapshot(WTA_CAL,3000)
+    if not snap.get("ok"):
+        return [],{"ok":False,"events":0,"url":WTA_CAL,"error":snap.get("error")}
+    candidates=[];seen=set()
+    for a in snap.get("links",[]):
+        href=str(a.get("href") or "")
+        if not re.search(r'/tournaments/\d+/[^/]+/2026(?:/|$)',href,re.I):continue
+        if href in seen:continue
+        seen.add(href);candidates.append(href)
+
+    # Bound the fallback. Prefer links with September context in parent.
+    priority=[]
+    normal=[]
+    for a in snap.get("links",[]):
+        href=str(a.get("href") or "")
+        if href not in seen:continue
+        parent=str(a.get("parent") or "")
+        (priority if re.search(r'Sep|September|2026',parent,re.I) else normal).append(href)
+    ordered=[]
+    for href in priority+candidates+normal:
+        if href not in ordered:ordered.append(href)
+
+    out=[]
+    for href in ordered[:80]:
+        page=browser.snapshot(href,500)
+        if not page.get("ok"):continue
+        text=" ".join(str(page.get("text") or "").split())
+        m=re.search(r'(?:Duration\s*)?([A-Za-z]+\s+\d{1,2})\s*[-–]\s*([A-Za-z]+\s+\d{1,2}),?\s*(\d{4})',text,re.I)
+        if not m:
+            m2=re.search(r'(\d{1,2})\s*[-–]\s*(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})',text,re.I)
+            if m2:
+                d1,d2,mon,yr=m2.groups()
+                start=parse_date(f"{d1} {mon} {yr}");end=parse_date(f"{d2} {mon} {yr}")
+            else:
+                continue
+        else:
+            a,b,yr=m.groups()
+            start=parse_date(f"{a} {yr}");end=parse_date(f"{b} {yr}")
+        if not overlaps(start,end):continue
+
+        title=""
+        tm=re.search(r'#\s*(.+)',str(page.get("text") or ""))
+        if tm:title=" ".join(tm.group(1).split())
+        if not title:
+            title=clean_tournament_name(next((x.get("text") for x in page.get("links",[]) if x.get("href")==href),"WTA Tournament"))
+
+        is125=bool(re.search(r'\bWTA\s*125\b',text,re.I))
+        tid="wta-125" if is125 else "wta"
+        tour="WTA 125" if is125 else "WTA Tour"
+        out.append({
+          "id":hashlib.sha1(f"{tid}|{href}|{start}".encode()).hexdigest()[:12],
+          "tour_id":tid,"tour":tour,"gender":"WOMEN",
+          "tournament":title,"start_date":start.isoformat(),"end_date":end.isoformat(),
+          "location":"","status":"ACTIVE" if start<=TODAY<=end else "UPCOMING",
+          "source_url":href,"participants":[],
+          "participant_source":"WTA official tournament page"
+        })
+    return out,{"ok":True,"events":len(out),"url":WTA_CAL,"candidate_links":len(candidates)}
+
+def discover_atp_challenger(browser):
+    """ATP Challenger discovery from official results archive, with calendar fallback."""
+    sources=[ATP_CHAL_ARCHIVE,ATP_CHAL]
+    out=[];seen=set();overlap_mentions=0;source_health=[]
+
+    for source in sources:
+        snap=browser.snapshot(source,3000)
+        source_health.append({"url":source,"ok":snap.get("ok",False),"error":snap.get("error")})
+        if not snap.get("ok"):continue
+        text=snap.get("text") or ""
+        overlap_mentions+=calendar_overlap_mentions(text)
+
+        # 1) Use official tournament links and their surrounding card text.
+        for a in snap.get("links",[]):
+            href=str(a.get("href") or "")
+            if "/en/tournaments/" not in href:continue
+            parent=str(a.get("parent") or a.get("text") or "")
+            st,en=date_range(parent)
+            if not overlaps(st,en):continue
+            name=clean_tournament_name(a.get("text"))
+            if not name or href in seen:continue
+            seen.add(href)
+            lm=re.search(r'Challenger\s+(\d+)',parent,re.I)
+            out.append({
+              "id":hashlib.sha1(f"atp-challenger|{href}|{st}".encode()).hexdigest()[:12],
+              "tour_id":"atp-challenger","tour":"ATP Challenger Tour","gender":"MEN",
+              "tournament":name,"start_date":st.isoformat(),"end_date":en.isoformat(),
+              "location":"","category":f"Challenger {lm.group(1)}" if lm else "",
+              "status":"ACTIVE" if st<=TODAY<=en else "UPCOMING",
+              "source_url":href,"participants":[],
+              "participant_source":"ATP Challenger official archive/calendar"
+            })
+
+        # 2) Archive text fallback: match each current date-range line to a nearby
+        # tournament link by visible tournament text.
+        lines=[" ".join(x.split()) for x in str(text).splitlines() if x.strip()]
+        current_lines=[]
+        for line in lines:
+            st,en=date_range(line)
+            if overlaps(st,en):
+                current_lines.append((line,st,en))
+
+        links=snap.get("links",[])
+        for line,st,en in current_lines:
+            for a in links:
+                href=str(a.get("href") or "")
+                if "/en/tournaments/" not in href:continue
+                atxt=" ".join(str(a.get("text") or "").split())
+                if not atxt or len(atxt)<3:continue
+                if norm(atxt) not in norm(line):continue
+                if href in seen:continue
+                seen.add(href)
+                out.append({
+                  "id":hashlib.sha1(f"atp-challenger|{href}|{st}".encode()).hexdigest()[:12],
+                  "tour_id":"atp-challenger","tour":"ATP Challenger Tour","gender":"MEN",
+                  "tournament":atxt,"start_date":st.isoformat(),"end_date":en.isoformat(),
+                  "location":"","category":"",
+                  "status":"ACTIVE" if st<=TODAY<=en else "UPCOMING",
+                  "source_url":href,"participants":[],
+                  "participant_source":"ATP Challenger official results archive"
+                })
+
+        if out:break
+
+    health={"ok":any(x["ok"] for x in source_health),"events":len(out),
+            "url":ATP_CHAL_ARCHIVE,"calendar_overlap_mentions":overlap_mentions,
+            "sources":source_health}
     return out,health
 
 def classify_wta_tournament(browser,t):
@@ -496,7 +691,7 @@ def participant_links(browser,t):
         draw_found={}
         draw_url=t.get("draw_url")
         if draw_url:
-            snap=browser.snapshot(draw_url,2600)
+            snap=browser.snapshot(draw_url,2800)
             if snap.get("ok"):
                 take_visible_players(
                     snap,draw_found,
@@ -504,7 +699,6 @@ def participant_links(browser,t):
                     include_itf_draw_text=True
                 )
 
-        # Order of play corroborates active participants, especially during qualifying.
         if t.get("order_url"):
             snap=browser.snapshot(t.get("order_url"),1800)
             if snap.get("ok"):
@@ -514,36 +708,37 @@ def participant_links(browser,t):
                     include_itf_draw_text=True
                 )
 
-        main_expected=int(t.get("main_draw_size") or 0)
-        # If an official main-draw size is published, use it as the completeness benchmark.
-        if main_expected:
-            ratio=len(draw_found)/main_expected
-            if ratio>=0.75:
-                t["participant_field_basis"]="ITF draw / order of play"
+        expected=int(t.get("main_draw_size") or 0)
+        if expected:
+            ratio=len(draw_found)/expected
+            if 0.75<=ratio<=3.0:
+                t["participant_field_basis"]="ITF active draw / order of play"
                 t["participant_field_type"]="DRAW"
                 t["participant_field_confidence"]="HIGH"
-                t["participant_field_expected_min"]=main_expected
+                t["participant_field_expected_min"]=expected
                 return list(draw_found.values())
-            elif len(draw_found)>=8:
-                t["participant_field_basis"]="ITF draw / order of play"
+            if 8<=len(draw_found)<expected*3:
+                t["participant_field_basis"]="ITF partial draw / order of play"
                 t["participant_field_type"]="DRAW"
                 t["participant_field_confidence"]="MEDIUM"
-                t["participant_field_expected_min"]=main_expected
+                t["participant_field_expected_min"]=expected
                 return list(draw_found.values())
-        elif len(draw_found)>=16:
-            t["participant_field_basis"]="ITF draw / order of play"
-            t["participant_field_type"]="DRAW"
-            t["participant_field_confidence"]="HIGH"
-            t["participant_field_expected_min"]=16
-            return list(draw_found.values())
-        elif len(draw_found)>=8:
-            t["participant_field_basis"]="ITF draw / order of play"
-            t["participant_field_type"]="DRAW"
-            t["participant_field_confidence"]="MEDIUM"
-            t["participant_field_expected_min"]=16
-            return list(draw_found.values())
+        else:
+            if 16<=len(draw_found)<=128:
+                t["participant_field_basis"]="ITF active draw / order of play"
+                t["participant_field_type"]="DRAW"
+                t["participant_field_confidence"]="HIGH"
+                t["participant_field_expected_min"]=16
+                return list(draw_found.values())
+            if 8<=len(draw_found)<16:
+                t["participant_field_basis"]="ITF partial draw / order of play"
+                t["participant_field_type"]="DRAW"
+                t["participant_field_confidence"]="MEDIUM"
+                t["participant_field_expected_min"]=16
+                return list(draw_found.values())
 
-        # Pre-draw fallback: acceptance list is a WATCH source, not an active field.
+        # Acceptance pool is WATCH INTELLIGENCE ONLY.
+        # Do not return hundreds of pool names as tournament participants.
         acceptance_found={}
         url=t.get("acceptance_url")
         if url:
@@ -555,19 +750,16 @@ def participant_links(browser,t):
                         re.search(r"/en/players/",a.get("href",""),re.I)
                         and not re.search(r"withdraw|Automatic Withdrawal",parent,re.I)
                     ):
-                        add_person(
-                            acceptance_found,
-                            a.get("text"),
-                            a.get("href"),
-                            "ITF acceptance list"
-                        )
+                        add_person(acceptance_found,a.get("text"),a.get("href"),"ITF acceptance list")
                 extract_itf_table_text(acceptance_found,snap)
 
-        t["participant_field_basis"]="ITF acceptance list / pre-draw pool"
-        t["participant_field_type"]="ACCEPTANCE_POOL"
+        t["acceptance_pool_people"]=list(acceptance_found.values())
+        t["acceptance_pool_screened_count"]=len(acceptance_found)
+        t["participant_field_basis"]="ITF acceptance list watch only; active draw not captured"
+        t["participant_field_type"]="INCOMPLETE"
         t["participant_field_confidence"]="LOW"
-        t["participant_field_expected_min"]=None
-        return list(acceptance_found.values())
+        t["participant_field_expected_min"]=expected or None
+        return []
 
     # -----------------------------------------
     # WTA: visible player list / draw first.
@@ -839,8 +1031,15 @@ with sync_playwright() as pw:
 
     x,h=discover_generic(browser,ATP_CAL,"atp","ATP Tour","MEN",r"/en/tournaments/");tournaments+=x;health["atp"]=h
     x,h=discover_atp_challenger(browser);tournaments+=x;health["atp_challenger"]=h
-    x,h=discover_generic(browser,WTA_CAL,"wta","WTA Tour","WOMEN",r"/tournaments/");tournaments+=x;health["wta"]=h
-    health["wta_125"]={"ok":h.get("ok",False),"events":"classified from official WTA tournament metadata","url":WTA_CAL}
+
+    x,h=discover_wta_from_payloads(browser)
+    if not x:
+        x,h2=discover_wta_from_visible_links(browser)
+        h={"payload":h,"visible_fallback":h2,"ok":h2.get("ok",False),"events":len(x),"url":WTA_CAL}
+    tournaments+=x;health["wta"]=h
+    health["wta_125"]={"ok":h.get("ok",False),
+      "events":sum(t.get("tour_id")=="wta-125" for t in x),
+      "url":WTA_CAL,"method":"classified from official WTA calendar/tournament data"}
     x,h=discover_itf(browser,ITF_MEN,"itf-men","ITF Men's World Tennis Tour","MEN");tournaments+=x;health["itf_men"]=h
     x,h=discover_itf(browser,ITF_WOMEN,"itf-women","ITF Women's World Tennis Tour","WOMEN");tournaments+=x;health["itf_women"]=h
 
@@ -1003,16 +1202,34 @@ with sync_playwright() as pw:
         t["no_u18_indicator_count"]=sum(p.get("screening_status")=="NO_U18_INDICATOR" for p in parts)
         t["unresolved_count"]=t["targeted_review_count"]
 
-        # Tournament regulatory status is based on U18 screening, not universal DOB coverage.
-        t["confirmed_u18"]=t["verified_u18"] if t.get("participant_field_type")!="ACCEPTANCE_POOL" else []
-        t["pre_draw_u18"]=t["verified_u18"] if t.get("participant_field_type")=="ACCEPTANCE_POOL" else []
+        # Active-field U18 status.
+        t["confirmed_u18"]=list(t["verified_u18"])
+        t["pre_draw_u18"]=[]
+
+        # Acceptance pool is watch-only intelligence. Cross-match ONLY against
+        # verified U18 sources/cache; do not count or classify the entire pool.
+        for ap in t.get("acceptance_pool_people",[]) or []:
+            k=norm(ap.get("name"))
+            hit=None
+            if k in u18_index:
+                hit={**ap,**u18_index[k],"screening_status":"VERIFIED_U18"}
+            else:
+                cached=persistent_age_cache.get(k)
+                if cached and cached.get("age_status")=="VERIFIED U18":
+                    hit={**ap,**cached,"screening_status":"VERIFIED_U18"}
+            if hit:
+                t["pre_draw_u18"].append(hit)
+
+        # de-dupe pool watch hits
+        pd={}
+        for p0 in t["pre_draw_u18"]:
+            pd[norm(p0.get("name"))]=p0
+        t["pre_draw_u18"]=list(pd.values())
 
         if t["confirmed_u18"]:
             t["status_color"]="RED";t["regulatory_status"]="NOT PERMISSIBLE — CONFIRMED U18 ACTIVE FIELD"
         elif t["pre_draw_u18"]:
             t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — U18 IN PRE-DRAW ACCEPTANCE POOL"
-        elif t.get("participant_field_type")=="ACCEPTANCE_POOL":
-            t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — PRE-DRAW ACCEPTANCE POOL"
         elif not t["field_captured"]:
             t["status_color"]="AMBER";t["regulatory_status"]="REVIEW — PARTICIPANT FIELD INCOMPLETE"
         elif t["targeted_review_count"]:
@@ -1075,7 +1292,7 @@ summary={"tournaments_mapped":len(tournaments),
  "amber_tournaments":sum(t["status_color"]=="AMBER" for t in tournaments),
  "green_tournaments":sum(t["status_color"]=="GREEN" for t in tournaments),
  "active_field_participants_screened":sum(t["participant_count"] for t in tournaments if t.get("participant_field_type")!="ACCEPTANCE_POOL"),
- "pre_draw_pool_names_screened":sum(t["participant_count"] for t in tournaments if t.get("participant_field_type")=="ACCEPTANCE_POOL"),
+ "pre_draw_pool_names_screened":sum(int(t.get("acceptance_pool_screened_count") or 0) for t in tournaments),
  "verified_u18_players":len(exposure),
  "pre_draw_u18_watch_players":len(pre_draw_watch),
  "targeted_review_candidates":len(exceptions),
@@ -1096,6 +1313,7 @@ schedule_out={
     "participant_count":t.get("participant_count",0),
     "verified_u18_count":len(t.get("confirmed_u18",[])),
     "pre_draw_u18_count":len(t.get("pre_draw_u18",[])),
+    "acceptance_pool_screened_count":t.get("acceptance_pool_screened_count",0),
     "targeted_review_count":t.get("targeted_review_count",0),
     "official_main_draw_size":t.get("main_draw_size") or t.get("official_singles_draw_size"),
     "official_qualifying_draw_size":t.get("qualifying_draw_size"),
@@ -1150,7 +1368,12 @@ for t in tournaments:
 
 chal_health=health.get("atp_challenger") or {}
 if int(chal_health.get("calendar_overlap_mentions") or 0)>0 and not any(t.get("tour_id")=="atp-challenger" for t in tournaments):
-    critical_issues.append("ATP_CHALLENGER_CALENDAR_HAS_CURRENT_EVENTS_BUT_DISCOVERY_RETURNED_ZERO")
+    critical_issues.append("ATP_CHALLENGER_OFFICIAL_SOURCE_HAS_CURRENT_EVENTS_BUT_DISCOVERY_RETURNED_ZERO")
+
+wta_events=[t for t in tournaments if t.get("tour_id") in ("wta","wta-125")]
+wta_health=health.get("wta") or {}
+if wta_health.get("ok") and not wta_events:
+    critical_issues.append("WTA_OFFICIAL_CALENDAR_LOADED_BUT_DISCOVERY_RETURNED_ZERO")
 
 # Coverage gaps are visible quality warnings, not fatal.
 for family in FAMILIES:
