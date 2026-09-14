@@ -377,23 +377,33 @@ def participant_links(browser,t):
     found={}
 
     if tid.startswith("itf-"):
-        # Draw / order of play are the best evidence of actual participation.
+        # Draw / order of play are the best evidence of the active competition field.
+        # IMPORTANT: count ALL names extracted from those pages, not just clickable
+        # profile links. The old logic under-counted draw participants and then
+        # unnecessarily swallowed the much larger Acceptance List.
         primary=[t.get("draw_url"),t.get("order_url")]
-        primary_count=0
         for url in primary:
             if not url:continue
             snap=browser.snapshot(url,2600)
             if not snap.get("ok"):continue
             for a in snap.get("links",[]):
                 if re.search(r"/en/players/",a.get("href",""),re.I):
-                    before=len(found); add_person(found,a.get("text"),a.get("href"),"ITF draw/order of play")
-                    primary_count += len(found)-before
+                    add_person(found,a.get("text"),a.get("href"),"ITF draw/order of play")
             extract_itf_table_text(found,snap)
             extract_itf_draw_text(found,snap)
             extract_json_people(found,snap.get("payloads"),"ITF rendered draw data")
 
-        # Acceptance List is a fallback / supplement, but withdrawals are excluded.
-        if primary_count==0 or len(found)<8:
+        primary_count=len(found)
+
+        # If a meaningful draw/order-of-play field is available, STOP HERE.
+        # Do not contaminate it with hundreds of acceptance-list alternates.
+        if primary_count>=4:
+            t["participant_field_basis"]="ITF draw / order of play"
+        else:
+            # Pre-draw fallback: use the Acceptance List, excluding explicit
+            # withdrawals. This remains regulatory-relevant because accepted
+            # entrants/alternates were intentionally included in scope, but the
+            # UI will label the source honestly as an acceptance pool.
             url=t.get("acceptance_url")
             if url:
                 snap=browser.snapshot(url,2600)
@@ -404,8 +414,10 @@ def participant_links(browser,t):
                             add_person(found,a.get("text"),a.get("href"),"ITF acceptance list")
                     extract_itf_table_text(found,snap)
                     extract_json_people(found,snap.get("payloads"),"ITF rendered acceptance data")
+            t["participant_field_basis"]="ITF acceptance list / pre-draw pool"
 
     elif tid.startswith("wta"):
+        t["participant_field_basis"]="WTA player list / draw"
         urls=[wta_player_list_url(t.get("source_url")),wta_draw_url(t.get("source_url")),t.get("source_url")]
         for url in urls:
             if not url:continue
@@ -419,6 +431,7 @@ def participant_links(browser,t):
             extract_json_people(found,snap.get("payloads"),"WTA rendered tournament data")
 
     elif tid.startswith("atp"):
+        t["participant_field_basis"]="ATP draw / results"
         for url in atp_draw_urls(t.get("source_url")):
             snap=browser.snapshot(url,2600)
             if not snap.get("ok"):continue
@@ -430,6 +443,7 @@ def participant_links(browser,t):
 
     else:
         # UTR Pro Tennis Tour
+        t["participant_field_basis"]="UTR event participant data"
         url=t.get("source_url")
         if url:
             snap=browser.snapshot(url,2800)
@@ -684,6 +698,7 @@ with sync_playwright() as pw:
         people=participant_links(browser,t)
         t["participants_extracted"]=len(people)
         t["participant_extraction_status"]="EXTRACTED" if people else "NO PARTICIPANT FIELD EXTRACTED"
+        t["participant_field_basis"]=t.get("participant_field_basis") or t.get("participant_source") or "Official tournament participant source"
         t["participant_field_complete"]=False
         parts=[]
         targeted=[]
