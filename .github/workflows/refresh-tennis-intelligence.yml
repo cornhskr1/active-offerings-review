@@ -15,7 +15,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +29,9 @@ jobs:
         run: |
           python3 -m pip install --quiet playwright
           python3 -m playwright install --with-deps chromium
-      - name: Run refresh
+      - name: Validate tennis refresh code
+        run: python3 -m py_compile scripts/refresh_tennis_intelligence.py
+      - name: Run refresh and quality gate
         run: python3 scripts/refresh_tennis_intelligence.py
       - name: Commit refreshed data
         run: |
