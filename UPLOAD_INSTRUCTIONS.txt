@@ -1,0 +1,39 @@
+ACTIVE OFFERINGS REVIEW — SITE-WIDE READABILITY PATCH
+
+UPLOAD ONLY:
+
+repo root/
+REPLACE:
+- index.html
+
+NO scripts.
+NO workflows.
+NO data files.
+
+WHAT THIS CHANGES
+- Larger default site text
+- Larger section titles
+- Larger event/match text where existing classes support it
+- Larger supporting/meta text
+- Larger badges/status pills
+- Larger form controls and search fields
+- Larger catalog text
+- Larger table text
+- Slightly increased line-height throughout
+
+WHAT THIS DOES NOT CHANGE
+- Review logic
+- Restriction logic
+- Catalog updater/parser
+- Tennis logic
+- Schedule feeds
+- GitHub Actions
+- Any JSON data
+
+This patch is typography/readability only.
+
+AFTER UPLOAD
+1. Wait for Deploy Active Offerings Review to finish GREEN.
+2. Hard refresh the site.
+3. Check Review Today, Tennis Watch, Nebraska Collegiate, Coverage Control,
+   and Approved Catalog Events for comfortable text sizing.
