@@ -436,9 +436,7 @@ function tennisSchemaState(d){
   const activeScreened=tournaments
     .filter(t=>String(t.participant_field_type||'')!=='ACCEPTANCE_POOL')
     .reduce((n,t)=>n+Number(t.participant_count||0),0);
-  const poolScreened=tournaments
-    .filter(t=>String(t.participant_field_type||'')==='ACCEPTANCE_POOL')
-    .reduce((n,t)=>n+Number(t.participant_count||0),0);
+  const poolScreened=tournaments.reduce((n,t)=>n+Number(t.acceptance_pool_screened_count||0),0);
   const red=tournaments.filter(t=>t.status_color==='RED');
   const preDraw=tournaments.filter(t=>(t.pre_draw_u18||[]).length);
   const targeted=tournaments.reduce((n,t)=>n+Number(t.targeted_review_count||0),0);
@@ -470,7 +468,7 @@ function renderTennis(){
     ? `<b style="color:#a40000">QUALITY GATE FAILED:</b> ${esc((gate.critical_issues||[]).join(' | '))}`
     : `<b>Quality gate:</b> passed`;
   document.getElementById('tennisCacheStatus').innerHTML=
-    `${gateText}. <b>Screening model:</b> Unknown DOB ≠ manual review. RED requires active-field U18 confirmation; acceptance-pool U18 matches remain AMBER until draw/order-of-play confirmation. <b>Age cache:</b> ${Object.keys(cr).length} researched player records.`;
+    `${gateText}. <b>Screening model:</b> Unknown DOB ≠ manual review. RED requires active-field U18 confirmation. ITF acceptance pools are screened only for U18 watch hits and are never counted as active-field participants. <b>Age cache:</b> ${Object.keys(cr).length} researched player records.`;
 
   const redContainer=document.getElementById('tennisRed');
   const confirmed=state.red;
@@ -553,13 +551,14 @@ function renderTournament(t){
   const fieldType=String(t.participant_field_type||'INCOMPLETE');
   const fieldConfidence=String(t.participant_field_confidence||'LOW');
   const fieldCaptured=Boolean(t.field_captured);
+  const acceptanceWatch=Number(t.acceptance_pool_screened_count||0)>0;
   let c=tennisStatus(t);
 
   let note='';
   if(preDraw.length){
-    note+=`<div class="exception-note"><b>AMBER — U18 PRE-DRAW WATCH.</b> ${preDraw.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')} appears in the acceptance pool. Active draw/order-of-play participation is not yet confirmed.</div>`;
-  }else if(fieldType==='ACCEPTANCE_POOL'){
-    note+=`<div class="exception-note"><b>PRE-DRAW POOL.</b> ${participantCount} acceptance-pool names were screened. This source can support a U18 watch but cannot support GREEN clearance.</div>`;
+    note+=`<div class="exception-note"><b>AMBER — U18 PRE-DRAW WATCH.</b> ${preDraw.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')} appears in the official acceptance pool. Active draw/order-of-play participation is not yet confirmed.</div>`;
+  }else if(acceptanceWatch && !fieldCaptured){
+    note+=`<div class="exception-note"><b>PRE-DRAW WATCH SOURCE ONLY.</b> An official ITF acceptance pool was screened for known U18 athletes, but it is not displayed or counted as the active tournament field. Active draw/order-of-play capture is still required.</div>`;
   }else if(fieldConfidence==='MEDIUM'){
     note+=`<div class="exception-note"><b>PARTIAL ACTIVE FIELD.</b> Participant data was captured, but not completely enough to support GREEN clearance.</div>`;
   }else if(c==='red'){
@@ -579,9 +578,7 @@ function renderTournament(t){
               preDraw.length?'PRE-DRAW U18 WATCH':
               c==='green'?'OK · NO U18 EXPOSURE':'REVIEW REQUIRED';
 
-  const countText=fieldType==='ACCEPTANCE_POOL'
-    ? `${participantCount} pool names screened`
-    : `${participantCount} active-field participants screened`;
+  const countText=`${participantCount} active-field participants screened`;
 
   return `<details class="tournament ${c}" ${c==='red'||preDraw.length?'open':''}>
     <summary>
@@ -589,7 +586,7 @@ function renderTournament(t){
       <span class="tournament-name"><b>${esc(t.tournament||'Unnamed tournament')}</b><span>${esc(t.start_date||'')} → ${esc(t.end_date||'')}${t.location?' · '+esc(t.location):''}${t.category?' · '+esc(t.category):''}</span></span>
       <span class="tournament-counts">
         ${pill('gray',countText)}
-        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} cleared by U18 screen`):pill('amber',fieldType==='ACCEPTANCE_POOL'?'PRE-DRAW POOL':fieldConfidence==='MEDIUM'?'PARTIAL FIELD':'FIELD NOT CAPTURED')}
+        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} cleared by U18 screen`):pill('amber',acceptanceWatch?'PRE-DRAW WATCH ONLY':fieldConfidence==='MEDIUM'?'PARTIAL FIELD':'FIELD NOT CAPTURED')}
         ${targeted.length?pill('amber',`${targeted.length} targeted`):''}
         ${confirmed.length?pill('red',`${confirmed.length} confirmed U18`):''}
         ${preDraw.length?pill('amber',`${preDraw.length} U18 watch`):''}
