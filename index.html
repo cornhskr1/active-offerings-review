@@ -45,27 +45,45 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1p
 .targeted-exception b{font-size:11px}
 .screening-note{font-size:9px;color:var(--muted);margin-top:4px}
 
-/* ===== Site-wide readability pass ===== */
-html{font-size:17px}
-body{font-size:14px;line-height:1.48}
-nav button,.tab,.nav-btn{font-size:12px}
-.section-title{font-size:18px}
-.card-title,.event-title,.match-title{font-size:14px}
-.source-note,.muted,.subtle,.small{font-size:11px;line-height:1.45}
-.badge,.pill,.status,.tag{font-size:11px;line-height:1.25;padding-top:5px;padding-bottom:5px}
-button,input,select,textarea{font-size:13px}
-.toolbar input,.toolbar select{font-size:13px}
-.metric .value,.metric-value{font-size:24px}
-.metric .label,.metric-label{font-size:11px}
-.catalog-line,.catalog-event,.catalog-note{font-size:12px;line-height:1.4}
-.catalog-sport>summary,.catalog-group>summary{font-size:13px}
-table,th,td{font-size:12px;line-height:1.4}
-.staff-check,.action-text,.review-note{font-size:12px;line-height:1.45}
-.event-meta,.match-meta,.event-sub,.subline{font-size:11px;line-height:1.4}
-@media (max-width:800px){
-  html{font-size:16px}
-  body{font-size:13px}
-}
+/* ===== Readability v2: actual site selectors ===== */
+body{font-size:16px!important;line-height:1.5!important}
+.nav button{font-size:14px!important}
+.eyebrow{font-size:12px!important}
+.hero p{font-size:15px!important;line-height:1.5!important}
+.refresh-meta{font-size:13px!important}
+.section-title{font-size:22px!important}
+.small{font-size:13px!important;line-height:1.45!important}
+.legend span{font-size:12px!important;padding:6px 9px!important}
+.metric b{font-size:23px!important}
+.metric span{font-size:11px!important}
+.pill{font-size:11px!important;padding:5px 8px!important}
+.day>summary{font-size:15px!important}
+.subhead{font-size:12px!important}
+.alert-row b,.event-row b{font-size:14px!important}
+.row-meta{font-size:12px!important;line-height:1.4!important}
+.staff-action{font-size:12px!important;line-height:1.5!important;padding:8px 10px!important}
+.league-group>summary{font-size:14px!important}
+.college-card h3{font-size:16px!important}
+.college-loc{font-size:13px!important}
+.college-date{font-size:12px!important}
+.toolbar input,.toolbar select,.toolbar button{font-size:14px!important}
+th,td{font-size:13px!important;line-height:1.45!important}
+th{font-size:11px!important}
+.tennis-tour-head{font-size:14px!important}
+.tournament-name b{font-size:14px!important}
+.tournament-name span{font-size:12px!important;line-height:1.4!important}
+.u18-banner,.exception-note,.verified-note{font-size:12px!important;line-height:1.45!important}
+.show-more{font-size:11px!important}
+.coverage-card{font-size:14px!important}
+.conf>summary{font-size:14px!important}
+.catalog-sport>summary{font-size:14px!important}
+.catalog-line{font-size:12px!important;line-height:1.45!important}
+.empty{font-size:13px!important}
+.source-note{font-size:12px!important;line-height:1.45!important}
+.schedule-warning{font-size:13px!important}
+.targeted-exception{font-size:12px!important;line-height:1.45!important}
+.targeted-exception b{font-size:13px!important}
+.screening-note{font-size:12px!important}
 
 </style>
 </head>
@@ -306,6 +324,41 @@ function sameAlert(a,b){
     String(a?.sport||'').toLowerCase()===String(b?.sport||'').toLowerCase() &&
     ae&&be&&(ae.includes(be)||be.includes(ae));
 }
+
+function regionLeagueLabel(region,league){
+  const r=String(region||'').trim();
+  const l=String(league||'').trim();
+  if(!r)return l;
+  if(!l)return r;
+  const rl=r.toLowerCase(), ll=l.toLowerCase();
+  if(ll===rl || ll.startsWith(rl+' ') || ll.startsWith(rl+' — ') || ll.startsWith(rl+' - '))return l;
+  return `${r} — ${l}`;
+}
+function regionForAttentionCard(card,events){
+  const ce=String(card?.event||card?.title||'').toLowerCase();
+  const cs=String(card?.sport||'').toLowerCase();
+  const cl=String(card?.league||'').toLowerCase();
+  const ct=ctKey(card?.start_time);
+
+  const exact=(events||[]).find(e=>
+    String(e?.sport||'').toLowerCase()===cs &&
+    String(e?.league||'').toLowerCase()===cl &&
+    ctKey(e?.start_time)===ct &&
+    ce && (
+      String(e?.name||'').toLowerCase()===ce ||
+      ce.includes(String(e?.name||'').toLowerCase()) ||
+      String(e?.name||'').toLowerCase().includes(ce)
+    )
+  );
+  if(exact?.region)return exact.region;
+
+  const source=(DATA.global?.sources||[]).find(s=>
+    String(s?.sport||'').toLowerCase()===cs &&
+    String(s?.league||'').toLowerCase()===cl
+  );
+  return source?.region||'';
+}
+
 function renderToday(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -351,7 +404,7 @@ function renderToday(){
     [events.length,'mapped upcoming/active'],
     [red,'not permissible'],
     [amber,'manual review'],
-    [new Set(events.map(e=>e.league)).size,'active leagues'],
+    [new Set(events.map(e=>regionLeagueLabel(e.region,e.league))).size,'active leagues'],
     [(DATA.tennis?.summary||{}).verified_u18_players||0,'tennis U18 exposure']
   ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
@@ -369,7 +422,7 @@ function renderToday(){
 
     const leagueGroups={};
     dayEvents.forEach(e=>{
-      const k=`${e.sport} · ${e.league}`;
+      const k=`${e.sport} · ${regionLeagueLabel(e.region,e.league)}`;
       (leagueGroups[k]??=[]).push(e);
     });
 
@@ -393,7 +446,7 @@ function renderToday(){
             ${pill(col,c.severity==='RED'?'NOT PERMISSIBLE':'REVIEW REQUIRED')}
             ${pill('blue',c.sport||'EVENT')}
             <div>
-              <b>${esc(c.league?`${c.league} · `:'')}${esc(c.event||c.title||'')}</b>
+              <b>${esc(c.league?`${regionLeagueLabel(regionForAttentionCard(c,events),c.league)} · `:'')}${esc(c.event||c.title||'')}</b>
               <div class="row-meta">${esc(c.reason||'')}${esc(who)}</div>
               <div class="staff-action"><b>Staff check:</b> ${esc(c.staff_action||'Review the active offering.')} <b>Scope:</b> all licensed sportsbook platforms.</div>
             </div>
@@ -623,7 +676,7 @@ function renderTournament(t){
   </details>`;
 }
 function renderNcaa(){const d=DATA.ncaa||{},teams=d.teams||[];const mapped=teams.filter(t=>t.mapping_status!=='UNRESOLVED').length,u18=teams.reduce((n,t)=>n+(t.verified_u18||0),0);document.getElementById('ncaaMetrics').innerHTML=[[teams.length,'FBS teams'],[mapped,'mapped'],[teams.length-mapped,'unmapped'],[u18,'known U18'],[teams.filter(t=>t.schedule_ok&&t.roster_ok).length,'schedule + roster healthy']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const q=(document.getElementById('ncaaSearch').value||'').toLowerCase(),f=document.getElementById('ncaaMapFilter').value||'all';const arr=teams.filter(t=>{const hay=`${t.team} ${t.conference}`.toLowerCase(),isMapped=t.mapping_status!=='UNRESOLVED';return(!q||hay.includes(q))&&(f==='all'||(f==='mapped'&&isMapped)||(f==='unmapped'&&!isMapped)||(f==='u18'&&(t.verified_u18||0)>0))});const by={};arr.forEach(t=>(by[t.conference||'Other']??=[]).push(t));document.getElementById('ncaaConferences').innerHTML=Object.keys(by).sort().map(c=>`<details class="conf" ${q?'open':''}><summary><span>${esc(c)}</span><span>${by[c].length} teams</span></summary><table><thead><tr><th>Team</th><th>Mapping</th><th>Schedule</th><th>Roster</th><th>Age Coverage</th><th>Known U18</th></tr></thead><tbody>${by[c].sort((a,b)=>a.team.localeCompare(b.team)).map(t=>`<tr><td><b>${esc(t.team)}</b></td><td>${pill(t.mapping_status==='UNRESOLVED'?'amber':'green',t.mapping_status==='UNRESOLVED'?'UNMAPPED':'MAPPED')}</td><td>${pill(t.schedule_ok?'green':'amber',t.schedule_ok?'OK':'CHECK')}</td><td>${pill(t.roster_ok?'green':'amber',t.roster_ok?'OK':'CHECK')}</td><td>${pill(t.age_coverage==='FULL'?'green':'amber',t.age_coverage||'PARTIAL')}</td><td>${t.verified_u18||0}</td></tr>`).join('')}</tbody></table></details>`).join('')||`<div class="empty">No matching teams.</div>`}
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(s.league)}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS MUST CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 function renderCatalog(){const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();const st=DATA.catalogStatus||{};document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;const sections=(cat.sections||[]).filter(s=>!q||s.sport.toLowerCase().includes(q)||(s.lines||[]).some(l=>String(l).toLowerCase().includes(q)));document.getElementById('catalogSections').innerHTML=sections.map(s=>{const lines=(s.lines||[]).filter(l=>!q||s.sport.toLowerCase().includes(q)||String(l).toLowerCase().includes(q));return `<details class="catalog-sport" ${q?'open':''}><summary><span>${esc(s.sport)}</span><span>${lines.length} entries</span></summary><div class="catalog-body"><div class="catalog-lines">${lines.map(l=>`<div class="catalog-line ${lineColor(l)}">${esc(l)}</div>`).join('')}</div></div></details>`}).join('')||`<div class="empty">No matching catalog entries.</div>`}
 // interactions
