@@ -132,6 +132,20 @@ function eventTime(v){if(!v)return 'TBA';if(/^\d{4}-\d{2}-\d{2}T\d{1,2}:/.test(v
 function pill(color,text){return `<span class="pill ${color}">${esc(text)}</span>`}
 function severityColor(s){return String(s).toUpperCase()==='RED'?'red':String(s).toUpperCase()==='GREEN'?'green':'amber'}
 async function fetchJson(url,tries=3){let err;for(let i=0;i<tries;i++){try{const r=await fetch(`${url}?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`${r.status}`);return await r.json()}catch(e){err=e;await new Promise(res=>setTimeout(res,250*(i+1)))}}throw err}
+async function fetchJson(url,timeoutMs=8000){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),timeoutMs);
+  try{
+    const r=await fetch(`${url}${url.includes('?')?'&':'?'}v=${Date.now()}`,{
+      cache:'no-store',signal:ctl.signal
+    });
+    if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);
+    return await r.json();
+  }finally{
+    clearTimeout(timer);
+  }
+}
+
 async function loadAll(){const btn=document.getElementById('refreshBtn');btn.disabled=true;btn.textContent='Refreshing…';const results=await Promise.all(Object.entries(FILES).map(async([k,u])=>{try{DATA[k]=await fetchJson(u);return[k,true]}catch(e){console.warn(k,e);return[k,false]}}));const bad=results.filter(x=>!x[1]).map(x=>x[0]);renderAll();document.getElementById('reviewTime').textContent=fmtDateTime(new Date());const times=['global','priority','college','catalog','ncaa','tennis'].map(k=>DATA[k]?.generated_at).filter(Boolean).map(x=>new Date(x).getTime()).filter(Number.isFinite);document.getElementById('dataTime').textContent=times.length?fmtDateTime(Math.max(...times)):'—';const st=document.getElementById('refreshStatus');
 const current=todayKey();
 const globalEnd=DATA.global?.window_end||'';
@@ -353,50 +367,98 @@ function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope
 function renderRestrictions(){const q=(document.getElementById('restrictionSearch').value||'').toLowerCase(), f=document.getElementById('restrictionColor').value||'all';const rows=(DATA.catalog?.restrictions||[]).filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});document.getElementById('restrictionRows').innerHTML=rows.map(x=>{const c=restrictionColor(x);return `<tr><td>${pill(c,c==='red'?'NOT PERMISSIBLE':'REVIEW / LIMIT')}</td><td><b>${esc(x.scope_label||x.sport)}</b></td><td>${esc(x.catalog_section||x.sport||'')}</td><td>${esc(x.text)}</td></tr>`}).join('')||`<tr><td colspan="4">No matching restrictions.</td></tr>`}
 function renderU18(){const q=(document.getElementById('u18Search').value||'').toLowerCase();const rec=(DATA.known?.records||[]).filter(x=>!q||`${x.sport} ${x.league} ${x.team} ${x.athlete}`.toLowerCase().includes(q));document.getElementById('u18Rows').innerHTML=rec.map(x=>`<tr><td>${esc(x.sport)}</td><td>${esc(x.league)}</td><td>${esc(x.team)}</td><td><b>${esc(x.athlete)}</b></td><td>${esc(x.age_label||x.age||'U18')}</td><td>${pill('red','VERIFIED U18')}</td></tr>`).join('');const a=DATA.ncaaAge||{};document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];document.getElementById('ncaaAgeAlerts').innerHTML=alerts.length?alerts.map(x=>`<div class="alert-row">${pill(x.c,x.c==='red'?'VERIFIED U18':'AGE REVIEW')} ${pill('blue','NCAA FOOTBALL')}<div><b>${esc(x.name)} · ${esc(x.team)}</b><div class="row-meta">${esc(x.age_evidence||x.u18_risk_reason||'')}</div></div><span>${x.calculated_age!=null?esc(x.calculated_age):''}</span></div>`).join(''):`<div class="empty">No NCAA Football U18/age-review alerts.</div>`}
 function tennisStatus(t){return t.status_color==='RED'?'red':t.status_color==='GREEN'?'green':'amber'}
+
+function tennisSchemaState(d){
+  const tournaments=Array.isArray(d?.tournaments)?d.tournaments:[];
+  const men=tournaments.filter(t=>t.gender==='MEN');
+  const women=tournaments.filter(t=>t.gender==='WOMEN');
+  const screened=tournaments.reduce((n,t)=>n+Number(t.participant_count||0),0);
+  const red=tournaments.filter(t=>t.status_color==='RED');
+  const targeted=tournaments.reduce((n,t)=>n+Number(t.targeted_review_count||0),0);
+  const fieldGaps=tournaments.filter(t=>!t.field_captured).length;
+  const u18Names=new Set();
+  red.forEach(t=>(t.verified_u18||[]).forEach(p=>u18Names.add(String(p.name||'').trim())));
+  return {tournaments,men,women,screened,red,targeted,fieldGaps,u18Count:u18Names.size};
+}
+
 function renderTennis(){
-  const d=DATA.tennis||{},s=d.summary||{},cache=DATA.tennisCache||{};
+  const d=DATA.tennis||{};
+  const state=tennisSchemaState(d);
+  const cache=DATA.tennisCache||{};
+
+  // Summary is derived from the exact same tournament array used below.
   document.getElementById('tennisMetrics').innerHTML=[
-    [s.tournaments_mapped||0,'tournaments mapped'],
-    [s.participants_screened||0,'entrants screened'],
-    [s.verified_u18_players||0,'verified U18 exposure'],
-    [s.targeted_review_candidates||0,'targeted age checks'],
-    [s.field_gaps||0,'participant-field gaps']
+    [state.tournaments.length,'tournaments mapped'],
+    [state.screened,'entrants screened'],
+    [state.u18Count,'verified U18 exposure'],
+    [state.targeted,'targeted age checks'],
+    [state.fieldGaps,'participant-field gaps']
   ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
   const cr=cache.records||{};
   document.getElementById('tennisCacheStatus').innerHTML=
     `<b>Screening model:</b> Unknown DOB ≠ manual review. Tournament entrants are cross-matched against the verified U18 registry and junior-age watch universe. <b>Age cache:</b> ${Object.keys(cr).length} researched player records.`;
 
-  const red=(d.tournaments||[]).filter(t=>t.status_color==='RED');
-  document.getElementById('tennisRed').innerHTML=red.length?red.map(t=>
-    `<div class="u18-banner"><b>${esc(t.tour)} · ${esc(t.tournament)}</b> — ${(t.verified_u18||[]).map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`
-  ).join(''):`<div class="empty">No verified U18 professional tournament exposure in the current window.</div>`;
+  const schemaIssue = state.tournaments.length>0 && state.screened===0;
 
-  renderTennisGender('MEN','tennisMen');
-  renderTennisGender('WOMEN','tennisWomen');
+  const redContainer=document.getElementById('tennisRed');
+  if(schemaIssue){
+    redContainer.innerHTML=`<div class="exception-note"><b>DATA/SCHEMA REVIEW REQUIRED.</b> Tournaments are mapped, but no participant fields were captured in the current feed. U18 exposure is therefore not shown as actionable until participant linkage is available.</div>`;
+  }else{
+    redContainer.innerHTML=state.red.length?state.red.map(t=>
+      `<div class="u18-banner"><b>${esc(t.tour)} · ${esc(t.tournament)}</b> — ${(t.verified_u18||[]).map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`
+    ).join(''):`<div class="empty">No verified U18 professional tournament exposure in the current window.</div>`;
+  }
 
-  const ex=d.targeted_exceptions||[];
+  renderTennisGender('MEN','tennisMen',state);
+  renderTennisGender('WOMEN','tennisWomen',state);
+
+  const ex=Array.isArray(d.targeted_exceptions)?d.targeted_exceptions:[];
   document.getElementById('tennisExceptions').innerHTML=ex.length?ex.map(x=>
     `<div class="targeted-exception"><b>${esc(x.name)}</b> · ${esc(x.tour)} · ${esc(x.tournament)}
       <div class="screening-note">${esc(x.candidate_reason||x.evidence||'Targeted U18 check required.')}</div>
     </div>`
   ).join(''):`<div class="empty">No targeted age exceptions. Unknown adult DOBs are intentionally excluded from manual review.</div>`;
 }
-function renderTennisGender(g,target){
-  const d=DATA.tennis||{},fam=(d.tour_families||[]).filter(x=>x.gender===g),tours=d.tournaments||[];
-  document.getElementById(target).innerHTML=fam.map(f=>{
+
+function renderTennisGender(g,target,state){
+  const d=DATA.tennis||{},fam=(d.tour_families||[]).filter(x=>x.gender===g),tours=state.tournaments||[];
+  const el=document.getElementById(target);
+  if(!el)return;
+
+  if(!fam.length){
+    el.innerHTML=`<div class="exception-note"><b>AMBER — DATA/SCHEMA ISSUE.</b> No ${g==='MEN'?'men’s':'women’s'} tour families are present in the current tennis-intelligence feed.</div>`;
+    return;
+  }
+
+  el.innerHTML=fam.map(f=>{
     const ts=tours.filter(t=>t.tour_id===f.id);
-    return `<section class="tennis-tour"><div class="tennis-tour-head"><span>${esc(f.tour)}</span><span>${ts.length} tournament${ts.length===1?'':'s'}</span></div>${ts.length?ts.map(renderTournament).join(''):`<div class="empty" style="margin:10px">No tournament mapped from this tour in the current window.</div>`}</section>`
+    const body=ts.length?ts.map(renderTournament).join(''):
+      `<div class="empty" style="margin:10px">No tournament mapped from this tour in the current window.</div>`;
+    return `<section class="tennis-tour"><div class="tennis-tour-head"><span>${esc(f.tour)}</span><span>${ts.length} tournament${ts.length===1?'':'s'}</span></div>${body}</section>`;
   }).join('');
 }
+
 function renderTournament(t){
-  const c=tennisStatus(t),u18=t.verified_u18||[],targeted=t.targeted_review||[];
+  // Defensive schema normalization.
+  const participants=Array.isArray(t.participants)?t.participants:[];
+  const u18=Array.isArray(t.verified_u18)?t.verified_u18:[];
+  const targeted=Array.isArray(t.targeted_review)?t.targeted_review:[];
+  const participantCount=Number(t.participant_count||participants.length||0);
+  const fieldCaptured=Boolean(t.field_captured || participantCount>=4);
+  let c=tennisStatus(t);
+
+  // Never allow RED if the tournament has no participant linkage in the current feed.
+  if(c==='red' && participantCount===0){
+    c='amber';
+  }
+
   let note='';
   if(c==='red'){
     note=`<div class="u18-banner">Verified U18 exposure: ${u18.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`;
-  }else if(c==='amber' && !t.field_captured){
-    note=`<div class="exception-note">Official participant field was not captured completely. Source follow-up is required before this tournament can be cleared.</div>`;
-  }else if(c==='amber'){
+  }else if(!fieldCaptured){
+    note=`<div class="exception-note"><b>AMBER — PARTICIPANT FIELD NOT CAPTURED.</b> No U18 clearance is inferred. Refresh Tennis Intelligence / source follow-up is required.</div>`;
+  }else if(targeted.length){
     note=`<div class="exception-note">${targeted.length} targeted U18 check${targeted.length===1?'':'s'} remain. Only these athletes require age research.</div>`;
   }else{
     note=`<div class="verified-note">Participant field captured. No verified U18 exposure or targeted U18 candidate identified.</div>`;
@@ -405,15 +467,18 @@ function renderTournament(t){
   const exceptionRows=[...u18,...targeted];
   const table=exceptionRows.length?`<div class="table-wrap"><table><thead><tr><th>Participant</th><th>Age</th><th>Status</th><th>Evidence</th></tr></thead><tbody>${exceptionRows.map(participantRow).join('')}</tbody></table></div>`:'';
 
+  const label=c==='red'?'NOT PERMISSIBLE — U18':
+              c==='green'?'OK · NO U18 EXPOSURE':'REVIEW REQUIRED';
+
   return `<details class="tournament ${c}" ${c==='red'?'open':''}>
     <summary>
-      ${pill(c,c==='red'?'NOT PERMISSIBLE — U18':c==='green'?'OK · NO U18 EXPOSURE':'REVIEW REQUIRED')}
-      <span class="tournament-name"><b>${esc(t.tournament)}</b><span>${esc(t.start_date)} → ${esc(t.end_date)}${t.location?' · '+esc(t.location):''}${t.category?' · '+esc(t.category):''}</span></span>
+      ${pill(c,label)}
+      <span class="tournament-name"><b>${esc(t.tournament||'Unnamed tournament')}</b><span>${esc(t.start_date||'')} → ${esc(t.end_date||'')}${t.location?' · '+esc(t.location):''}${t.category?' · '+esc(t.category):''}</span></span>
       <span class="tournament-counts">
-        ${pill('gray',`${t.participant_count||0} entrants screened`)}
-        ${pill('green',`${t.no_u18_indicator_count||0} no U18 indicator`)}
+        ${pill('gray',`${participantCount} entrants screened`)}
+        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} no U18 indicator`):pill('amber','FIELD NOT CAPTURED')}
         ${targeted.length?pill('amber',`${targeted.length} targeted`):''}
-        ${u18.length?pill('red',`${u18.length} U18`):''}
+        ${u18.length&&participantCount>0?pill('red',`${u18.length} U18`):''}
       </span>
     </summary>
     <div class="tournament-body">
