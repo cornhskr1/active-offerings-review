@@ -76,7 +76,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1p
 <section class="panel" id="tennis">
 <div class="card">
   <div class="section-title">Professional Tennis Schedule — Today + 7</div>
-  <p class="small">Schedule first, then U18 screening. RED means a verified U18 athlete is entered. AMBER is reserved for an incomplete participant field or a small targeted U18 candidate. GREEN means the field was captured and no U18 exposure or targeted U18 candidate was identified.</p>
+  <p class="small">Schedule first, then U18 screening. RED means a verified U18 athlete is linked to the tournament. AMBER means the participant source is a pre-draw pool, partial/incomplete field, or a targeted U18 candidate remains. GREEN requires a credible active draw/player field with no U18 exposure or targeted candidate.</p>
   <div class="metrics" id="tennisMetrics"></div>
   <div class="source-note" id="tennisCacheStatus"></div>
 </div>
@@ -531,7 +531,9 @@ function renderTournament(t){
   const u18=Array.isArray(t.verified_u18)?t.verified_u18:[];
   const targeted=Array.isArray(t.targeted_review)?t.targeted_review:[];
   const participantCount=Number(t.participant_count||participants.length||0);
-  const fieldCaptured=Boolean(t.field_captured || participantCount>=4);
+  const fieldType=String(t.participant_field_type||'INCOMPLETE');
+  const fieldConfidence=String(t.participant_field_confidence||'LOW');
+  const fieldCaptured=Boolean(t.field_captured);
   let c=tennisStatus(t);
 
   // Never allow RED if the tournament has no participant linkage in the current feed.
@@ -540,20 +542,24 @@ function renderTournament(t){
   }
 
   let note='';
-  const largeAcceptancePool=participantCount>200 && String(t.participant_field_basis||'').toLowerCase().includes('acceptance');
-  if(largeAcceptancePool){
-    note+=`<div class="exception-note"><b>FIELD QUALITY NOTE.</b> This is a large pre-draw acceptance pool, not a final active draw. U18 matches remain actionable, but the entrant count should not be interpreted as the final tournament field.</div>`;
-  }
-  if(c==='red'){
+  if(fieldType==='ACCEPTANCE_POOL'){
+    note+=`<div class="exception-note"><b>PRE-DRAW POOL.</b> ${participantCount} names were screened from an ITF acceptance pool. This can identify a verified U18 exposure, but it cannot support a GREEN clearance until a credible draw/player field is available.</div>`;
+  }else if(fieldConfidence==='MEDIUM'){
+    note+=`<div class="exception-note"><b>PARTIAL FIELD.</b> Participant data was captured, but the field is not complete enough to support GREEN clearance.</div>`;
+  }else if(c==='red'){
     note+=`<div class="u18-banner">Verified U18 exposure: ${u18.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`;
   }else if(!fieldCaptured){
-    note+=`<div class="exception-note"><b>AMBER — PARTICIPANT FIELD NOT CAPTURED.</b> No U18 clearance is inferred. Refresh Tennis Intelligence / source follow-up is required.</div>`;
+    note+=`<div class="exception-note"><b>AMBER — PARTICIPANT FIELD NOT CAPTURED.</b> No U18 clearance is inferred. Source follow-up is required.</div>`;
   }else if(targeted.length){
     note+=`<div class="exception-note">${targeted.length} targeted U18 check${targeted.length===1?'':'s'} remain. Only these athletes require age research.</div>`;
   }else{
-    note+=`<div class="verified-note">Participant field captured and screened. No verified U18 exposure or targeted U18 candidate identified.</div>`;
+    note+=`<div class="verified-note">Participant field captured with high confidence. No verified U18 exposure or targeted U18 candidate identified.</div>`;
   }
 
+  // RED always retains the verified-U18 evidence even when the source is a pre-draw pool.
+  if(c==='red' && !note.includes('Verified U18 exposure:')){
+    note+=`<div class="u18-banner">Verified U18 exposure: ${u18.map(p=>`${esc(p.name)}${p.age!=null?' · age '+esc(p.age):''}`).join(' | ')}</div>`;
+  }
   const exceptionRows=[...u18,...targeted];
   const table=exceptionRows.length?`<div class="table-wrap"><table><thead><tr><th>Participant</th><th>Age</th><th>Status</th><th>Evidence</th></tr></thead><tbody>${exceptionRows.map(participantRow).join('')}</tbody></table></div>`:'';
 
@@ -565,15 +571,15 @@ function renderTournament(t){
       ${pill(c,label)}
       <span class="tournament-name"><b>${esc(t.tournament||'Unnamed tournament')}</b><span>${esc(t.start_date||'')} → ${esc(t.end_date||'')}${t.location?' · '+esc(t.location):''}${t.category?' · '+esc(t.category):''}</span></span>
       <span class="tournament-counts">
-        ${pill('gray',`${participantCount} entrants screened`)}
-        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} cleared by U18 screen`):pill('amber','FIELD NOT CAPTURED')}
+        ${pill('gray',`${participantCount} ${fieldType==='ACCEPTANCE_POOL'?'pool names':'participants'} screened`)}
+        ${fieldCaptured?pill('green',`${Number(t.no_u18_indicator_count||0)} cleared by U18 screen`):pill('amber',fieldType==='ACCEPTANCE_POOL'?'PRE-DRAW POOL':fieldConfidence==='MEDIUM'?'PARTIAL FIELD':'FIELD NOT CAPTURED')}
         ${targeted.length?pill('amber',`${targeted.length} targeted`):''}
         ${u18.length&&participantCount>0?pill('red',`${u18.length} U18`):''}
       </span>
     </summary>
     <div class="tournament-body">
       ${note}
-      <div class="small"><b>Participant field:</b> ${esc(t.participant_field_basis||t.participant_source||'Official tournament source')}</div>
+      <div class="small"><b>Participant field:</b> ${esc(t.participant_field_basis||t.participant_source||'Official tournament source')} · <b>Type:</b> ${esc(fieldType)} · <b>Confidence:</b> ${esc(fieldConfidence)}</div>
       ${table}
     </div>
   </details>`;
