@@ -33,11 +33,14 @@ jobs:
       - name: Run NCAA basketball refresh
         run: python3 scripts/refresh_ncaa_basketball.py
 
+      - name: Run NCAA basketball intelligence
+        run: python3 scripts/refresh_ncaa_basketball_intelligence.py
+
       - name: Commit refreshed basketball data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ncaa-basketball.json
+          git add data/ncaa-basketball.json data/ncaa-basketball-intelligence.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
