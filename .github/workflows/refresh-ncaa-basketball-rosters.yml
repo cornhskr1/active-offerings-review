@@ -1,0 +1,58 @@
+name: Refresh NCAA Basketball Rosters
+
+on:
+  schedule:
+    - cron: "41 10 * * *"
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: "Refresh all Division I men's and women's rosters"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: active-offerings-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Install dependencies
+        run: python3 -m pip install --quiet requests
+
+      - name: Refresh NCAA Basketball rosters
+        env:
+          FULL_REFRESH: ${{ github.event_name == 'workflow_dispatch' && inputs.full_refresh || 'false' }}
+          MAX_TEAMS: "160"
+          STALE_DAYS: "4"
+        run: python3 scripts/refresh_ncaa_basketball_rosters.py
+
+      - name: Commit roster cache
+        run: |
+          git config user.name "active-offerings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ncaa-basketball-rosters.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh NCAA basketball rosters"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
