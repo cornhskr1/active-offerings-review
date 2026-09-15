@@ -262,6 +262,19 @@ th{font-size:11px!important}
 @media(max-width:1000px){.bball-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.bball-grid{grid-template-columns:1fr}}
 
+
+/* ===== NCAA Basketball roster layer ===== */
+.bball-team{cursor:default}
+.bball-team-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.bball-roster-btn{border:1px solid #cbd1d6;background:#fff;border-radius:7px;padding:6px 9px;font-size:11px;font-weight:900;cursor:pointer}
+.bball-roster-btn:hover{background:#f3f4f5}
+.bball-roster-detail{margin-top:9px;border-top:1px solid #e5e8eb;padding-top:8px}
+.bball-roster-source{font-size:11px;color:var(--muted);margin-bottom:6px}
+.bball-roster-table{width:100%;border-collapse:collapse;font-size:11px}
+.bball-roster-table th,.bball-roster-table td{padding:5px 6px;border-bottom:1px solid #edf0f2;text-align:left;vertical-align:top}
+.bball-roster-table th{font-size:10px;text-transform:uppercase;color:#606970}
+.bball-roster-empty{font-size:11px;color:var(--muted);padding:7px 0}
+
 </style>
 </head>
 <body>
@@ -351,7 +364,7 @@ const FILES={
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
-  basketballIntel:'data/ncaa-basketball-intelligence.json', basketballDI:'data/ncaa-basketball-di-map.json',
+  basketballIntel:'data/ncaa-basketball-intelligence.json', basketballDI:'data/ncaa-basketball-di-map.json', basketballRosters:'data/ncaa-basketball-rosters.json',
   tennis:'data/tennis-intelligence.json', tennisCache:'data/tennis-age-cache.json'
 };
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -430,7 +443,7 @@ async function loadAll(){
 
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
 
-    const times=['global','priority','college','catalog','ncaa','basketball','basketballIntel','basketballDI','tennis']
+    const times=['global','priority','college','catalog','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis']
       .map(k=>DATA[k]?.generated_at)
       .filter(Boolean)
       .map(x=>new Date(x).getTime())
@@ -1077,6 +1090,7 @@ let BBALL_OPEN_CONFERENCES=new Set();
 function setBasketballGender(gender){
   BBALL_GENDER=gender==='Women'?'Women':'Men';
   BBALL_OPEN_CONFERENCES=new Set();
+  BBALL_OPEN_ROSTERS=new Set();
   document.querySelectorAll('.bball-gender-tab').forEach(btn=>{
     const active=btn.dataset.bballGender===BBALL_GENDER;
     btn.classList.toggle('active',active);
@@ -1095,6 +1109,54 @@ function toggleBasketballConference(conf){
   renderBasketball();
 }
 
+
+let BBALL_OPEN_ROSTERS=new Set();
+
+function basketballRosterRecord(team,gender){
+  const n=normTeamName(team);
+  return (DATA.basketballRosters?.teams||[]).find(x=>
+    x.gender===gender && normTeamName(x.team)===n
+  )||null;
+}
+function basketballRosterStatus(team,gender){
+  const r=basketballRosterRecord(team,gender);
+  if(!r)return {c:'amber',label:'ROSTER NOT LOADED',count:0};
+  const count=(r.athletes||[]).length;
+  if(r.status==='LOADED')return {c:'green',label:`ROSTER LOADED · ${count}`,count};
+  if(r.status==='PARTIAL')return {c:'amber',label:`ROSTER PARTIAL · ${count}`,count};
+  return {c:'red',label:'ROSTER SOURCE GAP',count};
+}
+function basketballKnownU18Name(name){
+  const n=normTeamName(name);
+  return (DATA.basketballIntel?.verified_u18||[]).some(x=>normTeamName(x.athlete)===n);
+}
+function rosterAgeText(a){
+  if(a.age!=null&&a.age!=='')return String(a.age);
+  if(a.date_of_birth)return a.date_of_birth;
+  return '—';
+}
+function basketballRosterDetail(team,gender){
+  const r=basketballRosterRecord(team,gender);
+  if(!r)return `<div class="bball-roster-empty">Roster has not been loaded yet.</div>`;
+  const athletes=r.athletes||[];
+  if(!athletes.length)return `<div class="bball-roster-empty">No athletes were returned from the current roster source. This team remains a source gap.</div>`;
+  return `<div class="bball-roster-source">Roster source: ESPN public roster feed · last checked ${fmtDateTime(r.last_checked)}</div>
+    <table class="bball-roster-table"><thead><tr><th>#</th><th>Athlete</th><th>Pos</th><th>Class</th><th>Age / DOB</th></tr></thead><tbody>
+    ${athletes.map(a=>`<tr>
+      <td>${esc(a.jersey||'—')}</td>
+      <td><b>${esc(a.name||'Unknown')}</b> ${basketballKnownU18Name(a.name)?pill('red','VERIFIED U18'):''}</td>
+      <td>${esc(a.position||'—')}</td>
+      <td>${esc(a.class||'—')}</td>
+      <td>${esc(rosterAgeText(a))}</td>
+    </tr>`).join('')}
+    </tbody></table>`;
+}
+function toggleBasketballRoster(key){
+  if(BBALL_OPEN_ROSTERS.has(key))BBALL_OPEN_ROSTERS.delete(key);
+  else BBALL_OPEN_ROSTERS.add(key);
+  renderBasketball();
+}
+
 function renderBasketball(){
   const map=DATA.basketballDI||{};
   const teams=(map.teams||[]).filter(x=>x.gender===BBALL_GENDER);
@@ -1109,11 +1171,18 @@ function renderBasketball(){
     teams.some(t=>normTeamName(t.team)===normTeamName(x.team))
   ).length;
 
+  const rosterRows=(DATA.basketballRosters?.teams||[]).filter(x=>x.gender===BBALL_GENDER);
+  const rostersLoaded=rosterRows.filter(x=>x.status==='LOADED').length;
+  const rosterGaps=rosterRows.filter(x=>x.status==='SOURCE GAP').length;
+  const athletesCached=rosterRows.reduce((n,x)=>n+(x.athletes||[]).length,0);
+
   document.getElementById('bballMetrics').innerHTML=[
     [programCount,`${BBALL_GENDER.toLowerCase()}'s D-I programs`],
     [confCount,'conferences'],
-    [knownU18,'verified U18'],
-    [(DATA.basketball?.events||[]).filter(e=>e.gender===BBALL_GENDER&&e.division==='Division I'&&e.status!=='COMPLETED').length,'active/upcoming schedule records']
+    [rostersLoaded,'rosters loaded'],
+    [athletesCached,'athletes cached'],
+    [rosterGaps,'roster source gaps'],
+    [knownU18,'verified U18']
   ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
   const qp=map.quality?.passed===true;
@@ -1147,14 +1216,22 @@ function renderBasketball(){
     const cards=rows.map(x=>{
       const games=bballUpcomingForTeam(x.team,x.gender);
       const u18=bballU18ForTeam(x.team);
+      const rs=basketballRosterStatus(x.team,x.gender);
+      const rosterKey=`${x.gender}|${x.team}`;
+      const rosterOpen=BBALL_OPEN_ROSTERS.has(rosterKey);
       return `<article class="bball-team">
         <h3>${esc(x.team)}</h3>
         <div class="meta">${esc(BBALL_GENDER)} · Division I · ${esc(x.conference)}</div>
         <div class="mini">
           ${pill(games.length?'blue':'gray',`${games.length} TODAY+7`)}
           ${u18.length?pill('red',`${u18.length} VERIFIED U18`):pill('green','NO KNOWN U18')}
-          ${pill('amber','ROSTER ADAPTER PENDING')}
+          ${pill(rs.c,rs.label)}
         </div>
+        <div class="bball-team-actions">
+          <span class="meta">${basketballRosterRecord(x.team,x.gender)?.last_checked?`Roster checked ${fmtDateTime(basketballRosterRecord(x.team,x.gender).last_checked)}`:'Roster refresh pending'}</span>
+          <button class="bball-roster-btn" type="button" data-bball-roster="${esc(rosterKey)}">${rosterOpen?'Hide roster':'View roster'}</button>
+        </div>
+        ${rosterOpen?`<div class="bball-roster-detail">${basketballRosterDetail(x.team,x.gender)}</div>`:''}
       </article>`;
     }).join('');
 
@@ -1170,9 +1247,15 @@ function renderBasketball(){
   document.querySelectorAll('[data-bball-conf]').forEach(btn=>{
     btn.addEventListener('click',()=>toggleBasketballConference(btn.dataset.bballConf));
   });
+  document.querySelectorAll('[data-bball-roster]').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      toggleBasketballRoster(btn.dataset.bballRoster);
+    });
+  });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS MUST CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
