@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "window_days": 7,
+  "timezone": "America/Chicago",
+  "source_name": "NCAA official public scoreboard",
+  "source_endpoint": "https://sdataprod.ncaa.com/",
+  "persisted_query_hash": "7287cda610a9326931931080cb3a604828febe6fe3c9016a7e4a36db99efdb7c",
+  "note": "Step 1 foundation only. Six NCAA basketball lanes are mapped. Review Today, Nebraska Collegiate, U18 screening, and restriction logic are added in later steps.",
+  "lanes": [
+    {
+      "id": "mbb-d1",
+      "sport_code": "MBB",
+      "gender": "Men",
+      "division_code": 1,
+      "division": "Division I",
+      "league": "NCAA Men's Basketball"
+    },
+    {
+      "id": "mbb-d2",
+      "sport_code": "MBB",
+      "gender": "Men",
+      "division_code": 2,
+      "division": "Division II",
+      "league": "NCAA Men's Basketball"
+    },
+    {
+      "id": "mbb-d3",
+      "sport_code": "MBB",
+      "gender": "Men",
+      "division_code": 3,
+      "division": "Division III",
+      "league": "NCAA Men's Basketball"
+    },
+    {
+      "id": "wbb-d1",
+      "sport_code": "WBB",
+      "gender": "Women",
+      "division_code": 1,
+      "division": "Division I",
+      "league": "NCAA Women's Basketball"
+    },
+    {
+      "id": "wbb-d2",
+      "sport_code": "WBB",
+      "gender": "Women",
+      "division_code": 2,
+      "division": "Division II",
+      "league": "NCAA Women's Basketball"
+    },
+    {
+      "id": "wbb-d3",
+      "sport_code": "WBB",
+      "gender": "Women",
+      "division_code": 3,
+      "division": "Division III",
+      "league": "NCAA Women's Basketball"
+    }
+  ]
+}
