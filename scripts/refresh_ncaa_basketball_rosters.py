@@ -46,36 +46,81 @@ else:
 def norm(v):
     s = str(v or "").lower()
     s = s.replace("&", " and ")
-    s = re.sub(r"\bsaint\b", "st", s)
+    # Keep meaningful institution words such as "college" and "university".
+    # Removing them can turn Boston College / Boston University into the same key.
     s = re.sub(r"[^a-z0-9]+", " ", s)
-    s = re.sub(r"\b(university|college|the)\b", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 
-ALIASES = {
-    "miami fl": {"miami fl","miami","miami hurricanes"},
-    "miami ohio": {"miami ohio","miami oh","miami redhawks"},
-    "nc state": {"nc state","north carolina state"},
-    "ole miss": {"ole miss","mississippi"},
-    "usc": {"usc","southern california"},
-    "uconn": {"uconn","connecticut"},
-    "unc": {"unc","north carolina"},
-    "lsu": {"lsu","louisiana state"},
-    "smu": {"smu","southern methodist"},
-    "tcu": {"tcu","texas christian"},
-    "ucf": {"ucf","central florida"},
-    "byu": {"byu","brigham young"},
-    "st john s": {"st john s","st johns"},
-    "saint mary s": {"saint mary s","st mary s"},
+# NCAA standings commonly abbreviate school names. Expand only known institutional
+# forms rather than applying unsafe global "St." -> State/Saint assumptions.
+NCAA_NAME_ALIASES = {
+    "Central Ark.": ["Central Arkansas"],
+    "Eastern Ky.": ["Eastern Kentucky"],
+    "North Ala.": ["North Alabama"],
+    "Queens (NC)": ["Queens", "Queens University"],
+    "West Ga.": ["West Georgia"],
+    "South Fla.": ["South Florida"],
+    "Iowa St.": ["Iowa State"],
+    "Eastern Wash.": ["Eastern Washington"],
+    "Northern Ariz.": ["Northern Arizona"],
+    "Northern Colo.": ["Northern Colorado"],
+    "Ohio St.": ["Ohio State"],
+    "Penn St.": ["Penn State"],
+    "CSU Bakersfield": ["Cal State Bakersfield", "California State Bakersfield"],
+    "Cal St. Fullerton": ["Cal State Fullerton", "California State Fullerton"],
+    "Col. of Charleston": ["Charleston", "College of Charleston"],
+    "Jacksonville St.": ["Jacksonville State"],
+    "Middle Tenn.": ["Middle Tennessee"],
+    "Northern Ky.": ["Northern Kentucky"],
+    "Central Mich.": ["Central Michigan"],
+    "Eastern Mich.": ["Eastern Michigan"],
+    "Western Mich.": ["Western Michigan"],
+    "N.C. Central": ["NC Central", "North Carolina Central"],
+    "South Carolina St.": ["South Carolina State"],
+    "Southern Ill.": ["Southern Illinois"],
+    "Utah St.": ["Utah State"],
+    "Eastern Ill.": ["Eastern Illinois"],
+    "Southeast Mo. St.": ["Southeast Missouri State", "SE Missouri State"],
+    "Southern Ind.": ["Southern Indiana"],
+    "Western Ill.": ["Western Illinois"],
+    "Alcorn": ["Alcorn State"],
+    "Ark.-Pine Bluff": ["Arkansas-Pine Bluff", "Arkansas Pine Bluff", "UAPB"],
+    "Mississippi Val.": ["Mississippi Valley State"],
+    "Southern U.": ["Southern", "Southern University"],
+    "A&M-Corpus Christi": ["Texas A&M-Corpus Christi", "Texas A&M Corpus Christi"],
+    "Northwestern St.": ["Northwestern State"],
+    "Southeastern La.": ["Southeastern Louisiana"],
+    "North Dakota St.": ["North Dakota State"],
+    "South Dakota St.": ["South Dakota State"],
+    "St. Thomas (MN)": ["St. Thomas-Minnesota", "St Thomas Minnesota", "St. Thomas"],
+    "Boston College": ["Boston College"],
+    "USC Upstate": ["USC Upstate", "South Carolina Upstate"],
+    "Saint Francis": ["Saint Francis", "Saint Francis (PA)", "St. Francis (PA)"],
+    "Mercyhurst": ["Mercyhurst"],
+    "Lindenwood": ["Lindenwood"],
+}
+
+COMMON_ALIASES = {
+    "Miami (FL)": ["Miami", "Miami FL"],
+    "Miami (OH)": ["Miami Ohio", "Miami OH"],
+    "NC State": ["North Carolina State"],
+    "Ole Miss": ["Mississippi"],
+    "USC": ["Southern California"],
+    "UConn": ["Connecticut"],
+    "UNC": ["North Carolina"],
+    "LSU": ["Louisiana State"],
+    "SMU": ["Southern Methodist"],
+    "TCU": ["Texas Christian"],
+    "UCF": ["Central Florida"],
+    "BYU": ["Brigham Young"],
 }
 
 def canonical_set(v):
-    n = norm(v)
-    out = {n}
-    for _, vals in ALIASES.items():
-        nv = {norm(x) for x in vals}
-        if n in nv:
-            out |= nv
-    return out
+    raw = str(v or "").strip()
+    values = {raw}
+    values.update(NCAA_NAME_ALIASES.get(raw, []))
+    values.update(COMMON_ALIASES.get(raw, []))
+    return {norm(x) for x in values if x}
 
 def flatten_directory(payload):
     found = []
@@ -95,11 +140,58 @@ def flatten_directory(payload):
 
 def team_names(team):
     vals = [
-        team.get("displayName"), team.get("shortDisplayName"),
-        team.get("location"), team.get("name"),
-        team.get("abbreviation"), team.get("slug")
+        team.get("location"),
+        team.get("shortDisplayName"),
+        team.get("displayName"),
+        team.get("name"),
+        team.get("abbreviation"),
+        team.get("slug"),
     ]
     return {norm(v) for v in vals if v}
+
+def candidate_score(wanted, team):
+    names = team_names(team)
+    best = 0
+    for a in wanted:
+        if not a:
+            continue
+        for b in names:
+            if not b:
+                continue
+            if a == b:
+                best = max(best, 100)
+                continue
+            if b.startswith(a + " ") or a.startswith(b + " "):
+                best = max(best, 88)
+            aw = set(a.split())
+            bw = set(b.split())
+            if aw and bw:
+                overlap = len(aw & bw) / max(len(aw), len(bw))
+                if overlap == 1 and min(len(aw),len(bw)) >= 2:
+                    best = max(best, 82)
+                elif overlap >= 0.75 and min(len(aw),len(bw)) >= 2:
+                    best = max(best, 72)
+    return best
+
+def match_team(ncaa_name, directory):
+    wanted = canonical_set(ncaa_name)
+    scored = []
+    for team in directory:
+        score = candidate_score(wanted, team)
+        if score:
+            scored.append((score, str(team.get("id")), team))
+
+    if not scored:
+        return None
+
+    scored.sort(key=lambda x:(-x[0], x[1]))
+    best_score = scored[0][0]
+    best = [x for x in scored if x[0] == best_score]
+
+    # Require a strong, unique result. Never guess across tied candidates.
+    if best_score < 82 or len(best) != 1:
+        return None
+    return best[0][2]
 
 def directory_for(gender):
     league = LEAGUES[gender]
