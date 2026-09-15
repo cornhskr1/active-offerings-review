@@ -30,16 +30,19 @@ jobs:
       - name: Build NCAA Basketball age cache
         run: python3 scripts/refresh_ncaa_basketball_age_cache.py
 
-      - name: Commit age cache
+      - name: Build NCAA Basketball age research queue
+        run: python3 scripts/build_ncaa_basketball_age_research_queue.py
+
+      - name: Commit age intelligence
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ncaa-basketball-age-cache.json
+          git add data/ncaa-basketball-age-cache.json data/ncaa-basketball-age-research-queue.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Refresh NCAA basketball age cache"
+          git commit -m "Refresh NCAA basketball age intelligence"
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
