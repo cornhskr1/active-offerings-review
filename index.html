@@ -160,6 +160,73 @@ th{font-size:11px!important}
   .catalog-lines{grid-template-columns:1fr!important}
 }
 
+
+/* ===== Approved Catalog visual hierarchy v1 ===== */
+#catalog .catalog-help{
+  font-size:12px;
+  color:#5b6570;
+  margin:2px 0 12px;
+  line-height:1.45;
+}
+.catalog-lines{
+  align-items:stretch;
+}
+.catalog-line.catalog-section,
+.catalog-line.catalog-country,
+.catalog-line.catalog-org{
+  grid-column:1 / -1!important;
+  min-height:auto!important;
+}
+.catalog-line.catalog-section{
+  background:#252a2e!important;
+  color:#fff!important;
+  border-color:#252a2e!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+  padding:9px 11px!important;
+}
+.catalog-line.catalog-country{
+  background:#e9edf0!important;
+  border-color:#cfd6dc!important;
+  color:#171a1d!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  padding:9px 11px!important;
+  border-left:5px solid #b42025!important;
+}
+.catalog-line.catalog-org{
+  background:#f5f7f8!important;
+  border-color:#d8dee3!important;
+  color:#2a3035!important;
+  font-size:13px!important;
+  font-weight:800!important;
+  padding:9px 11px!important;
+  border-left:4px solid #68737d!important;
+}
+.catalog-line.catalog-event{
+  font-size:13px!important;
+}
+.catalog-line.restricted,
+.catalog-line.prohibited{
+  grid-column:auto;
+  font-weight:800!important;
+}
+.catalog-line.restricted.catalog-note,
+.catalog-line.prohibited.catalog-note{
+  grid-column:1 / -1!important;
+}
+@media(max-width:900px){
+  .catalog-line.catalog-section,
+  .catalog-line.catalog-country,
+  .catalog-line.catalog-org,
+  .catalog-line.restricted.catalog-note,
+  .catalog-line.prohibited.catalog-note{
+    grid-column:1!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -219,7 +286,7 @@ th{font-size:11px!important}
 
 <section class="panel" id="coverage"><div class="card"><div class="section-title">Coverage Control</div><p class="small">Source health is not the same as permissibility. A source issue is AMBER because staff may need manual review; it is never RED by itself.</p><div class="coverage-grid" id="coverageGrid"></div></div></section>
 
-<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"></div><div id="catalogSections"></div></div></section>
+<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event. Catalog order and wording are preserved exactly as published.</div><div id="catalogSections"></div></div></section>
 </div>
 <script>
 const DATA={};
@@ -753,7 +820,36 @@ function renderTournament(t){
 function renderNcaa(){const d=DATA.ncaa||{},teams=d.teams||[];const mapped=teams.filter(t=>t.mapping_status!=='UNRESOLVED').length,u18=teams.reduce((n,t)=>n+(t.verified_u18||0),0);document.getElementById('ncaaMetrics').innerHTML=[[teams.length,'FBS teams'],[mapped,'mapped'],[teams.length-mapped,'unmapped'],[u18,'known U18'],[teams.filter(t=>t.schedule_ok&&t.roster_ok).length,'schedule + roster healthy']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const q=(document.getElementById('ncaaSearch').value||'').toLowerCase(),f=document.getElementById('ncaaMapFilter').value||'all';const arr=teams.filter(t=>{const hay=`${t.team} ${t.conference}`.toLowerCase(),isMapped=t.mapping_status!=='UNRESOLVED';return(!q||hay.includes(q))&&(f==='all'||(f==='mapped'&&isMapped)||(f==='unmapped'&&!isMapped)||(f==='u18'&&(t.verified_u18||0)>0))});const by={};arr.forEach(t=>(by[t.conference||'Other']??=[]).push(t));document.getElementById('ncaaConferences').innerHTML=Object.keys(by).sort().map(c=>`<details class="conf" ${q?'open':''}><summary><span>${esc(c)}</span><span>${by[c].length} teams</span></summary><table><thead><tr><th>Team</th><th>Mapping</th><th>Schedule</th><th>Roster</th><th>Age Coverage</th><th>Known U18</th></tr></thead><tbody>${by[c].sort((a,b)=>a.team.localeCompare(b.team)).map(t=>`<tr><td><b>${esc(t.team)}</b></td><td>${pill(t.mapping_status==='UNRESOLVED'?'amber':'green',t.mapping_status==='UNRESOLVED'?'UNMAPPED':'MAPPED')}</td><td>${pill(t.schedule_ok?'green':'amber',t.schedule_ok?'OK':'CHECK')}</td><td>${pill(t.roster_ok?'green':'amber',t.roster_ok?'OK':'CHECK')}</td><td>${pill(t.age_coverage==='FULL'?'green':'amber',t.age_coverage||'PARTIAL')}</td><td>${t.verified_u18||0}</td></tr>`).join('')}</tbody></table></details>`).join('')||`<div class="empty">No matching teams.</div>`}
 function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS MUST CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
-function renderCatalog(){const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();const st=DATA.catalogStatus||{};document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;const sections=(cat.sections||[]).filter(s=>!q||s.sport.toLowerCase().includes(q)||(s.lines||[]).some(l=>String(l).toLowerCase().includes(q)));document.getElementById('catalogSections').innerHTML=sections.map(s=>{const lines=(s.lines||[]).filter(l=>!q||s.sport.toLowerCase().includes(q)||String(l).toLowerCase().includes(q));return `<details class="catalog-sport" ${q?'open':''}><summary><span>${esc(s.sport)}</span><span>${lines.length} entries</span></summary><div class="catalog-body"><div class="catalog-lines">${lines.map(l=>`<div class="catalog-line ${lineColor(l)}">${esc(l)}</div>`).join('')}</div></div></details>`}).join('')||`<div class="empty">No matching catalog entries.</div>`}
+
+const CATALOG_COUNTRIES=new Set([
+'Afghanistan','Albania','Algeria','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahrain','Belarus','Belgium','Bolivia','Bosnia and Herzegovina','Brazil','Bulgaria','Canada','Chile','China','Colombia','Costa Rica','Croatia','Cyprus','Czech Republic','Denmark','Dominican Republic','Ecuador','Egypt','England','Estonia','Finland','France','Georgia','Germany','Greece','Hungary','Iceland','India','Indonesia','Ireland','Israel','Italy','Japan','Kazakhstan','Korea','Latvia','Lithuania','Luxembourg','Malaysia','Mexico','Morocco','Netherlands','New Zealand','North Macedonia','Norway','Paraguay','Peru','Poland','Portugal','Romania','Saudi Arabia','Scotland','Serbia','Singapore','Slovakia','Slovenia','South Africa','Spain','Sweden','Switzerland','Thailand','Turkey','Ukraine','United Arab Emirates','United States','Uruguay','Venezuela'
+]);
+function catalogLineRole(line){
+  const s=String(line||'').trim();
+  const low=s.toLowerCase();
+
+  if(/^(international-level competitions|international domestic leagues|fifa international events|confederation international events|cross-confederation events|domestic events|summer olympic games|winter olympic games|main tour events|road cycling|discipline world championships|continental tours)$/i.test(s)){
+    return 'catalog-section';
+  }
+
+  if(CATALOG_COUNTRIES.has(s) ||
+     /^(international|europe|asia|africa|oceania|north america|south america)$/i.test(s)){
+    return 'catalog-country';
+  }
+
+  if(!s.includes('|') &&
+     /(association|federation|confederation|organization|commission|council|board|authority|committee|union|fédération|federación|confederación)/i.test(s)){
+    return 'catalog-org';
+  }
+
+  if(/(no proposition|no player proposition|not permissible|wager limit|markets must close|markets limited|must be disabled|restriction)/i.test(s)){
+    return 'catalog-note';
+  }
+
+  return 'catalog-event';
+}
+
+function renderCatalog(){const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();const st=DATA.catalogStatus||{};document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;const sections=(cat.sections||[]).filter(s=>!q||s.sport.toLowerCase().includes(q)||(s.lines||[]).some(l=>String(l).toLowerCase().includes(q)));document.getElementById('catalogSections').innerHTML=sections.map(s=>{const lines=(s.lines||[]).filter(l=>!q||s.sport.toLowerCase().includes(q)||String(l).toLowerCase().includes(q));return `<details class="catalog-sport" ${q?'open':''}><summary><span>${esc(s.sport)}</span><span>${lines.length} entries</span></summary><div class="catalog-body"><div class="catalog-lines">${lines.map(l=>`<div class="catalog-line ${catalogLineRole(l)} ${lineColor(l)}">${esc(l)}</div>`).join('')}</div></div></details>`}).join('')||`<div class="empty">No matching catalog entries.</div>`}
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
 document.getElementById('refreshBtn').addEventListener('click',loadAll);
