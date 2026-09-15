@@ -85,6 +85,81 @@ th{font-size:11px!important}
 .targeted-exception b{font-size:13px!important}
 .screening-note{font-size:12px!important}
 
+
+/* ===== Approved Catalog readability/layout pass ===== */
+#catalog .card{padding:16px!important}
+#catalog .section-title{font-size:24px!important;margin-bottom:8px!important}
+#catalog .source-note{
+  font-size:13px!important;
+  line-height:1.5!important;
+  padding:11px 12px!important;
+  margin:8px 0 12px!important;
+}
+#catalog .toolbar{margin:10px 0 14px!important}
+#catalog .toolbar input{
+  width:min(760px,100%)!important;
+  min-height:44px!important;
+  padding:10px 12px!important;
+  font-size:15px!important;
+  border-radius:9px!important;
+}
+.catalog-sport{
+  border:1px solid #cfd6dc!important;
+  border-radius:11px!important;
+  margin-top:11px!important;
+  background:#fff!important;
+}
+.catalog-sport>summary{
+  padding:13px 14px!important;
+  font-size:15px!important;
+  line-height:1.3!important;
+  background:#f3f5f6!important;
+  border-bottom:1px solid transparent!important;
+}
+.catalog-sport[open]>summary{
+  border-bottom-color:#dfe4e8!important;
+  background:#eef1f3!important;
+}
+.catalog-sport>summary span:first-child{
+  font-size:16px!important;
+  letter-spacing:.01em!important;
+}
+.catalog-sport>summary span:last-child{
+  font-size:12px!important;
+  color:#59636d!important;
+  background:#fff!important;
+  border:1px solid #d8dde1!important;
+  border-radius:999px!important;
+  padding:4px 8px!important;
+  white-space:nowrap!important;
+}
+.catalog-body{padding:12px 13px 14px!important}
+.catalog-lines{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:9px!important;
+}
+.catalog-line{
+  min-height:42px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:10px 11px!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  border-radius:8px!important;
+  border-color:#dfe4e8!important;
+}
+.catalog-line.restricted{
+  border-color:#dfa84f!important;
+  background:#fff8ea!important;
+}
+.catalog-line.prohibited{
+  border-color:#dc8b84!important;
+  background:#fff1ef!important;
+}
+@media(max-width:900px){
+  .catalog-lines{grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
