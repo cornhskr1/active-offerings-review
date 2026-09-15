@@ -254,7 +254,7 @@ th{font-size:11px!important}
 
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager/market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, restriction…"><select id="restrictionColor"><option value="all">All restrictions</option><option value="red">RED · not permissible</option><option value="amber">AMBER · review/limit</option></select></div><div class="table-wrap"><table><thead><tr><th>Status</th><th>Scope</th><th>Catalog Section</th><th>Restriction</th></tr></thead><tbody id="restrictionRows"></tbody></table></div></div></section>
 
-<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified U18 intelligence used to identify event-level exposure. A known U18 does not create a RED event until the athlete is linked to current professional/international activity.</p><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, league…"></div><div class="table-wrap"><table><thead><tr><th>Sport</th><th>League</th><th>Team</th><th>Athlete</th><th>Age</th><th>Status</th></tr></thead><tbody id="u18Rows"></tbody></table></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div></section>
+<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified U18 intelligence used to identify event-level exposure. A known U18 does not create a RED event until the athlete is linked to current activity.</p><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, league…"></div><div class="table-wrap"><table><thead><tr><th>Sport</th><th>League</th><th>Team</th><th>Athlete</th><th>Age</th><th>Status</th></tr></thead><tbody id="u18Rows"></tbody></table></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
 <section class="panel" id="tennis">
 <div class="card">
@@ -295,6 +295,7 @@ const FILES={
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
+  basketballIntel:'data/ncaa-basketball-intelligence.json',
   tennis:'data/tennis-intelligence.json', tennisCache:'data/tennis-age-cache.json'
 };
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -365,7 +366,7 @@ async function loadAll(){
 
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
 
-    const times=['global','priority','college','catalog','ncaa','basketball','tennis']
+    const times=['global','priority','college','catalog','ncaa','basketball','basketballIntel','tennis']
       .map(k=>DATA[k]?.generated_at)
       .filter(Boolean)
       .map(x=>new Date(x).getTime())
@@ -600,6 +601,43 @@ function allCollegeEvents(){
   return [...(DATA.college?.events||[]),...basketballCollegeSupplements()];
 }
 
+
+function basketballIntelligenceAlerts(dayKey){
+  const intel=DATA.basketballIntel||{};
+  const rows=[];
+
+  (intel.active_exposures||[]).forEach(x=>{
+    if(ctKey(x.start_time)!==dayKey)return;
+    rows.push({
+      severity:'RED',
+      type:'NCAA BASKETBALL U18',
+      sport:'Basketball',
+      league:`${x.league||'NCAA Basketball'}${x.division?` · ${x.division}`:''}`,
+      event:x.event,
+      start_time:x.start_time,
+      reason:`Known U18 — ${(x.athletes||[]).map(a=>`${a.athlete} (${a.team})`).join(', ')}`,
+      staff_action:x.staff_action||'Search the known U18 athlete name in active SWSP markets and review athlete-specific performance/nonperformance offerings.',
+      athletes:(x.athletes||[]).map(a=>a.athlete)
+    });
+  });
+
+  (intel.special_restrictions||[]).forEach(x=>{
+    if(ctKey(x.start_time)!==dayKey)return;
+    rows.push({
+      severity:'AMBER',
+      type:'NCAA BASKETBALL RESTRICTION',
+      sport:'Basketball',
+      league:`${x.league||'NCAA Basketball'}${x.division?` · ${x.division}`:''}`,
+      event:x.event,
+      start_time:x.start_time,
+      reason:x.reason||`${x.tournament||'Special event'} · ${x.restriction||'Restriction applies'}`,
+      staff_action:x.staff_action||'Review active sportsbook markets for compliance with the event-specific restriction.'
+    });
+  });
+
+  return rows;
+}
+
 function renderToday(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -656,7 +694,7 @@ function renderToday(){
     [red,'not permissible'],
     [amber,'manual review'],
     [new Set(events.map(e=>regionLeagueLabel(e.region,e.league))).size,'active leagues'],
-    [(DATA.tennis?.summary||{}).verified_u18_players||0,'tennis U18 exposure']
+    [(DATA.basketballIntel?.active_exposure_count||0)+(DATA.tennis?.summary||{}).verified_u18_players||0,'active U18 exposure']
   ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
   let html='';
@@ -668,6 +706,11 @@ function renderToday(){
 
     // Add authoritative Nebraska/Creighton in-state alerts.
     authoritativeCollegeAlerts(key,dayEvents).forEach(c=>{
+      if(!dayCards.some(existing=>sameAlert(existing,c)))dayCards.push(c);
+    });
+
+    // Add NCAA Basketball U18 and explicit special-event restriction alerts.
+    basketballIntelligenceAlerts(key).forEach(c=>{
       if(!dayCards.some(existing=>sameAlert(existing,c)))dayCards.push(c);
     });
 
@@ -755,7 +798,25 @@ function collegeReg(e){if(e.played_in_nebraska||e.site_test==='NOT PERMISSIBLE')
 function renderCollege(){const events=allCollegeEvents();const school=document.getElementById('collegeSchool').value||'all', status=document.getElementById('collegeStatus').value||'all';const arr=events.filter(e=>(school==='all'||e.school===school)&& (status==='all'||collegeReg(e).c===status));document.getElementById('collegeGrid').innerHTML=arr.length?arr.map(e=>{const r=collegeReg(e);return `<article class="college-card ${r.c}"><div class="college-top"><b>${esc(e.school)}</b>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.date)} · ${esc(e.time||'TBA')}</div><h3>${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</h3><div>vs. / at <b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div><div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('amber','NCAA FEED · LOCATION PENDING')}`:''}</div></article>`}).join(''):`<div class="empty">No matching events.</div>`}
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
 function renderRestrictions(){const q=(document.getElementById('restrictionSearch').value||'').toLowerCase(), f=document.getElementById('restrictionColor').value||'all';const rows=(DATA.catalog?.restrictions||[]).filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});document.getElementById('restrictionRows').innerHTML=rows.map(x=>{const c=restrictionColor(x);return `<tr><td>${pill(c,c==='red'?'NOT PERMISSIBLE':'REVIEW / LIMIT')}</td><td><b>${esc(x.scope_label||x.sport)}</b></td><td>${esc(x.catalog_section||x.sport||'')}</td><td>${esc(x.text)}</td></tr>`}).join('')||`<tr><td colspan="4">No matching restrictions.</td></tr>`}
-function renderU18(){const q=(document.getElementById('u18Search').value||'').toLowerCase();const rec=(DATA.known?.records||[]).filter(x=>!q||`${x.sport} ${x.league} ${x.team} ${x.athlete}`.toLowerCase().includes(q));document.getElementById('u18Rows').innerHTML=rec.map(x=>`<tr><td>${esc(x.sport)}</td><td>${esc(x.league)}</td><td>${esc(x.team)}</td><td><b>${esc(x.athlete)}</b></td><td>${esc(x.age_label||x.age||'U18')}</td><td>${pill('red','VERIFIED U18')}</td></tr>`).join('');const a=DATA.ncaaAge||{};document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];document.getElementById('ncaaAgeAlerts').innerHTML=alerts.length?alerts.map(x=>`<div class="alert-row">${pill(x.c,x.c==='red'?'VERIFIED U18':'AGE REVIEW')} ${pill('blue','NCAA FOOTBALL')}<div><b>${esc(x.name)} · ${esc(x.team)}</b><div class="row-meta">${esc(x.age_evidence||x.u18_risk_reason||'')}</div></div><span>${x.calculated_age!=null?esc(x.calculated_age):''}</span></div>`).join(''):`<div class="empty">No NCAA Football U18/age-review alerts.</div>`}
+function renderU18(){const q=(document.getElementById('u18Search').value||'').toLowerCase();const rec=(DATA.known?.records||[]).filter(x=>!q||`${x.sport} ${x.league} ${x.team} ${x.athlete}`.toLowerCase().includes(q));document.getElementById('u18Rows').innerHTML=rec.map(x=>`<tr><td>${esc(x.sport)}</td><td>${esc(x.league)}</td><td>${esc(x.team)}</td><td><b>${esc(x.athlete)}</b></td><td>${esc(x.age_label||x.age||'U18')}</td><td>${pill('red','VERIFIED U18')}</td></tr>`).join('');const a=DATA.ncaaAge||{};document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];document.getElementById('ncaaAgeAlerts').innerHTML=alerts.length?alerts.map(x=>`<div class="alert-row">${pill(x.c,x.c==='red'?'VERIFIED U18':'AGE REVIEW')} ${pill('blue','NCAA FOOTBALL')}<div><b>${esc(x.name)} · ${esc(x.team)}</b><div class="row-meta">${esc(x.age_evidence||x.u18_risk_reason||'')}</div></div><span>${x.calculated_age!=null?esc(x.calculated_age):''}</span></div>`).join(''):`<div class="empty">No NCAA Football U18/age-review alerts.</div>`;
+
+const b=DATA.basketballIntel||{};
+document.getElementById('basketballIntelMetrics').innerHTML=[
+  [b.verified_u18_count||0,'verified basketball U18'],
+  [b.active_exposure_count||0,'active U18 exposure'],
+  [b.special_restriction_count||0,'special restrictions'],
+  [b.events_screened||0,'events screened']
+].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+
+const bAlerts=[
+  ...(b.active_exposures||[]).map(x=>({...x,_kind:'u18'})),
+  ...(b.special_restrictions||[]).map(x=>({...x,_kind:'restriction'}))
+];
+document.getElementById('basketballIntelAlerts').innerHTML=bAlerts.length?bAlerts.map(x=>{
+  const u=x._kind==='u18';
+  return `<div class="alert-row">${pill(u?'red':'amber',u?'VERIFIED U18 EXPOSURE':'RESTRICTION REVIEW')} ${pill('blue','NCAA BASKETBALL')}<div><b>${esc(x.event||x.tournament||'Basketball event')}</b><div class="row-meta">${esc(u?(x.athletes||[]).map(a=>`${a.athlete} · ${a.team}`).join(' | '):(x.reason||x.restriction||''))}</div><div class="staff-action"><b>Staff check:</b> ${esc(x.staff_action||'Review active sportsbook markets.')}</div></div><span class="row-meta">${esc(eventTime(x.start_time))}</span></div>`;
+}).join(''):`<div class="empty">No active NCAA Basketball U18 exposure or special-event restriction alerts.</div>`;
+}
 function tennisStatus(t){return t.status_color==='RED'?'red':t.status_color==='GREEN'?'green':'amber'}
 
 function tennisSchemaState(d){
@@ -927,7 +988,7 @@ function renderTournament(t){
   </details>`;
 }
 function renderNcaa(){const d=DATA.ncaa||{},teams=d.teams||[];const mapped=teams.filter(t=>t.mapping_status!=='UNRESOLVED').length,u18=teams.reduce((n,t)=>n+(t.verified_u18||0),0);document.getElementById('ncaaMetrics').innerHTML=[[teams.length,'FBS teams'],[mapped,'mapped'],[teams.length-mapped,'unmapped'],[u18,'known U18'],[teams.filter(t=>t.schedule_ok&&t.roster_ok).length,'schedule + roster healthy']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const q=(document.getElementById('ncaaSearch').value||'').toLowerCase(),f=document.getElementById('ncaaMapFilter').value||'all';const arr=teams.filter(t=>{const hay=`${t.team} ${t.conference}`.toLowerCase(),isMapped=t.mapping_status!=='UNRESOLVED';return(!q||hay.includes(q))&&(f==='all'||(f==='mapped'&&isMapped)||(f==='unmapped'&&!isMapped)||(f==='u18'&&(t.verified_u18||0)>0))});const by={};arr.forEach(t=>(by[t.conference||'Other']??=[]).push(t));document.getElementById('ncaaConferences').innerHTML=Object.keys(by).sort().map(c=>`<details class="conf" ${q?'open':''}><summary><span>${esc(c)}</span><span>${by[c].length} teams</span></summary><table><thead><tr><th>Team</th><th>Mapping</th><th>Schedule</th><th>Roster</th><th>Age Coverage</th><th>Known U18</th></tr></thead><tbody>${by[c].sort((a,b)=>a.team.localeCompare(b.team)).map(t=>`<tr><td><b>${esc(t.team)}</b></td><td>${pill(t.mapping_status==='UNRESOLVED'?'amber':'green',t.mapping_status==='UNRESOLVED'?'UNMAPPED':'MAPPED')}</td><td>${pill(t.schedule_ok?'green':'amber',t.schedule_ok?'OK':'CHECK')}</td><td>${pill(t.roster_ok?'green':'amber',t.roster_ok?'OK':'CHECK')}</td><td>${pill(t.age_coverage==='FULL'?'green':'amber',t.age_coverage||'PARTIAL')}</td><td>${t.verified_u18||0}</td></tr>`).join('')}</tbody></table></details>`).join('')||`<div class="empty">No matching teams.</div>`}
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS MUST CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
