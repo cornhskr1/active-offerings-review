@@ -83,6 +83,7 @@ def known_u18_match(team, athlete):
             return rec
     return None
 
+matched_known_u18 = set()
 records = []
 for team_row in rosters.get("teams", []):
     gender = team_row.get("gender")
@@ -118,6 +119,7 @@ for team_row in rosters.get("teams", []):
         else:
             known = known_u18_match(team, athlete)
             if known:
+                matched_known_u18.add((norm(known.get("team")), norm(known.get("athlete"))))
                 status = "VERIFIED U18"
                 evidence_source = known.get("source") or "Known U18 Registry"
                 evidence_note = known.get("age_label") or known.get("age") or "Matched existing verified U18 registry"
@@ -167,7 +169,9 @@ for team_row in rosters.get("teams", []):
         calculated_age = calc_age(dob_date, TODAY) if dob_date else None
 
         priority_reasons = []
-        if known_u18_match(team, athlete):
+        known_for_priority = known_u18_match(team, athlete)
+        if known_for_priority:
+            matched_known_u18.add((norm(known_for_priority.get("team")), norm(known_for_priority.get("athlete"))))
             priority_reasons.append("KNOWN U18")
         if norm(team) in {"nebraska","nebraska cornhuskers","creighton","creighton bluejays"}:
             priority_reasons.append("NEBRASKA/CREIGHTON")
@@ -202,6 +206,21 @@ for team_row in rosters.get("teams", []):
 
 records.sort(key=lambda x:(x["gender"], x.get("conference") or "", x.get("team") or "", x.get("athlete") or ""))
 
+unmatched_known_u18 = []
+for rec in known_basketball_u18:
+    key = (norm(rec.get("team")), norm(rec.get("athlete")))
+    if key not in matched_known_u18:
+        unmatched_known_u18.append({
+            "team": rec.get("team"),
+            "athlete": rec.get("athlete"),
+            "age": rec.get("age"),
+            "age_label": rec.get("age_label"),
+            "league": rec.get("league"),
+            "status": rec.get("status"),
+            "lane": rec.get("lane"),
+            "reason": "Verified U18 registry record is not currently matched to the active roster cache."
+        })
+
 summary = {
     "athletes_total": len(records),
     "verified_u18": sum(1 for x in records if x["status"] == "VERIFIED U18"),
@@ -213,6 +232,9 @@ summary = {
     "priority_known_u18": sum(1 for x in records if "KNOWN U18" in x.get("priority_reasons", [])),
     "priority_nebraska_creighton": sum(1 for x in records if "NEBRASKA/CREIGHTON" in x.get("priority_reasons", [])),
     "priority_freshmen": sum(1 for x in records if "FRESHMAN" in x.get("priority_reasons", [])),
+    "known_u18_registry_total": len(known_basketball_u18),
+    "known_u18_roster_matched": len(matched_known_u18),
+    "known_u18_roster_unmatched": len(unmatched_known_u18),
 }
 
 out = {
@@ -224,6 +246,7 @@ out = {
         "note": "Persistent NCAA Division I basketball age intelligence cache."
     },
     "summary": summary,
+    "known_u18_unmatched": unmatched_known_u18,
     "records": records
 }
 
