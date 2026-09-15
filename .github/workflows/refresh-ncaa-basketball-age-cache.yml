@@ -1,0 +1,45 @@
+name: Refresh NCAA Basketball Age Cache
+
+on:
+  schedule:
+    - cron: "17 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: active-offerings-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Build NCAA Basketball age cache
+        run: python3 scripts/refresh_ncaa_basketball_age_cache.py
+
+      - name: Commit age cache
+        run: |
+          git config user.name "active-offerings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ncaa-basketball-age-cache.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh NCAA basketball age cache"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
