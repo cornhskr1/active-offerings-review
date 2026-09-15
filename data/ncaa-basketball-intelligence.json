@@ -1,15 +1,41 @@
 {
   "schema_version": 1,
-  "generated_at": null,
-  "screening_date": null,
+  "generated_at": "2026-09-15T18:18:28.924157+00:00",
+  "screening_date": "2026-09-15",
   "sport": "NCAA Basketball",
   "method": "Registry-first event matching plus explicit special-tournament metadata detection.",
-  "verified_u18_count": 0,
-  "verified_u18": [],
+  "verified_u18_count": 2,
+  "verified_u18": [
+    {
+      "sport": "Basketball",
+      "league": "NCAA Men's Basketball",
+      "team": "Duke",
+      "athlete": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
+      "age": 17,
+      "age_label": "17",
+      "status": "VERIFIED U18",
+      "source": "Known U18 registry displayed in Active Offerings Review System"
+    },
+    {
+      "sport": "Basketball",
+      "league": "NCAA Men's Basketball",
+      "team": "Texas",
+      "athlete": "Marcus Spears Jr.",
+      "age": 17,
+      "age_label": "17",
+      "status": "VERIFIED U18",
+      "source": "Known U18 registry displayed in Active Offerings Review System"
+    }
+  ],
   "active_exposure_count": 0,
   "active_exposures": [],
   "special_restriction_count": 0,
   "special_restrictions": [],
   "events_screened": 0,
-  "notes": []
+  "notes": [
+    "Do not infer a special tournament from generic postseason status alone.",
+    "A CBI/CBC restriction alert requires explicit source metadata containing a configured tournament name or alias.",
+    "Known U18 exposure is team/event driven; a registry record by itself does not create an event alert.",
+    "Unknown age does not create a U18 alert."
+  ]
 }
