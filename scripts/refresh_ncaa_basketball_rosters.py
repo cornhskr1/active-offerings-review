@@ -100,6 +100,13 @@ NCAA_NAME_ALIASES = {
     "Lindenwood": ["Lindenwood"],
 }
 
+# Confirmed ESPN institution IDs used only where both gender lanes remain
+# unresolved by the public team directory name matching.
+CONFIRMED_TEAM_IDS = {
+    "Saint Francis": "2598",
+    "Southeastern La.": "2545",
+}
+
 COMMON_ALIASES = {
     "Miami (FL)": ["Miami", "Miami FL"],
     "Miami (OH)": ["Miami Ohio", "Miami OH"],
@@ -289,6 +296,17 @@ old_index = {
     if x.get("gender") and x.get("team")
 }
 
+# ESPN uses the same institutional team ID across men's and women's basketball.
+# If one gender already resolved cleanly, reuse that institution ID for the
+# opposite gender rather than repeating a fragile name match.
+institution_id_index = {}
+for x in old_cache.get("teams", []):
+    if x.get("team") and x.get("espn_team_id") and x.get("status") in ("LOADED", "PARTIAL"):
+        institution_id_index.setdefault(x.get("team"), {
+            "id": str(x.get("espn_team_id")),
+            "name": x.get("espn_team_name"),
+        })
+
 directories = {}
 directory_urls = {}
 for gender in ("Men","Women"):
@@ -304,14 +322,34 @@ for t in team_map.get("teams", []):
     old = old_index.get(key, {})
     matched = match_team(t["team"], directories[t["gender"]])
 
+    fallback_id = None
+    fallback_name = None
+
+    # 1. Explicitly confirmed institution ID for the tiny number of schools
+    #    where both gender lanes are unresolved by directory naming.
+    if t["team"] in CONFIRMED_TEAM_IDS:
+        fallback_id = CONFIRMED_TEAM_IDS[t["team"]]
+
+    # 2. Otherwise, reuse a verified opposite-gender institutional ID from
+    #    the persistent cache.
+    if not fallback_id and t["team"] in institution_id_index:
+        fallback_id = institution_id_index[t["team"]]["id"]
+        fallback_name = institution_id_index[t["team"]].get("name")
+
     row = {
         "gender": t["gender"],
         "division": "Division I",
         "conference": t.get("conference"),
         "team": t.get("team"),
         "ncaa_team_url": t.get("team_url"),
-        "espn_team_id": str(matched.get("id")) if matched and matched.get("id") is not None else old.get("espn_team_id"),
-        "espn_team_name": matched.get("displayName") if matched else old.get("espn_team_name"),
+        "espn_team_id": (
+            str(matched.get("id")) if matched and matched.get("id") is not None
+            else old.get("espn_team_id") or fallback_id
+        ),
+        "espn_team_name": (
+            matched.get("displayName") if matched
+            else old.get("espn_team_name") or fallback_name
+        ),
         "roster_source_url": old.get("roster_source_url"),
         "last_checked": old.get("last_checked"),
         "status": old.get("status") or "SOURCE GAP",
@@ -351,10 +389,16 @@ for row in candidates:
     league = LEAGUES[gender]
 
     if not row.get("espn_team_id"):
-        matched = match_team(row["team"], directories[gender])
-        if matched:
-            row["espn_team_id"] = str(matched.get("id"))
-            row["espn_team_name"] = matched.get("displayName")
+        if row["team"] in CONFIRMED_TEAM_IDS:
+            row["espn_team_id"] = CONFIRMED_TEAM_IDS[row["team"]]
+        elif row["team"] in institution_id_index:
+            row["espn_team_id"] = institution_id_index[row["team"]]["id"]
+            row["espn_team_name"] = institution_id_index[row["team"]].get("name")
+        else:
+            matched = match_team(row["team"], directories[gender])
+            if matched:
+                row["espn_team_id"] = str(matched.get("id"))
+                row["espn_team_name"] = matched.get("displayName")
 
     if not row.get("espn_team_id"):
         row["status"] = "SOURCE GAP"
