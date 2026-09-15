@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "sport": "NCAA Basketball",
+  "generated_for": "Active Offerings Review System",
+  "u18": {
+    "source": "data/known-u18.json",
+    "scope": "Known verified U18 basketball athletes",
+    "event_trigger": "Known U18 athlete's team appears in an active/upcoming NCAA basketball event.",
+    "severity": "RED",
+    "staff_action": "Search the known U18 athlete name in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+  },
+  "special_events": [
+    {
+      "id": "cbc",
+      "name": "College Basketball Crown",
+      "aliases": [
+        "college basketball crown",
+        "cbc"
+      ],
+      "gender": "Men",
+      "restriction": "NO PLAYER PROPOSITION WAGERS",
+      "severity": "AMBER",
+      "staff_action": "Confirm no player proposition wagers are offered for the College Basketball Crown event."
+    },
+    {
+      "id": "cbi",
+      "name": "College Basketball Invitational",
+      "aliases": [
+        "college basketball invitational",
+        "cbi"
+      ],
+      "gender": "Men",
+      "restriction": "NO PLAYER PROPOSITION WAGERS",
+      "severity": "AMBER",
+      "staff_action": "Confirm no player proposition wagers are offered for the College Basketball Invitational event."
+    }
+  ],
+  "principles": [
+    "Do not infer a special tournament from generic postseason status alone.",
+    "A CBI/CBC restriction alert requires explicit source metadata containing a configured tournament name or alias.",
+    "Known U18 exposure is team/event driven; a registry record by itself does not create an event alert.",
+    "Unknown age does not create a U18 alert."
+  ]
+}
