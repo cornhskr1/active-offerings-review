@@ -152,7 +152,9 @@ for team_row in rosters.get("teams", []):
             else:
                 # Freshmen and priority schools are queued for review, but unknown age is not an alert.
                 is_priority_school = norm(team) in {
-                    "nebraska","nebraska cornhuskers","creighton","creighton bluejays"
+                    "nebraska","nebraska cornhuskers",
+                    "creighton","creighton bluejays",
+                    "omaha","omaha mavericks","nebraska omaha","uno"
                 }
                 is_freshman = norm(a.get("class")) == "freshman"
                 if old_status == "AGE REVIEW":
@@ -173,8 +175,12 @@ for team_row in rosters.get("teams", []):
         if known_for_priority:
             matched_known_u18.add((norm(known_for_priority.get("team")), norm(known_for_priority.get("athlete"))))
             priority_reasons.append("KNOWN U18")
-        if norm(team) in {"nebraska","nebraska cornhuskers","creighton","creighton bluejays"}:
-            priority_reasons.append("NEBRASKA/CREIGHTON")
+        if norm(team) in {
+            "nebraska","nebraska cornhuskers",
+            "creighton","creighton bluejays",
+            "omaha","omaha mavericks","nebraska omaha","uno"
+        }:
+            priority_reasons.append("NEBRASKA PRIORITY")
         if norm(a.get("class")) == "freshman":
             priority_reasons.append("FRESHMAN")
 
@@ -230,7 +236,7 @@ summary = {
     "source_dob": sum(1 for x in records if x.get("source_dob")),
     "source_age": sum(1 for x in records if x.get("source_age") not in (None, "")),
     "priority_known_u18": sum(1 for x in records if "KNOWN U18" in x.get("priority_reasons", [])),
-    "priority_nebraska_creighton": sum(1 for x in records if "NEBRASKA/CREIGHTON" in x.get("priority_reasons", [])),
+    "priority_nebraska": sum(1 for x in records if "NEBRASKA PRIORITY" in x.get("priority_reasons", [])),
     "priority_freshmen": sum(1 for x in records if "FRESHMAN" in x.get("priority_reasons", [])),
     "known_u18_registry_total": len(known_basketball_u18),
     "known_u18_roster_matched": len(matched_known_u18),
