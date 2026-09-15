@@ -242,6 +242,26 @@ th{font-size:11px!important}
 @media(max-width:1000px){.bball-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.bball-grid{grid-template-columns:1fr}}
 
+
+/* ===== NCAA Basketball Men/Women lane layout ===== */
+.bball-gender-tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:10px;background:#f3f4f5;margin:10px 0 12px}
+.bball-gender-tab{appearance:none;border:0;background:transparent;padding:9px 18px;border-radius:7px;font-size:14px;font-weight:900;cursor:pointer;color:#3b4147}
+.bball-gender-tab.active{background:#fff;color:#111;box-shadow:0 1px 3px rgba(0,0,0,.14);border-bottom:3px solid #c9232b}
+.bball-conf-section{border:1px solid #dde2e6;border-radius:10px;overflow:hidden;margin:10px 0;background:#fff}
+.bball-conf-head{width:100%;border:0;background:#f6f7f8;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;text-align:left;font-size:14px;font-weight:900}
+.bball-conf-head:hover{background:#eef0f2}
+.bball-conf-name{display:flex;align-items:center;gap:8px}
+.bball-conf-name::before{content:"";width:4px;height:18px;background:#c9232b;border-radius:2px;display:inline-block}
+.bball-conf-meta{color:var(--muted);font-size:11px;font-weight:800;white-space:nowrap}
+.bball-conf-body{padding:10px}
+.bball-conf-section.collapsed .bball-conf-body{display:none}
+.bball-team{border:1px solid #dde2e6;border-radius:8px;padding:10px 11px;background:#fff}
+.bball-team h3{font-size:14px;margin:0 0 4px}
+.bball-team .meta{font-size:12px}
+.bball-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1000px){.bball-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.bball-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -302,14 +322,21 @@ th{font-size:11px!important}
 <section class="panel" id="basketball">
   <div class="card">
     <div class="section-title">NCAA Basketball — Division I</div>
-    <p class="small">Men's and Women's Division I team universe mapped from NCAA.com. Schedule and known-U18 intelligence are linked now; roster and persistent age research will be layered onto this team map next.</p>
+    <p class="small">Men's and Women's Division I are maintained as separate review lanes to prevent schedule, roster, and age-intelligence cross-contamination.</p>
+
+    <div class="bball-gender-tabs" role="tablist" aria-label="NCAA Basketball gender">
+      <button class="bball-gender-tab active" data-bball-gender="Men" role="tab" aria-selected="true">Men</button>
+      <button class="bball-gender-tab" data-bball-gender="Women" role="tab" aria-selected="false">Women</button>
+    </div>
+
     <div class="metrics" id="bballMetrics"></div>
     <div id="bballQuality" class="bball-quality"></div>
+
     <div class="bball-controls">
-      <select id="bballGender"><option value="all">Men + Women</option><option value="Men">Men</option><option value="Women">Women</option></select>
       <select id="bballConference"><option value="all">All conferences</option></select>
       <input id="bballSearch" placeholder="Search team or conference…">
     </div>
+
     <div id="bballTeams"></div>
   </div>
 </section>
@@ -362,10 +389,11 @@ async function fetchJson(url,timeoutMs=8000){
 }
 
 
-document.querySelector('button[data-panel="basketball"]')?.addEventListener('click',()=>renderBasketball());
+document.querySelector('button[data-panel="basketball"]')?.addEventListener('click',()=>setBasketballGender(BBALL_GENDER));
 
 
-['bballGender','bballConference'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderBasketball));
+document.querySelectorAll('.bball-gender-tab').forEach(btn=>btn.addEventListener('click',()=>setBasketballGender(btn.dataset.bballGender)));
+document.getElementById('bballConference')?.addEventListener('change',renderBasketball);
 document.getElementById('bballSearch')?.addEventListener('input',renderBasketball);
 
 async function loadAll(){
@@ -1043,49 +1071,85 @@ function bballU18ForTeam(team){
     return t && (t===n || t.includes(n) || n.includes(t));
   });
 }
+let BBALL_GENDER='Men';
+let BBALL_OPEN_CONFERENCES=new Set();
+
+function setBasketballGender(gender){
+  BBALL_GENDER=gender==='Women'?'Women':'Men';
+  BBALL_OPEN_CONFERENCES=new Set();
+  document.querySelectorAll('.bball-gender-tab').forEach(btn=>{
+    const active=btn.dataset.bballGender===BBALL_GENDER;
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-selected',active?'true':'false');
+  });
+  const sel=document.getElementById('bballConference');
+  if(sel)sel.value='all';
+  const search=document.getElementById('bballSearch');
+  if(search)search.value='';
+  renderBasketball();
+}
+
+function toggleBasketballConference(conf){
+  if(BBALL_OPEN_CONFERENCES.has(conf))BBALL_OPEN_CONFERENCES.delete(conf);
+  else BBALL_OPEN_CONFERENCES.add(conf);
+  renderBasketball();
+}
+
 function renderBasketball(){
   const map=DATA.basketballDI||{};
-  const teams=map.teams||[];
-  const gender=document.getElementById('bballGender')?.value||'all';
+  const teams=(map.teams||[]).filter(x=>x.gender===BBALL_GENDER);
   const conference=document.getElementById('bballConference')?.value||'all';
   const q=(document.getElementById('bballSearch')?.value||'').toLowerCase().trim();
 
   const s=map.summary||{};
+  const programCount=BBALL_GENDER==='Men'?(s.men_teams||0):(s.women_teams||0);
+  const confCount=BBALL_GENDER==='Men'?(s.men_conferences||0):(s.women_conferences||0);
+  const knownU18=(DATA.basketballIntel?.verified_u18||[]).filter(x=>
+    String(x.league||'').toLowerCase().includes(BBALL_GENDER.toLowerCase()) ||
+    teams.some(t=>normTeamName(t.team)===normTeamName(x.team))
+  ).length;
+
   document.getElementById('bballMetrics').innerHTML=[
-    [s.men_teams||0,"men's D-I teams"],
-    [s.women_teams||0,"women's D-I teams"],
-    [s.men_conferences||0,"men's conferences"],
-    [s.women_conferences||0,"women's conferences"],
-    [DATA.basketballIntel?.verified_u18_count||0,'verified U18']
+    [programCount,`${BBALL_GENDER.toLowerCase()}'s D-I programs`],
+    [confCount,'conferences'],
+    [knownU18,'verified U18'],
+    [(DATA.basketball?.events||[]).filter(e=>e.gender===BBALL_GENDER&&e.division==='Division I'&&e.status!=='COMPLETED').length,'active/upcoming schedule records']
   ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
   const qp=map.quality?.passed===true;
   document.getElementById('bballQuality').innerHTML=qp
-    ?`${pill('green','MAP QUALITY PASSED')} NCAA Division I team/conference map refreshed ${fmtDateTime(map.generated_at)}.`
+    ?`${pill('green','MAP QUALITY PASSED')} ${esc(BBALL_GENDER)}'s Division I map refreshed ${fmtDateTime(map.generated_at)}.`
     :`${pill('amber','MAP NOT YET VERIFIED')} Run Refresh NCAA Basketball to populate and quality-check the Division I map.`;
 
-  const conferences=[...new Set(teams.filter(x=>gender==='all'||x.gender===gender).map(x=>x.conference))].sort();
+  const conferences=[...new Set(teams.map(x=>x.conference))].sort();
   const sel=document.getElementById('bballConference');
-  const prior=sel.value;
-  sel.innerHTML='<option value="all">All conferences</option>'+conferences.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
-  if(conferences.includes(prior))sel.value=prior;
+  const prior=sel?.value||'all';
+  if(sel){
+    sel.innerHTML='<option value="all">All conferences</option>'+conferences.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    if(conferences.includes(prior))sel.value=prior;
+  }
 
   const filtered=teams.filter(x=>
-    (gender==='all'||x.gender===gender) &&
     (conference==='all'||x.conference===conference) &&
-    (!q||`${x.team} ${x.conference} ${x.gender}`.toLowerCase().includes(q))
+    (!q||`${x.team} ${x.conference}`.toLowerCase().includes(q))
   );
 
   const byConf={};
   filtered.forEach(x=>(byConf[x.conference]??=[]).push(x));
 
+  if(q||conference!=='all'){
+    Object.keys(byConf).forEach(c=>BBALL_OPEN_CONFERENCES.add(c));
+  }
+
   document.getElementById('bballTeams').innerHTML=Object.keys(byConf).sort().map(conf=>{
-    const cards=byConf[conf].sort((a,b)=>a.team.localeCompare(b.team)).map(x=>{
+    const rows=byConf[conf].sort((a,b)=>a.team.localeCompare(b.team));
+    const open=BBALL_OPEN_CONFERENCES.has(conf);
+    const cards=rows.map(x=>{
       const games=bballUpcomingForTeam(x.team,x.gender);
       const u18=bballU18ForTeam(x.team);
       return `<article class="bball-team">
         <h3>${esc(x.team)}</h3>
-        <div class="meta">${esc(x.gender)} · Division I · ${esc(x.conference)}</div>
+        <div class="meta">${esc(BBALL_GENDER)} · Division I · ${esc(x.conference)}</div>
         <div class="mini">
           ${pill(games.length?'blue':'gray',`${games.length} TODAY+7`)}
           ${u18.length?pill('red',`${u18.length} VERIFIED U18`):pill('green','NO KNOWN U18')}
@@ -1093,8 +1157,19 @@ function renderBasketball(){
         </div>
       </article>`;
     }).join('');
-    return `<div class="bball-conf">${esc(conf)}</div><div class="bball-grid">${cards}</div>`;
+
+    return `<section class="bball-conf-section ${open?'':'collapsed'}">
+      <button class="bball-conf-head" type="button" data-bball-conf="${esc(conf)}">
+        <span class="bball-conf-name">${esc(conf)}</span>
+        <span class="bball-conf-meta">${rows.length} ${BBALL_GENDER.toLowerCase()} programs · ${open?'Hide':'Show'}</span>
+      </button>
+      <div class="bball-conf-body"><div class="bball-grid">${cards}</div></div>
+    </section>`;
   }).join('')||'<div class="empty">No matching Division I teams.</div>';
+
+  document.querySelectorAll('[data-bball-conf]').forEach(btn=>{
+    btn.addEventListener('click',()=>toggleBasketballConference(btn.dataset.bballConf));
+  });
 }
 
 function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
