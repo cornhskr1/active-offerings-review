@@ -1,12 +1,76 @@
 {
   "schema_version": 1,
-  "generated_at": null,
+  "generated_at": "2026-09-15T18:05:23.560523+00:00",
   "timezone": "America/Chicago",
-  "window_start": null,
-  "window_end": null,
+  "window_start": "2026-09-15",
+  "window_end": "2026-09-22",
   "event_count": 0,
   "lane_count": 6,
   "events": [],
-  "lanes": [],
-  "status": "SEED"
+  "lanes": [
+    {
+      "id": "mbb-d1",
+      "league": "NCAA Men's Basketball",
+      "gender": "Men",
+      "division": "Division I",
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-15T18:05:23.560523+00:00"
+    },
+    {
+      "id": "mbb-d2",
+      "league": "NCAA Men's Basketball",
+      "gender": "Men",
+      "division": "Division II",
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-15T18:05:23.560523+00:00"
+    },
+    {
+      "id": "mbb-d3",
+      "league": "NCAA Men's Basketball",
+      "gender": "Men",
+      "division": "Division III",
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-15T18:05:23.560523+00:00"
+    },
+    {
+      "id": "wbb-d1",
+      "league": "NCAA Women's Basketball",
+      "gender": "Women",
+      "division": "Division I",
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-15T18:05:23.560523+00:00"
+    },
+    {
+      "id": "wbb-d2",
+      "league": "NCAA Women's Basketball",
+      "gender": "Women",
+      "division": "Division II",
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-15T18:05:23.560523+00:00"
+    },
+    {
+      "id": "wbb-d3",
+      "league": "NCAA Women's Basketball",
+      "gender": "Women",
+      "division": "Division III",
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-15T18:05:23.560523+00:00"
+    }
+  ],
+  "source": {
+    "name": "NCAA official public scoreboard",
+    "endpoint": "https://sdataprod.ncaa.com/"
+  }
 }
