@@ -4,6 +4,17 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Refresh Approved Sports Schedule
+      - Update NRGC Catalog
+      - Refresh Priority Queue
+      - Refresh Nebraska Collegiate
+      - Refresh public data
+      - Refresh Tennis Intelligence
+      - Deep Tennis Age Scan
+      - Refresh NCAA Football
+    types: [completed]
 
 permissions:
   contents: read
@@ -16,12 +27,17 @@ concurrency:
 
 jobs:
   deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
