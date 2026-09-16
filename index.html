@@ -925,7 +925,7 @@ function renderToday(){
     const leagueGroups={};
     dayEvents.forEach(e=>{
       const mapped=mappedCatalogEventForSource(e.source_id);
-      const k=`${e.sport} · ${mapped?.catalog_event||regionLeagueLabel(e.region,e.league)}`;
+      const k=`${e.sport} · ${mapped?.review_label||mapped?.catalog_event||regionLeagueLabel(e.region,e.league)}`;
       (leagueGroups[k]??=[]).push(e);
     });
 
@@ -1559,20 +1559,40 @@ function catalogLineHtml(line,sport,country){
     :season==='out'?'<span class="season-pill out-season">OUT OF SEASON</span>':'';
   return `<div class="catalog-line ${role} ${lineColor(line)} ${season?'has-season':''}"><span class="catalog-copy">${esc(line)}</span>${badge}</div>`;
 }
+function annualSeasonStatus(event){
+  if(!event?.season_start||!event?.season_end)return null;
+  const now=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const part=type=>now.find(x=>x.type===type)?.value||'';
+  const key=`${part('month')}-${part('day')}`,start=event.season_start,end=event.season_end;
+  return start<=end?(key>=start&&key<=end?'in':'out'):(key>=start||key<=end?'in':'out');
+}
+function eventSourceIds(event){
+  return [...(event?.source_ids||[]),...(event?.source_id?[event.source_id]:[])];
+}
 function mappedSeasonStatus(event){
-  if(event.source_id){
-    const src=(DATA.global?.sources||[]).find(x=>x.id===event.source_id);
-    if(src&&Number(src.events||0)>0)return'in';
+  const ids=eventSourceIds(event);
+  if(ids.length){
+    const sources=(DATA.global?.sources||[]).filter(x=>ids.includes(x.id));
+    if(sources.some(src=>Number(src.events||0)>0))return'in';
   }
-  return event.season_status||null;
+  return annualSeasonStatus(event)||event.season_status||null;
 }
 function mappedCatalogEventForSource(sourceId){
   if(!sourceId)return null;
   for(const sport of (DATA.seasonMap?.sports||[])){
     for(const group of (sport.groups||[])){
-      const event=(group.events||[]).find(x=>x.source_id===sourceId);
+      const event=(group.events||[]).find(x=>eventSourceIds(x).includes(sourceId));
       if(event)return{...event,sport:sport.sport,country:group.country,governing_body:group.governing_body};
     }
+  }
+  return null;
+}
+function mappedCatalogEvent(line,sport){
+  const normalized=ncaaEventParts(line).name.toLowerCase();
+  const mapping=(DATA.seasonMap?.sports||[]).find(x=>x.sport===sport);
+  for(const group of (mapping?.groups||[])){
+    const event=(group.events||[]).find(x=>String(x.catalog_event||'').toLowerCase()===normalized);
+    if(event)return event;
   }
   return null;
 }
@@ -1649,8 +1669,9 @@ function renderNcaaCatalog(cat,q,seasonFilter){
     const events=(section.lines||[])
       .filter(line=>!/National Collegiate Athletic Association/i.test(line))
       .map(line=>{
-        const parts=ncaaEventParts(line),status=catalogSeasonStatus(line,section.sport,'');
-        return{line,parts,status};
+        const parts=ncaaEventParts(line),mapping=mappedCatalogEvent(line,section.sport);
+        const status=mapping?mappedSeasonStatus(mapping):catalogSeasonStatus(line,section.sport,'');
+        return{line,parts,status,mapping};
       })
       .filter(item=>{
         if(seasonFilter!=='all'&&(seasonFilter==='unmapped'?item.status!==null:item.status!==seasonFilter))return false;
@@ -1660,7 +1681,7 @@ function renderNcaaCatalog(cat,q,seasonFilter){
     if(!events.length)return'';
     totalEvents+=events.length;
     mappedEvents+=events.filter(x=>x.status).length;
-    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div class="ncaa-event-name">${esc(item.parts.name)}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}</article>`).join('')}</div></details>`;
+    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${esc(item.parts.name)}</div>${item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}</article>`).join('')}</div></details>`;
   }).filter(Boolean);
   if(!sports.length&&!controlsHit)return'';
   const controls=(seasonFilter==='all'&&controlsHit)?`<section class="ncaa-controls"><div class="ncaa-controls-head">Nebraska Collegiate Controls</div><div class="ncaa-controls-list">${NCAA_CATALOG_CONTROLS.map(x=>`<div class="ncaa-control">${esc(x)}</div>`).join('')}</div></section>`:'';
