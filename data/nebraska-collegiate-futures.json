@@ -1,12 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T13:59:09.419419+00:00",
+  "generated_at": "2026-09-16T14:19:14.392742+00:00",
   "timezone": "America/Chicago",
   "scope": "Nebraska collegiate Division I basketball futures cutoffs",
   "season": "2026-27",
   "rules": {
-    "regular_season": "Disable Nebraska collegiate regular-season futures before the team's first regular-season contest.",
-    "postseason": "Disable Nebraska collegiate postseason futures before the team's first postseason contest, if applicable."
+    "regular_season": "Disable Nebraska collegiate regular-season futures before the team's first legitimate regular-season contest.",
+    "regular_season_interpretation": "Once a market is classified as a regular-season future, the cutoff is the team's first regular-season contest. A narrower subset used to settle the market, including away games, home games, conference games, or similar subsets, does not move the cutoff.",
+    "postseason": "Disable Nebraska collegiate postseason futures before the team's first legitimate postseason contest, if applicable.",
+    "combination_markets": "For a combination market containing multiple Nebraska collegiate future components, the market must be disabled by the earliest applicable cutoff among those components."
   },
   "alert_window_days": 7,
   "programs": [
@@ -76,7 +78,7 @@
       "school": "Creighton",
       "sport": "Men's Basketball",
       "source_url": "https://gocreighton.com/sports/mens-basketball/schedule/text",
-      "schedule_events_found": 39,
+      "schedule_events_found": 37,
       "first_regular_season_contest": {
         "date": "2026-11-02",
         "time": "TBA",
@@ -115,7 +117,7 @@
       "school": "Creighton",
       "sport": "Women's Basketball",
       "source_url": "https://gocreighton.com/sports/womens-basketball/schedule/text",
-      "schedule_events_found": 13,
+      "schedule_events_found": 10,
       "first_regular_season_contest": {
         "date": "2026-11-02",
         "time": "TBA",
@@ -146,7 +148,7 @@
       "school": "Omaha",
       "sport": "Men's Basketball",
       "source_url": "https://omahamavs.com/sports/mens-basketball/schedule/2026-27",
-      "schedule_events_found": 44,
+      "schedule_events_found": 43,
       "first_regular_season_contest": {
         "date": "2026-10-15",
         "time": "7 p.m. CT",
@@ -177,7 +179,7 @@
       "school": "Omaha",
       "sport": "Women's Basketball",
       "source_url": "https://omahamavs.com/sports/womens-basketball/schedule/2026-27",
-      "schedule_events_found": 45,
+      "schedule_events_found": 43,
       "first_regular_season_contest": {
         "date": "2026-10-21",
         "time": "6:30 p.m. CT",
@@ -227,7 +229,7 @@
       "sport": "Men's Basketball",
       "url": "https://gocreighton.com/sports/mens-basketball/schedule/text",
       "ok": true,
-      "events_found": 39,
+      "events_found": 37,
       "error": null
     },
     {
@@ -235,7 +237,7 @@
       "sport": "Women's Basketball",
       "url": "https://gocreighton.com/sports/womens-basketball/schedule/text",
       "ok": true,
-      "events_found": 13,
+      "events_found": 10,
       "error": null
     },
     {
@@ -243,7 +245,7 @@
       "sport": "Men's Basketball",
       "url": "https://omahamavs.com/sports/mens-basketball/schedule/2026-27",
       "ok": true,
-      "events_found": 44,
+      "events_found": 43,
       "error": null
     },
     {
@@ -251,7 +253,7 @@
       "sport": "Women's Basketball",
       "url": "https://omahamavs.com/sports/womens-basketball/schedule/2026-27",
       "ok": true,
-      "events_found": 45,
+      "events_found": 43,
       "error": null
     }
   ]
