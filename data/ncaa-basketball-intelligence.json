@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T13:39:34.064733+00:00",
+  "generated_at": "2026-09-16T14:48:20.477314+00:00",
   "screening_date": "2026-09-16",
   "sport": "NCAA Basketball",
-  "method": "Registry-first event matching plus explicit special-tournament metadata detection.",
+  "method": "Roster-matched U18 screening plus catalog-validated explicit special-tournament metadata detection.",
   "verified_u18_count": 2,
   "verified_u18": [
     {
@@ -54,6 +54,39 @@
   ],
   "active_exposure_count": 0,
   "active_exposures": [],
+  "catalog_special_rules_count": 2,
+  "catalog_special_rules": [
+    {
+      "id": "cbc",
+      "name": "College Basketball Crown",
+      "aliases": [
+        "college basketball crown",
+        "cbc"
+      ],
+      "gender": "Men",
+      "restriction": "NO PLAYER PROPOSITION WAGERS",
+      "severity": "AMBER",
+      "staff_action": "Confirm no player proposition wagers are offered for the College Basketball Crown event.",
+      "catalog_line": "College Basketball Crown (CBC) | Men | NO PLAYER PROPOSITION WAGERS",
+      "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.15.26",
+      "catalog_version": "9.15.26"
+    },
+    {
+      "id": "cbi",
+      "name": "College Basketball Invitational",
+      "aliases": [
+        "college basketball invitational",
+        "cbi"
+      ],
+      "gender": "Men",
+      "restriction": "NO PLAYER PROPOSITION WAGERS",
+      "severity": "AMBER",
+      "staff_action": "Confirm no player proposition wagers are offered for the College Basketball Invitational event.",
+      "catalog_line": "College Basketball Invitational (CBI) | Men | NO PLAYER PROPOSITION WAGERS",
+      "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.15.26",
+      "catalog_version": "9.15.26"
+    }
+  ],
   "special_restriction_count": 0,
   "special_restrictions": [],
   "events_screened": 0,
