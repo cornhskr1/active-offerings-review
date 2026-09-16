@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T20:41:32.324936+00:00",
+  "generated_at": "2026-09-16T21:05:26.707384+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-16",
   "window_end": "2026-09-23",
-  "event_count": 794,
+  "event_count": 796,
   "events": [
     {
       "id": "887-2026",
@@ -177,7 +177,7 @@
       "name": "New York Yankees at Minnesota Twins",
       "start_time": "2026-09-16T17:40Z",
       "status": "LIVE",
-      "status_detail": "Top 10th",
+      "status_detail": "Bot 11th",
       "season_stage": "REGULAR SEASON",
       "location": "Target Field \u00b7 Minneapolis, Minnesota",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -195,7 +195,7 @@
       "name": "Detroit Tigers at Toronto Blue Jays",
       "start_time": "2026-09-16T19:07Z",
       "status": "LIVE",
-      "status_detail": "End 5th",
+      "status_detail": "Mid 7th",
       "season_stage": "REGULAR SEASON",
       "location": "Rogers Centre \u00b7 Toronto, Ontario",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -231,7 +231,7 @@
       "name": "Racing Santander at Barcelona",
       "start_time": "2026-09-16T19:30Z",
       "status": "LIVE",
-      "status_detail": "HT",
+      "status_detail": "68'",
       "season_stage": null,
       "location": "Spotify Camp Nou \u00b7 Barcelona, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
@@ -739,6 +739,42 @@
       "season_stage": "REGULAR SEASON",
       "location": "Chase Field \u00b7 Phoenix, Arizona",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "2391094",
+      "source_id": "npb",
+      "sport": "Baseball",
+      "league": "Nippon Professional Baseball (NPB)",
+      "region": "Japan",
+      "name": "Hiroshima Toyo Carp at Hanshin Tigers",
+      "start_time": "2026-09-17T09:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "Koshien Stadium \u00b7 Japan",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "2399977",
+      "source_id": "kbo",
+      "sport": "Baseball",
+      "league": "KBO League",
+      "region": "Korea",
+      "name": "SSG Landers at NC Dinos",
+      "start_time": "2026-09-17T09:30:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "Changwon NC Park \u00b7 South Korea",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -14314,7 +14350,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "mlb",
@@ -14330,7 +14366,113 @@
       "ok": true,
       "events": 103,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
+    },
+    {
+      "id": "npb",
+      "sport": "Baseball",
+      "league": "Nippon Professional Baseball (NPB)",
+      "region": "Japan",
+      "source_type": "thesportsdb",
+      "league_id": "4591",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": [
+        "Nippon Professional Baseball",
+        "NPB"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
+    },
+    {
+      "id": "kbo",
+      "sport": "Baseball",
+      "league": "KBO League",
+      "region": "Korea",
+      "source_type": "thesportsdb",
+      "league_id": "4830",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": [
+        "KBO League",
+        "Korean Baseball Organization"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
+    },
+    {
+      "id": "lmb",
+      "sport": "Baseball",
+      "league": "Mexico Baseball League",
+      "region": "Mexico",
+      "source_type": "thesportsdb",
+      "league_id": "5064",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": [
+        "Mexico Baseball League",
+        "Liga Mexicana de B\u00e9isbol"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
+    },
+    {
+      "id": "lmp",
+      "sport": "Baseball",
+      "league": "Mexican Pacific League",
+      "region": "Mexico",
+      "source_type": "thesportsdb",
+      "league_id": "5109",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": [
+        "Mexican Pacific League",
+        "Liga Mexicana del Pac\u00edfico"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
+    },
+    {
+      "id": "lidom",
+      "sport": "Baseball",
+      "league": "Professional Baseball League of the Dominican Republic (LIDOM)",
+      "region": "Dominican Republic",
+      "source_type": "mlbstats",
+      "sport_id": "17",
+      "league_id": "131",
+      "endpoint": "https://statsapi.mlb.com/api/v1/schedule",
+      "catalog_terms": [
+        "Professional Baseball League of the Dominican Republic",
+        "LIDOM"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
+    },
+    {
+      "id": "wbc",
+      "sport": "Baseball",
+      "league": "World Baseball Classic",
+      "region": "International",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/world-baseball-classic/scoreboard",
+      "catalog_terms": [
+        "World Baseball Classic"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "nfl",
@@ -14346,7 +14488,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "ncaa-football",
@@ -14362,7 +14504,7 @@
       "ok": true,
       "events": 29,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "nba",
@@ -14378,7 +14520,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "wnba",
@@ -14394,7 +14536,7 @@
       "ok": true,
       "events": 25,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -14410,7 +14552,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -14426,7 +14568,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "nhl",
@@ -14442,7 +14584,7 @@
       "ok": true,
       "events": 36,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "icehl",
@@ -14459,7 +14601,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "czech-extraliga",
@@ -14476,7 +14618,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "liiga",
@@ -14493,7 +14635,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "del",
@@ -14510,7 +14652,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "slovak-extraliga",
@@ -14527,7 +14669,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "shl",
@@ -14544,7 +14686,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "swiss-national",
@@ -14561,7 +14703,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "chl",
@@ -14578,7 +14720,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "mls",
@@ -14594,7 +14736,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "epl",
@@ -14609,7 +14751,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "bundesliga",
@@ -14624,7 +14766,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "laliga",
@@ -14639,7 +14781,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "seriea",
@@ -14654,7 +14796,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "ligue1",
@@ -14669,7 +14811,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "eredivisie",
@@ -14684,7 +14826,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "primeira",
@@ -14699,7 +14841,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "belgium",
@@ -14715,7 +14857,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "denmark",
@@ -14731,7 +14873,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -14747,7 +14889,7 @@
       "ok": true,
       "events": 462,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "atp-tennis",
@@ -14763,7 +14905,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     },
     {
       "id": "wta-tennis",
@@ -14779,7 +14921,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-16T20:41:32.324936+00:00"
+      "checked_at": "2026-09-16T21:05:26.707384+00:00"
     }
   ],
   "coverage_gaps": [
