@@ -2,6 +2,9 @@
   "schema_version": 1,
   "generated_at": "2026-09-16T16:00:00-05:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
+  "catalog_role_overrides": [
+    {"sport":"Ice Hockey","country":"Austria","line":"ICE Hockey League","role":"catalog-org"}
+  ],
   "source_mappings": [
     {"source_id":"nfl","sport":"Football","country":"United States","catalog_event":"National Football League (NFL)","season_window":"August–February","season_start":"08-01","season_end":"02-28","last_verified":"2026-09-16"},
     {"source_id":"nba","sport":"Basketball","country":"United States","catalog_event":"National Basketball Association (NBA) | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","last_verified":"2026-09-16"},
@@ -21,14 +24,14 @@
     {"source_id":"wta-tennis","sport":"Tennis","country":"International","catalog_event":"WTA Tour | Women","season_window":"January–November","season_start":"01-01","season_end":"11-30","last_verified":"2026-09-16"}
   ],
   "catalog_event_mappings": [
-    {"sport":"Ice Hockey","country":"Austria","catalog_event":"ICE Hockey League (ICEHL)","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Czech Republic","catalog_event":"Czech Extraliga","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Finland","catalog_event":"Liiga","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Germany","catalog_event":"Deutsche Eishockey Liga (DEL)","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Slovakia","catalog_event":"Slovak Extraliga","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Sweden","catalog_event":"Swedish Hockey League (SHL)","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Switzerland","catalog_event":"National League","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"International / Europe","catalog_event":"Champions Hockey League (CHL)","season_window":"September–February","season_start":"09-01","season_end":"02-28","last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Austria","catalog_event":"ICE Hockey League (ICEHL)","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["icehl"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Czech Republic","catalog_event":"Czech Extraliga","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["czech-extraliga"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Finland","catalog_event":"Liiga","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["liiga"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Germany","catalog_event":"Deutsche Eishockey Liga (DEL)","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["del"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Slovakia","catalog_event":"Slovak Extraliga","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["slovak-extraliga"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Sweden","catalog_event":"Swedish Hockey League (SHL)","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_ids":["shl"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"Switzerland","catalog_event":"National League","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["swiss-national"],"last_verified":"2026-09-16"},
+    {"sport":"Ice Hockey","country":"International / Europe","catalog_event":"Champions Hockey League (CHL)","season_window":"September–February","season_start":"09-01","season_end":"02-28","source_ids":["chl"],"last_verified":"2026-09-16"},
     {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"Professional Women’s Hockey League (PWHL)","season_window":"November–May","season_start":"11-01","season_end":"05-31","last_verified":"2026-09-16"},
     {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"NHL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START","season_window":"Annual June event","season_start":"06-01","season_end":"06-30","last_verified":"2026-09-16"},
     {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"NHL All-Star Skills Challenge","season_window":"January–February","season_start":"01-01","season_end":"02-28","last_verified":"2026-09-16"},
