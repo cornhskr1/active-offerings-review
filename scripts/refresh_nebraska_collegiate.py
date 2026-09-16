@@ -24,7 +24,10 @@ SOURCES=[
     {"school":"Creighton","sport":"Women's Soccer","url":"https://gocreighton.com/sports/womens-soccer/schedule/text","parser":"creighton"},
     {"school":"Creighton","sport":"Volleyball","url":"https://gocreighton.com/sports/womens-volleyball/schedule/text","parser":"creighton"},
     {"school":"Creighton","sport":"Men's Basketball","url":"https://gocreighton.com/sports/mens-basketball/schedule/text","parser":"creighton"},
-    {"school":"Creighton","sport":"Women's Basketball","url":"https://gocreighton.com/sports/womens-basketball/schedule/text","parser":"creighton"}
+    {"school":"Creighton","sport":"Women's Basketball","url":"https://gocreighton.com/sports/womens-basketball/schedule/text","parser":"creighton"},
+
+    {"school":"Omaha","sport":"Men's Basketball","url":"https://omahamavs.com/sports/mens-basketball/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Women's Basketball","url":"https://omahamavs.com/sports/womens-basketball/schedule/2026-27","parser":"omaha"}
 ]
 
 MONTHS={m:i for i,m in enumerate(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],1)}
@@ -163,13 +166,112 @@ def parse_nebraska(src, source):
             seen.add(key); unique.append(e)
     return unique
 
+
+def parse_omaha(src, source):
+    """Parse Omaha Sidearm schedule pages from their visible text stream."""
+    soup=BeautifulSoup(src,"html.parser")
+    lines=[clean(x) for x in soup.get_text("\n").splitlines() if clean(x)]
+    events=[]
+
+    for i,line in enumerate(lines):
+        date=parse_date_text(line)
+        if not date or not (TODAY <= date <= END):
+            continue
+
+        # Sidearm Omaha pages normally place "at"/"vs" before opponent/location/date.
+        token_idx=None
+        for j in range(i-1,max(-1,i-12),-1):
+            if lines[j].lower() in ("at","vs","vs."):
+                token_idx=j
+                break
+        if token_idx is None:
+            continue
+
+        token=lines[token_idx].lower()
+        site="AWAY" if token=="at" else "HOME"
+
+        # First useful line after at/vs is the opponent.
+        opp=""
+        opp_idx=None
+        for j in range(token_idx+1,i):
+            x=lines[j]
+            low=x.lower()
+            if low in ("at","vs","vs.") or low.startswith("image:"):
+                continue
+            if re.fullmatch(r"#\d+",x):
+                continue
+            opp=x
+            opp_idx=j
+            break
+        if not opp:
+            continue
+
+        # Prefer the line immediately after opponent as venue/location, while
+        # skipping tournament/exhibition labels and control text.
+        loc=""
+        for j in range((opp_idx or token_idx)+1,i):
+            x=lines[j]
+            low=x.lower()
+            if any(k in low for k in [
+                "exhibition","championship","invitational","classic",
+                "live stats","history","tickets","schedule","image:"
+            ]):
+                continue
+            if parse_date_text(x):
+                continue
+            loc=x
+            break
+
+        # Neutral-site events on Sidearm often still use "vs"; infer neutral only
+        # when the physical location is clearly outside Omaha/Nebraska.
+        if site=="HOME" and loc:
+            low=loc.lower()
+            if not (
+                "omaha" in low or "baxter arena" in low or "sokol" in low
+                or re.search(r"\bneb\.?\b|\bnebraska\b",low)
+            ):
+                # Tournament-style vs. outside Nebraska = neutral.
+                site="NEUTRAL"
+
+        time_value="TBA"
+        for x in lines[i+1:i+7]:
+            if re.search(r"\b\d{1,2}(?::\d{2})?\s*(a\.?m\.?|p\.?m\.?|am|pm)\b",x,re.I) or x.upper()=="TBA":
+                time_value=x
+                break
+
+        block=" ".join(lines[max(0,token_idx-3):min(len(lines),i+5)]).lower()
+        if "exhibition" in block:
+            phase="EXHIBITION"
+        elif "championship" in block or "tournament" in block:
+            phase="POSTSEASON"
+        else:
+            phase="REGULAR SEASON"
+
+        events.append({
+            "school":source["school"],"sport":source["sport"],"date":date.isoformat(),
+            "time":time_value,"site":site,"opponent":opp,"location":loc,
+            "phase":phase,"status":"SCHEDULED","result":"","source_url":source["url"]
+        })
+
+    seen=set(); unique=[]
+    for e in events:
+        key=(e["school"],e["sport"],e["date"],e["time"],e["site"],e["opponent"])
+        if key not in seen:
+            seen.add(key); unique.append(e)
+    return unique
+
 events=[]
 source_status=[]
 for source in SOURCES:
     try:
         r=requests.get(source["url"],headers=HEADERS,timeout=30)
         r.raise_for_status()
-        parsed=parse_creighton(r.text,source) if source["parser"]=="creighton" else parse_nebraska(r.text,source)
+        if source["parser"]=="creighton":
+            parsed=parse_creighton(r.text,source)
+        elif source["parser"]=="omaha":
+            parsed=parse_omaha(r.text,source)
+        else:
+            parsed=parse_nebraska(r.text,source)
         events.extend(parsed)
         source_status.append({"school":source["school"],"sport":source["sport"],"url":source["url"],"ok":True,"events_in_window":len(parsed)})
     except Exception as e:
@@ -185,7 +287,7 @@ NEBRASKA_VENUE_TERMS=[
     "bob devaney","devaney sports center","memorial stadium",
     "pinnacle bank arena","hawks field","bowlin stadium",
     "barbara hibner","morrison stadium","dj sokol",
-    "chi health center omaha","charles schwab field",
+    "chi health center omaha","charles schwab field","baxter arena","wayne and eileen ryan","d.j. sokol","dj sokol",
     "haymarket park","seacrest field"
 ]
 
