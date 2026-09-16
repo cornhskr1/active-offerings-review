@@ -13,12 +13,14 @@ SCHEDULE_PATH = DATA / "ncaa-basketball.json"
 KNOWN_PATH = DATA / "known-u18.json"
 RULES_PATH = DATA / "ncaa-basketball-rules.json"
 ROSTERS_PATH = DATA / "ncaa-basketball-rosters.json"
+CATALOG_PATH = DATA / "catalog-live.json"
 OUT_PATH = DATA / "ncaa-basketball-intelligence.json"
 
 schedule = json.loads(SCHEDULE_PATH.read_text(encoding="utf-8")) if SCHEDULE_PATH.exists() else {"events":[]}
 known = json.loads(KNOWN_PATH.read_text(encoding="utf-8")) if KNOWN_PATH.exists() else {"records":[]}
 rules = json.loads(RULES_PATH.read_text(encoding="utf-8"))
 rosters = json.loads(ROSTERS_PATH.read_text(encoding="utf-8")) if ROSTERS_PATH.exists() else {"teams":[]}
+catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8")) if CATALOG_PATH.exists() else {"sections":[]}
 
 def norm(v):
     s = str(v or "").lower()
@@ -65,12 +67,86 @@ def rostered_verified_u18(rec, gender=None):
     return False
 
 def event_text(ev):
+    # Restriction detection uses event metadata only. Do not use source URLs or
+    # opaque IDs because incidental strings can create false tournament matches.
     fields = [
-        ev.get("name"), ev.get("league"), ev.get("status_detail"),
-        ev.get("round_description"), ev.get("source_url"),
-        ev.get("championship_id"), ev.get("bracket_id")
+        ev.get("name"),
+        ev.get("league"),
+        ev.get("status_detail"),
+        ev.get("round_description"),
+        ev.get("tournament"),
+        ev.get("tournament_name"),
+        ev.get("series_name"),
+        ev.get("season_type"),
+        ev.get("notes"),
     ]
     return " ".join(str(x or "") for x in fields).lower()
+
+
+def alias_in_text(alias, text):
+    """Token-safe alias match. Full names match literally; short aliases require word boundaries."""
+    a = str(alias or "").strip().lower()
+    if not a:
+        return False
+    if len(a) <= 4 and " " not in a:
+        return re.search(rf"(?<![a-z0-9]){re.escape(a)}(?![a-z0-9])", text) is not None
+    return a in text
+
+
+def ncaa_basketball_catalog_lines():
+    for section in catalog.get("sections", []):
+        if norm(section.get("sport")) == "ncaa basketball":
+            return [str(x) for x in section.get("lines", [])]
+    return []
+
+
+def catalog_special_rules():
+    """
+    Regulatory truth comes from the current approved catalog.
+    Only build a CBI/CBC rule when the current catalog explicitly contains
+    the event, Men's scope, and NO PLAYER PROPOSITION WAGERS restriction.
+    """
+    lines = ncaa_basketball_catalog_lines()
+    configured = {str(r.get("id") or ""): r for r in rules.get("special_events", [])}
+    wanted = [
+        ("cbc", "College Basketball Crown", ["college basketball crown", "cbc"]),
+        ("cbi", "College Basketball Invitational", ["college basketball invitational", "cbi"]),
+    ]
+
+    out = []
+    for rule_id, canonical, aliases in wanted:
+        matched_line = None
+        for line in lines:
+            low = line.lower()
+            if canonical.lower() not in low:
+                continue
+            if "men" not in low:
+                continue
+            if "no player proposition wagers" not in low:
+                continue
+            matched_line = line
+            break
+        if not matched_line:
+            continue
+
+        base = configured.get(rule_id, {})
+        out.append({
+            "id": rule_id,
+            "name": canonical,
+            "aliases": aliases,
+            "gender": "Men",
+            "restriction": "NO PLAYER PROPOSITION WAGERS",
+            "severity": base.get("severity", "AMBER"),
+            "staff_action": base.get(
+                "staff_action",
+                f"Confirm no player proposition wagers are offered for the {canonical} event."
+            ),
+            "catalog_line": matched_line,
+            "catalog_source": catalog.get("source_label"),
+            "catalog_version": catalog.get("menu_version"),
+        })
+    return out
+
 
 verified_u18 = []
 for rec in known.get("records", []):
@@ -140,12 +216,22 @@ for ev in events:
         })
 
 special_restrictions = []
+catalog_rules = catalog_special_rules()
+
 for ev in events:
+    # Catalog restriction applies only to Men's Division I basketball.
+    if str(ev.get("division") or "") != "Division I":
+        continue
+    if str(ev.get("gender") or "") != "Men":
+        continue
+
     text = event_text(ev)
-    for rule in rules.get("special_events", []):
-        aliases = [str(a).lower() for a in rule.get("aliases", [])]
-        if not any(a and a in text for a in aliases):
+
+    for rule in catalog_rules:
+        aliases = rule.get("aliases", [])
+        if not any(alias_in_text(a, text) for a in aliases):
             continue
+
         special_restrictions.append({
             "event_id": ev.get("id"),
             "contest_id": ev.get("contest_id"),
@@ -158,7 +244,11 @@ for ev in events:
             "restriction": rule.get("restriction"),
             "severity": rule.get("severity", "AMBER"),
             "reason": f'{rule.get("name")} · {rule.get("restriction")}',
-            "staff_action": rule.get("staff_action")
+            "staff_action": rule.get("staff_action"),
+            "catalog_line": rule.get("catalog_line"),
+            "catalog_source": rule.get("catalog_source"),
+            "catalog_version": rule.get("catalog_version"),
+            "detection_method": "Explicit tournament metadata matched to current approved catalog restriction."
         })
 
 out = {
@@ -166,7 +256,7 @@ out = {
     "generated_at": NOW.isoformat(),
     "screening_date": TODAY.isoformat(),
     "sport": "NCAA Basketball",
-    "method": "Registry-first event matching plus explicit special-tournament metadata detection.",
+    "method": "Roster-matched U18 screening plus catalog-validated explicit special-tournament metadata detection.",
     "verified_u18_count": len(verified_u18),
     "verified_u18": verified_u18,
     "roster_matched_verified_u18_count": len(roster_matched_verified_u18),
@@ -175,6 +265,8 @@ out = {
     "roster_unmatched_verified_u18": roster_unmatched_verified_u18,
     "active_exposure_count": len(active_exposures),
     "active_exposures": active_exposures,
+    "catalog_special_rules_count": len(catalog_rules),
+    "catalog_special_rules": catalog_rules,
     "special_restriction_count": len(special_restrictions),
     "special_restrictions": special_restrictions,
     "events_screened": len(events),
