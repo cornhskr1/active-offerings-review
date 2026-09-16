@@ -4,6 +4,17 @@
   "note": "Mapped public schedule adapters support the Daily Sports Focus. Areas without a dependable adapter remain visible as coverage gaps rather than being treated as clear.",
   "sources": [
     {
+      "id": "afl",
+      "sport": "Aussie Rules",
+      "league": "AFL",
+      "region": "Australia",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/australian-football/afl/scoreboard",
+      "catalog_terms": [
+        "Australian Football League",
+        "AFL"
+      ]
+    },
+    {
       "id": "mlb",
       "sport": "Baseball",
       "league": "MLB",
