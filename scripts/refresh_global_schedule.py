@@ -154,6 +154,30 @@ def parse_thesportsdb_event(source, ev):
         "source_endpoint":source["endpoint"]
     }
 
+def parse_mlbstats_event(source, game):
+    teams=game.get("teams") or {}
+    home=((teams.get("home") or {}).get("team") or {}).get("name")
+    away=((teams.get("away") or {}).get("team") or {}).get("name")
+    name=f"{away} at {home}" if home and away else "Scheduled event"
+    status_obj=game.get("status") or {}
+    abstract=str(status_obj.get("abstractGameState") or "").lower()
+    status="COMPLETED" if abstract=="final" else ("LIVE" if abstract=="live" else "UPCOMING")
+    venue=(game.get("venue") or {}).get("name")
+    return {
+        "id":str(game.get("gamePk") or f'{source["id"]}-{game.get("gameDate")}-{name}'),
+        "source_id":source["id"],
+        "sport":source["sport"],
+        "league":source["league"],
+        "region":source.get("region"),
+        "name":name,
+        "start_time":game.get("gameDate"),
+        "status":status,
+        "status_detail":status_obj.get("detailedState") or "Scheduled",
+        "season_stage":None,
+        "location":venue,
+        "source_endpoint":source["endpoint"]
+    }
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -186,6 +210,38 @@ for source in CFG.get("sources",[]):
                 seen.add(key)
                 events.append(parsed)
                 count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type")=="mlbstats":
+        try:
+            params={
+                "sportId":source["sport_id"],
+                "leagueId":source["league_id"],
+                "startDate":TODAY.isoformat(),
+                "endDate":END.isoformat(),
+                "hydrate":"team,venue"
+            }
+            r=requests.get(source["endpoint"],params=params,headers=HEADERS,timeout=18)
+            r.raise_for_status()
+            data=r.json()
+            for date_group in data.get("dates") or []:
+                for game in date_group.get("games") or []:
+                    parsed=parse_mlbstats_event(source,game)
+                    key=(parsed["id"],parsed["start_time"])
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    events.append(parsed)
+                    count+=1
         except Exception as e:
             errors.append(str(e)[:110])
         source_status.append({
@@ -287,7 +343,7 @@ def restriction_applies(ev, x):
         if "draft" in text:
             return "draft" in name
         if "spring training" in text or "preseason" in text or "pre-season" in text:
-            return any(k in name for k in ("spring training","preseason","pre-season"))
+            return stage=="PRESEASON" or any(k in name for k in ("spring training","preseason","pre-season"))
 
     # Explicit named special-event restrictions require the named event.
     special_terms=[
