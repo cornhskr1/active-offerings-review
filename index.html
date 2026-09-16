@@ -304,6 +304,17 @@ th{font-size:11px!important}
 .futures-rule{font-size:11px;color:var(--muted);margin-top:7px}
 @media(max-width:850px){.futures-grid{grid-template-columns:1fr}}
 
+
+.futures-guidance{
+  margin-top:10px;
+  padding:9px 11px;
+  border:1px solid #d7dce0;
+  border-left:4px solid #b42025;
+  border-radius:8px;
+  background:#f8f9fa;
+  font-size:12px;
+  line-height:1.45;
+}
 </style>
 </head>
 <body>
@@ -329,8 +340,14 @@ th{font-size:11px!important}
 
 <section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies.</p><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-grid" id="collegeGrid"></div></div><div class="card">
   <div class="section-title">Nebraska Collegiate — Basketball Futures Cutoffs</div>
-  <p class="small">Regular-season futures must be disabled before the first regular-season contest. Postseason futures must be disabled before the first postseason contest, if applicable. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
-  <div class="futures-grid" id="collegeFuturesGrid"></div>
+  <p class="small">Regular-season futures must be disabled before the first legitimate regular-season contest. A narrower subset used to determine the market outcome — such as away games, home games, conference games, or similar subsets — does not move that cutoff. Postseason futures must be disabled before the first legitimate postseason contest, if applicable. Combination markets must be removed by the earliest applicable cutoff among all included Nebraska collegiate components. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
+  <div class="futures-guidance">
+  <b>Operational rule:</b> classify the market first, then apply the team cutoff.
+  Regular-season subset wording does not create a later deadline.
+  Combination markets use the earliest applicable Nebraska collegiate cutoff.
+  Exhibitions and scrimmages do not start the regular-season futures clock.
+</div>
+<div class="futures-grid" id="collegeFuturesGrid"></div>
 </div></section>
 
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager/market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, restriction…"><select id="restrictionColor"><option value="all">All restrictions</option><option value="red">RED · not permissible</option><option value="amber">AMBER · review/limit</option></select></div><div class="table-wrap"><table><thead><tr><th>Status</th><th>Scope</th><th>Catalog Section</th><th>Restriction</th></tr></thead><tbody id="restrictionRows"></tbody></table></div></div></section>
