@@ -927,7 +927,7 @@ function renderToday(){
 
     const leagueGroups={};
     dayEvents.forEach(e=>{
-      const mapped=mappedCatalogEventForSource(e.source_id);
+      const mapped=mappedCatalogEventForScheduleEvent(e);
       const k=`${e.sport} · ${mapped?.review_label||mapped?.catalog_event||regionLeagueLabel(e.region,e.league)}`;
       (leagueGroups[k]??=[]).push(e);
     });
@@ -1614,6 +1614,16 @@ function mappedCatalogEventForSource(sourceId){
     }
   }
   return null;
+}
+function mappedCatalogEventForScheduleEvent(event){
+  if(event?.source_id==='mlb'&&event?.season_stage==='PRESEASON'){
+    const baseball=(DATA.seasonMap?.sports||[]).find(x=>x.sport==='Baseball');
+    for(const group of (baseball?.groups||[])){
+      const spring=(group.events||[]).find(x=>x.key==='baseball-us-mlb-spring-training');
+      if(spring)return{...spring,sport:'Baseball',country:group.country,governing_body:group.governing_body};
+    }
+  }
+  return mappedCatalogEventForSource(event?.source_id);
 }
 function mappedCatalogEvent(line,sport){
   const normalized=ncaaEventParts(line).name.toLowerCase();
