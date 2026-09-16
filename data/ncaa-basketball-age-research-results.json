@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T12:18:32.024595+00:00",
+  "generated_at": "2026-09-16T12:27:54.639830+00:00",
   "summary": {
     "attempted": 40,
     "verified_u18": 0,
-    "verified_18_plus": 0,
-    "unresolved": 40,
-    "skipped_recent": 0,
+    "verified_18_plus": 1,
+    "unresolved": 39,
     "max_records": 40,
     "min_priority": 800,
-    "cooldown_days": 7
+    "espn_cooldown_days": 7,
+    "official_cooldown_days": 14,
+    "official_school_adapter": true
   },
   "results": [
     {
@@ -22,9 +23,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5311956?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -37,9 +45,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5101788?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/mens-basketball/roster/hudson-greer/9428"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -52,9 +67,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5311955?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -67,9 +89,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5239571?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://huskers.com/sports/mens-basketball/roster/player/braden-frager"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -82,9 +111,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5263670?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://huskers.com/sports/mens-basketball/roster/player/leo-curtis"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -97,9 +133,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5254162?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://huskers.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -112,9 +155,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5314815?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/mens-basketball/roster/brock-scholl/17136"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -127,9 +177,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/wbb/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5312680?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/wbb/roster/ava-zediker/9095"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -142,9 +199,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/wbb/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5312678?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/wbb/roster/avery-cooper/9089"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -157,9 +221,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/wbb/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5312676?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/wbb/roster/kendall-mcgee/9094"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -172,9 +243,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/wbb/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5312679?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/wbb/roster/neleigh-gessert/9091"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -187,9 +265,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/wbb/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5312681?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/wbb/roster/norah-gessert/9092"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -202,9 +287,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/wbb/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5312677?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/wbb/roster/tara-dacic/9090"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -217,9 +309,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5311590?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://huskers.com/sports/womens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -232,9 +331,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5240194?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://huskers.com/sports/womens-basketball/roster/player/kennadi-williams"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -247,9 +353,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314664?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/womens-basketball/roster/aduke-ojullu/16956"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -262,9 +375,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314663?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/womens-basketball/roster/avril-smith/16958"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -277,9 +397,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314662?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/womens-basketball/roster/elsa-vedral/16960"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -292,9 +419,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314665?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://omahamavs.com/sports/womens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -307,9 +441,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314661?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://omahamavs.com/sports/womens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -322,9 +463,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314659?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/womens-basketball/roster/leekaya-burke-perryman/16953"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -337,9 +485,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314667?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://omahamavs.com/sports/womens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -352,9 +507,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314666?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/womens-basketball/roster/regan-juenemann/16954"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -367,9 +529,16 @@
         "FRESHMAN",
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://omahamavs.com/sports/womens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball/athletes/5314658?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://omahamavs.com/sports/womens-basketball/roster/tannika-legerwalker/16955"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -381,9 +550,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5144380?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/mens-basketball/roster/austin-swartz/9430"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -395,9 +571,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5243101?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -409,9 +592,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/4712866?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/mens-basketball/roster/isaac-traudt/9432"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -423,9 +613,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5061591?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/mens-basketball/roster/jackson-mcandrew/9429"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -437,9 +634,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5105577?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/mens-basketball/roster/jasen-green/9427"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -451,9 +655,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5175359?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -465,9 +676,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/4433038?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -479,9 +697,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5106863?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -493,9 +718,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/4894465?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -507,9 +739,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5175358?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://gocreighton.com/sports/mens-basketball/roster/shane-thomas/9431"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -521,9 +760,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://gocreighton.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5149116?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://gocreighton.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -535,9 +781,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5174982?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://huskers.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -549,10 +802,20 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5105827?lang=en&region=us",
-      "result": "UNRESOLVED"
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "VERIFIED"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
+      "result": "VERIFIED 18+",
+      "age": 23,
+      "dob": "2003-06-20",
+      "evidence_source": "Official school athlete bio",
+      "evidence_url": "https://huskers.com/sports/mens-basketball/roster/player/cale-jacobsen"
     },
     {
       "gender": "Men",
@@ -563,9 +826,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5105861?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://huskers.com/sports/mens-basketball/roster/player/connor-essegian"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -577,9 +847,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5105828?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO EXPLICIT DOB/AGE ON OFFICIAL BIO",
+            "bio_url": "https://huskers.com/sports/mens-basketball/roster/player/henry-burt"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     },
     {
@@ -591,9 +868,16 @@
       "priority_reasons": [
         "NEBRASKA PRIORITY"
       ],
-      "official_roster_source": "https://huskers.com/sports/mens-basketball/roster",
-      "researched_at": "2026-09-16T12:18:32.024595+00:00",
-      "profile_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/athletes/5105825?lang=en&region=us",
+      "attempts": [
+        {
+          "source": "OFFICIAL SCHOOL",
+          "result": {
+            "reason": "NO UNIQUE OFFICIAL BIO LINK",
+            "roster_url": "https://huskers.com/sports/mens-basketball/roster"
+          }
+        }
+      ],
+      "researched_at": "2026-09-16T12:27:54.639830+00:00",
       "result": "UNRESOLVED"
     }
   ]
