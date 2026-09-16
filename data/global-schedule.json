@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T18:22:31.038100+00:00",
+  "generated_at": "2026-09-16T19:19:00.544400+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-16",
   "window_end": "2026-09-23",
-  "event_count": 785,
+  "event_count": 786,
   "events": [
     {
       "id": "887-2026",
@@ -105,7 +105,7 @@
       "name": "Chicago White Sox at Cleveland Guardians",
       "start_time": "2026-09-16T17:00Z",
       "status": "LIVE",
-      "status_detail": "End 4th",
+      "status_detail": "Bot 7th",
       "season_stage": "REGULAR SEASON",
       "location": "Progressive Field \u00b7 Cleveland, Ohio",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -122,8 +122,8 @@
       "region": "Spain",
       "name": "Osasuna at Atl\u00e9tico Madrid",
       "start_time": "2026-09-16T17:00Z",
-      "status": "LIVE",
-      "status_detail": "61'",
+      "status": "COMPLETED",
+      "status_detail": "FT",
       "season_stage": null,
       "location": "Riyadh Air Metropolitano \u00b7 Madrid, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
@@ -140,8 +140,8 @@
       "region": "Spain",
       "name": "Sevilla at Deportivo",
       "start_time": "2026-09-16T17:00Z",
-      "status": "LIVE",
-      "status_detail": "63'",
+      "status": "COMPLETED",
+      "status_detail": "FT",
       "season_stage": null,
       "location": "Riazor \u00b7 La Coru\u00f1a, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
@@ -159,7 +159,7 @@
       "name": "San Francisco Giants at St. Louis Cardinals",
       "start_time": "2026-09-16T17:15Z",
       "status": "LIVE",
-      "status_detail": "Top 5th",
+      "status_detail": "Bot 7th",
       "season_stage": "REGULAR SEASON",
       "location": "Busch Stadium \u00b7 St. Louis, Missouri",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -177,7 +177,7 @@
       "name": "New York Yankees at Minnesota Twins",
       "start_time": "2026-09-16T17:40Z",
       "status": "LIVE",
-      "status_detail": "Top 3rd",
+      "status_detail": "Bot 6th",
       "season_stage": "REGULAR SEASON",
       "location": "Target Field \u00b7 Minneapolis, Minnesota",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -194,8 +194,8 @@
       "region": "United States",
       "name": "Detroit Tigers at Toronto Blue Jays",
       "start_time": "2026-09-16T19:07Z",
-      "status": "UPCOMING",
-      "status_detail": "9/16 - 3:07 PM EDT",
+      "status": "LIVE",
+      "status_detail": "Bot 1st",
       "season_stage": "REGULAR SEASON",
       "location": "Rogers Centre \u00b7 Toronto, Ontario",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -13813,6 +13813,24 @@
       "restriction_risk": false
     },
     {
+      "id": "401921800",
+      "source_id": "ncaa-volleyball",
+      "sport": "Volleyball",
+      "league": "NCAA Volleyball",
+      "region": "United States",
+      "name": "Missouri Tigers at Nebraska Cornhuskers",
+      "start_time": "2026-09-23T23:00Z",
+      "status": "UPCOMING",
+      "status_detail": "9/23 - 7:00 PM EDT",
+      "season_stage": "REGULAR SEASON",
+      "location": "Bob Devaney Center \u00b7 Lincoln, Nebraska",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401883380",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -14152,7 +14170,7 @@
       "ok": true,
       "events": 103,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "nfl",
@@ -14168,7 +14186,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "ncaa-football",
@@ -14184,7 +14202,7 @@
       "ok": true,
       "events": 29,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "nba",
@@ -14200,7 +14218,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "wnba",
@@ -14216,7 +14234,7 @@
       "ok": true,
       "events": 25,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -14232,7 +14250,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -14248,7 +14266,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "nhl",
@@ -14264,7 +14282,7 @@
       "ok": true,
       "events": 36,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "mls",
@@ -14280,7 +14298,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "epl",
@@ -14295,7 +14313,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "bundesliga",
@@ -14310,7 +14328,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "laliga",
@@ -14325,7 +14343,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "seriea",
@@ -14340,7 +14358,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "ligue1",
@@ -14355,7 +14373,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "eredivisie",
@@ -14370,7 +14388,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "primeira",
@@ -14385,7 +14403,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "belgium",
@@ -14401,7 +14419,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "denmark",
@@ -14417,7 +14435,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -14431,9 +14449,9 @@
       ],
       "approved_catalog": true,
       "ok": true,
-      "events": 461,
+      "events": 462,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "atp-tennis",
@@ -14449,7 +14467,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     },
     {
       "id": "wta-tennis",
@@ -14465,7 +14483,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-16T18:22:31.038100+00:00"
+      "checked_at": "2026-09-16T19:19:00.544400+00:00"
     }
   ],
   "coverage_gaps": [
