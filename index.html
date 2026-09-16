@@ -1497,7 +1497,7 @@ function catalogLineRole(line){
   }
 
   if(CATALOG_COUNTRIES.has(s) ||
-     /^(international|europe|asia|africa|oceania|north america|south america)$/i.test(s)){
+     /^(international|europe|asia|africa|oceania|north america|south america|international\s*\/\s*europe|united states\s*\/\s*canada)$/i.test(s)){
     return 'catalog-country';
   }
 
@@ -1538,12 +1538,15 @@ const CATALOG_SEASON_MAP=[
 ];
 function annotateCatalogLines(lines){
   let country='',previous='';
-  return(lines||[]).map(line=>{
-    if(CATALOG_COUNTRIES.has(String(line).trim()))country=String(line).trim();
+  return(lines||[]).map((line,index,all)=>{
     const baseRole=catalogLineRole(line);
-    const role=(String(line).trim()===String(previous).trim()&&baseRole==='catalog-org')?'catalog-event':baseRole;
+    if(baseRole==='catalog-country')country=String(line).trim();
+    const sameAsPrevious=String(line).trim()===String(previous).trim();
+    const sameAsNext=String(line).trim()===String(all[index+1]||'').trim();
+    const hiddenDuplicate=sameAsNext&&(baseRole==='catalog-org'||baseRole==='catalog-event');
+    const role=(sameAsPrevious&&(baseRole==='catalog-org'||baseRole==='catalog-event'))?'catalog-event':baseRole;
     previous=line;
-    return{line,country,role};
+    return{line,country,role,hiddenDuplicate};
   });
 }
 function catalogSeasonStatus(line,sport,country,roleOverride){
@@ -1713,7 +1716,7 @@ function renderCatalog(){
     const controlled=mappedBySport.get(section.sport);
     if(controlled)return renderMappedCatalogSport(section,controlled,q,seasonFilter);
     const searchHit=!q||section.sport.toLowerCase().includes(q);
-    const lines=annotateCatalogLines(section.lines).filter(item=>searchHit||String(item.line).toLowerCase().includes(q));
+    const lines=annotateCatalogLines(section.lines).filter(item=>!item.hiddenDuplicate).filter(item=>searchHit||String(item.line).toLowerCase().includes(q));
     const filtered=seasonFilter==='all'?lines:lines.filter(item=>{
       const role=item.role,status=catalogSeasonStatus(item.line,section.sport,item.country,item.role);
       if(role!=='catalog-event')return true;
