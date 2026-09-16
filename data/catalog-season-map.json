@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-16T16:00:00-05:00",
+  "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
+  "sports": [
+    {
+      "sport": "Baseball",
+      "mapping_status": "complete",
+      "groups": [
+        {
+          "country": "Dominican Republic",
+          "governing_body": "Professional Baseball League of the Dominican Republic (LIDOM)",
+          "events": [
+            {
+              "key": "baseball-do-lidom",
+              "catalog_event": "Professional Baseball League of the Dominican Republic (LIDOM)",
+              "season_status": "out",
+              "season_basis": "Recurring winter league season",
+              "season_window": "October–January",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Japan",
+          "governing_body": "Nippon Professional Baseball (NPB) Organization",
+          "events": [
+            {
+              "key": "baseball-jp-npb",
+              "catalog_event": "Nippon Professional Baseball (NPB)",
+              "season_status": "in",
+              "season_basis": "Recurring regular season and postseason calendar",
+              "season_window": "March–October",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Korea",
+          "governing_body": "Korean Baseball Organization (KBO)",
+          "events": [
+            {
+              "key": "baseball-kr-kbo",
+              "catalog_event": "KBO League",
+              "season_status": "in",
+              "season_basis": "Recurring regular season and postseason calendar",
+              "season_window": "March–October",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Mexico",
+          "governing_body": "Liga Mexicana de Béisbol (LMB)",
+          "events": [
+            {
+              "key": "baseball-mx-lmb",
+              "catalog_event": "Mexico Baseball League",
+              "season_status": "in",
+              "season_basis": "Recurring regular season and postseason calendar",
+              "season_window": "April–September",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PROPOSITION WAGERS"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Mexico",
+          "governing_body": "Liga Mexicana del Pacífico (LMP)",
+          "events": [
+            {
+              "key": "baseball-mx-lmp",
+              "catalog_event": "Mexican Pacific League",
+              "season_status": "out",
+              "season_basis": "Recurring winter league season",
+              "season_window": "October–January",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PROPOSITION WAGERS"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Switzerland",
+          "governing_body": "World Baseball Softball Confederation (WBSC)",
+          "events": [
+            {
+              "key": "baseball-int-wbc",
+              "catalog_event": "World Baseball Classic",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "March 2026 tournament completed",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "Major League Baseball (MLB)",
+          "events": [
+            {
+              "key": "baseball-us-mlb",
+              "catalog_event": "Major League Baseball (MLB)",
+              "season_status": "in",
+              "season_basis": "Connected live schedule",
+              "season_window": "Regular season and postseason",
+              "source_id": "mlb",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "baseball-us-mlb-draft",
+              "catalog_event": "Draft",
+              "season_status": "out",
+              "season_basis": "Event-specific calendar",
+              "season_window": "Annual July event",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "MARKETS MUST CLOSE 1 HOUR PRIOR TO EVENT START TIME"
+              ]
+            },
+            {
+              "key": "baseball-us-mlb-spring-training",
+              "catalog_event": "Spring Training",
+              "season_status": "out",
+              "season_basis": "Recurring preseason calendar",
+              "season_window": "February–March",
+              "source_id": null,
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "MARKETS LIMITED TO MONEYLINE, RUN LINE, AND TOTAL RUNS"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
