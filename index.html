@@ -1537,23 +1537,29 @@ const CATALOG_SEASON_MAP=[
   {id:'wta-tennis',sport:'Tennis',test:/^WTA Tour \|/i}
 ];
 function annotateCatalogLines(lines){
-  let country='';
+  let country='',previous='';
   return(lines||[]).map(line=>{
     if(CATALOG_COUNTRIES.has(String(line).trim()))country=String(line).trim();
-    return{line,country};
+    const baseRole=catalogLineRole(line);
+    const role=(String(line).trim()===String(previous).trim()&&baseRole==='catalog-org')?'catalog-event':baseRole;
+    previous=line;
+    return{line,country,role};
   });
 }
-function catalogSeasonStatus(line,sport,country){
-  if(catalogLineRole(line)!=='catalog-event')return null;
+function catalogSeasonStatus(line,sport,country,roleOverride){
+  if((roleOverride||catalogLineRole(line))!=='catalog-event')return null;
   const ids=CATALOG_SEASON_MAP.filter(map=>map.sport===sport&&(!map.country||map.country===country)&&map.test.test(String(line))).map(map=>map.id);
   const mapped=(DATA.global?.sources||[]).filter(src=>ids.includes(src.id));
   if(!mapped.length)return null;
   if(mapped.some(src=>Number(src.events||0)>0))return'in';
+  const planned=ids.map(sourceCatalogMapping).filter(Boolean).map(annualSeasonStatus).filter(Boolean);
+  if(planned.includes('in'))return'in';
+  if(planned.length&&planned.every(x=>x==='out'))return'out';
   if(mapped.every(src=>src.ok))return'out';
   return null;
 }
-function catalogLineHtml(line,sport,country){
-  const role=catalogLineRole(line),season=catalogSeasonStatus(line,sport,country);
+function catalogLineHtml(line,sport,country,roleOverride){
+  const role=roleOverride||catalogLineRole(line),season=catalogSeasonStatus(line,sport,country,role);
   const badge=season==='in'
     ?'<span class="season-pill in-season">IN SEASON</span>'
     :season==='out'?'<span class="season-pill out-season">OUT OF SEASON</span>':'';
@@ -1569,6 +1575,9 @@ function annualSeasonStatus(event){
 function eventSourceIds(event){
   return [...(event?.source_ids||[]),...(event?.source_id?[event.source_id]:[])];
 }
+function sourceCatalogMapping(sourceId){
+  return (DATA.seasonMap?.source_mappings||[]).find(x=>x.source_id===sourceId)||null;
+}
 function mappedSeasonStatus(event){
   const ids=eventSourceIds(event);
   if(ids.length){
@@ -1579,6 +1588,8 @@ function mappedSeasonStatus(event){
 }
 function mappedCatalogEventForSource(sourceId){
   if(!sourceId)return null;
+  const direct=sourceCatalogMapping(sourceId);
+  if(direct)return direct;
   for(const sport of (DATA.seasonMap?.sports||[])){
     for(const group of (sport.groups||[])){
       const event=(group.events||[]).find(x=>eventSourceIds(x).includes(sourceId));
@@ -1704,16 +1715,16 @@ function renderCatalog(){
     const searchHit=!q||section.sport.toLowerCase().includes(q);
     const lines=annotateCatalogLines(section.lines).filter(item=>searchHit||String(item.line).toLowerCase().includes(q));
     const filtered=seasonFilter==='all'?lines:lines.filter(item=>{
-      const role=catalogLineRole(item.line),status=catalogSeasonStatus(item.line,section.sport,item.country);
+      const role=item.role,status=catalogSeasonStatus(item.line,section.sport,item.country,item.role);
       if(role!=='catalog-event')return true;
       if(seasonFilter==='unmapped')return status===null;
       return status===seasonFilter;
     });
-    const eventMatches=filtered.filter(item=>catalogLineRole(item.line)==='catalog-event').length;
+    const eventMatches=filtered.filter(item=>item.role==='catalog-event').length;
     if(!filtered.length||(seasonFilter!=='all'&&eventMatches===0)||(q&&!eventMatches&&!section.sport.toLowerCase().includes(q)))return'';
-    const mapped=lines.filter(item=>catalogSeasonStatus(item.line,section.sport,item.country)).length;
-    const countLabel=seasonFilter==='all'?`${filtered.length} entries${mapped?` · ${mapped} season mapped`:''}`:`${filtered.filter(item=>catalogLineRole(item.line)==='catalog-event').length} matching events`;
-    return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${filtered.map(item=>catalogLineHtml(item.line,section.sport,item.country)).join('')}</div></div></details>`;
+    const mapped=lines.filter(item=>catalogSeasonStatus(item.line,section.sport,item.country,item.role)).length;
+    const countLabel=seasonFilter==='all'?`${filtered.length} entries${mapped?` · ${mapped} season mapped`:''}`:`${filtered.filter(item=>item.role==='catalog-event').length} matching events`;
+    return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${filtered.map(item=>catalogLineHtml(item.line,section.sport,item.country,item.role)).join('')}</div></div></details>`;
   }).filter(Boolean);
   document.getElementById('catalogSections').innerHTML=rendered.join('')||'<div class="empty">No catalog entries match this season filter.</div>';
 }
