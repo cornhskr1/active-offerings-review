@@ -278,6 +278,7 @@ print(json.dumps({
     "verified_u18_registry": len(verified_u18),
     "roster_matched_verified_u18": len(roster_matched_verified_u18),
     "active_u18_exposures": len(active_exposures),
+    "catalog_special_rules_count": len(catalog_rules),
     "special_restrictions": len(special_restrictions),
     "events_screened": len(events)
 }))
