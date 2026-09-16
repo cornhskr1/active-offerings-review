@@ -9,6 +9,7 @@
   --black:#111214;--charcoal:#25282c;--charcoal2:#35393e;--white:#fff;--bg:#f2f3f4;--line:#d9dde1;
   --text:#202327;--muted:#68717a;--red:#b42318;--redbg:#fff1f0;--amber:#a86608;--amberbg:#fff7e6;
   --green:#267342;--greenbg:#eef8f1;--blue:#315d83;--bluebg:#eef4f9;
+  --season-blue:#245f91;--season-blue-bg:#eaf3fb;--season-brown:#76502d;--season-brown-bg:#f3ebe3;
 }
 *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Arial,Helvetica,sans-serif}
 body:before{content:"";position:fixed;z-index:1000;top:0;left:0;right:0;height:4px;background:var(--red)}
@@ -208,6 +209,36 @@ th{font-size:11px!important}
 .catalog-line.catalog-event{
   font-size:13px!important;
 }
+.catalog-line.catalog-event.has-season{
+  justify-content:space-between!important;
+  gap:10px!important;
+}
+.catalog-copy{min-width:0}
+.season-pill{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  border:1px solid;
+  border-radius:999px;
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.025em;
+  line-height:1;
+  white-space:nowrap;
+}
+.season-pill.in-season{
+  color:var(--season-blue);
+  background:var(--season-blue-bg);
+  border-color:#a9c9e2;
+}
+.season-pill.out-season{
+  color:var(--season-brown);
+  background:var(--season-brown-bg);
+  border-color:#cdb498;
+}
+.season-legend{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.season-legend .season-note{font-size:12px;color:#66707a}
 .catalog-line.restricted,
 .catalog-line.prohibited{
   grid-column:auto;
@@ -405,7 +436,7 @@ th{font-size:11px!important}
 </section>
 <section class="panel" id="coverage"><div class="card"><div class="section-title">Coverage Control</div><p class="small">Source health is not the same as permissibility. A source issue is AMBER because staff may need manual review; it is never RED by itself.</p><div class="coverage-grid" id="coverageGrid"></div></div></section>
 
-<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event. Catalog order and wording are preserved exactly as published.</div><div id="catalogSections"></div></div></section>
+<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-note">Season colors are informational and do not change GREEN / AMBER / RED compliance status.</span></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event. Catalog order and wording are preserved exactly as published. Season status is shown where the catalog entry is connected to current schedule coverage.</div><div id="catalogSections"></div></div></section>
 </div>
 <script>
 const DATA={};
@@ -1450,12 +1481,79 @@ function catalogLineRole(line){
   return 'catalog-event';
 }
 
-function renderCatalog(){const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();const st=DATA.catalogStatus||{};document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;const sections=(cat.sections||[]).filter(s=>!q||s.sport.toLowerCase().includes(q)||(s.lines||[]).some(l=>String(l).toLowerCase().includes(q)));document.getElementById('catalogSections').innerHTML=sections.map(s=>{const lines=(s.lines||[]).filter(l=>!q||s.sport.toLowerCase().includes(q)||String(l).toLowerCase().includes(q));return `<details class="catalog-sport" ${q?'open':''}><summary><span>${esc(s.sport)}</span><span>${lines.length} entries</span></summary><div class="catalog-body"><div class="catalog-lines">${lines.map(l=>`<div class="catalog-line ${catalogLineRole(l)} ${lineColor(l)}">${esc(l)}</div>`).join('')}</div></div></details>`}).join('')||`<div class="empty">No matching catalog entries.</div>`}
+const CATALOG_SEASON_MAP=[
+  {id:'mlb',sport:'Baseball',test:/^Major League Baseball \(MLB\)$/i},
+  {id:'nba',sport:'Basketball',test:/^National Basketball Association \(NBA\)(?: \| Men)?$/i},
+  {id:'wnba',sport:'Basketball',test:/^Women['’]s National Basketball Association \(WNBA\)(?: \| Women)?$/i},
+  {id:'nfl',sport:'Football',test:/^National Football League \(NFL\)$/i},
+  {id:'nhl',sport:'Ice Hockey',test:/^National Hockey League \(NHL\)$/i},
+  {id:'ncaa-football',sport:'NCAA Football',test:/^Division I Football/i},
+  {id:'ncaa-mbb',sport:'NCAA Basketball',test:/^Division I Basketball/i},
+  {id:'ncaa-wbb',sport:'NCAA Basketball',test:/^Division I Basketball/i},
+  {id:'ncaa-volleyball',sport:'NCAA Volleyball',test:/^Division I Volleyball/i},
+  {id:'mls',sport:'Soccer',country:'United States',test:/^Major League Soccer \(MLS\)/i},
+  {id:'epl',sport:'Soccer',country:'England',test:/^Premier League \|/i},
+  {id:'bundesliga',sport:'Soccer',country:'Germany',test:/^Bundesliga \|/i},
+  {id:'laliga',sport:'Soccer',country:'Spain',test:/^La Liga \|/i},
+  {id:'seriea',sport:'Soccer',country:'Italy',test:/^Serie A \|/i},
+  {id:'ligue1',sport:'Soccer',country:'France',test:/^Ligue 1 \|/i},
+  {id:'eredivisie',sport:'Soccer',country:'Netherlands',test:/^Eredivisie \|/i},
+  {id:'primeira',sport:'Soccer',country:'Portugal',test:/^Primeira Liga \|/i},
+  {id:'belgium',sport:'Soccer',country:'Belgium',test:/^Belgian Pro League \|/i},
+  {id:'denmark',sport:'Soccer',country:'Denmark',test:/^Danish Superliga \|/i},
+  {id:'atp-tennis',sport:'Tennis',test:/^ATP (?:Tour|Challenger Tour) \|/i},
+  {id:'wta-tennis',sport:'Tennis',test:/^WTA Tour \|/i}
+];
+function annotateCatalogLines(lines){
+  let country='';
+  return(lines||[]).map(line=>{
+    if(CATALOG_COUNTRIES.has(String(line).trim()))country=String(line).trim();
+    return{line,country};
+  });
+}
+function catalogSeasonStatus(line,sport,country){
+  if(catalogLineRole(line)!=='catalog-event')return null;
+  const ids=CATALOG_SEASON_MAP.filter(map=>map.sport===sport&&(!map.country||map.country===country)&&map.test.test(String(line))).map(map=>map.id);
+  const mapped=(DATA.global?.sources||[]).filter(src=>ids.includes(src.id));
+  if(!mapped.length)return null;
+  if(mapped.some(src=>Number(src.events||0)>0))return'in';
+  if(mapped.every(src=>src.ok))return'out';
+  return null;
+}
+function catalogLineHtml(line,sport,country){
+  const role=catalogLineRole(line),season=catalogSeasonStatus(line,sport,country);
+  const badge=season==='in'
+    ?'<span class="season-pill in-season">IN SEASON</span>'
+    :season==='out'?'<span class="season-pill out-season">OUT OF SEASON</span>':'';
+  return `<div class="catalog-line ${role} ${lineColor(line)} ${season?'has-season':''}"><span class="catalog-copy">${esc(line)}</span>${badge}</div>`;
+}
+function renderCatalog(){
+  const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();
+  const seasonFilter=document.getElementById('catalogSeason').value||'all',st=DATA.catalogStatus||{};
+  document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;
+  const prepared=(cat.sections||[]).map(section=>{
+    const searchHit=!q||section.sport.toLowerCase().includes(q);
+    const lines=annotateCatalogLines(section.lines).filter(item=>searchHit||String(item.line).toLowerCase().includes(q));
+    const filtered=seasonFilter==='all'?lines:lines.filter(item=>{
+      const role=catalogLineRole(item.line),status=catalogSeasonStatus(item.line,section.sport,item.country);
+      if(role!=='catalog-event')return true;
+      if(seasonFilter==='unmapped')return status===null;
+      return status===seasonFilter;
+    });
+    const eventMatches=filtered.filter(item=>catalogLineRole(item.line)==='catalog-event').length;
+    return{section,lines:filtered,eventMatches};
+  }).filter(x=>x.lines.length&&(seasonFilter==='all'||x.eventMatches>0)&&(!q||x.eventMatches||x.section.sport.toLowerCase().includes(q)));
+  document.getElementById('catalogSections').innerHTML=prepared.map(({section,lines})=>{
+    const mapped=lines.filter(item=>catalogSeasonStatus(item.line,section.sport,item.country)).length;
+    const countLabel=seasonFilter==='all'?`${lines.length} entries${mapped?` · ${mapped} season mapped`:''}`:`${lines.filter(item=>catalogLineRole(item.line)==='catalog-event').length} matching events`;
+    return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${lines.map(item=>catalogLineHtml(item.line,section.sport,item.country)).join('')}</div></div></details>`;
+  }).join('')||'<div class="empty">No catalog entries match this season filter.</div>';
+}
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
 document.getElementById('refreshBtn').addEventListener('click',loadAll);
 ['collegeSchool','collegeStatus'].forEach(id=>document.getElementById(id).addEventListener('change',renderCollege));
-document.getElementById('restrictionSearch').addEventListener('input',renderRestrictions);document.getElementById('restrictionColor').addEventListener('change',renderRestrictions);document.getElementById('u18Search').addEventListener('input',renderU18);document.getElementById('ncaaSearch').addEventListener('input',renderNcaa);document.getElementById('ncaaMapFilter').addEventListener('change',renderNcaa);document.getElementById('catalogSearch').addEventListener('input',renderCatalog);
+document.getElementById('restrictionSearch').addEventListener('input',renderRestrictions);document.getElementById('restrictionColor').addEventListener('change',renderRestrictions);document.getElementById('u18Search').addEventListener('input',renderU18);document.getElementById('ncaaSearch').addEventListener('input',renderNcaa);document.getElementById('ncaaMapFilter').addEventListener('change',renderNcaa);document.getElementById('catalogSearch').addEventListener('input',renderCatalog);document.getElementById('catalogSeason').addEventListener('change',renderCatalog);
 
 loadAll();
 </script>
