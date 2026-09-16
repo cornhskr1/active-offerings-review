@@ -26,6 +26,65 @@
       ]
     },
     {
+      "id": "npb",
+      "sport": "Baseball",
+      "league": "Nippon Professional Baseball (NPB)",
+      "region": "Japan",
+      "source_type": "thesportsdb",
+      "league_id": "4591",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": ["Nippon Professional Baseball", "NPB"]
+    },
+    {
+      "id": "kbo",
+      "sport": "Baseball",
+      "league": "KBO League",
+      "region": "Korea",
+      "source_type": "thesportsdb",
+      "league_id": "4830",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": ["KBO League", "Korean Baseball Organization"]
+    },
+    {
+      "id": "lmb",
+      "sport": "Baseball",
+      "league": "Mexico Baseball League",
+      "region": "Mexico",
+      "source_type": "thesportsdb",
+      "league_id": "5064",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": ["Mexico Baseball League", "Liga Mexicana de Béisbol"]
+    },
+    {
+      "id": "lmp",
+      "sport": "Baseball",
+      "league": "Mexican Pacific League",
+      "region": "Mexico",
+      "source_type": "thesportsdb",
+      "league_id": "5109",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": ["Mexican Pacific League", "Liga Mexicana del Pacífico"]
+    },
+    {
+      "id": "lidom",
+      "sport": "Baseball",
+      "league": "Professional Baseball League of the Dominican Republic (LIDOM)",
+      "region": "Dominican Republic",
+      "source_type": "mlbstats",
+      "sport_id": "17",
+      "league_id": "131",
+      "endpoint": "https://statsapi.mlb.com/api/v1/schedule",
+      "catalog_terms": ["Professional Baseball League of the Dominican Republic", "LIDOM"]
+    },
+    {
+      "id": "wbc",
+      "sport": "Baseball",
+      "league": "World Baseball Classic",
+      "region": "International",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/world-baseball-classic/scoreboard",
+      "catalog_terms": ["World Baseball Classic"]
+    },
+    {
       "id": "nfl",
       "sport": "Football",
       "league": "NFL",

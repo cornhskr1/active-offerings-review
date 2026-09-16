@@ -76,9 +76,11 @@
               "key": "baseball-do-lidom",
               "catalog_event": "Professional Baseball League of the Dominican Republic (LIDOM)",
               "season_status": "out",
-              "season_basis": "Recurring winter league season",
-              "season_window": "October–January",
-              "source_id": null,
+          "season_basis": "Recurring winter league season",
+          "season_window": "October–January",
+          "season_start": "10-01",
+          "season_end": "01-31",
+          "source_id": "lidom",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -92,9 +94,11 @@
               "key": "baseball-jp-npb",
               "catalog_event": "Nippon Professional Baseball (NPB)",
               "season_status": "in",
-              "season_basis": "Recurring regular season and postseason calendar",
-              "season_window": "March–October",
-              "source_id": null,
+          "season_basis": "Recurring regular season and postseason calendar",
+          "season_window": "March–October",
+          "season_start": "03-01",
+          "season_end": "10-31",
+          "source_id": "npb",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -108,9 +112,11 @@
               "key": "baseball-kr-kbo",
               "catalog_event": "KBO League",
               "season_status": "in",
-              "season_basis": "Recurring regular season and postseason calendar",
-              "season_window": "March–October",
-              "source_id": null,
+          "season_basis": "Recurring regular season and postseason calendar",
+          "season_window": "March–October",
+          "season_start": "03-01",
+          "season_end": "10-31",
+          "source_id": "kbo",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -124,9 +130,11 @@
               "key": "baseball-mx-lmb",
               "catalog_event": "Mexico Baseball League",
               "season_status": "in",
-              "season_basis": "Recurring regular season and postseason calendar",
-              "season_window": "April–September",
-              "source_id": null,
+          "season_basis": "Recurring regular season and postseason calendar",
+          "season_window": "April–September",
+          "season_start": "04-01",
+          "season_end": "09-30",
+          "source_id": "lmb",
               "last_verified": "2026-09-16",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
@@ -142,9 +150,11 @@
               "key": "baseball-mx-lmp",
               "catalog_event": "Mexican Pacific League",
               "season_status": "out",
-              "season_basis": "Recurring winter league season",
-              "season_window": "October–January",
-              "source_id": null,
+          "season_basis": "Recurring winter league season",
+          "season_window": "October–January",
+          "season_start": "10-01",
+          "season_end": "01-31",
+          "source_id": "lmp",
               "last_verified": "2026-09-16",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
@@ -162,7 +172,7 @@
               "season_status": "out",
               "season_basis": "Event-specific tournament calendar",
               "season_window": "March 2026 tournament completed",
-              "source_id": null,
+          "source_id": "wbc",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -176,8 +186,10 @@
               "key": "baseball-us-mlb",
               "catalog_event": "Major League Baseball (MLB)",
               "season_status": "in",
-              "season_basis": "Connected live schedule",
-              "season_window": "Regular season and postseason",
+          "season_basis": "Connected live schedule",
+          "season_window": "Regular season and postseason",
+          "season_start": "03-01",
+          "season_end": "11-30",
               "source_id": "mlb",
               "last_verified": "2026-09-16",
               "restrictions": []
@@ -186,8 +198,10 @@
               "key": "baseball-us-mlb-draft",
               "catalog_event": "Draft",
               "season_status": "out",
-              "season_basis": "Event-specific calendar",
-              "season_window": "Annual July event",
+          "season_basis": "Event-specific calendar",
+          "season_window": "Annual July event",
+          "season_start": "07-01",
+          "season_end": "07-31",
               "source_id": null,
               "last_verified": "2026-09-16",
               "restrictions": [
@@ -198,8 +212,10 @@
               "key": "baseball-us-mlb-spring-training",
               "catalog_event": "Spring Training",
               "season_status": "out",
-              "season_basis": "Recurring preseason calendar",
-              "season_window": "February–March",
+          "season_basis": "Recurring preseason calendar",
+          "season_window": "February–March",
+          "season_start": "02-01",
+          "season_end": "03-31",
               "source_id": null,
               "last_verified": "2026-09-16",
               "restrictions": [
