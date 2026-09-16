@@ -7,38 +7,62 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: active-offerings-data
+  group: "nrgc-catalog-update"
   cancel-in-progress: false
 
 jobs:
-  refresh:
+  update:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Sync latest main
         run: |
           git fetch origin main
           git reset --hard origin/main
-      - name: Install dependencies
+
+      - name: Install catalog parser
         run: python3 -m pip install --quiet requests beautifulsoup4 pypdf
-      - name: Run refresh
+
+      - name: Discover and parse current NRGC catalog
         run: python3 scripts/update_catalog.py
-      - name: Commit refreshed data
+
+      - name: Commit current catalog data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add data/catalog-current.pdf data/catalog-live.json data/catalog-status.json
+
           if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
+            echo "Catalog content unchanged."
+          else
+            git commit -m "Update current NRGC sports wagering catalog"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
-          git commit -m "Update current NRGC sports wagering catalog"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
