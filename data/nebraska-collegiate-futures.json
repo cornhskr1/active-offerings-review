@@ -1,11 +1,273 @@
 {
   "schema_version": 1,
-  "generated_at": null,
+  "generated_at": "2026-09-16T13:51:01.333056+00:00",
   "timezone": "America/Chicago",
   "scope": "Nebraska collegiate Division I basketball futures cutoffs",
   "rules": {
     "regular_season": "Disable Nebraska collegiate regular-season futures before the team's first regular-season contest.",
     "postseason": "Disable Nebraska collegiate postseason futures before the team's first postseason contest, if applicable."
   },
-  "programs": []
+  "alert_window_days": 7,
+  "programs": [
+    {
+      "school": "Nebraska",
+      "sport": "Men's Basketball",
+      "source_url": "https://huskers.com/sports/mens-basketball/schedule",
+      "schedule_events_found": 17,
+      "first_regular_season_contest": {
+        "date": "2026-10-02",
+        "time": "7:00 PM CDT",
+        "site": "HOME",
+        "opponent": "Opening Night Presented by SCHEELS",
+        "location": "Canopy Street in front of PBA",
+        "phase": "REGULAR SEASON",
+        "source_url": "https://huskers.com/sports/mens-basketball/schedule"
+      },
+      "regular_season_futures": {
+        "rule": "Disable before first regular-season contest.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 16,
+        "label": "NOT DUE"
+      },
+      "first_postseason_contest": null,
+      "postseason_futures": {
+        "rule": "Disable before first postseason contest, if applicable.",
+        "qualification_note": "Applies if/when the team qualifies for postseason play.",
+        "status": "NOT SCHEDULED",
+        "color": "gray",
+        "days_to_cutoff": null,
+        "label": "CUTOFF NOT YET KNOWN"
+      }
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Women's Basketball",
+      "source_url": "https://huskers.com/sports/womens-basketball/schedule",
+      "schedule_events_found": 14,
+      "first_regular_season_contest": {
+        "date": "2026-10-02",
+        "time": "7:00 PM CDT",
+        "site": "HOME",
+        "opponent": "Opening Night Presented by SCHEELS",
+        "location": "Canopy Street in front of PBA",
+        "phase": "REGULAR SEASON",
+        "source_url": "https://huskers.com/sports/womens-basketball/schedule"
+      },
+      "regular_season_futures": {
+        "rule": "Disable before first regular-season contest.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 16,
+        "label": "NOT DUE"
+      },
+      "first_postseason_contest": null,
+      "postseason_futures": {
+        "rule": "Disable before first postseason contest, if applicable.",
+        "qualification_note": "Applies if/when the team qualifies for postseason play.",
+        "status": "NOT SCHEDULED",
+        "color": "gray",
+        "days_to_cutoff": null,
+        "label": "CUTOFF NOT YET KNOWN"
+      }
+    },
+    {
+      "school": "Creighton",
+      "sport": "Men's Basketball",
+      "source_url": "https://gocreighton.com/sports/mens-basketball/schedule/text",
+      "schedule_events_found": 39,
+      "first_regular_season_contest": {
+        "date": "2026-11-02",
+        "time": "TBA",
+        "site": "HOME",
+        "opponent": "Kansas City",
+        "location": "Omaha, Neb. (CHI Health Center Omaha)",
+        "phase": "REGULAR SEASON",
+        "source_url": "https://gocreighton.com/sports/mens-basketball/schedule/text"
+      },
+      "regular_season_futures": {
+        "rule": "Disable before first regular-season contest.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 47,
+        "label": "NOT DUE"
+      },
+      "first_postseason_contest": {
+        "date": "2026-11-28",
+        "time": "9:30 PM",
+        "site": "NEUTRAL",
+        "opponent": "vs. TBD (Championship Game Only)",
+        "location": "Las Vegas, Nev.",
+        "phase": "POSTSEASON",
+        "source_url": "https://gocreighton.com/sports/mens-basketball/schedule/text"
+      },
+      "postseason_futures": {
+        "rule": "Disable before first postseason contest, if applicable.",
+        "qualification_note": "Applies if/when the team qualifies for postseason play.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 73,
+        "label": "NOT DUE"
+      }
+    },
+    {
+      "school": "Creighton",
+      "sport": "Women's Basketball",
+      "source_url": "https://gocreighton.com/sports/womens-basketball/schedule/text",
+      "schedule_events_found": 13,
+      "first_regular_season_contest": {
+        "date": "2026-11-02",
+        "time": "TBA",
+        "site": "AWAY",
+        "opponent": "South Dakota State",
+        "location": "Brookings, S.D.",
+        "phase": "REGULAR SEASON",
+        "source_url": "https://gocreighton.com/sports/womens-basketball/schedule/text"
+      },
+      "regular_season_futures": {
+        "rule": "Disable before first regular-season contest.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 47,
+        "label": "NOT DUE"
+      },
+      "first_postseason_contest": null,
+      "postseason_futures": {
+        "rule": "Disable before first postseason contest, if applicable.",
+        "qualification_note": "Applies if/when the team qualifies for postseason play.",
+        "status": "NOT SCHEDULED",
+        "color": "gray",
+        "days_to_cutoff": null,
+        "label": "CUTOFF NOT YET KNOWN"
+      }
+    },
+    {
+      "school": "Omaha",
+      "sport": "Men's Basketball",
+      "source_url": "https://omahamavs.com/sports/mens-basketball/schedule",
+      "schedule_events_found": 48,
+      "first_regular_season_contest": {
+        "date": "2026-02-18",
+        "time": "TBA",
+        "site": "AWAY",
+        "opponent": "South Dakota",
+        "location": "89",
+        "phase": "REGULAR SEASON",
+        "source_url": "https://omahamavs.com/sports/mens-basketball/schedule"
+      },
+      "regular_season_futures": {
+        "rule": "Disable before first regular-season contest.",
+        "status": "PASSED",
+        "color": "red",
+        "days_to_cutoff": -210,
+        "label": "CUTOFF PASSED"
+      },
+      "first_postseason_contest": {
+        "date": "2027-02-27",
+        "time": "TBA",
+        "site": "AWAY",
+        "opponent": "South Dakota",
+        "location": "Vermillion, SD",
+        "phase": "POSTSEASON",
+        "source_url": "https://omahamavs.com/sports/mens-basketball/schedule"
+      },
+      "postseason_futures": {
+        "rule": "Disable before first postseason contest, if applicable.",
+        "qualification_note": "Applies if/when the team qualifies for postseason play.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 164,
+        "label": "NOT DUE"
+      }
+    },
+    {
+      "school": "Omaha",
+      "sport": "Women's Basketball",
+      "source_url": "https://omahamavs.com/sports/womens-basketball/schedule/2026-27",
+      "schedule_events_found": 49,
+      "first_regular_season_contest": {
+        "date": "2026-02-19",
+        "time": "TBA",
+        "site": "HOME",
+        "opponent": "Oral Roberts",
+        "location": "75",
+        "phase": "REGULAR SEASON",
+        "source_url": "https://omahamavs.com/sports/womens-basketball/schedule/2026-27"
+      },
+      "regular_season_futures": {
+        "rule": "Disable before first regular-season contest.",
+        "status": "PASSED",
+        "color": "red",
+        "days_to_cutoff": -209,
+        "label": "CUTOFF PASSED"
+      },
+      "first_postseason_contest": {
+        "date": "2027-02-27",
+        "time": "TBA",
+        "site": "HOME",
+        "opponent": "South Dakota",
+        "location": "Baxter Arena",
+        "phase": "POSTSEASON",
+        "source_url": "https://omahamavs.com/sports/womens-basketball/schedule/2026-27"
+      },
+      "postseason_futures": {
+        "rule": "Disable before first postseason contest, if applicable.",
+        "qualification_note": "Applies if/when the team qualifies for postseason play.",
+        "status": "NOT DUE",
+        "color": "green",
+        "days_to_cutoff": 164,
+        "label": "NOT DUE"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "school": "Nebraska",
+      "sport": "Men's Basketball",
+      "url": "https://huskers.com/sports/mens-basketball/schedule",
+      "ok": true,
+      "events_found": 17,
+      "error": null
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Women's Basketball",
+      "url": "https://huskers.com/sports/womens-basketball/schedule",
+      "ok": true,
+      "events_found": 14,
+      "error": null
+    },
+    {
+      "school": "Creighton",
+      "sport": "Men's Basketball",
+      "url": "https://gocreighton.com/sports/mens-basketball/schedule/text",
+      "ok": true,
+      "events_found": 39,
+      "error": null
+    },
+    {
+      "school": "Creighton",
+      "sport": "Women's Basketball",
+      "url": "https://gocreighton.com/sports/womens-basketball/schedule/text",
+      "ok": true,
+      "events_found": 13,
+      "error": null
+    },
+    {
+      "school": "Omaha",
+      "sport": "Men's Basketball",
+      "url": "https://omahamavs.com/sports/mens-basketball/schedule",
+      "ok": true,
+      "events_found": 48,
+      "error": null
+    },
+    {
+      "school": "Omaha",
+      "sport": "Women's Basketball",
+      "url": "https://omahamavs.com/sports/womens-basketball/schedule/2026-27",
+      "ok": true,
+      "events_found": 49,
+      "error": null
+    }
+  ]
 }
