@@ -13,6 +13,44 @@ NOW_LOCAL=datetime.datetime.now(TZ)
 TODAY=NOW_LOCAL.date()
 NOW_UTC=datetime.datetime.now(datetime.timezone.utc)
 
+SEASON_START=datetime.date(2026,8,1)
+SEASON_END=datetime.date(2027,7,31)
+
+PROMO_TERMS=(
+    "opening night","presented by","fan fest","fanfest","season ticket",
+    "media day","tip-off luncheon","tipoff luncheon","pep rally"
+)
+
+POSTSEASON_TERMS=(
+    "big ten tournament","big east tournament","summit league tournament",
+    "ncaa tournament","ncaa first round","ncaa second round","sweet 16",
+    "elite eight","final four","national championship",
+    "college basketball crown","cbi","college basketball invitational"
+)
+
+IN_SEASON_TERMS=(
+    "classic","invitational","showcase","challenge","battle 4 atlantis",
+    "maui invitational","players era","holiday hoopsgiving",
+    "championship game only"
+)
+
+def in_season_window(date):
+    return bool(date and SEASON_START <= date <= SEASON_END)
+
+def looks_like_promo(text):
+    t=clean(text).lower()
+    return any(term in t for term in PROMO_TERMS)
+
+def looks_like_real_opponent(name):
+    n=clean(name)
+    if not n or n.upper() in ("TBA","TBD"):
+        return False
+    if looks_like_promo(n):
+        return False
+    if any(term in n.lower() for term in ("opening night","presented by")):
+        return False
+    return True
+
 HEADERS={"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
 
 SOURCES=[
@@ -22,7 +60,7 @@ SOURCES=[
     {"school":"Creighton","sport":"Men's Basketball","url":"https://gocreighton.com/sports/mens-basketball/schedule/text","parser":"creighton"},
     {"school":"Creighton","sport":"Women's Basketball","url":"https://gocreighton.com/sports/womens-basketball/schedule/text","parser":"creighton"},
 
-    {"school":"Omaha","sport":"Men's Basketball","url":"https://omahamavs.com/sports/mens-basketball/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Men's Basketball","url":"https://omahamavs.com/sports/mens-basketball/schedule/2026-27","parser":"omaha"},
     {"school":"Omaha","sport":"Women's Basketball","url":"https://omahamavs.com/sports/womens-basketball/schedule/2026-27","parser":"omaha"},
 ]
 
@@ -58,12 +96,15 @@ def phase_from_text(text):
     t=clean(text).lower()
     if any(k in t for k in ("exhibition","scrimmage")):
         return "EXHIBITION"
-    if any(k in t for k in (
-        "tournament","championship","postseason","ncaa first round","ncaa second round",
-        "ncaa tournament","big ten tournament","big east tournament","summit league tournament",
-        "conference tournament","college basketball crown","cbi"
-    )):
+
+    # Only explicit conference/NCAA/postseason event names count as postseason.
+    if any(k in t for k in POSTSEASON_TERMS):
         return "POSTSEASON"
+
+    # In-season invitationals/classics/championship games remain regular season.
+    if any(k in t for k in IN_SEASON_TERMS):
+        return "REGULAR SEASON"
+
     return "REGULAR SEASON"
 
 def parse_creighton(src, source):
@@ -78,7 +119,7 @@ def parse_creighton(src, source):
             continue
         vals=[clean(td.get_text(" ",strip=True)) for td in tds]
         date=parse_date_text(vals[0])
-        if not date:
+        if not date or not in_season_window(date):
             continue
         time=vals[1] if len(vals)>1 and vals[1] else "TBA"
         site=(vals[2] if len(vals)>2 else "").upper()
@@ -86,6 +127,8 @@ def parse_creighton(src, source):
         location=vals[4] if len(vals)>4 else ""
         tournament=vals[5] if len(vals)>5 else ""
         row_text=" | ".join(vals)
+        if looks_like_promo(row_text) or not looks_like_real_opponent(opponent):
+            continue
         events.append({
             "date":date.isoformat(),"time":time,"site":site or "UNKNOWN",
             "opponent":opponent,"location":location,
@@ -111,7 +154,7 @@ def parse_nebraska(src, source):
             d=parse_date_text(x)
             if d:
                 date=d; date_idx=j; break
-        if not date:
+        if not date or not in_season_window(date):
             i+=1
             continue
         time="TBA"
@@ -137,10 +180,14 @@ def parse_nebraska(src, source):
                 if y in site_tokens or y.lower() in ("vs.","vs","at"):
                     continue
                 location=y; break
+        block_text=" | ".join(block)
+        if looks_like_promo(block_text) or not looks_like_real_opponent(opponent):
+            i+=max(1,(date_idx or 1)+2)
+            continue
         events.append({
             "date":date.isoformat(),"time":time,"site":site,
             "opponent":opponent or "TBA","location":location,
-            "phase":phase_from_text(" | ".join(block)),
+            "phase":phase_from_text(block_text),
             "source_url":source["url"]
         })
         i+=max(1,(date_idx or 1)+2)
@@ -158,7 +205,7 @@ def parse_omaha(src, source):
     events=[]
     for i,line in enumerate(lines):
         date=parse_date_text(line)
-        if not date:
+        if not date or not in_season_window(date):
             continue
         token_idx=None
         for j in range(i-1,max(-1,i-14),-1):
@@ -177,7 +224,7 @@ def parse_omaha(src, source):
             if re.fullmatch(r"#\d+",x):
                 continue
             opponent=x; opp_idx=j; break
-        if not opponent:
+        if not opponent or not looks_like_real_opponent(opponent):
             continue
         location=""
         for j in range((opp_idx or token_idx)+1,i):
@@ -192,6 +239,8 @@ def parse_omaha(src, source):
             if re.search(r"\b\d{1,2}(?::\d{2})?\s*(a\.?m\.?|p\.?m\.?|am|pm)\b",x,re.I) or x.upper()=="TBA":
                 time=x; break
         block=" | ".join(lines[max(0,token_idx-4):min(len(lines),i+8)])
+        if looks_like_promo(block):
+            continue
         events.append({
             "date":date.isoformat(),"time":time,"site":site,
             "opponent":opponent,"location":location,
@@ -245,8 +294,18 @@ for source in SOURCES:
 
     events=sorted(events,key=lambda e:(e["date"],e["time"]=="TBA",e["time"]))
 
-    regular=[e for e in events if e["phase"]=="REGULAR SEASON"]
-    postseason=[e for e in events if e["phase"]=="POSTSEASON"]
+    regular=[
+        e for e in events
+        if e["phase"]=="REGULAR SEASON"
+        and looks_like_real_opponent(e.get("opponent"))
+        and in_season_window(datetime.date.fromisoformat(e["date"]))
+    ]
+    postseason=[
+        e for e in events
+        if e["phase"]=="POSTSEASON"
+        and looks_like_real_opponent(e.get("opponent"))
+        and in_season_window(datetime.date.fromisoformat(e["date"]))
+    ]
 
     first_regular=regular[0] if regular else None
     first_postseason=postseason[0] if postseason else None
@@ -282,6 +341,7 @@ out={
     "generated_at":NOW_UTC.isoformat(),
     "timezone":"America/Chicago",
     "scope":"Nebraska collegiate Division I basketball futures cutoffs",
+    "season":"2026-27",
     "rules":{
         "regular_season":"Disable Nebraska collegiate regular-season futures before the team's first regular-season contest.",
         "postseason":"Disable Nebraska collegiate postseason futures before the team's first postseason contest, if applicable."
