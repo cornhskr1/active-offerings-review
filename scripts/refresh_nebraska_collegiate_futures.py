@@ -21,6 +21,11 @@ PROMO_TERMS=(
     "media day","tip-off luncheon","tipoff luncheon","pep rally"
 )
 
+NON_COUNTING_CONTEST_TERMS=(
+    "exhibition","scrimmage","closed scrimmage","secret scrimmage",
+    "charity exhibition","preseason exhibition"
+)
+
 POSTSEASON_TERMS=(
     "big ten tournament","big east tournament","summit league tournament",
     "ncaa tournament","ncaa first round","ncaa second round","sweet 16",
@@ -40,6 +45,10 @@ def in_season_window(date):
 def looks_like_promo(text):
     t=clean(text).lower()
     return any(term in t for term in PROMO_TERMS)
+
+def looks_like_non_counting_contest(text):
+    t=clean(text).lower()
+    return any(term in t for term in NON_COUNTING_CONTEST_TERMS)
 
 def looks_like_real_opponent(name):
     n=clean(name)
@@ -94,7 +103,7 @@ def parse_date_text(s):
 
 def phase_from_text(text):
     t=clean(text).lower()
-    if any(k in t for k in ("exhibition","scrimmage")):
+    if looks_like_non_counting_contest(t):
         return "EXHIBITION"
 
     # Only explicit conference/NCAA/postseason event names count as postseason.
@@ -127,7 +136,7 @@ def parse_creighton(src, source):
         location=vals[4] if len(vals)>4 else ""
         tournament=vals[5] if len(vals)>5 else ""
         row_text=" | ".join(vals)
-        if looks_like_promo(row_text) or not looks_like_real_opponent(opponent):
+        if looks_like_promo(row_text) or looks_like_non_counting_contest(row_text) or not looks_like_real_opponent(opponent):
             continue
         events.append({
             "date":date.isoformat(),"time":time,"site":site or "UNKNOWN",
@@ -181,7 +190,7 @@ def parse_nebraska(src, source):
                     continue
                 location=y; break
         block_text=" | ".join(block)
-        if looks_like_promo(block_text) or not looks_like_real_opponent(opponent):
+        if looks_like_promo(block_text) or looks_like_non_counting_contest(block_text) or not looks_like_real_opponent(opponent):
             i+=max(1,(date_idx or 1)+2)
             continue
         events.append({
@@ -239,7 +248,7 @@ def parse_omaha(src, source):
             if re.search(r"\b\d{1,2}(?::\d{2})?\s*(a\.?m\.?|p\.?m\.?|am|pm)\b",x,re.I) or x.upper()=="TBA":
                 time=x; break
         block=" | ".join(lines[max(0,token_idx-4):min(len(lines),i+8)])
-        if looks_like_promo(block):
+        if looks_like_promo(block) or looks_like_non_counting_contest(block):
             continue
         events.append({
             "date":date.isoformat(),"time":time,"site":site,
@@ -343,8 +352,10 @@ out={
     "scope":"Nebraska collegiate Division I basketball futures cutoffs",
     "season":"2026-27",
     "rules":{
-        "regular_season":"Disable Nebraska collegiate regular-season futures before the team's first regular-season contest.",
-        "postseason":"Disable Nebraska collegiate postseason futures before the team's first postseason contest, if applicable."
+        "regular_season":"Disable Nebraska collegiate regular-season futures before the team's first legitimate regular-season contest.",
+        "regular_season_interpretation":"Once a market is classified as a regular-season future, the cutoff is the team's first regular-season contest. A narrower subset used to settle the market, including away games, home games, conference games, or similar subsets, does not move the cutoff.",
+        "postseason":"Disable Nebraska collegiate postseason futures before the team's first legitimate postseason contest, if applicable.",
+        "combination_markets":"For a combination market containing multiple Nebraska collegiate future components, the market must be disabled by the earliest applicable cutoff among those components."
     },
     "alert_window_days":7,
     "programs":programs,
