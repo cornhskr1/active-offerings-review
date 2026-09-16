@@ -313,7 +313,7 @@ th{font-size:11px!important}
 <div class="card"><div class="section-title">Today + 7 Review</div><div class="schedule-warning" id="scheduleWarning"></div><div class="metrics" id="todayMetrics"></div><div id="todayDays"></div></div>
 </section>
 
-<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies.</p><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-grid" id="collegeGrid"></div></div></section>
+<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies.</p><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-grid" id="collegeGrid"></div></div></section>
 
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager/market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, restriction…"><select id="restrictionColor"><option value="all">All restrictions</option><option value="red">RED · not permissible</option><option value="amber">AMBER · review/limit</option></select></div><div class="table-wrap"><table><thead><tr><th>Status</th><th>Scope</th><th>Catalog Section</th><th>Restriction</th></tr></thead><tbody id="restrictionRows"></tbody></table></div></div></section>
 
@@ -516,6 +516,7 @@ function collegeAliases(school){
   const s=String(school||'').toLowerCase();
   if(s==='nebraska')return['nebraska','cornhuskers','huskers'];
   if(s==='creighton')return['creighton','bluejays'];
+  if(s==='omaha')return['omaha','omaha mavericks','mavericks','nebraska omaha','uno'];
   return[s];
 }
 function matchesCollegeEvent(globalEvent,collegeEvent){
@@ -615,6 +616,7 @@ function basketballSchoolForTeam(v){
   const n=normTeamName(v);
   if(n==='nebraska' || n==='nebraska cornhuskers')return 'Nebraska';
   if(n==='creighton' || n==='creighton bluejays')return 'Creighton';
+  if(n==='omaha' || n==='omaha mavericks' || n==='nebraska omaha' || n==='uno')return 'Omaha';
   return '';
 }
 function basketballReviewEvents(){
@@ -623,7 +625,9 @@ function basketballReviewEvents(){
   return (DATA.basketball?.events||[])
     .filter(e=>{
       const k=ctKey(e.start_time);
-      return e.status!=='COMPLETED' && keyBetween(k,start,end);
+      return e.status!=='COMPLETED' &&
+        String(e.division||'')==='Division I' &&
+        keyBetween(k,start,end);
     })
     .map(e=>({
       ...e,
@@ -651,6 +655,7 @@ function basketballCollegeSupplements(){
   const base=DATA.college?.events||[];
   const rows=[];
   for(const e of (DATA.basketball?.events||[])){
+    if(String(e.division||'')!=='Division I')continue;
     const date=ctKey(e.start_time);
     if(!date)continue;
 
@@ -680,7 +685,7 @@ function basketballCollegeSupplements(){
         _basketballSupplement:true
       };
 
-      // Existing Nebraska/Creighton school schedule remains authoritative
+      // Existing Nebraska/Creighton/Omaha school schedule remains authoritative
       // because it can contain the actual physical event location.
       if(!base.some(x=>sameCollegeBasketball(x,candidate))){
         rows.push(candidate);
@@ -756,8 +761,13 @@ function renderToday(){
   const collegiateRed=collegiateAttention.filter(c=>collegeReg(c).c==='red');
   const collegiateAmber=collegiateAttention.filter(c=>collegeReg(c).c==='amber');
 
-  const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length;
-  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length;
+  const basketballWindowAlerts=[];
+  for(let i=0;i<8;i++)basketballWindowAlerts.push(...basketballIntelligenceAlerts(addDays(start,i)));
+  const basketballRed=basketballWindowAlerts.filter(c=>c.severity==='RED').length;
+  const basketballAmber=basketballWindowAlerts.filter(c=>c.severity==='AMBER').length;
+
+  const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed;
+  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber;
 
   const warning=document.getElementById('scheduleWarning');
   if(warning){
@@ -796,7 +806,7 @@ function renderToday(){
     const dayEvents=events.filter(e=>ctKey(e.start_time)===key);
     const dayCards=[...pqCards.filter(c=>ctKey(c.start_time)===key)];
 
-    // Add authoritative Nebraska/Creighton in-state alerts.
+    // Add authoritative Nebraska/Creighton/Omaha in-state alerts.
     authoritativeCollegeAlerts(key,dayEvents).forEach(c=>{
       if(!dayCards.some(existing=>sameAlert(existing,c)))dayCards.push(c);
     });
