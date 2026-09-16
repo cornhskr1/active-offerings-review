@@ -1,0 +1,42 @@
+name: Research NCAA Basketball Ages
+on:
+  schedule:
+    - cron: "47 12 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: active-offerings-data
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - name: Install dependencies
+        run: python3 -m pip install --quiet requests
+      - name: Research NCAA Basketball ages
+        env:
+          MAX_RECORDS: "40"
+          MIN_PRIORITY: "800"
+          RESEARCH_COOLDOWN_DAYS: "7"
+        run: python3 scripts/research_ncaa_basketball_ages.py
+      - name: Rebuild NCAA Basketball age research queue
+        run: python3 scripts/build_ncaa_basketball_age_research_queue.py
+      - name: Commit basketball age research
+        run: |
+          git config user.name "active-offerings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ncaa-basketball-age-cache.json data/ncaa-basketball-age-research-results.json data/ncaa-basketball-age-research-queue.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Research NCAA basketball ages"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
