@@ -2,6 +2,24 @@
   "schema_version": 1,
   "generated_at": "2026-09-16T16:00:00-05:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
+  "source_mappings": [
+    {"source_id":"nfl","sport":"Football","country":"United States","catalog_event":"National Football League (NFL)","season_window":"August–February","season_start":"08-01","season_end":"02-28","last_verified":"2026-09-16"},
+    {"source_id":"nba","sport":"Basketball","country":"United States","catalog_event":"National Basketball Association (NBA) | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","last_verified":"2026-09-16"},
+    {"source_id":"wnba","sport":"Basketball","country":"United States","catalog_event":"WNBA | Women","season_window":"May–October","season_start":"05-01","season_end":"10-31","last_verified":"2026-09-16"},
+    {"source_id":"nhl","sport":"Ice Hockey","country":"United States / Canada","catalog_event":"National Hockey League (NHL)","season_window":"October–June","season_start":"10-01","season_end":"06-30","last_verified":"2026-09-16"},
+    {"source_id":"mls","sport":"Soccer","country":"United States","catalog_event":"Major League Soccer (MLS) | Men","season_window":"February–December","season_start":"02-01","season_end":"12-31","last_verified":"2026-09-16"},
+    {"source_id":"epl","sport":"Soccer","country":"England","catalog_event":"Premier League | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"bundesliga","sport":"Soccer","country":"Germany","catalog_event":"Bundesliga | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"laliga","sport":"Soccer","country":"Spain","catalog_event":"La Liga | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"seriea","sport":"Soccer","country":"Italy","catalog_event":"Serie A | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"ligue1","sport":"Soccer","country":"France","catalog_event":"Ligue 1 | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"eredivisie","sport":"Soccer","country":"Netherlands","catalog_event":"Eredivisie | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"primeira","sport":"Soccer","country":"Portugal","catalog_event":"Primeira Liga | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"belgium","sport":"Soccer","country":"Belgium","catalog_event":"Belgian Pro League | Men","season_window":"July–May","season_start":"07-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"denmark","sport":"Soccer","country":"Denmark","catalog_event":"Danish Superliga | Men","season_window":"July–May","season_start":"07-01","season_end":"05-31","last_verified":"2026-09-16"},
+    {"source_id":"atp-tennis","sport":"Tennis","country":"International","catalog_event":"ATP Tour | Men","review_label":"ATP Tour / ATP Challenger Tour | Men","season_window":"January–November","season_start":"01-01","season_end":"11-30","last_verified":"2026-09-16"},
+    {"source_id":"wta-tennis","sport":"Tennis","country":"International","catalog_event":"WTA Tour | Women","season_window":"January–November","season_start":"01-01","season_end":"11-30","last_verified":"2026-09-16"}
+  ],
   "sports": [
     {
       "sport": "Baseball",
