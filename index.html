@@ -237,8 +237,24 @@ th{font-size:11px!important}
   background:var(--season-brown-bg);
   border-color:#cdb498;
 }
+.season-pill.unmapped{
+  color:#59636d;
+  background:#f1f3f4;
+  border-color:#cfd5da;
+}
 .season-legend{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
 .season-legend .season-note{font-size:12px;color:#66707a}
+.mapped-catalog{display:grid;gap:12px}
+.catalog-country-group{border:1px solid #d5dce1;border-radius:10px;overflow:hidden;background:#fff}
+.catalog-country-head{padding:10px 12px;background:#e9edf0;border-left:5px solid #b42025;font-size:14px;font-weight:900}
+.catalog-governing-body{padding:9px 12px;background:#f5f7f8;border-top:1px solid #dce2e6;border-left:4px solid #68737d;font-size:13px;font-weight:800}
+.catalog-event-list{display:grid;gap:8px;padding:10px 12px 12px}
+.catalog-event-card{border:1px solid #dfe4e8;border-radius:9px;background:#fff;overflow:hidden}
+.catalog-event-main{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px}
+.catalog-event-name{font-size:13px;font-weight:800}
+.catalog-season-detail{margin-top:3px;color:#69727b;font-size:11px;font-weight:400}
+.catalog-event-restrictions{display:grid;gap:5px;padding:0 10px 10px}
+.catalog-event-restriction{border:1px solid #dfa84f;background:#fff8ea;border-radius:7px;padding:7px 8px;color:#704b08;font-size:12px;font-weight:800}
 .catalog-line.restricted,
 .catalog-line.prohibited{
   grid-column:auto;
@@ -436,13 +452,13 @@ th{font-size:11px!important}
 </section>
 <section class="panel" id="coverage"><div class="card"><div class="section-title">Coverage Control</div><p class="small">Source health is not the same as permissibility. A source issue is AMBER because staff may need manual review; it is never RED by itself.</p><div class="coverage-grid" id="coverageGrid"></div></div></section>
 
-<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-note">Season colors are informational and do not change GREEN / AMBER / RED compliance status.</span></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event. Catalog order and wording are preserved exactly as published. Season status is shown where the catalog entry is connected to current schedule coverage.</div><div id="catalogSections"></div></div></section>
+<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change GREEN / AMBER / RED compliance status.</span></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Catalog order and wording are preserved as published. Season mapping is maintained separately from the controlling catalog.</div><div id="catalogSections"></div></div></section>
 </div>
 <script>
 const DATA={};
 const FILES={
   global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
-  catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', known:'data/known-u18.json',
+  catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
   basketballIntel:'data/ncaa-basketball-intelligence.json', basketballDI:'data/ncaa-basketball-di-map.json', basketballRosters:'data/ncaa-basketball-rosters.json',
@@ -524,7 +540,7 @@ async function loadAll(){
 
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
 
-    const times=['global','priority','college','collegeFutures','catalog','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis']
+    const times=['global','priority','college','collegeFutures','catalog','seasonMap','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis']
       .map(k=>DATA[k]?.generated_at)
       .filter(Boolean)
       .map(x=>new Date(x).getTime())
@@ -1527,11 +1543,53 @@ function catalogLineHtml(line,sport,country){
     :season==='out'?'<span class="season-pill out-season">OUT OF SEASON</span>':'';
   return `<div class="catalog-line ${role} ${lineColor(line)} ${season?'has-season':''}"><span class="catalog-copy">${esc(line)}</span>${badge}</div>`;
 }
+function mappedSeasonStatus(event){
+  if(event.source_id){
+    const src=(DATA.global?.sources||[]).find(x=>x.id===event.source_id);
+    if(src&&Number(src.events||0)>0)return'in';
+  }
+  return event.season_status||null;
+}
+function mappedSeasonBadge(status){
+  if(status==='in')return'<span class="season-pill in-season">IN SEASON</span>';
+  if(status==='out')return'<span class="season-pill out-season">OUT OF SEASON</span>';
+  return'<span class="season-pill unmapped">SEASON NOT MAPPED</span>';
+}
+function renderMappedCatalogSport(section,mapping,q,seasonFilter){
+  const sportHit=!q||section.sport.toLowerCase().includes(q);
+  const groups=(mapping.groups||[]).map(group=>{
+    const groupHay=`${group.country||''} ${group.governing_body||''}`.toLowerCase();
+    const groupHit=sportHit||Boolean(q&&groupHay.includes(q));
+    const events=(group.events||[]).filter(event=>{
+      const status=mappedSeasonStatus(event);
+      if(seasonFilter!=='all'&&(seasonFilter==='unmapped'?status!==null:status!==seasonFilter))return false;
+      if(groupHit)return true;
+      const hay=`${event.catalog_event||''} ${event.season_window||''} ${(event.restrictions||[]).join(' ')}`.toLowerCase();
+      return !q||hay.includes(q);
+    });
+    return{group,events};
+  }).filter(x=>x.events.length);
+  if(!groups.length)return'';
+  const eventCount=groups.reduce((sum,x)=>sum+x.events.length,0);
+  const mappedCount=groups.reduce((sum,x)=>sum+x.events.filter(event=>mappedSeasonStatus(event)).length,0);
+  const body=groups.map(({group,events})=>`<section class="catalog-country-group">
+    <div class="catalog-country-head">${esc(group.country||'International')}</div>
+    ${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
+    <div class="catalog-event-list">${events.map(event=>{
+      const status=mappedSeasonStatus(event);
+      return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div></div>${mappedSeasonBadge(status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
+    }).join('')}</div>
+  </section>`).join('');
+  return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${eventCount} approved events · ${mappedCount} season mapped</span></summary><div class="catalog-body"><div class="mapped-catalog">${body}</div></div></details>`;
+}
 function renderCatalog(){
   const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();
   const seasonFilter=document.getElementById('catalogSeason').value||'all',st=DATA.catalogStatus||{};
   document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;
-  const prepared=(cat.sections||[]).map(section=>{
+  const mappedBySport=new Map((DATA.seasonMap?.sports||[]).map(x=>[x.sport,x]));
+  const rendered=(cat.sections||[]).map(section=>{
+    const controlled=mappedBySport.get(section.sport);
+    if(controlled)return renderMappedCatalogSport(section,controlled,q,seasonFilter);
     const searchHit=!q||section.sport.toLowerCase().includes(q);
     const lines=annotateCatalogLines(section.lines).filter(item=>searchHit||String(item.line).toLowerCase().includes(q));
     const filtered=seasonFilter==='all'?lines:lines.filter(item=>{
@@ -1541,13 +1599,12 @@ function renderCatalog(){
       return status===seasonFilter;
     });
     const eventMatches=filtered.filter(item=>catalogLineRole(item.line)==='catalog-event').length;
-    return{section,lines:filtered,eventMatches};
-  }).filter(x=>x.lines.length&&(seasonFilter==='all'||x.eventMatches>0)&&(!q||x.eventMatches||x.section.sport.toLowerCase().includes(q)));
-  document.getElementById('catalogSections').innerHTML=prepared.map(({section,lines})=>{
+    if(!filtered.length||(seasonFilter!=='all'&&eventMatches===0)||(q&&!eventMatches&&!section.sport.toLowerCase().includes(q)))return'';
     const mapped=lines.filter(item=>catalogSeasonStatus(item.line,section.sport,item.country)).length;
-    const countLabel=seasonFilter==='all'?`${lines.length} entries${mapped?` · ${mapped} season mapped`:''}`:`${lines.filter(item=>catalogLineRole(item.line)==='catalog-event').length} matching events`;
-    return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${lines.map(item=>catalogLineHtml(item.line,section.sport,item.country)).join('')}</div></div></details>`;
-  }).join('')||'<div class="empty">No catalog entries match this season filter.</div>';
+    const countLabel=seasonFilter==='all'?`${filtered.length} entries${mapped?` · ${mapped} season mapped`:''}`:`${filtered.filter(item=>catalogLineRole(item.line)==='catalog-event').length} matching events`;
+    return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${filtered.map(item=>catalogLineHtml(item.line,section.sport,item.country)).join('')}</div></div></details>`;
+  }).filter(Boolean);
+  document.getElementById('catalogSections').innerHTML=rendered.join('')||'<div class="empty">No catalog entries match this season filter.</div>';
 }
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
