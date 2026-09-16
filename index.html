@@ -1644,11 +1644,26 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
   const snapshotCounts=new Map();
   (mapping.catalog_snapshot_lines||[]).forEach(line=>snapshotCounts.set(line,(snapshotCounts.get(line)||0)+1));
   const newCatalogLines=[];
-  (section.lines||[]).forEach(line=>{
-    const remaining=snapshotCounts.get(line)||0;
-    if(remaining>0)snapshotCounts.set(line,remaining-1);
-    else newCatalogLines.push(line);
-  });
+  if((mapping.catalog_snapshot_lines||[]).length){
+    (section.lines||[]).forEach(line=>{
+      const remaining=snapshotCounts.get(line)||0;
+      if(remaining>0)snapshotCounts.set(line,remaining-1);
+      else newCatalogLines.push(line);
+    });
+  }else{
+    const known=new Set();
+    (mapping.groups||[]).forEach(group=>{
+      known.add(String(group.country||'').trim().toLowerCase());
+      known.add(String(group.governing_body||'').trim().toLowerCase());
+      (group.events||[]).forEach(event=>known.add(String(event.catalog_event||'').trim().toLowerCase()));
+    });
+    (section.lines||[]).forEach(line=>{
+      const raw=String(line||'').trim();
+      if(catalogLineRole(raw)==='catalog-section')return;
+      const normalized=raw.replace(/\s+-\s+(?:NO .*|MARKETS .*|WAGER.*)$/i,'').trim().toLowerCase();
+      if(!known.has(raw.toLowerCase())&&!known.has(normalized))newCatalogLines.push(raw);
+    });
+  }
   const visibleNewLines=(seasonFilter==='all'||seasonFilter==='unmapped')
     ?newCatalogLines.filter(line=>sportHit||!q||String(line).toLowerCase().includes(q))
     :[];
