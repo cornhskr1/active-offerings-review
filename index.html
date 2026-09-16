@@ -290,6 +290,20 @@ th{font-size:11px!important}
 }
 .bball-u18-name{color:#b42025;font-weight:900}
 
+
+/* ===== Nebraska Collegiate futures cutoff intelligence ===== */
+.futures-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.futures-card{border:1px solid #dde2e6;border-radius:9px;padding:11px;background:#fff}
+.futures-card.red{border-left:5px solid #b42025}
+.futures-card.amber{border-left:5px solid #d28a00}
+.futures-card.green{border-left:5px solid #2e7d32}
+.futures-card.gray{border-left:5px solid #8a9299}
+.futures-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}
+.futures-title{font-size:14px;font-weight:900}
+.futures-line{font-size:12px;line-height:1.45;margin-top:5px}
+.futures-rule{font-size:11px;color:var(--muted);margin-top:7px}
+@media(max-width:850px){.futures-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -313,7 +327,11 @@ th{font-size:11px!important}
 <div class="card"><div class="section-title">Today + 7 Review</div><div class="schedule-warning" id="scheduleWarning"></div><div class="metrics" id="todayMetrics"></div><div id="todayDays"></div></div>
 </section>
 
-<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies.</p><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-grid" id="collegeGrid"></div></div></section>
+<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies.</p><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-grid" id="collegeGrid"></div></div><div class="card">
+  <div class="section-title">Nebraska Collegiate — Basketball Futures Cutoffs</div>
+  <p class="small">Regular-season futures must be disabled before the first regular-season contest. Postseason futures must be disabled before the first postseason contest, if applicable. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
+  <div class="futures-grid" id="collegeFuturesGrid"></div>
+</div></section>
 
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager/market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, restriction…"><select id="restrictionColor"><option value="all">All restrictions</option><option value="red">RED · not permissible</option><option value="amber">AMBER · review/limit</option></select></div><div class="table-wrap"><table><thead><tr><th>Status</th><th>Scope</th><th>Catalog Section</th><th>Restriction</th></tr></thead><tbody id="restrictionRows"></tbody></table></div></div></section>
 
@@ -375,7 +393,7 @@ th{font-size:11px!important}
 <script>
 const DATA={};
 const FILES={
-  global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json',
+  global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
@@ -458,7 +476,7 @@ async function loadAll(){
 
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
 
-    const times=['global','priority','college','catalog','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis']
+    const times=['global','priority','college','collegeFutures','catalog','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis']
       .map(k=>DATA[k]?.generated_at)
       .filter(Boolean)
       .map(x=>new Date(x).getTime())
@@ -766,8 +784,13 @@ function renderToday(){
   const basketballRed=basketballWindowAlerts.filter(c=>c.severity==='RED').length;
   const basketballAmber=basketballWindowAlerts.filter(c=>c.severity==='AMBER').length;
 
-  const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed;
-  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber;
+  const futuresWindowAlerts=[];
+  for(let i=0;i<8;i++)futuresWindowAlerts.push(...collegeFuturesAttention(addDays(start,i)));
+  const futuresRed=futuresWindowAlerts.filter(c=>c.severity==='RED').length;
+  const futuresAmber=futuresWindowAlerts.filter(c=>c.severity==='AMBER').length;
+
+  const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
+  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber;
 
   const warning=document.getElementById('scheduleWarning');
   if(warning){
@@ -813,6 +836,10 @@ function renderToday(){
 
     // Add NCAA Basketball U18 and explicit special-event restriction alerts.
     basketballIntelligenceAlerts(key).forEach(c=>{
+      if(!dayCards.some(existing=>sameAlert(existing,c)))dayCards.push(c);
+    });
+
+    collegeFuturesAttention(key).forEach(c=>{
       if(!dayCards.some(existing=>sameAlert(existing,c)))dayCards.push(c);
     });
 
@@ -897,7 +924,83 @@ function renderToday(){
   document.getElementById('todayDays').innerHTML=html;
 }
 function collegeReg(e){if(e.played_in_nebraska||e.site_test==='NOT PERMISSIBLE')return{c:'red',label:'PLAYED IN NEBRASKA',test:'NOT PERMISSIBLE'};if(e.location)return{c:'green',label:'OUTSIDE NEBRASKA',test:'OK · NO REVIEW'};return{c:'amber',label:'LOCATION REVIEW',test:'MANUAL REVIEW'}}
-function renderCollege(){const events=allCollegeEvents();const school=document.getElementById('collegeSchool').value||'all', status=document.getElementById('collegeStatus').value||'all';const arr=events.filter(e=>(school==='all'||e.school===school)&& (status==='all'||collegeReg(e).c===status));document.getElementById('collegeGrid').innerHTML=arr.length?arr.map(e=>{const r=collegeReg(e);return `<article class="college-card ${r.c}"><div class="college-top"><b>${esc(e.school)}</b>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.date)} · ${esc(e.time||'TBA')}</div><h3>${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</h3><div>vs. / at <b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div><div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('amber','NCAA FEED · LOCATION PENDING')}`:''}</div></article>`}).join(''):`<div class="empty">No matching events.</div>`}
+
+function futuresCutoffLine(kind,p){
+  const isRegular=kind==='regular';
+  const info=isRegular?p.regular_season_futures:p.postseason_futures;
+  const contest=isRegular?p.first_regular_season_contest:p.first_postseason_contest;
+  const c=info?.color||'gray';
+  const label=info?.label||'CUTOFF NOT YET KNOWN';
+
+  let detail='Schedule date not yet identified.';
+  if(contest){
+    detail=`${prettyDay(contest.date)} · ${contest.time||'TBA'} · ${contest.opponent||'TBA'}`;
+  }
+
+  return `<div class="futures-line">
+    <b>${isRegular?'Regular-season futures':'Postseason futures'}</b>
+    ${pill(c,label)}
+    <div>${esc(detail)}</div>
+    ${info?.days_to_cutoff!=null&&info.days_to_cutoff>0?`<div class="row-meta">${esc(info.days_to_cutoff)} days to cutoff</div>`:''}
+  </div>`;
+}
+
+function renderCollegeFutures(){
+  const programs=DATA.collegeFutures?.programs||[];
+  const grid=document.getElementById('collegeFuturesGrid');
+  if(!grid)return;
+
+  if(!programs.length){
+    grid.innerHTML='<div class="empty">Futures cutoff schedule intelligence has not been generated yet.</div>';
+    return;
+  }
+
+  grid.innerHTML=programs.map(p=>{
+    const states=[p.regular_season_futures?.color,p.postseason_futures?.color];
+    const c=states.includes('red')?'red':states.includes('amber')?'amber':states.includes('green')?'green':'gray';
+    return `<article class="futures-card ${c}">
+      <div class="futures-top">
+        <div class="futures-title">${esc(p.school)} · ${esc(p.sport)}</div>
+        ${pill(c,c==='red'?'CUTOFF PASSED':c==='amber'?'REVIEW WINDOW':c==='green'?'NOT DUE':'SCHEDULE TBD')}
+      </div>
+      ${futuresCutoffLine('regular',p)}
+      ${futuresCutoffLine('postseason',p)}
+      <div class="futures-rule">Postseason cutoff applies if/when the team qualifies and the first postseason contest is known.</div>
+    </article>`;
+  }).join('');
+}
+
+function collegeFuturesAttention(dayKey){
+  const rows=[];
+  for(const p of (DATA.collegeFutures?.programs||[])){
+    for(const kind of ['regular','postseason']){
+      const info=kind==='regular'?p.regular_season_futures:p.postseason_futures;
+      const contest=kind==='regular'?p.first_regular_season_contest:p.first_postseason_contest;
+      if(!info||!contest)continue;
+      const days=info.days_to_cutoff;
+      // Review Today only needs operational noise near the actual cutoff.
+      if(days==null || days>7 || days<-1)continue;
+      const severity=days<0?'RED':'AMBER';
+      rows.push({
+        severity,
+        type:'NEBRASKA COLLEGIATE FUTURES',
+        sport:p.sport,
+        league:'NCAA Basketball',
+        event:`${p.school} ${p.sport} · ${kind==='regular'?'Regular-season':'Postseason'} futures cutoff`,
+        start_time:`${contest.date}T12:00:00`,
+        reason:days<0
+          ?`The ${kind==='regular'?'regular-season':'postseason'} futures cutoff date has passed.`
+          :`${kind==='regular'?'Regular-season':'Postseason'} futures must be disabled before ${prettyDay(contest.date)}${contest.time&&contest.time!=='TBA'?` · ${contest.time}`:''}.`,
+        staff_action:'Verify the applicable Nebraska collegiate futures market is removed before the first applicable contest.',
+        source:p.source_url
+      });
+    }
+  }
+  return rows.filter(x=>ctKey(x.start_time)===dayKey || x.severity==='RED');
+}
+
+
+function renderCollege(){renderCollegeFutures();const events=allCollegeEvents();const school=document.getElementById('collegeSchool').value||'all', status=document.getElementById('collegeStatus').value||'all';const arr=events.filter(e=>(school==='all'||e.school===school)&& (status==='all'||collegeReg(e).c===status));document.getElementById('collegeGrid').innerHTML=arr.length?arr.map(e=>{const r=collegeReg(e);return `<article class="college-card ${r.c}"><div class="college-top"><b>${esc(e.school)}</b>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.date)} · ${esc(e.time||'TBA')}</div><h3>${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</h3><div>vs. / at <b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div><div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('amber','NCAA FEED · LOCATION PENDING')}`:''}</div></article>`}).join(''):`<div class="empty">No matching events.</div>`}
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
 function renderRestrictions(){const q=(document.getElementById('restrictionSearch').value||'').toLowerCase(), f=document.getElementById('restrictionColor').value||'all';const rows=(DATA.catalog?.restrictions||[]).filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});document.getElementById('restrictionRows').innerHTML=rows.map(x=>{const c=restrictionColor(x);return `<tr><td>${pill(c,c==='red'?'NOT PERMISSIBLE':'REVIEW / LIMIT')}</td><td><b>${esc(x.scope_label||x.sport)}</b></td><td>${esc(x.catalog_section||x.sport||'')}</td><td>${esc(x.text)}</td></tr>`}).join('')||`<tr><td colspan="4">No matching restrictions.</td></tr>`}
 function renderU18(){const q=(document.getElementById('u18Search').value||'').toLowerCase();const rec=(DATA.known?.records||[]).filter(x=>!q||`${x.sport} ${x.league} ${x.team} ${x.athlete}`.toLowerCase().includes(q));document.getElementById('u18Rows').innerHTML=rec.map(x=>`<tr><td>${esc(x.sport)}</td><td>${esc(x.league)}</td><td>${esc(x.team)}</td><td><b>${esc(x.athlete)}</b></td><td>${esc(x.age_label||x.age||'U18')}</td><td>${pill('red','VERIFIED U18')}</td></tr>`).join('');const a=DATA.ncaaAge||{};document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];document.getElementById('ncaaAgeAlerts').innerHTML=alerts.length?alerts.map(x=>`<div class="alert-row">${pill(x.c,x.c==='red'?'VERIFIED U18':'AGE REVIEW')} ${pill('blue','NCAA FOOTBALL')}<div><b>${esc(x.name)} · ${esc(x.team)}</b><div class="row-meta">${esc(x.age_evidence||x.u18_risk_reason||'')}</div></div><span>${x.calculated_age!=null?esc(x.calculated_age):''}</span></div>`).join(''):`<div class="empty">No NCAA Football U18/age-review alerts.</div>`;
@@ -1299,7 +1402,7 @@ function renderBasketball(){
   });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS MUST CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
