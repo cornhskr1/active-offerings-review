@@ -275,6 +275,21 @@ th{font-size:11px!important}
 .bball-roster-table th{font-size:10px;text-transform:uppercase;color:#606970}
 .bball-roster-empty{font-size:11px;color:var(--muted);padding:7px 0}
 
+
+/* ===== Basketball roster U18 display cleanup ===== */
+.bball-u18-registry-note{
+  margin:8px 0 6px;
+  padding:7px 9px;
+  border:1px solid #e0a3a6;
+  border-left:4px solid #b42025;
+  border-radius:7px;
+  background:#fff6f6;
+  font-size:11px;
+  color:#8f171c;
+  font-weight:800;
+}
+.bball-u18-name{color:#b42025;font-weight:900}
+
 </style>
 </head>
 <body>
@@ -1138,19 +1153,38 @@ function rosterAgeText(a){
 function basketballRosterDetail(team,gender){
   const r=basketballRosterRecord(team,gender);
   if(!r)return `<div class="bball-roster-empty">Roster has not been loaded yet.</div>`;
+
   const athletes=r.athletes||[];
-  if(!athletes.length)return `<div class="bball-roster-empty">No athletes were returned from the current roster source. This team remains a source gap.</div>`;
-  return `<div class="bball-roster-source">Roster source: ESPN public roster feed · last checked ${fmtDateTime(r.last_checked)}</div>
-    <table class="bball-roster-table"><thead><tr><th>#</th><th>Athlete</th><th>Pos</th><th>Class</th><th>Age / DOB</th></tr></thead><tbody>
-    ${athletes.map(a=>`<tr>
-      <td>${esc(a.jersey||'—')}</td>
-      <td><b>${esc(a.name||'Unknown')}</b> ${basketballKnownU18Name(a.name)?pill('red','VERIFIED U18'):''}</td>
-      <td>${esc(a.position||'—')}</td>
-      <td>${esc(a.class||'—')}</td>
-      <td>${esc(rosterAgeText(a))}</td>
-    </tr>`).join('')}
-    </tbody></table>`;
+  const registry=bballU18ForTeam(team)||[];
+  const rosterNames=new Set(athletes.map(a=>normTeamName(a.name)));
+  const unmatchedRegistry=registry.filter(x=>!rosterNames.has(normTeamName(x.athlete)));
+
+  const registryNote=unmatchedRegistry.length
+    ?`<div class="bball-u18-registry-note">KNOWN U18 REGISTRY · ${unmatchedRegistry.map(x=>esc(x.athlete)).join(' · ')} · not currently matched to this active roster</div>`
+    :'';
+
+  if(!athletes.length){
+    return `${registryNote}<div class="bball-roster-empty">No athletes were returned from the current roster source. This team remains a source gap.</div>`;
+  }
+
+  return `${registryNote}
+    <div class="bball-roster-source">Roster source: ESPN public roster feed · last checked ${fmtDateTime(r.last_checked)}</div>
+    <table class="bball-roster-table">
+      <thead><tr><th>#</th><th>Athlete</th><th>Pos</th><th>Class</th></tr></thead>
+      <tbody>
+      ${athletes.map(a=>{
+        const isU18=basketballKnownU18Name(a.name);
+        return `<tr>
+          <td>${esc(a.jersey||'—')}</td>
+          <td>${isU18?`<span class="bball-u18-name">${esc(a.name||'Unknown')}</span> ${pill('red','VERIFIED U18')}`:`<b>${esc(a.name||'Unknown')}</b>`}</td>
+          <td>${esc(a.position||'—')}</td>
+          <td>${esc(a.class||'—')}</td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>`;
 }
+
 function toggleBasketballRoster(key){
   if(BBALL_OPEN_ROSTERS.has(key))BBALL_OPEN_ROSTERS.delete(key);
   else BBALL_OPEN_ROSTERS.add(key);
@@ -1224,7 +1258,7 @@ function renderBasketball(){
         <div class="meta">${esc(BBALL_GENDER)} · Division I · ${esc(x.conference)}</div>
         <div class="mini">
           ${pill(games.length?'blue':'gray',`${games.length} TODAY+7`)}
-          ${u18.length?pill('red',`${u18.length} VERIFIED U18`):pill('green','NO KNOWN U18')}
+          ${u18.length?pill('red',`${u18.length} KNOWN U18`):pill('green','NO KNOWN U18')}
           ${pill(rs.c,rs.label)}
         </div>
         <div class="bball-team-actions">
