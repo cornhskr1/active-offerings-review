@@ -123,6 +123,37 @@ def parse_event(source, ev):
         "source_endpoint":source["endpoint"]
     }
 
+def parse_thesportsdb_event(source, ev):
+    timestamp=ev.get("strTimestamp")
+    if timestamp and not str(timestamp).endswith("Z"):
+        timestamp=f"{timestamp}Z"
+    if not timestamp:
+        date=ev.get("dateEvent")
+        time=ev.get("strTime") or "12:00:00"
+        timestamp=f"{date}T{time}Z" if date else None
+    home=ev.get("strHomeTeam")
+    away=ev.get("strAwayTeam")
+    name=f"{away} at {home}" if home and away else (ev.get("strEvent") or "Scheduled event")
+    raw_status=str(ev.get("strStatus") or "").upper()
+    status="COMPLETED" if raw_status in ("FT","AET","MATCH FINISHED","FINISHED") else "UPCOMING"
+    venue=ev.get("strVenue")
+    country=ev.get("strCountry")
+    location=" · ".join(x for x in (venue,country) if x) or None
+    return {
+        "id":str(ev.get("idEvent") or f'{source["id"]}-{timestamp}-{name}'),
+        "source_id":source["id"],
+        "sport":source["sport"],
+        "league":source["league"],
+        "region":source.get("region"),
+        "name":name,
+        "start_time":timestamp,
+        "status":status,
+        "status_detail":ev.get("strStatus") or "Scheduled",
+        "season_stage":None,
+        "location":location,
+        "source_endpoint":source["endpoint"]
+    }
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -137,6 +168,35 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="thesportsdb":
+        try:
+            r=requests.get(source["endpoint"],params={"id":source["league_id"]},headers=HEADERS,timeout=18)
+            r.raise_for_status()
+            data=r.json()
+            for ev in data.get("events") or []:
+                parsed=parse_thesportsdb_event(source,ev)
+                if not parsed.get("start_time"):
+                    continue
+                event_date=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00")).astimezone(TZ).date()
+                if event_date<TODAY or event_date>END:
+                    continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
     for offset in range((END-TODAY).days+1):
         day=TODAY+datetime.timedelta(days=offset)
         try:
