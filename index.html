@@ -1483,7 +1483,7 @@ function renderBasketball(){
 }
 
 function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
-function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS MUST CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
+function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS (?:MUST )?CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
 'Afghanistan','Albania','Algeria','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahrain','Belarus','Belgium','Bolivia','Bosnia and Herzegovina','Brazil','Bulgaria','Canada','Chile','China','Colombia','Costa Rica','Croatia','Cyprus','Czech Republic','Denmark','Dominican Republic','Ecuador','Egypt','England','Estonia','Finland','France','Georgia','Germany','Greece','Hungary','Iceland','India','Indonesia','Ireland','Israel','Italy','Japan','Kazakhstan','Korea','Latvia','Lithuania','Luxembourg','Malaysia','Mexico','Morocco','Netherlands','New Zealand','North Macedonia','Norway','Paraguay','Peru','Poland','Portugal','Romania','Saudi Arabia','Scotland','Serbia','Singapore','Slovakia','Slovenia','South Africa','Spain','Sweden','Switzerland','Thailand','Turkey','Ukraine','United Arab Emirates','United States','Uruguay','Venezuela'
@@ -1506,7 +1506,7 @@ function catalogLineRole(line){
     return 'catalog-org';
   }
 
-  if(/(no proposition|no player proposition|not permissible|wager limit|markets must close|markets limited|must be disabled|restriction)/i.test(s)){
+  if(/(no proposition|no player proposition|not permissible|wager limit|markets (?:must )?close|markets limited|must be disabled|restriction)/i.test(s)){
     return 'catalog-note';
   }
 
@@ -1550,6 +1550,8 @@ function annotateCatalogLines(lines){
   });
 }
 function catalogSeasonStatus(line,sport,country,roleOverride){
+  const controlled=catalogEventSeasonMapping(line,sport,country);
+  if(controlled)return mappedSeasonStatus(controlled);
   if((roleOverride||catalogLineRole(line))!=='catalog-event')return null;
   const ids=CATALOG_SEASON_MAP.filter(map=>map.sport===sport&&(!map.country||map.country===country)&&map.test.test(String(line))).map(map=>map.id);
   const mapped=(DATA.global?.sources||[]).filter(src=>ids.includes(src.id));
@@ -1580,6 +1582,12 @@ function eventSourceIds(event){
 }
 function sourceCatalogMapping(sourceId){
   return (DATA.seasonMap?.source_mappings||[]).find(x=>x.source_id===sourceId)||null;
+}
+function catalogEventSeasonMapping(line,sport,country){
+  const target=String(line||'').trim().toLowerCase();
+  return (DATA.seasonMap?.catalog_event_mappings||[]).find(x=>
+    x.sport===sport&&(!x.country||x.country===country)&&String(x.catalog_event||'').trim().toLowerCase()===target
+  )||null;
 }
 function mappedSeasonStatus(event){
   const ids=eventSourceIds(event);
