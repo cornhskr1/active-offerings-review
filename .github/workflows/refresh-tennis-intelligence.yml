@@ -2,7 +2,7 @@ name: Refresh Tennis Intelligence
 
 on:
   schedule:
-    - cron: "23 * * * *"
+    - cron: "23 */6 * * *"
   workflow_dispatch:
 
 permissions:
