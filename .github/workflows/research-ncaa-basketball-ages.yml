@@ -1,10 +1,7 @@
 name: Research NCAA Basketball Ages
 
 on:
-  schedule:
-    - cron: "47 12 * * *"
   workflow_dispatch:
-
 permissions:
   contents: write
 
