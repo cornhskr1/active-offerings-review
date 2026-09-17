@@ -1775,6 +1775,13 @@ function mappedSeasonBadge(status){
   if(status==='out')return'<span class="season-pill out-season">OUT OF SEASON</span>';
   return'<span class="season-pill unmapped">SEASON NOT MAPPED</span>';
 }
+function catalogEntryBadge(event,status){
+  if(event?.entry_type==='approval-authority')return'<span class="pill green">APPROVED BOUT AUTHORITY</span>';
+  if(event?.entry_type==='approved-promoter')return'<span class="pill green">APPROVED PROMOTER</span>';
+  if(event?.entry_type==='conditional-authority')return'<span class="pill amber">LOCATION LIMITED</span>';
+  if(event?.entry_type==='approval-rule')return'<span class="pill blue">BOUT-LEVEL CONTROL</span>';
+  return mappedSeasonBadge(status);
+}
 function renderMappedCatalogSport(section,mapping,q,seasonFilter){
   const sportHit=!q||section.sport.toLowerCase().includes(q);
   const snapshotCounts=new Map();
@@ -1808,6 +1815,7 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
     const groupHit=sportHit||Boolean(q&&groupHay.includes(q));
     const events=(group.events||[]).filter(event=>{
       const status=mappedSeasonStatus(event);
+      if(event.nonseasonal&&seasonFilter!=='all')return false;
       if(seasonFilter!=='all'&&(seasonFilter==='unmapped'?status!==null:status!==seasonFilter))return false;
       if(groupHit)return true;
       const hay=`${event.catalog_event||''} ${event.season_window||''} ${(event.restrictions||[]).join(' ')}`.toLowerCase();
@@ -1830,13 +1838,14 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
     ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
     <div class="catalog-event-list">${events.map(event=>{
       const status=mappedSeasonStatus(event);
-      return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${mappedSeasonBadge(status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
+      return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
     }).join('')}</div></div>`).join('')}
   </section>`).join('');
   if(visibleNewLines.length){
     body+=`<section class="catalog-country-group"><div class="catalog-country-head">New Catalog Entries Requiring Mapping</div><div class="catalog-event-list">${visibleNewLines.map(line=>`<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(line)}</div><div class="catalog-season-detail">Detected in the current catalog after the last completed mapping review.</div></div>${mappedSeasonBadge(null)}</div></article>`).join('')}</div></section>`;
   }
-  return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${eventCount} approved events · ${mappedCount} season mapped${visibleNewLines.length?` · ${visibleNewLines.length} new catalog ${visibleNewLines.length===1?'entry':'entries'}`:''}</span></summary><div class="catalog-body"><div class="mapped-catalog">${body}</div></div></details>`;
+  const summary=mapping.summary_label||`${eventCount} approved events · ${mappedCount} season mapped`;
+  return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${esc(summary)}${visibleNewLines.length?` · ${visibleNewLines.length} new catalog ${visibleNewLines.length===1?'entry':'entries'}`:''}</span></summary><div class="catalog-body"><div class="mapped-catalog">${body}</div></div></details>`;
 }
 const NCAA_CATALOG_CONTROLS=[
   'Wagers on any collegiate sporting event involving a Nebraska collegiate team when the event is played in Nebraska.',
