@@ -3,40 +3,317 @@
   "generated_at": "2026-09-16T16:00:00-05:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [
-    {"sport":"Ice Hockey","country":"Austria","line":"ICE Hockey League","role":"catalog-org"}
+    {
+      "sport": "Ice Hockey",
+      "country": "Austria",
+      "line": "ICE Hockey League",
+      "role": "catalog-org"
+    }
   ],
   "source_mappings": [
-    {"source_id":"nfl","sport":"Football","country":"United States","catalog_event":"National Football League (NFL)","season_window":"August–February","season_start":"08-01","season_end":"02-28","last_verified":"2026-09-16"},
-    {"source_id":"nba","sport":"Basketball","country":"United States","catalog_event":"National Basketball Association (NBA) | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","last_verified":"2026-09-16"},
-    {"source_id":"wnba","sport":"Basketball","country":"United States","catalog_event":"WNBA | Women","season_window":"May–October","season_start":"05-01","season_end":"10-31","last_verified":"2026-09-16"},
-    {"source_id":"nhl","sport":"Ice Hockey","country":"United States / Canada","catalog_event":"National Hockey League (NHL)","season_window":"October–June","season_start":"10-01","season_end":"06-30","last_verified":"2026-09-16"},
-    {"source_id":"mls","sport":"Soccer","country":"United States","catalog_event":"Major League Soccer (MLS) | Men","season_window":"February–December","season_start":"02-01","season_end":"12-31","last_verified":"2026-09-16"},
-    {"source_id":"epl","sport":"Soccer","country":"England","catalog_event":"Premier League | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"bundesliga","sport":"Soccer","country":"Germany","catalog_event":"Bundesliga | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"laliga","sport":"Soccer","country":"Spain","catalog_event":"La Liga | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"seriea","sport":"Soccer","country":"Italy","catalog_event":"Serie A | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"ligue1","sport":"Soccer","country":"France","catalog_event":"Ligue 1 | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"eredivisie","sport":"Soccer","country":"Netherlands","catalog_event":"Eredivisie | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"primeira","sport":"Soccer","country":"Portugal","catalog_event":"Primeira Liga | Men","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"belgium","sport":"Soccer","country":"Belgium","catalog_event":"Belgian Pro League | Men","season_window":"July–May","season_start":"07-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"denmark","sport":"Soccer","country":"Denmark","catalog_event":"Danish Superliga | Men","season_window":"July–May","season_start":"07-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"source_id":"atp-tennis","sport":"Tennis","country":"International","catalog_event":"ATP Tour | Men","review_label":"ATP Tour / ATP Challenger Tour | Men","season_window":"January–November","season_start":"01-01","season_end":"11-30","last_verified":"2026-09-16"},
-    {"source_id":"wta-tennis","sport":"Tennis","country":"International","catalog_event":"WTA Tour | Women","season_window":"January–November","season_start":"01-01","season_end":"11-30","last_verified":"2026-09-16"}
+    {
+      "source_id": "nfl",
+      "sport": "Football",
+      "country": "United States",
+      "catalog_event": "National Football League (NFL)",
+      "season_window": "August–February",
+      "season_start": "08-01",
+      "season_end": "02-28",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "nba",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "National Basketball Association (NBA) | Men",
+      "season_window": "October–June",
+      "season_start": "10-01",
+      "season_end": "06-30",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "wnba",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "WNBA | Women",
+      "season_window": "May–October",
+      "season_start": "05-01",
+      "season_end": "10-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "nhl",
+      "sport": "Ice Hockey",
+      "country": "United States / Canada",
+      "catalog_event": "National Hockey League (NHL)",
+      "season_window": "October–June",
+      "season_start": "10-01",
+      "season_end": "06-30",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "mls",
+      "sport": "Soccer",
+      "country": "United States",
+      "catalog_event": "Major League Soccer (MLS) | Men",
+      "season_window": "February–December",
+      "season_start": "02-01",
+      "season_end": "12-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "epl",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "Premier League | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "bundesliga",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "Bundesliga | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "laliga",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "La Liga | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "seriea",
+      "sport": "Soccer",
+      "country": "Italy",
+      "catalog_event": "Serie A | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "ligue1",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Ligue 1 | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "eredivisie",
+      "sport": "Soccer",
+      "country": "Netherlands",
+      "catalog_event": "Eredivisie | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "primeira",
+      "sport": "Soccer",
+      "country": "Portugal",
+      "catalog_event": "Primeira Liga | Men",
+      "season_window": "August–May",
+      "season_start": "08-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "belgium",
+      "sport": "Soccer",
+      "country": "Belgium",
+      "catalog_event": "Belgian Pro League | Men",
+      "season_window": "July–May",
+      "season_start": "07-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "denmark",
+      "sport": "Soccer",
+      "country": "Denmark",
+      "catalog_event": "Danish Superliga | Men",
+      "season_window": "July–May",
+      "season_start": "07-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "atp-tennis",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "ATP Tour | Men",
+      "review_label": "ATP Tour / ATP Challenger Tour | Men",
+      "season_window": "January–November",
+      "season_start": "01-01",
+      "season_end": "11-30",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "source_id": "wta-tennis",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "WTA Tour | Women",
+      "season_window": "January–November",
+      "season_start": "01-01",
+      "season_end": "11-30",
+      "last_verified": "2026-09-16"
+    }
   ],
   "catalog_event_mappings": [
-    {"sport":"Ice Hockey","country":"Austria","catalog_event":"ICE Hockey League (ICEHL)","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["icehl"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Czech Republic","catalog_event":"Czech Extraliga","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["czech-extraliga"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Finland","catalog_event":"Liiga","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["liiga"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Germany","catalog_event":"Deutsche Eishockey Liga (DEL)","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["del"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Slovakia","catalog_event":"Slovak Extraliga","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["slovak-extraliga"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Sweden","catalog_event":"Swedish Hockey League (SHL)","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_ids":["shl"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"Switzerland","catalog_event":"National League","season_window":"September–April","season_start":"09-01","season_end":"04-30","source_ids":["swiss-national"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"International / Europe","catalog_event":"Champions Hockey League (CHL)","season_window":"September–February","season_start":"09-01","season_end":"02-28","source_ids":["chl"],"last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"Professional Women’s Hockey League (PWHL)","season_window":"November–May","season_start":"11-01","season_end":"05-31","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"NHL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START","season_window":"Annual June event","season_start":"06-01","season_end":"06-30","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"NHL All-Star Skills Challenge","season_window":"January–February","season_start":"01-01","season_end":"02-28","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"NHL All-Star Game","season_window":"January–February","season_start":"01-01","season_end":"02-28","last_verified":"2026-09-16"},
-    {"sport":"Ice Hockey","country":"United States / Canada","catalog_event":"Four Nations Face-Off","season_window":"February 2025 event completed","season_status":"out","last_verified":"2026-09-16"}
+    {
+      "sport": "Ice Hockey",
+      "country": "Austria",
+      "catalog_event": "ICE Hockey League (ICEHL)",
+      "season_window": "September–April",
+      "season_start": "09-01",
+      "season_end": "04-30",
+      "source_ids": [
+        "icehl"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "Czech Republic",
+      "catalog_event": "Czech Extraliga",
+      "season_window": "September–April",
+      "season_start": "09-01",
+      "season_end": "04-30",
+      "source_ids": [
+        "czech-extraliga"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "Finland",
+      "catalog_event": "Liiga",
+      "season_window": "September–April",
+      "season_start": "09-01",
+      "season_end": "04-30",
+      "source_ids": [
+        "liiga"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "Germany",
+      "catalog_event": "Deutsche Eishockey Liga (DEL)",
+      "season_window": "September–April",
+      "season_start": "09-01",
+      "season_end": "04-30",
+      "source_ids": [
+        "del"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "Slovakia",
+      "catalog_event": "Slovak Extraliga",
+      "season_window": "September–April",
+      "season_start": "09-01",
+      "season_end": "04-30",
+      "source_ids": [
+        "slovak-extraliga"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "Sweden",
+      "catalog_event": "Swedish Hockey League (SHL)",
+      "season_window": "September–May",
+      "season_start": "09-01",
+      "season_end": "05-31",
+      "source_ids": [
+        "shl"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "Switzerland",
+      "catalog_event": "National League",
+      "season_window": "September–April",
+      "season_start": "09-01",
+      "season_end": "04-30",
+      "source_ids": [
+        "swiss-national"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "International / Europe",
+      "catalog_event": "Champions Hockey League (CHL)",
+      "season_window": "September–February",
+      "season_start": "09-01",
+      "season_end": "02-28",
+      "source_ids": [
+        "chl"
+      ],
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "United States / Canada",
+      "catalog_event": "Professional Women’s Hockey League (PWHL)",
+      "season_window": "November–May",
+      "season_start": "11-01",
+      "season_end": "05-31",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "United States / Canada",
+      "catalog_event": "NHL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START",
+      "season_window": "Annual June event",
+      "season_start": "06-01",
+      "season_end": "06-30",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "United States / Canada",
+      "catalog_event": "NHL All-Star Skills Challenge",
+      "season_window": "January–February",
+      "season_start": "01-01",
+      "season_end": "02-28",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "United States / Canada",
+      "catalog_event": "NHL All-Star Game",
+      "season_window": "January–February",
+      "season_start": "01-01",
+      "season_end": "02-28",
+      "last_verified": "2026-09-16"
+    },
+    {
+      "sport": "Ice Hockey",
+      "country": "United States / Canada",
+      "catalog_event": "Four Nations Face-Off",
+      "season_window": "February 2025 event completed",
+      "season_status": "out",
+      "last_verified": "2026-09-16"
+    }
   ],
   "sports": [
     {
@@ -65,148 +342,924 @@
       "sport": "Basketball",
       "mapping_status": "complete",
       "groups": [
-        {"country":"International-Level Competitions","governing_body":"Federal International Basketball Association (FIBA)","events":[
-          {"key":"basketball-fiba-world-cup","catalog_event":"FIBA Basketball World Cup | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Next editions scheduled separately by division","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-fiba-3x3-world-cup","catalog_event":"FIBA 3x3 World Cup | Men and Women","season_window":"Annual June event","season_start":"06-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-fiba-3x3-tour","catalog_event":"FIBA 3x3 World Tour | Men and Women","season_window":"April–December","season_start":"04-01","season_end":"12-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"International-Level Competitions","governing_body":"FIBA Africa","events":[
-          {"key":"basketball-afrobasket","catalog_event":"FIBA AfroBasket | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic continental tournaments","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"International-Level Competitions","governing_body":"FIBA Americas","events":[
-          {"key":"basketball-americup","catalog_event":"FIBA AmeriCup | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic continental tournaments","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-south-american","catalog_event":"South American Championship | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-centrobasket-women","catalog_event":"Centrobasket Women's Championship | Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-central-american-women","catalog_event":"Central American Women's Championship | Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-caribbean-women","catalog_event":"Caribbean Women's Championship | Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"International-Level Competitions","governing_body":"FIBA Asia","events":[
-          {"key":"basketball-asia-cup","catalog_event":"FIBA Asia Cup | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic continental tournaments","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"International-Level Competitions","governing_body":"FIBA Europe","events":[
-          {"key":"basketball-eurobasket","catalog_event":"FIBA EuroBasket | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic continental tournaments","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-bcl","catalog_event":"Basketball Champions League | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"fiba-bcl","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-womens-euroleague","catalog_event":"FIBA Women's EuroLeague | Women","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"International-Level Competitions","governing_body":"FIBA Oceania","events":[
-          {"key":"basketball-micronesia","catalog_event":"FIBA Micronesia Cup | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-melanesia","catalog_event":"FIBA Melanesia Cup | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-polynesian","catalog_event":"FIBA Polynesian Basketball Cup | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic tournament","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-pacific-games","catalog_event":"Pacific Games | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Next Pacific Games in 2027","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Argentina","governing_body":"Asociación de Clubes de Básquetbol (AdC)","events":[
-          {"key":"basketball-ar-lnb","catalog_event":"Liga Nacional de Básquet (LNB) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":["NO PROPOSITION WAGERS"]},
-          {"key":"basketball-ar-super20","catalog_event":"Super 20 Cup | Men","season_window":"September–December","season_start":"09-01","season_end":"12-31","last_verified":"2026-09-16","restrictions":["NO PROPOSITION WAGERS"]},
-          {"key":"basketball-ar-supercopa","catalog_event":"Supercopa de Liga | Men","season_window":"Annual preseason event","season_start":"09-01","season_end":"10-31","last_verified":"2026-09-16","restrictions":["NO PROPOSITION WAGERS"]}
-        ]},
-        {"country":"Australia","governing_body":"Basketball Australia","events":[
-          {"key":"basketball-au-nbl","catalog_event":"National Basketball League (NBL) | Men","season_window":"September–March","season_start":"09-01","season_end":"03-31","source_id":"australian-nbl","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-au-ignite","catalog_event":"Ignite Cup | Men","season_window":"November–February","season_start":"11-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Brazil","governing_body":"Brazilian Basketball Confederation (CBB)","events":[
-          {"key":"basketball-br-nbb","catalog_event":"Novo Basquete Brasil (NBB) | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-br-super8","catalog_event":"Copa Super 8 | Men","season_window":"Annual January event","season_start":"01-01","season_end":"01-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Canada","governing_body":"Canada Basketball (CB)","events":[
-          {"key":"basketball-ca-cebl","catalog_event":"Canadian Elite Basketball League (CEBL) | Men","season_window":"May–August","season_start":"05-01","season_end":"08-31","source_id":"cebl","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Chile","governing_body":"Federación de Básquetbol de Chile (FEBAChile)","events":[
-          {"key":"basketball-cl-lnb","catalog_event":"Liga Nacional de Basquetbol de Chile (LNB) | Men","season_window":"March–December competition calendar","season_start":"03-01","season_end":"12-31","source_id":"chile-lnb","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-cl-copa","catalog_event":"Copa Chile | Men","season_window":"September–December","season_start":"09-01","season_end":"12-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Denmark","governing_body":"Danish Basketball Association (DBBF)","events":[
-          {"key":"basketball-dk-league","catalog_event":"Basketligaen | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"danish-basketligaen","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-dk-cup","catalog_event":"Danish Cup | Men","season_window":"September–January","season_start":"09-01","season_end":"01-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"France","governing_body":"Ligue Nationale de Basket (LNB)","events":[
-          {"key":"basketball-fr-elite","catalog_event":"LNB Élite | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"france-lnb","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-fr-cup","catalog_event":"French Cup | Men","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Germany","governing_body":"German Basketball Federation (DBB)","events":[
-          {"key":"basketball-de-bbl","catalog_event":"Basketball Bundesliga (BBL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"german-bbl","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-de-cup","catalog_event":"BBL-Pokal | Men","season_window":"September–February","season_start":"09-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-de-champions","catalog_event":"BBL Champions Cup","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Greece","governing_body":"Hellenic Basketball Federation (HBF)","events":[
-          {"key":"basketball-gr-gbl","catalog_event":"Greek Basket League (GBL) | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","source_id":"greek-basket-league","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-gr-cup","catalog_event":"Greek Cup | Men","season_window":"September–February","season_start":"09-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-gr-supercup","catalog_event":"Greek Super Cup | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Israel","governing_body":"Israel Basketball Association (IBA)","events":[
-          {"key":"basketball-il-league","catalog_event":"Ligat Ha’Al / Israeli Basketball Premier League | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","source_id":"israeli-premier","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-il-state-cup","catalog_event":"State Cup | Men","season_window":"December–May","season_start":"12-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-il-league-cup","catalog_event":"League Cup | Men","season_window":"September–October","season_start":"09-01","season_end":"10-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Italy","governing_body":"Italian Basketball Federation (FIP)","events":[
-          {"key":"basketball-it-lba","catalog_event":"Lega Basket Serie A (LBA) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"italian-lba","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-it-cup","catalog_event":"Coppa Italia | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-it-supercup","catalog_event":"Supercopa Italia | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Lithuania","governing_body":"Lithuanian Basketball Federation (LKF)","events":[
-          {"key":"basketball-lt-lkl","catalog_event":"Lietuvos krepšinio lyga (LKL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"lithuanian-lkl","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-lt-cup","catalog_event":"King Mindaugas Cup | Men","season_window":"October–February","season_start":"10-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Mexico","governing_body":"The Mexican Basketball Sports Association (ADEMEBA)","events":[
-          {"key":"basketball-mx-lnbp","catalog_event":"Liga Nacional de Baloncesto Profesional (LNBP) | Men","season_window":"July–December","season_start":"07-01","season_end":"12-31","source_id":"mexican-lnbp","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Philippines","governing_body":"Games and Amusements Board (GAB)","events":[
-          {"key":"basketball-ph-pba","catalog_event":"Philippine Basketball Association (PBA) | Men","season_window":"Year-round conference calendar","season_start":"01-01","season_end":"12-31","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]},
-          {"key":"basketball-ph-philippine-cup","catalog_event":"Philippine Cup | Men","season_window":"Conference dates vary annually","season_status":"out","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]},
-          {"key":"basketball-ph-commissioners","catalog_event":"Commissioner’s Cup | Men","season_window":"Conference dates vary annually","season_status":"out","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]},
-          {"key":"basketball-ph-governors","catalog_event":"Governor’s Cup | Men","season_window":"Conference dates vary annually","season_status":"out","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]}
-        ]},
-        {"country":"Poland","governing_body":"Polish Basketball Federation (PZKosz)","events":[
-          {"key":"basketball-pl-league","catalog_event":"Polska Liga Koszykówki (PLK) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"polish-plk","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-pl-cup","catalog_event":"Polish Cup | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-pl-supercup","catalog_event":"Polish Supercup | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Serbia","governing_body":"Basketball Federation of Serbia (KSS)","events":[
-          {"key":"basketball-rs-kls","catalog_event":"Basketball League of Serbia / Košarkaška liga Srbije (KLS) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"serbian-kls","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-rs-cup","catalog_event":"Radivoj Korać Cup | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"South Korea","governing_body":"Korea Basketball Association (KBA)","events":[
-          {"key":"basketball-kr-kbl","catalog_event":"Korean Basketball League (KBL) | Men","season_window":"October–May","season_start":"10-01","season_end":"05-31","source_id":"korean-kbl","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-kr-cup","catalog_event":"KBL Cup | Men","season_window":"Annual October event","season_start":"10-01","season_end":"10-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Spain","governing_body":"Euroleague Basketball","events":[
-          {"key":"basketball-euroleague","catalog_event":"EuroLeague | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-eurocup","catalog_event":"EuroCup | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"eurocup-basketball","last_verified":"2026-09-17","restrictions":[]}
-        ]},
-        {"country":"Spain","governing_body":"Asociación de Clubs de Baloncesto (ACB)","events":[
-          {"key":"basketball-es-acb","catalog_event":"Liga ACB | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"spanish-acb","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-es-copa","catalog_event":"Copa del Rey | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-es-supercopa","catalog_event":"Supercopa de Espana | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Sweden","governing_body":"Swedish Basketball Federation (SBBF)","events":[
-          {"key":"basketball-se-sbl","catalog_event":"Svenska Basketligan (SBL) | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Switzerland","governing_body":"Swiss Basketball Federation (FBS)","events":[
-          {"key":"basketball-ch-sbl","catalog_event":"Swiss Basketball League (SBL) | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"swiss-sbl","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-ch-cup","catalog_event":"Swiss Cup | Men","season_window":"October–April","season_start":"10-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-ch-sbl-cup","catalog_event":"SBL Cup | Men","season_window":"Annual January event","season_start":"01-01","season_end":"01-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"Turkey","governing_body":"Turkish Basketball Federation (TBF)","events":[
-          {"key":"basketball-tr-bsl","catalog_event":"Basketbol Süper Ligi (BSL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"turkish-bsl","last_verified":"2026-09-17","restrictions":[]},
-          {"key":"basketball-tr-cup","catalog_event":"Turkish Basketball Cup | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-tr-presidential","catalog_event":"Presidential Cup | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"United States","governing_body":"National Basketball Association (NBA)","events":[
-          {"key":"basketball-us-nba","catalog_event":"National Basketball Association (NBA) | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","source_id":"nba","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-us-nba-draft","catalog_event":"NBA Draft","season_window":"Annual June event","season_start":"06-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":["MARKETS CLOSE 1 HOUR PRIOR TO EVENT START"]},
-          {"key":"basketball-us-nba-international-preseason","catalog_event":"NBA Preseason Games v. International Teams","season_window":"Annual October preseason","season_start":"10-01","season_end":"10-31","last_verified":"2026-09-16","restrictions":["NO PROPOSITION WAGERS"]}
-        ]},
-        {"country":"United States","governing_body":"Women’s National Basketball Association (WNBA)","events":[
-          {"key":"basketball-us-wnba","catalog_event":"WNBA | Women","season_window":"May–October","season_start":"05-01","season_end":"10-31","source_id":"wnba","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"United States","governing_body":"TBT Enterprises, LLC","events":[
-          {"key":"basketball-us-tbt","catalog_event":"The Basketball Tournament (TBT) | Men and Women","season_window":"June–August","season_start":"06-01","season_end":"08-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"United States","governing_body":"Unrivaled Basketball","events":[
-          {"key":"basketball-us-unrivaled","catalog_event":"Unrivaled Basketball | Women","season_window":"January–March","season_start":"01-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":[]}
-        ]},
-        {"country":"United States","governing_body":"BIG3","events":[
-          {"key":"basketball-us-big3","catalog_event":"BIG3 | Men","season_window":"June–August","season_start":"06-01","season_end":"08-31","last_verified":"2026-09-16","restrictions":[]}
-        ]}
+        {
+          "country": "International-Level Competitions",
+          "governing_body": "Federal International Basketball Association (FIBA)",
+          "events": [
+            {
+              "key": "basketball-fiba-world-cup",
+              "catalog_event": "FIBA Basketball World Cup | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Next editions scheduled separately by division",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-fiba-3x3-world-cup",
+              "catalog_event": "FIBA 3x3 World Cup | Men and Women",
+              "season_window": "Annual June event",
+              "season_start": "06-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-fiba-3x3-tour",
+              "catalog_event": "FIBA 3x3 World Tour | Men and Women",
+              "season_window": "April–December",
+              "season_start": "04-01",
+              "season_end": "12-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International-Level Competitions",
+          "governing_body": "FIBA Africa",
+          "events": [
+            {
+              "key": "basketball-afrobasket",
+              "catalog_event": "FIBA AfroBasket | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic continental tournaments",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International-Level Competitions",
+          "governing_body": "FIBA Americas",
+          "events": [
+            {
+              "key": "basketball-americup",
+              "catalog_event": "FIBA AmeriCup | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic continental tournaments",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-south-american",
+              "catalog_event": "South American Championship | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-centrobasket-women",
+              "catalog_event": "Centrobasket Women's Championship | Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-central-american-women",
+              "catalog_event": "Central American Women's Championship | Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-caribbean-women",
+              "catalog_event": "Caribbean Women's Championship | Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International-Level Competitions",
+          "governing_body": "FIBA Asia",
+          "events": [
+            {
+              "key": "basketball-asia-cup",
+              "catalog_event": "FIBA Asia Cup | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic continental tournaments",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International-Level Competitions",
+          "governing_body": "FIBA Europe",
+          "events": [
+            {
+              "key": "basketball-eurobasket",
+              "catalog_event": "FIBA EuroBasket | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic continental tournaments",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-bcl",
+              "catalog_event": "Basketball Champions League | Men",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "source_id": "fiba-bcl",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-womens-euroleague",
+              "catalog_event": "FIBA Women's EuroLeague | Women",
+              "season_window": "September–April",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International-Level Competitions",
+          "governing_body": "FIBA Oceania",
+          "events": [
+            {
+              "key": "basketball-micronesia",
+              "catalog_event": "FIBA Micronesia Cup | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-melanesia",
+              "catalog_event": "FIBA Melanesia Cup | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-polynesian",
+              "catalog_event": "FIBA Polynesian Basketball Cup | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Periodic tournament",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-pacific-games",
+              "catalog_event": "Pacific Games | Men and Women",
+              "season_status": "out",
+              "season_basis": "Event-specific tournament calendar",
+              "season_window": "Next Pacific Games in 2027",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Argentina",
+          "governing_body": "Asociación de Clubes de Básquetbol (AdC)",
+          "events": [
+            {
+              "key": "basketball-ar-lnb",
+              "catalog_event": "Liga Nacional de Básquet (LNB) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "basketball-ar-super20",
+              "catalog_event": "Super 20 Cup | Men",
+              "season_window": "September–December",
+              "season_start": "09-01",
+              "season_end": "12-31",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "basketball-ar-supercopa",
+              "catalog_event": "Supercopa de Liga | Men",
+              "season_window": "Annual preseason event",
+              "season_start": "09-01",
+              "season_end": "10-31",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PROPOSITION WAGERS"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Australia",
+          "governing_body": "Basketball Australia",
+          "events": [
+            {
+              "key": "basketball-au-nbl",
+              "catalog_event": "National Basketball League (NBL) | Men",
+              "season_window": "September–March",
+              "season_start": "09-01",
+              "season_end": "03-31",
+              "source_id": "australian-nbl",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-au-ignite",
+              "catalog_event": "Ignite Cup | Men",
+              "season_window": "November–February",
+              "season_start": "11-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Brazil",
+          "governing_body": "Brazilian Basketball Confederation (CBB)",
+          "events": [
+            {
+              "key": "basketball-br-nbb",
+              "catalog_event": "Novo Basquete Brasil (NBB) | Men",
+              "season_window": "October–June",
+              "season_start": "10-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-br-super8",
+              "catalog_event": "Copa Super 8 | Men",
+              "season_window": "Annual January event",
+              "season_start": "01-01",
+              "season_end": "01-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Canada",
+          "governing_body": "Canada Basketball (CB)",
+          "events": [
+            {
+              "key": "basketball-ca-cebl",
+              "catalog_event": "Canadian Elite Basketball League (CEBL) | Men",
+              "season_window": "May–August",
+              "season_start": "05-01",
+              "season_end": "08-31",
+              "source_id": "cebl",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Chile",
+          "governing_body": "Federación de Básquetbol de Chile (FEBAChile)",
+          "events": [
+            {
+              "key": "basketball-cl-lnb",
+              "catalog_event": "Liga Nacional de Basquetbol de Chile (LNB) | Men",
+              "season_window": "March–December competition calendar",
+              "season_start": "03-01",
+              "season_end": "12-31",
+              "source_id": "chile-lnb",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-cl-copa",
+              "catalog_event": "Copa Chile | Men",
+              "season_window": "September–December",
+              "season_start": "09-01",
+              "season_end": "12-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Denmark",
+          "governing_body": "Danish Basketball Association (DBBF)",
+          "events": [
+            {
+              "key": "basketball-dk-league",
+              "catalog_event": "Basketligaen | Men",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "source_id": "danish-basketligaen",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-dk-cup",
+              "catalog_event": "Danish Cup | Men",
+              "season_window": "September–January",
+              "season_start": "09-01",
+              "season_end": "01-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "France",
+          "governing_body": "Ligue Nationale de Basket (LNB)",
+          "events": [
+            {
+              "key": "basketball-fr-elite",
+              "catalog_event": "LNB Élite | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "france-lnb",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-fr-cup",
+              "catalog_event": "French Cup | Men",
+              "season_window": "September–April",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Germany",
+          "governing_body": "German Basketball Federation (DBB)",
+          "events": [
+            {
+              "key": "basketball-de-bbl",
+              "catalog_event": "Basketball Bundesliga (BBL) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "german-bbl",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-de-cup",
+              "catalog_event": "BBL-Pokal | Men",
+              "season_window": "September–February",
+              "season_start": "09-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-de-champions",
+              "catalog_event": "BBL Champions Cup",
+              "season_window": "Annual September event",
+              "season_start": "09-01",
+              "season_end": "09-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Greece",
+          "governing_body": "Hellenic Basketball Federation (HBF)",
+          "events": [
+            {
+              "key": "basketball-gr-gbl",
+              "catalog_event": "Greek Basket League (GBL) | Men",
+              "season_window": "October–June",
+              "season_start": "10-01",
+              "season_end": "06-30",
+              "source_id": "greek-basket-league",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-gr-cup",
+              "catalog_event": "Greek Cup | Men",
+              "season_window": "September–February",
+              "season_start": "09-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-gr-supercup",
+              "catalog_event": "Greek Super Cup | Men",
+              "season_window": "Annual September event",
+              "season_start": "09-01",
+              "season_end": "09-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Israel",
+          "governing_body": "Israel Basketball Association (IBA)",
+          "events": [
+            {
+              "key": "basketball-il-league",
+              "catalog_event": "Ligat Ha’Al / Israeli Basketball Premier League | Men",
+              "season_window": "October–June",
+              "season_start": "10-01",
+              "season_end": "06-30",
+              "source_id": "israeli-premier",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-il-state-cup",
+              "catalog_event": "State Cup | Men",
+              "season_window": "December–May",
+              "season_start": "12-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-il-league-cup",
+              "catalog_event": "League Cup | Men",
+              "season_window": "September–October",
+              "season_start": "09-01",
+              "season_end": "10-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Italy",
+          "governing_body": "Italian Basketball Federation (FIP)",
+          "events": [
+            {
+              "key": "basketball-it-lba",
+              "catalog_event": "Lega Basket Serie A (LBA) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "italian-lba",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-it-cup",
+              "catalog_event": "Coppa Italia | Men",
+              "season_window": "Annual February event",
+              "season_start": "02-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-it-supercup",
+              "catalog_event": "Supercopa Italia | Men",
+              "season_window": "Annual September event",
+              "season_start": "09-01",
+              "season_end": "09-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Lithuania",
+          "governing_body": "Lithuanian Basketball Federation (LKF)",
+          "events": [
+            {
+              "key": "basketball-lt-lkl",
+              "catalog_event": "Lietuvos krepšinio lyga (LKL) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "lithuanian-lkl",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-lt-cup",
+              "catalog_event": "King Mindaugas Cup | Men",
+              "season_window": "October–February",
+              "season_start": "10-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Mexico",
+          "governing_body": "The Mexican Basketball Sports Association (ADEMEBA)",
+          "events": [
+            {
+              "key": "basketball-mx-lnbp",
+              "catalog_event": "Liga Nacional de Baloncesto Profesional (LNBP) | Men",
+              "season_window": "July–December",
+              "season_start": "07-01",
+              "season_end": "12-31",
+              "source_id": "mexican-lnbp",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Philippines",
+          "governing_body": "Games and Amusements Board (GAB)",
+          "events": [
+            {
+              "key": "basketball-ph-pba",
+              "catalog_event": "Philippine Basketball Association (PBA) | Men",
+              "season_window": "Year-round conference calendar",
+              "season_start": "01-01",
+              "season_end": "12-31",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PLAYER PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "basketball-ph-philippine-cup",
+              "catalog_event": "Philippine Cup | Men",
+              "season_window": "Conference dates vary annually",
+              "season_status": "out",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PLAYER PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "basketball-ph-commissioners",
+              "catalog_event": "Commissioner’s Cup | Men",
+              "season_window": "Conference dates vary annually",
+              "season_status": "out",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PLAYER PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "basketball-ph-governors",
+              "catalog_event": "Governor’s Cup | Men",
+              "season_window": "Conference dates vary annually",
+              "season_status": "out",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PLAYER PROPOSITION WAGERS"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Poland",
+          "governing_body": "Polish Basketball Federation (PZKosz)",
+          "events": [
+            {
+              "key": "basketball-pl-league",
+              "catalog_event": "Polska Liga Koszykówki (PLK) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "polish-plk",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-pl-cup",
+              "catalog_event": "Polish Cup | Men",
+              "season_window": "Annual February event",
+              "season_start": "02-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-pl-supercup",
+              "catalog_event": "Polish Supercup | Men",
+              "season_window": "Annual September event",
+              "season_start": "09-01",
+              "season_end": "09-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Serbia",
+          "governing_body": "Basketball Federation of Serbia (KSS)",
+          "events": [
+            {
+              "key": "basketball-rs-kls",
+              "catalog_event": "Basketball League of Serbia / Košarkaška liga Srbije (KLS) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "serbian-kls",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-rs-cup",
+              "catalog_event": "Radivoj Korać Cup | Men",
+              "season_window": "Annual February event",
+              "season_start": "02-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "South Korea",
+          "governing_body": "Korea Basketball Association (KBA)",
+          "events": [
+            {
+              "key": "basketball-kr-kbl",
+              "catalog_event": "Korean Basketball League (KBL) | Men",
+              "season_window": "October–May",
+              "season_start": "10-01",
+              "season_end": "05-31",
+              "source_id": "korean-kbl",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-kr-cup",
+              "catalog_event": "KBL Cup | Men",
+              "season_window": "Annual October event",
+              "season_start": "10-01",
+              "season_end": "10-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Spain",
+          "governing_body": "Euroleague Basketball",
+          "events": [
+            {
+              "key": "basketball-euroleague",
+              "catalog_event": "EuroLeague | Men",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-eurocup",
+              "catalog_event": "EuroCup | Men",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "source_id": "eurocup-basketball",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Spain",
+          "governing_body": "Asociación de Clubs de Baloncesto (ACB)",
+          "events": [
+            {
+              "key": "basketball-es-acb",
+              "catalog_event": "Liga ACB | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "spanish-acb",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-es-copa",
+              "catalog_event": "Copa del Rey | Men",
+              "season_window": "Annual February event",
+              "season_start": "02-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-es-supercopa",
+              "catalog_event": "Supercopa de Espana | Men",
+              "season_window": "Annual September event",
+              "season_start": "09-01",
+              "season_end": "09-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Sweden",
+          "governing_body": "Swedish Basketball Federation (SBBF)",
+          "events": [
+            {
+              "key": "basketball-se-sbl",
+              "catalog_event": "Svenska Basketligan (SBL) | Men",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Switzerland",
+          "governing_body": "Swiss Basketball Federation (FBS)",
+          "events": [
+            {
+              "key": "basketball-ch-sbl",
+              "catalog_event": "Swiss Basketball League (SBL) | Men",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "source_id": "swiss-sbl",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-ch-cup",
+              "catalog_event": "Swiss Cup | Men",
+              "season_window": "October–April",
+              "season_start": "10-01",
+              "season_end": "04-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-ch-sbl-cup",
+              "catalog_event": "SBL Cup | Men",
+              "season_window": "Annual January event",
+              "season_start": "01-01",
+              "season_end": "01-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Turkey",
+          "governing_body": "Turkish Basketball Federation (TBF)",
+          "events": [
+            {
+              "key": "basketball-tr-bsl",
+              "catalog_event": "Basketbol Süper Ligi (BSL) | Men",
+              "season_window": "September–June",
+              "season_start": "09-01",
+              "season_end": "06-30",
+              "source_id": "turkish-bsl",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-tr-cup",
+              "catalog_event": "Turkish Basketball Cup | Men",
+              "season_window": "Annual February event",
+              "season_start": "02-01",
+              "season_end": "02-28",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-tr-presidential",
+              "catalog_event": "Presidential Cup | Men",
+              "season_window": "Annual September event",
+              "season_start": "09-01",
+              "season_end": "09-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "National Basketball Association (NBA)",
+          "events": [
+            {
+              "key": "basketball-us-nba",
+              "catalog_event": "National Basketball Association (NBA) | Men",
+              "season_window": "October–June",
+              "season_start": "10-01",
+              "season_end": "06-30",
+              "source_id": "nba",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "basketball-us-nba-draft",
+              "catalog_event": "NBA Draft",
+              "season_window": "Annual June event",
+              "season_start": "06-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "MARKETS CLOSE 1 HOUR PRIOR TO EVENT START"
+              ]
+            },
+            {
+              "key": "basketball-us-nba-international-preseason",
+              "catalog_event": "NBA Preseason Games v. International Teams",
+              "season_window": "Annual October preseason",
+              "season_start": "10-01",
+              "season_end": "10-31",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PROPOSITION WAGERS"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "Women’s National Basketball Association (WNBA)",
+          "events": [
+            {
+              "key": "basketball-us-wnba",
+              "catalog_event": "WNBA | Women",
+              "season_window": "May–October",
+              "season_start": "05-01",
+              "season_end": "10-31",
+              "source_id": "wnba",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "TBT Enterprises, LLC",
+          "events": [
+            {
+              "key": "basketball-us-tbt",
+              "catalog_event": "The Basketball Tournament (TBT) | Men and Women",
+              "season_window": "June–August",
+              "season_start": "06-01",
+              "season_end": "08-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "Unrivaled Basketball",
+          "events": [
+            {
+              "key": "basketball-us-unrivaled",
+              "catalog_event": "Unrivaled Basketball | Women",
+              "season_window": "January–March",
+              "season_start": "01-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "BIG3",
+          "events": [
+            {
+              "key": "basketball-us-big3",
+              "catalog_event": "BIG3 | Men",
+              "season_window": "June–August",
+              "season_start": "06-01",
+              "season_end": "08-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
       ]
     },
     {
@@ -266,27 +1319,101 @@
           "country": "International Sanctioning Organizations",
           "governing_body": "Approved Bout-Level Authorities",
           "events": [
-            {"key":"boxing-ibf","catalog_event":"International Boxing Federation (IBF)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the IBF.","last_verified":"2026-09-17","restrictions":[]},
-            {"key":"boxing-wba","catalog_event":"World Boxing Association (WBA)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the WBA.","last_verified":"2026-09-17","restrictions":[]},
-            {"key":"boxing-wbc","catalog_event":"World Boxing Council (WBC)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the WBC.","last_verified":"2026-09-17","restrictions":[]},
-            {"key":"boxing-wbo","catalog_event":"World Boxing Organization (WBO)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the WBO.","last_verified":"2026-09-17","restrictions":[]}
+            {
+              "key": "boxing-ibf",
+              "catalog_event": "International Boxing Federation (IBF)",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "The specific bout must be sanctioned or overseen by the IBF.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "boxing-wba",
+              "catalog_event": "World Boxing Association (WBA)",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "The specific bout must be sanctioned or overseen by the WBA.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "boxing-wbc",
+              "catalog_event": "World Boxing Council (WBC)",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "The specific bout must be sanctioned or overseen by the WBC.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "boxing-wbo",
+              "catalog_event": "World Boxing Organization (WBO)",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "The specific bout must be sanctioned or overseen by the WBO.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
           ]
         },
         {
           "country": "Jurisdictional and Promotional Authorities",
           "governing_body": "Independently Sufficient Bout Oversight",
           "events": [
-            {"key":"boxing-bbbofc","catalog_event":"British Boxing Board of Control (BBBofC)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"BBBofC oversight of the specific bout is independently sufficient.","last_verified":"2026-09-17","restrictions":[]},
-            {"key":"boxing-abccs","catalog_event":"Association of Boxing Commissions and Combative Sports (ABCCS)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must fall under recognized ABCCS-member commission authority.","last_verified":"2026-09-17","restrictions":[]},
-            {"key":"boxing-state-commissions","catalog_event":"State Athletic Commissions","entry_type":"approval-authority","nonseasonal":true,"season_basis":"Oversight of the specific bout by a recognized state athletic commission is independently sufficient.","last_verified":"2026-09-17","restrictions":[]},
-            {"key":"boxing-mvp","catalog_event":"Most Valuable Promotions (MVP)","entry_type":"approved-promoter","nonseasonal":true,"season_basis":"MVP promotion of the specific bout is independently sufficient.","last_verified":"2026-09-17","restrictions":[]}
+            {
+              "key": "boxing-bbbofc",
+              "catalog_event": "British Boxing Board of Control (BBBofC)",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "BBBofC oversight of the specific bout is independently sufficient.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "boxing-abccs",
+              "catalog_event": "Association of Boxing Commissions and Combative Sports (ABCCS)",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "The specific bout must fall under recognized ABCCS-member commission authority.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "boxing-state-commissions",
+              "catalog_event": "State Athletic Commissions",
+              "entry_type": "approval-authority",
+              "nonseasonal": true,
+              "season_basis": "Oversight of the specific bout by a recognized state athletic commission is independently sufficient.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "boxing-mvp",
+              "catalog_event": "Most Valuable Promotions (MVP)",
+              "entry_type": "approved-promoter",
+              "nonseasonal": true,
+              "season_basis": "MVP promotion of the specific bout is independently sufficient.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
           ]
         },
         {
           "country": "Conditional Approval",
           "governing_body": "Geographic Limitation",
           "events": [
-            {"key":"boxing-bkfc","catalog_event":"Bare Knuckle Fighting Championship (BKFC)","entry_type":"conditional-authority","nonseasonal":true,"season_basis":"Approved only for bouts conducted in North America or the United Kingdom.","last_verified":"2026-09-17","restrictions":["NORTH AMERICA & UNITED KINGDOM ONLY"]}
+            {
+              "key": "boxing-bkfc",
+              "catalog_event": "Bare Knuckle Fighting Championship (BKFC)",
+              "entry_type": "conditional-authority",
+              "nonseasonal": true,
+              "season_basis": "Approved only for bouts conducted in North America or the United Kingdom.",
+              "last_verified": "2026-09-17",
+              "restrictions": [
+                "NORTH AMERICA & UNITED KINGDOM ONLY"
+              ]
+            }
           ]
         },
         {
@@ -303,6 +1430,218 @@
               "restrictions": [
                 "Approved boxing bouts must be professional, sanctioned, and conducted under the authority of an approved governing body, athletic commission, sanctioning organization, or other Commission-recognized regulatory authority.",
                 "Exhibition bouts, unsanctioned bouts, celebrity exhibitions, scripted or entertainment-based contests, and bouts lacking recognized professional oversight are not approved for wagering."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sport": "Combat Sports",
+      "mapping_status": "complete",
+      "summary_label": "13 approved promotions/event series · professional sanctioned events only",
+      "catalog_snapshot_lines": [
+        "Comisión Sancionadora de Artes Marciales Mixtas de México",
+        "LUX Fight League",
+        "Lights Out Xtreme Fighting League (XFL)",
+        "Lights Out Xtreme Fighting",
+        "Global Association of Mixed Martial Arts (GAMMA)",
+        "ONE Championship - FIGHT NIGHTS AND ONE NUMBERED CARDS ONLY",
+        "Glory Sports International",
+        "Glory Kickboxing",
+        "State Athletic Commission",
+        "Most Valuable Promotions (MVP)",
+        "Professional Fighters League (PFL)",
+        "PFL Professional Bouts",
+        "PFL Champions Series",
+        "PFL Europe",
+        "PFL MENA",
+        "PFL Africa",
+        "Ultimate Fighting Championship",
+        "Road to UFC",
+        "Ultimate Fighting Championship",
+        "Dana White Contender Series",
+        "Restriction",
+        "Approved combat sports events must be professional, sanctioned, and conducted under",
+        "the authority of an approved governing body, athletic commission, sanctioning",
+        "organization, or other Commission-recognized regulatory authority. Exhibition bouts,",
+        "unsanctioned bouts, celebrity exhibitions, scripted or entertainment-based contests, and",
+        "events lacking recognized professional oversight are not approved for wagering."
+      ],
+      "groups": [
+        {
+          "country": "Mexico",
+          "governing_body": "Comisión Sancionadora de Artes Marciales Mixtas de México",
+          "events": [
+            {
+              "key": "combat-lux",
+              "catalog_event": "LUX Fight League",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved professional events conducted under the listed Mexican sanctioning authority.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "combat-lxf",
+              "catalog_event": "Lights Out Xtreme Fighting League (XFL)",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Catalog also lists “Lights Out Xtreme Fighting”; presented together as the same approved promotion.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Global Association of Mixed Martial Arts (GAMMA)",
+          "events": [
+            {
+              "key": "combat-one",
+              "catalog_event": "ONE Championship",
+              "entry_type": "conditional-event",
+              "season_status": "in",
+              "season_basis": "Only ONE Fight Nights and ONE numbered cards are approved.",
+              "last_verified": "2026-09-17",
+              "restrictions": [
+                "FIGHT NIGHTS AND ONE NUMBERED CARDS ONLY"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Glory Sports International",
+          "events": [
+            {
+              "key": "combat-glory",
+              "catalog_event": "Glory Kickboxing",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved professional GLORY Kickboxing events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "State Athletic Commission",
+          "events": [
+            {
+              "key": "combat-mvp",
+              "catalog_event": "Most Valuable Promotions (MVP)",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved professional MVP events conducted under recognized state athletic commission oversight.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Professional Fighters League (PFL)",
+          "events": [
+            {
+              "key": "combat-pfl-pro",
+              "catalog_event": "PFL Professional Bouts",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved professional PFL bouts.",
+              "last_verified": "2026-09-17",
+              "restrictions": [],
+              "source_id": "pfl",
+              "review_label": "Professional Fighters League (PFL)"
+            },
+            {
+              "key": "combat-pfl-champions",
+              "catalog_event": "PFL Champions Series",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved PFL Champions Series events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "combat-pfl-europe",
+              "catalog_event": "PFL Europe",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved PFL Europe events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "combat-pfl-mena",
+              "catalog_event": "PFL MENA",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved PFL MENA events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "combat-pfl-africa",
+              "catalog_event": "PFL Africa",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved PFL Africa events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Ultimate Fighting Championship",
+          "events": [
+            {
+              "key": "combat-road-ufc",
+              "catalog_event": "Road to UFC",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved Road to UFC events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            },
+            {
+              "key": "combat-ufc",
+              "catalog_event": "Ultimate Fighting Championship",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved professional UFC events.",
+              "last_verified": "2026-09-17",
+              "restrictions": [],
+              "source_id": "ufc",
+              "review_label": "Ultimate Fighting Championship"
+            },
+            {
+              "key": "combat-dwcs",
+              "catalog_event": "Dana White Contender Series",
+              "entry_type": "approved-promotion",
+              "season_status": "in",
+              "season_basis": "Approved Dana White Contender Series events.",
+              "last_verified": "2026-09-17",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Controlling Approval Standard",
+          "governing_body": "Professional Sanctioned Events Only",
+          "events": [
+            {
+              "key": "combat-event-rule",
+              "catalog_event": "Combat Sports Approval Test",
+              "entry_type": "event-approval-rule",
+              "nonseasonal": true,
+              "season_basis": "Apply the approval test to the specific event and approved promotion or event series.",
+              "last_verified": "2026-09-17",
+              "restrictions": [
+                "Approved combat sports events must be professional, sanctioned, and conducted under the authority of an approved governing body, athletic commission, sanctioning organization, or other Commission-recognized regulatory authority.",
+                "Exhibition bouts, unsanctioned bouts, celebrity exhibitions, scripted or entertainment-based contests, and events lacking recognized professional oversight are not approved for wagering."
               ]
             }
           ]
@@ -345,11 +1684,11 @@
               "key": "baseball-do-lidom",
               "catalog_event": "Professional Baseball League of the Dominican Republic (LIDOM)",
               "season_status": "out",
-          "season_basis": "Recurring winter league season",
-          "season_window": "October–January",
-          "season_start": "10-01",
-          "season_end": "01-31",
-          "source_id": "lidom",
+              "season_basis": "Recurring winter league season",
+              "season_window": "October–January",
+              "season_start": "10-01",
+              "season_end": "01-31",
+              "source_id": "lidom",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -363,11 +1702,11 @@
               "key": "baseball-jp-npb",
               "catalog_event": "Nippon Professional Baseball (NPB)",
               "season_status": "in",
-          "season_basis": "Recurring regular season and postseason calendar",
-          "season_window": "March–October",
-          "season_start": "03-01",
-          "season_end": "10-31",
-          "source_id": "npb",
+              "season_basis": "Recurring regular season and postseason calendar",
+              "season_window": "March–October",
+              "season_start": "03-01",
+              "season_end": "10-31",
+              "source_id": "npb",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -381,11 +1720,11 @@
               "key": "baseball-kr-kbo",
               "catalog_event": "KBO League",
               "season_status": "in",
-          "season_basis": "Recurring regular season and postseason calendar",
-          "season_window": "March–October",
-          "season_start": "03-01",
-          "season_end": "10-31",
-          "source_id": "kbo",
+              "season_basis": "Recurring regular season and postseason calendar",
+              "season_window": "March–October",
+              "season_start": "03-01",
+              "season_end": "10-31",
+              "source_id": "kbo",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -399,11 +1738,11 @@
               "key": "baseball-mx-lmb",
               "catalog_event": "Mexico Baseball League",
               "season_status": "in",
-          "season_basis": "Recurring regular season and postseason calendar",
-          "season_window": "April–September",
-          "season_start": "04-01",
-          "season_end": "09-30",
-          "source_id": "lmb",
+              "season_basis": "Recurring regular season and postseason calendar",
+              "season_window": "April–September",
+              "season_start": "04-01",
+              "season_end": "09-30",
+              "source_id": "lmb",
               "last_verified": "2026-09-16",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
@@ -419,11 +1758,11 @@
               "key": "baseball-mx-lmp",
               "catalog_event": "Mexican Pacific League",
               "season_status": "out",
-          "season_basis": "Recurring winter league season",
-          "season_window": "October–January",
-          "season_start": "10-01",
-          "season_end": "01-31",
-          "source_id": "lmp",
+              "season_basis": "Recurring winter league season",
+              "season_window": "October–January",
+              "season_start": "10-01",
+              "season_end": "01-31",
+              "source_id": "lmp",
               "last_verified": "2026-09-16",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
@@ -441,7 +1780,7 @@
               "season_status": "out",
               "season_basis": "Event-specific tournament calendar",
               "season_window": "March 2026 tournament completed",
-          "source_id": "wbc",
+              "source_id": "wbc",
               "last_verified": "2026-09-16",
               "restrictions": []
             }
@@ -455,10 +1794,10 @@
               "key": "baseball-us-mlb",
               "catalog_event": "Major League Baseball (MLB)",
               "season_status": "in",
-          "season_basis": "Connected live schedule",
-          "season_window": "Regular season and postseason",
-          "season_start": "03-01",
-          "season_end": "11-30",
+              "season_basis": "Connected live schedule",
+              "season_window": "Regular season and postseason",
+              "season_start": "03-01",
+              "season_end": "11-30",
               "source_id": "mlb",
               "last_verified": "2026-09-16",
               "restrictions": []
@@ -467,10 +1806,10 @@
               "key": "baseball-us-mlb-draft",
               "catalog_event": "Draft",
               "season_status": "out",
-          "season_basis": "Event-specific calendar",
-          "season_window": "Annual July event",
-          "season_start": "07-01",
-          "season_end": "07-31",
+              "season_basis": "Event-specific calendar",
+              "season_window": "Annual July event",
+              "season_start": "07-01",
+              "season_end": "07-31",
               "source_id": null,
               "last_verified": "2026-09-16",
               "restrictions": [
@@ -481,10 +1820,10 @@
               "key": "baseball-us-mlb-spring-training",
               "catalog_event": "Spring Training",
               "season_status": "out",
-          "season_basis": "Recurring preseason calendar",
-          "season_window": "February–March",
-          "season_start": "02-01",
-          "season_end": "03-31",
+              "season_basis": "Recurring preseason calendar",
+              "season_window": "February–March",
+              "season_start": "02-01",
+              "season_end": "03-31",
               "source_id": null,
               "last_verified": "2026-09-16",
               "restrictions": [
@@ -498,121 +1837,400 @@
     {
       "sport": "NCAA Baseball",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-baseball-di","catalog_event":"Division I Baseball | Men","season_window":"February–June","season_start":"02-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-baseball-di",
+              "catalog_event": "Division I Baseball | Men",
+              "season_window": "February–June",
+              "season_start": "02-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Basketball",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-basketball-di","catalog_event":"Division I Basketball | Men and Women","season_window":"November–April","season_start":"11-01","season_end":"04-30","source_ids":["ncaa-mbb","ncaa-wbb"],"last_verified":"2026-09-16","restrictions":[]},
-        {"key":"ncaa-basketball-cbc","catalog_event":"College Basketball Crown (CBC) | Men","season_window":"March–April","season_start":"03-01","season_end":"04-15","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]},
-        {"key":"ncaa-basketball-cbi","catalog_event":"College Basketball Invitational (CBI) | Men","season_window":"March","season_start":"03-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]},
-        {"key":"ncaa-basketball-dii","catalog_event":"Division II Basketball | Men and Women","season_window":"November–March","season_start":"11-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":[]},
-        {"key":"ncaa-basketball-diii","catalog_event":"Division III Basketball | Men and Women","season_window":"November–March","season_start":"11-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-basketball-di",
+              "catalog_event": "Division I Basketball | Men and Women",
+              "season_window": "November–April",
+              "season_start": "11-01",
+              "season_end": "04-30",
+              "source_ids": [
+                "ncaa-mbb",
+                "ncaa-wbb"
+              ],
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "ncaa-basketball-cbc",
+              "catalog_event": "College Basketball Crown (CBC) | Men",
+              "season_window": "March–April",
+              "season_start": "03-01",
+              "season_end": "04-15",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PLAYER PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "ncaa-basketball-cbi",
+              "catalog_event": "College Basketball Invitational (CBI) | Men",
+              "season_window": "March",
+              "season_start": "03-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": [
+                "NO PLAYER PROPOSITION WAGERS"
+              ]
+            },
+            {
+              "key": "ncaa-basketball-dii",
+              "catalog_event": "Division II Basketball | Men and Women",
+              "season_window": "November–March",
+              "season_start": "11-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "ncaa-basketball-diii",
+              "catalog_event": "Division III Basketball | Men and Women",
+              "season_window": "November–March",
+              "season_start": "11-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Beach Volleyball",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-beach-volleyball-di","catalog_event":"Division I Beach Volleyball | Women","season_window":"February–May","season_start":"02-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-beach-volleyball-di",
+              "catalog_event": "Division I Beach Volleyball | Women",
+              "season_window": "February–May",
+              "season_start": "02-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Field Hockey",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-field-hockey-di","catalog_event":"Division I Field Hockey | Women","season_window":"August–November","season_start":"08-01","season_end":"11-30","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-field-hockey-di",
+              "catalog_event": "Division I Field Hockey | Women",
+              "season_window": "August–November",
+              "season_start": "08-01",
+              "season_end": "11-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Football",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-football-fbs","catalog_event":"Division I Football Bowl Subdivision (FBS)","review_label":"Division I Football (FBS/FCS)","season_window":"August–January","season_start":"08-01","season_end":"01-31","source_ids":["ncaa-football"],"last_verified":"2026-09-16","restrictions":[]},
-        {"key":"ncaa-football-fcs","catalog_event":"Division I Football Championship Subdivision (FCS)","season_window":"August–January","season_start":"08-01","season_end":"01-31","last_verified":"2026-09-16","restrictions":[]},
-        {"key":"ncaa-football-dii","catalog_event":"Division II Football","season_window":"August–December","season_start":"08-01","season_end":"12-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-football-fbs",
+              "catalog_event": "Division I Football Bowl Subdivision (FBS)",
+              "review_label": "Division I Football (FBS/FCS)",
+              "season_window": "August–January",
+              "season_start": "08-01",
+              "season_end": "01-31",
+              "source_ids": [
+                "ncaa-football"
+              ],
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "ncaa-football-fcs",
+              "catalog_event": "Division I Football Championship Subdivision (FCS)",
+              "season_window": "August–January",
+              "season_start": "08-01",
+              "season_end": "01-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "ncaa-football-dii",
+              "catalog_event": "Division II Football",
+              "season_window": "August–December",
+              "season_start": "08-01",
+              "season_end": "12-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Golf",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-golf-di","catalog_event":"Division I Golf | Men and Women","season_window":"August–May","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-golf-di",
+              "catalog_event": "Division I Golf | Men and Women",
+              "season_window": "August–May",
+              "season_start": "08-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Ice Hockey",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-ice-hockey-di","catalog_event":"Division I Ice Hockey | Men and Women","season_window":"October–April","season_start":"10-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-ice-hockey-di",
+              "catalog_event": "Division I Ice Hockey | Men and Women",
+              "season_window": "October–April",
+              "season_start": "10-01",
+              "season_end": "04-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Lacrosse",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-lacrosse-di","catalog_event":"Division I Lacrosse | Men and Women","season_window":"February–May","season_start":"02-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-lacrosse-di",
+              "catalog_event": "Division I Lacrosse | Men and Women",
+              "season_window": "February–May",
+              "season_start": "02-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Soccer",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-soccer-di","catalog_event":"Division I Soccer | Men and Women","season_window":"August–December","season_start":"08-01","season_end":"12-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-soccer-di",
+              "catalog_event": "Division I Soccer | Men and Women",
+              "season_window": "August–December",
+              "season_start": "08-01",
+              "season_end": "12-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Softball",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-softball-di","catalog_event":"Division I Softball | Women","season_window":"February–June","season_start":"02-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-softball-di",
+              "catalog_event": "Division I Softball | Women",
+              "season_window": "February–June",
+              "season_start": "02-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Swimming",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-swimming-di","catalog_event":"Division I Swimming | Men and Women","season_window":"September–March","season_start":"09-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-swimming-di",
+              "catalog_event": "Division I Swimming | Men and Women",
+              "season_window": "September–March",
+              "season_start": "09-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Tennis",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-tennis-di","catalog_event":"Division I Tennis | Men and Women","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-tennis-di",
+              "catalog_event": "Division I Tennis | Men and Women",
+              "season_window": "September–May",
+              "season_start": "09-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Track and Field",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-track-indoor-di","catalog_event":"Division I Indoor Track and Field | Men and Women","season_window":"December–March","season_start":"12-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":[]},
-        {"key":"ncaa-track-outdoor-di","catalog_event":"Division I Outdoor Track and Field | Men and Women","season_window":"March–June","season_start":"03-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-track-indoor-di",
+              "catalog_event": "Division I Indoor Track and Field | Men and Women",
+              "season_window": "December–March",
+              "season_start": "12-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            },
+            {
+              "key": "ncaa-track-outdoor-di",
+              "catalog_event": "Division I Outdoor Track and Field | Men and Women",
+              "season_window": "March–June",
+              "season_start": "03-01",
+              "season_end": "06-30",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Volleyball",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-volleyball-di","catalog_event":"Division I Volleyball | Women","season_window":"August–December","season_start":"08-01","season_end":"12-31","source_ids":["ncaa-volleyball"],"last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-volleyball-di",
+              "catalog_event": "Division I Volleyball | Women",
+              "season_window": "August–December",
+              "season_start": "08-01",
+              "season_end": "12-31",
+              "source_ids": [
+                "ncaa-volleyball"
+              ],
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Water Polo",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-water-polo-di","catalog_event":"Division I Water Polo | Men and Women","season_window":"August–May (men fall; women spring)","season_start":"08-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-water-polo-di",
+              "catalog_event": "Division I Water Polo | Men and Women",
+              "season_window": "August–May (men fall; women spring)",
+              "season_start": "08-01",
+              "season_end": "05-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     },
     {
       "sport": "NCAA Wrestling",
       "mapping_status": "complete",
-      "groups": [{"governing_body":"National Collegiate Athletic Association","events":[
-        {"key":"ncaa-wrestling-di","catalog_event":"Division I Wrestling | Men","season_window":"November–March","season_start":"11-01","season_end":"03-31","last_verified":"2026-09-16","restrictions":[]}
-      ]}]
+      "groups": [
+        {
+          "governing_body": "National Collegiate Athletic Association",
+          "events": [
+            {
+              "key": "ncaa-wrestling-di",
+              "catalog_event": "Division I Wrestling | Men",
+              "season_window": "November–March",
+              "season_start": "11-01",
+              "season_end": "03-31",
+              "last_verified": "2026-09-16",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }
