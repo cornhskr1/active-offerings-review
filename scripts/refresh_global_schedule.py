@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, datetime, requests, re, time
+import json, datetime, requests, re, time, html
+import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -199,6 +200,103 @@ def parse_mlbstats_event(source, game):
         "source_endpoint":source["endpoint"]
     }
 
+def plain_html(value):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).strip()
+
+def boxing_region(location):
+    low=(location or "").lower()
+    if any(x in low for x in ("england","scotland","wales","northern ireland","united kingdom")):
+        return "United Kingdom"
+    us_markers=(
+        "alabama","alaska","arizona","arkansas","california","colorado","connecticut","delaware",
+        "florida","georgia","hawaii","idaho","illinois","indiana","iowa","kansas","kentucky",
+        "louisiana","maine","maryland","massachusetts","michigan","minnesota","mississippi",
+        "missouri","montana","nebraska","nevada","new hampshire","new jersey","new mexico",
+        "new york","north carolina","north dakota","ohio","oklahoma","oregon","pennsylvania",
+        "rhode island","south carolina","south dakota","tennessee","texas","utah","vermont",
+        "virginia","washington","west virginia","wisconsin","wyoming","united states","u.s."
+    )
+    if any(x in low for x in us_markers):
+        return "United States"
+    aliases={"mexico":"Mexico","canada":"Canada","japan":"Japan","australia":"Australia","puerto rico":"Puerto Rico"}
+    for needle,label in aliases.items():
+        if needle in low:
+            return label
+    return "International"
+
+def boxing_authorities(text):
+    checks=[
+        (r"\bIBF\b|International Boxing Federation","IBF"),
+        (r"\bWBA\b|World Boxing Association","WBA"),
+        (r"\bWBC\b|World Boxing Council","WBC"),
+        (r"\bWBO\b|World Boxing Organization","WBO"),
+        (r"\bBBBofC\b|British Boxing Board of Control","BBBofC"),
+        (r"\bBKFC\b|Bare Knuckle Fighting Championship","BKFC"),
+        (r"Most Valuable Promotions|\bMVP\b","MVP")
+    ]
+    return [label for pattern,label in checks if re.search(pattern,text or "",re.I)]
+
+def parse_boxing_rss(source):
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
+    r.raise_for_status()
+    root=ET.fromstring(r.content)
+    ns={"a":"http://www.w3.org/2005/Atom"}
+    parsed=[]
+    for entry in root.findall("a:entry",ns):
+        title=entry.findtext("a:title",default="",namespaces=ns)
+        content=entry.findtext("a:content",default="",namespaces=ns)
+        year_match=re.search(r"\b(20\d{2})\b",title)
+        year=int(year_match.group(1)) if year_match else TODAY.year
+        headings=list(re.finditer(r"<(h[23])[^>]*>(.*?)</\1>",content,re.I|re.S))
+        current_date=None
+        for idx,match in enumerate(headings):
+            tag=match.group(1).lower()
+            label=plain_html(match.group(2))
+            if tag=="h2":
+                clean=re.sub(r"(\d+)(st|nd|rd|th)",r"\1",label,flags=re.I)
+                clean=re.sub(r"^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*","",clean,flags=re.I)
+                try:
+                    current_date=datetime.datetime.strptime(f"{clean} {year}","%B %d %Y").date()
+                except ValueError:
+                    current_date=None
+                continue
+            if tag!="h3" or not current_date or not re.search(r"\b(vs\.?|v\.)\b",label,re.I):
+                continue
+            if current_date<TODAY or current_date>END:
+                continue
+            next_start=headings[idx+1].start() if idx+1<len(headings) else len(content)
+            raw_context=content[match.end():next_start]
+            context=plain_html(raw_context)
+            time_match=re.search(r"(\d{1,2}:\d{2})\s*(am|pm)\s*ET",label,re.I)
+            clock="12:00 pm"
+            if time_match:
+                clock=f"{time_match.group(1)} {time_match.group(2).lower()}"
+            local=datetime.datetime.strptime(f"{current_date.isoformat()} {clock}","%Y-%m-%d %I:%M %p").replace(tzinfo=ZoneInfo("America/New_York"))
+            start_time=local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+            fight=re.sub(r"\s*\([^)]*(?:am|pm)\s+ET[^)]*\)\s*$","",label,flags=re.I).strip()
+            loc_match=re.search(r"\bFrom\s+(.+?)(?:\.|,\s+for\b)",context,re.I)
+            location=loc_match.group(1).strip() if loc_match else None
+            first_para_match=re.search(r"<p[^>]*>(.*?)</p>",raw_context,re.I|re.S)
+            bout_description=plain_html(first_para_match.group(1)) if first_para_match else ""
+            authority_context=f"{label} {bout_description}"
+            slug=re.sub(r"[^a-z0-9]+","-",fight.lower()).strip("-")
+            parsed.append({
+                "id":f'{source["id"]}-{current_date.isoformat()}-{slug}',
+                "source_id":source["id"],
+                "sport":"Boxing",
+                "league":source["league"],
+                "region":boxing_region(location),
+                "name":fight,
+                "start_time":start_time,
+                "status":"UPCOMING",
+                "status_detail":"Bout-level authority review required",
+                "season_stage":None,
+                "location":location,
+                "reported_authorities":boxing_authorities(authority_context),
+                "source_endpoint":source["endpoint"]
+            })
+    return parsed
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -220,6 +318,26 @@ for source in CFG.get("sources",[]):
             "ok":True,
             "events":0,
             "note":source.get("source_note") or "Approved in-season league; no dependable complete public schedule adapter is currently available.",
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type")=="boxing-rss":
+        try:
+            for parsed in parse_boxing_rss(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
         continue
