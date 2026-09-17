@@ -128,6 +128,60 @@
       "catalog_terms": ["Canadian Elite Basketball League", "CEBL"]
     },
     {
+      "id": "australian-nbl",
+      "sport": "Basketball",
+      "league": "National Basketball League (NBL)",
+      "region": "Australia",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbl/scoreboard",
+      "catalog_terms": ["National Basketball League (NBL)", "Basketball Australia"]
+    },
+    {
+      "id": "mexican-lnbp",
+      "sport": "Basketball",
+      "league": "Liga Nacional de Baloncesto Profesional (LNBP)",
+      "region": "Mexico",
+      "source_type": "thesportsdb-day",
+      "coverage_status": "partial",
+      "sport_query": "Basketball",
+      "league_id": "5119",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsday.php",
+      "catalog_terms": ["Liga Nacional de Baloncesto Profesional", "LNBP"]
+    },
+    {
+      "id": "chile-lnb",
+      "sport": "Basketball",
+      "league": "Liga Nacional de Basquetbol de Chile (LNB)",
+      "region": "Chile",
+      "source_type": "coverage-gap",
+      "coverage_status": "missing",
+      "official_schedule_url": "https://lnbchile.com/liga/uno/calendario",
+      "source_note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
+      "catalog_terms": ["Liga Nacional de Basquetbol de Chile", "Copa Chile"]
+    },
+    {
+      "id": "danish-basketligaen",
+      "sport": "Basketball",
+      "league": "Basketligaen",
+      "region": "Denmark",
+      "source_type": "thesportsdb",
+      "coverage_status": "partial",
+      "league_id": "5114",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": ["Basketligaen", "Danish Basketball Association"]
+    },
+    {
+      "id": "lithuanian-lkl",
+      "sport": "Basketball",
+      "league": "Lietuvos krepšinio lyga (LKL)",
+      "region": "Lithuania",
+      "source_type": "thesportsdb",
+      "coverage_status": "complete",
+      "league_id": "4478",
+      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "catalog_terms": ["Lietuvos krepšinio lyga", "LKL"]
+    },
+    {
       "id": "greek-basket-league",
       "sport": "Basketball",
       "league": "Greek Basket League (GBL)",
