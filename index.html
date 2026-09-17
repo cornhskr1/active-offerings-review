@@ -479,7 +479,6 @@ th{font-size:11px!important}
 const DATA={};
 const FILES={
   global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
-  operatorObserved:'data/operator-observed-events.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
@@ -684,6 +683,10 @@ function regionLeagueLabel(region,league){
   return `${r} — ${l}`;
 }
 function regionForAttentionCard(card,events){
+  // Country/region carried by the alert is authoritative for display. This
+  // keeps every sport on the same "Country/Region — League/Event" standard.
+  const directRegion=String(card?.region||'').trim();
+  if(directRegion)return directRegion;
   const ce=String(card?.event||card?.title||'').toLowerCase();
   const cs=String(card?.sport||'').toLowerCase();
   const cl=String(card?.league||'').toLowerCase();
@@ -746,14 +749,6 @@ function basketballReviewEvents(){
       normCollegeSport(g.sport)==='basketball' &&
       normTeamName(g.name)===normTeamName(e.name)
     ));
-}
-function operatorObservedReviewEvents(){
-  const start=todayKey(),end=addDays(start,7),now=Date.now();
-  return (DATA.operatorObserved?.events||[]).filter(event=>{
-    const key=ctKey(event.start_time);
-    const expiry=event.expires_after?new Date(event.expires_after).getTime():Infinity;
-    return event.status!=='COMPLETED'&&keyBetween(key,start,end)&&now<=expiry;
-  }).map(event=>({...event,_operatorObserved:true}));
 }
 function sameCollegeBasketball(a,b){
   if(!a||!b)return false;
@@ -925,7 +920,7 @@ function renderUpcomingSportBoard(events){
   const ordered=[...sports.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
   return `<div class="activity-board"><div class="activity-board-title">Upcoming Approved Activity · Select a Sport</div>${ordered.map(([sport,leagues])=>{
     const sportEvents=[...leagues.values()].flat();
-    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>`<div class="event-row">${pill(event._operatorObserved?'amber':'green',event._operatorObserved?'OPERATOR OBSERVED':'MAPPED')} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`).join('')}</div></details>`).join('')}</div></details>`;
+    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>`<div class="event-row">${pill('green','MAPPED')} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`).join('')}</div></details>`).join('')}</div></details>`;
   }).join('')}</div>`;
 }
 
@@ -967,7 +962,7 @@ function renderToday(){
     const k=ctKey(e.start_time);
     return e.status!=='COMPLETED' && keyBetween(k,start,end);
   });
-  const events=[...globalEvents,...basketballReviewEvents(),...operatorObservedReviewEvents()]
+  const events=[...globalEvents,...basketballReviewEvents()]
     .sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||''));
   const pqCards=(pq.cards||[]).filter(c=>{
     const k=ctKey(c.start_time);
@@ -1066,10 +1061,8 @@ function renderToday(){
         html+=arr.map(e=>{
           const c=collegeMatchForGlobal(e);
           const r=c?collegeReg(c):null;
-          const color=e._operatorObserved?'amber':(r?.c||'green');
-          const label=e._operatorObserved
-            ?'OPERATOR OBSERVED'
-            :r?.c==='red'
+          const color=r?.c||'green';
+          const label=r?.c==='red'
             ?'NOT PERMISSIBLE'
             :r?.c==='amber'
               ?'REVIEW REQUIRED'
