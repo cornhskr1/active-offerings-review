@@ -915,7 +915,10 @@ function renderUpcomingSportBoard(events){
   events.forEach(event=>{
     const sport=event.sport||'Event';
     const mapped=mappedCatalogEventForScheduleEvent(event);
-    const league=mapped?.review_label||mapped?.catalog_event||regionLeagueLabel(event.region,event.league);
+    const league=regionLeagueLabel(
+      mapped?.country||event.region,
+      mapped?.review_label||mapped?.catalog_event||event.league
+    );
     if(!sports.has(sport))sports.set(sport,new Map());
     const leagues=sports.get(sport);
     if(!leagues.has(league))leagues.set(league,[]);
@@ -1068,7 +1071,7 @@ function renderToday(){
     const leagueGroups={};
     dayEvents.forEach(e=>{
       const mapped=mappedCatalogEventForScheduleEvent(e);
-      const k=`${e.sport} · ${mapped?.review_label||mapped?.catalog_event||regionLeagueLabel(e.region,e.league)}`;
+      const k=`${e.sport} · ${regionLeagueLabel(mapped?.country||e.region,mapped?.review_label||mapped?.catalog_event||e.league)}`;
       (leagueGroups[k]??=[]).push(e);
     });
 
