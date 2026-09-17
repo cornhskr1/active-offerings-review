@@ -192,6 +192,16 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="coverage-gap":
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":True,
+            "events":0,
+            "note":source.get("source_note") or "Approved in-season league; no dependable complete public schedule adapter is currently available.",
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
     if source.get("source_type")=="thesportsdb":
         try:
             r=requests.get(source["endpoint"],params={"id":source["league_id"]},headers=HEADERS,timeout=18)
@@ -216,6 +226,34 @@ for source in CFG.get("sources",[]):
             **source,
             "approved_catalog":True,
             "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type")=="thesportsdb-day":
+        for offset in range((END-TODAY).days+1):
+            day=TODAY+datetime.timedelta(days=offset)
+            try:
+                r=requests.get(source["endpoint"],params={"d":day.isoformat(),"s":source.get("sport_query") or source["sport"]},headers=HEADERS,timeout=18)
+                r.raise_for_status()
+                data=r.json()
+                for ev in data.get("events") or []:
+                    if str(ev.get("idLeague") or "")!=str(source["league_id"]):
+                        continue
+                    parsed=parse_thesportsdb_event(source,ev)
+                    key=(parsed["id"],parsed["start_time"])
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    events.append(parsed)
+                    count+=1
+            except Exception as e:
+                errors.append(f"{day.isoformat()}: {str(e)[:110]}")
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors or count>0,
             "events":count,
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
