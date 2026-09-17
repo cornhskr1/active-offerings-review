@@ -259,6 +259,10 @@ th{font-size:11px!important}
 .catalog-event-main{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px}
 .catalog-event-name{font-size:13px;font-weight:800}
 .catalog-season-detail{margin-top:3px;color:#69727b;font-size:11px;font-weight:400}
+.season-progress{display:grid;grid-template-columns:minmax(80px,220px) auto;align-items:center;gap:8px;margin-top:7px}
+.season-progress-track{height:7px;border-radius:999px;background:#dbe5ee;overflow:hidden;box-shadow:inset 0 0 0 1px #c5d2dc}
+.season-progress-fill{height:100%;border-radius:999px;background:#2778b9}
+.season-progress-label{font-size:9px;font-weight:800;color:#3f5f78;white-space:nowrap}
 .catalog-event-restrictions{display:grid;gap:5px;padding:0 10px 10px}
 .catalog-event-restriction{border:1px solid #dfa84f;background:#fff8ea;border-radius:7px;padding:7px 8px;color:#704b08;font-size:12px;font-weight:800}
 .ncaa-controls{border:1px solid #dfb86f;border-radius:10px;background:#fff9ed;overflow:hidden;margin-bottom:12px}
@@ -1694,6 +1698,22 @@ function annualSeasonStatus(event){
   const key=`${part('month')}-${part('day')}`,start=event.season_start,end=event.season_end;
   return start<=end?(key>=start&&key<=end?'in':'out'):(key>=start||key<=end?'in':'out');
 }
+function seasonProgressHtml(event,status){
+  if(status!=='in'||!event?.season_start||!event?.season_end)return'';
+  const today=todayKey(),year=Number(today.slice(0,4)),md=today.slice(5);
+  const startMd=event.season_start,endMd=event.season_end;
+  let startYear=year,endYear=year;
+  if(startMd>endMd){
+    if(md>=startMd)endYear=year+1;
+    else startYear=year-1;
+  }
+  const start=new Date(`${startYear}-${startMd}T12:00:00-05:00`).getTime();
+  const end=new Date(`${endYear}-${endMd}T12:00:00-05:00`).getTime();
+  const now=new Date(`${today}T12:00:00-05:00`).getTime();
+  if(!Number.isFinite(start)||!Number.isFinite(end)||end<=start)return'';
+  const pct=Math.max(0,Math.min(100,Math.round(((now-start)/(end-start))*100)));
+  return `<div class="season-progress" title="${pct}% through the mapped season window"><div class="season-progress-track"><div class="season-progress-fill" style="width:${pct}%"></div></div><span class="season-progress-label">${pct}%</span></div>`;
+}
 function eventSourceIds(event){
   return [...(event?.source_ids||[]),...(event?.source_id?[event.source_id]:[])];
 }
@@ -1807,7 +1827,7 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
     ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
     <div class="catalog-event-list">${events.map(event=>{
       const status=mappedSeasonStatus(event);
-      return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div></div>${mappedSeasonBadge(status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
+      return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${mappedSeasonBadge(status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
     }).join('')}</div></div>`).join('')}
   </section>`).join('');
   if(visibleNewLines.length){
