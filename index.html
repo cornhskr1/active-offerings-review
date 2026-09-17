@@ -29,6 +29,7 @@ body:before{content:"";position:fixed;z-index:1000;top:0;left:0;right:0;height:4
 .league-group{border:1px solid #e3e6e9;border-radius:9px;margin-top:6px;overflow:hidden}.league-group>summary{cursor:pointer;list-style:none;padding:8px 10px;background:#fafbfb;font-weight:850;display:flex;justify-content:space-between}.league-group>summary::-webkit-details-marker{display:none}.league-events{padding:0 9px 5px}
 .issue-board{display:grid;gap:9px;margin:10px 0 16px}.issue-board-title{font-size:13px;font-weight:950;letter-spacing:.035em;text-transform:uppercase}.issue-card{border:2px solid #d7dde2;border-radius:11px;overflow:hidden;background:#fff}.issue-card.red{border-color:#d9473f;background:#fff8f7}.issue-card.amber{border-color:#d99a21;background:#fffaf0}.issue-card>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:9px;padding:11px 12px}.issue-card>summary::-webkit-details-marker{display:none}.issue-card-title{font-size:14px;font-weight:950}.issue-card-count{font-size:11px;font-weight:900;white-space:nowrap}.issue-card-body{border-top:1px solid #e3e7ea;padding:5px 12px 10px;background:#fff}.issue-detail{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 0;border-top:1px solid #edf0f2}.issue-detail:first-child{border-top:0}.issue-detail b{font-size:12px}.issue-card-action{margin-top:7px;background:#f3f5f6;border-radius:8px;padding:8px 9px;font-size:11px;color:#454d55}
 .issue-sport{border:1px solid #ccd3d9;border-radius:11px;overflow:hidden;background:#fff}.issue-sport.red{border-left:7px solid #c92d27}.issue-sport.amber{border-left:7px solid #d49218}.issue-sport>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 13px;background:#f3f5f6}.issue-sport>summary::-webkit-details-marker{display:none}.issue-sport-name{font-size:16px;font-weight:950}.issue-sport-counts{font-size:11px;font-weight:900;white-space:nowrap}.issue-sport-body{padding:8px;background:#fafbfb}.issue-sport .issue-card{margin-top:7px}.issue-sport .issue-card:first-child{margin-top:0}
+.activity-board{display:grid;gap:7px;margin:10px 0 16px}.activity-board-title{font-size:13px;font-weight:950;letter-spacing:.035em;text-transform:uppercase}.activity-sport{border:1px solid #cbd6df;border-left:7px solid #397ba9;border-radius:10px;overflow:hidden;background:#fff}.activity-sport>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;background:#f1f7fb}.activity-sport>summary::-webkit-details-marker{display:none}.activity-sport-name{font-size:15px;font-weight:950}.activity-sport-count{font-size:11px;font-weight:900;white-space:nowrap}.activity-sport-body{padding:7px 9px 10px}.activity-sport .league-group{margin-top:6px}
 .college-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.college-card{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff}.college-card.red{border-left:5px solid var(--red)}.college-card.green{border-left:5px solid var(--green)}.college-card.amber{border-left:5px solid var(--amber)}.college-top{display:flex;justify-content:space-between;gap:8px;align-items:start}.college-card h3{margin:8px 0 4px}.college-loc{font-size:11px;color:#4f575f;margin-top:5px}.college-date{font-size:10px;color:var(--muted);margin-top:5px}
 .toolbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}.toolbar input,.toolbar select{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;min-width:180px}.toolbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 10px;font-weight:800;cursor:pointer}.toolbar button.active{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
 table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #e9ecef;padding:8px;font-size:11px;vertical-align:top}th{font-size:9px;text-transform:uppercase;color:#68717a;background:#f8f9fa}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px}
@@ -478,6 +479,7 @@ th{font-size:11px!important}
 const DATA={};
 const FILES={
   global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
+  operatorObserved:'data/operator-observed-events.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
@@ -745,6 +747,14 @@ function basketballReviewEvents(){
       normTeamName(g.name)===normTeamName(e.name)
     ));
 }
+function operatorObservedReviewEvents(){
+  const start=todayKey(),end=addDays(start,7),now=Date.now();
+  return (DATA.operatorObserved?.events||[]).filter(event=>{
+    const key=ctKey(event.start_time);
+    const expiry=event.expires_after?new Date(event.expires_after).getTime():Infinity;
+    return event.status!=='COMPLETED'&&keyBetween(key,start,end)&&now<=expiry;
+  }).map(event=>({...event,_operatorObserved:true}));
+}
 function sameCollegeBasketball(a,b){
   if(!a||!b)return false;
   if(String(a.date||'')!==String(b.date||''))return false;
@@ -900,6 +910,51 @@ function renderIssueBoard(cards,events){
   }).join('')}</div>`;
 }
 
+function renderUpcomingSportBoard(events){
+  if(!events.length)return'<div class="empty">No mapped upcoming activity in the eight-day window.</div>';
+  const sports=new Map();
+  events.forEach(event=>{
+    const sport=event.sport||'Event';
+    const mapped=mappedCatalogEventForScheduleEvent(event);
+    const league=mapped?.review_label||mapped?.catalog_event||regionLeagueLabel(event.region,event.league);
+    if(!sports.has(sport))sports.set(sport,new Map());
+    const leagues=sports.get(sport);
+    if(!leagues.has(league))leagues.set(league,[]);
+    leagues.get(league).push(event);
+  });
+  const ordered=[...sports.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+  return `<div class="activity-board"><div class="activity-board-title">Upcoming Approved Activity · Select a Sport</div>${ordered.map(([sport,leagues])=>{
+    const sportEvents=[...leagues.values()].flat();
+    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>`<div class="event-row">${pill(event._operatorObserved?'amber':'green',event._operatorObserved?'OPERATOR OBSERVED':'MAPPED')} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`).join('')}</div></details>`).join('')}</div></details>`;
+  }).join('')}</div>`;
+}
+
+function scheduleCoverageAttention(dayKey){
+  return (DATA.global?.sources||[]).filter(source=>{
+    if(!['partial','missing'].includes(source.coverage_status))return false;
+    const mapped=mappedCatalogEventForSource(source.id);
+    return mapped&&mappedSeasonStatus(mapped)==='in';
+  }).map(source=>{
+    const mapped=mappedCatalogEventForSource(source.id);
+    const missing=source.coverage_status==='missing';
+    return{
+      severity:'AMBER',
+      type:'SCHEDULE COVERAGE GAP',
+      sport:source.sport,
+      league:mapped?.catalog_event||source.league,
+      region:source.region,
+      event:`${mapped?.catalog_event||source.league} · schedule coverage`,
+      start_time:`${dayKey}T12:00:00-05:00`,
+      reason:missing
+        ?'Approved and in season, but no dependable complete public schedule feed is connected.'
+        :'Approved and in season, but the connected public schedule feed is known to omit some games.',
+      staff_action:source.official_schedule_url
+        ?`Check the official league calendar (${source.official_schedule_url}) and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.`
+        :'Do not treat zero detected games as confirmation that no offerings exist. Compare the operator menu or wagering activity before clearing this league.'
+    };
+  });
+}
+
 function renderToday(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -912,7 +967,7 @@ function renderToday(){
     const k=ctKey(e.start_time);
     return e.status!=='COMPLETED' && keyBetween(k,start,end);
   });
-  const events=[...globalEvents,...basketballReviewEvents()]
+  const events=[...globalEvents,...basketballReviewEvents(),...operatorObservedReviewEvents()]
     .sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||''));
   const pqCards=(pq.cards||[]).filter(c=>{
     const k=ctKey(c.start_time);
@@ -936,8 +991,9 @@ function renderToday(){
   const futuresRed=futuresWindowAlerts.filter(c=>c.severity==='RED').length;
   const futuresAmber=futuresWindowAlerts.filter(c=>c.severity==='AMBER').length;
 
+  const coverageAlerts=scheduleCoverageAttention(start);
   const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
-  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber;
+  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+coverageAlerts.length;
 
   const warning=document.getElementById('scheduleWarning');
   if(warning){
@@ -971,7 +1027,8 @@ function renderToday(){
 
   const windowCards=[];
   for(let i=0;i<8;i++)windowCards.push(...attentionCardsForDay(addDays(start,i),events,pqCards));
-  let html=renderIssueBoard(windowCards,events);
+  windowCards.push(...coverageAlerts);
+  let html=renderIssueBoard(windowCards,events)+renderUpcomingSportBoard(events);
 
   for(let i=0;i<8;i++){
     const key=addDays(start,i);
@@ -1009,8 +1066,10 @@ function renderToday(){
         html+=arr.map(e=>{
           const c=collegeMatchForGlobal(e);
           const r=c?collegeReg(c):null;
-          const color=r?.c||'green';
-          const label=r?.c==='red'
+          const color=e._operatorObserved?'amber':(r?.c||'green');
+          const label=e._operatorObserved
+            ?'OPERATOR OBSERVED'
+            :r?.c==='red'
             ?'NOT PERMISSIBLE'
             :r?.c==='amber'
               ?'REVIEW REQUIRED'
@@ -1515,7 +1574,7 @@ function renderBasketball(){
   });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>`<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(s.ok?'green':'amber',s.ok?'SOURCE OK':'SOURCE REVIEW')}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}</div></div>`);const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS (?:MUST )?CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
