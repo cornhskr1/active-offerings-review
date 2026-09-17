@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-17T18:23:28.584525+00:00",
+  "generated_at": "2026-09-17T19:18:21.610617+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-17",
   "window_end": "2026-09-24",
-  "event_count": 846,
+  "event_count": 848,
   "events": [
     {
       "id": "887-2026",
@@ -141,7 +141,7 @@
       "name": "Milwaukee Brewers at Pittsburgh Pirates",
       "start_time": "2026-09-17T16:35Z",
       "status": "LIVE",
-      "status_detail": "Top 6th",
+      "status_detail": "Bot 8th",
       "season_stage": "REGULAR SEASON",
       "location": "PNC Park \u00b7 Pittsburgh, Pennsylvania",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -159,7 +159,7 @@
       "name": "Los Angeles Dodgers at Cincinnati Reds",
       "start_time": "2026-09-17T16:40Z",
       "status": "LIVE",
-      "status_detail": "Top 6th",
+      "status_detail": "Bot 9th",
       "season_stage": "REGULAR SEASON",
       "location": "Great American Ball Park \u00b7 Cincinnati, Ohio",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -176,8 +176,8 @@
       "region": "Spain",
       "name": "Getafe at Real Betis",
       "start_time": "2026-09-17T17:00Z",
-      "status": "LIVE",
-      "status_detail": "60'",
+      "status": "COMPLETED",
+      "status_detail": "FT",
       "season_stage": null,
       "location": "Estadio Benito Villamar\u00edn \u00b7 Sevilla, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
@@ -195,7 +195,7 @@
       "name": "Athletics at Tampa Bay Rays",
       "start_time": "2026-09-17T17:10Z",
       "status": "LIVE",
-      "status_detail": "End 4th",
+      "status_detail": "Mid 7th",
       "season_stage": "REGULAR SEASON",
       "location": "Tropicana Field \u00b7 St. Petersburg, Florida",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -213,7 +213,7 @@
       "name": "Maryland Terrapins at Campbell Fighting Camels",
       "start_time": "2026-09-17T18:00Z",
       "status": "LIVE",
-      "status_detail": "1st Set",
+      "status_detail": "3rd Set",
       "season_stage": "REGULAR SEASON",
       "location": "Minges Coliseum \u00b7 Greenville, North Carolina",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
@@ -230,8 +230,8 @@
       "region": "United States",
       "name": "San Diego Padres at Colorado Rockies",
       "start_time": "2026-09-17T19:10Z",
-      "status": "UPCOMING",
-      "status_detail": "9/17 - 3:10 PM EDT",
+      "status": "LIVE",
+      "status_detail": "Top 1st",
       "season_stage": "REGULAR SEASON",
       "location": "Coors Field \u00b7 Denver, Colorado",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -7171,6 +7171,25 @@
       "restriction_risk": false
     },
     {
+      "id": "boxing-weekly-2026-09-19-pat-brown-vs-john-hedges",
+      "source_id": "boxing-weekly",
+      "sport": "Boxing",
+      "league": "Bout-Level Boxing Review",
+      "region": "United Kingdom",
+      "name": "Pat Brown vs John Hedges",
+      "start_time": "2026-09-19T18:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "Bout-level authority review required",
+      "season_stage": null,
+      "location": "Manchester, England",
+      "reported_authorities": [],
+      "source_endpoint": "https://www.badlefthook.com/rss/boxing-schedule/index.xml",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401858227",
       "source_id": "ncaa-football",
       "sport": "Football",
@@ -9487,6 +9506,27 @@
       "season_stage": "REGULAR SEASON",
       "location": "Orleans Arena \u00b7 Las Vegas, Nevada",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "boxing-weekly-2026-09-19-isaac-cruz-vs-nestor-bravo",
+      "source_id": "boxing-weekly",
+      "sport": "Boxing",
+      "league": "Bout-Level Boxing Review",
+      "region": "United States",
+      "name": "Isaac Cruz vs Nestor Bravo",
+      "start_time": "2026-09-20T00:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "Bout-level authority review required",
+      "season_stage": null,
+      "location": "San Diego, California",
+      "reported_authorities": [
+        "WBC"
+      ],
+      "source_endpoint": "https://www.badlefthook.com/rss/boxing-schedule/index.xml",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -15250,7 +15290,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "mlb",
@@ -15266,7 +15306,7 @@
       "ok": true,
       "events": 100,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "npb",
@@ -15284,7 +15324,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "kbo",
@@ -15302,7 +15342,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "lmb",
@@ -15320,7 +15360,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "lmp",
@@ -15338,7 +15378,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "lidom",
@@ -15357,7 +15397,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "wbc",
@@ -15372,7 +15412,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "nfl",
@@ -15388,7 +15428,7 @@
       "ok": true,
       "events": 17,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "ncaa-football",
@@ -15404,7 +15444,7 @@
       "ok": true,
       "events": 30,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "nba",
@@ -15420,7 +15460,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "cebl",
@@ -15438,7 +15478,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "australian-nbl",
@@ -15455,7 +15495,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "mexican-lnbp",
@@ -15475,7 +15515,7 @@
       "ok": true,
       "events": 3,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "chile-lnb",
@@ -15494,7 +15534,7 @@
       "ok": true,
       "events": 0,
       "note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "pba-national-tour",
@@ -15512,7 +15552,29 @@
       "ok": true,
       "events": 0,
       "note": "Official PBA National Tour schedule. Authoritative for manual verification; no dependable unattended structured schedule feed is currently connected.",
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
+    },
+    {
+      "id": "boxing-weekly",
+      "sport": "Boxing",
+      "league": "Bout-Level Boxing Review",
+      "region": "International",
+      "source_type": "boxing-rss",
+      "coverage_status": "partial",
+      "endpoint": "https://www.badlefthook.com/rss/boxing-schedule/index.xml",
+      "source_note": "Weekly professional boxing schedule used for discovery only. Every detected bout requires separate verification against the approved authority list.",
+      "catalog_terms": [
+        "International Boxing Federation",
+        "World Boxing Association",
+        "World Boxing Council",
+        "World Boxing Organization",
+        "Most Valuable Promotions"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 2,
+      "errors": [],
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "danish-basketligaen",
@@ -15531,7 +15593,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "lithuanian-lkl",
@@ -15550,7 +15612,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "greek-basket-league",
@@ -15568,7 +15630,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "israeli-basketball",
@@ -15586,7 +15648,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "serbian-kls",
@@ -15604,7 +15666,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "korean-kbl",
@@ -15622,7 +15684,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "wnba",
@@ -15638,7 +15700,7 @@
       "ok": true,
       "events": 30,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "fiba-bcl",
@@ -15656,7 +15718,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "eurocup-basketball",
@@ -15674,7 +15736,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "france-lnb",
@@ -15692,7 +15754,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "german-bbl",
@@ -15711,7 +15773,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "italian-lba",
@@ -15730,7 +15792,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "polish-plk",
@@ -15749,7 +15811,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "spanish-acb",
@@ -15767,7 +15829,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "swiss-sbl",
@@ -15786,7 +15848,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "turkish-bsl",
@@ -15805,7 +15867,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "israeli-premier",
@@ -15824,7 +15886,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -15840,7 +15902,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -15856,7 +15918,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "nhl",
@@ -15872,7 +15934,7 @@
       "ok": true,
       "events": 47,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "icehl",
@@ -15889,7 +15951,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "czech-extraliga",
@@ -15906,7 +15968,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "liiga",
@@ -15923,7 +15985,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "del",
@@ -15940,7 +16002,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "slovak-extraliga",
@@ -15957,7 +16019,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "shl",
@@ -15974,7 +16036,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "swiss-national",
@@ -15991,7 +16053,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "chl",
@@ -16008,7 +16070,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "mls",
@@ -16024,7 +16086,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "epl",
@@ -16039,7 +16101,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "bundesliga",
@@ -16054,7 +16116,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "laliga",
@@ -16069,7 +16131,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "seriea",
@@ -16084,7 +16146,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "ligue1",
@@ -16099,7 +16161,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "eredivisie",
@@ -16114,7 +16176,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "primeira",
@@ -16129,7 +16191,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "belgium",
@@ -16145,7 +16207,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "denmark",
@@ -16161,7 +16223,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -16177,7 +16239,7 @@
       "ok": true,
       "events": 485,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "atp-tennis",
@@ -16193,7 +16255,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     },
     {
       "id": "wta-tennis",
@@ -16209,7 +16271,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-17T18:23:28.584525+00:00"
+      "checked_at": "2026-09-17T19:18:21.610617+00:00"
     }
   ],
   "coverage_gaps": [
@@ -16220,11 +16282,6 @@
     },
     {
       "area": "Bowling",
-      "state": "SCHEDULE ADAPTER PENDING",
-      "note": "Approved catalog area is recognized but not yet included in the automated global schedule feed."
-    },
-    {
-      "area": "Boxing",
       "state": "SCHEDULE ADAPTER PENDING",
       "note": "Approved catalog area is recognized but not yet included in the automated global schedule feed."
     },
