@@ -64,7 +64,7 @@
         ]},
         {"country":"International-Level Competitions","governing_body":"FIBA Europe","events":[
           {"key":"basketball-eurobasket","catalog_event":"FIBA EuroBasket | Men and Women","season_status":"out","season_basis":"Event-specific tournament calendar","season_window":"Periodic continental tournaments","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-bcl","catalog_event":"Basketball Champions League | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-bcl","catalog_event":"Basketball Champions League | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"fiba-bcl","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-womens-euroleague","catalog_event":"FIBA Women's EuroLeague | Women","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"International-Level Competitions","governing_body":"FIBA Oceania","events":[
@@ -98,11 +98,11 @@
           {"key":"basketball-dk-cup","catalog_event":"Danish Cup | Men","season_window":"September–January","season_start":"09-01","season_end":"01-31","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"France","governing_body":"Ligue Nationale de Basket (LNB)","events":[
-          {"key":"basketball-fr-elite","catalog_event":"LNB Élite | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-fr-elite","catalog_event":"LNB Élite | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"france-lnb","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-fr-cup","catalog_event":"French Cup | Men","season_window":"September–April","season_start":"09-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"Germany","governing_body":"German Basketball Federation (DBB)","events":[
-          {"key":"basketball-de-bbl","catalog_event":"Basketball Bundesliga (BBL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-de-bbl","catalog_event":"Basketball Bundesliga (BBL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"german-bbl","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-de-cup","catalog_event":"BBL-Pokal | Men","season_window":"September–February","season_start":"09-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-de-champions","catalog_event":"BBL Champions Cup","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
@@ -112,12 +112,12 @@
           {"key":"basketball-gr-supercup","catalog_event":"Greek Super Cup | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"Israel","governing_body":"Israel Basketball Association (IBA)","events":[
-          {"key":"basketball-il-league","catalog_event":"Ligat Ha’Al / Israeli Basketball Premier League | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","source_id":"israeli-basketball","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-il-league","catalog_event":"Ligat Ha’Al / Israeli Basketball Premier League | Men","season_window":"October–June","season_start":"10-01","season_end":"06-30","source_id":"israeli-premier","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-il-state-cup","catalog_event":"State Cup | Men","season_window":"December–May","season_start":"12-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-il-league-cup","catalog_event":"League Cup | Men","season_window":"September–October","season_start":"09-01","season_end":"10-31","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"Italy","governing_body":"Italian Basketball Federation (FIP)","events":[
-          {"key":"basketball-it-lba","catalog_event":"Lega Basket Serie A (LBA) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-it-lba","catalog_event":"Lega Basket Serie A (LBA) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"italian-lba","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-it-cup","catalog_event":"Coppa Italia | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-it-supercup","catalog_event":"Supercopa Italia | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
@@ -135,7 +135,7 @@
           {"key":"basketball-ph-governors","catalog_event":"Governor’s Cup | Men","season_window":"Conference dates vary annually","season_status":"out","last_verified":"2026-09-16","restrictions":["NO PLAYER PROPOSITION WAGERS"]}
         ]},
         {"country":"Poland","governing_body":"Polish Basketball Federation (PZKosz)","events":[
-          {"key":"basketball-pl-league","catalog_event":"Polska Liga Koszykówki (PLK) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-pl-league","catalog_event":"Polska Liga Koszykówki (PLK) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"polish-plk","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-pl-cup","catalog_event":"Polish Cup | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-pl-supercup","catalog_event":"Polish Supercup | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
@@ -149,10 +149,10 @@
         ]},
         {"country":"Spain","governing_body":"Euroleague Basketball","events":[
           {"key":"basketball-euroleague","catalog_event":"EuroLeague | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]},
-          {"key":"basketball-eurocup","catalog_event":"EuroCup | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
+          {"key":"basketball-eurocup","catalog_event":"EuroCup | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"eurocup-basketball","last_verified":"2026-09-17","restrictions":[]}
         ]},
         {"country":"Spain","governing_body":"Asociación de Clubs de Baloncesto (ACB)","events":[
-          {"key":"basketball-es-acb","catalog_event":"Liga ACB | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-es-acb","catalog_event":"Liga ACB | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"spanish-acb","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-es-copa","catalog_event":"Copa del Rey | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-es-supercopa","catalog_event":"Supercopa de Espana | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
@@ -160,12 +160,12 @@
           {"key":"basketball-se-sbl","catalog_event":"Svenska Basketligan (SBL) | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"Switzerland","governing_body":"Swiss Basketball Federation (FBS)","events":[
-          {"key":"basketball-ch-sbl","catalog_event":"Swiss Basketball League (SBL) | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-ch-sbl","catalog_event":"Swiss Basketball League (SBL) | Men","season_window":"September–May","season_start":"09-01","season_end":"05-31","source_id":"swiss-sbl","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-ch-cup","catalog_event":"Swiss Cup | Men","season_window":"October–April","season_start":"10-01","season_end":"04-30","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-ch-sbl-cup","catalog_event":"SBL Cup | Men","season_window":"Annual January event","season_start":"01-01","season_end":"01-31","last_verified":"2026-09-16","restrictions":[]}
         ]},
         {"country":"Turkey","governing_body":"Turkish Basketball Federation (TBF)","events":[
-          {"key":"basketball-tr-bsl","catalog_event":"Basketbol Süper Ligi (BSL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","last_verified":"2026-09-16","restrictions":[]},
+          {"key":"basketball-tr-bsl","catalog_event":"Basketbol Süper Ligi (BSL) | Men","season_window":"September–June","season_start":"09-01","season_end":"06-30","source_id":"turkish-bsl","last_verified":"2026-09-17","restrictions":[]},
           {"key":"basketball-tr-cup","catalog_event":"Turkish Basketball Cup | Men","season_window":"Annual February event","season_start":"02-01","season_end":"02-28","last_verified":"2026-09-16","restrictions":[]},
           {"key":"basketball-tr-presidential","catalog_event":"Presidential Cup | Men","season_window":"Annual September event","season_start":"09-01","season_end":"09-30","last_verified":"2026-09-16","restrictions":[]}
         ]},
