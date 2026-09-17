@@ -1804,7 +1804,10 @@ function mappedSeasonBadge(status){
 function catalogEntryBadge(event,status){
   if(event?.entry_type==='approval-authority')return'<span class="pill green">APPROVED BOUT AUTHORITY</span>';
   if(event?.entry_type==='approved-promoter')return'<span class="pill green">APPROVED PROMOTER</span>';
+  if(event?.entry_type==='approved-promotion')return'<span class="pill green">APPROVED PROMOTION</span>';
+  if(event?.entry_type==='conditional-event')return'<span class="pill amber">LIMITED APPROVAL</span>';
   if(event?.entry_type==='conditional-authority')return'<span class="pill amber">LOCATION LIMITED</span>';
+  if(event?.entry_type==='event-approval-rule')return'<span class="pill blue">EVENT APPROVAL CONTROL</span>';
   if(event?.entry_type==='approval-rule')return'<span class="pill blue">BOUT-LEVEL CONTROL</span>';
   return mappedSeasonBadge(status);
 }
