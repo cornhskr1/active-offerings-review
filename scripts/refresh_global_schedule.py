@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, datetime, requests, re
+import json, datetime, requests, re, time
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,6 +11,27 @@ NOW_UTC = datetime.datetime.now(datetime.timezone.utc)
 TODAY = datetime.datetime.now(TZ).date()
 END = TODAY + datetime.timedelta(days=int(CFG.get("window_days",7)))
 HEADERS = {"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
+
+def thesportsdb_json(endpoint, params):
+    """Pace and retry the public feed so transient throttling does not erase leagues."""
+    time.sleep(2.1)
+    last_error = None
+    for attempt in range(4):
+        try:
+            r=requests.get(endpoint,params=params,headers=HEADERS,timeout=18)
+            if r.status_code==429:
+                retry_after=r.headers.get("Retry-After")
+                wait=float(retry_after) if retry_after and retry_after.isdigit() else 3.0*(attempt+1)
+                time.sleep(min(wait,12.0))
+                last_error=RuntimeError("TheSportsDB rate limit persisted after retry")
+                continue
+            r.raise_for_status()
+            return r.json()
+        except Exception as exc:
+            last_error=exc
+            if attempt<3:
+                time.sleep(2.0*(attempt+1))
+    raise last_error or RuntimeError("TheSportsDB request failed")
 
 def catalog_blob():
     p = DATA/"catalog-live.json"
@@ -204,9 +225,7 @@ for source in CFG.get("sources",[]):
         continue
     if source.get("source_type")=="thesportsdb":
         try:
-            r=requests.get(source["endpoint"],params={"id":source["league_id"]},headers=HEADERS,timeout=18)
-            r.raise_for_status()
-            data=r.json()
+            data=thesportsdb_json(source["endpoint"],{"id":source["league_id"]})
             for ev in data.get("events") or []:
                 parsed=parse_thesportsdb_event(source,ev)
                 if not parsed.get("start_time"):
@@ -235,9 +254,7 @@ for source in CFG.get("sources",[]):
         for offset in range((END-TODAY).days+1):
             day=TODAY+datetime.timedelta(days=offset)
             try:
-                r=requests.get(source["endpoint"],params={"d":day.isoformat(),"s":source.get("sport_query") or source["sport"]},headers=HEADERS,timeout=18)
-                r.raise_for_status()
-                data=r.json()
+                data=thesportsdb_json(source["endpoint"],{"d":day.isoformat(),"s":source.get("sport_query") or source["sport"]})
                 for ev in data.get("events") or []:
                     if str(ev.get("idLeague") or "")!=str(source["league_id"]):
                         continue
