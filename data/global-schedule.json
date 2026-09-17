@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-17T17:32:16.538850+00:00",
+  "generated_at": "2026-09-17T17:42:02.565234+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-17",
   "window_end": "2026-09-24",
-  "event_count": 840,
+  "event_count": 846,
   "events": [
     {
       "id": "887-2026",
@@ -141,7 +141,7 @@
       "name": "Milwaukee Brewers at Pittsburgh Pirates",
       "start_time": "2026-09-17T16:35Z",
       "status": "LIVE",
-      "status_detail": "Bot 3rd",
+      "status_detail": "Top 4th",
       "season_stage": "REGULAR SEASON",
       "location": "PNC Park \u00b7 Pittsburgh, Pennsylvania",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -159,7 +159,7 @@
       "name": "Los Angeles Dodgers at Cincinnati Reds",
       "start_time": "2026-09-17T16:40Z",
       "status": "LIVE",
-      "status_detail": "End 3rd",
+      "status_detail": "Top 4th",
       "season_stage": "REGULAR SEASON",
       "location": "Great American Ball Park \u00b7 Cincinnati, Ohio",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -177,7 +177,7 @@
       "name": "Getafe at Real Betis",
       "start_time": "2026-09-17T17:00Z",
       "status": "LIVE",
-      "status_detail": "29'",
+      "status_detail": "40'",
       "season_stage": null,
       "location": "Estadio Benito Villamar\u00edn \u00b7 Sevilla, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard",
@@ -195,7 +195,7 @@
       "name": "Athletics at Tampa Bay Rays",
       "start_time": "2026-09-17T17:10Z",
       "status": "LIVE",
-      "status_detail": "Bot 2nd",
+      "status_detail": "Top 3rd",
       "season_stage": "REGULAR SEASON",
       "location": "Tropicana Field \u00b7 St. Petersburg, Florida",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
@@ -1717,6 +1717,24 @@
       "restriction_risk": false
     },
     {
+      "id": "2480620",
+      "source_id": "czech-extraliga",
+      "sport": "Ice Hockey",
+      "league": "Czech Extraliga",
+      "region": "Czech Republic",
+      "name": "Kometa Brno at Ocel\u00e1\u0159i T\u0159inec",
+      "start_time": "2026-09-18T15:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "Werk Arena \u00b7 Czechia",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401903035",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -1873,6 +1891,42 @@
       "season_stage": "REGULAR SEASON",
       "location": "Winfield Dunn Center \u00b7 Clarksville, Tennessee",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "2509669",
+      "source_id": "liiga",
+      "sport": "Ice Hockey",
+      "league": "Liiga",
+      "region": "Finland",
+      "name": "Ilves at KalPa",
+      "start_time": "2026-09-18T15:30:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "Olvi Areena \u00b7 Finland",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "2589200",
+      "source_id": "slovak-extraliga",
+      "sport": "Ice Hockey",
+      "league": "Slovak Extraliga",
+      "region": "Slovakia",
+      "name": "Vlci \u017dilina at HK Spi\u0161sk\u00e1 Nov\u00e1 Ves",
+      "start_time": "2026-09-18T15:30:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "Slovakia",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -2257,6 +2311,24 @@
       "restriction_risk": false
     },
     {
+      "id": "2518141",
+      "source_id": "del",
+      "sport": "Ice Hockey",
+      "league": "Deutsche Eishockey Liga (DEL)",
+      "region": "Germany",
+      "name": "Augsburger Panther at N\u00fcrnberg Ice Tigers",
+      "start_time": "2026-09-18T17:30:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "PSD Bank N\u00fcrnberg Arena \u00b7 Germany",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "401897160",
       "source_id": "ncaa-volleyball",
       "sport": "Volleyball",
@@ -2287,6 +2359,24 @@
       "season_stage": "REGULAR SEASON",
       "location": "Renaissance Coliseum \u00b7 Peoria, Illinois",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "2518988",
+      "source_id": "swiss-national",
+      "sport": "Ice Hockey",
+      "league": "National League",
+      "region": "Switzerland",
+      "name": "Lausanne HC at HC Fribourg-Gott\u00e9ron",
+      "start_time": "2026-09-18T17:45:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "BCF Arena \u00b7 Switzerland",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -5581,6 +5671,24 @@
       "season_stage": null,
       "location": "Renato Dall'Ara \u00b7 Bologna, Italy",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "2476493",
+      "source_id": "shl",
+      "sport": "Ice Hockey",
+      "league": "Swedish Hockey League (SHL)",
+      "region": "Sweden",
+      "name": "V\u00e4xj\u00f6 Lakers at Fr\u00f6lunda HC",
+      "start_time": "2026-09-19T13:15:00Z",
+      "status": "UPCOMING",
+      "status_detail": "NS",
+      "season_stage": null,
+      "location": "Scandinavium \u00b7 Sweden",
+      "source_endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -15142,7 +15250,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "mlb",
@@ -15158,7 +15266,7 @@
       "ok": true,
       "events": 100,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "npb",
@@ -15176,7 +15284,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "kbo",
@@ -15194,7 +15302,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "lmb",
@@ -15212,7 +15320,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "lmp",
@@ -15230,7 +15338,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "lidom",
@@ -15249,7 +15357,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "wbc",
@@ -15264,7 +15372,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "nfl",
@@ -15280,7 +15388,7 @@
       "ok": true,
       "events": 17,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "ncaa-football",
@@ -15296,7 +15404,7 @@
       "ok": true,
       "events": 30,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "nba",
@@ -15312,7 +15420,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "cebl",
@@ -15330,7 +15438,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "australian-nbl",
@@ -15347,7 +15455,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "mexican-lnbp",
@@ -15367,7 +15475,7 @@
       "ok": true,
       "events": 3,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "chile-lnb",
@@ -15386,7 +15494,7 @@
       "ok": true,
       "events": 0,
       "note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "danish-basketligaen",
@@ -15405,7 +15513,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "lithuanian-lkl",
@@ -15424,7 +15532,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "greek-basket-league",
@@ -15442,7 +15550,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "israeli-basketball",
@@ -15460,7 +15568,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "serbian-kls",
@@ -15478,7 +15586,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "korean-kbl",
@@ -15496,7 +15604,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "wnba",
@@ -15512,7 +15620,7 @@
       "ok": true,
       "events": 30,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "fiba-bcl",
@@ -15530,7 +15638,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "eurocup-basketball",
@@ -15548,7 +15656,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "france-lnb",
@@ -15566,7 +15674,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "german-bbl",
@@ -15585,7 +15693,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "italian-lba",
@@ -15604,7 +15712,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "polish-plk",
@@ -15623,7 +15731,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "spanish-acb",
@@ -15641,7 +15749,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "swiss-sbl",
@@ -15660,7 +15768,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "turkish-bsl",
@@ -15679,7 +15787,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "israeli-premier",
@@ -15698,7 +15806,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -15714,7 +15822,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -15730,7 +15838,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "nhl",
@@ -15746,7 +15854,7 @@
       "ok": true,
       "events": 47,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "icehl",
@@ -15763,7 +15871,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "czech-extraliga",
@@ -15777,12 +15885,10 @@
         "Czech Extraliga"
       ],
       "approved_catalog": true,
-      "ok": false,
-      "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "liiga",
@@ -15796,12 +15902,10 @@
         "Liiga"
       ],
       "approved_catalog": true,
-      "ok": false,
-      "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "del",
@@ -15815,12 +15919,10 @@
         "Deutsche Eishockey Liga (DEL)"
       ],
       "approved_catalog": true,
-      "ok": false,
-      "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "slovak-extraliga",
@@ -15834,12 +15936,10 @@
         "Slovak Extraliga"
       ],
       "approved_catalog": true,
-      "ok": false,
-      "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "shl",
@@ -15853,12 +15953,10 @@
         "Swedish Hockey League (SHL)"
       ],
       "approved_catalog": true,
-      "ok": false,
-      "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "swiss-national",
@@ -15872,12 +15970,10 @@
         "National League"
       ],
       "approved_catalog": true,
-      "ok": false,
-      "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "chl",
@@ -15891,12 +15987,10 @@
         "Champions Hockey League (CHL)"
       ],
       "approved_catalog": true,
-      "ok": false,
+      "ok": true,
       "events": 0,
-      "errors": [
-        "429 Client Error: Too Many Requests for url: https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id"
-      ],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "errors": [],
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "mls",
@@ -15912,7 +16006,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "epl",
@@ -15927,7 +16021,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "bundesliga",
@@ -15942,7 +16036,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "laliga",
@@ -15957,7 +16051,7 @@
       "ok": true,
       "events": 12,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "seriea",
@@ -15972,7 +16066,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "ligue1",
@@ -15987,7 +16081,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "eredivisie",
@@ -16002,7 +16096,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "primeira",
@@ -16017,7 +16111,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "belgium",
@@ -16033,7 +16127,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "denmark",
@@ -16049,7 +16143,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -16065,7 +16159,7 @@
       "ok": true,
       "events": 485,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "atp-tennis",
@@ -16081,7 +16175,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     },
     {
       "id": "wta-tennis",
@@ -16097,7 +16191,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-17T17:32:16.538850+00:00"
+      "checked_at": "2026-09-17T17:42:02.565234+00:00"
     }
   ],
   "coverage_gaps": [
