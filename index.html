@@ -924,8 +924,27 @@ function renderUpcomingSportBoard(events){
   }).join('')}</div>`;
 }
 
+function uncoveredMappedEvents(sportName){
+  const configured=new Set((DATA.global?.sources||[]).map(source=>source.id).filter(Boolean));
+  const sports=(DATA.seasonMap?.sports||[]).filter(sport=>!sportName||sport.sport===sportName);
+  const gaps=[];
+  sports.forEach(sport=>(sport.groups||[]).forEach(group=>(group.events||[]).forEach(event=>{
+    if(mappedSeasonStatus(event)!=='in')return;
+    const ids=eventSourceIds(event);
+    if(ids.some(id=>configured.has(id)))return;
+    gaps.push({
+      sport:sport.sport,
+      region:group.country||'International',
+      league:event.catalog_event,
+      governing_body:group.governing_body||'',
+      event
+    });
+  })));
+  return gaps;
+}
+
 function scheduleCoverageAttention(dayKey){
-  return (DATA.global?.sources||[]).filter(source=>{
+  const configured=(DATA.global?.sources||[]).filter(source=>{
     if(!['partial','missing'].includes(source.coverage_status))return false;
     const mapped=mappedCatalogEventForSource(source.id);
     return mapped&&mappedSeasonStatus(mapped)==='in';
@@ -948,6 +967,18 @@ function scheduleCoverageAttention(dayKey){
         :'Do not treat zero detected games as confirmation that no offerings exist. Compare the operator menu or wagering activity before clearing this league.'
     };
   });
+  const unmapped=uncoveredMappedEvents('Basketball').map(gap=>({
+    severity:'AMBER',
+    type:'SCHEDULE COVERAGE GAP',
+    sport:gap.sport,
+    league:gap.league,
+    region:gap.region,
+    event:`${gap.league} · schedule coverage`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:'Approved and in season, but no automated schedule source is connected.',
+    staff_action:`Check the ${gap.governing_body||gap.region+' governing body'} calendar and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.`
+  }));
+  return [...configured,...unmapped];
 }
 
 function renderToday(){
@@ -1567,7 +1598,7 @@ function renderBasketball(){
   });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS (?:MUST )?CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
