@@ -241,6 +241,75 @@
       ]
     },
     {
+      "sport": "Boxing",
+      "mapping_status": "complete",
+      "summary_label": "9 approved authorities · bout-level approval required",
+      "catalog_snapshot_lines": [
+        "International Boxing Federation (IBF)",
+        "World Boxing Association (WBA)",
+        "World Boxing Council (WBC)",
+        "World Boxing Organization (WBO)",
+        "British Boxing Board of Control (BBBofC)",
+        "Bare Knuckle Fighting Championship (BKFC) - North America & UK Only",
+        "Association of Boxing Commissions and Combative Sports (ABCCS)",
+        "Most Valuable Promotions (MVP)",
+        "State Athletic Commissions",
+        "Boxing Restriction",
+        "Approved boxing events must be professional, sanctioned, and conducted under the",
+        "authority of an approved governing body, athletic commission, sanctioning organization,",
+        "or other Commission-recognized regulatory authority. Exhibition bouts, unsanctioned",
+        "bouts, celebrity exhibitions, scripted or entertainment-based contests, and events",
+        "lacking recognized professional oversight are not approved for wagering."
+      ],
+      "groups": [
+        {
+          "country": "International Sanctioning Organizations",
+          "governing_body": "Approved Bout-Level Authorities",
+          "events": [
+            {"key":"boxing-ibf","catalog_event":"International Boxing Federation (IBF)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the IBF.","last_verified":"2026-09-17","restrictions":[]},
+            {"key":"boxing-wba","catalog_event":"World Boxing Association (WBA)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the WBA.","last_verified":"2026-09-17","restrictions":[]},
+            {"key":"boxing-wbc","catalog_event":"World Boxing Council (WBC)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the WBC.","last_verified":"2026-09-17","restrictions":[]},
+            {"key":"boxing-wbo","catalog_event":"World Boxing Organization (WBO)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must be sanctioned or overseen by the WBO.","last_verified":"2026-09-17","restrictions":[]}
+          ]
+        },
+        {
+          "country": "Jurisdictional and Promotional Authorities",
+          "governing_body": "Independently Sufficient Bout Oversight",
+          "events": [
+            {"key":"boxing-bbbofc","catalog_event":"British Boxing Board of Control (BBBofC)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"BBBofC oversight of the specific bout is independently sufficient.","last_verified":"2026-09-17","restrictions":[]},
+            {"key":"boxing-abccs","catalog_event":"Association of Boxing Commissions and Combative Sports (ABCCS)","entry_type":"approval-authority","nonseasonal":true,"season_basis":"The specific bout must fall under recognized ABCCS-member commission authority.","last_verified":"2026-09-17","restrictions":[]},
+            {"key":"boxing-state-commissions","catalog_event":"State Athletic Commissions","entry_type":"approval-authority","nonseasonal":true,"season_basis":"Oversight of the specific bout by a recognized state athletic commission is independently sufficient.","last_verified":"2026-09-17","restrictions":[]},
+            {"key":"boxing-mvp","catalog_event":"Most Valuable Promotions (MVP)","entry_type":"approved-promoter","nonseasonal":true,"season_basis":"MVP promotion of the specific bout is independently sufficient.","last_verified":"2026-09-17","restrictions":[]}
+          ]
+        },
+        {
+          "country": "Conditional Approval",
+          "governing_body": "Geographic Limitation",
+          "events": [
+            {"key":"boxing-bkfc","catalog_event":"Bare Knuckle Fighting Championship (BKFC)","entry_type":"conditional-authority","nonseasonal":true,"season_basis":"Approved only for bouts conducted in North America or the United Kingdom.","last_verified":"2026-09-17","restrictions":["NORTH AMERICA & UNITED KINGDOM ONLY"]}
+          ]
+        },
+        {
+          "country": "Controlling Approval Standard",
+          "governing_body": "Apply Separately to Every Bout",
+          "events": [
+            {
+              "key": "boxing-bout-level-rule",
+              "catalog_event": "Bout-Level Approval Test",
+              "entry_type": "approval-rule",
+              "nonseasonal": true,
+              "season_basis": "Approval of one bout does not extend to any other bout on the same card.",
+              "last_verified": "2026-09-17",
+              "restrictions": [
+                "Approved boxing bouts must be professional, sanctioned, and conducted under the authority of an approved governing body, athletic commission, sanctioning organization, or other Commission-recognized regulatory authority.",
+                "Exhibition bouts, unsanctioned bouts, celebrity exhibitions, scripted or entertainment-based contests, and bouts lacking recognized professional oversight are not approved for wagering."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "sport": "Baseball",
       "mapping_status": "complete",
       "catalog_snapshot_lines": [
