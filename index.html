@@ -857,7 +857,29 @@ function attentionCardsForDay(dayKey,events,pqCards){
   collegeFuturesAttention(dayKey).forEach(c=>{
     if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
   });
+  boxingReviewAlerts(dayKey,events).forEach(c=>{
+    if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
+  });
   return cards;
+}
+
+function boxingReviewAlerts(dayKey,events){
+  return (events||[]).filter(event=>event.sport==='Boxing'&&ctKey(event.start_time)===dayKey).map(event=>{
+    const reported=(event.reported_authorities||[]);
+    return{
+      severity:'AMBER',
+      type:'BOUT AUTHORITY REVIEW',
+      sport:'Boxing',
+      league:event.league||'Bout-Level Boxing Review',
+      region:event.region||'International',
+      event:event.name,
+      start_time:event.start_time,
+      reason:reported.length
+        ?`Schedule reporting references ${reported.join(', ')}. This is a lead only and does not establish approval.`
+        :'No approved bout-level authority has been verified from the schedule feed.',
+      staff_action:'Verify this specific bout is professional and independently overseen by IBF, WBA, WBC, WBO, BBBofC, a recognized ABCCS-member or state athletic commission, MVP, or qualifying BKFC oversight. Do not extend approval from the headliner to the undercard.'
+    };
+  });
 }
 
 function renderIssueBoard(cards,events){
@@ -927,7 +949,8 @@ function renderUpcomingSportBoard(events){
   const ordered=[...sports.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
   return `<div class="activity-board"><div class="activity-board-title">Upcoming Approved Activity · Select a Sport</div>${ordered.map(([sport,leagues])=>{
     const sportEvents=[...leagues.values()].flat();
-    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>`<div class="event-row">${pill('green','MAPPED')} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`).join('')}</div></details>`).join('')}</div></details>`;
+    const reviewPill=sport==='Boxing'?pill('amber','BOUT REVIEW'):pill('green','MAPPED');
+    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>`<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`).join('')}</div></details>`).join('')}</div></details>`;
   }).join('')}</div>`;
 }
 
@@ -1024,9 +1047,12 @@ function renderToday(){
   const futuresRed=futuresWindowAlerts.filter(c=>c.severity==='RED').length;
   const futuresAmber=futuresWindowAlerts.filter(c=>c.severity==='AMBER').length;
 
+  const boxingWindowAlerts=[];
+  for(let i=0;i<8;i++)boxingWindowAlerts.push(...boxingReviewAlerts(addDays(start,i),events));
+
   const coverageAlerts=scheduleCoverageAttention(start);
   const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
-  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+coverageAlerts.length;
+  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+boxingWindowAlerts.length+coverageAlerts.length;
 
   const warning=document.getElementById('scheduleWarning');
   if(warning){
