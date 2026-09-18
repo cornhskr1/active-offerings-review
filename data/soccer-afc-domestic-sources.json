@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "note": "AFC domestic soccer adapters supplement the global schedule source registry. Coverage gaps are explicit and do not imply permissibility problems.",
+  "sources": [
+    {
+      "id": "soccer-afc-australia-a-league-men-and-women-men",
+      "sport": "Soccer",
+      "league": "A-League | Men and Women",
+      "region": "Australia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/aus.1/scoreboard",
+      "official_schedule_url": "https://www.footballaustralia.com.au/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "A-League | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-afc-australia-a-league-men-and-women-women",
+      "sport": "Soccer",
+      "league": "A-League | Men and Women",
+      "region": "Australia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/aus.w.1/scoreboard",
+      "official_schedule_url": "https://www.footballaustralia.com.au/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "A-League | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-afc-australia-australia-cup-men-and-women",
+      "sport": "Soccer",
+      "league": "Australia Cup | Men and Women",
+      "region": "Australia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.footballaustralia.com.au/",
+      "official_schedule_url": "https://www.footballaustralia.com.au/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Australia Cup | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-afc-bangladesh-bangladesh-premier-league-men",
+      "sport": "Soccer",
+      "league": "Bangladesh Premier League | Men",
+      "region": "Bangladesh",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.bff.com.bd/",
+      "official_schedule_url": "https://www.bff.com.bd/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Bangladesh Premier League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-bangladesh-federation-cup-men",
+      "sport": "Soccer",
+      "league": "Federation Cup | Men",
+      "region": "Bangladesh",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.bff.com.bd/",
+      "official_schedule_url": "https://www.bff.com.bd/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Federation Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-bangladesh-independence-cup-men",
+      "sport": "Soccer",
+      "league": "Independence Cup | Men",
+      "region": "Bangladesh",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.bff.com.bd/",
+      "official_schedule_url": "https://www.bff.com.bd/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Independence Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-bangladesh-challenge-cup-men",
+      "sport": "Soccer",
+      "league": "Challenge Cup | Men",
+      "region": "Bangladesh",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.bff.com.bd/",
+      "official_schedule_url": "https://www.bff.com.bd/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Challenge Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-india-indian-super-league-men",
+      "sport": "Soccer",
+      "league": "Indian Super League | Men",
+      "region": "India",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.the-aiff.com/",
+      "official_schedule_url": "https://www.the-aiff.com/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Indian Super League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-india-durand-cup-men",
+      "sport": "Soccer",
+      "league": "Durand Cup | Men",
+      "region": "India",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.the-aiff.com/",
+      "official_schedule_url": "https://www.the-aiff.com/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Durand Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-india-super-cup-men",
+      "sport": "Soccer",
+      "league": "Super Cup | Men",
+      "region": "India",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.the-aiff.com/",
+      "official_schedule_url": "https://www.the-aiff.com/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-iran-persian-gulf-pro-league-men",
+      "sport": "Soccer",
+      "league": "Persian Gulf Pro League | Men",
+      "region": "Iran",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://ffiri.ir/",
+      "official_schedule_url": "https://ffiri.ir/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Persian Gulf Pro League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-iran-hazfi-cup-men",
+      "sport": "Soccer",
+      "league": "Hazfi Cup | Men",
+      "region": "Iran",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://ffiri.ir/",
+      "official_schedule_url": "https://ffiri.ir/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Hazfi Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-iran-iranian-super-cup-men",
+      "sport": "Soccer",
+      "league": "Iranian Super Cup | Men",
+      "region": "Iran",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://ffiri.ir/",
+      "official_schedule_url": "https://ffiri.ir/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Iranian Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-iraq-iraqi-premier-league-men",
+      "sport": "Soccer",
+      "league": "Iraqi Premier League | Men",
+      "region": "Iraq",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://iraqfa.com/",
+      "official_schedule_url": "https://iraqfa.com/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Iraqi Premier League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-iraq-iraq-fa-cup-men",
+      "sport": "Soccer",
+      "league": "Iraq FA Cup | Men",
+      "region": "Iraq",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://iraqfa.com/",
+      "official_schedule_url": "https://iraqfa.com/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Iraq FA Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-iraq-iraqi-super-cup-men",
+      "sport": "Soccer",
+      "league": "Iraqi Super Cup | Men",
+      "region": "Iraq",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://iraqfa.com/",
+      "official_schedule_url": "https://iraqfa.com/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Iraqi Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-japan-j1-league-men",
+      "sport": "Soccer",
+      "league": "J1 League | Men",
+      "region": "Japan",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/jpn.1/scoreboard",
+      "official_schedule_url": "https://www.jfa.jp/eng/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "J1 League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-japan-j2-league-men",
+      "sport": "Soccer",
+      "league": "J2 League | Men",
+      "region": "Japan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.jfa.jp/eng/",
+      "official_schedule_url": "https://www.jfa.jp/eng/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "J2 League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-japan-emperors-cup-men",
+      "sport": "Soccer",
+      "league": "Emperor’s Cup | Men",
+      "region": "Japan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.jfa.jp/eng/",
+      "official_schedule_url": "https://www.jfa.jp/eng/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Emperor’s Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-japan-jleague-cup-men",
+      "sport": "Soccer",
+      "league": "J.League Cup | Men",
+      "region": "Japan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.jfa.jp/eng/",
+      "official_schedule_url": "https://www.jfa.jp/eng/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "J.League Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-japan-japanese-super-cup-men",
+      "sport": "Soccer",
+      "league": "Japanese Super Cup | Men",
+      "region": "Japan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.jfa.jp/eng/",
+      "official_schedule_url": "https://www.jfa.jp/eng/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Japanese Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-korea-k-league-1-men",
+      "sport": "Soccer",
+      "league": "K League 1 | Men",
+      "region": "Korea",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.kfa.or.kr/",
+      "official_schedule_url": "https://www.kfa.or.kr/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "K League 1 | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-korea-k-league-2-men",
+      "sport": "Soccer",
+      "league": "K League 2 | Men",
+      "region": "Korea",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.kfa.or.kr/",
+      "official_schedule_url": "https://www.kfa.or.kr/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "K League 2 | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-korea-korean-fa-cup-men",
+      "sport": "Soccer",
+      "league": "Korean FA Cup | Men",
+      "region": "Korea",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.kfa.or.kr/",
+      "official_schedule_url": "https://www.kfa.or.kr/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Korean FA Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-malaysia-malaysia-super-league-men",
+      "sport": "Soccer",
+      "league": "Malaysia Super League | Men",
+      "region": "Malaysia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fam.org.my/",
+      "official_schedule_url": "https://fam.org.my/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Malaysia Super League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-malaysia-malaysia-cup-men",
+      "sport": "Soccer",
+      "league": "Malaysia Cup | Men",
+      "region": "Malaysia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fam.org.my/",
+      "official_schedule_url": "https://fam.org.my/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Malaysia Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-malaysia-malaysia-fa-cup-men",
+      "sport": "Soccer",
+      "league": "Malaysia FA Cup | Men",
+      "region": "Malaysia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fam.org.my/",
+      "official_schedule_url": "https://fam.org.my/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Malaysia FA Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-malaysia-charity-shield-men",
+      "sport": "Soccer",
+      "league": "Charity Shield | Men",
+      "region": "Malaysia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fam.org.my/",
+      "official_schedule_url": "https://fam.org.my/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Charity Shield | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-qatar-qatar-stars-league-men",
+      "sport": "Soccer",
+      "league": "Qatar Stars League | Men",
+      "region": "Qatar",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.qfa.qa/",
+      "official_schedule_url": "https://www.qfa.qa/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Qatar Stars League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-qatar-qatar-cup-men",
+      "sport": "Soccer",
+      "league": "Qatar Cup | Men",
+      "region": "Qatar",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.qfa.qa/",
+      "official_schedule_url": "https://www.qfa.qa/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Qatar Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-qatar-qsl-cup-men",
+      "sport": "Soccer",
+      "league": "QSL Cup | Men",
+      "region": "Qatar",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.qfa.qa/",
+      "official_schedule_url": "https://www.qfa.qa/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "QSL Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-saudi-arabia-saudi-pro-league-men",
+      "sport": "Soccer",
+      "league": "Saudi Pro League | Men",
+      "region": "Saudi Arabia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/scoreboard",
+      "official_schedule_url": "https://www.saff.com.sa/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Saudi Pro League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-saudi-arabia-first-division-league-men",
+      "sport": "Soccer",
+      "league": "First Division League | Men",
+      "region": "Saudi Arabia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.saff.com.sa/",
+      "official_schedule_url": "https://www.saff.com.sa/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "First Division League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-saudi-arabia-king-cup-men",
+      "sport": "Soccer",
+      "league": "King Cup | Men",
+      "region": "Saudi Arabia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.kings.cup/scoreboard",
+      "official_schedule_url": "https://www.saff.com.sa/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "King Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-saudi-arabia-saudi-super-cup-men",
+      "sport": "Soccer",
+      "league": "Saudi Super Cup | Men",
+      "region": "Saudi Arabia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.saff.com.sa/",
+      "official_schedule_url": "https://www.saff.com.sa/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Saudi Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-singapore-singapore-premier-league-men",
+      "sport": "Soccer",
+      "league": "Singapore Premier League | Men",
+      "region": "Singapore",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.fas.org.sg/",
+      "official_schedule_url": "https://www.fas.org.sg/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Singapore Premier League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-singapore-singapore-cup-men",
+      "sport": "Soccer",
+      "league": "Singapore Cup | Men",
+      "region": "Singapore",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.fas.org.sg/",
+      "official_schedule_url": "https://www.fas.org.sg/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Singapore Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-singapore-community-shield-men",
+      "sport": "Soccer",
+      "league": "Community Shield | Men",
+      "region": "Singapore",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.fas.org.sg/",
+      "official_schedule_url": "https://www.fas.org.sg/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Community Shield | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-thailand-thai-league-1-men",
+      "sport": "Soccer",
+      "league": "Thai League 1 | Men",
+      "region": "Thailand",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fathailand.org/",
+      "official_schedule_url": "https://fathailand.org/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Thai League 1 | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-thailand-thai-fa-cup-men",
+      "sport": "Soccer",
+      "league": "Thai FA Cup | Men",
+      "region": "Thailand",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fathailand.org/",
+      "official_schedule_url": "https://fathailand.org/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Thai FA Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-thailand-thai-league-cup-men",
+      "sport": "Soccer",
+      "league": "Thai League Cup | Men",
+      "region": "Thailand",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fathailand.org/",
+      "official_schedule_url": "https://fathailand.org/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Thai League Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-united-arab-emirates-uae-pro-league-men",
+      "sport": "Soccer",
+      "league": "UAE Pro League | Men",
+      "region": "United Arab Emirates",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.uaefa.ae/",
+      "official_schedule_url": "https://www.uaefa.ae/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "UAE Pro League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-united-arab-emirates-presidents-cup-men",
+      "sport": "Soccer",
+      "league": "President’s Cup | Men",
+      "region": "United Arab Emirates",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.uaefa.ae/",
+      "official_schedule_url": "https://www.uaefa.ae/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "President’s Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-united-arab-emirates-uae-super-cup-men",
+      "sport": "Soccer",
+      "league": "UAE Super Cup | Men",
+      "region": "United Arab Emirates",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.uaefa.ae/",
+      "official_schedule_url": "https://www.uaefa.ae/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "UAE Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-uzbekistan-uzbekistan-super-league-men",
+      "sport": "Soccer",
+      "league": "Uzbekistan Super League | Men",
+      "region": "Uzbekistan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://ufa.uz/",
+      "official_schedule_url": "https://ufa.uz/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Uzbekistan Super League | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-uzbekistan-uzbekistan-cup-men",
+      "sport": "Soccer",
+      "league": "Uzbekistan Cup | Men",
+      "region": "Uzbekistan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://ufa.uz/",
+      "official_schedule_url": "https://ufa.uz/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Uzbekistan Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-uzbekistan-uzbekistan-super-cup-men",
+      "sport": "Soccer",
+      "league": "Uzbekistan Super Cup | Men",
+      "region": "Uzbekistan",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://ufa.uz/",
+      "official_schedule_url": "https://ufa.uz/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Uzbekistan Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-vietnam-vleague-1-men",
+      "sport": "Soccer",
+      "league": "V.League 1 | Men",
+      "region": "Vietnam",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://vff.org.vn/",
+      "official_schedule_url": "https://vff.org.vn/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "V.League 1 | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-vietnam-vietnamese-cup-men",
+      "sport": "Soccer",
+      "league": "Vietnamese Cup | Men",
+      "region": "Vietnam",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://vff.org.vn/",
+      "official_schedule_url": "https://vff.org.vn/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Vietnamese Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-vietnam-vietnamese-super-cup-men",
+      "sport": "Soccer",
+      "league": "Vietnamese Super Cup | Men",
+      "region": "Vietnam",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://vff.org.vn/",
+      "official_schedule_url": "https://vff.org.vn/",
+      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "catalog_terms": [
+        "Vietnamese Super Cup | Men"
+      ]
+    }
+  ]
+}

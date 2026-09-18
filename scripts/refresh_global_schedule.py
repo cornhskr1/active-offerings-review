@@ -8,10 +8,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 CFG = json.loads((DATA/"global-schedule-sources.json").read_text(encoding="utf-8"))
-SOCCER_CFG_PATH = DATA / "soccer-international-sources.json"
-if SOCCER_CFG_PATH.exists():
-    SOCCER_CFG = json.loads(SOCCER_CFG_PATH.read_text(encoding="utf-8"))
-    CFG.setdefault("sources", []).extend(SOCCER_CFG.get("sources", []))
+for soccer_cfg_path in sorted(DATA.glob("soccer-*-sources.json")):
+    soccer_cfg = json.loads(soccer_cfg_path.read_text(encoding="utf-8"))
+    CFG.setdefault("sources", []).extend(soccer_cfg.get("sources", []))
 TZ = ZoneInfo("America/Chicago")
 NOW_UTC = datetime.datetime.now(datetime.timezone.utc)
 TODAY = datetime.datetime.now(TZ).date()
