@@ -1753,6 +1753,7 @@ function seasonProgressHtml(event,status){
   const end=new Date(`${endYear}-${endMd}T12:00:00-05:00`).getTime();
   const now=new Date(`${today}T12:00:00-05:00`).getTime();
   if(!Number.isFinite(start)||!Number.isFinite(end)||end<=start)return'';
+  if(now<start||now>end)return'';
   const pct=Math.max(0,Math.min(100,Math.round(((now-start)/(end-start))*100)));
   return `<div class="season-progress" title="${pct}% through the mapped season window"><div class="season-progress-track"><div class="season-progress-fill" style="width:${pct}%"></div></div><span class="season-progress-label">${pct}%</span></div>`;
 }
@@ -1769,12 +1770,15 @@ function catalogEventSeasonMapping(line,sport,country){
   )||null;
 }
 function mappedSeasonStatus(event){
+  const planned=annualSeasonStatus(event);
+  if(planned)return planned;
+  if(event?.season_status)return event.season_status;
   const ids=eventSourceIds(event);
   if(ids.length){
     const sources=(DATA.global?.sources||[]).filter(x=>ids.includes(x.id));
     if(sources.some(src=>Number(src.events||0)>0))return'in';
   }
-  return annualSeasonStatus(event)||event.season_status||null;
+  return null;
 }
 function mappedCatalogEventForSource(sourceId){
   if(!sourceId)return null;
