@@ -786,7 +786,6 @@ def fetch_riot_calendar(source):
         else:
             status="UPCOMING"
         stage=" · ".join(x for x in (str((item.get("tournament") or {}).get("name") or "").strip(),str(item.get("blockName") or "").strip()) if x)
-        raw_status=int(item.get("status") or 0)
         parsed.append({
             "id":f"{source_id}-{event_id}",
             "source_id":source_id,
@@ -856,6 +855,7 @@ def fetch_ubisoft_r6_calendar(source):
         team1=str((item.get("team1") or {}).get("name") or "TBD")
         team2=str((item.get("team2") or {}).get("name") or "TBD")
         region=r6_region(competition)
+        raw_status=int(item.get("status") or 0)
         parsed.append({
             "id":f"{source_id}-{event_id}",
             "source_id":source_id,
