@@ -15,6 +15,98 @@
       ]
     },
     {
+      "id": "cricket-bbl",
+      "sport": "Cricket",
+      "league": "Big Bash League (BBL) | Men",
+      "region": "Australia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8044/scoreboard",
+      "catalog_terms": [
+        "Big Bash League (BBL)",
+        "Cricket Australia"
+      ]
+    },
+    {
+      "id": "cricket-wbbl",
+      "sport": "Cricket",
+      "league": "Women's Big Bash League (WBBL) | Women",
+      "region": "Australia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/21284/scoreboard",
+      "catalog_terms": [
+        "Women’s Big Bash League (WBBL)",
+        "Cricket Australia"
+      ]
+    },
+    {
+      "id": "cricket-county-d1",
+      "sport": "Cricket",
+      "league": "Rothesay County Championship Division 1 | Men",
+      "region": "England and Wales",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8052/scoreboard",
+      "catalog_terms": [
+        "Rothesay County Championship Division 1",
+        "England and Wales Cricket Board"
+      ]
+    },
+    {
+      "id": "cricket-county-d2",
+      "sport": "Cricket",
+      "league": "Rothesay County Championship Division 2 | Men",
+      "region": "England and Wales",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8204/scoreboard",
+      "catalog_terms": [
+        "Rothesay County Championship Division 2",
+        "England and Wales Cricket Board"
+      ]
+    },
+    {
+      "id": "cricket-ipl",
+      "sport": "Cricket",
+      "league": "Indian Premier League | Men",
+      "region": "India",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8048/scoreboard",
+      "catalog_terms": [
+        "Indian Premier League",
+        "Board for Control for Cricket in India"
+      ]
+    },
+    {
+      "id": "cricket-ashes",
+      "sport": "Cricket",
+      "league": "The Ashes | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/22975/scoreboard",
+      "source_note": "Current completed Ashes series adapter. Reconfirm the ESPN series identifier before the next Ashes series begins.",
+      "catalog_terms": [
+        "The Ashes",
+        "International Cricket Council"
+      ]
+    },
+    {
+      "id": "cricket-t20-world-cup",
+      "sport": "Cricket",
+      "league": "ICC T20 World Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8604/scoreboard",
+      "catalog_terms": [
+        "ICC T20 World Cup",
+        "International Cricket Council"
+      ]
+    },
+    {
       "id": "mlb",
       "sport": "Baseball",
       "league": "MLB",
