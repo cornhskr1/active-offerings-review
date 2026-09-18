@@ -5,6 +5,8 @@ import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+from catalog_identity import exact_league_match, normalize_identity, restriction_scope
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 CFG = json.loads((DATA/"global-schedule-sources.json").read_text(encoding="utf-8"))
@@ -16,6 +18,75 @@ NOW_UTC = datetime.datetime.now(datetime.timezone.utc)
 TODAY = datetime.datetime.now(TZ).date()
 END = TODAY + datetime.timedelta(days=int(CFG.get("window_days",7)))
 HEADERS = {"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
+
+ESPORTS_GAME_NAMES={
+    "lol":"League of Legends",
+    "valorant":"VALORANT",
+    "r6":"Rainbow Six Siege",
+    "dota2":"Dota 2",
+    "cs2":"Counter-Strike 2",
+}
+
+def esports_game_name(source=None,source_id="",league=""):
+    source=source or {}
+    configured=ESPORTS_GAME_NAMES.get(str(source.get("game") or "").lower())
+    if configured:
+        return configured
+    hay=f'{source.get("id") or ""} {source_id or ""} {league or ""}'.lower()
+    if any(x in hay for x in ("league of legends","esports-lol-")):
+        return "League of Legends"
+    if any(x in hay for x in ("valorant","esports-valorant-")):
+        return "VALORANT"
+    if any(x in hay for x in ("rainbow six","esports-r6-")):
+        return "Rainbow Six Siege"
+    if any(x in hay for x in ("dota 2","dota2","esports-dota-")):
+        return "Dota 2"
+    if any(x in hay for x in ("counter-strike","cs2","esports-cs2-")):
+        return "Counter-Strike 2"
+    return None
+
+SEASON_MAP = json.loads((DATA/"catalog-season-map.json").read_text(encoding="utf-8"))
+APPROVED_SOURCE_IDS=set()
+APPROVED_LABELS=set()
+SOURCE_CATALOG_LABELS={}
+
+def collect_catalog_approvals(value):
+    if isinstance(value,dict):
+        for key,item in value.items():
+            if key=="source_id" and item:
+                APPROVED_SOURCE_IDS.add(str(item))
+            elif key=="source_ids" and isinstance(item,list):
+                APPROVED_SOURCE_IDS.update(str(x) for x in item if x)
+            elif key in ("sport","governing_body","catalog_event") and item:
+                APPROVED_LABELS.add(normalize_identity(item))
+            collect_catalog_approvals(item)
+    elif isinstance(value,list):
+        for item in value:
+            collect_catalog_approvals(item)
+
+collect_catalog_approvals(SEASON_MAP)
+
+for mapping in SEASON_MAP.get("source_mappings",[]):
+    if mapping.get("source_id") and mapping.get("catalog_event"):
+        SOURCE_CATALOG_LABELS.setdefault(str(mapping["source_id"]),set()).add(normalize_identity(mapping["catalog_event"]))
+for sport in SEASON_MAP.get("sports",[]):
+    for group in sport.get("groups",[]):
+        for entry in group.get("events",[]):
+            label=normalize_identity(entry.get("catalog_event"))
+            source_ids=[]
+            if entry.get("source_id"):
+                source_ids.append(entry["source_id"])
+            source_ids.extend(entry.get("source_ids") or [])
+            for source_id in source_ids:
+                if label:
+                    SOURCE_CATALOG_LABELS.setdefault(str(source_id),set()).add(label)
+
+# These adapters are classifiers: the adapter ID is not itself an approval.
+# Their child events still have to pass APPROVED_SOURCE_IDS below.
+CONTROLLED_CLASSIFIERS={
+    "uci-calendar","pdc-calendar","cdc-calendar","riot-esports-calendar",
+    "ubisoft-r6-calendar","pgl-cs2-calendar","esl-esports-calendar",
+}
 
 def thesportsdb_json(endpoint, params):
     """Pace and retry the public feed so transient throttling does not erase leagues."""
@@ -87,11 +158,23 @@ TENNIS_UTR_CITY_COUNTRIES={
 }
 
 def approved(source):
-    terms=[str(x).lower() for x in source.get("catalog_terms",[])]
-    if not CATALOG:
-        # Catalog unavailable: do not silently declare source approved.
-        return None
-    return any(t in CATALOG for t in terms)
+    """Admit only explicitly mapped sources or controlled child classifiers."""
+    source_id=str(source.get("id") or "")
+    if source_id in APPROVED_SOURCE_IDS:
+        return True
+    child_ids={str(x.get("source_id")) for x in source.get("official_events",[]) if x.get("source_id")}
+    if child_ids & APPROVED_SOURCE_IDS:
+        return True
+    if source.get("source_type") in CONTROLLED_CLASSIFIERS:
+        return True
+    # Exact catalog labels may establish adapter relevance, but the emitted
+    # event still needs an explicit mapped source ID before publication.
+    terms={normalize_identity(x) for x in source.get("catalog_terms",[]) if x}
+    return bool(terms & APPROVED_LABELS)
+
+def event_is_approved(event):
+    """Final publication gate. Similar names and parent sports never suffice."""
+    return str(event.get("source_id") or "") in APPROVED_SOURCE_IDS
 
 def tennis_country_name(value):
     value=" ".join(str(value or "").split()).strip(" ,")
@@ -1081,6 +1164,7 @@ def fetch_riot_calendar(source):
             "id":f"{source_id}-{event_id}",
             "source_id":source_id,
             "sport":"Esports",
+            "game":esports_game_name(source,source_id,label),
             "league":label,
             "region":region,
             "name":" vs. ".join(teams[:2]) if len(teams)>=2 else (teams[0] if teams else stage or label),
@@ -1151,6 +1235,7 @@ def fetch_ubisoft_r6_calendar(source):
             "id":f"{source_id}-{event_id}",
             "source_id":source_id,
             "sport":"Esports",
+            "game":"Rainbow Six Siege",
             "league":label,
             "region":region,
             "name":f"{team1} vs. {team2}",
@@ -1202,7 +1287,7 @@ def tournament_window_event(source,source_id,league,name,start,end,location=None
     review_date=TODAY if active else start
     local=datetime.datetime.combine(review_date,datetime.time(12,0),tzinfo=TZ)
     slug=re.sub(r"[^a-z0-9]+","-",name.lower()).strip("-")
-    return {
+    event={
         "id":f"{source_id}-{start.isoformat()}-{slug}",
         "source_id":source_id,
         "sport":source.get("sport") or "Esports",
@@ -1216,6 +1301,11 @@ def tournament_window_event(source,source_id,league,name,start,end,location=None
         "location":location,
         "source_endpoint":endpoint or source.get("official_schedule_url") or source["endpoint"]
     }
+    if source.get("sport")=="Esports":
+        game=esports_game_name(source,source_id,league)
+        if game:
+            event["game"]=game
+    return event
 
 def fetch_cfl_schedule(source):
     """Read the CFL's official schedule API and keep the active review window."""
@@ -1872,6 +1962,25 @@ for source in CFG.get("sources",[]):
         "checked_at":NOW_UTC.isoformat()
     })
 
+# Final catalog-admission gate. Adapters can discover or classify candidates,
+# but only an explicitly mapped child source may enter the published schedule.
+discovered_event_count=len(events)
+rejected_events=[ev for ev in events if not event_is_approved(ev)]
+events=[ev for ev in events if event_is_approved(ev)]
+for ev in events:
+    ev["catalog_approval"]="EXPLICIT SOURCE MAPPING"
+for state in source_status:
+    source_id=str(state.get("id") or "")
+    child_ids={str(x.get("source_id")) for x in state.get("official_events",[]) if x.get("source_id")}
+    is_classifier=state.get("source_type") in CONTROLLED_CLASSIFIERS
+    if source_id not in APPROVED_SOURCE_IDS and not child_ids.intersection(APPROVED_SOURCE_IDS) and not is_classifier:
+        discovered=int(state.get("events") or 0)
+        if discovered:
+            state["catalog_rejected_events"]=discovered
+            state["events"]=0
+        state["approved_catalog"]=False
+        state["note"]="Discovery-only adapter; emitted events require an explicit mapped source ID before publication."
+
 # U18 cross-reference from review data + static known registry isn't machine-readable,
 # so current automatic matching uses review-data verified U18 names.
 u18_names=[]
@@ -1949,21 +2058,20 @@ def restriction_applies(ev, x):
         if term in text:
             return term in hay
 
-    # Restriction tied to an explicitly named league/event.
-    if league and league in text:
+    # Restriction tied to an explicitly named league/event. Identity must be
+    # exact: USL Super League is not England's Super League, for example.
+    scope=restriction_scope(x.get("text"))
+    scope_id=normalize_identity(scope)
+    event_catalog_labels=SOURCE_CATALOG_LABELS.get(str(ev.get("source_id") or ""),set())
+    if exact_league_match(ev.get("league"),scope) or scope_id in event_catalog_labels:
         return True
 
-    # Sport-level restriction can apply only when it is genuinely sport-wide.
-    if scope_sport and scope_sport==esport:
-        generic_event_words=["restriction","no proposition wagers","no player proposition wagers","no in-game wagers"]
-        if any(g in text for g in generic_event_words) and not any(t in text for t in special_terms):
-            # If the text contains a distinct league/event name not present in this
-            # event, do not spread it across the entire sport.
-            tokens=[t for t in re.findall(r"[a-z0-9]+",text) if len(t)>=5]
-            ev_tokens=set(re.findall(r"[a-z0-9]+",hay))
-            named=[t for t in tokens if t not in {"restriction","markets","wagers","player","proposition","event","games","close","prior","start","hours","hour"}]
-            if named and not any(t in ev_tokens for t in named):
-                return False
+    # Only unmistakably sport-wide labels may spread across a sport. Named
+    # competition restrictions never inherit from their parent sport.
+    if scope_sport and scope_sport==esport and normalize_identity(scope) in {
+        "boxing restriction","combat sports restriction"
+    }:
+        return True
 
     return False
 
@@ -1978,21 +2086,28 @@ for ev in events:
 events.sort(key=lambda x:(x.get("start_time") or "9999",x["sport"],x["league"],x["name"]))
 
 # Approved catalog areas not represented by an active schedule adapter.
-mapped_terms=set()
-for s in CFG.get("sources",[]):
-    if approved(s):
-        mapped_terms.update(x.lower() for x in s.get("catalog_terms",[]))
-
 coverage_gaps=[]
 if CATALOG:
-    # Broad catalog sports where a generic adapter has not yet been built.
+    gaps_by_area={}
+    for source in CFG.get("sources",[]):
+        if approved(source) and source.get("source_type")=="coverage-gap":
+            gaps_by_area.setdefault(source.get("sport") or "Other",[]).append(source.get("league") or source.get("id"))
+    for area,leagues in sorted(gaps_by_area.items()):
+        coverage_gaps.append({
+            "area":area,
+            "state":"PARTIAL SCHEDULE COVERAGE",
+            "note":f"{len(leagues)} approved competition{'s' if len(leagues)!=1 else ''} still lack a dependable automated adapter.",
+            "competitions":sorted(leagues)
+        })
+
+    configured_sports={str(s.get("sport")) for s in CFG.get("sources",[]) if approved(s)}
     candidate_areas=[
         "Aussie Rules","Bowling","Boxing","Combat Sports","Cricket","Cycling","Darts",
         "Esports","Golf","Lacrosse","Motorsports","Olympics","Rodeo","Rugby",
         "Surfing","Table Tennis"
     ]
     for area in candidate_areas:
-        if area.lower() in CATALOG and not any(area.lower() in x for x in mapped_terms):
+        if area.lower() in CATALOG and area not in configured_sports:
             coverage_gaps.append({
                 "area":area,
                 "state":"SCHEDULE ADAPTER PENDING",
@@ -2006,6 +2121,8 @@ out={
     "window_start":TODAY.isoformat(),
     "window_end":END.isoformat(),
     "event_count":len(events),
+    "discovered_event_count":discovered_event_count,
+    "catalog_rejected_event_count":len(rejected_events),
     "events":events,
     "tour_calendars":tour_calendars,
     "sources":source_status,

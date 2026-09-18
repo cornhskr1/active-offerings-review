@@ -749,6 +749,21 @@ function regionLeagueLabel(region,league){
   if(ll===rl || ll.startsWith(rl+' ') || ll.startsWith(rl+' — ') || ll.startsWith(rl+' - '))return l;
   return `${r} — ${l}`;
 }
+function esportsGameLabel(item){
+  if(String(item?.sport||'').toLowerCase()!=='esports')return'';
+  if(item?.game)return String(item.game);
+  const hay=`${item?.source_id||''} ${item?.league||''}`.toLowerCase();
+  if(hay.includes('esports-lol-')||hay.includes('league of legends'))return'League of Legends';
+  if(hay.includes('esports-valorant-')||hay.includes('valorant'))return'VALORANT';
+  if(hay.includes('esports-r6-')||hay.includes('rainbow six'))return'Rainbow Six Siege';
+  if(hay.includes('esports-dota-')||hay.includes('dota 2')||hay.includes('dota2'))return'Dota 2';
+  if(hay.includes('esports-cs2-')||hay.includes('counter-strike')||hay.includes('cs2'))return'Counter-Strike 2';
+  return'';
+}
+function reviewLeagueLabel(item,label){
+  const game=esportsGameLabel(item);
+  return game?`${game} · ${label}`:label;
+}
 function regionForAttentionCard(card,events){
   // Country/region carried by the alert is authoritative for display. This
   // keeps every sport on the same "Country/Region — League/Event" standard.
@@ -988,7 +1003,8 @@ function renderIssueBoard(cards,events){
   const groups=new Map();
   cards.forEach(card=>{
     const sport=card.sport||'Event';
-    const league=card.league||card.type||'Unassigned league';
+    const baseLeague=card.league||card.type||'Unassigned league';
+    const league=reviewLeagueLabel(card,baseLeague);
     const region=regionForAttentionCard(card,events);
     const key=`${sport}|||${region}|||${league}`;
     if(!groups.has(key))groups.set(key,{sport,league,region,cards:[]});
@@ -1026,7 +1042,9 @@ function renderIssueBoard(cards,events){
         <span class="issue-card-count">${affected.size} event${affected.size===1?'':'s'}${athletes.size?` · ${athletes.size} athlete${athletes.size===1?'':'s'}`:''}</span>
       </summary><div class="issue-card-body">${group.cards.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(card=>{
         const who=(card.athletes||[]).length?` · ${(card.athletes||[]).join(', ')}`:'';
-        return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(card.reason||'')}${esc(who)}</div></div><span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${esc(eventTime(card.start_time))}</span></div>`;
+        const game=esportsGameLabel(card);
+        const detail=[game,card.reason||''].filter(Boolean).join(' · ');
+        return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(detail)}${esc(who)}</div></div><span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${esc(eventTime(card.start_time))}</span></div>`;
       }).join('')}${actions.length?`<div class="issue-card-action"><b>Staff check:</b> ${esc(actions.join(' '))} <b>Scope:</b> all licensed sportsbook platforms.</div>`:''}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
@@ -1038,10 +1056,11 @@ function renderUpcomingSportBoard(events){
   events.forEach(event=>{
     const sport=event.sport||'Event';
     const mapped=mappedCatalogEventForScheduleEvent(event);
-    const league=regionLeagueLabel(
+    const baseLeague=regionLeagueLabel(
       mapped?.country||event.region,
       mapped?.review_label||mapped?.catalog_event||event.league
     );
+    const league=reviewLeagueLabel(event,baseLeague);
     if(!sports.has(sport))sports.set(sport,new Map());
     const leagues=sports.get(sport);
     if(!leagues.has(league))leagues.set(league,[]);
@@ -1051,7 +1070,7 @@ function renderUpcomingSportBoard(events){
   return `<div class="activity-board"><div class="activity-board-title">Upcoming Approved Activity · Select a Sport</div>${ordered.map(([sport,leagues])=>{
     const sportEvents=[...leagues.values()].flat();
     const reviewPill=sport==='Boxing'?pill('amber','BOUT REVIEW'):pill('green','MAPPED');
-    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>`<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`).join('')}</div></details>`).join('')}</div></details>`;
+    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`).join('')}</div></details>`;
   }).join('')}</div>`;
 }
 
@@ -1198,7 +1217,8 @@ function renderToday(){
     const leagueGroups={};
     dayEvents.forEach(e=>{
       const mapped=mappedCatalogEventForScheduleEvent(e);
-      const k=`${e.sport} · ${regionLeagueLabel(mapped?.country||e.region,mapped?.review_label||mapped?.catalog_event||e.league)}`;
+      const baseLeague=regionLeagueLabel(mapped?.country||e.region,mapped?.review_label||mapped?.catalog_event||e.league);
+      const k=`${e.sport} · ${reviewLeagueLabel(e,baseLeague)}`;
       (leagueGroups[k]??=[]).push(e);
     });
 
@@ -1232,13 +1252,14 @@ function renderToday(){
             :r?.c==='amber'
               ?'REVIEW REQUIRED'
               :'OK · NO REVIEW';
+          const game=esportsGameLabel(e);
 
           return `<div class="event-row">
             ${pill(color,label)}
             ${pill('blue',e.sport)}
             <div>
               <b>${esc(e.name)}</b>
-              <div class="row-meta">${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}</div>
+              <div class="row-meta">${game?esc(game):''}${game&&e.season_stage?' · ':''}${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}</div>
             </div>
             <span class="row-meta">${esc(eventTime(e.start_time))}</span>
           </div>`;

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, datetime, re, unicodedata
+import json, datetime
+
+from catalog_identity import exact_team_in_event, team_event_match
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -36,26 +38,6 @@ def load(name, default):
         return json.loads(p.read_text(encoding="utf-8"))
     except Exception:
         return default
-
-def norm(s):
-    s = unicodedata.normalize("NFKD", str(s or ""))
-    s = "".join(c for c in s if not unicodedata.combining(c))
-    s = s.lower()
-    s = s.replace("&", " and ")
-    s = re.sub(r"\b(fc|cf|afc|sc|sv|if|fk|ac|as|ogc|rc|estac)\b", " ", s)
-    s = re.sub(r"[^a-z0-9]+", " ", s)
-    return re.sub(r"\s+", " ", s).strip()
-
-def team_in_event(team, event_name):
-    t = norm(team)
-    e = norm(event_name)
-    if not t or not e:
-        return False
-    if t in e:
-        return True
-    # Token overlap fallback for names such as "Bayern Munich" / "FC Bayern München".
-    toks = [x for x in t.split() if len(x) >= 4]
-    return len(toks) >= 1 and sum(1 for x in toks if x in e.split()) >= min(2, len(toks))
 
 def add_card(cards, seen, **card):
     key = card.get("key") or (
@@ -99,6 +81,7 @@ def ensure_event(ev, severity="AMBER", reason_type="REVIEW"):
             "severity":severity,
             "type":reason_type,
             "sport":ev.get("sport"),
+            "game":ev.get("game"),
             "league":ev.get("league"),
             "event":ev.get("name"),
             "start_time":ev.get("start_time"),
@@ -123,10 +106,13 @@ soccer_events=[e for e in schedule.get("events",[]) if e.get("sport")=="Soccer" 
 
 for player in soccer_records:
     for ev in soccer_events:
-        if team_in_event(player.get("team"), ev.get("name")):
+        matched,match_basis=team_event_match(
+            player.get("team"),player.get("league"),ev.get("name"),ev.get("league")
+        )
+        if matched:
             c=ensure_event(ev,"RED","U18 EXPOSURE")
             push_unique(c["athletes"], player.get("athlete"))
-            push_unique(c["triggers"], f"Known U18 — {player.get('athlete')} ({player.get('team')})")
+            push_unique(c["triggers"], f"Known U18 — {player.get('athlete')} ({player.get('team')}) · {match_basis}")
             push_unique(c["staff_actions"], "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.")
 
 # B) Verified NCAA Football U18 + upcoming team game.
@@ -135,10 +121,11 @@ football_events=[e for e in schedule.get("events",[]) if e.get("league")=="NCAA 
 for player in football.get("known_u18",[]):
     team=player.get("team")
     for ev in football_events:
-        if team_in_event(team, ev.get("name")):
+        matched,match_basis=exact_team_in_event(team,ev.get("name"))
+        if matched:
             c=ensure_event(ev,"RED","U18 EXPOSURE")
             push_unique(c["athletes"], player.get("athlete"))
-            push_unique(c["triggers"], f"Verified U18 — {player.get('athlete')} ({team})")
+            push_unique(c["triggers"], f"Verified U18 — {player.get('athlete')} ({team}) · {match_basis}")
             push_unique(c["staff_actions"], "Review athlete-specific NCAA markets involving the verified U18 participant.")
 
 # C) HIGH-risk unresolved NCAA athletes only, aggregated by current game.
@@ -150,10 +137,11 @@ for player in age_records:
         continue
     team=player.get("team")
     for ev in football_events:
-        if team_in_event(team, ev.get("name")):
+        matched,match_basis=exact_team_in_event(team,ev.get("name"))
+        if matched:
             c=ensure_event(ev,"AMBER","NCAA AGE REVIEW")
             push_unique(c["athletes"], player.get("name"))
-            push_unique(c["triggers"], f"High-risk unresolved age — {player.get('name')} ({team})")
+            push_unique(c["triggers"], f"High-risk unresolved age — {player.get('name')} ({team}) · {match_basis}")
             push_unique(c["staff_actions"], "Prioritize age verification for high-risk roster candidates tied to this upcoming game.")
 
 # D) Nebraska collegiate home/site restrictions.
@@ -238,6 +226,6 @@ print(json.dumps({
     "cards":len(cards),
     "red":out["red_count"],
     "amber":out["amber_count"],
-    "soccer_u18_matches":sum(1 for x in cards if x.get("type")=="U18 ATHLETE" and x.get("sport")=="Soccer"),
-    "ncaa_u18":sum(1 for x in cards if x.get("type") in ("U18 ATHLETE","NCAA U18 WATCH") and x.get("sport")=="NCAA Football")
+    "soccer_u18_events":sum(1 for x in cards if x.get("type")=="U18 EXPOSURE" and x.get("sport")=="Soccer"),
+    "ncaa_u18_events":sum(1 for x in cards if x.get("type") in ("U18 EXPOSURE","NCAA AGE REVIEW") and x.get("league")=="NCAA Football")
 }))
