@@ -1350,6 +1350,10 @@ def fetch_official_event_window(source):
             item.get("location"),item.get("official_schedule_url")
         )
         if event:
+            # Multi-country tours can supply the event's country instead of
+            # inheriting a generic "International" region from the source.
+            if item.get("region"):
+                event["region"]=item["region"]
             parsed.append(event)
     return parsed
 
