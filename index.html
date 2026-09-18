@@ -266,6 +266,18 @@ th{font-size:11px!important}
 .season-progress-label{font-size:9px;font-weight:800;color:#3f5f78;white-space:nowrap}
 .catalog-event-restrictions{display:grid;gap:5px;padding:0 10px 10px}
 .catalog-event-restriction{border:1px solid #dfa84f;background:#fff8ea;border-radius:7px;padding:7px 8px;color:#704b08;font-size:12px;font-weight:800}
+.catalog-tour-calendar{border-top:1px solid #dfe4e8;background:#f8fafb}
+.catalog-tour-calendar>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;color:#174d72;font-size:11px;font-weight:900}
+.catalog-tour-calendar>summary::-webkit-details-marker{display:none}
+.catalog-tour-calendar[open]>summary{background:#eef5fa;border-bottom:1px solid #d9e5ed}
+.catalog-tour-events{display:grid;gap:5px;padding:8px 10px 10px}
+.catalog-tour-event{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;border:1px solid #dde4e9;border-radius:7px;background:#fff;padding:7px 9px}
+.catalog-tour-event.active{border-color:#69a8d6;background:#eef7fd}
+.catalog-tour-event.upcoming{border-color:#9fc4df;background:#f7fbfe}
+.catalog-tour-event-name{font-size:11px;font-weight:800}
+.catalog-tour-event-meta{margin-top:2px;color:#69727b;font-size:10px}
+.catalog-tour-event-status{font-size:9px;font-weight:900;text-transform:uppercase;color:#59636d;white-space:nowrap}
+.catalog-tour-event.active .catalog-tour-event-status,.catalog-tour-event.upcoming .catalog-tour-event-status{color:#14649d}
 .ncaa-controls{border:1px solid #dfb86f;border-radius:10px;background:#fff9ed;overflow:hidden;margin-bottom:12px}
 .ncaa-controls-head{padding:10px 12px;background:#f4e5c5;color:#5f420b;font-size:14px;font-weight:900}
 .ncaa-controls-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:10px 12px 12px}
@@ -1814,6 +1826,31 @@ function catalogEntryBadge(event,status){
   if(event?.entry_type==='approval-rule')return'<span class="pill blue">BOUT-LEVEL CONTROL</span>';
   return mappedSeasonBadge(status);
 }
+function tourCalendarForEvent(event){
+  const ids=eventSourceIds(event);
+  return (DATA.global?.tour_calendars||[]).find(calendar=>ids.includes(calendar.source_id))||null;
+}
+function tourDateLabel(item){
+  if(!item?.start_date)return'';
+  const start=prettyDay(item.start_date);
+  if(!item.end_date||item.end_date===item.start_date)return start;
+  return `${start} – ${prettyDay(item.end_date)}`;
+}
+function tourCalendarHtml(event){
+  const calendar=tourCalendarForEvent(event);
+  if(!calendar)return'';
+  const today=todayKey();
+  const horizon=addDays(today,7);
+  const rows=(calendar.events||[]).map(item=>{
+    const active=item.start_date<=today&&item.end_date>=today;
+    const upcoming=!active&&item.start_date>today&&item.start_date<=horizon;
+    return{...item,display_status:active?'ACTIVE NOW':upcoming?'NEXT 7 DAYS':item.status||'' ,emphasis:active?'active':upcoming?'upcoming':''};
+  });
+  const active=rows.filter(x=>x.emphasis==='active').length;
+  const upcoming=rows.filter(x=>x.emphasis==='upcoming').length;
+  const summary=[`${rows.length} tournaments`,active?`${active} active`:null,upcoming?`${upcoming} next 7 days`:null].filter(Boolean).join(' · ');
+  return `<details class="catalog-tour-calendar"><summary><span>Tour tournament schedule</span><span>${esc(summary)}</span></summary><div class="catalog-tour-events">${rows.map(item=>`<div class="catalog-tour-event ${item.emphasis}"><div><div class="catalog-tour-event-name">${esc(item.display_name)}</div><div class="catalog-tour-event-meta">${esc(tourDateLabel(item))} · ${esc(item.approval_path||'')}</div></div><span class="catalog-tour-event-status">${esc(item.display_status)}</span></div>`).join('')}</div></details>`;
+}
 function renderMappedCatalogEvents(events){
   const categories=[];
   events.forEach(event=>{
@@ -1824,7 +1861,7 @@ function renderMappedCatalogEvents(events){
   });
   return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
     const status=mappedSeasonStatus(event);
-    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${tourCalendarHtml(event)}</article>`;
   }).join('')}</div>`).join('');
 }
 function renderMappedCatalogSport(section,mapping,q,seasonFilter){

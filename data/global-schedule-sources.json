@@ -1060,6 +1060,61 @@
       ]
     },
     {
+      "id": "golf-pga-tour",
+      "sport": "Golf",
+      "league": "PGA Tour",
+      "region": "United States",
+      "source_type": "espn-golf-season",
+      "tour_id": "pga-tour",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard",
+      "official_schedule_url": "https://www.pgatour.com/schedule/2026",
+      "catalog_terms": [
+        "Professional Golfers’ Association Tour (PGA Tour)"
+      ],
+      "exclude_name_patterns": [
+        "Q-School"
+      ]
+    },
+    {
+      "id": "golf-pga-tour-champions",
+      "sport": "Golf",
+      "league": "PGA Tour Champions",
+      "region": "United States",
+      "source_type": "espn-golf-season",
+      "tour_id": "pga-tour-champions",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/champions-tour/scoreboard",
+      "official_schedule_url": "https://www.pgatour.com/pgatour-champions/schedule/2026",
+      "catalog_terms": [
+        "Professional Golfers’ Association Tour Champions (PGA Tour Champions)"
+      ]
+    },
+    {
+      "id": "golf-lpga-tour",
+      "sport": "Golf",
+      "league": "LPGA Tour",
+      "region": "United States / International",
+      "source_type": "espn-golf-season",
+      "tour_id": "lpga-tour",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/lpga/scoreboard",
+      "official_schedule_url": "https://www.lpga.com/tournaments",
+      "catalog_terms": [
+        "Ladies Professional Golf Association Tour (LPGA Tour)"
+      ]
+    },
+    {
+      "id": "golf-liv-golf",
+      "sport": "Golf",
+      "league": "LIV Golf League",
+      "region": "International",
+      "source_type": "espn-golf-season",
+      "tour_id": "liv-golf",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/liv/scoreboard",
+      "official_schedule_url": "https://www.livgolf.com/schedule",
+      "catalog_terms": [
+        "LIV Golf League"
+      ]
+    },
+    {
       "id": "ncaa-volleyball",
       "sport": "Volleyball",
       "league": "NCAA Volleyball",
