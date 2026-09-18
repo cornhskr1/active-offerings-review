@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "note": "CONMEBOL domestic soccer adapters supplement the global schedule source registry. Coverage gaps and inactive catalog labels are explicit and do not determine permissibility.",
+  "sources": [
+    {
+      "id": "conmebol-soccer-argentina-primera-division-men",
+      "sport": "Soccer",
+      "league": "Argentine Primera División | Men",
+      "region": "Argentina",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/arg.1/scoreboard",
+      "official_schedule_url": "https://www.afa.com.ar/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Argentine Primera División | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-argentina-primera-nacional-men",
+      "sport": "Soccer",
+      "league": "Argentine Primera Nacional | Men",
+      "region": "Argentina",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/arg.2/scoreboard",
+      "official_schedule_url": "https://www.afa.com.ar/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Argentine Primera Nacional | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-argentina-copa-argentina-men",
+      "sport": "Soccer",
+      "league": "Copa Argentina | Men",
+      "region": "Argentina",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.afa.com.ar/",
+      "official_schedule_url": "https://www.afa.com.ar/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Argentina | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-argentina-supercopa-men",
+      "sport": "Soccer",
+      "league": "Supercopa Argentina | Men",
+      "region": "Argentina",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.afa.com.ar/",
+      "official_schedule_url": "https://www.afa.com.ar/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Supercopa Argentina | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-argentina-copa-liga-profesional-men",
+      "sport": "Soccer",
+      "league": "Copa de la Liga Profesional | Men",
+      "region": "Argentina",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.afa.com.ar/",
+      "official_schedule_url": "https://www.afa.com.ar/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa de la Liga Profesional | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-bolivia-primera-division-men",
+      "sport": "Soccer",
+      "league": "Bolivian Primera División | Men",
+      "region": "Bolivia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bol.1/scoreboard",
+      "official_schedule_url": "https://fbf.com.bo/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Bolivian Primera División | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-bolivia-copa-bolivia-men",
+      "sport": "Soccer",
+      "league": "Copa Bolivia | Men",
+      "region": "Bolivia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bol.copa/scoreboard",
+      "official_schedule_url": "https://fbf.com.bo/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Copa Bolivia | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-brazil-serie-a-men",
+      "sport": "Soccer",
+      "league": "Campeonato Brasileiro Série A | Men",
+      "region": "Brazil",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.1/scoreboard",
+      "official_schedule_url": "https://www.cbf.com.br/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Campeonato Brasileiro Série A | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-brazil-serie-b-men",
+      "sport": "Soccer",
+      "league": "Campeonato Brasileiro Série B | Men",
+      "region": "Brazil",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.2/scoreboard",
+      "official_schedule_url": "https://www.cbf.com.br/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Campeonato Brasileiro Série B | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-brazil-copa-do-brasil-men",
+      "sport": "Soccer",
+      "league": "Copa do Brasil | Men",
+      "region": "Brazil",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.copa_do_brazil/scoreboard",
+      "official_schedule_url": "https://www.cbf.com.br/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Copa do Brasil | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-brazil-supercopa-do-brasil-men",
+      "sport": "Soccer",
+      "league": "Supercopa do Brasil | Men",
+      "region": "Brazil",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.cbf.com.br/",
+      "official_schedule_url": "https://www.cbf.com.br/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Supercopa do Brasil | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-chile-primera-division-men",
+      "sport": "Soccer",
+      "league": "Primera División | Men",
+      "region": "Chile",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/scoreboard",
+      "official_schedule_url": "https://www.anfp.cl/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Primera División | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-chile-copa-chile-men",
+      "sport": "Soccer",
+      "league": "Copa Chile | Men",
+      "region": "Chile",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.anfp.cl/",
+      "official_schedule_url": "https://www.anfp.cl/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Chile | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-colombia-primera-a-men",
+      "sport": "Soccer",
+      "league": "Primera A | Men",
+      "region": "Colombia",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/scoreboard",
+      "official_schedule_url": "https://dimayor.com.co/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Primera A | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-colombia-copa-colombia-men",
+      "sport": "Soccer",
+      "league": "Copa Colombia | Men",
+      "region": "Colombia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://dimayor.com.co/",
+      "official_schedule_url": "https://dimayor.com.co/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Colombia | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-colombia-superliga-men",
+      "sport": "Soccer",
+      "league": "Superliga Colombiana | Men",
+      "region": "Colombia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://dimayor.com.co/",
+      "official_schedule_url": "https://dimayor.com.co/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Superliga Colombiana | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-ecuador-ligapro-serie-a-men",
+      "sport": "Soccer",
+      "league": "LigaPro Serie A | Men",
+      "region": "Ecuador",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/scoreboard",
+      "official_schedule_url": "https://www.ligapro.ec/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "LigaPro Serie A | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-ecuador-copa-ecuador-men",
+      "sport": "Soccer",
+      "league": "Copa Ecuador | Men",
+      "region": "Ecuador",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.ligapro.ec/",
+      "official_schedule_url": "https://www.ligapro.ec/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Ecuador | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-ecuador-supercopa-men",
+      "sport": "Soccer",
+      "league": "Supercopa Ecuador | Men",
+      "region": "Ecuador",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.ligapro.ec/",
+      "official_schedule_url": "https://www.ligapro.ec/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Supercopa Ecuador | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-paraguay-primera-division-men",
+      "sport": "Soccer",
+      "league": "Paraguayan Primera División | Men",
+      "region": "Paraguay",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/par.1/scoreboard",
+      "official_schedule_url": "https://www.apf.org.py/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Paraguayan Primera División | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-paraguay-copa-paraguay-men",
+      "sport": "Soccer",
+      "league": "Copa Paraguay | Men",
+      "region": "Paraguay",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.apf.org.py/",
+      "official_schedule_url": "https://www.apf.org.py/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Paraguay | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-peru-primera-division-men",
+      "sport": "Soccer",
+      "league": "Peruvian Primera División | Men",
+      "region": "Peru",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/scoreboard",
+      "official_schedule_url": "https://fpf.org.pe/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Peruvian Primera División | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-peru-copa-bicentenario-men",
+      "sport": "Soccer",
+      "league": "Copa Bicentenario | Men",
+      "region": "Peru",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fpf.org.pe/",
+      "official_schedule_url": "https://fpf.org.pe/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Bicentenario | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-peru-supercopa-men",
+      "sport": "Soccer",
+      "league": "Supercopa Peruana | Men",
+      "region": "Peru",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://fpf.org.pe/",
+      "official_schedule_url": "https://fpf.org.pe/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Supercopa Peruana | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
+      "sport": "Soccer",
+      "league": "Campeonato Femenino | Women",
+      "region": "Uruguay",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.auf.org.uy/",
+      "official_schedule_url": "https://www.auf.org.uy/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Campeonato Femenino | Women"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-uruguay-campeonato-men",
+      "sport": "Soccer",
+      "league": "Campeonato Uruguayo | Men",
+      "region": "Uruguay",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uru.1/scoreboard",
+      "official_schedule_url": "https://www.auf.org.uy/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Campeonato Uruguayo | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-uruguay-segunda-division-men",
+      "sport": "Soccer",
+      "league": "Segunda División | Men",
+      "region": "Uruguay",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uru.2/scoreboard",
+      "official_schedule_url": "https://www.auf.org.uy/",
+      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Segunda División | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-uruguay-copa-uruguay-men",
+      "sport": "Soccer",
+      "league": "Copa Uruguay | Men",
+      "region": "Uruguay",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.auf.org.uy/",
+      "official_schedule_url": "https://www.auf.org.uy/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Uruguay | Men"
+      ]
+    },
+    {
+      "id": "conmebol-soccer-uruguay-supercopa-men",
+      "sport": "Soccer",
+      "league": "Supercopa Uruguaya | Men",
+      "region": "Uruguay",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.auf.org.uy/",
+      "official_schedule_url": "https://www.auf.org.uy/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Supercopa Uruguaya | Men"
+      ]
+    }
+  ]
+}
