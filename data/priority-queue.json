@@ -1,32 +1,35 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T21:24:08.220965+00:00",
-  "card_count": 255,
-  "red_count": 103,
-  "amber_count": 152,
+  "generated_at": "2026-09-18T21:57:35.471710+00:00",
+  "card_count": 213,
+  "red_count": 56,
+  "amber_count": 157,
   "cards": [
     {
       "key": "event|761815",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Red Bull New York at New York City FC",
       "start_time": "2026-09-18T23:30Z",
       "status": "UPCOMING",
-      "title": "Red Bull New York at New York City FC · 2 athletes",
+      "title": "Red Bull New York at New York City FC · 3 athletes",
       "athletes": [
         "Matthew Dos Santos",
-        "Seymour Reid"
+        "Seymour Reid",
+        "Adri Mehmeti"
       ],
       "triggers": [
-        "Known U18 — Matthew Dos Santos (Red Bull New York)",
-        "Known U18 — Seymour Reid (New York City FC)"
+        "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE",
+        "Known U18 — Seymour Reid (New York City FC) · EXACT TEAM + LEAGUE",
+        "Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Matthew Dos Santos (Red Bull New York) | Known U18 — Seymour Reid (New York City FC)",
+      "reason": "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE | Known U18 — Seymour Reid (New York City FC) · EXACT TEAM + LEAGUE | Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -34,6 +37,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Softball",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Iowa Western CC",
       "start_time": "2026-09-18T3:30 P.M.",
@@ -54,6 +58,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Kansas State",
       "start_time": "2026-09-18T7:00 PM",
@@ -74,6 +79,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs North Carolina",
       "start_time": "2026-09-18T7:00 PM CDT",
@@ -94,6 +100,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Men's Soccer",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Providence",
       "start_time": "2026-09-18T7:30 PM",
@@ -110,34 +117,11 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401877613",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "J1 League | Men",
-      "event": "JEF United Ichihara-Chiba at Shimizu S-Pulse",
-      "start_time": "2026-09-19T09:30Z",
-      "status": "UPCOMING",
-      "title": "JEF United Ichihara-Chiba at Shimizu S-Pulse · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
       "key": "event|401879269",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Premier League",
       "event": "Aston Villa at Tottenham Hotspur",
       "start_time": "2026-09-19T11:30Z",
@@ -148,109 +132,13 @@
         "Luca Williams-Barnett"
       ],
       "triggers": [
-        "Known U18 — Brian Madjo (Aston Villa)",
-        "Known U18 — Luca Williams-Barnett (Tottenham Hotspur)"
+        "Known U18 — Brian Madjo (Aston Villa) · EXACT TEAM + LEAGUE",
+        "Known U18 — Luca Williams-Barnett (Tottenham Hotspur) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Brian Madjo (Aston Villa) | Known U18 — Luca Williams-Barnett (Tottenham Hotspur)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401880247",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "The Championship | Men",
-      "event": "Sheffield United at Stoke City",
-      "start_time": "2026-09-19T11:30Z",
-      "status": "UPCOMING",
-      "title": "Sheffield United at Stoke City · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401880251",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "The Championship | Men",
-      "event": "West Ham United at Millwall",
-      "start_time": "2026-09-19T11:30Z",
-      "status": "UPCOMING",
-      "title": "West Ham United at Millwall · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401902912",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Super League | Women",
-      "event": "Birmingham City at Chelsea",
-      "start_time": "2026-09-19T11:45Z",
-      "status": "UPCOMING",
-      "title": "Birmingham City at Chelsea · 1 athlete",
-      "athletes": [
-        "Reggie Watson"
-      ],
-      "triggers": [
-        "Known U18 — Reggie Watson (Chelsea)",
-        "USL Super League | Women - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Reggie Watson (Chelsea) | USL Super League | Women - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401902039",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "South African Premier Division | Men",
-      "event": "Sekhukhune United FC at Richards Bay FC",
-      "start_time": "2026-09-19T13:00Z",
-      "status": "UPCOMING",
-      "title": "Sekhukhune United FC at Richards Bay FC · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Brian Madjo (Aston Villa) · EXACT TEAM + LEAGUE | Known U18 — Luca Williams-Barnett (Tottenham Hotspur) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -258,6 +146,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Premier League",
       "event": "Arsenal at Brighton & Hove Albion",
       "start_time": "2026-09-19T14:00Z",
@@ -267,222 +156,12 @@
         "Max Dowman"
       ],
       "triggers": [
-        "Known U18 — Max Dowman (Arsenal)"
+        "Known U18 — Max Dowman (Arsenal) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Max Dowman (Arsenal)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401880843",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "League One | Men",
-      "event": "Cambridge United at Oxford United",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Cambridge United at Oxford United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401881369",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "League Two | Men",
-      "event": "Cheltenham Town at Colchester United",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Cheltenham Town at Colchester United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401880842",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "League One | Men",
-      "event": "Doncaster Rovers at Peterborough United",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Doncaster Rovers at Peterborough United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401878376",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Scottish Premiership | Men",
-      "event": "Dundee United at St Mirren",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Dundee United at St Mirren · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401879271",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Premier League",
-      "event": "Hull City at Newcastle United",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Hull City at Newcastle United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401880248",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "The Championship | Men",
-      "event": "Preston North End at Queens Park Rangers",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Preston North End at Queens Park Rangers · 1 athlete",
-      "athletes": [
-        "Jules Bouffandeau"
-      ],
-      "triggers": [
-        "Known U18 — Jules Bouffandeau (Angers)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Jules Bouffandeau (Angers)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401881364",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "League Two | Men",
-      "event": "Rotherham United at Northampton Town",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "Rotherham United at Northampton Town · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401881370",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "League Two | Men",
-      "event": "York City at Chesterfield",
-      "start_time": "2026-09-19T14:00Z",
-      "status": "UPCOMING",
-      "title": "York City at Chesterfield · 1 athlete",
-      "athletes": [
-        "Seymour Reid"
-      ],
-      "triggers": [
-        "Known U18 — Seymour Reid (New York City FC)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Seymour Reid (New York City FC)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401882515",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Liga F | Women",
-      "event": "Dux Logroño at Atlético Madrid",
-      "start_time": "2026-09-19T16:00Z",
-      "status": "UPCOMING",
-      "title": "Dux Logroño at Atlético Madrid · 1 athlete",
-      "athletes": [
-        "Jorge Domínguez"
-      ],
-      "triggers": [
-        "Known U18 — Jorge Domínguez (Atlético Madrid)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Jorge Domínguez (Atlético Madrid)",
+      "reason": "Known U18 — Max Dowman (Arsenal) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -490,6 +169,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Serie A",
       "event": "Internazionale at AS Roma",
       "start_time": "2026-09-19T16:00Z",
@@ -499,34 +179,12 @@
         "Antonio Arena"
       ],
       "triggers": [
-        "Known U18 — Antonio Arena (AS Roma)"
+        "Known U18 — Antonio Arena (AS Roma) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Antonio Arena (AS Roma)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401888032",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Première Ligue | Women",
-      "event": "Toulouse at Lens",
-      "start_time": "2026-09-19T16:00Z",
-      "status": "UPCOMING",
-      "title": "Toulouse at Lens · 1 athlete",
-      "athletes": [
-        "Mezian Mesloub"
-      ],
-      "triggers": [
-        "Known U18 — Mezian Mesloub (RC Lens)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Mezian Mesloub (RC Lens)",
+      "reason": "Known U18 — Antonio Arena (AS Roma) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -534,6 +192,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Bundesliga",
       "event": "Borussia Dortmund at VfB Stuttgart",
       "start_time": "2026-09-19T16:30Z",
@@ -543,12 +202,12 @@
         "Mathis Albert"
       ],
       "triggers": [
-        "Known U18 — Mathis Albert (Borussia Dortmund)"
+        "Known U18 — Mathis Albert (Borussia Dortmund) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Mathis Albert (Borussia Dortmund)",
+      "reason": "Known U18 — Mathis Albert (Borussia Dortmund) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -556,6 +215,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Premier League",
       "event": "Coventry City at Nottingham Forest",
       "start_time": "2026-09-19T16:30Z",
@@ -565,49 +225,20 @@
         "Kalum Thompson"
       ],
       "triggers": [
-        "Known U18 — Kalum Thompson (Nottingham Forest)"
+        "Known U18 — Kalum Thompson (Nottingham Forest) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Kalum Thompson (Nottingham Forest)",
+      "reason": "Known U18 — Kalum Thompson (Nottingham Forest) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401902911",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Super League | Women",
-      "event": "Manchester United at Arsenal",
-      "start_time": "2026-09-19T16:30Z",
-      "status": "UPCOMING",
-      "title": "Manchester United at Arsenal · 4 athletes",
-      "athletes": [
-        "Max Dowman",
-        "JJ Gabriel",
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Max Dowman (Arsenal)",
-        "Known U18 — JJ Gabriel (Manchester United)",
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)",
-        "USL Super League | Women - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Max Dowman (Arsenal) | Known U18 — JJ Gabriel (Manchester United) | Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United) | USL Super League | Women - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
       "key": "event|401875598",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Eredivisie",
       "event": "Excelsior at Ajax Amsterdam",
       "start_time": "2026-09-19T18:00Z",
@@ -617,36 +248,35 @@
         "Abdellah Ouazane"
       ],
       "triggers": [
-        "Known U18 — Abdellah Ouazane (Ajax)"
+        "Known U18 — Abdellah Ouazane (Ajax) · APPROVED ALIAS + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Abdellah Ouazane (Ajax)",
+      "reason": "Known U18 — Abdellah Ouazane (Ajax) · APPROVED ALIAS + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
-      "key": "event|401902035",
+      "key": "event|401876454",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
-      "league": "South African Premier Division | Men",
-      "event": "Stellenbosch at Kruger United",
-      "start_time": "2026-09-19T18:00Z",
+      "game": null,
+      "league": "Ligue 1",
+      "event": "Stade Rennais at Lyon",
+      "start_time": "2026-09-19T18:45Z",
       "status": "UPCOMING",
-      "title": "Stellenbosch at Kruger United · 2 athletes",
+      "title": "Stade Rennais at Lyon · 1 athlete",
       "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
+        "Adil Hamdani"
       ],
       "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
+        "Known U18 — Adil Hamdani (Olympique Lyonnais) · APPROVED ALIAS + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Adil Hamdani (Olympique Lyonnais) · APPROVED ALIAS + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -654,6 +284,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Ligue 1",
       "event": "Troyes at Angers",
       "start_time": "2026-09-19T18:45Z",
@@ -664,13 +295,13 @@
         "Jules Bouffandeau"
       ],
       "triggers": [
-        "Known U18 — Idrissa Soukouna (ESTAC Troyes)",
-        "Known U18 — Jules Bouffandeau (Angers)"
+        "Known U18 — Idrissa Soukouna (ESTAC Troyes) · APPROVED ALIAS + LEAGUE",
+        "Known U18 — Jules Bouffandeau (Angers) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Idrissa Soukouna (ESTAC Troyes) | Known U18 — Jules Bouffandeau (Angers)",
+      "reason": "Known U18 — Idrissa Soukouna (ESTAC Troyes) · APPROVED ALIAS + LEAGUE | Known U18 — Jules Bouffandeau (Angers) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -678,6 +309,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Football",
+      "game": null,
       "league": "NCAA Football",
       "event": "USC Trojans at Rutgers Scarlet Knights",
       "start_time": "2026-09-19T19:30Z",
@@ -687,45 +319,20 @@
         "Ethan \"Boobie\" Feaster"
       ],
       "triggers": [
-        "Verified U18 — Ethan \"Boobie\" Feaster (USC)"
+        "Verified U18 — Ethan \"Boobie\" Feaster (USC) · APPROVED ALIAS"
       ],
       "staff_actions": [
         "Review athlete-specific NCAA markets involving the verified U18 participant."
       ],
-      "reason": "Verified U18 — Ethan \"Boobie\" Feaster (USC)",
+      "reason": "Verified U18 — Ethan \"Boobie\" Feaster (USC) · APPROVED ALIAS",
       "staff_action": "Review athlete-specific NCAA markets involving the verified U18 participant."
-    },
-    {
-      "key": "event|401842234",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "USL Championship | Men",
-      "event": "Loudoun United FC at Louisville City FC",
-      "start_time": "2026-09-19T23:00Z",
-      "status": "UPCOMING",
-      "title": "Loudoun United FC at Louisville City FC · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)",
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United) | USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
       "key": "event|761819",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Charlotte FC at D.C. United",
       "start_time": "2026-09-19T23:30Z",
@@ -736,13 +343,13 @@
         "Oscar Avilez"
       ],
       "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
+        "Known U18 — Kamil Castillo (D.C. United) · EXACT TEAM + LEAGUE",
+        "Known U18 — Oscar Avilez (D.C. United) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Kamil Castillo (D.C. United) · EXACT TEAM + LEAGUE | Known U18 — Oscar Avilez (D.C. United) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -750,6 +357,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Columbus Crew at CF Montréal",
       "start_time": "2026-09-19T23:30Z",
@@ -760,13 +368,13 @@
         "Tristan Brown"
       ],
       "triggers": [
-        "Known U18 — Samsy Keita (CF Montréal)",
-        "Known U18 — Tristan Brown (Columbus Crew)"
+        "Known U18 — Samsy Keita (CF Montréal) · EXACT TEAM + LEAGUE",
+        "Known U18 — Tristan Brown (Columbus Crew) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Samsy Keita (CF Montréal) | Known U18 — Tristan Brown (Columbus Crew)",
+      "reason": "Known U18 — Samsy Keita (CF Montréal) · EXACT TEAM + LEAGUE | Known U18 — Tristan Brown (Columbus Crew) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -774,6 +382,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "LAFC at San Jose Earthquakes",
       "start_time": "2026-09-19T23:30Z",
@@ -783,12 +392,12 @@
         "Kaedren Spivey"
       ],
       "triggers": [
-        "Known U18 — Kaedren Spivey (San Jose Earthquakes)"
+        "Known U18 — Kaedren Spivey (San Jose Earthquakes) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Kaedren Spivey (San Jose Earthquakes)",
+      "reason": "Known U18 — Kaedren Spivey (San Jose Earthquakes) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -796,6 +405,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Orlando City SC at New England Revolution",
       "start_time": "2026-09-19T23:30Z",
@@ -805,12 +415,12 @@
         "Gustavo Caraballo"
       ],
       "triggers": [
-        "Known U18 — Gustavo Caraballo (Orlando City SC)"
+        "Known U18 — Gustavo Caraballo (Orlando City SC) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Gustavo Caraballo (Orlando City SC)",
+      "reason": "Known U18 — Gustavo Caraballo (Orlando City SC) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -818,6 +428,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Softball",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Butler CC",
       "start_time": "2026-09-19T2:00 P.M.",
@@ -838,6 +449,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Omaha Collegiate",
       "event": "Omaha vs Kansas State",
       "start_time": "2026-09-19T3 p.m.",
@@ -858,6 +470,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Football",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs North Dakota",
       "start_time": "2026-09-19T6:15 PM CDT",
@@ -878,6 +491,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "FC Cincinnati at Houston Dynamo FC",
       "start_time": "2026-09-20T00:30Z",
@@ -888,13 +502,13 @@
         "Ademar Chávez"
       ],
       "triggers": [
-        "Known U18 — Matthew Arana (Houston Dynamo FC)",
-        "Known U18 — Ademar Chávez (FC Cincinnati)"
+        "Known U18 — Matthew Arana (Houston Dynamo FC) · EXACT TEAM + LEAGUE",
+        "Known U18 — Ademar Chávez (FC Cincinnati) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Matthew Arana (Houston Dynamo FC) | Known U18 — Ademar Chávez (FC Cincinnati)",
+      "reason": "Known U18 — Matthew Arana (Houston Dynamo FC) · EXACT TEAM + LEAGUE | Known U18 — Ademar Chávez (FC Cincinnati) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -902,25 +516,22 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "LA Galaxy at Minnesota United FC",
       "start_time": "2026-09-20T00:30Z",
       "status": "UPCOMING",
-      "title": "LA Galaxy at Minnesota United FC · 3 athletes",
+      "title": "LA Galaxy at Minnesota United FC · 1 athlete",
       "athletes": [
-        "Darius Randell",
-        "Kamil Castillo",
-        "Oscar Avilez"
+        "Darius Randell"
       ],
       "triggers": [
-        "Known U18 — Darius Randell (Minnesota United FC)",
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
+        "Known U18 — Darius Randell (Minnesota United FC) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Darius Randell (Minnesota United FC) | Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Darius Randell (Minnesota United FC) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -928,6 +539,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Philadelphia Union at Sporting Kansas City",
       "start_time": "2026-09-20T00:30Z",
@@ -938,46 +550,21 @@
         "Malik Jakupovic"
       ],
       "triggers": [
-        "Known U18 — Cavan Sullivan (Philadelphia Union)",
-        "Known U18 — Malik Jakupovic (Philadelphia Union)"
+        "Known U18 — Cavan Sullivan (Philadelphia Union) · EXACT TEAM + LEAGUE",
+        "Known U18 — Malik Jakupovic (Philadelphia Union) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Cavan Sullivan (Philadelphia Union) | Known U18 — Malik Jakupovic (Philadelphia Union)",
+      "reason": "Known U18 — Cavan Sullivan (Philadelphia Union) · EXACT TEAM + LEAGUE | Known U18 — Malik Jakupovic (Philadelphia Union) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401842226",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "USL Championship | Men",
-      "event": "New Mexico United at Colorado Springs Switchbacks FC",
-      "start_time": "2026-09-20T01:00Z",
-      "status": "UPCOMING",
-      "title": "New Mexico United at Colorado Springs Switchbacks FC · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)",
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United) | USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
       "key": "event|761825",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Vancouver Whitecaps at Real Salt Lake",
       "start_time": "2026-09-20T01:30Z",
@@ -987,36 +574,12 @@
         "Van Parker"
       ],
       "triggers": [
-        "Known U18 — Van Parker (Real Salt Lake)"
+        "Known U18 — Van Parker (Real Salt Lake) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Van Parker (Real Salt Lake)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|761828",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "MLS",
-      "event": "Atlanta United FC at Portland Timbers",
-      "start_time": "2026-09-20T02:30Z",
-      "status": "UPCOMING",
-      "title": "Atlanta United FC at Portland Timbers · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Van Parker (Real Salt Lake) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1024,6 +587,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Softball",
+      "game": null,
       "league": "Omaha Collegiate",
       "event": "Omaha vs Butler CC",
       "start_time": "2026-09-20T1 p.m. CT",
@@ -1040,25 +604,26 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401878375",
+      "key": "event|401878982",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
-      "league": "Scottish Premiership | Men",
-      "event": "Rangers at Celtic",
-      "start_time": "2026-09-20T11:00Z",
+      "game": null,
+      "league": "Jupiler Pro League",
+      "event": "Union St.-Gilloise at Antwerp",
+      "start_time": "2026-09-20T11:30Z",
       "status": "UPCOMING",
-      "title": "Rangers at Celtic · 1 athlete",
+      "title": "Union St.-Gilloise at Antwerp · 1 athlete",
       "athletes": [
-        "Jules Bouffandeau"
+        "Xander Dierckx"
       ],
       "triggers": [
-        "Known U18 — Jules Bouffandeau (Angers)"
+        "Known U18 — Xander Dierckx (Royal Antwerp) · APPROVED ALIAS + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Jules Bouffandeau (Angers)",
+      "reason": "Known U18 — Xander Dierckx (Royal Antwerp) · APPROVED ALIAS + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1066,6 +631,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs FGCU",
       "start_time": "2026-09-20T12:00 PM CDT",
@@ -1086,6 +652,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Danish Superliga",
       "event": "F.C. København at Brøndby IF",
       "start_time": "2026-09-20T12:00Z",
@@ -1095,43 +662,20 @@
         "Raphael Canut"
       ],
       "triggers": [
-        "Known U18 — Raphael Canut (Brøndby IF)"
+        "Known U18 — Raphael Canut (Brøndby IF) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Raphael Canut (Brøndby IF)",
+      "reason": "Known U18 — Raphael Canut (Brøndby IF) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401902910",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Super League | Women",
-      "event": "Aston Villa at Brighton & Hove Albion",
-      "start_time": "2026-09-20T13:00Z",
-      "status": "UPCOMING",
-      "title": "Aston Villa at Brighton & Hove Albion · 1 athlete",
-      "athletes": [
-        "Brian Madjo"
-      ],
-      "triggers": [
-        "Known U18 — Brian Madjo (Aston Villa)",
-        "USL Super League | Women - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Brian Madjo (Aston Villa) | USL Super League | Women - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
       "key": "event|401876456",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Ligue 1",
       "event": "Brest at AJ Auxerre",
       "start_time": "2026-09-20T13:00Z",
@@ -1141,12 +685,12 @@
         "Ackah-Tidiane Zoukrou"
       ],
       "triggers": [
-        "Known U18 — Ackah-Tidiane Zoukrou (AJ Auxerre)"
+        "Known U18 — Ackah-Tidiane Zoukrou (AJ Auxerre) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Ackah-Tidiane Zoukrou (AJ Auxerre)",
+      "reason": "Known U18 — Ackah-Tidiane Zoukrou (AJ Auxerre) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1154,84 +698,30 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Premier League",
       "event": "Crystal Palace at Leeds United",
       "start_time": "2026-09-20T13:00Z",
       "status": "UPCOMING",
-      "title": "Crystal Palace at Leeds United · 3 athletes",
+      "title": "Crystal Palace at Leeds United · 1 athlete",
       "athletes": [
-        "Joel Drakes-Thomas",
-        "Kamil Castillo",
-        "Oscar Avilez"
+        "Joel Drakes-Thomas"
       ],
       "triggers": [
-        "Known U18 — Joel Drakes-Thomas (Crystal Palace)",
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
+        "Known U18 — Joel Drakes-Thomas (Crystal Palace) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Joel Drakes-Thomas (Crystal Palace) | Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Joel Drakes-Thomas (Crystal Palace) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401902908",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Super League | Women",
-      "event": "Everton at West Ham United",
-      "start_time": "2026-09-20T13:00Z",
-      "status": "UPCOMING",
-      "title": "Everton at West Ham United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)",
-        "USL Super League | Women - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United) | USL Super League | Women - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401902909",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Super League | Women",
-      "event": "Tottenham Hotspur at Crystal Palace",
-      "start_time": "2026-09-20T13:00Z",
-      "status": "UPCOMING",
-      "title": "Tottenham Hotspur at Crystal Palace · 2 athletes",
-      "athletes": [
-        "Joel Drakes-Thomas",
-        "Luca Williams-Barnett"
-      ],
-      "triggers": [
-        "Known U18 — Joel Drakes-Thomas (Crystal Palace)",
-        "Known U18 — Luca Williams-Barnett (Tottenham Hotspur)",
-        "USL Super League | Women - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Joel Drakes-Thomas (Crystal Palace) | Known U18 — Luca Williams-Barnett (Tottenham Hotspur) | USL Super League | Women - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
       "key": "event|401884788",
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Bundesliga",
       "event": "RB Leipzig at Bayer Leverkusen",
       "start_time": "2026-09-20T13:30Z",
@@ -1241,56 +731,12 @@
         "Kennet Eichhorn"
       ],
       "triggers": [
-        "Known U18 — Kennet Eichhorn (Bayer Leverkusen)"
+        "Known U18 — Kennet Eichhorn (Bayer Leverkusen) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Kennet Eichhorn (Bayer Leverkusen)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401915866",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Taça de Portugal | Men",
-      "event": "Aljustrelense at Limianos",
-      "start_time": "2026-09-20T14:00Z",
-      "status": "UPCOMING",
-      "title": "Aljustrelense at Limianos · 1 athlete",
-      "athletes": [
-        "Mezian Mesloub"
-      ],
-      "triggers": [
-        "Known U18 — Mezian Mesloub (RC Lens)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Mezian Mesloub (RC Lens)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401915762",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Taça de Portugal | Men",
-      "event": "CF Benfica at Alcochetense",
-      "start_time": "2026-09-20T14:00Z",
-      "status": "UPCOMING",
-      "title": "CF Benfica at Alcochetense · 1 athlete",
-      "athletes": [
-        "José Neto"
-      ],
-      "triggers": [
-        "Known U18 — José Neto (Benfica)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — José Neto (Benfica)",
+      "reason": "Known U18 — Kennet Eichhorn (Bayer Leverkusen) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1298,6 +744,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Jupiler Pro League",
       "event": "KVC Westerlo at Sint-Truidense",
       "start_time": "2026-09-20T14:00Z",
@@ -1307,12 +754,12 @@
         "Dino Delić"
       ],
       "triggers": [
-        "Known U18 — Dino Delić (KVC Westerlo)"
+        "Known U18 — Dino Delić (KVC Westerlo) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Dino Delić (KVC Westerlo)",
+      "reason": "Known U18 — Dino Delić (KVC Westerlo) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1320,6 +767,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "La Liga",
       "event": "Real Madrid at Atlético Madrid",
       "start_time": "2026-09-20T14:15Z",
@@ -1329,34 +777,12 @@
         "Jorge Domínguez"
       ],
       "triggers": [
-        "Known U18 — Jorge Domínguez (Atlético Madrid)"
+        "Known U18 — Jorge Domínguez (Atlético Madrid) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Jorge Domínguez (Atlético Madrid)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401909820",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Taça de Portugal | Men",
-      "event": "Vizela at Bombarralense",
-      "start_time": "2026-09-20T15:00Z",
-      "status": "UPCOMING",
-      "title": "Vizela at Bombarralense · 1 athlete",
-      "athletes": [
-        "Mezian Mesloub"
-      ],
-      "triggers": [
-        "Known U18 — Mezian Mesloub (RC Lens)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Mezian Mesloub (RC Lens)",
+      "reason": "Known U18 — Jorge Domínguez (Atlético Madrid) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1364,6 +790,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Ligue 1",
       "event": "Lille at Nice",
       "start_time": "2026-09-20T15:15Z",
@@ -1374,37 +801,13 @@
         "Martin Ponsot"
       ],
       "triggers": [
-        "Known U18 — Junior Mandza (OGC Nice)",
-        "Known U18 — Martin Ponsot (OGC Nice)"
+        "Known U18 — Junior Mandza (OGC Nice) · APPROVED ALIAS + LEAGUE",
+        "Known U18 — Martin Ponsot (OGC Nice) · APPROVED ALIAS + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Junior Mandza (OGC Nice) | Known U18 — Martin Ponsot (OGC Nice)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401902033",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "South African Premier Division | Men",
-      "event": "Chippa United at TS Galaxy FC",
-      "start_time": "2026-09-20T15:30Z",
-      "status": "UPCOMING",
-      "title": "Chippa United at TS Galaxy FC · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — Junior Mandza (OGC Nice) · APPROVED ALIAS + LEAGUE | Known U18 — Martin Ponsot (OGC Nice) · APPROVED ALIAS + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1412,25 +815,22 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Premier League",
       "event": "Manchester United at Fulham",
       "start_time": "2026-09-20T15:30Z",
       "status": "UPCOMING",
-      "title": "Manchester United at Fulham · 3 athletes",
+      "title": "Manchester United at Fulham · 1 athlete",
       "athletes": [
-        "JJ Gabriel",
-        "Kamil Castillo",
-        "Oscar Avilez"
+        "JJ Gabriel"
       ],
       "triggers": [
-        "Known U18 — JJ Gabriel (Manchester United)",
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
+        "Known U18 — JJ Gabriel (Manchester United) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — JJ Gabriel (Manchester United) | Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
+      "reason": "Known U18 — JJ Gabriel (Manchester United) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1438,6 +838,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "La Liga",
       "event": "Levante at Villarreal",
       "start_time": "2026-09-20T16:30Z",
@@ -1447,12 +848,12 @@
         "Marc Santos"
       ],
       "triggers": [
-        "Known U18 — Marc Santos (Levante)"
+        "Known U18 — Marc Santos (Levante) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Marc Santos (Levante)",
+      "reason": "Known U18 — Marc Santos (Levante) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1460,6 +861,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Jupiler Pro League",
       "event": "Racing Genk at Club Brugge",
       "start_time": "2026-09-20T16:30Z",
@@ -1469,12 +871,12 @@
         "Wisdom Mike"
       ],
       "triggers": [
-        "Known U18 — Wisdom Mike (Club Brugge)"
+        "Known U18 — Wisdom Mike (Club Brugge) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Wisdom Mike (Club Brugge)",
+      "reason": "Known U18 — Wisdom Mike (Club Brugge) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1482,6 +884,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "Primeira Liga",
       "event": "Benfica at FC Porto",
       "start_time": "2026-09-20T19:30Z",
@@ -1491,12 +894,12 @@
         "José Neto"
       ],
       "triggers": [
-        "Known U18 — José Neto (Benfica)"
+        "Known U18 — José Neto (Benfica) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — José Neto (Benfica)",
+      "reason": "Known U18 — José Neto (Benfica) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1504,6 +907,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Women's Soccer",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs Washington",
       "start_time": "2026-09-20T1:05 PM CDT",
@@ -1524,6 +928,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "San Diego FC at Inter Miami CF",
       "start_time": "2026-09-20T23:00Z",
@@ -1533,12 +938,12 @@
         "Alexander Shaw"
       ],
       "triggers": [
-        "Known U18 — Alexander Shaw (Inter Miami CF)"
+        "Known U18 — Alexander Shaw (Inter Miami CF) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Alexander Shaw (Inter Miami CF)",
+      "reason": "Known U18 — Alexander Shaw (Inter Miami CF) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -1546,6 +951,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs #15 Texas A&M",
       "start_time": "2026-09-20T4:00 PM",
@@ -1566,6 +972,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Men's Golf",
+      "game": null,
       "league": "Omaha Collegiate",
       "event": "Omaha vs Bluejay Invitational",
       "start_time": "2026-09-21",
@@ -1586,6 +993,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Women's Golf",
+      "game": null,
       "league": "Omaha Collegiate",
       "event": "Omaha vs Fall Stampede at the Creek",
       "start_time": "2026-09-21",
@@ -1606,6 +1014,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Men's Golf",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Bluejay Invitational",
       "start_time": "2026-09-21T9:00 AM",
@@ -1622,426 +1031,11 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401917018",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "UEFA Women’s Champions League | Women",
-      "event": "Manchester City at Bayern Munich",
-      "start_time": "2026-09-22T16:45Z",
-      "status": "UPCOMING",
-      "title": "Manchester City at Bayern Munich · 3 athletes",
-      "athletes": [
-        "Erblin Osmani",
-        "Cassiano Kiala",
-        "Maycon Cardozo"
-      ],
-      "triggers": [
-        "Known U18 — Erblin Osmani (Bayern Munich)",
-        "Known U18 — Cassiano Kiala (Bayern Munich)",
-        "Known U18 — Maycon Cardozo (Bayern Munich)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Erblin Osmani (Bayern Munich) | Known U18 — Cassiano Kiala (Bayern Munich) | Known U18 — Maycon Cardozo (Bayern Munich)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906377",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Aston Villa U21 at Crewe Alexandra",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Aston Villa U21 at Crewe Alexandra · 1 athlete",
-      "athletes": [
-        "Brian Madjo"
-      ],
-      "triggers": [
-        "Known U18 — Brian Madjo (Aston Villa)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Brian Madjo (Aston Villa)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906365",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Cambridge United at Gillingham",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Cambridge United at Gillingham · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906368",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Colchester United at Peterborough United",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Colchester United at Peterborough United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906367",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Crystal Palace U21 at Plymouth Argyle",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Crystal Palace U21 at Plymouth Argyle · 1 athlete",
-      "athletes": [
-        "Joel Drakes-Thomas"
-      ],
-      "triggers": [
-        "Known U18 — Joel Drakes-Thomas (Crystal Palace)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Joel Drakes-Thomas (Crystal Palace)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401909639",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Leeds United U21 at Barnsley",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Leeds United U21 at Barnsley · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906374",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Nottingham Forest U21 at Burton Albion",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Nottingham Forest U21 at Burton Albion · 1 athlete",
-      "athletes": [
-        "Kalum Thompson"
-      ],
-      "triggers": [
-        "Known U18 — Kalum Thompson (Nottingham Forest)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kalum Thompson (Nottingham Forest)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906260",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Rotherham United at York City",
-      "start_time": "2026-09-22T18:00Z",
-      "status": "UPCOMING",
-      "title": "Rotherham United at York City · 3 athletes",
-      "athletes": [
-        "Seymour Reid",
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Seymour Reid (New York City FC)",
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Seymour Reid (New York City FC) | Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401906258",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "English Football League (EFL) Trophy | Men",
-      "event": "Newcastle United U21 at Bradford City",
-      "start_time": "2026-09-22T18:30Z",
-      "status": "UPCOMING",
-      "title": "Newcastle United U21 at Bradford City · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401896298",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Challenge Cup | Men",
-      "event": "Cove Rangers at Fraserburgh",
-      "start_time": "2026-09-22T18:45Z",
-      "status": "UPCOMING",
-      "title": "Cove Rangers at Fraserburgh · 1 athlete",
-      "athletes": [
-        "Jules Bouffandeau"
-      ],
-      "triggers": [
-        "Known U18 — Jules Bouffandeau (Angers)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Jules Bouffandeau (Angers)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401896302",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Challenge Cup | Men",
-      "event": "Dundee United B at Edinburgh City",
-      "start_time": "2026-09-22T18:45Z",
-      "status": "UPCOMING",
-      "title": "Dundee United B at Edinburgh City · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401896299",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Challenge Cup | Men",
-      "event": "Montrose at Formartine United",
-      "start_time": "2026-09-22T18:45Z",
-      "status": "UPCOMING",
-      "title": "Montrose at Formartine United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401896306",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Challenge Cup | Men",
-      "event": "Rangers B at Clyde",
-      "start_time": "2026-09-22T18:45Z",
-      "status": "UPCOMING",
-      "title": "Rangers B at Clyde · 1 athlete",
-      "athletes": [
-        "Jules Bouffandeau"
-      ],
-      "triggers": [
-        "Known U18 — Jules Bouffandeau (Angers)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Jules Bouffandeau (Angers)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401896310",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Challenge Cup | Men",
-      "event": "Stranraer at Berwick Rangers",
-      "start_time": "2026-09-22T18:45Z",
-      "status": "UPCOMING",
-      "title": "Stranraer at Berwick Rangers · 1 athlete",
-      "athletes": [
-        "Jules Bouffandeau"
-      ],
-      "triggers": [
-        "Known U18 — Jules Bouffandeau (Angers)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Jules Bouffandeau (Angers)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401917015",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "UEFA Women’s Champions League | Women",
-      "event": "Benfica at Juventus",
-      "start_time": "2026-09-22T19:00Z",
-      "status": "UPCOMING",
-      "title": "Benfica at Juventus · 1 athlete",
-      "athletes": [
-        "José Neto"
-      ],
-      "triggers": [
-        "Known U18 — José Neto (Benfica)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — José Neto (Benfica)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401917016",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "UEFA Women’s Champions League | Women",
-      "event": "HB Køge at Arsenal",
-      "start_time": "2026-09-22T19:00Z",
-      "status": "UPCOMING",
-      "title": "HB Køge at Arsenal · 1 athlete",
-      "athletes": [
-        "Max Dowman"
-      ],
-      "triggers": [
-        "Known U18 — Max Dowman (Arsenal)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Max Dowman (Arsenal)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401917013",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "UEFA Women’s Champions League | Women",
-      "event": "Roma at OH Leuven",
-      "start_time": "2026-09-23T16:45Z",
-      "status": "UPCOMING",
-      "title": "Roma at OH Leuven · 1 athlete",
-      "athletes": [
-        "Antonio Arena"
-      ],
-      "triggers": [
-        "Known U18 — Antonio Arena (AS Roma)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Antonio Arena (AS Roma)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401917011",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "UEFA Women’s Champions League | Women",
-      "event": "Austria Vienna at Chelsea",
-      "start_time": "2026-09-23T19:00Z",
-      "status": "UPCOMING",
-      "title": "Austria Vienna at Chelsea · 1 athlete",
-      "athletes": [
-        "Reggie Watson"
-      ],
-      "triggers": [
-        "Known U18 — Reggie Watson (Chelsea)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Reggie Watson (Chelsea)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
       "key": "event|ne|Nebraska|Volleyball|2026-09-23|Missouri",
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs Missouri",
       "start_time": "2026-09-23T6:00 PM CDT",
@@ -2062,6 +1056,7 @@
       "severity": "RED",
       "type": "U18 EXPOSURE",
       "sport": "Soccer",
+      "game": null,
       "league": "MLS",
       "event": "Real Salt Lake at Seattle Sounders FC",
       "start_time": "2026-09-24T01:30Z",
@@ -2071,12 +1066,12 @@
         "Van Parker"
       ],
       "triggers": [
-        "Known U18 — Van Parker (Real Salt Lake)"
+        "Known U18 — Van Parker (Real Salt Lake) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
         "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Known U18 — Van Parker (Real Salt Lake)",
+      "reason": "Known U18 — Van Parker (Real Salt Lake) · EXACT TEAM + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
@@ -2084,6 +1079,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Softball",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs Scarlet vs. Cream",
       "start_time": "2026-09-24T3:30 PM CDT",
@@ -2104,6 +1100,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Women's Soccer",
+      "game": null,
       "league": "Omaha Collegiate",
       "event": "Omaha vs St. Thomas",
       "start_time": "2026-09-24T6:30 p.m. CT",
@@ -2124,6 +1121,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Men's Tennis",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Creighton Invite",
       "start_time": "2026-09-25",
@@ -2144,6 +1142,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Women's Tennis",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Bluejay Invite",
       "start_time": "2026-09-25",
@@ -2164,6 +1163,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Women's Tennis",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs Husker Invitational",
       "start_time": "2026-09-25",
@@ -2184,6 +1184,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Women's Tennis",
+      "game": null,
       "league": "Omaha Collegiate",
       "event": "Omaha vs Omaha/Creighton Invite",
       "start_time": "2026-09-25",
@@ -2200,82 +1201,11 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401861051",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "UEFA Nations League | Men",
-      "event": "Romania at Sweden",
-      "start_time": "2026-09-25T18:45Z",
-      "status": "UPCOMING",
-      "title": "Romania at Sweden · 1 athlete",
-      "athletes": [
-        "Antonio Arena"
-      ],
-      "triggers": [
-        "Known U18 — Antonio Arena (AS Roma)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Antonio Arena (AS Roma)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401878560",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "Scottish Championship | Men",
-      "event": "Stenhousemuir at Ayr United",
-      "start_time": "2026-09-25T18:45Z",
-      "status": "UPCOMING",
-      "title": "Stenhousemuir at Ayr United · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United)",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|401842256",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "league": "USL Championship | Men",
-      "event": "Loudoun United FC at Sporting JAX",
-      "start_time": "2026-09-25T23:30Z",
-      "status": "UPCOMING",
-      "title": "Loudoun United FC at Sporting JAX · 2 athletes",
-      "athletes": [
-        "Kamil Castillo",
-        "Oscar Avilez"
-      ],
-      "triggers": [
-        "Known U18 — Kamil Castillo (D.C. United)",
-        "Known U18 — Oscar Avilez (D.C. United)",
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.",
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Known U18 — Kamil Castillo (D.C. United) | Known U18 — Oscar Avilez (D.C. United) | USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings. Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
       "key": "event|ne|Nebraska|Swimming & Diving|2026-09-25|Nebraska Good Life Relays",
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Swimming & Diving",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs Nebraska Good Life Relays",
       "start_time": "2026-09-25T2:00 PM CDT",
@@ -2296,6 +1226,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Softball",
+      "game": null,
       "league": "Creighton Collegiate",
       "event": "Creighton vs Bellevue University",
       "start_time": "2026-09-25T5:00 P.M.",
@@ -2316,6 +1247,7 @@
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
       "sport": "Volleyball",
+      "game": null,
       "league": "Nebraska Collegiate",
       "event": "Nebraska vs Rutgers",
       "start_time": "2026-09-25T7:00 PM CDT",
@@ -2336,6 +1268,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "DarkZero vs. Shopify Rebellion",
       "start_time": "2026-09-18T20:00:00Z",
@@ -2356,6 +1289,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Outlast Gaming vs. Wildcard",
       "start_time": "2026-09-18T21:00:00Z",
@@ -2376,6 +1310,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Deportivo Pereira at Águilas Doradas",
       "start_time": "2026-09-18T21:00Z",
@@ -2396,6 +1331,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Cloud9 vs. For Fun Esports",
       "start_time": "2026-09-18T22:00:00Z",
@@ -2416,6 +1352,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "América Mineiro at Vila Nova",
       "start_time": "2026-09-18T22:30Z",
@@ -2436,6 +1373,7 @@
       "severity": "AMBER",
       "type": "NCAA AGE REVIEW",
       "sport": "Football",
+      "game": null,
       "league": "NCAA Football",
       "event": "Miami Hurricanes at Wake Forest Demon Deacons",
       "start_time": "2026-09-18T23:30Z",
@@ -2453,20 +1391,20 @@
         "Fred Sainteus"
       ],
       "triggers": [
-        "High-risk unresolved age — Vinny Gonzalez (Miami)",
-        "High-risk unresolved age — JJ Dunnigan (Miami)",
-        "High-risk unresolved age — Logan Nagle (Miami)",
-        "High-risk unresolved age — Vance Diepenbrock (Miami)",
-        "High-risk unresolved age — Ralph Scroggins (Miami)",
-        "High-risk unresolved age — Joel Ervin (Miami)",
-        "High-risk unresolved age — Tyran Evans (Miami)",
-        "High-risk unresolved age — Jack Nickel (Miami)",
-        "High-risk unresolved age — Fred Sainteus (Miami)"
+        "High-risk unresolved age — Vinny Gonzalez (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — JJ Dunnigan (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Logan Nagle (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Vance Diepenbrock (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Ralph Scroggins (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Joel Ervin (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Tyran Evans (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Jack Nickel (Miami) · APPROVED ALIAS",
+        "High-risk unresolved age — Fred Sainteus (Miami) · APPROVED ALIAS"
       ],
       "staff_actions": [
         "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
       ],
-      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Fred Sainteus (Miami)",
+      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) · APPROVED ALIAS | High-risk unresolved age — JJ Dunnigan (Miami) · APPROVED ALIAS | High-risk unresolved age — Logan Nagle (Miami) · APPROVED ALIAS | High-risk unresolved age — Vance Diepenbrock (Miami) · APPROVED ALIAS | High-risk unresolved age — Ralph Scroggins (Miami) · APPROVED ALIAS | High-risk unresolved age — Joel Ervin (Miami) · APPROVED ALIAS | High-risk unresolved age — Tyran Evans (Miami) · APPROVED ALIAS | High-risk unresolved age — Jack Nickel (Miami) · APPROVED ALIAS | High-risk unresolved age — Fred Sainteus (Miami) · APPROVED ALIAS",
       "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
     },
     {
@@ -2474,6 +1412,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Novorizontino at Ceará",
       "start_time": "2026-09-18T23:30Z",
@@ -2494,6 +1433,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Atlético Goianiense at São Bernardo",
       "start_time": "2026-09-19T00:00Z",
@@ -2514,6 +1454,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Leviatan vs. Tyloo",
       "start_time": "2026-09-19T05:30:00Z",
@@ -2534,6 +1475,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "All Gamers vs. Four Angry Men",
       "start_time": "2026-09-19T09:00:00Z",
@@ -2554,6 +1496,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "KINOTROPE Gaming vs. Trippy Main Telecom",
       "start_time": "2026-09-19T09:00:00Z",
@@ -2574,6 +1517,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "RRX vs. SCARZ",
       "start_time": "2026-09-19T10:00:00Z",
@@ -2594,6 +1538,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Can You Be My Enemy vs. CAG by VARREL",
       "start_time": "2026-09-19T11:00:00Z",
@@ -2610,30 +1555,11 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|401902913",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "league": "Super League | Women",
-      "event": "London City Lionesses at Charlton Athletic",
-      "start_time": "2026-09-19T11:30Z",
-      "status": "UPCOMING",
-      "title": "London City Lionesses at Charlton Athletic",
-      "athletes": [],
-      "triggers": [
-        "USL Super League | Women - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL Super League | Women - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
       "key": "event|esports-r6-regional-8173",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Dplus KIA vs. BNK FEARX",
       "start_time": "2026-09-19T12:00:00Z",
@@ -2654,6 +1580,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Titan Esports Club vs. Pozy",
       "start_time": "2026-09-19T12:30:00Z",
@@ -2674,6 +1601,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Alanyaspor at Çorum FK",
       "start_time": "2026-09-19T14:00Z",
@@ -2694,6 +1622,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Gaziantep FK at Kocaelispor",
       "start_time": "2026-09-19T14:00Z",
@@ -2714,6 +1643,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "LOUD vs. FURIA",
       "start_time": "2026-09-19T16:00:00Z",
@@ -2734,6 +1664,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Galatasaray at Trabzonspor",
       "start_time": "2026-09-19T17:00Z",
@@ -2754,6 +1685,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Genclerbirligi at Istanbul Basaksehir",
       "start_time": "2026-09-19T17:00Z",
@@ -2774,6 +1706,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "LOS vs. Fluxo W7M",
       "start_time": "2026-09-19T17:15:00Z",
@@ -2794,6 +1727,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Lucky Five vs. Imperial Esports",
       "start_time": "2026-09-19T18:30:00Z",
@@ -2814,6 +1748,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Boyacá Chicó FC at Millonarios",
       "start_time": "2026-09-19T19:00Z",
@@ -2834,6 +1769,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Chapecoense at Atlético-MG",
       "start_time": "2026-09-19T19:00Z",
@@ -2850,48 +1786,11 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|401856797",
-      "severity": "AMBER",
-      "type": "NCAA AGE REVIEW",
-      "sport": "Football",
-      "league": "NCAA Football",
-      "event": "Miami (OH) RedHawks at Cincinnati Bearcats",
-      "start_time": "2026-09-19T19:30Z",
-      "status": "UPCOMING",
-      "title": "Miami (OH) RedHawks at Cincinnati Bearcats · 9 athletes",
-      "athletes": [
-        "Vinny Gonzalez",
-        "JJ Dunnigan",
-        "Logan Nagle",
-        "Vance Diepenbrock",
-        "Ralph Scroggins",
-        "Joel Ervin",
-        "Tyran Evans",
-        "Jack Nickel",
-        "Fred Sainteus"
-      ],
-      "triggers": [
-        "High-risk unresolved age — Vinny Gonzalez (Miami)",
-        "High-risk unresolved age — JJ Dunnigan (Miami)",
-        "High-risk unresolved age — Logan Nagle (Miami)",
-        "High-risk unresolved age — Vance Diepenbrock (Miami)",
-        "High-risk unresolved age — Ralph Scroggins (Miami)",
-        "High-risk unresolved age — Joel Ervin (Miami)",
-        "High-risk unresolved age — Tyran Evans (Miami)",
-        "High-risk unresolved age — Jack Nickel (Miami)",
-        "High-risk unresolved age — Fred Sainteus (Miami)"
-      ],
-      "staff_actions": [
-        "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
-      ],
-      "reason": "High-risk unresolved age — Vinny Gonzalez (Miami) | High-risk unresolved age — JJ Dunnigan (Miami) | High-risk unresolved age — Logan Nagle (Miami) | High-risk unresolved age — Vance Diepenbrock (Miami) | High-risk unresolved age — Ralph Scroggins (Miami) | High-risk unresolved age — Joel Ervin (Miami) | High-risk unresolved age — Tyran Evans (Miami) | High-risk unresolved age — Jack Nickel (Miami) | High-risk unresolved age — Fred Sainteus (Miami)",
-      "staff_action": "Prioritize age verification for high-risk roster candidates tied to this upcoming game."
-    },
-    {
       "key": "event|401860346",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Juventude at Sport",
       "start_time": "2026-09-19T19:30Z",
@@ -2912,6 +1811,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Black Dragons vs. Team Liquid Alienware",
       "start_time": "2026-09-19T19:45:00Z",
@@ -2932,6 +1832,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Botafogo at Mirassol",
       "start_time": "2026-09-19T20:00Z",
@@ -2952,6 +1853,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "INTZ vs. FaZe Clan",
       "start_time": "2026-09-19T21:00:00Z",
@@ -2972,6 +1874,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Independiente Santa Fe at Alianza FC",
       "start_time": "2026-09-19T21:05Z",
@@ -2992,6 +1895,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Botafogo-SP at Athletic",
       "start_time": "2026-09-19T21:30Z",
@@ -3012,6 +1916,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Santos at Remo",
       "start_time": "2026-09-19T21:30Z",
@@ -3032,6 +1937,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "Charlotte Independence at Richmond Kickers",
       "start_time": "2026-09-19T22:00Z",
@@ -3052,6 +1958,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "AV Alta FC at Forward Madison FC",
       "start_time": "2026-09-19T23:00Z",
@@ -3072,6 +1979,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "FC Tulsa at Brooklyn FC",
       "start_time": "2026-09-19T23:00Z",
@@ -3088,10 +1996,32 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401842234",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "USL Championship | Men",
+      "event": "Loudoun United FC at Louisville City FC",
+      "start_time": "2026-09-19T23:00Z",
+      "status": "UPCOMING",
+      "title": "Loudoun United FC at Louisville City FC",
+      "athletes": [],
+      "triggers": [
+        "USL Championship | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401842222",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Monterey Bay at Charleston Battery",
       "start_time": "2026-09-19T23:00Z",
@@ -3112,6 +2042,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Orange County SC at Lexington",
       "start_time": "2026-09-19T23:00Z",
@@ -3132,6 +2063,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Pittsburgh Riverhounds at Detroit City FC",
       "start_time": "2026-09-19T23:00Z",
@@ -3152,6 +2084,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "Portland Hearts of Pine at Chattanooga Red Wolves",
       "start_time": "2026-09-19T23:00Z",
@@ -3172,6 +2105,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "Westchester SC at New York Cosmos",
       "start_time": "2026-09-19T23:00Z",
@@ -3192,6 +2126,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Cúcuta Deportivo at Deportivo Cali",
       "start_time": "2026-09-19T23:10Z",
@@ -3212,6 +2147,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Birmingham Legion FC at Tampa Bay Rowdies",
       "start_time": "2026-09-19T23:30Z",
@@ -3232,6 +2168,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Coritiba at Vasco da Gama",
       "start_time": "2026-09-19T23:30Z",
@@ -3252,6 +2189,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "FC Naples at Fort Wayne",
       "start_time": "2026-09-19T23:30Z",
@@ -3272,6 +2210,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "Greenville Triumph at Sarasota Paradise",
       "start_time": "2026-09-19T23:30Z",
@@ -3292,6 +2231,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Miami FC at Rhode Island FC",
       "start_time": "2026-09-19T23:30Z",
@@ -3312,6 +2252,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Internacional at São Paulo",
       "start_time": "2026-09-20T00:00Z",
@@ -3332,6 +2273,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "One Knoxville at Union Omaha",
       "start_time": "2026-09-20T00:00Z",
@@ -3348,10 +2290,32 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401842226",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "USL Championship | Men",
+      "event": "New Mexico United at Colorado Springs Switchbacks FC",
+      "start_time": "2026-09-20T01:00Z",
+      "status": "UPCOMING",
+      "title": "New Mexico United at Colorado Springs Switchbacks FC",
+      "athletes": [],
+      "triggers": [
+        "USL Championship | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401878003",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Once Caldas at Deportivo Pasto",
       "start_time": "2026-09-20T01:15Z",
@@ -3372,6 +2336,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "El Paso Locomotive FC at Phoenix Rising FC",
       "start_time": "2026-09-20T02:00Z",
@@ -3392,6 +2357,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Hartford Athletic at Las Vegas Lights FC",
       "start_time": "2026-09-20T02:30Z",
@@ -3408,10 +2374,32 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401922337",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Papua New Guinea at New Caledonia",
+      "start_time": "2026-09-20T04:00Z",
+      "status": "UPCOMING",
+      "title": "Papua New Guinea at New Caledonia",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|esports-r6-regional-8707",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Kingzero eSports vs. Edward Gaming",
       "start_time": "2026-09-20T05:30:00Z",
@@ -3428,10 +2416,32 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401922318",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Vanuatu at Fiji",
+      "start_time": "2026-09-20T07:00Z",
+      "status": "UPCOMING",
+      "title": "Vanuatu at Fiji",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|esports-r6-regional-8708",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "All Gamers vs. One Coin",
       "start_time": "2026-09-20T09:00:00Z",
@@ -3452,6 +2462,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Pozy vs. LGD Gaming",
       "start_time": "2026-09-20T12:30:00Z",
@@ -3472,6 +2483,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "CRB at Ponte Preta",
       "start_time": "2026-09-20T14:00Z",
@@ -3492,6 +2504,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Eyupspor at Fenerbahce",
       "start_time": "2026-09-20T14:00Z",
@@ -3512,6 +2525,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Palmeiras at Grêmio",
       "start_time": "2026-09-20T14:00Z",
@@ -3532,6 +2546,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Samsunspor at Erzurum BB",
       "start_time": "2026-09-20T14:00Z",
@@ -3552,6 +2567,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "LOUD vs. Imperial Esports",
       "start_time": "2026-09-20T16:00:00Z",
@@ -3572,6 +2588,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Besiktas at Amed SFK",
       "start_time": "2026-09-20T17:00Z",
@@ -3592,6 +2609,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Süper Lig | Men",
       "event": "Caykur Rizespor at Goztepe",
       "start_time": "2026-09-20T17:00Z",
@@ -3612,6 +2630,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "LOS vs. Lucky Five",
       "start_time": "2026-09-20T17:15:00Z",
@@ -3632,6 +2651,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Black Dragons vs. FURIA",
       "start_time": "2026-09-20T18:30:00Z",
@@ -3652,6 +2672,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Atlético Junior at Fortaleza CEIF",
       "start_time": "2026-09-20T19:00Z",
@@ -3672,6 +2693,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Avaí at Goiás",
       "start_time": "2026-09-20T19:00Z",
@@ -3692,6 +2714,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Cruzeiro at Vitória",
       "start_time": "2026-09-20T19:00Z",
@@ -3712,6 +2735,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Fluminense at Corinthians",
       "start_time": "2026-09-20T19:00Z",
@@ -3732,6 +2756,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "INTZ vs. Fluxo W7M",
       "start_time": "2026-09-20T19:45:00Z",
@@ -3752,6 +2777,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "FaZe Clan vs. Team Liquid Alienware",
       "start_time": "2026-09-20T21:00:00Z",
@@ -3772,6 +2798,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Oakland Roots at Indy Eleven",
       "start_time": "2026-09-20T21:00Z",
@@ -3792,6 +2819,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Internacional de Bogotá at Atlético Bucaramanga",
       "start_time": "2026-09-20T21:05Z",
@@ -3812,6 +2840,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Fortaleza at Londrina",
       "start_time": "2026-09-20T21:30Z",
@@ -3832,6 +2861,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Red Bull Bragantino at Flamengo",
       "start_time": "2026-09-20T21:30Z",
@@ -3852,6 +2882,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série A | Men",
       "event": "Bahia at Athletico-PR",
       "start_time": "2026-09-20T22:30Z",
@@ -3872,6 +2903,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL League One (USL1) | Men",
       "event": "Athletic Club Boise at Spokane Velocity FC",
       "start_time": "2026-09-20T23:00Z",
@@ -3892,6 +2924,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "San Antonio FC at Sacramento Republic FC",
       "start_time": "2026-09-20T23:00Z",
@@ -3912,6 +2945,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "América de Cali at Deportes Tolima",
       "start_time": "2026-09-20T23:10Z",
@@ -3932,6 +2966,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Atlético Nacional at Llaneros FC",
       "start_time": "2026-09-21T01:15Z",
@@ -3952,6 +2987,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Solomon Islands at New Caledonia",
       "start_time": "2026-09-21T04:00Z",
@@ -3972,6 +3008,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Vanuatu at Fiji",
       "start_time": "2026-09-21T07:00Z",
@@ -3992,6 +3029,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Team Anios vs. Arcade",
       "start_time": "2026-09-21T08:00:00Z",
@@ -4012,6 +3050,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Circular Spheres vs. Shaiikademy",
       "start_time": "2026-09-21T09:00:00Z",
@@ -4032,6 +3071,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "ENTERPRISE Esports vs. 7VEN",
       "start_time": "2026-09-21T10:00:00Z",
@@ -4052,6 +3092,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Man LFO vs. Chiefs Esports Club",
       "start_time": "2026-09-21T11:00:00Z",
@@ -4072,6 +3113,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Virtus.pro vs. Twisted Minds",
       "start_time": "2026-09-21T16:00:00Z",
@@ -4092,6 +3134,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Team Falcons vs. Team Heretics",
       "start_time": "2026-09-21T17:00:00Z",
@@ -4112,6 +3155,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Shifters vs. G2 Esports",
       "start_time": "2026-09-21T18:00:00Z",
@@ -4132,6 +3176,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Fnatic vs. RBLS Gaming",
       "start_time": "2026-09-21T19:00:00Z",
@@ -4152,6 +3197,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Team Secret vs. Geekay Esports",
       "start_time": "2026-09-21T20:00:00Z",
@@ -4172,6 +3218,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Operário PR at Criciúma",
       "start_time": "2026-09-21T22:30Z",
@@ -4192,6 +3239,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Anguilla at Dominica",
       "start_time": "2026-09-22T00:00Z",
@@ -4212,6 +3260,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Náutico at Cuiabá",
       "start_time": "2026-09-22T00:30Z",
@@ -4232,6 +3281,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Shaiikademy vs. Man LFO",
       "start_time": "2026-09-22T08:00:00Z",
@@ -4252,6 +3302,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "7VEN vs. Circular Spheres",
       "start_time": "2026-09-22T09:00:00Z",
@@ -4272,6 +3323,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Arcade vs. ENTERPRISE Esports",
       "start_time": "2026-09-22T10:00:00Z",
@@ -4292,6 +3344,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Chiefs Esports Club vs. Team Anios",
       "start_time": "2026-09-22T11:00:00Z",
@@ -4312,6 +3365,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Shifters vs. RBLS Gaming",
       "start_time": "2026-09-22T16:00:00Z",
@@ -4332,6 +3386,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Team Secret vs. Twisted Minds",
       "start_time": "2026-09-22T17:00:00Z",
@@ -4352,6 +3407,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Virtus.pro vs. Team Falcons",
       "start_time": "2026-09-22T18:00:00Z",
@@ -4372,6 +3428,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "G2 Esports vs. Team Heretics",
       "start_time": "2026-09-22T19:00:00Z",
@@ -4392,6 +3449,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Fnatic vs. Geekay Esports",
       "start_time": "2026-09-22T20:00:00Z",
@@ -4412,6 +3470,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Jaguares de Córdoba at Independiente Medellín",
       "start_time": "2026-09-22T23:00Z",
@@ -4432,6 +3491,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Deportivo Cali at Independiente Santa Fe",
       "start_time": "2026-09-23T01:00Z",
@@ -4448,10 +3508,53 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401922336",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "New Caledonia at Vanuatu",
+      "start_time": "2026-09-23T04:00Z",
+      "status": "UPCOMING",
+      "title": "New Caledonia at Vanuatu",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401922317",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Solomon Islands at Fiji",
+      "start_time": "2026-09-23T07:00Z",
+      "status": "UPCOMING",
+      "title": "Solomon Islands at Fiji",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|esports-r6-regional-8202",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Sharper Esports vs. F5 Esports",
       "start_time": "2026-09-23T10:00:00Z",
@@ -4472,6 +3575,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "FURY vs. 999",
       "start_time": "2026-09-23T11:00:00Z",
@@ -4492,6 +3596,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Weibo Gaming vs. Elevate",
       "start_time": "2026-09-23T12:00:00Z",
@@ -4512,6 +3617,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Dolphin Esports vs. Daystar",
       "start_time": "2026-09-23T13:00:00Z",
@@ -4532,6 +3638,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Brooklyn FC at Birmingham Legion FC",
       "start_time": "2026-09-23T16:00Z",
@@ -4552,6 +3659,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Sao Tome and Principe at Gibraltar",
       "start_time": "2026-09-23T16:00Z",
@@ -4572,6 +3680,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Tajikistan at Azerbaijan",
       "start_time": "2026-09-23T16:00Z",
@@ -4592,6 +3701,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Águilas Doradas at América de Cali",
       "start_time": "2026-09-24T00:30Z",
@@ -4612,6 +3722,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Vanuatu at Solomon Islands",
       "start_time": "2026-09-24T04:00Z",
@@ -4632,6 +3743,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Titan Esports Club vs. Leviatan",
       "start_time": "2026-09-24T05:30:00Z",
@@ -4652,6 +3764,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "New Caledonia at Papua New Guinea",
       "start_time": "2026-09-24T07:00Z",
@@ -4672,6 +3785,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Kingzero eSports vs. LGD Gaming",
       "start_time": "2026-09-24T09:00:00Z",
@@ -4692,6 +3806,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "New Zealand at Palestine",
       "start_time": "2026-09-24T09:30Z",
@@ -4712,6 +3827,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Dolphin Esports vs. 999",
       "start_time": "2026-09-24T10:00:00Z",
@@ -4732,6 +3848,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Uruguay at Japan",
       "start_time": "2026-09-24T10:05Z",
@@ -4752,6 +3869,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Elevate vs. F5 Esports",
       "start_time": "2026-09-24T11:00:00Z",
@@ -4772,6 +3890,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Ecuador at South Korea",
       "start_time": "2026-09-24T11:00Z",
@@ -4792,6 +3911,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Maldives at China",
       "start_time": "2026-09-24T11:35Z",
@@ -4812,6 +3932,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Sharper Esports vs. FURY",
       "start_time": "2026-09-24T12:00:00Z",
@@ -4832,6 +3953,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Tyloo vs. One Coin",
       "start_time": "2026-09-24T12:30:00Z",
@@ -4852,6 +3974,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Weibo Gaming vs. Daystar",
       "start_time": "2026-09-24T13:00:00Z",
@@ -4872,6 +3995,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Iran at Uzbekistan",
       "start_time": "2026-09-24T14:00Z",
@@ -4892,6 +4016,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Five Fears vs. 100 Thieves",
       "start_time": "2026-09-24T18:00:00Z",
@@ -4912,6 +4037,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Spacestation Gaming vs. Shopify Rebellion",
       "start_time": "2026-09-24T19:00:00Z",
@@ -4932,6 +4058,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Cloud9 vs. M80",
       "start_time": "2026-09-24T20:00:00Z",
@@ -4952,6 +4079,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "For Fun Esports vs. Wildcard",
       "start_time": "2026-09-24T21:00:00Z",
@@ -4972,6 +4100,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "DarkZero vs. Outlast Gaming",
       "start_time": "2026-09-24T22:00:00Z",
@@ -4992,6 +4121,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Millonarios at Atlético Nacional",
       "start_time": "2026-09-25T00:30Z",
@@ -5012,6 +4142,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Titan Esports Club vs. Four Angry Men",
       "start_time": "2026-09-25T05:30:00Z",
@@ -5032,6 +4163,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Trippy Main Telecom vs. Can You Be My Enemy",
       "start_time": "2026-09-25T09:00:00Z",
@@ -5052,6 +4184,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Tyloo vs. Edward Gaming",
       "start_time": "2026-09-25T09:00:00Z",
@@ -5072,6 +4205,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "BNK FEARX vs. SCARZ",
       "start_time": "2026-09-25T10:00:00Z",
@@ -5092,6 +4226,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Brazil at Australia",
       "start_time": "2026-09-25T10:00Z",
@@ -5112,6 +4247,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "KINOTROPE Gaming vs. RRX",
       "start_time": "2026-09-25T11:00:00Z",
@@ -5132,6 +4268,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "CAG by VARREL vs. Dplus KIA",
       "start_time": "2026-09-25T12:00:00Z",
@@ -5152,6 +4289,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Kingzero eSports vs. One Coin",
       "start_time": "2026-09-25T12:30:00Z",
@@ -5172,6 +4310,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "International Friendlies | Men",
       "event": "Panama at India",
       "start_time": "2026-09-25T14:00Z",
@@ -5192,6 +4331,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Wildcard vs. Five Fears",
       "start_time": "2026-09-25T18:00:00Z",
@@ -5212,6 +4352,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "100 Thieves vs. Outlast Gaming",
       "start_time": "2026-09-25T19:00:00Z",
@@ -5232,6 +4373,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Spacestation Gaming vs. DarkZero",
       "start_time": "2026-09-25T20:00:00Z",
@@ -5252,6 +4394,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "M80 vs. For Fun Esports",
       "start_time": "2026-09-25T21:00:00Z",
@@ -5272,6 +4415,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Esports",
+      "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
       "event": "Shopify Rebellion vs. Cloud9",
       "start_time": "2026-09-25T22:00:00Z",
@@ -5292,6 +4436,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "São Bernardo at Novorizontino",
       "start_time": "2026-09-25T22:30Z",
@@ -5312,6 +4457,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "Louisville City FC at Hartford Athletic",
       "start_time": "2026-09-25T23:00Z",
@@ -5332,6 +4478,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Deportivo Pasto at Boyacá Chicó FC",
       "start_time": "2026-09-25T23:10Z",
@@ -5352,6 +4499,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Londrina at Vila Nova",
       "start_time": "2026-09-25T23:30Z",
@@ -5368,10 +4516,32 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401842256",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "USL Championship | Men",
+      "event": "Loudoun United FC at Sporting JAX",
+      "start_time": "2026-09-25T23:30Z",
+      "status": "UPCOMING",
+      "title": "Loudoun United FC at Sporting JAX",
+      "athletes": [],
+      "triggers": [
+        "USL Championship | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401842248",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "USL Championship | Men",
       "event": "FC Tulsa at El Paso Locomotive FC",
       "start_time": "2026-09-26T01:00Z",
@@ -5392,6 +4562,7 @@
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Soccer",
+      "game": null,
       "league": "Primera A | Men",
       "event": "Atlético Bucaramanga at Once Caldas",
       "start_time": "2026-09-26T01:15Z",
