@@ -3,6 +3,7 @@ from pathlib import Path
 import json, datetime, requests, re, time, html
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -130,7 +131,7 @@ def parse_event(source, ev):
         location=f"{venue} · {location}"
     elif venue:
         location=venue
-    return {
+    parsed = {
         "id":str(ev.get("id") or f'{source["id"]}-{dt}-{name}'),
         "source_id":source["id"],
         "sport":source["sport"],
@@ -144,6 +145,20 @@ def parse_event(source, ev):
         "location":location or None,
         "source_endpoint":source["endpoint"]
     }
+    # Cricket fixtures can remain live for several days. Keep the official
+    # first-ball timestamp for auditability, but anchor an active match to the
+    # current review day so it remains visible in Review Today.
+    if source.get("sport")=="Cricket" and status=="LIVE" and dt:
+        try:
+            original=datetime.datetime.fromisoformat(str(dt).replace("Z","+00:00"))
+            if original.astimezone(TZ).date()<TODAY:
+                parsed["original_start_time"]=dt
+                review_time=datetime.datetime.combine(TODAY,datetime.time(0,1),tzinfo=TZ)
+                parsed["start_time"]=review_time.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+                parsed["status_detail"]=f"Live · began {original.astimezone(TZ).date().isoformat()}"
+        except Exception:
+            pass
+    return parsed
 
 def parse_thesportsdb_event(source, ev):
     timestamp=ev.get("strTimestamp")
@@ -336,6 +351,51 @@ for source in CFG.get("sources",[]):
             **source,
             "approved_catalog":True,
             "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type")=="espn-daily":
+        def fetch_espn_day(day):
+            last_error=None
+            for attempt in range(3):
+                try:
+                    r=requests.get(
+                        source["endpoint"],
+                        params={"dates":day.strftime("%Y%m%d"),"limit":"1000"},
+                        headers=HEADERS,
+                        timeout=25
+                    )
+                    r.raise_for_status()
+                    return day,r.json()
+                except Exception as exc:
+                    last_error=exc
+                    if attempt<2:
+                        time.sleep(1.5*(attempt+1))
+            raise last_error or RuntimeError("ESPN daily request failed")
+
+        days=[TODAY+datetime.timedelta(days=offset) for offset in range((END-TODAY).days+1)]
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            futures={pool.submit(fetch_espn_day,day):day for day in days}
+            for future in as_completed(futures):
+                day=futures[future]
+                try:
+                    _,data=future.result()
+                    for ev in data.get("events",[]):
+                        parsed=parse_event(source,ev)
+                        key=(parsed["id"],parsed["start_time"])
+                        if key in seen:
+                            continue
+                        seen.add(key)
+                        events.append(parsed)
+                        count+=1
+                except Exception as e:
+                    errors.append(f"{day.isoformat()}: {str(e)[:110]}")
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors or count>0,
             "events":count,
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
