@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, re, datetime, requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import json, re, datetime, requests, time
 from bs4 import BeautifulSoup
 from zoneinfo import ZoneInfo
 
@@ -14,20 +15,47 @@ END=TODAY+datetime.timedelta(days=7)
 HEADERS={"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
 
 SOURCES=[
+    {"school":"Nebraska","sport":"Baseball","url":"https://huskers.com/sports/baseball/schedule","parser":"nebraska","allow_unpublished":True},
+    {"school":"Nebraska","sport":"Beach Volleyball","url":"https://huskers.com/sports/beach-volleyball/schedule","parser":"nebraska"},
     {"school":"Nebraska","sport":"Football","url":"https://huskers.com/sports/football/schedule","parser":"nebraska"},
-    {"school":"Nebraska","sport":"Volleyball","url":"https://huskers.com/sports/volleyball/schedule?view=list","parser":"nebraska"},
-    {"school":"Nebraska","sport":"Women's Soccer","url":"https://huskers.com/sports/soccer/schedule/season/2026","parser":"nebraska"},
     {"school":"Nebraska","sport":"Men's Basketball","url":"https://huskers.com/sports/mens-basketball/schedule","parser":"nebraska"},
     {"school":"Nebraska","sport":"Women's Basketball","url":"https://huskers.com/sports/womens-basketball/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Men's Golf","url":"https://huskers.com/sports/mens-golf/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Women's Golf","url":"https://huskers.com/sports/womens-golf/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Men's Tennis","url":"https://huskers.com/sports/mens-tennis/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Women's Tennis","url":"https://huskers.com/sports/womens-tennis/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Women's Soccer","url":"https://huskers.com/sports/soccer/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Softball","url":"https://huskers.com/sports/softball/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Swimming & Diving","url":"https://huskers.com/sports/swimming-and-diving/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Track & Field","url":"https://huskers.com/sports/track-and-field/schedule","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Volleyball","url":"https://huskers.com/sports/volleyball/schedule?view=list","parser":"nebraska"},
+    {"school":"Nebraska","sport":"Wrestling","url":"https://huskers.com/sports/wrestling/schedule","parser":"nebraska"},
 
-    {"school":"Creighton","sport":"Men's Soccer","url":"https://gocreighton.com/sports/mens-soccer/schedule/text","parser":"creighton"},
-    {"school":"Creighton","sport":"Women's Soccer","url":"https://gocreighton.com/sports/womens-soccer/schedule/text","parser":"creighton"},
-    {"school":"Creighton","sport":"Volleyball","url":"https://gocreighton.com/sports/womens-volleyball/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Baseball","url":"https://gocreighton.com/sports/baseball/schedule/text","parser":"creighton"},
     {"school":"Creighton","sport":"Men's Basketball","url":"https://gocreighton.com/sports/mens-basketball/schedule/text","parser":"creighton"},
     {"school":"Creighton","sport":"Women's Basketball","url":"https://gocreighton.com/sports/womens-basketball/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Men's Golf","url":"https://gocreighton.com/sports/mens-golf/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Women's Golf","url":"https://gocreighton.com/sports/womens-golf/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Men's Soccer","url":"https://gocreighton.com/sports/mens-soccer/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Women's Soccer","url":"https://gocreighton.com/sports/womens-soccer/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Softball","url":"https://gocreighton.com/sports/softball/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Men's Tennis","url":"https://gocreighton.com/sports/mens-tennis/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Women's Tennis","url":"https://gocreighton.com/sports/womens-tennis/schedule/text","parser":"creighton"},
+    {"school":"Creighton","sport":"Volleyball","url":"https://gocreighton.com/sports/womens-volleyball/schedule/text","parser":"creighton"},
 
+    {"school":"Omaha","sport":"Baseball","url":"https://omahamavs.com/sports/baseball/schedule","parser":"omaha"},
     {"school":"Omaha","sport":"Men's Basketball","url":"https://omahamavs.com/sports/mens-basketball/schedule","parser":"omaha"},
-    {"school":"Omaha","sport":"Women's Basketball","url":"https://omahamavs.com/sports/womens-basketball/schedule/2026-27","parser":"omaha"}
+    {"school":"Omaha","sport":"Women's Basketball","url":"https://omahamavs.com/sports/womens-basketball/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Men's Golf","url":"https://omahamavs.com/sports/mens-golf/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Women's Golf","url":"https://omahamavs.com/sports/womens-golf/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Hockey","url":"https://omahamavs.com/sports/mens-ice-hockey/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Men's Soccer","url":"https://omahamavs.com/sports/mens-soccer/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Women's Soccer","url":"https://omahamavs.com/sports/womens-soccer/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Softball","url":"https://omahamavs.com/sports/softball/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Men's Tennis","url":"https://omahamavs.com/sports/mens-tennis/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Women's Tennis","url":"https://omahamavs.com/sports/womens-tennis/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Track & Field","url":"https://omahamavs.com/sports/womens-track-and-field/schedule","parser":"omaha"},
+    {"school":"Omaha","sport":"Volleyball","url":"https://omahamavs.com/sports/womens-volleyball/schedule","parser":"omaha"}
 ]
 
 MONTHS={m:i for i,m in enumerate(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],1)}
@@ -55,7 +83,8 @@ def parse_creighton(src, source):
     soup=BeautifulSoup(src,"html.parser")
     events=[]
     table=soup.find("table")
-    if not table: return events
+    if not table:
+        raise ValueError("Creighton schedule table was not found; source markup may have changed")
     headers=[clean(x.get_text(" ",strip=True)).lower() for x in table.find_all("th")]
     for tr in table.find_all("tr"):
         tds=tr.find_all("td")
@@ -87,77 +116,61 @@ def parse_creighton(src, source):
 
 def parse_nebraska(src, source):
     soup=BeautifulSoup(src,"html.parser")
-    # The Nebraska site exposes readable schedule content in page text.
-    lines=[clean(x) for x in soup.get_text("\n").splitlines() if clean(x)]
     events=[]
-    site_tokens={"Home":"HOME","Away":"AWAY","Neutral":"NEUTRAL"}
-    i=0
-    while i<len(lines):
-        if lines[i] not in site_tokens:
-            i+=1; continue
-        site=site_tokens[lines[i]]
-        block=lines[i:i+18]
-        # find date in block
-        date=None; date_idx=None
-        for j,x in enumerate(block[1:],start=1):
-            d=parse_date_text(x)
-            if d:
-                date=d; date_idx=j; break
-        if not date:
-            i+=1; continue
-        # jump if outside window but still advance to next event
-        # time
-        time="TBA"
-        for x in block[date_idx+1:]:
-            if re.search(r"\b\d{1,2}:\d{2}\s*(AM|PM)\b",x,re.I) or x.upper()=="TBA":
-                time=x; break
-        # opponent after vs./at token
-        opp=""
-        for j,x in enumerate(block):
-            if x.lower() in ("vs.","vs","at"):
-                for y in block[j+1:j+5]:
-                    if re.fullmatch(r"#\d+",y): continue
-                    if y.lower() in ("opens in a new window","open info","watch","listen","live stats"): continue
-                    if not re.search(r"\b(AM|PM)\b",y,re.I):
-                        opp=y; break
-                if opp: break
-        # location: line after opponent that looks geographic/stadium-ish
-        loc=""
-        if opp in block:
-            oi=block.index(opp)
-            for y in block[oi+1:oi+5]:
-                low=y.lower()
-                if any(k in low for k in ["open info","watch","listen","box score","recap","buy tickets","preview"]): continue
-                if y in site_tokens or y.lower() in ("vs.","vs","at"): continue
-                loc=y; break
+    site_tokens={"home":"HOME","away":"AWAY","neutral":"NEUTRAL"}
 
-        result=""
-        status="SCHEDULED"
-        for x in block[date_idx+1:date_idx+5]:
-            if re.match(r"^(W|L|T)\b",x):
-                result=x; status="FINAL"; break
+    # Nebraska's WMT pages expose stable, field-specific schedule markup. Parse
+    # those fields directly so promotional labels (for example "Ag Day" or
+    # "RESCHEDULED FROM 9/6") cannot shift into opponent and location values.
+    schedule_items=soup.select(".schedule-event-item")
+    if not schedule_items:
+        raise ValueError("Nebraska schedule event markup was not found; source markup may have changed")
+    for item in schedule_items:
+        site_node=item.select_one(".schedule-event-venue__type-label")
+        date_node=item.select_one(".schedule-event-date__label")
+        opponent_node=item.select_one(".schedule-event-item-default__opponent-name")
+        location_node=item.select_one(".schedule-event-item-default__location")
+        result_node=item.select_one(".schedule-event-item-result__label")
+        promo_node=item.select_one(".schedule-event-item-default__promo-title")
 
-        phase="EXHIBITION" if any("exhibition" in x.lower() for x in block) else "REGULAR SEASON"
-
-        # Guard against the Nebraska page's decorative Home/Away/Neutral labels
-        # being mistaken for the start of a new event. A malformed block typically
-        # shifts the venue into "opponent" and the weekday into "location".
-        weekday_loc=loc.lower() in {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"}
-        opponent_looks_like_venue=bool(
-            re.search(r"\b(lincoln|omaha),\s*(neb|ne)\b",opp,re.I)
-            or any(v in opp.lower() for v in ("sports center","stadium","arena","field"))
-        )
-        if weekday_loc or opponent_looks_like_venue:
-            i += max(1,date_idx+2)
+        site=site_tokens.get(clean(site_node.get_text(" ",strip=True)).lower() if site_node else "","UNKNOWN")
+        date=parse_date_text(clean(date_node.get_text(" ",strip=True)) if date_node else "")
+        if not date or not (TODAY <= date <= END):
             continue
 
-        if TODAY <= date <= END:
-            events.append({
-                "school":source["school"],"sport":source["sport"],"date":date.isoformat(),
-                "time":time,"site":site,"opponent":opp or "TBA","location":loc,
-                "phase":phase,"status":status,"result":result,"source_url":source["url"]
-            })
-        i += max(1,date_idx+2)
+        opp=clean(opponent_node.get_text(" ",strip=True)) if opponent_node else ""
+        loc=clean(location_node.get_text(" ",strip=True)) if location_node else ""
+        if not loc:
+            neutral_location=item.select_one(".schedule-event-item-neutral__location .schedule-event-location")
+            loc=clean(neutral_location.get_text(" ",strip=True)) if neutral_location else ""
+
+        # Tournament host pages can include neutral matches between two other
+        # schools. Do not treat those as Nebraska participation merely because
+        # they appear on Nebraska's schedule page.
+        if site=="NEUTRAL" and not opp:
+            neutral_teams=[]
+            for team in item.select(".schedule-event-item-neutral__neutral-team"):
+                label=clean(team.get_text(" ",strip=True))
+                image=team.select_one("img[alt]")
+                neutral_teams.append(label or clean(image.get("alt")) if image else label)
+            nebraska_aliases=("nebraska","huskers","cornhuskers")
+            participant_index=next((i for i,name in enumerate(neutral_teams) if any(alias in name.lower() for alias in nebraska_aliases)),None)
+            if participant_index is None:
+                continue
+            opp=next((name for i,name in enumerate(neutral_teams) if i!=participant_index and name),"")
+        result_or_time=clean(result_node.get_text(" ",strip=True)) if result_node else "TBA"
+        promo=clean(promo_node.get_text(" ",strip=True)) if promo_node else ""
+        status="FINAL" if result_like(result_or_time) else "SCHEDULED"
+        result=result_or_time if status=="FINAL" else ""
+        time="TBA" if status=="FINAL" else (result_or_time or "TBA")
+        phase="EXHIBITION" if "exhibition" in item.get_text(" ",strip=True).lower() else "REGULAR SEASON"
+
+        events.append({
+            "school":source["school"],"sport":source["sport"],"date":date.isoformat(),
+            "time":time,"site":site,"opponent":opp or "TBA","location":loc,
+            "promotional_label":promo or None,
+            "phase":phase,"status":status,"result":result,"source_url":source["url"]
+        })
     # dedupe
     seen=set(); unique=[]
     for e in events:
@@ -168,88 +181,46 @@ def parse_nebraska(src, source):
 
 
 def parse_omaha(src, source):
-    """Parse Omaha Sidearm schedule pages from their visible text stream."""
+    """Parse Omaha's field-specific Sidearm schedule cards."""
     soup=BeautifulSoup(src,"html.parser")
-    lines=[clean(x) for x in soup.get_text("\n").splitlines() if clean(x)]
+    cards=soup.select(".s-game-card")
+    if not cards:
+        raise ValueError("Omaha schedule cards were not found; source markup may have changed")
     events=[]
 
-    for i,line in enumerate(lines):
-        date=parse_date_text(line)
+    for card in cards:
+        date_node=card.select_one('[data-test-id="s-game-card-standard__header-game-date-details"], [data-test-id="s-game-card-standard__header-game-date"]')
+        date=parse_date_text(clean(date_node.get_text(" ",strip=True)) if date_node else "")
         if not date or not (TODAY <= date <= END):
             continue
 
-        # Sidearm Omaha pages normally place "at"/"vs" before opponent/location/date.
-        token_idx=None
-        for j in range(i-1,max(-1,i-12),-1):
-            if lines[j].lower() in ("at","vs","vs."):
-                token_idx=j
-                break
-        if token_idx is None:
-            continue
+        stamp=card.select_one(".s-stamp__text")
+        token=clean(stamp.get_text(" ",strip=True)).lower() if stamp else ""
+        site="AWAY" if token=="at" else "HOME" if token in ("vs","vs.") else "UNKNOWN"
+        opp_node=card.select_one('[data-test-id="s-game-card-standard__header-team-opponent-link"]')
+        if not opp_node:
+            opp_node=card.select_one(".s-game-card__header__team-event-info .s-text-paragraph-bold")
+        opp=clean(opp_node.get_text(" ",strip=True)) if opp_node else "TBA"
 
-        token=lines[token_idx].lower()
-        site="AWAY" if token=="at" else "HOME"
+        facility_node=card.select_one('[data-test-id="s-game-card-facility-and-location__game-facility-title-link"]')
+        location_node=card.select_one('[data-test-id="s-game-card-facility-and-location__standard-location-details"]')
+        facility=clean(facility_node.get_text(" ",strip=True)) if facility_node else ""
+        location=clean(location_node.get_text(" ",strip=True)) if location_node else ""
+        loc=" / ".join(x for x in (location,facility) if x)
+        time_node=card.select_one('[aria-label="Event Time"]')
+        time_value=clean(time_node.get_text(" ",strip=True)) if time_node else "TBA"
 
-        # First useful line after at/vs is the opponent.
-        opp=""
-        opp_idx=None
-        for j in range(token_idx+1,i):
-            x=lines[j]
-            low=x.lower()
-            if low in ("at","vs","vs.") or low.startswith("image:"):
-                continue
-            if re.fullmatch(r"#\d+",x):
-                continue
-            opp=x
-            opp_idx=j
-            break
-        if not opp:
-            continue
-
-        # Prefer the line immediately after opponent as venue/location, while
-        # skipping tournament/exhibition labels and control text.
-        loc=""
-        for j in range((opp_idx or token_idx)+1,i):
-            x=lines[j]
-            low=x.lower()
-            if any(k in low for k in [
-                "exhibition","championship","invitational","classic",
-                "live stats","history","tickets","schedule","image:"
-            ]):
-                continue
-            if parse_date_text(x):
-                continue
-            loc=x
-            break
-
-        # Neutral-site events on Sidearm often still use "vs"; infer neutral only
-        # when the physical location is clearly outside Omaha/Nebraska.
-        if site=="HOME" and loc:
-            low=loc.lower()
-            if not (
-                "omaha" in low or "baxter arena" in low or "sokol" in low
-                or re.search(r"\bneb\.?\b|\bnebraska\b",low)
-            ):
-                # Tournament-style vs. outside Nebraska = neutral.
-                site="NEUTRAL"
-
-        time_value="TBA"
-        for x in lines[i+1:i+7]:
-            if re.search(r"\b\d{1,2}(?::\d{2})?\s*(a\.?m\.?|p\.?m\.?|am|pm)\b",x,re.I) or x.upper()=="TBA":
-                time_value=x
-                break
-
-        block=" ".join(lines[max(0,token_idx-3):min(len(lines),i+5)]).lower()
-        if "exhibition" in block:
+        card_text=clean(card.get_text(" ",strip=True)).lower()
+        if "exhibition" in card_text:
             phase="EXHIBITION"
-        elif "championship" in block or "tournament" in block:
+        elif "championship" in card_text or "tournament" in card_text:
             phase="POSTSEASON"
         else:
             phase="REGULAR SEASON"
 
         events.append({
             "school":source["school"],"sport":source["sport"],"date":date.isoformat(),
-            "time":time_value,"site":site,"opponent":opp,"location":loc,
+            "time":time_value or "TBA","site":site,"opponent":opp,"location":loc,
             "phase":phase,"status":"SCHEDULED","result":"","source_url":source["url"]
         })
 
@@ -260,22 +231,54 @@ def parse_omaha(src, source):
             seen.add(key); unique.append(e)
     return unique
 
+def fetch_source(source):
+    last_error=None
+    for attempt in range(3):
+        try:
+            r=requests.get(source["url"],headers=HEADERS,timeout=35)
+            if r.status_code==404 and source.get("allow_unpublished"):
+                return source,[],None,"schedule_not_published"
+            r.raise_for_status()
+            if source["parser"]=="creighton":
+                parsed=parse_creighton(r.text,source)
+            elif source["parser"]=="omaha":
+                parsed=parse_omaha(r.text,source)
+            else:
+                parsed=parse_nebraska(r.text,source)
+            return source,parsed,None,"published"
+        except Exception as exc:
+            last_error=exc
+            if attempt<2:
+                time.sleep(attempt+1)
+    return source,[],last_error,"error"
+
 events=[]
 source_status=[]
-for source in SOURCES:
-    try:
-        r=requests.get(source["url"],headers=HEADERS,timeout=30)
-        r.raise_for_status()
-        if source["parser"]=="creighton":
-            parsed=parse_creighton(r.text,source)
-        elif source["parser"]=="omaha":
-            parsed=parse_omaha(r.text,source)
-        else:
-            parsed=parse_nebraska(r.text,source)
+with ThreadPoolExecutor(max_workers=8) as pool:
+    futures=[pool.submit(fetch_source,source) for source in SOURCES]
+    fetched=[future.result() for future in as_completed(futures)]
+
+for source,parsed,error,availability in sorted(fetched,key=lambda row:(row[0]["school"],row[0]["sport"])):
+    if error is None:
         events.extend(parsed)
-        source_status.append({"school":source["school"],"sport":source["sport"],"url":source["url"],"ok":True,"events_in_window":len(parsed)})
-    except Exception as e:
-        source_status.append({"school":source["school"],"sport":source["sport"],"url":source["url"],"ok":False,"error":str(e)[:180],"events_in_window":0})
+        source_status.append({"school":source["school"],"sport":source["sport"],"url":source["url"],"ok":True,"schedule_available":availability=="published","availability":availability,"events_in_window":len(parsed)})
+    else:
+        source_status.append({"school":source["school"],"sport":source["sport"],"url":source["url"],"ok":False,"error":str(error)[:180],"events_in_window":0})
+
+failed_sources=[x for x in source_status if not x["ok"]]
+if failed_sources:
+    details="; ".join(f'{x["school"]} {x["sport"]}: {x["error"]}' for x in failed_sources)
+    raise RuntimeError("Official schedule coverage incomplete; keeping the previous feed. " + details)
+
+coverage={}
+for school in sorted({x["school"] for x in source_status}):
+    school_sources=[x for x in source_status if x["school"]==school]
+    coverage[school]={
+        "configured":len(school_sources),
+        "loaded":sum(x.get("schedule_available",False) for x in school_sources),
+        "pending_publication":sum(x.get("availability")=="schedule_not_published" for x in school_sources),
+        "events_in_window":sum(x["events_in_window"] for x in school_sources)
+    }
 
 # Sort by date/time with TBA last.
 events.sort(key=lambda e:(e["date"], e["time"]=="TBA", e["time"], e["school"], e["sport"]))
@@ -303,10 +306,19 @@ def played_in_nebraska(e):
 # The source site's HOME/AWAY/NEUTRAL tag is informational only.
 for e in events:
     e["played_in_nebraska"]=played_in_nebraska(e)
+    e["matchup_label"]="AT" if e.get("site")=="AWAY" and not e["played_in_nebraska"] else "VS" if e.get("site") in ("HOME","NEUTRAL") or e["played_in_nebraska"] else "SITE TBD"
     if e["played_in_nebraska"]:
         e["site_test"]="NOT PERMISSIBLE"
         e["site_color"]="red"
         e["regulatory_site_label"]="PLAYED IN NEBRASKA"
+    elif e.get("site")=="HOME":
+        # A Nebraska school's HOME tag should never silently resolve green when
+        # the parsed physical location does not identify Nebraska. Treat the
+        # contradiction as a source-data failure requiring manual review.
+        e["site_test"]="MANUAL LOCATION REVIEW"
+        e["site_color"]="amber"
+        e["regulatory_site_label"]="SOURCE LOCATION CONFLICT"
+        e["location_conflict_reason"]="Official schedule marks the event HOME, but the parsed location does not identify Nebraska."
     elif e.get("location"):
         e["site_test"]="OK · OUTSIDE NEBRASKA"
         e["site_color"]="green"
@@ -316,6 +328,33 @@ for e in events:
         e["site_color"]="amber"
         e["regulatory_site_label"]="LOCATION UNRESOLVED"
 
+def validate_events(rows):
+    errors=[]
+    seen=set()
+    for e in rows:
+        key=(e.get("school"),e.get("sport"),e.get("date"),e.get("time"),e.get("site"),e.get("opponent"))
+        if key in seen:
+            errors.append(f"duplicate event: {key}")
+        seen.add(key)
+        if e.get("played_in_nebraska") and e.get("site_color")!="red":
+            errors.append(f"in-state event not red: {key}")
+        if e.get("site")=="HOME" and not e.get("played_in_nebraska") and e.get("site_color")=="green":
+            errors.append(f"HOME/location contradiction resolved green: {key}")
+        expected="AT" if e.get("site")=="AWAY" and not e.get("played_in_nebraska") else "VS" if e.get("site") in ("HOME","NEUTRAL") or e.get("played_in_nebraska") else "SITE TBD"
+        if e.get("matchup_label")!=expected:
+            errors.append(f"matchup label mismatch: {key}")
+    if errors:
+        raise ValueError("Nebraska collegiate validation failed: " + "; ".join(errors))
+    return {
+        "events_checked":len(rows),
+        "in_state_not_permissible":sum(e.get("site_color")=="red" for e in rows),
+        "outside_nebraska":sum(e.get("site_color")=="green" for e in rows),
+        "manual_location_review":sum(e.get("site_color")=="amber" for e in rows),
+        "duplicate_events":0
+    }
+
+validation=validate_events(events)
+
 out={
     "schema_version":1,
     "generated_at":NOW.isoformat(),
@@ -323,7 +362,9 @@ out={
     "window_start":TODAY.isoformat(),
     "window_end":END.isoformat(),
     "events":events,
-    "sources":source_status
+    "sources":source_status,
+    "coverage":coverage,
+    "validation":validation
 }
 (DATA/"nebraska-collegiate-live.json").write_text(json.dumps(out,indent=2),encoding="utf-8")
 print(json.dumps({
