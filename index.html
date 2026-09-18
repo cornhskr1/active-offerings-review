@@ -251,7 +251,16 @@ th{font-size:11px!important}
 .season-legend{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:0}
 .season-legend .season-note{flex-basis:100%;font-size:11px;color:#66707a;margin-top:1px}
 .mapped-catalog{display:grid;gap:12px}
+.catalog-confed-group{border:1px solid #cbd5dc;border-radius:11px;overflow:hidden;background:#f8fafb}
+.catalog-confed-group>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;background:#e7edf1;border-left:5px solid #2477b3;font-size:14px;font-weight:900}
+.catalog-confed-group>summary::-webkit-details-marker{display:none}
+.catalog-confed-group[open]>summary{border-bottom:1px solid #ccd7de}
+.catalog-confed-meta,.catalog-country-meta{display:flex;align-items:center;gap:7px;color:#4f5c66;font-size:10px;font-weight:800;text-align:right}
+.catalog-confed-body{display:grid;gap:9px;padding:10px}
 .catalog-country-group{border:1px solid #d5dce1;border-radius:10px;overflow:hidden;background:#fff}
+.catalog-country-group>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;background:#e9edf0;border-left:5px solid #b42025;font-size:14px;font-weight:900}
+.catalog-country-group>summary::-webkit-details-marker{display:none}
+.catalog-country-group[open]>summary{border-bottom:1px solid #d5dce1}
 .catalog-country-head{padding:10px 12px;background:#e9edf0;border-left:5px solid #b42025;font-size:14px;font-weight:900}
 .catalog-governing-body{padding:9px 12px;background:#f5f7f8;border-top:1px solid #dce2e6;border-left:4px solid #68737d;font-size:13px;font-weight:800}
 .catalog-category-head{margin:10px 12px 0;padding:8px 10px;background:#eef5fa;border-left:4px solid #2477b3;color:#174d72;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
@@ -294,7 +303,11 @@ th{font-size:11px!important}
 .ncaa-event-main{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px}
 .ncaa-event-name{font-size:12px;font-weight:800}
 .ncaa-event .catalog-event-restriction{margin:0 9px 9px}
-@media(max-width:800px){.catalog-legend-grid,.ncaa-controls-list,.ncaa-event-list{grid-template-columns:1fr}}
+@media(max-width:800px){
+  .catalog-legend-grid,.ncaa-controls-list,.ncaa-event-list{grid-template-columns:1fr}
+  .catalog-confed-group>summary,.catalog-country-group>summary{align-items:flex-start;flex-direction:column;gap:6px}
+  .catalog-confed-meta,.catalog-country-meta{text-align:left;flex-wrap:wrap}
+}
 .catalog-line.restricted,
 .catalog-line.prohibited{
   grid-column:auto;
@@ -1952,18 +1965,50 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
   if(!groups.length&&!visibleNewLines.length)return'';
   const eventCount=groups.reduce((sum,x)=>sum+x.events.length,0);
   const mappedCount=groups.reduce((sum,x)=>sum+x.events.filter(event=>mappedSeasonStatus(event)).length,0);
-  const countries=[];
-  groups.forEach(item=>{
-    const country=item.group.country||'International';
-    let bucket=countries.find(x=>x.country===country);
-    if(!bucket){bucket={country,groups:[]};countries.push(bucket)}
-    bucket.groups.push(item);
-  });
-  let body=countries.map(countryBlock=>`<section class="catalog-country-group">
-    <div class="catalog-country-head">${esc(countryBlock.country)}</div>
-    ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
-    ${renderMappedCatalogEvents(events)}</div>`).join('')}
-  </section>`).join('');
+  const openNested=(q||seasonFilter!=='all')?' open':'';
+  const renderCountryBlock=countryBlock=>{
+    const countryEvents=countryBlock.groups.flatMap(item=>item.events);
+    const countryMapped=countryEvents.filter(event=>mappedSeasonStatus(event)).length;
+    const countryUnmapped=countryEvents.length-countryMapped;
+    return `<details class="catalog-country-group"${openNested}><summary><span>${esc(countryBlock.country)}</span><span class="catalog-country-meta">${countryEvents.length} approved${countryUnmapped?` · ${countryUnmapped} unmapped`:''}${countryUnmapped?pill('amber','REVIEW REQUIRED'):''}</span></summary>
+      ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
+      ${renderMappedCatalogEvents(events)}</div>`).join('')}
+    </details>`;
+  };
+  let body='';
+  if(groups.some(item=>item.group.confederation)){
+    const confedOrder=['FIFA','AFC','CAF','CONCACAF','CONMEBOL','OFC','UEFA','Cross-Confederation'];
+    const confederations=[];
+    groups.forEach(item=>{
+      const confederation=item.group.confederation||'Other';
+      let bucket=confederations.find(x=>x.confederation===confederation);
+      if(!bucket){bucket={confederation,countries:[]};confederations.push(bucket)}
+      const country=item.group.country||'International';
+      let countryBucket=bucket.countries.find(x=>x.country===country);
+      if(!countryBucket){countryBucket={country,groups:[]};bucket.countries.push(countryBucket)}
+      countryBucket.groups.push(item);
+    });
+    confederations.sort((a,b)=>{
+      const ai=confedOrder.indexOf(a.confederation),bi=confedOrder.indexOf(b.confederation);
+      return (ai<0?999:ai)-(bi<0?999:bi)||a.confederation.localeCompare(b.confederation);
+    });
+    body=confederations.map(confed=>{
+      confed.countries.sort((a,b)=>a.country==='International'?-1:b.country==='International'?1:a.country.localeCompare(b.country));
+      const confedEvents=confed.countries.flatMap(country=>country.groups.flatMap(item=>item.events));
+      const confedMapped=confedEvents.filter(event=>mappedSeasonStatus(event)).length;
+      const confedUnmapped=confedEvents.length-confedMapped;
+      return `<details class="catalog-confed-group"${openNested}><summary><span>${esc(confed.confederation)}</span><span class="catalog-confed-meta">${confed.countries.length} ${confed.countries.length===1?'country':'countries'} · ${confedEvents.length} approved${confedUnmapped?` · ${confedUnmapped} unmapped`:''}${confedUnmapped?pill('amber','REVIEW REQUIRED'):''}</span></summary><div class="catalog-confed-body">${confed.countries.map(renderCountryBlock).join('')}</div></details>`;
+    }).join('');
+  }else{
+    const countries=[];
+    groups.forEach(item=>{
+      const country=item.group.country||'International';
+      let bucket=countries.find(x=>x.country===country);
+      if(!bucket){bucket={country,groups:[]};countries.push(bucket)}
+      bucket.groups.push(item);
+    });
+    body=countries.map(renderCountryBlock).join('');
+  }
   if(visibleNewLines.length){
     body+=`<section class="catalog-country-group"><div class="catalog-country-head">New Catalog Entries Requiring Mapping</div><div class="catalog-event-list">${visibleNewLines.map(line=>`<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(line)}</div><div class="catalog-season-detail">Detected in the current catalog after the last completed mapping review.</div></div>${mappedSeasonBadge(null)}</div></article>`).join('')}</div></section>`;
   }
