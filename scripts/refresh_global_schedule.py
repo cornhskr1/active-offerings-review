@@ -932,15 +932,24 @@ def fetch_official_event_window(source):
     This is intentionally tournament-level coverage. It does not invent matchups
     when the organizer publishes dates but no stable unattended match feed.
     """
-    r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
-    r.raise_for_status()
-    parsed=[]
-    for item in source.get("official_events") or []:
+    items=source.get("official_events") or []
+    dated=[]
+    for item in items:
         try:
             start=datetime.date.fromisoformat(item["start_date"])
             end=datetime.date.fromisoformat(item.get("end_date") or item["start_date"])
         except (KeyError,TypeError,ValueError):
             continue
+        dated.append((item,start,end))
+    # A completed, already-verified official tournament window cannot add an
+    # event to today's queue. Avoid turning an organizer's anti-bot response
+    # into a false current feed failure after the competition has ended.
+    if dated and all(end<TODAY for _,_,end in dated):
+        return []
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
+    r.raise_for_status()
+    parsed=[]
+    for item,start,end in dated:
         event=tournament_window_event(
             source,item["source_id"],item["league"],item["name"],start,end,
             item.get("location"),item.get("official_schedule_url")
