@@ -872,6 +872,174 @@ def fetch_ubisoft_r6_calendar(source):
         })
     return parsed
 
+MONTH_NUM={name.lower():number for number,name in enumerate((
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+),1)}
+MONTH_NUM.update({name[:3].lower():number for name,number in list(MONTH_NUM.items())})
+
+def parse_english_event_range(value,year):
+    """Parse official calendar ranges such as 'October 22-October 31'."""
+    text=str(value or "").strip().replace("–","-").replace("—","-")
+    text=re.sub(r",?\s*(20\d{2})\s*$","",text).strip()
+    match=re.fullmatch(
+        r"([A-Za-z]+)\s+(\d{1,2})\s*-\s*(?:([A-Za-z]+)\s+)?(\d{1,2})",
+        text
+    )
+    if not match:
+        single=re.fullmatch(r"([A-Za-z]+)\s+(\d{1,2})",text)
+        if not single:
+            return None,None
+        month=MONTH_NUM.get(single.group(1).lower())
+        if not month:
+            return None,None
+        day=datetime.date(int(year),month,int(single.group(2)))
+        return day,day
+    start_month=MONTH_NUM.get(match.group(1).lower())
+    end_month=MONTH_NUM.get((match.group(3) or match.group(1)).lower())
+    if not start_month or not end_month:
+        return None,None
+    start=datetime.date(int(year),start_month,int(match.group(2)))
+    end_year=int(year)+(1 if end_month<start_month else 0)
+    end=datetime.date(end_year,end_month,int(match.group(4)))
+    return start,end
+
+def tournament_window_event(source,source_id,league,name,start,end,location=None,endpoint=None):
+    if not start or not end or end<TODAY or start>END:
+        return None
+    active=start<=TODAY<=end
+    review_date=TODAY if active else start
+    local=datetime.datetime.combine(review_date,datetime.time(12,0),tzinfo=TZ)
+    slug=re.sub(r"[^a-z0-9]+","-",name.lower()).strip("-")
+    return {
+        "id":f"{source_id}-{start.isoformat()}-{slug}",
+        "source_id":source_id,
+        "sport":"Esports",
+        "league":league,
+        "region":source.get("region") or "International",
+        "name":name,
+        "start_time":local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
+        "status":"LIVE" if active else "UPCOMING",
+        "status_detail":f"{start.isoformat()} through {end.isoformat()} · official tournament calendar",
+        "season_stage":None,
+        "location":location,
+        "source_endpoint":endpoint or source.get("official_schedule_url") or source["endpoint"]
+    }
+
+def fetch_official_event_window(source):
+    """Use a publisher-owned page plus its published event window.
+
+    This is intentionally tournament-level coverage. It does not invent matchups
+    when the organizer publishes dates but no stable unattended match feed.
+    """
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
+    r.raise_for_status()
+    parsed=[]
+    for item in source.get("official_events") or []:
+        try:
+            start=datetime.date.fromisoformat(item["start_date"])
+            end=datetime.date.fromisoformat(item.get("end_date") or item["start_date"])
+        except (KeyError,TypeError,ValueError):
+            continue
+        event=tournament_window_event(
+            source,item["source_id"],item["league"],item["name"],start,end,
+            item.get("location"),item.get("official_schedule_url")
+        )
+        if event:
+            parsed.append(event)
+    return parsed
+
+def fetch_pgl_cs2_calendar(source):
+    """Read PGL's own events API and retain only its CS2 event family."""
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
+    r.raise_for_status()
+    payload=r.json()
+    parsed=[]
+    for year,items in payload.items():
+        if not str(year).isdigit():
+            continue
+        for item in items or []:
+            names=[str(x or "").strip() for x in (item.get("eventName") or [])]
+            name=" ".join(x for x in names if x).strip()
+            event_page=str(item.get("eventPage") or "")
+            low=f"{name} {event_page}".lower()
+            # PGL also publishes Dota events in this feed. Organizer identity
+            # alone never broadens the catalog's PGL CS2 approval.
+            if not ("/cs2/" in low or low.startswith("pgl cs2") or low.startswith("pgl masters")):
+                continue
+            start,end=parse_english_event_range(item.get("date"),int(year))
+            event=tournament_window_event(
+                source,"esports-cs2-pgl","Professional Gamers League (PGL) CS2",
+                name or "PGL CS2",start,end,item.get("location") or None,
+                event_page or source.get("official_schedule_url")
+            )
+            if event:
+                parsed.append(event)
+    return parsed
+
+def fetch_esl_calendar(source):
+    """Read the official ESL Pro Tour pages at tournament level."""
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=60)
+    r.raise_for_status()
+    page=r.text
+    if source.get("game")=="dota2":
+        # ESL explicitly renders this sentence when no Dota 2 EPT tournament
+        # has been announced. Do not fill the gap with third-party schedules.
+        if "No events are available" in plain_html(page):
+            return []
+        # Future cards can be classified without widening the approval:
+        # DreamLeague gets its own catalog leaf; other top-level EPT events use
+        # the separately approved ESL Pro Tour - Dota 2 leaf. Qualifier and
+        # Division 2 cards are deliberately excluded.
+        blocks=re.findall(r'<div[^>]+class="[^"]*jet-listing-grid__item[^"]*"[^>]*>(.*?)</div>\s*</div>',page,re.I|re.S)
+        parsed=[]
+        for block in blocks:
+            text=plain_html(block)
+            low=text.lower()
+            if not text or "division 2" in low or "qualifier" in low:
+                continue
+            if "dreamleague" in low:
+                source_id="esports-dota-dreamleague"; league="DreamLeague"
+            elif "esl one" in low:
+                source_id="esports-dota-esl-pro-tour"; league="Electronic Sports League (ESL) Pro Tour - Dota 2"
+            else:
+                continue
+            date_match=re.search(r'([A-Z][a-z]+\s+\d{1,2}\s*-\s*(?:[A-Z][a-z]+\s+)?\d{1,2},\s*20\d{2})',text)
+            if not date_match:
+                continue
+            year=int(re.search(r'(20\d{2})',date_match.group(1)).group(1))
+            start,end=parse_english_event_range(date_match.group(1),year)
+            title_match=re.search(r'(DreamLeague(?:\s+Season)?\s*\d*|ESL One\s+[^|]+)',text,re.I)
+            name=title_match.group(1).strip() if title_match else league
+            event=tournament_window_event(source,source_id,league,name,start,end,endpoint=source.get("official_schedule_url"))
+            if event:
+                parsed.append(event)
+        return parsed
+
+    parsed=[]
+    # ESL Pro League event cards link to /proleague/. Their card includes the
+    # public tournament start date, which precedes the arena dates.
+    for match in re.finditer(r'href="([^"]*/proleague/[^"]*)"[^>]*>([^<]+)</a>',page,re.I):
+        url=html.unescape(match.group(1))
+        title=plain_html(match.group(2))
+        context=plain_html(page[max(0,match.start()-2200):match.end()+2600])
+        end_match=re.search(r'([A-Z][a-z]+\s+\d{1,2})\s*-\s*([A-Z][a-z]+\s+\d{1,2}),\s*(20\d{2})',context)
+        if not end_match:
+            continue
+        year=int(end_match.group(3))
+        card_start,card_end=parse_english_event_range(f"{end_match.group(1)}-{end_match.group(2)}",year)
+        start_match=re.search(r'Tournament starts on\s+([A-Z][a-z]+\s+\d{1,2})',context,re.I)
+        start=card_start
+        if start_match:
+            start,_=parse_english_event_range(start_match.group(1),year)
+        event=tournament_window_event(
+            source,"esports-cs2-esl-pro-league","Electronic Sports League (ESL) Pro League",
+            f"ESL Pro League {title}".strip(),start,card_end,endpoint=url
+        )
+        if event and all(existing["id"]!=event["id"] for existing in parsed):
+            parsed.append(event)
+    return parsed
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -961,6 +1129,31 @@ for source in CFG.get("sources",[]):
         try:
             adapter=fetch_riot_calendar if source.get("source_type")=="riot-esports-calendar" else fetch_ubisoft_r6_calendar
             for parsed in adapter(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type") in ("official-event-window","pgl-cs2-calendar","esl-esports-calendar"):
+        try:
+            adapters={
+                "official-event-window":fetch_official_event_window,
+                "pgl-cs2-calendar":fetch_pgl_cs2_calendar,
+                "esl-esports-calendar":fetch_esl_calendar
+            }
+            for parsed in adapters[source["source_type"]](source):
                 key=(parsed["id"],parsed["start_time"])
                 if key in seen:
                     continue

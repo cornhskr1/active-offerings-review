@@ -236,15 +236,88 @@
       "catalog_terms": ["Call of Duty League (CDL)"]
     },
     {
-      "id": "esports-valve-calendar",
+      "id": "esports-dota-international-calendar",
       "sport": "Esports",
-      "league": "Approved Valve, ESL, PGL, and EWC competitions",
+      "league": "The International",
       "region": "International",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
       "endpoint": "https://www.dota2.com/esports/ti15",
-      "source_note": "Official schedule coverage is still being validated across the separately approved Dota 2, ESL, PGL, and Esports World Cup competition families.",
-      "catalog_terms": ["Valve", "The International", "DreamLeague", "Electronic Sports League (ESL) Pro League", "Professional Gamers League (PGL) CS2"]
+      "official_schedule_url": "https://www.dota2.com/esports/ti15",
+      "source_note": "Official Valve tournament window for The International 2026. Tournament-level coverage is used because Valve does not expose a stable unattended match feed.",
+      "official_events": [
+        {
+          "source_id": "esports-dota-international",
+          "league": "The International",
+          "name": "The International 2026",
+          "start_date": "2026-10-07",
+          "end_date": "2026-10-17",
+          "location": "International",
+          "official_schedule_url": "https://www.dota2.com/esports/ti15"
+        }
+      ],
+      "catalog_terms": ["The International"]
+    },
+    {
+      "id": "esports-esl-dota-calendar",
+      "sport": "Esports",
+      "league": "Approved ESL Pro Tour Dota 2",
+      "region": "International",
+      "game": "dota2",
+      "source_type": "esl-esports-calendar",
+      "coverage_status": "complete",
+      "endpoint": "https://pro.eslgaming.com/tour/dota2/",
+      "official_schedule_url": "https://pro.eslgaming.com/tour/dota2/",
+      "source_note": "Official ESL Pro Tour Dota 2 calendar restricted to top-level DreamLeague and ESL One events. Division 2 and qualifiers are excluded.",
+      "catalog_terms": ["Electronic Sports League (ESL) Pro Tour - Dota 2", "DreamLeague"]
+    },
+    {
+      "id": "esports-dota-ewc-calendar",
+      "sport": "Esports",
+      "league": "Esports World Cup — Dota 2",
+      "region": "International",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://esportsworldcup.com/",
+      "official_schedule_url": "https://esportsworldcup.com/",
+      "source_note": "Official Esports World Cup 2026 Dota 2 tournament window; the competition is complete.",
+      "official_events": [
+        {
+          "source_id": "esports-dota-ewc",
+          "league": "Esports World Cup — Dota 2",
+          "name": "Esports World Cup 2026 — Dota 2",
+          "start_date": "2026-07-14",
+          "end_date": "2026-07-19",
+          "location": "Riyadh, Saudi Arabia",
+          "official_schedule_url": "https://esportsworldcup.com/"
+        }
+      ],
+      "catalog_terms": ["Esports World Cup", "Dota 2"]
+    },
+    {
+      "id": "esports-esl-pro-league-calendar",
+      "sport": "Esports",
+      "league": "Electronic Sports League (ESL) Pro League",
+      "region": "International",
+      "game": "cs2",
+      "source_type": "esl-esports-calendar",
+      "coverage_status": "complete",
+      "endpoint": "https://pro.eslgaming.com/tour/cs/",
+      "official_schedule_url": "https://pro.eslgaming.com/tour/cs/",
+      "source_note": "Official ESL Pro Tour calendar restricted to event cards linking to ESL Pro League. IEM and ESL Challenger competitions are excluded.",
+      "catalog_terms": ["Electronic Sports League (ESL) Pro League"]
+    },
+    {
+      "id": "esports-pgl-cs2-calendar",
+      "sport": "Esports",
+      "league": "Professional Gamers League (PGL) CS2",
+      "region": "International",
+      "source_type": "pgl-cs2-calendar",
+      "coverage_status": "complete",
+      "endpoint": "https://news.pglesports.com/api/events",
+      "official_schedule_url": "https://www.pglesports.com/",
+      "source_note": "Official PGL events feed restricted to PGL CS2 and PGL Masters CS2 events. PGL Dota 2 events are explicitly excluded. NO IN-GAME WAGERS remains attached through the catalog leaf.",
+      "catalog_terms": ["Professional Gamers League (PGL) CS2"]
     },
     {
       "id": "esports-simulation-calendar",
