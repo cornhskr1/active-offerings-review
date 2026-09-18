@@ -131,9 +131,20 @@ def parse_event(source, ev):
         location=f"{venue} · {location}"
     elif venue:
         location=venue
+    parsed_source_id="football-nfl-preseason" if source.get("league")=="NFL" and season_stage=="PRESEASON" else source["id"]
+    if dt and source.get("event_routing"):
+        try:
+            event_month=datetime.datetime.fromisoformat(str(dt).replace("Z","+00:00")).month
+            for route in source.get("event_routing") or []:
+                if event_month in [int(x) for x in route.get("months") or []]:
+                    parsed_source_id=route["source_id"]
+                    break
+        except (TypeError,ValueError):
+            pass
+
     parsed = {
         "id":str(ev.get("id") or f'{source["id"]}-{dt}-{name}'),
-        "source_id":"football-nfl-preseason" if source.get("league")=="NFL" and season_stage=="PRESEASON" else source["id"],
+        "source_id":parsed_source_id,
         "sport":source["sport"],
         "league":source["league"],
         "region":source.get("region"),
