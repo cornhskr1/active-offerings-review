@@ -1787,7 +1787,7 @@ function mappedCatalogEventForScheduleEvent(event){
     }
   }
   const mapped=mappedCatalogEventForSource(event?.source_id);
-  if(mapped&&event?.sport==='Cycling'&&event?.region)return{...mapped,country:event.region};
+  if(mapped&&event?.region&&event.region!=='International')return{...mapped,country:event.region};
   return mapped;
 }
 function mappedCatalogEvent(line,sport){

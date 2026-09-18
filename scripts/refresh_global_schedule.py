@@ -535,6 +535,161 @@ def fetch_uci_calendar(source):
         parsed.append(event)
     return parsed
 
+DARTS_CITY_COUNTRIES={
+    "aberdeen":"Scotland","antwerp":"Belgium","belfast":"Northern Ireland",
+    "berlin":"Germany","birmingham":"England","brighton":"England",
+    "cardiff":"Wales","den bosch":"Netherlands","dublin":"Ireland",
+    "glasgow":"Scotland","hildesheim":"Germany","leeds":"England",
+    "leicester":"England","liverpool":"England","london":"England",
+    "manchester":"England","milton keynes":"England","newcastle":"England",
+    "rotterdam":"Netherlands","sheffield":"England","wigan":"England"
+}
+
+def darts_country(city,venue=""):
+    low=f"{city or ''} {venue or ''}".lower()
+    for needle,country in DARTS_CITY_COUNTRIES.items():
+        if needle in low:
+            return country
+    return "International"
+
+def classify_pdc_tournament(item):
+    attrs=item.get("attributes") or {}
+    type_id=str(attrs.get("tournamentTypeID") or "")
+    name=str(attrs.get("name") or "")
+    if type_id in ("29","30"):
+        return "darts-pdc-players-championship","PDC Players Championship"
+    if type_id=="1" and "world championship" in name.lower() and "qualifier" not in name.lower():
+        return "darts-pdc-world-championship","PDC World Championship"
+    if type_id in ("3","54"):
+        return "darts-pdc-premier-league","Premier League Darts"
+    return None
+
+def fetch_pdc_calendar(source):
+    parsed=[]
+    seen=set()
+    years={TODAY.year}
+    if TODAY.month==1:
+        years.add(TODAY.year-1)
+    for season_year in sorted(years):
+        r=requests.get(
+            source["endpoint"],
+            params={"page.size":"500","filter":f"seasonID:eq:{season_year}"},
+            headers=HEADERS,
+            timeout=40
+        )
+        r.raise_for_status()
+        for item in r.json().get("data") or []:
+            mapping=classify_pdc_tournament(item)
+            if not mapping:
+                continue
+            attrs=item.get("attributes") or {}
+            try:
+                start=datetime.date.fromisoformat(str(attrs.get("startDate") or ""))
+                end=datetime.date.fromisoformat(str(attrs.get("endDate") or attrs.get("startDate") or ""))
+            except ValueError:
+                continue
+            if end<TODAY or start>END:
+                continue
+            source_id,league=mapping
+            event_id=f'{source_id}-{item.get("id") or start.isoformat()}'
+            if event_id in seen:
+                continue
+            seen.add(event_id)
+            active=start<=TODAY<=end
+            display_date=TODAY if active else start
+            local=datetime.datetime.combine(display_date,datetime.time(0,1) if active else datetime.time(12,0),tzinfo=TZ)
+            city=str(attrs.get("city") or "").strip()
+            venue=str(attrs.get("venue") or "").strip()
+            region=darts_country(city,venue)
+            location=" · ".join(x for x in (venue,city,region) if x)
+            event={
+                "id":event_id,
+                "source_id":source_id,
+                "sport":"Darts",
+                "league":league,
+                "region":region,
+                "name":attrs.get("name") or league,
+                "start_time":local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
+                "status":"LIVE" if active else "UPCOMING",
+                "status_detail":f'{start.isoformat()}{f" through {end.isoformat()}" if end!=start else ""} · official PDC calendar',
+                "season_stage":None,
+                "location":location or None,
+                "source_endpoint":source.get("official_schedule_url") or source["endpoint"]
+            }
+            if active and start<TODAY:
+                original=datetime.datetime.combine(start,datetime.time(12,0),tzinfo=TZ)
+                event["original_start_time"]=original.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+            parsed.append(event)
+    return parsed
+
+def cdc_event_dates(page_text):
+    text=plain_html(page_text)
+    month=r"Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?"
+    match=re.search(rf"\b({month})\s+(\d{{1,2}})\s*[-–]\s*(\d{{1,2}})\s+(20\d{{2}})\b",text,re.I)
+    if match:
+        start=datetime.datetime.strptime(f"{match.group(1)[:3]} {match.group(2)} {match.group(4)}","%b %d %Y").date()
+        end=datetime.datetime.strptime(f"{match.group(1)[:3]} {match.group(3)} {match.group(4)}","%b %d %Y").date()
+        return start,end
+    match=re.search(rf"\b({month})\s+(\d{{1,2}}),?\s+(20\d{{2}})\b",text,re.I)
+    if match:
+        day=datetime.datetime.strptime(f"{match.group(1)[:3]} {match.group(2)} {match.group(3)}","%b %d %Y").date()
+        return day,day
+    return None,None
+
+def cdc_region(text,title):
+    low=f"{text} {title}".lower()
+    if any(x in low for x in ("canada","newfoundland",", nl",", on",", ab",", bc")):
+        return "Canada"
+    if any(x in low for x in ("united states",", ny",", pa",", il",", in",", az",", nv")):
+        return "United States"
+    return "United States / Canada"
+
+def fetch_cdc_calendar(source):
+    main=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+    main.raise_for_status()
+    links=set(re.findall(r'href=["\'](https://champdarts\.com/events/[^"\'#?]+)',main.text,re.I))
+    if source.get("cross_border_url"):
+        links.add(source["cross_border_url"])
+    parsed=[]
+    for url in sorted(links):
+        if any(x in url.lower() for x in ("q-school","junior-tour","jr-tour","evolution-tour","evo-tour")):
+            continue
+        r=requests.get(url,headers=HEADERS,timeout=30)
+        r.raise_for_status()
+        title_match=re.search(r'<h1[^>]*>(.*?)</h1>',r.text,re.I|re.S)
+        title=plain_html(title_match.group(1)) if title_match else ""
+        body=plain_html(r.text)
+        low=f"{title} {body}".lower()
+        if any(x in low for x in ("q-school","junior tour","jr. tour","evolution tour","evo tour")):
+            continue
+        is_cross="cross border darts challenge" in title.lower()
+        if not is_cross and "category main tour" not in low:
+            continue
+        start,end=cdc_event_dates(r.text)
+        if not start or not end or end<TODAY or start>END:
+            continue
+        source_id="darts-cdc-cross-border" if is_cross else "darts-cdc-main-tour"
+        league="Cross Border Darts Challenge" if is_cross else "Main Tour Events"
+        active=start<=TODAY<=end
+        display_date=TODAY if active else start
+        local=datetime.datetime.combine(display_date,datetime.time(0,1) if active else datetime.time(12,0),tzinfo=TZ)
+        region=cdc_region(body,title)
+        parsed.append({
+            "id":f'{source_id}-{re.sub(r"[^a-z0-9]+","-",title.lower()).strip("-") or start.isoformat()}',
+            "source_id":source_id,
+            "sport":"Darts",
+            "league":league,
+            "region":region,
+            "name":title or league,
+            "start_time":local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
+            "status":"LIVE" if active else "UPCOMING",
+            "status_detail":f'{start.isoformat()}{f" through {end.isoformat()}" if end!=start else ""} · official CDC calendar',
+            "season_stage":None,
+            "location":None,
+            "source_endpoint":url
+        })
+    return parsed
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -582,6 +737,27 @@ for source in CFG.get("sources",[]):
     if source.get("source_type")=="uci-calendar":
         try:
             for parsed in fetch_uci_calendar(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type") in ("pdc-calendar","cdc-calendar"):
+        try:
+            adapter=fetch_pdc_calendar if source.get("source_type")=="pdc-calendar" else fetch_cdc_calendar
+            for parsed in adapter(source):
                 key=(parsed["id"],parsed["start_time"])
                 if key in seen:
                     continue

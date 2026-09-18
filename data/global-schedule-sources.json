@@ -127,6 +127,41 @@
       ]
     },
     {
+      "id": "darts-cdc-calendar",
+      "sport": "Darts",
+      "league": "Championship Darts Circuit",
+      "region": "United States / Canada",
+      "source_type": "cdc-calendar",
+      "coverage_status": "complete",
+      "endpoint": "https://champdarts.com/main-tour/",
+      "cross_border_url": "https://champdarts.com/events/cross-border-darts-challenge/",
+      "official_schedule_url": "https://champdarts.com/main-tour/",
+      "source_note": "Official CDC Main Tour and Cross Border Darts Challenge pages. Q-School, Junior Tour, and Evolution Tour events are excluded.",
+      "catalog_terms": [
+        "Championship Darts Corporation (CDC)",
+        "Main Tour Events",
+        "Cross Border Darts Challenge"
+      ]
+    },
+    {
+      "id": "darts-pdc-calendar",
+      "sport": "Darts",
+      "league": "Approved PDC Darts",
+      "region": "International",
+      "source_type": "pdc-calendar",
+      "coverage_status": "complete",
+      "endpoint": "https://tournaments.darts.web.gc.pdcservices.co.uk/v2/calendar",
+      "official_schedule_url": "https://www.pdc.tv/calendar/",
+      "source_note": "Official PDC calendar feed restricted to the approved Players Championship, World Championship, and Premier League competitions.",
+      "catalog_terms": [
+        "Darts Regulation Authority (DRA)",
+        "Professional Darts Corporation (PDC)",
+        "PDC Players Championship",
+        "PDC World Championship",
+        "Premier League Darts"
+      ]
+    },
+    {
       "id": "mlb",
       "sport": "Baseball",
       "league": "MLB",
