@@ -1679,6 +1679,75 @@
       ]
     },
     {
+      "id": "table-tennis-wtt",
+      "source_type": "official-event-window",
+      "sport": "Table Tennis",
+      "league": "World Table Tennis (WTT) | Men and Women",
+      "region": "International",
+      "endpoint": "https://www.worldtabletennis.com/eventInfo?eventId=3254&selectedTab=Matches",
+      "official_schedule_url": "https://www.worldtabletennis.com/events_calendar",
+      "endpoint_validation": "published-window",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "table-tennis-wtt",
+          "league": "World Table Tennis (WTT) | Men and Women",
+          "name": "WTT Star Contender Astana 2026",
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-20",
+          "location": "Astana, Kazakhstan",
+          "official_schedule_url": "https://www.worldtabletennis.com/eventInfo?eventId=3254&selectedTab=Matches"
+        }
+      ],
+      "catalog_terms": [
+        "International Table Tennis Federation (ITTF)",
+        "World Table Tennis (WTT) | Men and Women"
+      ],
+      "exclude_name_patterns": [
+        "Youth",
+        "U11",
+        "U13",
+        "U15",
+        "U17",
+        "U19"
+      ]
+    },
+    {
+      "id": "table-tennis-mltt",
+      "source_type": "official-event-window",
+      "sport": "Table Tennis",
+      "league": "Major League Table Tennis (MLTT) | Men and Women",
+      "region": "United States",
+      "endpoint": "https://www.mltt.com/",
+      "official_schedule_url": "https://www.mltt.com/",
+      "endpoint_validation": "published-window",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "table-tennis-mltt",
+          "league": "Major League Table Tennis (MLTT) | Men and Women",
+          "name": "Portland Paddlers vs. New York Slice",
+          "start_date": "2026-09-25",
+          "end_date": "2026-09-25",
+          "location": "Compass Arena, Willowbrook, Illinois",
+          "official_schedule_url": "https://www.mltt.com/"
+        },
+        {
+          "source_id": "table-tennis-mltt",
+          "league": "Major League Table Tennis (MLTT) | Men and Women",
+          "name": "Bay Area Blasters vs. Chicago Wind",
+          "start_date": "2026-09-25",
+          "end_date": "2026-09-25",
+          "location": "Compass Arena, Willowbrook, Illinois",
+          "official_schedule_url": "https://www.mltt.com/"
+        }
+      ],
+      "catalog_terms": [
+        "Major League Table Tennis LLC",
+        "Major League Table Tennis (MLTT) | Men and Women"
+      ]
+    },
+    {
       "id": "ncaa-volleyball",
       "sport": "Volleyball",
       "league": "NCAA Volleyball",
