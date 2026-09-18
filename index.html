@@ -268,6 +268,10 @@ th{font-size:11px!important}
 .catalog-event-card{border:1px solid #dfe4e8;border-radius:9px;background:#fff;overflow:hidden}
 .catalog-event-main{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px}
 .catalog-event-name{font-size:13px;font-weight:800}
+.catalog-official-link{color:inherit;text-decoration:underline;text-decoration-color:#8aa8bd;text-decoration-thickness:1px;text-underline-offset:3px}
+.catalog-official-link:hover{color:#145f94;text-decoration-color:#145f94}
+.catalog-official-mark{font-size:.78em;color:#2477b3;white-space:nowrap}
+.catalog-source-pending{display:inline-block;margin:5px 0 0 6px;border:1px solid #d9ad67;border-radius:999px;background:#fff8ea;color:#704b08;padding:2px 6px;font-size:8px;font-weight:900;letter-spacing:.04em}
 .catalog-season-detail{margin-top:3px;color:#69727b;font-size:11px;font-weight:400}
 .season-progress{display:grid;grid-template-columns:minmax(80px,220px) auto;align-items:center;gap:8px;margin-top:7px}
 .season-progress-track{height:7px;border-radius:999px;background:#dbe5ee;overflow:hidden;box-shadow:inset 0 0 0 1px #c5d2dc}
@@ -535,13 +539,13 @@ th{font-size:11px!important}
 </section>
 <section class="panel" id="coverage"><div class="card"><div class="section-title">Coverage Control</div><p class="small">Source health is not the same as permissibility. A source issue is AMBER because staff may need manual review; it is never RED by itself.</p><div class="coverage-grid" id="coverageGrid"></div></div></section>
 
-<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Catalog order and wording are preserved as published. Season mapping is maintained separately from the controlling catalog.</div><div id="catalogSections"></div></div></section>
+<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Underlined names open the verified official source in a new tab. Catalog order and wording are preserved as published. Season mapping and source availability are informational and maintained separately from the controlling catalog.</div><div id="catalogSections"></div></div></section>
 </div>
 <script>
 const DATA={};
 const FILES={
   global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
-  catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', known:'data/known-u18.json',
+  catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', catalogOfficialSources:'data/catalog-official-sources.json', known:'data/known-u18.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
   basketballIntel:'data/ncaa-basketball-intelligence.json', basketballDI:'data/ncaa-basketball-di-map.json', basketballRosters:'data/ncaa-basketball-rosters.json',
@@ -624,7 +628,7 @@ async function loadAll(){
 
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
 
-    const times=['global','priority','college','collegeFutures','catalog','seasonMap','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis','olympicsSummer','olympicsWinter']
+    const times=['global','priority','college','collegeFutures','catalog','seasonMap','catalogOfficialSources','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennis','olympicsSummer','olympicsWinter']
       .map(k=>DATA[k]?.generated_at)
       .filter(Boolean)
       .map(x=>new Date(x).getTime())
@@ -1728,7 +1732,7 @@ function renderBasketball(){
   });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['LA28 Olympic Program',DATA.olympicsSummer?.generated_at,!!DATA.olympicsSummer],['Alpes 2030 Olympic Program',DATA.olympicsWinter?.generated_at,!!DATA.olympicsWinter],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['LA28 Olympic Program',DATA.olympicsSummer?.generated_at,!!DATA.olympicsSummer],['Alpes 2030 Olympic Program',DATA.olympicsWinter?.generated_at,!!DATA.olympicsWinter],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));const official=DATA.catalogOfficialSources?.coverage;if(official){const pending=official.events_pending||0;cards.push(`<div class="coverage-card"><b>Catalog Official Links</b>${pill(pending?'amber':'green',pending?`${pending} LINK PENDING`:'SOURCE LINKS COMPLETE')}<div class="small">${official.events_linked||0} event links · ${official.governing_bodies_linked||0} governing-body links · generated ${fmtDateTime(DATA.catalogOfficialSources.generated_at)}</div></div>`)}document.getElementById('coverageGrid').innerHTML=cards.join('')}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS (?:MUST )?CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
@@ -1950,6 +1954,38 @@ function tourCalendarHtml(event){
   const summary=[`${rows.length} tournaments`,active?`${active} active`:null,upcoming?`${upcoming} next 7 days`:null].filter(Boolean).join(' · ');
   return `<details class="catalog-tour-calendar"><summary><span>Tour tournament schedule</span><span>${esc(summary)}</span></summary><div class="catalog-tour-events">${rows.map(item=>`<div class="catalog-tour-event ${item.emphasis}"><div><div class="catalog-tour-event-name">${esc(item.display_name)}</div><div class="catalog-tour-event-meta">${esc(tourDateLabel(item))} · ${esc(item.approval_path||'')}</div></div><span class="catalog-tour-event-status">${esc(item.display_status)}</span></div>`).join('')}</div></details>`;
 }
+function catalogOfficialBodySource(name){
+  return (DATA.catalogOfficialSources?.governing_bodies||[]).find(row=>row.name===name)||null;
+}
+function catalogOfficialEventSource(key){
+  return (DATA.catalogOfficialSources?.events||[]).find(row=>row.key===key)||null;
+}
+function catalogOfficialLink(label,source){
+  if(source?.status!=='verified'||!source.official_url)return esc(label);
+  return `<a class="catalog-official-link" href="${esc(source.official_url)}" target="_blank" rel="noopener" title="Open official source">${esc(label)} <span class="catalog-official-mark" aria-hidden="true">↗</span></a>`;
+}
+function catalogSourceStatus(source){
+  return source?.status==='pending'?'<span class="catalog-source-pending">SOURCE LINK PENDING</span>':'';
+}
+function catalogGoverningBodyHtml(name){
+  const source=catalogOfficialBodySource(name);
+  return `${catalogOfficialLink(name,source)}${catalogSourceStatus(source)}`;
+}
+function catalogEventNameHtml(event,label=event?.catalog_event||''){
+  const source=catalogOfficialEventSource(event?.key);
+  return `${catalogOfficialLink(label,source)}${catalogSourceStatus(source)}`;
+}
+function catalogEventHasSeasonMapping(event){
+  return Boolean(event?.nonseasonal||event?.season_status||(event?.season_start&&event?.season_end)||(event?.season_start_date&&event?.season_end_date));
+}
+function catalogMappingSummary(mapping){
+  const events=(mapping?.groups||[]).flatMap(group=>group.events||[]);
+  const total=events.length;
+  const mapped=events.filter(catalogEventHasSeasonMapping).length;
+  const configured=String(mapping?.summary_label||'');
+  const standard=configured.match(/^\d+ approved (.+?) · \d+ season mapped$/);
+  return standard?`${total} approved ${standard[1]} · ${mapped} season mapped`:(configured||`${total} approved events · ${mapped} season mapped`);
+}
 function renderMappedCatalogEvents(events){
   const categories=[];
   events.forEach(event=>{
@@ -1960,7 +1996,7 @@ function renderMappedCatalogEvents(events){
   });
   return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
     const status=mappedSeasonStatus(event);
-    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${tourCalendarHtml(event)}</article>`;
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${tourCalendarHtml(event)}</article>`;
   }).join('')}</div>`).join('');
 }
 function olympicCompliancePill(status){
@@ -1993,7 +2029,7 @@ function renderOlympicProgramCard(row){
     ?`<div class="olympic-catalog-match">Scheduled components: ${esc(row.scheduled_components.join(', '))}</div>`:'';
   const restrictions=(row.restrictions||[]).length
     ?`<div class="catalog-event-restrictions">${row.restrictions.map(x=>`<div class="catalog-event-restriction">${esc(x)}</div>`).join('')}</div>`:'';
-  return `<article class="olympic-program-card ${esc(row.approval_status||'scope-review-required')}"><div class="olympic-program-main"><div><div class="catalog-event-name">${esc(row.name||row.catalog_event)}</div><div class="catalog-season-detail">${esc(dateLabel)}${row.governing_body?` · ${esc(row.governing_body)}`:''}</div>${catalogMatch}${components}</div><div class="olympic-card-pills">${olympicCompliancePill(row.approval_status)}${mappedSeasonBadge(seasonStatus)}</div></div>${restrictions}</article>`;
+  return `<article class="olympic-program-card ${esc(row.approval_status||'scope-review-required')}"><div class="olympic-program-main"><div><div class="catalog-event-name">${esc(row.name||row.catalog_event)}</div><div class="catalog-season-detail">${esc(dateLabel)}${row.governing_body?` · ${catalogGoverningBodyHtml(row.governing_body)}`:''}</div>${catalogMatch}${components}</div><div class="olympic-card-pills">${olympicCompliancePill(row.approval_status)}${mappedSeasonBadge(seasonStatus)}</div></div>${restrictions}</article>`;
 }
 function renderOlympicsCatalog(section,mapping,q,seasonFilter){
   const sportHit=!q||section.sport.toLowerCase().includes(q)||'summer olympic games los angeles 2028 winter french alps 2030'.includes(q);
@@ -2101,15 +2137,13 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
     return{group,events};
   }).filter(x=>x.events.length);
   if(!groups.length&&!visibleNewLines.length)return'';
-  const eventCount=groups.reduce((sum,x)=>sum+x.events.length,0);
-  const mappedCount=groups.reduce((sum,x)=>sum+x.events.filter(event=>mappedSeasonStatus(event)).length,0);
   const openNested=(q||seasonFilter!=='all')?' open':'';
   const renderCountryBlock=countryBlock=>{
     const countryEvents=countryBlock.groups.flatMap(item=>item.events);
     const countryMapped=countryEvents.filter(event=>mappedSeasonStatus(event)).length;
     const countryUnmapped=countryEvents.length-countryMapped;
     return `<details class="catalog-country-group"${openNested}><summary><span>${esc(countryBlock.country)}</span><span class="catalog-country-meta">${countryEvents.length} approved${countryUnmapped?` · ${countryUnmapped} unmapped`:''}${countryUnmapped?pill('amber','REVIEW REQUIRED'):''}</span></summary>
-      ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
+      ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${catalogGoverningBodyHtml(group.governing_body)}</div>`:''}
       ${renderMappedCatalogEvents(events)}</div>`).join('')}
     </details>`;
   };
@@ -2150,7 +2184,7 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
   if(visibleNewLines.length){
     body+=`<section class="catalog-country-group"><div class="catalog-country-head">New Catalog Entries Requiring Mapping</div><div class="catalog-event-list">${visibleNewLines.map(line=>`<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(line)}</div><div class="catalog-season-detail">Detected in the current catalog after the last completed mapping review.</div></div>${mappedSeasonBadge(null)}</div></article>`).join('')}</div></section>`;
   }
-  const summary=mapping.summary_label||`${eventCount} approved events · ${mappedCount} season mapped`;
+  const summary=catalogMappingSummary(mapping);
   return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${esc(summary)}${visibleNewLines.length?` · ${visibleNewLines.length} new catalog ${visibleNewLines.length===1?'entry':'entries'}`:''}</span></summary><div class="catalog-body"><div class="mapped-catalog">${body}</div></div></details>`;
 }
 const NCAA_CATALOG_CONTROLS=[
@@ -2185,7 +2219,7 @@ function renderNcaaCatalog(cat,q,seasonFilter){
     if(!events.length)return'';
     totalEvents+=events.length;
     mappedEvents+=events.filter(x=>x.status).length;
-    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${esc(item.parts.name)}</div>${item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}</article>`).join('')}</div></details>`;
+    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}</article>`).join('')}</div></details>`;
   }).filter(Boolean);
   if(!sports.length&&!controlsHit)return'';
   const controls=(seasonFilter==='all'&&controlsHit)?`<section class="ncaa-controls"><div class="ncaa-controls-head">Nebraska Collegiate Controls</div><div class="ncaa-controls-list">${NCAA_CATALOG_CONTROLS.map(x=>`<div class="ncaa-control">${esc(x)}</div>`).join('')}</div></section>`:'';
