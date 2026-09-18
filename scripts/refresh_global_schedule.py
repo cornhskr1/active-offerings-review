@@ -215,6 +215,81 @@ def parse_mlbstats_event(source, game):
         "source_endpoint":source["endpoint"]
     }
 
+def fetch_espn_golf_season(source):
+    """Return the verified annual tour roster and the events touching Review Today.
+
+    ESPN event IDs are used as stable identities; sponsor-facing tournament names
+    remain display labels and may change without changing the approval path.
+    """
+    r=requests.get(
+        source["endpoint"],
+        params={"dates":str(TODAY.year),"limit":"300"},
+        headers=HEADERS,
+        timeout=30
+    )
+    r.raise_for_status()
+    data=r.json()
+    excludes=[re.compile(pattern,re.I) for pattern in source.get("exclude_name_patterns",[])]
+    registry=[]
+    review=[]
+    for ev in data.get("events",[]):
+        name=str(ev.get("name") or ev.get("shortName") or "Scheduled tournament").strip()
+        if any(pattern.search(name) for pattern in excludes):
+            continue
+        start_raw=ev.get("date")
+        end_raw=ev.get("endDate") or start_raw
+        if not start_raw:
+            continue
+        try:
+            start_dt=datetime.datetime.fromisoformat(str(start_raw).replace("Z","+00:00"))
+            end_dt=datetime.datetime.fromisoformat(str(end_raw).replace("Z","+00:00"))
+        except Exception:
+            continue
+        # Golf feeds encode tournament calendar dates at 04:00Z. Treat the
+        # YYYY-MM-DD portion as the tour's published date instead of shifting
+        # it backward when converting to Central Time.
+        start_date=datetime.date.fromisoformat(str(start_raw)[:10])
+        end_date=datetime.date.fromisoformat(str(end_raw)[:10])
+        event_id=str(ev.get("id") or f'{source["id"]}-{start_date}-{name}')
+        short_name=str(ev.get("shortName") or "").strip()
+        aliases=[] if not short_name or short_name==name else [short_name]
+        links=ev.get("links") or []
+        event_url=next((x.get("href") for x in links if x.get("href")),None)
+        registry.append({
+            "event_id":event_id,
+            "canonical_key":f'{source.get("tour_id",source["id"])}:{event_id}',
+            "tour_id":source.get("tour_id",source["id"]),
+            "tour":source["league"],
+            "display_name":name,
+            "aliases":aliases,
+            "start_date":start_date.isoformat(),
+            "end_date":end_date.isoformat(),
+            "status":"active" if start_date<=TODAY<=end_date else ("upcoming" if start_date>TODAY else "completed"),
+            "approval_path":f'Golf → {source["league"]}',
+            "source_url":event_url or source.get("official_schedule_url") or source["endpoint"]
+        })
+        if end_date<TODAY or start_date>END:
+            continue
+        review.append({
+            "id":f'{source["id"]}-{event_id}',
+            "source_id":source["id"],
+            "sport":"Golf",
+            "league":source["league"],
+            "region":source.get("region"),
+            "name":name,
+            "start_time":start_raw,
+            "end_time":end_raw,
+            "status":"LIVE" if start_date<=TODAY<=end_date else "UPCOMING",
+            "status_detail":"Tournament in progress" if start_date<=TODAY<=end_date else "Scheduled",
+            "season_stage":"TOUR EVENT",
+            "location":None,
+            "tour_id":source.get("tour_id",source["id"]),
+            "tour_event_id":event_id,
+            "source_endpoint":event_url or source["endpoint"]
+        })
+    registry.sort(key=lambda x:(x["start_date"],x["display_name"]))
+    return registry,review
+
 def plain_html(value):
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).strip()
 
@@ -1153,6 +1228,7 @@ def fetch_esl_calendar(source):
     return parsed
 
 events=[]
+tour_calendars=[]
 source_status=[]
 for source in CFG.get("sources",[]):
     ap=approved(source)
@@ -1300,6 +1376,38 @@ for source in CFG.get("sources",[]):
             "approved_catalog":True,
             "ok":not errors,
             "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type")=="espn-golf-season":
+        calendar=[]
+        try:
+            calendar,review_events=fetch_espn_golf_season(source)
+            for parsed in review_events:
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+            tour_calendars.append({
+                "source_id":source["id"],
+                "tour_id":source.get("tour_id",source["id"]),
+                "tour":source["league"],
+                "region":source.get("region"),
+                "season":TODAY.year,
+                "official_schedule_url":source.get("official_schedule_url"),
+                "events":calendar
+            })
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "calendar_events":len(calendar),
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
@@ -1593,6 +1701,7 @@ out={
     "window_end":END.isoformat(),
     "event_count":len(events),
     "events":events,
+    "tour_calendars":tour_calendars,
     "sources":source_status,
     "coverage_gaps":coverage_gaps
 }
