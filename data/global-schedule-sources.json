@@ -977,6 +977,55 @@
       ]
     },
     {
+      "id": "lacrosse-pll",
+      "source_type": "espn-daily",
+      "sport": "Lacrosse",
+      "league": "Premier Lacrosse League (PLL)",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/lacrosse/pll/scoreboard",
+      "official_schedule_url": "https://premierlacrosseleague.com/schedule",
+      "coverage_status": "complete",
+      "event_routing": [
+        {
+          "source_id": "lacrosse-pll-championship-series",
+          "months": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "catalog_terms": [
+        "Premier Lacrosse League (PLL)"
+      ]
+    },
+    {
+      "id": "lacrosse-pll-championship-series",
+      "source_type": "coverage-gap",
+      "sport": "Lacrosse",
+      "league": "PLL Championship Series",
+      "region": "United States",
+      "official_schedule_url": "https://premierlacrosseleague.com/schedule",
+      "source_note": "Championship Series games are routed from the connected PLL feed during the event's winter schedule window.",
+      "catalog_terms": [
+        "Premier Lacrosse League (PLL) Championship Series"
+      ]
+    },
+    {
+      "id": "lacrosse-nll",
+      "source_type": "espn-daily",
+      "sport": "Lacrosse",
+      "league": "National Lacrosse League (NLL)",
+      "region": "United States / Canada",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/lacrosse/nll/scoreboard",
+      "official_schedule_url": "https://www.nll.com/schedule/",
+      "coverage_status": "complete",
+      "catalog_terms": [
+        "National Lacrosse League",
+        "NLL"
+      ]
+    },
+    {
       "id": "mls",
       "sport": "Soccer",
       "league": "MLS",
