@@ -1,0 +1,594 @@
+{
+  "schema_version": 1,
+  "note": "International and confederation soccer adapters supplement the core global schedule source registry.",
+  "sources": [
+    {
+      "id": "soccer-fifa-friendlies-men",
+      "sport": "Soccer",
+      "league": "International Friendlies | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.friendly/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.friendly",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "International Friendlies | Men"
+      ]
+    },
+    {
+      "id": "soccer-fifa-friendlies-women",
+      "sport": "Soccer",
+      "league": "International Friendlies | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.friendly.w/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.friendly.w",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "International Friendlies | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-fifa-world-cup",
+      "sport": "Soccer",
+      "league": "FIFA World Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.world",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "FIFA World Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-fifa-womens-world-cup",
+      "sport": "Soccer",
+      "league": "FIFA World Cup | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.wwc/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.wwc",
+      "source_note": "Daily competition schedule feed retained for the next FIFA Women's World Cup finals.",
+      "catalog_terms": [
+        "FIFA World Cup | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-fifa-club-world-cup",
+      "sport": "Soccer",
+      "league": "FIFA Club World Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.cwc",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "FIFA Club World Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-fifa-womens-club-world-cup",
+      "sport": "Soccer",
+      "league": "FIFA Club World Cup | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
+      "source_note": "Daily competition schedule feed retained for FIFA's approved women's club world competition under the combined catalog label.",
+      "catalog_terms": [
+        "FIFA Club World Cup | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-afc-asian-cup-men",
+      "sport": "Soccer",
+      "league": "AFC Asian Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/afc.asian.cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/afc.asian.cup",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "AFC Asian Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-afc-asian-cup-women",
+      "sport": "Soccer",
+      "league": "AFC Asian Cup | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/afc.w.asian.cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/afc.w.asian.cup",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "AFC Asian Cup | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-afc-champions-league-elite",
+      "sport": "Soccer",
+      "league": "AFC Champions League Elite | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/afc.champions/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/afc.champions",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "AFC Champions League Elite | Men"
+      ]
+    },
+    {
+      "id": "soccer-caf-afcon",
+      "sport": "Soccer",
+      "league": "Africa Cup of Nations | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/caf.nations/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/caf.nations",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Africa Cup of Nations | Men"
+      ]
+    },
+    {
+      "id": "soccer-caf-champions-league",
+      "sport": "Soccer",
+      "league": "CAF Champions League | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/caf.champions/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/caf.champions",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CAF Champions League | Men"
+      ]
+    },
+    {
+      "id": "soccer-caf-confederation-cup",
+      "sport": "Soccer",
+      "league": "CAF Confederation Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/caf.confed/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/caf.confed",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CAF Confederation Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-caf-super-cup",
+      "sport": "Soccer",
+      "league": "CAF Super Cup | Men",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.cafonline.com/",
+      "official_schedule_url": "https://www.cafonline.com/",
+      "source_note": "No dependable complete public fixture adapter is available for the next CAF Super Cup. Staff coverage remains explicit until CAF publishes the event date.",
+      "catalog_terms": [
+        "CAF Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-caf-chan",
+      "sport": "Soccer",
+      "league": "African Nations Championship (CHAN) | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/caf.championship/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/caf.championship",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "African Nations Championship (CHAN) | Men"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-nations-league",
+      "sport": "Soccer",
+      "league": "CONCACAF Nations League | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.nations.league/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.nations.league",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF Nations League | Men"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-gold-cup",
+      "sport": "Soccer",
+      "league": "CONCACAF Gold Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.gold/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.gold",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF Gold Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-central-american-cup",
+      "sport": "Soccer",
+      "league": "CONCACAF Central American Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.central.american.cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.central.american.cup",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF Central American Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-champions-cup",
+      "sport": "Soccer",
+      "league": "CONCACAF Champions Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.champions/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.champions",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF Champions Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-leagues-cup",
+      "sport": "Soccer",
+      "league": "Leagues Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.leagues.cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.leagues.cup",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Leagues Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-w-gold-cup",
+      "sport": "Soccer",
+      "league": "CONCACAF W Gold Cup | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.w.gold/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.w.gold",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF W Gold Cup | Women"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-w-championship",
+      "sport": "Soccer",
+      "league": "CONCACAF W Championship | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.womens.championship/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.womens.championship",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF W Championship | Women"
+      ]
+    },
+    {
+      "id": "soccer-concacaf-w-champions-cup",
+      "sport": "Soccer",
+      "league": "CONCACAF W Champions Cup | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/concacaf.w.champions_cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/concacaf.w.champions_cup",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "CONCACAF W Champions Cup | Women"
+      ]
+    },
+    {
+      "id": "soccer-conmebol-world-cup-qualifiers",
+      "sport": "Soccer",
+      "league": "FIFA World Cup Qualifiers | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.worldq.conmebol/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.worldq.conmebol",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "FIFA World Cup Qualifiers | Men"
+      ]
+    },
+    {
+      "id": "soccer-conmebol-libertadores",
+      "sport": "Soccer",
+      "league": "Copa Libertadores | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/conmebol.libertadores/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.libertadores",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Copa Libertadores | Men"
+      ]
+    },
+    {
+      "id": "soccer-conmebol-libertadores-femenina",
+      "sport": "Soccer",
+      "league": "Copa Libertadores Femenina | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.conmebol.com/libertadores-femenina/",
+      "official_schedule_url": "https://www.conmebol.com/libertadores-femenina/",
+      "source_note": "CONMEBOL publishes the official tournament calendar, but no dependable complete unattended match adapter is currently available.",
+      "catalog_terms": [
+        "Copa Libertadores Femenina | Women"
+      ]
+    },
+    {
+      "id": "soccer-conmebol-sudamericana",
+      "sport": "Soccer",
+      "league": "Copa Sudamericana | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/conmebol.sudamericana/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.sudamericana",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Copa Sudamericana | Men"
+      ]
+    },
+    {
+      "id": "soccer-conmebol-recopa",
+      "sport": "Soccer",
+      "league": "Recopa Sudamericana | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/conmebol.recopa/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.recopa",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Recopa Sudamericana | Men"
+      ]
+    },
+    {
+      "id": "soccer-conmebol-copa-america-femenina",
+      "sport": "Soccer",
+      "league": "Copa América Femenina | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/conmebol.america.femenina/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.america.femenina",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Copa América Femenina | Women"
+      ]
+    },
+    {
+      "id": "soccer-ofc-nations-cup",
+      "sport": "Soccer",
+      "league": "OFC Nations Cup | Men and Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.oceaniafootball.com/",
+      "official_schedule_url": "https://www.oceaniafootball.com/",
+      "source_note": "No 2026 OFC Nations Cup finals are scheduled and no dependable next-edition fixture adapter is available.",
+      "catalog_terms": [
+        "OFC Nations Cup | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-uefa-champions-league",
+      "sport": "Soccer",
+      "league": "UEFA Champions League | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.champions",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Champions League | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-womens-champions-league",
+      "sport": "Soccer",
+      "league": "UEFA Women’s Champions League | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.wchampions",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Women’s Champions League | Women"
+      ]
+    },
+    {
+      "id": "soccer-uefa-europa-league",
+      "sport": "Soccer",
+      "league": "UEFA Europa League | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.europa",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Europa League | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-conference-league",
+      "sport": "Soccer",
+      "league": "UEFA Conference League | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.europa.conf",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Conference League | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-euro-men",
+      "sport": "Soccer",
+      "league": "UEFA European Championship | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.euro/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.euro",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA European Championship | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-euro-women",
+      "sport": "Soccer",
+      "league": "UEFA European Championship | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.weuro/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.weuro",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA European Championship | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-uefa-nations-league",
+      "sport": "Soccer",
+      "league": "UEFA Nations League | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.nations/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.nations",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Nations League | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-womens-nations-league",
+      "sport": "Soccer",
+      "league": "UEFA Women’s Nations League | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.w.nations/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.w.nations",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Women’s Nations League | Women"
+      ]
+    },
+    {
+      "id": "soccer-uefa-super-cup",
+      "sport": "Soccer",
+      "league": "UEFA Super Cup | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.super_cup",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "UEFA Super Cup | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-european-qualifiers-men",
+      "sport": "Soccer",
+      "league": "European Qualifiers | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.worldq.uefa/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.worldq.uefa",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "European Qualifiers | Men"
+      ]
+    },
+    {
+      "id": "soccer-uefa-european-qualifiers-women",
+      "sport": "Soccer",
+      "league": "European Qualifiers | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.wworldq.uefa/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.wworldq.uefa",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "European Qualifiers | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-finalissima-men",
+      "sport": "Soccer",
+      "league": "Finalissima | Men",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/global.finalissima/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/global.finalissima",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Finalissima | Men"
+      ]
+    },
+    {
+      "id": "soccer-finalissima-women",
+      "sport": "Soccer",
+      "league": "Finalissima | Women",
+      "region": "International",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/global.w.finalissima/scoreboard",
+      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/global.w.finalissima",
+      "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
+      "catalog_terms": [
+        "Finalissima | Men and Women"
+      ]
+    }
+  ]
+}

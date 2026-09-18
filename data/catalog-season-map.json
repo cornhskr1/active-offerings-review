@@ -2918,7 +2918,7 @@
     {
       "sport": "Soccer",
       "mapping_status": "in_progress",
-      "summary_label": "329 approved competitions · 10 season mapped",
+      "summary_label": "329 approved competitions · 45 season mapped",
       "catalog_snapshot_lines": [
         "FIFA International Events",
         "Fédération Internationale de Football Association (FIFA)",
@@ -3449,28 +3449,45 @@
           "events": [
             {
               "key": "soccer-international-international-friendlies-men-and-women",
-              "catalog_event": "International Friendlies | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "January–December",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "01-01",
+              "season_end": "12-31",
+              "source_ids": [
+                "soccer-fifa-friendlies-men",
+                "soccer-fifa-friendlies-women"
+              ],
+              "catalog_event": "International Friendlies | Men and Women",
               "restrictions": [
                 "$1,000 WAGER LIMIT"
               ]
             },
             {
               "key": "soccer-international-fifa-world-cup-men-and-women",
-              "catalog_event": "FIFA World Cup | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Men: June 11–July 19, 2026 · Women: next finals in 2027",
+              "season_basis": "2026 FIFA World Cup finals; the approved combined catalog label is preserved",
               "last_verified": "2026-09-18",
+              "season_start": "06-11",
+              "season_end": "07-19",
+              "source_ids": [
+                "soccer-fifa-world-cup",
+                "soccer-fifa-womens-world-cup"
+              ],
+              "catalog_event": "FIFA World Cup | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-fifa-club-world-cup-men-and-women",
-              "catalog_event": "FIFA Club World Cup | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent edition: June 14–July 13, 2025 · no 2026 finals",
+              "season_basis": "Tournament-cycle event; next edition calendar pending",
               "last_verified": "2026-09-18",
+              "source_ids": [
+                "soccer-fifa-club-world-cup",
+                "soccer-fifa-womens-club-world-cup"
+              ],
+              "season_status": "out",
+              "catalog_event": "FIFA Club World Cup | Men and Women",
               "restrictions": []
             }
           ]
@@ -3482,18 +3499,27 @@
           "events": [
             {
               "key": "soccer-international-afc-asian-cup-men-and-women",
-              "catalog_event": "AFC Asian Cup | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Women: March 1–21, 2026 · Men: January 7–February 5, 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "01-07",
+              "season_end": "03-21",
+              "source_ids": [
+                "soccer-afc-asian-cup-men",
+                "soccer-afc-asian-cup-women"
+              ],
+              "catalog_event": "AFC Asian Cup | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-afc-champions-league-elite-men-and-women",
-              "catalog_event": "AFC Champions League Elite | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "2026–27 AFC Champions League Elite; approved combined catalog label preserved",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-afc-champions-league-elite",
+              "catalog_event": "AFC Champions League Elite | Men and Women",
               "restrictions": []
             }
           ]
@@ -3505,113 +3531,147 @@
           "events": [
             {
               "key": "soccer-international-africa-cup-of-nations-men",
-              "catalog_event": "Africa Cup of Nations | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "December 21, 2025–January 18, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "12-21",
+              "season_end": "01-18",
+              "source_id": "soccer-caf-afcon",
+              "catalog_event": "Africa Cup of Nations | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-caf-champions-league-men",
-              "catalog_event": "CAF Champions League | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-caf-champions-league",
+              "catalog_event": "CAF Champions League | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-caf-confederation-cup-men",
-              "catalog_event": "CAF Confederation Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-caf-confederation-cup",
+              "catalog_event": "CAF Confederation Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-caf-super-cup-men",
-              "catalog_event": "CAF Super Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Next event date pending official CAF publication",
+              "season_basis": "Single-event competition; explicit coverage gap retained until CAF publishes the next date",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-caf-super-cup",
+              "season_status": "out",
+              "catalog_event": "CAF Super Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-african-nations-championship-chan-men",
-              "catalog_event": "African Nations Championship (CHAN) | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent edition: August 2–30, 2025 · no 2026 finals",
+              "season_basis": "Tournament-cycle event",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-caf-chan",
+              "season_status": "out",
+              "catalog_event": "African Nations Championship (CHAN) | Men",
               "restrictions": []
             }
           ]
         },
         {
-          "confederation": "CAF",
+          "confederation": "CONCACAF",
           "country": "International",
           "governing_body": "Confederation of North, Central America and Caribbean Association Football (CONCACAF)",
           "events": [
             {
               "key": "soccer-international-concacaf-nations-league-men",
-              "catalog_event": "CONCACAF Nations League | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "September 23–October 7, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "09-23",
+              "season_end": "10-07",
+              "source_id": "soccer-concacaf-nations-league",
+              "catalog_event": "CONCACAF Nations League | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-concacaf-gold-cup-men",
-              "catalog_event": "CONCACAF Gold Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent edition: June–July 2025 · no 2026 finals",
+              "season_basis": "Tournament-cycle event",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-concacaf-gold-cup",
+              "season_status": "out",
+              "catalog_event": "CONCACAF Gold Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-concacaf-central-american-cup-men",
-              "catalog_event": "CONCACAF Central American Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 29–September 18, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-29",
+              "season_end": "09-18",
+              "source_id": "soccer-concacaf-central-american-cup",
+              "catalog_event": "CONCACAF Central American Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-concacaf-champions-cup-men",
-              "catalog_event": "CONCACAF Champions Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "February 4–May 31, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "02-04",
+              "season_end": "05-31",
+              "source_id": "soccer-concacaf-champions-cup",
+              "catalog_event": "CONCACAF Champions Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-leagues-cup-men",
-              "catalog_event": "Leagues Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "August 4–September 7, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "08-04",
+              "season_end": "09-07",
+              "source_id": "soccer-concacaf-leagues-cup",
+              "catalog_event": "Leagues Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-concacaf-w-gold-cup-women",
-              "catalog_event": "CONCACAF W Gold Cup | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent edition: February–March 2024 · no 2026 finals",
+              "season_basis": "Tournament-cycle event",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-concacaf-w-gold-cup",
+              "season_status": "out",
+              "catalog_event": "CONCACAF W Gold Cup | Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-concacaf-w-championship-women",
-              "catalog_event": "CONCACAF W Championship | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "November 27–December 5, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "11-27",
+              "season_end": "12-05",
+              "source_id": "soccer-concacaf-w-championship",
+              "catalog_event": "CONCACAF W Championship | Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-concacaf-w-champions-cup-women",
-              "catalog_event": "CONCACAF W Champions Cup | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent finals: May 20–24, 2026 · next schedule pending",
+              "season_basis": "Tournament-cycle event; next competition schedule pending",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-concacaf-w-champions-cup",
+              "season_status": "out",
+              "catalog_event": "CONCACAF W Champions Cup | Women",
               "restrictions": []
             }
           ]
@@ -3623,50 +3683,66 @@
           "events": [
             {
               "key": "soccer-international-fifa-world-cup-qualifiers-men-and-women",
-              "catalog_event": "FIFA World Cup Qualifiers | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "2026 qualification cycle complete",
+              "season_basis": "CONMEBOL qualification cycle; next cycle schedule pending",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-conmebol-world-cup-qualifiers",
+              "season_status": "out",
+              "catalog_event": "FIFA World Cup Qualifiers | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-copa-libertadores-men-and-women",
-              "catalog_event": "Copa Libertadores | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "February–November 2026",
+              "season_basis": "2026 CONMEBOL Libertadores; approved combined catalog label preserved",
               "last_verified": "2026-09-18",
+              "season_start": "02-01",
+              "season_end": "11-30",
+              "source_id": "soccer-conmebol-libertadores",
+              "catalog_event": "Copa Libertadores | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-copa-libertadores-femenina-women",
-              "catalog_event": "Copa Libertadores Femenina | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "October 2026 tournament calendar pending match adapter",
+              "season_basis": "Official CONMEBOL tournament month; explicit schedule coverage gap retained",
               "last_verified": "2026-09-18",
+              "season_start": "10-01",
+              "season_end": "10-31",
+              "source_id": "soccer-conmebol-libertadores-femenina",
+              "catalog_event": "Copa Libertadores Femenina | Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-copa-sudamericana-men-and-women",
-              "catalog_event": "Copa Sudamericana | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "March–November 2026",
+              "season_basis": "2026 CONMEBOL Sudamericana; approved combined catalog label preserved",
               "last_verified": "2026-09-18",
+              "season_start": "03-01",
+              "season_end": "11-30",
+              "source_id": "soccer-conmebol-sudamericana",
+              "catalog_event": "Copa Sudamericana | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-recopa-sudamericana-men-and-women",
-              "catalog_event": "Recopa Sudamericana | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "February 2026",
+              "season_basis": "2026 Recopa Sudamericana; approved combined catalog label preserved",
               "last_verified": "2026-09-18",
+              "season_start": "02-01",
+              "season_end": "02-28",
+              "source_id": "soccer-conmebol-recopa",
+              "catalog_event": "Recopa Sudamericana | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-copa-am-rica-femenina-women",
-              "catalog_event": "Copa América Femenina | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent edition: July–August 2025 · no 2026 finals",
+              "season_basis": "Tournament-cycle event",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-conmebol-copa-america-femenina",
+              "season_status": "out",
+              "catalog_event": "Copa América Femenina | Women",
               "restrictions": []
             }
           ]
@@ -3678,10 +3754,12 @@
           "events": [
             {
               "key": "soccer-international-ofc-nations-cup-men-and-women",
-              "catalog_event": "OFC Nations Cup | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "No 2026 finals · next edition calendar pending",
+              "season_basis": "Tournament-cycle event; explicit schedule coverage gap retained",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-ofc-nations-cup",
+              "season_status": "out",
+              "catalog_event": "OFC Nations Cup | Men and Women",
               "restrictions": []
             }
           ]
@@ -3693,74 +3771,104 @@
           "events": [
             {
               "key": "soccer-international-uefa-champions-league-men",
-              "catalog_event": "UEFA Champions League | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-uefa-champions-league",
+              "catalog_event": "UEFA Champions League | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-women-s-champions-league-women",
-              "catalog_event": "UEFA Women’s Champions League | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-uefa-womens-champions-league",
+              "catalog_event": "UEFA Women’s Champions League | Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-europa-league-men",
-              "catalog_event": "UEFA Europa League | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-uefa-europa-league",
+              "catalog_event": "UEFA Europa League | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-conference-league-men",
-              "catalog_event": "UEFA Conference League | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "July 2026–May 2027",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "07-01",
+              "season_end": "05-31",
+              "source_id": "soccer-uefa-conference-league",
+              "catalog_event": "UEFA Conference League | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-european-championship-men-and-women",
-              "catalog_event": "UEFA European Championship | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent finals: Men 2024 · Women 2025; no 2026 finals",
+              "season_basis": "Tournament-cycle events",
               "last_verified": "2026-09-18",
+              "source_ids": [
+                "soccer-uefa-euro-men",
+                "soccer-uefa-euro-women"
+              ],
+              "season_status": "out",
+              "catalog_event": "UEFA European Championship | Men and Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-nations-league-men",
-              "catalog_event": "UEFA Nations League | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "September 24–November 17, 2026 league phase",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "09-24",
+              "season_end": "11-17",
+              "source_id": "soccer-uefa-nations-league",
+              "catalog_event": "UEFA Nations League | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-women-s-nations-league-women",
-              "catalog_event": "UEFA Women’s Nations League | Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Most recent edition: 2025 · next league phase pending",
+              "season_basis": "Tournament-cycle event",
               "last_verified": "2026-09-18",
+              "source_id": "soccer-uefa-womens-nations-league",
+              "season_status": "out",
+              "catalog_event": "UEFA Women’s Nations League | Women",
               "restrictions": []
             },
             {
               "key": "soccer-international-uefa-super-cup-men",
-              "catalog_event": "UEFA Super Cup | Men",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "August 12, 2026",
+              "season_basis": "Verified competition calendar and connected schedule source",
               "last_verified": "2026-09-18",
+              "season_start": "08-12",
+              "season_end": "08-12",
+              "source_id": "soccer-uefa-super-cup",
+              "catalog_event": "UEFA Super Cup | Men",
               "restrictions": []
             },
             {
               "key": "soccer-international-european-qualifiers-men-and-women",
-              "catalog_event": "European Qualifiers | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "2026 World Cup qualifying cycle complete",
+              "season_basis": "National-team qualification cycles; next published cycle pending",
               "last_verified": "2026-09-18",
+              "source_ids": [
+                "soccer-uefa-european-qualifiers-men",
+                "soccer-uefa-european-qualifiers-women"
+              ],
+              "season_status": "out",
+              "catalog_event": "European Qualifiers | Men and Women",
               "restrictions": []
             }
           ]
@@ -3772,10 +3880,15 @@
           "events": [
             {
               "key": "soccer-international-finalissima-men-and-women",
-              "catalog_event": "Finalissima | Men and Women",
-              "season_window": "Official season calendar verification pending",
-              "season_basis": "Approved catalog entry preserved; season dates and schedule source require verification",
+              "season_window": "Event-cycle competition · next dates pending",
+              "season_basis": "Cross-confederation event; connected feeds retained for the next published editions",
               "last_verified": "2026-09-18",
+              "source_ids": [
+                "soccer-finalissima-men",
+                "soccer-finalissima-women"
+              ],
+              "season_status": "out",
+              "catalog_event": "Finalissima | Men and Women",
               "restrictions": []
             }
           ]
