@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T12:24:09.336243+00:00",
+  "generated_at": "2026-09-18T12:27:03.214338+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-18",
   "window_end": "2026-09-25",
-  "event_count": 1037,
+  "event_count": 1040,
   "events": [
     {
       "id": "887-2026",
@@ -91,6 +91,24 @@
       "season_stage": "REGULAR SEASON",
       "location": null,
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "1513388",
+      "source_id": "cricket-county-d1",
+      "sport": "Cricket",
+      "league": "Rothesay County Championship Division 1 | Men",
+      "region": "England and Wales",
+      "name": "Somerset at Yorkshire",
+      "start_time": "2026-09-15T09:30Z",
+      "status": "COMPLETED",
+      "status_detail": "Final",
+      "season_stage": null,
+      "location": "Headingley, Leeds \u00b7 Leeds, England",
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8052/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -224,25 +242,6 @@
       "status_detail": "Live \u00b7 began 2026-09-15",
       "season_stage": null,
       "location": "County Ground, Hove \u00b7 Brighton, England",
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8052/scoreboard",
-      "original_start_time": "2026-09-15T09:30Z",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false
-    },
-    {
-      "id": "1513388",
-      "source_id": "cricket-county-d1",
-      "sport": "Cricket",
-      "league": "Rothesay County Championship Division 1 | Men",
-      "region": "England and Wales",
-      "name": "Somerset at Yorkshire",
-      "start_time": "2026-09-18T05:01:00Z",
-      "status": "LIVE",
-      "status_detail": "Live \u00b7 began 2026-09-15",
-      "season_stage": null,
-      "location": "Headingley, Leeds \u00b7 Leeds, England",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/cricket/8052/scoreboard",
       "original_start_time": "2026-09-15T09:30Z",
       "u18_matches": [],
@@ -501,7 +500,7 @@
       "region": "Asia-Pacific",
       "name": "CAG by VARREL vs. SCARZ",
       "start_time": "2026-09-18T11:00:00Z",
-      "status": "COMPLETED",
+      "status": "LIVE",
       "status_detail": "Asia Pacific League Stage 2 - APAC N \u00b7 official Ubisoft schedule",
       "season_stage": "Asia Pacific League Stage 2 - APAC N",
       "location": "Asia-Pacific",
@@ -1068,6 +1067,42 @@
       "season_stage": "REGULAR SEASON",
       "location": "Convocation Center (OH) \u00b7 Athens, Ohio",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "motorsports-motogp-2026-09-18-motogp-grand-prix-of-austria",
+      "source_id": "motorsports-motogp",
+      "sport": "Motorsports",
+      "league": "MotoGP World Championship",
+      "region": "International",
+      "name": "MotoGP Grand Prix of Austria",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-18 through 2026-09-20 \u00b7 official tournament calendar",
+      "season_stage": null,
+      "location": "Red Bull Ring \u00b7 Spielberg, Austria",
+      "source_endpoint": "https://www.motogp.com/en/calendar/2026",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "motorsports-nhra-2026-09-18-dodge-nhra-great-lakes-nationals-presented-by-mopar",
+      "source_id": "motorsports-nhra",
+      "sport": "Motorsports",
+      "league": "NHRA Mission Foods Drag Racing Series",
+      "region": "United States",
+      "name": "Dodge NHRA Great Lakes Nationals presented by Mopar",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-18 through 2026-09-20 \u00b7 official tournament calendar",
+      "season_stage": null,
+      "location": "US 131 Motorsports Park \u00b7 Martin, Michigan",
+      "source_endpoint": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -14689,6 +14724,24 @@
       "restriction_risk": false
     },
     {
+      "id": "motorsports-f1-2026-09-24-formula-1-azerbaijan-grand-prix",
+      "source_id": "motorsports-f1",
+      "sport": "Motorsports",
+      "league": "Formula One (F1)",
+      "region": "International",
+      "name": "Formula 1 Azerbaijan Grand Prix",
+      "start_time": "2026-09-24T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-24 through 2026-09-26 \u00b7 official tournament calendar",
+      "season_stage": null,
+      "location": "Baku City Circuit \u00b7 Baku, Azerbaijan",
+      "source_endpoint": "https://calendar.formula1.com/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "esports-r6-regional-8308",
       "source_id": "esports-r6-regional",
       "sport": "Esports",
@@ -20517,7 +20570,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-bbl",
@@ -20535,7 +20588,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-wbbl",
@@ -20553,7 +20606,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-county-d1",
@@ -20571,7 +20624,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-county-d2",
@@ -20589,7 +20642,7 @@
       "ok": true,
       "events": 7,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-ipl",
@@ -20607,7 +20660,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-ashes",
@@ -20626,7 +20679,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cricket-t20-world-cup",
@@ -20644,7 +20697,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cycling-uci-calendar",
@@ -20669,7 +20722,7 @@
       "ok": true,
       "events": 14,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "darts-cdc-calendar",
@@ -20691,7 +20744,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "darts-pdc-calendar",
@@ -20714,7 +20767,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-riot-lol-calendar",
@@ -20744,7 +20797,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-riot-valorant-calendar",
@@ -20767,7 +20820,7 @@
       "ok": true,
       "events": 4,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-ubisoft-r6-calendar",
@@ -20791,7 +20844,7 @@
       "ok": true,
       "events": 75,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-cdl",
@@ -20810,7 +20863,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 CDL season is complete. A dependable future-season match adapter will be added when the next official schedule is published.",
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-dota-international-calendar",
@@ -20840,7 +20893,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-esl-dota-calendar",
@@ -20861,7 +20914,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-dota-ewc-calendar",
@@ -20892,7 +20945,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-esl-pro-league-calendar",
@@ -20912,7 +20965,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-pgl-cs2-calendar",
@@ -20931,7 +20984,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-simulation-calendar",
@@ -20952,7 +21005,7 @@
       "ok": true,
       "events": 0,
       "note": "The eAdriatic, NextGen eBasket, and GT Sports schedules require a stable publisher-owned schedule source before automation.",
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "esports-rlcs",
@@ -20972,7 +21025,7 @@
       "ok": true,
       "events": 0,
       "note": "The official RLCS page is authoritative but currently blocks unattended schedule collection; it remains a visible coverage gap rather than using a stale substitute.",
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "mlb",
@@ -20988,7 +21041,7 @@
       "ok": true,
       "events": 106,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "npb",
@@ -21006,7 +21059,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "kbo",
@@ -21024,7 +21077,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lmb",
@@ -21042,7 +21095,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lmp",
@@ -21060,7 +21113,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lidom",
@@ -21079,7 +21132,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "wbc",
@@ -21094,7 +21147,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "nfl",
@@ -21110,7 +21163,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cfl",
@@ -21140,7 +21193,7 @@
       "ok": true,
       "events": 5,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ifl",
@@ -21159,7 +21212,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ufl",
@@ -21188,7 +21241,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ncaa-football",
@@ -21204,7 +21257,7 @@
       "ok": true,
       "events": 34,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "nba",
@@ -21220,7 +21273,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "cebl",
@@ -21238,7 +21291,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "australian-nbl",
@@ -21255,7 +21308,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "mexican-lnbp",
@@ -21275,7 +21328,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "chile-lnb",
@@ -21294,7 +21347,7 @@
       "ok": true,
       "events": 0,
       "note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "pba-national-tour",
@@ -21312,7 +21365,7 @@
       "ok": true,
       "events": 0,
       "note": "Official PBA National Tour schedule. Authoritative for manual verification; no dependable unattended structured schedule feed is currently connected.",
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "boxing-weekly",
@@ -21334,7 +21387,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "danish-basketligaen",
@@ -21353,7 +21406,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lithuanian-lkl",
@@ -21372,7 +21425,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "greek-basket-league",
@@ -21390,7 +21443,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "israeli-basketball",
@@ -21408,7 +21461,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "serbian-kls",
@@ -21426,7 +21479,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "korean-kbl",
@@ -21444,7 +21497,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "wnba",
@@ -21460,7 +21513,7 @@
       "ok": true,
       "events": 25,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "fiba-bcl",
@@ -21478,7 +21531,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "eurocup-basketball",
@@ -21496,7 +21549,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "france-lnb",
@@ -21514,7 +21567,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "german-bbl",
@@ -21533,7 +21586,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "italian-lba",
@@ -21552,7 +21605,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "polish-plk",
@@ -21571,7 +21624,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "spanish-acb",
@@ -21589,7 +21642,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "swiss-sbl",
@@ -21608,7 +21661,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "turkish-bsl",
@@ -21627,7 +21680,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "israeli-premier",
@@ -21646,7 +21699,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -21662,7 +21715,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -21678,7 +21731,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "nhl",
@@ -21695,7 +21748,7 @@
       "ok": true,
       "events": 51,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "pwhl",
@@ -21719,7 +21772,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "icehl",
@@ -21736,7 +21789,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "czech-extraliga",
@@ -21753,7 +21806,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "liiga",
@@ -21770,7 +21823,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "del",
@@ -21787,7 +21840,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "slovak-extraliga",
@@ -21804,7 +21857,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "shl",
@@ -21821,7 +21874,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "swiss-national",
@@ -21838,7 +21891,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "chl",
@@ -21855,7 +21908,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lacrosse-pll",
@@ -21883,7 +21936,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lacrosse-pll-championship-series",
@@ -21900,7 +21953,7 @@
       "ok": true,
       "events": 0,
       "note": "Championship Series games are routed from the connected PLL feed during the event's winter schedule window.",
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "lacrosse-nll",
@@ -21919,7 +21972,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "mls",
@@ -21935,7 +21988,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "epl",
@@ -21950,7 +22003,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "bundesliga",
@@ -21965,7 +22018,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "laliga",
@@ -21980,7 +22033,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "seriea",
@@ -21995,7 +22048,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ligue1",
@@ -22010,7 +22063,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "eredivisie",
@@ -22025,7 +22078,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "primeira",
@@ -22040,7 +22093,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "belgium",
@@ -22056,7 +22109,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "denmark",
@@ -22072,7 +22125,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "golf-pga-tour",
@@ -22094,7 +22147,7 @@
       "events": 2,
       "calendar_events": 48,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "golf-pga-tour-champions",
@@ -22113,7 +22166,7 @@
       "events": 1,
       "calendar_events": 29,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "golf-lpga-tour",
@@ -22132,7 +22185,7 @@
       "events": 1,
       "calendar_events": 32,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "golf-liv-golf",
@@ -22151,7 +22204,264 @@
       "events": 0,
       "calendar_events": 15,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-f1-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "Formula One (F1)",
+      "region": "International",
+      "endpoint": "https://calendar.formula1.com/",
+      "official_schedule_url": "https://calendar.formula1.com/",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-f1",
+          "league": "Formula One (F1)",
+          "name": "Formula 1 Azerbaijan Grand Prix",
+          "start_date": "2026-09-24",
+          "end_date": "2026-09-26",
+          "location": "Baku City Circuit \u00b7 Baku, Azerbaijan",
+          "official_schedule_url": "https://calendar.formula1.com/"
+        }
+      ],
+      "catalog_terms": [
+        "Formula One (F1)"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-motogp-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "MotoGP World Championship",
+      "region": "International",
+      "endpoint": "https://www.motogp.com/en/calendar/2026",
+      "official_schedule_url": "https://www.motogp.com/en/calendar/2026",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-motogp",
+          "league": "MotoGP World Championship",
+          "name": "MotoGP Grand Prix of Austria",
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-20",
+          "location": "Red Bull Ring \u00b7 Spielberg, Austria",
+          "official_schedule_url": "https://www.motogp.com/en/calendar/2026"
+        }
+      ],
+      "catalog_terms": [
+        "MotoGP World Championship"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-nascar-bristol",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "NASCAR National Series",
+      "region": "United States",
+      "endpoint": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/",
+      "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-nascar-oreilly",
+          "league": "NASCAR O\u2019Reilly Auto Parts Series",
+          "name": "Food City 300",
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-18",
+          "location": "Bristol Motor Speedway \u00b7 Bristol, Tennessee",
+          "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/"
+        },
+        {
+          "source_id": "motorsports-nascar-cup",
+          "league": "NASCAR Cup Series (NCS)",
+          "name": "Bass Pro Shops Night Race",
+          "start_date": "2026-09-19",
+          "end_date": "2026-09-19",
+          "location": "Bristol Motor Speedway \u00b7 Bristol, Tennessee",
+          "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/"
+        }
+      ],
+      "catalog_terms": [
+        "NASCAR Cup Series (NCS)",
+        "NASCAR O\u2019Reilly Auto Parts Series"
+      ],
+      "approved_catalog": true,
+      "ok": false,
+      "events": 0,
+      "errors": [
+        "403 Client Error: Forbidden for url: https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol"
+      ],
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-nhra-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "NHRA Mission Foods Drag Racing Series",
+      "region": "United States",
+      "endpoint": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
+      "official_schedule_url": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-nhra",
+          "league": "NHRA Mission Foods Drag Racing Series",
+          "name": "Dodge NHRA Great Lakes Nationals presented by Mopar",
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-20",
+          "location": "US 131 Motorsports Park \u00b7 Martin, Michigan",
+          "official_schedule_url": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan"
+        }
+      ],
+      "catalog_terms": [
+        "National Hot Rod Association (NHRA) Mission Foods Drag Racing Series"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-score-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "SCORE World Desert Championship Series",
+      "region": "United States / Mexico",
+      "endpoint": "https://www.score-international.com/",
+      "official_schedule_url": "https://www.score-international.com/",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-score",
+          "league": "SCORE World Desert Championship Series",
+          "name": "BFGoodrich Tires 59th SCORE Baja 1000",
+          "start_date": "2026-11-09",
+          "end_date": "2026-11-15",
+          "location": "San Jos\u00e9 del Cabo, Baja California Sur, Mexico",
+          "official_schedule_url": "https://www.score-international.com/"
+        }
+      ],
+      "catalog_terms": [
+        "SCORE World Desert Championship Series"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-supercars",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Repco Supercars Championship",
+      "region": "Australia",
+      "official_schedule_url": "https://www.supercars.com/calendar",
+      "source_note": "Season is mapped; a dependable unattended official event adapter is still pending.",
+      "catalog_terms": [
+        "Repco Supercars Championship"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Season is mapped; a dependable unattended official event adapter is still pending.",
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-formula-e",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Formula E World Championship",
+      "region": "International",
+      "official_schedule_url": "https://www.fiaformulae.com/en/calendar",
+      "source_note": "The 2025\u201326 season is complete; reconnect when the next official championship calendar begins.",
+      "catalog_terms": [
+        "Formula E World Championship"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "The 2025\u201326 season is complete; reconnect when the next official championship calendar begins.",
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-indycar",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "IndyCar Series",
+      "region": "United States",
+      "official_schedule_url": "https://www.indycar.com/Schedule",
+      "source_note": "The 2026 season is complete; retain the mapping and reconnect when the next official schedule is published.",
+      "catalog_terms": [
+        "IndyCar Series"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "The 2026 season is complete; retain the mapping and reconnect when the next official schedule is published.",
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-nascar-truck",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "NASCAR Craftsman Truck Series",
+      "region": "United States",
+      "official_schedule_url": "https://www.nascar.com/nascar-craftsman-truck-series/2026/schedule/",
+      "source_note": "Season is mapped; the current official race-weekend adapter does not yet cover the Truck Series.",
+      "catalog_terms": [
+        "NASCAR Craftsman Truck Series"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Season is mapped; the current official race-weekend adapter does not yet cover the Truck Series.",
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-srx",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Camping World Superstar Racing Experience (SRX) Series",
+      "region": "United States",
+      "source_note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
+      "catalog_terms": [
+        "Camping World Superstar Racing Experience (SRX) Series"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
+    },
+    {
+      "id": "motorsports-nitrocross",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Nitrocross",
+      "region": "United States / International",
+      "source_note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
+      "catalog_terms": [
+        "Nitrocross - Formerly Nitro Rallycross / Nitro RX"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -22167,7 +22477,7 @@
       "ok": true,
       "events": 534,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "atp-tennis",
@@ -22183,7 +22493,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "wta-tennis",
@@ -22199,7 +22509,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "ufc",
@@ -22217,7 +22527,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     },
     {
       "id": "pfl",
@@ -22238,7 +22548,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T12:24:09.336243+00:00"
+      "checked_at": "2026-09-18T12:27:03.214338+00:00"
     }
   ],
   "coverage_gaps": [
