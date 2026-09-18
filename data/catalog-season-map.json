@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T16:00:00-05:00",
+  "generated_at": "2026-09-18T00:00:00-05:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [
     {
@@ -1835,6 +1835,129 @@
               "restrictions": [
                 "MARKETS LIMITED TO MONEYLINE, RUN LINE, AND TOTAL RUNS"
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sport": "Cricket",
+      "mapping_status": "complete",
+      "summary_label": "6 approved competitions · 6 season mapped",
+      "catalog_snapshot_lines": [
+        "Australia",
+        "Cricket Australia (CA)",
+        "Big Bash League (BBL) | Men",
+        "Women’s Big Bash League (WBBL) | Women",
+        "England and Wales",
+        "England and Wales Cricket Board",
+        "Rothesay County Championship Division 1 | Men",
+        "Rothesay County Championship Division 2 | Men",
+        "India",
+        "Board for Control for Cricket in India",
+        "Indian Premier League | Men",
+        "United Arab Emirates",
+        "International Cricket Council",
+        "The Ashes | Men",
+        "ICC T20 World Cup | Men"
+      ],
+      "groups": [
+        {
+          "country": "Australia",
+          "governing_body": "Cricket Australia (CA)",
+          "events": [
+            {
+              "key": "cricket-au-bbl",
+              "catalog_event": "Big Bash League (BBL) | Men",
+              "season_window": "December 12–January 26",
+              "season_start": "12-12",
+              "season_end": "01-26",
+              "source_id": "cricket-bbl",
+              "season_basis": "2026–27 official competition calendar",
+              "last_verified": "2026-09-18",
+              "restrictions": []
+            },
+            {
+              "key": "cricket-au-wbbl",
+              "catalog_event": "Women’s Big Bash League (WBBL) | Women",
+              "season_window": "October 29–December 5",
+              "season_start": "10-29",
+              "season_end": "12-05",
+              "source_id": "cricket-wbbl",
+              "season_basis": "2026 official competition calendar",
+              "last_verified": "2026-09-18",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "England and Wales",
+          "governing_body": "England and Wales Cricket Board",
+          "events": [
+            {
+              "key": "cricket-gb-county-d1",
+              "catalog_event": "Rothesay County Championship Division 1 | Men",
+              "season_window": "April 3–September 27",
+              "season_start": "04-03",
+              "season_end": "09-27",
+              "source_id": "cricket-county-d1",
+              "season_basis": "2026 official competition calendar",
+              "last_verified": "2026-09-18",
+              "restrictions": []
+            },
+            {
+              "key": "cricket-gb-county-d2",
+              "catalog_event": "Rothesay County Championship Division 2 | Men",
+              "season_window": "April 3–September 27",
+              "season_start": "04-03",
+              "season_end": "09-27",
+              "source_id": "cricket-county-d2",
+              "season_basis": "2026 official competition calendar",
+              "last_verified": "2026-09-18",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "India",
+          "governing_body": "Board for Control for Cricket in India",
+          "events": [
+            {
+              "key": "cricket-in-ipl",
+              "catalog_event": "Indian Premier League | Men",
+              "season_window": "March 28–May 31",
+              "season_start": "03-28",
+              "season_end": "05-31",
+              "source_id": "cricket-ipl",
+              "season_basis": "2026 official competition calendar",
+              "last_verified": "2026-09-18",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United Arab Emirates",
+          "governing_body": "International Cricket Council",
+          "events": [
+            {
+              "key": "cricket-int-ashes",
+              "catalog_event": "The Ashes | Men",
+              "season_window": "November 2025–January 2026 · completed",
+              "season_status": "out",
+              "source_id": "cricket-ashes",
+              "season_basis": "Event-specific series calendar; next series requires a new dated mapping",
+              "last_verified": "2026-09-18",
+              "restrictions": []
+            },
+            {
+              "key": "cricket-int-t20-world-cup",
+              "catalog_event": "ICC T20 World Cup | Men",
+              "season_window": "February 7–March 8, 2026 · completed",
+              "season_status": "out",
+              "source_id": "cricket-t20-world-cup",
+              "season_basis": "Event-specific tournament calendar; do not treat as an annual February window",
+              "last_verified": "2026-09-18",
+              "restrictions": []
             }
           ]
         }
