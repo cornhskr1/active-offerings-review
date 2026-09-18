@@ -875,7 +875,45 @@ function attentionCardsForDay(dayKey,events,pqCards){
   boxingReviewAlerts(dayKey,events).forEach(c=>{
     if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
   });
+  tennisIntelligenceAlerts(dayKey,events).forEach(c=>{
+    if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
+  });
   return cards;
+}
+
+function tennisIntelligenceAlerts(dayKey,events){
+  const tournaments=DATA.tennis?.tournaments||[];
+  return tournaments.filter(t=>{
+    const color=String(t.status_color||'').toUpperCase();
+    return color==='RED'||color==='AMBER';
+  }).map(t=>{
+    const sourceUrl=String(t.source_url||'');
+    const tournamentName=String(t.tournament||'').toLowerCase();
+    const matched=(events||[]).find(e=>{
+      if(e.sport!=='Tennis')return false;
+      if(sourceUrl&&String(e.source_endpoint||'')===sourceUrl)return true;
+      const eventName=String(e.name||'').toLowerCase();
+      return tournamentName&&eventName&&(eventName.includes(tournamentName)||tournamentName.includes(eventName));
+    });
+    const startTime=matched?.start_time||`${t.start_date}T12:00:00Z`;
+    const red=String(t.status_color||'').toUpperCase()==='RED';
+    const names=(t.verified_u18||[]).map(x=>x.name).filter(Boolean);
+    return{
+      severity:red?'RED':'AMBER',
+      type:red?'TENNIS U18 EXPOSURE':'TENNIS REVIEW',
+      sport:'Tennis',
+      league:matched?.league||t.tour||'Approved Tennis',
+      region:matched?.region||t.location||'International',
+      event:matched?.name||t.tournament||'Tennis tournament',
+      start_time:startTime,
+      reason:red
+        ?`Confirmed U18 active-field exposure${names.length?` — ${names.join(', ')}`:''}.`
+        :(t.regulatory_status||'Participant-field or age review remains open.'),
+      staff_action:red
+        ?'Search active sportsbook markets for the confirmed U18 participant and review athlete-specific performance/nonperformance offerings across all licensed platforms.'
+        :'Open Tennis Watch for the participant-field and age-screening detail before clearing this tournament.'
+    };
+  }).filter(card=>ctKey(card.start_time)===dayKey);
 }
 
 function boxingReviewAlerts(dayKey,events){
