@@ -2,14 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-09-18T00:00:00-05:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
-  "catalog_role_overrides": [
-    {
-      "sport": "Ice Hockey",
-      "country": "Austria",
-      "line": "ICE Hockey League",
-      "role": "catalog-org"
-    }
-  ],
+  "catalog_role_overrides": [],
   "source_mappings": [
     {
       "source_id": "nfl",
@@ -79,16 +72,6 @@
       "season_window": "May–October",
       "season_start": "05-01",
       "season_end": "10-31",
-      "last_verified": "2026-09-16"
-    },
-    {
-      "source_id": "nhl",
-      "sport": "Ice Hockey",
-      "country": "United States / Canada",
-      "catalog_event": "National Hockey League (NHL)",
-      "season_window": "October–June",
-      "season_start": "10-01",
-      "season_end": "06-30",
       "last_verified": "2026-09-16"
     },
     {
@@ -213,148 +196,7 @@
       "last_verified": "2026-09-16"
     }
   ],
-  "catalog_event_mappings": [
-    {
-      "sport": "Ice Hockey",
-      "country": "Austria",
-      "catalog_event": "ICE Hockey League (ICEHL)",
-      "season_window": "September–April",
-      "season_start": "09-01",
-      "season_end": "04-30",
-      "source_ids": [
-        "icehl"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "Czech Republic",
-      "catalog_event": "Czech Extraliga",
-      "season_window": "September–April",
-      "season_start": "09-01",
-      "season_end": "04-30",
-      "source_ids": [
-        "czech-extraliga"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "Finland",
-      "catalog_event": "Liiga",
-      "season_window": "September–April",
-      "season_start": "09-01",
-      "season_end": "04-30",
-      "source_ids": [
-        "liiga"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "Germany",
-      "catalog_event": "Deutsche Eishockey Liga (DEL)",
-      "season_window": "September–April",
-      "season_start": "09-01",
-      "season_end": "04-30",
-      "source_ids": [
-        "del"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "Slovakia",
-      "catalog_event": "Slovak Extraliga",
-      "season_window": "September–April",
-      "season_start": "09-01",
-      "season_end": "04-30",
-      "source_ids": [
-        "slovak-extraliga"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "Sweden",
-      "catalog_event": "Swedish Hockey League (SHL)",
-      "season_window": "September–May",
-      "season_start": "09-01",
-      "season_end": "05-31",
-      "source_ids": [
-        "shl"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "Switzerland",
-      "catalog_event": "National League",
-      "season_window": "September–April",
-      "season_start": "09-01",
-      "season_end": "04-30",
-      "source_ids": [
-        "swiss-national"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "International / Europe",
-      "catalog_event": "Champions Hockey League (CHL)",
-      "season_window": "September–February",
-      "season_start": "09-01",
-      "season_end": "02-28",
-      "source_ids": [
-        "chl"
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "United States / Canada",
-      "catalog_event": "Professional Women’s Hockey League (PWHL)",
-      "season_window": "November–May",
-      "season_start": "11-01",
-      "season_end": "05-31",
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "United States / Canada",
-      "catalog_event": "NHL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START",
-      "season_window": "Annual June event",
-      "season_start": "06-01",
-      "season_end": "06-30",
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "United States / Canada",
-      "catalog_event": "NHL All-Star Skills Challenge",
-      "season_window": "January–February",
-      "season_start": "01-01",
-      "season_end": "02-28",
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "United States / Canada",
-      "catalog_event": "NHL All-Star Game",
-      "season_window": "January–February",
-      "season_start": "01-01",
-      "season_end": "02-28",
-      "last_verified": "2026-09-16"
-    },
-    {
-      "sport": "Ice Hockey",
-      "country": "United States / Canada",
-      "catalog_event": "Four Nations Face-Off",
-      "season_window": "February 2025 event completed",
-      "season_status": "out",
-      "last_verified": "2026-09-16"
-    }
-  ],
+  "catalog_event_mappings": [],
   "sports": [
     {
       "sport": "Aussie Rules",
@@ -1875,6 +1717,270 @@
               "restrictions": [
                 "MARKETS LIMITED TO MONEYLINE, RUN LINE, AND TOTAL RUNS"
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sport": "Ice Hockey",
+      "mapping_status": "complete",
+      "summary_label": "14 approved events · 14 season mapped",
+      "catalog_snapshot_lines": [
+        "Austria",
+        "ICE Hockey League",
+        "ICE Hockey League (ICEHL)",
+        "Czech Republic",
+        "Czech Ice Hockey Association",
+        "Czech Extraliga",
+        "Finland",
+        "Finnish Ice Hockey Association",
+        "Liiga",
+        "Germany",
+        "Deutsche Eishockey Liga (DEL)",
+        "Deutsche Eishockey Liga (DEL)",
+        "Slovakia",
+        "Slovak Ice Hockey Federation",
+        "Slovak Extraliga",
+        "Sweden",
+        "Swedish Ice Hockey Association",
+        "Swedish Hockey League (SHL)",
+        "Switzerland",
+        "Swiss Ice Hockey Federation",
+        "National League",
+        "International / Europe",
+        "Champions Hockey League (CHL)",
+        "Champions Hockey League (CHL)",
+        "United States / Canada",
+        "Professional Women’s Hockey League (PWHL)",
+        "Professional Women’s Hockey League (PWHL)",
+        "National Hockey League (NHL)",
+        "National Hockey League (NHL)",
+        "NHL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START",
+        "NHL All-Star Skills Challenge",
+        "NHL All-Star Game",
+        "Four Nations Face-Off"
+      ],
+      "groups": [
+        {
+          "country": "Austria",
+          "governing_body": "ICE Hockey League",
+          "events": [
+            {
+              "key": "hockey-at-icehl",
+              "catalog_event": "ICE Hockey League (ICEHL)",
+              "season_window": "September 2026–April 2027",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "source_id": "icehl",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The ICE Hockey League includes clubs from several Central European countries, not only Austria.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Czech Republic",
+          "governing_body": "Czech Ice Hockey Association",
+          "events": [
+            {
+              "key": "hockey-cz-extraliga",
+              "catalog_event": "Czech Extraliga",
+              "season_window": "September 2026–April 2027",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "source_id": "czech-extraliga",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Czech Extraliga is the top level of professional ice hockey in the Czech Republic.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Finland",
+          "governing_body": "Finnish Ice Hockey Association",
+          "events": [
+            {
+              "key": "hockey-fi-liiga",
+              "catalog_event": "Liiga",
+              "season_window": "September 2026–April 2027",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "source_id": "liiga",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "Liiga is Finland’s highest professional ice hockey league.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Germany",
+          "governing_body": "Deutsche Eishockey Liga (DEL)",
+          "events": [
+            {
+              "key": "hockey-de-del",
+              "catalog_event": "Deutsche Eishockey Liga (DEL)",
+              "season_window": "September 17, 2026–April 2027",
+              "season_start": "09-17",
+              "season_end": "04-30",
+              "source_id": "del",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "DEL is Germany’s top professional ice hockey league.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Slovakia",
+          "governing_body": "Slovak Ice Hockey Federation",
+          "events": [
+            {
+              "key": "hockey-sk-extraliga",
+              "catalog_event": "Slovak Extraliga",
+              "season_window": "September 2026–April 2027",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "source_id": "slovak-extraliga",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Slovak Extraliga is the highest tier of professional ice hockey in Slovakia.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Sweden",
+          "governing_body": "Swedish Ice Hockey Association",
+          "events": [
+            {
+              "key": "hockey-se-shl",
+              "catalog_event": "Swedish Hockey League (SHL)",
+              "season_window": "September 19, 2026–May 2027",
+              "season_start": "09-19",
+              "season_end": "05-31",
+              "source_id": "shl",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The SHL is Sweden’s top professional league and uses promotion and relegation with HockeyAllsvenskan.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "Switzerland",
+          "governing_body": "Swiss Ice Hockey Federation",
+          "events": [
+            {
+              "key": "hockey-ch-national-league",
+              "catalog_event": "National League",
+              "season_window": "September 2026–April 2027",
+              "season_start": "09-01",
+              "season_end": "04-30",
+              "source_id": "swiss-national",
+              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "Switzerland’s National League is the country’s highest professional ice hockey division.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International / Europe",
+          "governing_body": "Champions Hockey League (CHL)",
+          "events": [
+            {
+              "key": "hockey-eu-chl",
+              "catalog_event": "Champions Hockey League (CHL)",
+              "season_window": "August 2026–March 2027",
+              "season_start": "08-01",
+              "season_end": "03-31",
+              "source_id": "chl",
+              "season_basis": "2026–27 European club tournament window; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Champions Hockey League brings leading clubs from multiple European domestic leagues into one tournament.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States / Canada",
+          "governing_body": "Professional Women’s Hockey League (PWHL)",
+          "events": [
+            {
+              "key": "hockey-usca-pwhl",
+              "catalog_event": "Professional Women’s Hockey League (PWHL)",
+              "season_window": "November 22, 2026–May 2027",
+              "season_start": "11-22",
+              "season_end": "05-31",
+              "source_id": "pwhl",
+              "season_basis": "Official 2026–27 preseason is published; the adapter will automatically include the regular season when PWHL publishes it",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The PWHL began play in 2024 and now operates its official schedule through a shared league statistics platform.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States / Canada",
+          "governing_body": "National Hockey League (NHL)",
+          "events": [
+            {
+              "key": "hockey-usca-nhl",
+              "catalog_event": "National Hockey League (NHL)",
+              "season_window": "September 19, 2026–June 2027",
+              "season_start": "09-19",
+              "season_end": "06-30",
+              "source_id": "nhl",
+              "season_basis": "2026–27 preseason, regular season, and Stanley Cup playoffs; connected schedule feed",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Stanley Cup predates the NHL and was first awarded in 1893.",
+              "restrictions": []
+            },
+            {
+              "key": "hockey-usca-nhl-draft",
+              "catalog_event": "NHL Draft",
+              "season_window": "Annual June event · 2027 dates pending",
+              "season_status": "out",
+              "season_basis": "Event-specific calendar; do not infer approval activity until the next official dates are published",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The NHL Draft assigns selection order through the standings, playoffs, trades, and the draft lottery.",
+              "restrictions": [
+                "MARKETS CLOSE 1 HOUR PRIOR TO EVENT START"
+              ]
+            },
+            {
+              "key": "hockey-usca-nhl-skills",
+              "catalog_event": "NHL All-Star Skills Challenge",
+              "season_window": "Event dates pending official confirmation",
+              "season_status": "out",
+              "season_basis": "Event-specific calendar; no recurring January–February window is assumed without published dates",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Skills Challenge tests individual abilities such as skating speed, shooting accuracy, and shot power.",
+              "restrictions": []
+            },
+            {
+              "key": "hockey-usca-nhl-all-star",
+              "catalog_event": "NHL All-Star Game",
+              "season_window": "Event dates pending official confirmation",
+              "season_status": "out",
+              "season_basis": "Event-specific calendar; no recurring January–February window is assumed without published dates",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The NHL All-Star format has changed several times, including conference, divisional, and international-team formats.",
+              "restrictions": []
+            },
+            {
+              "key": "hockey-usca-four-nations",
+              "catalog_event": "Four Nations Face-Off",
+              "season_window": "February 2025 event completed",
+              "season_status": "out",
+              "season_basis": "Completed event-specific tournament; do not treat it as an annual February competition",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The 2025 Four Nations Face-Off featured Canada, Finland, Sweden, and the United States.",
+              "restrictions": []
             }
           ]
         }

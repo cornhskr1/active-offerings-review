@@ -215,6 +215,127 @@ def parse_mlbstats_event(source, game):
         "source_endpoint":source["endpoint"]
     }
 
+def hockeytech_jsonp(response):
+    text=response.text.strip()
+    if text.startswith("("):
+        text=text[1:]
+    if text.endswith(");"):
+        text=text[:-2]
+    elif text.endswith(")"):
+        text=text[:-1]
+    return json.loads(text)
+
+def hockeytech_params(source, **extra):
+    params={
+        "feed":"statviewfeed",
+        "key":source["feed_key"],
+        "client_code":source["client_code"],
+        "site_id":source.get("site_id","0"),
+        "league_id":source["league_id"],
+        "league_code":"",
+        "conference":"-1",
+        "division":"-1",
+        "lang":"en"
+    }
+    params.update(extra)
+    return params
+
+def hockeytech_start_time(date_text, time_text, start_year):
+    clean_date=re.sub(r"^[A-Za-z]{3},\s*","",str(date_text or "").strip())
+    day=datetime.datetime.strptime(clean_date,"%b %d")
+    year=start_year if day.month>=7 else start_year+1
+    date=day.replace(year=year).date()
+    match=re.search(r"(\d{1,2}:\d{2})\s*(am|pm)\s*([A-Z]{3,4})",str(time_text or ""),re.I)
+    zones={
+        "PST":"America/Los_Angeles","PDT":"America/Los_Angeles",
+        "MST":"America/Denver","MDT":"America/Denver",
+        "CST":"America/Chicago","CDT":"America/Chicago",
+        "EST":"America/New_York","EDT":"America/New_York"
+    }
+    if match:
+        clock=datetime.datetime.strptime(f"{match.group(1)} {match.group(2)}","%I:%M %p").time()
+        zone=ZoneInfo(zones.get(match.group(3).upper(),"America/Chicago"))
+    else:
+        clock=datetime.time(12,0)
+        zone=TZ
+    local=datetime.datetime.combine(date,clock,tzinfo=zone)
+    return local.astimezone(datetime.timezone.utc)
+
+def fetch_hockeytech_schedule(source):
+    """Fetch every published season matching the configured PWHL season label.
+
+    The bootstrap call discovers newly published regular-season schedules, so
+    adding that season does not require a code or catalog change.
+    """
+    bootstrap=requests.get(
+        source["endpoint"],
+        params=hockeytech_params(
+            source,
+            view="bootstrap",
+            season=source["bootstrap_season_id"],
+            pageName="schedule"
+        ),
+        headers=HEADERS,
+        timeout=30
+    )
+    bootstrap.raise_for_status()
+    config=hockeytech_jsonp(bootstrap)
+    label=str(source.get("season_label") or "").casefold()
+    seasons=[item for item in config.get("seasons") or [] if label in str(item.get("name") or "").casefold()]
+    parsed=[]
+    seen=set()
+    for season in seasons:
+        season_id=str(season.get("id") or "")
+        start_year=datetime.date.fromisoformat(str(season.get("start_date"))).year
+        response=requests.get(
+            source["endpoint"],
+            params=hockeytech_params(
+                source,
+                view="schedule",
+                season=season_id,
+                conference_id="-1",
+                division_id="-1"
+            ),
+            headers=HEADERS,
+            timeout=30
+        )
+        response.raise_for_status()
+        payload=hockeytech_jsonp(response)
+        for block in payload if isinstance(payload,list) else []:
+            for section in block.get("sections") or []:
+                for item in section.get("data") or []:
+                    row=item.get("row") or {}
+                    try:
+                        start=hockeytech_start_time(row.get("date_with_day"),row.get("game_status"),start_year)
+                    except (TypeError,ValueError):
+                        continue
+                    event_date=start.astimezone(TZ).date()
+                    if event_date<TODAY or event_date>END:
+                        continue
+                    game_id=str(row.get("game_id") or "")
+                    if not game_id or game_id in seen:
+                        continue
+                    seen.add(game_id)
+                    home=str(row.get("home_team_city") or "Home team").strip()
+                    away=str(row.get("visiting_team_city") or "Visiting team").strip()
+                    raw_status=str(row.get("game_status") or "Scheduled").strip()
+                    completed=raw_status.casefold() in ("final","final ot","final so")
+                    parsed.append({
+                        "id":f'{source["id"]}-{game_id}',
+                        "source_id":source["id"],
+                        "sport":source["sport"],
+                        "league":source["league"],
+                        "region":source.get("region"),
+                        "name":f"{away} at {home}",
+                        "start_time":start.isoformat().replace("+00:00","Z"),
+                        "status":"COMPLETED" if completed else "UPCOMING",
+                        "status_detail":f'{raw_status} · {season.get("name")}',
+                        "season_stage":"PRESEASON" if "pre" in str(season.get("name") or "").casefold() else "REGULAR SEASON",
+                        "location":row.get("venue_name") or None,
+                        "source_endpoint":source.get("official_schedule_url") or source["endpoint"]
+                    })
+    return parsed
+
 def fetch_espn_golf_season(source):
     """Return the verified annual tour roster and the events touching Review Today.
 
@@ -1242,6 +1363,26 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="hockeytech-schedule":
+        try:
+            for parsed in fetch_hockeytech_schedule(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
     if source.get("source_type")=="coverage-gap":
         source_status.append({
             **source,
