@@ -312,6 +312,229 @@ def parse_boxing_rss(source):
             })
     return parsed
 
+UCI_DISCIPLINES=("ROA","PIS","MTB","TRI","CRO","GRA","BMX","IND","BFR")
+UCI_CONTINENT_SOURCES={
+    "AFR":("cycling-uci-africa-tour","UCI African Tour"),
+    "AME":("cycling-uci-america-tour","UCI America Tour"),
+    "ASI":("cycling-uci-asia-tour","UCI Asia Tour"),
+    "EUR":("cycling-uci-europe-tour","UCI Europe Tour"),
+    "OCE":("cycling-uci-oceania-tour","UCI Oceania Tour"),
+}
+UCI_NAMED_ROAD={
+    "tour de france":("cycling-tour-de-france","Tour de France"),
+    "giro d'italia":("cycling-giro-ditalia","Giro d’Italia"),
+    "la vuelta ciclista a españa":("cycling-vuelta","Vuelta a España / La Vuelta"),
+    "milano-sanremo":("cycling-milan-san-remo","Milan-San Remo"),
+    "ronde van vlaanderen":("cycling-tour-flanders","Tour of Flanders"),
+    "paris-roubaix hauts-de-france":("cycling-paris-roubaix","Paris-Roubaix"),
+    "liège-bastogne-liège":("cycling-liege-bastogne-liege","Liège-Bastogne-Liège"),
+    "il lombardia":("cycling-il-lombardia","Il Lombardia / Giro di Lombardia"),
+    "mapei cadel evans great ocean road race - men":("cycling-cadel-evans","Cadel Evans Great Ocean Road Race"),
+    "uae tour":("cycling-uae-tour","UAE Tour"),
+    "grand prix cycliste de québec":("cycling-gp-quebec","Grand Prix Cycliste de Québec"),
+    "grand prix cycliste de montréal":("cycling-gp-montreal","Grand Prix Cycliste de Montréal"),
+    "tour of guangxi":("cycling-tour-guangxi","Tour of Guangxi"),
+}
+
+def parse_uci_date_range(value):
+    text=str(value or "").strip().replace("–","-")
+    parts=[x.strip() for x in text.split(" - ")]
+    try:
+        if len(parts)==1:
+            day=datetime.datetime.strptime(parts[0],"%d %b %Y").date()
+            return day,day
+        end=datetime.datetime.strptime(parts[-1],"%d %b %Y").date()
+        start_text=parts[0]
+        try:
+            start=datetime.datetime.strptime(start_text,"%d %b %Y").date()
+        except ValueError:
+            start=datetime.datetime.strptime(f"{start_text} {end.year}","%d %b %Y").date()
+            if start>end:
+                start=start.replace(year=end.year-1)
+        return start,end
+    except (TypeError,ValueError):
+        return None,None
+
+def uci_country_map(payload):
+    for filter_item in payload.get("filters") or []:
+        if filter_item.get("queryParam")!="country":
+            continue
+        return {
+            item.get("code"):str(item.get("text") or "").title()
+            for item in filter_item.get("items") or [] if item.get("code")
+        }
+    return {}
+
+def uci_country_labels(source):
+    url=source.get("official_schedule_url") or "https://www.uci.org/calendar/all/2jnxYAuvjgttyHi6YQ94EJ"
+    r=requests.get(url,headers=HEADERS,timeout=30)
+    r.raise_for_status()
+    match=re.search(r'<div[^>]*data-component="CalendarModule"[^>]*data-props="([^"]*)"',r.text)
+    if not match:
+        return {}
+    props=json.loads(html.unescape(match.group(1)))
+    return uci_country_map(props)
+
+def uci_calendar_items(payload):
+    found=[]
+    seen=set()
+    for month in payload.get("items") or []:
+        for day in month.get("items") or []:
+            for item in day.get("items") or []:
+                link=((item.get("detailsLink") or {}).get("url") or "").strip()
+                key=link or f'{item.get("name")}|{item.get("dates")}|{item.get("country")}'
+                if key in seen:
+                    continue
+                seen.add(key)
+                start,end=parse_uci_date_range(item.get("dates"))
+                if not start or not end or end<TODAY or start>END:
+                    continue
+                found.append({**item,"_start":start,"_end":end,"_details_url":link})
+    return found
+
+def uci_details_class(details_url):
+    if not details_url:
+        return {"competition_class":"","categories":[]}
+    last_error=None
+    for attempt in range(3):
+        try:
+            r=requests.get(f'https://www.uci.org{details_url}',headers=HEADERS,timeout=25)
+            r.raise_for_status()
+            match=re.search(r'<div[^>]*data-component="CompetitionDetailsModule"[^>]*data-props="([^"]*)"',r.text)
+            if not match:
+                return {"competition_class":"","categories":[]}
+            props=json.loads(html.unescape(match.group(1)))
+            categories=[]
+            for day in (props.get("schedule") or {}).get("items") or []:
+                for race in day.get("races") or []:
+                    if race.get("category"):
+                        categories.append(str(race["category"]))
+            return {
+                "competition_class":str((props.get("competitionDetails") or {}).get("competitionClass") or ""),
+                "categories":sorted(set(categories)),
+            }
+        except Exception as exc:
+            last_error=exc
+            if attempt<2:
+                time.sleep(1.5*(attempt+1))
+    raise last_error or RuntimeError("UCI competition details request failed")
+
+def classify_uci_event(item,discipline,details=None):
+    details=details or {}
+    competition_class=str(details.get("competition_class") or "")
+    categories=[str(x).lower() for x in details.get("categories") or []]
+    name=str(item.get("name") or "").strip()
+    low=name.casefold()
+    upper=name.upper()
+    if discipline=="ROA":
+        if "UCI ROAD WORLD CHAMPIONSHIPS" in upper and "MASTERS" not in upper and "JUNIOR" not in upper:
+            return "cycling-road-worlds","UCI Road World Championships"
+        named=UCI_NAMED_ROAD.get(low)
+        if named and "UCI WORLDTOUR" in competition_class.upper():
+            return named
+        eligible_age=not categories or any("elite" in x or "under 23" in x for x in categories)
+        if eligible_age and re.match(r"^[12]\.[12](?:\b|U)",competition_class.upper()):
+            return UCI_CONTINENT_SOURCES.get(str(item.get("continentCode") or "").upper())
+        return None
+    if discipline=="PIS" and "UCI TRACK WORLD CHAMPIONSHIPS" in upper and not any(x in upper for x in ("MASTERS","JUNIOR")):
+        return "cycling-track-worlds","UCI Track Cycling World Championships"
+    if discipline=="MTB":
+        if "UCI MTB MARATHON WORLD CHAMPIONSHIPS" in upper and "MASTERS" not in upper:
+            return "cycling-mtb-marathon-worlds","UCI Mountain Bike Marathon World Championships"
+        if "UCI MTB WORLD CHAMPIONSHIPS" in upper and "MASTERS" not in upper:
+            return "cycling-mtb-worlds","UCI Mountain Bike World Championships"
+        if "UCI SNOW BIKE WORLD CHAMPIONSHIPS" in upper:
+            return "cycling-snow-bike-worlds","UCI Snow Bike World Championships"
+    if discipline in ("TRI","BFR") and "UCI URBAN CYCLING WORLD CHAMPIONSHIPS" in upper:
+        return "cycling-urban-worlds","UCI Urban Cycling World Championships"
+    if discipline=="CRO" and "UCI CYCLO-CROSS WORLD CHAMPIONSHIPS" in upper and "MASTERS" not in upper:
+        return "cycling-cyclocross-worlds","UCI Cyclo-Cross World Championships"
+    if discipline=="GRA" and "UCI GRAVEL WORLD CHAMPIONSHIPS" in upper:
+        return "cycling-gravel-worlds","UCI Gravel World Championships"
+    if discipline=="BMX" and "UCI BMX RACING WORLD CHAMPIONSHIPS" in upper and not any(x in upper for x in ("CHALLENGE","MASTERS")):
+        return "cycling-bmx-worlds","UCI BMX Racing World Championships"
+    if discipline=="IND" and "UCI INDOOR CYCLING WORLD CHAMPIONSHIPS" in upper:
+        return "cycling-indoor-worlds","UCI Indoor Cycling World Championships"
+    return None
+
+def parse_uci_event(source,item,discipline,mapping,countries):
+    source_id,league=mapping
+    start,end=item["_start"],item["_end"]
+    active=start<=TODAY<=end
+    display_date=TODAY if active else start
+    local=datetime.datetime.combine(display_date,datetime.time(0,1) if active else datetime.time(12,0),tzinfo=TZ)
+    start_time=local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+    code=str(item.get("country") or "").upper()
+    region=countries.get(code) or code or "International"
+    venue=str(item.get("venue") or "").strip()
+    location=" · ".join(x for x in (venue,region) if x) or None
+    details_url=item.get("_details_url") or ""
+    parsed={
+        "id":f'{source_id}-{details_url.rsplit("/",1)[-1] or start.isoformat()}',
+        "source_id":source_id,
+        "sport":"Cycling",
+        "league":league,
+        "region":region,
+        "name":item.get("name") or league,
+        "start_time":start_time,
+        "status":"LIVE" if active else "UPCOMING",
+        "status_detail":f'{item.get("dates") or "Scheduled"} · official UCI calendar',
+        "season_stage":None,
+        "location":location,
+        "source_endpoint":f'https://www.uci.org{details_url}' if details_url else source["endpoint"]
+    }
+    if active and start<TODAY:
+        original=datetime.datetime.combine(start,datetime.time(12,0),tzinfo=TZ)
+        parsed["original_start_time"]=original.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+    return parsed
+
+def fetch_uci_calendar(source):
+    payloads={}
+    candidates=[]
+    countries={}
+    # The public calendar page carries the complete UCI country-code labels;
+    # discipline-filtered API responses may omit that filter metadata.
+    countries.update(uci_country_labels(source))
+    for discipline in UCI_DISCIPLINES:
+        last_error=None
+        for attempt in range(3):
+            try:
+                r=requests.get(source["endpoint"],params={"discipline":discipline,"year":str(TODAY.year)},headers=HEADERS,timeout=40)
+                r.raise_for_status()
+                payload=r.json()
+                payloads[discipline]=payload
+                countries.update(uci_country_map(payload))
+                candidates.extend((discipline,item) for item in uci_calendar_items(payload))
+                break
+            except Exception as exc:
+                last_error=exc
+                if attempt<2:
+                    time.sleep(1.5*(attempt+1))
+        else:
+            raise last_error or RuntimeError(f"UCI {discipline} calendar request failed")
+
+    road=[item for discipline,item in candidates if discipline=="ROA"]
+    details={}
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        futures={pool.submit(uci_details_class,item.get("_details_url")):item for item in road}
+        for future in as_completed(futures):
+            item=futures[future]
+            details[item.get("_details_url")]=future.result()
+
+    parsed=[]
+    seen=set()
+    for discipline,item in candidates:
+        mapping=classify_uci_event(item,discipline,details.get(item.get("_details_url"),{}))
+        if not mapping:
+            continue
+        event=parse_uci_event(source,item,discipline,mapping,countries)
+        key=(event["source_id"],event["id"])
+        if key in seen:
+            continue
+        seen.add(key)
+        parsed.append(event)
+    return parsed
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -339,6 +562,26 @@ for source in CFG.get("sources",[]):
     if source.get("source_type")=="boxing-rss":
         try:
             for parsed in parse_boxing_rss(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type")=="uci-calendar":
+        try:
+            for parsed in fetch_uci_calendar(source):
                 key=(parsed["id"],parsed["start_time"])
                 if key in seen:
                     continue

@@ -254,6 +254,7 @@ th{font-size:11px!important}
 .catalog-country-group{border:1px solid #d5dce1;border-radius:10px;overflow:hidden;background:#fff}
 .catalog-country-head{padding:10px 12px;background:#e9edf0;border-left:5px solid #b42025;font-size:14px;font-weight:900}
 .catalog-governing-body{padding:9px 12px;background:#f5f7f8;border-top:1px solid #dce2e6;border-left:4px solid #68737d;font-size:13px;font-weight:800}
+.catalog-category-head{margin:10px 12px 0;padding:8px 10px;background:#eef5fa;border-left:4px solid #2477b3;color:#174d72;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
 .catalog-event-list{display:grid;gap:8px;padding:10px 12px 12px}
 .catalog-event-card{border:1px solid #dfe4e8;border-radius:9px;background:#fff;overflow:hidden}
 .catalog-event-main{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px}
@@ -1785,7 +1786,9 @@ function mappedCatalogEventForScheduleEvent(event){
       if(spring)return{...spring,sport:'Baseball',country:group.country,governing_body:group.governing_body};
     }
   }
-  return mappedCatalogEventForSource(event?.source_id);
+  const mapped=mappedCatalogEventForSource(event?.source_id);
+  if(mapped&&event?.sport==='Cycling'&&event?.region)return{...mapped,country:event.region};
+  return mapped;
 }
 function mappedCatalogEvent(line,sport){
   const normalized=ncaaEventParts(line).name.toLowerCase();
@@ -1810,6 +1813,19 @@ function catalogEntryBadge(event,status){
   if(event?.entry_type==='event-approval-rule')return'<span class="pill blue">EVENT APPROVAL CONTROL</span>';
   if(event?.entry_type==='approval-rule')return'<span class="pill blue">BOUT-LEVEL CONTROL</span>';
   return mappedSeasonBadge(status);
+}
+function renderMappedCatalogEvents(events){
+  const categories=[];
+  events.forEach(event=>{
+    const category=event.category||'';
+    let bucket=categories.find(x=>x.category===category);
+    if(!bucket){bucket={category,events:[]};categories.push(bucket)}
+    bucket.events.push(event);
+  });
+  return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
+    const status=mappedSeasonStatus(event);
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
+  }).join('')}</div>`).join('');
 }
 function renderMappedCatalogSport(section,mapping,q,seasonFilter){
   const sportHit=!q||section.sport.toLowerCase().includes(q);
@@ -1865,10 +1881,7 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
   let body=countries.map(countryBlock=>`<section class="catalog-country-group">
     <div class="catalog-country-head">${esc(countryBlock.country)}</div>
     ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${esc(group.governing_body)}</div>`:''}
-    <div class="catalog-event-list">${events.map(event=>{
-      const status=mappedSeasonStatus(event);
-      return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}</article>`;
-    }).join('')}</div></div>`).join('')}
+    ${renderMappedCatalogEvents(events)}</div>`).join('')}
   </section>`).join('');
   if(visibleNewLines.length){
     body+=`<section class="catalog-country-group"><div class="catalog-country-head">New Catalog Entries Requiring Mapping</div><div class="catalog-event-list">${visibleNewLines.map(line=>`<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(line)}</div><div class="catalog-season-detail">Detected in the current catalog after the last completed mapping review.</div></div>${mappedSeasonBadge(null)}</div></article>`).join('')}</div></section>`;
