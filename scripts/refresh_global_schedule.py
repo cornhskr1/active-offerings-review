@@ -690,6 +690,188 @@ def fetch_cdc_calendar(source):
         })
     return parsed
 
+def embedded_json_objects(text, typename):
+    """Extract complete JSON objects embedded in server-rendered page data."""
+    decoder=json.JSONDecoder()
+    needle=f'{{"__typename":"{typename}"'
+    cursor=0
+    found=[]
+    while True:
+        cursor=text.find(needle,cursor)
+        if cursor<0:
+            break
+        try:
+            obj,_=decoder.raw_decode(text,cursor)
+            found.append(obj)
+        except (json.JSONDecodeError,ValueError):
+            pass
+        cursor+=len(needle)
+    return found
+
+LOL_LEAGUES={
+    "lec":("esports-lol-lec","League of Legends Europe, Middle East, and Africa Championship (LEC)","Europe / Middle East / Africa"),
+    "lck":("esports-lol-lck","League of Legends Champions Korea (LCK)","South Korea"),
+    "lpl":("esports-lol-lpl","League of Legends Pro League (LPL)","China"),
+    "lcp":("esports-lol-lcp","League of Legends Championship Pacific (LCP)","Asia-Pacific"),
+    "cblol-brazil":("esports-lol-cblol","Campeonato Brasileiro de League of Legends (CBLOL)","Brazil"),
+    "lcs":("esports-lol-lcs","League of Legends Championship Series (LCS)","United States / Canada"),
+    "first_stand":("esports-lol-first-stand","First Stand Tournament","International"),
+    "msi":("esports-lol-msi","Mid-Season Invitational","International"),
+    "worlds":("esports-lol-worlds","League of Legends World Championship","International")
+}
+
+VALORANT_REGIONS={
+    "vct_americas":"Americas",
+    "vct_emea":"Europe / Middle East / Africa",
+    "vct_pacific":"Asia-Pacific",
+    "vct_cn":"China"
+}
+
+def classify_riot_event(source,item):
+    league=item.get("league") or {}
+    slug=str(league.get("slug") or "").lower()
+    league_name=str(league.get("name") or "")
+    tournament=str((item.get("tournament") or {}).get("name") or "")
+    low=f"{slug} {league_name} {tournament}".lower()
+    if source.get("game")=="lol":
+        mapping=LOL_LEAGUES.get(slug)
+        if not mapping:
+            return None
+        source_id,label,region=mapping
+        if slug=="lec" and "versus" in low:
+            return "esports-lol-lec-versus","The LEC Versus",region
+        if slug=="lck" and "cup" in low:
+            return "esports-lol-lck-cup","LCK Cup",region
+        if slug=="cblol-brazil" and "cup" in low:
+            return "esports-lol-cblol-cup","CBLOL Cup",region
+        if slug=="lcs" and "lock" in low:
+            return "esports-lol-lcs-lock-in","LCS Lock-In",region
+        return source_id,label,region
+    if slug in VALORANT_REGIONS:
+        return "esports-valorant-regional","Regional Leagues and Stages",VALORANT_REGIONS[slug]
+    if "masters" in low:
+        return "esports-valorant-masters","Valorant Masters","International"
+    if slug=="champions" or ("champions" in low and "game changers" not in low):
+        return "esports-valorant-champions","Valorant Champions","International"
+    return None
+
+def fetch_riot_calendar(source):
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=60)
+    r.raise_for_status()
+    parsed=[]
+    seen=set()
+    for item in embedded_json_objects(r.text,"EventMatch"):
+        mapping=classify_riot_event(source,item)
+        if not mapping:
+            continue
+        try:
+            start=datetime.datetime.fromisoformat(str(item.get("startTime") or "").replace("Z","+00:00"))
+        except ValueError:
+            continue
+        local_date=start.astimezone(TZ).date()
+        if local_date<TODAY or local_date>END:
+            continue
+        event_id=str(item.get("id") or "")
+        if not event_id or event_id in seen:
+            continue
+        seen.add(event_id)
+        source_id,label,region=mapping
+        teams=[str(x.get("name") or "").strip() for x in (item.get("matchTeams") or [])]
+        teams=[x for x in teams if x]
+        state=str(item.get("state") or "").lower()
+        if state in ("inprogress","in_progress","live"):
+            status="LIVE"
+        elif state in ("completed","finished"):
+            status="COMPLETED"
+        else:
+            status="UPCOMING"
+        stage=" · ".join(x for x in (str((item.get("tournament") or {}).get("name") or "").strip(),str(item.get("blockName") or "").strip()) if x)
+        raw_status=int(item.get("status") or 0)
+        parsed.append({
+            "id":f"{source_id}-{event_id}",
+            "source_id":source_id,
+            "sport":"Esports",
+            "league":label,
+            "region":region,
+            "name":" vs. ".join(teams[:2]) if len(teams)>=2 else (teams[0] if teams else stage or label),
+            "start_time":start.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
+            "status":status,
+            "status_detail":f"{stage or label} · official Riot schedule",
+            "season_stage":item.get("blockName"),
+            "location":region,
+            "source_endpoint":source.get("official_schedule_url") or source["endpoint"]
+        })
+    return parsed
+
+def r6_region(competition):
+    name=str(competition.get("name") or "").lower()
+    sub=str(competition.get("subRegion") or "").upper()
+    if "north america" in name: return "North America"
+    if "south america" in name: return "South America"
+    if "europe mena" in name: return "Europe / Middle East / Africa"
+    if "cnl" in name or sub=="CN": return "China"
+    if "asia pacific" in name or sub in ("OCE","ASIA","APAC N"): return "Asia-Pacific"
+    return "International"
+
+def classify_r6_competition(competition):
+    name=str(competition.get("name") or "")
+    low=name.lower()
+    if "challenger" in low:
+        return "esports-r6-challenger","Challenger Series"
+    if "major" in low:
+        return "esports-r6-majors","BLAST R6 Major Events"
+    if "six invitational" in low or "global championship" in low:
+        return "esports-r6-global","Global Championships"
+    if "league" in low or re.match(r"^cnl\b",low):
+        return "esports-r6-regional","Regional Closed Leagues"
+    return None
+
+def fetch_ubisoft_r6_calendar(source):
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=60)
+    r.raise_for_status()
+    match=re.search(r'<script[^>]+id="__NEXT_DATA__"[^>]*>(.*?)</script>',r.text,re.S)
+    if not match:
+        raise RuntimeError("Ubisoft R6 calendar data was not found")
+    payload=json.loads(html.unescape(match.group(1)))
+    matches=payload.get("props",{}).get("pageProps",{}).get("pageData",{}).get("matches",[])
+    parsed=[]
+    seen=set()
+    for item in matches:
+        competition=item.get("competition") or {}
+        mapping=classify_r6_competition(competition)
+        if not mapping:
+            continue
+        try:
+            start=datetime.datetime.fromtimestamp(int(item.get("timestamp")),datetime.timezone.utc)
+        except (TypeError,ValueError,OverflowError):
+            continue
+        local_date=start.astimezone(TZ).date()
+        if local_date<TODAY or local_date>END:
+            continue
+        event_id=str(item.get("id") or "")
+        if not event_id or event_id in seen:
+            continue
+        seen.add(event_id)
+        source_id,label=mapping
+        team1=str((item.get("team1") or {}).get("name") or "TBD")
+        team2=str((item.get("team2") or {}).get("name") or "TBD")
+        region=r6_region(competition)
+        parsed.append({
+            "id":f"{source_id}-{event_id}",
+            "source_id":source_id,
+            "sport":"Esports",
+            "league":label,
+            "region":region,
+            "name":f"{team1} vs. {team2}",
+            "start_time":start.isoformat().replace("+00:00","Z"),
+            "status":"LIVE" if raw_status==2 else ("COMPLETED" if raw_status==3 else "UPCOMING"),
+            "status_detail":f'{competition.get("name") or label} · official Ubisoft schedule',
+            "season_stage":competition.get("name"),
+            "location":region,
+            "source_endpoint":source.get("official_schedule_url") or source["endpoint"]
+        })
+    return parsed
+
 events=[]
 source_status=[]
 for source in CFG.get("sources",[]):
@@ -757,6 +939,27 @@ for source in CFG.get("sources",[]):
     if source.get("source_type") in ("pdc-calendar","cdc-calendar"):
         try:
             adapter=fetch_pdc_calendar if source.get("source_type")=="pdc-calendar" else fetch_cdc_calendar
+            for parsed in adapter(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type") in ("riot-esports-calendar","ubisoft-r6-calendar"):
+        try:
+            adapter=fetch_riot_calendar if source.get("source_type")=="riot-esports-calendar" else fetch_ubisoft_r6_calendar
             for parsed in adapter(source):
                 key=(parsed["id"],parsed["start_time"])
                 if key in seen:

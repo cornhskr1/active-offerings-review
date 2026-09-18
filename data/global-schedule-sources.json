@@ -162,6 +162,114 @@
       ]
     },
     {
+      "id": "esports-riot-lol-calendar",
+      "sport": "Esports",
+      "league": "Approved League of Legends",
+      "region": "International",
+      "source_type": "riot-esports-calendar",
+      "game": "lol",
+      "coverage_status": "complete",
+      "endpoint": "https://lolesports.com/en-US",
+      "official_schedule_url": "https://lolesports.com/en-US",
+      "source_note": "Official Riot match schedule restricted to the approved LEC, LCK, LPL, LCP, CBLOL, LCS, First Stand, MSI, and Worlds competitions. Academy and unrelated regional leagues are excluded.",
+      "catalog_terms": [
+        "Esports",
+        "Riot Games",
+        "League of Legends Europe, Middle East, and Africa Championship (LEC)",
+        "League of Legends Champions Korea (LCK)",
+        "League of Legends Pro League (LPL)",
+        "League of Legends Championship Pacific (LCP)",
+        "Campeonato Brasileiro de League of Legends (CBLOL)",
+        "League of Legends Championship Series (LCS)",
+        "First Stand Tournament",
+        "Mid-Season Invitational",
+        "League of Legends World Championship"
+      ]
+    },
+    {
+      "id": "esports-riot-valorant-calendar",
+      "sport": "Esports",
+      "league": "Approved VALORANT Champions Tour",
+      "region": "International",
+      "source_type": "riot-esports-calendar",
+      "game": "valorant",
+      "coverage_status": "complete",
+      "endpoint": "https://valorantesports.com/en-US/",
+      "official_schedule_url": "https://valorantesports.com/en-US/",
+      "source_note": "Official Riot match schedule restricted to VCT regional leagues and stages, Masters, and Champions. Game Changers and unrelated competitions are excluded.",
+      "catalog_terms": [
+        "Valorant Champions Tour (VCT)",
+        "Regional Leagues and Stages",
+        "Valorant Masters",
+        "Valorant Champions"
+      ]
+    },
+    {
+      "id": "esports-ubisoft-r6-calendar",
+      "sport": "Esports",
+      "league": "Approved BLAST Rainbow Six",
+      "region": "International",
+      "source_type": "ubisoft-r6-calendar",
+      "coverage_status": "complete",
+      "endpoint": "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/calendar",
+      "official_schedule_url": "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/calendar",
+      "source_note": "Official Ubisoft match calendar restricted to the approved global championships, majors, regional closed leagues, and Challenger competitions.",
+      "catalog_terms": [
+        "Ubisoft",
+        "BLAST Rainbow Six (R6) League",
+        "Global Championships",
+        "BLAST R6 Major Events",
+        "Regional Closed Leagues",
+        "Challenger Series"
+      ]
+    },
+    {
+      "id": "esports-cdl",
+      "sport": "Esports",
+      "league": "Call of Duty League (CDL)",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.callofdutyleague.com/en-us/schedule",
+      "official_schedule_url": "https://www.callofdutyleague.com/en-us/schedule",
+      "source_note": "The 2026 CDL season is complete. A dependable future-season match adapter will be added when the next official schedule is published.",
+      "catalog_terms": ["Call of Duty League (CDL)"]
+    },
+    {
+      "id": "esports-valve-calendar",
+      "sport": "Esports",
+      "league": "Approved Valve, ESL, PGL, and EWC competitions",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.dota2.com/esports/ti15",
+      "source_note": "Official schedule coverage is still being validated across the separately approved Dota 2, ESL, PGL, and Esports World Cup competition families.",
+      "catalog_terms": ["Valve", "The International", "DreamLeague", "Electronic Sports League (ESL) Pro League", "Professional Gamers League (PGL) CS2"]
+    },
+    {
+      "id": "esports-simulation-calendar",
+      "sport": "Esports",
+      "league": "Approved sports simulations",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "",
+      "source_note": "The eAdriatic, NextGen eBasket, and GT Sports schedules require a stable publisher-owned schedule source before automation.",
+      "catalog_terms": ["eAdriatic / eJadranskaLiga", "NextGen eBasket League", "eAdriatic League", "GT Sports League"]
+    },
+    {
+      "id": "esports-rlcs",
+      "sport": "Esports",
+      "league": "Rocket League Championship Series (RLCS)",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.rocketleague.com/competitive/schedule",
+      "official_schedule_url": "https://www.rocketleague.com/competitive/schedule",
+      "source_note": "The official RLCS page is authoritative but currently blocks unattended schedule collection; it remains a visible coverage gap rather than using a stale substitute.",
+      "catalog_terms": ["Psyonix", "Rocket League Championship Series (RLCS)"]
+    },
+    {
       "id": "mlb",
       "sport": "Baseball",
       "league": "MLB",
