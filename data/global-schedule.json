@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T10:20:04.777814+00:00",
+  "generated_at": "2026-09-18T10:37:06.483169+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-18",
   "window_end": "2026-09-25",
-  "event_count": 1032,
+  "event_count": 1036,
   "events": [
     {
       "id": "887-2026",
@@ -91,6 +91,48 @@
       "season_stage": "REGULAR SEASON",
       "location": null,
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "golf-pga-tour-401850914",
+      "source_id": "golf-pga-tour",
+      "sport": "Golf",
+      "league": "PGA Tour",
+      "region": "United States",
+      "name": "Biltmore Championship Asheville",
+      "start_time": "2026-09-17T04:00Z",
+      "end_time": "2026-09-20T04:00Z",
+      "status": "LIVE",
+      "status_detail": "Tournament in progress",
+      "season_stage": "TOUR EVENT",
+      "location": null,
+      "tour_id": "pga-tour",
+      "tour_event_id": "401850914",
+      "source_endpoint": "https://www.espn.com/golf/leaderboard?tournamentId=401850914",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "golf-pga-tour-champions-401832075",
+      "source_id": "golf-pga-tour-champions",
+      "sport": "Golf",
+      "league": "PGA Tour Champions",
+      "region": "United States",
+      "name": "PURE Insurance Championship",
+      "start_time": "2026-09-18T04:00Z",
+      "end_time": "2026-09-20T04:00Z",
+      "status": "LIVE",
+      "status_detail": "Tournament in progress",
+      "season_stage": "TOUR EVENT",
+      "location": null,
+      "tour_id": "pga-tour-champions",
+      "tour_event_id": "401832075",
+      "source_endpoint": "https://www.espn.com/golf/leaderboard?tournamentId=401832075",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -422,7 +464,7 @@
       "name": "Fremantle at Sydney Swans",
       "start_time": "2026-09-18T09:40Z",
       "status": "LIVE",
-      "status_detail": "0:20 - 2nd",
+      "status_detail": "17:21 - 2nd",
       "season_stage": "POSTSEASON",
       "location": "SCG",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/australian-football/afl/scoreboard",
@@ -1404,7 +1446,7 @@
       "status": "UPCOMING",
       "status_detail": "9/18 - 2:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "TU Arena \u00b7 Towson, Maryland",
+      "location": "SECU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -2220,7 +2262,7 @@
       "status": "UPCOMING",
       "status_detail": "9/18 - 5:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Liberty Arena \u00b7 Lynchburg, Virginia",
+      "location": "Liberty Arena (VA) \u00b7 Lynchburg, Virginia",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -3320,7 +3362,7 @@
       "status": "UPCOMING",
       "status_detail": "9/18 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Legacy Center \u00b7 Lake Charles, Louisiana",
+      "location": "Townsley Law Arena \u00b7 Lake Charles, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -5856,7 +5898,7 @@
       "status": "UPCOMING",
       "status_detail": "9/19 - 12:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "TU Arena \u00b7 Towson, Maryland",
+      "location": "SECU Arena \u00b7 Towson, Maryland",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -6849,7 +6891,7 @@
       "status": "UPCOMING",
       "status_detail": "9/19 - 2:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Legacy Center \u00b7 Lake Charles, Louisiana",
+      "location": "Townsley Law Arena \u00b7 Lake Charles, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -6993,7 +7035,7 @@
       "status": "UPCOMING",
       "status_detail": "9/19 - 2:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Moody Coliseum \u00b7 Dallas, Texas",
+      "location": "Moody Coliseum (Dallas) \u00b7 Dallas, Texas",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -13920,7 +13962,7 @@
       "status": "UPCOMING",
       "status_detail": "9/23 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Legacy Center \u00b7 Lake Charles, Louisiana",
+      "location": "Townsley Law Arena \u00b7 Lake Charles, Louisiana",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -14210,6 +14252,27 @@
       "season_stage": "REGULAR SEASON",
       "location": "Dodger Stadium \u00b7 Los Angeles, California",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "golf-pga-tour-401824815",
+      "source_id": "golf-pga-tour",
+      "sport": "Golf",
+      "league": "PGA Tour",
+      "region": "United States",
+      "name": "Presidents Cup",
+      "start_time": "2026-09-24T04:00Z",
+      "end_time": "2026-09-27T04:00Z",
+      "status": "UPCOMING",
+      "status_detail": "Scheduled",
+      "season_stage": "TOUR EVENT",
+      "location": null,
+      "tour_id": "pga-tour",
+      "tour_event_id": "401824815",
+      "source_endpoint": "https://www.espn.com/golf/leaderboard?tournamentId=401824815",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -15950,6 +16013,27 @@
       "restriction_risk": false
     },
     {
+      "id": "golf-lpga-tour-401835170",
+      "source_id": "golf-lpga-tour",
+      "sport": "Golf",
+      "league": "LPGA Tour",
+      "region": "United States / International",
+      "name": "Walmart NW Arkansas Championship pres. by P&G",
+      "start_time": "2026-09-25T04:00Z",
+      "end_time": "2026-09-27T04:00Z",
+      "status": "UPCOMING",
+      "status_detail": "Scheduled",
+      "season_stage": "TOUR EVENT",
+      "location": null,
+      "tour_id": "lpga-tour",
+      "tour_event_id": "401835170",
+      "source_endpoint": "https://www.espn.com/golf/leaderboard?tournamentId=401835170",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
       "id": "esports-r6-regional-8713",
       "source_id": "esports-r6-regional",
       "sport": "Esports",
@@ -16848,7 +16932,7 @@
       "status": "UPCOMING",
       "status_detail": "9/25 - 6:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Liberty Arena \u00b7 Lynchburg, Virginia",
+      "location": "Liberty Arena (VA) \u00b7 Lynchburg, Virginia",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -17244,7 +17328,7 @@
       "status": "UPCOMING",
       "status_detail": "9/25 - 6:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Fleming Gymnasium \u00b7 Greensboro, North Carolina",
+      "location": "Bodford Arena \u00b7 Greensboro, North Carolina",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -17874,7 +17958,7 @@
       "status": "UPCOMING",
       "status_detail": "9/25 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Lee E. Williams Athletics and Assembly Center \u00b7 Jackson, Mississippi",
+      "location": "Lee E. Williams Athletic and Assembly Center \u00b7 Jackson, Mississippi",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -17892,7 +17976,7 @@
       "status": "UPCOMING",
       "status_detail": "9/25 - 7:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "KSU Convocation Center \u00b7 Kennesaw, Georgia",
+      "location": "VyStar Arena \u00b7 Kennesaw, Georgia",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -18576,7 +18660,7 @@
       "status": "UPCOMING",
       "status_detail": "9/25 - 9:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": "Moody Coliseum \u00b7 Dallas, Texas",
+      "location": "Moody Coliseum (Dallas) \u00b7 Dallas, Texas",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -18746,6 +18830,1660 @@
       "restriction_risk": false
     }
   ],
+  "tour_calendars": [
+    {
+      "source_id": "golf-pga-tour",
+      "tour_id": "pga-tour",
+      "tour": "PGA Tour",
+      "region": "United States",
+      "season": 2026,
+      "official_schedule_url": "https://www.pgatour.com/schedule/2026",
+      "events": [
+        {
+          "event_id": "401811927",
+          "canonical_key": "pga-tour:401811927",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "The Sentry",
+          "aliases": [],
+          "start_date": "2026-01-08",
+          "end_date": "2026-01-11",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811927"
+        },
+        {
+          "event_id": "401811928",
+          "canonical_key": "pga-tour:401811928",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Sony Open in Hawaii",
+          "aliases": [],
+          "start_date": "2026-01-15",
+          "end_date": "2026-01-18",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811928"
+        },
+        {
+          "event_id": "401811929",
+          "canonical_key": "pga-tour:401811929",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "The American Express",
+          "aliases": [],
+          "start_date": "2026-01-22",
+          "end_date": "2026-01-25",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811929"
+        },
+        {
+          "event_id": "401811930",
+          "canonical_key": "pga-tour:401811930",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Farmers Insurance Open",
+          "aliases": [],
+          "start_date": "2026-01-29",
+          "end_date": "2026-02-01",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811930"
+        },
+        {
+          "event_id": "401811931",
+          "canonical_key": "pga-tour:401811931",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "WM Phoenix Open",
+          "aliases": [],
+          "start_date": "2026-02-05",
+          "end_date": "2026-02-08",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811931"
+        },
+        {
+          "event_id": "401811932",
+          "canonical_key": "pga-tour:401811932",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "AT&T Pebble Beach Pro-Am",
+          "aliases": [],
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-15",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811932"
+        },
+        {
+          "event_id": "401811933",
+          "canonical_key": "pga-tour:401811933",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "The Genesis Invitational",
+          "aliases": [],
+          "start_date": "2026-02-19",
+          "end_date": "2026-02-22",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811933"
+        },
+        {
+          "event_id": "401811934",
+          "canonical_key": "pga-tour:401811934",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Cognizant Classic in The Palm Beaches",
+          "aliases": [],
+          "start_date": "2026-02-26",
+          "end_date": "2026-03-01",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811934"
+        },
+        {
+          "event_id": "401811935",
+          "canonical_key": "pga-tour:401811935",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Arnold Palmer Invitational pres. by Mastercard",
+          "aliases": [],
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-08",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811935"
+        },
+        {
+          "event_id": "401811936",
+          "canonical_key": "pga-tour:401811936",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Puerto Rico Open",
+          "aliases": [],
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-08",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811936"
+        },
+        {
+          "event_id": "401811937",
+          "canonical_key": "pga-tour:401811937",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "THE PLAYERS Championship",
+          "aliases": [],
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-15",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811937"
+        },
+        {
+          "event_id": "401811938",
+          "canonical_key": "pga-tour:401811938",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Valspar Championship",
+          "aliases": [],
+          "start_date": "2026-03-19",
+          "end_date": "2026-03-22",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811938"
+        },
+        {
+          "event_id": "401811939",
+          "canonical_key": "pga-tour:401811939",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Texas Children's Houston Open",
+          "aliases": [],
+          "start_date": "2026-03-26",
+          "end_date": "2026-03-29",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811939"
+        },
+        {
+          "event_id": "401811940",
+          "canonical_key": "pga-tour:401811940",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Valero Texas Open",
+          "aliases": [],
+          "start_date": "2026-04-02",
+          "end_date": "2026-04-05",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811940"
+        },
+        {
+          "event_id": "401811941",
+          "canonical_key": "pga-tour:401811941",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Masters Tournament",
+          "aliases": [],
+          "start_date": "2026-04-09",
+          "end_date": "2026-04-12",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811941"
+        },
+        {
+          "event_id": "401811942",
+          "canonical_key": "pga-tour:401811942",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "RBC Heritage",
+          "aliases": [],
+          "start_date": "2026-04-16",
+          "end_date": "2026-04-19",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811942"
+        },
+        {
+          "event_id": "401811943",
+          "canonical_key": "pga-tour:401811943",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Zurich Classic of New Orleans",
+          "aliases": [],
+          "start_date": "2026-04-23",
+          "end_date": "2026-04-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811943"
+        },
+        {
+          "event_id": "401811944",
+          "canonical_key": "pga-tour:401811944",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Cadillac Championship",
+          "aliases": [],
+          "start_date": "2026-04-30",
+          "end_date": "2026-05-03",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811944"
+        },
+        {
+          "event_id": "401811946",
+          "canonical_key": "pga-tour:401811946",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "ONEflight Myrtle Beach Classic",
+          "aliases": [],
+          "start_date": "2026-05-07",
+          "end_date": "2026-05-10",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811946"
+        },
+        {
+          "event_id": "401811945",
+          "canonical_key": "pga-tour:401811945",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Truist Championship",
+          "aliases": [],
+          "start_date": "2026-05-07",
+          "end_date": "2026-05-10",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811945"
+        },
+        {
+          "event_id": "401811947",
+          "canonical_key": "pga-tour:401811947",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "PGA Championship",
+          "aliases": [],
+          "start_date": "2026-05-14",
+          "end_date": "2026-05-17",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811947"
+        },
+        {
+          "event_id": "401811948",
+          "canonical_key": "pga-tour:401811948",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "THE CJ CUP Byron Nelson",
+          "aliases": [],
+          "start_date": "2026-05-21",
+          "end_date": "2026-05-24",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811948"
+        },
+        {
+          "event_id": "401811949",
+          "canonical_key": "pga-tour:401811949",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Charles Schwab Challenge",
+          "aliases": [],
+          "start_date": "2026-05-28",
+          "end_date": "2026-05-31",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811949"
+        },
+        {
+          "event_id": "401811950",
+          "canonical_key": "pga-tour:401811950",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "the Memorial Tournament pres. by Workday",
+          "aliases": [],
+          "start_date": "2026-06-04",
+          "end_date": "2026-06-07",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811950"
+        },
+        {
+          "event_id": "401811951",
+          "canonical_key": "pga-tour:401811951",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "RBC Canadian Open",
+          "aliases": [],
+          "start_date": "2026-06-11",
+          "end_date": "2026-06-14",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811951"
+        },
+        {
+          "event_id": "401811952",
+          "canonical_key": "pga-tour:401811952",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "U.S. Open",
+          "aliases": [],
+          "start_date": "2026-06-18",
+          "end_date": "2026-06-21",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811952"
+        },
+        {
+          "event_id": "401811953",
+          "canonical_key": "pga-tour:401811953",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Travelers Championship",
+          "aliases": [],
+          "start_date": "2026-06-25",
+          "end_date": "2026-06-29",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811953"
+        },
+        {
+          "event_id": "401811954",
+          "canonical_key": "pga-tour:401811954",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "John Deere Classic",
+          "aliases": [],
+          "start_date": "2026-07-02",
+          "end_date": "2026-07-05",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811954"
+        },
+        {
+          "event_id": "401811955",
+          "canonical_key": "pga-tour:401811955",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Genesis Scottish Open",
+          "aliases": [],
+          "start_date": "2026-07-09",
+          "end_date": "2026-07-12",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811955"
+        },
+        {
+          "event_id": "401811956",
+          "canonical_key": "pga-tour:401811956",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "ISCO Championship",
+          "aliases": [],
+          "start_date": "2026-07-09",
+          "end_date": "2026-07-12",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811956"
+        },
+        {
+          "event_id": "401811958",
+          "canonical_key": "pga-tour:401811958",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Corales Puntacana Championship",
+          "aliases": [],
+          "start_date": "2026-07-16",
+          "end_date": "2026-07-19",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811958"
+        },
+        {
+          "event_id": "401811957",
+          "canonical_key": "pga-tour:401811957",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "The Open",
+          "aliases": [],
+          "start_date": "2026-07-16",
+          "end_date": "2026-07-19",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811957"
+        },
+        {
+          "event_id": "401811959",
+          "canonical_key": "pga-tour:401811959",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "3M Open",
+          "aliases": [],
+          "start_date": "2026-07-23",
+          "end_date": "2026-07-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811959"
+        },
+        {
+          "event_id": "401811960",
+          "canonical_key": "pga-tour:401811960",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Rocket Classic",
+          "aliases": [],
+          "start_date": "2026-07-30",
+          "end_date": "2026-08-02",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811960"
+        },
+        {
+          "event_id": "401811961",
+          "canonical_key": "pga-tour:401811961",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Wyndham Championship",
+          "aliases": [],
+          "start_date": "2026-08-06",
+          "end_date": "2026-08-09",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811961"
+        },
+        {
+          "event_id": "401811962",
+          "canonical_key": "pga-tour:401811962",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "FedEx St. Jude Championship",
+          "aliases": [],
+          "start_date": "2026-08-13",
+          "end_date": "2026-08-16",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811962"
+        },
+        {
+          "event_id": "401811963",
+          "canonical_key": "pga-tour:401811963",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "BMW Championship",
+          "aliases": [],
+          "start_date": "2026-08-20",
+          "end_date": "2026-08-23",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811963"
+        },
+        {
+          "event_id": "401811964",
+          "canonical_key": "pga-tour:401811964",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "TOUR Championship",
+          "aliases": [],
+          "start_date": "2026-08-27",
+          "end_date": "2026-08-30",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811964"
+        },
+        {
+          "event_id": "401850914",
+          "canonical_key": "pga-tour:401850914",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Biltmore Championship Asheville",
+          "aliases": [],
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-20",
+          "status": "active",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850914"
+        },
+        {
+          "event_id": "401824815",
+          "canonical_key": "pga-tour:401824815",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Presidents Cup",
+          "aliases": [],
+          "start_date": "2026-09-24",
+          "end_date": "2026-09-27",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401824815"
+        },
+        {
+          "event_id": "401850915",
+          "canonical_key": "pga-tour:401850915",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Bank of Utah Championship",
+          "aliases": [],
+          "start_date": "2026-10-01",
+          "end_date": "2026-10-04",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850915"
+        },
+        {
+          "event_id": "401850916",
+          "canonical_key": "pga-tour:401850916",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Baycurrent Classic",
+          "aliases": [],
+          "start_date": "2026-10-08",
+          "end_date": "2026-10-11",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850916"
+        },
+        {
+          "event_id": "401850917",
+          "canonical_key": "pga-tour:401850917",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Butterfield Bermuda Championship",
+          "aliases": [],
+          "start_date": "2026-10-22",
+          "end_date": "2026-10-25",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850917"
+        },
+        {
+          "event_id": "401850978",
+          "canonical_key": "pga-tour:401850978",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "VidantaWorld Mexico Open",
+          "aliases": [],
+          "start_date": "2026-10-29",
+          "end_date": "2026-11-01",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850978"
+        },
+        {
+          "event_id": "401850979",
+          "canonical_key": "pga-tour:401850979",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "World Wide Technology Championship",
+          "aliases": [],
+          "start_date": "2026-11-05",
+          "end_date": "2026-11-08",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850979"
+        },
+        {
+          "event_id": "401850980",
+          "canonical_key": "pga-tour:401850980",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Austin Championship",
+          "aliases": [],
+          "start_date": "2026-11-12",
+          "end_date": "2026-11-15",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850980"
+        },
+        {
+          "event_id": "401850981",
+          "canonical_key": "pga-tour:401850981",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "The RSM Classic",
+          "aliases": [],
+          "start_date": "2026-11-19",
+          "end_date": "2026-11-22",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850981"
+        },
+        {
+          "event_id": "401850982",
+          "canonical_key": "pga-tour:401850982",
+          "tour_id": "pga-tour",
+          "tour": "PGA Tour",
+          "display_name": "Hero World Challenge",
+          "aliases": [],
+          "start_date": "2026-12-03",
+          "end_date": "2026-12-06",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401850982"
+        }
+      ]
+    },
+    {
+      "source_id": "golf-pga-tour-champions",
+      "tour_id": "pga-tour-champions",
+      "tour": "PGA Tour Champions",
+      "region": "United States",
+      "season": 2026,
+      "official_schedule_url": "https://www.pgatour.com/pgatour-champions/schedule/2026",
+      "events": [
+        {
+          "event_id": "401832007",
+          "canonical_key": "pga-tour-champions:401832007",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Mitsubishi Electric Championship at Hualalai",
+          "aliases": [],
+          "start_date": "2026-01-22",
+          "end_date": "2026-01-24",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832007"
+        },
+        {
+          "event_id": "401832008",
+          "canonical_key": "pga-tour-champions:401832008",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Chubb Classic",
+          "aliases": [],
+          "start_date": "2026-02-13",
+          "end_date": "2026-02-15",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832008"
+        },
+        {
+          "event_id": "401832009",
+          "canonical_key": "pga-tour-champions:401832009",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "James Hardie Pro-Football HOF Invitational",
+          "aliases": [],
+          "start_date": "2026-03-06",
+          "end_date": "2026-03-08",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832009"
+        },
+        {
+          "event_id": "401832010",
+          "canonical_key": "pga-tour-champions:401832010",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Cologuard Classic",
+          "aliases": [],
+          "start_date": "2026-03-20",
+          "end_date": "2026-03-22",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832010"
+        },
+        {
+          "event_id": "401832011",
+          "canonical_key": "pga-tour-champions:401832011",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Hoag Classic",
+          "aliases": [],
+          "start_date": "2026-03-27",
+          "end_date": "2026-03-29",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832011"
+        },
+        {
+          "event_id": "401832012",
+          "canonical_key": "pga-tour-champions:401832012",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Senior PGA Championship",
+          "aliases": [],
+          "start_date": "2026-04-16",
+          "end_date": "2026-04-19",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832012"
+        },
+        {
+          "event_id": "401832013",
+          "canonical_key": "pga-tour-champions:401832013",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Mitsubishi Electric Classic",
+          "aliases": [],
+          "start_date": "2026-04-24",
+          "end_date": "2026-04-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832013"
+        },
+        {
+          "event_id": "401832014",
+          "canonical_key": "pga-tour-champions:401832014",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Regions Tradition",
+          "aliases": [],
+          "start_date": "2026-04-30",
+          "end_date": "2026-05-03",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832014"
+        },
+        {
+          "event_id": "401832055",
+          "canonical_key": "pga-tour-champions:401832055",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Insperity Invitational",
+          "aliases": [],
+          "start_date": "2026-05-08",
+          "end_date": "2026-05-10",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832055"
+        },
+        {
+          "event_id": "401832056",
+          "canonical_key": "pga-tour-champions:401832056",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Trophy Hassan II",
+          "aliases": [],
+          "start_date": "2026-05-21",
+          "end_date": "2026-05-23",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832056"
+        },
+        {
+          "event_id": "401832057",
+          "canonical_key": "pga-tour-champions:401832057",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "American Family Insurance Championship",
+          "aliases": [],
+          "start_date": "2026-06-05",
+          "end_date": "2026-06-07",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832057"
+        },
+        {
+          "event_id": "401832058",
+          "canonical_key": "pga-tour-champions:401832058",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Principal Charity Classic",
+          "aliases": [],
+          "start_date": "2026-06-12",
+          "end_date": "2026-06-14",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832058"
+        },
+        {
+          "event_id": "401832059",
+          "canonical_key": "pga-tour-champions:401832059",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "DICK'S Open",
+          "aliases": [],
+          "start_date": "2026-06-26",
+          "end_date": "2026-06-28",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832059"
+        },
+        {
+          "event_id": "401832060",
+          "canonical_key": "pga-tour-champions:401832060",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "U.S. Senior Open Championship",
+          "aliases": [],
+          "start_date": "2026-07-02",
+          "end_date": "2026-07-05",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832060"
+        },
+        {
+          "event_id": "401832061",
+          "canonical_key": "pga-tour-champions:401832061",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Kaulig Companies Championship",
+          "aliases": [],
+          "start_date": "2026-07-09",
+          "end_date": "2026-07-12",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832061"
+        },
+        {
+          "event_id": "401832062",
+          "canonical_key": "pga-tour-champions:401832062",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "ISPS HANDA Senior Open",
+          "aliases": [],
+          "start_date": "2026-07-23",
+          "end_date": "2026-07-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832062"
+        },
+        {
+          "event_id": "401832063",
+          "canonical_key": "pga-tour-champions:401832063",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Portugal Invitational",
+          "aliases": [],
+          "start_date": "2026-07-31",
+          "end_date": "2026-08-02",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832063"
+        },
+        {
+          "event_id": "401832064",
+          "canonical_key": "pga-tour-champions:401832064",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Boeing Classic",
+          "aliases": [],
+          "start_date": "2026-08-14",
+          "end_date": "2026-08-16",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832064"
+        },
+        {
+          "event_id": "401832065",
+          "canonical_key": "pga-tour-champions:401832065",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Rogers Charity Classic",
+          "aliases": [],
+          "start_date": "2026-08-21",
+          "end_date": "2026-08-23",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832065"
+        },
+        {
+          "event_id": "401832066",
+          "canonical_key": "pga-tour-champions:401832066",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "The Ally Challenge",
+          "aliases": [],
+          "start_date": "2026-08-28",
+          "end_date": "2026-08-30",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832066"
+        },
+        {
+          "event_id": "401832076",
+          "canonical_key": "pga-tour-champions:401832076",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Sanford International",
+          "aliases": [],
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-13",
+          "status": "completed",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832076"
+        },
+        {
+          "event_id": "401832075",
+          "canonical_key": "pga-tour-champions:401832075",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "PURE Insurance Championship",
+          "aliases": [],
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-20",
+          "status": "active",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832075"
+        },
+        {
+          "event_id": "401832077",
+          "canonical_key": "pga-tour-champions:401832077",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Jefferson Lehigh Valley Classic",
+          "aliases": [],
+          "start_date": "2026-10-02",
+          "end_date": "2026-10-04",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832077"
+        },
+        {
+          "event_id": "401832054",
+          "canonical_key": "pga-tour-champions:401832054",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Constellation FURYK & FRIENDS",
+          "aliases": [],
+          "start_date": "2026-10-09",
+          "end_date": "2026-10-11",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832054"
+        },
+        {
+          "event_id": "401832053",
+          "canonical_key": "pga-tour-champions:401832053",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "SAS Championship",
+          "aliases": [],
+          "start_date": "2026-10-16",
+          "end_date": "2026-10-18",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832053"
+        },
+        {
+          "event_id": "401832052",
+          "canonical_key": "pga-tour-champions:401832052",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Stifel Charity Classic",
+          "aliases": [],
+          "start_date": "2026-10-23",
+          "end_date": "2026-10-25",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832052"
+        },
+        {
+          "event_id": "401832051",
+          "canonical_key": "pga-tour-champions:401832051",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Simmons Bank Championship",
+          "aliases": [],
+          "start_date": "2026-10-30",
+          "end_date": "2026-11-01",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832051"
+        },
+        {
+          "event_id": "401832050",
+          "canonical_key": "pga-tour-champions:401832050",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Charles Schwab Cup Championship",
+          "aliases": [],
+          "start_date": "2026-11-12",
+          "end_date": "2026-11-15",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832050"
+        },
+        {
+          "event_id": "401832049",
+          "canonical_key": "pga-tour-champions:401832049",
+          "tour_id": "pga-tour-champions",
+          "tour": "PGA Tour Champions",
+          "display_name": "Skechers World Champions Cup",
+          "aliases": [],
+          "start_date": "2026-12-03",
+          "end_date": "2026-12-06",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 PGA Tour Champions",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401832049"
+        }
+      ]
+    },
+    {
+      "source_id": "golf-lpga-tour",
+      "tour_id": "lpga-tour",
+      "tour": "LPGA Tour",
+      "region": "United States / International",
+      "season": 2026,
+      "official_schedule_url": "https://www.lpga.com/tournaments",
+      "events": [
+        {
+          "event_id": "401835135",
+          "canonical_key": "lpga-tour:401835135",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Hilton Grand Vacations Tournament of Champions",
+          "aliases": [],
+          "start_date": "2026-01-29",
+          "end_date": "2026-02-01",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835135"
+        },
+        {
+          "event_id": "401835136",
+          "canonical_key": "lpga-tour:401835136",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Honda LPGA Thailand",
+          "aliases": [],
+          "start_date": "2026-02-19",
+          "end_date": "2026-02-22",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835136"
+        },
+        {
+          "event_id": "401835137",
+          "canonical_key": "lpga-tour:401835137",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "HSBC Women's World Championship",
+          "aliases": [],
+          "start_date": "2026-02-26",
+          "end_date": "2026-03-01",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835137"
+        },
+        {
+          "event_id": "401835138",
+          "canonical_key": "lpga-tour:401835138",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Blue Bay LPGA",
+          "aliases": [],
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-08",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835138"
+        },
+        {
+          "event_id": "401835152",
+          "canonical_key": "lpga-tour:401835152",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Fortinet Founders Cup",
+          "aliases": [],
+          "start_date": "2026-03-19",
+          "end_date": "2026-03-22",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835152"
+        },
+        {
+          "event_id": "401835140",
+          "canonical_key": "lpga-tour:401835140",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Ford Championship pres. by Wild Horse Pass",
+          "aliases": [],
+          "start_date": "2026-03-26",
+          "end_date": "2026-03-29",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835140"
+        },
+        {
+          "event_id": "401835143",
+          "canonical_key": "lpga-tour:401835143",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Aramco Championship",
+          "aliases": [],
+          "start_date": "2026-04-02",
+          "end_date": "2026-04-05",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835143"
+        },
+        {
+          "event_id": "401835146",
+          "canonical_key": "lpga-tour:401835146",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "JM Eagle LA Championship pres. by Plastpro",
+          "aliases": [],
+          "start_date": "2026-04-16",
+          "end_date": "2026-04-19",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835146"
+        },
+        {
+          "event_id": "401835149",
+          "canonical_key": "lpga-tour:401835149",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "The Chevron Championship",
+          "aliases": [],
+          "start_date": "2026-04-23",
+          "end_date": "2026-04-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835149"
+        },
+        {
+          "event_id": "401835150",
+          "canonical_key": "lpga-tour:401835150",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Riviera Maya Open at Mayakoba",
+          "aliases": [],
+          "start_date": "2026-04-30",
+          "end_date": "2026-05-03",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835150"
+        },
+        {
+          "event_id": "401835151",
+          "canonical_key": "lpga-tour:401835151",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Mizuho Americas Open",
+          "aliases": [],
+          "start_date": "2026-05-07",
+          "end_date": "2026-05-10",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835151"
+        },
+        {
+          "event_id": "401835154",
+          "canonical_key": "lpga-tour:401835154",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Kroger Queen City Championship pres by P&G",
+          "aliases": [],
+          "start_date": "2026-05-14",
+          "end_date": "2026-05-17",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835154"
+        },
+        {
+          "event_id": "401835157",
+          "canonical_key": "lpga-tour:401835157",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "ShopRite LPGA Classic powered by Wakefern",
+          "aliases": [],
+          "start_date": "2026-05-29",
+          "end_date": "2026-05-31",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835157"
+        },
+        {
+          "event_id": "401835158",
+          "canonical_key": "lpga-tour:401835158",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "U.S. Women's Open pres. by Ally",
+          "aliases": [],
+          "start_date": "2026-06-04",
+          "end_date": "2026-06-07",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835158"
+        },
+        {
+          "event_id": "401835159",
+          "canonical_key": "lpga-tour:401835159",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Dow Championship",
+          "aliases": [],
+          "start_date": "2026-06-11",
+          "end_date": "2026-06-14",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835159"
+        },
+        {
+          "event_id": "401835160",
+          "canonical_key": "lpga-tour:401835160",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Meijer LPGA Classic for Simply Give",
+          "aliases": [],
+          "start_date": "2026-06-18",
+          "end_date": "2026-06-21",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835160"
+        },
+        {
+          "event_id": "401835161",
+          "canonical_key": "lpga-tour:401835161",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "KPMG Women's PGA Championship",
+          "aliases": [],
+          "start_date": "2026-06-25",
+          "end_date": "2026-06-28",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835161"
+        },
+        {
+          "event_id": "401835162",
+          "canonical_key": "lpga-tour:401835162",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "The Amundi Evian Championship",
+          "aliases": [],
+          "start_date": "2026-07-09",
+          "end_date": "2026-07-12",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835162"
+        },
+        {
+          "event_id": "401835163",
+          "canonical_key": "lpga-tour:401835163",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "ISPS HANDA Women's Scottish Open",
+          "aliases": [],
+          "start_date": "2026-07-23",
+          "end_date": "2026-07-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835163"
+        },
+        {
+          "event_id": "401835164",
+          "canonical_key": "lpga-tour:401835164",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "AIG Women's Open",
+          "aliases": [],
+          "start_date": "2026-07-30",
+          "end_date": "2026-08-02",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835164"
+        },
+        {
+          "event_id": "401835165",
+          "canonical_key": "lpga-tour:401835165",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "The Standard Portland Classic",
+          "aliases": [],
+          "start_date": "2026-08-13",
+          "end_date": "2026-08-16",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835165"
+        },
+        {
+          "event_id": "401835166",
+          "canonical_key": "lpga-tour:401835166",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "CPKC Women's Open",
+          "aliases": [],
+          "start_date": "2026-08-20",
+          "end_date": "2026-08-23",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835166"
+        },
+        {
+          "event_id": "401835167",
+          "canonical_key": "lpga-tour:401835167",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "FM Championship",
+          "aliases": [],
+          "start_date": "2026-08-27",
+          "end_date": "2026-08-30",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835167"
+        },
+        {
+          "event_id": "401835169",
+          "canonical_key": "lpga-tour:401835169",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Solheim Cup",
+          "aliases": [],
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-13",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835169"
+        },
+        {
+          "event_id": "401835170",
+          "canonical_key": "lpga-tour:401835170",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Walmart NW Arkansas Championship pres. by P&G",
+          "aliases": [],
+          "start_date": "2026-09-25",
+          "end_date": "2026-09-27",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835170"
+        },
+        {
+          "event_id": "401835171",
+          "canonical_key": "lpga-tour:401835171",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "LOTTE Championship pres. by Hoakalei",
+          "aliases": [],
+          "start_date": "2026-10-01",
+          "end_date": "2026-10-04",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835171"
+        },
+        {
+          "event_id": "401835172",
+          "canonical_key": "lpga-tour:401835172",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Buick LPGA Shanghai",
+          "aliases": [],
+          "start_date": "2026-10-15",
+          "end_date": "2026-10-18",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835172"
+        },
+        {
+          "event_id": "401835173",
+          "canonical_key": "lpga-tour:401835173",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "BMW Ladies Championship",
+          "aliases": [],
+          "start_date": "2026-10-22",
+          "end_date": "2026-10-25",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835173"
+        },
+        {
+          "event_id": "401835174",
+          "canonical_key": "lpga-tour:401835174",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "Maybank Championship",
+          "aliases": [],
+          "start_date": "2026-10-29",
+          "end_date": "2026-11-01",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835174"
+        },
+        {
+          "event_id": "401835175",
+          "canonical_key": "lpga-tour:401835175",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "TOTO Japan Classic",
+          "aliases": [],
+          "start_date": "2026-11-05",
+          "end_date": "2026-11-08",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835175"
+        },
+        {
+          "event_id": "401835176",
+          "canonical_key": "lpga-tour:401835176",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "The ANNIKA driven by Gainbridge at Pelican",
+          "aliases": [],
+          "start_date": "2026-11-12",
+          "end_date": "2026-11-15",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835176"
+        },
+        {
+          "event_id": "401835177",
+          "canonical_key": "lpga-tour:401835177",
+          "tour_id": "lpga-tour",
+          "tour": "LPGA Tour",
+          "display_name": "CME Group Tour Championship",
+          "aliases": [],
+          "start_date": "2026-11-19",
+          "end_date": "2026-11-22",
+          "status": "upcoming",
+          "approval_path": "Golf \u2192 LPGA Tour",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401835177"
+        }
+      ]
+    },
+    {
+      "source_id": "golf-liv-golf",
+      "tour_id": "liv-golf",
+      "tour": "LIV Golf League",
+      "region": "International",
+      "season": 2026,
+      "official_schedule_url": "https://www.livgolf.com/schedule",
+      "events": [
+        {
+          "event_id": "401807532",
+          "canonical_key": "liv-golf:401807532",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Riyadh",
+          "aliases": [],
+          "start_date": "2026-02-04",
+          "end_date": "2026-02-07",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401807532"
+        },
+        {
+          "event_id": "401804701",
+          "canonical_key": "liv-golf:401804701",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Adelaide",
+          "aliases": [],
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-15",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401804701"
+        },
+        {
+          "event_id": "401824806",
+          "canonical_key": "liv-golf:401824806",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Hong Kong",
+          "aliases": [],
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-08",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401824806"
+        },
+        {
+          "event_id": "401806356",
+          "canonical_key": "liv-golf:401806356",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Singapore",
+          "aliases": [],
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-15",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401806356"
+        },
+        {
+          "event_id": "401805587",
+          "canonical_key": "liv-golf:401805587",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf South Africa",
+          "aliases": [],
+          "start_date": "2026-03-19",
+          "end_date": "2026-03-22",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401805587"
+        },
+        {
+          "event_id": "401805795",
+          "canonical_key": "liv-golf:401805795",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Mexico City",
+          "aliases": [],
+          "start_date": "2026-04-16",
+          "end_date": "2026-04-19",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401805795"
+        },
+        {
+          "event_id": "401808353",
+          "canonical_key": "liv-golf:401808353",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Virginia",
+          "aliases": [],
+          "start_date": "2026-05-07",
+          "end_date": "2026-05-10",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401808353"
+        },
+        {
+          "event_id": "401863937",
+          "canonical_key": "liv-golf:401863937",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Korea",
+          "aliases": [],
+          "start_date": "2026-05-28",
+          "end_date": "2026-05-31",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401863937"
+        },
+        {
+          "event_id": "401809165",
+          "canonical_key": "liv-golf:401809165",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Andaluc\u00eda",
+          "aliases": [],
+          "start_date": "2026-06-04",
+          "end_date": "2026-06-07",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401809165"
+        },
+        {
+          "event_id": "401817380",
+          "canonical_key": "liv-golf:401817380",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Louisiana",
+          "aliases": [],
+          "start_date": "2026-06-25",
+          "end_date": "2026-06-28",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401817380"
+        },
+        {
+          "event_id": "401804745",
+          "canonical_key": "liv-golf:401804745",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf United Kingdom",
+          "aliases": [],
+          "start_date": "2026-07-23",
+          "end_date": "2026-07-26",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401804745"
+        },
+        {
+          "event_id": "401858200",
+          "canonical_key": "liv-golf:401858200",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf New York",
+          "aliases": [],
+          "start_date": "2026-08-06",
+          "end_date": "2026-08-09",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401858200"
+        },
+        {
+          "event_id": "401811430",
+          "canonical_key": "liv-golf:401811430",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Indianapolis",
+          "aliases": [],
+          "start_date": "2026-08-20",
+          "end_date": "2026-08-23",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401811430"
+        },
+        {
+          "event_id": "401843581",
+          "canonical_key": "liv-golf:401843581",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Michigan - Match Play",
+          "aliases": [],
+          "start_date": "2026-08-27",
+          "end_date": "2026-08-29",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401843581"
+        },
+        {
+          "event_id": "401843582",
+          "canonical_key": "liv-golf:401843582",
+          "tour_id": "liv-golf",
+          "tour": "LIV Golf League",
+          "display_name": "LIV Golf Michigan - Stroke Play",
+          "aliases": [],
+          "start_date": "2026-08-30",
+          "end_date": "2026-08-30",
+          "status": "completed",
+          "approval_path": "Golf \u2192 LIV Golf League",
+          "source_url": "https://www.espn.com/golf/leaderboard?tournamentId=401843582"
+        }
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "afl",
@@ -18761,7 +20499,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-bbl",
@@ -18779,7 +20517,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-wbbl",
@@ -18797,7 +20535,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-county-d1",
@@ -18814,10 +20552,8 @@
       "approved_catalog": true,
       "ok": true,
       "events": 9,
-      "errors": [
-        "2026-09-25: 502 Server Error: Bad Gateway for url: https://site.api.espn.com/apis/site/v2/sports/cricket/8052/scoreboard?d"
-      ],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "errors": [],
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-county-d2",
@@ -18835,7 +20571,7 @@
       "ok": true,
       "events": 7,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-ipl",
@@ -18853,7 +20589,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-ashes",
@@ -18872,7 +20608,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cricket-t20-world-cup",
@@ -18890,7 +20626,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cycling-uci-calendar",
@@ -18915,7 +20651,7 @@
       "ok": true,
       "events": 14,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "darts-cdc-calendar",
@@ -18937,7 +20673,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "darts-pdc-calendar",
@@ -18960,7 +20696,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-riot-lol-calendar",
@@ -18990,7 +20726,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-riot-valorant-calendar",
@@ -19013,7 +20749,7 @@
       "ok": true,
       "events": 4,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-ubisoft-r6-calendar",
@@ -19037,7 +20773,7 @@
       "ok": true,
       "events": 75,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-cdl",
@@ -19056,7 +20792,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 CDL season is complete. A dependable future-season match adapter will be added when the next official schedule is published.",
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-dota-international-calendar",
@@ -19086,7 +20822,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-esl-dota-calendar",
@@ -19107,7 +20843,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-dota-ewc-calendar",
@@ -19138,7 +20874,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-esl-pro-league-calendar",
@@ -19158,7 +20894,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-pgl-cs2-calendar",
@@ -19177,7 +20913,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-simulation-calendar",
@@ -19198,7 +20934,7 @@
       "ok": true,
       "events": 0,
       "note": "The eAdriatic, NextGen eBasket, and GT Sports schedules require a stable publisher-owned schedule source before automation.",
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "esports-rlcs",
@@ -19218,7 +20954,7 @@
       "ok": true,
       "events": 0,
       "note": "The official RLCS page is authoritative but currently blocks unattended schedule collection; it remains a visible coverage gap rather than using a stale substitute.",
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "mlb",
@@ -19234,7 +20970,7 @@
       "ok": true,
       "events": 106,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "npb",
@@ -19252,7 +20988,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "kbo",
@@ -19270,7 +21006,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "lmb",
@@ -19288,7 +21024,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "lmp",
@@ -19306,7 +21042,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "lidom",
@@ -19325,7 +21061,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "wbc",
@@ -19340,7 +21076,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "nfl",
@@ -19356,7 +21092,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cfl",
@@ -19386,7 +21122,7 @@
       "ok": true,
       "events": 5,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ifl",
@@ -19405,7 +21141,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ufl",
@@ -19434,7 +21170,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ncaa-football",
@@ -19450,7 +21186,7 @@
       "ok": true,
       "events": 34,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "nba",
@@ -19466,7 +21202,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "cebl",
@@ -19484,7 +21220,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "australian-nbl",
@@ -19501,7 +21237,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "mexican-lnbp",
@@ -19521,7 +21257,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "chile-lnb",
@@ -19540,7 +21276,7 @@
       "ok": true,
       "events": 0,
       "note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "pba-national-tour",
@@ -19558,7 +21294,7 @@
       "ok": true,
       "events": 0,
       "note": "Official PBA National Tour schedule. Authoritative for manual verification; no dependable unattended structured schedule feed is currently connected.",
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "boxing-weekly",
@@ -19580,7 +21316,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "danish-basketligaen",
@@ -19599,7 +21335,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "lithuanian-lkl",
@@ -19618,7 +21354,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "greek-basket-league",
@@ -19636,7 +21372,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "israeli-basketball",
@@ -19654,7 +21390,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "serbian-kls",
@@ -19672,7 +21408,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "korean-kbl",
@@ -19690,7 +21426,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "wnba",
@@ -19706,7 +21442,7 @@
       "ok": true,
       "events": 25,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "fiba-bcl",
@@ -19724,7 +21460,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "eurocup-basketball",
@@ -19742,7 +21478,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "france-lnb",
@@ -19760,7 +21496,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "german-bbl",
@@ -19779,7 +21515,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "italian-lba",
@@ -19798,7 +21534,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "polish-plk",
@@ -19817,7 +21553,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "spanish-acb",
@@ -19835,7 +21571,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "swiss-sbl",
@@ -19854,7 +21590,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "turkish-bsl",
@@ -19873,7 +21609,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "israeli-premier",
@@ -19892,7 +21628,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -19908,7 +21644,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -19924,7 +21660,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "nhl",
@@ -19940,7 +21676,7 @@
       "ok": true,
       "events": 51,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "icehl",
@@ -19957,7 +21693,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "czech-extraliga",
@@ -19974,7 +21710,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "liiga",
@@ -19991,7 +21727,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "del",
@@ -20008,7 +21744,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "slovak-extraliga",
@@ -20025,7 +21761,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "shl",
@@ -20042,7 +21778,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "swiss-national",
@@ -20059,7 +21795,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "chl",
@@ -20076,7 +21812,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "mls",
@@ -20092,7 +21828,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "epl",
@@ -20107,7 +21843,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "bundesliga",
@@ -20122,7 +21858,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "laliga",
@@ -20137,7 +21873,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "seriea",
@@ -20152,7 +21888,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ligue1",
@@ -20167,7 +21903,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "eredivisie",
@@ -20182,7 +21918,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "primeira",
@@ -20197,7 +21933,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "belgium",
@@ -20213,7 +21949,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "denmark",
@@ -20229,7 +21965,86 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
+    },
+    {
+      "id": "golf-pga-tour",
+      "sport": "Golf",
+      "league": "PGA Tour",
+      "region": "United States",
+      "source_type": "espn-golf-season",
+      "tour_id": "pga-tour",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard",
+      "official_schedule_url": "https://www.pgatour.com/schedule/2026",
+      "catalog_terms": [
+        "Professional Golfers\u2019 Association Tour (PGA Tour)"
+      ],
+      "exclude_name_patterns": [
+        "Q-School"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 2,
+      "calendar_events": 48,
+      "errors": [],
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
+    },
+    {
+      "id": "golf-pga-tour-champions",
+      "sport": "Golf",
+      "league": "PGA Tour Champions",
+      "region": "United States",
+      "source_type": "espn-golf-season",
+      "tour_id": "pga-tour-champions",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/champions-tour/scoreboard",
+      "official_schedule_url": "https://www.pgatour.com/pgatour-champions/schedule/2026",
+      "catalog_terms": [
+        "Professional Golfers\u2019 Association Tour Champions (PGA Tour Champions)"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "calendar_events": 29,
+      "errors": [],
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
+    },
+    {
+      "id": "golf-lpga-tour",
+      "sport": "Golf",
+      "league": "LPGA Tour",
+      "region": "United States / International",
+      "source_type": "espn-golf-season",
+      "tour_id": "lpga-tour",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/lpga/scoreboard",
+      "official_schedule_url": "https://www.lpga.com/tournaments",
+      "catalog_terms": [
+        "Ladies Professional Golf Association Tour (LPGA Tour)"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "calendar_events": 32,
+      "errors": [],
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
+    },
+    {
+      "id": "golf-liv-golf",
+      "sport": "Golf",
+      "league": "LIV Golf League",
+      "region": "International",
+      "source_type": "espn-golf-season",
+      "tour_id": "liv-golf",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/golf/liv/scoreboard",
+      "official_schedule_url": "https://www.livgolf.com/schedule",
+      "catalog_terms": [
+        "LIV Golf League"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "calendar_events": 15,
+      "errors": [],
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -20245,7 +22060,7 @@
       "ok": true,
       "events": 534,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "atp-tennis",
@@ -20261,7 +22076,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "wta-tennis",
@@ -20277,7 +22092,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "ufc",
@@ -20295,7 +22110,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     },
     {
       "id": "pfl",
@@ -20316,7 +22131,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T10:20:04.777814+00:00"
+      "checked_at": "2026-09-18T10:37:06.483169+00:00"
     }
   ],
   "coverage_gaps": [
@@ -20332,11 +22147,6 @@
     },
     {
       "area": "Cycling",
-      "state": "SCHEDULE ADAPTER PENDING",
-      "note": "Approved catalog area is recognized but not yet included in the automated global schedule feed."
-    },
-    {
-      "area": "Golf",
       "state": "SCHEDULE ADAPTER PENDING",
       "note": "Approved catalog area is recognized but not yet included in the automated global schedule feed."
     },
