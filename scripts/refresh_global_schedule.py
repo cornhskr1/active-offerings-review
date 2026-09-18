@@ -51,12 +51,82 @@ def catalog_blob():
 
 CATALOG = catalog_blob()
 
+TENNIS_ISO3_COUNTRIES={
+    "arm":"Armenia","aus":"Australia","aut":"Austria","aze":"Azerbaijan",
+    "bel":"Belgium","bra":"Brazil","bul":"Bulgaria","can":"Canada",
+    "chn":"China","col":"Colombia","cro":"Croatia","cze":"Czech Republic",
+    "den":"Denmark","egy":"Egypt","esp":"Spain","est":"Estonia",
+    "fin":"Finland","fra":"France","gbr":"United Kingdom","geo":"Georgia",
+    "ger":"Germany","gre":"Greece","hun":"Hungary","ind":"India",
+    "irl":"Ireland","isr":"Israel","ita":"Italy","jpn":"Japan",
+    "kaz":"Kazakhstan","kor":"South Korea","ltu":"Lithuania",
+    "lux":"Luxembourg","mar":"Morocco","mex":"Mexico","ned":"Netherlands",
+    "nor":"Norway","nzl":"New Zealand","pol":"Poland","por":"Portugal",
+    "rou":"Romania","rsa":"South Africa","srb":"Serbia","sui":"Switzerland",
+    "svk":"Slovakia","slo":"Slovenia","swe":"Sweden","tha":"Thailand",
+    "tun":"Tunisia","tur":"Turkey","uae":"United Arab Emirates",
+    "ukr":"Ukraine","uru":"Uruguay","usa":"United States","uzb":"Uzbekistan"
+}
+
+TENNIS_COUNTRY_ALIASES={
+    "Korea Republic":"South Korea",
+    "Republic of Korea":"South Korea",
+    "Türkiye":"Turkey",
+    "USA":"United States",
+    "United States of America":"United States",
+    "Great Britain":"United Kingdom"
+}
+
+TENNIS_UTR_CITY_COUNTRIES={
+    "budapest":"Hungary","chicago":"United States","college station":"United States",
+    "essen":"Germany","newport beach":"United States","norfolk":"United States",
+    "saitama":"Japan","sydney":"Australia"
+}
+
 def approved(source):
     terms=[str(x).lower() for x in source.get("catalog_terms",[])]
     if not CATALOG:
         # Catalog unavailable: do not silently declare source approved.
         return None
     return any(t in CATALOG for t in terms)
+
+def tennis_country_name(value):
+    value=" ".join(str(value or "").split()).strip(" ,")
+    return TENNIS_COUNTRY_ALIASES.get(value,value)
+
+def tennis_event_venue(ev,comp):
+    venue=(comp.get("venue") or {}) if isinstance(comp,dict) else {}
+    if not venue:
+        for grouping in ev.get("groupings") or []:
+            for match in grouping.get("competitions") or []:
+                if match.get("venue"):
+                    venue=match["venue"]
+                    break
+            if venue:break
+    full=" ".join(str(venue.get("fullName") or "").split())
+    if not full:return None,None
+    country=tennis_country_name(full.rsplit(",",1)[-1]) if "," in full else None
+    return full,country
+
+def tennis_tournament_country(item):
+    source_url=str(item.get("source_url") or "")
+    code_match=re.search(r"/([a-z]{3})/\d{4}/",source_url,re.I)
+    if code_match:
+        country=TENNIS_ISO3_COUNTRIES.get(code_match.group(1).lower())
+        if country:return country
+    hay=f'{item.get("tournament") or ""} {item.get("location") or ""}'.lower()
+    for city,country in TENNIS_UTR_CITY_COUNTRIES.items():
+        if city in hay:return country
+    location=" ".join(str(item.get("location") or "").split()).strip(" ,")
+    if location and location not in ("Americas","Europe","Asia & Pacific","International"):
+        return tennis_country_name(location.rsplit(",",1)[-1])
+    return "International"
+
+def clean_tennis_tournament_name(value):
+    name=" ".join(str(value or "Scheduled tournament").split())
+    name=re.sub(r"^.*?Verified Event\s*\|\s*","",name,flags=re.I)
+    name=re.sub(r"\s+(?:Free[–-]?\$?\d+|\$\d+)\s+Division Fees.*$","",name,flags=re.I)
+    return name.strip(" |-") or "Scheduled tournament"
 
 def event_status(ev):
     st=(ev.get("status") or {}).get("type") or {}
@@ -141,13 +211,24 @@ def parse_event(source, ev):
                     break
         except (TypeError,ValueError):
             pass
+    if source.get("name_routing"):
+        for route in source.get("name_routing") or []:
+            if re.search(str(route.get("pattern") or "$^"),name,re.I):
+                parsed_source_id=route["source_id"]
+                break
+
+    event_region=source.get("region")
+    if source.get("sport")=="Tennis":
+        tennis_location,tennis_country=tennis_event_venue(ev,comp)
+        if tennis_location and not location:location=tennis_location
+        if tennis_country:event_region=tennis_country
 
     parsed = {
         "id":str(ev.get("id") or f'{source["id"]}-{dt}-{name}'),
         "source_id":parsed_source_id,
         "sport":source["sport"],
         "league":source["league"],
-        "region":source.get("region"),
+        "region":event_region,
         "name":name,
         "start_time":dt,
         "status":status,
@@ -1272,6 +1353,45 @@ def fetch_official_event_window(source):
             parsed.append(event)
     return parsed
 
+def fetch_tennis_intelligence(source):
+    """Promote approved tournament families from Tennis Watch into Review Today.
+
+    The dedicated tennis refresh already resolves official ATP, ITF and UTR
+    calendars and performs the participant-age review. Reusing that output keeps
+    one authoritative tournament identity instead of creating a conflicting
+    second scraper in the global schedule job.
+    """
+    path=DATA/"tennis-schedule.json"
+    payload=json.loads(path.read_text(encoding="utf-8"))
+    generated=payload.get("generated_at")
+    if generated:
+        checked=datetime.datetime.fromisoformat(str(generated).replace("Z","+00:00"))
+        if checked.tzinfo is None:checked=checked.replace(tzinfo=datetime.timezone.utc)
+        if NOW_UTC-checked.astimezone(datetime.timezone.utc)>datetime.timedelta(hours=72):
+            raise RuntimeError("Tennis intelligence schedule is more than 72 hours old")
+    allowed=set(source.get("tour_ids") or [])
+    parsed=[]
+    for item in payload.get("tournaments") or []:
+        if item.get("tour_id") not in allowed:continue
+        try:
+            start=datetime.date.fromisoformat(item["start_date"])
+            end=datetime.date.fromisoformat(item.get("end_date") or item["start_date"])
+        except (KeyError,TypeError,ValueError):
+            continue
+        name=clean_tennis_tournament_name(item.get("tournament"))
+        country=tennis_tournament_country(item)
+        event=tournament_window_event(
+            source,source["id"],source["league"],name,start,end,
+            item.get("location") or country,item.get("source_url") or source.get("official_schedule_url")
+        )
+        if not event:continue
+        event["region"]=country
+        regulatory=str(item.get("regulatory_status") or "").strip()
+        if regulatory:
+            event["status_detail"]=f'{event["status_detail"]} · {regulatory}'
+        parsed.append(event)
+    return parsed
+
 def fetch_pgl_cs2_calendar(source):
     """Read PGL's own events API and retain only its CS2 event family."""
     r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
@@ -1511,6 +1631,26 @@ for source in CFG.get("sources",[]):
             "checked_at":NOW_UTC.isoformat()
         })
         continue
+    if source.get("source_type")=="tennis-intelligence":
+        try:
+            for parsed in fetch_tennis_intelligence(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
     if source.get("source_type") in ("official-event-window","pgl-cs2-calendar","esl-esports-calendar"):
         try:
             adapters={
@@ -1595,6 +1735,9 @@ for source in CFG.get("sources",[]):
                 try:
                     _,data=future.result()
                     for ev in data.get("events",[]):
+                        event_name=str(ev.get("name") or ev.get("shortName") or "")
+                        if any(re.search(pattern,event_name,re.I) for pattern in source.get("exclude_name_patterns",[])):
+                            continue
                         parsed=parse_event(source,ev)
                         key=(parsed["id"],parsed["start_time"])
                         if key in seen:

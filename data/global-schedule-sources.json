@@ -1760,24 +1760,212 @@
     },
     {
       "id": "atp-tennis",
+      "source_type": "espn-daily",
       "sport": "Tennis",
-      "league": "ATP",
+      "league": "ATP Tour | Men",
       "region": "International",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+      "official_schedule_url": "https://www.atptour.com/en/tournaments",
+      "coverage_status": "complete",
+      "name_routing": [
+        {
+          "source_id": "tennis-australian-open",
+          "pattern": "Australian Open"
+        },
+        {
+          "source_id": "tennis-french-open",
+          "pattern": "Roland-Garros|French Open"
+        },
+        {
+          "source_id": "tennis-wimbledon",
+          "pattern": "Wimbledon"
+        },
+        {
+          "source_id": "tennis-us-open",
+          "pattern": "US Open|United States Open"
+        },
+        {
+          "source_id": "tennis-united-cup",
+          "pattern": "United Cup"
+        }
+      ],
       "catalog_terms": [
-        "Tennis",
-        "ATP"
+        "Association of Tennis Professionals (ATP)",
+        "ATP Tour | Men"
+      ]
+    },
+    {
+      "id": "tennis-atp-challenger",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "ATP Challenger Tour | Men",
+      "region": "International",
+      "official_schedule_url": "https://www.atptour.com/en/scores/current-challenger",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
+        "atp-challenger"
+      ],
+      "catalog_terms": [
+        "Association of Tennis Professionals (ATP)",
+        "ATP Challenger Tour | Men"
       ]
     },
     {
       "id": "wta-tennis",
+      "source_type": "espn-daily",
       "sport": "Tennis",
-      "league": "WTA",
+      "league": "WTA Tour | Women",
       "region": "International",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "official_schedule_url": "https://www.wtatennis.com/tournaments",
+      "coverage_status": "complete",
+      "exclude_name_patterns": [
+        "Australian Open",
+        "Roland-Garros",
+        "French Open",
+        "Wimbledon",
+        "US Open",
+        "United States Open",
+        "United Cup"
+      ],
+      "name_routing": [
+        {
+          "source_id": "tennis-australian-open",
+          "pattern": "Australian Open"
+        },
+        {
+          "source_id": "tennis-french-open",
+          "pattern": "Roland-Garros|French Open"
+        },
+        {
+          "source_id": "tennis-wimbledon",
+          "pattern": "Wimbledon"
+        },
+        {
+          "source_id": "tennis-us-open",
+          "pattern": "US Open|United States Open"
+        },
+        {
+          "source_id": "tennis-united-cup",
+          "pattern": "United Cup"
+        }
+      ],
       "catalog_terms": [
-        "Tennis",
-        "WTA"
+        "Women’s Tennis Association (WTA)",
+        "WTA Tour | Women"
+      ]
+    },
+    {
+      "id": "tennis-australian-open",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "Australian Open | Men and Women",
+      "region": "Australia",
+      "official_schedule_url": "https://ausopen.com/schedule",
+      "source_note": "Out of season. ATP/WTA schedule events route here automatically when the Australian Open returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "Australian Open | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-french-open",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "Roland-Garros / French Open | Men and Women",
+      "region": "France",
+      "official_schedule_url": "https://www.rolandgarros.com/en-us/order-of-play",
+      "source_note": "Out of season. ATP/WTA schedule events route here automatically when Roland-Garros returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "Roland-Garros / French Open | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-wimbledon",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "Wimbledon | Men and Women",
+      "region": "England",
+      "official_schedule_url": "https://www.wimbledon.com/en_GB/scores/schedule/index.html",
+      "source_note": "Out of season. ATP/WTA schedule events route here automatically when Wimbledon returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "Wimbledon | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-us-open",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "United States Open | Men and Women",
+      "region": "United States",
+      "official_schedule_url": "https://www.usopen.org/en_US/scores/schedule/index.html",
+      "source_note": "The 2026 event is complete. ATP/WTA schedule events route here automatically when the US Open returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "United States Open | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-usta-pro-circuit",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "USTA Pro Circuit | Men and Women",
+      "region": "United States",
+      "official_schedule_url": "https://www.usta.com/en/home/pro/pro-tennis-events/pro-circuit.html",
+      "source_note": "Season mapped. U.S. ITF events remain visible through the ITF feed without duplicating the same tournament under two approval paths.",
+      "catalog_terms": [
+        "United States Tennis Association (USTA)",
+        "USTA Pro Circuit | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-itf-world-tour",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "International",
+      "official_schedule_url": "https://www.itftennis.com/en/tournament-calendar/world-tennis-tour-calendar/",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
+        "itf-men",
+        "itf-women"
+      ],
+      "catalog_terms": [
+        "International Tennis Federation (ITF)",
+        "ITF World Tennis Tour | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-utr-pro-tour",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "International",
+      "official_schedule_url": "https://www.utrsports.net/pages/pro-tennis-tour",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
+        "utr-men",
+        "utr-women"
+      ],
+      "catalog_terms": [
+        "Universal Tennis LLC / UTR Sports",
+        "UTR Pro Tennis Tour | Men and Women"
+      ]
+    },
+    {
+      "id": "tennis-united-cup",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "United Cup | Men and Women",
+      "region": "Australia",
+      "official_schedule_url": "https://www.unitedcup.com/en/tournament/schedule",
+      "source_note": "Out of season pending publication of the next official event dates. ATP/WTA schedule events route here automatically when play returns.",
+      "catalog_terms": [
+        "Association of Tennis Professionals (ATP) / Women’s Tennis Association",
+        "(WTA) / Tennis Australia",
+        "United Cup | Men and Women"
       ]
     },
     {
