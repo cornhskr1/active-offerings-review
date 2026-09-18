@@ -441,6 +441,59 @@
       ]
     },
     {
+      "id": "cfl",
+      "source_type": "cfl-schedule",
+      "sport": "Football",
+      "league": "Canadian Football League (CFL)",
+      "region": "Canada",
+      "endpoint": "https://www.cfl.ca/api/v1/content/data/schedule?seasonId=75",
+      "official_schedule_url": "https://www.cfl.ca/schedule/2026/",
+      "season_id": 75,
+      "team_names": {
+        "1": "BC Lions",
+        "6": "Calgary Stampeders",
+        "7": "Edmonton Elks",
+        "8": "Hamilton Tiger-Cats",
+        "11": "Montreal Alouettes",
+        "13": "Ottawa REDBLACKS",
+        "17": "Saskatchewan Roughriders",
+        "19": "Toronto Argonauts",
+        "20": "Winnipeg Blue Bombers"
+      },
+      "catalog_terms": ["Canadian Football League", "CFL"]
+    },
+    {
+      "id": "ifl",
+      "source_type": "ifl-schedule",
+      "sport": "Football",
+      "league": "Indoor Football League (IFL)",
+      "region": "United States",
+      "endpoint": "https://goifl.com/sports/fball/2026/schedule",
+      "season_year": 2026,
+      "catalog_terms": ["Indoor Football League", "IFL"]
+    },
+    {
+      "id": "ufl",
+      "source_type": "official-event-window",
+      "sport": "Football",
+      "league": "United Football League (UFL)",
+      "region": "United States",
+      "endpoint": "https://www.theufl.com/schedule",
+      "official_schedule_url": "https://www.theufl.com/schedule",
+      "official_events": [
+        {
+          "source_id": "ufl",
+          "league": "United Football League (UFL)",
+          "name": "2026 United Football League season",
+          "start_date": "2026-03-27",
+          "end_date": "2026-06-13",
+          "location": "United States",
+          "official_schedule_url": "https://www.theufl.com/schedule"
+        }
+      ],
+      "catalog_terms": ["United Football League", "UFL"]
+    },
+    {
       "id": "ncaa-football",
       "sport": "Football",
       "league": "NCAA Football",

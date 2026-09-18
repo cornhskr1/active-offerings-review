@@ -16,10 +16,50 @@
       "sport": "Football",
       "country": "United States",
       "catalog_event": "National Football League (NFL)",
-      "season_window": "August–February",
-      "season_start": "08-01",
-      "season_end": "02-28",
-      "last_verified": "2026-09-16"
+      "season_window": "September 9, 2026–February 14, 2027",
+      "season_start": "09-09",
+      "season_end": "02-14",
+      "last_verified": "2026-09-18"
+    },
+    {
+      "source_id": "football-nfl-preseason",
+      "sport": "Football",
+      "country": "United States",
+      "catalog_event": "NFL Preseason",
+      "season_window": "August 6–29, 2026",
+      "season_start": "08-06",
+      "season_end": "08-29",
+      "last_verified": "2026-09-18"
+    },
+    {
+      "source_id": "cfl",
+      "sport": "Football",
+      "country": "Canada",
+      "catalog_event": "Canadian Football League (CFL)",
+      "season_window": "May 12–November 16, 2026",
+      "season_start": "05-12",
+      "season_end": "11-16",
+      "last_verified": "2026-09-18"
+    },
+    {
+      "source_id": "ifl",
+      "sport": "Football",
+      "country": "United States",
+      "catalog_event": "Indoor Football League (IFL)",
+      "season_window": "March 14–August 16, 2026",
+      "season_start": "03-14",
+      "season_end": "08-16",
+      "last_verified": "2026-09-18"
+    },
+    {
+      "source_id": "ufl",
+      "sport": "Football",
+      "country": "United States",
+      "catalog_event": "United Football League (UFL)",
+      "season_window": "March 27–June 13, 2026",
+      "season_start": "03-27",
+      "season_end": "06-13",
+      "last_verified": "2026-09-18"
     },
     {
       "source_id": "nba",
@@ -2628,6 +2668,136 @@
           "governing_body": "Psyonix — Rocket League",
           "events": [
             {"key":"esports-rlcs","catalog_event":"Rocket League Championship Series (RLCS)","category":"Rocket League","season_window":"January 9–September 20, 2026","season_start":"01-09","season_end":"09-20","source_id":"esports-rlcs","season_basis":"2026 official Rocket League competitive schedule","last_verified":"2026-09-18","fun_fact":"Rocket League turns soccer into a vehicle-based esport in which teams score with rocket-powered cars.","restrictions":["NO IN-GAME WAGERS"]}
+          ]
+        }
+      ]
+    },
+    {
+      "sport": "Football",
+      "mapping_status": "complete",
+      "summary_label": "7 approved events · 7 season mapped",
+      "catalog_snapshot_lines": [
+        "Canada",
+        "Canadian Football League (CFL)",
+        "Canadian Football League (CFL)",
+        "United States",
+        "Indoor Football League (IFL)",
+        "Indoor Football League (IFL)",
+        "National Football League (NFL)",
+        "National Football League (NFL)",
+        "NFL Draft - MARKETS CLOSE 1 HOUR PRIOR TO EVENT START",
+        "NFL Preseason - NO PLAYER PROPOSITION WAGERS",
+        "Super Bowl Coin Toss Winner and Outcome",
+        "United Football League (UFL)",
+        "United Football League (UFL)"
+      ],
+      "groups": [
+        {
+          "country": "Canada",
+          "governing_body": "Canadian Football League (CFL)",
+          "events": [
+            {
+              "key": "football-canada-cfl",
+              "catalog_event": "Canadian Football League (CFL)",
+              "season_window": "May 12–November 16, 2026",
+              "season_start": "05-12",
+              "season_end": "11-16",
+              "source_id": "cfl",
+              "season_basis": "2026 official CFL schedule, including preseason through the Grey Cup window",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Grey Cup trophy predates the CFL itself; it was first awarded in 1909, while the modern league was formed in 1958.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "Indoor Football League (IFL)",
+          "events": [
+            {
+              "key": "football-us-ifl",
+              "catalog_event": "Indoor Football League (IFL)",
+              "season_window": "March 14–August 16, 2026 · completed",
+              "season_start": "03-14",
+              "season_end": "08-16",
+              "source_id": "ifl",
+              "season_basis": "2026 official IFL league schedule through the National Championship",
+              "last_verified": "2026-09-18",
+              "fun_fact": "Indoor football uses a 50-yard field, creating a faster and more compact game than the outdoor version.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "National Football League (NFL)",
+          "events": [
+            {
+              "key": "football-us-nfl",
+              "catalog_event": "National Football League (NFL)",
+              "season_window": "September 9, 2026–February 14, 2027",
+              "season_start": "09-09",
+              "season_end": "02-14",
+              "source_id": "nfl",
+              "season_basis": "2026 NFL regular season and postseason through Super Bowl LXI",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The NFL's 32 teams are split evenly between the AFC and NFC, with four four-team divisions in each conference.",
+              "restrictions": []
+            },
+            {
+              "key": "football-us-nfl-draft",
+              "catalog_event": "NFL Draft",
+              "category": "Special Events and Markets",
+              "season_window": "Annual April event · 2027 dates pending official release",
+              "season_status": "out",
+              "season_basis": "Annual NFL Draft; exact 2027 event dates are not yet published in the approved source set",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The NFL Draft has seven rounds, and the selection order is primarily based on the prior season's standings.",
+              "restrictions": ["MARKETS CLOSE 1 HOUR PRIOR TO EVENT START"]
+            },
+            {
+              "key": "football-us-nfl-preseason",
+              "catalog_event": "NFL Preseason",
+              "category": "Special Events and Markets",
+              "season_window": "August 6–29, 2026 · completed",
+              "season_start": "08-06",
+              "season_end": "08-29",
+              "source_id": "football-nfl-preseason",
+              "season_basis": "2026 NFL preseason schedule",
+              "last_verified": "2026-09-18",
+              "fun_fact": "NFL preseason games help teams reduce their offseason rosters to the regular-season limit before Week 1.",
+              "restrictions": ["NO PLAYER PROPOSITION WAGERS"]
+            },
+            {
+              "key": "football-us-super-bowl-coin-toss",
+              "catalog_event": "Super Bowl Coin Toss Winner and Outcome",
+              "category": "Special Events and Markets",
+              "season_window": "February 14, 2027 · Super Bowl LXI",
+              "season_start": "02-14",
+              "season_end": "02-14",
+              "season_basis": "Approved market tied only to the Super Bowl coin toss",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Super Bowl coin toss is conducted shortly before kickoff and is tracked separately from the game result.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "United Football League (UFL)",
+          "events": [
+            {
+              "key": "football-us-ufl",
+              "catalog_event": "United Football League (UFL)",
+              "season_window": "March 27–June 13, 2026 · completed",
+              "season_start": "03-27",
+              "season_end": "06-13",
+              "source_id": "ufl",
+              "season_basis": "2026 official UFL regular season and postseason through the United Bowl",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The modern UFL was created by combining the USFL and XFL football operations into one spring league.",
+              "restrictions": []
+            }
           ]
         }
       ]

@@ -133,7 +133,7 @@ def parse_event(source, ev):
         location=venue
     parsed = {
         "id":str(ev.get("id") or f'{source["id"]}-{dt}-{name}'),
-        "source_id":source["id"],
+        "source_id":"football-nfl-preseason" if source.get("league")=="NFL" and season_stage=="PRESEASON" else source["id"],
         "sport":source["sport"],
         "league":source["league"],
         "region":source.get("region"),
@@ -914,7 +914,7 @@ def tournament_window_event(source,source_id,league,name,start,end,location=None
     return {
         "id":f"{source_id}-{start.isoformat()}-{slug}",
         "source_id":source_id,
-        "sport":"Esports",
+        "sport":source.get("sport") or "Esports",
         "league":league,
         "region":source.get("region") or "International",
         "name":name,
@@ -925,6 +925,104 @@ def tournament_window_event(source,source_id,league,name,start,end,location=None
         "location":location,
         "source_endpoint":endpoint or source.get("official_schedule_url") or source["endpoint"]
     }
+
+def fetch_cfl_schedule(source):
+    """Read the CFL's official schedule API and keep the active review window."""
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+    r.raise_for_status()
+    payload=r.json()
+    team_names={str(k):v for k,v in (source.get("team_names") or {}).items()}
+    parsed=[]
+    stage_names={0:"PRESEASON",1:"REGULAR SEASON",3:"POSTSEASON"}
+    for fixture in payload.get("fixtures") or []:
+        raw_start=fixture.get("start_at")
+        if not raw_start:
+            continue
+        try:
+            start=datetime.datetime.fromisoformat(str(raw_start).replace("Z","+00:00"))
+            if start.tzinfo is None:
+                start=start.replace(tzinfo=TZ).astimezone(datetime.timezone.utc)
+            event_date=start.astimezone(TZ).date()
+        except (TypeError,ValueError):
+            continue
+        if event_date<TODAY or event_date>END:
+            continue
+        away=team_names.get(str(fixture.get("away_team_id")))
+        home=team_names.get(str(fixture.get("home_team_id")))
+        if away and home:
+            name=f"{away} at {home}"
+        else:
+            name="CFL postseason game"
+        completed=fixture.get("home_team_score") is not None and fixture.get("away_team_score") is not None
+        parsed.append({
+            "id":f'cfl-{fixture.get("ID")}',
+            "source_id":"cfl",
+            "sport":"Football",
+            "league":"Canadian Football League (CFL)",
+            "region":"Canada",
+            "name":name,
+            "start_time":start.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
+            "status":"COMPLETED" if completed else "UPCOMING",
+            "status_detail":f'CFL Week {fixture.get("week")}' if fixture.get("week") is not None else "Official CFL schedule",
+            "season_stage":stage_names.get(fixture.get("game_type_id")),
+            "location":None,
+            "source_endpoint":source.get("official_schedule_url") or source["endpoint"]
+        })
+    return parsed
+
+def fetch_ifl_schedule(source):
+    """Read the official IFL league schedule HTML at league level."""
+    r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
+    r.raise_for_status()
+    page=r.text
+    year=int(source.get("season_year") or TODAY.year)
+    parsed=[]
+    sections=re.split(r'(?=<div class="card border-0 rounded-0 section-event-date")',page)
+    for section in sections:
+        date_match=re.search(r'section-event-date" data-date="([^"]+)"',section)
+        if not date_match:
+            continue
+        try:
+            event_date=datetime.datetime.strptime(f'{date_match.group(1)}, {year}',"%A, %B %d, %Y").date()
+        except ValueError:
+            continue
+        if event_date<TODAY or event_date>END:
+            continue
+        cards=re.split(r'(?=<div class="card w-100 event-row)',section)[1:]
+        for card in cards:
+            id_match=re.search(r'data-event-id="([^"]+)"',card)
+            teams=[re.sub(r'^#\d+\s+','',plain_html(x)).strip() for x in re.findall(r'<span class="team-name">(.*?)</span>',card,re.I|re.S)]
+            if len(teams)<2:
+                continue
+            label_match=re.search(r'aria-label="Football event:\s*[^:]+\s+(\d{1,2}:\d{2}\s+[AP]M):',card,re.I)
+            clock=datetime.time(12,0)
+            if label_match:
+                try:
+                    clock=datetime.datetime.strptime(label_match.group(1).upper(),"%I:%M %p").time()
+                except ValueError:
+                    pass
+            start=datetime.datetime.combine(event_date,clock,tzinfo=TZ)
+            venue_match=re.search(r'<div class="venue[^>]*>.*?<span>(.*?)</span>',card,re.I|re.S)
+            note_match=re.search(r'<div class="event-notes[^>]*>(.*?)</div>',card,re.I|re.S)
+            class_match=re.search(r'<div class="card w-100 event-row\s+([^"]+)"',card)
+            classes=(class_match.group(1) if class_match else "").lower()
+            stage="POSTSEASON" if "postseason" in classes else "REGULAR SEASON"
+            status="COMPLETED" if "result" in classes else "UPCOMING"
+            parsed.append({
+                "id":f'ifl-{id_match.group(1) if id_match else event_date.isoformat()+"-"+str(len(parsed))}',
+                "source_id":"ifl",
+                "sport":"Football",
+                "league":"Indoor Football League (IFL)",
+                "region":"United States",
+                "name":f"{teams[0]} at {teams[1]}",
+                "start_time":start.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
+                "status":status,
+                "status_detail":plain_html(note_match.group(1)) if note_match else "Official IFL schedule",
+                "season_stage":stage,
+                "location":plain_html(venue_match.group(1)) if venue_match else None,
+                "source_endpoint":source["endpoint"]
+            })
+    return parsed
 
 def fetch_official_event_window(source):
     """Use a publisher-owned page plus its published event window.
@@ -1070,6 +1168,27 @@ for source in CFG.get("sources",[]):
             "ok":True,
             "events":0,
             "note":source.get("source_note") or "Approved in-season league; no dependable complete public schedule adapter is currently available.",
+            "checked_at":NOW_UTC.isoformat()
+        })
+        continue
+    if source.get("source_type") in ("cfl-schedule","ifl-schedule"):
+        try:
+            adapter=fetch_cfl_schedule if source.get("source_type")=="cfl-schedule" else fetch_ifl_schedule
+            for parsed in adapter(source):
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({
+            **source,
+            "approved_catalog":True,
+            "ok":not errors,
+            "events":count,
+            "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
         continue
