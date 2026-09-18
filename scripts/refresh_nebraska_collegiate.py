@@ -109,7 +109,7 @@ def parse_creighton(src, source):
         events.append({
             "school":source["school"],"sport":source["sport"],"date":date.isoformat(),
             "time":time,"site":site,"opponent":opp,"location":loc,
-            "phase":"EXHIBITION" if "exhibition" in tournament.lower() else "REGULAR SEASON",
+            "phase":"FALL EXHIBITION" if source["sport"]=="Softball" and date.month in (9,10,11) else "EXHIBITION" if "exhibition" in tournament.lower() else "REGULAR SEASON",
             "status":status,"result":result,"source_url":source["url"]
         })
     return events
@@ -163,7 +163,7 @@ def parse_nebraska(src, source):
         status="FINAL" if result_like(result_or_time) else "SCHEDULED"
         result=result_or_time if status=="FINAL" else ""
         time="TBA" if status=="FINAL" else (result_or_time or "TBA")
-        phase="EXHIBITION" if "exhibition" in item.get_text(" ",strip=True).lower() else "REGULAR SEASON"
+        phase="FALL EXHIBITION" if source["sport"]=="Softball" and date.month in (9,10,11) else "EXHIBITION" if "exhibition" in item.get_text(" ",strip=True).lower() else "REGULAR SEASON"
 
         events.append({
             "school":source["school"],"sport":source["sport"],"date":date.isoformat(),
@@ -211,7 +211,9 @@ def parse_omaha(src, source):
         time_value=clean(time_node.get_text(" ",strip=True)) if time_node else "TBA"
 
         card_text=clean(card.get_text(" ",strip=True)).lower()
-        if "exhibition" in card_text:
+        if source["sport"]=="Softball" and date.month in (9,10,11):
+            phase="FALL EXHIBITION"
+        elif "exhibition" in card_text:
             phase="EXHIBITION"
         elif "championship" in card_text or "tournament" in card_text:
             phase="POSTSEASON"
