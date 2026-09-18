@@ -1,6 +1,14 @@
 name: Refresh Approved Sports Schedule
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - data/catalog-season-map.json
+      - data/global-schedule-sources.json
+      - scripts/refresh_global_schedule.py
+      - .github/workflows/refresh-global-schedule.yml
   schedule:
     - cron: "7 * * * *"
   workflow_dispatch:
