@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T14:19:57.048100+00:00",
+  "generated_at": "2026-09-18T14:23:43.753669+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-18",
   "window_end": "2026-09-25",
-  "event_count": 1047,
+  "event_count": 1102,
   "events": [
     {
       "id": "887-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Mexico",
       "name": "Guadalajara Open presentado por Santander",
       "start_time": "2026-09-12T04:00Z",
       "status": "COMPLETED",
       "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Guadalajara, Mexico",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -28,14 +28,14 @@
       "id": "1005-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Brazil",
       "name": "SP Open",
       "start_time": "2026-09-12T04:00Z",
       "status": "COMPLETED",
       "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "S\u00e3o Paulo, Brazil",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -46,14 +46,14 @@
       "id": "871-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Spain",
       "name": "BBVA Open Internacional De Valencia",
       "start_time": "2026-09-13T04:00Z",
       "status": "COMPLETED",
       "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Valencia, Spain",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -64,14 +64,14 @@
       "id": "1024-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Portugal",
       "name": "Caldas da Rainha Ladies Open",
       "start_time": "2026-09-13T04:00Z",
       "status": "COMPLETED",
       "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Caldas da Rainha, Portugal",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -82,14 +82,14 @@
       "id": "786-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Slovenia",
       "name": "Zavarovalnica Triglav Ljubljana",
       "start_time": "2026-09-14T04:00Z",
       "status": "COMPLETED",
       "status_detail": "Final",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Ljubljana, Slovenia",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -196,14 +196,14 @@
       "id": "811-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "South Korea",
       "name": "Korea Open",
       "start_time": "2026-09-18T04:00Z",
       "status": "UPCOMING",
       "status_detail": "9/18 - 10:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Seoul, Korea Republic",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -214,14 +214,14 @@
       "id": "1009-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Singapore",
       "name": "Singapore Tennis Open presented by BNP Paribas",
       "start_time": "2026-09-18T04:00Z",
       "status": "UPCOMING",
       "status_detail": "9/18 - 11:00 PM EDT",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Singapore, Singapore",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -1137,6 +1137,474 @@
       "season_stage": null,
       "location": "Astana, Kazakhstan",
       "source_endpoint": "https://www.worldtabletennis.com/eventInfo?eventId=3254&selectedTab=Matches",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m15-bel-m",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Brazil",
+      "name": "M15 BEL\u00c9M",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Brazil",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-belem/bra/2026/m-itf-bra-2026-013/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m15-hurghada",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Egypt",
+      "name": "M15 HURGHADA",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Egypt",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-hurghada/egy/2026/m-itf-egy-2026-025/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m15-melilla",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Spain",
+      "name": "M15 MELILLA",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Spain",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-melilla/esp/2026/m-itf-esp-2026-040/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m15-monastir",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Tunisia",
+      "name": "M15 MONASTIR",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Tunisia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-037/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m15-tsaghkadzor",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Armenia",
+      "name": "M15 TSAGHKADZOR",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-19 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Armenia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-tsaghkadzor/arm/2026/m-itf-arm-2026-005/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m25-guiyang",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "China",
+      "name": "M25 GUIYANG",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "China",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-guiyang/chn/2026/m-itf-chn-2026-027/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m25-nevers",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "France",
+      "name": "M25 NEVERS",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "France",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-nevers/fra/2026/m-itf-fra-2026-015/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m25-santa-margherita-di-pula",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Italy",
+      "name": "M25 SANTA MARGHERITA DI PULA",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-19 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Italy",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-santa-margherita-di-pula/ita/2026/m-itf-ita-2026-039/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m25-sintra",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Portugal",
+      "name": "M25 SINTRA",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Portugal",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-sintra/por/2026/m-itf-por-2026-018/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-m25-zlatibor",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Serbia",
+      "name": "M25 ZLATIBOR",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Serbia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-zlatibor/srb/2026/m-itf-srb-2026-018/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w15-monastir",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Tunisia",
+      "name": "W15 MONASTIR",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Tunisia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w15-monastir/tun/2026/w-itf-tun-2026-033/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w15-sao-luis",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Brazil",
+      "name": "W15 SAO LUIS",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 OK \u2014 NO U18 EXPOSURE IDENTIFIED",
+      "season_stage": null,
+      "location": "Brazil",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w15-sao-luis/bra/2026/w-itf-bra-2026-007/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w35-hurghada",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Egypt",
+      "name": "W35 HURGHADA",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Egypt",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w35-hurghada/egy/2026/w-itf-egy-2026-025/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w35-kyoto",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Japan",
+      "name": "W35 KYOTO",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Japan",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w35-kyoto/jpn/2026/w-itf-jpn-2026-009/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w35-santa-margherita-di-pula",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Italy",
+      "name": "W35 SANTA MARGHERITA DI PULA",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Italy",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w35-santa-margherita-di-pula/ita/2026/w-itf-ita-2026-032/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w35-shenyang",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "China",
+      "name": "W35 SHENYANG",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "China",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w35-shenyang/chn/2026/w-itf-chn-2026-032/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w50-pazardzhik",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Bulgaria",
+      "name": "W50 PAZARDZHIK",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Bulgaria",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w50-pazardzhik/bul/2026/w-itf-bul-2026-003/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-14-w75-le-neubourg",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "France",
+      "name": "W75 LE NEUBOURG",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "France",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w75-le-neubourg/fra/2026/w-itf-fra-2026-020/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-budapest-men",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Hungary",
+      "name": "UTR PTT Budapest Men",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Europe",
+      "source_endpoint": "https://app.utrsports.net/events/368537",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-budapest-women",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Hungary",
+      "name": "UTR PTT Budapest Women",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Europe",
+      "source_endpoint": "https://app.utrsports.net/events/368534",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-chicago-men",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "UTR PTT Chicago Men",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-18 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Americas",
+      "source_endpoint": "https://app.utrsports.net/events/368478",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-chicago-women",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "UTR PTT Chicago Women",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-18 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Americas",
+      "source_endpoint": "https://app.utrsports.net/events/368482",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-essen-men",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Germany",
+      "name": "UTR PTT Essen Men",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Europe",
+      "source_endpoint": "https://app.utrsports.net/events/368354",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-sydney-men",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Australia",
+      "name": "UTR PTT Sydney Men",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Asia & Pacific",
+      "source_endpoint": "https://app.utrsports.net/events/371775",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-ptt-sydney-women",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Australia",
+      "name": "UTR PTT Sydney Women",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Asia & Pacific",
+      "source_endpoint": "https://app.utrsports.net/events/371776",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-14-utr-pro-fall-slam-newport-beach-men-free-55-di",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "UTR Pro Fall Slam Newport Beach Men Free\u2013$55 Di",
+      "start_time": "2026-09-18T17:00:00Z",
+      "status": "LIVE",
+      "status_detail": "2026-09-14 through 2026-09-20 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Americas",
+      "source_endpoint": "https://app.utrsports.net/events/367443",
       "u18_matches": [],
       "u18_risk": false,
       "restriction_signals": [],
@@ -11964,14 +12432,14 @@
       "id": "1019-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Italy",
       "name": "Delta Motors Tolentino Open",
       "start_time": "2026-09-21T04:00Z",
       "status": "UPCOMING",
       "status_detail": "TBD",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Tolentino, Italy",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -11982,14 +12450,14 @@
       "id": "1022-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Portugal",
       "name": "Eupago Porto Open",
       "start_time": "2026-09-21T04:00Z",
       "status": "UPCOMING",
       "status_detail": "TBD",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Porto, Portugal",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -12000,14 +12468,14 @@
       "id": "1077-2026",
       "source_id": "wta-tennis",
       "sport": "Tennis",
-      "league": "WTA",
-      "region": "International",
+      "league": "WTA Tour | Women",
+      "region": "Turkey",
       "name": "Turk Telekom Ankara Open",
       "start_time": "2026-09-21T04:00Z",
       "status": "UPCOMING",
       "status_detail": "TBD",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Ankara, T\u00fcrkiye",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -12151,6 +12619,528 @@
         "Regional Closed Leagues - NO IN-GAME WAGERS"
       ],
       "restriction_risk": true
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m15-baku",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Azerbaijan",
+      "name": "M15 BAKU",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Azerbaijan",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-baku/aze/2026/m-itf-aze-2026-001/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m15-columbia-sc",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "M15 COLUMBIA, SC",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "United States",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-columbia-sc/usa/2026/m-itf-usa-2026-039/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m15-curitiba",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Brazil",
+      "name": "M15 CURITIBA",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Brazil",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-curitiba/bra/2026/m-itf-bra-2026-003/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m15-forbach",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "France",
+      "name": "M15 FORBACH",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "France",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-forbach/fra/2026/m-itf-fra-2026-024/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m15-monastir",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Tunisia",
+      "name": "M15 MONASTIR",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Tunisia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-038/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m15-telavi",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Georgia",
+      "name": "M15 TELAVI",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-21 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Georgia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m15-telavi/geo/2026/m-itf-geo-2026-004/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-falun",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Sweden",
+      "name": "M25 FALUN",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Sweden",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-falun/swe/2026/m-itf-swe-2026-004/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-pardubice",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Czech Republic",
+      "name": "M25 PARDUBICE",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Czech Republic",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-pardubice/cze/2026/m-itf-cze-2026-004/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-sabadell",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Spain",
+      "name": "M25 SABADELL",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Spain",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-sabadell/esp/2026/m-itf-esp-2026-047/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-santa-margherita-di-pula",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Italy",
+      "name": "M25 SANTA MARGHERITA DI PULA",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-26 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Italy",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-santa-margherita-di-pula/ita/2026/m-itf-ita-2026-040/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-setubal",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Portugal",
+      "name": "M25 SETUBAL",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Portugal",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-setubal/por/2026/m-itf-por-2026-014/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-sharm-elsheikh",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Egypt",
+      "name": "M25 SHARM ELSHEIKH",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Egypt",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-sharm-elsheikh/egy/2026/m-itf-egy-2026-026/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-m25-yinchuan",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "China",
+      "name": "M25 YINCHUAN",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "China",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/m25-yinchuan/chn/2026/m-itf-chn-2026-030/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w15-belem",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Brazil",
+      "name": "W15 BELEM",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Brazil",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w15-belem/bra/2026/w-itf-bra-2026-009/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w15-constanta",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Romania",
+      "name": "W15 CONSTANTA",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Romania",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w15-constanta/rou/2026/w-itf-rou-2026-011/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w15-maanshan",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "China",
+      "name": "W15 MAANSHAN",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "China",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w15-maanshan/chn/2026/w-itf-chn-2026-033/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w15-monastir",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Tunisia",
+      "name": "W15 MONASTIR",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Tunisia",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w15-monastir/tun/2026/w-itf-tun-2026-034/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w35-santa-margherita-di-pula",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Italy",
+      "name": "W35 SANTA MARGHERITA DI PULA",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Italy",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w35-santa-margherita-di-pula/ita/2026/w-itf-ita-2026-033/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w35-sharm-elsheikh",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Egypt",
+      "name": "W35 SHARM ELSHEIKH",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Egypt",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w35-sharm-elsheikh/egy/2026/w-itf-egy-2026-026/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w50-berkeley-ca",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "W50 BERKELEY, CA",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "United States",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w50-berkeley-ca/usa/2026/w-itf-usa-2026-043/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w50-nanao",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Japan",
+      "name": "W50 NANAO",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Japan",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w50-nanao/jpn/2026/w-itf-jpn-2026-013/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w50-plovdiv",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Bulgaria",
+      "name": "W50 PLOVDIV",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 U18 IN PRE-DRAW ACCEPTANCE POOL",
+      "season_stage": null,
+      "location": "Bulgaria",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w50-plovdiv/bul/2026/w-itf-bul-2026-006/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-itf-world-tour-2026-09-21-w50-yecla",
+      "source_id": "tennis-itf-world-tour",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "Spain",
+      "name": "W50 YECLA",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Spain",
+      "source_endpoint": "https://www.itftennis.com/en/tournament/w50-yecla/esp/2026/w-itf-esp-2026-023/fact-sheet/",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-21-utr-ptt-essen-men",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Germany",
+      "name": "UTR PTT Essen Men",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Europe",
+      "source_endpoint": "https://app.utrsports.net/events/368359",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-21-utr-ptt-essen-women",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Germany",
+      "name": "UTR PTT Essen Women",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Europe",
+      "source_endpoint": "https://app.utrsports.net/events/368363",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-21-utr-ptt-norfolk-men-h",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "UTR PTT Norfolk Men+H",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Americas",
+      "source_endpoint": "https://app.utrsports.net/events/368486",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-21-utr-ptt-saitama-men",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "Japan",
+      "name": "UTR PTT Saitama Men",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Asia & Pacific",
+      "source_endpoint": "https://app.utrsports.net/events/369303",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-21-utr-pro-fall-slam-college-station-men-55-divis",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "UTR Pro Fall Slam College Station Men $55 Divis",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Americas",
+      "source_endpoint": "https://app.utrsports.net/events/368456",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "tennis-utr-pro-tour-2026-09-21-utr-pro-fall-slam-college-station-women-55-div",
+      "source_id": "tennis-utr-pro-tour",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "United States",
+      "name": "UTR Pro Fall Slam College Station Women $55 Div",
+      "start_time": "2026-09-21T17:00:00Z",
+      "status": "UPCOMING",
+      "status_detail": "2026-09-21 through 2026-09-27 \u00b7 official tournament calendar \u00b7 REVIEW \u2014 PARTICIPANT FIELD INCOMPLETE",
+      "season_stage": null,
+      "location": "Americas",
+      "source_endpoint": "https://app.utrsports.net/events/368459",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
     },
     {
       "id": "esports-r6-regional-8260",
@@ -13548,14 +14538,14 @@
       "id": "441-2026",
       "source_id": "atp-tennis",
       "sport": "Tennis",
-      "league": "ATP",
-      "region": "International",
+      "league": "ATP Tour | Men",
+      "region": "China PR",
       "name": "Chengdu Open",
       "start_time": "2026-09-23T04:00Z",
       "status": "UPCOMING",
       "status_detail": "TBD",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Chengdu, China PR",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -13566,14 +14556,14 @@
       "id": "1001-2026",
       "source_id": "atp-tennis",
       "sport": "Tennis",
-      "league": "ATP",
-      "region": "International",
+      "league": "ATP Tour | Men",
+      "region": "China PR",
       "name": "Hangzhou Open",
       "start_time": "2026-09-23T04:00Z",
       "status": "UPCOMING",
       "status_detail": "TBD",
       "season_stage": "REGULAR SEASON",
-      "location": null,
+      "location": "Hangzhou, China PR",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
       "u18_matches": [],
       "u18_risk": false,
@@ -20694,7 +21684,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-bbl",
@@ -20712,7 +21702,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-wbbl",
@@ -20730,7 +21720,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-county-d1",
@@ -20748,7 +21738,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-county-d2",
@@ -20766,7 +21756,7 @@
       "ok": true,
       "events": 7,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-ipl",
@@ -20784,7 +21774,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-ashes",
@@ -20803,7 +21793,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cricket-t20-world-cup",
@@ -20821,7 +21811,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cycling-uci-calendar",
@@ -20846,7 +21836,7 @@
       "ok": true,
       "events": 14,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "darts-cdc-calendar",
@@ -20868,7 +21858,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "darts-pdc-calendar",
@@ -20891,7 +21881,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-riot-lol-calendar",
@@ -20921,7 +21911,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-riot-valorant-calendar",
@@ -20944,7 +21934,7 @@
       "ok": true,
       "events": 4,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-ubisoft-r6-calendar",
@@ -20968,7 +21958,7 @@
       "ok": true,
       "events": 75,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-cdl",
@@ -20987,7 +21977,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 CDL season is complete. A dependable future-season match adapter will be added when the next official schedule is published.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-dota-international-calendar",
@@ -21017,7 +22007,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-esl-dota-calendar",
@@ -21038,7 +22028,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-dota-ewc-calendar",
@@ -21069,7 +22059,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-esl-pro-league-calendar",
@@ -21089,7 +22079,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-pgl-cs2-calendar",
@@ -21108,7 +22098,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-simulation-calendar",
@@ -21129,7 +22119,7 @@
       "ok": true,
       "events": 0,
       "note": "The eAdriatic, NextGen eBasket, and GT Sports schedules require a stable publisher-owned schedule source before automation.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "esports-rlcs",
@@ -21149,7 +22139,7 @@
       "ok": true,
       "events": 0,
       "note": "The official RLCS page is authoritative but currently blocks unattended schedule collection; it remains a visible coverage gap rather than using a stale substitute.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "mlb",
@@ -21165,7 +22155,7 @@
       "ok": true,
       "events": 106,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "npb",
@@ -21183,7 +22173,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "kbo",
@@ -21201,7 +22191,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lmb",
@@ -21219,7 +22209,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lmp",
@@ -21237,7 +22227,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lidom",
@@ -21256,7 +22246,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "wbc",
@@ -21271,7 +22261,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "nfl",
@@ -21287,7 +22277,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cfl",
@@ -21317,7 +22307,7 @@
       "ok": true,
       "events": 5,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ifl",
@@ -21336,7 +22326,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ufl",
@@ -21365,7 +22355,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ncaa-football",
@@ -21381,7 +22371,7 @@
       "ok": true,
       "events": 34,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "nba",
@@ -21397,7 +22387,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "cebl",
@@ -21415,7 +22405,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "australian-nbl",
@@ -21432,7 +22422,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "mexican-lnbp",
@@ -21452,7 +22442,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "chile-lnb",
@@ -21471,7 +22461,7 @@
       "ok": true,
       "events": 0,
       "note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "pba-national-tour",
@@ -21489,7 +22479,7 @@
       "ok": true,
       "events": 0,
       "note": "Official PBA National Tour schedule. Authoritative for manual verification; no dependable unattended structured schedule feed is currently connected.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "boxing-weekly",
@@ -21511,7 +22501,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "danish-basketligaen",
@@ -21530,7 +22520,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lithuanian-lkl",
@@ -21549,7 +22539,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "greek-basket-league",
@@ -21567,7 +22557,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "israeli-basketball",
@@ -21585,7 +22575,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "serbian-kls",
@@ -21603,7 +22593,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "korean-kbl",
@@ -21621,7 +22611,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "wnba",
@@ -21637,7 +22627,7 @@
       "ok": true,
       "events": 25,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "fiba-bcl",
@@ -21655,7 +22645,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "eurocup-basketball",
@@ -21673,7 +22663,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "france-lnb",
@@ -21691,7 +22681,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "german-bbl",
@@ -21710,7 +22700,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "italian-lba",
@@ -21729,7 +22719,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "polish-plk",
@@ -21748,7 +22738,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "spanish-acb",
@@ -21766,7 +22756,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "swiss-sbl",
@@ -21785,7 +22775,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "turkish-bsl",
@@ -21804,7 +22794,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "israeli-premier",
@@ -21823,7 +22813,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ncaa-mbb",
@@ -21839,7 +22829,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ncaa-wbb",
@@ -21855,7 +22845,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "nhl",
@@ -21872,7 +22862,7 @@
       "ok": true,
       "events": 51,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "pwhl",
@@ -21896,7 +22886,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "icehl",
@@ -21913,7 +22903,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "czech-extraliga",
@@ -21930,7 +22920,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "liiga",
@@ -21947,7 +22937,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "del",
@@ -21964,7 +22954,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "slovak-extraliga",
@@ -21981,7 +22971,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "shl",
@@ -21998,7 +22988,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "swiss-national",
@@ -22015,7 +23005,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "chl",
@@ -22032,7 +23022,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lacrosse-pll",
@@ -22060,7 +23050,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lacrosse-pll-championship-series",
@@ -22077,7 +23067,7 @@
       "ok": true,
       "events": 0,
       "note": "Championship Series games are routed from the connected PLL feed during the event's winter schedule window.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "lacrosse-nll",
@@ -22096,7 +23086,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "mls",
@@ -22112,7 +23102,7 @@
       "ok": true,
       "events": 16,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "epl",
@@ -22127,7 +23117,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "bundesliga",
@@ -22142,7 +23132,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "laliga",
@@ -22157,7 +23147,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "seriea",
@@ -22172,7 +23162,7 @@
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ligue1",
@@ -22187,7 +23177,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "eredivisie",
@@ -22202,7 +23192,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "primeira",
@@ -22217,7 +23207,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "belgium",
@@ -22233,7 +23223,7 @@
       "ok": true,
       "events": 9,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "denmark",
@@ -22249,7 +23239,7 @@
       "ok": true,
       "events": 6,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "golf-pga-tour",
@@ -22271,7 +23261,7 @@
       "events": 2,
       "calendar_events": 48,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "golf-pga-tour-champions",
@@ -22290,7 +23280,7 @@
       "events": 1,
       "calendar_events": 29,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "golf-lpga-tour",
@@ -22309,7 +23299,7 @@
       "events": 1,
       "calendar_events": 32,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "golf-liv-golf",
@@ -22328,7 +23318,7 @@
       "events": 0,
       "calendar_events": 15,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-f1-calendar",
@@ -22357,7 +23347,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-motogp-calendar",
@@ -22386,7 +23376,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-nascar-bristol",
@@ -22426,7 +23416,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-nhra-calendar",
@@ -22455,7 +23445,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-score-calendar",
@@ -22484,7 +23474,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-supercars",
@@ -22501,7 +23491,7 @@
       "ok": true,
       "events": 0,
       "note": "Season is mapped; a dependable unattended official event adapter is still pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-formula-e",
@@ -22518,7 +23508,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2025\u201326 season is complete; reconnect when the next official championship calendar begins.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-indycar",
@@ -22535,7 +23525,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 season is complete; retain the mapping and reconnect when the next official schedule is published.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-nascar-truck",
@@ -22552,7 +23542,7 @@
       "ok": true,
       "events": 0,
       "note": "Season is mapped; the current official race-weekend adapter does not yet cover the Truck Series.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-srx",
@@ -22568,7 +23558,7 @@
       "ok": true,
       "events": 0,
       "note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "motorsports-nitrocross",
@@ -22584,7 +23574,7 @@
       "ok": true,
       "events": 0,
       "note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rodeo-pbr-utb",
@@ -22602,7 +23592,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2027 season begins December 11, 2026; reconnect to Review Today when a dependable unattended official event adapter is available.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rodeo-prca-tour",
@@ -22620,7 +23610,7 @@
       "ok": true,
       "events": 0,
       "note": "Season is mapped; a dependable unattended adapter for the official PRCA schedule is still pending, so no events are inferred.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rodeo-prca-nfr-open",
@@ -22637,7 +23627,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 NFR Open is complete; retain the approved National Circuit Finals Rodeo mapping until the next official dates are published.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rodeo-prca-xtreme-broncs",
@@ -22654,7 +23644,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 event is complete; reconnect when official dates for the next Xtreme Broncs Finals are published.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rodeo-prca-xtreme-bulls",
@@ -22671,7 +23661,7 @@
       "ok": true,
       "events": 0,
       "note": "The 2026 event is complete; reconnect when official dates for the next Xtreme Bulls Finale are published.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-nrl",
@@ -22689,7 +23679,7 @@
       "ok": true,
       "events": 0,
       "note": "Season is mapped; a dependable unattended adapter for the official NRL draw is still pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-epcr",
@@ -22708,7 +23698,7 @@
       "ok": true,
       "events": 0,
       "note": "Both approved EPCR competitions are mapped; reconnect when the 2026\u201327 official fixtures enter the review window.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-premiership",
@@ -22727,7 +23717,7 @@
       "ok": true,
       "events": 0,
       "note": "Premiership and Premiership Rugby Cup seasons are mapped; a dependable unattended official fixture adapter is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-rfu",
@@ -22745,7 +23735,7 @@
       "ok": true,
       "events": 0,
       "note": "Season is mapped; a dependable unattended adapter for RFU Championship fixtures is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-rfl",
@@ -22767,7 +23757,7 @@
       "ok": true,
       "events": 0,
       "note": "All five approved RFL competitions are season mapped; a dependable unattended official fixture adapter is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-lnr",
@@ -22786,7 +23776,7 @@
       "ok": true,
       "events": 0,
       "note": "Top 14 and Pro D2 are season mapped; a dependable unattended LNR fixture adapter is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-world-rugby",
@@ -22805,7 +23795,7 @@
       "ok": true,
       "events": 0,
       "note": "SVNS and the Women\u2019s Rugby World Cup are mapped separately; current official event dates are required before Review Today activation.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-six-nations",
@@ -22823,7 +23813,7 @@
       "ok": true,
       "events": 0,
       "note": "The combined men\u2019s and women\u2019s approval is season mapped; reconnect when the next official championship fixtures enter the review window.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-sanzaar",
@@ -22841,7 +23831,7 @@
       "ok": true,
       "events": 0,
       "note": "Season is mapped; a dependable unattended adapter for official Rugby Championship fixtures is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-lions",
@@ -22859,7 +23849,7 @@
       "ok": true,
       "events": 0,
       "note": "No current Tom Richards Cup tour is active; retain the approval without inventing fixtures.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-nzr",
@@ -22879,7 +23869,7 @@
       "ok": true,
       "events": 0,
       "note": "NPC, Heartland Championship, and Farah Palmer Cup are season mapped; a dependable unattended official fixture adapter is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-saru",
@@ -22898,7 +23888,7 @@
       "ok": true,
       "events": 0,
       "note": "Currie Cup and Varsity Cup are season mapped; a dependable unattended official fixture adapter is pending.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-mlr",
@@ -22916,7 +23906,7 @@
       "ok": true,
       "events": 0,
       "note": "The MLR season is mapped; reconnect when the next official schedule enters the review window.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-pr7s",
@@ -22934,7 +23924,7 @@
       "ok": true,
       "events": 0,
       "note": "No current official PR7s season is published; the catalog approval is retained without inventing activity.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-ran",
@@ -22953,7 +23943,7 @@
       "ok": true,
       "events": 0,
       "note": "Both approved RAN competitions require event-specific official dates before Review Today activation.",
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "rugby-usa",
@@ -22983,7 +23973,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "table-tennis-wtt",
@@ -23022,7 +24012,7 @@
       "ok": true,
       "events": 1,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "table-tennis-mltt",
@@ -23062,7 +24052,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ncaa-volleyball",
@@ -23078,39 +24068,272 @@
       "ok": true,
       "events": 535,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "atp-tennis",
+      "source_type": "espn-daily",
       "sport": "Tennis",
-      "league": "ATP",
+      "league": "ATP Tour | Men",
       "region": "International",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+      "official_schedule_url": "https://www.atptour.com/en/tournaments",
+      "coverage_status": "complete",
+      "name_routing": [
+        {
+          "source_id": "tennis-australian-open",
+          "pattern": "Australian Open"
+        },
+        {
+          "source_id": "tennis-french-open",
+          "pattern": "Roland-Garros|French Open"
+        },
+        {
+          "source_id": "tennis-wimbledon",
+          "pattern": "Wimbledon"
+        },
+        {
+          "source_id": "tennis-us-open",
+          "pattern": "US Open|United States Open"
+        },
+        {
+          "source_id": "tennis-united-cup",
+          "pattern": "United Cup"
+        }
+      ],
       "catalog_terms": [
-        "Tennis",
-        "ATP"
+        "Association of Tennis Professionals (ATP)",
+        "ATP Tour | Men"
       ],
       "approved_catalog": true,
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-atp-challenger",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "ATP Challenger Tour | Men",
+      "region": "International",
+      "official_schedule_url": "https://www.atptour.com/en/scores/current-challenger",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
+        "atp-challenger"
+      ],
+      "catalog_terms": [
+        "Association of Tennis Professionals (ATP)",
+        "ATP Challenger Tour | Men"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "wta-tennis",
+      "source_type": "espn-daily",
       "sport": "Tennis",
-      "league": "WTA",
+      "league": "WTA Tour | Women",
       "region": "International",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/tennis/wta/scoreboard",
+      "official_schedule_url": "https://www.wtatennis.com/tournaments",
+      "coverage_status": "complete",
+      "exclude_name_patterns": [
+        "Australian Open",
+        "Roland-Garros",
+        "French Open",
+        "Wimbledon",
+        "US Open",
+        "United States Open",
+        "United Cup"
+      ],
+      "name_routing": [
+        {
+          "source_id": "tennis-australian-open",
+          "pattern": "Australian Open"
+        },
+        {
+          "source_id": "tennis-french-open",
+          "pattern": "Roland-Garros|French Open"
+        },
+        {
+          "source_id": "tennis-wimbledon",
+          "pattern": "Wimbledon"
+        },
+        {
+          "source_id": "tennis-us-open",
+          "pattern": "US Open|United States Open"
+        },
+        {
+          "source_id": "tennis-united-cup",
+          "pattern": "United Cup"
+        }
+      ],
       "catalog_terms": [
-        "Tennis",
-        "WTA"
+        "Women\u2019s Tennis Association (WTA)",
+        "WTA Tour | Women"
       ],
       "approved_catalog": true,
       "ok": true,
       "events": 10,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-australian-open",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "Australian Open | Men and Women",
+      "region": "Australia",
+      "official_schedule_url": "https://ausopen.com/schedule",
+      "source_note": "Out of season. ATP/WTA schedule events route here automatically when the Australian Open returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "Australian Open | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Out of season. ATP/WTA schedule events route here automatically when the Australian Open returns.",
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-french-open",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "Roland-Garros / French Open | Men and Women",
+      "region": "France",
+      "official_schedule_url": "https://www.rolandgarros.com/en-us/order-of-play",
+      "source_note": "Out of season. ATP/WTA schedule events route here automatically when Roland-Garros returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "Roland-Garros / French Open | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Out of season. ATP/WTA schedule events route here automatically when Roland-Garros returns.",
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-wimbledon",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "Wimbledon | Men and Women",
+      "region": "England",
+      "official_schedule_url": "https://www.wimbledon.com/en_GB/scores/schedule/index.html",
+      "source_note": "Out of season. ATP/WTA schedule events route here automatically when Wimbledon returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "Wimbledon | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Out of season. ATP/WTA schedule events route here automatically when Wimbledon returns.",
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-us-open",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "United States Open | Men and Women",
+      "region": "United States",
+      "official_schedule_url": "https://www.usopen.org/en_US/scores/schedule/index.html",
+      "source_note": "The 2026 event is complete. ATP/WTA schedule events route here automatically when the US Open returns.",
+      "catalog_terms": [
+        "Grand Slam Board / Grand Slam Tennis",
+        "United States Open | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "The 2026 event is complete. ATP/WTA schedule events route here automatically when the US Open returns.",
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-usta-pro-circuit",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "USTA Pro Circuit | Men and Women",
+      "region": "United States",
+      "official_schedule_url": "https://www.usta.com/en/home/pro/pro-tennis-events/pro-circuit.html",
+      "source_note": "Season mapped. U.S. ITF events remain visible through the ITF feed without duplicating the same tournament under two approval paths.",
+      "catalog_terms": [
+        "United States Tennis Association (USTA)",
+        "USTA Pro Circuit | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Season mapped. U.S. ITF events remain visible through the ITF feed without duplicating the same tournament under two approval paths.",
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-itf-world-tour",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Men and Women",
+      "region": "International",
+      "official_schedule_url": "https://www.itftennis.com/en/tournament-calendar/world-tennis-tour-calendar/",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
+        "itf-men",
+        "itf-women"
+      ],
+      "catalog_terms": [
+        "International Tennis Federation (ITF)",
+        "ITF World Tennis Tour | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 41,
+      "errors": [],
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-utr-pro-tour",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Men and Women",
+      "region": "International",
+      "official_schedule_url": "https://www.utrsports.net/pages/pro-tennis-tour",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
+        "utr-men",
+        "utr-women"
+      ],
+      "catalog_terms": [
+        "Universal Tennis LLC / UTR Sports",
+        "UTR Pro Tennis Tour | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 14,
+      "errors": [],
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
+    },
+    {
+      "id": "tennis-united-cup",
+      "source_type": "coverage-gap",
+      "sport": "Tennis",
+      "league": "United Cup | Men and Women",
+      "region": "Australia",
+      "official_schedule_url": "https://www.unitedcup.com/en/tournament/schedule",
+      "source_note": "Out of season pending publication of the next official event dates. ATP/WTA schedule events route here automatically when play returns.",
+      "catalog_terms": [
+        "Association of Tennis Professionals (ATP) / Women\u2019s Tennis Association",
+        "(WTA) / Tennis Australia",
+        "United Cup | Men and Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "Out of season pending publication of the next official event dates. ATP/WTA schedule events route here automatically when play returns.",
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "ufc",
@@ -23128,7 +24351,7 @@
       "ok": true,
       "events": 2,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     },
     {
       "id": "pfl",
@@ -23149,7 +24372,7 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-18T14:19:57.048100+00:00"
+      "checked_at": "2026-09-18T14:23:43.753669+00:00"
     }
   ],
   "coverage_gaps": [
