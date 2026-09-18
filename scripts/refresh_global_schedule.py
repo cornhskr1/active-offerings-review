@@ -1256,8 +1256,12 @@ def fetch_official_event_window(source):
     # into a false current feed failure after the competition has ended.
     if dated and all(end<TODAY for _,_,end in dated):
         return []
-    r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
-    r.raise_for_status()
+    # Some publishers expose a verified public schedule page but block
+    # unattended runners. In that case, retain the publisher URL for staff
+    # review and trust only the dated event window already recorded here.
+    if source.get("endpoint_validation") != "published-window":
+        r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
+        r.raise_for_status()
     parsed=[]
     for item,start,end in dated:
         event=tournament_window_event(
