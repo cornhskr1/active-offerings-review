@@ -9928,8 +9928,8 @@
     },
     {
       "sport": "Olympics",
-      "mapping_status": "partial",
-      "summary_label": "Summer mapped · Winter pending",
+      "mapping_status": "complete",
+      "summary_label": "Summer and Winter mapped",
       "catalog_snapshot_lines": [
         "General Olympic Note",
         "Unless otherwise restricted, approved Olympic entries include men’s, women’s, and",
@@ -10096,9 +10096,43 @@
         {
           "key": "winter-2030",
           "label": "Winter Olympic Games — French Alps 2030",
-          "mapping_status": "pending",
-          "status_label": "PROGRAM MAPPING PENDING",
-          "note": "Winter program crosswalk will be completed separately."
+          "program_data_key": "olympicsWinter",
+          "mapping_status": "complete",
+          "catalog_approved_count": 16,
+          "last_verified": "2026-09-18",
+          "review_notes": [
+            "The confirmed Alpes 2030 discipline program is displayed now; discipline competition days and sessions remain pending official release.",
+            "Olympic program approval does not clear athlete-age risk. Apply U18 review when official rosters become available."
+          ],
+          "crosswalk": [
+            {"scheduled_id":"alpes2030-alpine-skiing","approval_status":"approved-scheduled","catalog_event":"Alpine Skiing","governing_body":"International Ski and Snowboard Federation (FIS)"},
+            {"scheduled_id":"alpes2030-biathlon","approval_status":"approved-scheduled","catalog_event":"Biathlon","governing_body":"International Biathlon Union (IBU)"},
+            {"scheduled_id":"alpes2030-bobsleigh","approval_status":"approved-scheduled","catalog_event":"Bobsleigh","governing_body":"International Bobsleigh and Skeleton Federation (IBSF)"},
+            {"scheduled_id":"alpes2030-cross-country-skiing","approval_status":"approved-scheduled","catalog_event":"Cross-Country Skiing","governing_body":"International Ski and Snowboard Federation (FIS)"},
+            {"scheduled_id":"alpes2030-curling","approval_status":"approved-scheduled","catalog_event":"Curling","governing_body":"World Curling Federation (WCF)"},
+            {"scheduled_id":"alpes2030-figure-skating","approval_status":"approved-scheduled","catalog_event":"Figure Skating","governing_body":"International Skating Union (ISU)"},
+            {"scheduled_id":"alpes2030-freeride","approval_status":"scheduled-not-approved","governing_body":"International Ski and Snowboard Federation (FIS)"},
+            {"scheduled_id":"alpes2030-freestyle-skiing","approval_status":"approved-scheduled","catalog_event":"Freestyle Skiing","governing_body":"International Ski and Snowboard Federation (FIS)"},
+            {"scheduled_id":"alpes2030-ice-hockey","approval_status":"approved-scheduled","catalog_event":"Ice Hockey","governing_body":"International Ice Hockey Federation (IIHF)"},
+            {"scheduled_id":"alpes2030-luge","approval_status":"approved-scheduled","catalog_event":"Luge","governing_body":"International Luge Federation (FIL)"},
+            {"scheduled_id":"alpes2030-short-track-speed-skating","approval_status":"approved-scheduled","catalog_event":"Short Track Speed Skating","governing_body":"International Skating Union (ISU)"},
+            {"scheduled_id":"alpes2030-skeleton","approval_status":"approved-scheduled","catalog_event":"Skeleton","governing_body":"International Bobsleigh and Skeleton Federation (IBSF)"},
+            {"scheduled_id":"alpes2030-ski-jumping","approval_status":"approved-scheduled","catalog_event":"Ski Jumping","governing_body":"International Ski and Snowboard Federation (FIS)"},
+            {"scheduled_id":"alpes2030-ski-mountaineering-individual","approval_status":"approved-scheduled","catalog_event":"Ski Mountaineering","governing_body":"International Ski Mountaineering Federation (ISMF)"},
+            {"scheduled_id":"alpes2030-ski-mountaineering-sprint","approval_status":"approved-scheduled","catalog_event":"Ski Mountaineering","governing_body":"International Ski Mountaineering Federation (ISMF)"},
+            {"scheduled_id":"alpes2030-snowboarding","approval_status":"approved-scheduled","catalog_event":"Snowboarding","governing_body":"International Ski and Snowboard Federation (FIS)"},
+            {"scheduled_id":"alpes2030-speed-skating","approval_status":"approved-scheduled","catalog_event":"Speed Skating","governing_body":"International Skating Union (ISU)"}
+          ],
+          "approved_not_scheduled": [
+            {
+              "name": "Nordic Combined",
+              "catalog_event": "Nordic Combined",
+              "governing_body": "International Ski and Snowboard Federation (FIS)",
+              "restrictions": [
+                "Catalog-approved, but the IOC Executive Board did not include Nordic Combined on the Alpes 2030 programme."
+              ]
+            }
+          ]
         }
       ]
     },
