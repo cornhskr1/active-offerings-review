@@ -972,6 +972,11 @@ def fetch_cfl_schedule(source):
 
 def fetch_ifl_schedule(source):
     """Read the official IFL league schedule HTML at league level."""
+    try:
+        if datetime.date.fromisoformat(source.get("season_end_date",""))<TODAY:
+            return []
+    except ValueError:
+        pass
     r=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
     r.raise_for_status()
     page=r.text
