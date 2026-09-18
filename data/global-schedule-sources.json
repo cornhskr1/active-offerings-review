@@ -1184,6 +1184,206 @@
       ]
     },
     {
+      "id": "motorsports-f1-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "Formula One (F1)",
+      "region": "International",
+      "endpoint": "https://calendar.formula1.com/",
+      "official_schedule_url": "https://calendar.formula1.com/",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-f1",
+          "league": "Formula One (F1)",
+          "name": "Formula 1 Azerbaijan Grand Prix",
+          "start_date": "2026-09-24",
+          "end_date": "2026-09-26",
+          "location": "Baku City Circuit · Baku, Azerbaijan",
+          "official_schedule_url": "https://calendar.formula1.com/"
+        }
+      ],
+      "catalog_terms": [
+        "Formula One (F1)"
+      ]
+    },
+    {
+      "id": "motorsports-motogp-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "MotoGP World Championship",
+      "region": "International",
+      "endpoint": "https://www.motogp.com/en/calendar/2026",
+      "official_schedule_url": "https://www.motogp.com/en/calendar/2026",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-motogp",
+          "league": "MotoGP World Championship",
+          "name": "MotoGP Grand Prix of Austria",
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-20",
+          "location": "Red Bull Ring · Spielberg, Austria",
+          "official_schedule_url": "https://www.motogp.com/en/calendar/2026"
+        }
+      ],
+      "catalog_terms": [
+        "MotoGP World Championship"
+      ]
+    },
+    {
+      "id": "motorsports-nascar-bristol",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "NASCAR National Series",
+      "region": "United States",
+      "endpoint": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/",
+      "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-nascar-oreilly",
+          "league": "NASCAR O’Reilly Auto Parts Series",
+          "name": "Food City 300",
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-18",
+          "location": "Bristol Motor Speedway · Bristol, Tennessee",
+          "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/"
+        },
+        {
+          "source_id": "motorsports-nascar-cup",
+          "league": "NASCAR Cup Series (NCS)",
+          "name": "Bass Pro Shops Night Race",
+          "start_date": "2026-09-19",
+          "end_date": "2026-09-19",
+          "location": "Bristol Motor Speedway · Bristol, Tennessee",
+          "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/"
+        }
+      ],
+      "catalog_terms": [
+        "NASCAR Cup Series (NCS)",
+        "NASCAR O’Reilly Auto Parts Series"
+      ]
+    },
+    {
+      "id": "motorsports-nhra-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "NHRA Mission Foods Drag Racing Series",
+      "region": "United States",
+      "endpoint": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
+      "official_schedule_url": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-nhra",
+          "league": "NHRA Mission Foods Drag Racing Series",
+          "name": "Dodge NHRA Great Lakes Nationals presented by Mopar",
+          "start_date": "2026-09-18",
+          "end_date": "2026-09-20",
+          "location": "US 131 Motorsports Park · Martin, Michigan",
+          "official_schedule_url": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan"
+        }
+      ],
+      "catalog_terms": [
+        "National Hot Rod Association (NHRA) Mission Foods Drag Racing Series"
+      ]
+    },
+    {
+      "id": "motorsports-score-calendar",
+      "source_type": "official-event-window",
+      "sport": "Motorsports",
+      "league": "SCORE World Desert Championship Series",
+      "region": "United States / Mexico",
+      "endpoint": "https://www.score-international.com/",
+      "official_schedule_url": "https://www.score-international.com/",
+      "coverage_status": "current-published-events",
+      "official_events": [
+        {
+          "source_id": "motorsports-score",
+          "league": "SCORE World Desert Championship Series",
+          "name": "BFGoodrich Tires 59th SCORE Baja 1000",
+          "start_date": "2026-11-09",
+          "end_date": "2026-11-15",
+          "location": "San José del Cabo, Baja California Sur, Mexico",
+          "official_schedule_url": "https://www.score-international.com/"
+        }
+      ],
+      "catalog_terms": [
+        "SCORE World Desert Championship Series"
+      ]
+    },
+    {
+      "id": "motorsports-supercars",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Repco Supercars Championship",
+      "region": "Australia",
+      "official_schedule_url": "https://www.supercars.com/calendar",
+      "source_note": "Season is mapped; a dependable unattended official event adapter is still pending.",
+      "catalog_terms": [
+        "Repco Supercars Championship"
+      ]
+    },
+    {
+      "id": "motorsports-formula-e",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Formula E World Championship",
+      "region": "International",
+      "official_schedule_url": "https://www.fiaformulae.com/en/calendar",
+      "source_note": "The 2025–26 season is complete; reconnect when the next official championship calendar begins.",
+      "catalog_terms": [
+        "Formula E World Championship"
+      ]
+    },
+    {
+      "id": "motorsports-indycar",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "IndyCar Series",
+      "region": "United States",
+      "official_schedule_url": "https://www.indycar.com/Schedule",
+      "source_note": "The 2026 season is complete; retain the mapping and reconnect when the next official schedule is published.",
+      "catalog_terms": [
+        "IndyCar Series"
+      ]
+    },
+    {
+      "id": "motorsports-nascar-truck",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "NASCAR Craftsman Truck Series",
+      "region": "United States",
+      "official_schedule_url": "https://www.nascar.com/nascar-craftsman-truck-series/2026/schedule/",
+      "source_note": "Season is mapped; the current official race-weekend adapter does not yet cover the Truck Series.",
+      "catalog_terms": [
+        "NASCAR Craftsman Truck Series"
+      ]
+    },
+    {
+      "id": "motorsports-srx",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Camping World Superstar Racing Experience (SRX) Series",
+      "region": "United States",
+      "source_note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
+      "catalog_terms": [
+        "Camping World Superstar Racing Experience (SRX) Series"
+      ]
+    },
+    {
+      "id": "motorsports-nitrocross",
+      "source_type": "coverage-gap",
+      "sport": "Motorsports",
+      "league": "Nitrocross",
+      "region": "United States / International",
+      "source_note": "No current official series schedule is published; the catalog approval is retained without inventing activity.",
+      "catalog_terms": [
+        "Nitrocross - Formerly Nitro Rallycross / Nitro RX"
+      ]
+    },
+    {
       "id": "ncaa-volleyball",
       "sport": "Volleyball",
       "league": "NCAA Volleyball",
