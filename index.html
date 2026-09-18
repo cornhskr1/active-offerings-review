@@ -265,6 +265,8 @@ th{font-size:11px!important}
 .season-progress-fill{height:100%;border-radius:999px;background:#2778b9}
 .season-progress-label{font-size:9px;font-weight:800;color:#3f5f78;white-space:nowrap}
 .catalog-event-restrictions{display:grid;gap:5px;padding:0 10px 10px}
+.catalog-event-notes{display:grid;gap:5px;padding:0 10px 10px}
+.catalog-event-note{border:1px solid #b7c9d9;background:#f2f7fb;color:#304b61;border-radius:8px;padding:7px 9px;font-size:12px;font-weight:800}
 .catalog-event-restriction{border:1px solid #dfa84f;background:#fff8ea;border-radius:7px;padding:7px 8px;color:#704b08;font-size:12px;font-weight:800}
 .catalog-tour-calendar{border-top:1px solid #dfe4e8;background:#f8fafb}
 .catalog-tour-calendar>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;color:#174d72;font-size:11px;font-weight:900}
@@ -1865,7 +1867,7 @@ function renderMappedCatalogEvents(events){
   });
   return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
     const status=mappedSeasonStatus(event);
-    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${tourCalendarHtml(event)}</article>`;
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(event.catalog_event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${tourCalendarHtml(event)}</article>`;
   }).join('')}</div>`).join('');
 }
 function renderMappedCatalogSport(section,mapping,q,seasonFilter){
