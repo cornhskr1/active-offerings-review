@@ -2916,6 +2916,203 @@
       ]
     },
     {
+      "sport": "Tennis",
+      "mapping_status": "complete",
+      "summary_label": "11 approved competitions · 11 season mapped",
+      "catalog_snapshot_lines": [
+        "Association of Tennis Professionals (ATP)",
+        "ATP Tour | Men",
+        "ATP Challenger Tour | Men",
+        "Women’s Tennis Association (WTA)",
+        "WTA Tour | Women",
+        "Grand Slam Board / Grand Slam Tennis",
+        "Australian Open | Men and Women",
+        "Roland-Garros / French Open | Men and Women",
+        "Wimbledon | Men and Women",
+        "United States Open | Men and Women",
+        "United States Tennis Association (USTA)",
+        "USTA Pro Circuit | Men and Women",
+        "International Tennis Federation (ITF)",
+        "ITF World Tennis Tour | Men and Women",
+        "Universal Tennis LLC / UTR Sports",
+        "UTR Pro Tennis Tour | Men and Women",
+        "Association of Tennis Professionals (ATP) / Women’s Tennis Association",
+        "(WTA) / Tennis Australia",
+        "United Cup | Men and Women"
+      ],
+      "groups": [
+        {
+          "country": "International",
+          "governing_body": "Association of Tennis Professionals (ATP)",
+          "events": [
+            {
+              "key": "tennis-atp-tour",
+              "catalog_event": "ATP Tour | Men",
+              "season_window": "January–November",
+              "season_start": "01-01",
+              "season_end": "11-30",
+              "source_id": "atp-tennis",
+              "season_basis": "Annual ATP Tour calendar",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The ATP Tour season spans multiple surfaces before ending with the ATP Finals.",
+              "restrictions": []
+            },
+            {
+              "key": "tennis-atp-challenger",
+              "catalog_event": "ATP Challenger Tour | Men",
+              "season_window": "January–November",
+              "season_start": "01-01",
+              "season_end": "11-30",
+              "source_id": "tennis-atp-challenger",
+              "season_basis": "Annual ATP Challenger Tour calendar",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Challenger Tour is the principal pathway for players earning points and experience below the ATP Tour level.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Women’s Tennis Association (WTA)",
+          "events": [
+            {
+              "key": "tennis-wta-tour",
+              "catalog_event": "WTA Tour | Women",
+              "season_window": "January–November",
+              "season_start": "01-01",
+              "season_end": "11-30",
+              "source_id": "wta-tennis",
+              "season_basis": "Annual WTA Tour and WTA 125 calendar",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The WTA was founded in 1973 and now administers a worldwide calendar of women’s professional tournaments.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Grand Slam Board / Grand Slam Tennis",
+          "events": [
+            {
+              "key": "tennis-australian-open",
+              "catalog_event": "Australian Open | Men and Women",
+              "season_window": "January 12–February 1, 2026 · completed",
+              "season_status": "out",
+              "source_id": "tennis-australian-open",
+              "season_basis": "2026 Australian Open qualifying and main-draw window",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The Australian Open is the first Grand Slam tournament on the annual calendar.",
+              "restrictions": []
+            },
+            {
+              "key": "tennis-french-open",
+              "catalog_event": "Roland-Garros / French Open | Men and Women",
+              "season_window": "May 18–June 7, 2026 · completed",
+              "season_status": "out",
+              "source_id": "tennis-french-open",
+              "season_basis": "2026 Roland-Garros qualifying and main-draw window",
+              "last_verified": "2026-09-18",
+              "fun_fact": "Roland-Garros is the only Grand Slam played on clay courts.",
+              "restrictions": []
+            },
+            {
+              "key": "tennis-wimbledon",
+              "catalog_event": "Wimbledon | Men and Women",
+              "season_window": "June 22–July 12, 2026 · completed",
+              "season_status": "out",
+              "source_id": "tennis-wimbledon",
+              "season_basis": "2026 Wimbledon qualifying and main-draw window",
+              "last_verified": "2026-09-18",
+              "fun_fact": "Wimbledon is the only Grand Slam played on grass.",
+              "restrictions": []
+            },
+            {
+              "key": "tennis-us-open",
+              "catalog_event": "United States Open | Men and Women",
+              "season_window": "August 23–September 13, 2026 · completed",
+              "season_status": "out",
+              "source_id": "tennis-us-open",
+              "season_basis": "2026 US Open Fan Week, qualifying, and main-draw window",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The US Open closes the four-tournament Grand Slam season each year.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "governing_body": "United States Tennis Association (USTA)",
+          "events": [
+            {
+              "key": "tennis-usta-pro-circuit",
+              "catalog_event": "USTA Pro Circuit | Men and Women",
+              "season_window": "January–December",
+              "season_start": "01-01",
+              "season_end": "12-31",
+              "source_id": "tennis-usta-pro-circuit",
+              "season_basis": "Annual United States professional circuit calendar",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The USTA Pro Circuit stages professional events across the United States and feeds players into higher tour levels.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "International Tennis Federation (ITF)",
+          "events": [
+            {
+              "key": "tennis-itf-world-tour",
+              "catalog_event": "ITF World Tennis Tour | Men and Women",
+              "season_window": "January–December",
+              "season_start": "01-01",
+              "season_end": "12-31",
+              "source_id": "tennis-itf-world-tour",
+              "season_basis": "Annual ITF men’s and women’s professional calendars; junior events are excluded",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The ITF World Tennis Tour provides the entry level of international professional tennis and awards ranking points.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International",
+          "governing_body": "Universal Tennis LLC / UTR Sports",
+          "events": [
+            {
+              "key": "tennis-utr-pro-tour",
+              "catalog_event": "UTR Pro Tennis Tour | Men and Women",
+              "season_window": "January–December",
+              "season_start": "01-01",
+              "season_end": "12-31",
+              "source_id": "tennis-utr-pro-tour",
+              "season_basis": "Annual UTR Pro Tennis Tour calendar",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The UTR Pro Tennis Tour uses the Universal Tennis Rating system to create level-based professional competition.",
+              "restrictions": []
+            }
+          ]
+        },
+        {
+          "country": "International / Australia",
+          "governing_body": "Association of Tennis Professionals (ATP) / Women’s Tennis Association (WTA) / Tennis Australia",
+          "events": [
+            {
+              "key": "tennis-united-cup",
+              "catalog_event": "United Cup | Men and Women",
+              "season_window": "Annual late-December–January event · next dates pending",
+              "season_status": "out",
+              "source_id": "tennis-united-cup",
+              "season_basis": "Event-specific mixed national-team tournament",
+              "last_verified": "2026-09-18",
+              "fun_fact": "The United Cup is a mixed-team event in which men and women represent their countries together.",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
       "sport": "Cricket",
       "mapping_status": "complete",
       "summary_label": "7 approved competitions · 7 season mapped",
