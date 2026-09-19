@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-19T15:54:06.597993+00:00",
+  "timezone": "America/Chicago",
+  "mode": "shadow",
+  "window_start": "2026-09-16",
+  "window_end": "2026-09-23",
+  "source_generated_at": "2026-09-16T11:31:56.845816+00:00",
+  "summary": {
+    "approved_tournaments": 62,
+    "active_fields_screened": 21,
+    "field_pending": 41,
+    "actionable_alerts": 0,
+    "verified_u18_alerts": 0,
+    "identity_reviews": 0,
+    "blocked_unapproved_or_unmapped": 0
+  },
+  "alerts": [],
+  "coverage": [
+    {
+      "source_id": "atp-tennis",
+      "tournaments": 2,
+      "active_fields": 0,
+      "field_pending": 2,
+      "u18_alerts": 0
+    },
+    {
+      "source_id": "tennis-itf-world-tour",
+      "tournaments": 41,
+      "active_fields": 7,
+      "field_pending": 34,
+      "u18_alerts": 0
+    },
+    {
+      "source_id": "tennis-utr-pro-tour",
+      "tournaments": 14,
+      "active_fields": 14,
+      "field_pending": 0,
+      "u18_alerts": 0
+    },
+    {
+      "source_id": "wta-tennis",
+      "tournaments": 5,
+      "active_fields": 0,
+      "field_pending": 5,
+      "u18_alerts": 0
+    }
+  ],
+  "blocked": [],
+  "guardrails": {
+    "approval_source": "data/catalog-season-map.json",
+    "active_field_only": true,
+    "acceptance_pool_is_not_fielded": true,
+    "exact_registry_match_required_for_red": true,
+    "retain_last_known_good_on_failure": true
+  }
+}

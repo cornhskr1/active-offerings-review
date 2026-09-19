@@ -9,8 +9,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: active-offerings-data
-  cancel-in-progress: false
+  # Tennis browser work must never queue the global dashboard refreshes.
+  group: tennis-pipeline
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -32,12 +33,20 @@ jobs:
       - name: Validate tennis refresh code
         run: python3 -m py_compile scripts/refresh_tennis_intelligence.py
       - name: Run refresh and quality gate
+        env:
+          # Routine runs reuse the independently maintained U18 registry. They
+          # do not rebuild rankings or research every player's age.
+          TENNIS_REFRESH_REGISTRY: "0"
         run: python3 scripts/refresh_tennis_intelligence.py
+      - name: Build focused Review Today feed
+        run: python3 scripts/build_tennis_review.py
+      - name: Run tennis guardrail tests
+        run: python3 -m unittest tests/test_build_tennis_review.py
       - name: Commit refreshed data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/tennis-intelligence.json data/tennis-schedule.json data/tennis-u18-registry.json data/tennis-exceptions.json data/tennis-age-cache.json
+          git add data/tennis-intelligence.json data/tennis-schedule.json data/tennis-u18-registry.json data/tennis-exceptions.json data/tennis-age-cache.json data/tennis-review.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

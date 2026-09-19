@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "mode": "shadow",
+  "review_window_days": 7,
+  "active_field_types": [
+    "ACTIVE_DRAW",
+    "DRAW",
+    "MAIN_DRAW",
+    "QUALIFYING_DRAW",
+    "ORDER_OF_PLAY",
+    "PLAYER_LIST"
+  ],
+  "tour_approval_map": {
+    "atp": "atp-tennis",
+    "atp-challenger": "tennis-atp-challenger",
+    "wta": "wta-tennis",
+    "wta-125": "wta-tennis",
+    "itf-men": "tennis-itf-world-tour",
+    "itf-women": "tennis-itf-world-tour",
+    "utr-men": "tennis-utr-pro-tour",
+    "utr-women": "tennis-utr-pro-tour"
+  },
+  "guardrails": {
+    "approval_source": "data/catalog-season-map.json",
+    "active_field_only": true,
+    "acceptance_pool_is_not_fielded": true,
+    "exact_registry_match_required_for_red": true,
+    "retain_last_known_good_on_failure": true
+  }
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, re, datetime, hashlib, difflib
+import json, re, datetime, hashlib, difflib, os
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
@@ -1221,6 +1221,7 @@ def fuzzy_watch_match(name,watch):
     return None
 
 YEAR=TODAY.year
+REFRESH_REGISTRY=os.environ.get("TENNIS_REFRESH_REGISTRY","0").strip().lower() in ("1","true","yes")
 seed=load(DATA/"tennis-known-u18.json",{}).get("records",[])
 seed_index={}
 for x in seed:
@@ -1228,6 +1229,13 @@ for x in seed:
         seed_index[norm(x["name"])]={"name":x["name"],"age":x.get("age"),"age_status":"VERIFIED U18",
           "source":x.get("source") or "Verified U18 registry","source_url":x.get("source_url"),
           "evidence":"Previously verified U18 registry record."}
+
+# Routine field refreshes reuse the durable verified registry. Rebuilding the
+# junior universe and broad ATP/WTA age indexes is maintenance work and must not
+# sit in the time-critical tournament path.
+saved_registry=load(DATA/"tennis-u18-registry.json",{})
+saved_u18={norm(x.get("name")):x for x in saved_registry.get("verified_u18",[]) if x.get("name")}
+saved_candidates={norm(x.get("name")):x for x in saved_registry.get("junior_targeted_candidates",[]) if x.get("name")}
 
 with sync_playwright() as pw:
     browser=Browser(pw)
@@ -1273,16 +1281,23 @@ with sync_playwright() as pw:
         utr_health.append({"ok":snap["ok"],"region":region,"events":count,"url":url,"error":snap.get("error")})
     tournaments+=utr_events;health["utr"]=utr_health
 
-    junior_u18,junior_candidates,junior_health=junior_watch_index(browser)
-    health["itf_juniors"]=junior_health
+    if REFRESH_REGISTRY:
+        junior_u18,junior_candidates,junior_health=junior_watch_index(browser)
+        health["itf_juniors"]=junior_health
+        # Resolve the easy majority in bulk only during registry maintenance.
+        atp_age,atp_age_health=ranking_age_index(browser,ATP_RANK,r"/en/players/","ATP official rankings")
+        wta_age,wta_age_health=ranking_age_index(browser,WTA_RANK,r"/players/","WTA official rankings")
+        health["atp_age_index"]=atp_age_health
+        health["wta_age_index"]=wta_age_health
+        broad_age_index={**atp_age,**wta_age}
+    else:
+        junior_u18=saved_u18
+        junior_candidates=saved_candidates
+        health["itf_juniors"]={"ok":True,"mode":"cached-registry","records":len(saved_u18)+len(saved_candidates)}
+        health["atp_age_index"]={"ok":True,"mode":"skipped-routine-field-refresh"}
+        health["wta_age_index"]={"ok":True,"mode":"skipped-routine-field-refresh"}
+        broad_age_index={}
     u18_index={**junior_u18,**seed_index}
-
-    # Resolve the easy majority in bulk before opening individual profiles.
-    atp_age,atp_age_health=ranking_age_index(browser,ATP_RANK,r"/en/players/","ATP official rankings")
-    wta_age,wta_age_health=ranking_age_index(browser,WTA_RANK,r"/players/","WTA official rankings")
-    health["atp_age_index"]=atp_age_health
-    health["wta_age_index"]=wta_age_health
-    broad_age_index={**atp_age,**wta_age}
 
     # If ATP/WTA official calendar discovery failed, keep the page useful with the
     # mapped public schedule while clearly identifying it as a fallback.

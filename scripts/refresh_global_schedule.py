@@ -1461,11 +1461,15 @@ def fetch_tennis_intelligence(source):
     path=DATA/"tennis-schedule.json"
     payload=json.loads(path.read_text(encoding="utf-8"))
     generated=payload.get("generated_at")
+    stale_warning=None
     if generated:
         checked=datetime.datetime.fromisoformat(str(generated).replace("Z","+00:00"))
         if checked.tzinfo is None:checked=checked.replace(tzinfo=datetime.timezone.utc)
         if NOW_UTC-checked.astimezone(datetime.timezone.utc)>datetime.timedelta(hours=72):
-            raise RuntimeError("Tennis intelligence schedule is more than 72 hours old")
+            # Preserve the last known good tournament set instead of silently
+            # deleting approved coverage. The source remains visibly unhealthy
+            # and all retained events are marked stale for staff review.
+            stale_warning="Tennis intelligence schedule is more than 72 hours old; retaining last known good events"
     allowed=set(source.get("tour_ids") or [])
     parsed=[]
     for item in payload.get("tournaments") or []:
@@ -1486,7 +1490,11 @@ def fetch_tennis_intelligence(source):
         regulatory=str(item.get("regulatory_status") or "").strip()
         if regulatory:
             event["status_detail"]=f'{event["status_detail"]} · {regulatory}'
+        if stale_warning:
+            event["status_detail"]=f'{event["status_detail"]} · STALE SOURCE — MANUAL VERIFICATION REQUIRED'
+            event["source_stale"]=True
         parsed.append(event)
+    fetch_tennis_intelligence.last_warning=stale_warning
     return parsed
 
 def fetch_pgl_cs2_calendar(source):
@@ -1737,6 +1745,9 @@ for source in CFG.get("sources",[]):
                 seen.add(key)
                 events.append(parsed)
                 count+=1
+            warning=getattr(fetch_tennis_intelligence,"last_warning",None)
+            if warning:
+                errors.append(warning)
         except Exception as e:
             errors.append(str(e)[:110])
         source_status.append({
