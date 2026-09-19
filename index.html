@@ -449,6 +449,33 @@ th{font-size:11px!important}
   font-size:12px;
   line-height:1.45;
 }
+
+/* ===== Catalog Change Intake Queue ===== */
+.intake-today{display:none;border:1px solid #e1b45d;border-left:6px solid var(--amber);background:#fff9ec}
+.intake-today.show{display:block}
+.intake-today-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.intake-today-title{font-size:17px;font-weight:950}
+.intake-open-btn{border:1px solid #bb7b14;background:#fff;border-radius:8px;padding:8px 11px;font-weight:900;color:#704806;cursor:pointer}
+.intake-guardrail{margin:10px 0;padding:10px 12px;border:1px solid #e7c27b;border-left:5px solid var(--amber);border-radius:9px;background:var(--amberbg);color:#674307;font-size:13px;line-height:1.5}
+.intake-list{display:grid;gap:10px}
+.intake-item{border:1px solid #d9dde1;border-left:6px solid var(--amber);border-radius:11px;background:#fff;overflow:hidden}
+.intake-item>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;padding:13px 14px;background:#fafbfb}
+.intake-item>summary::-webkit-details-marker{display:none}
+.intake-item-title{font-size:16px;font-weight:950}
+.intake-item-meta{font-size:12px;color:var(--muted);margin-top:3px}
+.intake-item-body{border-top:1px solid #e5e8eb;padding:13px 14px}
+.intake-line{padding:9px 10px;border:1px solid #e2e5e8;border-radius:8px;background:#f8f9fa;margin:7px 0;font-weight:800}
+.intake-line.old{text-decoration:line-through;color:#6c747b;background:#fafafa}
+.intake-label{font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.05em;color:#6a727a;margin-top:10px}
+.intake-checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:6px}
+.intake-check{border:1px solid #e3d2ad;border-radius:8px;background:#fffaf0;padding:7px 9px;font-size:12px}
+.intake-action{margin-top:10px;padding:9px 10px;border-radius:8px;background:#f1f3f4;font-size:12px;color:#434b52}
+.intake-source{font-size:11px;margin-top:9px}
+.intake-source a{font-weight:800}
+.intake-empty{border:1px solid #b8dac4;border-left:5px solid var(--green);border-radius:10px;background:var(--greenbg);padding:13px;color:#245f38;font-weight:800}
+.nav-count{display:none;margin-left:5px;min-width:20px;padding:2px 6px;border-radius:999px;background:#d28a00;color:#fff;font-size:10px;text-align:center}
+.nav-count.show{display:inline-block}
+@media(max-width:700px){.intake-item>summary{grid-template-columns:1fr}.intake-checklist{grid-template-columns:1fr}.intake-today-head{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
@@ -461,6 +488,7 @@ th{font-size:11px!important}
 <button data-panel="tennis">Tennis Watch</button>
 <button data-panel="ncaa">NCAA Football</button><button data-panel="basketball">NCAA Basketball</button>
 <button data-panel="coverage">Coverage Control</button>
+<button data-panel="intake">Catalog Changes<span class="nav-count" id="intakeNavCount"></span></button>
 <button data-panel="catalog">Approved Catalog Events</button>
 </nav>
 
@@ -470,6 +498,7 @@ th{font-size:11px!important}
 <div class="refreshbox"><button id="refreshBtn">↻ Refresh Review</button><div class="refresh-meta"><div class="refresh-line"><span>Review performed</span><b id="reviewTime">—</b></div><div class="refresh-line"><span>Underlying data</span><b id="dataTime">—</b></div><div class="refresh-status" id="refreshStatus">Loading current public data…</div><div style="font-size:9px;color:#68717a;margin-top:6px;line-height:1.3">Refresh Review reloads the latest published data. It does not run GitHub data-collection workflows.</div></div></div>
 </div>
 <div class="card"><div class="section-title">Today + 7 Review</div><div class="schedule-warning" id="scheduleWarning"></div><div class="metrics" id="todayMetrics"></div><div id="todayDays"></div></div>
+<div class="card intake-today" id="intakeToday"><div class="intake-today-head"><div><div class="intake-today-title">Published catalog change detected</div><div class="small" id="intakeTodayText"></div></div><button class="intake-open-btn" type="button" id="openIntakeBtn">Open Change Queue</button></div></div>
 </section>
 
 <section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-grid" id="collegeGrid"></div></div><div class="card">
@@ -539,6 +568,21 @@ th{font-size:11px!important}
 </section>
 <section class="panel" id="coverage"><div class="card"><div class="section-title">Coverage Control</div><p class="small">Source health is not the same as permissibility. A source issue is AMBER because staff may need manual review; it is never RED by itself.</p><div class="coverage-grid" id="coverageGrid"></div></div></section>
 
+<section class="panel" id="intake">
+  <div class="card">
+    <div class="section-title">Published Catalog Change Queue</div>
+    <p class="small">Automatically compares the live, published NRGC catalog with the last completed dashboard crosswalk.</p>
+    <div class="intake-guardrail"><b>Fail-closed publication gate:</b> The published catalog controls approval. A detected addition, wording change, or removal remains blocked from Review Today until its hierarchy, source, season, restriction, and schedule mappings are reviewed and completed.</div>
+    <div class="source-note" id="intakeSource"></div>
+    <div class="metrics" id="intakeMetrics"></div>
+    <div class="toolbar">
+      <input id="intakeSearch" placeholder="Search sport or published catalog line…">
+      <select id="intakeType"><option value="all">All change types</option><option value="catalog-addition">Catalog additions</option><option value="catalog-change">Catalog changes</option><option value="catalog-removal">Catalog removals</option></select>
+    </div>
+    <div class="intake-list" id="intakeQueue"></div>
+  </div>
+</section>
+
 <section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Underlined names open the verified official source in a new tab. Catalog order and wording are preserved as published. Season mapping and source availability are informational and maintained separately from the controlling catalog.</div><div id="catalogSections"></div></div></section>
 </div>
 <script>
@@ -546,6 +590,7 @@ const DATA={};
 const FILES={
   global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', catalogOfficialSources:'data/catalog-official-sources.json', known:'data/known-u18.json',
+  intake:'data/catalog-change-queue.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
   basketballIntel:'data/ncaa-basketball-intelligence.json', basketballDI:'data/ncaa-basketball-di-map.json', basketballRosters:'data/ncaa-basketball-rosters.json',
@@ -674,6 +719,7 @@ function renderAll(){
   safeRender('Tennis Watch',renderTennis);
   safeRender('NCAA Football',renderNcaa);
   safeRender('Coverage Control',renderCoverage);
+  safeRender('Catalog Intake',renderIntake);
   safeRender('Approved Catalog',renderCatalog);
 }
 function normCollegeSport(v){
@@ -1788,6 +1834,54 @@ function renderBasketball(){
 }
 
 function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis Intelligence',DATA.tennis?.generated_at,!!DATA.tennis],['LA28 Olympic Program',DATA.olympicsSummer?.generated_at,!!DATA.olympicsSummer],['Alpes 2030 Olympic Program',DATA.olympicsWinter?.generated_at,!!DATA.olympicsWinter],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));const official=DATA.catalogOfficialSources?.coverage;if(official){const pending=official.events_pending||0;cards.push(`<div class="coverage-card"><b>Catalog Official Links</b>${pill(pending?'amber':'green',pending?`${pending} LINK PENDING`:'SOURCE LINKS COMPLETE')}<div class="small">${official.events_linked||0} event links · ${official.governing_bodies_linked||0} governing-body links · generated ${fmtDateTime(DATA.catalogOfficialSources.generated_at)}</div></div>`)}document.getElementById('coverageGrid').innerHTML=cards.join('')}
+
+function intakeTypeLabel(type){
+  if(type==='catalog-addition')return'NEW CATALOG ENTRY';
+  if(type==='catalog-change')return'CATALOG ENTRY CHANGED';
+  if(type==='catalog-removal')return'CATALOG ENTRY REMOVED';
+  return String(type||'INTAKE ITEM').replaceAll('-',' ').toUpperCase();
+}
+function intakeItemHtml(item){
+  const current=item.catalog_line||item.title||'';
+  const previous=item.previous_catalog_line;
+  const changeMeta=`Published catalog state: ${item.catalog_approval_state||'REVIEW REQUIRED'}`;
+  const sourceUrl=item.evidence?.catalog_url;
+  const sourceLabel=item.evidence?.catalog_label||'published catalog';
+  const checklist=(item.missing_setup||[]).map(row=>`<div class="intake-check">☐ ${esc(row.label)}</div>`).join('');
+  return `<details class="intake-item" open><summary><div><div class="intake-item-title">${esc(item.title||current)}</div><div class="intake-item-meta">${esc(item.sport||'Unclassified')} · detected ${fmtDateTime(item.detected_at)} · ${esc(changeMeta)}</div></div><div>${pill('amber',intakeTypeLabel(item.item_type))} ${pill('red','BLOCKED FROM REVIEW TODAY')}</div></summary><div class="intake-item-body">
+    ${previous?`<div class="intake-label">Previous catalog wording</div><div class="intake-line old">${esc(previous)}</div>`:''}
+    ${current?`<div class="intake-label">Current catalog wording</div><div class="intake-line">${esc(current)}</div>`:''}
+    ${item.governing_body?`<div class="small"><b>Proposed governing body:</b> ${esc(item.governing_body)}${item.country?` · ${esc(item.country)}`:''}</div>`:''}
+    <div class="intake-label">Required before activation</div><div class="intake-checklist">${checklist||'<div class="intake-check">Manual completion validation required</div>'}</div>
+    <div class="intake-action"><b>Recommended next action:</b> ${esc(item.recommended_action||'Complete manual review and setup.')}</div>
+    ${sourceUrl?`<div class="intake-source"><a href="${esc(sourceUrl)}" target="_blank" rel="noopener">Open ${esc(sourceLabel)} ↗</a></div>`:''}
+  </div></details>`;
+}
+function renderIntake(){
+  const data=DATA.intake||{},summary=data.summary||{},items=data.open_items||[];
+  const q=(document.getElementById('intakeSearch')?.value||'').toLowerCase();
+  const type=document.getElementById('intakeType')?.value||'all';
+  const filtered=items.filter(item=>{
+    if(type!=='all'&&item.item_type!==type)return false;
+    const hay=`${item.title||''} ${item.sport||''} ${item.catalog_line||''} ${item.previous_catalog_line||''} ${item.governing_body||''}`.toLowerCase();
+    return !q||hay.includes(q);
+  });
+  document.getElementById('intakeSource').innerHTML=`<b>Queue generated:</b> ${fmtDateTime(data.generated_at)} · <b>Catalog:</b> ${esc(data.catalog?.source_label||'current published catalog')} · All ${summary.blocked_from_review_today||0} open items are fail-closed.`;
+  document.getElementById('intakeMetrics').innerHTML=[
+    [summary.open_total||0,'open actions'],
+    [summary.catalog_additions||0,'catalog additions'],
+    [summary.catalog_changes||0,'wording changes'],
+    [summary.catalog_removals||0,'catalog removals'],
+    [summary.blocked_from_review_today||0,'blocked from Review Today']
+  ].map(row=>`<div class="metric"><b>${esc(row[0])}</b><span>${esc(row[1])}</span></div>`).join('');
+  document.getElementById('intakeQueue').innerHTML=filtered.length?filtered.map(intakeItemHtml).join(''):`<div class="intake-empty">${items.length?'No intake items match the current filters.':'No open catalog intake actions. The approval gate remains closed to unapproved events.'}</div>`;
+
+  const count=Number(summary.open_total||0),navCount=document.getElementById('intakeNavCount');
+  navCount.textContent=count||'';navCount.classList.toggle('show',count>0);
+  const today=document.getElementById('intakeToday');
+  today.classList.toggle('show',count>0);
+  if(count>0)document.getElementById('intakeTodayText').textContent=`${count} published catalog ${count===1?'change requires':'changes require'} dashboard mapping work. Nothing is eligible for Review Today until that setup is complete.`;
+}
 function lineColor(line){const t=String(line).toUpperCase();if(/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'prohibited';if(/LIMIT|MARKETS (?:MUST )?CLOSE|WAGER LIMIT|CUTOFF/.test(t))return'restricted';return''}
 
 const CATALOG_COUNTRIES=new Set([
@@ -2316,6 +2410,7 @@ document.getElementById('nav').addEventListener('click',e=>{const b=e.target.clo
 document.getElementById('refreshBtn').addEventListener('click',loadAll);
 ['collegeSchool','collegeStatus'].forEach(id=>document.getElementById(id).addEventListener('change',renderCollege));
 document.getElementById('restrictionSearch').addEventListener('input',renderRestrictions);document.getElementById('restrictionColor').addEventListener('change',renderRestrictions);document.getElementById('u18Search').addEventListener('input',renderU18);document.getElementById('ncaaSearch').addEventListener('input',renderNcaa);document.getElementById('ncaaMapFilter').addEventListener('change',renderNcaa);document.getElementById('catalogSearch').addEventListener('input',renderCatalog);document.getElementById('catalogSeason').addEventListener('change',renderCatalog);
+document.getElementById('intakeSearch').addEventListener('input',renderIntake);document.getElementById('intakeType').addEventListener('change',renderIntake);document.getElementById('openIntakeBtn').addEventListener('click',()=>document.querySelector('button[data-panel="intake"]')?.click());
 
 loadAll();
 </script>
