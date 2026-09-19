@@ -8,7 +8,8 @@ Tennis V2 answers one operational question:
 
 - `Review Today` displays only verified U18 active-field exposure and exact-identity DOB reviews.
 - `Coverage Control` displays source health, approved tournament coverage, active fields, and fields still pending.
-- `Tennis Validation` temporarily retains the legacy detail view during the shadow-validation period. It can be removed from navigation after V2 is proven.
+- Tennis V2 alerts are delivered through `Review Today`; the temporary legacy validation tab was retired after shadow validation completed.
+- Legacy tennis data and workflows remain available behind the dashboard during the rollback period and continue to appear in source-health reporting.
 
 Acceptance lists, schedules, tournament names, and source availability never create catalog approval. `data/catalog-season-map.json` remains the approval gate.
 
