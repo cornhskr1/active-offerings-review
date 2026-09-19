@@ -8,6 +8,7 @@ Tennis V2 answers one operational question:
 
 - `Review Today` displays only verified U18 active-field exposure and exact-identity DOB reviews.
 - `Coverage Control` displays source health, approved tournament coverage, active fields, and fields still pending.
+- `Known U18 Registry` combines the general registry, the professional-tennis registry, and verified U18 age-cache discoveries. Stable official player IDs collapse abbreviated and full-name aliases into one athlete.
 - Tennis V2 alerts are delivered through `Review Today`; the temporary legacy validation tab was retired after shadow validation completed.
 - Legacy tennis data and workflows remain available behind the dashboard during the rollback period and continue to appear in source-health reporting.
 
@@ -24,8 +25,9 @@ Acceptance lists, schedules, tournament names, and source availability never cre
 
 - A tour must map through `data/tennis-v2-config.json` to a Tennis source ID explicitly present in `data/catalog-season-map.json`.
 - A participant must be extracted from an active field. An acceptance pool is never an active field.
-- RED requires an exact match to `data/tennis-u18-registry.json`.
+- RED requires an exact canonical-name or recorded-alias match to the verified tennis registry or a `VERIFIED U18` age-cache record. Age-cache verification is promoted immediately and does not wait for the weekly registry rebuild.
 - A targeted junior identity can produce AMBER, never RED.
+- ITF junior rankings may identify athletes, but ITF junior competitions are never approved and are hard-blocked from Review Today even if a source mapping is accidentally configured.
 - An unknown player does not create an alert without a specific U18 indicator.
 - A stale tennis source retains the last known good tournament set, marks it stale, and requires manual verification instead of deleting coverage.
 

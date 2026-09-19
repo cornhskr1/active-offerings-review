@@ -514,7 +514,7 @@ th{font-size:11px!important}
 
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager/market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, restriction…"><select id="restrictionColor"><option value="all">All restrictions</option><option value="red">RED · not permissible</option><option value="amber">AMBER · review/limit</option></select></div><div class="table-wrap"><table><thead><tr><th>Status</th><th>Scope</th><th>Catalog Section</th><th>Restriction</th></tr></thead><tbody id="restrictionRows"></tbody></table></div></div></section>
 
-<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified U18 intelligence used to identify event-level exposure. A known U18 does not create a RED event until the athlete is linked to current activity.</p><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, league…"></div><div class="table-wrap"><table><thead><tr><th>Sport</th><th>League</th><th>Team</th><th>Athlete</th><th>Age</th><th>Status</th></tr></thead><tbody id="u18Rows"></tbody></table></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
+<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Combined verified U18 intelligence, including the dedicated professional-tennis registry and verified tennis age-cache discoveries. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, league…"></div><div class="table-wrap"><table><thead><tr><th>Sport</th><th>League</th><th>Team / Lane</th><th>Athlete</th><th>Age</th><th>Status</th></tr></thead><tbody id="u18Rows"></tbody></table></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
 <section class="panel" id="ncaa"><div class="card"><div class="section-title">NCAA Football Coverage</div><div class="metrics" id="ncaaMetrics"></div><div class="toolbar"><input id="ncaaSearch" placeholder="Search team or conference…"><select id="ncaaMapFilter"><option value="all">All teams</option><option value="mapped">Mapped</option><option value="unmapped">Unmapped</option><option value="u18">Known U18</option></select></div><div id="ncaaConferences"></div></div></section>
 
@@ -567,7 +567,7 @@ const FILES={
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
   basketball:'data/ncaa-basketball.json',
   basketballIntel:'data/ncaa-basketball-intelligence.json', basketballDI:'data/ncaa-basketball-di-map.json', basketballRosters:'data/ncaa-basketball-rosters.json',
-  tennis:'data/tennis-intelligence.json', tennisReview:'data/tennis-review.json', tennisCache:'data/tennis-age-cache.json',
+  tennis:'data/tennis-intelligence.json', tennisReview:'data/tennis-review.json', tennisRegistry:'data/tennis-u18-registry.json', tennisCache:'data/tennis-age-cache.json',
   olympicsSummer:'data/olympics-summer-program.json', olympicsWinter:'data/olympics-winter-program.json'
 };
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -646,7 +646,7 @@ async function loadAll(){
 
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
 
-    const times=['global','priority','college','collegeFutures','catalog','seasonMap','catalogOfficialSources','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennisReview','tennis','olympicsSummer','olympicsWinter']
+    const times=['global','priority','college','collegeFutures','catalog','seasonMap','catalogOfficialSources','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennisReview','tennisRegistry','tennis','olympicsSummer','olympicsWinter']
       .map(k=>DATA[k]?.generated_at)
       .filter(Boolean)
       .map(x=>new Date(x).getTime())
@@ -1418,7 +1418,84 @@ function renderCollege(){
 }
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
 function renderRestrictions(){const q=(document.getElementById('restrictionSearch').value||'').toLowerCase(), f=document.getElementById('restrictionColor').value||'all';const rows=(DATA.catalog?.restrictions||[]).filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});document.getElementById('restrictionRows').innerHTML=rows.map(x=>{const c=restrictionColor(x);return `<tr><td>${pill(c,c==='red'?'NOT PERMISSIBLE':'REVIEW / LIMIT')}</td><td><b>${esc(x.scope_label||x.sport)}</b></td><td>${esc(x.catalog_section||x.sport||'')}</td><td>${esc(x.text)}</td></tr>`}).join('')||`<tr><td colspan="4">No matching restrictions.</td></tr>`}
-function renderU18(){const q=(document.getElementById('u18Search').value||'').toLowerCase();const rec=(DATA.known?.records||[]).filter(x=>!q||`${x.sport} ${x.league} ${x.team} ${x.athlete}`.toLowerCase().includes(q));document.getElementById('u18Rows').innerHTML=rec.map(x=>`<tr><td>${esc(x.sport)}</td><td>${esc(x.league)}</td><td>${esc(x.team)}</td><td><b>${esc(x.athlete)}</b></td><td>${esc(x.age_label||x.age||'U18')}</td><td>${pill('red','VERIFIED U18')}</td></tr>`).join('');const a=DATA.ncaaAge||{};document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];document.getElementById('ncaaAgeAlerts').innerHTML=alerts.length?alerts.map(x=>`<div class="alert-row">${pill(x.c,x.c==='red'?'VERIFIED U18':'AGE REVIEW')} ${pill('blue','NCAA FOOTBALL')}<div><b>${esc(x.name)} · ${esc(x.team)}</b><div class="row-meta">${esc(x.age_evidence||x.u18_risk_reason||'')}</div></div><span>${x.calculated_age!=null?esc(x.calculated_age):''}</span></div>`).join(''):`<div class="empty">No NCAA Football U18/age-review alerts.</div>`;
+function registryNameKey(value){return String(value||'').toLowerCase().replace(/[’'`]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function tennisRegistryIdentity(record){
+  const url=String(record.source_url||record.profile_url||'');
+  const official=url.match(/\/players\/[^/]+\/(\d{6,})\//i);
+  return official?`itf:${official[1]}`:`name:${registryNameKey(record.name)}`;
+}
+function preferredRegistryName(names){
+  const candidates=new Set();
+  names.forEach(name=>{
+    const raw=String(name||'').trim();
+    if(!raw)return;
+    candidates.add(raw);
+    const unqualified=raw.replace(/\s*\((?:WC|Q|LL|ALT)\)\s*$/i,'').trim();
+    if(unqualified)candidates.add(unqualified);
+  });
+  const score=name=>[
+    !/\s*\((?:WC|Q|LL|ALT)\)\s*$/i.test(name),
+    !/(?:^|\s)[A-Za-z]\.?(?:\s|$)/.test(name),
+    name.split(/\s+/).length,
+    name.length
+  ];
+  return [...candidates].sort((a,b)=>{const A=score(a),B=score(b);for(let i=0;i<A.length;i++){if(A[i]!==B[i])return A[i]>B[i]?-1:1}return a.localeCompare(b)})[0];
+}
+function combinedKnownU18Rows(){
+  const general=(DATA.known?.records||[]).map(record=>({
+    ...record,
+    athlete:record.athlete,
+    lane:record.team||record.lane||'Registry',
+    source:record.source||DATA.known?.source||'Known U18 registry',
+    registry_origin:'GENERAL'
+  }));
+  const groups=new Map();
+  const add=(record,origin)=>{
+    if(!record?.name)return;
+    const key=tennisRegistryIdentity(record);
+    if(!groups.has(key))groups.set(key,[]);
+    groups.get(key).push({...record,_origin:origin});
+  };
+  (DATA.tennisRegistry?.verified_u18||[]).forEach(record=>add(record,'TENNIS REGISTRY'));
+  const cacheRecords=DATA.tennisCache?.records||{};
+  (Array.isArray(cacheRecords)?cacheRecords:Object.values(cacheRecords))
+    .filter(record=>String(record?.age_status||'').toUpperCase()==='VERIFIED U18')
+    .forEach(record=>add(record,'AGE CACHE'));
+
+  let cacheOnly=0;
+  const tennis=[...groups.values()].map(records=>{
+    const names=new Set();
+    records.forEach(record=>[record.name,...(record.aliases||[])].filter(Boolean).forEach(name=>names.add(String(name).trim())));
+    const athlete=preferredRegistryName(names);
+    const best=records.find(record=>registryNameKey(record.name)===registryNameKey(athlete))||records[0];
+    const inRegistry=records.some(record=>record._origin==='TENNIS REGISTRY');
+    if(!inRegistry)cacheOnly+=1;
+    return{
+      sport:'Tennis',league:'Professional Tennis',team:'Active-field watchlist',lane:'Active-field watchlist',
+      athlete,age:best.age,age_label:best.age_label||best.age||'U18',source:best.source||'Official tennis profile',
+      source_url:best.source_url||best.profile_url,aliases:[...names].filter(name=>registryNameKey(name)!==registryNameKey(athlete)),
+      registry_origin:inRegistry?'TENNIS REGISTRY':'AGE CACHE PROMOTION'
+    };
+  });
+  return{rows:[...general,...tennis],generalCount:general.length,tennisCount:tennis.length,cacheOnly};
+}
+function renderU18(){
+  const q=(document.getElementById('u18Search').value||'').toLowerCase();
+  const combined=combinedKnownU18Rows();
+  const rec=combined.rows.filter(x=>!q||`${x.sport} ${x.league} ${x.team||x.lane||''} ${x.athlete} ${(x.aliases||[]).join(' ')} ${x.source||''}`.toLowerCase().includes(q));
+  document.getElementById('u18RegistryMetrics').innerHTML=[
+    [combined.rows.length,'unique verified U18'],[combined.generalCount,'general registry'],
+    [combined.tennisCount,'tennis registry'],[combined.cacheOnly,'tennis cache promotions']
+  ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  document.getElementById('u18Rows').innerHTML=rec.length?rec.map(x=>{
+    const athlete=x.source_url?`<a href="${esc(x.source_url)}" target="_blank" rel="noopener"><b>${esc(x.athlete)}</b></a>`:`<b>${esc(x.athlete)}</b>`;
+    const origin=x.registry_origin==='AGE CACHE PROMOTION'?pill('blue','CACHE PROMOTED'):pill('red','VERIFIED U18');
+    return `<tr><td>${esc(x.sport)}</td><td>${esc(x.league)}</td><td>${esc(x.team||x.lane||'')}</td><td>${athlete}${(x.aliases||[]).length?`<div class="row-meta">Aliases: ${esc(x.aliases.join(', '))}</div>`:''}</td><td>${esc(x.age_label||x.age||'U18')}</td><td>${origin}</td></tr>`;
+  }).join(''):`<tr><td colspan="6">No matching verified U18 athletes.</td></tr>`;
+  const a=DATA.ncaaAge||{};
+  document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];
+  document.getElementById('ncaaAgeAlerts').innerHTML=alerts.length?alerts.map(x=>`<div class="alert-row">${pill(x.c,x.c==='red'?'VERIFIED U18':'AGE REVIEW')} ${pill('blue','NCAA FOOTBALL')}<div><b>${esc(x.name)} · ${esc(x.team)}</b><div class="row-meta">${esc(x.age_evidence||x.u18_risk_reason||'')}</div></div><span>${x.calculated_age!=null?esc(x.calculated_age):''}</span></div>`).join(''):`<div class="empty">No NCAA Football U18/age-review alerts.</div>`;
 
 const b=DATA.basketballIntel||{};
 document.getElementById('basketballIntelMetrics').innerHTML=[
