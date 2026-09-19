@@ -61,6 +61,69 @@ def norm(s):
     s=re.sub(r"[\u2018\u2019'`]", "",s)
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
+def registry_index(records):
+    """Index canonical names and aliases without duplicating displayed athletes."""
+    out={}
+    for record in records or []:
+        for name in [record.get("name"),*(record.get("aliases") or [])]:
+            if name:out[norm(name)]=record
+    return out
+
+def registry_identity(record):
+    """Prefer stable official player IDs; fall back to the normalized name."""
+    url=str(record.get("source_url") or record.get("profile_url") or "")
+    match=re.search(r"/players/[^/]+/(\d{6,})/",url,re.I)
+    if match:return f"itf:{match.group(1)}"
+    return f"name:{norm(record.get('name'))}"
+
+def merge_registry_records(records,exposure_names=None):
+    """Collapse initials/full-name aliases and preserve every matchable identity."""
+    groups={}
+    for record in records or []:
+        if not record or not record.get("name"):continue
+        groups.setdefault(registry_identity(record),[]).append(record)
+
+    exposure_names=set(exposure_names or [])
+    merged=[]
+    for rows in groups.values():
+        names=[]
+        for row in rows:
+            for value in [row.get("name"),*(row.get("aliases") or [])]:
+                names.append(value)
+                if value:
+                    unqualified=re.sub(r"\s*\((?:WC|Q|LL|ALT)\)\s*$","",str(value),flags=re.I).strip()
+                    if unqualified and unqualified!=str(value).strip():names.append(unqualified)
+        names=[str(name).strip() for name in names if str(name or "").strip()]
+        unique_names=[];seen=set()
+        for name in names:
+            key=norm(name)
+            if key not in seen:
+                seen.add(key);unique_names.append(name)
+
+        def name_score(name):
+            qualifier=bool(re.search(r"\s*\((?:WC|Q|LL|ALT)\)\s*$",name,re.I))
+            initial=bool(re.search(r"(?:^|\s)[A-Za-z]\.?(?:\s|$)",name))
+            return (not qualifier,not initial,len(name.split()),len(name))
+
+        canonical_name=max(unique_names,key=name_score)
+        preferred=max(rows,key=lambda row:(
+            norm(row.get("name"))==norm(canonical_name),
+            sum(value not in (None,"",[],{}) for value in row.values())
+        ))
+        combined=dict(preferred)
+        for row in rows:
+            for key,value in row.items():
+                if combined.get(key) in (None,"",[],{}) and value not in (None,"",[],{}):
+                    combined[key]=value
+        combined["name"]=canonical_name
+        aliases=[name for name in unique_names if norm(name)!=norm(canonical_name)]
+        if aliases:combined["aliases"]=sorted(aliases,key=str.lower)
+        else:combined.pop("aliases",None)
+        combined["current_exposure"]=any(norm(name) in exposure_names for name in unique_names)
+        merged.append(combined)
+    merged.sort(key=lambda row:(not row.get("current_exposure"),row.get("name","").lower()))
+    return merged
+
 def parse_date(s):
     s=" ".join(str(s or "").split())
     for f in ("%d %B %Y","%d %b %Y","%B %d, %Y","%b %d, %Y","%Y-%m-%d"):
@@ -1234,8 +1297,8 @@ for x in seed:
 # junior universe and broad ATP/WTA age indexes is maintenance work and must not
 # sit in the time-critical tournament path.
 saved_registry=load(DATA/"tennis-u18-registry.json",{})
-saved_u18={norm(x.get("name")):x for x in saved_registry.get("verified_u18",[]) if x.get("name")}
-saved_candidates={norm(x.get("name")):x for x in saved_registry.get("junior_targeted_candidates",[]) if x.get("name")}
+saved_u18=registry_index(saved_registry.get("verified_u18",[]))
+saved_candidates=registry_index(saved_registry.get("junior_targeted_candidates",[]))
 
 with sync_playwright() as pw:
     browser=Browser(pw)
@@ -1473,10 +1536,13 @@ with sync_playwright() as pw:
 
 exposure={norm(p["name"]) for t in tournaments for p in t.get("confirmed_u18",[])}
 pre_draw_watch={norm(p["name"]) for t in tournaments for p in t.get("pre_draw_u18",[])}
-registry=[]
-for k,p in u18_index.items():
-    registry.append({**p,"current_exposure":k in exposure})
-registry.sort(key=lambda x:(not x["current_exposure"],x["name"]))
+cache_verified=[record for record in persistent_age_cache.values()
+                if str(record.get("age_status") or "").upper()=="VERIFIED U18"]
+base_registry=merge_registry_records(u18_index.values(),exposure)
+base_registry_ids={registry_identity(record) for record in base_registry}
+cache_promotion_ids={registry_identity(record) for record in cache_verified}-base_registry_ids
+registry=merge_registry_records([*base_registry,*cache_verified],exposure)
+targeted_registry=merge_registry_records(junior_candidates.values())
 
 exceptions=[]
 for t in tournaments:
@@ -1520,6 +1586,7 @@ summary={"tournaments_mapped":len(tournaments),
  "verified_u18_players":len(exposure),
  "pre_draw_u18_watch_players":len(pre_draw_watch),
  "targeted_review_candidates":len(exceptions),
+ "verified_u18_registry_records":len(registry),
  "field_gaps":sum(not t.get("field_captured") for t in tournaments),
  "no_u18_indicator_count":sum(t.get("no_u18_indicator_count",0) for t in tournaments if t.get("participant_field_type")!="ACCEPTANCE_POOL"),
  "age_cache_records":len(persistent_age_cache)}
@@ -1554,7 +1621,10 @@ schedule_out={
 registry_out={
  "schema_version":1,"generated_at":NOW.isoformat(),
  "verified_u18":registry,
- "junior_targeted_candidates":list(junior_candidates.values()),
+ "junior_targeted_candidates":targeted_registry,
+ "summary":{"unique_verified_u18":len(registry),
+            "targeted_identity_reviews":len(targeted_registry),
+            "age_cache_promotions":len(cache_promotion_ids)},
  "source_health":health.get("itf_juniors",[])
 }
 

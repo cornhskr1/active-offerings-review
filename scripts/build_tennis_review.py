@@ -50,12 +50,46 @@ def tennis_catalog_source_ids(season_map):
 
 def verified_registry_index(registry):
     records = registry.get("verified_u18") or []
-    return {norm(r.get("name")): r for r in records if r.get("name")}
+    out = {}
+    for record in records:
+        for name in [record.get("name"), *(record.get("aliases") or [])]:
+            if name:
+                out[norm(name)] = record
+    return out
 
 
 def targeted_registry_index(registry):
     records = registry.get("junior_targeted_candidates") or []
-    return {norm(r.get("name")): r for r in records if r.get("name")}
+    out = {}
+    for record in records:
+        for name in [record.get("name"), *(record.get("aliases") or [])]:
+            if name:
+                out[norm(name)] = record
+    return out
+
+
+def verified_age_cache_index(age_cache):
+    records = age_cache.get("records") or {}
+    if isinstance(records, dict):
+        values = records.values()
+    else:
+        values = records
+    out = {}
+    for record in values:
+        if str(record.get("age_status") or "").upper() != "VERIFIED U18":
+            continue
+        for name in [record.get("name"), *(record.get("aliases") or [])]:
+            if name:
+                out[norm(name)] = record
+    return out
+
+
+def is_junior_competition(tournament):
+    """Junior rankings may inform identity research but junior events are never approved."""
+    text = " ".join(str(tournament.get(key) or "") for key in (
+        "tour_id", "tour", "category"
+    )).lower()
+    return bool(re.search(r"\bitf[ -]?(?:world tennis tour )?juniors?\b|\bjunior(?:s)?\b", text))
 
 
 def is_active_field(tournament, config):
@@ -88,17 +122,28 @@ def exact_active_matches(tournament, verified, targeted):
     return list(red.values()), list(amber.values())
 
 
-def build_review(intelligence, registry, season_map, config):
+def build_review(intelligence, registry, season_map, config, age_cache=None):
     approved_source_ids = tennis_catalog_source_ids(season_map)
     tour_map = config.get("tour_approval_map") or {}
     coverage = {}
     alerts = []
     blocked = []
-    verified = verified_registry_index(registry)
+    # A profile already verified U18 must be actionable immediately; it must not
+    # wait for the slower weekly registry rebuild to be promoted.
+    verified = verified_age_cache_index(age_cache or {})
+    verified.update(verified_registry_index(registry))
     targeted = targeted_registry_index(registry)
 
     for tournament in intelligence.get("tournaments") or []:
         tour_id = tournament.get("tour_id")
+        if is_junior_competition(tournament):
+            blocked.append({
+                "tournament_id": tournament.get("id"),
+                "tournament": tournament.get("tournament"),
+                "tour_id": tour_id,
+                "reason": "ITF junior competition is intelligence-only and is not catalog-approved"
+            })
+            continue
         source_id = tour_map.get(tour_id)
         if not source_id or source_id not in approved_source_ids:
             blocked.append({
@@ -193,7 +238,8 @@ def main():
     registry = load(DATA / "tennis-u18-registry.json", {})
     season_map = load(DATA / "catalog-season-map.json", {})
     config = load(DATA / "tennis-v2-config.json", {})
-    output = build_review(intelligence, registry, season_map, config)
+    age_cache = load(DATA / "tennis-age-cache.json", {})
+    output = build_review(intelligence, registry, season_map, config, age_cache)
     (DATA / "tennis-review.json").write_text(
         json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )

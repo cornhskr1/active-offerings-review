@@ -71,6 +71,56 @@ class TennisReviewTests(unittest.TestCase):
         self.assertEqual(out["summary"]["active_fields_screened"], 0)
         self.assertEqual(out["summary"]["field_pending"], 1)
 
+    def test_verified_u18_age_cache_is_promoted_immediately(self):
+        cache = {"records": {"cache-player": {
+            "name": "Cache Player", "age": 17, "age_status": "VERIFIED U18"
+        }}}
+        tournament = self.tournament(participants=[{"name": "Cache Player"}])
+        out = MOD.build_review(
+            {"tournaments": [tournament]},
+            {"verified_u18": [], "junior_targeted_candidates": []},
+            season_map("tennis-itf-world-tour"), CONFIG, cache
+        )
+        self.assertEqual(out["summary"]["verified_u18_alerts"], 1)
+        self.assertEqual(out["alerts"][0]["athletes"], ["Cache Player"])
+
+    def test_registry_alias_matches_active_field_name(self):
+        registry = {"verified_u18": [{
+            "name": "Jordan Lee", "aliases": ["J. Lee"], "age": 16
+        }]}
+        tournament = self.tournament(participants=[{"name": "J. Lee"}])
+        out = MOD.build_review(
+            {"tournaments": [tournament]}, registry,
+            season_map("tennis-itf-world-tour"), CONFIG
+        )
+        self.assertEqual(out["summary"]["verified_u18_alerts"], 1)
+
+    def test_itf_junior_event_is_blocked_even_if_misconfigured_as_approved(self):
+        config = {
+            **CONFIG,
+            "tour_approval_map": {
+                **CONFIG["tour_approval_map"],
+                "itf-juniors": "tennis-itf-world-tour"
+            }
+        }
+        tournament = self.tournament(
+            tour_id="itf-juniors",
+            tour="ITF World Tennis Tour Juniors"
+        )
+        out = MOD.build_review(
+            {"tournaments": [tournament]}, self.registry(),
+            season_map("tennis-itf-world-tour"), config
+        )
+        self.assertEqual(out["alerts"], [])
+        self.assertEqual(out["summary"]["blocked_unapproved_or_unmapped"], 1)
+        self.assertIn("junior competition", out["blocked"][0]["reason"].lower())
+
+    def test_professional_event_name_containing_junior_is_not_blocked(self):
+        tournament = self.tournament(tournament="Junior Achievement Open")
+        out = self.build(tournament)
+        self.assertEqual(out["summary"]["blocked_unapproved_or_unmapped"], 0)
+        self.assertEqual(out["summary"]["verified_u18_alerts"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
