@@ -1,0 +1,45 @@
+name: Refresh Tennis Review Feed
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - data/catalog-season-map.json
+      - data/tennis-v2-config.json
+      - scripts/build_tennis_review.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tennis-review-feed
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Build focused tennis review feed
+        run: python3 scripts/build_tennis_review.py
+      - name: Run tennis guardrail tests
+        run: python3 -m unittest tests/test_build_tennis_review.py
+      - name: Commit refreshed feed
+        run: |
+          git config user.name "active-offerings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tennis-review.json
+          if git diff --cached --quiet; then
+            echo "No tennis review changes."
+            exit 0
+          fi
+          git commit -m "Refresh focused tennis review feed"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
