@@ -485,7 +485,6 @@ th{font-size:11px!important}
 <button data-panel="college">Nebraska Collegiate</button>
 <button data-panel="restrictions">Restriction Watch</button>
 <button data-panel="u18">Known U18</button>
-<button data-panel="tennis">Tennis Validation</button>
 <button data-panel="ncaa">NCAA Football</button><button data-panel="basketball">NCAA Basketball</button>
 <button data-panel="coverage">Coverage Control</button>
 <button data-panel="intake">Catalog Changes<span class="nav-count" id="intakeNavCount"></span></button>
@@ -516,32 +515,6 @@ th{font-size:11px!important}
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager/market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, restriction…"><select id="restrictionColor"><option value="all">All restrictions</option><option value="red">RED · not permissible</option><option value="amber">AMBER · review/limit</option></select></div><div class="table-wrap"><table><thead><tr><th>Status</th><th>Scope</th><th>Catalog Section</th><th>Restriction</th></tr></thead><tbody id="restrictionRows"></tbody></table></div></div></section>
 
 <section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified U18 intelligence used to identify event-level exposure. A known U18 does not create a RED event until the athlete is linked to current activity.</p><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, league…"></div><div class="table-wrap"><table><thead><tr><th>Sport</th><th>League</th><th>Team</th><th>Athlete</th><th>Age</th><th>Status</th></tr></thead><tbody id="u18Rows"></tbody></table></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
-
-<section class="panel" id="tennis">
-<div class="card">
-  <div class="section-title">Tennis V2 — Temporary Validation</div>
-  <p class="small">This temporary comparison view remains available while the focused Tennis V2 feed is validated. Staff action is now delivered through Review Today. Acceptance pools and incomplete fields cannot create a prohibited-event alert.</p>
-  <div class="metrics" id="tennisMetrics"></div>
-  <div class="source-note" id="tennisCacheStatus"></div>
-</div>
-<div class="card">
-  <div class="section-title">U18 Exposure — Action Required</div>
-  <div id="tennisRed"></div>
-</div>
-<div class="card">
-  <div class="section-title">Men's Tours & Tournaments</div>
-  <div id="tennisMen"></div>
-</div>
-<div class="card">
-  <div class="section-title">Women's Tours & Tournaments</div>
-  <div id="tennisWomen"></div>
-</div>
-<div class="card">
-  <div class="section-title">Targeted Age Exceptions</div>
-  <p class="small">Only athletes with a specific junior/U18 indicator appear here. An unknown DOB by itself is not a manual-review item.</p>
-  <div id="tennisExceptions"></div>
-</div>
-</section>
 
 <section class="panel" id="ncaa"><div class="card"><div class="section-title">NCAA Football Coverage</div><div class="metrics" id="ncaaMetrics"></div><div class="toolbar"><input id="ncaaSearch" placeholder="Search team or conference…"><select id="ncaaMapFilter"><option value="all">All teams</option><option value="mapped">Mapped</option><option value="unmapped">Unmapped</option><option value="u18">Known U18</option></select></div><div id="ncaaConferences"></div></div></section>
 
@@ -716,7 +689,6 @@ function renderAll(){
   safeRender('Nebraska Collegiate',renderCollege);
   safeRender('Restriction Watch',renderRestrictions);
   safeRender('Known U18',renderU18);
-  safeRender('Tennis Watch',renderTennis);
   safeRender('NCAA Football',renderNcaa);
   safeRender('Coverage Control',renderCoverage);
   safeRender('Catalog Intake',renderIntake);
@@ -1845,7 +1817,7 @@ function renderBasketball(){
   });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis V2 Review Feed',DATA.tennisReview?.generated_at,!!DATA.tennisReview],['Tennis Validation Data',DATA.tennis?.generated_at,!!DATA.tennis],['LA28 Olympic Program',DATA.olympicsSummer?.generated_at,!!DATA.olympicsSummer],['Alpes 2030 Olympic Program',DATA.olympicsWinter?.generated_at,!!DATA.olympicsWinter],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));const tennisV2=DATA.tennisReview;if(tennisV2){const s=tennisV2.summary||{};cards.push(`<div class="coverage-card"><b>Tennis V2 Screening</b>${pill((s.blocked_unapproved_or_unmapped||0)?'amber':'green',(s.blocked_unapproved_or_unmapped||0)?'MAPPING REVIEW':'APPROVAL GATE PASSED')}<div class="small">${s.approved_tournaments||0} approved tournaments · ${s.active_fields_screened||0} active fields · ${s.field_pending||0} field pending · ${s.actionable_alerts||0} actionable</div></div>`)}const official=DATA.catalogOfficialSources?.coverage;if(official){const pending=official.events_pending||0;cards.push(`<div class="coverage-card"><b>Catalog Official Links</b>${pill(pending?'amber':'green',pending?`${pending} LINK PENDING`:'SOURCE LINKS COMPLETE')}<div class="small">${official.events_linked||0} event links · ${official.governing_bodies_linked||0} governing-body links · generated ${fmtDateTime(DATA.catalogOfficialSources.generated_at)}</div></div>`)}document.getElementById('coverageGrid').innerHTML=cards.join('')}
+function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis V2 Review Feed',DATA.tennisReview?.generated_at,!!DATA.tennisReview],['Legacy Tennis Data · rollback',DATA.tennis?.generated_at,!!DATA.tennis],['LA28 Olympic Program',DATA.olympicsSummer?.generated_at,!!DATA.olympicsSummer],['Alpes 2030 Olympic Program',DATA.olympicsWinter?.generated_at,!!DATA.olympicsWinter],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));const tennisV2=DATA.tennisReview;if(tennisV2){const s=tennisV2.summary||{};cards.push(`<div class="coverage-card"><b>Tennis V2 Screening</b>${pill((s.blocked_unapproved_or_unmapped||0)?'amber':'green',(s.blocked_unapproved_or_unmapped||0)?'MAPPING REVIEW':'APPROVAL GATE PASSED')}<div class="small">${s.approved_tournaments||0} approved tournaments · ${s.active_fields_screened||0} active fields · ${s.field_pending||0} field pending · ${s.actionable_alerts||0} actionable</div></div>`)}const official=DATA.catalogOfficialSources?.coverage;if(official){const pending=official.events_pending||0;cards.push(`<div class="coverage-card"><b>Catalog Official Links</b>${pill(pending?'amber':'green',pending?`${pending} LINK PENDING`:'SOURCE LINKS COMPLETE')}<div class="small">${official.events_linked||0} event links · ${official.governing_bodies_linked||0} governing-body links · generated ${fmtDateTime(DATA.catalogOfficialSources.generated_at)}</div></div>`)}document.getElementById('coverageGrid').innerHTML=cards.join('')}
 
 function intakeTypeLabel(type){
   if(type==='catalog-addition')return'NEW CATALOG ENTRY';
