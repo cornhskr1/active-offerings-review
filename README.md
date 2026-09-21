@@ -48,3 +48,10 @@ The next production step is attaching automated refresh jobs that retrieve publi
 5. Set output directory to `/` (repository root).
 
 The site is static and does not require `app.py`, Flask, Docker, or a paid server.
+
+
+## Tennis evidence responsibilities
+
+The **Known U18 Tennis** registry and age cache remain the public evidence source used by compliance review. The full browser-based tournament-calendar crawl is retained as a manual investigation tool only; it is no longer scheduled automatically because calendar discovery is expensive, season-dependent, and not required for exact identity screening in the private Transaction Compliance Portal.
+
+A schedule appearance, name similarity, or source record never creates catalog approval. The portal uses verified identity evidence only for Nebraska U18 restriction screening, and a missing match is never treated as an all-clear.
