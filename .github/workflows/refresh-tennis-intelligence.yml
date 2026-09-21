@@ -31,7 +31,9 @@ jobs:
           python3 -m pip install --quiet playwright
           python3 -m playwright install --with-deps chromium
       - name: Validate tennis refresh code
-        run: python3 -m py_compile scripts/refresh_tennis_intelligence.py
+        run: |
+          python3 -m py_compile scripts/refresh_tennis_intelligence.py scripts/tennis_refresh_guardrails.py
+          python3 -m unittest tests/test_tennis_refresh_guardrails.py
       - name: Run refresh and quality gate
         env:
           # Routine runs reuse the independently maintained U18 registry. They
