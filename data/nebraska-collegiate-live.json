@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-21T12:28:54.190896+00:00",
+  "generated_at": "2026-09-21T15:23:50.864543+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-21",
   "window_end": "2026-09-28",
@@ -321,7 +321,7 @@
       "school": "Nebraska",
       "sport": "Women's Tennis",
       "date": "2026-09-25",
-      "time": "TBA",
+      "time": "9:00 AM CDT",
       "site": "HOME",
       "opponent": "Husker Invitational",
       "location": "Lincoln, Neb. / Sid and Hazel Dillon Tennis Center",
@@ -344,7 +344,7 @@
       "site": "HOME",
       "opponent": "Omaha/Creighton Invite",
       "location": "Omaha, NE / KOCH TENNIS CENTER",
-      "phase": "REGULAR SEASON",
+      "phase": "POSTSEASON",
       "status": "SCHEDULED",
       "result": "",
       "source_url": "https://omahamavs.com/sports/womens-tennis/schedule",
@@ -593,6 +593,25 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Baseball",
+      "date": "2026-09-26",
+      "time": "TBA",
+      "site": "AWAY",
+      "opponent": "Wichita State",
+      "location": "",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/baseball/schedule",
+      "played_in_nebraska": false,
+      "matchup_label": "AT",
+      "site_test": "MANUAL LOCATION REVIEW",
+      "site_color": "amber",
+      "regulatory_site_label": "LOCATION UNRESOLVED"
     },
     {
       "school": "Omaha",
@@ -865,9 +884,9 @@
       "sport": "Baseball",
       "url": "https://huskers.com/sports/baseball/schedule",
       "ok": true,
-      "schedule_available": false,
-      "availability": "schedule_not_published",
-      "events_in_window": 0
+      "schedule_available": true,
+      "availability": "published",
+      "events_in_window": 1
     },
     {
       "school": "Nebraska",
@@ -1122,9 +1141,9 @@
     },
     "Nebraska": {
       "configured": 15,
-      "loaded": 14,
-      "pending_publication": 1,
-      "events_in_window": 16
+      "loaded": 15,
+      "pending_publication": 0,
+      "events_in_window": 17
     },
     "Omaha": {
       "configured": 13,
@@ -1134,10 +1153,10 @@
     }
   },
   "validation": {
-    "events_checked": 41,
+    "events_checked": 42,
     "in_state_not_permissible": 26,
     "outside_nebraska": 15,
-    "manual_location_review": 0,
+    "manual_location_review": 1,
     "duplicate_events": 0
   }
 }
