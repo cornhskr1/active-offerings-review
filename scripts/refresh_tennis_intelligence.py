@@ -5,6 +5,7 @@ from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from tennis_refresh_guardrails import calendar_discovery_issue
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
@@ -190,7 +191,21 @@ class Browser:
             except Exception:pass
             text=self.page.locator("body").inner_text(timeout=8000)
             links=self.page.locator("a").evaluate_all(
-                """els=>els.map(a=>({text:(a.innerText||'').trim(),href:a.href||'',parent:(a.closest('tr,article,li,section,div')?.innerText||'').trim()}))"""
+                """els=>els.map(a=>{
+                    const nearest=(a.closest('tr,article,li,section,div')?.innerText||'').trim();
+                    let dateContext='';
+                    let node=a.parentElement;
+                    const monthFirst=/\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2}\b[\s\S]{0,60}\b\d{4}\b/i;
+                    const monthLast=/\b\d{1,2}\b[\s\S]{0,30}\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\b[\s\S]{0,20}\b\d{4}\b/i;
+                    for(let depth=0;node&&depth<8;depth++,node=node.parentElement){
+                        const candidate=(node.innerText||'').trim();
+                        if(candidate.length<=2400&&(monthFirst.test(candidate)||monthLast.test(candidate))){
+                            dateContext=candidate;
+                            break;
+                        }
+                    }
+                    return {text:(a.innerText||'').trim(),href:a.href||'',parent:dateContext||nearest};
+                })"""
             )
             rows=self.page.locator("tr").evaluate_all(
                 """els=>els.map(tr=>({cells:[...tr.querySelectorAll('th,td')].map(x=>(x.innerText||'').trim()),text:(tr.innerText||'').trim()}))"""
@@ -509,13 +524,16 @@ def discover_wta_lane(browser,url,tid,tour):
     snap=browser.snapshot(url,3500)
     out=[];seen=set();candidates=[]
     health={"ok":snap.get("ok",False),"events":0,"url":url,
-            "candidate_tournament_links":0,"payload_candidates":0,
+            "candidate_tournament_links":0,"dated_candidate_links":0,
+            "overlapping_candidate_links":0,"unresolved_candidate_links":0,
+            "page_dates_resolved":0,"payload_candidates":0,
             "error":snap.get("error")}
     if not snap.get("ok"):
         return out,health
 
-    # First: rendered tournament links. Dedicated WTA 125 page means no
-    # post-hoc level classification is needed.
+    # Capture every official tournament link. Browser.snapshot deliberately
+    # supplies an ancestor containing the tournament date when the card exposes
+    # one, so late-season cards are not lost behind an arbitrary crawl limit.
     for a in snap.get("links",[]):
         href=str(a.get("href") or "")
         text=" ".join(str(a.get("text") or "").split())
@@ -527,11 +545,20 @@ def discover_wta_lane(browser,url,tid,tour):
 
     health["candidate_tournament_links"]=len(candidates)
 
-    # If the rendered card already contains a current date, use it directly.
     used=set()
+    unresolved=[]
     for text,href,parent in candidates:
         st,en=date_range(parent)
-        if not overlaps(st,en):continue
+        if not (st and en):
+            unresolved.append((text,href,parent))
+            continue
+
+        health["dated_candidate_links"]+=1
+        used.add(href)
+        if not overlaps(st,en):
+            continue
+
+        health["overlapping_candidate_links"]+=1
         name=clean_tournament_name(text)
         if not name:continue
         out.append({
@@ -543,16 +570,33 @@ def discover_wta_lane(browser,url,tid,tour):
           "source_url":href,"participants":[],
           "participant_source":f"{tour} official tournament calendar"
         })
-        used.add(href)
 
-    # Follow unresolved candidate links to their official tournament page.
-    for text,href,parent in candidates[:100]:
+    health["unresolved_candidate_links"]=len(unresolved)
+
+    # Only unresolved cards need page visits. Prioritize current-month context
+    # before applying the cap, rather than crawling the first 100 annual links.
+    month_tokens={TODAY.strftime("%b").lower(),TODAY.strftime("%B").lower(),
+                  END.strftime("%b").lower(),END.strftime("%B").lower()}
+    def unresolved_priority(row):
+        haystack=" ".join(str(x or "") for x in row).lower()
+        return (any(token in haystack for token in month_tokens),
+                str(TODAY.year) in haystack)
+
+    unresolved.sort(key=unresolved_priority,reverse=True)
+    for text,href,parent in unresolved[:120]:
         if href in used:continue
         st,en,page_text=tournament_page_dates(browser,href)
-        if not overlaps(st,en):continue
+        if not (st and en):
+            continue
+        health["page_dates_resolved"]+=1
+        health["dated_candidate_links"]+=1
+        used.add(href)
+        if not overlaps(st,en):
+            continue
+
+        health["overlapping_candidate_links"]+=1
         name=clean_tournament_name(text)
         if not name or len(name)<3:
-            # Prefer a title-like line from page content.
             lines=[" ".join(x.split()) for x in page_text.splitlines() if x.strip()]
             name=next((x for x in lines if 3<len(x)<90 and not re.search(r'^(Scores|Draws|Order|News|Players)',x,re.I)),"WTA Tournament")
         category="WTA 125" if tid=="wta-125" else ""
@@ -579,7 +623,9 @@ def discover_wta_lane(browser,url,tid,tour):
             name=_dict_first(d,("tournamentName","name","title","displayName","eventName"))
             st=parse_json_date(_dict_first(d,("startDate","start_date","dateFrom","start","eventStartDate")))
             en=parse_json_date(_dict_first(d,("endDate","end_date","dateTo","end","eventEndDate"))) or st
-            if not (name and overlaps(st,en)):continue
+            if not (name and st and en):continue
+            health["dated_candidate_links"]+=1
+            if not overlaps(st,en):continue
 
             level=str(_dict_first(d,("level","tournamentLevel","category","tier","levelName")) or "")
             if tid=="wta-125" and not re.search(r'\b125\b',level,re.I):
@@ -595,6 +641,7 @@ def discover_wta_lane(browser,url,tid,tour):
             if not href and did and slug:
                 href=f"https://www.wtatennis.com/tournaments/{did}/{slug}/{TODAY.year}"
             if not href:continue
+            health["overlapping_candidate_links"]+=1
             out.append({
               "id":hashlib.sha1(f"{tid}|{href}|{st}".encode()).hexdigest()[:12],
               "tour_id":tid,"tour":tour,"gender":"WOMEN",
@@ -1665,12 +1712,22 @@ if chal_health.get("ok") and int(chal_health.get("candidate_tournament_links") o
     critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
 
 wta_health=health.get("wta") or {}
-if wta_health.get("ok") and int(wta_health.get("candidate_tournament_links") or 0)>0 and not any(t.get("tour_id")=="wta" for t in tournaments):
-    critical_issues.append("WTA_CURRENT_CALENDAR_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+wta_issue=calendar_discovery_issue(
+    wta_health,any(t.get("tour_id")=="wta" for t in tournaments)
+)
+if wta_issue=="OVERLAP_WITHOUT_EVENT":
+    critical_issues.append("WTA_CURRENT_CALENDAR_HAS_OVERLAPPING_TOURNAMENT_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+elif wta_issue=="DATES_UNRESOLVED":
+    critical_issues.append("WTA_CURRENT_CALENDAR_DATES_UNRESOLVED")
 
 wta125_health=health.get("wta_125") or {}
-if wta125_health.get("ok") and int(wta125_health.get("candidate_tournament_links") or 0)>0 and not any(t.get("tour_id")=="wta-125" for t in tournaments):
-    critical_issues.append("WTA125_CALENDAR_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+wta125_issue=calendar_discovery_issue(
+    wta125_health,any(t.get("tour_id")=="wta-125" for t in tournaments)
+)
+if wta125_issue=="OVERLAP_WITHOUT_EVENT":
+    critical_issues.append("WTA125_CALENDAR_HAS_OVERLAPPING_TOURNAMENT_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+elif wta125_issue=="DATES_UNRESOLVED":
+    critical_issues.append("WTA125_CALENDAR_DATES_UNRESOLVED")
 
 # Coverage gaps are visible quality warnings, not fatal.
 for family in FAMILIES:
