@@ -68,7 +68,7 @@
       "source_id": "wnba",
       "sport": "Basketball",
       "country": "United States",
-      "catalog_event": "WNBA | Women",
+      "catalog_event": "Women’s National Basketball Association (WNBA) | Women",
       "season_window": "May–October",
       "season_start": "05-01",
       "season_end": "10-31",
@@ -118,7 +118,10 @@
       "source_id": "seriea",
       "sport": "Soccer",
       "country": "Italy",
-      "catalog_event": "Serie A | Men",
+      "catalog_event": "Serie A | Men and Women",
+      "source_ids": [
+        "soccer-italy-serie-a-women"
+      ],
       "season_window": "August–May",
       "season_start": "08-01",
       "season_end": "05-31",
@@ -1087,7 +1090,7 @@
           "events": [
             {
               "key": "basketball-us-wnba",
-              "catalog_event": "WNBA | Women",
+              "catalog_event": "Women’s National Basketball Association (WNBA) | Women",
               "season_window": "May–October",
               "season_start": "05-01",
               "season_end": "10-31",
@@ -3192,9 +3195,9 @@
         "Italy",
         "Italian Football Federation (FIGC)",
         "Lega Serie A",
-        "Serie A | Men",
-        "Coppa Italia | Men",
-        "Supercoppa Italiana | Men",
+        "Serie A | Men and Women",
+        "Coppa Italia | Men and Women",
+        "Supercoppa Italiana | Men and Women",
         "Lega Nazionale Professionisti Serie B (LNPB)",
         "Serie B | Men",
         "Ivory Coast",
@@ -5709,36 +5712,45 @@
           "events": [
             {
               "key": "soccer-italy-serie-a-men",
-              "catalog_event": "Serie A | Men",
+              "catalog_event": "Serie A | Men and Women",
               "season_window": "August–May",
               "season_basis": "Existing connected public schedule source and controlled annual season window",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "08-01",
               "season_end": "05-31",
-              "source_id": "seriea"
+              "source_id": "seriea",
+              "source_ids": [
+                "soccer-italy-serie-a-women"
+              ]
             },
             {
               "key": "soccer-italy-coppa-italia-men",
-              "catalog_event": "Coppa Italia | Men",
+              "catalog_event": "Coppa Italia | Men and Women",
               "season_window": "August 2026–May 2027",
               "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "08-01",
               "season_end": "05-31",
-              "source_id": "uefa-soccer-italy-coppa-italia-men"
+              "source_id": "uefa-soccer-italy-coppa-italia-men",
+              "source_ids": [
+                "soccer-italy-coppa-italia-women"
+              ]
             },
             {
               "key": "soccer-italy-supercoppa-italiana-men",
-              "catalog_event": "Supercoppa Italiana | Men",
+              "catalog_event": "Supercoppa Italiana | Men and Women",
               "season_window": "December 2026",
               "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "12-01",
               "season_end": "12-31",
-              "source_id": "uefa-soccer-italy-supercoppa-italiana-men"
+              "source_id": "uefa-soccer-italy-supercoppa-italiana-men",
+              "source_ids": [
+                "soccer-italy-supercoppa-italiana-women"
+              ]
             }
           ]
         },
