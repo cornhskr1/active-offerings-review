@@ -2505,8 +2505,8 @@ function catalogEntryHealthHtml(sport,labels,sourceIds){
   return `<div class="catalog-entry-health">${rows.map(({state,source,issue})=>{
     const stateLabel=state==='connected'?'CONNECTED':state==='source'?'SOURCE ISSUE':'NEEDS SETUP';
     const checked=fmtDateTime(source.checked_at||latest);
-    const url=source.official_schedule_url||source.endpoint;
-    const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`:'';
+    const official=source.official_schedule_url,url=official||source.endpoint;
+    const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">${official?'Official schedule':'Schedule source'} ↗</a>`:'';
     return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${checked}${state==='connected'?'':` · ${esc(issue)}`}</span></span>${link}</div>`;
   }).join('')}</div>`;
 }
