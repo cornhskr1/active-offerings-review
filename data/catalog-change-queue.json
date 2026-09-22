@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-19T00:59:43.628739+00:00",
-  "input_signature": "8e3197fa22a1ee94790674bf75ece3d87580a5a78af89049cbbc34daa9faa8db",
+  "generated_at": "2026-09-22T00:38:45.728988+00:00",
+  "input_signature": "2f779a97255e548d433b4587bdec454ea68549fbd11aa7b12629beb284044a89",
   "catalog": {
-    "source_label": "Nebraska Authorized Sports Wagering Menu 9.15.26",
-    "menu_version": "9.15.26",
-    "generated_at": "2026-09-21T18:36:30.373854+00:00",
-    "pdf_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%209.15.26.pdf"
+    "source_label": "Nebraska Authorized Sports Wagering Menu 9.21.26",
+    "menu_version": "9.21.26",
+    "generated_at": "2026-09-22T00:38:44.400062+00:00",
+    "pdf_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%209.21.26.pdf"
   },
   "policy": {
     "mode": "FAIL_CLOSED",
@@ -15,11 +15,112 @@
     "mapping_required": true
   },
   "summary": {
-    "open_total": 0,
-    "catalog_additions": 0,
+    "open_total": 2,
+    "catalog_additions": 2,
     "catalog_changes": 0,
     "catalog_removals": 0,
-    "blocked_from_review_today": 0
+    "blocked_from_review_today": 2
   },
-  "open_items": []
+  "open_items": [
+    {
+      "id": "catalog-intake-4c40daabfebf8d31",
+      "item_type": "catalog-addition",
+      "sport": "Soccer",
+      "severity": "AMBER",
+      "detected_at": "2026-09-22T00:38:44.400062+00:00",
+      "publication_gate": "BLOCKED",
+      "publishable": false,
+      "review_today_eligible": false,
+      "guardrail": "The published catalog controls approval; Review Today eligibility may not be inferred until the detected entry is explicitly mapped.",
+      "status": "SETUP REQUIRED",
+      "line_role": "approved-event",
+      "catalog_line": "Frauen Bundesliga | Women",
+      "previous_catalog_line": null,
+      "catalog_approval_state": "PRESENT",
+      "mapped_event": null,
+      "missing_setup": [
+        {
+          "code": "hierarchy",
+          "label": "Confirm sport, region, and governing body"
+        },
+        {
+          "code": "official-source",
+          "label": "Verify the official competition source"
+        },
+        {
+          "code": "season-mapping",
+          "label": "Map the season or event dates"
+        },
+        {
+          "code": "schedule-source",
+          "label": "Configure the official schedule source and source ID"
+        },
+        {
+          "code": "restriction-scope",
+          "label": "Review applicable catalog restrictions"
+        },
+        {
+          "code": "publication-validation",
+          "label": "Validate the approved-only publication gate"
+        }
+      ],
+      "evidence": {
+        "catalog_label": "Nebraska Authorized Sports Wagering Menu 9.21.26",
+        "catalog_version": "9.21.26",
+        "catalog_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%209.21.26.pdf"
+      },
+      "title": "New approved catalog approved event",
+      "recommended_action": "Complete the mapping and source setup before the entry can appear in Review Today."
+    },
+    {
+      "id": "catalog-intake-c6683e419456cb96",
+      "item_type": "catalog-addition",
+      "sport": "Soccer",
+      "severity": "AMBER",
+      "detected_at": "2026-09-22T00:38:44.400062+00:00",
+      "publication_gate": "BLOCKED",
+      "publishable": false,
+      "review_today_eligible": false,
+      "guardrail": "The published catalog controls approval; Review Today eligibility may not be inferred until the detected entry is explicitly mapped.",
+      "status": "SETUP REQUIRED",
+      "line_role": "approved-event",
+      "catalog_line": "DFB-Pokal Frauen | Women",
+      "previous_catalog_line": null,
+      "catalog_approval_state": "PRESENT",
+      "mapped_event": null,
+      "missing_setup": [
+        {
+          "code": "hierarchy",
+          "label": "Confirm sport, region, and governing body"
+        },
+        {
+          "code": "official-source",
+          "label": "Verify the official competition source"
+        },
+        {
+          "code": "season-mapping",
+          "label": "Map the season or event dates"
+        },
+        {
+          "code": "schedule-source",
+          "label": "Configure the official schedule source and source ID"
+        },
+        {
+          "code": "restriction-scope",
+          "label": "Review applicable catalog restrictions"
+        },
+        {
+          "code": "publication-validation",
+          "label": "Validate the approved-only publication gate"
+        }
+      ],
+      "evidence": {
+        "catalog_label": "Nebraska Authorized Sports Wagering Menu 9.21.26",
+        "catalog_version": "9.21.26",
+        "catalog_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%209.21.26.pdf"
+      },
+      "title": "New approved catalog approved event",
+      "recommended_action": "Complete the mapping and source setup before the entry can appear in Review Today."
+    }
+  ]
 }
