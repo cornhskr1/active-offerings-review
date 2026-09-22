@@ -119,12 +119,22 @@
       "sport": "Soccer",
       "country": "Italy",
       "catalog_event": "Serie A | Men and Women",
-      "source_ids": [
-        "soccer-italy-serie-a-women"
+      "coverage_children": [
+        {
+          "key": "soccer-italy-serie-a-men",
+          "label": "Serie A | Men",
+          "source_id": "seriea",
+          "season_window": "August–May",
+          "season_start": "08-01",
+          "season_end": "05-31"
+        },
+        {
+          "key": "soccer-italy-serie-a-women",
+          "label": "Serie A | Women",
+          "source_id": "soccer-italy-serie-a-women",
+          "season_window": "Season mapping pending"
+        }
       ],
-      "season_window": "August–May",
-      "season_start": "08-01",
-      "season_end": "05-31",
       "last_verified": "2026-09-16"
     },
     {
@@ -5713,43 +5723,70 @@
             {
               "key": "soccer-italy-serie-a-men",
               "catalog_event": "Serie A | Men and Women",
-              "season_window": "August–May",
-              "season_basis": "Existing connected public schedule source and controlled annual season window",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "seriea",
-              "source_ids": [
-                "soccer-italy-serie-a-women"
+              "coverage_children": [
+                {
+                  "key": "soccer-italy-serie-a-men",
+                  "label": "Serie A | Men",
+                  "source_id": "seriea",
+                  "season_window": "August–May",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                },
+                {
+                  "key": "soccer-italy-serie-a-women",
+                  "label": "Serie A | Women",
+                  "source_id": "soccer-italy-serie-a-women",
+                  "season_window": "Season mapping pending"
+                }
               ]
             },
             {
               "key": "soccer-italy-coppa-italia-men",
               "catalog_event": "Coppa Italia | Men and Women",
-              "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-italy-coppa-italia-men",
-              "source_ids": [
-                "soccer-italy-coppa-italia-women"
+              "coverage_children": [
+                {
+                  "key": "soccer-italy-coppa-italia-men",
+                  "label": "Coppa Italia | Men",
+                  "source_id": "uefa-soccer-italy-coppa-italia-men",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                },
+                {
+                  "key": "soccer-italy-coppa-italia-women",
+                  "label": "Coppa Italia | Women",
+                  "source_id": "soccer-italy-coppa-italia-women",
+                  "season_window": "Season mapping pending"
+                }
               ]
             },
             {
               "key": "soccer-italy-supercoppa-italiana-men",
               "catalog_event": "Supercoppa Italiana | Men and Women",
-              "season_window": "December 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
-              "season_start": "12-01",
-              "season_end": "12-31",
-              "source_id": "uefa-soccer-italy-supercoppa-italiana-men",
-              "source_ids": [
-                "soccer-italy-supercoppa-italiana-women"
+              "coverage_children": [
+                {
+                  "key": "soccer-italy-supercoppa-italiana-men",
+                  "label": "Supercoppa Italiana | Men",
+                  "source_id": "uefa-soccer-italy-supercoppa-italiana-men",
+                  "season_window": "December 2026",
+                  "season_start": "12-01",
+                  "season_end": "12-31"
+                },
+                {
+                  "key": "soccer-italy-supercoppa-italiana-women",
+                  "label": "Supercoppa Italiana | Women",
+                  "source_id": "soccer-italy-supercoppa-italiana-women",
+                  "season_window": "Season mapping pending"
+                }
               ]
             }
           ]

@@ -66,6 +66,15 @@ def collect_catalog_approvals(value):
 
 collect_catalog_approvals(SEASON_MAP)
 
+def mapped_source_ids(entry):
+    values=[]
+    if entry.get("source_id"):
+        values.append(entry["source_id"])
+    values.extend(entry.get("source_ids") or [])
+    for child in entry.get("coverage_children") or []:
+        values.extend(mapped_source_ids(child))
+    return values
+
 for mapping in SEASON_MAP.get("source_mappings",[]):
     if mapping.get("source_id") and mapping.get("catalog_event"):
         SOURCE_CATALOG_LABELS.setdefault(str(mapping["source_id"]),set()).add(normalize_identity(mapping["catalog_event"]))
@@ -73,11 +82,7 @@ for sport in SEASON_MAP.get("sports",[]):
     for group in sport.get("groups",[]):
         for entry in group.get("events",[]):
             label=normalize_identity(entry.get("catalog_event"))
-            source_ids=[]
-            if entry.get("source_id"):
-                source_ids.append(entry["source_id"])
-            source_ids.extend(entry.get("source_ids") or [])
-            for source_id in source_ids:
+            for source_id in mapped_source_ids(entry):
                 if label:
                     SOURCE_CATALOG_LABELS.setdefault(str(source_id),set()).add(label)
 

@@ -40,22 +40,38 @@ def main() -> None:
     catalog = json.loads((DATA / "catalog-live.json").read_text(encoding="utf-8"))
 
     competitions: dict[tuple[str, str], dict] = {}
+
+    def add_competition(sport: str, event: dict) -> None:
+        league = clean(event.get("label") or event.get("catalog_event"))
+        if not sport or not league:
+            return
+        ids = ([clean(event.get("source_id"))] if event.get("source_id") else [])
+        ids.extend(clean(value) for value in event.get("source_ids") or [])
+        competitions[(sport, league)] = {
+            "sport": sport,
+            "league": league,
+            "source_ids": sorted(set(filter(None, ids))),
+            "participants": [],
+            "events": [],
+        }
+
     for sport_block in season_map.get("sports", []):
         sport = clean(sport_block.get("sport"))
         for group in sport_block.get("groups", []):
             for event in group.get("events", []):
-                league = clean(event.get("catalog_event"))
-                if not sport or not league:
-                    continue
-                source_id = clean(event.get("source_id"))
-                competitions[(sport, league)] = {
-                    "sport": sport,
-                    "league": league,
-                    "source_ids": [source_id] if source_id else [],
-                    "participants": [],
-                    "events": [],
-                }
+                children = event.get("coverage_children") or []
+                if children:
+                    for child in children:
+                        add_competition(sport, child)
+                else:
+                    add_competition(sport, event)
     for mapping in season_map.get("source_mappings", []):
+        children = mapping.get("coverage_children") or []
+        if children:
+            sport = clean(mapping.get("sport"))
+            for child in children:
+                add_competition(sport, child)
+            continue
         sport, league = clean(mapping.get("sport")), clean(mapping.get("catalog_event"))
         if not sport or not league:
             continue
@@ -63,6 +79,12 @@ def main() -> None:
         source_id = clean(mapping.get("source_id"))
         if source_id and source_id not in entry["source_ids"]:
             entry["source_ids"].append(source_id)
+    for mapping in season_map.get("catalog_event_mappings", []):
+        sport = clean(mapping.get("sport"))
+        children = mapping.get("coverage_children") or []
+        if children:
+            for child in children:
+                add_competition(sport, child)
 
     observed_participants: dict[tuple[str, str], set[str]] = defaultdict(set)
     observed_events: dict[tuple[str, str], dict[str, dict]] = defaultdict(dict)

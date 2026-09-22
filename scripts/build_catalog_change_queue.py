@@ -123,6 +123,8 @@ def source_ids(event: dict[str, Any]) -> list[str]:
     values = list(event.get("source_ids") or [])
     if event.get("source_id"):
         values.append(event["source_id"])
+    for child in event.get("coverage_children") or []:
+        values.extend(source_ids(child))
     return [str(value) for value in values if value]
 
 
