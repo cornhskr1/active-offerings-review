@@ -686,6 +686,7 @@
       "league": "WNBA",
       "region": "United States",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard",
+      "official_schedule_url": "https://www.wnba.com/schedule",
       "catalog_terms": [
         "Women's National Basketball Association",
         "WNBA"
@@ -1052,6 +1053,7 @@
       "league": "Bundesliga",
       "region": "Germany",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard",
+      "official_schedule_url": "https://www.bundesliga.com/en/bundesliga/matchday",
       "catalog_terms": [
         "Bundesliga"
       ]
@@ -1074,6 +1076,48 @@
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard",
       "catalog_terms": [
         "Serie A"
+      ]
+    },
+    {
+      "id": "soccer-italy-serie-a-women",
+      "source_type": "coverage-gap",
+      "sport": "Soccer",
+      "league": "Serie A | Women",
+      "region": "Italy",
+      "official_schedule_url": "https://www.figc.it/it/femminile/competizioni/serie-a-women/",
+      "coverage_status": "missing",
+      "source_note": "The women’s competition is approved in the combined catalog line; a dependable unattended fixture adapter is still required.",
+      "catalog_terms": [
+        "Italian Football Federation (FIGC)",
+        "Serie A | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-italy-coppa-italia-women",
+      "source_type": "coverage-gap",
+      "sport": "Soccer",
+      "league": "Coppa Italia | Women",
+      "region": "Italy",
+      "official_schedule_url": "https://www.figc.it/it/femminile/competizioni/",
+      "coverage_status": "missing",
+      "source_note": "The women’s competition is approved in the combined catalog line; a dependable unattended fixture adapter is still required.",
+      "catalog_terms": [
+        "Italian Football Federation (FIGC)",
+        "Coppa Italia | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-italy-supercoppa-italiana-women",
+      "source_type": "coverage-gap",
+      "sport": "Soccer",
+      "league": "Supercoppa Italiana | Women",
+      "region": "Italy",
+      "official_schedule_url": "https://www.figc.it/it/femminile/competizioni/",
+      "coverage_status": "missing",
+      "source_note": "The women’s competition is approved in the combined catalog line; a dependable unattended fixture adapter is still required.",
+      "catalog_terms": [
+        "Italian Football Federation (FIGC)",
+        "Supercoppa Italiana | Men and Women"
       ]
     },
     {

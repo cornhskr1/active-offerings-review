@@ -2530,10 +2530,12 @@ function catalogHealthSources(sport,labels,sourceIds){
   const terms=(labels||[]).map(healthText).filter(Boolean);
   return catalogCoverageHealth().filter(row=>{
     const source=row.source;
-    if(ids.has(source.id))return true;
+    // Explicit source identity controls mapped coverage. This prevents short
+    // names such as NBA and Bundesliga from matching unrelated competitions.
+    if(ids.size)return ids.has(source.id);
     if(sport&&healthText(source.sport)!==healthText(sport))return false;
     const sourceTerms=[...(source.catalog_terms||[]),source.league].map(healthText).filter(Boolean);
-    return terms.some(label=>sourceTerms.some(term=>term===label||term.includes(label)||label.includes(term)));
+    return terms.some(label=>sourceTerms.some(term=>term===label));
   });
 }
 function catalogEntryMatchesHealth(sport,labels,sourceIds){
@@ -2547,8 +2549,8 @@ function catalogEntryHealthHtml(sport,labels,sourceIds){
   return `<div class="catalog-entry-health">${rows.map(({state,source,issue})=>{
     const stateLabel=state==='connected'?'CONNECTED':state==='source'?'SOURCE ISSUE':'NEEDS SETUP';
     const checked=fmtDateTime(source.checked_at||latest);
-    const official=source.official_schedule_url,url=official||source.endpoint;
-    const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">${official?'Official schedule':'Schedule source'} ↗</a>`:'';
+    const url=source.official_schedule_url||source.public_url;
+    const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`:'';
     return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${checked}${state==='connected'?'':` · ${esc(issue)}`}</span></span>${link}</div>`;
   }).join('')}</div>`;
 }

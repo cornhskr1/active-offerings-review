@@ -19,6 +19,15 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertNotIn('data-panel="coverage"', HTML)
         self.assertNotIn('<section class="panel" id="coverage">', HTML)
 
+    def test_catalog_coverage_uses_exact_source_identity(self):
+        self.assertIn("if(ids.size)return ids.has(source.id);", HTML)
+        self.assertIn("sourceTerms.some(term=>term===label)", HTML)
+        self.assertNotIn("term.includes(label)||label.includes(term)", HTML)
+
+    def test_staff_schedule_links_never_open_machine_endpoints(self):
+        self.assertIn("source.official_schedule_url||source.public_url", HTML)
+        self.assertNotIn("official||source.endpoint", HTML)
+
     def test_ncaa_detail_tabs_are_not_visible(self):
         self.assertNotIn('data-panel="ncaa"', HTML)
         self.assertNotIn('data-panel="basketball"', HTML)
