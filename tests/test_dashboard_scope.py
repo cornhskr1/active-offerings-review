@@ -28,6 +28,7 @@ class DashboardScopeTests(unittest.TestCase):
     def test_nonwagered_ncaa_sports_are_filtered_before_rendering(self):
         self.assertIn("function isNonWageredNcaaSport(item)", HTML)
         self.assertIn("sport==='golf'", HTML)
+        self.assertIn("sport==='soccer'", HTML)
         self.assertIn("const events=visibleCollegeEvents();", HTML)
         self.assertIn("!isNonWageredNcaaSport(e)", HTML)
         self.assertIn("!isNonWageredNcaaSport(c)", HTML)
@@ -37,7 +38,12 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn("\\bncaa\\b|\\bcollege\\b|\\bcollegiate\\b", HTML)
 
     def test_collegiate_filter_copy_names_all_hidden_sports(self):
-        self.assertIn("Collegiate golf, tennis, and swimming/diving remain in the source data", HTML)
+        self.assertIn("Collegiate golf, soccer, tennis, and swimming/diving remain in the source data", HTML)
+
+    def test_nebraska_collegiate_events_are_grouped_by_date(self):
+        self.assertIn('class="college-day"', HTML)
+        self.assertIn("Object.entries(byDate)", HTML)
+        self.assertIn("timeValue(a.time)-timeValue(b.time)", HTML)
 
 
 if __name__ == "__main__":
