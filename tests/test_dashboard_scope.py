@@ -27,6 +27,7 @@ class DashboardScopeTests(unittest.TestCase):
 
     def test_nonwagered_ncaa_sports_are_filtered_before_rendering(self):
         self.assertIn("function isNonWageredNcaaSport(item)", HTML)
+        self.assertIn("sport==='golf'", HTML)
         self.assertIn("const events=visibleCollegeEvents();", HTML)
         self.assertIn("!isNonWageredNcaaSport(e)", HTML)
         self.assertIn("!isNonWageredNcaaSport(c)", HTML)
@@ -34,6 +35,9 @@ class DashboardScopeTests(unittest.TestCase):
     def test_professional_tennis_is_not_generically_suppressed(self):
         self.assertIn("Boolean(item?.school)", HTML)
         self.assertIn("\\bncaa\\b|\\bcollege\\b|\\bcollegiate\\b", HTML)
+
+    def test_collegiate_filter_copy_names_all_hidden_sports(self):
+        self.assertIn("Collegiate golf, tennis, and swimming/diving remain in the source data", HTML)
 
 
 if __name__ == "__main__":
