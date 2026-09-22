@@ -45,6 +45,20 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn("Object.entries(byDate)", HTML)
         self.assertIn("timeValue(a.time)-timeValue(b.time)", HTML)
 
+    def test_restriction_watch_is_grouped_by_sport(self):
+        self.assertIn('id="restrictionSummary"', HTML)
+        self.assertIn('id="restrictionGroups"', HTML)
+        self.assertIn('class="restriction-card ${c}"', HTML)
+        self.assertIn("groups[x.sport||x.catalog_section||'Other']", HTML)
+        self.assertNotIn('id="restrictionRows"', HTML)
+
+    def test_known_u18_is_grouped_by_sport_and_league(self):
+        self.assertIn('id="u18Groups"', HTML)
+        self.assertIn('class="registry-league"', HTML)
+        self.assertIn('class="registry-athlete"', HTML)
+        self.assertIn("league=x.league||'League not specified'", HTML)
+        self.assertNotIn('id="u18Rows"', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
