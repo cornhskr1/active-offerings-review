@@ -49,6 +49,12 @@ def collect(value):
             collect(item)
 collect(season_map)
 
+def mapped_source_ids(entry):
+    values=([entry["source_id"]] if entry.get("source_id") else [])+(entry.get("source_ids") or [])
+    for child in entry.get("coverage_children") or []:
+        values.extend(mapped_source_ids(child))
+    return values
+
 def source_is_approved(source):
     if str(source.get("id") or "") in approved_ids:
         return True
@@ -67,8 +73,7 @@ for sport in season_map.get("sports",[]):
     for group in sport.get("groups",[]):
         for entry in group.get("events",[]):
             label=normalize_identity(entry.get("catalog_event"))
-            ids=([entry["source_id"]] if entry.get("source_id") else [])+(entry.get("source_ids") or [])
-            for source_id in ids:
+            for source_id in mapped_source_ids(entry):
                 if label:
                     source_labels.setdefault(str(source_id),set()).add(label)
 

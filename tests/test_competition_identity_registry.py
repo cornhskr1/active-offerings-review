@@ -12,13 +12,15 @@ def test_registry_covers_catalog_mappings_and_observed_participants():
     registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
     season_map = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
 
-    expected = {
-        (sport["sport"], event["catalog_event"])
-        for sport in season_map["sports"]
-        for group in sport.get("groups", [])
-        for event in group.get("events", [])
-        if event.get("catalog_event")
-    }
+    expected = set()
+    for sport in season_map["sports"]:
+        for group in sport.get("groups", []):
+            for event in group.get("events", []):
+                children = event.get("coverage_children") or []
+                if children:
+                    expected.update((sport["sport"], child["label"]) for child in children)
+                elif event.get("catalog_event"):
+                    expected.add((sport["sport"], event["catalog_event"]))
     actual = {(item["sport"], item["league"]) for item in registry["competitions"]}
     assert expected <= actual
 
@@ -26,3 +28,7 @@ def test_registry_covers_catalog_mappings_and_observed_participants():
     assert "Buffalo Bills" in nfl["participants"]
     assert "Las Vegas Raiders" in nfl["participants"]
     assert registry["coverage_gaps"]
+
+    assert ("Soccer", "Serie A | Men") in actual
+    assert ("Soccer", "Serie A | Women") in actual
+    assert ("Soccer", "Serie A | Men and Women") not in actual

@@ -28,6 +28,11 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn("source.official_schedule_url||source.public_url", HTML)
         self.assertNotIn("official||source.endpoint", HTML)
 
+    def test_combined_catalog_approvals_render_separate_coverage_children(self):
+        self.assertIn("function renderCoverageChildren(event,sport)", HTML)
+        self.assertIn("Catalog approval — coverage tracked separately below", HTML)
+        self.assertIn("event?.coverage_children", HTML)
+
     def test_ncaa_detail_tabs_are_not_visible(self):
         self.assertNotIn('data-panel="ncaa"', HTML)
         self.assertNotIn('data-panel="basketball"', HTML)

@@ -286,6 +286,11 @@ th{font-size:11px!important}
 .catalog-event-list{display:grid;gap:8px;padding:10px 12px 12px}
 .catalog-event-card{border:1px solid #dfe4e8;border-radius:9px;background:#fff;overflow:hidden}
 .catalog-event-main{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px}
+.catalog-approval-note{margin-top:3px;color:#69727b;font-size:10px;font-weight:700}
+.catalog-coverage-children{display:grid;gap:7px;padding:0 10px 10px;background:#f8fafb;border-top:1px solid #dfe4e8}
+.catalog-coverage-child{margin-top:8px;border:1px solid #d9e1e6;border-radius:8px;background:#fff;overflow:hidden}
+.catalog-coverage-child-main{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 10px}
+.catalog-coverage-child-name{font-size:12px;font-weight:900}
 .catalog-event-name{font-size:13px;font-weight:800}
 .catalog-official-link{color:inherit;text-decoration:underline;text-decoration-color:#8aa8bd;text-decoration-thickness:1px;text-underline-offset:3px}
 .catalog-official-link:hover{color:#145f94;text-decoration-color:#145f94}
@@ -2102,7 +2107,11 @@ function seasonProgressHtml(event,status){
   return `<div class="season-progress" title="${pct}% through the mapped season window"><div class="season-progress-track"><div class="season-progress-fill" style="width:${pct}%"></div></div><span class="season-progress-label">${pct}%</span></div>`;
 }
 function eventSourceIds(event){
-  return [...(event?.source_ids||[]),...(event?.source_id?[event.source_id]:[])];
+  return [
+    ...(event?.source_ids||[]),
+    ...(event?.source_id?[event.source_id]:[]),
+    ...(event?.coverage_children||[]).flatMap(eventSourceIds)
+  ];
 }
 function sourceCatalogMapping(sourceId){
   return (DATA.seasonMap?.source_mappings||[]).find(x=>x.source_id===sourceId)||null;
@@ -2114,6 +2123,11 @@ function catalogEventSeasonMapping(line,sport,country){
   )||null;
 }
 function mappedSeasonStatus(event){
+  if((event?.coverage_children||[]).length){
+    const statuses=event.coverage_children.map(mappedSeasonStatus).filter(Boolean);
+    if(!statuses.length)return null;
+    return statuses.every(status=>status===statuses[0])?statuses[0]:'mixed';
+  }
   const planned=exactSeasonStatus(event)||annualSeasonStatus(event);
   if(planned)return planned;
   if(event?.season_status)return event.season_status;
@@ -2162,6 +2176,7 @@ function mappedCatalogEvent(line,sport){
 function mappedSeasonBadge(status){
   if(status==='in')return'<span class="season-pill in-season">IN SEASON</span>';
   if(status==='out')return'<span class="season-pill out-season">OUT OF SEASON</span>';
+  if(status==='mixed')return'<span class="season-pill unmapped">MIXED SEASONS</span>';
   return'<span class="season-pill unmapped">SEASON NOT MAPPED</span>';
 }
 function catalogEntryBadge(event,status){
@@ -2231,6 +2246,14 @@ function catalogMappingSummary(mapping){
   const standard=configured.match(/^\d+ approved (.+?) · \d+ season mapped$/);
   return standard?`${total} approved ${standard[1]} · ${mapped} season mapped`:(configured||`${total} approved events · ${mapped} season mapped`);
 }
+function renderCoverageChildren(event,sport){
+  const children=event?.coverage_children||[];
+  if(!children.length)return'';
+  return `<div class="catalog-coverage-children">${children.map(child=>{
+    const status=mappedSeasonStatus(child);
+    return `<section class="catalog-coverage-child"><div class="catalog-coverage-child-main"><div><div class="catalog-coverage-child-name">${esc(child.label||child.catalog_event||child.key)}</div><div class="catalog-season-detail">${esc(child.season_window||child.season_basis||'Season mapping pending')}</div>${seasonProgressHtml(child,status)}</div>${mappedSeasonBadge(status)}</div>${catalogEntryHealthHtml(sport,[child.catalog_event,child.label,child.key],eventSourceIds(child))}</section>`;
+  }).join('')}</div>`;
+}
 function renderMappedCatalogEvents(events,sport){
   const categories=[];
   events.forEach(event=>{
@@ -2241,7 +2264,8 @@ function renderMappedCatalogEvents(events,sport){
   });
   return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
     const status=mappedSeasonStatus(event);
-    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${catalogEntryHealthHtml(sport,[event.catalog_event,event.key],eventSourceIds(event))}${tourCalendarHtml(event)}</article>`;
+    const hasChildren=(event.coverage_children||[]).length>0;
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div>${hasChildren?'<div class="catalog-approval-note">Catalog approval — coverage tracked separately below</div>':`<div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}`}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${hasChildren?renderCoverageChildren(event,sport):catalogEntryHealthHtml(sport,[event.catalog_event,event.key],eventSourceIds(event))}${tourCalendarHtml(event)}</article>`;
   }).join('')}</div>`).join('');
 }
 function olympicCompliancePill(status){
