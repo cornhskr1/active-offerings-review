@@ -114,6 +114,18 @@ th{font-size:11px!important}
   margin-top:11px!important;
   background:#fff!important;
 }
+.catalog-health{border:1px solid #ccd7df;border-radius:11px;background:#f7fafc;margin:10px 0 12px;padding:10px 12px}
+.catalog-health-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.catalog-health-title{font-size:14px;font-weight:900}.catalog-health-time{font-size:11px;color:#5d6872;margin-top:2px}
+.catalog-health-actions{display:flex;gap:6px;flex-wrap:wrap}
+.health-filter{appearance:none;border:1px solid #aebbc5;background:#fff;border-radius:999px;padding:7px 10px;font:800 11px/1.1 inherit;color:#25313a;cursor:pointer}
+.health-filter:hover,.health-filter.active{border-color:#1769aa;background:#eaf4fb;color:#0b4f83}
+.health-filter.attention{border-color:#c39023;background:#fff8e2;color:#765000}.health-filter.issue{border-color:#c46a53;background:#fff1ed;color:#8c2f1e}
+.catalog-health-details{margin-top:9px;border-top:1px solid #dce4e9;padding-top:8px}.catalog-health-details>summary{cursor:pointer;font-size:12px;font-weight:900;color:#34414a}
+.catalog-health-list{display:grid;gap:7px;margin-top:8px;max-height:390px;overflow:auto}
+.catalog-health-item{display:grid;grid-template-columns:minmax(170px,1fr) minmax(220px,2fr) auto;gap:10px;align-items:center;background:#fff;border:1px solid #d9e0e5;border-left:4px solid #c39023;border-radius:8px;padding:8px 9px;font-size:11px;line-height:1.4}
+.catalog-health-item.source{border-left-color:#c46a53}.catalog-health-item b{display:block;font-size:12px}.catalog-health-path{color:#5d6872}.catalog-health-item button{white-space:nowrap;border:1px solid #9fb7c8;background:#eef6fb;color:#0b4f83;border-radius:7px;padding:6px 8px;font-weight:800;cursor:pointer}
+@media(max-width:760px){.catalog-health-item{grid-template-columns:1fr}.catalog-health-item button{justify-self:start}}
 .catalog-sport>summary{
   padding:13px 14px!important;
   font-size:15px!important;
@@ -486,9 +498,8 @@ th{font-size:11px!important}
 <button data-panel="college">Nebraska Collegiate</button>
 <button data-panel="restrictions">Restriction Watch</button>
 <button data-panel="u18">Known U18</button>
-<button data-panel="coverage">Coverage Control</button>
 <button data-panel="intake">Catalog Changes<span class="nav-count" id="intakeNavCount"></span></button>
-<button data-panel="catalog">Approved Catalog Events</button>
+<button data-panel="catalog">Approved Catalog &amp; Coverage</button>
 <a class="portal-link" href="https://wagering-compliance-portal.pages.dev/" target="_blank" rel="noopener noreferrer" aria-label="Open the protected Wagering Compliance Portal in a new tab">Compliance Portal ↗</a>
 </nav>
 
@@ -517,8 +528,6 @@ th{font-size:11px!important}
 
 <section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Combined verified U18 intelligence, including the dedicated professional-tennis registry and verified tennis age-cache discoveries. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, league…"></div><div class="table-wrap"><table><thead><tr><th>Sport</th><th>League</th><th>Team / Lane</th><th>Athlete</th><th>Age</th><th>Status</th></tr></thead><tbody id="u18Rows"></tbody></table></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
-<section class="panel" id="coverage"><div class="card"><div class="section-title">Coverage Control</div><p class="small">Source health is not the same as permissibility. A source issue is AMBER because staff may need manual review; it is never RED by itself.</p><div class="coverage-grid" id="coverageGrid"></div></div></section>
-
 <section class="panel" id="intake">
   <div class="card">
     <div class="section-title">Published Catalog Change Queue</div>
@@ -534,7 +543,7 @@ th{font-size:11px!important}
   </div>
 </section>
 
-<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog Events</div><div id="catalogSource" class="source-note"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Underlined names open the verified official source in a new tab. Catalog order and wording are preserved as published. Season mapping and source availability are informational and maintained separately from the controlling catalog.</div><div id="catalogSections"></div></div></section>
+<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog &amp; Coverage</div><div id="catalogSource" class="source-note"></div><div id="catalogHealth" class="catalog-health"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Underlined names open the verified official source in a new tab. The published catalog remains the approval authority; schedule coverage and source health never create approval.</div><div id="catalogSections"></div></div></section>
 </div>
 <script>
 const DATA={};
@@ -660,9 +669,8 @@ function renderAll(){
   safeRender('Nebraska Collegiate',renderCollege);
   safeRender('Restriction Watch',renderRestrictions);
   safeRender('Known U18',renderU18);
-  safeRender('Coverage Control',renderCoverage);
   safeRender('Catalog Intake',renderIntake);
-  safeRender('Approved Catalog',renderCatalog);
+  safeRender('Approved Catalog & Coverage',renderCatalog);
 }
 function normCollegeSport(v){
   return String(v||'').toLowerCase()
@@ -1874,8 +1882,6 @@ function renderBasketball(){
   });
 }
 
-function renderCoverage(){const src=DATA.global?.sources||[];const cards=src.map(s=>{const gap=s.coverage_status==='missing',partial=s.coverage_status==='partial',color=(gap||partial||!s.ok)?'amber':'green',label=gap?'COVERAGE GAP':partial?'PARTIAL COVERAGE':s.ok?'SOURCE OK':'SOURCE REVIEW',official=s.official_schedule_url?` · <a href="${esc(s.official_schedule_url)}" target="_blank" rel="noopener">official calendar</a>`:'';return `<div class="coverage-card"><b>${esc(s.sport)} · ${esc(regionLeagueLabel(s.region,s.league))}</b>${pill(color,label)}<div class="small">${s.events||0} events · checked ${fmtDateTime(s.checked_at)}${official}</div></div>`});uncoveredMappedEvents('Basketball').forEach(gap=>cards.push(`<div class="coverage-card"><b>${esc(gap.sport)} · ${esc(regionLeagueLabel(gap.region,gap.league))}</b>${pill('amber','COVERAGE GAP')}<div class="small">Approved and in season · schedule source needed</div></div>`));const extra=[['Nebraska Collegiate',DATA.college?.generated_at,!!DATA.college],['Nebraska Collegiate Futures',DATA.collegeFutures?.generated_at,!!DATA.collegeFutures],['NCAA Football',DATA.ncaa?.generated_at,!!DATA.ncaa],['NCAA Basketball',DATA.basketball?.generated_at,!!DATA.basketball],['NCAA Basketball Intelligence',DATA.basketballIntel?.generated_at,!!DATA.basketballIntel],['NCAA Basketball D-I Map',DATA.basketballDI?.generated_at,!!DATA.basketballDI],['NCAA Basketball Rosters',DATA.basketballRosters?.generated_at,!!DATA.basketballRosters],['Tennis V2 Review Feed',DATA.tennisReview?.generated_at,!!DATA.tennisReview],['Legacy Tennis Data · rollback',DATA.tennis?.generated_at,!!DATA.tennis],['LA28 Olympic Program',DATA.olympicsSummer?.generated_at,!!DATA.olympicsSummer],['Alpes 2030 Olympic Program',DATA.olympicsWinter?.generated_at,!!DATA.olympicsWinter],['NRGC Catalog',DATA.catalog?.generated_at,!!DATA.catalog]];extra.forEach(x=>cards.push(`<div class="coverage-card"><b>${esc(x[0])}</b>${pill(x[2]?'green':'amber',x[2]?'SOURCE OK':'SOURCE REVIEW')}<div class="small">generated ${fmtDateTime(x[1])}</div></div>`));const tennisV2=DATA.tennisReview;if(tennisV2){const s=tennisV2.summary||{};cards.push(`<div class="coverage-card"><b>Tennis V2 Screening</b>${pill((s.blocked_unapproved_or_unmapped||0)?'amber':'green',(s.blocked_unapproved_or_unmapped||0)?'MAPPING REVIEW':'APPROVAL GATE PASSED')}<div class="small">${s.approved_tournaments||0} approved tournaments · ${s.active_fields_screened||0} active fields · ${s.field_pending||0} field pending · ${s.actionable_alerts||0} actionable</div></div>`)}const official=DATA.catalogOfficialSources?.coverage;if(official){const pending=official.events_pending||0;cards.push(`<div class="coverage-card"><b>Catalog Official Links</b>${pill(pending?'amber':'green',pending?`${pending} LINK PENDING`:'SOURCE LINKS COMPLETE')}<div class="small">${official.events_linked||0} event links · ${official.governing_bodies_linked||0} governing-body links · generated ${fmtDateTime(DATA.catalogOfficialSources.generated_at)}</div></div>`)}document.getElementById('coverageGrid').innerHTML=cards.join('')}
-
 function intakeTypeLabel(type){
   if(type==='catalog-addition')return'NEW CATALOG ENTRY';
   if(type==='catalog-change')return'CATALOG ENTRY CHANGED';
@@ -2419,6 +2425,7 @@ function renderCatalog(){
   const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();
   const seasonFilter=document.getElementById('catalogSeason').value||'all',st=DATA.catalogStatus||{};
   document.getElementById('catalogSource').innerHTML=`<b>Current catalog source:</b> ${esc(st.source_label||cat.source_label||'NRGC website')} · ${esc(st.page_count||cat.page_count||'')} pages · synced ${fmtDateTime(st.generated_at||cat.generated_at)}`;
+  renderCatalogHealth();
   const mappedBySport=new Map((DATA.seasonMap?.sports||[]).map(x=>[x.sport,x]));
   let ncaaRendered=false;
   const rendered=(cat.sections||[]).map(section=>{
@@ -2446,12 +2453,48 @@ function renderCatalog(){
   }).filter(Boolean);
   document.getElementById('catalogSections').innerHTML=rendered.join('')||'<div class="empty">No catalog entries match this season filter.</div>';
 }
+
+let CATALOG_HEALTH_FILTER='setup';
+function catalogCoverageHealth(){
+  const sources=(DATA.global?.sources||[]).filter(source=>source.approved_catalog!==false);
+  const manualTypes=new Set(['tennis-intelligence']);
+  const setupStates=new Set(['missing','partial','pending','pending-publication']);
+  return sources.map(source=>{
+    const manual=manualTypes.has(source.source_type);
+    const state=!source.ok&&!manual?'source':setupStates.has(source.coverage_status)?'setup':'connected';
+    const term=(source.catalog_terms||[]).slice(-1)[0]||source.league||source.sport||'';
+    const issue=state==='source'
+      ?(source.errors||[]).join(' ')||'The published schedule source did not complete successfully.'
+      :state==='setup'
+        ?source.source_note||source.note||`${source.coverage_status==='partial'?'Schedule coverage is partial.':'A dependable automated schedule source is not connected.'}`
+        :manual&&!source.ok?'Manual-only schedule evidence is retained; its age does not create an automated alert.':'Schedule source is connected.';
+    return{state,source,term,issue};
+  });
+}
+function renderCatalogHealth(){
+  const host=document.getElementById('catalogHealth');if(!host)return;
+  const rows=catalogCoverageHealth(),counts={connected:0,setup:0,source:0};
+  rows.forEach(row=>counts[row.state]++);
+  const filtered=rows.filter(row=>row.state===CATALOG_HEALTH_FILTER);
+  const latest=DATA.global?.generated_at||rows.map(row=>row.source.checked_at).filter(Boolean).sort().at(-1);
+  const buttons=[['connected','Connected',counts.connected,''],['setup','Needs setup',counts.setup,'attention'],['source','Source issue',counts.source,'issue']]
+    .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}: ${count}</button>`).join('');
+  const items=filtered.map(({state,source,term,issue})=>`<div class="catalog-health-item ${state}"><div><b>${esc(source.sport||'Unclassified')} · ${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${fmtDateTime(source.checked_at||latest)}</span></div><div>${esc(issue)}<div class="catalog-health-path"><b>Correction path:</b> data/global-schedule-sources.json${state==='source'?' · scripts/refresh_global_schedule.py':''}${source.official_schedule_url?` · <a href="${esc(source.official_schedule_url)}" target="_blank" rel="noopener">official schedule</a>`:''}</div></div>${term?`<button type="button" data-health-catalog-term="${esc(term)}">Show catalog entry</button>`:''}</div>`).join('');
+  const label=CATALOG_HEALTH_FILTER==='connected'?'connected schedule sources':CATALOG_HEALTH_FILTER==='source'?'schedule source issues':'schedule setup items';
+  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div><details class="catalog-health-details" ${(CATALOG_HEALTH_FILTER!=='connected'||counts.source)?'open':''}><summary>${filtered.length} ${label} — open to see the exact entry and correction path</summary><div class="catalog-health-list">${items||'<div class="empty">No items in this category.</div>'}</div></details>`;
+}
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
 document.getElementById('refreshBtn').addEventListener('click',loadAll);
 ['collegeSchool','collegeStatus'].forEach(id=>document.getElementById(id).addEventListener('change',renderCollege));
 document.getElementById('restrictionSearch').addEventListener('input',renderRestrictions);document.getElementById('restrictionColor').addEventListener('change',renderRestrictions);document.getElementById('u18Search').addEventListener('input',renderU18);document.getElementById('catalogSearch').addEventListener('input',renderCatalog);document.getElementById('catalogSeason').addEventListener('change',renderCatalog);
 document.getElementById('intakeSearch').addEventListener('input',renderIntake);document.getElementById('intakeType').addEventListener('change',renderIntake);document.getElementById('openIntakeBtn').addEventListener('click',()=>document.querySelector('button[data-panel="intake"]')?.click());
+document.getElementById('catalogHealth').addEventListener('click',event=>{
+  const filter=event.target.closest('[data-health-filter]');
+  if(filter){CATALOG_HEALTH_FILTER=filter.dataset.healthFilter;renderCatalogHealth();return}
+  const entry=event.target.closest('[data-health-catalog-term]');
+  if(entry){document.getElementById('catalogSearch').value=entry.dataset.healthCatalogTerm;renderCatalog();document.getElementById('catalogSections').scrollIntoView({behavior:'smooth',block:'start'})}
+});
 
 loadAll();
 </script>

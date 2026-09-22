@@ -7,6 +7,15 @@ HTML = (ROOT / "index.html").read_text(encoding="utf-8")
 
 
 class DashboardScopeTests(unittest.TestCase):
+    def test_catalog_and_coverage_are_one_staff_view(self):
+        self.assertIn("Approved Catalog &amp; Coverage", HTML)
+        self.assertIn('id="catalogHealth"', HTML)
+        self.assertIn("Data Health Summary", HTML)
+        self.assertIn("Correction path:", HTML)
+        self.assertIn("data-health-catalog-term", HTML)
+        self.assertNotIn('data-panel="coverage"', HTML)
+        self.assertNotIn('<section class="panel" id="coverage">', HTML)
+
     def test_ncaa_detail_tabs_are_not_visible(self):
         self.assertNotIn('data-panel="ncaa"', HTML)
         self.assertNotIn('data-panel="basketball"', HTML)
