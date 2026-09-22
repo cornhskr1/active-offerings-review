@@ -120,12 +120,16 @@ th{font-size:11px!important}
 .catalog-health-actions{display:flex;gap:6px;flex-wrap:wrap}
 .health-filter{appearance:none;border:1px solid #aebbc5;background:#fff;border-radius:999px;padding:7px 10px;font:800 11px/1.1 inherit;color:#25313a;cursor:pointer}
 .health-filter:hover,.health-filter.active{border-color:#1769aa;background:#eaf4fb;color:#0b4f83}
-.health-filter.attention{border-color:#c39023;background:#fff8e2;color:#765000}.health-filter.issue{border-color:#c46a53;background:#fff1ed;color:#8c2f1e}
-.catalog-health-details{margin-top:9px;border-top:1px solid #dce4e9;padding-top:8px}.catalog-health-details>summary{cursor:pointer;font-size:12px;font-weight:900;color:#34414a}
-.catalog-health-list{display:grid;gap:7px;margin-top:8px;max-height:390px;overflow:auto}
-.catalog-health-item{display:grid;grid-template-columns:minmax(170px,1fr) minmax(220px,2fr) auto;gap:10px;align-items:center;background:#fff;border:1px solid #d9e0e5;border-left:4px solid #c39023;border-radius:8px;padding:8px 9px;font-size:11px;line-height:1.4}
-.catalog-health-item.source{border-left-color:#c46a53}.catalog-health-item b{display:block;font-size:12px}.catalog-health-path{color:#5d6872}.catalog-health-item button{white-space:nowrap;border:1px solid #9fb7c8;background:#eef6fb;color:#0b4f83;border-radius:7px;padding:6px 8px;font-weight:800;cursor:pointer}
-@media(max-width:760px){.catalog-health-item{grid-template-columns:1fr}.catalog-health-item button{justify-self:start}}
+.health-filter.attention{border-color:#8997a2;background:#f1f4f6;color:#35424c}.health-filter.issue{border-color:#59636d;background:#e8ecef;color:#20272c}
+.catalog-health-note{margin-top:8px;border-top:1px solid #dce4e9;padding-top:8px;color:#4f5c66;font-size:11px}
+.catalog-entry-health{display:grid;gap:5px;border-top:1px solid #e1e7eb;background:#f8fafb;padding:8px 10px}
+.catalog-entry-health-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-size:10px;line-height:1.35;color:#4e5962}
+.catalog-entry-health-state{border:1px solid #9fc4df;border-radius:999px;background:#eaf4fb;color:#174f78;padding:3px 6px;font-weight:900;white-space:nowrap}
+.catalog-entry-health-row.setup .catalog-entry-health-state{border-color:#b8c1c8;background:#f1f3f4;color:#4b565e}
+.catalog-entry-health-row.source .catalog-entry-health-state{border-color:#7f8b94;background:#e6eaed;color:#20272c}
+.catalog-entry-health-copy b{display:block;color:#303940;font-size:11px}.catalog-entry-health-copy span{display:block;margin-top:1px}
+.catalog-entry-health-link{white-space:nowrap;font-weight:850;color:#0b5f96;text-decoration:none}.catalog-entry-health-link:hover{text-decoration:underline}
+@media(max-width:760px){.catalog-entry-health-row{grid-template-columns:1fr}.catalog-entry-health-link{justify-self:start}}
 .catalog-sport>summary{
   padding:13px 14px!important;
   font-size:15px!important;
@@ -229,6 +233,8 @@ th{font-size:11px!important}
   justify-content:space-between!important;
   gap:10px!important;
 }
+.catalog-line.catalog-event.has-health{align-items:stretch!important;flex-direction:column!important}
+.catalog-line.catalog-event.has-health>.catalog-entry-health{margin:2px -11px -10px}
 .catalog-copy{min-width:0}
 .season-pill{
   display:inline-flex;
@@ -2015,7 +2021,8 @@ function catalogLineHtml(line,sport,country,roleOverride){
   const badge=season==='in'
     ?'<span class="season-pill in-season">IN SEASON</span>'
     :season==='out'?'<span class="season-pill out-season">OUT OF SEASON</span>':'';
-  return `<div class="catalog-line ${role} ${lineColor(line)} ${season?'has-season':''}"><span class="catalog-copy">${esc(line)}</span>${badge}</div>`;
+  const health=role==='catalog-event'?catalogEntryHealthHtml(sport,[line],[]):'';
+  return `<div class="catalog-line ${role} ${lineColor(line)} ${season?'has-season':''} ${health?'has-health':''}"><span class="catalog-copy">${esc(line)}</span>${badge}${health}</div>`;
 }
 function exactSeasonStatus(event){
   if(!event?.season_start_date||!event?.season_end_date)return null;
@@ -2182,7 +2189,7 @@ function catalogMappingSummary(mapping){
   const standard=configured.match(/^\d+ approved (.+?) · \d+ season mapped$/);
   return standard?`${total} approved ${standard[1]} · ${mapped} season mapped`:(configured||`${total} approved events · ${mapped} season mapped`);
 }
-function renderMappedCatalogEvents(events){
+function renderMappedCatalogEvents(events,sport){
   const categories=[];
   events.forEach(event=>{
     const category=event.category||'';
@@ -2192,7 +2199,7 @@ function renderMappedCatalogEvents(events){
   });
   return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
     const status=mappedSeasonStatus(event);
-    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${tourCalendarHtml(event)}</article>`;
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div><div class="catalog-season-detail">${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${catalogEntryHealthHtml(sport,[event.catalog_event,event.key],eventSourceIds(event))}${tourCalendarHtml(event)}</article>`;
   }).join('')}</div>`).join('');
 }
 function olympicCompliancePill(status){
@@ -2326,6 +2333,7 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
       const status=mappedSeasonStatus(event);
       if(event.nonseasonal&&seasonFilter!=='all')return false;
       if(seasonFilter!=='all'&&(seasonFilter==='unmapped'?status!==null:status!==seasonFilter))return false;
+      if(!catalogEntryMatchesHealth(section.sport,[event.catalog_event,event.key],eventSourceIds(event)))return false;
       if(groupHit)return true;
       const hay=`${event.catalog_event||''} ${event.season_window||''} ${(event.restrictions||[]).join(' ')}`.toLowerCase();
       return !q||hay.includes(q);
@@ -2333,14 +2341,14 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
     return{group,events};
   }).filter(x=>x.events.length);
   if(!groups.length&&!visibleNewLines.length)return'';
-  const openNested=(q||seasonFilter!=='all')?' open':'';
+  const openNested=(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?' open':'';
   const renderCountryBlock=countryBlock=>{
     const countryEvents=countryBlock.groups.flatMap(item=>item.events);
     const countryMapped=countryEvents.filter(event=>mappedSeasonStatus(event)).length;
     const countryUnmapped=countryEvents.length-countryMapped;
     return `<details class="catalog-country-group"${openNested}><summary><span>${esc(countryBlock.country)}</span><span class="catalog-country-meta">${countryEvents.length} approved${countryUnmapped?` · ${countryUnmapped} unmapped`:''}${countryUnmapped?pill('amber','REVIEW REQUIRED'):''}</span></summary>
       ${countryBlock.groups.map(({group,events})=>`<div class="catalog-governing-block">${group.governing_body?`<div class="catalog-governing-body">${catalogGoverningBodyHtml(group.governing_body)}</div>`:''}
-      ${renderMappedCatalogEvents(events)}</div>`).join('')}
+      ${renderMappedCatalogEvents(events,section.sport)}</div>`).join('')}
     </details>`;
   };
   let body='';
@@ -2381,7 +2389,7 @@ function renderMappedCatalogSport(section,mapping,q,seasonFilter){
     body+=`<section class="catalog-country-group"><div class="catalog-country-head">New Catalog Entries Requiring Mapping</div><div class="catalog-event-list">${visibleNewLines.map(line=>`<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${esc(line)}</div><div class="catalog-season-detail">Detected in the current catalog after the last completed mapping review.</div></div>${mappedSeasonBadge(null)}</div></article>`).join('')}</div></section>`;
   }
   const summary=catalogMappingSummary(mapping);
-  return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${esc(summary)}${visibleNewLines.length?` · ${visibleNewLines.length} new catalog ${visibleNewLines.length===1?'entry':'entries'}`:''}</span></summary><div class="catalog-body"><div class="mapped-catalog">${body}</div></div></details>`;
+  return `<details class="catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${esc(summary)}${visibleNewLines.length?` · ${visibleNewLines.length} new catalog ${visibleNewLines.length===1?'entry':'entries'}`:''}</span></summary><div class="catalog-body"><div class="mapped-catalog">${body}</div></div></details>`;
 }
 const NCAA_CATALOG_CONTROLS=[
   'Wagers on any collegiate sporting event involving a Nebraska collegiate team when the event is played in Nebraska.',
@@ -2395,7 +2403,7 @@ function ncaaEventParts(line){
 }
 function renderNcaaCatalog(cat,q,seasonFilter){
   const sections=(cat.sections||[]).filter(section=>section.sport.startsWith('NCAA ')&&section.sport!=='NCAA');
-  const controlsHit=!q||'ncaa nebraska collegiate controls restrictions'.includes(q)||NCAA_CATALOG_CONTROLS.some(x=>x.toLowerCase().includes(q));
+  const controlsHit=CATALOG_HEALTH_FILTER==='all'&&(!q||'ncaa nebraska collegiate controls restrictions'.includes(q)||NCAA_CATALOG_CONTROLS.some(x=>x.toLowerCase().includes(q)));
   let totalEvents=0,mappedEvents=0;
   const sports=sections.map(section=>{
     const sportName=section.sport.replace(/^NCAA\s+/,'');
@@ -2409,17 +2417,18 @@ function renderNcaaCatalog(cat,q,seasonFilter){
       })
       .filter(item=>{
         if(seasonFilter!=='all'&&(seasonFilter==='unmapped'?item.status!==null:item.status!==seasonFilter))return false;
+        if(!catalogEntryMatchesHealth(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping)))return false;
         if(sportHit)return true;
         return !q||`${item.parts.name} ${item.parts.restriction||''}`.toLowerCase().includes(q);
       });
     if(!events.length)return'';
     totalEvents+=events.length;
     mappedEvents+=events.filter(x=>x.status).length;
-    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}</article>`).join('')}</div></details>`;
+    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}${catalogEntryHealthHtml(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping))}</article>`).join('')}</div></details>`;
   }).filter(Boolean);
   if(!sports.length&&!controlsHit)return'';
   const controls=(seasonFilter==='all'&&controlsHit)?`<section class="ncaa-controls"><div class="ncaa-controls-head">Nebraska Collegiate Controls</div><div class="ncaa-controls-list">${NCAA_CATALOG_CONTROLS.map(x=>`<div class="ncaa-control">${esc(x)}</div>`).join('')}</div></section>`:'';
-  return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>NCAA</span><span>${sports.length} sports · ${totalEvents} approved events · ${mappedEvents} season mapped</span></summary><div class="catalog-body">${controls}<div class="ncaa-sport-list">${sports.join('')}</div></div></details>`;
+  return `<details class="catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>NCAA</span><span>${sports.length} sports · ${totalEvents} approved events · ${mappedEvents} season mapped</span></summary><div class="catalog-body">${controls}<div class="ncaa-sport-list">${sports.join('')}</div></div></details>`;
 }
 function renderCatalog(){
   const cat=DATA.catalog||{},q=(document.getElementById('catalogSearch').value||'').toLowerCase();
@@ -2438,7 +2447,7 @@ function renderCatalog(){
     if(section.sport==='Olympics'&&controlled)return renderOlympicsCatalog(section,controlled,q,seasonFilter);
     if(controlled)return renderMappedCatalogSport(section,controlled,q,seasonFilter);
     const searchHit=!q||section.sport.toLowerCase().includes(q);
-    const lines=annotateCatalogLines(section.lines,section.sport).filter(item=>!item.hiddenDuplicate).filter(item=>searchHit||String(item.line).toLowerCase().includes(q));
+    const lines=annotateCatalogLines(section.lines,section.sport).filter(item=>!item.hiddenDuplicate).filter(item=>searchHit||String(item.line).toLowerCase().includes(q)).filter(item=>item.role!=='catalog-event'||catalogEntryMatchesHealth(section.sport,[item.line],[]));
     const filtered=seasonFilter==='all'?lines:lines.filter(item=>{
       const role=item.role,status=catalogSeasonStatus(item.line,section.sport,item.country,item.role);
       if(role!=='catalog-event')return true;
@@ -2449,12 +2458,15 @@ function renderCatalog(){
     if(!filtered.length||(seasonFilter!=='all'&&eventMatches===0)||(q&&!eventMatches&&!section.sport.toLowerCase().includes(q)))return'';
     const mapped=lines.filter(item=>catalogSeasonStatus(item.line,section.sport,item.country,item.role)).length;
     const countLabel=seasonFilter==='all'?`${filtered.length} entries${mapped?` · ${mapped} season mapped`:''}`:`${filtered.filter(item=>item.role==='catalog-event').length} matching events`;
-    return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${filtered.map(item=>catalogLineHtml(item.line,section.sport,item.country,item.role)).join('')}</div></div></details>`;
+    return `<details class="catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>${esc(section.sport)}</span><span>${countLabel}</span></summary><div class="catalog-body"><div class="catalog-lines">${filtered.map(item=>catalogLineHtml(item.line,section.sport,item.country,item.role)).join('')}</div></div></details>`;
   }).filter(Boolean);
   document.getElementById('catalogSections').innerHTML=rendered.join('')||'<div class="empty">No catalog entries match this season filter.</div>';
 }
 
-let CATALOG_HEALTH_FILTER='setup';
+let CATALOG_HEALTH_FILTER='all';
+function healthText(value){
+  return String(value||'').toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+}
 function catalogCoverageHealth(){
   const sources=(DATA.global?.sources||[]).filter(source=>source.approved_catalog!==false);
   const manualTypes=new Set(['tennis-intelligence']);
@@ -2471,17 +2483,41 @@ function catalogCoverageHealth(){
     return{state,source,term,issue};
   });
 }
+function catalogHealthSources(sport,labels,sourceIds){
+  const ids=new Set((sourceIds||[]).filter(Boolean));
+  const terms=(labels||[]).map(healthText).filter(Boolean);
+  return catalogCoverageHealth().filter(row=>{
+    const source=row.source;
+    if(ids.has(source.id))return true;
+    if(sport&&healthText(source.sport)!==healthText(sport))return false;
+    const sourceTerms=[...(source.catalog_terms||[]),source.league].map(healthText).filter(Boolean);
+    return terms.some(label=>sourceTerms.some(term=>term===label||term.includes(label)||label.includes(term)));
+  });
+}
+function catalogEntryMatchesHealth(sport,labels,sourceIds){
+  if(CATALOG_HEALTH_FILTER==='all')return true;
+  return catalogHealthSources(sport,labels,sourceIds).some(row=>row.state===CATALOG_HEALTH_FILTER);
+}
+function catalogEntryHealthHtml(sport,labels,sourceIds){
+  const rows=catalogHealthSources(sport,labels,sourceIds);
+  if(!rows.length)return'';
+  const latest=DATA.global?.generated_at;
+  return `<div class="catalog-entry-health">${rows.map(({state,source,issue})=>{
+    const stateLabel=state==='connected'?'CONNECTED':state==='source'?'SOURCE ISSUE':'NEEDS SETUP';
+    const checked=fmtDateTime(source.checked_at||latest);
+    const official=source.official_schedule_url,url=official||source.endpoint;
+    const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">${official?'Official schedule':'Schedule source'} ↗</a>`:'';
+    return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${checked}${state==='connected'?'':` · ${esc(issue)}`}</span></span>${link}</div>`;
+  }).join('')}</div>`;
+}
 function renderCatalogHealth(){
   const host=document.getElementById('catalogHealth');if(!host)return;
   const rows=catalogCoverageHealth(),counts={connected:0,setup:0,source:0};
   rows.forEach(row=>counts[row.state]++);
-  const filtered=rows.filter(row=>row.state===CATALOG_HEALTH_FILTER);
   const latest=DATA.global?.generated_at||rows.map(row=>row.source.checked_at).filter(Boolean).sort().at(-1);
-  const buttons=[['connected','Connected',counts.connected,''],['setup','Needs setup',counts.setup,'attention'],['source','Source issue',counts.source,'issue']]
-    .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}: ${count}</button>`).join('');
-  const items=filtered.map(({state,source,term,issue})=>`<div class="catalog-health-item ${state}"><div><b>${esc(source.sport||'Unclassified')} · ${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${fmtDateTime(source.checked_at||latest)}</span></div><div>${esc(issue)}<div class="catalog-health-path"><b>Correction path:</b> data/global-schedule-sources.json${state==='source'?' · scripts/refresh_global_schedule.py':''}${source.official_schedule_url?` · <a href="${esc(source.official_schedule_url)}" target="_blank" rel="noopener">official schedule</a>`:''}</div></div>${term?`<button type="button" data-health-catalog-term="${esc(term)}">Show catalog entry</button>`:''}</div>`).join('');
-  const label=CATALOG_HEALTH_FILTER==='connected'?'connected schedule sources':CATALOG_HEALTH_FILTER==='source'?'schedule source issues':'schedule setup items';
-  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div><details class="catalog-health-details" ${(CATALOG_HEALTH_FILTER!=='connected'||counts.source)?'open':''}><summary>${filtered.length} ${label} — open to see the exact entry and correction path</summary><div class="catalog-health-list">${items||'<div class="empty">No items in this category.</div>'}</div></details>`;
+  const buttons=[['all','Full catalog',null,''],['connected','Connected',counts.connected,''],['setup','Needs setup',counts.setup,'attention'],['source','Source issue',counts.source,'issue']]
+    .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}${count==null?'':`: ${count}`}</button>`).join('');
+  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div><div class="catalog-health-note">Schedule status, last checked time, and the official schedule now appear inside the matching catalog entry. Use these buttons to narrow the catalog to entries needing attention.</div>`;
 }
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
@@ -2491,7 +2527,7 @@ document.getElementById('restrictionSearch').addEventListener('input',renderRest
 document.getElementById('intakeSearch').addEventListener('input',renderIntake);document.getElementById('intakeType').addEventListener('change',renderIntake);document.getElementById('openIntakeBtn').addEventListener('click',()=>document.querySelector('button[data-panel="intake"]')?.click());
 document.getElementById('catalogHealth').addEventListener('click',event=>{
   const filter=event.target.closest('[data-health-filter]');
-  if(filter){CATALOG_HEALTH_FILTER=filter.dataset.healthFilter;renderCatalogHealth();return}
+  if(filter){CATALOG_HEALTH_FILTER=filter.dataset.healthFilter;renderCatalog();return}
   const entry=event.target.closest('[data-health-catalog-term]');
   if(entry){document.getElementById('catalogSearch').value=entry.dataset.healthCatalogTerm;renderCatalog();document.getElementById('catalogSections').scrollIntoView({behavior:'smooth',block:'start'})}
 });

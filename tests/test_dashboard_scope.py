@@ -11,8 +11,11 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn("Approved Catalog &amp; Coverage", HTML)
         self.assertIn('id="catalogHealth"', HTML)
         self.assertIn("Data Health Summary", HTML)
-        self.assertIn("Correction path:", HTML)
-        self.assertIn("data-health-catalog-term", HTML)
+        self.assertIn("catalogEntryHealthHtml", HTML)
+        self.assertIn("Last checked", HTML)
+        self.assertIn("Official schedule", HTML)
+        self.assertIn("Schedule status, last checked time, and the official schedule now appear inside the matching catalog entry", HTML)
+        self.assertNotIn("catalog-health-list", HTML)
         self.assertNotIn('data-panel="coverage"', HTML)
         self.assertNotIn('<section class="panel" id="coverage">', HTML)
 
