@@ -203,6 +203,17 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertTrue(any(row.get("observed_official_name") == "ONE Friday Fights"
                             for row in self.registry["alias_review_queue"]))
 
+    def test_cricket_aliases_preserve_gender_and_county_division(self):
+        cricket = {item["league"]: item for item in self.registry["competitions"]
+                   if item["sport"] == "Cricket"}
+        self.assertEqual(7, len(cricket))
+        self.assertEqual(11, sum(len(item.get("aliases", [])) for item in cricket.values()))
+        self.assertIn("WBBL", [alias["name"] for alias in cricket["Women’s Big Bash League (WBBL) | Women"]["aliases"]])
+        self.assertNotIn("WBBL", [alias["name"] for alias in cricket["Big Bash League (BBL) | Men"].get("aliases", [])])
+        self.assertIn("Rothesay County Championship Division Two", [alias["name"] for alias in cricket["Rothesay County Championship Division 2 | Men"]["aliases"]])
+        self.assertFalse(any(alias["name"] in {"Women's Ashes", "ICC Women's T20 World Cup", "Rothesay County Championship"}
+                             for item in cricket.values() for alias in item.get("aliases", [])))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
