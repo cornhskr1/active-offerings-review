@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T20:23:49.597688+00:00",
+  "generated_at": "2026-09-23T20:33:26.935575+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-23T19:18:53.973806+00:00",
@@ -3900,6 +3900,13 @@
           ]
         }
       ],
+      "aliases": [
+        {
+          "name": "CFL",
+          "name_type": "official",
+          "evidence_url": "https://press.cfl.ca/circle-the-date-2026-season-opens-june-4"
+        }
+      ],
       "participant_coverage": "OBSERVED"
     },
     {
@@ -3910,6 +3917,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "IFL",
+          "name_type": "official",
+          "evidence_url": "https://goifl.com/sports/fball/2026/schedule"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4080,6 +4094,18 @@
             "Philadelphia Eagles",
             "Chicago Bears"
           ]
+        }
+      ],
+      "aliases": [
+        {
+          "name": "NFL Regular Season",
+          "name_type": "official",
+          "evidence_url": "https://www.nfl.com/news/2026-nfl-schedule-release-complete-slate-of-week-1-games"
+        },
+        {
+          "name": "NFL Playoffs",
+          "name_type": "official",
+          "evidence_url": "https://www.nfl.com/schedules?seasonType=POST"
         }
       ],
       "source_labels": [
@@ -4428,6 +4454,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "Hall of Fame Game",
+          "name_type": "official",
+          "evidence_url": "https://www.nfl.com/news/2026-nfl-preseason-complete-team-by-team-opponents"
+        },
+        {
+          "name": "NFL Preseason Games",
+          "name_type": "official",
+          "evidence_url": "https://www.nfl.com/news/2026-nfl-preseason-complete-team-by-team-opponents"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4446,6 +4484,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "UFL",
+          "name_type": "official",
+          "evidence_url": "https://www.theufl.com/news/ufl-announces-washington-dc-as-host-of-2026-united-bowl"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -16805,6 +16850,55 @@
       "observed_official_name": "Call of Duty Challengers",
       "reason": "The organizer runs Challengers as a separate competitive path from the CDL league. Confirm approval scope.",
       "evidence_url": "https://callofdutyleague.com/challengers/how-to-compete"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "National Football League (NFL)",
+      "observed_official_name": "NFL",
+      "reason": "The bare league acronym does not distinguish a regular-season or postseason game from the separately approved preseason line, which prohibits player props.",
+      "evidence_url": "https://www.nfl.com/schedules"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "NCAA Football",
+      "observed_official_name": "College Football",
+      "reason": "The generic term can refer to NCAA or a separate college association such as NAIA; confirm the governing body and event.",
+      "evidence_url": "https://www.naia.org/sports/football/"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "NCAA Football",
+      "observed_official_name": "NAIA Football",
+      "reason": "NAIA is a separate association and cannot inherit NCAA Football approval.",
+      "evidence_url": "https://www.naia.org/sports/football/"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "NCAA Football",
+      "observed_official_name": "College Football Playoff",
+      "reason": "The CFP is a postseason event. Confirm the NCAA team, event, and applicable Nebraska futures timing instead of treating the label as a generic NCAA game.",
+      "evidence_url": "https://collegefootballplayoff.com/news/2026/1/23/2627-format"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "Super Bowl Coin Toss Winner and Outcome",
+      "observed_official_name": "Super Bowl Coin Toss",
+      "reason": "The approved special line specifies winner and outcome. Confirm the precise market rather than treating any coin-toss proposition as covered.",
+      "evidence_url": "https://www.nfl.com/schedules/2026/by-week/super-bowl-sunday"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "Canadian Football League (CFL)",
+      "observed_official_name": "Grey Cup",
+      "reason": "This is the CFL championship game, not an alternate name for every CFL competition. Confirm event and league scope.",
+      "evidence_url": "https://press.cfl.ca/saddle-up-for-the-113th-grey-cup-in-calgary"
+    },
+    {
+      "sport": "Football",
+      "catalog_identity": "United Football League (UFL)",
+      "observed_official_name": "United Bowl",
+      "reason": "This is the UFL championship game, not an alternate league name. Confirm the event and league.",
+      "evidence_url": "https://www.theufl.com/news/ufl-announces-washington-dc-as-host-of-2026-united-bowl"
     }
   ],
   "coverage_gaps": [
