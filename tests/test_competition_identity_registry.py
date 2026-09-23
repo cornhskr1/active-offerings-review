@@ -214,6 +214,19 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertFalse(any(alias["name"] in {"Women's Ashes", "ICC Women's T20 World Cup", "Rothesay County Championship"}
                              for item in cricket.values() for alias in item.get("aliases", [])))
 
+    def test_cycling_aliases_do_not_erase_womens_road_race_boundaries(self):
+        cycling = {item["league"]: item for item in self.registry["competitions"]
+                   if item["sport"] == "Cycling"}
+        self.assertEqual(29, len(cycling))
+        self.assertIn("Milano-Sanremo", [alias["name"] for alias in cycling["Milan-San Remo"]["aliases"]])
+        self.assertIn("La Vuelta Ciclista a España", [alias["name"] for alias in cycling["Vuelta a España / La Vuelta"]["aliases"]])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Cycling"}
+        self.assertIn("Tour de France Femmes avec Zwift", held)
+        self.assertIn("Ronde van Vlaanderen", held)
+        self.assertFalse(any(alias["name"] in held for item in cycling.values()
+                             for alias in item.get("aliases", [])))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
