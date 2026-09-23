@@ -255,6 +255,17 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertFalse(any(a["name"] in held for item in esports.values()
                              for a in item.get("aliases", [])))
 
+    def test_football_preseason_alias_does_not_collapse_into_nfl(self):
+        football = {item["league"]: item for item in self.registry["competitions"]
+                    if item["sport"] == "Football"}
+        self.assertEqual(8, len(football))
+        self.assertIn("Hall of Fame Game", [a["name"] for a in football["NFL Preseason"].get("aliases", [])])
+        self.assertNotIn("NFL", [a["name"] for a in football["National Football League (NFL)"].get("aliases", [])])
+        held = {item.get("observed_official_name") for item in self.registry["alias_review_queue"]
+                if item["sport"] == "Football"}
+        self.assertIn("NFL", held)
+        self.assertIn("NAIA Football", held)
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
