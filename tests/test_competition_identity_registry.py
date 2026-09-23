@@ -266,6 +266,23 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertIn("NFL", held)
         self.assertIn("NAIA Football", held)
 
+    def test_golf_aliases_preserve_tour_event_and_division_boundaries(self):
+        golf = {item["league"]: item for item in self.registry["competitions"]
+                if item["sport"] == "Golf"}
+        aliases = {league: {alias["name"] for alias in item.get("aliases", [])}
+                   for league, item in golf.items()}
+        self.assertEqual(19, len(golf))
+        self.assertEqual(15, sum(map(len, aliases.values())))
+        self.assertIn("PGA Tour", aliases["Professional Golfers’ Association Tour (PGA Tour)"])
+        self.assertIn("PGA Tour Champions", aliases["Professional Golfers’ Association Tour Champions (PGA Tour Champions)"])
+        self.assertIn("The Open", aliases["The Open Championship"])
+        self.assertIn("Women’s British Open", aliases["AIG Women’s Open"])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Golf"}
+        self.assertTrue({"PGA", "British Open", "Epson Tour", "KPMG Women’s PGA Championship",
+                         "DP World Tour Championship"} <= held)
+        self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
