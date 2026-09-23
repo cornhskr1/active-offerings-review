@@ -142,7 +142,7 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                 self.assertEqual(child["label"], source["league"])
                 self.assertIn(parent["catalog_event"], source.get("catalog_terms", []))
 
-    def test_reviewed_aliases_resolve_only_to_specific_divisions(self):
+    def test_reviewed_aliases_resolve_only_to_catalog_identities(self):
         competitions = {
             (item["sport"], item.get("identity_key")): item
             for item in self.registry["competitions"] if item.get("identity_key")
@@ -150,9 +150,11 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         crosswalk = json.loads((ROOT / "data" / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
         for row in crosswalk["reviewed_aliases"]:
             with self.subTest(alias=row["alias"]):
-                identity = competitions[(row["sport"], row["identity_key"])]
+                identity = (competitions[(row["sport"], row["identity_key"])] if row.get("identity_key") else
+                            next(item for item in self.registry["competitions"] if item["sport"] == row["sport"] and item["league"] == row["catalog_identity"]))
                 self.assertIn(row["alias"], [alias["name"] for alias in identity["aliases"]])
-                self.assertIn(" | ", identity["league"])
+                if row.get("identity_key"):
+                    self.assertIn(" | ", identity["league"])
         self.assertEqual(crosswalk["review_queue"], self.registry["alias_review_queue"])
         self.assertFalse(any(alias["name"] == "AFC Women's Champions League"
                              for item in self.registry["competitions"]
@@ -164,6 +166,13 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertFalse(any(alias["name"] == womens_series
                              for item in self.registry["competitions"]
                              for alias in item.get("aliases", [])))
+
+    def test_baseball_draft_alias_does_not_claim_major_league(self):
+        baseball = {item["league"]: item for item in self.registry["competitions"]
+                    if item["sport"] == "Baseball"}
+        self.assertIn("MLB Draft", [alias["name"] for alias in baseball["Draft"]["aliases"]])
+        self.assertNotIn("MLB Draft", [alias["name"] for alias in baseball["Major League Baseball (MLB)"]["aliases"]])
+        self.assertEqual("MLB", baseball["Major League Baseball (MLB)"]["aliases"][0]["name"])
 
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:

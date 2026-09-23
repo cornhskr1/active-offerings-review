@@ -143,10 +143,13 @@ def main() -> None:
     claimed_names = {(entry["sport"], key(entry["league"])): entry for entry in competitions.values()}
     alias_names = set()
     for row in alias_crosswalk["reviewed_aliases"]:
-        sport, identity_key, alias = row["sport"], row["identity_key"], clean(row["alias"])
-        target = identities.get((sport, identity_key))
-        if not target:
-            raise ValueError(f"Alias target is not a catalog identity: {sport} / {identity_key}")
+        sport, alias = row["sport"], clean(row["alias"])
+        identity_key, catalog_identity = clean(row.get("identity_key")), clean(row.get("catalog_identity"))
+        if bool(identity_key) == bool(catalog_identity):
+            raise ValueError(f"Alias needs exactly one target type: {sport} / {alias}")
+        target = identities.get((sport, identity_key)) if identity_key else competitions.get((sport, catalog_identity))
+        if not target or (not identity_key and (sport, catalog_identity) not in catalog_identities):
+            raise ValueError(f"Alias target is not a catalog identity: {sport} / {identity_key or catalog_identity}")
         if row.get("name_type") != "official" or not str(row.get("evidence_url", "")).startswith("https://"):
             raise ValueError(f"Alias lacks reviewed official evidence: {sport} / {alias}")
         normalized = (sport, key(alias))
