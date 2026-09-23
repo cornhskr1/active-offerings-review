@@ -16,6 +16,14 @@ def load(name: str):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
 
+def configured_sources() -> list[dict]:
+    """Load every schedule registry used by the production refresh."""
+    sources = list(load("global-schedule-sources.json").get("sources", []))
+    for path in sorted(DATA.glob("soccer-*-sources.json")):
+        sources.extend(json.loads(path.read_text(encoding="utf-8")).get("sources", []))
+    return sources
+
+
 def source_ids(event: dict) -> list[str]:
     values = list(event.get("source_ids") or [])
     if event.get("source_id"):
@@ -57,7 +65,7 @@ def sport_family(value: str | None) -> str:
 
 def main() -> None:
     season_map = load("catalog-season-map.json")
-    configured = load("global-schedule-sources.json").get("sources", [])
+    configured = configured_sources()
     by_id = defaultdict(list)
     for source in configured:
         by_id[str(source.get("id") or "")].append(source)

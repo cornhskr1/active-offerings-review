@@ -2236,6 +2236,7 @@ function catalogEventNameHtml(event,label=event?.catalog_event||''){
   return `${catalogOfficialLink(label,source)}${catalogSourceStatus(source)}`;
 }
 function catalogEventHasSeasonMapping(event){
+  if((event?.coverage_children||[]).length)return event.coverage_children.every(catalogEventHasSeasonMapping);
   return Boolean(event?.nonseasonal||event?.season_status||(event?.season_start&&event?.season_end)||(event?.season_start_date&&event?.season_end_date));
 }
 function catalogMappingSummary(mapping){

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T11:20:01.957446+00:00",
+  "generated_at": "2026-09-23T12:06:35.592088+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-23",
   "window_end": "2026-09-30",
@@ -24061,11 +24061,12 @@
     {
       "id": "seriea",
       "sport": "Soccer",
-      "league": "Serie A",
+      "league": "Serie A | Men",
       "region": "Italy",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard",
       "catalog_terms": [
-        "Serie A"
+        "Serie A",
+        "Serie A | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -25922,7 +25923,7 @@
     {
       "id": "soccer-afc-australia-a-league-men-and-women-men",
       "sport": "Soccer",
-      "league": "A-League | Men and Women",
+      "league": "A-League | Men",
       "region": "Australia",
       "source_type": "espn-daily",
       "coverage_status": "complete",
@@ -25941,7 +25942,7 @@
     {
       "id": "soccer-afc-australia-a-league-men-and-women-women",
       "sport": "Soccer",
-      "league": "A-League | Men and Women",
+      "league": "A-League | Women",
       "region": "Australia",
       "source_type": "espn-daily",
       "coverage_status": "complete",
@@ -25955,25 +25956,6 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-23T11:20:01.957446+00:00"
-    },
-    {
-      "id": "soccer-afc-australia-australia-cup-men-and-women",
-      "sport": "Soccer",
-      "league": "Australia Cup | Men and Women",
-      "region": "Australia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.footballaustralia.com.au/",
-      "official_schedule_url": "https://www.footballaustralia.com.au/",
-      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
-      "catalog_terms": [
-        "Australia Cup | Men and Women"
-      ],
-      "approved_catalog": true,
-      "ok": true,
-      "events": 0,
-      "note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
       "checked_at": "2026-09-23T11:20:01.957446+00:00"
     },
     {
@@ -28534,7 +28516,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.friendly",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "International Friendlies | Men"
+        "International Friendlies | Men",
+        "International Friendlies | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -28572,7 +28555,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.world",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "FIFA World Cup | Men"
+        "FIFA World Cup | Men",
+        "FIFA World Cup | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -28610,7 +28594,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.cwc",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "FIFA Club World Cup | Men"
+        "FIFA Club World Cup | Men",
+        "FIFA Club World Cup | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -28648,7 +28633,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/afc.asian.cup",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "AFC Asian Cup | Men"
+        "AFC Asian Cup | Men",
+        "AFC Asian Cup | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -28686,7 +28672,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/afc.champions",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "AFC Champions League Elite | Men"
+        "AFC Champions League Elite | Men",
+        "AFC Champions League Elite | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -28952,7 +28939,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.worldq.conmebol",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "FIFA World Cup Qualifiers | Men"
+        "FIFA World Cup Qualifiers | Men",
+        "FIFA World Cup Qualifiers | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -28971,7 +28959,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.libertadores",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "Copa Libertadores | Men"
+        "Copa Libertadores | Men",
+        "Copa Libertadores | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -29009,7 +28998,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.sudamericana",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "Copa Sudamericana | Men"
+        "Copa Sudamericana | Men",
+        "Copa Sudamericana | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -29028,7 +29018,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/conmebol.recopa",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "Recopa Sudamericana | Men"
+        "Recopa Sudamericana | Men",
+        "Recopa Sudamericana | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -29053,25 +29044,6 @@
       "ok": true,
       "events": 0,
       "errors": [],
-      "checked_at": "2026-09-23T11:20:01.957446+00:00"
-    },
-    {
-      "id": "soccer-ofc-nations-cup",
-      "sport": "Soccer",
-      "league": "OFC Nations Cup | Men and Women",
-      "region": "International",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.oceaniafootball.com/",
-      "official_schedule_url": "https://www.oceaniafootball.com/",
-      "source_note": "No 2026 OFC Nations Cup finals are scheduled and no dependable next-edition fixture adapter is available.",
-      "catalog_terms": [
-        "OFC Nations Cup | Men and Women"
-      ],
-      "approved_catalog": true,
-      "ok": true,
-      "events": 0,
-      "note": "No 2026 OFC Nations Cup finals are scheduled and no dependable next-edition fixture adapter is available.",
       "checked_at": "2026-09-23T11:20:01.957446+00:00"
     },
     {
@@ -29161,7 +29133,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/uefa.euro",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "UEFA European Championship | Men"
+        "UEFA European Championship | Men",
+        "UEFA European Championship | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -29256,7 +29229,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.worldq.uefa",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "European Qualifiers | Men"
+        "European Qualifiers | Men",
+        "European Qualifiers | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -29294,7 +29268,8 @@
       "official_schedule_url": "https://www.espn.com/soccer/league/_/name/global.finalissima",
       "source_note": "Daily competition schedule feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "Finalissima | Men"
+        "Finalissima | Men",
+        "Finalissima | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -30814,7 +30789,8 @@
       "official_schedule_url": "https://www.figc.it/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "Coppa Italia | Men"
+        "Coppa Italia | Men",
+        "Coppa Italia | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -30833,7 +30809,8 @@
       "official_schedule_url": "https://www.figc.it/",
       "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
       "catalog_terms": [
-        "Supercoppa Italiana | Men"
+        "Supercoppa Italiana | Men",
+        "Supercoppa Italiana | Men and Women"
       ],
       "approved_catalog": true,
       "ok": true,
@@ -32001,25 +31978,6 @@
       "checked_at": "2026-09-23T11:20:01.957446+00:00"
     },
     {
-      "id": "uefa-soccer-sweden-svenska-cupen-men-and-women",
-      "sport": "Soccer",
-      "league": "Svenska Cupen | Men and Women",
-      "region": "Sweden",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.svenskfotboll.se/",
-      "official_schedule_url": "https://www.svenskfotboll.se/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
-      "catalog_terms": [
-        "Svenska Cupen | Men and Women"
-      ],
-      "approved_catalog": true,
-      "ok": true,
-      "events": 0,
-      "note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
-      "checked_at": "2026-09-23T11:20:01.957446+00:00"
-    },
-    {
       "id": "uefa-soccer-switzerland-swiss-super-league-men",
       "sport": "Soccer",
       "league": "Swiss Super League | Men",
@@ -32189,6 +32147,215 @@
       "events": 0,
       "note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
       "checked_at": "2026-09-23T11:20:01.957446+00:00"
+    },
+    {
+      "id": "soccer-afc-champions-league-elite-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "AFC Champions League Elite | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.the-afc.com/",
+      "official_schedule_url": "https://www.the-afc.com/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "AFC Champions League Elite | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "soccer-ofc-nations-cup-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "OFC Nations Cup | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.oceaniafootball.com/",
+      "official_schedule_url": "https://www.oceaniafootball.com/",
+      "source_note": "No dependable next-edition fixture adapter is available.",
+      "catalog_terms": [
+        "OFC Nations Cup | Men and Women"
+      ],
+      "note": "No dependable next-edition fixture adapter is available."
+    },
+    {
+      "id": "soccer-conmebol-libertadores-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Copa Libertadores | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.conmebol.com/",
+      "official_schedule_url": "https://www.conmebol.com/",
+      "source_note": "A separate operational identity is retained for the combined catalog approval; no unique unattended schedule source is connected.",
+      "catalog_terms": [
+        "Copa Libertadores | Men and Women"
+      ],
+      "note": "A separate operational identity is retained for the combined catalog approval; no unique unattended schedule source is connected."
+    },
+    {
+      "id": "soccer-afc-australia-australia-cup-men",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Australia Cup | Men",
+      "region": "Australia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.footballaustralia.com.au/",
+      "official_schedule_url": "https://www.footballaustralia.com.au/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Australia Cup | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "soccer-conmebol-sudamericana-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Copa Sudamericana | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.conmebol.com/",
+      "official_schedule_url": "https://www.conmebol.com/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Copa Sudamericana | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "soccer-conmebol-world-cup-qualifiers-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "FIFA World Cup Qualifiers | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.conmebol.com/",
+      "official_schedule_url": "https://www.conmebol.com/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "FIFA World Cup Qualifiers | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "soccer-conmebol-recopa-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Recopa Sudamericana | Women",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.conmebol.com/",
+      "official_schedule_url": "https://www.conmebol.com/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Recopa Sudamericana | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "uefa-soccer-sweden-svenska-cupen-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Svenska Cupen | Women",
+      "region": "Sweden",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.svenskfotboll.se/",
+      "official_schedule_url": "https://www.svenskfotboll.se/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Svenska Cupen | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "uefa-soccer-sweden-svenska-cupen-men",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Svenska Cupen | Men",
+      "region": "Sweden",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.svenskfotboll.se/",
+      "official_schedule_url": "https://www.svenskfotboll.se/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Svenska Cupen | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "soccer-afc-australia-australia-cup-women",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "Australia Cup | Women",
+      "region": "Australia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.footballaustralia.com.au/",
+      "official_schedule_url": "https://www.footballaustralia.com.au/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Australia Cup | Men and Women"
+      ],
+      "note": "Season is mapped, but no dependable automated daily event feed is connected yet."
+    },
+    {
+      "id": "soccer-ofc-nations-cup-men",
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "checked_at": "2026-09-23T11:20:01.957446+00:00",
+      "sport": "Soccer",
+      "league": "OFC Nations Cup | Men",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.oceaniafootball.com/",
+      "official_schedule_url": "https://www.oceaniafootball.com/",
+      "source_note": "No dependable next-edition fixture adapter is available.",
+      "catalog_terms": [
+        "OFC Nations Cup | Men and Women"
+      ],
+      "note": "No dependable next-edition fixture adapter is available."
     }
   ],
   "coverage_gaps": [
@@ -32276,17 +32443,19 @@
     {
       "area": "Soccer",
       "state": "PARTIAL SCHEDULE COVERAGE",
-      "note": "236 approved competitions still lack a dependable automated adapter.",
+      "note": "244 approved competitions still lack a dependable automated adapter.",
       "competitions": [
         "2. Liga | Men",
         "A Lyga | Men",
         "ABSA Cup | Men",
+        "AFC Champions League Elite | Women",
         "Algerian Cup | Men",
         "Algerian Super Cup | Men",
         "Armenian Cup | Men",
         "Armenian Premier League | Men",
         "Armenian Super Cup | Men",
-        "Australia Cup | Men and Women",
+        "Australia Cup | Men",
+        "Australia Cup | Women",
         "Austrian Cup | Men",
         "Austrian Frauen-Bundesliga | Women",
         "Azam Sports Federation Cup | Men",
@@ -32322,8 +32491,10 @@
         "Copa Ecuador | Men",
         "Copa El Salvador | Men",
         "Copa Libertadores Femenina | Women",
+        "Copa Libertadores | Women",
         "Copa Nicaragua | Men",
         "Copa Paraguay | Men",
+        "Copa Sudamericana | Women",
         "Copa Uruguay | Men",
         "Copa de Guatemala | Men",
         "Copa de la Liga Profesional | Men",
@@ -32360,6 +32531,7 @@
         "Ethiopian Super Cup | Men",
         "FA Community Shield | Men",
         "FAI Cup | Men",
+        "FIFA World Cup Qualifiers | Women",
         "Faroe Islands Cup | Men",
         "Faroe Islands Premier League | Men",
         "Faroe Islands Super Cup | Men",
@@ -32428,7 +32600,8 @@
         "Northern Super League | Women",
         "Norwegian Cup | Men",
         "OBOS-ligaen | Men",
-        "OFC Nations Cup | Men and Women",
+        "OFC Nations Cup | Men",
+        "OFC Nations Cup | Women",
         "Persian Gulf Pro League | Men",
         "Players Cup | Women",
         "Polish Cup | Men",
@@ -32442,6 +32615,7 @@
         "QSL Cup | Men",
         "Qatar Cup | Men",
         "Qatar Stars League | Men",
+        "Recopa Sudamericana | Women",
         "SVB Cup | Men",
         "SVB Eerste Divisie | Men",
         "Saudi Super Cup | Men",
@@ -32477,7 +32651,8 @@
         "Superliga Colombiana | Men",
         "Superta\u00e7a C\u00e2ndido de Oliveira | Men",
         "Superta\u00e7a Feminina | Women",
-        "Svenska Cupen | Men and Women",
+        "Svenska Cupen | Men",
+        "Svenska Cupen | Women",
         "Swiss Challenge League | Men",
         "Swiss Cup | Men",
         "Swiss Super League | Men",

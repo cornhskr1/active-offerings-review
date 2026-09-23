@@ -239,6 +239,9 @@ def source_for_event(event: dict, sources: dict[str, dict]) -> dict:
 
 
 def has_season_mapping(event: dict) -> bool:
+    children = event.get("coverage_children") or []
+    if children:
+        return all(has_season_mapping(child) for child in children)
     return bool(
         event.get("nonseasonal")
         or event.get("season_status")
@@ -253,10 +256,12 @@ def validate_season_map(season_map: dict) -> None:
     for sport in season_map.get("sports", []):
         events = [event for group in sport.get("groups", []) for event in group.get("events", [])]
         for event in events:
-            key = event["key"]
-            if key in seen:
-                raise ValueError(f"Duplicate catalog event key: {key}")
-            seen.add(key)
+            identities = [event, *(event.get("coverage_children") or [])]
+            for identity in identities:
+                key = identity["key"]
+                if key in seen:
+                    raise ValueError(f"Duplicate catalog event key: {key}")
+                seen.add(key)
 
         match = re.fullmatch(
             r"(\d+) approved (.+?) · (\d+) season mapped",

@@ -5,7 +5,7 @@
     {
       "id": "soccer-afc-australia-a-league-men-and-women-men",
       "sport": "Soccer",
-      "league": "A-League | Men and Women",
+      "league": "A-League | Men",
       "region": "Australia",
       "source_type": "espn-daily",
       "coverage_status": "complete",
@@ -19,7 +19,7 @@
     {
       "id": "soccer-afc-australia-a-league-men-and-women-women",
       "sport": "Soccer",
-      "league": "A-League | Men and Women",
+      "league": "A-League | Women",
       "region": "Australia",
       "source_type": "espn-daily",
       "coverage_status": "complete",
@@ -31,15 +31,29 @@
       ]
     },
     {
-      "id": "soccer-afc-australia-australia-cup-men-and-women",
+      "id": "soccer-afc-australia-australia-cup-men",
       "sport": "Soccer",
-      "league": "Australia Cup | Men and Women",
+      "league": "Australia Cup | Men",
       "region": "Australia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.footballaustralia.com.au/",
       "official_schedule_url": "https://www.footballaustralia.com.au/",
-      "source_note": "Approved competition and season state are mapped; a dependable complete unattended match adapter is still required.",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Australia Cup | Men and Women"
+      ]
+    },
+    {
+      "id": "soccer-afc-australia-australia-cup-women",
+      "sport": "Soccer",
+      "league": "Australia Cup | Women",
+      "region": "Australia",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.footballaustralia.com.au/",
+      "official_schedule_url": "https://www.footballaustralia.com.au/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
       "catalog_terms": [
         "Australia Cup | Men and Women"
       ]
