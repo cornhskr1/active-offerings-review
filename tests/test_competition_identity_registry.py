@@ -32,14 +32,17 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
             (isolated / "data").mkdir()
             shutil.copy2(ROOT / "scripts" / "build_competition_identity_registry.py",
                          isolated / "scripts" / "build_competition_identity_registry.py")
-            for name in ("global-schedule.json", "catalog-season-map.json", "catalog-live.json", "competition-alias-crosswalk.json"):
+            for name in ("global-schedule.json", "global-schedule-sources.json", "catalog-season-map.json", "catalog-live.json", "competition-alias-crosswalk.json"):
                 shutil.copy2(ROOT / "data" / name, isolated / "data" / name)
             subprocess.run(
-                [sys.executable, str(isolated / "scripts" / "build_competition_identity_registry.py")],
+                [sys.executable, str(isolated / "scripts" / "build_competition_identity_registry.py"), "--audit"],
                 check=True,
             )
             cls.registry = json.loads(
                 (isolated / "data" / "competition-identity-registry.json").read_text(encoding="utf-8")
+            )
+            cls.alias_audit = json.loads(
+                (isolated / "data" / "competition-alias-audit.json").read_text(encoding="utf-8")
             )
         cls.season_map = json.loads(
             (ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8")
@@ -61,15 +64,29 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         nfl = next(
             item
             for item in self.registry["competitions"]
-            if item["sport"] == "Football" and item["league"] == "NFL"
+            if item["sport"] == "Football" and item["league"] == "National Football League (NFL)"
         )
         self.assertIn("Buffalo Bills", nfl["participants"])
         self.assertIn("Las Vegas Raiders", nfl["participants"])
         self.assertTrue(self.registry["coverage_gaps"])
 
+        afl = next(item for item in self.registry["competitions"] if item["sport"] == "Aussie Rules")
+        self.assertEqual("Australian Football League (AFL)", afl["league"])
+        self.assertIn({"name": "AFL", "source_id": "afl"}, afl["source_labels"])
+        self.assertEqual(1, len([item for item in self.registry["competitions"] if item["sport"] == "Aussie Rules"]))
+
         self.assertIn(("Soccer", "Serie A | Men"), actual)
         self.assertIn(("Soccer", "Serie A | Women"), actual)
         self.assertNotIn(("Soccer", "Serie A | Men and Women"), actual)
+
+    def test_every_catalog_sport_has_a_source_identity_audit(self):
+        self.assertEqual([block["sport"] for block in self.season_map["sports"]],
+                         [block["sport"] for block in self.alias_audit["sports"]])
+        by_sport = {block["sport"]: block for block in self.alias_audit["sports"]}
+        self.assertEqual([], by_sport["Aussie Rules"]["schedule_only_labels"])
+        self.assertEqual([], by_sport["Soccer"]["schedule_only_labels"])
+        self.assertTrue(any(row["source_id"] == "rugby-rfl" and len(row["catalog_targets"]) > 1
+                            for row in by_sport["Rugby"]["shared_sources_for_review"]))
 
     def test_every_combined_soccer_approval_has_isolated_operational_identities(self):
         parents = soccer_combined_parents(self.season_map)
@@ -155,7 +172,7 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
             (isolated / "data").mkdir()
             shutil.copy2(ROOT / "scripts" / "build_competition_identity_registry.py",
                          isolated / "scripts" / "build_competition_identity_registry.py")
-            for name in ("global-schedule.json", "catalog-season-map.json", "catalog-live.json"):
+            for name in ("global-schedule.json", "global-schedule-sources.json", "catalog-season-map.json", "catalog-live.json"):
                 shutil.copy2(ROOT / "data" / name, isolated / "data" / name)
             crosswalk = json.loads((ROOT / "data" / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
             crosswalk["reviewed_aliases"][0]["alias"] = "AFC Asian Cup | Men"

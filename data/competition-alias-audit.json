@@ -1,0 +1,578 @@
+{
+  "schema_version": 1,
+  "note": "All catalog sports are inventoried. Source labels are matched only through a unique source ID; shared sources and schedule-only names require identity review. Organizer and operator aliases require separate evidence.",
+  "sports": [
+    {
+      "sport": "Aussie Rules",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Basketball",
+      "catalog_identities": 89,
+      "registry_identities": 89,
+      "organizer_alias_identities": 11,
+      "source_label_identities": 21,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "israeli-basketball",
+          "label": "Israeli Basketball Premier League"
+        },
+        {
+          "source_id": "ncaa-mbb",
+          "label": "NCAA Men's Basketball"
+        },
+        {
+          "source_id": "ncaa-wbb",
+          "label": "NCAA Women's Basketball"
+        }
+      ]
+    },
+    {
+      "sport": "Bowling",
+      "catalog_identities": 2,
+      "registry_identities": 2,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Boxing",
+      "catalog_identities": 10,
+      "registry_identities": 10,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "boxing-weekly",
+          "label": "Bout-Level Boxing Review"
+        }
+      ]
+    },
+    {
+      "sport": "Combat Sports",
+      "catalog_identities": 14,
+      "registry_identities": 14,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Baseball",
+      "catalog_identities": 9,
+      "registry_identities": 9,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Ice Hockey",
+      "catalog_identities": 14,
+      "registry_identities": 14,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Lacrosse",
+      "catalog_identities": 3,
+      "registry_identities": 3,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identities": 12,
+      "registry_identities": 12,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "motorsports-f1-calendar",
+          "label": "Formula One (F1)"
+        },
+        {
+          "source_id": "motorsports-motogp-calendar",
+          "label": "MotoGP World Championship"
+        },
+        {
+          "source_id": "motorsports-nascar-bristol",
+          "label": "NASCAR National Series"
+        },
+        {
+          "source_id": "motorsports-nhra-calendar",
+          "label": "NHRA Mission Foods Drag Racing Series"
+        },
+        {
+          "source_id": "motorsports-score-calendar",
+          "label": "SCORE World Desert Championship Series"
+        }
+      ]
+    },
+    {
+      "sport": "Rodeo",
+      "catalog_identities": 5,
+      "registry_identities": 5,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identities": 28,
+      "registry_identities": 28,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [
+        {
+          "source_id": "rugby-epcr",
+          "label": "EPCR competitions",
+          "catalog_targets": [
+            "European Rugby Challenge Cup | Men",
+            "European Rugby Champions Cup | Men"
+          ]
+        },
+        {
+          "source_id": "rugby-lnr",
+          "label": "Top 14 and Pro D2",
+          "catalog_targets": [
+            "Pro D2 | Men",
+            "Top 14 | Men"
+          ]
+        },
+        {
+          "source_id": "rugby-nzr",
+          "label": "New Zealand Rugby competitions",
+          "catalog_targets": [
+            "Farah Palmer Cup | Women",
+            "Heartland Championship | Men",
+            "National Provincial Championship (NPC) | Men"
+          ]
+        },
+        {
+          "source_id": "rugby-premiership",
+          "label": "Premiership Rugby competitions",
+          "catalog_targets": [
+            "Gallagher Premiership Rugby | Men",
+            "Premiership Rugby Cup | Men"
+          ]
+        },
+        {
+          "source_id": "rugby-ran",
+          "label": "Rugby Americas North competitions",
+          "catalog_targets": [
+            "Rugby Americas North Championship | Men and Women",
+            "Rugby Americas North Sevens | Men and Women"
+          ]
+        },
+        {
+          "source_id": "rugby-rfl",
+          "label": "RFL competitions",
+          "catalog_targets": [
+            "Challenge Cup | Men",
+            "Super League Rugby | Men",
+            "Women’s Challenge Cup | Women",
+            "Women’s Super League | Women",
+            "World Club Challenge | Men"
+          ]
+        },
+        {
+          "source_id": "rugby-saru",
+          "label": "South African Rugby Union competitions",
+          "catalog_targets": [
+            "Currie Cup | Men",
+            "Varsity Cup | Men"
+          ]
+        },
+        {
+          "source_id": "rugby-world-rugby",
+          "label": "World Rugby competitions",
+          "catalog_targets": [
+            "SVNS | Men and Women",
+            "Women’s Rugby World Cup | Women"
+          ]
+        }
+      ],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Table Tennis",
+      "catalog_identities": 2,
+      "registry_identities": 2,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Soccer",
+      "catalog_identities": 344,
+      "registry_identities": 344,
+      "organizer_alias_identities": 24,
+      "source_label_identities": 8,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [
+        {
+          "source_id": "belgium",
+          "label": "Jupiler Pro League",
+          "catalog_targets": [
+            "Belgian Pro League | Men",
+            "Championship Playoffs I and II | Men"
+          ]
+        }
+      ],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Surfing",
+      "catalog_identities": 3,
+      "registry_identities": 3,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Volleyball",
+      "catalog_identities": 17,
+      "registry_identities": 18,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [
+        "NCAA Volleyball"
+      ],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "ncaa-volleyball",
+          "label": "NCAA Volleyball"
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "catalog_identities": 11,
+      "registry_identities": 11,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Cricket",
+      "catalog_identities": 7,
+      "registry_identities": 7,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Cycling",
+      "catalog_identities": 29,
+      "registry_identities": 29,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "cycling-uci-calendar",
+          "label": "Approved UCI Cycling"
+        }
+      ]
+    },
+    {
+      "sport": "Darts",
+      "catalog_identities": 5,
+      "registry_identities": 5,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "darts-cdc-calendar",
+          "label": "Championship Darts Circuit"
+        },
+        {
+          "source_id": "darts-pdc-calendar",
+          "label": "Approved PDC Darts"
+        }
+      ]
+    },
+    {
+      "sport": "Esports",
+      "catalog_identities": 31,
+      "registry_identities": 31,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "esports-dota-ewc-calendar",
+          "label": "Esports World Cup — Dota 2"
+        },
+        {
+          "source_id": "esports-dota-international-calendar",
+          "label": "The International"
+        },
+        {
+          "source_id": "esports-esl-dota-calendar",
+          "label": "Approved ESL Pro Tour Dota 2"
+        },
+        {
+          "source_id": "esports-esl-pro-league-calendar",
+          "label": "Electronic Sports League (ESL) Pro League"
+        },
+        {
+          "source_id": "esports-pgl-cs2-calendar",
+          "label": "Professional Gamers League (PGL) CS2"
+        },
+        {
+          "source_id": "esports-riot-lol-calendar",
+          "label": "Approved League of Legends"
+        },
+        {
+          "source_id": "esports-riot-valorant-calendar",
+          "label": "Approved VALORANT Champions Tour"
+        },
+        {
+          "source_id": "esports-simulation-calendar",
+          "label": "Approved sports simulations"
+        },
+        {
+          "source_id": "esports-ubisoft-r6-calendar",
+          "label": "Approved BLAST Rainbow Six"
+        }
+      ]
+    },
+    {
+      "sport": "Football",
+      "catalog_identities": 7,
+      "registry_identities": 8,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 1,
+      "schedule_only_labels": [
+        "NCAA Football"
+      ],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": [
+        {
+          "source_id": "ncaa-football",
+          "label": "NCAA Football"
+        }
+      ]
+    },
+    {
+      "sport": "Golf",
+      "catalog_identities": 19,
+      "registry_identities": 19,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 3,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "Olympics",
+      "catalog_identities": 0,
+      "registry_identities": 0,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Baseball",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Basketball",
+      "catalog_identities": 5,
+      "registry_identities": 5,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Beach Volleyball",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Field Hockey",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Football",
+      "catalog_identities": 3,
+      "registry_identities": 3,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Golf",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Ice Hockey",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Lacrosse",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Soccer",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Softball",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Swimming",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Tennis",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Track and Field",
+      "catalog_identities": 2,
+      "registry_identities": 2,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Volleyball",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Water Polo",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    },
+    {
+      "sport": "NCAA Wrestling",
+      "catalog_identities": 1,
+      "registry_identities": 1,
+      "organizer_alias_identities": 0,
+      "source_label_identities": 0,
+      "schedule_only_labels": [],
+      "shared_sources_for_review": [],
+      "sources_without_catalog_target": []
+    }
+  ]
+}
