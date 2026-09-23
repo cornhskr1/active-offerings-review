@@ -38,22 +38,26 @@ def main() -> None:
     schedule = json.loads((DATA / "global-schedule.json").read_text(encoding="utf-8"))
     season_map = json.loads((DATA / "catalog-season-map.json").read_text(encoding="utf-8"))
     catalog = json.loads((DATA / "catalog-live.json").read_text(encoding="utf-8"))
+    alias_crosswalk = json.loads((DATA / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
 
     competitions: dict[tuple[str, str], dict] = {}
 
-    def add_competition(sport: str, event: dict) -> None:
+    def add_competition(sport: str, event: dict, *, child: bool = False) -> None:
         league = clean(event.get("label") or event.get("catalog_event"))
         if not sport or not league:
             return
         ids = ([clean(event.get("source_id"))] if event.get("source_id") else [])
         ids.extend(clean(value) for value in event.get("source_ids") or [])
-        competitions[(sport, league)] = {
+        entry = {
             "sport": sport,
             "league": league,
             "source_ids": sorted(set(filter(None, ids))),
             "participants": [],
             "events": [],
         }
+        if child:
+            entry["identity_key"] = clean(event.get("key"))
+        competitions[(sport, league)] = entry
 
     for sport_block in season_map.get("sports", []):
         sport = clean(sport_block.get("sport"))
@@ -62,7 +66,7 @@ def main() -> None:
                 children = event.get("coverage_children") or []
                 if children:
                     for child in children:
-                        add_competition(sport, child)
+                        add_competition(sport, child, child=True)
                 else:
                     add_competition(sport, event)
     for mapping in season_map.get("source_mappings", []):
@@ -70,7 +74,7 @@ def main() -> None:
         if children:
             sport = clean(mapping.get("sport"))
             for child in children:
-                add_competition(sport, child)
+                add_competition(sport, child, child=True)
             continue
         sport, league = clean(mapping.get("sport")), clean(mapping.get("catalog_event"))
         if not sport or not league:
@@ -84,7 +88,7 @@ def main() -> None:
         children = mapping.get("coverage_children") or []
         if children:
             for child in children:
-                add_competition(sport, child)
+                add_competition(sport, child, child=True)
 
     observed_participants: dict[tuple[str, str], set[str]] = defaultdict(set)
     observed_events: dict[tuple[str, str], dict[str, dict]] = defaultdict(dict)
@@ -103,6 +107,32 @@ def main() -> None:
             "start_time": clean(event.get("start_time")),
             "participants": sides,
         }
+
+    identities = {
+        (entry["sport"], entry.get("identity_key")): entry
+        for entry in competitions.values() if entry.get("identity_key")
+    }
+    claimed_names = {(entry["sport"], key(entry["league"])): entry for entry in competitions.values()}
+    alias_names = set()
+    for row in alias_crosswalk["reviewed_aliases"]:
+        sport, identity_key, alias = row["sport"], row["identity_key"], clean(row["alias"])
+        target = identities.get((sport, identity_key))
+        if not target:
+            raise ValueError(f"Alias target is not a catalog identity: {sport} / {identity_key}")
+        if row.get("name_type") != "official" or not str(row.get("evidence_url", "")).startswith("https://"):
+            raise ValueError(f"Alias lacks reviewed official evidence: {sport} / {alias}")
+        normalized = (sport, key(alias))
+        if not normalized[1] or (claimed_names.get(normalized) not in (None, target)):
+            raise ValueError(f"Alias collides with another competition: {sport} / {alias}")
+        if normalized in alias_names:
+            raise ValueError(f"Duplicate alias: {sport} / {alias}")
+        alias_names.add(normalized)
+        claimed_names[normalized] = target
+        target.setdefault("aliases", []).append({
+            "name": alias,
+            "name_type": row["name_type"],
+            "evidence_url": row["evidence_url"],
+        })
 
     output_competitions = []
     for identity, entry in sorted(competitions.items(), key=lambda item: (item[0][0].casefold(), item[0][1].casefold())):
@@ -123,6 +153,7 @@ def main() -> None:
         "competition_count": len(output_competitions),
         "event_count": sum(len(item["events"]) for item in output_competitions),
         "competitions": output_competitions,
+        "alias_review_queue": alias_crosswalk["review_queue"],
         "coverage_gaps": schedule.get("coverage_gaps", []),
     }
     (DATA / "competition-identity-registry.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
