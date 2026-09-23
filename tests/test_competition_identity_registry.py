@@ -241,6 +241,20 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertFalse(any(alias["name"] in held for item in darts.values()
                              for alias in item.get("aliases", [])))
 
+    def test_esports_aliases_keep_game_and_tournament_boundaries(self):
+        esports = {item["league"]: item for item in self.registry["competitions"]
+                  if item["sport"] == "Esports"}
+        self.assertEqual(31, len(esports))
+        self.assertIn("Six Invitational", [a["name"] for a in esports["Global Championships"].get("aliases", [])])
+        self.assertIn("LCS Lock-In Tournament", [a["name"] for a in esports["LCS Lock-In"].get("aliases", [])])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Esports"}
+        self.assertIn("Worlds", held)
+        self.assertIn("Esports World Cup", held)
+        self.assertIn("EAL", held)
+        self.assertFalse(any(a["name"] in held for item in esports.values()
+                             for a in item.get("aliases", [])))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
