@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T18:27:02.086666+00:00",
+  "generated_at": "2026-09-23T18:28:59.683018+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-23T18:23:54.523816+00:00",
@@ -1786,6 +1786,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "BKFC",
+          "name_type": "official",
+          "evidence_url": "https://www.bkfc.com/about"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1802,6 +1809,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "BBBofC",
+          "name_type": "official",
+          "evidence_url": "https://www.bbbofc.com/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1810,6 +1824,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "IBF",
+          "name_type": "official",
+          "evidence_url": "https://www.ibf-usba-boxing.com/about/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1818,6 +1839,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "MVP",
+          "name_type": "official",
+          "evidence_url": "https://www.mostvaluablepromotions.com/mvp-five-year-anniversary/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1834,6 +1862,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "WBA",
+          "name_type": "official",
+          "evidence_url": "https://www.wbaboxing.com/boxing-news/happy-100th-anniversary"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1842,6 +1877,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "WBC",
+          "name_type": "official",
+          "evidence_url": "https://wbcboxing.com/en/about-us-history/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1850,6 +1892,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "WBO",
+          "name_type": "official",
+          "evidence_url": "https://wboboxing.com/about-us/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -16248,6 +16297,13 @@
       "sport": "Basketball",
       "catalog_identity": "FIBA 3x3 World Cup | Men and Women",
       "reason": "The organizer uses one event title with separate Men and Women categories. A bare event title cannot select a division."
+    },
+    {
+      "sport": "Boxing",
+      "catalog_identity": "Association of Boxing Commissions and Combative Sports (ABCCS)",
+      "observed_official_name": "Association of Boxing Commissions (ABC)",
+      "reason": "The association's official constitution uses ABC. Confirm the catalog's ABCCS identity and the specific commission overseeing a bout before treating this as an identity alias; the name alone does not establish bout approval.",
+      "evidence_url": "https://www.abcboxing.com/abc-constitution/"
     }
   ],
   "coverage_gaps": [

@@ -181,6 +181,17 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertEqual(["PBA Tour"], [alias["name"] for alias in bowling["PBA National Tour"]["aliases"]])
         self.assertFalse(bowling["PBA Strike Derby"].get("aliases"))
 
+    def test_boxing_authority_aliases_do_not_claim_bout_approval(self):
+        boxing = {item["league"]: item for item in self.registry["competitions"]
+                  if item["sport"] == "Boxing"}
+        self.assertEqual(7, sum(len(item.get("aliases", [])) for item in boxing.values()))
+        self.assertFalse(boxing["Bout-Level Approval Test"].get("aliases"))
+        self.assertFalse(boxing["State Athletic Commissions"].get("aliases"))
+        self.assertFalse(boxing["Association of Boxing Commissions and Combative Sports (ABCCS)"].get("aliases"))
+        self.assertTrue(all(not item["events"] for item in boxing.values()))
+        self.assertTrue(any(row.get("observed_official_name") == "Association of Boxing Commissions (ABC)"
+                            for row in self.registry["alias_review_queue"]))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
