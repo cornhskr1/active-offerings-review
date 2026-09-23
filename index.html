@@ -1072,6 +1072,7 @@ function renderIssueBoard(cards,events){
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
+      const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
         ${pill(severity,red?'NOT PERMISSIBLE':'MANUAL REVIEW')}
         <span class="issue-card-title">${esc(regionLeagueLabel(group.region,group.league))}</span>
@@ -1081,7 +1082,7 @@ function renderIssueBoard(cards,events){
         const game=esportsGameLabel(card);
         const detail=[game,card.reason||''].filter(Boolean).join(' · ');
         return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(detail)}${esc(who)}</div></div><span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${esc(eventTime(card.start_time))}</span></div>`;
-      }).join('')}${actions.length?`<div class="issue-card-action"><b>Staff check:</b> ${esc(actions.join(' '))} <b>Scope:</b> all licensed sportsbook platforms.</div>`:''}</div></details>`;
+      }).join('')}${actions.length?`<div class="issue-card-action"><b>Staff check:</b> ${esc(actions.join(' '))} <b>Scope:</b> all licensed sportsbook platforms. ${sourceLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' ')}</div>`:''}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
 }
@@ -1106,7 +1107,11 @@ function renderUpcomingSportBoard(events){
   return `<div class="activity-board"><div class="activity-board-title">Upcoming Approved Activity · Select a Sport</div>${ordered.map(([sport,leagues])=>{
     const sportEvents=[...leagues.values()].flat();
     const reviewPill=sport==='Boxing'?pill('amber','BOUT REVIEW'):pill('green','MAPPED');
-    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>`<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`).join('')}</div></details>`;
+    return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>{
+      const sourceIds=new Set(leagueEvents.map(event=>event.source_id).filter(Boolean));
+      const scheduleLinks=[...new Set((DATA.global?.sources||[]).filter(source=>sourceIds.has(source.id)).map(source=>source.official_schedule_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
+      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
+    }).join('')}</div></details>`;
   }).join('')}</div>`;
 }
 
@@ -1115,15 +1120,18 @@ function uncoveredMappedEvents(sportName){
   const sports=(DATA.seasonMap?.sports||[]).filter(sport=>!sportName||sport.sport===sportName);
   const gaps=[];
   sports.forEach(sport=>(sport.groups||[]).forEach(group=>(group.events||[]).forEach(event=>{
-    if(mappedSeasonStatus(event)!=='in')return;
-    const ids=eventSourceIds(event);
-    if(ids.some(id=>configured.has(id)))return;
-    gaps.push({
-      sport:sport.sport,
-      region:group.country||'International',
-      league:event.catalog_event,
-      governing_body:group.governing_body||'',
-      event
+    const identities=(event.coverage_children||[]).length?event.coverage_children:[event];
+    identities.forEach(identity=>{
+      if(mappedSeasonStatus(identity)!=='in')return;
+      const ids=eventSourceIds(identity);
+      if(ids.some(id=>configured.has(id)))return;
+      gaps.push({
+        sport:sport.sport,
+        region:group.country||'International',
+        league:identity.label||identity.catalog_event,
+        governing_body:group.governing_body||'',
+        event:identity
+      });
     });
   })));
   return gaps;
@@ -1148,8 +1156,9 @@ function scheduleCoverageAttention(dayKey){
       reason:missing
         ?'Approved and in season, but no dependable complete public schedule feed is connected.'
         :'Approved and in season, but the connected public schedule feed is known to omit some games.',
+      source_url:source.official_schedule_url||'',
       staff_action:source.official_schedule_url
-        ?`Check the official league calendar (${source.official_schedule_url}) and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.`
+        ?'Check the linked official league calendar and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.'
         :'Do not treat zero detected games as confirmation that no offerings exist. Compare the operator menu or wagering activity before clearing this league.'
     };
   });
@@ -2140,14 +2149,20 @@ function mappedSeasonStatus(event){
 }
 function mappedCatalogEventForSource(sourceId){
   if(!sourceId)return null;
+  const mappedIdentity=(event,context={})=>{
+    const child=(event.coverage_children||[]).find(x=>eventSourceIds(x).includes(sourceId));
+    return child
+      ?{...context,...child,catalog_event:child.label||child.catalog_event,parent_catalog_event:event.catalog_event,restrictions:event.restrictions||[]}
+      :{...event,...context};
+  };
   const direct=sourceCatalogMapping(sourceId);
-  if(direct)return direct;
+  if(direct)return mappedIdentity(direct);
   const catalogDirect=(DATA.seasonMap?.catalog_event_mappings||[]).find(x=>eventSourceIds(x).includes(sourceId));
-  if(catalogDirect)return catalogDirect;
+  if(catalogDirect)return mappedIdentity(catalogDirect);
   for(const sport of (DATA.seasonMap?.sports||[])){
     for(const group of (sport.groups||[])){
       const event=(group.events||[]).find(x=>eventSourceIds(x).includes(sourceId));
-      if(event)return{...event,sport:sport.sport,country:group.country,governing_body:group.governing_body};
+      if(event)return mappedIdentity(event,{sport:sport.sport,country:group.country,governing_body:group.governing_body});
     }
   }
   return null;
