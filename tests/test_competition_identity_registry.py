@@ -174,6 +174,13 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertNotIn("MLB Draft", [alias["name"] for alias in baseball["Major League Baseball (MLB)"]["aliases"]])
         self.assertEqual("MLB", baseball["Major League Baseball (MLB)"]["aliases"][0]["name"])
 
+    def test_bowling_tour_alias_does_not_claim_strike_derby_or_other_tours(self):
+        bowling = {item["league"]: item for item in self.registry["competitions"]
+                   if item["sport"] == "Bowling"}
+        self.assertEqual({"PBA National Tour", "PBA Strike Derby"}, set(bowling))
+        self.assertEqual(["PBA Tour"], [alias["name"] for alias in bowling["PBA National Tour"]["aliases"]])
+        self.assertFalse(bowling["PBA Strike Derby"].get("aliases"))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
