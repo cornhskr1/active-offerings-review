@@ -1,6 +1,8 @@
 import json
+import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -22,13 +24,23 @@ def soccer_combined_parents(season_map):
 class CompetitionIdentityRegistryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "build_competition_identity_registry.py")],
-            check=True,
-        )
-        cls.registry = json.loads(
-            (ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8")
-        )
+        # Build from the current inputs without rewriting a tracked file in the
+        # checkout. GitHub workflows must remain clean before their rebase.
+        with tempfile.TemporaryDirectory() as directory:
+            isolated = Path(directory)
+            (isolated / "scripts").mkdir()
+            (isolated / "data").mkdir()
+            shutil.copy2(ROOT / "scripts" / "build_competition_identity_registry.py",
+                         isolated / "scripts" / "build_competition_identity_registry.py")
+            for name in ("global-schedule.json", "catalog-season-map.json", "catalog-live.json"):
+                shutil.copy2(ROOT / "data" / name, isolated / "data" / name)
+            subprocess.run(
+                [sys.executable, str(isolated / "scripts" / "build_competition_identity_registry.py")],
+                check=True,
+            )
+            cls.registry = json.loads(
+                (isolated / "data" / "competition-identity-registry.json").read_text(encoding="utf-8")
+            )
         cls.season_map = json.loads(
             (ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8")
         )
