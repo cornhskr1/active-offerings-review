@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T19:21:53.398765+00:00",
+  "generated_at": "2026-09-23T19:25:48.747412+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-23T19:18:53.973806+00:00",
@@ -2684,6 +2684,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "CDC Cross Border Darts Challenge",
+          "name_type": "official",
+          "evidence_url": "https://champdarts.com/uncategorized/2026cbdcfinalrecap/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -2694,6 +2701,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "CDC Main Tour",
+          "name_type": "official",
+          "evidence_url": "https://champdarts.com/main-tour/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -2710,6 +2724,13 @@
           "participants": []
         }
       ],
+      "aliases": [
+        {
+          "name": "Players Championship",
+          "name_type": "official",
+          "evidence_url": "https://www.pdc.tv/tournaments/pdc-protour/players-championship"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -2720,6 +2741,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "Paddy Power World Darts Championship",
+          "name_type": "official",
+          "evidence_url": "https://www.pdc.tv/tournaments/paddy-power-world-darts-championship"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -2730,6 +2758,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "BetMGM Premier League",
+          "name_type": "official",
+          "evidence_url": "https://www.pdc.tv/tournament/betmgm-premier-league"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -16539,6 +16574,41 @@
       "observed_official_name": "Tour of Guangxi",
       "reason": "UCI lists men’s and women’s races under the same title. The catalog does not separate divisions; the title alone is ambiguous.",
       "evidence_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+    },
+    {
+      "sport": "Darts",
+      "catalog_identity": "PDC Players Championship",
+      "observed_official_name": "Ladbrokes Players Championship Finals",
+      "reason": "A separate PDC premier event; do not infer approval from the Players Championship series line.",
+      "evidence_url": "https://www.pdc.tv/tournaments/pdc-protour/players-championship"
+    },
+    {
+      "sport": "Darts",
+      "catalog_identity": "Main Tour Events",
+      "observed_official_name": "CDC Next Generation – Junior Tour",
+      "reason": "CDC identifies a separate under-18 tour. It is not a CDC Main Tour event.",
+      "evidence_url": "https://champdarts.com/junior-tour/"
+    },
+    {
+      "sport": "Darts",
+      "catalog_identity": "Main Tour Events",
+      "observed_official_name": "CDC Next Generation – Evolution Tour",
+      "reason": "CDC identifies a separate next-generation tour. Do not equate it with Main Tour Events.",
+      "evidence_url": "https://champdarts.com/cdc-evolution-tour/"
+    },
+    {
+      "sport": "Darts",
+      "catalog_identity": "Main Tour Events",
+      "observed_official_name": "CDC Continental Cup",
+      "reason": "CDC identifies a separate championship rather than a Main Tour event. Confirm approval scope.",
+      "evidence_url": "https://champdarts.com/main-tour/"
+    },
+    {
+      "sport": "Darts",
+      "catalog_identity": "Main Tour Events",
+      "observed_official_name": "Championship Darts Circuit",
+      "reason": "CDC uses this name for its broader circuit, which also includes separately named events. The umbrella name alone cannot identify an approved Main Tour event.",
+      "evidence_url": "https://champdarts.com/main-tour/"
     }
   ],
   "coverage_gaps": [
