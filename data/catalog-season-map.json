@@ -222,10 +222,25 @@
               "key": "basketball-fiba-world-cup",
               "catalog_event": "FIBA Basketball World Cup | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Next editions scheduled separately by division",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-fiba-world-cup-men",
+                  "label": "FIBA Basketball World Cup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-fiba-world-cup-women",
+                  "label": "FIBA Basketball World Cup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-fiba-3x3-world-cup",
@@ -234,7 +249,23 @@
               "season_start": "06-01",
               "season_end": "06-30",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "basketball-fiba-3x3-world-cup-men",
+                  "label": "FIBA 3x3 World Cup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-fiba-3x3-world-cup-women",
+                  "label": "FIBA 3x3 World Cup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-fiba-3x3-tour",
@@ -243,7 +274,23 @@
               "season_start": "04-01",
               "season_end": "12-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "basketball-fiba-3x3-tour-men",
+                  "label": "FIBA 3x3 World Tour | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-fiba-3x3-tour-women",
+                  "label": "FIBA 3x3 World Tour | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -255,10 +302,25 @@
               "key": "basketball-afrobasket",
               "catalog_event": "FIBA AfroBasket | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic continental tournaments",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-afrobasket-men",
+                  "label": "FIBA AfroBasket | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-afrobasket-women",
+                  "label": "FIBA AfroBasket | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -270,19 +332,49 @@
               "key": "basketball-americup",
               "catalog_event": "FIBA AmeriCup | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic continental tournaments",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-americup-men",
+                  "label": "FIBA AmeriCup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-americup-women",
+                  "label": "FIBA AmeriCup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-south-american",
               "catalog_event": "South American Championship | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic tournament",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-south-american-men",
+                  "label": "South American Championship | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-south-american-women",
+                  "label": "South American Championship | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-centrobasket-women",
@@ -321,10 +413,25 @@
               "key": "basketball-asia-cup",
               "catalog_event": "FIBA Asia Cup | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic continental tournaments",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-asia-cup-men",
+                  "label": "FIBA Asia Cup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-asia-cup-women",
+                  "label": "FIBA Asia Cup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -336,10 +443,25 @@
               "key": "basketball-eurobasket",
               "catalog_event": "FIBA EuroBasket | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic continental tournaments",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-eurobasket-men",
+                  "label": "FIBA EuroBasket | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-eurobasket-women",
+                  "label": "FIBA EuroBasket | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-bcl",
@@ -370,37 +492,97 @@
               "key": "basketball-micronesia",
               "catalog_event": "FIBA Micronesia Cup | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic tournament",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-micronesia-men",
+                  "label": "FIBA Micronesia Cup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-micronesia-women",
+                  "label": "FIBA Micronesia Cup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-melanesia",
               "catalog_event": "FIBA Melanesia Cup | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic tournament",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-melanesia-men",
+                  "label": "FIBA Melanesia Cup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-melanesia-women",
+                  "label": "FIBA Melanesia Cup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-polynesian",
               "catalog_event": "FIBA Polynesian Basketball Cup | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Periodic tournament",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-polynesian-men",
+                  "label": "FIBA Polynesian Basketball Cup | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-polynesian-women",
+                  "label": "FIBA Polynesian Basketball Cup | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "basketball-pacific-games",
               "catalog_event": "Pacific Games | Men and Women",
               "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "season_window": "Next Pacific Games in 2027",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "basketball-pacific-games-men",
+                  "label": "Pacific Games | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-pacific-games-women",
+                  "label": "Pacific Games | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -1098,7 +1280,23 @@
               "season_start": "06-01",
               "season_end": "08-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "basketball-us-tbt-men",
+                  "label": "The Basketball Tournament (TBT) | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "basketball-us-tbt-women",
+                  "label": "The Basketball Tournament (TBT) | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
