@@ -227,6 +227,20 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertFalse(any(alias["name"] in held for item in cycling.values()
                              for alias in item.get("aliases", [])))
 
+    def test_darts_series_aliases_do_not_claim_separate_finals_or_junior_tours(self):
+        darts = {item["league"]: item for item in self.registry["competitions"]
+                 if item["sport"] == "Darts"}
+        self.assertEqual(5, len(darts))
+        self.assertEqual(5, sum(len(item.get("aliases", [])) for item in darts.values()))
+        self.assertIn("CDC Main Tour", [alias["name"] for alias in darts["Main Tour Events"]["aliases"]])
+        self.assertIn("Players Championship", [alias["name"] for alias in darts["PDC Players Championship"]["aliases"]])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Darts"}
+        self.assertIn("Ladbrokes Players Championship Finals", held)
+        self.assertIn("CDC Next Generation – Junior Tour", held)
+        self.assertFalse(any(alias["name"] in held for item in darts.values()
+                             for alias in item.get("aliases", [])))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
