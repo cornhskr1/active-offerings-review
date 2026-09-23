@@ -115,29 +115,6 @@
       "last_verified": "2026-09-16"
     },
     {
-      "source_id": "seriea",
-      "sport": "Soccer",
-      "country": "Italy",
-      "catalog_event": "Serie A | Men and Women",
-      "coverage_children": [
-        {
-          "key": "soccer-italy-serie-a-men",
-          "label": "Serie A | Men",
-          "source_id": "seriea",
-          "season_window": "August–May",
-          "season_start": "08-01",
-          "season_end": "05-31"
-        },
-        {
-          "key": "soccer-italy-serie-a-women",
-          "label": "Serie A | Women",
-          "source_id": "soccer-italy-serie-a-women",
-          "season_window": "Season mapping pending"
-        }
-      ],
-      "last_verified": "2026-09-16"
-    },
-    {
       "source_id": "ligue1",
       "sport": "Soccer",
       "country": "France",
@@ -2931,7 +2908,7 @@
     {
       "sport": "Soccer",
       "mapping_status": "complete",
-      "summary_label": "331 approved competitions · 331 season mapped",
+      "summary_label": "331 approved competitions · 323 season mapped",
       "catalog_snapshot_lines": [
         "FIFA International Events",
         "Fédération Internationale de Football Association (FIFA)",
@@ -3465,45 +3442,87 @@
             {
               "key": "soccer-international-international-friendlies-men-and-women",
               "season_window": "January–December",
-              "season_basis": "Verified competition calendar and connected schedule source",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "01-01",
               "season_end": "12-31",
-              "source_ids": [
-                "soccer-fifa-friendlies-men",
-                "soccer-fifa-friendlies-women"
-              ],
               "catalog_event": "International Friendlies | Men and Women",
               "restrictions": [
                 "$1,000 WAGER LIMIT"
+              ],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-international-friendlies-men",
+                  "label": "International Friendlies | Men",
+                  "source_id": "soccer-fifa-friendlies-men",
+                  "season_window": "January–December",
+                  "season_start": "01-01",
+                  "season_end": "12-31"
+                },
+                {
+                  "key": "soccer-international-international-friendlies-women",
+                  "label": "International Friendlies | Women",
+                  "source_id": "soccer-fifa-friendlies-women",
+                  "season_window": "January–December",
+                  "season_start": "01-01",
+                  "season_end": "12-31"
+                }
               ]
             },
             {
               "key": "soccer-international-fifa-world-cup-men-and-women",
               "season_window": "Men: June 11–July 19, 2026 · Women: next finals in 2027",
-              "season_basis": "2026 FIFA World Cup finals; the approved combined catalog label is preserved",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "06-11",
               "season_end": "07-19",
-              "source_ids": [
-                "soccer-fifa-world-cup",
-                "soccer-fifa-womens-world-cup"
-              ],
               "catalog_event": "FIFA World Cup | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-fifa-world-cup-men",
+                  "label": "FIFA World Cup | Men",
+                  "source_id": "soccer-fifa-world-cup",
+                  "season_window": "June 11–July 19, 2026",
+                  "season_start": "06-11",
+                  "season_end": "07-19"
+                },
+                {
+                  "key": "soccer-international-fifa-world-cup-women",
+                  "label": "FIFA World Cup | Women",
+                  "source_id": "soccer-fifa-womens-world-cup",
+                  "season_window": "Next finals in 2027",
+                  "season_status": "out"
+                }
+              ]
             },
             {
               "key": "soccer-international-fifa-club-world-cup-men-and-women",
               "season_window": "Most recent edition: June 14–July 13, 2025 · no 2026 finals",
-              "season_basis": "Tournament-cycle event; next edition calendar pending",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "source_ids": [
-                "soccer-fifa-club-world-cup",
-                "soccer-fifa-womens-club-world-cup"
-              ],
               "season_status": "out",
               "catalog_event": "FIFA Club World Cup | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-fifa-club-world-cup-men",
+                  "label": "FIFA Club World Cup | Men",
+                  "source_id": "soccer-fifa-club-world-cup",
+                  "season_window": "Most recent edition: June 14–July 13, 2025",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-fifa-club-world-cup-women",
+                  "label": "FIFA Club World Cup | Women",
+                  "source_id": "soccer-fifa-womens-club-world-cup",
+                  "season_window": "Next competition calendar pending",
+                  "season_status": "out"
+                }
+              ]
             }
           ]
         },
@@ -3515,27 +3534,57 @@
             {
               "key": "soccer-international-afc-asian-cup-men-and-women",
               "season_window": "Women: March 1–21, 2026 · Men: January 7–February 5, 2027",
-              "season_basis": "Verified competition calendar and connected schedule source",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "01-07",
               "season_end": "03-21",
-              "source_ids": [
-                "soccer-afc-asian-cup-men",
-                "soccer-afc-asian-cup-women"
-              ],
               "catalog_event": "AFC Asian Cup | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-afc-asian-cup-men",
+                  "label": "AFC Asian Cup | Men",
+                  "source_id": "soccer-afc-asian-cup-men",
+                  "season_window": "January 7–February 5, 2027",
+                  "season_start_date": "2027-01-07",
+                  "season_end_date": "2027-02-05"
+                },
+                {
+                  "key": "soccer-international-afc-asian-cup-women",
+                  "label": "AFC Asian Cup | Women",
+                  "source_id": "soccer-afc-asian-cup-women",
+                  "season_window": "March 1–21, 2026",
+                  "season_status": "out"
+                }
+              ]
             },
             {
               "key": "soccer-international-afc-champions-league-elite-men-and-women",
               "season_window": "July 2026–May 2027",
-              "season_basis": "2026–27 AFC Champions League Elite; approved combined catalog label preserved",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "07-01",
               "season_end": "05-31",
-              "source_id": "soccer-afc-champions-league-elite",
               "catalog_event": "AFC Champions League Elite | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-afc-champions-league-elite-men",
+                  "label": "AFC Champions League Elite | Men",
+                  "source_id": "soccer-afc-champions-league-elite",
+                  "season_window": "July 2026–May 2027",
+                  "season_start": "07-01",
+                  "season_end": "05-31"
+                },
+                {
+                  "key": "soccer-international-afc-champions-league-elite-women",
+                  "label": "AFC Champions League Elite | Women",
+                  "source_id": "soccer-afc-champions-league-elite-women",
+                  "season_window": "Schedule mapping pending"
+                }
+              ]
             }
           ]
         },
@@ -3699,23 +3748,55 @@
             {
               "key": "soccer-international-fifa-world-cup-qualifiers-men-and-women",
               "season_window": "2026 qualification cycle complete",
-              "season_basis": "CONMEBOL qualification cycle; next cycle schedule pending",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "source_id": "soccer-conmebol-world-cup-qualifiers",
               "season_status": "out",
               "catalog_event": "FIFA World Cup Qualifiers | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-fifa-world-cup-qualifiers-men",
+                  "label": "FIFA World Cup Qualifiers | Men",
+                  "source_id": "soccer-conmebol-world-cup-qualifiers",
+                  "season_window": "2026 qualification cycle complete",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-fifa-world-cup-qualifiers-women",
+                  "label": "FIFA World Cup Qualifiers | Women",
+                  "source_id": "soccer-conmebol-world-cup-qualifiers-women",
+                  "season_window": "Next qualification calendar pending",
+                  "season_status": "out"
+                }
+              ]
             },
             {
               "key": "soccer-international-copa-libertadores-men-and-women",
               "season_window": "February–November 2026",
-              "season_basis": "2026 CONMEBOL Libertadores; approved combined catalog label preserved",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "02-01",
               "season_end": "11-30",
-              "source_id": "soccer-conmebol-libertadores",
               "catalog_event": "Copa Libertadores | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-copa-libertadores-men",
+                  "label": "Copa Libertadores | Men",
+                  "source_id": "soccer-conmebol-libertadores",
+                  "season_window": "February–November 2026",
+                  "season_start": "02-01",
+                  "season_end": "11-30"
+                },
+                {
+                  "key": "soccer-international-copa-libertadores-women",
+                  "label": "Copa Libertadores | Women",
+                  "source_id": "soccer-conmebol-libertadores-women",
+                  "season_window": "Schedule mapping pending"
+                }
+              ]
             },
             {
               "key": "soccer-international-copa-libertadores-femenina-women",
@@ -3731,24 +3812,55 @@
             {
               "key": "soccer-international-copa-sudamericana-men-and-women",
               "season_window": "March–November 2026",
-              "season_basis": "2026 CONMEBOL Sudamericana; approved combined catalog label preserved",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "03-01",
               "season_end": "11-30",
-              "source_id": "soccer-conmebol-sudamericana",
               "catalog_event": "Copa Sudamericana | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-copa-sudamericana-men",
+                  "label": "Copa Sudamericana | Men",
+                  "source_id": "soccer-conmebol-sudamericana",
+                  "season_window": "March–November 2026",
+                  "season_start": "03-01",
+                  "season_end": "11-30"
+                },
+                {
+                  "key": "soccer-international-copa-sudamericana-women",
+                  "label": "Copa Sudamericana | Women",
+                  "source_id": "soccer-conmebol-sudamericana-women",
+                  "season_window": "Schedule mapping pending"
+                }
+              ]
             },
             {
               "key": "soccer-international-recopa-sudamericana-men-and-women",
               "season_window": "February 2026",
-              "season_basis": "2026 Recopa Sudamericana; approved combined catalog label preserved",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "season_start": "02-01",
               "season_end": "02-28",
-              "source_id": "soccer-conmebol-recopa",
               "catalog_event": "Recopa Sudamericana | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-recopa-sudamericana-men",
+                  "label": "Recopa Sudamericana | Men",
+                  "source_id": "soccer-conmebol-recopa",
+                  "season_window": "February 2026",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-recopa-sudamericana-women",
+                  "label": "Recopa Sudamericana | Women",
+                  "source_id": "soccer-conmebol-recopa-women",
+                  "season_window": "Schedule mapping pending"
+                }
+              ]
             },
             {
               "key": "soccer-international-copa-am-rica-femenina-women",
@@ -3770,12 +3882,28 @@
             {
               "key": "soccer-international-ofc-nations-cup-men-and-women",
               "season_window": "No 2026 finals · next edition calendar pending",
-              "season_basis": "Tournament-cycle event; explicit schedule coverage gap retained",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "source_id": "soccer-ofc-nations-cup",
               "season_status": "out",
               "catalog_event": "OFC Nations Cup | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-ofc-nations-cup-men",
+                  "label": "OFC Nations Cup | Men",
+                  "source_id": "soccer-ofc-nations-cup-men",
+                  "season_window": "Next edition calendar pending",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-ofc-nations-cup-women",
+                  "label": "OFC Nations Cup | Women",
+                  "source_id": "soccer-ofc-nations-cup-women",
+                  "season_window": "Next edition calendar pending",
+                  "season_status": "out"
+                }
+              ]
             }
           ]
         },
@@ -3831,15 +3959,28 @@
             {
               "key": "soccer-international-uefa-european-championship-men-and-women",
               "season_window": "Most recent finals: Men 2024 · Women 2025; no 2026 finals",
-              "season_basis": "Tournament-cycle events",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "source_ids": [
-                "soccer-uefa-euro-men",
-                "soccer-uefa-euro-women"
-              ],
               "season_status": "out",
               "catalog_event": "UEFA European Championship | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-uefa-european-championship-men",
+                  "label": "UEFA European Championship | Men",
+                  "source_id": "soccer-uefa-euro-men",
+                  "season_window": "Most recent finals: 2024",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-uefa-european-championship-women",
+                  "label": "UEFA European Championship | Women",
+                  "source_id": "soccer-uefa-euro-women",
+                  "season_window": "Most recent finals: 2025",
+                  "season_status": "out"
+                }
+              ]
             },
             {
               "key": "soccer-international-uefa-nations-league-men",
@@ -3876,15 +4017,28 @@
             {
               "key": "soccer-international-european-qualifiers-men-and-women",
               "season_window": "2026 World Cup qualifying cycle complete",
-              "season_basis": "National-team qualification cycles; next published cycle pending",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "source_ids": [
-                "soccer-uefa-european-qualifiers-men",
-                "soccer-uefa-european-qualifiers-women"
-              ],
               "season_status": "out",
               "catalog_event": "European Qualifiers | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-european-qualifiers-men",
+                  "label": "European Qualifiers | Men",
+                  "source_id": "soccer-uefa-european-qualifiers-men",
+                  "season_window": "2026 qualification cycle complete",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-european-qualifiers-women",
+                  "label": "European Qualifiers | Women",
+                  "source_id": "soccer-uefa-european-qualifiers-women",
+                  "season_window": "Next qualification calendar pending",
+                  "season_status": "out"
+                }
+              ]
             }
           ]
         },
@@ -3896,15 +4050,28 @@
             {
               "key": "soccer-international-finalissima-men-and-women",
               "season_window": "Event-cycle competition · next dates pending",
-              "season_basis": "Cross-confederation event; connected feeds retained for the next published editions",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "source_ids": [
-                "soccer-finalissima-men",
-                "soccer-finalissima-women"
-              ],
               "season_status": "out",
               "catalog_event": "Finalissima | Men and Women",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-international-finalissima-men",
+                  "label": "Finalissima | Men",
+                  "source_id": "soccer-finalissima-men",
+                  "season_window": "Next event date pending",
+                  "season_status": "out"
+                },
+                {
+                  "key": "soccer-international-finalissima-women",
+                  "label": "Finalissima | Women",
+                  "source_id": "soccer-finalissima-women",
+                  "season_window": "Next event date pending",
+                  "season_status": "out"
+                }
+              ]
             }
           ]
         },
@@ -4057,13 +4224,28 @@
               "season_window": "October 16, 2026–May 9, 2027",
               "season_start": "10-16",
               "season_end": "05-09",
-              "source_ids": [
-                "soccer-afc-australia-a-league-men-and-women-men",
-                "soccer-afc-australia-a-league-men-and-women-women"
-              ],
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-australia-a-league-men",
+                  "label": "A-League | Men",
+                  "source_id": "soccer-afc-australia-a-league-men-and-women-men",
+                  "season_window": "October 16, 2026–May 9, 2027",
+                  "season_start": "10-16",
+                  "season_end": "05-09"
+                },
+                {
+                  "key": "soccer-australia-a-league-women",
+                  "label": "A-League | Women",
+                  "source_id": "soccer-afc-australia-a-league-men-and-women-women",
+                  "season_window": "October 16, 2026–May 9, 2027",
+                  "season_start": "10-16",
+                  "season_end": "05-09"
+                }
+              ]
             },
             {
               "key": "soccer-australia-australia-cup-men-and-women",
@@ -4071,10 +4253,26 @@
               "season_window": "July–October",
               "season_start": "07-01",
               "season_end": "10-31",
-              "source_id": "soccer-afc-australia-australia-cup-men-and-women",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-australia-australia-cup-men",
+                  "label": "Australia Cup | Men",
+                  "source_id": "soccer-afc-australia-australia-cup-men",
+                  "season_window": "July–October",
+                  "season_start": "07-01",
+                  "season_end": "10-31"
+                },
+                {
+                  "key": "soccer-australia-australia-cup-women",
+                  "label": "Australia Cup | Women",
+                  "source_id": "soccer-afc-australia-australia-cup-women",
+                  "season_window": "Schedule mapping pending"
+                }
+              ]
             }
           ]
         },
@@ -4978,28 +5176,58 @@
               "key": "soccer-england-the-championship-men-and-women",
               "catalog_event": "The Championship | Men and Women",
               "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "08-01",
               "season_end": "05-31",
-              "source_ids": [
-                "uefa-soccer-england-championship-men",
-                "uefa-soccer-england-championship-women"
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-england-the-championship-men",
+                  "label": "The Championship | Men",
+                  "source_id": "uefa-soccer-england-championship-men",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                },
+                {
+                  "key": "soccer-england-the-championship-women",
+                  "label": "The Championship | Women",
+                  "source_id": "uefa-soccer-england-championship-women",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                }
               ]
             },
             {
               "key": "soccer-england-fa-cup-men-and-women",
               "catalog_event": "FA Cup | Men and Women",
               "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "08-01",
               "season_end": "05-31",
-              "source_ids": [
-                "uefa-soccer-england-fa-cup-men",
-                "uefa-soccer-england-fa-cup-women"
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-england-fa-cup-men",
+                  "label": "FA Cup | Men",
+                  "source_id": "uefa-soccer-england-fa-cup-men",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                },
+                {
+                  "key": "soccer-england-fa-cup-women",
+                  "label": "FA Cup | Women",
+                  "source_id": "uefa-soccer-england-fa-cup-women",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                }
               ]
             }
           ]
@@ -5169,14 +5397,29 @@
               "key": "soccer-france-coupe-de-france-men-and-women",
               "catalog_event": "Coupe de France | Men and Women",
               "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "08-01",
               "season_end": "05-31",
-              "source_ids": [
-                "uefa-soccer-france-coupe-de-france-men",
-                "uefa-soccer-france-coupe-de-france-women"
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-france-coupe-de-france-men",
+                  "label": "Coupe de France | Men",
+                  "source_id": "uefa-soccer-france-coupe-de-france-men",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                },
+                {
+                  "key": "soccer-france-coupe-de-france-women",
+                  "label": "Coupe de France | Women",
+                  "source_id": "uefa-soccer-france-coupe-de-france-women",
+                  "season_window": "August 2026–May 2027",
+                  "season_start": "08-01",
+                  "season_end": "05-31"
+                }
               ]
             },
             {
@@ -5721,7 +5964,7 @@
           "governing_body": "Lega Serie A",
           "events": [
             {
-              "key": "soccer-italy-serie-a-men",
+              "key": "soccer-italy-serie-a-men-and-women",
               "catalog_event": "Serie A | Men and Women",
               "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
@@ -5741,10 +5984,11 @@
                   "source_id": "soccer-italy-serie-a-women",
                   "season_window": "Season mapping pending"
                 }
-              ]
+              ],
+              "identity_model": "combined-approval-separate-competitions"
             },
             {
-              "key": "soccer-italy-coppa-italia-men",
+              "key": "soccer-italy-coppa-italia-men-and-women",
               "catalog_event": "Coppa Italia | Men and Women",
               "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
@@ -5764,10 +6008,11 @@
                   "source_id": "soccer-italy-coppa-italia-women",
                   "season_window": "Season mapping pending"
                 }
-              ]
+              ],
+              "identity_model": "combined-approval-separate-competitions"
             },
             {
-              "key": "soccer-italy-supercoppa-italiana-men",
+              "key": "soccer-italy-supercoppa-italiana-men-and-women",
               "catalog_event": "Supercoppa Italiana | Men and Women",
               "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
@@ -5787,7 +6032,8 @@
                   "source_id": "soccer-italy-supercoppa-italiana-women",
                   "season_window": "Season mapping pending"
                 }
-              ]
+              ],
+              "identity_model": "combined-approval-separate-competitions"
             }
           ]
         },
@@ -7214,12 +7460,30 @@
               "key": "soccer-sweden-svenska-cupen-men-and-women",
               "catalog_event": "Svenska Cupen | Men and Women",
               "season_window": "February–November 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
               "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "02-01",
               "season_end": "11-30",
-              "source_id": "uefa-soccer-sweden-svenska-cupen-men-and-women"
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "soccer-sweden-svenska-cupen-men",
+                  "label": "Svenska Cupen | Men",
+                  "source_id": "uefa-soccer-sweden-svenska-cupen-men",
+                  "season_window": "February–November 2026",
+                  "season_start": "02-01",
+                  "season_end": "11-30"
+                },
+                {
+                  "key": "soccer-sweden-svenska-cupen-women",
+                  "label": "Svenska Cupen | Women",
+                  "source_id": "uefa-soccer-sweden-svenska-cupen-women",
+                  "season_window": "February–November 2026",
+                  "season_start": "02-01",
+                  "season_end": "11-30"
+                }
+              ]
             }
           ]
         },
@@ -10112,57 +10376,307 @@
             "Olympic program approval does not clear athlete-age risk. Apply U18 review when official rosters become available."
           ],
           "crosswalk": [
-            {"scheduled_id":"la28-3x3-basketball","approval_status":"approved-scheduled","catalog_event":"Basketball 3x3","governing_body":"International Basketball Federation (FIBA)"},
-            {"scheduled_id":"la28-archery","approval_status":"approved-scheduled","catalog_event":"Archery","governing_body":"World Archery"},
-            {"scheduled_id":"la28-artistic-gymnastics","approval_status":"scheduled-not-approved","governing_body":"International Gymnastics Federation (FIG)"},
-            {"scheduled_id":"la28-artistic-swimming","approval_status":"scheduled-not-approved","governing_body":"World Aquatics"},
-            {"scheduled_id":"la28-athletics","approval_status":"approved-scheduled","catalog_event":"Athletics","governing_body":"World Athletics"},
-            {"scheduled_id":"la28-badminton","approval_status":"approved-scheduled","catalog_event":"Badminton","governing_body":"Badminton World Federation (BWF)"},
-            {"scheduled_id":"la28-baseball","approval_status":"scheduled-not-approved","governing_body":"World Baseball Softball Confederation (WBSC)"},
-            {"scheduled_id":"la28-basketball","approval_status":"approved-scheduled","catalog_event":"Basketball","governing_body":"International Basketball Federation (FIBA)"},
-            {"scheduled_id":"la28-beach-volleyball","approval_status":"approved-scheduled","catalog_event":"Beach Volleyball","governing_body":"Fédération Internationale de Volleyball (FIVB)"},
-            {"scheduled_id":"la28-bmx-freestyle","approval_status":"scope-review-required","catalog_event":"Cycling BMX","governing_body":"Union Cycliste Internationale (UCI)","restrictions":["Catalog label is Cycling BMX and does not separately identify BMX Freestyle."]},
-            {"scheduled_id":"la28-bmx-racing","approval_status":"scope-review-required","catalog_event":"Cycling BMX","governing_body":"Union Cycliste Internationale (UCI)","restrictions":["Catalog label is Cycling BMX and does not separately identify BMX Racing."]},
-            {"scheduled_id":"la28-boxing","approval_status":"scheduled-not-approved","governing_body":"World Boxing"},
-            {"scheduled_id":"la28-climbing","approval_status":"approved-scheduled","catalog_event":"Sport Climbing","governing_body":"International Federation of Sport Climbing (IFSC)"},
-            {"scheduled_id":"la28-cricket","approval_status":"scheduled-not-approved","governing_body":"International Cricket Council (ICC)"},
-            {"scheduled_id":"la28-cycling-road","approval_status":"approved-scheduled","catalog_event":"Cycling Road","governing_body":"Union Cycliste Internationale (UCI)"},
-            {"scheduled_id":"la28-cycling-track","approval_status":"approved-scheduled","catalog_event":"Cycling Track","governing_body":"Union Cycliste Internationale (UCI)"},
-            {"scheduled_id":"la28-diving","approval_status":"scheduled-not-approved","governing_body":"World Aquatics"},
-            {"scheduled_id":"la28-equestrian","approval_status":"scope-review-required","catalog_event":"Equestrian - SHOW JUMPING ONLY","governing_body":"International Federation for Equestrian Sports (FEI)","restrictions":["SHOW JUMPING ONLY is approved. LA28 also schedules dressage and eventing, which are not approved."]},
-            {"scheduled_id":"la28-fencing","approval_status":"approved-scheduled","catalog_event":"Fencing","governing_body":"International Fencing Federation (FIE)"},
-            {"scheduled_id":"la28-flag-football","approval_status":"scheduled-not-approved","governing_body":"International Federation of American Football (IFAF)"},
-            {"scheduled_id":"la28-football","approval_status":"approved-scheduled","catalog_event":"Football (Soccer)","governing_body":"Fédération Internationale de Football Association (FIFA)"},
-            {"scheduled_id":"la28-golf","approval_status":"approved-scheduled","catalog_event":"Golf","governing_body":"International Golf Federation (IGF)"},
-            {"scheduled_id":"la28-handball","approval_status":"approved-scheduled","catalog_event":"Handball","governing_body":"International Handball Federation (IHF)"},
-            {"scheduled_id":"la28-hockey","approval_status":"approved-scheduled","catalog_event":"Field Hockey","governing_body":"International Hockey Federation (FIH)"},
-            {"scheduled_id":"la28-judo","approval_status":"approved-scheduled","catalog_event":"Judo","governing_body":"International Judo Federation (IJF)"},
-            {"scheduled_id":"la28-lacrosse","approval_status":"scheduled-not-approved","governing_body":"World Lacrosse"},
-            {"scheduled_id":"la28-modern-pentathlon","approval_status":"approved-scheduled","catalog_event":"Modern Pentathlon","governing_body":"International Modern Pentathlon Union (UIPM)"},
-            {"scheduled_id":"la28-mountain-bike","approval_status":"approved-scheduled","catalog_event":"Cycling Mountain Bike","governing_body":"Union Cycliste Internationale (UCI)"},
-            {"scheduled_id":"la28-open-water-swimming","approval_status":"approved-scheduled","catalog_event":"Marathon Swimming","governing_body":"World Aquatics"},
-            {"scheduled_id":"la28-rhythmic-gymnastics","approval_status":"scheduled-not-approved","governing_body":"International Gymnastics Federation (FIG)"},
-            {"scheduled_id":"la28-rowing","approval_status":"approved-scheduled","catalog_event":"Rowing","governing_body":"World Rowing"},
-            {"scheduled_id":"la28-rowing-coastal","approval_status":"scheduled-not-approved","governing_body":"World Rowing"},
-            {"scheduled_id":"la28-rugby-sevens","approval_status":"approved-scheduled","catalog_event":"Rugby Sevens","governing_body":"World Rugby"},
-            {"scheduled_id":"la28-sailing","approval_status":"approved-scheduled","catalog_event":"Sailing","governing_body":"World Sailing"},
-            {"scheduled_id":"la28-shooting","approval_status":"approved-scheduled","catalog_event":"Shooting","governing_body":"International Shooting Sport Federation (ISSF)"},
-            {"scheduled_id":"la28-skateboarding","approval_status":"scheduled-not-approved","governing_body":"World Skate"},
-            {"scheduled_id":"la28-slalom-paddle","approval_status":"approved-scheduled","catalog_event":"Canoe Slalom","governing_body":"International Canoe Federation (ICF)"},
-            {"scheduled_id":"la28-softball","approval_status":"scheduled-not-approved","governing_body":"World Baseball Softball Confederation (WBSC)"},
-            {"scheduled_id":"la28-sprint-paddle","approval_status":"approved-scheduled","catalog_event":"Canoe Sprint","governing_body":"International Canoe Federation (ICF)"},
-            {"scheduled_id":"la28-squash","approval_status":"scheduled-not-approved","governing_body":"World Squash Federation (WSF)"},
-            {"scheduled_id":"la28-surfing","approval_status":"approved-scheduled","catalog_event":"Surfing","governing_body":"International Surfing Association (ISA)"},
-            {"scheduled_id":"la28-swimming","approval_status":"approved-scheduled","catalog_event":"Swimming","governing_body":"World Aquatics"},
-            {"scheduled_id":"la28-table-tennis","approval_status":"approved-scheduled","catalog_event":"Table Tennis","governing_body":"International Table Tennis Federation (ITTF)"},
-            {"scheduled_id":"la28-taekwondo","approval_status":"approved-scheduled","catalog_event":"Taekwondo","governing_body":"World Taekwondo (WT)"},
-            {"scheduled_id":"la28-tennis","approval_status":"approved-scheduled","catalog_event":"Tennis","governing_body":"International Tennis Federation (ITF)"},
-            {"scheduled_id":"la28-trampoline-gymnastics","approval_status":"scheduled-not-approved","governing_body":"International Gymnastics Federation (FIG)"},
-            {"scheduled_id":"la28-triathlon","approval_status":"approved-scheduled","catalog_event":"Triathlon","governing_body":"World Triathlon"},
-            {"scheduled_id":"la28-volleyball","approval_status":"approved-scheduled","catalog_event":"Volleyball","governing_body":"Fédération Internationale de Volleyball (FIVB)"},
-            {"scheduled_id":"la28-water-polo","approval_status":"approved-scheduled","catalog_event":"Water Polo","governing_body":"World Aquatics"},
-            {"scheduled_id":"la28-weightlifting","approval_status":"approved-scheduled","catalog_event":"Weightlifting","governing_body":"International Weightlifting Federation (IWF)"},
-            {"scheduled_id":"la28-wrestling","approval_status":"approved-scheduled","catalog_event":"Wrestling","governing_body":"United World Wrestling (UWW)"}
+            {
+              "scheduled_id": "la28-3x3-basketball",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Basketball 3x3",
+              "governing_body": "International Basketball Federation (FIBA)"
+            },
+            {
+              "scheduled_id": "la28-archery",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Archery",
+              "governing_body": "World Archery"
+            },
+            {
+              "scheduled_id": "la28-artistic-gymnastics",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "International Gymnastics Federation (FIG)"
+            },
+            {
+              "scheduled_id": "la28-artistic-swimming",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Aquatics"
+            },
+            {
+              "scheduled_id": "la28-athletics",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Athletics",
+              "governing_body": "World Athletics"
+            },
+            {
+              "scheduled_id": "la28-badminton",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Badminton",
+              "governing_body": "Badminton World Federation (BWF)"
+            },
+            {
+              "scheduled_id": "la28-baseball",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Baseball Softball Confederation (WBSC)"
+            },
+            {
+              "scheduled_id": "la28-basketball",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Basketball",
+              "governing_body": "International Basketball Federation (FIBA)"
+            },
+            {
+              "scheduled_id": "la28-beach-volleyball",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Beach Volleyball",
+              "governing_body": "Fédération Internationale de Volleyball (FIVB)"
+            },
+            {
+              "scheduled_id": "la28-bmx-freestyle",
+              "approval_status": "scope-review-required",
+              "catalog_event": "Cycling BMX",
+              "governing_body": "Union Cycliste Internationale (UCI)",
+              "restrictions": [
+                "Catalog label is Cycling BMX and does not separately identify BMX Freestyle."
+              ]
+            },
+            {
+              "scheduled_id": "la28-bmx-racing",
+              "approval_status": "scope-review-required",
+              "catalog_event": "Cycling BMX",
+              "governing_body": "Union Cycliste Internationale (UCI)",
+              "restrictions": [
+                "Catalog label is Cycling BMX and does not separately identify BMX Racing."
+              ]
+            },
+            {
+              "scheduled_id": "la28-boxing",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Boxing"
+            },
+            {
+              "scheduled_id": "la28-climbing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Sport Climbing",
+              "governing_body": "International Federation of Sport Climbing (IFSC)"
+            },
+            {
+              "scheduled_id": "la28-cricket",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "International Cricket Council (ICC)"
+            },
+            {
+              "scheduled_id": "la28-cycling-road",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Cycling Road",
+              "governing_body": "Union Cycliste Internationale (UCI)"
+            },
+            {
+              "scheduled_id": "la28-cycling-track",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Cycling Track",
+              "governing_body": "Union Cycliste Internationale (UCI)"
+            },
+            {
+              "scheduled_id": "la28-diving",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Aquatics"
+            },
+            {
+              "scheduled_id": "la28-equestrian",
+              "approval_status": "scope-review-required",
+              "catalog_event": "Equestrian - SHOW JUMPING ONLY",
+              "governing_body": "International Federation for Equestrian Sports (FEI)",
+              "restrictions": [
+                "SHOW JUMPING ONLY is approved. LA28 also schedules dressage and eventing, which are not approved."
+              ]
+            },
+            {
+              "scheduled_id": "la28-fencing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Fencing",
+              "governing_body": "International Fencing Federation (FIE)"
+            },
+            {
+              "scheduled_id": "la28-flag-football",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "International Federation of American Football (IFAF)"
+            },
+            {
+              "scheduled_id": "la28-football",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Football (Soccer)",
+              "governing_body": "Fédération Internationale de Football Association (FIFA)"
+            },
+            {
+              "scheduled_id": "la28-golf",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Golf",
+              "governing_body": "International Golf Federation (IGF)"
+            },
+            {
+              "scheduled_id": "la28-handball",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Handball",
+              "governing_body": "International Handball Federation (IHF)"
+            },
+            {
+              "scheduled_id": "la28-hockey",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Field Hockey",
+              "governing_body": "International Hockey Federation (FIH)"
+            },
+            {
+              "scheduled_id": "la28-judo",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Judo",
+              "governing_body": "International Judo Federation (IJF)"
+            },
+            {
+              "scheduled_id": "la28-lacrosse",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Lacrosse"
+            },
+            {
+              "scheduled_id": "la28-modern-pentathlon",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Modern Pentathlon",
+              "governing_body": "International Modern Pentathlon Union (UIPM)"
+            },
+            {
+              "scheduled_id": "la28-mountain-bike",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Cycling Mountain Bike",
+              "governing_body": "Union Cycliste Internationale (UCI)"
+            },
+            {
+              "scheduled_id": "la28-open-water-swimming",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Marathon Swimming",
+              "governing_body": "World Aquatics"
+            },
+            {
+              "scheduled_id": "la28-rhythmic-gymnastics",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "International Gymnastics Federation (FIG)"
+            },
+            {
+              "scheduled_id": "la28-rowing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Rowing",
+              "governing_body": "World Rowing"
+            },
+            {
+              "scheduled_id": "la28-rowing-coastal",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Rowing"
+            },
+            {
+              "scheduled_id": "la28-rugby-sevens",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Rugby Sevens",
+              "governing_body": "World Rugby"
+            },
+            {
+              "scheduled_id": "la28-sailing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Sailing",
+              "governing_body": "World Sailing"
+            },
+            {
+              "scheduled_id": "la28-shooting",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Shooting",
+              "governing_body": "International Shooting Sport Federation (ISSF)"
+            },
+            {
+              "scheduled_id": "la28-skateboarding",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Skate"
+            },
+            {
+              "scheduled_id": "la28-slalom-paddle",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Canoe Slalom",
+              "governing_body": "International Canoe Federation (ICF)"
+            },
+            {
+              "scheduled_id": "la28-softball",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Baseball Softball Confederation (WBSC)"
+            },
+            {
+              "scheduled_id": "la28-sprint-paddle",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Canoe Sprint",
+              "governing_body": "International Canoe Federation (ICF)"
+            },
+            {
+              "scheduled_id": "la28-squash",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "World Squash Federation (WSF)"
+            },
+            {
+              "scheduled_id": "la28-surfing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Surfing",
+              "governing_body": "International Surfing Association (ISA)"
+            },
+            {
+              "scheduled_id": "la28-swimming",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Swimming",
+              "governing_body": "World Aquatics"
+            },
+            {
+              "scheduled_id": "la28-table-tennis",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Table Tennis",
+              "governing_body": "International Table Tennis Federation (ITTF)"
+            },
+            {
+              "scheduled_id": "la28-taekwondo",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Taekwondo",
+              "governing_body": "World Taekwondo (WT)"
+            },
+            {
+              "scheduled_id": "la28-tennis",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Tennis",
+              "governing_body": "International Tennis Federation (ITF)"
+            },
+            {
+              "scheduled_id": "la28-trampoline-gymnastics",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "International Gymnastics Federation (FIG)"
+            },
+            {
+              "scheduled_id": "la28-triathlon",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Triathlon",
+              "governing_body": "World Triathlon"
+            },
+            {
+              "scheduled_id": "la28-volleyball",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Volleyball",
+              "governing_body": "Fédération Internationale de Volleyball (FIVB)"
+            },
+            {
+              "scheduled_id": "la28-water-polo",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Water Polo",
+              "governing_body": "World Aquatics"
+            },
+            {
+              "scheduled_id": "la28-weightlifting",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Weightlifting",
+              "governing_body": "International Weightlifting Federation (IWF)"
+            },
+            {
+              "scheduled_id": "la28-wrestling",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Wrestling",
+              "governing_body": "United World Wrestling (UWW)"
+            }
           ],
           "approved_not_scheduled": []
         },
@@ -10178,23 +10692,107 @@
             "Olympic program approval does not clear athlete-age risk. Apply U18 review when official rosters become available."
           ],
           "crosswalk": [
-            {"scheduled_id":"alpes2030-alpine-skiing","approval_status":"approved-scheduled","catalog_event":"Alpine Skiing","governing_body":"International Ski and Snowboard Federation (FIS)"},
-            {"scheduled_id":"alpes2030-biathlon","approval_status":"approved-scheduled","catalog_event":"Biathlon","governing_body":"International Biathlon Union (IBU)"},
-            {"scheduled_id":"alpes2030-bobsleigh","approval_status":"approved-scheduled","catalog_event":"Bobsleigh","governing_body":"International Bobsleigh and Skeleton Federation (IBSF)"},
-            {"scheduled_id":"alpes2030-cross-country-skiing","approval_status":"approved-scheduled","catalog_event":"Cross-Country Skiing","governing_body":"International Ski and Snowboard Federation (FIS)"},
-            {"scheduled_id":"alpes2030-curling","approval_status":"approved-scheduled","catalog_event":"Curling","governing_body":"World Curling Federation (WCF)"},
-            {"scheduled_id":"alpes2030-figure-skating","approval_status":"approved-scheduled","catalog_event":"Figure Skating","governing_body":"International Skating Union (ISU)"},
-            {"scheduled_id":"alpes2030-freeride","approval_status":"scheduled-not-approved","governing_body":"International Ski and Snowboard Federation (FIS)"},
-            {"scheduled_id":"alpes2030-freestyle-skiing","approval_status":"approved-scheduled","catalog_event":"Freestyle Skiing","governing_body":"International Ski and Snowboard Federation (FIS)"},
-            {"scheduled_id":"alpes2030-ice-hockey","approval_status":"approved-scheduled","catalog_event":"Ice Hockey","governing_body":"International Ice Hockey Federation (IIHF)"},
-            {"scheduled_id":"alpes2030-luge","approval_status":"approved-scheduled","catalog_event":"Luge","governing_body":"International Luge Federation (FIL)"},
-            {"scheduled_id":"alpes2030-short-track-speed-skating","approval_status":"approved-scheduled","catalog_event":"Short Track Speed Skating","governing_body":"International Skating Union (ISU)"},
-            {"scheduled_id":"alpes2030-skeleton","approval_status":"approved-scheduled","catalog_event":"Skeleton","governing_body":"International Bobsleigh and Skeleton Federation (IBSF)"},
-            {"scheduled_id":"alpes2030-ski-jumping","approval_status":"approved-scheduled","catalog_event":"Ski Jumping","governing_body":"International Ski and Snowboard Federation (FIS)"},
-            {"scheduled_id":"alpes2030-ski-mountaineering-individual","approval_status":"approved-scheduled","catalog_event":"Ski Mountaineering","governing_body":"International Ski Mountaineering Federation (ISMF)"},
-            {"scheduled_id":"alpes2030-ski-mountaineering-sprint","approval_status":"approved-scheduled","catalog_event":"Ski Mountaineering","governing_body":"International Ski Mountaineering Federation (ISMF)"},
-            {"scheduled_id":"alpes2030-snowboarding","approval_status":"approved-scheduled","catalog_event":"Snowboarding","governing_body":"International Ski and Snowboard Federation (FIS)"},
-            {"scheduled_id":"alpes2030-speed-skating","approval_status":"approved-scheduled","catalog_event":"Speed Skating","governing_body":"International Skating Union (ISU)"}
+            {
+              "scheduled_id": "alpes2030-alpine-skiing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Alpine Skiing",
+              "governing_body": "International Ski and Snowboard Federation (FIS)"
+            },
+            {
+              "scheduled_id": "alpes2030-biathlon",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Biathlon",
+              "governing_body": "International Biathlon Union (IBU)"
+            },
+            {
+              "scheduled_id": "alpes2030-bobsleigh",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Bobsleigh",
+              "governing_body": "International Bobsleigh and Skeleton Federation (IBSF)"
+            },
+            {
+              "scheduled_id": "alpes2030-cross-country-skiing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Cross-Country Skiing",
+              "governing_body": "International Ski and Snowboard Federation (FIS)"
+            },
+            {
+              "scheduled_id": "alpes2030-curling",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Curling",
+              "governing_body": "World Curling Federation (WCF)"
+            },
+            {
+              "scheduled_id": "alpes2030-figure-skating",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Figure Skating",
+              "governing_body": "International Skating Union (ISU)"
+            },
+            {
+              "scheduled_id": "alpes2030-freeride",
+              "approval_status": "scheduled-not-approved",
+              "governing_body": "International Ski and Snowboard Federation (FIS)"
+            },
+            {
+              "scheduled_id": "alpes2030-freestyle-skiing",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Freestyle Skiing",
+              "governing_body": "International Ski and Snowboard Federation (FIS)"
+            },
+            {
+              "scheduled_id": "alpes2030-ice-hockey",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Ice Hockey",
+              "governing_body": "International Ice Hockey Federation (IIHF)"
+            },
+            {
+              "scheduled_id": "alpes2030-luge",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Luge",
+              "governing_body": "International Luge Federation (FIL)"
+            },
+            {
+              "scheduled_id": "alpes2030-short-track-speed-skating",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Short Track Speed Skating",
+              "governing_body": "International Skating Union (ISU)"
+            },
+            {
+              "scheduled_id": "alpes2030-skeleton",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Skeleton",
+              "governing_body": "International Bobsleigh and Skeleton Federation (IBSF)"
+            },
+            {
+              "scheduled_id": "alpes2030-ski-jumping",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Ski Jumping",
+              "governing_body": "International Ski and Snowboard Federation (FIS)"
+            },
+            {
+              "scheduled_id": "alpes2030-ski-mountaineering-individual",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Ski Mountaineering",
+              "governing_body": "International Ski Mountaineering Federation (ISMF)"
+            },
+            {
+              "scheduled_id": "alpes2030-ski-mountaineering-sprint",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Ski Mountaineering",
+              "governing_body": "International Ski Mountaineering Federation (ISMF)"
+            },
+            {
+              "scheduled_id": "alpes2030-snowboarding",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Snowboarding",
+              "governing_body": "International Ski and Snowboard Federation (FIS)"
+            },
+            {
+              "scheduled_id": "alpes2030-speed-skating",
+              "approval_status": "approved-scheduled",
+              "catalog_event": "Speed Skating",
+              "governing_body": "International Skating Union (ISU)"
+            }
           ],
           "approved_not_scheduled": [
             {

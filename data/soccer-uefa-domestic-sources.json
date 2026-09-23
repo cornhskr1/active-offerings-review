@@ -1077,7 +1077,8 @@
       "official_schedule_url": "https://www.figc.it/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
-        "Coppa Italia | Men"
+        "Coppa Italia | Men",
+        "Coppa Italia | Men and Women"
       ]
     },
     {
@@ -1091,7 +1092,8 @@
       "official_schedule_url": "https://www.figc.it/",
       "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
       "catalog_terms": [
-        "Supercoppa Italiana | Men"
+        "Supercoppa Italiana | Men",
+        "Supercoppa Italiana | Men and Women"
       ]
     },
     {
@@ -1949,9 +1951,23 @@
       ]
     },
     {
-      "id": "uefa-soccer-sweden-svenska-cupen-men-and-women",
+      "id": "uefa-soccer-sweden-svenska-cupen-men",
       "sport": "Soccer",
-      "league": "Svenska Cupen | Men and Women",
+      "league": "Svenska Cupen | Men",
+      "region": "Sweden",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.svenskfotboll.se/",
+      "official_schedule_url": "https://www.svenskfotboll.se/",
+      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "catalog_terms": [
+        "Svenska Cupen | Men and Women"
+      ]
+    },
+    {
+      "id": "uefa-soccer-sweden-svenska-cupen-women",
+      "sport": "Soccer",
+      "league": "Svenska Cupen | Women",
       "region": "Sweden",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
