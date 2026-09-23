@@ -32,7 +32,7 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
             (isolated / "data").mkdir()
             shutil.copy2(ROOT / "scripts" / "build_competition_identity_registry.py",
                          isolated / "scripts" / "build_competition_identity_registry.py")
-            for name in ("global-schedule.json", "catalog-season-map.json", "catalog-live.json"):
+            for name in ("global-schedule.json", "catalog-season-map.json", "catalog-live.json", "competition-alias-crosswalk.json"):
                 shutil.copy2(ROOT / "data" / name, isolated / "data" / name)
             subprocess.run(
                 [sys.executable, str(isolated / "scripts" / "build_competition_identity_registry.py")],
@@ -124,6 +124,41 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                 self.assertEqual("Soccer", source["sport"])
                 self.assertEqual(child["label"], source["league"])
                 self.assertIn(parent["catalog_event"], source.get("catalog_terms", []))
+
+    def test_reviewed_aliases_resolve_only_to_specific_divisions(self):
+        competitions = {
+            (item["sport"], item.get("identity_key")): item
+            for item in self.registry["competitions"] if item.get("identity_key")
+        }
+        crosswalk = json.loads((ROOT / "data" / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
+        for row in crosswalk["reviewed_aliases"]:
+            with self.subTest(alias=row["alias"]):
+                identity = competitions[(row["sport"], row["identity_key"])]
+                self.assertIn(row["alias"], [alias["name"] for alias in identity["aliases"]])
+                self.assertIn(" | ", identity["league"])
+        self.assertEqual(crosswalk["review_queue"], self.registry["alias_review_queue"])
+        self.assertFalse(any(alias["name"] == "AFC Women's Champions League"
+                             for item in self.registry["competitions"]
+                             for alias in item.get("aliases", [])))
+
+    def test_alias_collision_with_other_division_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            isolated = Path(directory)
+            (isolated / "scripts").mkdir()
+            (isolated / "data").mkdir()
+            shutil.copy2(ROOT / "scripts" / "build_competition_identity_registry.py",
+                         isolated / "scripts" / "build_competition_identity_registry.py")
+            for name in ("global-schedule.json", "catalog-season-map.json", "catalog-live.json"):
+                shutil.copy2(ROOT / "data" / name, isolated / "data" / name)
+            crosswalk = json.loads((ROOT / "data" / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
+            crosswalk["reviewed_aliases"][0]["alias"] = "AFC Asian Cup | Men"
+            (isolated / "data" / "competition-alias-crosswalk.json").write_text(json.dumps(crosswalk))
+            result = subprocess.run(
+                [sys.executable, str(isolated / "scripts" / "build_competition_identity_registry.py")],
+                capture_output=True, text=True,
+            )
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("Alias collides with another competition", result.stderr)
 
 
 if __name__ == "__main__":
