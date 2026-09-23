@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -39,6 +40,7 @@ def main() -> None:
     season_map = json.loads((DATA / "catalog-season-map.json").read_text(encoding="utf-8"))
     catalog = json.loads((DATA / "catalog-live.json").read_text(encoding="utf-8"))
     alias_crosswalk = json.loads((DATA / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
+    source_config = json.loads((DATA / "global-schedule-sources.json").read_text(encoding="utf-8"))
 
     competitions: dict[tuple[str, str], dict] = {}
 
@@ -90,14 +92,40 @@ def main() -> None:
             for child in children:
                 add_competition(sport, child, child=True)
 
+    catalog_identities = set(competitions)
+
+    # A source label is not a second approved competition. Resolve its events
+    # to a catalog identity only when that source ID has exactly one catalog
+    # target in the same sport. Shared feeds retain their explicit event label.
+    source_targets: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for (sport, league), entry in competitions.items():
+        for source_id in entry["source_ids"]:
+            source_targets[(sport, source_id)].add(league)
+    source_labels: dict[tuple[str, str], dict[str, str]] = defaultdict(dict)
+
+    def unique_target(sport: str, source_id: str) -> str:
+        targets = source_targets.get((sport, source_id), set())
+        return next(iter(targets)) if len(targets) == 1 else ""
+
+    for source in source_config.get("sources", []):
+        sport, source_id, label = (clean(source.get(field)) for field in ("sport", "id", "league"))
+        target = unique_target(sport, source_id)
+        if target and label and key(label) != key(target):
+            source_labels[(sport, target)][label] = source_id
+
     observed_participants: dict[tuple[str, str], set[str]] = defaultdict(set)
     observed_events: dict[tuple[str, str], dict[str, dict]] = defaultdict(dict)
     for event in schedule.get("events", []):
         sport, league, name = clean(event.get("sport")), clean(event.get("league")), clean(event.get("name"))
         if not sport or not league or not name:
             continue
-        entry = competitions.setdefault((sport, league), {"sport": sport, "league": league, "source_ids": [], "participants": [], "events": []})
         source_id = clean(event.get("source_id"))
+        target = unique_target(sport, source_id)
+        if target:
+            if key(league) != key(target):
+                source_labels[(sport, target)][league] = source_id
+            league = target
+        entry = competitions.setdefault((sport, league), {"sport": sport, "league": league, "source_ids": [], "participants": [], "events": []})
         if source_id and source_id not in entry["source_ids"]:
             entry["source_ids"].append(source_id)
         sides = participants(name)
@@ -137,6 +165,8 @@ def main() -> None:
     output_competitions = []
     for identity, entry in sorted(competitions.items(), key=lambda item: (item[0][0].casefold(), item[0][1].casefold())):
         entry["source_ids"] = sorted(set(filter(None, entry["source_ids"])))
+        if source_labels.get(identity):
+            entry["source_labels"] = [{"name": label, "source_id": source_id} for label, source_id in sorted(source_labels[identity].items(), key=lambda item: item[0].casefold())]
         entry["participants"] = sorted(observed_participants[identity], key=str.casefold)
         entry["events"] = sorted(observed_events[identity].values(), key=lambda item: (item["start_time"], item["name"].casefold()))
         entry["participant_coverage"] = "OBSERVED" if entry["participants"] else "NOT AVAILABLE"
@@ -157,6 +187,42 @@ def main() -> None:
         "coverage_gaps": schedule.get("coverage_gaps", []),
     }
     (DATA / "competition-identity-registry.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    # Keep the all-sport scrub visible. A source name is evidence of schedule
+    # provenance, not an organizer-verified or operator-verified approval alias.
+    source_by_id = {(clean(row.get("sport")), clean(row.get("id"))): row for row in source_config.get("sources", [])}
+    audit_sports = []
+    for sport_block in season_map.get("sports", []):
+        sport = clean(sport_block.get("sport"))
+        catalog_names = {league for item_sport, league in catalog_identities if item_sport == sport}
+        registered = [entry for entry in output_competitions if entry["sport"] == sport]
+        shared_sources = []
+        unmapped_sources = []
+        for (source_sport, source_id), source in sorted(source_by_id.items()):
+            if source_sport != sport:
+                continue
+            targets = sorted(source_targets.get((sport, source_id), set()), key=str.casefold)
+            if len(targets) > 1:
+                shared_sources.append({"source_id": source_id, "label": clean(source.get("league")), "catalog_targets": targets})
+            elif not targets:
+                unmapped_sources.append({"source_id": source_id, "label": clean(source.get("league"))})
+        audit_sports.append({
+            "sport": sport,
+            "catalog_identities": len(catalog_names),
+            "registry_identities": len(registered),
+            "organizer_alias_identities": sum(bool(entry.get("aliases")) for entry in registered),
+            "source_label_identities": sum(bool(entry.get("source_labels")) for entry in registered),
+            "schedule_only_labels": sorted((entry["league"] for entry in registered if entry["league"] not in catalog_names), key=str.casefold),
+            "shared_sources_for_review": shared_sources,
+            "sources_without_catalog_target": unmapped_sources,
+        })
+    audit = {
+        "schema_version": 1,
+        "note": "All catalog sports are inventoried. Source labels are matched only through a unique source ID; shared sources and schedule-only names require identity review. Organizer and operator aliases require separate evidence.",
+        "sports": audit_sports,
+    }
+    if "--audit" in sys.argv[1:]:
+        (DATA / "competition-alias-audit.json").write_text(json.dumps(audit, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

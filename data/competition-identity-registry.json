@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T16:24:32.208741+00:00",
+  "generated_at": "2026-09-23T16:34:23.501443+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-23T16:21:57.726466+00:00",
   "schedule_window_start": "2026-09-23",
   "schedule_window_end": "2026-09-30",
-  "competition_count": 706,
+  "competition_count": 687,
   "event_count": 969,
   "competitions": [
     {
       "sport": "Aussie Rules",
-      "league": "AFL",
+      "league": "Australian Football League (AFL)",
       "source_ids": [
         "afl"
       ],
@@ -29,17 +29,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Aussie Rules",
-      "league": "Australian Football League (AFL)",
-      "source_ids": [
-        "afl"
+      "source_labels": [
+        {
+          "name": "AFL",
+          "source_id": "afl"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Baseball",
@@ -74,36 +70,6 @@
     {
       "sport": "Baseball",
       "league": "Major League Baseball (MLB)",
-      "source_ids": [
-        "mlb"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Baseball",
-      "league": "Mexican Pacific League",
-      "source_ids": [
-        "lmp"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Baseball",
-      "league": "Mexico Baseball League",
-      "source_ids": [
-        "lmb"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Baseball",
-      "league": "MLB",
       "source_ids": [
         "mlb"
       ],
@@ -391,7 +357,33 @@
           "participants": []
         }
       ],
+      "source_labels": [
+        {
+          "name": "MLB",
+          "source_id": "mlb"
+        }
+      ],
       "participant_coverage": "OBSERVED"
+    },
+    {
+      "sport": "Baseball",
+      "league": "Mexican Pacific League",
+      "source_ids": [
+        "lmp"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Baseball",
+      "league": "Mexico Baseball League",
+      "source_ids": [
+        "lmb"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Baseball",
@@ -445,7 +437,7 @@
     },
     {
       "sport": "Basketball",
-      "league": "Basketball Bundesliga (BBL)",
+      "league": "Basketball Bundesliga (BBL) | Men",
       "source_ids": [
         "german-bbl"
       ],
@@ -463,17 +455,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Basketball Bundesliga (BBL) | Men",
-      "source_ids": [
-        "german-bbl"
+      "source_labels": [
+        {
+          "name": "Basketball Bundesliga (BBL)",
+          "source_id": "german-bbl"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -483,6 +471,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Basketball Champions League",
+          "source_id": "fiba-bcl"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -493,11 +487,17 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Basketball League of Serbia (KLS)",
+          "source_id": "serbian-kls"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Basketball",
-      "league": "Basketbol Süper Ligi (BSL)",
+      "league": "Basketbol Süper Ligi (BSL) | Men",
       "source_ids": [
         "turkish-bsl"
       ],
@@ -515,21 +515,17 @@
           ]
         }
       ],
+      "source_labels": [
+        {
+          "name": "Basketbol Süper Ligi (BSL)",
+          "source_id": "turkish-bsl"
+        }
+      ],
       "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
-      "league": "Basketbol Süper Ligi (BSL) | Men",
-      "source_ids": [
-        "turkish-bsl"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Basketligaen",
+      "league": "Basketligaen | Men",
       "source_ids": [
         "danish-basketligaen"
       ],
@@ -547,17 +543,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Basketligaen | Men",
-      "source_ids": [
-        "danish-basketligaen"
+      "source_labels": [
+        {
+          "name": "Basketligaen",
+          "source_id": "danish-basketligaen"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -591,6 +583,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Canadian Elite Basketball League (CEBL)",
+          "source_id": "cebl"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -667,7 +665,7 @@
     },
     {
       "sport": "Basketball",
-      "league": "EuroCup",
+      "league": "EuroCup | Men",
       "source_ids": [
         "eurocup-basketball"
       ],
@@ -685,17 +683,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "EuroCup | Men",
-      "source_ids": [
-        "eurocup-basketball"
+      "source_labels": [
+        {
+          "name": "EuroCup",
+          "source_id": "eurocup-basketball"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -1002,6 +996,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Greek Basket League (GBL)",
+          "source_id": "greek-basket-league"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1052,6 +1052,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Korean Basketball League (KBL)",
+          "source_id": "korean-kbl"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1064,7 +1070,7 @@
     },
     {
       "sport": "Basketball",
-      "league": "Lega Basket Serie A (LBA)",
+      "league": "Lega Basket Serie A (LBA) | Men",
       "source_ids": [
         "italian-lba"
       ],
@@ -1082,21 +1088,17 @@
           ]
         }
       ],
+      "source_labels": [
+        {
+          "name": "Lega Basket Serie A (LBA)",
+          "source_id": "italian-lba"
+        }
+      ],
       "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
-      "league": "Lega Basket Serie A (LBA) | Men",
-      "source_ids": [
-        "italian-lba"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Lietuvos krepšinio lyga (LKL)",
+      "league": "Lietuvos krepšinio lyga (LKL) | Men",
       "source_ids": [
         "lithuanian-lkl"
       ],
@@ -1114,21 +1116,17 @@
           ]
         }
       ],
+      "source_labels": [
+        {
+          "name": "Lietuvos krepšinio lyga (LKL)",
+          "source_id": "lithuanian-lkl"
+        }
+      ],
       "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
-      "league": "Lietuvos krepšinio lyga (LKL) | Men",
-      "source_ids": [
-        "lithuanian-lkl"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Liga ACB",
+      "league": "Liga ACB | Men",
       "source_ids": [
         "spanish-acb"
       ],
@@ -1146,17 +1144,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Liga ACB | Men",
-      "source_ids": [
-        "spanish-acb"
+      "source_labels": [
+        {
+          "name": "Liga ACB",
+          "source_id": "spanish-acb"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -1166,6 +1160,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Liga Nacional de Baloncesto Profesional (LNBP)",
+          "source_id": "mexican-lnbp"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1176,6 +1176,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Liga Nacional de Basquetbol de Chile (LNB)",
+          "source_id": "chile-lnb"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1194,11 +1200,17 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Israeli Basketball Premier League",
+          "source_id": "israeli-premier"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Basketball",
-      "league": "LNB Élite",
+      "league": "LNB Élite | Men",
       "source_ids": [
         "france-lnb"
       ],
@@ -1216,17 +1228,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "LNB Élite | Men",
-      "source_ids": [
-        "france-lnb"
+      "source_labels": [
+        {
+          "name": "LNB Élite",
+          "source_id": "france-lnb"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -1236,11 +1244,17 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "NBA",
+          "source_id": "nba"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Basketball",
-      "league": "National Basketball League (NBL)",
+      "league": "National Basketball League (NBL) | Men",
       "source_ids": [
         "australian-nbl"
       ],
@@ -1330,17 +1344,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "National Basketball League (NBL) | Men",
-      "source_ids": [
-        "australian-nbl"
+      "source_labels": [
+        {
+          "name": "National Basketball League (NBL)",
+          "source_id": "australian-nbl"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -1424,6 +1434,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Polska Liga Koszykówki (PLK)",
+          "source_id": "polish-plk"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1518,7 +1534,7 @@
     },
     {
       "sport": "Basketball",
-      "league": "Swiss Basketball League (SBL)",
+      "league": "Swiss Basketball League (SBL) | Men",
       "source_ids": [
         "swiss-sbl"
       ],
@@ -1536,17 +1552,13 @@
           ]
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Swiss Basketball League (SBL) | Men",
-      "source_ids": [
-        "swiss-sbl"
+      "source_labels": [
+        {
+          "name": "Swiss Basketball League (SBL)",
+          "source_id": "swiss-sbl"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Basketball",
@@ -1592,7 +1604,7 @@
     },
     {
       "sport": "Basketball",
-      "league": "WNBA",
+      "league": "Women’s National Basketball Association (WNBA) | Women",
       "source_ids": [
         "wnba"
       ],
@@ -1675,17 +1687,13 @@
           "participants": []
         }
       ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Basketball",
-      "league": "Women’s National Basketball Association (WNBA) | Women",
-      "source_ids": [
-        "wnba"
+      "source_labels": [
+        {
+          "name": "WNBA",
+          "source_id": "wnba"
+        }
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Bowling",
@@ -1881,6 +1889,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Professional Fighters League (PFL)",
+          "source_id": "pfl"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -3512,9 +3526,177 @@
       "source_ids": [
         "nfl"
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participants": [
+        "Arizona Cardinals",
+        "Atlanta Falcons",
+        "Baltimore Ravens",
+        "Buffalo Bills",
+        "Carolina Panthers",
+        "Chicago Bears",
+        "Cincinnati Bengals",
+        "Cleveland Browns",
+        "Dallas Cowboys",
+        "Denver Broncos",
+        "Detroit Lions",
+        "Green Bay Packers",
+        "Houston Texans",
+        "Indianapolis Colts",
+        "Jacksonville Jaguars",
+        "Kansas City Chiefs",
+        "Las Vegas Raiders",
+        "Los Angeles Chargers",
+        "Los Angeles Rams",
+        "Miami Dolphins",
+        "Minnesota Vikings",
+        "New England Patriots",
+        "New Orleans Saints",
+        "New York Giants",
+        "New York Jets",
+        "Philadelphia Eagles",
+        "Pittsburgh Steelers",
+        "San Francisco 49ers",
+        "Seattle Seahawks",
+        "Tampa Bay Buccaneers",
+        "Tennessee Titans",
+        "Washington Commanders"
+      ],
+      "events": [
+        {
+          "name": "Atlanta Falcons at Green Bay Packers",
+          "start_time": "2026-09-25T00:15Z",
+          "participants": [
+            "Atlanta Falcons",
+            "Green Bay Packers"
+          ]
+        },
+        {
+          "name": "Carolina Panthers at Cleveland Browns",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Carolina Panthers",
+            "Cleveland Browns"
+          ]
+        },
+        {
+          "name": "Cincinnati Bengals at Pittsburgh Steelers",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Cincinnati Bengals",
+            "Pittsburgh Steelers"
+          ]
+        },
+        {
+          "name": "Houston Texans at Indianapolis Colts",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Houston Texans",
+            "Indianapolis Colts"
+          ]
+        },
+        {
+          "name": "Kansas City Chiefs at Miami Dolphins",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Kansas City Chiefs",
+            "Miami Dolphins"
+          ]
+        },
+        {
+          "name": "Los Angeles Chargers at Buffalo Bills",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Los Angeles Chargers",
+            "Buffalo Bills"
+          ]
+        },
+        {
+          "name": "New England Patriots at Jacksonville Jaguars",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "New England Patriots",
+            "Jacksonville Jaguars"
+          ]
+        },
+        {
+          "name": "New York Jets at Detroit Lions",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "New York Jets",
+            "Detroit Lions"
+          ]
+        },
+        {
+          "name": "Seattle Seahawks at Washington Commanders",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Seattle Seahawks",
+            "Washington Commanders"
+          ]
+        },
+        {
+          "name": "Tennessee Titans at New York Giants",
+          "start_time": "2026-09-27T17:00Z",
+          "participants": [
+            "Tennessee Titans",
+            "New York Giants"
+          ]
+        },
+        {
+          "name": "Arizona Cardinals at San Francisco 49ers",
+          "start_time": "2026-09-27T20:05Z",
+          "participants": [
+            "Arizona Cardinals",
+            "San Francisco 49ers"
+          ]
+        },
+        {
+          "name": "Minnesota Vikings at Tampa Bay Buccaneers",
+          "start_time": "2026-09-27T20:05Z",
+          "participants": [
+            "Minnesota Vikings",
+            "Tampa Bay Buccaneers"
+          ]
+        },
+        {
+          "name": "Baltimore Ravens at Dallas Cowboys",
+          "start_time": "2026-09-27T20:25Z",
+          "participants": [
+            "Baltimore Ravens",
+            "Dallas Cowboys"
+          ]
+        },
+        {
+          "name": "Las Vegas Raiders at New Orleans Saints",
+          "start_time": "2026-09-27T20:25Z",
+          "participants": [
+            "Las Vegas Raiders",
+            "New Orleans Saints"
+          ]
+        },
+        {
+          "name": "Los Angeles Rams at Denver Broncos",
+          "start_time": "2026-09-28T00:20Z",
+          "participants": [
+            "Los Angeles Rams",
+            "Denver Broncos"
+          ]
+        },
+        {
+          "name": "Philadelphia Eagles at Chicago Bears",
+          "start_time": "2026-09-29T00:15Z",
+          "participants": [
+            "Philadelphia Eagles",
+            "Chicago Bears"
+          ]
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "NFL",
+          "source_id": "nfl"
+        }
+      ],
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Football",
@@ -3840,178 +4022,6 @@
     },
     {
       "sport": "Football",
-      "league": "NFL",
-      "source_ids": [
-        "nfl"
-      ],
-      "participants": [
-        "Arizona Cardinals",
-        "Atlanta Falcons",
-        "Baltimore Ravens",
-        "Buffalo Bills",
-        "Carolina Panthers",
-        "Chicago Bears",
-        "Cincinnati Bengals",
-        "Cleveland Browns",
-        "Dallas Cowboys",
-        "Denver Broncos",
-        "Detroit Lions",
-        "Green Bay Packers",
-        "Houston Texans",
-        "Indianapolis Colts",
-        "Jacksonville Jaguars",
-        "Kansas City Chiefs",
-        "Las Vegas Raiders",
-        "Los Angeles Chargers",
-        "Los Angeles Rams",
-        "Miami Dolphins",
-        "Minnesota Vikings",
-        "New England Patriots",
-        "New Orleans Saints",
-        "New York Giants",
-        "New York Jets",
-        "Philadelphia Eagles",
-        "Pittsburgh Steelers",
-        "San Francisco 49ers",
-        "Seattle Seahawks",
-        "Tampa Bay Buccaneers",
-        "Tennessee Titans",
-        "Washington Commanders"
-      ],
-      "events": [
-        {
-          "name": "Atlanta Falcons at Green Bay Packers",
-          "start_time": "2026-09-25T00:15Z",
-          "participants": [
-            "Atlanta Falcons",
-            "Green Bay Packers"
-          ]
-        },
-        {
-          "name": "Carolina Panthers at Cleveland Browns",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Carolina Panthers",
-            "Cleveland Browns"
-          ]
-        },
-        {
-          "name": "Cincinnati Bengals at Pittsburgh Steelers",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Cincinnati Bengals",
-            "Pittsburgh Steelers"
-          ]
-        },
-        {
-          "name": "Houston Texans at Indianapolis Colts",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Houston Texans",
-            "Indianapolis Colts"
-          ]
-        },
-        {
-          "name": "Kansas City Chiefs at Miami Dolphins",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Kansas City Chiefs",
-            "Miami Dolphins"
-          ]
-        },
-        {
-          "name": "Los Angeles Chargers at Buffalo Bills",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Los Angeles Chargers",
-            "Buffalo Bills"
-          ]
-        },
-        {
-          "name": "New England Patriots at Jacksonville Jaguars",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "New England Patriots",
-            "Jacksonville Jaguars"
-          ]
-        },
-        {
-          "name": "New York Jets at Detroit Lions",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "New York Jets",
-            "Detroit Lions"
-          ]
-        },
-        {
-          "name": "Seattle Seahawks at Washington Commanders",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Seattle Seahawks",
-            "Washington Commanders"
-          ]
-        },
-        {
-          "name": "Tennessee Titans at New York Giants",
-          "start_time": "2026-09-27T17:00Z",
-          "participants": [
-            "Tennessee Titans",
-            "New York Giants"
-          ]
-        },
-        {
-          "name": "Arizona Cardinals at San Francisco 49ers",
-          "start_time": "2026-09-27T20:05Z",
-          "participants": [
-            "Arizona Cardinals",
-            "San Francisco 49ers"
-          ]
-        },
-        {
-          "name": "Minnesota Vikings at Tampa Bay Buccaneers",
-          "start_time": "2026-09-27T20:05Z",
-          "participants": [
-            "Minnesota Vikings",
-            "Tampa Bay Buccaneers"
-          ]
-        },
-        {
-          "name": "Baltimore Ravens at Dallas Cowboys",
-          "start_time": "2026-09-27T20:25Z",
-          "participants": [
-            "Baltimore Ravens",
-            "Dallas Cowboys"
-          ]
-        },
-        {
-          "name": "Las Vegas Raiders at New Orleans Saints",
-          "start_time": "2026-09-27T20:25Z",
-          "participants": [
-            "Las Vegas Raiders",
-            "New Orleans Saints"
-          ]
-        },
-        {
-          "name": "Los Angeles Rams at Denver Broncos",
-          "start_time": "2026-09-28T00:20Z",
-          "participants": [
-            "Los Angeles Rams",
-            "Denver Broncos"
-          ]
-        },
-        {
-          "name": "Philadelphia Eagles at Chicago Bears",
-          "start_time": "2026-09-29T00:15Z",
-          "participants": [
-            "Philadelphia Eagles",
-            "Chicago Bears"
-          ]
-        }
-      ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Football",
       "league": "NFL Draft",
       "source_ids": [],
       "participants": [],
@@ -4101,7 +4111,19 @@
         "golf-lpga-tour"
       ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "Walmart NW Arkansas Championship pres. by P&G",
+          "start_time": "2026-09-25T04:00Z",
+          "participants": []
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "LPGA Tour",
+          "source_id": "golf-lpga-tour"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4112,22 +4134,6 @@
       ],
       "participants": [],
       "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Golf",
-      "league": "LPGA Tour",
-      "source_ids": [
-        "golf-lpga-tour"
-      ],
-      "participants": [],
-      "events": [
-        {
-          "name": "Walmart NW Arkansas Championship pres. by P&G",
-          "start_time": "2026-09-25T04:00Z",
-          "participants": []
-        }
-      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4148,22 +4154,6 @@
     },
     {
       "sport": "Golf",
-      "league": "PGA Tour",
-      "source_ids": [
-        "golf-pga-tour"
-      ],
-      "participants": [],
-      "events": [
-        {
-          "name": "Presidents Cup",
-          "start_time": "2026-09-24T04:00Z",
-          "participants": []
-        }
-      ],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Golf",
       "league": "Professional Golfers Association Tour of Australasia (PGA Tour of Australasia)",
       "source_ids": [],
       "participants": [],
@@ -4177,7 +4167,19 @@
         "golf-pga-tour"
       ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "Presidents Cup",
+          "start_time": "2026-09-24T04:00Z",
+          "participants": []
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "PGA Tour",
+          "source_id": "golf-pga-tour"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4188,6 +4190,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "PGA Tour Champions",
+          "source_id": "golf-pga-tour-champions"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4335,38 +4343,6 @@
     {
       "sport": "Ice Hockey",
       "league": "National Hockey League (NHL)",
-      "source_ids": [
-        "nhl"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Ice Hockey",
-      "league": "National League",
-      "source_ids": [
-        "swiss-national"
-      ],
-      "participants": [
-        "EHC Biel-Bienne",
-        "EHC Kloten"
-      ],
-      "events": [
-        {
-          "name": "EHC Biel-Bienne at EHC Kloten",
-          "start_time": "2026-09-24T18:00:00Z",
-          "participants": [
-            "EHC Biel-Bienne",
-            "EHC Kloten"
-          ]
-        }
-      ],
-      "participant_coverage": "OBSERVED"
-    },
-    {
-      "sport": "Ice Hockey",
-      "league": "NHL",
       "source_ids": [
         "nhl"
       ],
@@ -4734,6 +4710,34 @@
           ]
         }
       ],
+      "source_labels": [
+        {
+          "name": "NHL",
+          "source_id": "nhl"
+        }
+      ],
+      "participant_coverage": "OBSERVED"
+    },
+    {
+      "sport": "Ice Hockey",
+      "league": "National League",
+      "source_ids": [
+        "swiss-national"
+      ],
+      "participants": [
+        "EHC Biel-Bienne",
+        "EHC Kloten"
+      ],
+      "events": [
+        {
+          "name": "EHC Biel-Bienne at EHC Kloten",
+          "start_time": "2026-09-24T18:00:00Z",
+          "participants": [
+            "EHC Biel-Bienne",
+            "EHC Kloten"
+          ]
+        }
+      ],
       "participant_coverage": "OBSERVED"
     },
     {
@@ -4842,6 +4846,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "PLL Championship Series",
+          "source_id": "lacrosse-pll-championship-series"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4948,6 +4958,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Nitrocross",
+          "source_id": "motorsports-nitrocross"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5169,6 +5185,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "National Circuit Finals Rodeo (NFR Open)",
+          "source_id": "rodeo-prca-nfr-open"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -6134,6 +6156,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Bundesliga",
+          "source_id": "bundesliga"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -7886,6 +7914,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Danish Superliga",
+          "source_id": "denmark"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -8108,6 +8142,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Eredivisie",
+          "source_id": "eredivisie"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -9175,22 +9215,18 @@
     },
     {
       "sport": "Soccer",
-      "league": "La Liga | Men",
-      "source_ids": [
-        "laliga"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
       "league": "LaLiga | Men",
       "source_ids": [
         "laliga"
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "La Liga",
+          "source_id": "laliga"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -9770,6 +9806,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Ligue 1",
+          "source_id": "ligue1"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -9845,86 +9887,6 @@
     {
       "sport": "Soccer",
       "league": "Major League Soccer (MLS) | Men",
-      "source_ids": [
-        "mls"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Malaysia Cup | Men",
-      "source_ids": [
-        "soccer-afc-malaysia-malaysia-cup-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Malaysia FA Cup | Men",
-      "source_ids": [
-        "soccer-afc-malaysia-malaysia-fa-cup-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Malaysia Super League | Men",
-      "source_ids": [
-        "soccer-afc-malaysia-malaysia-super-league-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Maltese FA Trophy | Men",
-      "source_ids": [
-        "uefa-soccer-malta-maltese-fa-trophy-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Maltese Premier League | Men",
-      "source_ids": [
-        "uefa-soccer-malta-maltese-premier-league-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Maltese Super Cup | Men",
-      "source_ids": [
-        "uefa-soccer-malta-maltese-super-cup-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "Meistriliiga / Premium Liiga | Men",
-      "source_ids": [
-        "uefa-soccer-estonia-meistriliiga-premium-liiga-men"
-      ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
-    },
-    {
-      "sport": "Soccer",
-      "league": "MLS",
       "source_ids": [
         "mls"
       ],
@@ -10090,7 +10052,83 @@
           ]
         }
       ],
+      "source_labels": [
+        {
+          "name": "MLS",
+          "source_id": "mls"
+        }
+      ],
       "participant_coverage": "OBSERVED"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Malaysia Cup | Men",
+      "source_ids": [
+        "soccer-afc-malaysia-malaysia-cup-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Malaysia FA Cup | Men",
+      "source_ids": [
+        "soccer-afc-malaysia-malaysia-fa-cup-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Malaysia Super League | Men",
+      "source_ids": [
+        "soccer-afc-malaysia-malaysia-super-league-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Maltese FA Trophy | Men",
+      "source_ids": [
+        "uefa-soccer-malta-maltese-fa-trophy-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Maltese Premier League | Men",
+      "source_ids": [
+        "uefa-soccer-malta-maltese-premier-league-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Maltese Super Cup | Men",
+      "source_ids": [
+        "uefa-soccer-malta-maltese-super-cup-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Soccer",
+      "league": "Meistriliiga / Premium Liiga | Men",
+      "source_ids": [
+        "uefa-soccer-estonia-meistriliiga-premium-liiga-men"
+      ],
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Soccer",
@@ -10501,6 +10539,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Premier League",
+          "source_id": "epl"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -10531,6 +10575,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Primeira Liga",
+          "source_id": "primeira"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
