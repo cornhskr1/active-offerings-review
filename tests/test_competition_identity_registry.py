@@ -192,6 +192,17 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertTrue(any(row.get("observed_official_name") == "Association of Boxing Commissions (ABC)"
                             for row in self.registry["alias_review_queue"]))
 
+    def test_combat_sports_aliases_preserve_event_series_boundaries(self):
+        combat = {item["league"]: item for item in self.registry["competitions"]
+                  if item["sport"] == "Combat Sports"}
+        self.assertEqual(6, sum(len(item.get("aliases", [])) for item in combat.values()))
+        self.assertIn("ONE Fight Night", [alias["name"] for alias in combat["ONE Championship"]["aliases"]])
+        self.assertNotIn("ONE Friday Fights", [alias["name"] for alias in combat["ONE Championship"]["aliases"]])
+        self.assertFalse(combat["PFL Professional Bouts"].get("aliases"))
+        self.assertFalse(combat["Combat Sports Approval Test"].get("aliases"))
+        self.assertTrue(any(row.get("observed_official_name") == "ONE Friday Fights"
+                            for row in self.registry["alias_review_queue"]))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
