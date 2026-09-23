@@ -140,6 +140,13 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertFalse(any(alias["name"] == "AFC Women's Champions League"
                              for item in self.registry["competitions"]
                              for alias in item.get("aliases", [])))
+        womens_series = "FIBA 3x3 Women’s Series"
+        self.assertTrue(any(row.get("observed_official_name") == womens_series
+                            and row["catalog_identity"] == "FIBA 3x3 World Tour | Women"
+                            for row in self.registry["alias_review_queue"]))
+        self.assertFalse(any(alias["name"] == womens_series
+                             for item in self.registry["competitions"]
+                             for alias in item.get("aliases", [])))
 
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
