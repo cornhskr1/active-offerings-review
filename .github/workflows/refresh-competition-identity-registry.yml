@@ -1,18 +1,16 @@
-name: Refresh Approved Sports Schedule
+name: Refresh Competition Identity Registry
 
 on:
   push:
     branches:
       - main
     paths:
+      - data/competition-alias-crosswalk.json
       - data/catalog-season-map.json
-      - data/global-schedule-sources.json
-      - data/soccer-*-sources.json
-      - data/tennis-schedule.json
-      - scripts/refresh_global_schedule.py
-      - .github/workflows/refresh-global-schedule.yml
-  schedule:
-    - cron: "7 * * * *"
+      - data/catalog-live.json
+      - data/global-schedule.json
+      - scripts/build_competition_identity_registry.py
+      - .github/workflows/refresh-competition-identity-registry.yml
   workflow_dispatch:
 
 permissions:
@@ -25,34 +23,29 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 15
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Sync latest main
         run: |
           git fetch origin main
           git reset --hard origin/main
-      - name: Install dependencies
-        run: python3 -m pip install --quiet requests
-      - name: Run refresh
-        run: python3 scripts/refresh_global_schedule.py
-      - name: Rebuild competition identities and reviewed aliases
+      - name: Rebuild reviewed identities and aliases
         run: python3 scripts/build_competition_identity_registry.py
       - name: Validate division mappings and aliases
         run: python3 -m unittest tests.test_competition_identity_registry tests.test_basketball_divisions
-      - name: Commit refreshed data
+      - name: Commit changed registry
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/global-schedule.json data/competition-identity-registry.json
+          git add data/competition-identity-registry.json
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "Competition registry is already current."
             exit 0
           fi
-          git commit -m "Refresh approved sports schedule"
+          git commit -m "Refresh competition identity registry"
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
