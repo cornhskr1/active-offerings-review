@@ -19,6 +19,8 @@ def source_ids(item):
     return sorted(set(([item["source_id"]] if item.get("source_id") else []) + item.get("source_ids", [])))
 
 
+    if item.get("season_window_complete") is False:
+        return "PARTIAL_WINDOW"
 def season_state(item):
     if item.get("season_start_date") and item.get("season_end_date"):
         return "DATED_WINDOW"
@@ -137,7 +139,7 @@ def build():
         sport["split_children"] += row["kind"] == "split-child"
         sport["no_linked_source"] += row["coverage_state"] == "NO_LINKED_SOURCE"
         sport["adapter_gaps"] += row["coverage_state"] == "ADAPTER_GAP"
-        sport["pending_dates"] += row["season_state"] in ("PENDING_DATES", "NO_WINDOW")
+        sport["pending_dates"] += row["season_state"] in ("PENDING_DATES", "NO_WINDOW", "PARTIAL_WINDOW")
     return {
         "schema_version": 1,
         "catalog_menu_version": catalog["menu_version"],

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-24T18:26:45.400142+00:00",
-  "schedule_generated_at": "2026-09-24T18:23:38.399762+00:00",
+  "registry_generated_at": "2026-09-24T19:21:40.563082+00:00",
+  "schedule_generated_at": "2026-09-24T19:18:43.081820+00:00",
   "schedule_window_start": "2026-09-24",
   "schedule_window_end": "2026-10-01",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,8 +17,9 @@
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 8,
+      "DATED_WINDOW": 7,
       "DESCRIPTIVE_WINDOW": 56,
+      "PARTIAL_WINDOW": 1,
       "NO_WINDOW": 24,
       "PENDING_DATES": 153,
       "RECURRING_WINDOW": 481
@@ -56,7 +57,7 @@
       "split_children": 26,
       "no_linked_source": 64,
       "adapter_gaps": 5,
-      "pending_dates": 22
+      "pending_dates": 23
     },
     "Bowling": {
       "identities": 2,
@@ -967,8 +968,8 @@
       "identity_key": "basketball-fiba-world-cup-men",
       "approval_parent": "FIBA Basketball World Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "August 27–September 12, 2027",
-      "season_state": "DATED_WINDOW",
+      "season_window": "2027 finals: August 27–September 12; qualifier windows also occur before the finals",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [

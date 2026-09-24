@@ -103,11 +103,11 @@ The public suite passed 85 tests and the catalog identity validator reported zer
 | Official event window only | 3 | Window evidence exists; individual fixture coverage is not established |
 | Source scope review | 73 | Attached ID is absent from the schedule configuration; some IDs are official-link references rather than fixture adapters |
 
-The separate season audit finds 153 identities with pending dates and 24 with no season window. These categories overlap the schedule linkage states. The global feed's 302 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
+The separate season audit finds 153 identities with pending dates and 24 with no season window in the baseline. It now also flags the men's FIBA World Cup as a partial window: the 2027 finals dates do not cover its qualifiers. These categories overlap the schedule linkage states. The global feed's 302 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
 
 | Order | Coverage section | First check |
 |---:|---|---|
-| 1 | Basketball | 89 identities; 26 split children, 64 without linked sources, 22 pending dates, five reported adapter gaps |
+| 1 | Basketball | 89 identities; 26 split children, 64 without linked sources, 23 pending or partial dates, five reported adapter gaps |
 | 2 | NCAA sports | Resolve child-specific calendars and source scope across all NCAA sections, including the heavily wagered Football, Basketball, Volleyball, Baseball, and Softball entries; schedule-only labels remain held |
 | 3 | Volleyball | 26 identities; 18 split children without linked sources and eight adapter gaps |
 | 4 | Rugby, Surfing, Table Tennis, Tennis | Finish split-child date and source states before proceeding to broad gaps |
@@ -115,6 +115,8 @@ The separate season audit finds 153 identities with pending dates and 24 with no
 | 6 | Remaining sports and adapters | Reconcile every remaining inventory row, including Bowling, Esports, Lacrosse, Motorsports, Rodeo, and the Boxing/Olympics adapter holds |
 
 Each section exits only when every identity has either verified, correctly scoped season and schedule evidence or a documented fail-closed state visible to Review Today. Record exceptions in the inventory and ledger; source availability alone never establishes approval.
+**Basketball checkpoint, September 24:** FIBA lists qualifier windows before the men's 2027 World Cup finals. The catalog now labels the finals dates as a partial calendar, displays SEASON NOT MAPPED for that child, and keeps its missing fixture feed in Review Today for manual calendar and menu checks. Official evidence: https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027/event-guide and https://about.fiba.basketball/en/our-sport/basketball/national-team-competition-systems/fiba-basketball-world-cup . Chile LNB official Liga Chery results include September 23, 2026, so the current March–December season indicator is not disproved by the earlier June finals; the missing unattended adapter remains a gap: https://lnbchile.com/liga/uno/match/con-vs-apv-2026-09-23 . The other four reported Basketball gap sources retain division-specific dates and missing-adapter labels. All 89 identities still require section exit review; no NCAA work begins from this checkpoint.
+
 
 ## Recovered work from September 23–24
 

@@ -15,6 +15,42 @@ def function_source(name):
     return HTML[start:end if end >= 0 else None]
 
 
+    def test_partial_fiba_window_stays_visible_without_false_out_of_season_label(self):
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:[{
+  id:'basketball-fiba-world-cup-men',sport:'Basketball',
+  league:'FIBA Basketball World Cup | Men',region:'International',
+  coverage_status:'missing',official_schedule_url:'https://www.fiba.basketball/'
+}]},seasonMap:{source_mappings:[],catalog_event_mappings:[],sports:[{
+  sport:'Basketball',groups:[{country:'International',events:[{
+    catalog_event:'FIBA Basketball World Cup | Men and Women',
+    coverage_children:[{
+      label:'FIBA Basketball World Cup | Men',source_id:'basketball-fiba-world-cup-men',
+      season_start_date:'2027-08-27',season_end_date:'2027-09-12',
+      season_window_complete:false
+    }]
+  }]}]
+}]}};
+function todayKey(){return '2026-09-24'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const child=DATA.seasonMap.sports[0].groups[0].events[0].coverage_children[0];
+assert.equal(mappedSeasonStatus(child),null);
+assert.equal(mappedSeasonStatus({...child,season_window_complete:true}),'out');
+const cards=scheduleCoverageAttention('2026-09-24');
+assert.equal(cards.length,1);
+assert.match(cards[0].reason,/partial season calendar/);
+assert.equal(cards[0].source_url,'https://www.fiba.basketball/');
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
 class ReviewTodayDivisionTests(unittest.TestCase):
     def test_mixed_parent_does_not_hide_womens_coverage(self):
         script = """
