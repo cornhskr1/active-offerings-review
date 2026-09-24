@@ -1325,27 +1325,6 @@
     },
     {
       "sport": "Rugby",
-      "catalog_identity": "SVNS | Men and Women",
-      "alias": "HSBC SVNS",
-      "name_type": "official",
-      "evidence_url": "https://www.svns.com/"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "SVNS | Men and Women",
-      "alias": "HSBC SVNS Series",
-      "name_type": "official",
-      "evidence_url": "https://www.svns.com/"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "Six Nations Rugby | Men and Women",
-      "alias": "Six Nations Rugby",
-      "name_type": "official",
-      "evidence_url": "https://www.sixnationsrugby.com/en"
-    },
-    {
-      "sport": "Rugby",
       "catalog_identity": "The Rugby Championship | Men",
       "alias": "Castle Lager Rugby Championship",
       "name_type": "official",
@@ -1392,27 +1371,6 @@
       "alias": "MLR",
       "name_type": "official",
       "evidence_url": "https://www.majorleague.rugby/"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "Premier Rugby Sevens (PR7s) | Men and Women",
-      "alias": "Premier Rugby Sevens",
-      "name_type": "official",
-      "evidence_url": "https://prsevens.com/"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "Premier Rugby Sevens (PR7s) | Men and Women",
-      "alias": "PR7s",
-      "name_type": "official",
-      "evidence_url": "https://prsevens.com/"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "Rugby Americas North Sevens | Men and Women",
-      "alias": "RAN Sevens",
-      "name_type": "official",
-      "evidence_url": "https://rugbyamericasnorth.com/competitions/mens-womens-sevens"
     },
     {
       "sport": "Rodeo",
@@ -1491,6 +1449,20 @@
       "alias": "Pendleton Whisky Xtreme Bulls Tour Finale",
       "name_type": "official",
       "evidence_url": "https://www.pendletonroundup.com/p/happy-canyon/xtreme-bulls-finale"
+    },
+    {
+      "sport": "Rugby",
+      "identity_key": "rugby-intl-six-nations-men",
+      "alias": "Guinness Men’s Six Nations",
+      "name_type": "official",
+      "evidence_url": "https://www.sixnationsrugby.com/en/m6n"
+    },
+    {
+      "sport": "Rugby",
+      "identity_key": "rugby-intl-six-nations-women",
+      "alias": "Guinness Women’s Six Nations",
+      "name_type": "official",
+      "evidence_url": "https://www.sixnationsrugby.com/en/w6n"
     }
   ],
   "review_queue": [
@@ -2272,20 +2244,6 @@
     },
     {
       "sport": "Rugby",
-      "catalog_identity": "Six Nations Rugby | Men and Women",
-      "observed_official_name": "Guinness Men’s Six Nations",
-      "reason": "This is a gender-specific competition under a combined catalog approval. Preserve the men’s boundary until separate operational identities are configured.",
-      "evidence_url": "https://www.sixnationsrugby.com/en/m6n"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "Six Nations Rugby | Men and Women",
-      "observed_official_name": "Guinness Women’s Six Nations",
-      "reason": "This is a gender-specific competition under a combined catalog approval. Preserve the women’s boundary until separate operational identities are configured.",
-      "evidence_url": "https://www.sixnationsrugby.com/en/w6n"
-    },
-    {
-      "sport": "Rugby",
       "catalog_identity": "SVNS | Men and Women",
       "observed_official_name": "Rugby Sevens",
       "reason": "The generic discipline label can refer to SVNS, PR7s, RAN Sevens, Olympic rugby sevens, or another tournament.",
@@ -2451,6 +2409,48 @@
       "observed_official_name": "The American Rodeo",
       "reason": "This is a separate invitational rodeo event and does not inherit the catalog's PRCA tour approval.",
       "evidence_url": "https://americanrodeo.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "SVNS | Men and Women",
+      "observed_official_name": "HSBC SVNS",
+      "reason": "The name covers separate men's and women's SVNS competitions. Require division evidence before selecting an operational identity.",
+      "evidence_url": "https://www.svns.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "SVNS | Men and Women",
+      "observed_official_name": "HSBC SVNS Series",
+      "reason": "The series name covers separate men's and women's competitions. Require division evidence before selecting an operational identity.",
+      "evidence_url": "https://www.svns.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Six Nations Rugby | Men and Women",
+      "observed_official_name": "Six Nations Rugby",
+      "reason": "The organizer name covers separate men's and women's championships. Require the specific competition before resolving it.",
+      "evidence_url": "https://www.sixnationsrugby.com/en"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Premier Rugby Sevens (PR7s) | Men and Women",
+      "observed_official_name": "Premier Rugby Sevens",
+      "reason": "PR7s staged paired men's and women's competitions. The umbrella name alone does not identify the division.",
+      "evidence_url": "https://prsevens.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Premier Rugby Sevens (PR7s) | Men and Women",
+      "observed_official_name": "PR7s",
+      "reason": "The acronym covers paired men's and women's competitions and cannot select a division by itself.",
+      "evidence_url": "https://prsevens.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Rugby Americas North Sevens | Men and Women",
+      "observed_official_name": "RAN Sevens",
+      "reason": "RAN Sevens includes separate men's and women's competitions. Require division evidence before resolving it.",
+      "evidence_url": "https://rugbyamericasnorth.com/competitions/mens-womens-sevens"
     }
   ]
 }
