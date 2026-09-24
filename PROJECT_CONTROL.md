@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 24, 2026  
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Inventory coverage states against the final child identities and establish the Priority 2 coverage queue**
+**Current task:** **Basketball — reconcile 89 operational identities, starting with division calendars and five reported adapter gaps**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -33,7 +33,7 @@ This file is the project source of truth. A merged pull request, passing test, o
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
 | 1. Competition identities | **COMPLETE** | 74/74 resolved; 72 split legal parents yield 144 unique children, with two evidence-backed single mixed competitions; public and private portal gate checks passed | 74/74 resolved; no false combined schedulable identities |
-| 2. Season/schedule coverage | **IN PROGRESS** | Registry reports 13 gap areas, 302 named competition gaps, plus Boxing and Olympics adapters pending; final child coverage inventory is next | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
+| 2. Season/schedule coverage | **IN PROGRESS** | Inventory covers 722 catalog operational identities and 144 split children; 13 reported gap areas contain 302 labels, which are not a distinct-identity count | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
 | 5. Systemwide regression | **PARTIAL** | Many component tests exist | One cross-repository release suite passes against final data |
@@ -90,6 +90,31 @@ Private portal PR #52 synchronized its bundled catalog and identity reference wi
 The public suite passed 85 tests and the catalog identity validator reported zero ghost approvals and zero held split-parent events. The portal suite passed 127 tests locally with the current operator aliases; the PR #53 Portal Tests workflow passed. Calendar dates and missing schedule evidence remain Priority 2 work; unverified operator aliases remain Priority 3 work and continue to fail closed.
 
 **Scope-switch decision:** With the Priority 1 completion gate verified on the merged public and private branches, Priority 2 is now the only active priority. Inventory all final child identities and their coverage states before filling the 13 reported gap areas and the additional pending division-specific calendars. Keep Priority 3 alias verification frozen until Priority 2 passes its gate.
+
+## Priority 2 coverage baseline and fixed queue
+
+`data/priority2-coverage-inventory.json` lists all 722 mapped operational identities, including 144 split children, using the published 9.22.26 catalog, current registry, and global plus regional schedule configurations. It keeps the two schedule-only labels `NCAA Football` and `NCAA Volleyball` outside the mapped approval count; these labels cannot create independent catalog approval.
+
+| Schedule linkage state | Identities | Meaning |
+|---|---:|---|
+| Adapter configured | 175 | Source configured; actual fixture coverage and refresh health still require verification |
+| Adapter gap | 287 | Source is marked as a coverage gap, not an unattended fixture adapter |
+| No linked source | 184 | No source ID attached to the operational identity |
+| Official event window only | 3 | Window evidence exists; individual fixture coverage is not established |
+| Source scope review | 73 | Attached ID is absent from the schedule configuration; some IDs are official-link references rather than fixture adapters |
+
+The separate season audit finds 153 identities with pending dates and 24 with no season window. These categories overlap the schedule linkage states. The global feed's 302 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
+
+| Order | Coverage section | First check |
+|---:|---|---|
+| 1 | Basketball | 89 identities; 26 split children, 64 without linked sources, 22 pending dates, five reported adapter gaps |
+| 2 | NCAA sports | Resolve child-specific calendars and source scope across all NCAA sections, including the heavily wagered Football, Basketball, Volleyball, Baseball, and Softball entries; schedule-only labels remain held |
+| 3 | Volleyball | 26 identities; 18 split children without linked sources and eight adapter gaps |
+| 4 | Rugby, Surfing, Table Tennis, Tennis | Finish split-child date and source states before proceeding to broad gaps |
+| 5 | Soccer | 344 identities; 236 currently attached only to gap-type sources; verify division and country scope |
+| 6 | Remaining sports and adapters | Reconcile every remaining inventory row, including Bowling, Esports, Lacrosse, Motorsports, Rodeo, and the Boxing/Olympics adapter holds |
+
+Each section exits only when every identity has either verified, correctly scoped season and schedule evidence or a documented fail-closed state visible to Review Today. Record exceptions in the inventory and ledger; source availability alone never establishes approval.
 
 ## Recovered work from September 23–24
 
@@ -148,4 +173,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; final child coverage inventory and fixed coverage queue next; Active Offerings PR #86 and private portal PRs #52–#53 merged; Priority 1 gate passed at 74/74. Baseline: 13 registry gap areas, 302 named competition gaps, plus pending division-specific child calendars and Boxing/Olympics adapters. Priority 2 exit requires supported coverage or a documented fail-closed state for every operational identity.
+**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #87 merged. The inventory baseline contains 722 mapped operational identities and 144 split children; 302 feed gap labels are a separate measure. Expected after Basketball: all 89 identities have a verified calendar/source state or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.
