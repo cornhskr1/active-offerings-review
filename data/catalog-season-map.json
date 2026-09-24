@@ -11822,7 +11822,23 @@
               "season_start": "09-01",
               "season_end": "05-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's tennis competitions. The NCAA schedules singles and doubles championships in the fall and team championships in the spring; competition-specific calendar coverage requires independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-tennis-di-men",
+                  "label": "Division I Tennis | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-tennis-di-women",
+                  "label": "Division I Tennis | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             }
           ]
         }
