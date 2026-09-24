@@ -301,6 +301,26 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                          "American Hockey League (AHL)", "IIHF World Junior Championship"} <= held)
         self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
 
+    def test_lacrosse_aliases_preserve_field_box_and_championship_series_boundaries(self):
+        lacrosse = {item["league"]: item for item in self.registry["competitions"]
+                    if item["sport"] == "Lacrosse"}
+        aliases = {league: {alias["name"] for alias in item.get("aliases", [])}
+                   for league, item in lacrosse.items()}
+        self.assertEqual(3, len(lacrosse))
+        self.assertEqual(7, sum(map(len, aliases.values())))
+        self.assertIn("Premier Lacrosse League", aliases["Premier Lacrosse League (PLL)"])
+        self.assertIn("PLL Championship Series",
+                      aliases["Premier Lacrosse League (PLL) Championship Series"])
+        self.assertIn("Lexus PLL Championship Series",
+                      aliases["Premier Lacrosse League (PLL) Championship Series"])
+        self.assertIn("NLL", aliases["National Lacrosse League (NLL)"])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Lacrosse"}
+        self.assertTrue({"PLL", "PLL Championship", "Championship Series",
+                         "Women’s Lacrosse League (WLL)", "WLL Championship Series",
+                         "World Lacrosse Sixes Championships", "NLL Finals"} <= held)
+        self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
