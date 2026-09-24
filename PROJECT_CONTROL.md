@@ -2,9 +2,9 @@
 
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 24, 2026  
-**Active priority:** **Priority 1 — Separate competition identities**  
-**Current task:** **Priority 1 completion-gate verification after NCAA Water Polo**
-**Scope-switch status:** **FROZEN — do not begin another priority until the active priority gate passes**
+**Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
+**Current task:** **Inventory coverage states against the final child identities and establish the Priority 2 coverage queue**
+**Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
 
@@ -32,8 +32,8 @@ This file is the project source of truth. A merged pull request, passing test, o
 
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
-| 1. Competition identities | **IN PROGRESS** | 74 of 74 combined approvals resolved; completion-gate verification pending | 74/74 resolved; no false combined schedulable identities |
-| 2. Season/schedule coverage | **INCOMPLETE** | Registry reports 13 gap areas, 302 named competition gaps, plus Boxing and Olympics adapters pending | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
+| 1. Competition identities | **COMPLETE** | 74/74 resolved; 72 split legal parents yield 144 unique children, with two evidence-backed single mixed competitions; public and private portal gate checks passed | 74/74 resolved; no false combined schedulable identities |
+| 2. Season/schedule coverage | **IN PROGRESS** | Registry reports 13 gap areas, 302 named competition gaps, plus Boxing and Olympics adapters pending; final child coverage inventory is next | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
 | 5. Systemwide regression | **PARTIAL** | Many component tests exist | One cross-repository release suite passes against final data |
@@ -80,6 +80,16 @@ Priority 1 is complete only when all of the following are true:
 - Active Offerings and the private portal consume the same published identity model.
 - The full relevant test suite passes.
 - This ledger is updated in the same work cycle.
+
+### Gate verification — September 24, 2026
+
+**Passed.** Public Active Offerings PR #86 completed the 74th combined-approval resolution. The 72 approvals requiring a split retain their legal parent wording and produce 144 operational children with unique keys. The other two resolved approvals are evidence-backed single mixed competitions. The generated registry contains 724 competition identities, no schedulable split parents, no missing children, no duplicate child keys, and no cross-child schedule-source assignments among the 50 child source attachments checked. The reviewed public alias crosswalk has 208 entries targeting catalog identities, with none targeting a split parent; 142 ambiguous or unsupported aliases remain queued for review. Unverified women's competition labels remain explicit holds.
+
+Private portal PR #52 synchronized its bundled catalog and identity reference with the published 9.22.26 model; merged portal and public branches match on all 724 identities, 72 split parents, 144 children, and the 142-entry review queue. Private portal PR #53 holds the 11 existing operator aliases that still point to a combined legal parent until an exact child can be verified. These provisional alias rows do not establish operational approval. The public catalog child renderer was merged in PR #82.
+
+The public suite passed 85 tests and the catalog identity validator reported zero ghost approvals and zero held split-parent events. The portal suite passed 127 tests locally with the current operator aliases; the PR #53 Portal Tests workflow passed. Calendar dates and missing schedule evidence remain Priority 2 work; unverified operator aliases remain Priority 3 work and continue to fail closed.
+
+**Scope-switch decision:** With the Priority 1 completion gate verified on the merged public and private branches, Priority 2 is now the only active priority. Inventory all final child identities and their coverage states before filling the 13 reported gap areas and the additional pending division-specific calendars. Keep Priority 3 alias verification frozen until Priority 2 passes its gate.
 
 ## Recovered work from September 23–24
 
@@ -138,4 +148,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 1; NCAA Water Polo; Active Offerings PR #85 merged; 73 of 74 combined approvals resolved before this change; expected after Water Polo: 74 of 74. Completion-gate verification remains before Priority 2.
+**Current checkpoint:** Priority 2; final child coverage inventory and fixed coverage queue next; Active Offerings PR #86 and private portal PRs #52–#53 merged; Priority 1 gate passed at 74/74. Baseline: 13 registry gap areas, 302 named competition gaps, plus pending division-specific child calendars and Boxing/Olympics adapters. Priority 2 exit requires supported coverage or a documented fail-closed state for every operational identity.
