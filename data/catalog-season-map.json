@@ -11658,7 +11658,23 @@
               "season_start": "10-01",
               "season_end": "04-30",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA men's and women's ice hockey competitions. The NCAA formally designates the men's championship Division I and the women's championship National Collegiate; division-specific schedules require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-ice-hockey-di-men",
+                  "label": "Division I Ice Hockey | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "NCAA Division I men's calendar verification pending"
+                },
+                {
+                  "key": "ncaa-ice-hockey-di-women",
+                  "label": "Division I Ice Hockey | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "NCAA National Collegiate women's calendar verification pending"
+                }
+              ]
             }
           ]
         }
