@@ -378,6 +378,26 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                              if item["sport"].startswith("NCAA")
                              for alias in item.get("aliases", [])))
 
+    def test_rodeo_aliases_preserve_series_organizer_and_final_boundaries(self):
+        rodeo = {item["league"]: {alias["name"] for alias in item.get("aliases", [])}
+                 for item in self.registry["competitions"] if item["sport"] == "Rodeo"}
+        self.assertEqual(5, len(rodeo))
+        self.assertEqual(11, sum(map(len, rodeo.values())))
+        self.assertIn("PBR Unleash The Beast", rodeo["Unleash The Beast Series"])
+        self.assertIn("PRCA Pro Rodeo Tour", rodeo["Pro Rodeo Tour"])
+        self.assertIn("NFR Open", rodeo["National Circuit Finals Rodeo"])
+        self.assertIn("PRCA Xtreme Broncs Finals", rodeo["Xtreme Broncs Finals"])
+        self.assertIn("Pendleton Whisky Xtreme Bulls Tour Finale", rodeo["Xtreme Bulls Finale"])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Rodeo"}
+        self.assertTrue({"PBR", "Professional Bull Riders", "UTB", "PBR World Finals",
+                         "PBR Team Series", "PBR Ram Challenger Series",
+                         "Monster Energy Team Challenge", "PRCA", "PRORODEO",
+                         "ProRodeo Playoff Series", "NFR", "National Finals Rodeo",
+                         "Xtreme Broncs", "Xtreme Bulls", "International Finals Rodeo (IFR)",
+                         "Women’s Rodeo World Championship", "The American Rodeo"} <= held)
+        self.assertFalse(any(alias in held for aliases in rodeo.values() for alias in aliases))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
