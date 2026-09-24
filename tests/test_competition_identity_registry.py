@@ -341,6 +341,43 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                          "Dunlop Super2 Series", "Nitro RX NEXT", "SCORE International"} <= held)
         self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
 
+    def test_ncaa_priority_aliases_preserve_division_and_gender_boundaries(self):
+        ncaa_basketball = next(sport for sport in self.season_map["sports"]
+                               if sport["sport"] == "NCAA Basketball")
+        combined = [event for group in ncaa_basketball["groups"] for event in group["events"]
+                    if event["catalog_event"].endswith(" | Men and Women")]
+        self.assertEqual(3, len(combined))
+        self.assertTrue(all(event.get("identity_model") == IDENTITY_MODEL for event in combined))
+        self.assertTrue(all("source_id" not in event and "source_ids" not in event for event in combined))
+        self.assertTrue(all({child["label"].rsplit(" | ", 1)[1]
+                             for child in event["coverage_children"]} == {"Men", "Women"}
+                            for event in combined))
+
+        basketball = {item["identity_key"]: item for item in self.registry["competitions"]
+                      if item["sport"] == "NCAA Basketball" and item.get("identity_key")}
+        mens_aliases = {alias["name"] for alias in basketball["ncaa-basketball-di-men"].get("aliases", [])}
+        womens_aliases = {alias["name"] for alias in basketball["ncaa-basketball-di-women"].get("aliases", [])}
+        self.assertTrue({"NCAAB", "NCAAM", "NCAAMB", "NCAA Men’s Basketball"} <= mens_aliases)
+        self.assertTrue({"NCAAW", "NCAAWB", "NCAA Women’s Basketball"} <= womens_aliases)
+        self.assertTrue(mens_aliases.isdisjoint(womens_aliases))
+        self.assertTrue(all(alias.get("scope_note") for alias in basketball["ncaa-basketball-di-men"]["aliases"]
+                            if alias["name_type"] != "official"))
+
+        football = {item["league"]: {alias["name"] for alias in item.get("aliases", [])}
+                    for item in self.registry["competitions"] if item["sport"] == "NCAA Football"}
+        self.assertIn("NCAA FBS", football["Division I Football Bowl Subdivision (FBS)"])
+        self.assertIn("NCAA FCS", football["Division I Football Championship Subdivision (FCS)"])
+        self.assertIn("NCAA Division II Football", football["Division II Football"])
+
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"].startswith("NCAA")}
+        self.assertTrue({"NCAAF", "NCAAFB", "College Football", "College Basketball",
+                         "NCAA Basketball", "NCAABB", "College Baseball", "Volleyball",
+                         "College Volleyball", "Softball", "College Softball"} <= held)
+        self.assertFalse(any(alias["name"] in held for item in self.registry["competitions"]
+                             if item["sport"].startswith("NCAA")
+                             for alias in item.get("aliases", [])))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)

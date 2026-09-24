@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T01:45:05.191253+00:00",
+  "generated_at": "2026-09-24T01:57:20.594428+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-24T01:41:20.104866+00:00",
   "schedule_window_start": "2026-09-23",
   "schedule_window_end": "2026-09-30",
-  "competition_count": 687,
+  "competition_count": 690,
   "event_count": 974,
   "competitions": [
     {
@@ -5837,6 +5837,18 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NCAA Baseball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/baseball/d1"
+        },
+        {
+          "name": "NCAA Division I Baseball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/baseball/d1"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5857,29 +5869,104 @@
     },
     {
       "sport": "NCAA Basketball",
-      "league": "Division I Basketball | Men and Women",
+      "league": "Division I Basketball | Men",
       "source_ids": [
-        "ncaa-mbb",
+        "ncaa-mbb"
+      ],
+      "participants": [],
+      "events": [],
+      "identity_key": "ncaa-basketball-di-men",
+      "aliases": [
+        {
+          "name": "NCAAB",
+          "name_type": "operator",
+          "evidence_url": "https://sportsbook.fanduel.com/navigation/ncaab",
+          "scope_note": "FanDuel sportsbook shorthand for NCAA men's college basketball; resolve only in that operator context."
+        },
+        {
+          "name": "NCAAM",
+          "name_type": "data-provider",
+          "evidence_url": "https://developer.sportradar.com/basketball/reference/ncaamb-standings",
+          "scope_note": "Sportradar league alias for NCAA men's basketball."
+        },
+        {
+          "name": "NCAAMB",
+          "name_type": "data-provider",
+          "evidence_url": "https://developer.sportradar.com/basketball/reference/ncaamb-overview",
+          "scope_note": "Sportradar product shorthand for NCAA men's basketball."
+        },
+        {
+          "name": "NCAA Men’s Basketball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/basketball-men/d1"
+        }
+      ],
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "NCAA Basketball",
+      "league": "Division I Basketball | Women",
+      "source_ids": [
         "ncaa-wbb"
       ],
       "participants": [],
       "events": [],
+      "identity_key": "ncaa-basketball-di-women",
+      "aliases": [
+        {
+          "name": "NCAAW",
+          "name_type": "data-provider",
+          "evidence_url": "https://developer.sportradar.com/basketball/docs/ncaawb-ig-schedules",
+          "scope_note": "Sportradar league-day shorthand for NCAA women's basketball."
+        },
+        {
+          "name": "NCAAWB",
+          "name_type": "data-provider",
+          "evidence_url": "https://developer.sportradar.com/basketball/reference/ncaawb-overview",
+          "scope_note": "Sportradar product shorthand for NCAA women's basketball."
+        },
+        {
+          "name": "NCAA Women’s Basketball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/basketball-women/d1"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "NCAA Basketball",
-      "league": "Division II Basketball | Men and Women",
+      "league": "Division II Basketball | Men",
       "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "ncaa-basketball-dii-men",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "NCAA Basketball",
-      "league": "Division III Basketball | Men and Women",
+      "league": "Division II Basketball | Women",
       "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "ncaa-basketball-dii-women",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "NCAA Basketball",
+      "league": "Division III Basketball | Men",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "ncaa-basketball-diii-men",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "NCAA Basketball",
+      "league": "Division III Basketball | Women",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "ncaa-basketball-diii-women",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5906,6 +5993,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NCAA FBS",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.org/division-i/"
+        },
+        {
+          "name": "Football Bowl Subdivision",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.org/division-i/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5914,6 +6013,18 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NCAA FCS",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.org/division-i/"
+        },
+        {
+          "name": "Football Championship Subdivision",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.org/division-i/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5922,6 +6033,13 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NCAA Division II Football",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/football/d2"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5962,6 +6080,18 @@
       "source_ids": [],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NCAA Softball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/softball/d1"
+        },
+        {
+          "name": "NCAA Women’s Softball",
+          "name_type": "data-provider",
+          "evidence_url": "https://developer.sportradar.com/baseball/reference/global-baseball-overview"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -6004,6 +6134,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NCAA Volleyball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/volleyball-women/d1"
+        },
+        {
+          "name": "NCAA Women’s Volleyball",
+          "name_type": "official",
+          "evidence_url": "https://www.ncaa.com/sports/volleyball-women/d1"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -17594,6 +17736,83 @@
       "observed_official_name": "SCORE International",
       "reason": "This is the sanctioning organization name, not a competition identity.",
       "evidence_url": "https://score-international.com/"
+    },
+    {
+      "sport": "NCAA Football",
+      "catalog_identity": "Division I Football Bowl Subdivision (FBS)",
+      "observed_official_name": "NCAAF",
+      "reason": "The sportsbook shorthand does not distinguish FBS, FCS, or Division II. Confirm the offered teams and subdivision before resolving the catalog identity.",
+      "evidence_url": "https://sportsbook.fanduel.com/navigation/ncaaf"
+    },
+    {
+      "sport": "NCAA Football",
+      "catalog_identity": "Division I Football Bowl Subdivision (FBS)",
+      "observed_official_name": "NCAAFB",
+      "reason": "The data-provider product name spans NCAA football and does not identify the catalog subdivision.",
+      "evidence_url": "https://developer.sportradar.com/football/docs/ncaafb-ig-api-basics"
+    },
+    {
+      "sport": "NCAA Football",
+      "catalog_identity": "Division I Football Bowl Subdivision (FBS)",
+      "observed_official_name": "College Football",
+      "reason": "The generic label can include FBS, FCS, Division II, or a non-NCAA association. Confirm governing body and subdivision.",
+      "evidence_url": "https://www.ncaa.org/division-i/"
+    },
+    {
+      "sport": "NCAA Basketball",
+      "catalog_identity": "Division I Basketball | Men and Women",
+      "observed_official_name": "College Basketball",
+      "reason": "The label does not identify gender, NCAA division, the CBC or CBI, or a non-NCAA association. Confirm the competition before resolving it.",
+      "evidence_url": "https://www.ncaa.org/sports/2021/2/10/basketball.aspx"
+    },
+    {
+      "sport": "NCAA Basketball",
+      "catalog_identity": "Division I Basketball | Men and Women",
+      "observed_official_name": "NCAA Basketball",
+      "reason": "The umbrella name does not identify men's or women's competition or Division I, II, or III.",
+      "evidence_url": "https://www.ncaa.org/sports/2021/2/10/basketball.aspx"
+    },
+    {
+      "sport": "NCAA Baseball",
+      "catalog_identity": "Division I Baseball | Men",
+      "observed_official_name": "NCAABB",
+      "reason": "The shorthand is not standardized by the NCAA or a reviewed primary data provider. Confirm it means NCAA Division I baseball in the originating sportsbook feed.",
+      "evidence_url": "https://www.ncaa.com/sports/baseball/d1"
+    },
+    {
+      "sport": "NCAA Baseball",
+      "catalog_identity": "Division I Baseball | Men",
+      "observed_official_name": "College Baseball",
+      "reason": "The generic label can include non-NCAA associations or divisions outside the catalog entry. Confirm NCAA Division I scope.",
+      "evidence_url": "https://www.ncaa.com/sports/baseball/d1"
+    },
+    {
+      "sport": "NCAA Volleyball",
+      "catalog_identity": "Division I Volleyball | Women",
+      "observed_official_name": "Volleyball",
+      "reason": "The bare sport label does not distinguish NCAA Division I women's volleyball from men's, beach, international, or professional competitions.",
+      "evidence_url": "https://www.ncaa.com/sports/volleyball-women/d1"
+    },
+    {
+      "sport": "NCAA Volleyball",
+      "catalog_identity": "Division I Volleyball | Women",
+      "observed_official_name": "College Volleyball",
+      "reason": "The generic label does not establish NCAA governance, Division I, or women's competition.",
+      "evidence_url": "https://www.ncaa.com/sports/volleyball-women/d1"
+    },
+    {
+      "sport": "NCAA Softball",
+      "catalog_identity": "Division I Softball | Women",
+      "observed_official_name": "Softball",
+      "reason": "The bare sport label does not distinguish NCAA Division I from professional, international, or other collegiate competitions.",
+      "evidence_url": "https://www.ncaa.com/sports/softball/d1"
+    },
+    {
+      "sport": "NCAA Softball",
+      "catalog_identity": "Division I Softball | Women",
+      "observed_official_name": "College Softball",
+      "reason": "The generic label does not establish NCAA governance or Division I scope.",
+      "evidence_url": "https://www.ncaa.com/sports/softball/d1"
     }
   ],
   "coverage_gaps": [
