@@ -22,6 +22,8 @@ def source_ids(item):
     if item.get("season_window_complete") is False:
         return "PARTIAL_WINDOW"
 def season_state(item):
+    if item.get("season_window_complete") is False:
+        return "PARTIAL_WINDOW"
     if item.get("season_start_date") and item.get("season_end_date"):
         return "DATED_WINDOW"
     if item.get("season_start") and item.get("season_end"):
