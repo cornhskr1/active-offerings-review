@@ -1141,9 +1141,10 @@ function scheduleCoverageAttention(dayKey){
   const configured=(DATA.global?.sources||[]).filter(source=>{
     if(!['partial','missing'].includes(source.coverage_status))return false;
     const mapped=mappedCatalogEventForSource(source.id);
-    return mapped&&mappedSeasonStatus(mapped)==='in';
+    return mapped&&(mappedSeasonStatus(mapped)==='in'||mapped.season_window_complete===false);
   }).map(source=>{
     const mapped=mappedCatalogEventForSource(source.id);
+    const partialWindow=mapped?.season_window_complete===false;
     const missing=source.coverage_status==='missing';
     return{
       severity:'AMBER',
@@ -1153,7 +1154,9 @@ function scheduleCoverageAttention(dayKey){
       region:source.region,
       event:`${mapped?.catalog_event||source.league} · schedule coverage`,
       start_time:`${dayKey}T12:00:00-05:00`,
-      reason:missing
+      reason:partialWindow
+        ?'Approved competition has a partial season calendar and no dependable complete fixture feed. Finals dates alone cannot clear qualifier activity.'
+        :missing
         ?'Approved and in season, but no dependable complete public schedule feed is connected.'
         :'Approved and in season, but the connected public schedule feed is known to omit some games.',
       source_url:source.official_schedule_url||'',
@@ -2136,6 +2139,9 @@ function mappedSeasonStatus(event){
     const statuses=event.coverage_children.map(mappedSeasonStatus).filter(Boolean);
     if(!statuses.length)return null;
     return statuses.every(status=>status===statuses[0])?statuses[0]:'mixed';
+  // A dated finals window cannot classify a competition with unverified
+  // qualifying rounds as in or out of season.
+  if(event?.season_window_complete===false)return null;
   }
   const planned=exactSeasonStatus(event)||annualSeasonStatus(event);
   if(planned)return planned;

@@ -30,7 +30,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_official_window_and_gap_do_not_pretend_to_be_fixture_adapters(self):
         row = self.rows[("Basketball", "FIBA Basketball World Cup | Men")]
         self.assertEqual("ADAPTER_GAP", row["coverage_state"])
-        self.assertEqual("DATED_WINDOW", row["season_state"])
+        self.assertEqual("PARTIAL_WINDOW", row["season_state"])
         self.assertEqual("coverage-gap", row["sources"][0]["type"])
         afl = self.rows[("Aussie Rules", "Australian Football League (AFL)")]
         self.assertEqual("ADAPTER_CONFIGURED", afl["coverage_state"])
