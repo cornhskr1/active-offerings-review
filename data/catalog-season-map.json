@@ -11694,7 +11694,23 @@
               "season_start": "02-01",
               "season_end": "05-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's lacrosse competitions; division-specific dates and schedule coverage require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-lacrosse-di-men",
+                  "label": "Division I Lacrosse | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-lacrosse-di-women",
+                  "label": "Division I Lacrosse | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             }
           ]
         }
