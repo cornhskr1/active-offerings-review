@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T01:22:18.030256+00:00",
+  "generated_at": "2026-09-24T01:31:04.026776+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
-  "schedule_generated_at": "2026-09-24T01:18:46.827830+00:00",
+  "schedule_generated_at": "2026-09-24T01:26:32.468871+00:00",
   "schedule_window_start": "2026-09-23",
   "schedule_window_end": "2026-09-30",
   "competition_count": 687,
-  "event_count": 969,
+  "event_count": 974,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -4511,17 +4511,33 @@
     {
       "sport": "Golf",
       "league": "Asian Tour",
-      "source_ids": [],
+      "source_ids": [
+        "golf-asian-tour"
+      ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "Mercuries Taiwan Masters",
+          "start_time": "2026-09-24T04:00:00Z",
+          "participants": []
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Golf",
       "league": "DP World Tour",
-      "source_ids": [],
+      "source_ids": [
+        "golf-dp-world-tour"
+      ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "FedEx Open de France",
+          "start_time": "2026-09-24T04:00Z",
+          "participants": []
+        }
+      ],
       "aliases": [
         {
           "name": "European Tour",
@@ -4534,15 +4550,25 @@
     {
       "sport": "Golf",
       "league": "Japan Golf Tour",
-      "source_ids": [],
+      "source_ids": [
+        "golf-japan-tour"
+      ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "Richard Mille Charity Tournament",
+          "start_time": "2026-09-24T04:00:00Z",
+          "participants": []
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Golf",
       "league": "Korn Ferry Tour",
-      "source_ids": [],
+      "source_ids": [
+        "golf-korn-ferry-tour"
+      ],
       "participants": [],
       "events": [],
       "participant_coverage": "NOT AVAILABLE"
@@ -4550,14 +4576,28 @@
     {
       "sport": "Golf",
       "league": "Ladies European Tour (LET)",
-      "source_ids": [],
+      "source_ids": [
+        "golf-ladies-european-tour"
+      ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "Ladies Italian Open",
+          "start_time": "2026-09-25T04:00:00Z",
+          "participants": []
+        }
+      ],
       "aliases": [
         {
           "name": "LET",
           "name_type": "official",
           "evidence_url": "https://ladieseuropeantour.com/blog/let-announces-its-global-2026-schedule-spanning-five-continents"
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "Ladies European Tour",
+          "source_id": "golf-ladies-european-tour"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
@@ -4634,14 +4674,28 @@
     {
       "sport": "Golf",
       "league": "Professional Golfers Association Tour of Australasia (PGA Tour of Australasia)",
-      "source_ids": [],
+      "source_ids": [
+        "golf-australasia"
+      ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "World Sand Greens Championship",
+          "start_time": "2026-09-26T04:00:00Z",
+          "participants": []
+        }
+      ],
       "aliases": [
         {
           "name": "PGA Tour of Australasia",
           "name_type": "official",
           "evidence_url": "https://www.pga.org.au/"
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "PGA Tour of Australasia",
+          "source_id": "golf-australasia"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
@@ -4714,7 +4768,9 @@
     {
       "sport": "Golf",
       "league": "Sunshine Tour",
-      "source_ids": [],
+      "source_ids": [
+        "golf-sunshine-tour"
+      ],
       "participants": [],
       "events": [],
       "participant_coverage": "NOT AVAILABLE"
@@ -4737,7 +4793,9 @@
     {
       "sport": "Golf",
       "league": "Tomorrow’s Golf League (TGL)",
-      "source_ids": [],
+      "source_ids": [
+        "golf-tgl"
+      ],
       "participants": [],
       "events": [],
       "aliases": [
@@ -4750,6 +4808,12 @@
           "name": "TGL presented by SoFi",
           "name_type": "official",
           "evidence_url": "https://tglgolf.com/explained"
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "TGL",
+          "source_id": "golf-tgl"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
@@ -5509,6 +5573,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "Superstar Racing Experience",
+          "name_type": "official",
+          "evidence_url": "https://www.srxracing.com/"
+        },
+        {
+          "name": "SRX Racing",
+          "name_type": "official",
+          "evidence_url": "https://www.srxracing.com/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5519,6 +5595,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "ABB FIA Formula E World Championship",
+          "name_type": "official",
+          "evidence_url": "https://www.fia.com/events/abb-fia-formula-e-world-championship/season-2025-2026/abb-fia-formula-e-world-championship"
+        },
+        {
+          "name": "Formula E",
+          "name_type": "official",
+          "evidence_url": "https://www.fiaformulae.com/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5535,6 +5623,23 @@
           "participants": []
         }
       ],
+      "aliases": [
+        {
+          "name": "Formula 1",
+          "name_type": "official",
+          "evidence_url": "https://www.formula1.com/"
+        },
+        {
+          "name": "F1",
+          "name_type": "official",
+          "evidence_url": "https://www.formula1.com/"
+        },
+        {
+          "name": "FIA Formula One World Championship",
+          "name_type": "official",
+          "evidence_url": "https://corp.formula1.com/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5545,6 +5650,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NTT INDYCAR SERIES",
+          "name_type": "official",
+          "evidence_url": "https://www.indycar.com/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5555,6 +5667,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "MotoGP",
+          "name_type": "official",
+          "evidence_url": "https://www.motogp.com/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5565,6 +5684,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NASCAR Truck Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/news/nascar-craftsman-truck-series/"
+        },
+        {
+          "name": "Craftsman Truck Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/nascar-craftsman-truck-series/2026/schedule/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5575,6 +5706,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NASCAR Cup Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/news/nascar-cup-series/"
+        },
+        {
+          "name": "NCS",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/kansas-racetwo-cup/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5585,6 +5728,23 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "O'Reilly Auto Parts Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/nascar-oreilly-auto-parts-series/2026/schedule/"
+        },
+        {
+          "name": "NASCAR Xfinity Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/news-media/2025/08/18/oreilly-auto-parts-to-assume-title-sponsorship-of-nascars-secondary-series/"
+        },
+        {
+          "name": "Xfinity Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nascar.com/news-media/2025/08/18/oreilly-auto-parts-to-assume-title-sponsorship-of-nascars-secondary-series/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5595,6 +5755,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "NHRA Mission Foods Drag Racing Series",
+          "name_type": "official",
+          "evidence_url": "https://www.nhra.com/results/2026/nhra-mission-foods-drag-racing-series"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5605,6 +5772,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "Nitro Rallycross",
+          "name_type": "official",
+          "evidence_url": "https://www.nitrocrossracing.com/about-us"
+        },
+        {
+          "name": "Nitro RX",
+          "name_type": "official",
+          "evidence_url": "https://www.nitrocrossracing.com/about-us"
+        }
+      ],
       "source_labels": [
         {
           "name": "Nitrocross",
@@ -5621,6 +5800,18 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "Supercars Championship",
+          "name_type": "official",
+          "evidence_url": "https://www.supercars.com/2026/supercars-calendar-tickets"
+        },
+        {
+          "name": "V8 Supercars Championship",
+          "name_type": "official",
+          "evidence_url": "https://www.supercars.com/2026/supercars-calendar-tickets"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -5631,6 +5822,13 @@
       ],
       "participants": [],
       "events": [],
+      "aliases": [
+        {
+          "name": "SCORE World Desert Championship",
+          "name_type": "official",
+          "evidence_url": "https://score-international.com/raceinfo/2026-score-race-schedule/"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -17305,6 +17503,97 @@
       "observed_official_name": "NLL Finals",
       "reason": "This is a specific postseason series, not an alternate name for every NLL competition. Confirm the event and market scope.",
       "evidence_url": "https://www.nll.com/news/national-lacrosse-league-announces-2026-finals-matchup-and-schedule/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "Camping World Superstar Racing Experience (SRX) Series",
+      "observed_official_name": "SRX",
+      "reason": "The acronym alone is not a sufficiently durable competition identity for a discontinued series. Confirm the historical event and season.",
+      "evidence_url": "https://www.srxracing.com/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "IndyCar Series",
+      "observed_official_name": "INDYCAR",
+      "reason": "INDYCAR is the organizer brand and also covers the separately named INDY NXT development series. Confirm NTT INDYCAR SERIES scope.",
+      "evidence_url": "https://www.indycar.com/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "Formula One (F1)",
+      "observed_official_name": "Formula 1 Grand Prix",
+      "reason": "A Grand Prix is a specific race within the championship, not an alternate identity for the whole Formula One series.",
+      "evidence_url": "https://www.formula1.com/en/racing/2026"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "Formula E World Championship",
+      "observed_official_name": "E-Prix",
+      "reason": "E-Prix identifies an individual Formula E race and requires event-level confirmation.",
+      "evidence_url": "https://www.fiaformulae.com/en/calendar"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "IndyCar Series",
+      "observed_official_name": "Indianapolis 500",
+      "reason": "The Indianapolis 500 is a specific race on the NTT INDYCAR SERIES schedule, not a series alias.",
+      "evidence_url": "https://www.indycar.com/Schedule/2026/Indianapolis-500"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "MotoGP World Championship",
+      "observed_official_name": "Moto2",
+      "reason": "Moto2 is a separate Grand Prix motorcycle class and cannot inherit MotoGP approval.",
+      "evidence_url": "https://www.motogp.com/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "MotoGP World Championship",
+      "observed_official_name": "Moto3",
+      "reason": "Moto3 is a separate Grand Prix motorcycle class and cannot inherit MotoGP approval.",
+      "evidence_url": "https://www.motogp.com/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "NASCAR Cup Series (NCS)",
+      "observed_official_name": "Daytona 500",
+      "reason": "The Daytona 500 is a specific Cup Series race, not an alternate name for the series.",
+      "evidence_url": "https://www.nascar.com/nascar-cup-series/2026/schedule/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "National Hot Rod Association (NHRA) Mission Foods Drag Racing Series",
+      "observed_official_name": "NHRA Pro Mod Drag Racing Series",
+      "reason": "NHRA lists Pro Mod as a separate series from the approved Mission Foods Drag Racing Series.",
+      "evidence_url": "https://www.nhra.com/results/2026/nhra-mission-foods-drag-racing-series"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "SCORE World Desert Championship Series",
+      "observed_official_name": "SCORE Baja 1000",
+      "reason": "The Baja 1000 is a specific race in the SCORE championship and requires event-level confirmation.",
+      "evidence_url": "https://score-international.com/raceinfo/2026-score-race-schedule/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "Repco Supercars Championship",
+      "observed_official_name": "Dunlop Super2 Series",
+      "reason": "Supercars identifies Super2 as a separate development category, not an alias for the Repco Supercars Championship.",
+      "evidence_url": "https://www.supercars.com/support-categories"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "Nitrocross - Formerly Nitro Rallycross / Nitro RX",
+      "observed_official_name": "Nitro RX NEXT",
+      "reason": "NEXT is a separate development class within the race program and should not be treated as the approved top-level series.",
+      "evidence_url": "https://www.nitrocrossracing.com/"
+    },
+    {
+      "sport": "Motorsports",
+      "catalog_identity": "SCORE World Desert Championship Series",
+      "observed_official_name": "SCORE International",
+      "reason": "This is the sanctioning organization name, not a competition identity.",
+      "evidence_url": "https://score-international.com/"
     }
   ],
   "coverage_gaps": [

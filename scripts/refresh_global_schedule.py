@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, datetime, requests, re, time, html
+import json, datetime, requests, re, time, html, os
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -13,6 +13,9 @@ CFG = json.loads((DATA/"global-schedule-sources.json").read_text(encoding="utf-8
 for soccer_cfg_path in sorted(DATA.glob("soccer-*-sources.json")):
     soccer_cfg = json.loads(soccer_cfg_path.read_text(encoding="utf-8"))
     CFG.setdefault("sources", []).extend(soccer_cfg.get("sources", []))
+source_filter={value.strip() for value in os.environ.get("REFRESH_SOURCE_IDS","").split(",") if value.strip()}
+if source_filter:
+    CFG["sources"]=[source for source in CFG.get("sources",[]) if source.get("id") in source_filter]
 TZ = ZoneInfo("America/Chicago")
 NOW_UTC = datetime.datetime.now(datetime.timezone.utc)
 TODAY = datetime.datetime.now(TZ).date()
@@ -555,11 +558,12 @@ def fetch_espn_golf_season(source):
         start_date=datetime.date.fromisoformat(str(start_raw)[:10])
         end_date=datetime.date.fromisoformat(str(end_raw)[:10])
         event_id=str(ev.get("id") or f'{source["id"]}-{start_date}-{name}')
+        event_override=(source.get("event_overrides") or {}).get(event_id,{})
         short_name=str(ev.get("shortName") or "").strip()
         aliases=[] if not short_name or short_name==name else [short_name]
         links=ev.get("links") or []
-        event_url=next((x.get("href") for x in links if x.get("href")),None)
-        registry.append({
+        event_url=event_override.get("source_url") or next((x.get("href") for x in links if x.get("href")),None)
+        registry_row={
             "event_id":event_id,
             "canonical_key":f'{source.get("tour_id",source["id"])}:{event_id}',
             "tour_id":source.get("tour_id",source["id"]),
@@ -569,9 +573,12 @@ def fetch_espn_golf_season(source):
             "start_date":start_date.isoformat(),
             "end_date":end_date.isoformat(),
             "status":"active" if start_date<=TODAY<=end_date else ("upcoming" if start_date>TODAY else "completed"),
-            "approval_path":f'Golf → {source["league"]}',
+            "approval_path":event_override.get("approval_path") or f'Golf → {source["league"]}',
             "source_url":event_url or source.get("official_schedule_url") or source["endpoint"]
-        })
+        }
+        if event_override.get("governance"):
+            registry_row["governance"]=event_override["governance"]
+        registry.append(registry_row)
         if end_date<TODAY or start_date>END:
             continue
         review.append({
@@ -591,6 +598,136 @@ def fetch_espn_golf_season(source):
             "tour_event_id":event_id,
             "source_endpoint":event_url or source["endpoint"]
         })
+    registry.sort(key=lambda x:(x["start_date"],x["display_name"]))
+    return registry,review
+
+def golf_calendar_event(source,event_id,name,start_date,end_date,source_url=None,aliases=None,location=None):
+    """Build one tour-calendar row and its optional Review Today event."""
+    aliases=aliases or []
+    row={
+        "event_id":str(event_id),
+        "canonical_key":f'{source.get("tour_id",source["id"])}:{event_id}',
+        "tour_id":source.get("tour_id",source["id"]),
+        "tour":source["league"],
+        "display_name":name,
+        "aliases":aliases,
+        "start_date":start_date.isoformat(),
+        "end_date":end_date.isoformat(),
+        "status":"active" if start_date<=TODAY<=end_date else ("upcoming" if start_date>TODAY else "completed"),
+        "approval_path":f'Golf → {source["league"]}',
+        "source_url":source_url or source.get("official_schedule_url") or source["endpoint"]
+    }
+    review=None
+    if not (end_date<TODAY or start_date>END):
+        review={
+            "id":f'{source["id"]}-{event_id}',
+            "source_id":source["id"],
+            "sport":"Golf",
+            "league":source["league"],
+            "region":source.get("region"),
+            "name":name,
+            "start_time":f"{start_date.isoformat()}T04:00:00Z",
+            "end_time":f"{end_date.isoformat()}T23:59:59Z",
+            "status":"LIVE" if start_date<=TODAY<=end_date else "UPCOMING",
+            "status_detail":"Tournament in progress" if start_date<=TODAY<=end_date else "Scheduled",
+            "season_stage":"TOUR EVENT",
+            "location":location,
+            "tour_id":source.get("tour_id",source["id"]),
+            "tour_event_id":str(event_id),
+            "source_endpoint":source_url or source.get("official_schedule_url") or source["endpoint"]
+        }
+    return row,review
+
+def fetch_ocs_golf_season(source):
+    """Read a complete official OCS-hosted tour calendar."""
+    endpoint=source["endpoint"].format(year=TODAY.year)
+    r=requests.get(endpoint,headers=HEADERS,timeout=30)
+    r.raise_for_status()
+    data=r.json()
+    entries=(data.get("tournaments") or {}).get("tournaments_entry") or []
+    if isinstance(entries,dict):
+        entries=[entries]
+    excludes=[re.compile(pattern,re.I) for pattern in source.get("exclude_name_patterns",[])]
+    allowed={str(value).casefold() for value in source.get("allowed_class_api",[]) if value}
+    registry=[]
+    review=[]
+    for item in entries:
+        class_api=str(item.get("class_api") or "").casefold()
+        if allowed and class_api not in allowed:
+            continue
+        name=" ".join(str(item.get("short_name") or item.get("full_name") or "Scheduled tournament").split())
+        if any(pattern.search(name) for pattern in excludes):
+            continue
+        try:
+            start=datetime.datetime.strptime(str(item.get("start_date")),"%d/%m/%y").date()
+            end=datetime.datetime.strptime(str(item.get("end_date") or item.get("start_date")),"%d/%m/%y").date()
+        except Exception:
+            continue
+        event_id=str(item.get("code") or f"{start.isoformat()}-{normalize_identity(name).replace(' ','-')}")
+        full_name=" ".join(str(item.get("full_name") or "").split())
+        aliases=[] if not full_name or full_name==name else [full_name]
+        location=" · ".join(x for x in (
+            " ".join(str(item.get("course_name") or "").split()),
+            " ".join(str(item.get("course_city") or "").split()),
+            " ".join(str(item.get("course_country") or "").split())
+        ) if x) or None
+        row,today_event=golf_calendar_event(source,event_id,name,start,end,aliases=aliases,location=location)
+        registry.append(row)
+        if today_event:
+            review.append(today_event)
+    registry.sort(key=lambda x:(x["start_date"],x["display_name"]))
+    return registry,review
+
+def fetch_jgto_golf_season(source):
+    """Read JGTO's main-tour cards, excluding the separately labelled overseas majors."""
+    endpoint=source["endpoint"].format(year=TODAY.year)
+    r=requests.get(endpoint,headers=HEADERS,timeout=30)
+    r.raise_for_status()
+    registry=[]
+    review=[]
+    for card in re.findall(r'<li class="schedule-list-item">(.*?)</li>',r.text,re.I|re.S):
+        badge_match=re.search(r'class="schedule-badge[^"<>]*">\s*([^<]+)',card,re.I)
+        if not badge_match or plain_html(badge_match.group(1)).casefold()!="tour":
+            continue
+        date_match=re.search(r'class="schedule-details-date-box">\s*(\d{2})\.(\d{2}).*?(\d{2})\.(\d{2})',card,re.I|re.S)
+        name_match=re.search(r'class="schedule-details-name"[^>]*>\s*<a href="([^"]+)">\s*(.*?)\s*</a>',card,re.I|re.S)
+        if not date_match or not name_match:
+            continue
+        start=datetime.date(TODAY.year,int(date_match.group(1)),int(date_match.group(2)))
+        end=datetime.date(TODAY.year,int(date_match.group(3)),int(date_match.group(4)))
+        if end<start:
+            end=datetime.date(TODAY.year+1,end.month,end.day)
+        path=html.unescape(name_match.group(1))
+        name=plain_html(name_match.group(2))
+        event_id=path.rstrip('/').rsplit('/',1)[-1]
+        url=f"https://www.jgto.org{path}" if path.startswith('/') else path
+        course_match=re.search(r'class="schedule-details-course"[^>]*>(.*?)</p>',card,re.I|re.S)
+        location=plain_html(course_match.group(1)) if course_match else None
+        row,today_event=golf_calendar_event(source,event_id,name,start,end,source_url=url,location=location)
+        registry.append(row)
+        if today_event:
+            review.append(today_event)
+    registry.sort(key=lambda x:(x["start_date"],x["display_name"]))
+    return registry,review
+
+def fetch_official_golf_calendar(source):
+    """Read a publisher-verified annual calendar stored with the source record."""
+    registry=[]
+    review=[]
+    for item in source.get("official_events",[]):
+        try:
+            start=datetime.date.fromisoformat(item["start_date"])
+            end=datetime.date.fromisoformat(item.get("end_date") or item["start_date"])
+        except Exception:
+            continue
+        event_id=str(item.get("event_id") or f'{start.isoformat()}-{normalize_identity(item["name"]).replace(" ","-")}')
+        row,today_event=golf_calendar_event(
+            source,event_id,item["name"],start,end,
+            source_url=item.get("source_url"),location=item.get("location")
+        )
+        registry.append(row)
+        if today_event:
+            review.append(today_event)
     registry.sort(key=lambda x:(x["start_date"],x["display_name"]))
     return registry,review
 
@@ -1789,10 +1926,16 @@ for source in CFG.get("sources",[]):
             "checked_at":NOW_UTC.isoformat()
         })
         continue
-    if source.get("source_type")=="espn-golf-season":
+    if source.get("source_type") in ("espn-golf-season","ocs-golf-season","jgto-golf-season","official-golf-calendar"):
         calendar=[]
         try:
-            calendar,review_events=fetch_espn_golf_season(source)
+            adapters={
+                "espn-golf-season":fetch_espn_golf_season,
+                "ocs-golf-season":fetch_ocs_golf_season,
+                "jgto-golf-season":fetch_jgto_golf_season,
+                "official-golf-calendar":fetch_official_golf_calendar
+            }
+            calendar,review_events=adapters[source["source_type"]](source)
             for parsed in review_events:
                 key=(parsed["id"],parsed["start_time"])
                 if key in seen:

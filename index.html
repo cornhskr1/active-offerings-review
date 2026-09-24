@@ -2227,7 +2227,7 @@ function tourCalendarHtml(event){
   const active=rows.filter(x=>x.emphasis==='active').length;
   const upcoming=rows.filter(x=>x.emphasis==='upcoming').length;
   const summary=[`${rows.length} tournaments`,active?`${active} active`:null,upcoming?`${upcoming} next 7 days`:null].filter(Boolean).join(' · ');
-  return `<details class="catalog-tour-calendar"><summary><span>Tour tournament schedule</span><span>${esc(summary)}</span></summary><div class="catalog-tour-events">${rows.map(item=>`<div class="catalog-tour-event ${item.emphasis}"><div><div class="catalog-tour-event-name">${esc(item.display_name)}</div><div class="catalog-tour-event-meta">${esc(tourDateLabel(item))} · ${esc(item.approval_path||'')}</div></div><span class="catalog-tour-event-status">${esc(item.display_status)}</span></div>`).join('')}</div></details>`;
+  return `<details class="catalog-tour-calendar"><summary><span>Tour event schedule</span><span>${esc(summary)}</span></summary><div class="catalog-tour-events">${rows.map(item=>`<div class="catalog-tour-event ${item.emphasis}"><div><div class="catalog-tour-event-name">${esc(item.display_name)}</div><div class="catalog-tour-event-meta">${esc(tourDateLabel(item))} · ${esc(item.approval_path||'')}</div></div><span class="catalog-tour-event-status">${esc(item.display_status)}</span></div>`).join('')}</div></details>`;
 }
 function catalogOfficialBodySource(name){
   return (DATA.catalogOfficialSources?.governing_bodies||[]).find(row=>row.name===name)||null;

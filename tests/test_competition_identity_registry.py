@@ -321,6 +321,26 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                          "World Lacrosse Sixes Championships", "NLL Finals"} <= held)
         self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
 
+    def test_motorsports_aliases_preserve_series_race_and_class_boundaries(self):
+        motorsports = {item["league"]: item for item in self.registry["competitions"]
+                       if item["sport"] == "Motorsports"}
+        aliases = {league: {alias["name"] for alias in item.get("aliases", [])}
+                   for league, item in motorsports.items()}
+        self.assertEqual(12, len(motorsports))
+        self.assertEqual(22, sum(map(len, aliases.values())))
+        self.assertIn("F1", aliases["Formula One (F1)"])
+        self.assertIn("NTT INDYCAR SERIES", aliases["IndyCar Series"])
+        self.assertIn("NASCAR Xfinity Series", aliases["NASCAR O’Reilly Auto Parts Series"])
+        self.assertIn("V8 Supercars Championship", aliases["Repco Supercars Championship"])
+        self.assertIn("Nitro Rallycross", aliases["Nitrocross - Formerly Nitro Rallycross / Nitro RX"])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Motorsports"}
+        self.assertTrue({"SRX", "INDYCAR", "Formula 1 Grand Prix", "E-Prix",
+                         "Indianapolis 500", "Moto2", "Moto3", "Daytona 500",
+                         "NHRA Pro Mod Drag Racing Series", "SCORE Baja 1000",
+                         "Dunlop Super2 Series", "Nitro RX NEXT", "SCORE International"} <= held)
+        self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
