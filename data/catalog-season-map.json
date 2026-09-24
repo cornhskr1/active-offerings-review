@@ -11730,7 +11730,23 @@
               "season_start": "08-01",
               "season_end": "12-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's soccer competitions; division-specific dates and schedule coverage require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-soccer-di-men",
+                  "label": "Division I Soccer | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-soccer-di-women",
+                  "label": "Division I Soccer | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             }
           ]
         }
