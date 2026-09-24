@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T10:11:32.976923+00:00",
+  "generated_at": "2026-09-24T10:20:42.696081+00:00",
   "timezone": "America/Chicago",
   "mode": "shadow",
   "window_start": "2026-09-16",
   "window_end": "2026-09-23",
   "source_generated_at": "2026-09-16T11:31:56.845816+00:00",
   "summary": {
-    "approved_tournaments": 62,
-    "active_fields_screened": 21,
-    "field_pending": 41,
+    "approved_tournaments": 7,
+    "active_fields_screened": 0,
+    "field_pending": 7,
     "actionable_alerts": 0,
     "verified_u18_alerts": 0,
     "identity_reviews": 0,
-    "blocked_unapproved_or_unmapped": 0
+    "blocked_unapproved_or_unmapped": 55
   },
   "alerts": [],
   "coverage": [
@@ -25,20 +25,6 @@
       "u18_alerts": 0
     },
     {
-      "source_id": "tennis-itf-world-tour",
-      "tournaments": 41,
-      "active_fields": 7,
-      "field_pending": 34,
-      "u18_alerts": 0
-    },
-    {
-      "source_id": "tennis-utr-pro-tour",
-      "tournaments": 14,
-      "active_fields": 14,
-      "field_pending": 0,
-      "u18_alerts": 0
-    },
-    {
       "source_id": "wta-tennis",
       "tournaments": 5,
       "active_fields": 0,
@@ -46,7 +32,338 @@
       "u18_alerts": 0
     }
   ],
-  "blocked": [],
+  "blocked": [
+    {
+      "tournament_id": "9894a7da601e",
+      "tournament": "M15 BELÉM",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "d34e08c85f38",
+      "tournament": "M15 HURGHADA",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "29a7e5cf9b81",
+      "tournament": "M15 MELILLA",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "05679f1d423e",
+      "tournament": "M15 MONASTIR",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2a58295d434d",
+      "tournament": "M15 TSAGHKADZOR",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "f6e60c9b96b4",
+      "tournament": "M25 GUIYANG",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "12e9607d2baa",
+      "tournament": "M25 NEVERS",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "aed035c09fbe",
+      "tournament": "M25 SANTA MARGHERITA DI PULA",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "f881dbc8e032",
+      "tournament": "M25 SINTRA",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "67f9e440f749",
+      "tournament": "M25 ZLATIBOR",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "23bb579af5d2",
+      "tournament": "Sep 14 - 18, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Chicago Men Free–$55 Division Fees Evan",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2b82d8664177",
+      "tournament": "Sep 14 - 20, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Budapest Men $55 Division Fees Mogyoród",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "943561cbabd8",
+      "tournament": "Sep 14 - 20, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Essen Men $55 Division Fees Essen, Germ",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "0a79213c0510",
+      "tournament": "Sep 14 - 20, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Sydney Men $55 Division Fees Penrith, A",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "ea62c3211dd8",
+      "tournament": "Sep 14 - 20, 2026 TENNIS TOURNAMENT|Verified Event | UTR Pro Fall Slam Newport Beach Men Free–$55 Di",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "cda9494a765e",
+      "tournament": "W15 MONASTIR",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "0679c8f6d823",
+      "tournament": "W15 SAO LUIS",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "ac3c5a227a80",
+      "tournament": "W35 HURGHADA",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "3ecb120d6800",
+      "tournament": "W35 KYOTO",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "335359a76fde",
+      "tournament": "W35 SANTA MARGHERITA DI PULA",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2a5819d714b1",
+      "tournament": "W35 SHENYANG",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "676b20dea2c2",
+      "tournament": "W50 PAZARDZHIK",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "a72b75aa21c0",
+      "tournament": "W75 LE NEUBOURG",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "84aabf6b8e96",
+      "tournament": "Sep 14 - 18, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Chicago Women Free–$55 Division Fees Ev",
+      "tour_id": "utr-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "6b196de89038",
+      "tournament": "Sep 14 - 20, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Budapest Women $55 Division Fees Mogyor",
+      "tour_id": "utr-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "a5aa6e4fcd4a",
+      "tournament": "Sep 14 - 20, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Sydney Women $55 Division Fees Penrith,",
+      "tour_id": "utr-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "06b5eacc6eeb",
+      "tournament": "M15 BAKU",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "6fcb9dd67c60",
+      "tournament": "M15 COLUMBIA, SC",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "61318a631d05",
+      "tournament": "M15 CURITIBA",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "822cbefd35d9",
+      "tournament": "M15 FORBACH",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "c45bdbeb821e",
+      "tournament": "M15 MONASTIR",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "9188da9c313c",
+      "tournament": "M15 TELAVI",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "cc09ad1bd331",
+      "tournament": "M25 FALUN",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "e2d269ff5606",
+      "tournament": "M25 PARDUBICE",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "e7bec5f65412",
+      "tournament": "M25 SABADELL",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2d2abfd24028",
+      "tournament": "M25 SANTA MARGHERITA DI PULA",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "1cdf81c1374d",
+      "tournament": "M25 SETUBAL",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "9a9802710617",
+      "tournament": "M25 SHARM ELSHEIKH",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "86db0adeca1b",
+      "tournament": "M25 YINCHUAN",
+      "tour_id": "itf-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "aa02302924a1",
+      "tournament": "Sep 21 - 27, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Essen Men $55 Division Fees Essen, Germ",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "b7e076d4e886",
+      "tournament": "Sep 21 - 27, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Norfolk Men+H $55 Division Fees Norfolk",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "6183ff2baa51",
+      "tournament": "Sep 21 - 27, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Saitama Men $55 Division Fees Kawaguchi",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2fe793e4968b",
+      "tournament": "Sep 21 - 27, 2026 TENNIS TOURNAMENT|Verified Event | UTR Pro Fall Slam College Station Men $55 Divis",
+      "tour_id": "utr-men",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "25eb52dc108c",
+      "tournament": "W15 BELEM",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "364d28b92509",
+      "tournament": "W15 CONSTANTA",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "22ead5645ab5",
+      "tournament": "W15 MAANSHAN",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "54baa7987d7b",
+      "tournament": "W15 MONASTIR",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "6cb60210bddb",
+      "tournament": "W35 SANTA MARGHERITA DI PULA",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "17d9f372eff5",
+      "tournament": "W35 SHARM ELSHEIKH",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "71181fe6927c",
+      "tournament": "W50 BERKELEY, CA",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2c7d3d96b16c",
+      "tournament": "W50 NANAO",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "2c1e485c5093",
+      "tournament": "W50 PLOVDIV",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "e1366fd47454",
+      "tournament": "W50 YECLA",
+      "tour_id": "itf-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "d617af69627c",
+      "tournament": "Sep 21 - 27, 2026 TENNIS TOURNAMENT|Verified Event | UTR PTT Essen Women $55 Division Fees Essen, Ge",
+      "tour_id": "utr-women",
+      "reason": "No explicit approved catalog source mapping"
+    },
+    {
+      "tournament_id": "84a21fd6c463",
+      "tournament": "Sep 21 - 27, 2026 TENNIS TOURNAMENT|Verified Event | UTR Pro Fall Slam College Station Women $55 Div",
+      "tour_id": "utr-women",
+      "reason": "No explicit approved catalog source mapping"
+    }
+  ],
   "guardrails": {
     "approval_source": "data/catalog-season-map.json",
     "active_field_only": true,
