@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 24, 2026  
 **Active priority:** **Priority 1 — Separate competition identities**  
-**Current task:** **Rugby — split 5 combined Men-and-Women approvals**  
+**Current task:** **Surfing — split 3 combined Men-and-Women approvals**
 **Scope-switch status:** **FROZEN — do not begin another priority until the active priority gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -32,7 +32,7 @@ This file is the project source of truth. A merged pull request, passing test, o
 
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
-| 1. Competition identities | **IN PROGRESS** | 38 of 74 combined approvals modeled; 36 remain | 74/74 modeled; zero combined schedulable identities |
+| 1. Competition identities | **IN PROGRESS** | 43 of 74 combined approvals modeled; 31 remain | 74/74 modeled; zero combined schedulable identities |
 | 2. Season/schedule coverage | **INCOMPLETE** | Registry reports 13 gap areas, 302 named competition gaps, plus Boxing and Olympics adapters pending | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
@@ -45,8 +45,8 @@ The legal catalog parent remains unchanged. Each item below requires separate op
 
 | Order | Section | Remaining combined approvals | Status |
 |---:|---|---:|---|
-| 1 | Rugby | 5 | **NEXT** |
-| 2 | Surfing | 3 | Pending |
+| 1 | Rugby | 5 | **Complete** |
+| 2 | Surfing | 3 | **NEXT** |
 | 3 | Table Tennis | 2 | Pending |
 | 4 | Tennis | 8 | Pending |
 | 5 | Volleyball | 9 | Pending |
@@ -58,9 +58,9 @@ The legal catalog parent remains unchanged. Each item below requires separate op
 | 11 | NCAA Tennis | 1 | Pending |
 | 12 | NCAA Track and Field | 2 | Pending |
 | 13 | NCAA Water Polo | 1 | Pending |
-|  | **Total** | **36** |  |
+|  | **Remaining** | **31** |  |
 
-Already modeled: Soccer 22, Basketball 13, and NCAA Basketball 3.
+Already modeled: Soccer 22, Basketball 13, NCAA Basketball 3, and Rugby 5.
 
 ## Priority 1 completion gate
 
@@ -136,4 +136,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 1; Rugby; last reconciled after Active Offerings PR #71 and portal PR #51; 38 of 74 combined approvals modeled; expected after Rugby: 43 of 74.
+**Current checkpoint:** Priority 1; Surfing; Rugby split prepared after Active Offerings PR #71 and portal PR #51; 43 of 74 combined approvals modeled; expected after Surfing: 46 of 74.
