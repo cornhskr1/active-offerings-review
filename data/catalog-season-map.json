@@ -3157,11 +3157,25 @@
               "season_window": "January–December",
               "season_start": "01-01",
               "season_end": "12-31",
-              "source_id": "table-tennis-wtt",
-              "season_basis": "Annual World Table Tennis senior circuit; youth events are excluded from this approval mapping",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "World Table Tennis launched in 2021 as the ITTF's commercial and event platform, with competition tiers ranging from Feeder events to Grand Smashes.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "table-tennis-wtt-men",
+                  "label": "World Table Tennis (WTT) | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "table-tennis-wtt-women",
+                  "label": "World Table Tennis (WTT) | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -3179,7 +3193,10 @@
               "season_basis": "2026–27 Major League Table Tennis season",
               "last_verified": "2026-09-18",
               "fun_fact": "Major League Table Tennis is the first professional table tennis league in the United States and uses coed team competition.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "single-mixed-gender-competition",
+              "identity_basis": "MLTT operates one team league and one team-match schedule. Its match format includes a required women's singles position rather than separate men's and women's leagues.",
+              "identity_evidence_url": "https://www.mltt.com/about-us"
             }
           ]
         }
