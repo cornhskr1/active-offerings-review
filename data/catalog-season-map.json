@@ -11858,7 +11858,23 @@
               "season_start": "12-01",
               "season_end": "03-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's track and field competitions. Indoor and outdoor are distinct championships. Division-specific schedule coverage requires independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-track-indoor-di-men",
+                  "label": "Division I Indoor Track and Field | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-track-indoor-di-women",
+                  "label": "Division I Indoor Track and Field | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             },
             {
               "key": "ncaa-track-outdoor-di",
@@ -11867,7 +11883,23 @@
               "season_start": "03-01",
               "season_end": "06-30",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's track and field competitions. Indoor and outdoor are distinct championships. Division-specific schedule coverage requires independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-track-outdoor-di-men",
+                  "label": "Division I Outdoor Track and Field | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-track-outdoor-di-women",
+                  "label": "Division I Outdoor Track and Field | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             }
           ]
         }
