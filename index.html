@@ -2501,12 +2501,16 @@ function renderNcaaCatalog(cat,q,seasonFilter){
         if(seasonFilter!=='all'&&(seasonFilter==='unmapped'?item.status!==null:item.status!==seasonFilter))return false;
         if(!catalogEntryMatchesHealth(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping)))return false;
         if(sportHit)return true;
-        return !q||`${item.parts.name} ${item.parts.restriction||''}`.toLowerCase().includes(q);
+        const childLabels=(item.mapping?.coverage_children||[]).map(child=>child.label||'').join(' ');
+        return !q||`${item.parts.name} ${item.parts.restriction||''} ${childLabels}`.toLowerCase().includes(q);
       });
     if(!events.length)return'';
     totalEvents+=events.length;
     mappedEvents+=events.filter(x=>x.status).length;
-    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>`<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}${catalogEntryHealthHtml(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping))}</article>`).join('')}</div></details>`;
+    return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>{
+      const hasChildren=(item.mapping?.coverage_children||[]).length>0;
+      return `<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${hasChildren?'<div class="catalog-approval-note">Catalog approval — coverage tracked separately below</div>':item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}${hasChildren?renderCoverageChildren(item.mapping,section.sport):catalogEntryHealthHtml(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping))}</article>`;
+    }).join('')}</div></details>`;
   }).filter(Boolean);
   if(!sports.length&&!controlsHit)return'';
   const controls=(seasonFilter==='all'&&controlsHit)?`<section class="ncaa-controls"><div class="ncaa-controls-head">Nebraska Collegiate Controls</div><div class="ncaa-controls-list">${NCAA_CATALOG_CONTROLS.map(x=>`<div class="ncaa-control">${esc(x)}</div>`).join('')}</div></section>`:'';
