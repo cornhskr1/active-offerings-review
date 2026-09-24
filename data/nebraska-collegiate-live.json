@@ -1,29 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T03:25:32.879585+00:00",
+  "generated_at": "2026-09-24T06:31:24.380345+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-09-23",
-  "window_end": "2026-09-30",
+  "window_start": "2026-09-24",
+  "window_end": "2026-10-01",
   "events": [
-    {
-      "school": "Nebraska",
-      "sport": "Volleyball",
-      "date": "2026-09-23",
-      "time": "TBA",
-      "site": "HOME",
-      "opponent": "Missouri",
-      "location": "Lincoln, Neb. / Bob Devaney Sports Center",
-      "promotional_label": "RESCHEDULED FROM 9/6",
-      "phase": "REGULAR SEASON",
-      "status": "FINAL",
-      "result": "W Win 3-0",
-      "source_url": "https://huskers.com/sports/volleyball/schedule?view=list",
-      "played_in_nebraska": true,
-      "matchup_label": "VS",
-      "site_test": "NOT PERMISSIBLE",
-      "site_color": "red",
-      "regulatory_site_label": "PLAYED IN NEBRASKA"
-    },
     {
       "school": "Nebraska",
       "sport": "Softball",
@@ -722,6 +703,62 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Softball",
+      "date": "2026-10-01",
+      "time": "3:30 PM CDT",
+      "site": "HOME",
+      "opponent": "Scarlet vs. Cream",
+      "location": "Lincoln, Neb. / Bowlin Stadium",
+      "promotional_label": null,
+      "phase": "FALL EXHIBITION",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/softball/schedule",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Volleyball",
+      "date": "2026-10-01",
+      "time": "6:00 PM CDT",
+      "site": "AWAY",
+      "opponent": "Penn State",
+      "location": "University Park, Pa. / Rec Hall",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/volleyball/schedule?view=list",
+      "played_in_nebraska": false,
+      "matchup_label": "AT",
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA"
+    },
+    {
+      "school": "Omaha",
+      "sport": "Volleyball",
+      "date": "2026-10-01",
+      "time": "6:30 p.m.",
+      "site": "HOME",
+      "opponent": "South Dakota State",
+      "location": "Omaha, Neb. / Baxter Arena",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://omahamavs.com/sports/womens-volleyball/schedule",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
     }
   ],
   "sources": [
@@ -885,7 +922,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "school": "Nebraska",
@@ -1038,7 +1075,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "school": "Omaha",
@@ -1088,19 +1125,19 @@
       "configured": 15,
       "loaded": 15,
       "pending_publication": 0,
-      "events_in_window": 16
+      "events_in_window": 17
     },
     "Omaha": {
       "configured": 13,
       "loaded": 13,
       "pending_publication": 0,
-      "events_in_window": 10
+      "events_in_window": 11
     }
   },
   "validation": {
-    "events_checked": 39,
-    "in_state_not_permissible": 26,
-    "outside_nebraska": 12,
+    "events_checked": 41,
+    "in_state_not_permissible": 27,
+    "outside_nebraska": 13,
     "manual_location_review": 1,
     "duplicate_events": 0
   }
