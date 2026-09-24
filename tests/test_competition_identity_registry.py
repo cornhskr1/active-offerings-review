@@ -401,26 +401,29 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
     def test_rugby_aliases_preserve_code_gender_and_competition_boundaries(self):
         rugby = {item["league"]: {alias["name"] for alias in item.get("aliases", [])}
                  for item in self.registry["competitions"] if item["sport"] == "Rugby"}
-        self.assertEqual(28, len(rugby))
-        self.assertEqual(29, sum(map(len, rugby.values())))
+        self.assertEqual(33, len(rugby))
+        self.assertEqual(25, sum(map(len, rugby.values())))
         self.assertIn("NRL Telstra Premiership", rugby["National Rugby League (NRL) | Men"])
         self.assertIn("Investec Champions Cup", rugby["European Rugby Champions Cup | Men"])
         self.assertIn("EPCR Challenge Cup", rugby["European Rugby Challenge Cup | Men"])
         self.assertIn("Gallagher PREM", rugby["Gallagher Premiership Rugby | Men"])
         self.assertIn("Champ Rugby", rugby["RFU Championship | Men"])
         self.assertIn("Betfred Women’s Super League", rugby["Women’s Super League | Women"])
-        self.assertIn("HSBC SVNS", rugby["SVNS | Men and Women"])
+        self.assertIn("Guinness Men’s Six Nations", rugby["Six Nations Rugby | Men"])
+        self.assertIn("Guinness Women’s Six Nations", rugby["Six Nations Rugby | Women"])
         self.assertIn("FNB Varsity Cup", rugby["Varsity Cup | Men"])
-        self.assertIn("RAN Sevens", rugby["Rugby Americas North Sevens | Men and Women"])
+        self.assertNotIn("SVNS | Men and Women", rugby)
+        self.assertNotIn("Rugby Americas North Sevens | Men and Women", rugby)
         held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
                 if row["sport"] == "Rugby"}
         self.assertTrue({"NRL", "NRLW", "State of Origin", "Champions Cup", "Challenge Cup",
                          "Premiership Rugby", "PWR", "Super League", "Bledisloe Cup",
                          "United Rugby Championship", "URC", "Super Rugby Pacific",
                          "Ranfurly Shield", "Rugby World Cup", "World Cup",
-                         "Guinness Men’s Six Nations", "Guinness Women’s Six Nations",
                          "Rugby Sevens", "HSBC SVNS 2", "British & Irish Lions Tour",
-                         "FNB Varsity Shield", "RAN", "WXV", "USA Women’s Eagles"} <= held)
+                         "FNB Varsity Shield", "RAN", "WXV", "USA Women’s Eagles",
+                         "HSBC SVNS", "HSBC SVNS Series", "Six Nations Rugby",
+                         "Premier Rugby Sevens", "PR7s", "RAN Sevens"} <= held)
         self.assertFalse(any(alias in held for aliases in rugby.values() for alias in aliases))
 
     def test_alias_collision_with_other_division_fails_closed(self):
