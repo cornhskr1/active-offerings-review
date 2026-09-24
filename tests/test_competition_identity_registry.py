@@ -283,6 +283,24 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
                          "DP World Tour Championship"} <= held)
         self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
 
+    def test_ice_hockey_aliases_preserve_league_and_special_event_boundaries(self):
+        hockey = {item["league"]: item for item in self.registry["competitions"]
+                  if item["sport"] == "Ice Hockey"}
+        aliases = {league: {alias["name"] for alias in item.get("aliases", [])}
+                   for league, item in hockey.items()}
+        self.assertEqual(14, len(hockey))
+        self.assertEqual(10, sum(map(len, aliases.values())))
+        self.assertIn("4 Nations Face-Off", aliases["Four Nations Face-Off"])
+        self.assertIn("NHL All-Star Skills", aliases["NHL All-Star Skills Challenge"])
+        self.assertIn("Honda NHL All-Star Game", aliases["NHL All-Star Game"])
+        self.assertIn("NHL Entry Draft", aliases["NHL Draft"])
+        self.assertFalse(aliases["National Hockey League (NHL)"])
+        held = {row.get("observed_official_name") for row in self.registry["alias_review_queue"]
+                if row["sport"] == "Ice Hockey"}
+        self.assertTrue({"CHL", "NHL", "Extraliga", "NHL All-Star Weekend",
+                         "American Hockey League (AHL)", "IIHF World Junior Championship"} <= held)
+        self.assertFalse(any(alias in held for names in aliases.values() for alias in names))
+
     def test_alias_collision_with_other_division_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             isolated = Path(directory)
