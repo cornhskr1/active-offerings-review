@@ -2839,11 +2839,25 @@
               "season_window": "November–June",
               "season_start": "11-01",
               "season_end": "06-30",
-              "source_id": "rugby-world-rugby",
-              "season_basis": "Annual international rugby sevens circuit",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "SVNS uses the Olympic seven-a-side format, with matches lasting fourteen minutes in standard play.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "rugby-intl-svns-men",
+                  "label": "SVNS | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "rugby-intl-svns-women",
+                  "label": "SVNS | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "rugby-intl-womens-world-cup",
@@ -2868,11 +2882,25 @@
               "season_window": "February–April",
               "season_start": "02-01",
               "season_end": "04-30",
-              "source_id": "rugby-six-nations",
-              "season_basis": "Combined annual men’s and women’s championship windows",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "The Six Nations brings together England, France, Ireland, Italy, Scotland, and Wales in annual men’s and women’s championships.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "rugby-intl-six-nations-men",
+                  "label": "Six Nations Rugby | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "rugby-intl-six-nations-women",
+                  "label": "Six Nations Rugby | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -3010,11 +3038,25 @@
               "catalog_event": "Premier Rugby Sevens (PR7s) | Men and Women",
               "season_window": "No current official season published",
               "season_status": "out",
-              "source_id": "rugby-pr7s",
-              "season_basis": "Approval retained without inferring activity from an unpublished schedule",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "PR7s was built around paired men’s and women’s sevens competitions at the same events.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "rugby-na-pr7s-men",
+                  "label": "Premier Rugby Sevens (PR7s) | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "rugby-na-pr7s-women",
+                  "label": "Premier Rugby Sevens (PR7s) | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -3027,22 +3069,50 @@
               "catalog_event": "Rugby Americas North Championship | Men and Women",
               "season_window": "Event dates pending official publication",
               "season_status": "out",
-              "source_id": "rugby-ran",
-              "season_basis": "Event-specific regional championship schedule",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "Rugby Americas North oversees international rugby across North America and the Caribbean.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "rugby-na-ran-championship-men",
+                  "label": "Rugby Americas North Championship | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "rugby-na-ran-championship-women",
+                  "label": "Rugby Americas North Championship | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "rugby-na-ran-sevens",
               "catalog_event": "Rugby Americas North Sevens | Men and Women",
               "season_window": "Event dates pending official publication",
               "season_status": "out",
-              "source_id": "rugby-ran",
-              "season_basis": "Event-specific regional sevens schedule",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "RAN Sevens combines regional men’s and women’s national-team competition in the Olympic format.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "rugby-na-ran-sevens-men",
+                  "label": "Rugby Americas North Sevens | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "rugby-na-ran-sevens-women",
+                  "label": "Rugby Americas North Sevens | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -11067,27 +11137,27 @@
               "season_window": "November–April",
               "season_start": "11-01",
               "season_end": "04-30",
-          "identity_model": "combined-approval-separate-competitions",
-          "coverage_children": [
-            {
-              "key": "ncaa-basketball-di-men",
-              "label": "Division I Basketball | Men",
-              "source_id": "ncaa-mbb",
-              "season_window": "November–April",
-              "season_start": "11-01",
-              "season_end": "04-30"
-            },
-            {
-              "key": "ncaa-basketball-di-women",
-              "label": "Division I Basketball | Women",
-              "source_id": "ncaa-wbb",
-              "season_window": "November–April",
-              "season_start": "11-01",
-              "season_end": "04-30"
-            }
-          ],
-          "season_basis": "The catalog approval covers separate men's and women's Division I competitions; operational identities and schedule coverage are tracked independently.",
-          "last_verified": "2026-09-16",
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "ncaa-basketball-di-men",
+                  "label": "Division I Basketball | Men",
+                  "source_id": "ncaa-mbb",
+                  "season_window": "November–April",
+                  "season_start": "11-01",
+                  "season_end": "04-30"
+                },
+                {
+                  "key": "ncaa-basketball-di-women",
+                  "label": "Division I Basketball | Women",
+                  "source_id": "ncaa-wbb",
+                  "season_window": "November–April",
+                  "season_start": "11-01",
+                  "season_end": "04-30"
+                }
+              ],
+              "season_basis": "The catalog approval covers separate men's and women's Division I competitions; operational identities and schedule coverage are tracked independently.",
+              "last_verified": "2026-09-16",
               "restrictions": []
             },
             {
@@ -11116,54 +11186,54 @@
               "key": "ncaa-basketball-dii",
               "catalog_event": "Division II Basketball | Men and Women",
               "season_window": "November–March",
-          "season_start": "11-01",
-          "season_end": "03-31",
-          "identity_model": "combined-approval-separate-competitions",
-          "coverage_children": [
-            {
-              "key": "ncaa-basketball-dii-men",
-              "label": "Division II Basketball | Men",
-              "season_window": "November–March",
               "season_start": "11-01",
-              "season_end": "03-31"
-            },
-            {
-              "key": "ncaa-basketball-dii-women",
-              "label": "Division II Basketball | Women",
-              "season_window": "November–March",
-              "season_start": "11-01",
-              "season_end": "03-31"
-            }
-          ],
-          "season_basis": "The catalog approval covers separate men's and women's Division II competitions; operational identities are tracked independently.",
-          "last_verified": "2026-09-16",
+              "season_end": "03-31",
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "ncaa-basketball-dii-men",
+                  "label": "Division II Basketball | Men",
+                  "season_window": "November–March",
+                  "season_start": "11-01",
+                  "season_end": "03-31"
+                },
+                {
+                  "key": "ncaa-basketball-dii-women",
+                  "label": "Division II Basketball | Women",
+                  "season_window": "November–March",
+                  "season_start": "11-01",
+                  "season_end": "03-31"
+                }
+              ],
+              "season_basis": "The catalog approval covers separate men's and women's Division II competitions; operational identities are tracked independently.",
+              "last_verified": "2026-09-16",
               "restrictions": []
             },
             {
               "key": "ncaa-basketball-diii",
               "catalog_event": "Division III Basketball | Men and Women",
               "season_window": "November–March",
-          "season_start": "11-01",
-          "season_end": "03-31",
-          "identity_model": "combined-approval-separate-competitions",
-          "coverage_children": [
-            {
-              "key": "ncaa-basketball-diii-men",
-              "label": "Division III Basketball | Men",
-              "season_window": "November–March",
               "season_start": "11-01",
-              "season_end": "03-31"
-            },
-            {
-              "key": "ncaa-basketball-diii-women",
-              "label": "Division III Basketball | Women",
-              "season_window": "November–March",
-              "season_start": "11-01",
-              "season_end": "03-31"
-            }
-          ],
-          "season_basis": "The catalog approval covers separate men's and women's Division III competitions; operational identities are tracked independently.",
-          "last_verified": "2026-09-16",
+              "season_end": "03-31",
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "ncaa-basketball-diii-men",
+                  "label": "Division III Basketball | Men",
+                  "season_window": "November–March",
+                  "season_start": "11-01",
+                  "season_end": "03-31"
+                },
+                {
+                  "key": "ncaa-basketball-diii-women",
+                  "label": "Division III Basketball | Women",
+                  "season_window": "November–March",
+                  "season_start": "11-01",
+                  "season_end": "03-31"
+                }
+              ],
+              "season_basis": "The catalog approval covers separate men's and women's Division III competitions; operational identities are tracked independently.",
+              "last_verified": "2026-09-16",
               "restrictions": []
             }
           ]
