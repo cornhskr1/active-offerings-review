@@ -11786,7 +11786,23 @@
               "season_start": "09-01",
               "season_end": "03-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's swimming competitions. The NCAA organizes swimming and diving championships with separate men's and women's dates; this catalog approval names swimming only. Division-specific schedule coverage requires independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-swimming-di-men",
+                  "label": "Division I Swimming | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-swimming-di-women",
+                  "label": "Division I Swimming | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             }
           ]
         }
