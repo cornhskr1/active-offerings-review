@@ -150,7 +150,7 @@ def main() -> None:
         target = identities.get((sport, identity_key)) if identity_key else competitions.get((sport, catalog_identity))
         if not target or (not identity_key and (sport, catalog_identity) not in catalog_identities):
             raise ValueError(f"Alias target is not a catalog identity: {sport} / {identity_key or catalog_identity}")
-        if row.get("name_type") != "official" or not str(row.get("evidence_url", "")).startswith("https://"):
+        if row.get("name_type") not in {"official", "operator", "data-provider"} or not str(row.get("evidence_url", "")).startswith("https://"):
             raise ValueError(f"Alias lacks reviewed official evidence: {sport} / {alias}")
         normalized = (sport, key(alias))
         if not normalized[1] or (claimed_names.get(normalized) not in (None, target)):
@@ -159,11 +159,14 @@ def main() -> None:
             raise ValueError(f"Duplicate alias: {sport} / {alias}")
         alias_names.add(normalized)
         claimed_names[normalized] = target
-        target.setdefault("aliases", []).append({
+        alias_entry = {
             "name": alias,
             "name_type": row["name_type"],
             "evidence_url": row["evidence_url"],
-        })
+        }
+        if clean(row.get("scope_note")):
+            alias_entry["scope_note"] = clean(row["scope_note"])
+        target.setdefault("aliases", []).append(alias_entry)
 
     output_competitions = []
     for identity, entry in sorted(competitions.items(), key=lambda item: (item[0][0].casefold(), item[0][1].casefold())):
