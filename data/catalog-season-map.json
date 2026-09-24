@@ -11622,7 +11622,23 @@
               "season_start": "08-01",
               "season_end": "05-31",
               "last_verified": "2026-09-16",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "The catalog approval covers separate NCAA Division I men's and women's golf competitions; division-specific dates and schedule coverage require independent verification.",
+              "coverage_children": [
+                {
+                  "key": "ncaa-golf-di-men",
+                  "label": "Division I Golf | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                },
+                {
+                  "key": "ncaa-golf-di-women",
+                  "label": "Division I Golf | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific NCAA calendar verification pending"
+                }
+              ]
             }
           ]
         }
