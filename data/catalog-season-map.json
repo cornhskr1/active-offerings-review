@@ -8824,44 +8824,100 @@
               "catalog_event": "Australian Open | Men and Women",
               "season_window": "January 12–February 1, 2026 · completed",
               "season_status": "out",
-              "source_id": "tennis-australian-open",
-              "season_basis": "2026 Australian Open qualifying and main-draw window",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "The Australian Open is the first Grand Slam tournament on the annual calendar.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-australian-open-men",
+                  "label": "Australian Open | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-australian-open-women",
+                  "label": "Australian Open | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "tennis-french-open",
               "catalog_event": "Roland-Garros / French Open | Men and Women",
               "season_window": "May 18–June 7, 2026 · completed",
               "season_status": "out",
-              "source_id": "tennis-french-open",
-              "season_basis": "2026 Roland-Garros qualifying and main-draw window",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "Roland-Garros is the only Grand Slam played on clay courts.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-french-open-men",
+                  "label": "Roland-Garros / French Open | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-french-open-women",
+                  "label": "Roland-Garros / French Open | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "tennis-wimbledon",
               "catalog_event": "Wimbledon | Men and Women",
               "season_window": "June 22–July 12, 2026 · completed",
               "season_status": "out",
-              "source_id": "tennis-wimbledon",
-              "season_basis": "2026 Wimbledon qualifying and main-draw window",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "Wimbledon is the only Grand Slam played on grass.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-wimbledon-men",
+                  "label": "Wimbledon | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-wimbledon-women",
+                  "label": "Wimbledon | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             },
             {
               "key": "tennis-us-open",
               "catalog_event": "United States Open | Men and Women",
               "season_window": "August 23–September 13, 2026 · completed",
               "season_status": "out",
-              "source_id": "tennis-us-open",
-              "season_basis": "2026 US Open Fan Week, qualifying, and main-draw window",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "The US Open closes the four-tournament Grand Slam season each year.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-us-open-men",
+                  "label": "United States Open | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-us-open-women",
+                  "label": "United States Open | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -8875,11 +8931,25 @@
               "season_window": "January–December",
               "season_start": "01-01",
               "season_end": "12-31",
-              "source_id": "tennis-usta-pro-circuit",
-              "season_basis": "Annual United States professional circuit calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "The USTA Pro Circuit stages professional events across the United States and feeds players into higher tour levels.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-usta-pro-circuit-men",
+                  "label": "USTA Pro Circuit | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-usta-pro-circuit-women",
+                  "label": "USTA Pro Circuit | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -8893,11 +8963,25 @@
               "season_window": "January–December",
               "season_start": "01-01",
               "season_end": "12-31",
-              "source_id": "tennis-itf-world-tour",
-              "season_basis": "Annual ITF men’s and women’s professional calendars; junior events are excluded",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "The ITF World Tennis Tour provides the entry level of international professional tennis and awards ranking points.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-itf-world-tour-men",
+                  "label": "ITF World Tennis Tour | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-itf-world-tour-women",
+                  "label": "ITF World Tennis Tour | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -8911,11 +8995,25 @@
               "season_window": "January–December",
               "season_start": "01-01",
               "season_end": "12-31",
-              "source_id": "tennis-utr-pro-tour",
-              "season_basis": "Annual UTR Pro Tennis Tour calendar",
+              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
               "last_verified": "2026-09-18",
               "fun_fact": "The UTR Pro Tennis Tour uses the Universal Tennis Rating system to create level-based professional competition.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "combined-approval-separate-competitions",
+              "coverage_children": [
+                {
+                  "key": "tennis-utr-pro-tour-men",
+                  "label": "UTR Pro Tennis Tour | Men",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                },
+                {
+                  "key": "tennis-utr-pro-tour-women",
+                  "label": "UTR Pro Tennis Tour | Women",
+                  "season_window": "Division-specific dates pending",
+                  "season_basis": "Division-specific calendar verification pending"
+                }
+              ]
             }
           ]
         },
@@ -8932,7 +9030,10 @@
               "season_basis": "Event-specific mixed national-team tournament",
               "last_verified": "2026-09-18",
               "fun_fact": "The United Cup is a mixed-team event in which men and women represent their countries together.",
-              "restrictions": []
+              "restrictions": [],
+              "identity_model": "single-mixed-gender-competition",
+              "identity_basis": "United Cup is one national-team tournament. Each tie combines men's singles, women's singles, and mixed doubles toward one team result.",
+              "identity_evidence_url": "https://www.unitedcup.com/en/about/overview"
             }
           ]
         }
