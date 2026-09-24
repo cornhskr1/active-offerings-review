@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T20:27:12.178889+00:00",
-  "card_count": 178,
+  "generated_at": "2026-09-24T21:24:58.988731+00:00",
+  "card_count": 177,
   "red_count": 36,
-  "amber_count": 142,
+  "amber_count": 141,
   "cards": [
     {
       "key": "event|ne|Omaha|Women's Soccer|2026-09-24|St. Thomas",
@@ -58,6 +58,27 @@
       "start_time": "2026-09-25",
       "status": "SCHEDULED",
       "title": "Creighton vs Creighton Invite",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
+      "key": "event|ne|Omaha|Men's Tennis|2026-09-25|Creighton Invite",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Men's Tennis",
+      "game": null,
+      "league": "Omaha Collegiate",
+      "event": "Omaha vs Creighton Invite",
+      "start_time": "2026-09-25",
+      "status": "SCHEDULED",
+      "title": "Omaha vs Creighton Invite",
       "athletes": [],
       "triggers": [
         "Nebraska collegiate home-event/site restriction"
@@ -184,27 +205,6 @@
       "start_time": "2026-09-25T9:00 AM CDT",
       "status": "SCHEDULED",
       "title": "Nebraska vs Husker Invitational",
-      "athletes": [],
-      "triggers": [
-        "Nebraska collegiate home-event/site restriction"
-      ],
-      "staff_actions": [
-        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-      ],
-      "reason": "Nebraska collegiate home-event/site restriction",
-      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-    },
-    {
-      "key": "event|ne|Omaha|Men's Tennis|2026-09-26|Creighton Invite",
-      "severity": "RED",
-      "type": "NOT PERMISSIBLE",
-      "sport": "Men's Tennis",
-      "game": null,
-      "league": "Omaha Collegiate",
-      "event": "Omaha vs Creighton Invite",
-      "start_time": "2026-09-26",
-      "status": "SCHEDULED",
-      "title": "Omaha vs Creighton Invite",
       "athletes": [],
       "triggers": [
         "Nebraska collegiate home-event/site restriction"
@@ -398,27 +398,6 @@
       ],
       "reason": "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE | Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE",
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|ne|Creighton|Men's Tennis|2026-09-26|Washburn",
-      "severity": "RED",
-      "type": "NOT PERMISSIBLE",
-      "sport": "Men's Tennis",
-      "game": null,
-      "league": "Creighton Collegiate",
-      "event": "Creighton vs Washburn",
-      "start_time": "2026-09-26T2:00 P.M.",
-      "status": "SCHEDULED",
-      "title": "Creighton vs Washburn",
-      "athletes": [],
-      "triggers": [
-        "Nebraska collegiate home-event/site restriction"
-      ],
-      "staff_actions": [
-        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-      ],
-      "reason": "Nebraska collegiate home-event/site restriction",
-      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
       "key": "event|ne|Omaha|Men's Soccer|2026-09-26|Delaware",
@@ -626,6 +605,27 @@
       "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
+      "key": "event|ne|Creighton|Men's Tennis|2026-09-27|Washburn",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Men's Tennis",
+      "game": null,
+      "league": "Creighton Collegiate",
+      "event": "Creighton vs Washburn",
+      "start_time": "2026-09-27T2:00 P.M.",
+      "status": "SCHEDULED",
+      "title": "Creighton vs Washburn",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
       "key": "event|ne|Creighton|Men's Tennis|2026-09-27|Northwest Missouri State",
       "severity": "RED",
       "type": "NOT PERMISSIBLE",
@@ -794,27 +794,6 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|esports-r6-regional-8309",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Esports",
-      "game": "Rainbow Six Siege",
-      "league": "Regional Closed Leagues",
-      "event": "Shopify Rebellion vs. Spacestation Gaming",
-      "start_time": "2026-09-24T19:00:00Z",
-      "status": "LIVE",
-      "title": "Shopify Rebellion vs. Spacestation Gaming",
-      "athletes": [],
-      "triggers": [
-        "Regional Closed Leagues - NO IN-GAME WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
       "key": "event|esports-r6-regional-8310",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -823,7 +802,7 @@
       "league": "Regional Closed Leagues",
       "event": "Cloud9 vs. M80",
       "start_time": "2026-09-24T20:00:00Z",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "title": "Cloud9 vs. M80",
       "athletes": [],
       "triggers": [
