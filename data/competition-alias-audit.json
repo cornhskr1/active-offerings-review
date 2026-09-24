@@ -143,10 +143,10 @@
     },
     {
       "sport": "Rugby",
-      "catalog_identities": 28,
-      "registry_identities": 28,
-      "organizer_alias_identities": 24,
-      "source_label_identities": 0,
+      "catalog_identities": 33,
+      "registry_identities": 33,
+      "organizer_alias_identities": 22,
+      "source_label_identities": 1,
       "schedule_only_labels": [],
       "shared_sources_for_review": [
         {
@@ -183,14 +183,6 @@
           ]
         },
         {
-          "source_id": "rugby-ran",
-          "label": "Rugby Americas North competitions",
-          "catalog_targets": [
-            "Rugby Americas North Championship | Men and Women",
-            "Rugby Americas North Sevens | Men and Women"
-          ]
-        },
-        {
           "source_id": "rugby-rfl",
           "label": "RFL competitions",
           "catalog_targets": [
@@ -208,17 +200,22 @@
             "Currie Cup | Men",
             "Varsity Cup | Men"
           ]
-        },
-        {
-          "source_id": "rugby-world-rugby",
-          "label": "World Rugby competitions",
-          "catalog_targets": [
-            "SVNS | Men and Women",
-            "Women’s Rugby World Cup | Women"
-          ]
         }
       ],
-      "sources_without_catalog_target": []
+      "sources_without_catalog_target": [
+        {
+          "source_id": "rugby-pr7s",
+          "label": "Premier Rugby Sevens (PR7s) | Men and Women"
+        },
+        {
+          "source_id": "rugby-ran",
+          "label": "Rugby Americas North competitions"
+        },
+        {
+          "source_id": "rugby-six-nations",
+          "label": "Six Nations Rugby | Men and Women"
+        }
+      ]
     },
     {
       "sport": "Table Tennis",
@@ -251,13 +248,26 @@
     },
     {
       "sport": "Surfing",
-      "catalog_identities": 3,
-      "registry_identities": 3,
+      "catalog_identities": 6,
+      "registry_identities": 6,
       "organizer_alias_identities": 0,
       "source_label_identities": 0,
       "schedule_only_labels": [],
       "shared_sources_for_review": [],
-      "sources_without_catalog_target": []
+      "sources_without_catalog_target": [
+        {
+          "source_id": "surfing-wsl-big-wave",
+          "label": "Big Wave Tour | Men and Women"
+        },
+        {
+          "source_id": "surfing-wsl-championship-tour",
+          "label": "Championship Tour | Men and Women"
+        },
+        {
+          "source_id": "surfing-wsl-longboard",
+          "label": "Longboard Championship Tour | Men and Women"
+        }
+      ]
     },
     {
       "sport": "Volleyball",

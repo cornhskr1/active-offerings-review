@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T09:24:14.059861+00:00",
+  "generated_at": "2026-09-24T09:54:01.204191+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-24T09:21:37.651756+00:00",
   "schedule_window_start": "2026-09-24",
   "schedule_window_end": "2026-10-01",
-  "competition_count": 690,
+  "competition_count": 698,
   "event_count": 1016,
   "competitions": [
     {
@@ -6454,24 +6454,20 @@
     },
     {
       "sport": "Rugby",
-      "league": "Premier Rugby Sevens (PR7s) | Men and Women",
-      "source_ids": [
-        "rugby-pr7s"
-      ],
+      "league": "Premier Rugby Sevens (PR7s) | Men",
+      "source_ids": [],
       "participants": [],
       "events": [],
-      "aliases": [
-        {
-          "name": "Premier Rugby Sevens",
-          "name_type": "official",
-          "evidence_url": "https://prsevens.com/"
-        },
-        {
-          "name": "PR7s",
-          "name_type": "official",
-          "evidence_url": "https://prsevens.com/"
-        }
-      ],
+      "identity_key": "rugby-na-pr7s-men",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Rugby",
+      "league": "Premier Rugby Sevens (PR7s) | Women",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "rugby-na-pr7s-women",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -6532,44 +6528,68 @@
     },
     {
       "sport": "Rugby",
-      "league": "Rugby Americas North Championship | Men and Women",
-      "source_ids": [
-        "rugby-ran"
-      ],
+      "league": "Rugby Americas North Championship | Men",
+      "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "rugby-na-ran-championship-men",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Rugby",
-      "league": "Rugby Americas North Sevens | Men and Women",
-      "source_ids": [
-        "rugby-ran"
-      ],
+      "league": "Rugby Americas North Championship | Women",
+      "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "rugby-na-ran-championship-women",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Rugby",
+      "league": "Rugby Americas North Sevens | Men",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "rugby-na-ran-sevens-men",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Rugby",
+      "league": "Rugby Americas North Sevens | Women",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "rugby-na-ran-sevens-women",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Rugby",
+      "league": "Six Nations Rugby | Men",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "rugby-intl-six-nations-men",
       "aliases": [
         {
-          "name": "RAN Sevens",
+          "name": "Guinness Men’s Six Nations",
           "name_type": "official",
-          "evidence_url": "https://rugbyamericasnorth.com/competitions/mens-womens-sevens"
+          "evidence_url": "https://www.sixnationsrugby.com/en/m6n"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Rugby",
-      "league": "Six Nations Rugby | Men and Women",
-      "source_ids": [
-        "rugby-six-nations"
-      ],
+      "league": "Six Nations Rugby | Women",
+      "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "rugby-intl-six-nations-women",
       "aliases": [
         {
-          "name": "Six Nations Rugby",
+          "name": "Guinness Women’s Six Nations",
           "name_type": "official",
-          "evidence_url": "https://www.sixnationsrugby.com/en"
+          "evidence_url": "https://www.sixnationsrugby.com/en/w6n"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
@@ -6593,24 +6613,20 @@
     },
     {
       "sport": "Rugby",
-      "league": "SVNS | Men and Women",
-      "source_ids": [
-        "rugby-world-rugby"
-      ],
+      "league": "SVNS | Men",
+      "source_ids": [],
       "participants": [],
       "events": [],
-      "aliases": [
-        {
-          "name": "HSBC SVNS",
-          "name_type": "official",
-          "evidence_url": "https://www.svns.com/"
-        },
-        {
-          "name": "HSBC SVNS Series",
-          "name_type": "official",
-          "evidence_url": "https://www.svns.com/"
-        }
-      ],
+      "identity_key": "rugby-intl-svns-men",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Rugby",
+      "league": "SVNS | Women",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "rugby-intl-svns-women",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -6699,6 +6715,12 @@
       ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "World Rugby competitions",
+          "source_id": "rugby-world-rugby"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -14160,32 +14182,56 @@
     },
     {
       "sport": "Surfing",
-      "league": "Big Wave Tour | Men and Women",
-      "source_ids": [
-        "surfing-wsl-big-wave"
-      ],
+      "league": "Big Wave Tour | Men",
+      "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "surfing-wsl-big-wave-men",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Surfing",
-      "league": "Championship Tour | Men and Women",
-      "source_ids": [
-        "surfing-wsl-championship-tour"
-      ],
+      "league": "Big Wave Tour | Women",
+      "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "surfing-wsl-big-wave-women",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Surfing",
-      "league": "Longboard Championship Tour | Men and Women",
-      "source_ids": [
-        "surfing-wsl-longboard"
-      ],
+      "league": "Championship Tour | Men",
+      "source_ids": [],
       "participants": [],
       "events": [],
+      "identity_key": "surfing-wsl-championship-tour-men",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Surfing",
+      "league": "Championship Tour | Women",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "surfing-wsl-championship-tour-women",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Surfing",
+      "league": "Longboard Championship Tour | Men",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "surfing-wsl-longboard-men",
+      "participant_coverage": "NOT AVAILABLE"
+    },
+    {
+      "sport": "Surfing",
+      "league": "Longboard Championship Tour | Women",
+      "source_ids": [],
+      "participants": [],
+      "events": [],
+      "identity_key": "surfing-wsl-longboard-women",
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -18485,20 +18531,6 @@
     },
     {
       "sport": "Rugby",
-      "catalog_identity": "Six Nations Rugby | Men and Women",
-      "observed_official_name": "Guinness Men’s Six Nations",
-      "reason": "This is a gender-specific competition under a combined catalog approval. Preserve the men’s boundary until separate operational identities are configured.",
-      "evidence_url": "https://www.sixnationsrugby.com/en/m6n"
-    },
-    {
-      "sport": "Rugby",
-      "catalog_identity": "Six Nations Rugby | Men and Women",
-      "observed_official_name": "Guinness Women’s Six Nations",
-      "reason": "This is a gender-specific competition under a combined catalog approval. Preserve the women’s boundary until separate operational identities are configured.",
-      "evidence_url": "https://www.sixnationsrugby.com/en/w6n"
-    },
-    {
-      "sport": "Rugby",
       "catalog_identity": "SVNS | Men and Women",
       "observed_official_name": "Rugby Sevens",
       "reason": "The generic discipline label can refer to SVNS, PR7s, RAN Sevens, Olympic rugby sevens, or another tournament.",
@@ -18664,6 +18696,48 @@
       "observed_official_name": "The American Rodeo",
       "reason": "This is a separate invitational rodeo event and does not inherit the catalog's PRCA tour approval.",
       "evidence_url": "https://americanrodeo.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "SVNS | Men and Women",
+      "observed_official_name": "HSBC SVNS",
+      "reason": "The name covers separate men's and women's SVNS competitions. Require division evidence before selecting an operational identity.",
+      "evidence_url": "https://www.svns.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "SVNS | Men and Women",
+      "observed_official_name": "HSBC SVNS Series",
+      "reason": "The series name covers separate men's and women's competitions. Require division evidence before selecting an operational identity.",
+      "evidence_url": "https://www.svns.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Six Nations Rugby | Men and Women",
+      "observed_official_name": "Six Nations Rugby",
+      "reason": "The organizer name covers separate men's and women's championships. Require the specific competition before resolving it.",
+      "evidence_url": "https://www.sixnationsrugby.com/en"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Premier Rugby Sevens (PR7s) | Men and Women",
+      "observed_official_name": "Premier Rugby Sevens",
+      "reason": "PR7s staged paired men's and women's competitions. The umbrella name alone does not identify the division.",
+      "evidence_url": "https://prsevens.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Premier Rugby Sevens (PR7s) | Men and Women",
+      "observed_official_name": "PR7s",
+      "reason": "The acronym covers paired men's and women's competitions and cannot select a division by itself.",
+      "evidence_url": "https://prsevens.com/"
+    },
+    {
+      "sport": "Rugby",
+      "catalog_identity": "Rugby Americas North Sevens | Men and Women",
+      "observed_official_name": "RAN Sevens",
+      "reason": "RAN Sevens includes separate men's and women's competitions. Require division evidence before resolving it.",
+      "evidence_url": "https://rugbyamericasnorth.com/competitions/mens-womens-sevens"
     }
   ],
   "coverage_gaps": [
