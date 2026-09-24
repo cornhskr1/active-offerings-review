@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 24, 2026  
 **Active priority:** **Priority 1 — Separate competition identities**  
-**Current task:** **NCAA Track and Field — resolve Indoor and Outdoor combined approvals**
+**Current task:** **NCAA Water Polo — resolve combined approval**
 **Scope-switch status:** **FROZEN — do not begin another priority until the active priority gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -32,7 +32,7 @@ This file is the project source of truth. A merged pull request, passing test, o
 
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
-| 1. Competition identities | **IN PROGRESS** | 71 of 74 combined approvals resolved; 3 remain | 74/74 resolved; no false combined schedulable identities |
+| 1. Competition identities | **IN PROGRESS** | 73 of 74 combined approvals resolved; 1 remains | 74/74 resolved; no false combined schedulable identities |
 | 2. Season/schedule coverage | **INCOMPLETE** | Registry reports 13 gap areas, 302 named competition gaps, plus Boxing and Olympics adapters pending | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
@@ -56,11 +56,11 @@ The legal catalog parent remains unchanged. Each item below requires separate op
 | 9 | NCAA Soccer | 1 | **Complete** |
 | 10 | NCAA Swimming | 1 | **Complete** |
 | 11 | NCAA Tennis | 1 | **Complete** |
-| 12 | NCAA Track and Field | 2 | **NEXT** |
-| 13 | NCAA Water Polo | 1 | Pending |
-|  | **Remaining** | **3** |  |
+| 12 | NCAA Track and Field | 2 | **Complete** |
+| 13 | NCAA Water Polo | 1 | **NEXT** |
+|  | **Remaining** | **1** |  |
 
-Already resolved: Soccer 22, Basketball 13, NCAA Basketball 3, Rugby 5, Surfing 3, Table Tennis 2, Tennis 8, Volleyball 9, NCAA Golf 1, NCAA Ice Hockey 1, NCAA Lacrosse 1, NCAA Soccer 1, NCAA Swimming 1, and NCAA Tennis 1. Table Tennis includes one evidence-backed single mixed-gender MLTT competition; Tennis includes one evidence-backed single mixed-team United Cup competition.
+Already resolved: Soccer 22, Basketball 13, NCAA Basketball 3, Rugby 5, Surfing 3, Table Tennis 2, Tennis 8, Volleyball 9, NCAA Golf 1, NCAA Ice Hockey 1, NCAA Lacrosse 1, NCAA Soccer 1, NCAA Swimming 1, NCAA Tennis 1, and NCAA Track and Field 2. Table Tennis includes one evidence-backed single mixed-gender MLTT competition; Tennis includes one evidence-backed single mixed-team United Cup competition.
 
 ## Priority 1 completion gate
 
@@ -138,4 +138,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 1; NCAA Track and Field; Active Offerings PR #83 merged; 71 of 74 combined approvals resolved after NCAA Tennis; expected after Indoor and Outdoor Track and Field: 73 of 74.
+**Current checkpoint:** Priority 1; NCAA Water Polo next; Active Offerings PR #84 merged; 71 of 74 combined approvals resolved before this Track and Field change; expected after Indoor and Outdoor Track and Field: 73 of 74.
