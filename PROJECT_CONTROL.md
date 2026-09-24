@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 24, 2026  
 **Active priority:** **Priority 1 — Separate competition identities**  
-**Current task:** **Table Tennis — split 2 combined Men-and-Women approvals**
+**Current task:** **Tennis — resolve 8 combined Men-and-Women approvals**
 **Scope-switch status:** **FROZEN — do not begin another priority until the active priority gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -32,7 +32,7 @@ This file is the project source of truth. A merged pull request, passing test, o
 
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
-| 1. Competition identities | **IN PROGRESS** | 46 of 74 combined approvals modeled; 28 remain | 74/74 modeled; zero combined schedulable identities |
+| 1. Competition identities | **IN PROGRESS** | 48 of 74 combined approvals resolved; 26 remain | 74/74 resolved; no false combined schedulable identities |
 | 2. Season/schedule coverage | **INCOMPLETE** | Registry reports 13 gap areas, 302 named competition gaps, plus Boxing and Olympics adapters pending | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
@@ -47,8 +47,8 @@ The legal catalog parent remains unchanged. Each item below requires separate op
 |---:|---|---:|---|
 | 1 | Rugby | 5 | **Complete** |
 | 2 | Surfing | 3 | **Complete** |
-| 3 | Table Tennis | 2 | **NEXT** |
-| 4 | Tennis | 8 | Pending |
+| 3 | Table Tennis | 2 | **Complete** |
+| 4 | Tennis | 8 | **NEXT** |
 | 5 | Volleyball | 9 | Pending |
 | 6 | NCAA Golf | 1 | Pending |
 | 7 | NCAA Ice Hockey | 1 | Pending |
@@ -58,18 +58,20 @@ The legal catalog parent remains unchanged. Each item below requires separate op
 | 11 | NCAA Tennis | 1 | Pending |
 | 12 | NCAA Track and Field | 2 | Pending |
 | 13 | NCAA Water Polo | 1 | Pending |
-|  | **Remaining** | **28** |  |
+|  | **Remaining** | **26** |  |
 
-Already modeled: Soccer 22, Basketball 13, NCAA Basketball 3, Rugby 5, and Surfing 3.
+Already resolved: Soccer 22, Basketball 13, NCAA Basketball 3, Rugby 5, Surfing 3, and Table Tennis 2. Table Tennis includes one split WTT approval and one evidence-backed single mixed-gender MLTT competition.
 
 ## Priority 1 completion gate
 
 Priority 1 is complete only when all of the following are true:
 
-- All 74 combined catalog approvals are represented by distinct operational children.
+- All 74 combined catalog approvals are resolved according to their actual competition structure.
+- Separate men’s and women’s competitions are represented by distinct operational children.
+- A combined catalog line remains one operational identity only when official evidence establishes a single mixed-gender or coed competition.
 - The original catalog wording remains preserved as the legal parent.
 - Every child has a stable unique key and explicit division or competition identity.
-- No combined parent is treated as a schedulable competition.
+- No combined parent is treated as schedulable merely because the catalog line says Men and Women.
 - Schedule sources attach only to the appropriate child identity.
 - Aliases attach only to verified child identities.
 - Shared, bare, or conflicting labels fail closed into review.
@@ -136,4 +138,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 1; Table Tennis; Rugby PR #73 prepared after Active Offerings PR #71 and portal PR #51; 46 of 74 combined approvals modeled; expected after Table Tennis: 48 of 74.
+**Current checkpoint:** Priority 1; Tennis; Active Offerings PR #74 merged; 48 of 74 combined approvals resolved; expected after Tennis: 56 of 74.
