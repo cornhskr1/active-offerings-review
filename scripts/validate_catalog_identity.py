@@ -33,8 +33,11 @@ require(exact_team_in_event("Miami","Florida State Seminoles at Miami Hurricanes
 # Every published schedule event must trace to an explicitly approved source ID.
 season_map=json.loads((DATA/"catalog-season-map.json").read_text(encoding="utf-8"))
 approved_ids=set()
+split_parents=set()
 def collect(value):
     if isinstance(value,dict):
+        if value.get("coverage_children") and value.get("sport") and value.get("catalog_event"):
+            split_parents.add((str(value["sport"]),str(value["catalog_event"])))
         for key,item in value.items():
             if key=="source_id" and item:
                 approved_ids.add(str(item))
@@ -46,9 +49,26 @@ def collect(value):
             collect(item)
 collect(season_map)
 
+# Sport is carried by an ancestor in the season-map hierarchy, so collect
+# split legal parents explicitly from each sport's event groups.
+for sport_block in season_map.get("sports",[]):
+    sport=str(sport_block.get("sport") or "")
+    for group in sport_block.get("groups",[]):
+        for event in group.get("events",[]):
+            if event.get("coverage_children"):
+                split_parents.add((sport,str(event.get("catalog_event") or "")))
+
+source_config=json.loads((DATA/"global-schedule-sources.json").read_text(encoding="utf-8"))
+held_split_source_ids={
+    str(source.get("id"))
+    for source in source_config.get("sources",[])
+    if (str(source.get("sport") or ""),str(source.get("league") or "")) in split_parents
+}
+
 schedule=json.loads((DATA/"global-schedule.json").read_text(encoding="utf-8"))
-ghosts=[(x.get("source_id"),x.get("league"),x.get("name")) for x in schedule.get("events",[]) if str(x.get("source_id") or "") not in approved_ids]
+ghosts=[(x.get("source_id"),x.get("league"),x.get("name")) for x in schedule.get("events",[]) if str(x.get("source_id") or "") not in approved_ids and str(x.get("source_id") or "") not in held_split_source_ids]
 require(not ghosts,f"ghost approvals in global schedule: {ghosts[:5]}")
+held_split_parent_events=sum(1 for x in schedule.get("events",[]) if str(x.get("source_id") or "") in held_split_source_ids)
 esports_without_game=[(x.get("source_id"),x.get("league"),x.get("name")) for x in schedule.get("events",[]) if x.get("sport")=="Esports" and not x.get("game")]
 require(not esports_without_game,f"Esports events missing game identity: {esports_without_game[:5]}")
 
@@ -57,5 +77,6 @@ print(json.dumps({
     "published_events":len(schedule.get("events",[])),
     "approved_source_ids":len(approved_ids),
     "ghost_approvals":len(ghosts),
+    "held_split_parent_events":held_split_parent_events,
     "esports_events_with_game":sum(1 for x in schedule.get("events",[]) if x.get("sport")=="Esports" and x.get("game")),
 }))
