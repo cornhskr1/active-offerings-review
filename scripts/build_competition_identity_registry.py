@@ -43,6 +43,7 @@ def main() -> None:
     source_config = json.loads((DATA / "global-schedule-sources.json").read_text(encoding="utf-8"))
 
     competitions: dict[tuple[str, str], dict] = {}
+    split_parents: set[tuple[str, str]] = set()
 
     def add_competition(sport: str, event: dict, *, child: bool = False) -> None:
         league = clean(event.get("label") or event.get("catalog_event"))
@@ -67,6 +68,7 @@ def main() -> None:
             for event in group.get("events", []):
                 children = event.get("coverage_children") or []
                 if children:
+                    split_parents.add((sport, clean(event.get("catalog_event"))))
                     for child in children:
                         add_competition(sport, child, child=True)
                 else:
@@ -75,6 +77,7 @@ def main() -> None:
         children = mapping.get("coverage_children") or []
         if children:
             sport = clean(mapping.get("sport"))
+            split_parents.add((sport, clean(mapping.get("catalog_event"))))
             for child in children:
                 add_competition(sport, child, child=True)
             continue
@@ -89,6 +92,7 @@ def main() -> None:
         sport = clean(mapping.get("sport"))
         children = mapping.get("coverage_children") or []
         if children:
+            split_parents.add((sport, clean(mapping.get("catalog_event"))))
             for child in children:
                 add_competition(sport, child, child=True)
 
@@ -102,6 +106,11 @@ def main() -> None:
         for source_id in entry["source_ids"]:
             source_targets[(sport, source_id)].add(league)
     source_labels: dict[tuple[str, str], dict[str, str]] = defaultdict(dict)
+    split_source_ids = {
+        (clean(source.get("sport")), clean(source.get("id")))
+        for source in source_config.get("sources", [])
+        if (clean(source.get("sport")), clean(source.get("league"))) in split_parents
+    }
 
     def unique_target(sport: str, source_id: str) -> str:
         targets = source_targets.get((sport, source_id), set())
@@ -120,6 +129,11 @@ def main() -> None:
         if not sport or not league or not name:
             continue
         source_id = clean(event.get("source_id"))
+        if (sport, league) in split_parents or (sport, source_id) in split_source_ids:
+            # A combined legal parent with operational children is not itself
+            # schedulable. Division-neutral feed rows remain held until a later
+            # coverage step can prove which child identity they belong to.
+            continue
         target = unique_target(sport, source_id)
         if target:
             if key(league) != key(target):
