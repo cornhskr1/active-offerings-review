@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-24T19:21:40.563082+00:00",
-  "schedule_generated_at": "2026-09-24T19:18:43.081820+00:00",
+  "registry_generated_at": "2026-09-24T23:46:25.651385+00:00",
+  "schedule_generated_at": "2026-09-24T23:18:50.117519+00:00",
   "schedule_window_start": "2026-09-24",
   "schedule_window_end": "2026-10-01",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,21 +11,21 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
-      "ADAPTER_GAP": 287,
-      "NO_LINKED_SOURCE": 184,
+      "ADAPTER_GAP": 288,
+      "NO_LINKED_SOURCE": 183,
       "OFFICIAL_WINDOW_ONLY": 3,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
       "DATED_WINDOW": 7,
       "DESCRIPTIVE_WINDOW": 56,
-      "PARTIAL_WINDOW": 1,
       "NO_WINDOW": 24,
+      "PARTIAL_WINDOW": 1,
       "PENDING_DATES": 153,
       "RECURRING_WINDOW": 481
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 302,
+    "reported_gap_labels": 303,
     "schedule_only_not_independent_approvals": [
       {
         "sport": "Football",
@@ -55,8 +55,8 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 64,
-      "adapter_gaps": 5,
+      "no_linked_source": 63,
+      "adapter_gaps": 6,
       "pending_dates": 23
     },
     "Bowling": {
@@ -726,8 +726,16 @@
       "season_window": "September–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "chile-copa",
+          "type": "coverage-gap",
+          "configured_league": "Copa Chile",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

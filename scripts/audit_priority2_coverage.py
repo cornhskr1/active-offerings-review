@@ -19,9 +19,9 @@ def source_ids(item):
     return sorted(set(([item["source_id"]] if item.get("source_id") else []) + item.get("source_ids", [])))
 
 
+def season_state(item):
     if item.get("season_window_complete") is False:
         return "PARTIAL_WINDOW"
-def season_state(item):
     if item.get("season_start_date") and item.get("season_end_date"):
         return "DATED_WINDOW"
     if item.get("season_start") and item.get("season_end"):

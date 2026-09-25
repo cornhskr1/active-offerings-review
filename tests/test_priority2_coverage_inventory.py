@@ -35,6 +35,17 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         afl = self.rows[("Aussie Rules", "Australian Football League (AFL)")]
         self.assertEqual("ADAPTER_CONFIGURED", afl["coverage_state"])
 
+    def test_chile_league_and_cup_keep_distinct_schedule_gaps(self):
+        expected = {
+            "Liga Nacional de Basquetbol de Chile (LNB) | Men": "chile-lnb",
+            "Copa Chile | Men": "chile-copa",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("ADAPTER_GAP", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])

@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 24, 2026  
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Basketball — reconcile 89 operational identities, starting with division calendars and five reported adapter gaps**
+**Current task:** **Basketball — reconcile 89 operational identities, starting with division calendars and six reported adapter gaps**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -33,7 +33,7 @@ This file is the project source of truth. A merged pull request, passing test, o
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
 | 1. Competition identities | **COMPLETE** | 74/74 resolved; 72 split legal parents yield 144 unique children, with two evidence-backed single mixed competitions; public and private portal gate checks passed | 74/74 resolved; no false combined schedulable identities |
-| 2. Season/schedule coverage | **IN PROGRESS** | Inventory covers 722 catalog operational identities and 144 split children; 13 reported gap areas contain 302 labels, which are not a distinct-identity count | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
+| 2. Season/schedule coverage | **IN PROGRESS** | Inventory covers 722 catalog operational identities and 144 split children; 13 reported gap areas contain 303 labels, which are not a distinct-identity count | Every operational identity has a supported season/schedule state or a documented fail-closed coverage state |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
 | 5. Systemwide regression | **PARTIAL** | Many component tests exist | One cross-repository release suite passes against final data |
@@ -103,11 +103,11 @@ The public suite passed 85 tests and the catalog identity validator reported zer
 | Official event window only | 3 | Window evidence exists; individual fixture coverage is not established |
 | Source scope review | 73 | Attached ID is absent from the schedule configuration; some IDs are official-link references rather than fixture adapters |
 
-The separate season audit finds 153 identities with pending dates and 24 with no season window in the baseline. It now also flags the men's FIBA World Cup as a partial window: the 2027 finals dates do not cover its qualifiers. These categories overlap the schedule linkage states. The global feed's 302 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
+The separate season audit finds 153 identities with pending dates and 24 with no season window in the baseline. It now also flags the men's FIBA World Cup as a partial window: the 2027 finals dates do not cover its qualifiers. These categories overlap the schedule linkage states. The global feed's 303 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
 
 | Order | Coverage section | First check |
 |---:|---|---|
-| 1 | Basketball | 89 identities; 26 split children, 64 without linked sources, 23 pending or partial dates, five reported adapter gaps |
+| 1 | Basketball | 89 identities; 26 split children, 63 without linked sources, 23 pending or partial dates, six reported adapter gaps |
 | 2 | NCAA sports | Resolve child-specific calendars and source scope across all NCAA sections, including the heavily wagered Football, Basketball, Volleyball, Baseball, and Softball entries; schedule-only labels remain held |
 | 3 | Volleyball | 26 identities; 18 split children without linked sources and eight adapter gaps |
 | 4 | Rugby, Surfing, Table Tennis, Tennis | Finish split-child date and source states before proceeding to broad gaps |
@@ -115,7 +115,7 @@ The separate season audit finds 153 identities with pending dates and 24 with no
 | 6 | Remaining sports and adapters | Reconcile every remaining inventory row, including Bowling, Esports, Lacrosse, Motorsports, Rodeo, and the Boxing/Olympics adapter holds |
 
 Each section exits only when every identity has either verified, correctly scoped season and schedule evidence or a documented fail-closed state visible to Review Today. Record exceptions in the inventory and ledger; source availability alone never establishes approval.
-**Basketball checkpoint, September 24:** FIBA lists qualifier windows before the men's 2027 World Cup finals. The catalog now labels the finals dates as a partial calendar, displays SEASON NOT MAPPED for that child, and keeps its missing fixture feed in Review Today for manual calendar and menu checks. Official evidence: https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027/event-guide and https://about.fiba.basketball/en/our-sport/basketball/national-team-competition-systems/fiba-basketball-world-cup . Chile LNB official Liga Chery results include September 23, 2026, so the current March–December season indicator is not disproved by the earlier June finals; the missing unattended adapter remains a gap: https://lnbchile.com/liga/uno/match/con-vs-apv-2026-09-23 . The other four reported Basketball gap sources retain division-specific dates and missing-adapter labels. All 89 identities still require section exit review; no NCAA work begins from this checkpoint.
+**Basketball checkpoint, September 24:** FIBA lists qualifier windows before the men's 2027 World Cup finals. The catalog now labels the finals dates as a partial calendar, displays SEASON NOT MAPPED for that child, and keeps its missing fixture feed in Review Today for manual calendar and menu checks. The partial-window inventory guard and its Review Today test are active at function/class scope so the behavior is exercised rather than silently skipped. Official evidence: https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027/event-guide and https://about.fiba.basketball/en/our-sport/basketball/national-team-competition-systems/fiba-basketball-world-cup . Chile LNB official Liga Chery results include September 23, 2026, so the current March–December season indicator is not disproved by the earlier June finals; the missing unattended adapter remains a gap: https://lnbchile.com/liga/uno/match/con-vs-apv-2026-09-23 . Liga Nacional de Basquetbol de Chile and Copa Chile now have separate source IDs and separate Review Today gap warnings; one source may no longer stand in for both competitions. All six reported Basketball gap sources retain explicit competition-specific dates or fail-closed states and missing-adapter labels. All 89 identities still require section exit review; no NCAA work begins from this checkpoint.
 
 
 ## Recovered work from September 23–24
@@ -175,4 +175,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #87 merged. The inventory baseline contains 722 mapped operational identities and 144 split children; 302 feed gap labels are a separate measure. Expected after Basketball: all 89 identities have a verified calendar/source state or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.
+**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #89 merged. The inventory baseline contains 722 mapped operational identities and 144 split children; 303 feed gap labels are a separate measure. Expected after Basketball: all 89 identities have a verified calendar/source state or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.

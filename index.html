@@ -2135,13 +2135,13 @@ function catalogEventSeasonMapping(line,sport,country){
   )||null;
 }
 function mappedSeasonStatus(event){
+  // A dated finals window cannot classify a competition with unverified
+  // qualifying rounds as in or out of season.
+  if(event?.season_window_complete===false)return null;
   if((event?.coverage_children||[]).length){
     const statuses=event.coverage_children.map(mappedSeasonStatus).filter(Boolean);
     if(!statuses.length)return null;
     return statuses.every(status=>status===statuses[0])?statuses[0]:'mixed';
-  // A dated finals window cannot classify a competition with unverified
-  // qualifying rounds as in or out of season.
-  if(event?.season_window_complete===false)return null;
   }
   const planned=exactSeasonStatus(event)||annualSeasonStatus(event);
   if(planned)return planned;
