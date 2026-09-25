@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 25, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Basketball — reconcile 89 operational identities; 20 pending or partial date states and 60 identities without linked sources remain**
+**Current task:** **Basketball — reconcile 89 operational identities; 8 pending or partial date states and 48 identities without linked sources remain**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -121,6 +121,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **Basketball checkpoint, September 25 — AfroBasket:** FIBA's separate 2025 finals windows are now attached to the correct children: August 12–24 for the men's AfroBasket in Angola and July 26–August 3 for the Women's AfroBasket in Côte d'Ivoire. Both are classified as last-published official windows, not unattended fixture coverage; their next-edition dates remain pending. This reduces Basketball to 60 identities without linked sources and 20 pending or partial date states. The catalog health display now distinguishes source-record counts from the 722-identity Priority 2 inventory so source totals are not mistaken for a completion percentage. Official evidence: https://www.fiba.basketball/en/events/fiba-afrobasket-2025/news/2021-finals-loss-to-tunisia-fuelling-zouzoua-for-angola-2025 and https://www.fiba.basketball/en/events/fiba-womens-afrobasket-2025/news/one-month-to-go-to-cote-divoire-2025 .
 
+**Basketball checkpoint, September 25 — FIBA continental and Oceania batch:** Twelve operational identities now have separate official windows: men's and women's AmeriCup, Asia Cup, EuroBasket, Melanesia Cup, Micronesia Cup, and Polynesian Cup. Current published future windows are used where FIBA has announced them: Women's AmeriCup 2027, Women's Asia Cup 2027, Women's EuroBasket 2027, and both 2026 Polynesian Cups. The other children retain their most recent official finals window with the next edition explicitly pending. All twelve are official-window-only and do not claim unattended fixture coverage. Pacific Games and the South American Championships remain tested fail-closed holds because current division-specific dates and source scope are not supported. This reduces Basketball to 48 identities without linked sources and 8 pending or partial date states. Official evidence includes https://www.fiba.basketball/en/events/fiba-womens-americup-2027 , https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027 , https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/event-guide , https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/news/fiba-micronesian-cups-set-to-tip-off-in-guam , and https://www.fiba.basketball/en/events?discipline=basketball .
+
 
 ## Recovered work from September 23–24
 
@@ -179,4 +181,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #91 merged. The inventory contains 722 mapped operational identities and 144 split children; 303 feed gap labels are a separate measure. Basketball now has 60 identities without linked sources and 20 pending or partial date states. Expected after Basketball: all 89 identities have verified calendar/source evidence or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.
+**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #92 merged. The inventory contains 722 mapped operational identities and 144 split children; 303 feed gap labels are a separate measure. Basketball now has 48 identities without linked sources and 8 pending or partial date states. Expected after Basketball: all 89 identities have verified calendar/source evidence or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.
