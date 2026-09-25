@@ -11,10 +11,10 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
-      "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 119,
-      "OFFICIAL_WINDOW_ONLY": 66,
-      "SOURCE_SCOPE_REVIEW": 70
+      "ADAPTER_GAP": 289,
+      "NO_LINKED_SOURCE": 117,
+      "OFFICIAL_WINDOW_ONLY": 68,
+      "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
       "DATED_WINDOW": 60,
@@ -170,8 +170,8 @@
     "NCAA Football": {
       "identities": 3,
       "split_children": 0,
-      "no_linked_source": 2,
-      "adapter_gaps": 0,
+      "no_linked_source": 0,
+      "adapter_gaps": 1,
       "pending_dates": 0
     },
     "NCAA Golf": {
@@ -5466,13 +5466,13 @@
       "season_window": "August–January",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "SOURCE_SCOPE_REVIEW",
+      "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
-          "id": "ncaa-football",
-          "type": "not-in-schedule-config",
-          "configured_league": "",
-          "refresh_ok": null,
+          "id": "ncaa-football-fbs",
+          "type": "coverage-gap",
+          "configured_league": "Division I Football Bowl Subdivision (FBS)",
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5484,11 +5484,19 @@
       "identity_key": "ncaa-football-fcs",
       "approval_parent": "Division I Football Championship Subdivision (FCS)",
       "kind": "catalog",
-      "season_window": "August–January",
+      "season_window": "August–January; 2026-27 NCAA FCS championship Jan. 11, 2027",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-football-fcs",
+          "type": "official-event-window",
+          "configured_league": "Division I Football Championship Subdivision (FCS)",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5497,11 +5505,19 @@
       "identity_key": "ncaa-football-dii",
       "approval_parent": "Division II Football",
       "kind": "catalog",
-      "season_window": "August–December",
+      "season_window": "August–December; 2026 NCAA Division II championship Dec. 19",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-football-dii",
+          "type": "official-event-window",
+          "configured_league": "Division II Football",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

@@ -233,7 +233,9 @@
       "endpoint": "https://www.callofdutyleague.com/en-us/schedule",
       "official_schedule_url": "https://www.callofdutyleague.com/en-us/schedule",
       "source_note": "The 2026 CDL season is complete. A dependable future-season match adapter will be added when the next official schedule is published.",
-      "catalog_terms": ["Call of Duty League (CDL)"]
+      "catalog_terms": [
+        "Call of Duty League (CDL)"
+      ]
     },
     {
       "id": "esports-dota-international-calendar",
@@ -256,7 +258,9 @@
           "official_schedule_url": "https://www.dota2.com/esports/ti15"
         }
       ],
-      "catalog_terms": ["The International"]
+      "catalog_terms": [
+        "The International"
+      ]
     },
     {
       "id": "esports-esl-dota-calendar",
@@ -269,7 +273,10 @@
       "endpoint": "https://pro.eslgaming.com/tour/dota2/",
       "official_schedule_url": "https://pro.eslgaming.com/tour/dota2/",
       "source_note": "Official ESL Pro Tour Dota 2 calendar restricted to top-level DreamLeague and ESL One events. Division 2 and qualifiers are excluded.",
-      "catalog_terms": ["Electronic Sports League (ESL) Pro Tour - Dota 2", "DreamLeague"]
+      "catalog_terms": [
+        "Electronic Sports League (ESL) Pro Tour - Dota 2",
+        "DreamLeague"
+      ]
     },
     {
       "id": "esports-dota-ewc-calendar",
@@ -292,7 +299,10 @@
           "official_schedule_url": "https://esportsworldcup.com/"
         }
       ],
-      "catalog_terms": ["Esports World Cup", "Dota 2"]
+      "catalog_terms": [
+        "Esports World Cup",
+        "Dota 2"
+      ]
     },
     {
       "id": "esports-esl-pro-league-calendar",
@@ -305,7 +315,9 @@
       "endpoint": "https://pro.eslgaming.com/tour/cs/",
       "official_schedule_url": "https://pro.eslgaming.com/tour/cs/",
       "source_note": "Official ESL Pro Tour calendar restricted to event cards linking to ESL Pro League. IEM and ESL Challenger competitions are excluded.",
-      "catalog_terms": ["Electronic Sports League (ESL) Pro League"]
+      "catalog_terms": [
+        "Electronic Sports League (ESL) Pro League"
+      ]
     },
     {
       "id": "esports-pgl-cs2-calendar",
@@ -317,7 +329,9 @@
       "endpoint": "https://news.pglesports.com/api/events",
       "official_schedule_url": "https://www.pglesports.com/",
       "source_note": "Official PGL events feed restricted to PGL CS2 and PGL Masters CS2 events. PGL Dota 2 events are explicitly excluded. NO IN-GAME WAGERS remains attached through the catalog leaf.",
-      "catalog_terms": ["Professional Gamers League (PGL) CS2"]
+      "catalog_terms": [
+        "Professional Gamers League (PGL) CS2"
+      ]
     },
     {
       "id": "esports-simulation-calendar",
@@ -328,7 +342,12 @@
       "coverage_status": "pending",
       "endpoint": "",
       "source_note": "The eAdriatic, NextGen eBasket, and GT Sports schedules require a stable publisher-owned schedule source before automation.",
-      "catalog_terms": ["eAdriatic / eJadranskaLiga", "NextGen eBasket League", "eAdriatic League", "GT Sports League"]
+      "catalog_terms": [
+        "eAdriatic / eJadranskaLiga",
+        "NextGen eBasket League",
+        "eAdriatic League",
+        "GT Sports League"
+      ]
     },
     {
       "id": "esports-rlcs",
@@ -340,7 +359,10 @@
       "endpoint": "https://www.rocketleague.com/competitive/schedule",
       "official_schedule_url": "https://www.rocketleague.com/competitive/schedule",
       "source_note": "The official RLCS page is authoritative but currently blocks unattended schedule collection; it remains a visible coverage gap rather than using a stale substitute.",
-      "catalog_terms": ["Psyonix", "Rocket League Championship Series (RLCS)"]
+      "catalog_terms": [
+        "Psyonix",
+        "Rocket League Championship Series (RLCS)"
+      ]
     },
     {
       "id": "mlb",
@@ -460,7 +482,10 @@
         "19": "Toronto Argonauts",
         "20": "Winnipeg Blue Bombers"
       },
-      "catalog_terms": ["Canadian Football League", "CFL"]
+      "catalog_terms": [
+        "Canadian Football League",
+        "CFL"
+      ]
     },
     {
       "id": "ifl",
@@ -471,7 +496,10 @@
       "endpoint": "https://goifl.com/sports/fball/2026/schedule",
       "season_year": 2026,
       "season_end_date": "2026-08-16",
-      "catalog_terms": ["Indoor Football League", "IFL"]
+      "catalog_terms": [
+        "Indoor Football League",
+        "IFL"
+      ]
     },
     {
       "id": "ufl",
@@ -492,7 +520,10 @@
           "official_schedule_url": "https://www.theufl.com/schedule"
         }
       ],
-      "catalog_terms": ["United Football League", "UFL"]
+      "catalog_terms": [
+        "United Football League",
+        "UFL"
+      ]
     },
     {
       "id": "ncaa-football",
@@ -503,6 +534,72 @@
       "catalog_terms": [
         "NCAA Football",
         "Division I Football"
+      ]
+    },
+    {
+      "id": "ncaa-football-fbs",
+      "source_type": "coverage-gap",
+      "sport": "NCAA Football",
+      "league": "Division I Football Bowl Subdivision (FBS)",
+      "region": "United States",
+      "coverage_status": "pending",
+      "endpoint": "https://www.ncaa.com/scoreboard/football/fbs",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/football/fbs",
+      "source_note": "NCAA exposes an exact FBS scoreboard and schedule view. Subdivision scope is verified, but a dependable unattended FBS fixture adapter is not configured; the broader college-football feed remains schedule-only and does not establish FBS approval.",
+      "catalog_terms": [
+        "Division I Football Bowl Subdivision (FBS)"
+      ]
+    },
+    {
+      "id": "ncaa-football-fcs",
+      "source_type": "official-event-window",
+      "sport": "NCAA Football",
+      "league": "Division I Football Championship Subdivision (FCS)",
+      "region": "United States",
+      "endpoint": "https://www.ncaa.org/championship/division-i/football/",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/football/fcs",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "NCAA identifies its Division I Football Championship as the FCS tournament and publishes the Jan. 11, 2027 championship game in Nashville. This is an exact-scope official window reference only; unattended regular-season fixture coverage is not established.",
+      "official_events": [
+        {
+          "source_id": "ncaa-football-fcs",
+          "league": "Division I Football Championship Subdivision (FCS)",
+          "name": "2026-27 NCAA Division I FCS Football Championship",
+          "start_date": "2027-01-11",
+          "end_date": "2027-01-11",
+          "location": "FirstBank Stadium, Nashville, Tennessee",
+          "official_schedule_url": "https://www.ncaa.org/championship/division-i/football/"
+        }
+      ],
+      "catalog_terms": [
+        "Division I Football Championship Subdivision (FCS)"
+      ]
+    },
+    {
+      "id": "ncaa-football-dii",
+      "source_type": "official-event-window",
+      "sport": "NCAA Football",
+      "league": "Division II Football",
+      "region": "United States",
+      "endpoint": "https://www.ncaa.org/championship/division-ii/football/",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/football/d2",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "NCAA publishes the Dec. 19, 2026 Division II Football Championship in McKinney and a dedicated Division II football scoreboard. This is an exact-scope official window reference only; unattended regular-season fixture coverage is not established.",
+      "official_events": [
+        {
+          "source_id": "ncaa-football-dii",
+          "league": "Division II Football",
+          "name": "2026 NCAA Division II Football Championship",
+          "start_date": "2026-12-19",
+          "end_date": "2026-12-19",
+          "location": "McKinney ISD Stadium, McKinney, Texas",
+          "official_schedule_url": "https://www.ncaa.org/championship/division-ii/football/"
+        }
+      ],
+      "catalog_terms": [
+        "Division II Football"
       ]
     },
     {
@@ -527,7 +624,9 @@
           "official_schedule_url": "https://worldtour.fiba3x3.com/2026/calendar"
         }
       ],
-      "catalog_terms": ["FIBA 3x3 World Tour | Men and Women"]
+      "catalog_terms": [
+        "FIBA 3x3 World Tour | Men and Women"
+      ]
     },
     {
       "id": "basketball-pacific-games-men",
@@ -551,7 +650,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/history/321-mens-pacificmicronesianpolynesianmelanesian-tournaments/208432/games"
         }
       ],
-      "catalog_terms": ["Pacific Games | Men and Women"]
+      "catalog_terms": [
+        "Pacific Games | Men and Women"
+      ]
     },
     {
       "id": "basketball-pacific-games-women",
@@ -575,7 +676,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/history/353-womens-pacificmicronesianpolynesianmelanesian-tournaments/208433/games"
         }
       ],
-      "catalog_terms": ["Pacific Games | Men and Women"]
+      "catalog_terms": [
+        "Pacific Games | Men and Women"
+      ]
     },
     {
       "id": "basketball-south-american-men",
@@ -599,7 +702,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/history/327-south-american-championship/9597/games"
         }
       ],
-      "catalog_terms": ["South American Championship | Men and Women"]
+      "catalog_terms": [
+        "South American Championship | Men and Women"
+      ]
     },
     {
       "id": "basketball-south-american-women",
@@ -623,7 +728,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-south-american-womens-championship-2026/games"
         }
       ],
-      "catalog_terms": ["South American Championship | Men and Women"]
+      "catalog_terms": [
+        "South American Championship | Men and Women"
+      ]
     },
     {
       "id": "basketball-de-cup",
@@ -647,7 +754,9 @@
           "official_schedule_url": "https://www.easycredit-bbl.de/saison/spielplaene_liga-pokalspiele/bbl-pokal"
         }
       ],
-      "catalog_terms": ["BBL-Pokal | Men"]
+      "catalog_terms": [
+        "BBL-Pokal | Men"
+      ]
     },
     {
       "id": "basketball-us-big3",
@@ -671,7 +780,9 @@
           "official_schedule_url": "https://big3.com/scores/"
         }
       ],
-      "catalog_terms": ["BIG3 | Men"]
+      "catalog_terms": [
+        "BIG3 | Men"
+      ]
     },
     {
       "id": "basketball-caribbean-women",
@@ -695,7 +806,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-cbc-womens-championship-2025/games"
         }
       ],
-      "catalog_terms": ["Caribbean Women's Championship | Women"]
+      "catalog_terms": [
+        "Caribbean Women's Championship | Women"
+      ]
     },
     {
       "id": "basketball-central-american-women",
@@ -719,7 +832,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-cocaba-womens-championship-2025/games"
         }
       ],
-      "catalog_terms": ["Central American Women's Championship | Women"]
+      "catalog_terms": [
+        "Central American Women's Championship | Women"
+      ]
     },
     {
       "id": "basketball-centrobasket-women",
@@ -743,7 +858,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-centrobasket-womens-championship-2026/games"
         }
       ],
-      "catalog_terms": ["Centrobasket Women's Championship | Women"]
+      "catalog_terms": [
+        "Centrobasket Women's Championship | Women"
+      ]
     },
     {
       "id": "basketball-ph-commissioners",
@@ -767,7 +884,9 @@
           "official_schedule_url": "https://www.pba.ph/news/ginebra-seeks-clincher-tnt-fights-for-game-7"
         }
       ],
-      "catalog_terms": ["Commissioner’s Cup | Men"]
+      "catalog_terms": [
+        "Commissioner’s Cup | Men"
+      ]
     },
     {
       "id": "basketball-br-super8",
@@ -791,7 +910,9 @@
           "official_schedule_url": "https://lnb.com.br/copa-super-8/copa-super-8-2025/"
         }
       ],
-      "catalog_terms": ["Copa Super 8 | Men"]
+      "catalog_terms": [
+        "Copa Super 8 | Men"
+      ]
     },
     {
       "id": "basketball-es-copa",
@@ -815,7 +936,9 @@
           "official_schedule_url": "https://eventos.acb.com/"
         }
       ],
-      "catalog_terms": ["Copa del Rey | Men"]
+      "catalog_terms": [
+        "Copa del Rey | Men"
+      ]
     },
     {
       "id": "basketball-it-cup",
@@ -839,7 +962,9 @@
           "official_schedule_url": "https://www.legabasket.it/landing/final-eight"
         }
       ],
-      "catalog_terms": ["Coppa Italia | Men"]
+      "catalog_terms": [
+        "Coppa Italia | Men"
+      ]
     },
     {
       "id": "basketball-euroleague",
@@ -863,7 +988,9 @@
           "official_schedule_url": "https://www.euroleaguebasketball.net/euroleague/game-center/"
         }
       ],
-      "catalog_terms": ["EuroLeague | Men"]
+      "catalog_terms": [
+        "EuroLeague | Men"
+      ]
     },
     {
       "id": "basketball-womens-euroleague",
@@ -887,7 +1014,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/euroleague-women-26-27/games"
         }
       ],
-      "catalog_terms": ["FIBA Women's EuroLeague | Women"]
+      "catalog_terms": [
+        "FIBA Women's EuroLeague | Women"
+      ]
     },
     {
       "id": "basketball-fr-cup",
@@ -911,7 +1040,9 @@
           "official_schedule_url": "https://coupedefrance.ffbb.com/masculin/actualite/89215"
         }
       ],
-      "catalog_terms": ["French Cup | Men"]
+      "catalog_terms": [
+        "French Cup | Men"
+      ]
     },
     {
       "id": "basketball-ph-governors",
@@ -924,7 +1055,9 @@
       "endpoint_validation": "published-schedule",
       "coverage_status": "published-schedule-window",
       "source_note": "PBA confirms the 2026 Governor's Cup began July 10. Its official live schedule currently publishes games through October 18; the later rounds, finals end date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
-      "catalog_terms": ["Governor’s Cup | Men"]
+      "catalog_terms": [
+        "Governor’s Cup | Men"
+      ]
     },
     {
       "id": "basketball-gr-cup",
@@ -948,7 +1081,9 @@
           "official_schedule_url": "https://www.basket.gr/cup-men/kypello-andron-2025-2026/146128/"
         }
       ],
-      "catalog_terms": ["Greek Cup | Men"]
+      "catalog_terms": [
+        "Greek Cup | Men"
+      ]
     },
     {
       "id": "basketball-gr-supercup",
@@ -972,7 +1107,9 @@
           "official_schedule_url": "https://www.esake.gr/el"
         }
       ],
-      "catalog_terms": ["Greek Super Cup | Men"]
+      "catalog_terms": [
+        "Greek Super Cup | Men"
+      ]
     },
     {
       "id": "basketball-au-ignite",
@@ -996,7 +1133,9 @@
           "official_schedule_url": "https://www.nbl.com.au/news/the-hungry-jacks-nbl27-ignite-cup-schedule-tickets-rules-more"
         }
       ],
-      "catalog_terms": ["Ignite Cup | Men"]
+      "catalog_terms": [
+        "Ignite Cup | Men"
+      ]
     },
     {
       "id": "basketball-lt-cup",
@@ -1020,7 +1159,9 @@
           "official_schedule_url": "https://lkl.lt/karaliaus-mindaugo-taure/tvarkarastis"
         }
       ],
-      "catalog_terms": ["King Mindaugas Cup | Men"]
+      "catalog_terms": [
+        "King Mindaugas Cup | Men"
+      ]
     },
     {
       "id": "basketball-il-league-cup",
@@ -1033,7 +1174,9 @@
       "endpoint_validation": "published-schedule",
       "coverage_status": "published-schedule-window",
       "source_note": "Winner League confirms the 2026 Winner Cup began September 8 and currently publishes knockout games through the October 4 semifinals. The final date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
-      "catalog_terms": ["League Cup | Men"]
+      "catalog_terms": [
+        "League Cup | Men"
+      ]
     },
     {
       "id": "basketball-ar-lnb",
@@ -1046,7 +1189,9 @@
       "endpoint_validation": "published-schedule",
       "coverage_status": "published-schedule-window",
       "source_note": "AdC confirms the 2026-27 Liga Nacional begins September 27, 2026. Its official fixture page is linked, but the completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
-      "catalog_terms": ["Liga Nacional de Básquet (LNB) | Men"]
+      "catalog_terms": [
+        "Liga Nacional de Básquet (LNB) | Men"
+      ]
     },
     {
       "id": "basketball-us-nba-draft",
@@ -1070,7 +1215,9 @@
           "official_schedule_url": "https://www.nba.com/news/nba-draft-2026-set-barclays-center-june-23-24"
         }
       ],
-      "catalog_terms": ["NBA Draft"]
+      "catalog_terms": [
+        "NBA Draft"
+      ]
     },
     {
       "id": "basketball-br-nbb",
@@ -1083,7 +1230,9 @@
       "endpoint_validation": "published-schedule",
       "coverage_status": "published-schedule-window",
       "source_note": "Liga Nacional de Basquete's official NBB schedule confirms the 2026-27 season begins October 17, 2026 and currently publishes games through December 29. Later rounds, the season completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
-      "catalog_terms": ["Novo Basquete Brasil (NBB) | Men"]
+      "catalog_terms": [
+        "Novo Basquete Brasil (NBB) | Men"
+      ]
     },
     {
       "id": "basketball-ph-pba",
@@ -1096,7 +1245,9 @@
       "endpoint_validation": "published-schedule",
       "coverage_status": "published-schedule-window",
       "source_note": "PBA's official live schedule confirms the active Season 50 conference calendar and currently publishes games through October 21, 2026. The full season completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
-      "catalog_terms": ["Philippine Basketball Association (PBA) | Men"]
+      "catalog_terms": [
+        "Philippine Basketball Association (PBA) | Men"
+      ]
     },
     {
       "id": "basketball-ph-philippine-cup",
@@ -1120,7 +1271,9 @@
           "official_schedule_url": "https://www.youtube.com/watch?v=SeTL6CAKiGE"
         }
       ],
-      "catalog_terms": ["Philippine Cup | Men"]
+      "catalog_terms": [
+        "Philippine Cup | Men"
+      ]
     },
     {
       "id": "basketball-pl-cup",
@@ -1144,7 +1297,9 @@
           "official_schedule_url": "https://plk.pl/aktualnosci/puchar-polski"
         }
       ],
-      "catalog_terms": ["Polish Cup | Men"]
+      "catalog_terms": [
+        "Polish Cup | Men"
+      ]
     },
     {
       "id": "basketball-pl-supercup",
@@ -1168,7 +1323,9 @@
           "official_schedule_url": "https://plk.pl/aktualnosci/27426/cztery-druzyny-powalcza-o-superpuchar-polski"
         }
       ],
-      "catalog_terms": ["Polish Supercup | Men"]
+      "catalog_terms": [
+        "Polish Supercup | Men"
+      ]
     },
     {
       "id": "basketball-tr-presidential",
@@ -1192,7 +1349,9 @@
           "official_schedule_url": "https://www.tbf.org.tr/duyuru/39-cumhurbaskanligi-erkekler-basketbol-kupasi-hakemleri-belli-oldu-2026-09-17"
         }
       ],
-      "catalog_terms": ["Presidential Cup | Men"]
+      "catalog_terms": [
+        "Presidential Cup | Men"
+      ]
     },
     {
       "id": "basketball-rs-cup",
@@ -1216,7 +1375,9 @@
           "official_schedule_url": "https://kss.rs/pocinje-prodaja-kompleta-ulaznica-za-mocart-kup-radivoj-korac-2026/"
         }
       ],
-      "catalog_terms": ["Radivoj Korać Cup | Men"]
+      "catalog_terms": [
+        "Radivoj Korać Cup | Men"
+      ]
     },
     {
       "id": "basketball-ch-sbl-cup",
@@ -1240,7 +1401,9 @@
           "official_schedule_url": "https://swiss.basketball/events/sbl-cup/swiss-basketball-league-cup-final-four-2018-1"
         }
       ],
-      "catalog_terms": ["SBL Cup | Men"]
+      "catalog_terms": [
+        "SBL Cup | Men"
+      ]
     },
     {
       "id": "basketball-il-state-cup",
@@ -1264,7 +1427,9 @@
           "official_schedule_url": "https://ibasketball.co.il/league/2025-900/"
         }
       ],
-      "catalog_terms": ["State Cup | Men"]
+      "catalog_terms": [
+        "State Cup | Men"
+      ]
     },
     {
       "id": "basketball-ar-super20",
@@ -1288,7 +1453,9 @@
           "official_schedule_url": "https://www.laliganacional.com.ar/laliga/page/noticias/id/46987/title/Se-present%C3%B3-la-Copa-S%C3%BAper-20-en-Rosario"
         }
       ],
-      "catalog_terms": ["Super 20 Cup | Men"]
+      "catalog_terms": [
+        "Super 20 Cup | Men"
+      ]
     },
     {
       "id": "basketball-it-supercup",
@@ -1312,7 +1479,9 @@
           "official_schedule_url": "https://www.legabasket.it/competizioni/6/supercoppa"
         }
       ],
-      "catalog_terms": ["Supercopa Italia | Men"]
+      "catalog_terms": [
+        "Supercopa Italia | Men"
+      ]
     },
     {
       "id": "basketball-es-supercopa",
@@ -1336,7 +1505,9 @@
           "official_schedule_url": "https://acb.com/es/supercopa"
         }
       ],
-      "catalog_terms": ["Supercopa de Espana | Men"]
+      "catalog_terms": [
+        "Supercopa de Espana | Men"
+      ]
     },
     {
       "id": "basketball-ar-supercopa",
@@ -1360,7 +1531,9 @@
           "official_schedule_url": "https://laliganacional.com.ar/ldd/page/noticias/id/46082/title/La-Supercopa-de-La-Liga-Nacional-se-jugara-en-Buenos-Aires"
         }
       ],
-      "catalog_terms": ["Supercopa de Liga | Men"]
+      "catalog_terms": [
+        "Supercopa de Liga | Men"
+      ]
     },
     {
       "id": "basketball-se-sbl",
@@ -1384,7 +1557,9 @@
           "official_schedule_url": "https://www.sblherr.se/game-schedule"
         }
       ],
-      "catalog_terms": ["Svenska Basketligan (SBL) | Men"]
+      "catalog_terms": [
+        "Svenska Basketligan (SBL) | Men"
+      ]
     },
     {
       "id": "basketball-ch-cup",
@@ -1408,7 +1583,9 @@
           "official_schedule_url": "https://swiss.basketball/events/swiss-cup/schedule"
         }
       ],
-      "catalog_terms": ["Swiss Cup | Men"]
+      "catalog_terms": [
+        "Swiss Cup | Men"
+      ]
     },
     {
       "id": "basketball-tr-cup",
@@ -1432,7 +1609,9 @@
           "official_schedule_url": "https://www.tbf.org.tr/ligler/etk/haber/ziraat-bankasi-turkiye-kupasi-2026-da-dortlu-final-in-adi-belli-oldu-2026-02-18"
         }
       ],
-      "catalog_terms": ["Turkish Basketball Cup | Men"]
+      "catalog_terms": [
+        "Turkish Basketball Cup | Men"
+      ]
     },
     {
       "id": "basketball-us-unrivaled",
@@ -1445,7 +1624,9 @@
       "endpoint_validation": "published-schedule",
       "coverage_status": "published-schedule-window",
       "source_note": "Unrivaled confirms its third season opens January 8, 2027 and runs January through March. The complete schedule, exact completion date and unattended fixture adapter remain unpublished, so the season window stays descriptive.",
-      "catalog_terms": ["Unrivaled Basketball | Women"]
+      "catalog_terms": [
+        "Unrivaled Basketball | Women"
+      ]
     },
     {
       "id": "basketball-us-tbt-men",
@@ -1469,7 +1650,9 @@
           "official_schedule_url": "https://tbthoops.com/tbt-2026-schedule/"
         }
       ],
-      "catalog_terms": ["The Basketball Tournament (TBT) | Men and Women"]
+      "catalog_terms": [
+        "The Basketball Tournament (TBT) | Men and Women"
+      ]
     },
     {
       "id": "basketball-fiba-3x3-world-cup-men",
@@ -1480,7 +1663,9 @@
       "official_schedule_url": "https://www.fiba.basketball/en/news/must-watch-clashes-headline-packed-schedule-for-fiba-3x3-world-cup-2026",
       "coverage_status": "missing",
       "source_note": "FIBA confirms the June 1–7, 2026 men's competition; next edition and unattended fixture adapter remain pending.",
-      "catalog_terms": ["FIBA 3x3 World Cup | Men and Women"]
+      "catalog_terms": [
+        "FIBA 3x3 World Cup | Men and Women"
+      ]
     },
     {
       "id": "basketball-fiba-3x3-world-cup-women",
@@ -1491,7 +1676,9 @@
       "official_schedule_url": "https://www.fiba.basketball/en/news/must-watch-clashes-headline-packed-schedule-for-fiba-3x3-world-cup-2026",
       "coverage_status": "missing",
       "source_note": "FIBA confirms the June 1–7, 2026 women's competition; next edition and unattended fixture adapter remain pending.",
-      "catalog_terms": ["FIBA 3x3 World Cup | Men and Women"]
+      "catalog_terms": [
+        "FIBA 3x3 World Cup | Men and Women"
+      ]
     },
     {
       "id": "basketball-afrobasket-men",
@@ -1515,7 +1702,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-afrobasket-2025/games"
         }
       ],
-      "catalog_terms": ["FIBA AfroBasket | Men and Women"]
+      "catalog_terms": [
+        "FIBA AfroBasket | Men and Women"
+      ]
     },
     {
       "id": "basketball-afrobasket-women",
@@ -1539,7 +1728,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-afrobasket-2025/games"
         }
       ],
-      "catalog_terms": ["FIBA AfroBasket | Men and Women"]
+      "catalog_terms": [
+        "FIBA AfroBasket | Men and Women"
+      ]
     },
     {
       "id": "basketball-americup-men",
@@ -1563,7 +1754,9 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-americup-2025/games"
         }
       ],
-      "catalog_terms": ["FIBA AmeriCup | Men and Women"]
+      "catalog_terms": [
+        "FIBA AmeriCup | Men and Women"
+      ]
     },
     {
       "id": "basketball-americup-women",
@@ -1587,87 +1780,269 @@
           "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-americup-2027/games"
         }
       ],
-      "catalog_terms": ["FIBA AmeriCup | Men and Women"]
+      "catalog_terms": [
+        "FIBA AmeriCup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-asia-cup-men", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Asia Cup | Men", "region": "Asia",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-asiacup-2025", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-asiacup-2025/games",
-      "endpoint_validation": "published-window", "coverage_status": "last-published-event-window",
+      "id": "basketball-asia-cup-men",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Asia Cup | Men",
+      "region": "Asia",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-asiacup-2025",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-asiacup-2025/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
       "source_note": "FIBA confirms the August 5–17, 2025 men's finals in Jeddah, Saudi Arabia. The next finals dates and an unattended fixture adapter remain pending.",
-      "official_events": [{"source_id": "basketball-asia-cup-men", "league": "FIBA Asia Cup | Men", "name": "FIBA Asia Cup 2025", "start_date": "2025-08-05", "end_date": "2025-08-17", "location": "Jeddah, Saudi Arabia", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-asiacup-2025/games"}],
-      "catalog_terms": ["FIBA Asia Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-asia-cup-men",
+          "league": "FIBA Asia Cup | Men",
+          "name": "FIBA Asia Cup 2025",
+          "start_date": "2025-08-05",
+          "end_date": "2025-08-17",
+          "location": "Jeddah, Saudi Arabia",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-asiacup-2025/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Asia Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-asia-cup-women", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Asia Cup | Women", "region": "Asia",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027/games",
-      "endpoint_validation": "published-window", "coverage_status": "published-event-window",
+      "id": "basketball-asia-cup-women",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Asia Cup | Women",
+      "region": "Asia",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
       "source_note": "FIBA confirms the July 11–18, 2027 Women's Asia Cup Division A finals in Cebu City, Philippines. An unattended fixture adapter remains pending.",
-      "official_events": [{"source_id": "basketball-asia-cup-women", "league": "FIBA Asia Cup | Women", "name": "FIBA Women's Asia Cup 2027", "start_date": "2027-07-11", "end_date": "2027-07-18", "location": "Cebu City, Philippines", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027/games"}],
-      "catalog_terms": ["FIBA Asia Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-asia-cup-women",
+          "league": "FIBA Asia Cup | Women",
+          "name": "FIBA Women's Asia Cup 2027",
+          "start_date": "2027-07-11",
+          "end_date": "2027-07-18",
+          "location": "Cebu City, Philippines",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-asiacup-2027/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Asia Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-eurobasket-men", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA EuroBasket | Men", "region": "Europe",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-eurobasket-2025", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-eurobasket-2025/games",
-      "endpoint_validation": "published-window", "coverage_status": "last-published-event-window",
+      "id": "basketball-eurobasket-men",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA EuroBasket | Men",
+      "region": "Europe",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-eurobasket-2025",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-eurobasket-2025/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
       "source_note": "FIBA confirms the August 27–September 14, 2025 men's finals. The next finals dates and an unattended fixture adapter remain pending.",
-      "official_events": [{"source_id": "basketball-eurobasket-men", "league": "FIBA EuroBasket | Men", "name": "FIBA EuroBasket 2025", "start_date": "2025-08-27", "end_date": "2025-09-14", "location": "Cyprus, Finland, Poland and Latvia", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-eurobasket-2025/games"}],
-      "catalog_terms": ["FIBA EuroBasket | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-eurobasket-men",
+          "league": "FIBA EuroBasket | Men",
+          "name": "FIBA EuroBasket 2025",
+          "start_date": "2025-08-27",
+          "end_date": "2025-09-14",
+          "location": "Cyprus, Finland, Poland and Latvia",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-eurobasket-2025/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA EuroBasket | Men and Women"
+      ]
     },
     {
-      "id": "basketball-eurobasket-women", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA EuroBasket | Women", "region": "Europe",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/event-guide", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/games",
-      "endpoint_validation": "published-window", "coverage_status": "published-event-window",
+      "id": "basketball-eurobasket-women",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA EuroBasket | Women",
+      "region": "Europe",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/event-guide",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
       "source_note": "FIBA confirms the June 16–27, 2027 women's finals across Belgium, Finland, Lithuania and Sweden. An unattended fixture adapter remains pending.",
-      "official_events": [{"source_id": "basketball-eurobasket-women", "league": "FIBA EuroBasket | Women", "name": "FIBA Women's EuroBasket 2027", "start_date": "2027-06-16", "end_date": "2027-06-27", "location": "Belgium, Finland, Lithuania and Sweden", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/games"}],
-      "catalog_terms": ["FIBA EuroBasket | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-eurobasket-women",
+          "league": "FIBA EuroBasket | Women",
+          "name": "FIBA Women's EuroBasket 2027",
+          "start_date": "2027-06-16",
+          "end_date": "2027-06-27",
+          "location": "Belgium, Finland, Lithuania and Sweden",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-eurobasket-2027/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA EuroBasket | Men and Women"
+      ]
     },
     {
-      "id": "basketball-melanesia-men", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Melanesia Cup | Men", "region": "Oceania",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-melanesian-cup-2025", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-melanesian-cup-2025/games",
-      "endpoint_validation": "published-window", "coverage_status": "last-published-event-window",
+      "id": "basketball-melanesia-men",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Melanesia Cup | Men",
+      "region": "Oceania",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-melanesian-cup-2025",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-melanesian-cup-2025/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
       "source_note": "FIBA confirms the October 13–18, 2025 men's tournament in Honiara, Solomon Islands. The next edition dates and an unattended fixture adapter remain pending.",
-      "official_events": [{"source_id": "basketball-melanesia-men", "league": "FIBA Melanesia Cup | Men", "name": "FIBA Melanesian Cup 2025", "start_date": "2025-10-13", "end_date": "2025-10-18", "location": "Honiara, Solomon Islands", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-melanesian-cup-2025/games"}],
-      "catalog_terms": ["FIBA Melanesia Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-melanesia-men",
+          "league": "FIBA Melanesia Cup | Men",
+          "name": "FIBA Melanesian Cup 2025",
+          "start_date": "2025-10-13",
+          "end_date": "2025-10-18",
+          "location": "Honiara, Solomon Islands",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-melanesian-cup-2025/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Melanesia Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-melanesia-women", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Melanesia Cup | Women", "region": "Oceania",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-melanesian-cup-2025", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-melanesian-cup-2025/games",
-      "endpoint_validation": "published-window", "coverage_status": "last-published-event-window",
+      "id": "basketball-melanesia-women",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Melanesia Cup | Women",
+      "region": "Oceania",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-melanesian-cup-2025",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-melanesian-cup-2025/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
       "source_note": "FIBA confirms the October 13–18, 2025 women's tournament in Honiara, Solomon Islands. The next edition dates and an unattended fixture adapter remain pending.",
-      "official_events": [{"source_id": "basketball-melanesia-women", "league": "FIBA Melanesia Cup | Women", "name": "FIBA Women's Melanesian Cup 2025", "start_date": "2025-10-13", "end_date": "2025-10-18", "location": "Honiara, Solomon Islands", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-melanesian-cup-2025/games"}],
-      "catalog_terms": ["FIBA Melanesia Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-melanesia-women",
+          "league": "FIBA Melanesia Cup | Women",
+          "name": "FIBA Women's Melanesian Cup 2025",
+          "start_date": "2025-10-13",
+          "end_date": "2025-10-18",
+          "location": "Honiara, Solomon Islands",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-melanesian-cup-2025/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Melanesia Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-micronesia-men", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Micronesia Cup | Men", "region": "Oceania",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/news/fiba-micronesian-cups-set-to-tip-off-in-guam", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/games",
-      "endpoint_validation": "published-window", "coverage_status": "last-published-event-window",
+      "id": "basketball-micronesia-men",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Micronesia Cup | Men",
+      "region": "Oceania",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/news/fiba-micronesian-cups-set-to-tip-off-in-guam",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
       "source_note": "FIBA confirms the August 14–16, 2026 men's tournament in Hagåtña, Guam. The next edition dates and an unattended fixture adapter remain pending.",
-      "official_events": [{"source_id": "basketball-micronesia-men", "league": "FIBA Micronesia Cup | Men", "name": "FIBA Micronesian Cup 2026", "start_date": "2026-08-14", "end_date": "2026-08-16", "location": "Hagåtña, Guam", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/games"}],
-      "catalog_terms": ["FIBA Micronesia Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-micronesia-men",
+          "league": "FIBA Micronesia Cup | Men",
+          "name": "FIBA Micronesian Cup 2026",
+          "start_date": "2026-08-14",
+          "end_date": "2026-08-16",
+          "location": "Hagåtña, Guam",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-micronesian-cup-2026/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Micronesia Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-micronesia-women", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Micronesia Cup | Women", "region": "Oceania",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-micronesian-cup-2026", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-micronesian-cup-2026/games",
-      "endpoint_validation": "published-window", "coverage_status": "last-published-event-window",
+      "id": "basketball-micronesia-women",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Micronesia Cup | Women",
+      "region": "Oceania",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-micronesian-cup-2026",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-micronesian-cup-2026/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
       "source_note": "FIBA confirms the August 14–16, 2026 women's tournament in Hagåtña, Guam. The next edition dates and an unattended fixture adapter remain pending.",
-      "official_events": [{"source_id": "basketball-micronesia-women", "league": "FIBA Micronesia Cup | Women", "name": "FIBA Women's Micronesian Cup 2026", "start_date": "2026-08-14", "end_date": "2026-08-16", "location": "Hagåtña, Guam", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-micronesian-cup-2026/games"}],
-      "catalog_terms": ["FIBA Micronesia Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-micronesia-women",
+          "league": "FIBA Micronesia Cup | Women",
+          "name": "FIBA Women's Micronesian Cup 2026",
+          "start_date": "2026-08-14",
+          "end_date": "2026-08-16",
+          "location": "Hagåtña, Guam",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-micronesian-cup-2026/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Micronesia Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-polynesian-men", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Polynesian Basketball Cup | Men", "region": "Oceania",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-polynesian-cup-2026", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-polynesian-cup-2026/games",
-      "endpoint_validation": "published-window", "coverage_status": "published-event-window",
+      "id": "basketball-polynesian-men",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Polynesian Basketball Cup | Men",
+      "region": "Oceania",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-polynesian-cup-2026",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-polynesian-cup-2026/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
       "source_note": "FIBA confirms the October 19–24, 2026 men's tournament in Papeete, Tahiti. An unattended fixture adapter remains pending.",
-      "official_events": [{"source_id": "basketball-polynesian-men", "league": "FIBA Polynesian Basketball Cup | Men", "name": "FIBA Polynesian Cup 2026", "start_date": "2026-10-19", "end_date": "2026-10-24", "location": "Papeete, Tahiti", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-polynesian-cup-2026/games"}],
-      "catalog_terms": ["FIBA Polynesian Basketball Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-polynesian-men",
+          "league": "FIBA Polynesian Basketball Cup | Men",
+          "name": "FIBA Polynesian Cup 2026",
+          "start_date": "2026-10-19",
+          "end_date": "2026-10-24",
+          "location": "Papeete, Tahiti",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-polynesian-cup-2026/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Polynesian Basketball Cup | Men and Women"
+      ]
     },
     {
-      "id": "basketball-polynesian-women", "source_type": "official-event-window", "sport": "Basketball", "league": "FIBA Polynesian Basketball Cup | Women", "region": "Oceania",
-      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-polynesian-cup-2026", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-polynesian-cup-2026/games",
-      "endpoint_validation": "published-window", "coverage_status": "published-event-window",
+      "id": "basketball-polynesian-women",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "FIBA Polynesian Basketball Cup | Women",
+      "region": "Oceania",
+      "endpoint": "https://www.fiba.basketball/en/events/fiba-womens-polynesian-cup-2026",
+      "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-polynesian-cup-2026/games",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
       "source_note": "FIBA confirms the October 19–24, 2026 women's tournament in Papeete, Tahiti. An unattended fixture adapter remains pending.",
-      "official_events": [{"source_id": "basketball-polynesian-women", "league": "FIBA Polynesian Basketball Cup | Women", "name": "FIBA Women's Polynesian Cup 2026", "start_date": "2026-10-19", "end_date": "2026-10-24", "location": "Papeete, Tahiti", "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-polynesian-cup-2026/games"}],
-      "catalog_terms": ["FIBA Polynesian Basketball Cup | Men and Women"]
+      "official_events": [
+        {
+          "source_id": "basketball-polynesian-women",
+          "league": "FIBA Polynesian Basketball Cup | Women",
+          "name": "FIBA Women's Polynesian Cup 2026",
+          "start_date": "2026-10-19",
+          "end_date": "2026-10-24",
+          "location": "Papeete, Tahiti",
+          "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-polynesian-cup-2026/games"
+        }
+      ],
+      "catalog_terms": [
+        "FIBA Polynesian Basketball Cup | Men and Women"
+      ]
     },
     {
       "id": "basketball-fiba-world-cup-men",
@@ -1678,7 +2053,9 @@
       "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027/news/world-cup-2027-qualifiers-full-schedule-available",
       "coverage_status": "missing",
       "source_note": "FIBA confirms all six regional qualifier windows from November 24, 2025 through March 2, 2027 and the August 27–September 12, 2027 finals. An unattended fixture adapter remains missing.",
-      "catalog_terms": ["FIBA Basketball World Cup | Men and Women"]
+      "catalog_terms": [
+        "FIBA Basketball World Cup | Men and Women"
+      ]
     },
     {
       "id": "basketball-fiba-world-cup-women",
@@ -1689,7 +2066,9 @@
       "official_schedule_url": "https://www.fiba.basketball/en/events/fiba-womens-basketball-world-cup-2026/games",
       "coverage_status": "missing",
       "source_note": "FIBA confirms the 2026 women's finals dates and games; qualification dates and an unattended fixture adapter require separate verification.",
-      "catalog_terms": ["FIBA Basketball World Cup | Men and Women"]
+      "catalog_terms": [
+        "FIBA Basketball World Cup | Men and Women"
+      ]
     },
     {
       "id": "nba",
@@ -2706,35 +3085,209 @@
         "Ladies European Tour (LET)"
       ],
       "official_events": [
-        {"event_id":"let-2026-pif-saudi","name":"PIF Saudi Ladies International","start_date":"2026-02-11","end_date":"2026-02-14","location":"Riyadh Golf Club · Saudi Arabia"},
-        {"event_id":"let-2026-nsw-open","name":"Ford Women's NSW Open","start_date":"2026-02-26","end_date":"2026-03-01","location":"Wollongong Golf Club · Australia"},
-        {"event_id":"let-2026-australian-classic","name":"Australian Women's Classic","start_date":"2026-03-05","end_date":"2026-03-08","location":"Magenta Shores Golf and Country Club · Australia"},
-        {"event_id":"let-2026-australian-open","name":"Women's Australian Open","start_date":"2026-03-12","end_date":"2026-03-15","location":"Kooyonga Golf Club · Australia"},
-        {"event_id":"let-2026-wpga","name":"Australian WPGA Championship","start_date":"2026-03-19","end_date":"2026-03-22","location":"Sanctuary Cove Golf and Country Club · Australia"},
-        {"event_id":"let-2026-aramco-usa","name":"Aramco Championship","start_date":"2026-04-02","end_date":"2026-04-05","location":"Shadow Creek · United States"},
-        {"event_id":"let-2026-joburg","name":"Joburg Ladies Open","start_date":"2026-04-16","end_date":"2026-04-19","location":"Randpark Golf Club · South Africa"},
-        {"event_id":"let-2026-sa-open","name":"Investec SA Women's Open","start_date":"2026-04-23","end_date":"2026-04-26","location":"Royal Cape Golf Club · South Africa"},
-        {"event_id":"let-2026-mcb","name":"MCB Ladies Classic - Mauritius","start_date":"2026-05-01","end_date":"2026-05-03","location":"The Legend Course at Constance Belle Mare Plage · Mauritius"},
-        {"event_id":"let-2026-german","name":"Amundi German Masters","start_date":"2026-05-14","end_date":"2026-05-17","location":"Green Eagle Golf Courses · Germany"},
-        {"event_id":"let-2026-lalla-meryem","name":"Lalla Meryem Cup","start_date":"2026-05-21","end_date":"2026-05-23","location":"Royal Golf Dar Es Salam · Morocco"},
-        {"event_id":"let-2026-jabra","name":"Jabra Ladies Open de France","start_date":"2026-05-28","end_date":"2026-05-30","location":"Evian Golf Resort · France"},
-        {"event_id":"let-2026-dutch","name":"Dutch Ladies Open","start_date":"2026-06-19","end_date":"2026-06-21","location":"Goyer Golf & Country Club · Netherlands"},
-        {"event_id":"let-2026-czech","name":"Tipsport Czech Ladies Open","start_date":"2026-06-26","end_date":"2026-06-28","location":"Royal Beroun Golf Club · Czech Republic"},
-        {"event_id":"let-2026-hulencourt","name":"Hulencourt Women's Open","start_date":"2026-07-02","end_date":"2026-07-05","location":"Hulencourt · Belgium"},
-        {"event_id":"let-2026-evian","name":"The Amundi Evian Championship","start_date":"2026-07-09","end_date":"2026-07-12","location":"Evian Golf Resort · France"},
-        {"event_id":"let-2026-scottish","name":"ISPS HANDA Women's Scottish Open","start_date":"2026-07-23","end_date":"2026-07-26","location":"Dundonald Links · Scotland"},
-        {"event_id":"let-2026-aig","name":"AIG Women's Open","start_date":"2026-07-30","end_date":"2026-08-02","location":"Royal Lytham & St Annes · England"},
-        {"event_id":"let-2026-london","name":"PIF London Championship","start_date":"2026-08-06","end_date":"2026-08-09","location":"Centurion Club · England"},
-        {"event_id":"let-2026-swiss","name":"VP Bank Swiss Ladies Open","start_date":"2026-08-13","end_date":"2026-08-15","location":"Golfpark Holzhausern · Switzerland"},
-        {"event_id":"let-2026-irish","name":"KPMG Women's Irish Open","start_date":"2026-08-27","end_date":"2026-08-30","location":"The K Club · Ireland"},
-        {"event_id":"let-2026-solheim","name":"The Solheim Cup","start_date":"2026-09-11","end_date":"2026-09-13","location":"Bernardus Golf · Netherlands"},
-        {"event_id":"let-2026-la-sella","name":"La Sella Open","start_date":"2026-09-17","end_date":"2026-09-20","location":"La Sella Golf Resort · Spain"},
-        {"event_id":"let-2026-italian","name":"Ladies Italian Open","start_date":"2026-09-25","end_date":"2026-09-27","location":"Golf Club Milano · Italy"},
-        {"event_id":"let-2026-korea","name":"Aramco Korea Championship","start_date":"2026-10-08","end_date":"2026-10-11","location":"New Korea Country Club · Republic of Korea"},
-        {"event_id":"let-2026-india","name":"Hero Women's Indian Open","start_date":"2026-10-22","end_date":"2026-10-25","location":"DLF Golf and Country Club · India"},
-        {"event_id":"let-2026-wistron","name":"Wistron Ladies Open","start_date":"2026-10-29","end_date":"2026-11-01","location":"Sunrise Golf and Country Club · Chinese Taipei"},
-        {"event_id":"let-2026-china","name":"Aramco China Championship","start_date":"2026-11-05","end_date":"2026-11-08","location":"Mission Hills · China"},
-        {"event_id":"let-2026-spain","name":"Andalucia Costa del Sol Open de Espana","start_date":"2026-11-26","end_date":"2026-11-29","location":"Spain"}
+        {
+          "event_id": "let-2026-pif-saudi",
+          "name": "PIF Saudi Ladies International",
+          "start_date": "2026-02-11",
+          "end_date": "2026-02-14",
+          "location": "Riyadh Golf Club · Saudi Arabia"
+        },
+        {
+          "event_id": "let-2026-nsw-open",
+          "name": "Ford Women's NSW Open",
+          "start_date": "2026-02-26",
+          "end_date": "2026-03-01",
+          "location": "Wollongong Golf Club · Australia"
+        },
+        {
+          "event_id": "let-2026-australian-classic",
+          "name": "Australian Women's Classic",
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-08",
+          "location": "Magenta Shores Golf and Country Club · Australia"
+        },
+        {
+          "event_id": "let-2026-australian-open",
+          "name": "Women's Australian Open",
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-15",
+          "location": "Kooyonga Golf Club · Australia"
+        },
+        {
+          "event_id": "let-2026-wpga",
+          "name": "Australian WPGA Championship",
+          "start_date": "2026-03-19",
+          "end_date": "2026-03-22",
+          "location": "Sanctuary Cove Golf and Country Club · Australia"
+        },
+        {
+          "event_id": "let-2026-aramco-usa",
+          "name": "Aramco Championship",
+          "start_date": "2026-04-02",
+          "end_date": "2026-04-05",
+          "location": "Shadow Creek · United States"
+        },
+        {
+          "event_id": "let-2026-joburg",
+          "name": "Joburg Ladies Open",
+          "start_date": "2026-04-16",
+          "end_date": "2026-04-19",
+          "location": "Randpark Golf Club · South Africa"
+        },
+        {
+          "event_id": "let-2026-sa-open",
+          "name": "Investec SA Women's Open",
+          "start_date": "2026-04-23",
+          "end_date": "2026-04-26",
+          "location": "Royal Cape Golf Club · South Africa"
+        },
+        {
+          "event_id": "let-2026-mcb",
+          "name": "MCB Ladies Classic - Mauritius",
+          "start_date": "2026-05-01",
+          "end_date": "2026-05-03",
+          "location": "The Legend Course at Constance Belle Mare Plage · Mauritius"
+        },
+        {
+          "event_id": "let-2026-german",
+          "name": "Amundi German Masters",
+          "start_date": "2026-05-14",
+          "end_date": "2026-05-17",
+          "location": "Green Eagle Golf Courses · Germany"
+        },
+        {
+          "event_id": "let-2026-lalla-meryem",
+          "name": "Lalla Meryem Cup",
+          "start_date": "2026-05-21",
+          "end_date": "2026-05-23",
+          "location": "Royal Golf Dar Es Salam · Morocco"
+        },
+        {
+          "event_id": "let-2026-jabra",
+          "name": "Jabra Ladies Open de France",
+          "start_date": "2026-05-28",
+          "end_date": "2026-05-30",
+          "location": "Evian Golf Resort · France"
+        },
+        {
+          "event_id": "let-2026-dutch",
+          "name": "Dutch Ladies Open",
+          "start_date": "2026-06-19",
+          "end_date": "2026-06-21",
+          "location": "Goyer Golf & Country Club · Netherlands"
+        },
+        {
+          "event_id": "let-2026-czech",
+          "name": "Tipsport Czech Ladies Open",
+          "start_date": "2026-06-26",
+          "end_date": "2026-06-28",
+          "location": "Royal Beroun Golf Club · Czech Republic"
+        },
+        {
+          "event_id": "let-2026-hulencourt",
+          "name": "Hulencourt Women's Open",
+          "start_date": "2026-07-02",
+          "end_date": "2026-07-05",
+          "location": "Hulencourt · Belgium"
+        },
+        {
+          "event_id": "let-2026-evian",
+          "name": "The Amundi Evian Championship",
+          "start_date": "2026-07-09",
+          "end_date": "2026-07-12",
+          "location": "Evian Golf Resort · France"
+        },
+        {
+          "event_id": "let-2026-scottish",
+          "name": "ISPS HANDA Women's Scottish Open",
+          "start_date": "2026-07-23",
+          "end_date": "2026-07-26",
+          "location": "Dundonald Links · Scotland"
+        },
+        {
+          "event_id": "let-2026-aig",
+          "name": "AIG Women's Open",
+          "start_date": "2026-07-30",
+          "end_date": "2026-08-02",
+          "location": "Royal Lytham & St Annes · England"
+        },
+        {
+          "event_id": "let-2026-london",
+          "name": "PIF London Championship",
+          "start_date": "2026-08-06",
+          "end_date": "2026-08-09",
+          "location": "Centurion Club · England"
+        },
+        {
+          "event_id": "let-2026-swiss",
+          "name": "VP Bank Swiss Ladies Open",
+          "start_date": "2026-08-13",
+          "end_date": "2026-08-15",
+          "location": "Golfpark Holzhausern · Switzerland"
+        },
+        {
+          "event_id": "let-2026-irish",
+          "name": "KPMG Women's Irish Open",
+          "start_date": "2026-08-27",
+          "end_date": "2026-08-30",
+          "location": "The K Club · Ireland"
+        },
+        {
+          "event_id": "let-2026-solheim",
+          "name": "The Solheim Cup",
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-13",
+          "location": "Bernardus Golf · Netherlands"
+        },
+        {
+          "event_id": "let-2026-la-sella",
+          "name": "La Sella Open",
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-20",
+          "location": "La Sella Golf Resort · Spain"
+        },
+        {
+          "event_id": "let-2026-italian",
+          "name": "Ladies Italian Open",
+          "start_date": "2026-09-25",
+          "end_date": "2026-09-27",
+          "location": "Golf Club Milano · Italy"
+        },
+        {
+          "event_id": "let-2026-korea",
+          "name": "Aramco Korea Championship",
+          "start_date": "2026-10-08",
+          "end_date": "2026-10-11",
+          "location": "New Korea Country Club · Republic of Korea"
+        },
+        {
+          "event_id": "let-2026-india",
+          "name": "Hero Women's Indian Open",
+          "start_date": "2026-10-22",
+          "end_date": "2026-10-25",
+          "location": "DLF Golf and Country Club · India"
+        },
+        {
+          "event_id": "let-2026-wistron",
+          "name": "Wistron Ladies Open",
+          "start_date": "2026-10-29",
+          "end_date": "2026-11-01",
+          "location": "Sunrise Golf and Country Club · Chinese Taipei"
+        },
+        {
+          "event_id": "let-2026-china",
+          "name": "Aramco China Championship",
+          "start_date": "2026-11-05",
+          "end_date": "2026-11-08",
+          "location": "Mission Hills · China"
+        },
+        {
+          "event_id": "let-2026-spain",
+          "name": "Andalucia Costa del Sol Open de Espana",
+          "start_date": "2026-11-26",
+          "end_date": "2026-11-29",
+          "location": "Spain"
+        }
       ]
     },
     {
@@ -2750,27 +3303,153 @@
         "Sunshine Tour"
       ],
       "official_events": [
-        {"event_id":"sun-2026-cell-c","name":"Cell C Challenge","start_date":"2026-01-22","end_date":"2026-01-25","location":"Killarney Country Club · South Africa"},
-        {"event_id":"sun-2026-sdc","name":"SDC Open","start_date":"2026-01-29","end_date":"2026-02-01","location":"Zebula Golf Estate and Spa · South Africa"},
-        {"event_id":"sun-2026-circa","name":"CIRCA Cape Town Open","start_date":"2026-02-05","end_date":"2026-02-08","location":"Royal Cape Golf Club · South Africa"},
-        {"event_id":"sun-2026-ntt","name":"NTT DATA Pro-Am in partnership with Standard Bank","start_date":"2026-02-12","end_date":"2026-02-15","location":"Fancourt · South Africa"},
-        {"event_id":"sun-2026-jonsson","name":"Jonsson Workwear Open","start_date":"2026-02-19","end_date":"2026-02-22","location":"Durban Country Club · South Africa"},
-        {"event_id":"sun-2026-sa-open","name":"Investec South African Open","start_date":"2026-02-26","end_date":"2026-03-01","location":"Stellenbosch Golf Club · South Africa"},
-        {"event_id":"sun-2026-joburg","name":"Joburg Open","start_date":"2026-03-05","end_date":"2026-03-08","location":"Houghton Golf Club · South Africa"},
-        {"event_id":"sun-2026-playoffs","name":"Courier Guy Playoffs Tournament","start_date":"2026-03-12","end_date":"2026-03-15","location":"Gauteng · South Africa"},
-        {"event_id":"sun-2026-dni","name":"DNi Tour Championship presented by RMB","start_date":"2026-03-26","end_date":"2026-03-29","location":"De Zalze · South Africa"},
-        {"event_id":"sun-2026-mediclinic","name":"Mediclinic Invitational","start_date":"2026-04-15","end_date":"2026-04-18","location":"South Africa"},
-        {"event_id":"sun-2026-zimbabwe","name":"FBC ZIM Open","start_date":"2026-05-07","end_date":"2026-05-10","location":"Royal Harare Golf Club · Zimbabwe"},
-        {"event_id":"sun-2026-kit-kat","name":"Kit Kat Cash and Carry Pro-Am","start_date":"2026-05-14","end_date":"2026-05-17","location":"South Africa"},
-        {"event_id":"sun-2026-boardwalk","name":"SunBet Challenge hosted by Sun Boardwalk","start_date":"2026-05-20","end_date":"2026-05-22","location":"Eastern Cape · South Africa"},
-        {"event_id":"sun-2026-waterfall","name":"Waterfall City Tournament of Champions","start_date":"2026-06-04","end_date":"2026-06-07","location":"Gauteng · South Africa"},
-        {"event_id":"sun-2026-mopani","name":"Mopani Zambia Open","start_date":"2026-06-11","end_date":"2026-06-14","location":"Zambia"},
-        {"event_id":"sun-2026-kcm","name":"KCM Golf Challenge","start_date":"2026-06-18","end_date":"2026-06-21","location":"Zambia"},
-        {"event_id":"sun-2026-times-square","name":"SunBet Challenge Times Square Casino","start_date":"2026-08-05","end_date":"2026-08-07","location":"South Africa"},
-        {"event_id":"sun-2026-wild-coast","name":"SunBet Challenge hosted by Wild Coast Sun","start_date":"2026-08-26","end_date":"2026-08-28","location":"South Africa"},
-        {"event_id":"sun-2026-sibaya","name":"SunBet Challenge hosted by Sun Sibaya","start_date":"2026-09-09","end_date":"2026-09-11","location":"South Africa"},
-        {"event_id":"sun-2026-limpopo","name":"Limpopo Championship","start_date":"2026-10-01","end_date":"2026-10-04","location":"South Africa"},
-        {"event_id":"sun-2026-fortress","name":"The Fortress Invitational","start_date":"2026-10-08","end_date":"2026-10-11","location":"South Africa"}
+        {
+          "event_id": "sun-2026-cell-c",
+          "name": "Cell C Challenge",
+          "start_date": "2026-01-22",
+          "end_date": "2026-01-25",
+          "location": "Killarney Country Club · South Africa"
+        },
+        {
+          "event_id": "sun-2026-sdc",
+          "name": "SDC Open",
+          "start_date": "2026-01-29",
+          "end_date": "2026-02-01",
+          "location": "Zebula Golf Estate and Spa · South Africa"
+        },
+        {
+          "event_id": "sun-2026-circa",
+          "name": "CIRCA Cape Town Open",
+          "start_date": "2026-02-05",
+          "end_date": "2026-02-08",
+          "location": "Royal Cape Golf Club · South Africa"
+        },
+        {
+          "event_id": "sun-2026-ntt",
+          "name": "NTT DATA Pro-Am in partnership with Standard Bank",
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-15",
+          "location": "Fancourt · South Africa"
+        },
+        {
+          "event_id": "sun-2026-jonsson",
+          "name": "Jonsson Workwear Open",
+          "start_date": "2026-02-19",
+          "end_date": "2026-02-22",
+          "location": "Durban Country Club · South Africa"
+        },
+        {
+          "event_id": "sun-2026-sa-open",
+          "name": "Investec South African Open",
+          "start_date": "2026-02-26",
+          "end_date": "2026-03-01",
+          "location": "Stellenbosch Golf Club · South Africa"
+        },
+        {
+          "event_id": "sun-2026-joburg",
+          "name": "Joburg Open",
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-08",
+          "location": "Houghton Golf Club · South Africa"
+        },
+        {
+          "event_id": "sun-2026-playoffs",
+          "name": "Courier Guy Playoffs Tournament",
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-15",
+          "location": "Gauteng · South Africa"
+        },
+        {
+          "event_id": "sun-2026-dni",
+          "name": "DNi Tour Championship presented by RMB",
+          "start_date": "2026-03-26",
+          "end_date": "2026-03-29",
+          "location": "De Zalze · South Africa"
+        },
+        {
+          "event_id": "sun-2026-mediclinic",
+          "name": "Mediclinic Invitational",
+          "start_date": "2026-04-15",
+          "end_date": "2026-04-18",
+          "location": "South Africa"
+        },
+        {
+          "event_id": "sun-2026-zimbabwe",
+          "name": "FBC ZIM Open",
+          "start_date": "2026-05-07",
+          "end_date": "2026-05-10",
+          "location": "Royal Harare Golf Club · Zimbabwe"
+        },
+        {
+          "event_id": "sun-2026-kit-kat",
+          "name": "Kit Kat Cash and Carry Pro-Am",
+          "start_date": "2026-05-14",
+          "end_date": "2026-05-17",
+          "location": "South Africa"
+        },
+        {
+          "event_id": "sun-2026-boardwalk",
+          "name": "SunBet Challenge hosted by Sun Boardwalk",
+          "start_date": "2026-05-20",
+          "end_date": "2026-05-22",
+          "location": "Eastern Cape · South Africa"
+        },
+        {
+          "event_id": "sun-2026-waterfall",
+          "name": "Waterfall City Tournament of Champions",
+          "start_date": "2026-06-04",
+          "end_date": "2026-06-07",
+          "location": "Gauteng · South Africa"
+        },
+        {
+          "event_id": "sun-2026-mopani",
+          "name": "Mopani Zambia Open",
+          "start_date": "2026-06-11",
+          "end_date": "2026-06-14",
+          "location": "Zambia"
+        },
+        {
+          "event_id": "sun-2026-kcm",
+          "name": "KCM Golf Challenge",
+          "start_date": "2026-06-18",
+          "end_date": "2026-06-21",
+          "location": "Zambia"
+        },
+        {
+          "event_id": "sun-2026-times-square",
+          "name": "SunBet Challenge Times Square Casino",
+          "start_date": "2026-08-05",
+          "end_date": "2026-08-07",
+          "location": "South Africa"
+        },
+        {
+          "event_id": "sun-2026-wild-coast",
+          "name": "SunBet Challenge hosted by Wild Coast Sun",
+          "start_date": "2026-08-26",
+          "end_date": "2026-08-28",
+          "location": "South Africa"
+        },
+        {
+          "event_id": "sun-2026-sibaya",
+          "name": "SunBet Challenge hosted by Sun Sibaya",
+          "start_date": "2026-09-09",
+          "end_date": "2026-09-11",
+          "location": "South Africa"
+        },
+        {
+          "event_id": "sun-2026-limpopo",
+          "name": "Limpopo Championship",
+          "start_date": "2026-10-01",
+          "end_date": "2026-10-04",
+          "location": "South Africa"
+        },
+        {
+          "event_id": "sun-2026-fortress",
+          "name": "The Fortress Invitational",
+          "start_date": "2026-10-08",
+          "end_date": "2026-10-11",
+          "location": "South Africa"
+        }
       ]
     },
     {
@@ -3574,7 +4253,10 @@
       "official_schedule_url": "https://www.fivb.com/volleyball/",
       "coverage_status": "no-current-edition",
       "source_note": "No standalone 2026 Volleyball Challenger Cup edition is published; do not substitute other FIVB competitions.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Volleyball Challenger Cup | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "Volleyball Challenger Cup | Men and Women"
+      ]
     },
     {
       "id": "volleyball-fivb-club-world",
@@ -3606,7 +4288,10 @@
           "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/club-world-championship-men/competition/host-city"
         }
       ],
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Volleyball World Club Championships | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "Volleyball World Club Championships | Men and Women"
+      ]
     },
     {
       "id": "volleyball-fivb-beach-pro-tour",
@@ -3617,7 +4302,10 @@
       "official_schedule_url": "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/",
       "coverage_status": "missing",
       "source_note": "Approved annual tour; a dependable event-level official feed is still required before stops can enter Review Today.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Beach Pro Tour | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "Beach Pro Tour | Men and Women"
+      ]
     },
     {
       "id": "volleyball-fivb-world-championships",
@@ -3628,7 +4316,10 @@
       "official_schedule_url": "https://www.fivb.com/volleyball/",
       "coverage_status": "no-current-edition",
       "source_note": "No senior 2026 edition; age-group world championships are not routed through this approval.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Volleyball World Championships | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "Volleyball World Championships | Men and Women"
+      ]
     },
     {
       "id": "volleyball-fivb-beach-world-tour",
@@ -3639,7 +4330,10 @@
       "official_schedule_url": "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/",
       "coverage_status": "legacy-name",
       "source_note": "Legacy catalog name superseded by Beach Pro Tour; retained separately to preserve approval integrity.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Beach Volleyball World Tour | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "Beach Volleyball World Tour | Men and Women"
+      ]
     },
     {
       "id": "volleyball-fivb-beach-world-tour-championships",
@@ -3650,7 +4344,10 @@
       "official_schedule_url": "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/",
       "coverage_status": "legacy-name",
       "source_note": "No distinct 2026 edition published under this legacy catalog name.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Beach Volleyball World Tour Championships | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "Beach Volleyball World Tour Championships | Men and Women"
+      ]
     },
     {
       "id": "volleyball-fivb-beach-continental-cup",
@@ -3661,7 +4358,10 @@
       "official_schedule_url": "https://www.fivb.com/beach-volleyball/",
       "coverage_status": "no-current-edition",
       "source_note": "Cycle-based event with no 2026 edition published; do not substitute other beach competitions.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "FIVB Beach Volleyball Continental Cup | Men and Women"]
+      "catalog_terms": [
+        "Fédération Internationale de Volleyball (FIVB)",
+        "FIVB Beach Volleyball Continental Cup | Men and Women"
+      ]
     },
     {
       "id": "volleyball-brazil-superliga-men",
@@ -3672,7 +4372,10 @@
       "official_schedule_url": "https://cbv.com.br/",
       "coverage_status": "missing",
       "source_note": "Approved league; exact 2026–27 CBV fixture coverage is not yet connected.",
-      "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Superliga Masculina | Men"]
+      "catalog_terms": [
+        "Brazilian Volleyball Confederation (CBV)",
+        "Superliga Masculina | Men"
+      ]
     },
     {
       "id": "volleyball-brazil-cup-men",
@@ -3683,7 +4386,10 @@
       "official_schedule_url": "https://cbv.com.br/",
       "coverage_status": "pending-publication",
       "source_note": "Exact 2027 cup dates are pending official publication.",
-      "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Brazilian Cup | Men"]
+      "catalog_terms": [
+        "Brazilian Volleyball Confederation (CBV)",
+        "Brazilian Cup | Men"
+      ]
     },
     {
       "id": "volleyball-brazil-supercopa-men",
@@ -3694,7 +4400,10 @@
       "official_schedule_url": "https://cbv.com.br/",
       "coverage_status": "pending-publication",
       "source_note": "Exact 2026 Supercopa date is pending official publication.",
-      "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Brazilian Supercopa | Men"]
+      "catalog_terms": [
+        "Brazilian Volleyball Confederation (CBV)",
+        "Brazilian Supercopa | Men"
+      ]
     },
     {
       "id": "volleyball-brazil-superliga-women",
@@ -3705,7 +4414,10 @@
       "official_schedule_url": "https://cbv.com.br/",
       "coverage_status": "missing",
       "source_note": "Approved league; exact 2026–27 CBV fixture coverage is not yet connected.",
-      "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Superliga Feminina | Women"]
+      "catalog_terms": [
+        "Brazilian Volleyball Confederation (CBV)",
+        "Superliga Feminina | Women"
+      ]
     },
     {
       "id": "volleyball-brazil-cup-women",
@@ -3716,7 +4428,10 @@
       "official_schedule_url": "https://cbv.com.br/",
       "coverage_status": "pending-publication",
       "source_note": "Exact 2027 cup dates are pending official publication.",
-      "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Brazilian Cup | Women"]
+      "catalog_terms": [
+        "Brazilian Volleyball Confederation (CBV)",
+        "Brazilian Cup | Women"
+      ]
     },
     {
       "id": "volleyball-brazil-supercopa-women",
@@ -3727,7 +4442,10 @@
       "official_schedule_url": "https://cbv.com.br/",
       "coverage_status": "pending-publication",
       "source_note": "Exact 2026 Supercopa date is pending official publication.",
-      "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Brazilian Supercopa | Women"]
+      "catalog_terms": [
+        "Brazilian Volleyball Confederation (CBV)",
+        "Brazilian Supercopa | Women"
+      ]
     },
     {
       "id": "volleyball-italy-superlega",
@@ -3738,7 +4456,10 @@
       "official_schedule_url": "https://ww2.legavolley.it/Calendario.asp",
       "coverage_status": "missing",
       "source_note": "The official 2026–27 calendar is published, but a dependable unattended fixture adapter is still required.",
-      "catalog_terms": ["Italian Volleyball Federation (FIPAV)", "SuperLega | Men"]
+      "catalog_terms": [
+        "Italian Volleyball Federation (FIPAV)",
+        "SuperLega | Men"
+      ]
     },
     {
       "id": "volleyball-italy-serie-a1-women",
@@ -3749,7 +4470,10 @@
       "official_schedule_url": "https://www.legavolleyfemminile.it/",
       "coverage_status": "missing",
       "source_note": "Approved league; exact 2026–27 fixture coverage is not yet connected.",
-      "catalog_terms": ["Italian Volleyball Federation (FIPAV)", "Serie A1 | Women"]
+      "catalog_terms": [
+        "Italian Volleyball Federation (FIPAV)",
+        "Serie A1 | Women"
+      ]
     },
     {
       "id": "volleyball-cev-champions-league",
@@ -3760,7 +4484,10 @@
       "official_schedule_url": "https://livescores.cev.eu/",
       "coverage_status": "missing",
       "source_note": "Approved competition; individual 2026–27 fixtures require a dependable official event feed before entering Review Today.",
-      "catalog_terms": ["European Volleyball Confederation (CEV)", "CEV Champions League | Men and Women"]
+      "catalog_terms": [
+        "European Volleyball Confederation (CEV)",
+        "CEV Champions League | Men and Women"
+      ]
     },
     {
       "id": "ncaa-volleyball",
