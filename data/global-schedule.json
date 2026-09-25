@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T18:53:39.799364+00:00",
+  "generated_at": "2026-09-25T19:03:10.041003+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-09-25",
   "window_end": "2026-10-02",
@@ -39052,6 +39052,23 @@
       "events": 0,
       "note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
       "checked_at": "2026-09-25T18:53:39.799364+00:00"
+    },
+    {
+      "id": "ncaa-baseball",
+      "sport": "NCAA Baseball",
+      "league": "NCAA Baseball",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/baseball/college-baseball/scoreboard",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/baseball/d1",
+      "source_note": "ESPN NCAA Baseball fixture feed; NCAA Division I scoreboard is the scope reference.",
+      "catalog_terms": [
+        "Division I Baseball | Men"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-25T19:03:10.041003+00:00"
     }
   ],
   "coverage_gaps": [

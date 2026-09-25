@@ -382,11 +382,67 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
 
+    def test_ncaa_baseball_adapter_maps_only_division_one_men(self):
+        identity = ("NCAA Baseball", "Division I Baseball | Men")
+        row = self.rows[identity]
+        self.assertEqual("RECURRING_WINDOW", row["season_state"])
+        self.assertEqual("February–June", row["season_window"])
+        self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
+        self.assertEqual(
+            [{
+                "id": "ncaa-baseball",
+                "type": "adapter",
+                "configured_league": "NCAA Baseball",
+                "refresh_ok": True,
+                "events_in_window": 0,
+            }],
+            row["sources"],
+        )
+
+        season_map = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
+        baseball = next(sport for sport in season_map["sports"] if sport["sport"] == "NCAA Baseball")
+        self.assertEqual(
+            [{
+                "key": "ncaa-baseball-di",
+                "source_id": "ncaa-baseball",
+                "catalog_event": "Division I Baseball | Men",
+                "season_window": "February–June",
+                "season_start": "02-01",
+                "season_end": "06-30",
+                "last_verified": "2026-09-16",
+                "restrictions": [],
+            }],
+            baseball["groups"][0]["events"],
+        )
+
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        configured = {source["id"]: source for source in config["sources"]}["ncaa-baseball"]
+        self.assertEqual("NCAA Baseball", configured["sport"])
+        self.assertEqual(["Division I Baseball | Men"], configured["catalog_terms"])
+        self.assertEqual("https://www.ncaa.com/scoreboard/baseball/d1", configured["official_schedule_url"])
+
+        schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text(encoding="utf-8"))
+        refreshed = {source["id"]: source for source in schedule["sources"]}["ncaa-baseball"]
+        self.assertTrue(refreshed["ok"])
+        self.assertEqual(0, refreshed["events"])
+        self.assertFalse(any(event["source_id"] == "ncaa-baseball" for event in schedule["events"]))
+
+        registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
+        registered = next(
+            competition for competition in registry["competitions"]
+            if competition["sport"] == "NCAA Baseball" and competition["league"] == identity[1]
+        )
+        self.assertEqual(["ncaa-baseball"], registered["source_ids"])
+
+        # The football feed still does not establish FBS-only scope.
+        fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
+        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
         self.assertEqual(
-            [{"sport": "Football", "league": "NCAA Football"}, {"sport": "Volleyball", "league": "NCAA Volleyball"}],
+            [{"sport": "Football", "league": "NCAA Football"}],
             self.inventory["summary"]["schedule_only_not_independent_approvals"],
         )
         self.assertEqual(len(self.rows), self.inventory["summary"]["catalog_operational_identities"])
