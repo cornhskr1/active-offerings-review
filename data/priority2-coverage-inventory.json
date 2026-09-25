@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T13:26:54.100592+00:00",
-  "schedule_generated_at": "2026-09-25T13:22:10.312449+00:00",
+  "registry_generated_at": "2026-09-25T13:55:47.639657+00:00",
+  "schedule_generated_at": "2026-09-25T13:42:19.695625+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 143,
-      "OFFICIAL_WINDOW_ONLY": 43,
+      "NO_LINKED_SOURCE": 137,
+      "OFFICIAL_WINDOW_ONLY": 49,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 45,
-      "DESCRIPTIVE_WINDOW": 54,
+      "DATED_WINDOW": 49,
+      "DESCRIPTIVE_WINDOW": 55,
       "DOCUMENTED_HOLD": 6,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 462
+      "RECURRING_WINDOW": 457
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -55,7 +55,7 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 23,
+      "no_linked_source": 17,
       "adapter_gaps": 6,
       "pending_dates": 0
     },
@@ -1495,7 +1495,7 @@
           "id": "basketball-lt-cup",
           "type": "official-event-window",
           "configured_league": "King Mindaugas Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1558,7 +1558,7 @@
           "id": "basketball-il-league-cup",
           "type": "official-event-window",
           "configured_league": "League Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1684,7 +1684,7 @@
           "id": "basketball-ar-lnb",
           "type": "official-event-window",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1726,7 +1726,7 @@
           "id": "basketball-us-nba-draft",
           "type": "official-event-window",
           "configured_league": "NBA Draft",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1794,11 +1794,19 @@
       "identity_key": "basketball-br-nbb",
       "approval_parent": "Novo Basquete Brasil (NBB) | Men",
       "kind": "catalog",
-      "season_window": "October–June",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "2026-27 season begins October 17, 2026; official schedule currently published through December 29",
+      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_status": "out",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-br-nbb",
+          "type": "official-event-window",
+          "configured_league": "Novo Basquete Brasil (NBB) | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1849,11 +1857,19 @@
       "identity_key": "basketball-ph-pba",
       "approval_parent": "Philippine Basketball Association (PBA) | Men",
       "kind": "catalog",
-      "season_window": "Year-round conference calendar",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "Season 50 conference calendar; official schedule currently published through October 21, 2026",
+      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_status": "in",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ph-pba",
+          "type": "official-event-window",
+          "configured_league": "Philippine Basketball Association (PBA) | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1862,11 +1878,19 @@
       "identity_key": "basketball-ph-philippine-cup",
       "approval_parent": "Philippine Cup | Men",
       "kind": "catalog",
-      "season_window": "Conference dates vary annually",
-      "season_state": "DESCRIPTIVE_WINDOW",
-      "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "October 5, 2025–February 1, 2026; next conference dates pending",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ph-philippine-cup",
+          "type": "official-event-window",
+          "configured_league": "Philippine Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1875,11 +1899,19 @@
       "identity_key": "basketball-pl-cup",
       "approval_parent": "Polish Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual February event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 19–22, 2026; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-pl-cup",
+          "type": "official-event-window",
+          "configured_league": "Polish Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1888,11 +1920,19 @@
       "identity_key": "basketball-pl-supercup",
       "approval_parent": "Polish Supercup | Men",
       "kind": "catalog",
-      "season_window": "Annual September event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 26–27, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-pl-supercup",
+          "type": "official-event-window",
+          "configured_league": "Polish Supercup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1922,11 +1962,19 @@
       "identity_key": "basketball-tr-presidential",
       "approval_parent": "Presidential Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual September event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 22, 2026; next edition date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-tr-presidential",
+          "type": "official-event-window",
+          "configured_league": "Presidential Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2186,7 +2234,7 @@
           "type": "adapter",
           "configured_league": "WNBA",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 10
         }
       ],
       "events_in_window": 1

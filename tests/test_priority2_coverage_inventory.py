@@ -160,7 +160,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_basketball_date_reconciliation_is_complete(self):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
-        self.assertEqual(23, basketball["no_linked_source"])
+        self.assertEqual(17, basketball["no_linked_source"])
         self.assertEqual(0, basketball["pending_dates"])
         self.assertEqual(6, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
@@ -268,8 +268,39 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([], row["sources"])
                 self.assertIn(reason, row["hold_reason"])
 
-        self.assertEqual(23, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
         self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+
+    def test_fifth_basketball_source_batch_uses_exact_or_descriptive_official_windows(self):
+        dated_windows = {
+            "Philippine Cup | Men": "basketball-ph-philippine-cup",
+            "Polish Cup | Men": "basketball-pl-cup",
+            "Polish Supercup | Men": "basketball-pl-supercup",
+            "Presidential Cup | Men": "basketball-tr-presidential",
+        }
+        for league, source_id in dated_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        descriptive_windows = {
+            "Novo Basquete Brasil (NBB) | Men": "basketball-br-nbb",
+            "Philippine Basketball Association (PBA) | Men": "basketball-ph-pba",
+        }
+        for league, source_id in descriptive_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DESCRIPTIVE_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(6, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
