@@ -188,6 +188,11 @@ BODY_URL_OVERRIDES = {
 }
 
 EVENT_URL_OVERRIDES = {
+    "basketball-de-cup": "https://www.easycredit-bbl.de/saison/spielplaene_liga-pokalspiele/bbl-pokal",
+    "basketball-us-big3": "https://big3.com/scores/",
+    "basketball-caribbean-women": "https://www.fiba.basketball/en/events/fiba-cbc-womens-championship-2025",
+    "basketball-central-american-women": "https://www.fiba.basketball/en/events/fiba-cocaba-womens-championship-2025",
+    "basketball-centrobasket-women": "https://www.fiba.basketball/en/events/fiba-centrobasket-womens-championship-2026",
     "boxing-ibf": "https://www.ibf-usba-boxing.com/",
     "boxing-wba": "https://www.wbaboxing.com/",
     "boxing-wbc": "https://wbcboxing.com/",
