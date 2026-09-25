@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T04:19:22.635936+00:00",
-  "schedule_generated_at": "2026-09-24T23:18:50.117519+00:00",
-  "schedule_window_start": "2026-09-24",
-  "schedule_window_end": "2026-10-01",
+  "registry_generated_at": "2026-09-25T11:11:13.617112+00:00",
+  "schedule_generated_at": "2026-09-25T11:03:02.358511+00:00",
+  "schedule_window_start": "2026-09-25",
+  "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
     "catalog_operational_identities": 722,
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 163,
-      "OFFICIAL_WINDOW_ONLY": 23,
+      "NO_LINKED_SOURCE": 158,
+      "OFFICIAL_WINDOW_ONLY": 28,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 28,
-      "DESCRIPTIVE_WINDOW": 56,
-      "DOCUMENTED_HOLD": 2,
+      "DATED_WINDOW": 33,
+      "DESCRIPTIVE_WINDOW": 53,
+      "DOCUMENTED_HOLD": 3,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 481
+      "RECURRING_WINDOW": 478
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -55,7 +55,7 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 43,
+      "no_linked_source": 38,
       "adapter_gaps": 6,
       "pending_dates": 0
     },
@@ -377,10 +377,10 @@
           "type": "adapter",
           "configured_league": "MLB",
           "refresh_ok": true,
-          "events_in_window": 69
+          "events_in_window": 57
         }
       ],
-      "events_in_window": 27
+      "events_in_window": 18
     },
     {
       "sport": "Baseball",
@@ -506,9 +506,10 @@
       "identity_key": "basketball-de-champions",
       "approval_parent": "BBL Champions Cup",
       "kind": "catalog",
-      "season_window": "Annual September event",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "No current competition published; last identified edition September 27, 2015",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "The current Basketball Bundesliga calendar publishes the league and BBL-Pokal but no BBL Champions Cup. The catalog entry remains approved but must stay fail-closed unless the competition is revived and an official current schedule is published.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -519,11 +520,19 @@
       "identity_key": "basketball-de-cup",
       "approval_parent": "BBL-Pokal | Men",
       "kind": "catalog",
-      "season_window": "September–February",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 10, 2026–February 21, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-de-cup",
+          "type": "official-event-window",
+          "configured_league": "BBL-Pokal | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -532,11 +541,19 @@
       "identity_key": "basketball-us-big3",
       "approval_parent": "BIG3 | Men",
       "kind": "catalog",
-      "season_window": "June–August",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "June 20–August 9, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-us-big3",
+          "type": "official-event-window",
+          "configured_league": "BIG3 | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -671,11 +688,19 @@
       "identity_key": "basketball-caribbean-women",
       "approval_parent": "Caribbean Women's Championship | Women",
       "kind": "catalog",
-      "season_window": "Periodic tournament",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_window": "November 12–16, 2025; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-caribbean-women",
+          "type": "official-event-window",
+          "configured_league": "Caribbean Women's Championship | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -684,11 +709,19 @@
       "identity_key": "basketball-central-american-women",
       "approval_parent": "Central American Women's Championship | Women",
       "kind": "catalog",
-      "season_window": "Periodic tournament",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_window": "July 22–27, 2025; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-central-american-women",
+          "type": "official-event-window",
+          "configured_league": "Central American Women's Championship | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -697,11 +730,19 @@
       "identity_key": "basketball-centrobasket-women",
       "approval_parent": "Centrobasket Women's Championship | Women",
       "kind": "catalog",
-      "season_window": "Periodic tournament",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_window": "July 12–18, 2026; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-centrobasket-women",
+          "type": "official-event-window",
+          "configured_league": "Centrobasket Women's Championship | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1747,10 +1788,10 @@
           "type": "thesportsdb",
           "configured_league": "Polska Liga Koszykówki (PLK)",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -2022,10 +2063,10 @@
           "type": "adapter",
           "configured_league": "WNBA",
           "refresh_ok": true,
-          "events_in_window": 15
+          "events_in_window": 12
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 1
     },
     {
       "sport": "Bowling",
@@ -3744,7 +3785,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 60
+      "events_in_window": 48
     },
     {
       "sport": "Esports",
@@ -3849,7 +3890,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 8
     },
     {
       "sport": "Esports",
@@ -3909,10 +3950,10 @@
           "type": "cfl-schedule",
           "configured_league": "Canadian Football League (CFL)",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 6
     },
     {
       "sport": "Football",
@@ -3985,10 +4026,10 @@
           "type": "adapter",
           "configured_league": "NFL",
           "refresh_ok": true,
-          "events_in_window": 17
+          "events_in_window": 16
         }
       ],
-      "events_in_window": 17
+      "events_in_window": 16
     },
     {
       "sport": "Football",
@@ -4268,10 +4309,10 @@
           "type": "espn-golf-season",
           "configured_league": "PGA Tour Champions",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Golf",
@@ -4540,10 +4581,10 @@
           "type": "adapter",
           "configured_league": "NHL",
           "refresh_ok": true,
-          "events_in_window": 45
+          "events_in_window": 39
         }
       ],
-      "events_in_window": 44
+      "events_in_window": 39
     },
     {
       "sport": "Ice Hockey",
@@ -6480,10 +6521,10 @@
           "type": "espn-daily",
           "configured_league": "Argentine Primera División | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -7173,10 +7214,10 @@
           "type": "espn-daily",
           "configured_league": "CONCACAF Nations League | Men",
           "refresh_ok": true,
-          "events_in_window": 42
+          "events_in_window": 44
         }
       ],
-      "events_in_window": 42
+      "events_in_window": 44
     },
     {
       "sport": "Soccer",
@@ -7257,10 +7298,10 @@
           "type": "espn-daily",
           "configured_league": "Campeonato Brasileiro Série A | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -7278,10 +7319,10 @@
           "type": "espn-daily",
           "configured_league": "Campeonato Brasileiro Série B | Men",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 16
         }
       ],
-      "events_in_window": 12
+      "events_in_window": 16
     },
     {
       "sport": "Soccer",
@@ -7628,10 +7669,10 @@
           "type": "espn-daily",
           "configured_league": "Copa Bolivia | Men",
           "refresh_ok": true,
-          "events_in_window": 16
+          "events_in_window": 18
         }
       ],
-      "events_in_window": 16
+      "events_in_window": 18
     },
     {
       "sport": "Soccer",
@@ -8510,10 +8551,10 @@
           "type": "espn-daily",
           "configured_league": "Eerste Divisie | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 9
     },
     {
       "sport": "Soccer",
@@ -9455,10 +9496,10 @@
           "type": "espn-daily",
           "configured_league": "International Friendlies | Men",
           "refresh_ok": true,
-          "events_in_window": 40
+          "events_in_window": 38
         }
       ],
-      "events_in_window": 37
+      "events_in_window": 35
     },
     {
       "sport": "Soccer",
@@ -10750,7 +10791,7 @@
           "type": "espn-daily",
           "configured_league": "National Women’s Soccer League (NWSL) | Women",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 10
         }
       ],
       "events_in_window": 0
@@ -10792,10 +10833,10 @@
           "type": "espn-daily",
           "configured_league": "National Women’s Soccer League (NWSL) | Women",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 10
     },
     {
       "sport": "Soccer",
@@ -11212,10 +11253,10 @@
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -11464,10 +11505,10 @@
           "type": "espn-daily",
           "configured_league": "Scottish Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -11555,10 +11596,10 @@
           "type": "espn-daily",
           "configured_league": "Segunda División | Men",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 12
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 12
     },
     {
       "sport": "Soccer",
@@ -13032,10 +13073,10 @@
           "type": "espn-daily",
           "configured_league": "UEFA Nations League | Men",
           "refresh_ok": true,
-          "events_in_window": 60
+          "events_in_window": 62
         }
       ],
-      "events_in_window": 60
+      "events_in_window": 62
     },
     {
       "sport": "Soccer",
