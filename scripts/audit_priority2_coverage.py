@@ -19,8 +19,6 @@ def source_ids(item):
     return sorted(set(([item["source_id"]] if item.get("source_id") else []) + item.get("source_ids", [])))
 
 
-    if item.get("season_window_complete") is False:
-        return "PARTIAL_WINDOW"
 def season_state(item):
     if item.get("season_window_complete") is False:
         return "PARTIAL_WINDOW"
