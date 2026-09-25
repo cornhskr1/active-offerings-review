@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T11:47:55.384056+00:00",
-  "schedule_generated_at": "2026-09-25T11:38:43.337526+00:00",
+  "registry_generated_at": "2026-09-25T13:26:54.100592+00:00",
+  "schedule_generated_at": "2026-09-25T13:22:10.312449+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 147,
-      "OFFICIAL_WINDOW_ONLY": 39,
+      "NO_LINKED_SOURCE": 143,
+      "OFFICIAL_WINDOW_ONLY": 43,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 43,
-      "DESCRIPTIVE_WINDOW": 52,
-      "DOCUMENTED_HOLD": 4,
+      "DATED_WINDOW": 45,
+      "DESCRIPTIVE_WINDOW": 54,
+      "DOCUMENTED_HOLD": 6,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 468
+      "RECURRING_WINDOW": 462
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -55,7 +55,7 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 27,
+      "no_linked_source": 23,
       "adapter_gaps": 6,
       "pending_dates": 0
     },
@@ -533,7 +533,7 @@
           "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -760,7 +760,7 @@
           "id": "basketball-ph-commissioners",
           "type": "official-event-window",
           "configured_league": "Commissioner’s Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -802,7 +802,7 @@
           "id": "basketball-br-super8",
           "type": "official-event-window",
           "configured_league": "Copa Super 8 | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -823,7 +823,7 @@
           "id": "basketball-es-copa",
           "type": "official-event-window",
           "configured_league": "Copa del Rey | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -844,7 +844,7 @@
           "id": "basketball-it-cup",
           "type": "official-event-window",
           "configured_league": "Coppa Italia | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -900,11 +900,11 @@
           "id": "basketball-euroleague",
           "type": "official-event-window",
           "configured_league": "EuroLeague | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -1334,11 +1334,11 @@
           "id": "basketball-womens-euroleague",
           "type": "official-event-window",
           "configured_league": "FIBA Women's EuroLeague | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -1355,7 +1355,7 @@
           "id": "basketball-fr-cup",
           "type": "official-event-window",
           "configured_league": "French Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1376,7 +1376,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1418,7 +1418,7 @@
           "id": "basketball-gr-cup",
           "type": "official-event-window",
           "configured_league": "Greek Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1439,11 +1439,11 @@
           "id": "basketball-gr-supercup",
           "type": "official-event-window",
           "configured_league": "Greek Super Cup | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -1460,11 +1460,11 @@
           "id": "basketball-au-ignite",
           "type": "official-event-window",
           "configured_league": "Ignite Cup | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -1472,9 +1472,10 @@
       "identity_key": "basketball-kr-cup",
       "approval_parent": "KBL Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual October event",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "2026 KBL Cup dates not published as of September 25, 2026",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "hold",
+      "hold_reason": "The Korean Basketball League has not published a 2026 KBL Cup schedule; regular-season or Korea Cup dates cannot stand in for this catalog identity",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -1485,11 +1486,19 @@
       "identity_key": "basketball-lt-cup",
       "approval_parent": "King Mindaugas Cup | Men",
       "kind": "catalog",
-      "season_window": "October–February",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "October 6, 2026–February 21, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-lt-cup",
+          "type": "official-event-window",
+          "configured_league": "King Mindaugas Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1540,11 +1549,19 @@
       "identity_key": "basketball-il-league-cup",
       "approval_parent": "League Cup | Men",
       "kind": "catalog",
-      "season_window": "September–October",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Began September 8, 2026; knockout schedule currently published through October 4",
+      "season_state": "DESCRIPTIVE_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-il-league-cup",
+          "type": "official-event-window",
+          "configured_league": "League Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1658,11 +1675,19 @@
       "identity_key": "basketball-ar-lnb",
       "approval_parent": "Liga Nacional de Básquet (LNB) | Men",
       "kind": "catalog",
-      "season_window": "September–June",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026-27 season begins September 27, 2026; completion date not yet published",
+      "season_state": "DESCRIPTIVE_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ar-lnb",
+          "type": "official-event-window",
+          "configured_league": "Liga Nacional de Básquet (LNB) | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1692,11 +1717,19 @@
       "identity_key": "basketball-us-nba-draft",
       "approval_parent": "NBA Draft",
       "kind": "catalog",
-      "season_window": "Annual June event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "June 23–24, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-us-nba-draft",
+          "type": "official-event-window",
+          "configured_league": "NBA Draft",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1705,9 +1738,10 @@
       "identity_key": "basketball-us-nba-international-preseason",
       "approval_parent": "NBA Preseason Games v. International Teams",
       "kind": "catalog",
-      "season_window": "Annual October preseason",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "No 2026 NBA-versus-international-club preseason games verified as of September 25, 2026",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "hold",
+      "hold_reason": "The NBA's published 2026 preseason schedule lists NBA-versus-NBA global games, but no matchup against a non-NBA international club; global location alone does not satisfy this identity",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -3979,7 +4013,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 11
     },
     {
       "sport": "Esports",
