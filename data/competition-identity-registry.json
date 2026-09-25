@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T23:21:59.625381+00:00",
+  "generated_at": "2026-09-24T23:46:25.651385+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-24T23:18:50.117519+00:00",
@@ -638,9 +638,17 @@
     {
       "sport": "Basketball",
       "league": "Copa Chile | Men",
-      "source_ids": [],
+      "source_ids": [
+        "chile-copa"
+      ],
       "participants": [],
       "events": [],
+      "source_labels": [
+        {
+          "name": "Copa Chile",
+          "source_id": "chile-copa"
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -18888,8 +18896,9 @@
     {
       "area": "Basketball",
       "state": "PARTIAL SCHEDULE COVERAGE",
-      "note": "5 approved competitions still lack a dependable automated adapter.",
+      "note": "6 approved competitions still lack a dependable automated adapter.",
       "competitions": [
+        "Copa Chile",
         "FIBA 3x3 World Cup | Men",
         "FIBA 3x3 World Cup | Women",
         "FIBA Basketball World Cup | Men",
