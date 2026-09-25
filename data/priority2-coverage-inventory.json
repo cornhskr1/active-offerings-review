@@ -2,7 +2,7 @@
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
   "registry_generated_at": "2026-09-25T11:47:55.384056+00:00",
-  "schedule_generated_at": "2026-09-25T11:20:15.239105+00:00",
+  "schedule_generated_at": "2026-09-25T11:38:43.337526+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 153,
-      "OFFICIAL_WINDOW_ONLY": 33,
+      "NO_LINKED_SOURCE": 147,
+      "OFFICIAL_WINDOW_ONLY": 39,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 38,
+      "DATED_WINDOW": 43,
       "DESCRIPTIVE_WINDOW": 52,
       "DOCUMENTED_HOLD": 4,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 473
+      "RECURRING_WINDOW": 468
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -55,7 +55,7 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 33,
+      "no_linked_source": 27,
       "adapter_gaps": 6,
       "pending_dates": 0
     },
@@ -529,8 +529,8 @@
           "id": "basketball-de-cup",
           "type": "official-event-window",
           "configured_league": "BBL-Pokal | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
       "events_in_window": 0
@@ -550,7 +550,7 @@
           "id": "basketball-us-big3",
           "type": "official-event-window",
           "configured_league": "BIG3 | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -697,7 +697,7 @@
           "id": "basketball-caribbean-women",
           "type": "official-event-window",
           "configured_league": "Caribbean Women's Championship | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -718,7 +718,7 @@
           "id": "basketball-central-american-women",
           "type": "official-event-window",
           "configured_league": "Central American Women's Championship | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -739,7 +739,7 @@
           "id": "basketball-centrobasket-women",
           "type": "official-event-window",
           "configured_league": "Centrobasket Women's Championship | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1325,11 +1325,19 @@
       "identity_key": "basketball-womens-euroleague",
       "approval_parent": "FIBA Women's EuroLeague | Women",
       "kind": "catalog",
-      "season_window": "September–April",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 23, 2026–April 18, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-womens-euroleague",
+          "type": "official-event-window",
+          "configured_league": "FIBA Women's EuroLeague | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1338,11 +1346,19 @@
       "identity_key": "basketball-fr-cup",
       "approval_parent": "French Cup | Men",
       "kind": "catalog",
-      "season_window": "September–April",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 12, 2025–April 25, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-fr-cup",
+          "type": "official-event-window",
+          "configured_league": "French Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1351,11 +1367,19 @@
       "identity_key": "basketball-ph-governors",
       "approval_parent": "Governor’s Cup | Men",
       "kind": "catalog",
-      "season_window": "Conference dates vary annually",
+      "season_window": "2026 conference began July 10; official schedule currently published through October 18",
       "season_state": "DESCRIPTIVE_WINDOW",
-      "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_status": "in",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ph-governors",
+          "type": "official-event-window",
+          "configured_league": "Governor’s Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1385,11 +1409,19 @@
       "identity_key": "basketball-gr-cup",
       "approval_parent": "Greek Cup | Men",
       "kind": "catalog",
-      "season_window": "September–February",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 13, 2025–February 21, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-gr-cup",
+          "type": "official-event-window",
+          "configured_league": "Greek Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1398,11 +1430,19 @@
       "identity_key": "basketball-gr-supercup",
       "approval_parent": "Greek Super Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual September event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 26–27, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-gr-supercup",
+          "type": "official-event-window",
+          "configured_league": "Greek Super Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1411,11 +1451,19 @@
       "identity_key": "basketball-au-ignite",
       "approval_parent": "Ignite Cup | Men",
       "kind": "catalog",
-      "season_window": "November–February",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 30, 2026–February 21, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-au-ignite",
+          "type": "official-event-window",
+          "configured_league": "Ignite Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

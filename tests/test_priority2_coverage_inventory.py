@@ -160,7 +160,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_basketball_date_reconciliation_is_complete(self):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
-        self.assertEqual(33, basketball["no_linked_source"])
+        self.assertEqual(27, basketball["no_linked_source"])
         self.assertEqual(0, basketball["pending_dates"])
         self.assertEqual(4, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
@@ -206,6 +206,31 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("NO_LINKED_SOURCE", danish["coverage_state"])
         self.assertEqual([], danish["sources"])
         self.assertIn("full Danish Cup schedule", danish["hold_reason"])
+
+    def test_third_basketball_source_batch_uses_official_windows(self):
+        dated_windows = {
+            "FIBA Women's EuroLeague | Women": "basketball-womens-euroleague",
+            "French Cup | Men": "basketball-fr-cup",
+            "Greek Cup | Men": "basketball-gr-cup",
+            "Greek Super Cup | Men": "basketball-gr-supercup",
+            "Ignite Cup | Men": "basketball-au-ignite",
+        }
+        for league, source_id in dated_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        governors = self.rows[("Basketball", "Governor’s Cup | Men")]
+        self.assertEqual("DESCRIPTIVE_WINDOW", governors["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", governors["coverage_state"])
+        self.assertEqual(
+            ["basketball-ph-governors"],
+            [source["id"] for source in governors["sources"]],
+        )
+        self.assertIn("October 18", governors["season_window"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
