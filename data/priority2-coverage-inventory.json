@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T11:11:13.617112+00:00",
-  "schedule_generated_at": "2026-09-25T11:03:02.358511+00:00",
+  "registry_generated_at": "2026-09-25T11:47:55.384056+00:00",
+  "schedule_generated_at": "2026-09-25T11:20:15.239105+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 158,
-      "OFFICIAL_WINDOW_ONLY": 28,
+      "NO_LINKED_SOURCE": 153,
+      "OFFICIAL_WINDOW_ONLY": 33,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 33,
-      "DESCRIPTIVE_WINDOW": 53,
-      "DOCUMENTED_HOLD": 3,
+      "DATED_WINDOW": 38,
+      "DESCRIPTIVE_WINDOW": 52,
+      "DOCUMENTED_HOLD": 4,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 478
+      "RECURRING_WINDOW": 473
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -55,7 +55,7 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 38,
+      "no_linked_source": 33,
       "adapter_gaps": 6,
       "pending_dates": 0
     },
@@ -751,11 +751,19 @@
       "identity_key": "basketball-ph-commissioners",
       "approval_parent": "Commissioner’s Cup | Men",
       "kind": "catalog",
-      "season_window": "Conference dates vary annually",
-      "season_state": "DESCRIPTIVE_WINDOW",
-      "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "March 11–June 17, 2026; next conference dates pending",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ph-commissioners",
+          "type": "official-event-window",
+          "configured_league": "Commissioner’s Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -785,11 +793,19 @@
       "identity_key": "basketball-br-super8",
       "approval_parent": "Copa Super 8 | Men",
       "kind": "catalog",
-      "season_window": "Annual January event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "January 24–31, 2026; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-br-super8",
+          "type": "official-event-window",
+          "configured_league": "Copa Super 8 | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -798,11 +814,19 @@
       "identity_key": "basketball-es-copa",
       "approval_parent": "Copa del Rey | Men",
       "kind": "catalog",
-      "season_window": "Annual February event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 19–22, 2026; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-es-copa",
+          "type": "official-event-window",
+          "configured_league": "Copa del Rey | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -811,11 +835,19 @@
       "identity_key": "basketball-it-cup",
       "approval_parent": "Coppa Italia | Men",
       "kind": "catalog",
-      "season_window": "Annual February event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 18–22, 2026; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-it-cup",
+          "type": "official-event-window",
+          "configured_league": "Coppa Italia | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -824,9 +856,10 @@
       "identity_key": "basketball-dk-cup",
       "approval_parent": "Danish Cup | Men",
       "kind": "catalog",
-      "season_window": "September–January",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Full men's cup window not verified",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Only the 2026 men's final date is verified; the full Danish Cup schedule and source scope are not publicly established.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -858,11 +891,19 @@
       "identity_key": "basketball-euroleague",
       "approval_parent": "EuroLeague | Men",
       "kind": "catalog",
-      "season_window": "September–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 24, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-euroleague",
+          "type": "official-event-window",
+          "configured_league": "EuroLeague | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -3890,7 +3931,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 10
     },
     {
       "sport": "Esports",

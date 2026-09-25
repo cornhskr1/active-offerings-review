@@ -188,6 +188,11 @@ BODY_URL_OVERRIDES = {
 }
 
 EVENT_URL_OVERRIDES = {
+    "basketball-ph-commissioners": "https://www.pba.ph/news/ross-40-puts-clamps-on-oftana-proves-defense-wins-titles",
+    "basketball-br-super8": "https://lnb.com.br/copa-super-8/copa-super-8-2025/",
+    "basketball-es-copa": "https://eventos.acb.com/",
+    "basketball-it-cup": "https://www.legabasket.it/landing/final-eight",
+    "basketball-euroleague": "https://www.euroleaguebasketball.net/euroleague/news/the-2026-27-euroleague-schedule-is-official/",
     "basketball-de-cup": "https://www.easycredit-bbl.de/saison/spielplaene_liga-pokalspiele/bbl-pokal",
     "basketball-us-big3": "https://big3.com/scores/",
     "basketball-caribbean-women": "https://www.fiba.basketball/en/events/fiba-cbc-womens-championship-2025",
@@ -283,6 +288,11 @@ def validate_season_map(season_map: dict) -> None:
 
 
 def main() -> None:
+    output_path = DATA / "catalog-official-sources.json"
+    previous = json.loads(output_path.read_text()) if output_path.exists() else {}
+    previous_bodies = {row["name"]: row for row in previous.get("governing_bodies", [])}
+    previous_events = {row["key"]: row for row in previous.get("events", [])}
+
     season_map = json.loads((DATA / "catalog-season-map.json").read_text())
     validate_season_map(season_map)
     schedule_sources = load_schedule_sources()
@@ -298,8 +308,13 @@ def main() -> None:
                 if first_party(url):
                     candidate_urls.append(url)
 
-            body_url = BODY_URL_OVERRIDES.get(body)
-            body_basis = "verified-override" if body_url else None
+            previous_body = previous_bodies.get(body, {})
+            if previous_body.get("status") == "verified" and previous_body.get("official_url"):
+                body_url = previous_body["official_url"]
+                body_basis = previous_body["basis"]
+            else:
+                body_url = BODY_URL_OVERRIDES.get(body)
+                body_basis = "verified-override" if body_url else None
             if not body_url and candidate_urls and body not in NON_ENTITY_GROUPS:
                 body_url = Counter(candidate_urls).most_common(1)[0][0]
                 body_basis = "official-competition-source"
@@ -317,8 +332,7 @@ def main() -> None:
                 key = event["key"]
                 source_url = source_for_event(event, schedule_sources).get("official_schedule_url")
                 dedicated_url = EVENT_URL_OVERRIDES.get(key)
-                if not dedicated_url and first_party(source_url):
-                    dedicated_url = source_url
+                previous_event = previous_events.get(key, {})
 
                 if key in NOT_APPLICABLE_EVENT_KEYS:
                     official_url = None
@@ -326,6 +340,19 @@ def main() -> None:
                     basis = "internal-approval-rule"
                 elif dedicated_url:
                     official_url = dedicated_url
+                    status = "verified"
+                    basis = (
+                        previous_event["basis"]
+                        if previous_event.get("status") == "verified"
+                        and previous_event.get("official_url") == dedicated_url
+                        else "event-specific"
+                    )
+                elif previous_event.get("status") == "verified" and previous_event.get("official_url"):
+                    official_url = previous_event["official_url"]
+                    status = "verified"
+                    basis = previous_event["basis"]
+                elif first_party(source_url):
+                    official_url = source_url
                     status = "verified"
                     basis = "official-competition-source"
                 elif body_url:
@@ -366,6 +393,12 @@ def main() -> None:
 
     bodies = sorted(body_rows.values(), key=lambda row: row["name"].casefold())
     events = sorted(event_rows, key=lambda row: (row["sport"].casefold(), row["catalog_event"].casefold()))
+    for row, old in [*((row, previous_bodies.get(row["name"])) for row in bodies),
+                     *((row, previous_events.get(row["key"])) for row in events)]:
+        if old and {k: v for k, v in row.items() if k != "last_verified"} == {
+            k: v for k, v in old.items() if k != "last_verified"
+        }:
+            row["last_verified"] = old["last_verified"]
     output = {
         "schema_version": 1,
         "generated_at": f"{date.today()}T00:00:00-05:00",
@@ -381,7 +414,7 @@ def main() -> None:
             "events_pending": sum(row["status"] == "pending" for row in events),
         },
     }
-    (DATA / "catalog-official-sources.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n")
+    output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n")
 
 
 if __name__ == "__main__":
