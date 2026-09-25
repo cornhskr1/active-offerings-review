@@ -1073,6 +1073,128 @@
       "catalog_terms": ["NBA Draft"]
     },
     {
+      "id": "basketball-br-nbb",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "Novo Basquete Brasil (NBB) | Men",
+      "region": "Brazil",
+      "endpoint": "https://lnb.com.br/nbb/tabela-de-jogos",
+      "official_schedule_url": "https://lnb.com.br/nbb/tabela-de-jogos",
+      "endpoint_validation": "published-schedule",
+      "coverage_status": "published-schedule-window",
+      "source_note": "Liga Nacional de Basquete's official NBB schedule confirms the 2026-27 season begins October 17, 2026 and currently publishes games through December 29. Later rounds, the season completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
+      "catalog_terms": ["Novo Basquete Brasil (NBB) | Men"]
+    },
+    {
+      "id": "basketball-ph-pba",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "Philippine Basketball Association (PBA) | Men",
+      "region": "Philippines",
+      "endpoint": "https://www.pba.ph/schedule",
+      "official_schedule_url": "https://www.pba.ph/schedule",
+      "endpoint_validation": "published-schedule",
+      "coverage_status": "published-schedule-window",
+      "source_note": "PBA's official live schedule confirms the active Season 50 conference calendar and currently publishes games through October 21, 2026. The full season completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
+      "catalog_terms": ["Philippine Basketball Association (PBA) | Men"]
+    },
+    {
+      "id": "basketball-ph-philippine-cup",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "Philippine Cup | Men",
+      "region": "Philippines",
+      "endpoint": "https://www.pba.ph/news/tnt-itching-to-complete-an",
+      "official_schedule_url": "https://www.youtube.com/watch?v=SeTL6CAKiGE",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
+      "source_note": "PBA's official coverage confirms the Season 50 Philippine Cup opened October 5, 2025, and official Finals Game 6 coverage confirms its February 1, 2026 conclusion. The next conference dates and an unattended fixture adapter remain pending.",
+      "official_events": [
+        {
+          "source_id": "basketball-ph-philippine-cup",
+          "league": "Philippine Cup | Men",
+          "name": "PBA Season 50 Philippine Cup",
+          "start_date": "2025-10-05",
+          "end_date": "2026-02-01",
+          "location": "Philippines",
+          "official_schedule_url": "https://www.youtube.com/watch?v=SeTL6CAKiGE"
+        }
+      ],
+      "catalog_terms": ["Philippine Cup | Men"]
+    },
+    {
+      "id": "basketball-pl-cup",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "Polish Cup | Men",
+      "region": "Poland",
+      "endpoint": "https://plk.pl/aktualnosci/puchar-polski",
+      "official_schedule_url": "https://plk.pl/aktualnosci/puchar-polski",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
+      "source_note": "PLK's official Polish Cup hub confirms the completed 2026 tournament ran February 19-22 at Arena Sosnowiec. The next edition dates and an unattended fixture adapter remain pending.",
+      "official_events": [
+        {
+          "source_id": "basketball-pl-cup",
+          "league": "Polish Cup | Men",
+          "name": "Polish Cup 2026",
+          "start_date": "2026-02-19",
+          "end_date": "2026-02-22",
+          "location": "Sosnowiec, Poland",
+          "official_schedule_url": "https://plk.pl/aktualnosci/puchar-polski"
+        }
+      ],
+      "catalog_terms": ["Polish Cup | Men"]
+    },
+    {
+      "id": "basketball-pl-supercup",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "Polish Supercup | Men",
+      "region": "Poland",
+      "endpoint": "https://plk.pl/aktualnosci/27426/cztery-druzyny-powalcza-o-superpuchar-polski",
+      "official_schedule_url": "https://plk.pl/aktualnosci/27426/cztery-druzyny-powalcza-o-superpuchar-polski",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "PLK confirms the 2026 Polish Supercup is scheduled for September 26-27 at Arena Sosnowiec. An unattended fixture adapter remains pending.",
+      "official_events": [
+        {
+          "source_id": "basketball-pl-supercup",
+          "league": "Polish Supercup | Men",
+          "name": "Polish Supercup 2026",
+          "start_date": "2026-09-26",
+          "end_date": "2026-09-27",
+          "location": "Sosnowiec, Poland",
+          "official_schedule_url": "https://plk.pl/aktualnosci/27426/cztery-druzyny-powalcza-o-superpuchar-polski"
+        }
+      ],
+      "catalog_terms": ["Polish Supercup | Men"]
+    },
+    {
+      "id": "basketball-tr-presidential",
+      "source_type": "official-event-window",
+      "sport": "Basketball",
+      "league": "Presidential Cup | Men",
+      "region": "Turkey",
+      "endpoint": "https://tbf.org.tr/ligler/tbf/haber/39-cumhurbaskanligi-erkekler-basketbol-kupasi-nda-sampiyon-fenerbahce-tarfin-2026-09-22",
+      "official_schedule_url": "https://www.tbf.org.tr/duyuru/39-cumhurbaskanligi-erkekler-basketbol-kupasi-hakemleri-belli-oldu-2026-09-17",
+      "endpoint_validation": "published-window",
+      "coverage_status": "last-published-event-window",
+      "source_note": "TBF confirms the completed 39th Presidential Cup was played September 22, 2026. The next edition date and an unattended fixture adapter remain pending.",
+      "official_events": [
+        {
+          "source_id": "basketball-tr-presidential",
+          "league": "Presidential Cup | Men",
+          "name": "39th Presidential Cup",
+          "start_date": "2026-09-22",
+          "end_date": "2026-09-22",
+          "location": "Turkey",
+          "official_schedule_url": "https://www.tbf.org.tr/duyuru/39-cumhurbaskanligi-erkekler-basketbol-kupasi-hakemleri-belli-oldu-2026-09-17"
+        }
+      ],
+      "catalog_terms": ["Presidential Cup | Men"]
+    },
+    {
       "id": "basketball-us-tbt-men",
       "source_type": "official-event-window",
       "sport": "Basketball",
