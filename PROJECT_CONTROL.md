@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 25, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Basketball — reconcile 89 operational identities; 22 pending or partial date states and 62 identities without linked sources remain**
+**Current task:** **Basketball — reconcile 89 operational identities; 20 pending or partial date states and 60 identities without linked sources remain**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -99,11 +99,11 @@ The public suite passed 85 tests and the catalog identity validator reported zer
 |---|---:|---|
 | Adapter configured | 175 | Source configured; actual fixture coverage and refresh health still require verification |
 | Adapter gap | 288 | Source is marked as a coverage gap, not an unattended fixture adapter |
-| No linked source | 182 | No source ID attached to the operational identity |
-| Official event window only | 4 | Window evidence exists; individual fixture coverage is not established |
+| No linked source | 180 | No source ID attached to the operational identity |
+| Official event window only | 6 | Window evidence exists; individual fixture coverage is not established |
 | Source scope review | 73 | Attached ID is absent from the schedule configuration; some IDs are official-link references rather than fixture adapters |
 
-The separate season audit finds 152 identities with pending dates, 24 with no season window, and one partial window. The partial men's FIBA World Cup state reflects that the 2027 finals dates do not cover its qualifiers. These categories overlap the schedule linkage states. The global feed's 303 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
+The separate season audit finds 150 identities with pending dates, 24 with no season window, and one partial window. The partial men's FIBA World Cup state reflects that the 2027 finals dates do not cover its qualifiers. These categories overlap the schedule linkage states. The global feed's 303 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
 
 | Order | Coverage section | First check |
 |---:|---|---|
@@ -118,6 +118,8 @@ Each section exits only when every identity has either verified, correctly scope
 **Basketball checkpoint, September 24:** FIBA lists qualifier windows before the men's 2027 World Cup finals. The catalog now labels the finals dates as a partial calendar, displays SEASON NOT MAPPED for that child, and keeps its missing fixture feed in Review Today for manual calendar and menu checks. The partial-window inventory guard and its Review Today test are active at function/class scope so the behavior is exercised rather than silently skipped. Official evidence: https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027/event-guide and https://about.fiba.basketball/en/our-sport/basketball/national-team-competition-systems/fiba-basketball-world-cup . Chile LNB official Liga Chery results include September 23, 2026, so the current March–December season indicator is not disproved by the earlier June finals; the missing unattended adapter remains a gap: https://lnbchile.com/liga/uno/match/con-vs-apv-2026-09-23 . Liga Nacional de Basquetbol de Chile and Copa Chile now have separate source IDs and separate Review Today gap warnings; one source may no longer stand in for both competitions. All six reported Basketball gap sources retain explicit competition-specific dates or fail-closed states and missing-adapter labels. All 89 identities still require section exit review; no NCAA work begins from this checkpoint.
 
 **Basketball checkpoint, September 25:** The men's FIBA 3x3 World Tour now has an official 2026 circuit window from the April 25 Utsunomiya Opener through the December 13 Rio de Janeiro Final and is classified as official-window-only, not as fixture-complete. FIBA calls the women's professional circuit the **FIBA 3x3 Women’s Series**, while the catalog child says **FIBA 3x3 World Tour | Women**. That child remains fail-closed with dates and source linkage pending; the Women's Series calendar is not imported as proof of World Tour approval. Review Today now exposes pending Basketball season mappings instead of hiding them merely because the system cannot classify them as in season. Official evidence: https://worldtour.fiba3x3.com/2026/calendar and https://about.fiba.basketball/en/our-sport/3x3-basketball/competition-structure .
+
+**Basketball checkpoint, September 25 — AfroBasket:** FIBA's separate 2025 finals windows are now attached to the correct children: August 12–24 for the men's AfroBasket in Angola and July 26–August 3 for the Women's AfroBasket in Côte d'Ivoire. Both are classified as last-published official windows, not unattended fixture coverage; their next-edition dates remain pending. This reduces Basketball to 60 identities without linked sources and 20 pending or partial date states. The catalog health display now distinguishes source-record counts from the 722-identity Priority 2 inventory so source totals are not mistaken for a completion percentage. Official evidence: https://www.fiba.basketball/en/events/fiba-afrobasket-2025/news/2021-finals-loss-to-tunisia-fuelling-zouzoua-for-angola-2025 and https://www.fiba.basketball/en/events/fiba-womens-afrobasket-2025/news/one-month-to-go-to-cote-divoire-2025 .
 
 
 ## Recovered work from September 23–24
@@ -177,4 +179,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #90 merged. The inventory contains 722 mapped operational identities and 144 split children; 303 feed gap labels are a separate measure. Basketball now has 62 identities without linked sources and 22 pending or partial date states. Expected after Basketball: all 89 identities have verified calendar/source evidence or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.
+**Current checkpoint:** Priority 2; Basketball first in the fixed coverage queue; Active Offerings PR #91 merged. The inventory contains 722 mapped operational identities and 144 split children; 303 feed gap labels are a separate measure. Basketball now has 60 identities without linked sources and 20 pending or partial date states. Expected after Basketball: all 89 identities have verified calendar/source evidence or a documented fail-closed hold. Do not advance to NCAA coverage until that section is reconciled.

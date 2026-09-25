@@ -566,7 +566,7 @@ th{font-size:11px!important}
 <script>
 const DATA={};
 const FILES={
-  global:'data/global-schedule.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
+  global:'data/global-schedule.json', coverage:'data/priority2-coverage-inventory.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', catalogOfficialSources:'data/catalog-official-sources.json', known:'data/known-u18.json',
   intake:'data/catalog-change-queue.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
@@ -2612,10 +2612,13 @@ function renderCatalogHealth(){
   const host=document.getElementById('catalogHealth');if(!host)return;
   const rows=catalogCoverageHealth(),counts={connected:0,setup:0,source:0};
   rows.forEach(row=>counts[row.state]++);
+  const coverage=DATA.coverage?.summary||{},identityStates=coverage.coverage_states||{};
+  const identityTotal=coverage.catalog_operational_identities;
+  const identityText=identityTotal?`<div class="catalog-health-note"><b>Priority 2 identity coverage:</b> ${identityTotal} total · ${identityStates.ADAPTER_CONFIGURED||0} adapter configured · ${identityStates.OFFICIAL_WINDOW_ONLY||0} official window only · ${identityStates.ADAPTER_GAP||0} adapter gap · ${identityStates.NO_LINKED_SOURCE||0} no linked source · ${identityStates.SOURCE_SCOPE_REVIEW||0} source scope review.</div>`:'';
   const latest=DATA.global?.generated_at||rows.map(row=>row.source.checked_at).filter(Boolean).sort().at(-1);
-  const buttons=[['all','Full catalog',null,''],['connected','Connected',counts.connected,''],['setup','Needs setup',counts.setup,'attention'],['source','Source issue',counts.source,'issue']]
+  const buttons=[['all','Full catalog',null,''],['connected','Connected sources',counts.connected,''],['setup','Sources need setup',counts.setup,'attention'],['source','Source errors',counts.source,'issue']]
     .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}${count==null?'':`: ${count}`}</button>`).join('');
-  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div><div class="catalog-health-note">Schedule status, last checked time, and the official schedule now appear inside the matching catalog entry. Use these buttons to narrow the catalog to entries needing attention.</div>`;
+  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div>${identityText}<div class="catalog-health-note">The buttons count schedule source records and filter the catalog; they are not a completion percentage. Identity totals show Priority 2 mapping progress. Schedule status, last checked time, and the official schedule appear inside the matching catalog entry.</div>`;
 }
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});

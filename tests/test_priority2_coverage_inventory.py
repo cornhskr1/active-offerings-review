@@ -66,6 +66,27 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
         self.assertEqual([], women["sources"])
 
+    def test_afrobasket_divisions_keep_separate_official_windows(self):
+        expected = {
+            "FIBA AfroBasket | Men": "basketball-afrobasket-men",
+            "FIBA AfroBasket | Women": "basketball-afrobasket-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual(
+                    [{
+                        "id": source_id,
+                        "type": "official-event-window",
+                        "configured_league": league,
+                        "refresh_ok": True,
+                        "events_in_window": 0,
+                    }],
+                    row["sources"],
+                )
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
