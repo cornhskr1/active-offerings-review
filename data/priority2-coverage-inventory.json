@@ -12,8 +12,8 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 120,
-      "OFFICIAL_WINDOW_ONLY": 65,
+      "NO_LINKED_SOURCE": 119,
+      "OFFICIAL_WINDOW_ONLY": 66,
       "SOURCE_SCOPE_REVIEW": 70
     },
     "season_states": {
@@ -163,7 +163,7 @@
     "NCAA Field Hockey": {
       "identities": 1,
       "split_children": 0,
-      "no_linked_source": 1,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -5442,11 +5442,19 @@
       "identity_key": "ncaa-field-hockey-di",
       "approval_parent": "Division I Field Hockey | Women",
       "kind": "catalog",
-      "season_window": "August–November",
+      "season_window": "August–November; 2026 NCAA championship Nov. 20–22",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-field-hockey-di",
+          "type": "official-event-window",
+          "configured_league": "Division I Field Hockey | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

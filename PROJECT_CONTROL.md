@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 25, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Beach Volleyball coverage — reconcile the catalog's Division I identity against NCAA's National Collegiate championship scope; keep football division scope under review**
+**Current task:** **NCAA Football coverage — resolve FBS/FCS/Division II source scope without allowing a broader college-football feed to establish narrower catalog approval**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -149,6 +149,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 25 — Beach Volleyball scope review:** The catalog approves `Division I Beach Volleyball | Women`, and NCAA exposes a Division I scoreboard at https://www.ncaa.com/scoreboard/beach-volleyball/d1. NCAA's published May 7–9, 2027 championship, however, is officially the **National Collegiate Beach Volleyball Championship**, not a Division I-only championship. The broader championship window is therefore not attached as proof of the narrower catalog identity, and no unattended Division I-only source is claimed. This identity remains without a linked source as a documented fail-closed scope hold. NCAA remains at 25 identities without linked sources, rises to two documented calendar/scope holds, and retains one FBS source-scope review and 18 pending dates. Field Hockey is next. Official evidence: https://www.ncaa.org/championship/national-collegiate/beach-volleyball/ , https://www.ncaa.com/championships/beach-volleyball/nc/future-info , and https://www.ncaa.com/scoreboard/beach-volleyball/d1 .
 
+**NCAA checkpoint, September 25 — Field Hockey:** NCAA's official Division I championship page establishes the exact approved women's competition scope and the Nov. 20–22, 2026 championship window at Trager Stadium in Louisville. The exact catalog child is now linked to an official-event-window source; this does not claim unattended regular-season fixture coverage. NCAA Field Hockey moves from NO_LINKED_SOURCE to OFFICIAL_WINDOW_ONLY, reducing the systemwide no-linked-source count from 120 to 119 and increasing official-window-only from 65 to 66. NCAA Football is next, with FBS remaining fail-closed until exact subdivision scope is established. Official evidence: https://www.ncaa.org/championship/division-i/field-hockey/ .
+
 
 ## Recovered work from September 23–24
 
@@ -207,4 +209,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #105 merged. The inventory contains 722 mapped operational identities and 144 split children; the 303 feed gap labels are a separate measure. Basketball source batches 1 through 7 leave only six documented no-source holds, zero pending dates, and six documented holds, so the Basketball section exit gate passes. NCAA Basketball is complete at the subsection gate: all eight identities have an exact source disposition or documented hold. The PR #106 candidate records NCAA Beach Volleyball as a documented scope hold because the catalog's Division I identity is narrower than NCAA's published National Collegiate championship. NCAA overall remains at 25 identities without linked sources, with four exact Division I adapters, five official basketball event windows, two documented calendar/scope holds, one FBS source-scope review, and 18 pending dates. NCAA coverage is not complete; continue with Field Hockey after this batch and keep FBS held until exact scope is established.
+**Current checkpoint:** Priority 2; Active Offerings PR #106 merged. The inventory contains 722 mapped operational identities and 144 split children. Basketball section exit remains passed. NCAA Beach Volleyball is a documented scope hold. The PR #107 candidate links NCAA Division I Field Hockey | Women to the exact Nov. 20–22, 2026 NCAA championship window, reducing systemwide NO_LINKED_SOURCE from 120 to 119 and increasing OFFICIAL_WINDOW_ONLY from 65 to 66. NCAA coverage is not complete; NCAA Football is next and FBS remains fail-closed until exact subdivision scope is established.
