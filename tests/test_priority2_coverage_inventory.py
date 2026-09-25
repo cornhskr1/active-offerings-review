@@ -160,9 +160,9 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_basketball_date_reconciliation_is_complete(self):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
-        self.assertEqual(38, basketball["no_linked_source"])
+        self.assertEqual(33, basketball["no_linked_source"])
         self.assertEqual(0, basketball["pending_dates"])
-        self.assertEqual(3, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(4, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_first_basketball_source_batch_uses_exact_official_windows_or_hold(self):
         expected_windows = {
@@ -184,6 +184,28 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("DOCUMENTED_HOLD", champions["season_state"])
         self.assertEqual("NO_LINKED_SOURCE", champions["coverage_state"])
         self.assertIn("no BBL Champions Cup", champions["hold_reason"])
+
+    def test_second_basketball_source_batch_uses_exact_official_windows_or_hold(self):
+        expected_windows = {
+            "Commissioner’s Cup | Men": "basketball-ph-commissioners",
+            "Copa Super 8 | Men": "basketball-br-super8",
+            "Copa del Rey | Men": "basketball-es-copa",
+            "Coppa Italia | Men": "basketball-it-cup",
+            "EuroLeague | Men": "basketball-euroleague",
+        }
+        for league, source_id in expected_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        danish = self.rows[("Basketball", "Danish Cup | Men")]
+        self.assertEqual("DOCUMENTED_HOLD", danish["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", danish["coverage_state"])
+        self.assertEqual([], danish["sources"])
+        self.assertIn("full Danish Cup schedule", danish["hold_reason"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
