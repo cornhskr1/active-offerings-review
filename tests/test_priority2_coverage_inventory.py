@@ -87,6 +87,61 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                     row["sources"],
                 )
 
+    def test_americup_divisions_keep_separate_official_windows(self):
+        expected = {
+            "FIBA AmeriCup | Men": "basketball-americup-men",
+            "FIBA AmeriCup | Women": "basketball-americup-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual(
+                    [{
+                        "id": source_id,
+                        "type": "official-event-window",
+                        "configured_league": league,
+                        "refresh_ok": True,
+                        "events_in_window": 0,
+                    }],
+                    row["sources"],
+                )
+
+    def test_fiba_continental_and_oceania_windows_stay_division_specific(self):
+        expected = {
+            "FIBA Asia Cup | Men": "basketball-asia-cup-men",
+            "FIBA Asia Cup | Women": "basketball-asia-cup-women",
+            "FIBA EuroBasket | Men": "basketball-eurobasket-men",
+            "FIBA EuroBasket | Women": "basketball-eurobasket-women",
+            "FIBA Melanesia Cup | Men": "basketball-melanesia-men",
+            "FIBA Melanesia Cup | Women": "basketball-melanesia-women",
+            "FIBA Micronesia Cup | Men": "basketball-micronesia-men",
+            "FIBA Micronesia Cup | Women": "basketball-micronesia-women",
+            "FIBA Polynesian Basketball Cup | Men": "basketball-polynesian-men",
+            "FIBA Polynesian Basketball Cup | Women": "basketball-polynesian-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+    def test_unsupported_regional_tournaments_remain_fail_closed(self):
+        for league in (
+            "Pacific Games | Men",
+            "Pacific Games | Women",
+            "South American Championship | Men",
+            "South American Championship | Women",
+        ):
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("PENDING_DATES", row["season_state"])
+                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                self.assertEqual([], row["sources"])
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
