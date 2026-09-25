@@ -20,6 +20,8 @@ def source_ids(item):
 
 
 def season_state(item):
+    if item.get("season_hold") is True:
+        return "DOCUMENTED_HOLD"
     if item.get("season_window_complete") is False:
         return "PARTIAL_WINDOW"
     if item.get("season_start_date") and item.get("season_end_date"):
@@ -56,6 +58,8 @@ def catalog_identities(season_map):
             "season_status": item.get("season_status") or "",
             "mapped_source_ids": set(source_ids(item)),
         }
+        if item.get("hold_reason"):
+            rows[key]["hold_reason"] = item["hold_reason"]
 
     for sport in season_map["sports"]:
         for group in sport.get("groups", []):
