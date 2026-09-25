@@ -14,10 +14,17 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn("catalogEntryHealthHtml", HTML)
         self.assertIn("Last checked", HTML)
         self.assertIn("Official schedule", HTML)
-        self.assertIn("Schedule status, last checked time, and the official schedule now appear inside the matching catalog entry", HTML)
+        self.assertIn("Schedule status, last checked time, and the official schedule appear inside the matching catalog entry", HTML)
         self.assertNotIn("catalog-health-list", HTML)
         self.assertNotIn('data-panel="coverage"', HTML)
         self.assertNotIn('<section class="panel" id="coverage">', HTML)
+
+    def test_catalog_health_distinguishes_source_counts_from_identity_progress(self):
+        self.assertIn("coverage:'data/priority2-coverage-inventory.json'", HTML)
+        self.assertIn("Priority 2 identity coverage:", HTML)
+        self.assertIn("Connected sources", HTML)
+        self.assertIn("Sources need setup", HTML)
+        self.assertIn("buttons count schedule source records", HTML)
 
     def test_catalog_coverage_uses_exact_source_identity(self):
         self.assertIn("if(ids.size)return ids.has(source.id);", HTML)
