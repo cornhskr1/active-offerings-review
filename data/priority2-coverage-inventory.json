@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T14:10:30.122102+00:00",
-  "schedule_generated_at": "2026-09-25T14:03:58.045138+00:00",
+  "registry_generated_at": "2026-09-25T14:42:26.369866+00:00",
+  "schedule_generated_at": "2026-09-25T14:34:43.761263+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 131,
-      "OFFICIAL_WINDOW_ONLY": 55,
+      "NO_LINKED_SOURCE": 126,
+      "OFFICIAL_WINDOW_ONLY": 60,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 55,
-      "DESCRIPTIVE_WINDOW": 55,
+      "DATED_WINDOW": 59,
+      "DESCRIPTIVE_WINDOW": 56,
       "DOCUMENTED_HOLD": 6,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 451
+      "RECURRING_WINDOW": 446
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -55,7 +55,7 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 11,
+      "no_linked_source": 6,
       "adapter_gaps": 6,
       "pending_dates": 0
     },
@@ -1992,7 +1992,7 @@
           "id": "basketball-rs-cup",
           "type": "official-event-window",
           "configured_league": "Radivoj Korać Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2013,7 +2013,7 @@
           "id": "basketball-ch-sbl-cup",
           "type": "official-event-window",
           "configured_league": "SBL Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2076,7 +2076,7 @@
           "id": "basketball-il-state-cup",
           "type": "official-event-window",
           "configured_league": "State Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2097,7 +2097,7 @@
           "id": "basketball-ar-super20",
           "type": "official-event-window",
           "configured_league": "Super 20 Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2118,7 +2118,7 @@
           "id": "basketball-it-supercup",
           "type": "official-event-window",
           "configured_league": "Supercopa Italia | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2139,7 +2139,7 @@
           "id": "basketball-es-supercopa",
           "type": "official-event-window",
           "configured_league": "Supercopa de Espana | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2151,11 +2151,19 @@
       "identity_key": "basketball-ar-supercopa",
       "approval_parent": "Supercopa de Liga | Men",
       "kind": "catalog",
-      "season_window": "Annual preseason event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "January 17, 2025; next edition date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ar-supercopa",
+          "type": "official-event-window",
+          "configured_league": "Supercopa de Liga | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2164,11 +2172,19 @@
       "identity_key": "basketball-se-sbl",
       "approval_parent": "Svenska Basketligan (SBL) | Men",
       "kind": "catalog",
-      "season_window": "September–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 25, 2026–May 16, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-se-sbl",
+          "type": "official-event-window",
+          "configured_league": "Svenska Basketligan (SBL) | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2198,11 +2214,19 @@
       "identity_key": "basketball-ch-cup",
       "approval_parent": "Swiss Cup | Men",
       "kind": "catalog",
-      "season_window": "October–April",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 14, 2026–April 10, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-ch-cup",
+          "type": "official-event-window",
+          "configured_league": "Swiss Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2246,11 +2270,19 @@
       "identity_key": "basketball-tr-cup",
       "approval_parent": "Turkish Basketball Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual February event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 17–22, 2026; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-tr-cup",
+          "type": "official-event-window",
+          "configured_league": "Turkish Basketball Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2259,11 +2291,19 @@
       "identity_key": "basketball-us-unrivaled",
       "approval_parent": "Unrivaled Basketball | Women",
       "kind": "catalog",
-      "season_window": "January–March",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027 season begins January 8 and runs through March; exact completion date not yet published",
+      "season_state": "DESCRIPTIVE_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-us-unrivaled",
+          "type": "official-event-window",
+          "configured_league": "Unrivaled Basketball | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2285,7 +2325,7 @@
           "events_in_window": 12
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 8
     },
     {
       "sport": "Bowling",
