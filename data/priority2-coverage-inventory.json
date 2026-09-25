@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T14:42:26.369866+00:00",
-  "schedule_generated_at": "2026-09-25T14:34:43.761263+00:00",
+  "registry_generated_at": "2026-09-25T18:24:53.438366+00:00",
+  "schedule_generated_at": "2026-09-25T18:22:11.364493+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,11 +10,11 @@
     "catalog_operational_identities": 722,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 175,
+      "ADAPTER_CONFIGURED": 178,
       "ADAPTER_GAP": 288,
       "NO_LINKED_SOURCE": 126,
       "OFFICIAL_WINDOW_ONLY": 60,
-      "SOURCE_SCOPE_REVIEW": 73
+      "SOURCE_SCOPE_REVIEW": 70
     },
     "season_states": {
       "DATED_WINDOW": 59,
@@ -2160,7 +2160,7 @@
           "id": "basketball-ar-supercopa",
           "type": "official-event-window",
           "configured_league": "Supercopa de Liga | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2181,11 +2181,11 @@
           "id": "basketball-se-sbl",
           "type": "official-event-window",
           "configured_league": "Svenska Basketligan (SBL) | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -2223,11 +2223,11 @@
           "id": "basketball-ch-cup",
           "type": "official-event-window",
           "configured_league": "Swiss Cup | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Basketball",
@@ -2279,7 +2279,7 @@
           "id": "basketball-tr-cup",
           "type": "official-event-window",
           "configured_league": "Turkish Basketball Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2300,7 +2300,7 @@
           "id": "basketball-us-unrivaled",
           "type": "official-event-window",
           "configured_league": "Unrivaled Basketball | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5292,13 +5292,13 @@
       "season_window": "November–April",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "SOURCE_SCOPE_REVIEW",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-mbb",
-          "type": "not-in-schedule-config",
-          "configured_league": "",
-          "refresh_ok": null,
+          "type": "adapter",
+          "configured_league": "NCAA Men's Basketball",
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5313,13 +5313,13 @@
       "season_window": "November–April",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "SOURCE_SCOPE_REVIEW",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-wbb",
-          "type": "not-in-schedule-config",
-          "configured_league": "",
-          "refresh_ok": null,
+          "type": "adapter",
+          "configured_league": "NCAA Women's Basketball",
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5680,14 +5680,14 @@
       "season_window": "August–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "SOURCE_SCOPE_REVIEW",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-volleyball",
-          "type": "not-in-schedule-config",
-          "configured_league": "",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "type": "adapter",
+          "configured_league": "NCAA Volleyball",
+          "refresh_ok": true,
+          "events_in_window": 453
         }
       ],
       "events_in_window": 0
