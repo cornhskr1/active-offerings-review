@@ -468,8 +468,73 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             if competition["sport"] == "NCAA Basketball" and competition["league"] == crown["league"]
         )
         self.assertEqual(["ncaa-basketball-cbc"], registered["source_ids"])
-        self.assertEqual(5, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
+        self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
         self.assertEqual(7, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+
+    def test_ncaa_division_two_and_three_basketball_use_exact_child_windows(self):
+        expected = {
+            "Division II Basketball | Men": (
+                "ncaa-basketball-dii-men", "2027-03-23", "2027-03-27",
+                "https://www.ncaa.com/scoreboard/basketball-men/d2",
+            ),
+            "Division II Basketball | Women": (
+                "ncaa-basketball-dii-women", "2027-03-22", "2027-03-26",
+                "https://www.ncaa.com/scoreboard/basketball-women/d2",
+            ),
+            "Division III Basketball | Men": (
+                "ncaa-basketball-diii-men", "2027-03-18", "2027-03-20",
+                "https://www.ncaa.com/scoreboard/basketball-men/d3",
+            ),
+            "Division III Basketball | Women": (
+                "ncaa-basketball-diii-women", "2027-03-18", "2027-03-20",
+                "https://www.ncaa.com/scoreboard/basketball-women/d3",
+            ),
+        }
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        configured = {source["id"]: source for source in config["sources"]}
+        schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text(encoding="utf-8"))
+        refreshed = {source["id"]: source for source in schedule["sources"]}
+        registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
+        registered = {
+            competition["league"]: competition
+            for competition in registry["competitions"]
+            if competition["sport"] == "NCAA Basketball"
+        }
+
+        for league, (source_id, start_date, end_date, scoreboard_url) in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("NCAA Basketball", league)]
+                self.assertEqual("RECURRING_WINDOW", row["season_state"])
+                self.assertEqual("November–March", row["season_window"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+                self.assertTrue(row["sources"][0]["refresh_ok"])
+                self.assertEqual(0, row["sources"][0]["events_in_window"])
+
+                source = configured[source_id]
+                self.assertEqual("NCAA Basketball", source["sport"])
+                self.assertEqual(league, source["league"])
+                self.assertEqual([league], source["catalog_terms"])
+                self.assertEqual(scoreboard_url, source["official_schedule_url"])
+                self.assertEqual(start_date, source["official_events"][0]["start_date"])
+                self.assertEqual(end_date, source["official_events"][0]["end_date"])
+                self.assertIn("regular-season fixture coverage", source["source_note"])
+
+                self.assertTrue(refreshed[source_id]["ok"])
+                self.assertEqual(0, refreshed[source_id]["events"])
+                self.assertEqual([source_id], registered[league]["source_ids"])
+
+        self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
+        self.assertEqual(120, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(65, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+
+        # The CBI and FBS holds remain separate from these exact child windows.
+        cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
+        self.assertEqual("DOCUMENTED_HOLD", cbi["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", cbi["coverage_state"])
+        fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
+        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
