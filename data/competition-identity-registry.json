@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T18:56:21.462448+00:00",
+  "generated_at": "2026-09-25T19:04:17.688977+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
-  "schedule_generated_at": "2026-09-25T18:53:39.799364+00:00",
+  "schedule_generated_at": "2026-09-25T19:03:10.041003+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "competition_count": 723,
@@ -5885,7 +5885,9 @@
     {
       "sport": "NCAA Baseball",
       "league": "Division I Baseball | Men",
-      "source_ids": [],
+      "source_ids": [
+        "ncaa-baseball"
+      ],
       "participants": [],
       "events": [],
       "aliases": [
@@ -5898,6 +5900,12 @@
           "name": "NCAA Division I Baseball",
           "name_type": "official",
           "evidence_url": "https://www.ncaa.com/sports/baseball/d1"
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "NCAA Baseball",
+          "source_id": "ncaa-baseball"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
