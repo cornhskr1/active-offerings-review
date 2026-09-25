@@ -348,6 +348,40 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
+    def test_ncaa_division_one_adapters_match_the_exact_competition_scope(self):
+        expected = {
+            ("NCAA Basketball", "Division I Basketball | Men"): ("ncaa-mbb", "NCAA Men's Basketball"),
+            ("NCAA Basketball", "Division I Basketball | Women"): ("ncaa-wbb", "NCAA Women's Basketball"),
+            ("NCAA Volleyball", "Division I Volleyball | Women"): ("ncaa-volleyball", "NCAA Volleyball"),
+        }
+        for identity, (source_id, configured_league) in expected.items():
+            with self.subTest(identity=identity):
+                row = self.rows[identity]
+                self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("adapter", row["sources"][0]["type"])
+                self.assertEqual(configured_league, row["sources"][0]["configured_league"])
+
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        configured_sources = {source["id"]: source for source in config["sources"]}
+        self.assertEqual("NCAA Basketball", configured_sources["ncaa-mbb"]["sport"])
+        self.assertEqual(["Division I Basketball | Men"], configured_sources["ncaa-mbb"]["catalog_terms"])
+        self.assertEqual("NCAA Basketball", configured_sources["ncaa-wbb"]["sport"])
+        self.assertEqual(["Division I Basketball | Women"], configured_sources["ncaa-wbb"]["catalog_terms"])
+        self.assertEqual("NCAA Volleyball", configured_sources["ncaa-volleyball"]["sport"])
+        self.assertEqual(["Division I Volleyball | Women"], configured_sources["ncaa-volleyball"]["catalog_terms"])
+
+        schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text(encoding="utf-8"))
+        refreshed = {source["id"]: source for source in schedule["sources"]}
+        self.assertEqual("NCAA Basketball", refreshed["ncaa-mbb"]["sport"])
+        self.assertEqual("NCAA Basketball", refreshed["ncaa-wbb"]["sport"])
+        self.assertEqual("NCAA Volleyball", refreshed["ncaa-volleyball"]["sport"])
+        self.assertTrue(all(event["sport"] == "NCAA Volleyball" for event in schedule["events"] if event["source_id"] == "ncaa-volleyball"))
+
+        # The current college-football feed does not establish FBS-only scope.
+        fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
+        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
