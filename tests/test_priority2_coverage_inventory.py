@@ -160,7 +160,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_basketball_date_reconciliation_is_complete(self):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
-        self.assertEqual(17, basketball["no_linked_source"])
+        self.assertEqual(11, basketball["no_linked_source"])
         self.assertEqual(0, basketball["pending_dates"])
         self.assertEqual(6, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
@@ -268,7 +268,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([], row["sources"])
                 self.assertIn(reason, row["hold_reason"])
 
-        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(11, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
         self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
 
     def test_fifth_basketball_source_batch_uses_exact_or_descriptive_official_windows(self):
@@ -298,7 +298,28 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
-        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(11, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(6, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+
+    def test_sixth_basketball_source_batch_uses_exact_official_windows(self):
+        expected_windows = {
+            "Radivoj Korać Cup | Men": "basketball-rs-cup",
+            "SBL Cup | Men": "basketball-ch-sbl-cup",
+            "State Cup | Men": "basketball-il-state-cup",
+            "Super 20 Cup | Men": "basketball-ar-super20",
+            "Supercopa Italia | Men": "basketball-it-supercup",
+            "Supercopa de Espana | Men": "basketball-es-supercopa",
+        }
+        for league, source_id in expected_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        self.assertEqual(11, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
         self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
