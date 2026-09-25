@@ -15,6 +15,7 @@ def function_source(name):
     return HTML[start:end if end >= 0 else None]
 
 
+class ReviewTodayDivisionTests(unittest.TestCase):
     def test_partial_fiba_window_stays_visible_without_false_out_of_season_label(self):
         script = """
 const assert=require('node:assert/strict');
@@ -51,7 +52,33 @@ assert.equal(cards[0].source_url,'https://www.fiba.basketball/');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 
-class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_chile_league_and_cup_render_as_distinct_coverage_warnings(self):
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:[
+  {id:'chile-lnb',sport:'Basketball',league:'Liga Nacional de Basquetbol de Chile (LNB)',region:'Chile',coverage_status:'missing'},
+  {id:'chile-copa',sport:'Basketball',league:'Copa Chile',region:'Chile',coverage_status:'missing'}
+]},seasonMap:{source_mappings:[],catalog_event_mappings:[],sports:[{
+  sport:'Basketball',groups:[{country:'Chile',events:[
+    {catalog_event:'Liga Nacional de Basquetbol de Chile (LNB) | Men',source_id:'chile-lnb',test_status:'in'},
+    {catalog_event:'Copa Chile | Men',source_id:'chile-copa',test_status:'in'}
+  ]}]
+}]}};
+function sourceCatalogMapping(){return null}
+function mappedSeasonStatus(value){return value.test_status}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "eventSourceIds", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-24');
+assert.deepEqual(cards.map(card=>card.league).sort(),[
+  'Copa Chile | Men','Liga Nacional de Basquetbol de Chile (LNB) | Men'
+]);
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_mixed_parent_does_not_hide_womens_coverage(self):
         script = """
 const assert=require('node:assert/strict');
