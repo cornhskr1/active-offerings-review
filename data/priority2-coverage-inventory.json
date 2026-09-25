@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T19:04:17.688977+00:00",
-  "schedule_generated_at": "2026-09-25T19:03:10.041003+00:00",
+  "registry_generated_at": "2026-09-25T19:24:48.263764+00:00",
+  "schedule_generated_at": "2026-09-25T19:24:37.932349+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 125,
-      "OFFICIAL_WINDOW_ONLY": 60,
+      "NO_LINKED_SOURCE": 124,
+      "OFFICIAL_WINDOW_ONLY": 61,
       "SOURCE_SCOPE_REVIEW": 70
     },
     "season_states": {
-      "DATED_WINDOW": 59,
+      "DATED_WINDOW": 60,
       "DESCRIPTIVE_WINDOW": 56,
-      "DOCUMENTED_HOLD": 6,
+      "DOCUMENTED_HOLD": 7,
       "NO_WINDOW": 24,
       "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 446
+      "RECURRING_WINDOW": 444
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -149,7 +149,7 @@
     "NCAA Basketball": {
       "identities": 8,
       "split_children": 6,
-      "no_linked_source": 6,
+      "no_linked_source": 5,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -5267,11 +5267,19 @@
       "identity_key": "ncaa-basketball-cbc",
       "approval_parent": "College Basketball Crown (CBC) | Men",
       "kind": "catalog",
-      "season_window": "March–April",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 1–5, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-basketball-cbc",
+          "type": "official-event-window",
+          "configured_league": "College Basketball Crown (CBC) | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5280,9 +5288,10 @@
       "identity_key": "ncaa-basketball-cbi",
       "approval_parent": "College Basketball Invitational (CBI) | Men",
       "kind": "catalog",
-      "season_window": "March",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026 tournament canceled; 2027 dates not published",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "The 2026 CBI was canceled and organizers have not published exact 2027 dates or a current schedule.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0

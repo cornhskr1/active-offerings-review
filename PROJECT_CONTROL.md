@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 25, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA coverage — add the exact Division I men's baseball schedule adapter; keep football division scope under review**
+**Current task:** **NCAA Basketball coverage — attach the exact College Basketball Crown window and document the canceled CBI calendar; keep football division scope under review**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -93,17 +93,17 @@ The public suite passed 85 tests and the catalog identity validator reported zer
 
 ## Priority 2 coverage baseline and fixed queue
 
-`data/priority2-coverage-inventory.json` lists all 722 mapped operational identities, including 144 split children, using the published 9.22.26 catalog, current registry, and global plus regional schedule configurations. It keeps the two schedule-only labels `NCAA Football` and `NCAA Volleyball` outside the mapped approval count; these labels cannot create independent catalog approval.
+`data/priority2-coverage-inventory.json` lists all 722 mapped operational identities, including 144 split children, using the published 9.22.26 catalog, current registry, and global plus regional schedule configurations. It keeps the schedule-only label `NCAA Football` outside the mapped approval count; this label cannot create independent catalog approval.
 
 | Schedule linkage state | Identities | Meaning |
 |---|---:|---|
 | Adapter configured | 179 | Source configured; actual fixture coverage and refresh health still require verification |
 | Adapter gap | 288 | Source is marked as a coverage gap, not an unattended fixture adapter |
-| No linked source | 125 | No source ID attached to the operational identity |
-| Official event window only | 60 | Window evidence exists; individual fixture coverage is not established |
+| No linked source | 124 | No source ID attached to the operational identity |
+| Official event window only | 61 | Window evidence exists; individual fixture coverage is not established |
 | Source scope review | 70 | Attached ID is absent from the schedule configuration; some IDs are official-link references rather than fixture adapters |
 
-The separate season audit finds 131 identities with pending dates, 24 with no season window, six documented holds, and no partial windows. These categories overlap the schedule linkage states. The global feed's 303 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
+The separate season audit finds 131 identities with pending dates, 24 with no season window, seven documented holds, and no partial windows. These categories overlap the schedule linkage states. The global feed's 303 reported gap **labels** across 13 areas must not be added to the 722 identity total or treated as proof that the remaining identities have complete schedules. The absence of an event in a seven-day feed is not proof of missing coverage or an out-of-season state.
 
 | Order | Coverage section | First check |
 |---:|---|---|
@@ -142,6 +142,8 @@ Each section exits only when every identity has either verified, correctly scope
 **NCAA checkpoint, September 25 — exact-scope adapter batch 1:** The men's and women's Division I basketball ESPN feeds are mapped to their separate NCAA Basketball children, and the women's Division I volleyball feed is mapped to its exact NCAA Volleyball child. This resolves three of four NCAA `SOURCE_SCOPE_REVIEW` identities; the fourth, FBS, remains held because the configured college-football feed does not yet demonstrate FBS-only scope. The NCAA section baseline is 35 identities, including 24 split children, 31 with no linked source, four in source-scope review, and 18 with pending dates. After batch 1, 31 identities still have no linked source and 18 have pending dates, while source-scope review falls to one. The NCAA section remains open. Source endpoints: https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard , https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard , and https://site.api.espn.com/apis/site/v2/sports/volleyball/womens-college-volleyball/scoreboard .
 
 **NCAA checkpoint, September 25 — baseball adapter batch:** The exact `Division I Baseball | Men` child now uses the NCAA Baseball schedule feed at https://site.api.espn.com/apis/site/v2/sports/baseball/college-baseball/scoreboard, with the NCAA Division I scoreboard at https://www.ncaa.com/scoreboard/baseball/d1 as the scope reference. Its recurring February–June window is retained. The September 25–October 2 refresh succeeded with zero events, consistent with the off-season; this is valid refresh health and does not establish missing coverage. The NCAA section now has four exact Division I adapters, 30 identities with no linked source, one FBS source-scope review, and 18 pending dates. FBS remains held until its feed demonstrates FBS-only scope. The NCAA section remains open.
+
+**NCAA checkpoint, September 25 — postseason basketball batch:** The exact `College Basketball Crown (CBC) | Men` identity now has the complete April 1–5, 2026 official event window and FOX Sports schedule. It is official-window-only and does not claim unattended fixture coverage; 2027 dates remain pending. The official CBI site states that the 2026 tournament was canceled and that organizers intend to return, but it does not publish exact 2027 dates. `College Basketball Invitational (CBI) | Men` therefore remains without a linked source as a documented fail-closed hold. NCAA now has four exact adapters, one official event window, 29 identities without linked sources, one FBS source-scope review, one documented calendar hold, and 18 pending dates. The NCAA section remains open. Official evidence: https://www.foxsports.com/stories/presspass/college-basketball-crown-announces-ticket-sales-television-schedule-for-2026-tournament , https://www.foxsports.com/college-basketball/college-basketball-crown/schedule , and https://collegebasketballinvitational.com/ .
 
 
 ## Recovered work from September 23–24
@@ -201,4 +203,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #102 merged. The inventory contains 722 mapped operational identities and 144 split children; the 303 feed gap labels are a separate measure. Basketball source batches 1 through 7 leave only six documented no-source holds, zero pending dates, and six documented holds, so the Basketball section exit gate passes. NCAA is active: 35 identities, 24 split children, 30 without linked sources, four exact Division I adapters (men's and women's basketball, women's volleyball, and men's baseball), one FBS source-scope review, and 18 pending dates. Baseball's current refresh succeeded with zero events during the February–June sport's off-season. NCAA coverage is not complete; resolve child-specific dates and feeds, and keep FBS held until exact scope is established.
+**Current checkpoint:** Priority 2; Active Offerings PR #103 merged. The inventory contains 722 mapped operational identities and 144 split children; the 303 feed gap labels are a separate measure. Basketball source batches 1 through 7 leave only six documented no-source holds, zero pending dates, and six documented holds, so the Basketball section exit gate passes. NCAA is active: 35 identities, 24 split children, 29 without linked sources, four exact Division I adapters (men's and women's basketball, women's volleyball, and men's baseball), one official CBC event window, one documented CBI calendar hold, one FBS source-scope review, and 18 pending dates. NCAA coverage is not complete; continue with the Division II and Division III basketball children and keep FBS held until exact scope is established.
