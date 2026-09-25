@@ -160,9 +160,30 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_basketball_date_reconciliation_is_complete(self):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
-        self.assertEqual(43, basketball["no_linked_source"])
+        self.assertEqual(38, basketball["no_linked_source"])
         self.assertEqual(0, basketball["pending_dates"])
-        self.assertEqual(2, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(3, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+
+    def test_first_basketball_source_batch_uses_exact_official_windows_or_hold(self):
+        expected_windows = {
+            "BBL-Pokal | Men": "basketball-de-cup",
+            "BIG3 | Men": "basketball-us-big3",
+            "Caribbean Women's Championship | Women": "basketball-caribbean-women",
+            "Central American Women's Championship | Women": "basketball-central-american-women",
+            "Centrobasket Women's Championship | Women": "basketball-centrobasket-women",
+        }
+        for league, source_id in expected_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        champions = self.rows[("Basketball", "BBL Champions Cup")]
+        self.assertEqual("DOCUMENTED_HOLD", champions["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", champions["coverage_state"])
+        self.assertIn("no BBL Champions Cup", champions["hold_reason"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
