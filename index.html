@@ -1122,7 +1122,8 @@ function uncoveredMappedEvents(sportName){
   sports.forEach(sport=>(sport.groups||[]).forEach(group=>(group.events||[]).forEach(event=>{
     const identities=(event.coverage_children||[]).length?event.coverage_children:[event];
     identities.forEach(identity=>{
-      if(mappedSeasonStatus(identity)!=='in')return;
+      const seasonStatus=mappedSeasonStatus(identity);
+      if(seasonStatus==='out')return;
       const ids=eventSourceIds(identity);
       if(ids.some(id=>configured.has(id)))return;
       gaps.push({
@@ -1130,6 +1131,7 @@ function uncoveredMappedEvents(sportName){
         region:group.country||'International',
         league:identity.label||identity.catalog_event,
         governing_body:group.governing_body||'',
+        season_status:seasonStatus,
         event:identity
       });
     });
@@ -1167,13 +1169,15 @@ function scheduleCoverageAttention(dayKey){
   });
   const unmapped=uncoveredMappedEvents('Basketball').map(gap=>({
     severity:'AMBER',
-    type:'SCHEDULE COVERAGE GAP',
+    type:gap.season_status==='in'?'SCHEDULE COVERAGE GAP':'SEASON COVERAGE GAP',
     sport:gap.sport,
     league:gap.league,
     region:gap.region,
     event:`${gap.league} · schedule coverage`,
     start_time:`${dayKey}T12:00:00-05:00`,
-    reason:'Approved and in season, but no automated schedule source is connected.',
+    reason:gap.season_status==='in'
+      ?'Approved and in season, but no automated schedule source is connected.'
+      :'Approved competition has no verified current season dates and no automated schedule source is connected.',
     staff_action:`Check the ${gap.governing_body||gap.region+' governing body'} calendar and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.`
   }));
   return [...configured,...unmapped];
