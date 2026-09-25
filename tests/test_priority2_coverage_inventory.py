@@ -46,6 +46,26 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("ADAPTER_GAP", row["coverage_state"])
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
 
+    def test_fiba_3x3_tour_keeps_mens_calendar_and_womens_scope_hold_separate(self):
+        men = self.rows[("Basketball", "FIBA 3x3 World Tour | Men")]
+        self.assertEqual("DATED_WINDOW", men["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", men["coverage_state"])
+        self.assertEqual(
+            [{
+                "id": "basketball-fiba-3x3-tour-men",
+                "type": "official-event-window",
+                "configured_league": "FIBA 3x3 World Tour | Men",
+                "refresh_ok": True,
+                "events_in_window": 1,
+            }],
+            men["sources"],
+        )
+
+        women = self.rows[("Basketball", "FIBA 3x3 World Tour | Women")]
+        self.assertEqual("PENDING_DATES", women["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
+        self.assertEqual([], women["sources"])
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])

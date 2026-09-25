@@ -79,6 +79,36 @@ assert.deepEqual(cards.map(card=>card.league).sort(),[
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 
+    def test_pending_fiba_3x3_womens_scope_stays_visible_in_review_today(self):
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:[{
+  id:'basketball-fiba-3x3-tour-men',sport:'Basketball',
+  league:'FIBA 3x3 World Tour | Men',coverage_status:'current-published-events'
+}]},seasonMap:{source_mappings:[],catalog_event_mappings:[],sports:[{
+  sport:'Basketball',groups:[{country:'International',events:[{
+    catalog_event:'FIBA 3x3 World Tour | Men and Women',coverage_children:[
+      {label:'FIBA 3x3 World Tour | Men',source_id:'basketball-fiba-3x3-tour-men',test_status:'in'},
+      {label:'FIBA 3x3 World Tour | Women',test_status:null}
+    ]
+  }]}]
+}]}};
+function sourceCatalogMapping(){return null}
+function mappedSeasonStatus(value){return value.test_status}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "eventSourceIds", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-25');
+assert.equal(cards.length,1);
+assert.equal(cards[0].league,'FIBA 3x3 World Tour | Women');
+assert.equal(cards[0].type,'SEASON COVERAGE GAP');
+assert.match(cards[0].reason,/no verified current season dates/);
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_mixed_parent_does_not_hide_womens_coverage(self):
         script = """
 const assert=require('node:assert/strict');
