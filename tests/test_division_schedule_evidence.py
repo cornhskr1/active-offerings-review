@@ -13,7 +13,7 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
             (DATA / "global-schedule-sources.json").read_text(encoding="utf-8")
         )["sources"]}
         expected = {
-            "basketball-fiba-world-cup-men": ("2027-08-27", "2027-09-12", "Basketball"),
+            "basketball-fiba-world-cup-men": ("2025-11-24", "2027-09-12", "Basketball"),
             "basketball-fiba-world-cup-women": ("2026-09-04", "2026-09-13", "Basketball"),
             "basketball-fiba-3x3-world-cup-men": ("2026-06-01", "2026-06-07", "Basketball"),
             "basketball-fiba-3x3-world-cup-women": ("2026-06-01", "2026-06-07", "Basketball"),

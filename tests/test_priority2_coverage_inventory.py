@@ -27,10 +27,11 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             self.assertEqual("PENDING_DATES", row["season_state"])
             self.assertEqual([], row["sources"])
 
-    def test_official_window_and_gap_do_not_pretend_to_be_fixture_adapters(self):
+    def test_complete_world_cup_window_and_gap_do_not_pretend_to_be_fixture_adapter(self):
         row = self.rows[("Basketball", "FIBA Basketball World Cup | Men")]
         self.assertEqual("ADAPTER_GAP", row["coverage_state"])
-        self.assertEqual("PARTIAL_WINDOW", row["season_state"])
+        self.assertEqual("DATED_WINDOW", row["season_state"])
+        self.assertEqual("November 24, 2025–September 12, 2027, including six qualifier windows and the finals", row["season_window"])
         self.assertEqual("coverage-gap", row["sources"][0]["type"])
         afl = self.rows[("Aussie Rules", "Australian Football League (AFL)")]
         self.assertEqual("ADAPTER_CONFIGURED", afl["coverage_state"])
@@ -62,9 +63,10 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         )
 
         women = self.rows[("Basketball", "FIBA 3x3 World Tour | Women")]
-        self.assertEqual("PENDING_DATES", women["season_state"])
+        self.assertEqual("DOCUMENTED_HOLD", women["season_state"])
         self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
         self.assertEqual([], women["sources"])
+        self.assertIn("identity mismatch", women["hold_reason"])
 
     def test_afrobasket_divisions_keep_separate_official_windows(self):
         expected = {
@@ -129,18 +131,38 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
-    def test_unsupported_regional_tournaments_remain_fail_closed(self):
-        for league in (
-            "Pacific Games | Men",
-            "Pacific Games | Women",
-            "South American Championship | Men",
-            "South American Championship | Women",
-        ):
+    def test_pacific_and_south_american_divisions_use_official_windows(self):
+        expected = {
+            "Pacific Games | Men": "basketball-pacific-games-men",
+            "Pacific Games | Women": "basketball-pacific-games-women",
+            "South American Championship | Men": "basketball-south-american-men",
+            "South American Championship | Women": "basketball-south-american-women",
+        }
+        for league, source_id in expected.items():
             with self.subTest(league=league):
                 row = self.rows[("Basketball", league)]
-                self.assertEqual("PENDING_DATES", row["season_state"])
-                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
-                self.assertEqual([], row["sources"])
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+
+    def test_tbt_mens_window_and_womens_scope_hold_remain_separate(self):
+        men = self.rows[("Basketball", "The Basketball Tournament (TBT) | Men")]
+        self.assertEqual("DATED_WINDOW", men["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", men["coverage_state"])
+        self.assertEqual(["basketball-us-tbt-men"], [source["id"] for source in men["sources"]])
+
+        women = self.rows[("Basketball", "The Basketball Tournament (TBT) | Women")]
+        self.assertEqual("DOCUMENTED_HOLD", women["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
+        self.assertEqual([], women["sources"])
+        self.assertIn("women's TBT", women["hold_reason"])
+
+    def test_basketball_date_reconciliation_is_complete(self):
+        basketball = self.inventory["by_sport"]["Basketball"]
+        self.assertEqual(89, basketball["identities"])
+        self.assertEqual(43, basketball["no_linked_source"])
+        self.assertEqual(0, basketball["pending_dates"])
+        self.assertEqual(2, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
