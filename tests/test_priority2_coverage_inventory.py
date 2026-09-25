@@ -566,6 +566,52 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
 
+    def test_ncaa_field_hockey_uses_exact_division_one_championship_window(self):
+        row = self.rows[("NCAA Field Hockey", "Division I Field Hockey | Women")]
+        self.assertEqual("RECURRING_WINDOW", row["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+        self.assertEqual(["ncaa-field-hockey-di"], [source["id"] for source in row["sources"]])
+        self.assertEqual("official-event-window", row["sources"][0]["type"])
+        self.assertTrue(row["sources"][0]["refresh_ok"])
+        self.assertEqual(0, row["sources"][0]["events_in_window"])
+
+        season_map = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
+        sport = next(item for item in season_map["sports"] if item["sport"] == "NCAA Field Hockey")
+        event = sport["groups"][0]["events"][0]
+        self.assertEqual("Division I Field Hockey | Women", event["catalog_event"])
+        self.assertEqual("ncaa-field-hockey-di", event["source_id"])
+        self.assertIn("Nov. 20–22", event["season_window"])
+        self.assertIn("Division I", event["season_basis"])
+
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        source = {item["id"]: item for item in config["sources"]}["ncaa-field-hockey-di"]
+        self.assertEqual("NCAA Field Hockey", source["sport"])
+        self.assertEqual("Division I Field Hockey | Women", source["league"])
+        self.assertEqual(["Division I Field Hockey | Women"], source["catalog_terms"])
+        self.assertEqual("2026-11-20", source["official_events"][0]["start_date"])
+        self.assertEqual("2026-11-22", source["official_events"][0]["end_date"])
+
+        schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text(encoding="utf-8"))
+        refreshed = {item["id"]: item for item in schedule["sources"]}["ncaa-field-hockey-di"]
+        self.assertTrue(refreshed["ok"])
+        self.assertEqual(0, refreshed["events"])
+
+        registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
+        registered = next(
+            competition for competition in registry["competitions"]
+            if competition["sport"] == "NCAA Field Hockey"
+            and competition["league"] == "Division I Field Hockey | Women"
+        )
+        self.assertEqual(["ncaa-field-hockey-di"], registered["source_ids"])
+
+        self.assertEqual(0, self.inventory["by_sport"]["NCAA Field Hockey"]["no_linked_source"])
+        self.assertEqual(119, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(66, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+
+        # FBS scope remains unresolved and must stay fail-closed.
+        fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
+        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
