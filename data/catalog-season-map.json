@@ -231,12 +231,12 @@
                 {
                   "key": "basketball-fiba-world-cup-men",
                   "label": "FIBA Basketball World Cup | Men",
-                  "season_window": "2027 finals: August 27–September 12; qualifier windows also occur before the finals",
-                  "season_start_date": "2027-08-27",
-                  "season_window_complete": false,
+                  "season_window": "November 24, 2025–September 12, 2027, including six qualifier windows and the finals",
+                  "season_start_date": "2025-11-24",
                   "season_end_date": "2027-09-12",
                   "source_id": "basketball-fiba-world-cup-men",
-                  "season_basis": "FIBA 2027 finals and qualifier calendars; the finals dates alone cannot determine the full competition season. Qualifier scope and complete fixture linkage require verification"
+                  "season_basis": "FIBA publishes the six regional qualifier windows from November 24, 2025 through March 2, 2027 and the Qatar finals from August 27 through September 12, 2027; an unattended fixture adapter remains pending",
+                  "last_verified": "2026-09-25"
                 },
                 {
                   "key": "basketball-fiba-world-cup-women",
@@ -304,8 +304,10 @@
                 {
                   "key": "basketball-fiba-3x3-tour-women",
                   "label": "FIBA 3x3 World Tour | Women",
-                  "season_window": "Catalog-to-official competition match pending",
+                  "season_window": "No corresponding official women's World Tour competition verified",
                   "season_basis": "FIBA identifies the women's professional circuit as the FIBA 3x3 Women’s Series, not the World Tour. Keep the catalog child fail-closed until that naming and scope difference is reviewed; do not import Women’s Series dates as World Tour approval.",
+                  "season_hold": true,
+                  "hold_reason": "Catalog-to-official identity mismatch: FIBA 3x3 Women’s Series is not evidence for a women's World Tour approval.",
                   "last_verified": "2026-09-25"
                 }
               ]
@@ -399,14 +401,22 @@
                 {
                   "key": "basketball-south-american-men",
                   "label": "South American Championship | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "June 26–July 2, 2016; no later men's edition published",
+                  "season_start_date": "2016-06-26",
+                  "season_end_date": "2016-07-02",
+                  "source_id": "basketball-south-american-men",
+                  "season_basis": "FIBA history identifies the 2016 Venezuela tournament as the last published South American Championship for Men; no unattended fixture coverage is claimed",
+                  "last_verified": "2026-09-25"
                 },
                 {
                   "key": "basketball-south-american-women",
                   "label": "South American Championship | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "August 3–9, 2026",
+                  "season_start_date": "2026-08-03",
+                  "season_end_date": "2026-08-09",
+                  "source_id": "basketball-south-american-women",
+                  "season_basis": "Official FIBA South American Women's Championship 2026 window in Argentina; unattended fixture coverage remains pending",
+                  "last_verified": "2026-09-25"
                 }
               ]
             },
@@ -647,14 +657,22 @@
                 {
                   "key": "basketball-pacific-games-men",
                   "label": "Pacific Games | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "November 17–25, 2023; next edition dates pending",
+                  "season_start_date": "2023-11-17",
+                  "season_end_date": "2023-11-25",
+                  "source_id": "basketball-pacific-games-men",
+                  "season_basis": "FIBA history confirms the men's 2023 Pacific Games basketball tournament in Solomon Islands; the next basketball-specific window and unattended fixture coverage remain pending",
+                  "last_verified": "2026-09-25"
                 },
                 {
                   "key": "basketball-pacific-games-women",
                   "label": "Pacific Games | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "November 17–25, 2023; next edition dates pending",
+                  "season_start_date": "2023-11-17",
+                  "season_end_date": "2023-11-25",
+                  "source_id": "basketball-pacific-games-women",
+                  "season_basis": "FIBA history confirms the women's 2023 Pacific Games basketball tournament in Solomon Islands; the next basketball-specific window and unattended fixture coverage remain pending",
+                  "last_verified": "2026-09-25"
                 }
               ]
             }
@@ -1362,14 +1380,21 @@
                 {
                   "key": "basketball-us-tbt-men",
                   "label": "The Basketball Tournament (TBT) | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "July 18–August 2, 2026",
+                  "season_start_date": "2026-07-18",
+                  "season_end_date": "2026-08-02",
+                  "source_id": "basketball-us-tbt-men",
+                  "season_basis": "TBT's official 2026 announcement confirms the tournament opened July 18 and concluded with the August 2 championship; no unattended fixture feed is claimed",
+                  "last_verified": "2026-09-25"
                 },
                 {
                   "key": "basketball-us-tbt-women",
                   "label": "The Basketball Tournament (TBT) | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "No corresponding official women's TBT competition verified",
+                  "season_basis": "TBT publishes one 2026 basketball tournament and does not identify a separate women's competition. Keep the catalog child fail-closed rather than assigning the published TBT dates across divisions.",
+                  "season_hold": true,
+                  "hold_reason": "No official division-specific women's TBT competition or calendar was found.",
+                  "last_verified": "2026-09-25"
                 }
               ]
             }

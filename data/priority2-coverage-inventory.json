@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T00:42:32.907657+00:00",
+  "registry_generated_at": "2026-09-25T04:19:22.635936+00:00",
   "schedule_generated_at": "2026-09-24T23:18:50.117519+00:00",
   "schedule_window_start": "2026-09-24",
   "schedule_window_end": "2026-10-01",
@@ -12,16 +12,16 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 168,
-      "OFFICIAL_WINDOW_ONLY": 18,
+      "NO_LINKED_SOURCE": 163,
+      "OFFICIAL_WINDOW_ONLY": 23,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 22,
+      "DATED_WINDOW": 28,
       "DESCRIPTIVE_WINDOW": 56,
+      "DOCUMENTED_HOLD": 2,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 138,
+      "PENDING_DATES": 131,
       "RECURRING_WINDOW": 481
     },
     "reported_gap_areas": 13,
@@ -55,9 +55,9 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 48,
+      "no_linked_source": 43,
       "adapter_gaps": 6,
-      "pending_dates": 8
+      "pending_dates": 0
     },
     "Bowling": {
       "identities": 2,
@@ -893,9 +893,10 @@
       "identity_key": "basketball-fiba-3x3-tour-women",
       "approval_parent": "FIBA 3x3 World Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Catalog-to-official competition match pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "No corresponding official women's World Tour competition verified",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Catalog-to-official identity mismatch: FIBA 3x3 Women’s Series is not evidence for a women's World Tour approval.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -1032,8 +1033,8 @@
       "identity_key": "basketball-fiba-world-cup-men",
       "approval_parent": "FIBA Basketball World Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "2027 finals: August 27–September 12; qualifier windows also occur before the finals",
-      "season_state": "PARTIAL_WINDOW",
+      "season_window": "November 24, 2025–September 12, 2027, including six qualifier windows and the finals",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -1642,11 +1643,19 @@
       "identity_key": "basketball-pacific-games-men",
       "approval_parent": "Pacific Games | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "November 17–25, 2023; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-pacific-games-men",
+          "type": "official-event-window",
+          "configured_league": "Pacific Games | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1655,11 +1664,19 @@
       "identity_key": "basketball-pacific-games-women",
       "approval_parent": "Pacific Games | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "November 17–25, 2023; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-pacific-games-women",
+          "type": "official-event-window",
+          "configured_league": "Pacific Games | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1780,11 +1797,19 @@
       "identity_key": "basketball-south-american-men",
       "approval_parent": "South American Championship | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "June 26–July 2, 2016; no later men's edition published",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-south-american-men",
+          "type": "official-event-window",
+          "configured_league": "South American Championship | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1793,11 +1818,19 @@
       "identity_key": "basketball-south-american-women",
       "approval_parent": "South American Championship | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 3–9, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-south-american-women",
+          "type": "official-event-window",
+          "configured_league": "South American Championship | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1918,11 +1951,19 @@
       "identity_key": "basketball-us-tbt-men",
       "approval_parent": "The Basketball Tournament (TBT) | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "July 18–August 2, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-us-tbt-men",
+          "type": "official-event-window",
+          "configured_league": "The Basketball Tournament (TBT) | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -1931,9 +1972,10 @@
       "identity_key": "basketball-us-tbt-women",
       "approval_parent": "The Basketball Tournament (TBT) | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "No corresponding official women's TBT competition verified",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "No official division-specific women's TBT competition or calendar was found.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
