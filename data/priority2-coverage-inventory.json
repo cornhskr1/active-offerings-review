@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T00:13:26.097990+00:00",
+  "registry_generated_at": "2026-09-25T00:42:32.907657+00:00",
   "schedule_generated_at": "2026-09-24T23:18:50.117519+00:00",
   "schedule_window_start": "2026-09-24",
   "schedule_window_end": "2026-10-01",
@@ -12,16 +12,16 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 175,
       "ADAPTER_GAP": 288,
-      "NO_LINKED_SOURCE": 182,
-      "OFFICIAL_WINDOW_ONLY": 4,
+      "NO_LINKED_SOURCE": 180,
+      "OFFICIAL_WINDOW_ONLY": 6,
       "SOURCE_SCOPE_REVIEW": 73
     },
     "season_states": {
-      "DATED_WINDOW": 8,
+      "DATED_WINDOW": 10,
       "DESCRIPTIVE_WINDOW": 56,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 152,
+      "PENDING_DATES": 150,
       "RECURRING_WINDOW": 481
     },
     "reported_gap_areas": 13,
@@ -55,9 +55,9 @@
     "Basketball": {
       "identities": 89,
       "split_children": 26,
-      "no_linked_source": 62,
+      "no_linked_source": 60,
       "adapter_gaps": 6,
-      "pending_dates": 22
+      "pending_dates": 20
     },
     "Bowling": {
       "identities": 2,
@@ -906,11 +906,19 @@
       "identity_key": "basketball-afrobasket-men",
       "approval_parent": "FIBA AfroBasket | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 12–24, 2025; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-afrobasket-men",
+          "type": "official-event-window",
+          "configured_league": "FIBA AfroBasket | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -919,11 +927,19 @@
       "identity_key": "basketball-afrobasket-women",
       "approval_parent": "FIBA AfroBasket | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "July 26–August 3, 2025; next edition dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "basketball-afrobasket-women",
+          "type": "official-event-window",
+          "configured_league": "FIBA AfroBasket | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
