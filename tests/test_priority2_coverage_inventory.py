@@ -469,7 +469,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         )
         self.assertEqual(["ncaa-basketball-cbc"], registered["source_ids"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(7, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(8, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_ncaa_division_two_and_three_basketball_use_exact_child_windows(self):
         expected = {
@@ -533,6 +533,36 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
         self.assertEqual("DOCUMENTED_HOLD", cbi["season_state"])
         self.assertEqual("NO_LINKED_SOURCE", cbi["coverage_state"])
+        fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
+        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+
+    def test_ncaa_beach_volleyball_keeps_national_collegiate_scope_fail_closed(self):
+        row = self.rows[("NCAA Beach Volleyball", "Division I Beach Volleyball | Women")]
+        self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+        self.assertEqual([], row["sources"])
+        self.assertIn("National Collegiate", row["season_window"])
+        self.assertIn("May 7–9", row["season_window"])
+        self.assertIn("Division I women", row["hold_reason"])
+        self.assertIn("National Collegiate", row["hold_reason"])
+        self.assertIn("Division I-only unattended source", row["hold_reason"])
+
+        season_map = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
+        sport = next(item for item in season_map["sports"] if item["sport"] == "NCAA Beach Volleyball")
+        event = sport["groups"][0]["events"][0]
+        self.assertEqual("Division I Beach Volleyball | Women", event["catalog_event"])
+        self.assertTrue(event["season_hold"])
+        self.assertNotIn("source_id", event)
+        self.assertIn("National Collegiate", event["season_basis"])
+
+        # Broader NCAA evidence must not resolve the narrower catalog child.
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        self.assertFalse(any(
+            source.get("sport") == "NCAA Beach Volleyball"
+            for source in config["sources"]
+        ))
+        self.assertEqual(8, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
 
