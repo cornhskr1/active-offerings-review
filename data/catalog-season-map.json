@@ -159,10 +159,11 @@
       "sport": "Soccer",
       "country": "Denmark",
       "catalog_event": "Danish Superliga | Men",
-      "season_window": "July–May",
-      "season_start": "07-01",
-      "season_end": "05-31",
-      "last_verified": "2026-09-16"
+      "season_window": "July 24, 2026–June 3, 2027",
+      "last_verified": "2026-09-26",
+      "season_start_date": "2026-07-24",
+      "season_end_date": "2027-06-03",
+      "season_window_complete": false
     },
     {
       "source_id": "atp-tennis",
@@ -5407,35 +5408,37 @@
             {
               "key": "soccer-denmark-danish-superliga-men",
               "catalog_event": "Danish Superliga | Men",
-              "season_window": "July–May",
-              "season_basis": "Existing connected public schedule source and controlled annual season window",
-              "last_verified": "2026-09-18",
+              "season_window": "July 24, 2026–June 3, 2027, including Europa play-off",
+              "season_basis": "3F Superliga official opening fixture July 24 and Divisionsforeningen’s spring 2027 date plan through the June 3 S33 European play-off; connected ESPN feed may omit the play-off.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "denmark"
+              "source_id": "denmark",
+              "season_start_date": "2026-07-24",
+              "season_end_date": "2027-06-03",
+              "season_window_complete": false
             },
             {
               "key": "soccer-denmark-danish-1st-division-men",
               "catalog_event": "Danish 1st Division | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "July 24, 2026–June 6, 2027",
+              "season_basis": "Betinia Liga official opening fixture July 24 and Divisionsforeningen’s spring 2027 date plan through F32 on June 6; unattended division adapter remains missing.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-denmark-danish-1st-division-men"
+              "source_id": "uefa-soccer-denmark-danish-1st-division-men",
+              "season_start_date": "2026-07-24",
+              "season_end_date": "2027-06-06"
             },
             {
               "key": "soccer-denmark-danish-cup-men",
               "catalog_event": "Danish Cup | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "August 5, 2026–May 6, 2027 national rounds; local qualifying scope pending",
+              "season_basis": "Divisionsforeningen date plan marks LP1 August 5 and national cup final May 6; local DBU qualifying rounds may precede the national draw, so this window is partial.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-denmark-danish-cup-men"
+              "source_id": "uefa-soccer-denmark-danish-cup-men",
+              "season_start_date": "2026-08-05",
+              "season_end_date": "2027-05-06",
+              "season_window_complete": false
             }
           ]
         },
@@ -7193,35 +7196,37 @@
             {
               "key": "soccer-norway-eliteserien-men",
               "catalog_event": "Eliteserien | Men",
-              "season_window": "March–December 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "March 14–December 21, 2026, including qualification",
+              "season_basis": "NFF/Eliteserien first match March 14; revised round 30 December 13 and top-division qualification legs December 17/21. Connected ESPN feed may omit qualification.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "03-01",
-              "season_end": "12-31",
-              "source_id": "uefa-soccer-norway-eliteserien-men"
+              "source_id": "uefa-soccer-norway-eliteserien-men",
+              "season_start_date": "2026-03-14",
+              "season_end_date": "2026-12-21",
+              "season_window_complete": false
             },
             {
               "key": "soccer-norway-obos-ligaen-men",
               "catalog_event": "OBOS-ligaen | Men",
-              "season_window": "March–December 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "April 5–December 21, 2026, including qualification",
+              "season_basis": "OBOS official first match April 5; NFF confirmed regular season November 8, with internal promotion play-offs and top-division qualification legs December 17/21. No unattended second-tier adapter.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "03-01",
-              "season_end": "12-31",
-              "source_id": "uefa-soccer-norway-obos-ligaen-men"
+              "source_id": "uefa-soccer-norway-obos-ligaen-men",
+              "season_start_date": "2026-04-05",
+              "season_end_date": "2026-12-21",
+              "season_window_complete": false
             },
             {
               "key": "soccer-norway-norwegian-cup-men",
               "catalog_event": "Norwegian Cup | Men",
-              "season_window": "March–December 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2027 edition underway; spring 2027 final date pending",
+              "season_basis": "NFF’s 2027 men’s cup qualification began June 2026 and the ordinary first round August 22; subsequent rounds continue in spring 2027. The 2026 final on May 9 belongs to the prior edition.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "03-01",
-              "season_end": "12-31",
-              "source_id": "uefa-soccer-norway-norwegian-cup-men"
+              "source_id": "uefa-soccer-norway-norwegian-cup-men",
+              "season_hold": true,
+              "hold_reason": "Exact 2027 Norwegian Cup final date and full qualifier scope are not verified; do not reuse a March–December 2026 season window."
             }
           ]
         },

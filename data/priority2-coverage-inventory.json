@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T19:46:36.705410+00:00",
-  "schedule_generated_at": "2026-09-26T19:42:20.766020+00:00",
+  "registry_generated_at": "2026-09-26T19:56:03.247168+00:00",
+  "schedule_generated_at": "2026-09-26T19:51:54.064524+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 147,
+      "DATED_WINDOW": 148,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 34,
+      "DOCUMENTED_HOLD": 35,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 5,
+      "PARTIAL_WINDOW": 9,
       "PENDING_DATES": 52,
-      "RECURRING_WINDOW": 411
+      "RECURRING_WINDOW": 405
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 290,
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 237,
-      "pending_dates": 51
+      "pending_dates": 55
     },
     "Surfing": {
       "identities": 6,
@@ -9004,8 +9004,8 @@
       "identity_key": "soccer-denmark-danish-1st-division-men",
       "approval_parent": "Danish 1st Division | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–June 6, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9025,8 +9025,8 @@
       "identity_key": "soccer-denmark-danish-cup-men",
       "approval_parent": "Danish Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 5, 2026–May 6, 2027 national rounds; local qualifying scope pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9046,8 +9046,8 @@
       "identity_key": "soccer-denmark-danish-superliga-men",
       "approval_parent": "Danish Superliga | Men",
       "kind": "catalog",
-      "season_window": "July–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–June 3, 2027, including Europa play-off",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -9193,8 +9193,8 @@
       "identity_key": "soccer-norway-eliteserien-men",
       "approval_parent": "Eliteserien | Men",
       "kind": "catalog",
-      "season_window": "March–December 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "March 14–December 21, 2026, including qualification",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -11461,9 +11461,10 @@
       "identity_key": "soccer-norway-norwegian-cup-men",
       "approval_parent": "Norwegian Cup | Men",
       "kind": "catalog",
-      "season_window": "March–December 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027 edition underway; spring 2027 final date pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Exact 2027 Norwegian Cup final date and full qualifier scope are not verified; do not reuse a March–December 2026 season window.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -11482,8 +11483,8 @@
       "identity_key": "soccer-norway-obos-ligaen-men",
       "approval_parent": "OBOS-ligaen | Men",
       "kind": "catalog",
-      "season_window": "March–December 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 5–December 21, 2026, including qualification",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
