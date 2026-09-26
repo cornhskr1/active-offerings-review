@@ -602,9 +602,9 @@
       "region": "Estonia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://jalgpall.ee/",
-      "official_schedule_url": "https://jalgpall.ee/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://jalgpall.ee/voistlused/52/liigad/calendar?season=2026",
+      "official_schedule_url": "https://jalgpall.ee/voistlused/52/liigad/calendar?season=2026",
+      "source_note": "EJL 2026 league calendar lists March 7 to November 7 rounds; qualification ties remain a separate scope check. No unattended adapter connected.",
       "catalog_terms": [
         "Meistriliiga / Premium Liiga | Men"
       ]
@@ -616,9 +616,9 @@
       "region": "Estonia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://jalgpall.ee/",
-      "official_schedule_url": "https://jalgpall.ee/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://jalgpall.ee/voistlused/karikavoistlused/eesti-2026-27-a-karikavoistluste-mangupaevad",
+      "official_schedule_url": "https://jalgpall.ee/voistlused/karikavoistlused/eesti-2026-27-a-karikavoistluste-mangupaevad",
+      "source_note": "EJL 2026/27 cup dates June 10, 2026 start and May 2027 final month; exact final date pending. No unattended adapter connected.",
       "catalog_terms": [
         "Estonian Cup / Tipneri Karikas | Men"
       ]
@@ -628,13 +628,24 @@
       "sport": "Soccer",
       "league": "Estonian Super Cup / Eesti Superkarikas | Men",
       "region": "Estonia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://jalgpall.ee/",
-      "official_schedule_url": "https://jalgpall.ee/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://jalgpall.ee/voistlused/136/karikad",
+      "official_schedule_url": "https://jalgpall.ee/voistlused/136/karikad",
+      "source_note": "EJL records the senior February 28, 2026 completed Superkarikas only; next date and unattended adapter unclaimed.",
       "catalog_terms": [
         "Estonian Super Cup / Eesti Superkarikas | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-estonia-estonian-super-cup-eesti-superkarikas-men",
+          "league": "Estonian Super Cup / Eesti Superkarikas | Men",
+          "name": "Estonian Super Cup / Eesti Superkarikas 2026",
+          "start_date": "2026-02-28",
+          "end_date": "2026-02-28",
+          "location": "Paide, Estonia",
+          "official_schedule_url": "https://jalgpall.ee/voistlused/136/karikad"
+        }
       ]
     },
     {
@@ -1228,9 +1239,9 @@
       "region": "Latvia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://lff.lv/",
-      "official_schedule_url": "https://lff.lv/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
+      "official_schedule_url": "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
+      "source_note": "LFF dates March 6 to November 8 league rounds; qualification ties remain a separate scope check. No unattended adapter connected.",
       "catalog_terms": [
         "Latvian Higher League / Virslīga | Men"
       ]
@@ -1242,9 +1253,9 @@
       "region": "Latvia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://lff.lv/",
-      "official_schedule_url": "https://lff.lv/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://lff.lv/sacensibas/viriesi/latvijas-kauss/",
+      "official_schedule_url": "https://lff.lv/sacensibas/viriesi/latvijas-kauss/",
+      "source_note": "LFF lists May 15 first round-of-64 match and November 20 final, rescheduled from the earlier October range. No unattended adapter connected.",
       "catalog_terms": [
         "Latvian Cup / Latvijas Kauss | Men"
       ]
@@ -1254,13 +1265,24 @@
       "sport": "Soccer",
       "league": "Latvian Supercup / Latvijas Superkauss | Men",
       "region": "Latvia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://lff.lv/",
-      "official_schedule_url": "https://lff.lv/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://lff.lv/sacensibas/viriesi/superkauss/",
+      "official_schedule_url": "https://lff.lv/sacensibas/viriesi/superkauss/",
+      "source_note": "LFF records the February 17, 2026 senior men’s Superkauss in Turkey; women’s March event excluded. Next date and unattended adapter unclaimed.",
       "catalog_terms": [
         "Latvian Supercup / Latvijas Superkauss | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-latvia-latvian-supercup-latvijas-superkauss-men",
+          "league": "Latvian Supercup / Latvijas Superkauss | Men",
+          "name": "Latvian Supercup / Latvijas Superkauss 2026",
+          "start_date": "2026-02-17",
+          "end_date": "2026-02-17",
+          "location": "Antalya, Turkey",
+          "official_schedule_url": "https://lff.lv/sacensibas/viriesi/superkauss/"
+        }
       ]
     },
     {
