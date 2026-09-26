@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 import unittest
 
 
@@ -47,19 +48,29 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertNotIn('<section class="panel" id="basketball">', HTML)
 
     def test_nonwagered_ncaa_sports_are_filtered_before_rendering(self):
-        self.assertIn("function isNonWageredNcaaSport(item)", HTML)
-        self.assertIn("sport==='golf'", HTML)
-        self.assertIn("sport==='soccer'", HTML)
+        start = HTML.index("function normCollegeSport(")
+        end = HTML.index("\nfunction collegeAliases(", start)
+        script = "const assert=require('node:assert/strict');\n" + HTML[start:end] + """
+for(const sport of ['Baseball','Basketball','Football','Soccer','Softball','Volleyball','Wrestling']){
+  assert.equal(isNonWageredNcaaSport({sport:`NCAA ${sport}`}),false,sport);
+  assert.equal(isNonWageredNcaaSport({sport:`Women's ${sport}`,school:'Nebraska'}),false,sport);
+}
+for(const sport of ['Beach Volleyball','Field Hockey','Golf','Ice Hockey','Lacrosse','Swimming','Tennis','Track and Field','Water Polo']){
+  assert.equal(isNonWageredNcaaSport({sport:`NCAA ${sport}`}),true,sport);
+}
+assert.equal(isNonWageredNcaaSport({sport:'Soccer',league:'NCAA Division I Soccer | Women'}),false);
+assert.equal(isNonWageredNcaaSport({sport:'Tennis',league:'ATP Tour'}),false);
+assert.equal(isNonWageredNcaaSport({sport:'Tennis',league:'NCAA Division I Tennis | Men'}),true);
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
         self.assertIn("const events=visibleCollegeEvents();", HTML)
         self.assertIn("!isNonWageredNcaaSport(e)", HTML)
         self.assertIn("!isNonWageredNcaaSport(c)", HTML)
+        self.assertIn("if(isNonWageredNcaaSport(source))return false;", HTML)
+        self.assertIn("!isNonWageredNcaaSport(gap)", HTML)
 
-    def test_professional_tennis_is_not_generically_suppressed(self):
-        self.assertIn("Boolean(item?.school)", HTML)
-        self.assertIn("\\bncaa\\b|\\bcollege\\b|\\bcollegiate\\b", HTML)
-
-    def test_collegiate_filter_copy_names_all_hidden_sports(self):
-        self.assertIn("Collegiate golf, soccer, tennis, and swimming/diving remain in the source data", HTML)
+    def test_collegiate_filter_copy_names_sports_in_review(self):
+        self.assertIn("men's and women's soccer, softball, volleyball, and wrestling", HTML)
 
     def test_nebraska_collegiate_events_are_grouped_by_date(self):
         self.assertIn('class="college-day"', HTML)
