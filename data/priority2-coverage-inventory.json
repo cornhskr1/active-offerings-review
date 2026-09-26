@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-25T20:12:47.788496+00:00",
-  "schedule_generated_at": "2026-09-25T19:53:18.844798+00:00",
+  "registry_generated_at": "2026-09-26T00:33:23.266861+00:00",
+  "schedule_generated_at": "2026-09-26T00:25:52.657991+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,8 +12,8 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 289,
-      "NO_LINKED_SOURCE": 117,
-      "OFFICIAL_WINDOW_ONLY": 68,
+      "NO_LINKED_SOURCE": 115,
+      "OFFICIAL_WINDOW_ONLY": 70,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
@@ -21,8 +21,8 @@
       "DESCRIPTIVE_WINDOW": 56,
       "DOCUMENTED_HOLD": 8,
       "NO_WINDOW": 24,
-      "PENDING_DATES": 131,
-      "RECURRING_WINDOW": 443
+      "PENDING_DATES": 129,
+      "RECURRING_WINDOW": 445
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -177,9 +177,9 @@
     "NCAA Golf": {
       "identities": 2,
       "split_children": 2,
-      "no_linked_source": 2,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
-      "pending_dates": 2
+      "pending_dates": 0
     },
     "NCAA Ice Hockey": {
       "identities": 2,
@@ -3893,7 +3893,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Esports",
@@ -5526,11 +5526,19 @@
       "identity_key": "ncaa-golf-di-men",
       "approval_parent": "Division I Golf | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August–June; 2027 championship May 28–June 2",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-golf-di-men",
+          "type": "official-event-window",
+          "configured_league": "Division I Golf | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5539,11 +5547,19 @@
       "identity_key": "ncaa-golf-di-women",
       "approval_parent": "Division I Golf | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August–May; 2027 championship May 21–26",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-golf-di-women",
+          "type": "official-event-window",
+          "configured_league": "Division I Golf | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

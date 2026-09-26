@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 25, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Golf coverage — resolve division-specific men's and women's calendars and exact source scope**
+**Current task:** **NCAA Ice Hockey coverage — verify separate men's and women's Division I calendars and source scope**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -153,6 +153,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 25 — Football:** NCAA exposes distinct FBS, FCS, and Division II football views, so the broad schedule-only college-football feed is no longer used to establish any narrower catalog identity. FBS is linked to its exact NCAA scoreboard as an explicit adapter gap pending a dependable unattended fixture adapter. FCS is linked to its exact NCAA scoreboard and Jan. 11, 2027 NCAA Division I Football Championship window in Nashville. Division II is linked to its exact NCAA scoreboard and Dec. 19, 2026 championship window in McKinney. NCAA Football therefore has zero no-source identities; systemwide NO_LINKED_SOURCE falls from 119 to 117, OFFICIAL_WINDOW_ONLY rises from 66 to 68, ADAPTER_GAP rises by one, and SOURCE_SCOPE_REVIEW falls by one. The broad Football / NCAA Football feed remains schedule-only and cannot create catalog approval. Official evidence: https://www.ncaa.com/scoreboard/football/fbs , https://www.ncaa.com/scoreboard/football/fcs , https://www.ncaa.org/championship/division-i/football/ , and https://www.ncaa.org/championship/division-ii/football/ .
 
+**NCAA checkpoint, September 25 — Golf:** NCAA's separate Division I championship pages publish the women's 2027 finals for May 21–26 and the men's for May 28–June 2, both at Omni La Costa in Carlsbad. The two split children now have their own official-window-only sources, while their recurring August–May and August–June indicators remain qualified: the championship pages do not establish a complete regular-season or regional fixture calendar. The original combined catalog wording remains the legal parent and is not schedulable. NCAA Golf moves from two pending/no-source children to zero; systemwide NO_LINKED_SOURCE falls from 117 to 115, OFFICIAL_WINDOW_ONLY rises from 68 to 70, and PENDING_DATES falls from 131 to 129. NCAA Ice Hockey is next. Official evidence: https://www.ncaa.org/championship/division-i/womens-golf/ and https://www.ncaa.org/championship/division-i/mens-golf/ .
+
 
 ## Recovered work from September 23–24
 
@@ -211,4 +213,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #107 merged. The inventory contains 722 mapped operational identities and 144 split children. Basketball section exit remains passed. NCAA Beach Volleyball remains a documented scope hold. NCAA Field Hockey is exact-scope official-window-only. The PR #108 candidate resolves all three NCAA Football identities to exact subdivision-specific sources: FBS as an adapter gap, FCS and Division II as official-window-only. Systemwide NO_LINKED_SOURCE is 117, OFFICIAL_WINDOW_ONLY is 68, ADAPTER_GAP is 289, and SOURCE_SCOPE_REVIEW is 69. NCAA Golf is next.
+**Current checkpoint:** Priority 2; Active Offerings PR #108 merged. The inventory contains 722 mapped operational identities and 144 split children. Basketball section exit remains passed. NCAA Golf begins with two pending/no-source split children; this candidate links separate 2027 championship windows to each child, yielding expected systemwide totals of 115 NO_LINKED_SOURCE, 70 OFFICIAL_WINDOW_ONLY, 129 PENDING_DATES, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. These are finals windows, not complete fixture coverage. NCAA remains open; NCAA Ice Hockey is next.
