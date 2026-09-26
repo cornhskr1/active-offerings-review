@@ -18,6 +18,25 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_cev_champions_league_calendars_are_division_specific(self):
+        expected = {"Men": "2027-05-15", "Women": "2027-05-01"}
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        sources = {source["id"]: source for source in config["sources"]}
+        self.assertNotIn("volleyball-cev-champions-league", sources)
+        for gender, final_start in expected.items():
+            with self.subTest(gender=gender):
+                row = self.rows[("Volleyball", f"CEV Champions League | {gender}")]
+                source_id = f"volleyball-cev-champions-league-{gender.lower()}"
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                source = sources[source_id]
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual([f"CEV Champions League | {gender}"], source["catalog_terms"])
+                self.assertEqual("2026-10-20", row["season_window"].split("–")[0])
+                self.assertEqual(final_start, source["official_events"][0]["start_date"])
+                self.assertIn("unattended fixture adapter", source["source_note"])
+
     def test_brazilian_supercopa_reports_remain_calendar_holds_with_adapter_gaps(self):
         expected = {"Men": "October 23", "Women": "October 16"}
         config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
