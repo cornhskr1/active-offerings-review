@@ -18,6 +18,36 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_2027_six_nations_windows_and_links_are_division_specific(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        self.assertNotIn("rugby-six-nations", sources)
+        for division, start, end, code in (
+            ("Men", "2027-02-05", "2027-03-13", "m6n"),
+            ("Women", "2027-04-10", "2027-05-15", "w6n"),
+        ):
+            with self.subTest(division=division):
+                league = f"Six Nations Rugby | {division}"
+                source_id = f"rugby-intl-six-nations-{division.lower()}"
+                row = self.rows[("Rugby", league)]
+                self.assertEqual("Six Nations Rugby | Men and Women", row["approval_parent"])
+                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(0, row["events_in_window"])
+                source = sources[source_id]
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual("published-event-window", source["coverage_status"])
+                self.assertEqual(f"https://www.sixnationsrugby.com/en/{code}/fixtures/202700",
+                                 source["official_schedule_url"])
+                self.assertEqual([(start, end, league)], [
+                    (event["start_date"], event["end_date"], event["league"])
+                    for event in source["official_events"]
+                ])
+                self.assertIn("does not establish an unattended match fixture adapter",
+                              source["source_note"])
+
     def test_svns_top_tier_windows_are_linked_to_each_division(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
