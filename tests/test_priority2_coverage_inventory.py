@@ -380,7 +380,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         # The current college-football feed does not establish FBS-only scope.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_baseball_adapter_maps_only_division_one_men(self):
         identity = ("NCAA Baseball", "Division I Baseball | Men")
@@ -436,7 +436,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         # The football feed still does not establish FBS-only scope.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_postseason_basketball_keeps_published_window_and_canceled_hold_distinct(self):
         crown = self.rows[("NCAA Basketball", "College Basketball Crown (CBC) | Men")]
@@ -526,15 +526,15 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], registered[league]["source_ids"])
 
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(120, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(65, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(117, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(68, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # The CBI and FBS holds remain separate from these exact child windows.
         cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
         self.assertEqual("DOCUMENTED_HOLD", cbi["season_state"])
         self.assertEqual("NO_LINKED_SOURCE", cbi["coverage_state"])
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_beach_volleyball_keeps_national_collegiate_scope_fail_closed(self):
         row = self.rows[("NCAA Beach Volleyball", "Division I Beach Volleyball | Women")]
@@ -564,7 +564,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(8, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_field_hockey_uses_exact_division_one_championship_window(self):
         row = self.rows[("NCAA Field Hockey", "Division I Field Hockey | Women")]
@@ -605,12 +605,12 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(["ncaa-field-hockey-di"], registered["source_ids"])
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Field Hockey"]["no_linked_source"])
-        self.assertEqual(119, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(66, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(117, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(68, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # FBS scope remains unresolved and must stay fail-closed.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_football_subdivisions_use_exact_scope_sources(self):
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
