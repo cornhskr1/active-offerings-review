@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T14:58:35.167579+00:00",
-  "schedule_generated_at": "2026-09-26T14:54:20.773988+00:00",
+  "registry_generated_at": "2026-09-26T15:03:41.585835+00:00",
+  "schedule_generated_at": "2026-09-26T15:00:13.358133+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -19,14 +19,14 @@
     "season_states": {
       "DATED_WINDOW": 75,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 25,
+      "DOCUMENTED_HOLD": 27,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 87,
+      "PENDING_DATES": 85,
       "RECURRING_WINDOW": 452
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 302,
+    "reported_gap_labels": 301,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -259,7 +259,7 @@
       "split_children": 10,
       "no_linked_source": 6,
       "adapter_gaps": 22,
-      "pending_dates": 6
+      "pending_dates": 4
     },
     "Soccer": {
       "identities": 344,
@@ -6243,9 +6243,10 @@
       "identity_key": "rugby-na-pr7s-men",
       "approval_parent": "Premier Rugby Sevens (PR7s) | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "",
+      "season_window": "Professional circuit paused; no current men's season",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "PR7s says its professional circuit remains paused until progress toward a global sevens calendar supports competition. The men’s PR7s identity has no current season or fixtures; PR7s RISE youth programs and other sevens circuits do not supply this professional schedule.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -6256,9 +6257,10 @@
       "identity_key": "rugby-na-pr7s-women",
       "approval_parent": "Premier Rugby Sevens (PR7s) | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "",
+      "season_window": "Professional circuit paused; no current women's season",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "PR7s says its professional circuit remains paused until progress toward a global sevens calendar supports competition. The women’s PR7s identity has no current season or fixtures; PR7s RISE youth programs and other sevens circuits do not supply this professional schedule.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -6435,7 +6437,7 @@
           "id": "rugby-intl-six-nations-men",
           "type": "official-event-window",
           "configured_league": "Six Nations Rugby | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6456,7 +6458,7 @@
           "id": "rugby-intl-six-nations-women",
           "type": "official-event-window",
           "configured_league": "Six Nations Rugby | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14365,7 +14367,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14386,7 +14388,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
