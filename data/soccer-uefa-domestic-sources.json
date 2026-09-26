@@ -388,7 +388,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.3/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.efl.com/matches/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "League One | Men"
@@ -402,7 +402,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.4/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.efl.com/matches/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "League Two | Men"
@@ -416,7 +416,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.wslfootball.com/fixtures/wsl",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Super League | Women"
@@ -430,8 +430,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.thefa.com/",
-      "official_schedule_url": "https://www.thefa.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.wslfootball.com/fixtures/wsl2",
+      "source_note": "Official BWSL2 fixtures are scoped to the current women’s second tier, but no dependable unattended adapter is connected yet.",
       "catalog_terms": [
         "Super League 2 | Women"
       ]
@@ -441,11 +441,11 @@
       "sport": "Soccer",
       "league": "Players Cup | Women",
       "region": "England",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.thefa.com/",
-      "official_schedule_url": "https://www.thefa.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/scoreboard",
+      "official_schedule_url": "https://www.wslfootball.com/fixtures/players-cup",
+      "source_note": "Connected daily match feed for the 2026-27 Players Cup, checked against WSL Football’s gender-specific fixture list; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Players Cup | Women"
       ]
@@ -455,13 +455,24 @@
       "sport": "Soccer",
       "league": "FA Community Shield | Men",
       "region": "England",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.thefa.com/",
-      "official_schedule_url": "https://www.thefa.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.thefa.com/news/2026/aug/16/mikel-arteta-arsenal-community-shield-reaction-20261608",
+      "official_schedule_url": "https://www.thefa.com/news/2026/aug/16/mikel-arteta-arsenal-community-shield-reaction-20261608",
+      "source_note": "Official FA result establishes the completed August 16, 2026 event only; no 2027 date or unattended fixture adapter is claimed.",
       "catalog_terms": [
         "FA Community Shield | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-england-fa-community-shield-men",
+          "league": "FA Community Shield | Men",
+          "name": "FA Community Shield 2026",
+          "start_date": "2026-08-16",
+          "end_date": "2026-08-16",
+          "location": "Cardiff, Wales",
+          "official_schedule_url": "https://www.thefa.com/news/2026/aug/16/mikel-arteta-arsenal-community-shield-reaction-20261608"
+        }
       ]
     },
     {
@@ -472,7 +483,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.efl.com/competitions/carabao-cup/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "English Football League (EFL) Cup | Men"
@@ -486,7 +497,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.trophy/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.efl.com/competitions/efl-trophy/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "English Football League (EFL) Trophy | Men"
@@ -500,7 +511,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.efl.com/matches/",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "The Championship | Men and Women"
@@ -514,8 +525,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.thefa.com/",
-      "official_schedule_url": "https://www.thefa.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.wslfootball.com/fixtures/wsl2",
+      "source_note": "This legacy catalog label and Super League 2 | Women refer to the same current competition. Keep this fail-closed source record visible; it must not create a second fixture stream when a BWSL2 adapter is added.",
       "catalog_terms": [
         "The Championship | Men and Women"
       ]
@@ -528,7 +539,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.thefa.com/competitions/thefacup/round-dates",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "FA Cup | Men and Women"
@@ -542,7 +553,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.fa/scoreboard",
-      "official_schedule_url": "https://www.thefa.com/",
+      "official_schedule_url": "https://www.thefa.com/competitions/the-womens-fa-cup/round-dates",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "FA Cup | Men and Women"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T17:01:59.851560+00:00",
-  "schedule_generated_at": "2026-09-26T16:55:12.945156+00:00",
+  "registry_generated_at": "2026-09-26T17:07:42.601871+00:00",
+  "schedule_generated_at": "2026-09-26T17:04:40.438292+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,23 +10,23 @@
     "catalog_operational_identities": 722,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 183,
-      "ADAPTER_GAP": 289,
+      "ADAPTER_CONFIGURED": 184,
+      "ADAPTER_GAP": 287,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 117,
+      "OFFICIAL_WINDOW_ONLY": 118,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 94,
+      "DATED_WINDOW": 105,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 30,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 58,
-      "RECURRING_WINDOW": 457
+      "PENDING_DATES": 57,
+      "RECURRING_WINDOW": 447
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 300,
+    "reported_gap_labels": 297,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -265,8 +265,8 @@
       "identities": 344,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 236,
-      "pending_dates": 53
+      "adapter_gaps": 234,
+      "pending_dates": 52
     },
     "Surfing": {
       "identities": 6,
@@ -1550,7 +1550,7 @@
           "id": "basketball-il-league-cup",
           "type": "official-event-window",
           "configured_league": "League Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9204,8 +9204,8 @@
       "identity_key": "soccer-england-english-football-league-efl-cup-men",
       "approval_parent": "English Football League (EFL) Cup | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 7, 2026–March 21, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -9435,14 +9435,14 @@
       "identity_key": "soccer-england-fa-community-shield-men",
       "approval_parent": "FA Community Shield | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 16, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-england-fa-community-shield-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "FA Community Shield | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -9456,8 +9456,8 @@
       "identity_key": "soccer-england-fa-cup-men",
       "approval_parent": "FA Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 8, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -9477,8 +9477,8 @@
       "identity_key": "soccer-england-fa-cup-women",
       "approval_parent": "FA Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 23, 2026–May 15, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10527,8 +10527,8 @@
       "identity_key": "soccer-england-league-one-men",
       "approval_parent": "League One | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026–May 8, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10548,8 +10548,8 @@
       "identity_key": "soccer-england-league-two-men",
       "approval_parent": "League Two | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026–May 8, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -11549,14 +11549,14 @@
       "identity_key": "soccer-england-players-cup-women",
       "approval_parent": "Players Cup | Women",
       "kind": "catalog",
-      "season_window": "September 23, 2026–March 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 23, 2026–March 14, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-england-players-cup-women",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Players Cup | Women",
           "refresh_ok": true,
           "events_in_window": 0
@@ -12466,8 +12466,8 @@
       "identity_key": "soccer-england-super-league-2-women",
       "approval_parent": "Super League 2 | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 4, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12508,8 +12508,8 @@
       "identity_key": "soccer-england-super-league-women",
       "approval_parent": "Super League | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 4, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -13201,8 +13201,8 @@
       "identity_key": "soccer-england-the-championship-men",
       "approval_parent": "The Championship | Men and Women",
       "kind": "split-child",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026–May 1, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -13222,8 +13222,8 @@
       "identity_key": "soccer-england-the-championship-women",
       "approval_parent": "The Championship | Men and Women",
       "kind": "split-child",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 4, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14225,7 +14225,7 @@
           "id": "tennis-australian-open-men",
           "type": "official-event-window",
           "configured_league": "Australian Open | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14246,7 +14246,7 @@
           "id": "tennis-australian-open-women",
           "type": "official-event-window",
           "configured_league": "Australian Open | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14267,11 +14267,11 @@
           "id": "tennis-itf-world-tour-men",
           "type": "tennis-intelligence",
           "configured_league": "ITF World Tennis Tour | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": false,
+          "events_in_window": 12
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 12
     },
     {
       "sport": "Tennis",
@@ -14288,11 +14288,11 @@
           "id": "tennis-itf-world-tour-women",
           "type": "tennis-intelligence",
           "configured_league": "ITF World Tennis Tour | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": false,
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 10
     },
     {
       "sport": "Tennis",
@@ -14309,7 +14309,7 @@
           "id": "tennis-french-open-men",
           "type": "official-event-window",
           "configured_league": "Roland-Garros / French Open | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14330,7 +14330,7 @@
           "id": "tennis-french-open-women",
           "type": "official-event-window",
           "configured_league": "Roland-Garros / French Open | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14351,7 +14351,7 @@
           "id": "tennis-usta-pro-circuit-men",
           "type": "coverage-gap",
           "configured_league": "USTA Pro Circuit | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14372,7 +14372,7 @@
           "id": "tennis-usta-pro-circuit-women",
           "type": "coverage-gap",
           "configured_league": "USTA Pro Circuit | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14393,11 +14393,11 @@
           "id": "tennis-utr-pro-tour-men",
           "type": "tennis-intelligence",
           "configured_league": "UTR Pro Tennis Tour | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": false,
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 4
     },
     {
       "sport": "Tennis",
@@ -14414,11 +14414,11 @@
           "id": "tennis-utr-pro-tour-women",
           "type": "tennis-intelligence",
           "configured_league": "UTR Pro Tennis Tour | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": false,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Tennis",
@@ -14457,7 +14457,7 @@
           "id": "tennis-us-open-men",
           "type": "official-event-window",
           "configured_league": "United States Open | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14478,7 +14478,7 @@
           "id": "tennis-us-open-women",
           "type": "official-event-window",
           "configured_league": "United States Open | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14520,7 +14520,7 @@
           "id": "tennis-wimbledon-men",
           "type": "official-event-window",
           "configured_league": "Wimbledon | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14541,7 +14541,7 @@
           "id": "tennis-wimbledon-women",
           "type": "official-event-window",
           "configured_league": "Wimbledon | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
