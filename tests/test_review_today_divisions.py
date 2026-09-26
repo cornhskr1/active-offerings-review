@@ -122,6 +122,36 @@ assert.equal(fbs.source_url,'https://www.ncaa.com/scoreboard/football/fbs');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 
+    def test_partial_italian_superlega_calendar_raises_gap_for_manual_review(self):
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:[{
+  id:'volleyball-italy-superlega',sport:'Volleyball',league:'SuperLega | Men',
+  region:'Italy',coverage_status:'missing',official_schedule_url:'https://ww2.legavolley.it/Calendario.asp'
+}]},seasonMap:{source_mappings:[],catalog_event_mappings:[],sports:[{
+  sport:'Volleyball',groups:[{country:'Italy',events:[{
+    key:'volleyball-italy-superlega',catalog_event:'SuperLega | Men',
+    source_id:'volleyball-italy-superlega',season_start_date:'2026-10-17',
+    season_end_date:'2026-12-20',season_window_complete:false
+  }]}]
+}]}};
+function todayKey(){return '2026-09-26'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-26');
+assert.equal(cards.length,1);
+assert.equal(cards[0].league,'SuperLega | Men');
+assert.match(cards[0].reason,/unpublished dates/);
+assert.equal(cards[0].source_url,'https://ww2.legavolley.it/Calendario.asp');
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_partial_fiba_window_stays_visible_without_false_out_of_season_label(self):
         script = """
 const assert=require('node:assert/strict');
