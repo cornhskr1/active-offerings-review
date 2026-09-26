@@ -693,7 +693,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.coupe_de_france/scoreboard",
-      "official_schedule_url": "https://www.fff.fr/",
+      "official_schedule_url": "https://media.fff.fr/uploads/documents/calendrier-general-26-27-vfinale-lfp-fff-comex-121225-vdef.pdf",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Coupe de France | Men and Women"
@@ -707,8 +707,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fff.fr/",
-      "official_schedule_url": "https://www.fff.fr/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "source_note": "FFF publishes the 2026–27 federal rounds and May 22–23 final; regional opening rounds are not established here and no dependable women-only daily feed is connected.",
       "catalog_terms": [
         "Coupe de France | Men and Women"
       ]
@@ -718,13 +718,24 @@
       "sport": "Soccer",
       "league": "Trophée des Champions | Men",
       "region": "France",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fff.fr/",
-      "official_schedule_url": "https://www.fff.fr/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.lfp.fr/article/le-trophee-des-champions-confirme-son-rayonnement-mondial-avec-une-diffusion-dans-173-territoires",
+      "official_schedule_url": "https://www.lfp.fr/article/le-trophee-des-champions-confirme-son-rayonnement-mondial-avec-une-diffusion-dans-173-territoires",
+      "source_note": "LFP confirms the August 16, 2026 match; this is an official event window, not an unattended adapter or a 2027 date.",
       "catalog_terms": [
         "Trophée des Champions | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-france-troph-e-des-champions-men",
+          "league": "Trophée des Champions | Men",
+          "name": "Trophée des Champions 2026",
+          "start_date": "2026-08-16",
+          "end_date": "2026-08-16",
+          "location": "Lens, France",
+          "official_schedule_url": "https://www.lfp.fr/article/le-trophee-des-champions-confirme-son-rayonnement-mondial-avec-une-diffusion-dans-173-territoires"
+        }
       ]
     },
     {
@@ -735,8 +746,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fff.fr/",
-      "official_schedule_url": "https://www.fff.fr/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "source_note": "FFF's 2026–27 women’s competition calendar does not establish a Trophée des Championnes date; no dependable daily adapter is connected.",
       "catalog_terms": [
         "Trophée des Championnes | Women"
       ]
@@ -749,7 +760,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.2/scoreboard",
-      "official_schedule_url": "https://www.fff.fr/",
+      "official_schedule_url": "https://www.lfp.fr/article/ligue-2-bkt-le-calendrier-de-la-saison-2026-2027",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Ligue 2 | Men"
@@ -763,7 +774,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/scoreboard",
-      "official_schedule_url": "https://www.fff.fr/",
+      "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Première Ligue | Women"
@@ -777,8 +788,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fff.fr/",
-      "official_schedule_url": "https://www.fff.fr/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "source_note": "FFF publishes the September 6–May 9 league window; no dependable Seconde Ligue daily feed is connected.",
       "catalog_terms": [
         "Seconde Ligue | Women"
       ]
@@ -791,8 +802,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fff.fr/",
-      "official_schedule_url": "https://www.fff.fr/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "source_note": "The approved catalog label is retained; FFF calls this the Coupe de la LFFP and publishes August 22–April 10 dates. No dependable competition-specific daily feed is connected.",
       "catalog_terms": [
         "Coup LFFP | Women"
       ]
@@ -1507,8 +1518,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.fpf.pt/pt/Competi%C3%A7%C3%B5es/Futebol-Feminino/Liga-BPI/Agenda",
+      "source_note": "FPF Liga BPI competition calendar is the scoped authority; no dependable daily adapter is connected.",
       "catalog_terms": [
         "Liga BPI | Women"
       ]
@@ -1521,7 +1532,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/por.taca.portugal/scoreboard",
-      "official_schedule_url": "https://www.fpf.pt/",
+      "official_schedule_url": "https://www.fpf.pt/pt/Competi%C3%A7%C3%B5es/Futebol-Masculino/Ta%C3%A7a-de-Portugal-Generali-Tranquilidade",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Taça de Portugal | Men"
@@ -1535,7 +1546,7 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
+      "official_schedule_url": "https://www.fpf.pt/Competicoes/Futebol/Feminino/Taca-de-Portugal-Feminina/Jogos-e-Resultados",
       "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
       "catalog_terms": [
         "Taça de Portugal Feminina | Women"
@@ -1546,13 +1557,24 @@
       "sport": "Soccer",
       "league": "Supertaça Cândido de Oliveira | Men",
       "region": "Portugal",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.ligaportugal.pt/news/28284/fc-porto-conquista-supertaca-candido-de-oliveira",
+      "official_schedule_url": "https://www.ligaportugal.pt/news/28284/fc-porto-conquista-supertaca-candido-de-oliveira",
+      "source_note": "Liga Portugal confirms the completed August 1 men's Supertaça; no unattended match adapter or 2027 date is claimed.",
       "catalog_terms": [
         "Supertaça Cândido de Oliveira | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-portugal-superta-a-c-ndido-de-oliveira-men",
+          "league": "Supertaça Cândido de Oliveira | Men",
+          "name": "Supertaça Cândido de Oliveira 2026",
+          "start_date": "2026-08-01",
+          "end_date": "2026-08-01",
+          "location": "Coimbra, Portugal",
+          "official_schedule_url": "https://www.ligaportugal.pt/news/28284/fc-porto-conquista-supertaca-candido-de-oliveira"
+        }
       ]
     },
     {
@@ -1560,13 +1582,24 @@
       "sport": "Soccer",
       "league": "Supertaça Feminina | Women",
       "region": "Portugal",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.fpf.pt/pt/News/Todas-as-not%C3%ADcias/Not%C3%ADcia/news/57655",
+      "official_schedule_url": "https://www.fpf.pt/pt/News/Todas-as-not%C3%ADcias/Not%C3%ADcia/news/57655",
+      "source_note": "FPF confirms the completed September 6 women's football Supertaça; no futsal event, unattended adapter, or 2027 date is claimed.",
       "catalog_terms": [
         "Supertaça Feminina | Women"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-portugal-superta-a-feminina-women",
+          "league": "Supertaça Feminina | Women",
+          "name": "Supertaça Feminina Vodafone 2026",
+          "start_date": "2026-09-06",
+          "end_date": "2026-09-06",
+          "location": "Viseu, Portugal",
+          "official_schedule_url": "https://www.fpf.pt/pt/News/Todas-as-not%C3%ADcias/Not%C3%ADcia/news/57655"
+        }
       ]
     },
     {
@@ -1577,8 +1610,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.fpf.pt/pt/Competi%C3%A7%C3%B5es/Futebol-Feminino/Ta%C3%A7a-da-Liga-Feminina-Placard/Vencedores",
+      "source_note": "FPF women's football league cup is separate from the men's Allianz Cup and women's futsal cup; no dependable daily adapter is connected.",
       "catalog_terms": [
         "Taça da Liga Feminina | Women"
       ]
@@ -1591,8 +1624,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.ligaportugal.pt/calendar",
+      "source_note": "Liga Portugal publishes the second-tier 2026–27 calendar; no dependable Liga Portugal 2-only daily adapter is connected.",
       "catalog_terms": [
         "Liga Portugal 2 | Men"
       ]
@@ -1605,8 +1638,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.ligaportugal.pt/news/27682/definido-o-arranque-das-competicoes-profissionais-2026-27",
+      "source_note": "Liga Portugal publishes the Allianz Cup quarterfinals and Final Four window; no dependable competition-only daily adapter is connected.",
       "catalog_terms": [
         "Taça da Liga | Men"
       ]
