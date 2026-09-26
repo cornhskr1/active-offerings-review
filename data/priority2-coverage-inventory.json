@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T23:28:27.605870+00:00",
-  "schedule_generated_at": "2026-09-26T23:25:28.108862+00:00",
+  "registry_generated_at": "2026-09-26T23:36:32.107680+00:00",
+  "schedule_generated_at": "2026-09-26T23:31:46.303238+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,22 +11,22 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 281,
+      "ADAPTER_GAP": 280,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 133,
+      "OFFICIAL_WINDOW_ONLY": 134,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 176,
+      "DATED_WINDOW": 177,
       "DESCRIPTIVE_WINDOW": 54,
       "DOCUMENTED_HOLD": 40,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 34,
-      "PENDING_DATES": 43,
-      "RECURRING_WINDOW": 360
+      "PARTIAL_WINDOW": 36,
+      "PENDING_DATES": 42,
+      "RECURRING_WINDOW": 358
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 282,
+    "reported_gap_labels": 281,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 228,
-      "pending_dates": 71
+      "adapter_gaps": 227,
+      "pending_dates": 72
     },
     "Surfing": {
       "identities": 6,
@@ -7069,8 +7069,8 @@
       "identity_key": "soccer-armenia-armenian-cup-men",
       "approval_parent": "Armenian Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 24, 2026 preliminary round–2027 final date pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7090,8 +7090,8 @@
       "identity_key": "soccer-armenia-armenian-premier-league-men",
       "approval_parent": "Armenian Premier League | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–2027 final round pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7111,14 +7111,14 @@
       "identity_key": "soccer-armenia-armenian-super-cup-men",
       "approval_parent": "Armenian Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "March 12, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-armenia-armenian-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Armenian Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0

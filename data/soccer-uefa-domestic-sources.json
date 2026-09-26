@@ -9,9 +9,9 @@
       "region": "Armenia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.ffa.am/",
-      "official_schedule_url": "https://www.ffa.am/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.fcpyunik.am/en/article/2380",
+      "official_schedule_url": "https://www.fcpyunik.am/en/article/2380",
+      "source_note": "The club reports the FFA draw and July 31 opening of the 33-round 2026–27 top division. Final date remains unverified; this is a manual source, not an unattended fixture adapter.",
       "catalog_terms": [
         "Armenian Premier League | Men"
       ]
@@ -23,9 +23,9 @@
       "region": "Armenia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.ffa.am/",
-      "official_schedule_url": "https://www.ffa.am/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.ffa.am/index.php/hy/armeniancup",
+      "official_schedule_url": "https://www.ffa.am/index.php/hy/armeniancup",
+      "source_note": "FFA displays senior 2026–27 preliminary results from August 24, including lower-tier entrants. The final date and athlete eligibility need review; no unattended fixture adapter is connected.",
       "catalog_terms": [
         "Armenian Cup | Men"
       ]
@@ -35,13 +35,24 @@
       "sport": "Soccer",
       "league": "Armenian Super Cup | Men",
       "region": "Armenia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.ffa.am/",
-      "official_schedule_url": "https://www.ffa.am/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://noah.am/en/media/noah-is-the-winner-of-the-armenian-super-cup",
+      "official_schedule_url": "https://noah.am/en/media/noah-is-the-winner-of-the-armenian-super-cup",
+      "source_note": "One completed March 12, 2026 Hakob Tonoyan Super Cup match; next edition date and unattended fixture adapter are unclaimed.",
       "catalog_terms": [
         "Armenian Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-armenia-armenian-super-cup-men",
+          "league": "Armenian Super Cup | Men",
+          "name": "Hakob Tonoyan Armenian Super Cup final, March 2026",
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-12",
+          "location": "Vazgen Sargsyan Republican Stadium, Yerevan",
+          "official_schedule_url": "https://noah.am/en/media/noah-is-the-winner-of-the-armenian-super-cup"
+        }
       ]
     },
     {
