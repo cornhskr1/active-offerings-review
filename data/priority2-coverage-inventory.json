@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T19:56:03.247168+00:00",
-  "schedule_generated_at": "2026-09-26T19:51:54.064524+00:00",
+  "registry_generated_at": "2026-09-26T20:05:16.831107+00:00",
+  "schedule_generated_at": "2026-09-26T19:58:32.530724+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 148,
-      "DESCRIPTIVE_WINDOW": 58,
+      "DATED_WINDOW": 150,
+      "DESCRIPTIVE_WINDOW": 57,
       "DOCUMENTED_HOLD": 35,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 9,
+      "PARTIAL_WINDOW": 15,
       "PENDING_DATES": 52,
-      "RECURRING_WINDOW": 405
+      "RECURRING_WINDOW": 398
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 290,
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 237,
-      "pending_dates": 55
+      "pending_dates": 61
     },
     "Surfing": {
       "identities": 6,
@@ -3889,7 +3889,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Esports",
@@ -7006,8 +7006,8 @@
       "identity_key": "soccer-sweden-allsvenskan-men",
       "approval_parent": "Allsvenskan | Men",
       "kind": "catalog",
-      "season_window": "March–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 4–November 29, 2026 league season; qualification boundary pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -8983,8 +8983,8 @@
       "identity_key": "soccer-sweden-damallsvenskan-women",
       "approval_parent": "Damallsvenskan | Women",
       "kind": "catalog",
-      "season_window": "March–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Late March–November 2026; exact match and qualification bounds pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9802,8 +9802,8 @@
       "identity_key": "soccer-finland-finnish-cup-men",
       "approval_parent": "Finnish Cup | Men",
       "kind": "catalog",
-      "season_window": "April–September 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 6–September 5, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9823,9 +9823,9 @@
       "identity_key": "soccer-finland-finnish-league-cup-men",
       "approval_parent": "Finnish League Cup | Men",
       "kind": "catalog",
-      "season_window": "January–March 2026 · completed",
-      "season_state": "DESCRIPTIVE_WINDOW",
-      "season_status": "out",
+      "season_window": "January 16–March 21, 2026 · completed",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -12911,8 +12911,8 @@
       "identity_key": "soccer-sweden-superettan-men",
       "approval_parent": "Superettan | Men",
       "kind": "catalog",
-      "season_window": "March–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 4–November 7, 2026 league season; qualification boundary pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13016,8 +13016,8 @@
       "identity_key": "soccer-sweden-svenska-cupen-men",
       "approval_parent": "Svenska Cupen | Men and Women",
       "kind": "split-child",
-      "season_window": "February–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Men’s round one June 2–11, 2026; 2027 group and knockout dates pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13037,8 +13037,8 @@
       "identity_key": "soccer-sweden-svenska-cupen-women",
       "approval_parent": "Svenska Cupen | Men and Women",
       "kind": "split-child",
-      "season_window": "February–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Women’s round one May 19–28, 2026; 2027 group and knockout dates pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13961,8 +13961,8 @@
       "identity_key": "soccer-finland-veikkausliiga-men",
       "approval_parent": "Veikkausliiga | Men",
       "kind": "catalog",
-      "season_window": "April–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 4–November 8, 2026 league phases; qualification boundary pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14693,7 +14693,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14714,7 +14714,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
