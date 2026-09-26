@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T00:41:51.010449+00:00",
+  "registry_generated_at": "2026-09-26T00:46:56.375452+00:00",
   "schedule_generated_at": "2026-09-26T00:25:52.657991+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
@@ -12,8 +12,8 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 289,
-      "NO_LINKED_SOURCE": 114,
-      "OFFICIAL_WINDOW_ONLY": 71,
+      "NO_LINKED_SOURCE": 112,
+      "OFFICIAL_WINDOW_ONLY": 73,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
@@ -21,8 +21,8 @@
       "DESCRIPTIVE_WINDOW": 56,
       "DOCUMENTED_HOLD": 9,
       "NO_WINDOW": 24,
-      "PENDING_DATES": 127,
-      "RECURRING_WINDOW": 446
+      "PENDING_DATES": 125,
+      "RECURRING_WINDOW": 448
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 303,
@@ -191,9 +191,9 @@
     "NCAA Lacrosse": {
       "identities": 2,
       "split_children": 2,
-      "no_linked_source": 2,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
-      "pending_dates": 2
+      "pending_dates": 0
     },
     "NCAA Soccer": {
       "identities": 2,
@@ -5603,11 +5603,19 @@
       "identity_key": "ncaa-lacrosse-di-men",
       "approval_parent": "Division I Lacrosse | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "February–May; 2027 championship May 29 and 31",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-lacrosse-di-men",
+          "type": "official-event-window",
+          "configured_league": "Division I Lacrosse | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5616,11 +5624,19 @@
       "identity_key": "ncaa-lacrosse-di-women",
       "approval_parent": "Division I Lacrosse | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "February–May; 2027 championship May 28 and 30",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-lacrosse-di-women",
+          "type": "official-event-window",
+          "configured_league": "Division I Lacrosse | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
