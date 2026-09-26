@@ -1158,7 +1158,7 @@ function scheduleCoverageAttention(dayKey){
       event:`${mapped?.catalog_event||source.league} · schedule coverage`,
       start_time:`${dayKey}T12:00:00-05:00`,
       reason:partialWindow
-        ?'Approved competition has a partial season calendar and no dependable complete fixture feed. Finals dates alone cannot clear qualifier activity.'
+        ?'Approved competition has a partial season calendar and no dependable complete fixture feed. Check the unpublished dates and official competition calendar before clearing activity.'
         :missing
         ?'Approved and in season, but no dependable complete public schedule feed is connected.'
         :'Approved and in season, but the connected public schedule feed is known to omit some games.',
