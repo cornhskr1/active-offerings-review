@@ -18,6 +18,23 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_final_2024_challenger_cups_do_not_inherit_vnl_schedule(self):
+        for division in ("Men", "Women"):
+            with self.subTest(division=division):
+                row = self.rows[("Volleyball", f"Volleyball Challenger Cup | {division}")]
+                self.assertEqual("split-child", row["kind"])
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                self.assertEqual([], row["sources"])
+                self.assertIn("Final edition July 4–7, 2024", row["season_window"])
+                self.assertIn("Do not use a VNL", row["hold_reason"])
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        legacy = next(source for source in config["sources"]
+                      if source["id"] == "volleyball-fivb-challenger-cup")
+        self.assertEqual("no-current-edition", legacy["coverage_status"])
+        self.assertEqual("Volleyball Challenger Cup | Men and Women", legacy["league"])
+        self.assertIn("final editions", legacy["source_note"])
+
     def test_brazilian_superliga_2026_27_dates_stay_on_visible_division_holds(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")

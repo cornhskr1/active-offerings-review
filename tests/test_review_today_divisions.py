@@ -122,6 +122,35 @@ assert.equal(fbs.source_url,'https://www.ncaa.com/scoreboard/football/fbs');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 
+    def test_final_challenger_cup_children_remain_visible_holds(self):
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:[]},seasonMap:{source_mappings:[],catalog_event_mappings:[],sports:[{
+  sport:'Volleyball',groups:[{country:'International',events:[{
+    catalog_event:'Volleyball Challenger Cup | Men and Women',
+    coverage_children:['Men','Women'].map(division=>({
+      label:`Volleyball Challenger Cup | ${division}`,season_status:'out',
+      season_hold:true,hold_reason:`Final 2024 ${division} edition; no current schedule`
+    }))
+  }]}]
+}]}};
+function todayKey(){return '2026-09-26'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-26');
+assert.equal(cards.length,2);
+assert(cards.every(card=>card.type==='SCOPE/CALENDAR HOLD'));
+assert(cards.some(card=>card.league==='Volleyball Challenger Cup | Men'));
+assert(cards.some(card=>card.league==='Volleyball Challenger Cup | Women'));
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_brazilian_superliga_holds_remain_visible_out_of_season(self):
         script = """
 const assert=require('node:assert/strict');
