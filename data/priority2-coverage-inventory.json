@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T16:49:35.596461+00:00",
-  "schedule_generated_at": "2026-09-26T16:43:18.747008+00:00",
+  "registry_generated_at": "2026-09-26T17:01:59.851560+00:00",
+  "schedule_generated_at": "2026-09-26T16:55:12.945156+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,20 +10,20 @@
     "catalog_operational_identities": 722,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 179,
-      "ADAPTER_GAP": 287,
-      "NO_LINKED_SOURCE": 78,
-      "OFFICIAL_WINDOW_ONLY": 109,
+      "ADAPTER_CONFIGURED": 183,
+      "ADAPTER_GAP": 289,
+      "NO_LINKED_SOURCE": 64,
+      "OFFICIAL_WINDOW_ONLY": 117,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 86,
+      "DATED_WINDOW": 94,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 29,
+      "DOCUMENTED_HOLD": 30,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 73,
-      "RECURRING_WINDOW": 451
+      "PENDING_DATES": 58,
+      "RECURRING_WINDOW": 457
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 300,
@@ -285,9 +285,9 @@
     "Tennis": {
       "identities": 18,
       "split_children": 14,
-      "no_linked_source": 14,
-      "adapter_gaps": 1,
-      "pending_dates": 15
+      "no_linked_source": 0,
+      "adapter_gaps": 3,
+      "pending_dates": 0
     },
     "Volleyball": {
       "identities": 26,
@@ -14141,7 +14141,7 @@
           "id": "table-tennis-wtt-men",
           "type": "official-event-window",
           "configured_league": "World Table Tennis (WTT) | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14162,7 +14162,7 @@
           "id": "table-tennis-wtt-women",
           "type": "official-event-window",
           "configured_league": "World Table Tennis (WTT) | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14216,11 +14216,19 @@
       "identity_key": "tennis-australian-open-men",
       "approval_parent": "Australian Open | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2027-01-11–2027-01-31 · next published edition",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-australian-open-men",
+          "type": "official-event-window",
+          "configured_league": "Australian Open | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14229,11 +14237,19 @@
       "identity_key": "tennis-australian-open-women",
       "approval_parent": "Australian Open | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2027-01-11–2027-01-31 · next published edition",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-australian-open-women",
+          "type": "official-event-window",
+          "configured_league": "Australian Open | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14242,11 +14258,19 @@
       "identity_key": "tennis-itf-world-tour-men",
       "approval_parent": "ITF World Tennis Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Year-round 2026 tournament calendar; event dates vary",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "tennis-itf-world-tour-men",
+          "type": "tennis-intelligence",
+          "configured_league": "ITF World Tennis Tour | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14255,11 +14279,19 @@
       "identity_key": "tennis-itf-world-tour-women",
       "approval_parent": "ITF World Tennis Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Year-round 2026 tournament calendar; event dates vary",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "tennis-itf-world-tour-women",
+          "type": "tennis-intelligence",
+          "configured_league": "ITF World Tennis Tour | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14268,11 +14300,19 @@
       "identity_key": "tennis-french-open-men",
       "approval_parent": "Roland-Garros / French Open | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2027-05-17–2027-06-06 · next published edition",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-french-open-men",
+          "type": "official-event-window",
+          "configured_league": "Roland-Garros / French Open | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14281,11 +14321,19 @@
       "identity_key": "tennis-french-open-women",
       "approval_parent": "Roland-Garros / French Open | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2027-05-17–2027-06-06 · next published edition",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-french-open-women",
+          "type": "official-event-window",
+          "configured_league": "Roland-Garros / French Open | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14294,11 +14342,19 @@
       "identity_key": "tennis-usta-pro-circuit-men",
       "approval_parent": "USTA Pro Circuit | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Year-round 2026 tournament calendar; event dates vary",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "tennis-usta-pro-circuit-men",
+          "type": "coverage-gap",
+          "configured_league": "USTA Pro Circuit | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14307,11 +14363,19 @@
       "identity_key": "tennis-usta-pro-circuit-women",
       "approval_parent": "USTA Pro Circuit | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Year-round 2026 tournament calendar; event dates vary",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "tennis-usta-pro-circuit-women",
+          "type": "coverage-gap",
+          "configured_league": "USTA Pro Circuit | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14320,11 +14384,19 @@
       "identity_key": "tennis-utr-pro-tour-men",
       "approval_parent": "UTR Pro Tennis Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Year-round 2026 tournament calendar; event dates vary",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "tennis-utr-pro-tour-men",
+          "type": "tennis-intelligence",
+          "configured_league": "UTR Pro Tennis Tour | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14333,11 +14405,19 @@
       "identity_key": "tennis-utr-pro-tour-women",
       "approval_parent": "UTR Pro Tennis Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Year-round 2026 tournament calendar; event dates vary",
+      "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "tennis-utr-pro-tour-women",
+          "type": "tennis-intelligence",
+          "configured_league": "UTR Pro Tennis Tour | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14346,9 +14426,10 @@
       "identity_key": "tennis-united-cup",
       "approval_parent": "United Cup | Men and Women",
       "kind": "catalog",
-      "season_window": "Annual late-December–January event · next dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "January 2–11, 2026 last published; 2027 dates pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
+      "hold_reason": "The United Cup publisher currently shows the completed January 2–11, 2026 mixed-team edition; no 2027 match calendar is verified. Do not roll the 2026 dates forward.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -14367,11 +14448,19 @@
       "identity_key": "tennis-us-open-men",
       "approval_parent": "United States Open | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2026-08-23–2026-09-13 · last published edition; 2027 dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-us-open-men",
+          "type": "official-event-window",
+          "configured_league": "United States Open | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14380,11 +14469,19 @@
       "identity_key": "tennis-us-open-women",
       "approval_parent": "United States Open | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2026-08-23–2026-09-13 · last published edition; 2027 dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-us-open-women",
+          "type": "official-event-window",
+          "configured_league": "United States Open | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14414,11 +14511,19 @@
       "identity_key": "tennis-wimbledon-men",
       "approval_parent": "Wimbledon | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2027-06-28–2027-07-11 · next published edition",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-wimbledon-men",
+          "type": "official-event-window",
+          "configured_league": "Wimbledon | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14427,11 +14532,19 @@
       "identity_key": "tennis-wimbledon-women",
       "approval_parent": "Wimbledon | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2027-06-28–2027-07-11 · next published edition",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "tennis-wimbledon-women",
+          "type": "official-event-window",
+          "configured_league": "Wimbledon | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14449,7 +14562,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14470,7 +14583,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],

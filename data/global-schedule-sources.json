@@ -4363,103 +4363,294 @@
       ]
     },
     {
-      "id": "tennis-australian-open",
-      "source_type": "coverage-gap",
+      "id": "tennis-australian-open-men",
+      "source_type": "official-event-window",
       "sport": "Tennis",
-      "league": "Australian Open | Men and Women",
+      "league": "Australian Open | Men",
       "region": "Australia",
-      "official_schedule_url": "https://ausopen.com/schedule",
-      "source_note": "Out of season. ATP/WTA schedule events route here automatically when the Australian Open returns.",
+      "endpoint": "https://ausopen.com/articles/news/australian-open-2027-dates-announced",
+      "official_schedule_url": "https://ausopen.com/articles/news/australian-open-2027-dates-announced",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official Australian Open 2027 tournament window scoped to the men’s child. This is not a match adapter; daily draws and order of play require separate verification.",
+      "official_events": [
+        {
+          "source_id": "tennis-australian-open-men",
+          "league": "Australian Open | Men",
+          "name": "Australian Open 2027 | Men",
+          "start_date": "2027-01-11",
+          "end_date": "2027-01-31",
+          "official_schedule_url": "https://ausopen.com/articles/news/australian-open-2027-dates-announced"
+        }
+      ],
       "catalog_terms": [
-        "Grand Slam Board / Grand Slam Tennis",
-        "Australian Open | Men and Women"
+        "Australian Open | Men"
       ]
     },
     {
-      "id": "tennis-french-open",
-      "source_type": "coverage-gap",
+      "id": "tennis-australian-open-women",
+      "source_type": "official-event-window",
       "sport": "Tennis",
-      "league": "Roland-Garros / French Open | Men and Women",
+      "league": "Australian Open | Women",
+      "region": "Australia",
+      "endpoint": "https://ausopen.com/articles/news/australian-open-2027-dates-announced",
+      "official_schedule_url": "https://ausopen.com/articles/news/australian-open-2027-dates-announced",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official Australian Open 2027 tournament window scoped to the women’s child. This is not a match adapter; daily draws and order of play require separate verification.",
+      "official_events": [
+        {
+          "source_id": "tennis-australian-open-women",
+          "league": "Australian Open | Women",
+          "name": "Australian Open 2027 | Women",
+          "start_date": "2027-01-11",
+          "end_date": "2027-01-31",
+          "official_schedule_url": "https://ausopen.com/articles/news/australian-open-2027-dates-announced"
+        }
+      ],
+      "catalog_terms": [
+        "Australian Open | Women"
+      ]
+    },
+    {
+      "id": "tennis-french-open-men",
+      "source_type": "official-event-window",
+      "sport": "Tennis",
+      "league": "Roland-Garros / French Open | Men",
       "region": "France",
-      "official_schedule_url": "https://www.rolandgarros.com/en-us/order-of-play",
-      "source_note": "Out of season. ATP/WTA schedule events route here automatically when Roland-Garros returns.",
+      "endpoint": "https://travel.rolandgarros.com/en/conditions",
+      "official_schedule_url": "https://travel.rolandgarros.com/en/conditions",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official Roland-Garros 2027 tournament window scoped to the men’s child. This is not a match adapter; daily draws and order of play require separate verification.",
+      "official_events": [
+        {
+          "source_id": "tennis-french-open-men",
+          "league": "Roland-Garros / French Open | Men",
+          "name": "Roland-Garros 2027 | Men",
+          "start_date": "2027-05-17",
+          "end_date": "2027-06-06",
+          "official_schedule_url": "https://travel.rolandgarros.com/en/conditions"
+        }
+      ],
       "catalog_terms": [
-        "Grand Slam Board / Grand Slam Tennis",
-        "Roland-Garros / French Open | Men and Women"
+        "Roland-Garros / French Open | Men"
       ]
     },
     {
-      "id": "tennis-wimbledon",
-      "source_type": "coverage-gap",
+      "id": "tennis-french-open-women",
+      "source_type": "official-event-window",
       "sport": "Tennis",
-      "league": "Wimbledon | Men and Women",
+      "league": "Roland-Garros / French Open | Women",
+      "region": "France",
+      "endpoint": "https://travel.rolandgarros.com/en/conditions",
+      "official_schedule_url": "https://travel.rolandgarros.com/en/conditions",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official Roland-Garros 2027 tournament window scoped to the women’s child. This is not a match adapter; daily draws and order of play require separate verification.",
+      "official_events": [
+        {
+          "source_id": "tennis-french-open-women",
+          "league": "Roland-Garros / French Open | Women",
+          "name": "Roland-Garros 2027 | Women",
+          "start_date": "2027-05-17",
+          "end_date": "2027-06-06",
+          "official_schedule_url": "https://travel.rolandgarros.com/en/conditions"
+        }
+      ],
+      "catalog_terms": [
+        "Roland-Garros / French Open | Women"
+      ]
+    },
+    {
+      "id": "tennis-wimbledon-men",
+      "source_type": "official-event-window",
+      "sport": "Tennis",
+      "league": "Wimbledon | Men",
       "region": "England",
-      "official_schedule_url": "https://www.wimbledon.com/en_GB/scores/schedule/index.html",
-      "source_note": "Out of season. ATP/WTA schedule events route here automatically when Wimbledon returns.",
+      "endpoint": "https://www.wimbledon.com/en_GB/atoz/dates.html",
+      "official_schedule_url": "https://www.wimbledon.com/en_GB/atoz/dates.html",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official Wimbledon 2027 tournament window scoped to the men’s child. This is not a match adapter; daily draws and order of play require separate verification.",
+      "official_events": [
+        {
+          "source_id": "tennis-wimbledon-men",
+          "league": "Wimbledon | Men",
+          "name": "Wimbledon 2027 | Men",
+          "start_date": "2027-06-28",
+          "end_date": "2027-07-11",
+          "official_schedule_url": "https://www.wimbledon.com/en_GB/atoz/dates.html"
+        }
+      ],
       "catalog_terms": [
-        "Grand Slam Board / Grand Slam Tennis",
-        "Wimbledon | Men and Women"
+        "Wimbledon | Men"
       ]
     },
     {
-      "id": "tennis-us-open",
+      "id": "tennis-wimbledon-women",
+      "source_type": "official-event-window",
+      "sport": "Tennis",
+      "league": "Wimbledon | Women",
+      "region": "England",
+      "endpoint": "https://www.wimbledon.com/en_GB/atoz/dates.html",
+      "official_schedule_url": "https://www.wimbledon.com/en_GB/atoz/dates.html",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official Wimbledon 2027 tournament window scoped to the women’s child. This is not a match adapter; daily draws and order of play require separate verification.",
+      "official_events": [
+        {
+          "source_id": "tennis-wimbledon-women",
+          "league": "Wimbledon | Women",
+          "name": "Wimbledon 2027 | Women",
+          "start_date": "2027-06-28",
+          "end_date": "2027-07-11",
+          "official_schedule_url": "https://www.wimbledon.com/en_GB/atoz/dates.html"
+        }
+      ],
+      "catalog_terms": [
+        "Wimbledon | Women"
+      ]
+    },
+    {
+      "id": "tennis-us-open-men",
+      "source_type": "official-event-window",
+      "sport": "Tennis",
+      "league": "United States Open | Men",
+      "region": "United States",
+      "endpoint": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html",
+      "official_schedule_url": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official United States Open 2026 tournament window scoped to the men’s child. This is not a match adapter; daily draws and order of play require separate verification. The next edition dates are not yet published.",
+      "official_events": [
+        {
+          "source_id": "tennis-us-open-men",
+          "league": "United States Open | Men",
+          "name": "United States Open 2026 | Men",
+          "start_date": "2026-08-23",
+          "end_date": "2026-09-13",
+          "official_schedule_url": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html"
+        }
+      ],
+      "catalog_terms": [
+        "United States Open | Men"
+      ]
+    },
+    {
+      "id": "tennis-us-open-women",
+      "source_type": "official-event-window",
+      "sport": "Tennis",
+      "league": "United States Open | Women",
+      "region": "United States",
+      "endpoint": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html",
+      "official_schedule_url": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Official United States Open 2026 tournament window scoped to the women’s child. This is not a match adapter; daily draws and order of play require separate verification. The next edition dates are not yet published.",
+      "official_events": [
+        {
+          "source_id": "tennis-us-open-women",
+          "league": "United States Open | Women",
+          "name": "United States Open 2026 | Women",
+          "start_date": "2026-08-23",
+          "end_date": "2026-09-13",
+          "official_schedule_url": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html"
+        }
+      ],
+      "catalog_terms": [
+        "United States Open | Women"
+      ]
+    },
+    {
+      "id": "tennis-usta-pro-circuit-men",
       "source_type": "coverage-gap",
       "sport": "Tennis",
-      "league": "United States Open | Men and Women",
+      "league": "USTA Pro Circuit | Men",
       "region": "United States",
-      "official_schedule_url": "https://www.usopen.org/en_US/scores/schedule/index.html",
-      "source_note": "The 2026 event is complete. ATP/WTA schedule events route here automatically when the US Open returns.",
+      "official_schedule_url": "https://www.usta.com/en/home/pro/pro-tennis-events/usta-mens-competitive-pathway.html",
+      "coverage_status": "manual-division-calendar",
+      "source_note": "USTA publishes a separate 2026 men’s Pro Circuit calendar. No independent unattended USTA-only fixture adapter is established; shared ITF/ATP tournaments must not be duplicated under a second approval path.",
       "catalog_terms": [
-        "Grand Slam Board / Grand Slam Tennis",
-        "United States Open | Men and Women"
+        "USTA Pro Circuit | Men"
       ]
     },
     {
-      "id": "tennis-usta-pro-circuit",
+      "id": "tennis-usta-pro-circuit-women",
       "source_type": "coverage-gap",
       "sport": "Tennis",
-      "league": "USTA Pro Circuit | Men and Women",
+      "league": "USTA Pro Circuit | Women",
       "region": "United States",
-      "official_schedule_url": "https://www.usta.com/en/home/pro/pro-tennis-events/pro-circuit.html",
-      "source_note": "Season mapped. U.S. ITF events remain visible through the ITF feed without duplicating the same tournament under two approval paths.",
+      "official_schedule_url": "https://www.usta.com/en/home/pro/pro-tennis-events/usta-womens-competitive-pathway.html",
+      "coverage_status": "manual-division-calendar",
+      "source_note": "USTA publishes a separate 2026 women’s Pro Circuit calendar. No independent unattended USTA-only fixture adapter is established; shared ITF/ATP tournaments must not be duplicated under a second approval path.",
       "catalog_terms": [
-        "United States Tennis Association (USTA)",
-        "USTA Pro Circuit | Men and Women"
+        "USTA Pro Circuit | Women"
       ]
     },
     {
-      "id": "tennis-itf-world-tour",
+      "id": "tennis-itf-world-tour-men",
       "source_type": "tennis-intelligence",
       "sport": "Tennis",
-      "league": "ITF World Tennis Tour | Men and Women",
+      "league": "ITF World Tennis Tour | Men",
       "region": "International",
-      "official_schedule_url": "https://www.itftennis.com/en/tournament-calendar/world-tennis-tour-calendar/",
+      "official_schedule_url": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/",
       "coverage_status": "current-published-events",
       "tour_ids": [
-        "itf-men",
+        "itf-men"
+      ],
+      "catalog_terms": [
+        "ITF World Tennis Tour | Men"
+      ],
+      "source_note": "Only the men’s senior tournament family is admitted from Tennis Watch; individual dates and participant-age checks remain tournament-specific."
+    },
+    {
+      "id": "tennis-itf-world-tour-women",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "ITF World Tennis Tour | Women",
+      "region": "International",
+      "official_schedule_url": "https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
         "itf-women"
       ],
       "catalog_terms": [
-        "International Tennis Federation (ITF)",
-        "ITF World Tennis Tour | Men and Women"
-      ]
+        "ITF World Tennis Tour | Women"
+      ],
+      "source_note": "Only the women’s senior tournament family is admitted from Tennis Watch; individual dates and participant-age checks remain tournament-specific."
     },
     {
-      "id": "tennis-utr-pro-tour",
+      "id": "tennis-utr-pro-tour-men",
       "source_type": "tennis-intelligence",
       "sport": "Tennis",
-      "league": "UTR Pro Tennis Tour | Men and Women",
+      "league": "UTR Pro Tennis Tour | Men",
       "region": "International",
-      "official_schedule_url": "https://www.utrsports.net/pages/pro-tennis-tour",
+      "official_schedule_url": "https://www.utrsports.net/pages/ptt-tournaments",
       "coverage_status": "current-published-events",
       "tour_ids": [
-        "utr-men",
+        "utr-men"
+      ],
+      "catalog_terms": [
+        "UTR Pro Tennis Tour | Men"
+      ],
+      "source_note": "Only the men’s senior tournament family is admitted from Tennis Watch; individual dates and participant-age checks remain tournament-specific."
+    },
+    {
+      "id": "tennis-utr-pro-tour-women",
+      "source_type": "tennis-intelligence",
+      "sport": "Tennis",
+      "league": "UTR Pro Tennis Tour | Women",
+      "region": "International",
+      "official_schedule_url": "https://www.utrsports.net/pages/ptt-tournaments",
+      "coverage_status": "current-published-events",
+      "tour_ids": [
         "utr-women"
       ],
       "catalog_terms": [
-        "Universal Tennis LLC / UTR Sports",
-        "UTR Pro Tennis Tour | Men and Women"
-      ]
+        "UTR Pro Tennis Tour | Women"
+      ],
+      "source_note": "Only the women’s senior tournament family is admitted from Tennis Watch; individual dates and participant-age checks remain tournament-specific."
     },
     {
       "id": "tennis-united-cup",
@@ -4468,7 +4659,7 @@
       "league": "United Cup | Men and Women",
       "region": "Australia",
       "official_schedule_url": "https://www.unitedcup.com/en/tournament/schedule",
-      "source_note": "Out of season pending publication of the next official event dates. ATP/WTA schedule events route here automatically when play returns.",
+      "source_note": "The 2026 mixed-team event ran January 2–11. No 2027 dates or match schedule are verified; the next edition remains a visible calendar hold and no adjacent ATP/WTA event activates it.",
       "catalog_terms": [
         "Association of Tennis Professionals (ATP) / Women’s Tennis Association",
         "(WTA) / Tennis Australia",
