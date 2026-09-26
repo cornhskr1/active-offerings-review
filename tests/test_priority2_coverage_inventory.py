@@ -18,6 +18,32 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_table_tennis_windows_are_scoped_to_three_operational_identities(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        self.assertNotIn("table-tennis-wtt", sources)
+        for division in ("Men", "Women"):
+            league = f"World Table Tennis (WTT) | {division}"
+            sid = f"table-tennis-wtt-{division.lower()}"
+            row = self.rows[("Table Tennis", league)]
+            self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                             (row["season_state"], row["coverage_state"]))
+            self.assertEqual([sid], [source["id"] for source in row["sources"]])
+            self.assertEqual([league], sources[sid]["catalog_terms"])
+            self.assertEqual([("2026-01-07", "2026-01-11"),
+                              ("2026-12-09", "2026-12-13")],
+                             [(event["start_date"], event["end_date"])
+                              for event in sources[sid]["official_events"]])
+            self.assertEqual(0, row["events_in_window"])
+        mltt = self.rows[("Table Tennis", "Major League Table Tennis (MLTT) | Men and Women")]
+        self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                         (mltt["season_state"], mltt["coverage_state"]))
+        self.assertEqual(["table-tennis-mltt"], [source["id"] for source in mltt["sources"]])
+        self.assertEqual(["2026-09-25", "2026-09-25"],
+                         [event["start_date"] for event in
+                          sources["table-tennis-mltt"]["official_events"]])
+
     def test_surfing_tour_children_have_separate_windows_and_big_wave_holds(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
@@ -37,7 +63,9 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                     self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
                                      (row["season_state"], row["coverage_state"]))
                     self.assertEqual([sid], [source["id"] for source in row["sources"]])
-                    self.assertEqual(0, row["events_in_window"])
+                    # The scheduled refresh now emits a tour-window marker.
+                    # This count is not evidence of an individual heat or fixture.
+                    self.assertEqual(1, row["events_in_window"])
                     self.assertEqual([(start, end, league)], [
                         (event["start_date"], event["end_date"], event["league"])
                         for event in sources[sid]["official_events"]

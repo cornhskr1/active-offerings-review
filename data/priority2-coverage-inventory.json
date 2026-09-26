@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T16:13:13.618923+00:00",
-  "schedule_generated_at": "2026-09-26T16:09:17.708063+00:00",
+  "registry_generated_at": "2026-09-26T16:49:35.596461+00:00",
+  "schedule_generated_at": "2026-09-26T16:43:18.747008+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,18 +12,18 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 287,
-      "NO_LINKED_SOURCE": 80,
-      "OFFICIAL_WINDOW_ONLY": 107,
+      "NO_LINKED_SOURCE": 78,
+      "OFFICIAL_WINDOW_ONLY": 109,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 83,
+      "DATED_WINDOW": 86,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 29,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 75,
-      "RECURRING_WINDOW": 452
+      "PENDING_DATES": 73,
+      "RECURRING_WINDOW": 451
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 300,
@@ -278,9 +278,9 @@
     "Table Tennis": {
       "identities": 3,
       "split_children": 2,
-      "no_linked_source": 2,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
-      "pending_dates": 2
+      "pending_dates": 0
     },
     "Tennis": {
       "identities": 18,
@@ -14036,11 +14036,11 @@
           "id": "surfing-wsl-championship-tour-men",
           "type": "official-event-window",
           "configured_league": "Championship Tour | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Surfing",
@@ -14057,11 +14057,11 @@
           "id": "surfing-wsl-championship-tour-women",
           "type": "official-event-window",
           "configured_league": "Championship Tour | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Surfing",
@@ -14078,11 +14078,11 @@
           "id": "surfing-wsl-longboard-men",
           "type": "official-event-window",
           "configured_league": "Longboard Championship Tour | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Surfing",
@@ -14099,11 +14099,11 @@
           "id": "surfing-wsl-longboard-women",
           "type": "official-event-window",
           "configured_league": "Longboard Championship Tour | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Table Tennis",
@@ -14111,8 +14111,8 @@
       "identity_key": "table-tennis-mltt",
       "approval_parent": "Major League Table Tennis (MLTT) | Men and Women",
       "kind": "catalog",
-      "season_window": "September 2026–April 4, 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 11, 2026–April 4, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
@@ -14132,11 +14132,19 @@
       "identity_key": "table-tennis-wtt-men",
       "approval_parent": "World Table Tennis (WTT) | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "January 7–December 13, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "table-tennis-wtt-men",
+          "type": "official-event-window",
+          "configured_league": "World Table Tennis (WTT) | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14145,11 +14153,19 @@
       "identity_key": "table-tennis-wtt-women",
       "approval_parent": "World Table Tennis (WTT) | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "January 7–December 13, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "table-tennis-wtt-women",
+          "type": "official-event-window",
+          "configured_league": "World Table Tennis (WTT) | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14433,7 +14449,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14454,7 +14470,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
