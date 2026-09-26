@@ -1403,8 +1403,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.2/scoreboard",
-      "official_schedule_url": "https://www.knvb.nl/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://www.knvb.nl/node/71918",
+      "source_note": "Connected men's Keuken Kampioen Divisie daily feed; KNVB confirms August 7–May 14 regular season. Promotion playoffs are outside the dated window.",
       "catalog_terms": [
         "Eerste Divisie | Men"
       ]
@@ -1417,8 +1417,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.cup/scoreboard",
-      "official_schedule_url": "https://www.knvb.nl/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://www.knvb.nl/nieuws/betaald-voetbal/vriendenloterij-eredivisie/71361/speeldagenkalender-betaald-voetbal-seizoen",
+      "source_note": "KNVB Beker runs from September 1 amateur qualifying to April 18 final. Connected ESPN men's cup feed may omit qualifying matches; do not treat it as full-round completeness.",
       "catalog_terms": [
         "KNVB Beker / Dutch Cup | Men"
       ]
@@ -1428,13 +1428,24 @@
       "sport": "Soccer",
       "league": "Johan Cruyff Shield / Dutch Super Cup | Men",
       "region": "Netherlands",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.knvb.nl/",
-      "official_schedule_url": "https://www.knvb.nl/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.knvb.nl/nieuws/betaald-voetbal/johan-cruijff-schaal/72064/jeugdig-az-laat-tiental-psv-kansloos-en-pakt-de",
+      "official_schedule_url": "https://www.knvb.nl/nieuws/betaald-voetbal/johan-cruijff-schaal/72064/jeugdig-az-laat-tiental-psv-kansloos-en-pakt-de",
+      "source_note": "KNVB confirms the completed August 2, 2026 men's Johan Cruijff Schaal; no unattended adapter or next-edition date is claimed.",
       "catalog_terms": [
         "Johan Cruyff Shield / Dutch Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-netherlands-johan-cruyff-shield-dutch-super-cup-men",
+          "league": "Johan Cruyff Shield / Dutch Super Cup | Men",
+          "name": "Johan Cruijff Schaal 2026",
+          "start_date": "2026-08-02",
+          "end_date": "2026-08-02",
+          "location": "Eindhoven, Netherlands",
+          "official_schedule_url": "https://www.knvb.nl/nieuws/betaald-voetbal/johan-cruijff-schaal/72064/jeugdig-az-laat-tiental-psv-kansloos-en-pakt-de"
+        }
       ]
     },
     {
@@ -1873,8 +1884,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_del_rey/scoreboard",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://rfef.es/es/noticias/la-temporada-202627-ya-tiene-establecidas-sus-fechas-clave",
+      "source_note": "Men's Copa del Rey daily feed; RFEF dates the territorial preliminary round September 26 and final April 24. The feed may omit territorial qualifiers.",
       "catalog_terms": [
         "Copa del Rey | Men"
       ]
@@ -1886,9 +1897,9 @@
       "region": "Spain",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://rfef.es/",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://rfef.es/es/noticias/definida-la-hoja-de-ruta-de-la-supercopa-2027-que-se-celebrara-en-estambul",
+      "official_schedule_url": "https://rfef.es/es/noticias/definida-la-hoja-de-ruta-de-la-supercopa-2027-que-se-celebrara-en-estambul",
+      "source_note": "RFEF's newer Istanbul schedule sets men's semifinals February 2–3 and final February 6, superseding its earlier February 7 plan. No dependable daily adapter is linked.",
       "catalog_terms": [
         "Supercopa de España | Men"
       ]
@@ -1900,9 +1911,9 @@
       "region": "Spain",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://rfef.es/",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "official_schedule_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "source_note": "RFEF dates the women's second tier September 12–13 through June 5–6 promotion phase. No dependable daily adapter is linked.",
       "catalog_terms": [
         "Primera Federación Femenina | Women"
       ]
@@ -1915,8 +1926,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/scoreboard",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "source_note": "Women's football Copa de la Reina daily feed, September 9–May 15; separate from the men's Copa and women's futsal cup.",
       "catalog_terms": [
         "Copa de la Reina | Women"
       ]
@@ -1928,9 +1939,9 @@
       "region": "Spain",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://rfef.es/",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "official_schedule_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "source_note": "RFEF women's football final four is January 19–24, separate from the men's February event. No dependable daily adapter is linked.",
       "catalog_terms": [
         "Supercopa de España Femenina | Women"
       ]
@@ -1943,8 +1954,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.2/scoreboard",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://www.laliga.com/laliga-hypermotion/calendario",
+      "source_note": "Connected men's LaLiga Hypermotion daily feed; first match August 14, regular season to June 6 and RFEF promotion playoffs to June 20. Playoff coverage needs per-match validation.",
       "catalog_terms": [
         "Segunda División | Men"
       ]
@@ -1957,8 +1968,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/scoreboard",
-      "official_schedule_url": "https://rfef.es/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://ligaf.es/noticia/liga-f-moeve-ya-tiene-definido-el-calendario-de-emparejamientos-de-la-temporada-20262027",
+      "source_note": "Connected women's Liga F daily feed; official league gives August 29–30 opening and May 22–23 final weekend.",
       "catalog_terms": [
         "Liga F | Women"
       ]
