@@ -1013,9 +1013,9 @@
       "region": "Iceland",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.ksi.is/",
-      "official_schedule_url": "https://www.ksi.is/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.ksi.is/oll-mot/mot?banner-tab=matches-and-results&id=7025527",
+      "official_schedule_url": "https://www.ksi.is/oll-mot/mot?banner-tab=matches-and-results&id=7025527",
+      "source_note": "KSÍ upper and lower final-group records run to October 24, 2026; both must be represented. No dependable unattended adapter connected.",
       "catalog_terms": [
         "Besta deild karla / Úrvalsdeild | Men"
       ]
@@ -1027,9 +1027,9 @@
       "region": "Iceland",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.ksi.is/",
-      "official_schedule_url": "https://www.ksi.is/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.ksi.is/oll-mot/mot?banner-tab=matches-and-results&id=6961952",
+      "official_schedule_url": "https://www.ksi.is/oll-mot/mot?banner-tab=matches-and-results&id=6961952",
+      "source_note": "KSÍ Lengjubikar karla C division has February groups and April 25 listed final, but the final result and lower-division athlete eligibility need review. No unattended adapter connected.",
       "catalog_terms": [
         "League Cup C | Men"
       ]
@@ -1039,13 +1039,24 @@
       "sport": "Soccer",
       "league": "Super Cup | Men",
       "region": "Iceland",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.ksi.is/",
-      "official_schedule_url": "https://www.ksi.is/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.ksi.is/oll-mot/mot?id=7025605&toggle=results",
+      "official_schedule_url": "https://www.ksi.is/oll-mot/mot?id=7025605&toggle=results",
+      "source_note": "KSÍ March 29, 2026 senior men’s Meistarakeppni completed event only; next date and unattended adapter unclaimed.",
       "catalog_terms": [
         "Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-iceland-super-cup-men",
+          "league": "Super Cup | Men",
+          "name": "Icelandic Men’s Super Cup 2026",
+          "start_date": "2026-03-29",
+          "end_date": "2026-03-29",
+          "location": "Reykjavík, Iceland",
+          "official_schedule_url": "https://www.ksi.is/oll-mot/mot?id=7025605&toggle=results"
+        }
       ]
     },
     {
@@ -1055,9 +1066,9 @@
       "region": "Ireland",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.fai.ie/",
-      "official_schedule_url": "https://www.fai.ie/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+      "official_schedule_url": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+      "source_note": "LOI dates February 6–October 30 regular season and Premier Division promotion/relegation play-off week ending November 8. Exact tie date and unattended adapter remain pending.",
       "catalog_terms": [
         "League of Ireland Premier Division | Men"
       ]
@@ -1069,9 +1080,9 @@
       "region": "Ireland",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.fai.ie/",
-      "official_schedule_url": "https://www.fai.ie/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.fai.ie/latest/fixtures-2026-mens-fai-cup-first-round-confirmed/",
+      "official_schedule_url": "https://www.fai.ie/latest/fixtures-2026-mens-fai-cup-first-round-confirmed/",
+      "source_note": "FAI senior men’s first round starts May 10 with non-league teams; LOI dates November 8 final. No dependable unattended adapter connected.",
       "catalog_terms": [
         "FAI Cup | Men"
       ]
@@ -1081,13 +1092,24 @@
       "sport": "Soccer",
       "league": "President’s Cup | Men",
       "region": "Ireland",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fai.ie/",
-      "official_schedule_url": "https://www.fai.ie/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+      "official_schedule_url": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+      "source_note": "LOI January 31, 2026 senior men’s President’s Cup only, distinct from women’s March event. Next date and unattended adapter unclaimed.",
       "catalog_terms": [
         "President’s Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-ireland-president-s-cup-men",
+          "league": "President’s Cup | Men",
+          "name": "Irish Men’s President’s Cup 2026",
+          "start_date": "2026-01-31",
+          "end_date": "2026-01-31",
+          "location": "Tallaght, Ireland",
+          "official_schedule_url": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/"
+        }
       ]
     },
     {
