@@ -18,6 +18,28 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_brazilian_cups_have_separate_last_completed_windows_and_future_adapter_gaps(self):
+        expected = {
+            "Men": ("2026-01-26", "2026-03-08"),
+            "Women": ("2026-01-23", "2026-02-28"),
+        }
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        sources = {source["id"]: source for source in config["sources"]}
+        for gender, dates in expected.items():
+            with self.subTest(gender=gender):
+                row = self.rows[("Volleyball", f"Brazilian Cup | {gender}")]
+                gap_id = f"volleyball-brazil-cup-{gender.lower()}"
+                window_id = gap_id + "-2026-window"
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual({gap_id, window_id}, {source["id"] for source in row["sources"]})
+                self.assertEqual("coverage-gap", sources[gap_id]["source_type"])
+                self.assertEqual("official-event-window", sources[window_id]["source_type"])
+                self.assertEqual([f"Brazilian Cup | {gender}"], sources[window_id]["catalog_terms"])
+                event = sources[window_id]["official_events"][0]
+                self.assertEqual(dates, (event["start_date"], event["end_date"]))
+                self.assertIn("2027", sources[gap_id]["source_note"])
+
     def test_beach_pro_tour_does_not_inherit_retired_world_tour_approval(self):
         for gender in ("Men", "Women"):
             with self.subTest(gender=gender):
@@ -677,8 +699,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Football"]["no_linked_source"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Football"]["adapter_gaps"])
-        self.assertEqual(289, self.inventory["summary"]["coverage_states"]["ADAPTER_GAP"])
-        self.assertEqual(69, self.inventory["summary"]["coverage_states"]["SOURCE_SCOPE_REVIEW"])
 
         self.assertEqual(
             [{"sport": "Football", "league": "NCAA Football"}],

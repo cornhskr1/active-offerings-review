@@ -3897,9 +3897,9 @@
       "sport": "Volleyball",
       "league": "Brazilian Cup | Men",
       "region": "Brazil",
-      "official_schedule_url": "https://cbv.com.br/",
+      "official_schedule_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
       "coverage_status": "pending-publication",
-      "source_note": "Exact 2027 cup dates are pending official publication.",
+      "source_note": "CBV confirms the completed 2026 men’s cup. The 2027 edition’s exact dates and an unattended fixture adapter remain unpublished; check the official cup calendar and operator menu before clearing future activity.",
       "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Brazilian Cup | Men"]
     },
     {
@@ -3930,9 +3930,9 @@
       "sport": "Volleyball",
       "league": "Brazilian Cup | Women",
       "region": "Brazil",
-      "official_schedule_url": "https://cbv.com.br/",
+      "official_schedule_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
       "coverage_status": "pending-publication",
-      "source_note": "Exact 2027 cup dates are pending official publication.",
+      "source_note": "CBV confirms the completed 2026 women’s cup. The 2027 edition’s exact dates and an unattended fixture adapter remain unpublished; check the official cup calendar and operator menu before clearing future activity.",
       "catalog_terms": ["Brazilian Volleyball Confederation (CBV)", "Brazilian Cup | Women"]
     },
     {
@@ -4552,6 +4552,58 @@
       "source_note": "FIVB confirms the 2026 Beach Pro Tour has women’s draws and publishes Elite/Challenge stops March–August. Futures began February 5. Later Futures and the exact final Pro Tour date need verification; the new November Beach World Series is a separate successor. This official calendar reference is not an unattended gender-filtered fixture adapter.",
       "catalog_terms": [
         "Beach Pro Tour | Women"
+      ]
+    },
+    {
+      "id": "volleyball-brazil-cup-men-2026-window",
+      "source_type": "official-event-window",
+      "sport": "Volleyball",
+      "league": "Brazilian Cup | Men",
+      "region": "Brazil",
+      "endpoint": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
+      "official_schedule_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "CBV publishes the complete 2026 men’s Copa Brasil window from the quarterfinals through the final. This last-completed window does not establish 2027 dates or unattended fixtures; retain the separate volleyball-brazil-cup-men adapter gap.",
+      "official_events": [
+        {
+          "source_id": "volleyball-brazil-cup-men-2026-window",
+          "league": "Brazilian Cup | Men",
+          "name": "2026 Copa Brasil men’s tournament",
+          "start_date": "2026-01-26",
+          "end_date": "2026-03-08",
+          "location": "Brazil (final phase: Londrina, Paraná)",
+          "official_schedule_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil"
+        }
+      ],
+      "catalog_terms": [
+        "Brazilian Cup | Men"
+      ]
+    },
+    {
+      "id": "volleyball-brazil-cup-women-2026-window",
+      "source_type": "official-event-window",
+      "sport": "Volleyball",
+      "league": "Brazilian Cup | Women",
+      "region": "Brazil",
+      "endpoint": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
+      "official_schedule_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "CBV publishes the complete 2026 women’s Copa Brasil window from the quarterfinals through the final. This last-completed window does not establish 2027 dates or unattended fixtures; retain the separate volleyball-brazil-cup-women adapter gap.",
+      "official_events": [
+        {
+          "source_id": "volleyball-brazil-cup-women-2026-window",
+          "league": "Brazilian Cup | Women",
+          "name": "2026 Copa Brasil women’s tournament",
+          "start_date": "2026-01-23",
+          "end_date": "2026-02-28",
+          "location": "Brazil (final phase: Londrina, Paraná)",
+          "official_schedule_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil"
+        }
+      ],
+      "catalog_terms": [
+        "Brazilian Cup | Women"
       ]
     }
   ]

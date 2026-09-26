@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T01:47:24.497964+00:00",
+  "registry_generated_at": "2026-09-26T01:54:36.215482+00:00",
   "schedule_generated_at": "2026-09-26T00:25:52.657991+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
@@ -11,17 +11,17 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
-      "ADAPTER_GAP": 289,
+      "ADAPTER_GAP": 287,
       "NO_LINKED_SOURCE": 100,
-      "OFFICIAL_WINDOW_ONLY": 85,
+      "OFFICIAL_WINDOW_ONLY": 87,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 60,
+      "DATED_WINDOW": 62,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 17,
       "NO_WINDOW": 24,
-      "PENDING_DATES": 107,
+      "PENDING_DATES": 105,
       "RECURRING_WINDOW": 456
     },
     "reported_gap_areas": 13,
@@ -297,8 +297,8 @@
       "identities": 26,
       "split_children": 18,
       "no_linked_source": 16,
-      "adapter_gaps": 8,
-      "pending_dates": 16
+      "adapter_gaps": 6,
+      "pending_dates": 14
     }
   },
   "identities": [
@@ -14426,14 +14426,21 @@
       "identity_key": "volleyball-brazil-cup-men",
       "approval_parent": "Brazilian Cup | Men",
       "kind": "catalog",
-      "season_window": "Early 2027 · dates pending official publication",
-      "season_state": "PENDING_DATES",
+      "season_window": "January 26–March 8, 2026 · last completed; 2027 dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "volleyball-brazil-cup-men",
           "type": "coverage-gap",
+          "configured_league": "Brazilian Cup | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "volleyball-brazil-cup-men-2026-window",
+          "type": "official-event-window",
           "configured_league": "Brazilian Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -14447,14 +14454,21 @@
       "identity_key": "volleyball-brazil-cup-women",
       "approval_parent": "Brazilian Cup | Women",
       "kind": "catalog",
-      "season_window": "Early 2027 · dates pending official publication",
-      "season_state": "PENDING_DATES",
+      "season_window": "January 23–February 28, 2026 · last completed; 2027 dates pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "volleyball-brazil-cup-women",
           "type": "coverage-gap",
+          "configured_league": "Brazilian Cup | Women",
+          "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "volleyball-brazil-cup-women-2026-window",
+          "type": "official-event-window",
           "configured_league": "Brazilian Cup | Women",
           "refresh_ok": true,
           "events_in_window": 0
