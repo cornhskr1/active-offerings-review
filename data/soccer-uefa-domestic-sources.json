@@ -1292,9 +1292,9 @@
       "region": "Lithuania",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.lff.lt/",
-      "official_schedule_url": "https://www.lff.lt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.lff.lt/varzybos/23198513/",
+      "official_schedule_url": "https://www.lff.lt/varzybos/23198513/",
+      "source_note": "LFF TOPLYGA (A Lyga) lists February 21 first and November 7 36th round. Promotion/relegation tie scope remains pending; no unattended adapter connected.",
       "catalog_terms": [
         "A Lyga | Men"
       ]
@@ -1306,9 +1306,9 @@
       "region": "Lithuania",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.lff.lt/",
-      "official_schedule_url": "https://www.lff.lt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.lff.lt/kaune-futbolo-savaitgalis-lff-taures-finalas-vyks-spalio-11-aja/",
+      "official_schedule_url": "https://www.lff.lt/kaune-futbolo-savaitgalis-lff-taures-finalas-vyks-spalio-11-aja/",
+      "source_note": "LFF confirms April 1 preliminary opener separately and moved the senior final to October 11; no unattended adapter connected.",
       "catalog_terms": [
         "Lithuanian Football Cup | Men"
       ]
@@ -1318,13 +1318,24 @@
       "sport": "Soccer",
       "league": "Lithuanian Super Cup | Men",
       "region": "Lithuania",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.lff.lt/",
-      "official_schedule_url": "https://www.lff.lt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.lff.lt/naujoko-ivartis-padovanojo-kauno-zalgiriui-pirma-sezono-trofeju/",
+      "official_schedule_url": "https://www.lff.lt/naujoko-ivartis-padovanojo-kauno-zalgiriui-pirma-sezono-trofeju/",
+      "source_note": "LFF confirms February 16, 2026 completed senior football Supertaurė, distinct from futsal; next date and unattended adapter unclaimed.",
       "catalog_terms": [
         "Lithuanian Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-lithuania-lithuanian-super-cup-men",
+          "league": "Lithuanian Super Cup | Men",
+          "name": "Lithuanian Super Cup 2026",
+          "start_date": "2026-02-16",
+          "end_date": "2026-02-16",
+          "location": "Marijampolė, Lithuania",
+          "official_schedule_url": "https://www.lff.lt/naujoko-ivartis-padovanojo-kauno-zalgiriui-pirma-sezono-trofeju/"
+        }
       ]
     },
     {
