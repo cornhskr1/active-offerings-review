@@ -44,7 +44,10 @@ class NCAAGolfDivisionIdentityTests(unittest.TestCase):
             {child["label"] for child in children},
         )
         self.assertEqual(2, len({child["key"] for child in children}))
-        self.assertTrue(all(not child.get("source_id") for child in children))
+        self.assertEqual(
+            {"ncaa-golf-di-men", "ncaa-golf-di-women"},
+            {child.get("source_id") for child in children},
+        )
 
     def test_combined_parent_is_not_a_schedulable_registry_entry(self):
         registry = {
@@ -57,6 +60,7 @@ class NCAAGolfDivisionIdentityTests(unittest.TestCase):
         for child in approval["coverage_children"]:
             self.assertIn(child["label"], registry)
             self.assertEqual(child["key"], registry[child["label"]]["identity_key"])
+            self.assertEqual([child["source_id"]], registry[child["label"]]["source_ids"])
 
 
 if __name__ == "__main__":
