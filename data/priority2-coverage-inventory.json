@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T23:43:32.411368+00:00",
-  "schedule_generated_at": "2026-09-26T23:39:59.608328+00:00",
+  "registry_generated_at": "2026-09-26T23:49:35.976401+00:00",
+  "schedule_generated_at": "2026-09-26T23:46:53.499903+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,22 +11,22 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 279,
+      "ADAPTER_GAP": 277,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 135,
+      "OFFICIAL_WINDOW_ONLY": 137,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 178,
+      "DATED_WINDOW": 180,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 46,
+      "DOCUMENTED_HOLD": 49,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 41,
-      "PENDING_DATES": 38,
-      "RECURRING_WINDOW": 350
+      "PARTIAL_WINDOW": 46,
+      "PENDING_DATES": 36,
+      "RECURRING_WINDOW": 342
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 281,
+    "reported_gap_labels": 279,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 226,
-      "pending_dates": 73
+      "adapter_gaps": 224,
+      "pending_dates": 76
     },
     "Surfing": {
       "identities": 6,
@@ -10162,8 +10162,8 @@
       "identity_key": "soccer-israel-israel-state-cup-men",
       "approval_parent": "Israel State Cup | Men",
       "kind": "catalog",
-      "season_window": "November 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 25, 2026 senior preliminary round–2027 final pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10183,14 +10183,14 @@
       "identity_key": "soccer-israel-israel-super-cup-men",
       "approval_parent": "Israel Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "season_window": "July 16, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-israel-israel-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Israel Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -10204,8 +10204,8 @@
       "identity_key": "soccer-israel-israeli-premier-league-ligat-ha-al-men",
       "approval_parent": "Israeli Premier League / Ligat Ha’Al | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 22, 2026 first senior round–2027 championship/relegation rounds pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11024,9 +11024,10 @@
       "identity_key": "soccer-luxembourg-luxembourg-cup-men",
       "approval_parent": "Luxembourg Cup | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 senior Coupe de Luxembourg · first fixture and final pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Current senior football edition date or fixture scope unverified; do not infer a recurring window or completed event.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -11045,9 +11046,10 @@
       "identity_key": "soccer-luxembourg-luxembourg-super-cup-men",
       "approval_parent": "Luxembourg Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
+      "season_window": "Senior football Super Cup · 2026 event and next date unverified",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "",
+      "hold_reason": "Current senior football edition date or fixture scope unverified; do not infer a recurring window or completed event.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -11171,9 +11173,10 @@
       "identity_key": "soccer-malta-maltese-fa-trophy-men",
       "approval_parent": "Maltese FA Trophy | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 senior FA Trophy · first fixture and final pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Current senior football edition date or fixture scope unverified; do not infer a recurring window or completed event.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -11192,8 +11195,8 @@
       "identity_key": "soccer-malta-maltese-premier-league-men",
       "approval_parent": "Maltese Premier League | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026 opening round–2027 final phases pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11213,14 +11216,14 @@
       "identity_key": "soccer-malta-maltese-super-cup-men",
       "approval_parent": "Maltese Super Cup | Men",
       "kind": "catalog",
-      "season_window": "December 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 7, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-malta-maltese-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Maltese Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -11383,8 +11386,8 @@
       "identity_key": "soccer-luxembourg-national-division-bgl-ligue-men",
       "approval_parent": "National Division / BGL Ligue | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 2, 2026 first senior round–2027 final and promotion ties pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13380,8 +13383,8 @@
       "identity_key": "soccer-israel-toto-cup-men",
       "approval_parent": "Toto Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–January 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 25, 2026 senior Premier League Toto Cup group opener–final pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14701,7 +14704,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14722,7 +14725,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
