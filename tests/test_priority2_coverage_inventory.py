@@ -469,7 +469,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         )
         self.assertEqual(["ncaa-basketball-cbc"], registered["source_ids"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(8, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(9, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_ncaa_division_two_and_three_basketball_use_exact_child_windows(self):
         expected = {
@@ -526,8 +526,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], registered[league]["source_ids"])
 
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(115, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(70, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(114, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(71, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # The CBI and FBS holds remain separate from these exact child windows.
         cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
@@ -561,7 +561,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             source.get("sport") == "NCAA Beach Volleyball"
             for source in config["sources"]
         ))
-        self.assertEqual(8, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(9, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
@@ -605,8 +605,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(["ncaa-field-hockey-di"], registered["source_ids"])
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Field Hockey"]["no_linked_source"])
-        self.assertEqual(115, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(70, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(114, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(71, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # FBS scope remains unresolved and must stay fail-closed.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
@@ -646,8 +646,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Football"]["no_linked_source"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Football"]["adapter_gaps"])
-        self.assertEqual(115, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(70, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(114, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(71, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
         self.assertEqual(289, self.inventory["summary"]["coverage_states"]["ADAPTER_GAP"])
         self.assertEqual(69, self.inventory["summary"]["coverage_states"]["SOURCE_SCOPE_REVIEW"])
 
@@ -685,6 +685,37 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Golf"]["no_linked_source"])
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Golf"]["pending_dates"])
         self.assertNotIn(("NCAA Golf", "Division I Golf | Men and Women"), self.rows)
+
+    def test_ncaa_ice_hockey_keeps_mens_dates_and_womens_scope_hold_separate(self):
+        men = self.rows[("NCAA Ice Hockey", "Division I Ice Hockey | Men")]
+        women = self.rows[("NCAA Ice Hockey", "Division I Ice Hockey | Women")]
+        self.assertEqual("split-child", men["kind"])
+        self.assertEqual("Division I Ice Hockey | Men and Women", men["approval_parent"])
+        self.assertEqual("RECURRING_WINDOW", men["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", men["coverage_state"])
+        self.assertEqual(["ncaa-ice-hockey-di-men"], [source["id"] for source in men["sources"]])
+        self.assertEqual("official-event-window", men["sources"][0]["type"])
+        self.assertEqual(0, men["sources"][0]["events_in_window"])
+
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        source = next(s for s in config["sources"] if s["id"] == "ncaa-ice-hockey-di-men")
+        self.assertEqual(["Division I Ice Hockey | Men"], source["catalog_terms"])
+        self.assertEqual(["2027-04-08", "2027-04-10"], [event["start_date"] for event in source["official_events"]])
+        self.assertTrue(all(event["start_date"] == event["end_date"] for event in source["official_events"]))
+
+        self.assertEqual("split-child", women["kind"])
+        self.assertEqual("DOCUMENTED_HOLD", women["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
+        self.assertEqual([], women["sources"])
+        self.assertIn("National Collegiate", women["hold_reason"])
+        self.assertIn("Division I", women["hold_reason"])
+        self.assertFalse(any(s.get("sport") == "NCAA Ice Hockey" and s["league"] == "Division I Ice Hockey | Women" for s in config["sources"]))
+
+        registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
+        registered = {item["league"]: item for item in registry["competitions"] if item["sport"] == "NCAA Ice Hockey"}
+        self.assertNotIn("Division I Ice Hockey | Men and Women", registered)
+        self.assertEqual(["ncaa-ice-hockey-di-men"], registered["Division I Ice Hockey | Men"]["source_ids"])
+        self.assertEqual([], registered["Division I Ice Hockey | Women"]["source_ids"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]

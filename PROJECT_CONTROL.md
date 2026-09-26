@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 25, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Ice Hockey coverage — verify separate men's and women's Division I calendars and source scope**
+**Current task:** **NCAA Lacrosse coverage — verify separate Division I men's and women's calendars and exact source scope**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -155,6 +155,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 25 — Golf:** NCAA's separate Division I championship pages publish the women's 2027 finals for May 21–26 and the men's for May 28–June 2, both at Omni La Costa in Carlsbad. The two split children now have their own official-window-only sources, while their recurring August–May and August–June indicators remain qualified: the championship pages do not establish a complete regular-season or regional fixture calendar. The original combined catalog wording remains the legal parent and is not schedulable. NCAA Golf moves from two pending/no-source children to zero; systemwide NO_LINKED_SOURCE falls from 117 to 115, OFFICIAL_WINDOW_ONLY rises from 68 to 70, and PENDING_DATES falls from 131 to 129. NCAA Ice Hockey is next. Official evidence: https://www.ncaa.org/championship/division-i/womens-golf/ and https://www.ncaa.org/championship/division-i/mens-golf/ .
 
+**NCAA checkpoint, September 25 — Ice Hockey:** NCAA publishes exact Division I men's Frozen Four dates of April 8 and 10, 2027 at Capital One Arena. The men's child now has a two-date official-window-only source; this does not establish regional or regular-season fixtures. The NCAA separately titles the March 21 and 23, 2027 women's Frozen Four **National Collegiate**. That broader championship window is not attached to the catalog's narrower `Division I Ice Hockey | Women` child, which remains a visible documented scope hold with no linked source. NCAA Ice Hockey moves from two pending/no-source children to one official window and one hold. Systemwide NO_LINKED_SOURCE falls from 115 to 114, OFFICIAL_WINDOW_ONLY rises from 70 to 71, PENDING_DATES falls from 129 to 127, and documented holds rise from eight to nine. NCAA Lacrosse is next. Official evidence: https://www.ncaa.org/championship/division-i/mens-ice-hockey/ , https://www.ncaa.org/championship/national-collegiate/womens-ice-hockey/ , and https://www.ncaa.org/news/2027-womens-frozen-four-dates-changed/ .
+
 
 ## Recovered work from September 23–24
 
@@ -213,4 +215,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #108 merged. The inventory contains 722 mapped operational identities and 144 split children. Basketball section exit remains passed. NCAA Golf begins with two pending/no-source split children; this candidate links separate 2027 championship windows to each child, yielding expected systemwide totals of 115 NO_LINKED_SOURCE, 70 OFFICIAL_WINDOW_ONLY, 129 PENDING_DATES, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. These are finals windows, not complete fixture coverage. NCAA remains open; NCAA Ice Hockey is next.
+**Current checkpoint:** Priority 2; Active Offerings PR #109 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Ice Hockey begins with two pending/no-source children; this candidate links the exact men's Frozen Four dates and documents the women's National Collegiate versus Division I scope hold. Expected systemwide totals are 114 NO_LINKED_SOURCE, 71 OFFICIAL_WINDOW_ONLY, 127 PENDING_DATES, nine DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Lacrosse is next.
