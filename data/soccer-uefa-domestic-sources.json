@@ -342,9 +342,9 @@
       "region": "Czech Republic",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.facr.cz/",
-      "official_schedule_url": "https://www.facr.cz/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+      "official_schedule_url": "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+      "source_note": "LFA league start, title phase, and June qualification dates; no unattended match adapter.",
       "catalog_terms": [
         "Czech First League | Men"
       ]
@@ -356,9 +356,9 @@
       "region": "Czech Republic",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.facr.cz/",
-      "official_schedule_url": "https://www.facr.cz/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+      "official_schedule_url": "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+      "source_note": "LFA second-tier start, regular finish, and June promotion qualification dates; no unattended match adapter.",
       "catalog_terms": [
         "Czech National Football League | Men"
       ]
@@ -370,9 +370,9 @@
       "region": "Czech Republic",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.facr.cz/",
-      "official_schedule_url": "https://www.facr.cz/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.molcup.cz/clanek/714-terminy-mol-cupu-2026-2027",
+      "official_schedule_url": "https://www.molcup.cz/clanek/714-terminy-mol-cupu-2026-2027",
+      "source_note": "MOL Cup official date plan sets May 12 final; its preliminary-round report confirms July 24 opening. No unattended cup adapter.",
       "catalog_terms": [
         "Czech Cup | Men"
       ]
@@ -1522,9 +1522,9 @@
       "region": "Poland",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.pzpn.pl/",
-      "official_schedule_url": "https://www.pzpn.pl/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://ekstraklasa.org/aktualnosci/terminarz-pko-bank-polski-ekstraklasy-w-sezonie-2026-27/",
+      "official_schedule_url": "https://ekstraklasa.org/aktualnosci/terminarz-pko-bank-polski-ekstraklasy-w-sezonie-2026-27/",
+      "source_note": "Ekstraklasa SA confirms July 24 opening and May 22 final round; no unattended adapter.",
       "catalog_terms": [
         "Ekstraklasa | Men"
       ]
@@ -1536,9 +1536,9 @@
       "region": "Poland",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.pzpn.pl/",
-      "official_schedule_url": "https://www.pzpn.pl/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://pzpn.pl/public/system/files/site_content/635/7379-Regulamin%20Pucharu%20Polski%202026-2027.pdf",
+      "official_schedule_url": "https://pzpn.pl/public/system/files/site_content/635/7379-Regulamin%20Pucharu%20Polski%202026-2027.pdf",
+      "source_note": "PZPN central round August 5 through May 2 final; district qualifying is separate and may predate central stage. No unattended adapter.",
       "catalog_terms": [
         "Polish Cup | Men"
       ]
@@ -1548,13 +1548,24 @@
       "sport": "Soccer",
       "league": "Polish Super Cup | Men",
       "region": "Poland",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.pzpn.pl/",
-      "official_schedule_url": "https://www.pzpn.pl/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://pzpn.pl/federacja/aktualnosci/2026-07-16/lech-poznan-zdobywca-sts-superpucharu-polski",
+      "official_schedule_url": "https://pzpn.pl/federacja/aktualnosci/2026-07-16/lech-poznan-zdobywca-sts-superpucharu-polski",
+      "source_note": "PZPN confirms completed July 16, 2026 men’s Supercup only; no 2027 date or unattended adapter.",
       "catalog_terms": [
         "Polish Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-poland-polish-super-cup-men",
+          "league": "Polish Super Cup | Men",
+          "name": "STS Superpuchar Polski 2026",
+          "start_date": "2026-07-16",
+          "end_date": "2026-07-16",
+          "location": "Poznań, Poland",
+          "official_schedule_url": "https://pzpn.pl/federacja/aktualnosci/2026-07-16/lech-poznan-zdobywca-sts-superpucharu-polski"
+        }
       ]
     },
     {

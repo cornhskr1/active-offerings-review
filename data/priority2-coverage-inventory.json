@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T20:05:16.831107+00:00",
-  "schedule_generated_at": "2026-09-26T19:58:32.530724+00:00",
+  "registry_generated_at": "2026-09-26T20:10:58.071125+00:00",
+  "schedule_generated_at": "2026-09-26T20:06:59.815518+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,19 +11,19 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 290,
+      "ADAPTER_GAP": 289,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 124,
+      "OFFICIAL_WINDOW_ONLY": 125,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 150,
+      "DATED_WINDOW": 153,
       "DESCRIPTIVE_WINDOW": 57,
       "DOCUMENTED_HOLD": 35,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 15,
-      "PENDING_DATES": 52,
-      "RECURRING_WINDOW": 398
+      "PARTIAL_WINDOW": 18,
+      "PENDING_DATES": 51,
+      "RECURRING_WINDOW": 393
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 290,
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 237,
-      "pending_dates": 61
+      "adapter_gaps": 236,
+      "pending_dates": 63
     },
     "Surfing": {
       "identities": 6,
@@ -8857,8 +8857,8 @@
       "identity_key": "soccer-czech-republic-czech-cup-men",
       "approval_parent": "Czech Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–May 12, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8878,8 +8878,8 @@
       "identity_key": "soccer-czech-republic-czech-first-league-men",
       "approval_parent": "Czech First League | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 25, 2026–June 6, 2027 including relegation qualification",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8899,8 +8899,8 @@
       "identity_key": "soccer-czech-republic-czech-national-football-league-men",
       "approval_parent": "Czech National Football League | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 25, 2026–June 6, 2027 including promotion qualification",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9172,8 +9172,8 @@
       "identity_key": "soccer-poland-ekstraklasa-men",
       "approval_parent": "Ekstraklasa | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11630,8 +11630,8 @@
       "identity_key": "soccer-poland-polish-cup-men",
       "approval_parent": "Polish Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 5, 2026–May 2, 2027 central rounds; district stage scope pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11651,14 +11651,14 @@
       "identity_key": "soccer-poland-polish-super-cup-men",
       "approval_parent": "Polish Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "season_window": "July 16, 2026 · completed; next edition date pending",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-poland-polish-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Polish Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -14693,7 +14693,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14714,7 +14714,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
