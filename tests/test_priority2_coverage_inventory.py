@@ -526,8 +526,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], registered[league]["source_ids"])
 
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(112, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(73, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(110, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(75, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # The CBI and FBS holds remain separate from these exact child windows.
         cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
@@ -605,8 +605,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(["ncaa-field-hockey-di"], registered["source_ids"])
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Field Hockey"]["no_linked_source"])
-        self.assertEqual(112, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(73, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(110, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(75, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # FBS scope remains unresolved and must stay fail-closed.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
@@ -646,8 +646,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Football"]["no_linked_source"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Football"]["adapter_gaps"])
-        self.assertEqual(112, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(73, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(110, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(75, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
         self.assertEqual(289, self.inventory["summary"]["coverage_states"]["ADAPTER_GAP"])
         self.assertEqual(69, self.inventory["summary"]["coverage_states"]["SOURCE_SCOPE_REVIEW"])
 
@@ -746,6 +746,33 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertNotIn(("NCAA Lacrosse", "Division I Lacrosse | Men and Women"), self.rows)
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Lacrosse"]["pending_dates"])
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Lacrosse"]["no_linked_source"])
+
+    def test_ncaa_soccer_college_cups_remain_separate_finals_only_windows(self):
+        expected = {
+            "Division I Soccer | Men": ("ncaa-soccer-di-men", ["2026-12-11", "2026-12-14"]),
+            "Division I Soccer | Women": ("ncaa-soccer-di-women", ["2026-12-10", "2026-12-13"]),
+        }
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        sources = {source["id"]: source for source in config["sources"]}
+        registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
+        registered = {item["league"]: item for item in registry["competitions"] if item["sport"] == "NCAA Soccer"}
+        for league, (source_id, dates) in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("NCAA Soccer", league)]
+                self.assertEqual("Division I Soccer | Men and Women", row["approval_parent"])
+                self.assertEqual("RECURRING_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual([source_id], registered[league]["source_ids"])
+                source = sources[source_id]
+                self.assertEqual([league], source["catalog_terms"])
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual(dates, [event["start_date"] for event in source["official_events"]])
+                self.assertTrue(all(event["start_date"] == event["end_date"] for event in source["official_events"]))
+                self.assertIn("finals dates only", source["source_note"])
+        self.assertNotIn(("NCAA Soccer", "Division I Soccer | Men and Women"), self.rows)
+        self.assertEqual(0, self.inventory["by_sport"]["NCAA Soccer"]["pending_dates"])
+        self.assertEqual(0, self.inventory["by_sport"]["NCAA Soccer"]["no_linked_source"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
