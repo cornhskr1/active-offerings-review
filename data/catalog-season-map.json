@@ -8595,7 +8595,7 @@
     {
       "sport": "Surfing",
       "mapping_status": "complete",
-      "summary_label": "3 approved competitions · 0 season mapped",
+      "summary_label": "3 approved competitions · 2 verified tour windows · 1 documented hold",
       "catalog_snapshot_lines": [
         "World Surf League (WSL)",
         "Big Wave Tour | Men and Women",
@@ -8610,10 +8610,10 @@
             {
               "key": "surfing-wsl-big-wave",
               "catalog_event": "Big Wave Tour | Men and Women",
-              "season_window": "2026–27 event window pending official publication",
+              "season_window": "2026–27 Big Wave Tour dates not published",
               "season_status": "out",
-              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
-              "last_verified": "2026-09-18",
+              "season_basis": "The approved parent covers separate men’s and women’s Big Wave competitions; the current WSL calendar does not establish a 2026–27 tour window.",
+              "last_verified": "2026-09-26",
               "fun_fact": "Big-wave events use waiting periods so organizers can call competition only when a suitable swell arrives.",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
@@ -8621,14 +8621,22 @@
                 {
                   "key": "surfing-wsl-big-wave-men",
                   "label": "Big Wave Tour | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "2026–27 Big Wave Tour dates not published",
+                  "season_basis": "WSL has no confirmed 2026–27 men’s Big Wave Tour calendar or waiting periods.",
+                  "season_status": "out",
+                  "season_hold": true,
+                  "hold_reason": "No WSL-published 2026–27 men’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity.",
+                  "last_verified": "2026-09-26"
                 },
                 {
                   "key": "surfing-wsl-big-wave-women",
                   "label": "Big Wave Tour | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "2026–27 Big Wave Tour dates not published",
+                  "season_basis": "WSL has no confirmed 2026–27 women’s Big Wave Tour calendar or waiting periods.",
+                  "season_status": "out",
+                  "season_hold": true,
+                  "hold_reason": "No WSL-published 2026–27 women’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity.",
+                  "last_verified": "2026-09-26"
                 }
               ]
             },
@@ -8636,10 +8644,8 @@
               "key": "surfing-wsl-championship-tour",
               "catalog_event": "Championship Tour | Men and Women",
               "season_window": "April 1–December 20, 2026",
-              "season_start": "04-01",
-              "season_end": "12-20",
-              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
-              "last_verified": "2026-09-18",
+              "season_basis": "WSL 2026 Championship Tour for separate men’s and women’s fields; division-specific exact windows attach to the children.",
+              "last_verified": "2026-09-26",
               "fun_fact": "The 2026 Championship Tour returns the world-title finish to Pipeline after stops across nine countries.",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
@@ -8647,25 +8653,31 @@
                 {
                   "key": "surfing-wsl-championship-tour-men",
                   "label": "Championship Tour | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "April 1–December 20, 2026",
+                  "season_basis": "WSL published 2026 men’s Championship Tour from Bells Beach through Pipeline; unattended heat/match ingestion remains unverified.",
+                  "season_start_date": "2026-04-01",
+                  "season_end_date": "2026-12-20",
+                  "source_id": "surfing-wsl-championship-tour-men",
+                  "last_verified": "2026-09-26"
                 },
                 {
                   "key": "surfing-wsl-championship-tour-women",
                   "label": "Championship Tour | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "April 1–December 20, 2026",
+                  "season_basis": "WSL published 2026 women’s Championship Tour from Bells Beach through Pipeline; unattended heat/match ingestion remains unverified.",
+                  "season_start_date": "2026-04-01",
+                  "season_end_date": "2026-12-20",
+                  "source_id": "surfing-wsl-championship-tour-women",
+                  "last_verified": "2026-09-26"
                 }
               ]
             },
             {
               "key": "surfing-wsl-longboard",
               "catalog_event": "Longboard Championship Tour | Men and Women",
-              "season_window": "July 25–December 6, 2026 · current published championship events",
-              "season_start": "07-25",
-              "season_end": "12-06",
-              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
-              "last_verified": "2026-09-18",
+              "season_window": "July 25, 2026–March 21, 2027",
+              "season_basis": "WSL 2026–27 Longboard Tour for separate men’s and women’s fields; division-specific exact windows attach to the children.",
+              "last_verified": "2026-09-26",
               "fun_fact": "Longboard competition emphasizes traditional footwork and board control on boards at least nine feet long.",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
@@ -8673,14 +8685,22 @@
                 {
                   "key": "surfing-wsl-longboard-men",
                   "label": "Longboard Championship Tour | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "July 25, 2026–March 21, 2027",
+                  "season_basis": "WSL announced the 2026–27 men’s Longboard Tour from Huntington Beach through the March 2027 El Salvador title event; Bells Beach dates were later updated to December 2–6; unattended heat/match ingestion remains unverified.",
+                  "season_start_date": "2026-07-25",
+                  "season_end_date": "2027-03-21",
+                  "source_id": "surfing-wsl-longboard-men",
+                  "last_verified": "2026-09-26"
                 },
                 {
                   "key": "surfing-wsl-longboard-women",
                   "label": "Longboard Championship Tour | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "July 25, 2026–March 21, 2027",
+                  "season_basis": "WSL announced the 2026–27 women’s Longboard Tour from Huntington Beach through the March 2027 El Salvador title event; Bells Beach dates were later updated to December 2–6; unattended heat/match ingestion remains unverified.",
+                  "season_start_date": "2026-07-25",
+                  "season_end_date": "2027-03-21",
+                  "source_id": "surfing-wsl-longboard-women",
+                  "last_verified": "2026-09-26"
                 }
               ]
             }
