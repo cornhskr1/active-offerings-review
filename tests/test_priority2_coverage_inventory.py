@@ -469,7 +469,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         )
         self.assertEqual(["ncaa-basketball-cbc"], registered["source_ids"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(9, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(11, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_ncaa_division_two_and_three_basketball_use_exact_child_windows(self):
         expected = {
@@ -561,7 +561,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             source.get("sport") == "NCAA Beach Volleyball"
             for source in config["sources"]
         ))
-        self.assertEqual(9, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(11, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
@@ -791,6 +791,29 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
         registered = next(item for item in registry["competitions"] if item["sport"] == "NCAA Softball")
         self.assertEqual(["ncaa-softball-di"], registered["source_ids"])
+
+    def test_ncaa_swimming_dates_remain_scope_holds_without_diving_approval(self):
+        expected = {
+            "Division I Swimming | Men": "March 24–27",
+            "Division I Swimming | Women": "March 17–20",
+        }
+        season = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
+        approval = next(item for item in season["sports"] if item["sport"] == "NCAA Swimming")["groups"][0]["events"][0]
+        children = {child["label"]: child for child in approval["coverage_children"]}
+        for league, dates in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("NCAA Swimming", league)]
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                self.assertEqual([], row["sources"])
+                self.assertIn(dates, row["season_window"])
+                self.assertIn("diving does not inherit approval", row["hold_reason"])
+                self.assertTrue(children[league]["season_hold"])
+                self.assertNotIn("season_start", children[league])
+                self.assertNotIn("source_id", children[league])
+        self.assertNotIn(("NCAA Swimming", approval["catalog_event"]), self.rows)
+        self.assertEqual(0, self.inventory["by_sport"]["NCAA Swimming"]["pending_dates"])
+        self.assertEqual(2, self.inventory["by_sport"]["NCAA Swimming"]["no_linked_source"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
