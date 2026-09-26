@@ -188,6 +188,9 @@ BODY_URL_OVERRIDES = {
 }
 
 EVENT_URL_OVERRIDES = {
+    "ncaa-football-fbs": "https://www.ncaa.com/scoreboard/football/fbs",
+    "ncaa-football-fcs": "https://www.ncaa.org/championship/division-i/football/",
+    "ncaa-football-dii": "https://www.ncaa.org/championship/division-ii/football/",
     "basketball-ph-commissioners": "https://www.pba.ph/news/ross-40-puts-clamps-on-oftana-proves-defense-wins-titles",
     "basketball-br-super8": "https://lnb.com.br/copa-super-8/copa-super-8-2025/",
     "basketball-es-copa": "https://eventos.acb.com/",
