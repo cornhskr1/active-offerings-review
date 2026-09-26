@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Rugby coverage — begin split-child date and source review after Volleyball section exit**
+**Current task:** **Rugby coverage — Six Nations men and women after SVNS**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 remains active. User-directed Review Today display cleanup is a bounded Priority 2 exception; resume Rugby next.**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -202,6 +202,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **Season visualization decision, September 26:** The user requested visible season progress during Priority 2 work. Existing in-season bars were present on some mapped catalog cards but omitted NCAA single-competition cards and Review Today's upcoming league groups. Use the same verified exact or recurring window calculation in those views, label the value as **Season** progress, and suppress the bar for partial windows, holds, unknown dates, and mixed league identities. The season percentage describes elapsed time within a competition's mapped window; it is separate from the Priority 2 section-exit progress metric. This bounded visualization update does not change coverage inventory counts; resume Rugby afterward.
 
+**Rugby checkpoint, September 26 — SVNS:** World Rugby's HSBC SVNS 2026–27 top-tier Series and World Championship calendar begins November 28, 2026 in Dubai and ends May 30, 2027 in Bordeaux. The published calendar explicitly includes separate men’s and women’s teams, so the two approved operational children each receive the same exact event window through separate official source IDs. This is official-window-only coverage, not an unattended match adapter; it does not extend to SVNS 2 or 3. The combined catalog parent remains the legal approval but is not schedulable. Systemwide NO_LINKED_SOURCE falls from 92 to 90, OFFICIAL_WINDOW_ONLY rises from 95 to 97, PENDING_DATES falls from 91 to 89, and DATED_WINDOW rises from 71 to 73. Rugby remains open; Six Nations men and women are next. Official evidence: https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -259,4 +261,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #131 merged. The inventory contains 722 mapped operational identities and 144 split children. Systemwide totals remain 92 NO_LINKED_SOURCE, 95 OFFICIAL_WINDOW_ONLY, 91 PENDING_DATES, 71 DATED_WINDOW, 1 PARTIAL_WINDOW, 25 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. The user-directed NCAA Review Today display cleanup does not alter these counts. Rugby split children are next.
+**Current checkpoint:** Priority 2; Active Offerings PR #133 merged. The inventory contains 722 mapped operational identities and 144 split children. Expected systemwide totals after SVNS are 90 NO_LINKED_SOURCE, 97 OFFICIAL_WINDOW_ONLY, 89 PENDING_DATES, 73 DATED_WINDOW, 1 PARTIAL_WINDOW, 25 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. SVNS men and women have separate official-window-only sources, with match adapters unverified. Six Nations men and women are next.

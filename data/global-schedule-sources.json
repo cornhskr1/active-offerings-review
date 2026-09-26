@@ -3339,13 +3339,61 @@
       ]
     },
     {
+      "id": "rugby-intl-svns-men",
+      "source_type": "official-event-window",
+      "sport": "Rugby",
+      "league": "SVNS | Men",
+      "region": "International",
+      "endpoint": "https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace",
+      "official_schedule_url": "https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "World Rugby's 2026–27 top-tier SVNS Series and World Championship calendar includes separate men's and women's competitions. This men's window does not establish an unattended match fixture adapter or extend approval to SVNS 2 or 3.",
+      "official_events": [
+        {
+          "source_id": "rugby-intl-svns-men",
+          "league": "SVNS | Men",
+          "name": "2026–27 HSBC SVNS Series and World Championship | Men",
+          "start_date": "2026-11-28",
+          "end_date": "2027-05-30",
+          "location": "Dubai through Bordeaux",
+          "official_schedule_url": "https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace"
+        }
+      ],
+      "catalog_terms": ["SVNS | Men"]
+    },
+    {
+      "id": "rugby-intl-svns-women",
+      "source_type": "official-event-window",
+      "sport": "Rugby",
+      "league": "SVNS | Women",
+      "region": "International",
+      "endpoint": "https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace",
+      "official_schedule_url": "https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "World Rugby's 2026–27 top-tier SVNS Series and World Championship calendar includes separate men's and women's competitions. This women's window does not establish an unattended match fixture adapter or extend approval to SVNS 2 or 3.",
+      "official_events": [
+        {
+          "source_id": "rugby-intl-svns-women",
+          "league": "SVNS | Women",
+          "name": "2026–27 HSBC SVNS Series and World Championship | Women",
+          "start_date": "2026-11-28",
+          "end_date": "2027-05-30",
+          "location": "Dubai through Bordeaux",
+          "official_schedule_url": "https://www.svns.com/en/news/1045878/hsbc-svns-series-and-world-championship-2027-schedule-confirmed-as-road-to-los-angeles-2028-gathers-pace"
+        }
+      ],
+      "catalog_terms": ["SVNS | Women"]
+    },
+    {
       "id": "rugby-world-rugby",
       "source_type": "coverage-gap",
       "sport": "Rugby",
       "league": "World Rugby competitions",
       "region": "International",
       "official_schedule_url": "https://www.world.rugby/tournaments",
-      "source_note": "SVNS and the Women’s Rugby World Cup are mapped separately; current official event dates are required before Review Today activation.",
+      "source_note": "Legacy umbrella gap, not a schedulable SVNS identity. Separate top-tier men's and women's 2026–27 SVNS windows are mapped by child source IDs; Women's Rugby World Cup remains its own catalog identity.",
       "catalog_terms": [
         "World Rugby",
         "SVNS | Men and Women",

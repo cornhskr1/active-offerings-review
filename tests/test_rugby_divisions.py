@@ -49,7 +49,10 @@ class RugbyDivisionIdentityTests(unittest.TestCase):
                 {child["label"].rsplit(" | ", 1)[1] for child in children},
             )
             self.assertTrue(all(child.get("key") for child in children))
-            self.assertTrue(all(not child.get("source_id") for child in children))
+            if approval["key"] == "rugby-intl-svns":
+                self.assertTrue(all(child.get("source_id") == child["key"] for child in children))
+            else:
+                self.assertTrue(all(not child.get("source_id") for child in children))
             child_keys.extend(child["key"] for child in children)
 
         self.assertEqual(len(child_keys), len(set(child_keys)))

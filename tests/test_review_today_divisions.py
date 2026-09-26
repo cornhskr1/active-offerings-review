@@ -16,6 +16,26 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_svns_sources_resolve_to_separate_children(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))};
+"""
+        script += "\n".join(function_source(name) for name in (
+            "eventSourceIds", "sourceCatalogMapping", "mappedCatalogEventForSource",
+        ))
+        script += """
+for(const division of ['Men','Women']){
+  const mapping=mappedCatalogEventForSource(`rugby-intl-svns-${division.toLowerCase()}`);
+  assert.equal(mapping.catalog_event,`SVNS | ${division}`);
+  assert.equal(mapping.parent_catalog_event,'SVNS | Men and Women');
+  assert.equal(mapping.season_start_date,'2026-11-28');
+  assert.equal(mapping.season_end_date,'2027-05-30');
+}
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_2026_club_world_sources_resolve_to_separate_approved_children(self):
         script = """
 const assert=require('node:assert/strict');
