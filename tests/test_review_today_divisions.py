@@ -16,6 +16,32 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_retired_beach_tour_holds_remain_visible_out_of_season(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={
+  global:JSON.parse(fs.readFileSync('data/global-schedule.json')),
+  seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))
+};
+function todayKey(){return '2026-09-26'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-26');
+const holds=cards.filter(card=>card.sport==='Volleyball'&&card.type==='SCOPE/CALENDAR HOLD');
+assert.equal(holds.length,4);
+assert(holds.some(card=>card.league==='Beach Volleyball World Tour | Men'&&/replaced/.test(card.reason)));
+assert(holds.some(card=>card.league==='Beach Volleyball World Tour Championships | Women'&&/Do not substitute/.test(card.reason)));
+assert(!cards.some(card=>card.league==='Beach Pro Tour | Women'&&card.type==='SCOPE/CALENDAR HOLD'));
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_ncaa_section_holds_and_fbs_adapter_gap_are_visible(self):
         script = """
 const assert=require('node:assert/strict');

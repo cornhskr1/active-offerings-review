@@ -1168,7 +1168,7 @@ function scheduleCoverageAttention(dayKey){
     };
   });
   const unmapped=uncoveredMappedEvents().filter(gap=>
-    gap.sport==='Basketball'||(gap.sport.startsWith('NCAA ')&&gap.event.season_hold)
+    gap.sport==='Basketball'||gap.event.season_hold
   ).map(gap=>({
     severity:'AMBER',
     type:gap.event.season_hold?'SCOPE/CALENDAR HOLD':gap.season_status==='in'?'SCHEDULE COVERAGE GAP':'SEASON COVERAGE GAP',
