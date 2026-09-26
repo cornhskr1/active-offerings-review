@@ -3337,7 +3337,7 @@
     {
       "sport": "Table Tennis",
       "mapping_status": "complete",
-      "summary_label": "2 approved competitions · 1 season mapped",
+      "summary_label": "2 approved competitions · 3 verified operational windows",
       "catalog_snapshot_lines": [
         "International Table Tennis Federation (ITTF)",
         "World Table Tennis (WTT) | Men and Women",
@@ -3352,11 +3352,9 @@
             {
               "key": "table-tennis-wtt",
               "catalog_event": "World Table Tennis (WTT) | Men and Women",
-              "season_window": "January–December",
-              "season_start": "01-01",
-              "season_end": "12-31",
-              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026 WTT Series · January 7–December 13 (children separately scoped)",
+              "season_basis": "WTT and ITTF publish a 2026 senior circuit from the January Doha opener to the December Hong Kong Finals. The approved parent remains unschedulable; division-specific windows attach to its children.",
+              "last_verified": "2026-09-26",
               "fun_fact": "World Table Tennis launched in 2021 as the ITTF's commercial and event platform, with competition tiers ranging from Feeder events to Grand Smashes.",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
@@ -3364,14 +3362,22 @@
                 {
                   "key": "table-tennis-wtt-men",
                   "label": "World Table Tennis (WTT) | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "January 7–December 13, 2026",
+                  "season_basis": "WTT publishes separate men’s senior competition fields within the 2026 Series from Doha to the Hong Kong Finals. This circuit envelope does not verify every event or match; youth, para, ITTF-only, and mixed-doubles competitions are excluded.",
+                  "season_start_date": "2026-01-07",
+                  "season_end_date": "2026-12-13",
+                  "source_id": "table-tennis-wtt-men",
+                  "last_verified": "2026-09-26"
                 },
                 {
                   "key": "table-tennis-wtt-women",
                   "label": "World Table Tennis (WTT) | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "January 7–December 13, 2026",
+                  "season_basis": "WTT publishes separate women’s senior competition fields within the 2026 Series from Doha to the Hong Kong Finals. This circuit envelope does not verify every event or match; youth, para, ITTF-only, and mixed-doubles competitions are excluded.",
+                  "season_start_date": "2026-01-07",
+                  "season_end_date": "2026-12-13",
+                  "source_id": "table-tennis-wtt-women",
+                  "last_verified": "2026-09-26"
                 }
               ]
             }
@@ -3384,17 +3390,17 @@
             {
               "key": "table-tennis-mltt",
               "catalog_event": "Major League Table Tennis (MLTT) | Men and Women",
-              "season_window": "September 2026–April 4, 2027",
-              "season_start": "09-01",
-              "season_end": "04-04",
+              "season_window": "September 11, 2026–April 4, 2027",
               "source_id": "table-tennis-mltt",
-              "season_basis": "2026–27 Major League Table Tennis season",
-              "last_verified": "2026-09-18",
+              "season_basis": "MLTT Season 4 official team-match schedule begins September 11, 2026 and currently ends April 4, 2027. The one coed league retains a single operational identity; no unattended fixture adapter is established.",
+              "last_verified": "2026-09-26",
               "fun_fact": "Major League Table Tennis is the first professional table tennis league in the United States and uses coed team competition.",
               "restrictions": [],
               "identity_model": "single-mixed-gender-competition",
               "identity_basis": "MLTT operates one team league and one team-match schedule. Its match format includes a required women's singles position rather than separate men's and women's leagues.",
-              "identity_evidence_url": "https://www.mltt.com/about-us"
+              "identity_evidence_url": "https://www.mltt.com/about-us",
+              "season_start_date": "2026-09-11",
+              "season_end_date": "2027-04-04"
             }
           ]
         }

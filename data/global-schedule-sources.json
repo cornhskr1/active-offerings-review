@@ -3777,29 +3777,38 @@
       ]
     },
     {
-      "id": "table-tennis-wtt",
+      "id": "table-tennis-wtt-men",
       "source_type": "official-event-window",
       "sport": "Table Tennis",
-      "league": "World Table Tennis (WTT) | Men and Women",
+      "league": "World Table Tennis (WTT) | Men",
       "region": "International",
-      "endpoint": "https://www.worldtabletennis.com/eventInfo?eventId=3254&selectedTab=Matches",
+      "endpoint": "https://www.worldtabletennis.com/events_calendar",
       "official_schedule_url": "https://www.worldtabletennis.com/events_calendar",
       "endpoint_validation": "published-window",
-      "coverage_status": "current-published-events",
+      "coverage_status": "published-event-window",
+      "source_note": "Two published 2026 WTT senior event windows for the men’s senior competition only. The January Doha opener and December Hong Kong Finals establish the circuit endpoints; other events, draws, and match times require separate verification. This is not an unattended fixture adapter or approval for youth, para, ITTF-only, mixed-doubles, or the other division.",
       "official_events": [
         {
-          "source_id": "table-tennis-wtt",
-          "league": "World Table Tennis (WTT) | Men and Women",
-          "name": "WTT Star Contender Astana 2026",
-          "start_date": "2026-09-15",
-          "end_date": "2026-09-20",
-          "location": "Astana, Kazakhstan",
-          "official_schedule_url": "https://www.worldtabletennis.com/eventInfo?eventId=3254&selectedTab=Matches"
+          "source_id": "table-tennis-wtt-men",
+          "league": "World Table Tennis (WTT) | Men",
+          "name": "WTT Champions Doha 2026 | Men",
+          "start_date": "2026-01-07",
+          "end_date": "2026-01-11",
+          "location": "Doha, Qatar",
+          "official_schedule_url": "https://www.worldtabletennis.com/eventInfo?eventId=3231&selectedTab=Overview"
+        },
+        {
+          "source_id": "table-tennis-wtt-men",
+          "league": "World Table Tennis (WTT) | Men",
+          "name": "WTT Finals Hong Kong 2026 | Men",
+          "start_date": "2026-12-09",
+          "end_date": "2026-12-13",
+          "location": "Hong Kong, China",
+          "official_schedule_url": "https://www.worldtabletennis.com/eventInfo?eventId=3255&selectedTab=Overview"
         }
       ],
       "catalog_terms": [
-        "International Table Tennis Federation (ITTF)",
-        "World Table Tennis (WTT) | Men and Women"
+        "World Table Tennis (WTT) | Men"
       ],
       "exclude_name_patterns": [
         "Youth",
@@ -3807,7 +3816,54 @@
         "U13",
         "U15",
         "U17",
-        "U19"
+        "U19",
+        "Para",
+        "Mixed Doubles"
+      ]
+    },
+    {
+      "id": "table-tennis-wtt-women",
+      "source_type": "official-event-window",
+      "sport": "Table Tennis",
+      "league": "World Table Tennis (WTT) | Women",
+      "region": "International",
+      "endpoint": "https://www.worldtabletennis.com/events_calendar",
+      "official_schedule_url": "https://www.worldtabletennis.com/events_calendar",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Two published 2026 WTT senior event windows for the women’s senior competition only. The January Doha opener and December Hong Kong Finals establish the circuit endpoints; other events, draws, and match times require separate verification. This is not an unattended fixture adapter or approval for youth, para, ITTF-only, mixed-doubles, or the other division.",
+      "official_events": [
+        {
+          "source_id": "table-tennis-wtt-women",
+          "league": "World Table Tennis (WTT) | Women",
+          "name": "WTT Champions Doha 2026 | Women",
+          "start_date": "2026-01-07",
+          "end_date": "2026-01-11",
+          "location": "Doha, Qatar",
+          "official_schedule_url": "https://www.worldtabletennis.com/eventInfo?eventId=3231&selectedTab=Overview"
+        },
+        {
+          "source_id": "table-tennis-wtt-women",
+          "league": "World Table Tennis (WTT) | Women",
+          "name": "WTT Finals Hong Kong 2026 | Women",
+          "start_date": "2026-12-09",
+          "end_date": "2026-12-13",
+          "location": "Hong Kong, China",
+          "official_schedule_url": "https://www.worldtabletennis.com/eventInfo?eventId=3255&selectedTab=Overview"
+        }
+      ],
+      "catalog_terms": [
+        "World Table Tennis (WTT) | Women"
+      ],
+      "exclude_name_patterns": [
+        "Youth",
+        "U11",
+        "U13",
+        "U15",
+        "U17",
+        "U19",
+        "Para",
+        "Mixed Doubles"
       ]
     },
     {
@@ -3816,10 +3872,10 @@
       "sport": "Table Tennis",
       "league": "Major League Table Tennis (MLTT) | Men and Women",
       "region": "United States",
-      "endpoint": "https://www.mltt.com/",
-      "official_schedule_url": "https://www.mltt.com/",
+      "endpoint": "https://www.mltt.com/league/schedule",
+      "official_schedule_url": "https://www.mltt.com/league/schedule",
       "endpoint_validation": "published-window",
-      "coverage_status": "current-published-events",
+      "coverage_status": "published-event-window",
       "official_events": [
         {
           "source_id": "table-tennis-mltt",
@@ -3828,7 +3884,7 @@
           "start_date": "2026-09-25",
           "end_date": "2026-09-25",
           "location": "Compass Arena, Willowbrook, Illinois",
-          "official_schedule_url": "https://www.mltt.com/"
+          "official_schedule_url": "https://www.mltt.com/league/schedule"
         },
         {
           "source_id": "table-tennis-mltt",
@@ -3837,13 +3893,14 @@
           "start_date": "2026-09-25",
           "end_date": "2026-09-25",
           "location": "Compass Arena, Willowbrook, Illinois",
-          "official_schedule_url": "https://www.mltt.com/"
+          "official_schedule_url": "https://www.mltt.com/league/schedule"
         }
       ],
       "catalog_terms": [
         "Major League Table Tennis LLC",
         "Major League Table Tennis (MLTT) | Men and Women"
-      ]
+      ],
+      "source_note": "MLTT publishes one coed 2026–27 team league from September 11 through April 4. These September 25 matches are examples from the official schedule, not an unattended or complete fixture adapter; no separate men’s or women’s league approval is inferred."
     },
     {
       "id": "volleyball-fivb-vnl-women",

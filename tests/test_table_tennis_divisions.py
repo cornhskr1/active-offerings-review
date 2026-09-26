@@ -50,7 +50,10 @@ class TableTennisDivisionIdentityTests(unittest.TestCase):
             {"World Table Tennis (WTT) | Men", "World Table Tennis (WTT) | Women"},
             {child["label"] for child in children},
         )
-        self.assertTrue(all(not child.get("source_id") for child in children))
+        self.assertEqual(
+            {"table-tennis-wtt-men", "table-tennis-wtt-women"},
+            {child.get("source_id") for child in children},
+        )
 
         registry = self.registry_events()
         self.assertNotIn("World Table Tennis (WTT) | Men and Women", registry)
@@ -59,6 +62,7 @@ class TableTennisDivisionIdentityTests(unittest.TestCase):
                 child["key"],
                 registry[child["label"]]["identity_key"],
             )
+            self.assertEqual([child["key"]], registry[child["label"]]["source_ids"])
 
     def test_mltt_remains_one_mixed_gender_team_competition(self):
         mltt = self.season_events()["table-tennis-mltt"]
