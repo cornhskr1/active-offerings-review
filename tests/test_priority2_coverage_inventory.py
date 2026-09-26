@@ -18,6 +18,29 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_italian_volleyball_calendars_keep_divisions_and_unpublished_dates_separate(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        women = self.rows[("Volleyball", "Serie A1 | Women")]
+        men = self.rows[("Volleyball", "SuperLega | Men")]
+        self.assertEqual(("DATED_WINDOW", "ADAPTER_GAP"),
+                         (women["season_state"], women["coverage_state"]))
+        self.assertEqual("October 4, 2026–April 25, 2027 (possible fifth Scudetto final)",
+                         women["season_window"])
+        self.assertEqual(("PARTIAL_WINDOW", "ADAPTER_GAP"),
+                         (men["season_state"], men["coverage_state"]))
+        self.assertIn("return leg and playoffs pending", men["season_window"])
+        self.assertEqual(["volleyball-italy-serie-a1-women"],
+                         [source["id"] for source in women["sources"]])
+        self.assertEqual(["volleyball-italy-superlega"],
+                         [source["id"] for source in men["sources"]])
+        self.assertEqual("coverage-gap", sources["volleyball-italy-serie-a1-women"]["source_type"])
+        self.assertEqual("coverage-gap", sources["volleyball-italy-superlega"]["source_type"])
+        self.assertIn("Serie A2", sources["volleyball-italy-serie-a1-women"]["source_note"])
+        self.assertIn("return leg and playoffs remain unverified",
+                      sources["volleyball-italy-superlega"]["source_note"])
+
     def test_beach_continental_cup_holds_do_not_inherit_2026_regional_championships(self):
         for gender in ("Men", "Women"):
             with self.subTest(gender=gender):
