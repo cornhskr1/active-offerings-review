@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T20:10:58.071125+00:00",
-  "schedule_generated_at": "2026-09-26T20:06:59.815518+00:00",
+  "registry_generated_at": "2026-09-26T20:21:55.150581+00:00",
+  "schedule_generated_at": "2026-09-26T20:18:55.838716+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,16 +17,16 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 153,
+      "DATED_WINDOW": 154,
       "DESCRIPTIVE_WINDOW": 57,
-      "DOCUMENTED_HOLD": 35,
+      "DOCUMENTED_HOLD": 36,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 18,
-      "PENDING_DATES": 51,
-      "RECURRING_WINDOW": 393
+      "PARTIAL_WINDOW": 21,
+      "PENDING_DATES": 50,
+      "RECURRING_WINDOW": 389
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 290,
+    "reported_gap_labels": 289,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 236,
-      "pending_dates": 63
+      "pending_dates": 65
     },
     "Surfing": {
       "identities": 6,
@@ -3616,7 +3616,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Esports",
@@ -8752,8 +8752,8 @@
       "identity_key": "soccer-croatia-croatian-cup-men",
       "approval_parent": "Croatian Cup | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 2026–spring 2027; final date and district qualifier scope pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8773,8 +8773,8 @@
       "identity_key": "soccer-croatia-croatian-football-league-supersport-hnl-men",
       "approval_parent": "Croatian Football League / SuperSport HNL | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8794,9 +8794,10 @@
       "identity_key": "soccer-croatia-croatian-super-cup-men",
       "approval_parent": "Croatian Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
+      "season_window": "No verified senior 2026 fixture or next edition date",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "",
+      "hold_reason": "No verified senior football Super Cup 2026 fixture or current edition date; keep unlinked pending HNS confirmation.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -12239,8 +12240,8 @@
       "identity_key": "soccer-serbia-serbian-cup-men",
       "approval_parent": "Serbian Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 2, 2026 preliminary round–2027 final date pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12260,8 +12261,8 @@
       "identity_key": "soccer-serbia-serbian-superliga-men",
       "approval_parent": "Serbian SuperLiga | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 17, 2026–2027 final rounds pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14693,7 +14694,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14714,7 +14715,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
