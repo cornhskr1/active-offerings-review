@@ -3401,17 +3401,52 @@
       ]
     },
     {
-      "id": "rugby-six-nations",
-      "source_type": "coverage-gap",
+      "id": "rugby-intl-six-nations-men",
+      "source_type": "official-event-window",
       "sport": "Rugby",
-      "league": "Six Nations Rugby | Men and Women",
+      "league": "Six Nations Rugby | Men",
       "region": "International",
-      "official_schedule_url": "https://www.sixnationsrugby.com/en/fixtures",
-      "source_note": "The combined men’s and women’s approval is season mapped; reconnect when the next official championship fixtures enter the review window.",
-      "catalog_terms": [
-        "Six Nations Rugby Ltd.",
-        "Six Nations Rugby | Men and Women"
-      ]
+      "endpoint": "https://www.sixnationsrugby.com/en/support",
+      "official_schedule_url": "https://www.sixnationsrugby.com/en/m6n/fixtures/202700",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Six Nations Rugby confirms the 2027 men's championship window and publishes a separate men's fixtures page. This event window does not establish an unattended match fixture adapter or cover the women's championship.",
+      "official_events": [
+        {
+          "source_id": "rugby-intl-six-nations-men",
+          "league": "Six Nations Rugby | Men",
+          "name": "2027 Guinness Men's Six Nations",
+          "start_date": "2027-02-05",
+          "end_date": "2027-03-13",
+          "location": "England, France, Ireland, Italy, Scotland and Wales",
+          "official_schedule_url": "https://www.sixnationsrugby.com/en/m6n/fixtures/202700"
+        }
+      ],
+      "catalog_terms": ["Six Nations Rugby | Men"]
+    },
+    {
+      "id": "rugby-intl-six-nations-women",
+      "source_type": "official-event-window",
+      "sport": "Rugby",
+      "league": "Six Nations Rugby | Women",
+      "region": "International",
+      "endpoint": "https://www.sixnationsrugby.com/en/support",
+      "official_schedule_url": "https://www.sixnationsrugby.com/en/w6n/fixtures/202700",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Six Nations Rugby confirms the 2027 women's championship window and publishes a separate women's fixtures page. This event window does not establish an unattended match fixture adapter or cover the men's championship.",
+      "official_events": [
+        {
+          "source_id": "rugby-intl-six-nations-women",
+          "league": "Six Nations Rugby | Women",
+          "name": "2027 Guinness Women's Six Nations",
+          "start_date": "2027-04-10",
+          "end_date": "2027-05-15",
+          "location": "England, France, Ireland, Italy, Scotland and Wales",
+          "official_schedule_url": "https://www.sixnationsrugby.com/en/w6n/fixtures/202700"
+        }
+      ],
+      "catalog_terms": ["Six Nations Rugby | Women"]
     },
     {
       "id": "rugby-sanzaar",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T14:51:10.319745+00:00",
-  "schedule_generated_at": "2026-09-26T14:33:12.639722+00:00",
+  "registry_generated_at": "2026-09-26T14:58:35.167579+00:00",
+  "schedule_generated_at": "2026-09-26T14:54:20.773988+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 287,
-      "NO_LINKED_SOURCE": 90,
-      "OFFICIAL_WINDOW_ONLY": 97,
+      "NO_LINKED_SOURCE": 88,
+      "OFFICIAL_WINDOW_ONLY": 99,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 73,
+      "DATED_WINDOW": 75,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 25,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 89,
+      "PENDING_DATES": 87,
       "RECURRING_WINDOW": 452
     },
     "reported_gap_areas": 14,
@@ -257,9 +257,9 @@
     "Rugby": {
       "identities": 33,
       "split_children": 10,
-      "no_linked_source": 8,
+      "no_linked_source": 6,
       "adapter_gaps": 22,
-      "pending_dates": 8
+      "pending_dates": 6
     },
     "Soccer": {
       "identities": 344,
@@ -6393,7 +6393,7 @@
           "id": "rugby-intl-svns-men",
           "type": "official-event-window",
           "configured_league": "SVNS | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6414,7 +6414,7 @@
           "id": "rugby-intl-svns-women",
           "type": "official-event-window",
           "configured_league": "SVNS | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6426,11 +6426,19 @@
       "identity_key": "rugby-intl-six-nations-men",
       "approval_parent": "Six Nations Rugby | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "February 5–March 13, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "rugby-intl-six-nations-men",
+          "type": "official-event-window",
+          "configured_league": "Six Nations Rugby | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -6439,11 +6447,19 @@
       "identity_key": "rugby-intl-six-nations-women",
       "approval_parent": "Six Nations Rugby | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "April 10–May 15, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "rugby-intl-six-nations-women",
+          "type": "official-event-window",
+          "configured_league": "Six Nations Rugby | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14349,7 +14365,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14370,7 +14386,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
