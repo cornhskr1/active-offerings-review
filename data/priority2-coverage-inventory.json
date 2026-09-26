@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T22:17:34.546463+00:00",
-  "schedule_generated_at": "2026-09-26T22:14:30.798121+00:00",
+  "registry_generated_at": "2026-09-26T22:21:46.882401+00:00",
+  "schedule_generated_at": "2026-09-26T22:18:51.298326+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,19 +11,19 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 285,
+      "ADAPTER_GAP": 284,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 129,
+      "OFFICIAL_WINDOW_ONLY": 130,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 164,
+      "DATED_WINDOW": 166,
       "DESCRIPTIVE_WINDOW": 57,
       "DOCUMENTED_HOLD": 38,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 31,
-      "PENDING_DATES": 45,
-      "RECURRING_WINDOW": 372
+      "PARTIAL_WINDOW": 32,
+      "PENDING_DATES": 44,
+      "RECURRING_WINDOW": 370
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 287,
@@ -265,7 +265,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 232,
+      "adapter_gaps": 231,
       "pending_dates": 70
     },
     "Surfing": {
@@ -6754,8 +6754,8 @@
       "identity_key": "soccer-lithuania-a-lyga-men",
       "approval_parent": "A Lyga | Men",
       "kind": "catalog",
-      "season_window": "March–November 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 21–November 7, 2026 league rounds; qualification ties pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10979,8 +10979,8 @@
       "identity_key": "soccer-lithuania-lithuanian-football-cup-men",
       "approval_parent": "Lithuanian Football Cup | Men",
       "kind": "catalog",
-      "season_window": "April–September 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 1–October 11, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11000,14 +11000,14 @@
       "identity_key": "soccer-lithuania-lithuanian-super-cup-men",
       "approval_parent": "Lithuanian Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "season_window": "February 16, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-lithuania-lithuanian-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Lithuanian Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -14694,7 +14694,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14715,7 +14715,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
