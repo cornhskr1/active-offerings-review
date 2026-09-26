@@ -11,19 +11,19 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 185,
-      "ADAPTER_GAP": 292,
+      "ADAPTER_GAP": 291,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 121,
+      "OFFICIAL_WINDOW_ONLY": 122,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 116,
+      "DATED_WINDOW": 125,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 30,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 55,
-      "RECURRING_WINDOW": 447
+      "PENDING_DATES": 54,
+      "RECURRING_WINDOW": 439
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 295,
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 239,
-      "pending_dates": 50
+      "adapter_gaps": 238,
+      "pending_dates": 49
     },
     "Surfing": {
       "identities": 6,
@@ -6712,8 +6712,8 @@
       "identity_key": "soccer-germany-2-bundesliga-men",
       "approval_parent": "2. Bundesliga | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 7, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -7573,8 +7573,8 @@
       "identity_key": "soccer-germany-bundesliga-men",
       "approval_parent": "Bundesliga | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 28, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -8581,8 +8581,8 @@
       "identity_key": "soccer-italy-coppa-italia-men",
       "approval_parent": "Coppa Italia | Men and Women",
       "kind": "split-child",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 8, 2026–May 19, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -8917,8 +8917,8 @@
       "identity_key": "soccer-germany-dfb-pokal-frauen-women",
       "approval_parent": "DFB-Pokal Frauen | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 15, 2026–May 17, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8938,8 +8938,8 @@
       "identity_key": "soccer-germany-dfb-pokal-men",
       "approval_parent": "DFB-Pokal | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 21, 2026–May 29, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -8959,14 +8959,14 @@
       "identity_key": "soccer-germany-dfl-supercup-men",
       "approval_parent": "DFL-Supercup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 22, 2026 · completed",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-germany-dfl-supercup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "DFL-Supercup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -9862,8 +9862,8 @@
       "identity_key": "soccer-germany-frauen-bundesliga-women",
       "approval_parent": "Frauen Bundesliga | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 21, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12277,8 +12277,8 @@
       "identity_key": "soccer-italy-serie-a-men",
       "approval_parent": "Serie A | Men and Women",
       "kind": "split-child",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 22, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -12319,8 +12319,8 @@
       "identity_key": "soccer-italy-serie-b-men",
       "approval_parent": "Serie B | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 21, 2026–May 16, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
