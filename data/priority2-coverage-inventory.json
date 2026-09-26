@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T23:21:47.726292+00:00",
-  "schedule_generated_at": "2026-09-26T23:18:32.402495+00:00",
+  "registry_generated_at": "2026-09-26T23:28:27.605870+00:00",
+  "schedule_generated_at": "2026-09-26T23:25:28.108862+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,22 +11,22 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 282,
+      "ADAPTER_GAP": 281,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 132,
+      "OFFICIAL_WINDOW_ONLY": 133,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 170,
+      "DATED_WINDOW": 175,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 39,
+      "DOCUMENTED_HOLD": 40,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 33,
-      "PENDING_DATES": 44,
-      "RECURRING_WINDOW": 367
+      "PENDING_DATES": 43,
+      "RECURRING_WINDOW": 362
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 285,
+    "reported_gap_labels": 282,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 229,
-      "pending_dates": 71
+      "adapter_gaps": 228,
+      "pending_dates": 70
     },
     "Surfing": {
       "identities": 6,
@@ -3889,7 +3889,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Esports",
@@ -8837,8 +8837,8 @@
       "identity_key": "soccer-wales-cymru-premier-men",
       "approval_parent": "Cymru Premier | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–May 9, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9677,8 +9677,8 @@
       "identity_key": "soccer-faroe-islands-faroe-islands-cup-men",
       "approval_parent": "Faroe Islands Cup | Men",
       "kind": "catalog",
-      "season_window": "April–October 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 15–September 5, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9698,8 +9698,8 @@
       "identity_key": "soccer-faroe-islands-faroe-islands-premier-league-men",
       "approval_parent": "Faroe Islands Premier League | Men",
       "kind": "catalog",
-      "season_window": "March–October 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "March 6–October 31, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9719,14 +9719,14 @@
       "identity_key": "soccer-faroe-islands-faroe-islands-super-cup-men",
       "approval_parent": "Faroe Islands Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "season_window": "February 28, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-faroe-islands-faroe-islands-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Faroe Islands Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -14046,8 +14046,8 @@
       "identity_key": "soccer-wales-welsh-cup-men",
       "approval_parent": "Welsh Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–April 18, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14067,9 +14067,10 @@
       "identity_key": "soccer-wales-welsh-league-cup-men",
       "approval_parent": "Welsh League Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "No 2026–27 Nathaniel MG Cup · future edition pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "FAW removed this competition from its 2026–27 calendar; no future edition date is verified.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -14694,7 +14695,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14715,7 +14716,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
