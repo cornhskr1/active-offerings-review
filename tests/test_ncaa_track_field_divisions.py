@@ -49,9 +49,9 @@ class NCAATrackFieldIdentityTests(unittest.TestCase):
             for child in children:
                 self.assertNotIn(child["key"], keys)
                 keys.add(child["key"])
-                self.assertNotIn("source_id", child)
+                self.assertEqual(child["key"], child["source_id"])
                 self.assertEqual(child["key"], registry[child["label"]]["identity_key"])
-                self.assertEqual([], registry[child["label"]]["source_ids"])
+                self.assertEqual([child["key"]], registry[child["label"]]["source_ids"])
         self.assertEqual(4, len(keys))
 
 
