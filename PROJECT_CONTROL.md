@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Softball coverage — verify Division I women's calendar and exact source scope**
+**Current task:** **NCAA Swimming coverage — verify separate Division I men's and women's calendars and source scope**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -162,6 +162,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 26 — Soccer:** NCAA's separate Division I event pages publish the 2026 men's College Cup semifinal and final on December 11 and 14, and the women's on December 10 and 13, at WakeMed Soccer Park in Cary. Each approved split child links only to its own two exact finals dates as an official-window-only source. The recurring August–December indicator remains; these dates do not establish earlier championship rounds or unattended regular-season fixtures. Systemwide NO_LINKED_SOURCE falls from 112 to 110, OFFICIAL_WINDOW_ONLY rises from 73 to 75, and PENDING_DATES falls from 125 to 123. NCAA Softball is next; NCAA remains open. Official evidence: https://www.ncaa.org/championship/division-i/mens-soccer/ and https://www.ncaa.org/championship/division-i/womens-soccer/ .
 
+**NCAA checkpoint, September 26 — Softball:** NCAA publishes the Division I Women’s College World Series at Devon Park in Oklahoma City from June 3–11, 2027, with the June 11 championship-series game if necessary. The exact approved 'Division I Softball | Women' identity now links to this official-window-only source and retains its February–June recurring indicator. This finals-site window does not establish regionals, super regionals, or unattended regular-season fixtures. Systemwide NO_LINKED_SOURCE falls from 110 to 109 and OFFICIAL_WINDOW_ONLY rises from 75 to 76; PENDING_DATES remains 123. NCAA Swimming is next; the NCAA section remains open. Official evidence: https://www.ncaa.com/championships/softball/d1/future-info and https://www.ncaa.org/championship/division-i/softball/ .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -219,4 +221,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #111 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Soccer begins with two pending/no-source children; this candidate links separate 2026 College Cup finals dates. Expected systemwide totals are 110 NO_LINKED_SOURCE, 75 OFFICIAL_WINDOW_ONLY, 123 PENDING_DATES, nine DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Softball is next. The FBS source-scope hold remains unresolved.
+**Current checkpoint:** Priority 2; Active Offerings PR #112 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Softball begins with one no-source identity; this candidate links the 2027 Women’s College World Series finals-site window. Expected systemwide totals are 109 NO_LINKED_SOURCE, 76 OFFICIAL_WINDOW_ONLY, 123 PENDING_DATES, nine DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Swimming is next. The FBS source-scope hold remains unresolved.
