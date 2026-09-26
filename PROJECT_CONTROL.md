@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Rugby coverage — Rugby Americas North Championship men and women after PR7s**
+**Current task:** **Priority 2 split-child coverage — Surfing after the RAN Rugby batch**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 remains active. User-directed Review Today display cleanup is a bounded Priority 2 exception; resume Rugby next.**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -208,6 +208,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **Rugby checkpoint, September 26 — PR7s:** Premier Rugby Sevens announced March 12, 2026 that its professional circuit remains paused until progress toward a global sevens calendar and player-release window supports competition. The paired men's and women's professional identities are separate documented holds with no current season, progress percentage, or fixture source; the RISE youth programs are outside this approval. The shared legacy coverage-gap record now points to the official update, without assigning it as a live child schedule. Systemwide PENDING_DATES falls from 87 to 85 and DOCUMENTED_HOLD rises from 25 to 27; NO_LINKED_SOURCE remains 88. Rugby Americas North Championship men and women are next. Official evidence: https://prsevens.com/2026/03/12/pr7s-professional-competition-update/ .
 
+**Rugby checkpoint, September 26 — RAN batch:** The remaining four Rugby split children were reviewed together. RAN's published 2026 senior XVs calendar covers men April 25–June 13 and women May 16–June 6; these are last-published slates, with no 2027 window claimed. RAN separately announces its 2026 senior Sevens men's and women's tournament for November 28–29 in Trinidad, while teams, format, and match fixtures remain unpublished. Each child has a separate official-window-only reference; U19, Centro Caribe Games, other sevens, and the combined legal parents are excluded. No unattended match adapter is claimed. Systemwide NO_LINKED_SOURCE falls from 88 to 84, OFFICIAL_WINDOW_ONLY rises from 99 to 103, PENDING_DATES falls from 85 to 81, and DATED_WINDOW rises from 75 to 79. Batch related split-child research into one reviewable PR per section when evidence is independent, reducing merge and rebase overhead; Surfing is next. Official evidence: https://www.americasnorth.rugby/news/new-opportunities-in-2026-mens-womens-xvs-test-match-slate , https://www.americasnorth.rugby/competitions/competitions , and https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -265,4 +267,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #135 merged. The inventory contains 722 mapped operational identities and 144 split children. Expected systemwide totals after PR7s are 88 NO_LINKED_SOURCE, 99 OFFICIAL_WINDOW_ONLY, 85 PENDING_DATES, 75 DATED_WINDOW, 1 PARTIAL_WINDOW, 27 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. PR7s professional men and women are separately documented as paused holds with no live schedule. Rugby Americas North Championship men and women are next.
+**Current checkpoint:** Priority 2; Active Offerings PR #136 merged. The inventory contains 722 mapped operational identities and 144 split children. Expected systemwide totals after the RAN batch are 84 NO_LINKED_SOURCE, 103 OFFICIAL_WINDOW_ONLY, 81 PENDING_DATES, 79 DATED_WINDOW, 1 PARTIAL_WINDOW, 27 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. All ten Rugby split children have separately checked season evidence or a documented hold; fixture adapter verification remains open. Surfing is next in the fixed queue.
