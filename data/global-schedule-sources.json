@@ -3530,17 +3530,107 @@
       ]
     },
     {
-      "id": "rugby-ran",
-      "source_type": "coverage-gap",
+      "id": "rugby-na-ran-championship-men",
+      "source_type": "official-event-window",
       "sport": "Rugby",
-      "league": "Rugby Americas North competitions",
+      "league": "Rugby Americas North Championship | Men",
       "region": "North America",
-      "official_schedule_url": "https://rugbyamericasnorth.com/",
-      "source_note": "Both approved RAN competitions require event-specific official dates before Review Today activation.",
+      "endpoint": "https://www.americasnorth.rugby/competitions/competitions",
+      "official_schedule_url": "https://www.americasnorth.rugby/competitions/competitions",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "RAN’s 2026 senior XVs match calendar lists the men’s matches in this last-published slate. No 2027 window is published. This link does not establish an unattended fixture adapter or cover U19, other international tests, or the other division.",
+      "official_events": [
+        {
+          "source_id": "rugby-na-ran-championship-men",
+          "league": "Rugby Americas North Championship | Men",
+          "name": "2026 RAN senior Men’s XVs published slate",
+          "start_date": "2026-04-25",
+          "end_date": "2026-06-13",
+          "location": "North America and Caribbean",
+          "official_schedule_url": "https://www.americasnorth.rugby/competitions/competitions"
+        }
+      ],
       "catalog_terms": [
-        "Rugby Americas North (RAN)",
-        "Rugby Americas North Championship | Men and Women",
-        "Rugby Americas North Sevens | Men and Women"
+        "Rugby Americas North Championship | Men"
+      ]
+    },
+    {
+      "id": "rugby-na-ran-championship-women",
+      "source_type": "official-event-window",
+      "sport": "Rugby",
+      "league": "Rugby Americas North Championship | Women",
+      "region": "North America",
+      "endpoint": "https://www.americasnorth.rugby/competitions/competitions",
+      "official_schedule_url": "https://www.americasnorth.rugby/competitions/competitions",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "RAN’s 2026 senior XVs match calendar lists the women’s matches in this last-published slate. No 2027 window is published. This link does not establish an unattended fixture adapter or cover U19, other international tests, or the other division.",
+      "official_events": [
+        {
+          "source_id": "rugby-na-ran-championship-women",
+          "league": "Rugby Americas North Championship | Women",
+          "name": "2026 RAN senior Women’s XVs published slate",
+          "start_date": "2026-05-16",
+          "end_date": "2026-06-06",
+          "location": "North America and Caribbean",
+          "official_schedule_url": "https://www.americasnorth.rugby/competitions/competitions"
+        }
+      ],
+      "catalog_terms": [
+        "Rugby Americas North Championship | Women"
+      ]
+    },
+    {
+      "id": "rugby-na-ran-sevens-men",
+      "source_type": "official-event-window",
+      "sport": "Rugby",
+      "league": "Rugby Americas North Sevens | Men",
+      "region": "North America",
+      "endpoint": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad",
+      "official_schedule_url": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "RAN confirms the 2026 tournament dates and men’s division. Teams, format, and match schedule are still to be announced; this is a division-scoped official window, not an unattended fixture adapter or the other division.",
+      "official_events": [
+        {
+          "source_id": "rugby-na-ran-sevens-men",
+          "league": "Rugby Americas North Sevens | Men",
+          "name": "2026 RAN Sevens | Men",
+          "start_date": "2026-11-28",
+          "end_date": "2026-11-29",
+          "location": "Port of Spain, Trinidad and Tobago",
+          "official_schedule_url": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad"
+        }
+      ],
+      "catalog_terms": [
+        "Rugby Americas North Sevens | Men"
+      ]
+    },
+    {
+      "id": "rugby-na-ran-sevens-women",
+      "source_type": "official-event-window",
+      "sport": "Rugby",
+      "league": "Rugby Americas North Sevens | Women",
+      "region": "North America",
+      "endpoint": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad",
+      "official_schedule_url": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "RAN confirms the 2026 tournament dates and women’s division. Teams, format, and match schedule are still to be announced; this is a division-scoped official window, not an unattended fixture adapter or the other division.",
+      "official_events": [
+        {
+          "source_id": "rugby-na-ran-sevens-women",
+          "league": "Rugby Americas North Sevens | Women",
+          "name": "2026 RAN Sevens | Women",
+          "start_date": "2026-11-28",
+          "end_date": "2026-11-29",
+          "location": "Port of Spain, Trinidad and Tobago",
+          "official_schedule_url": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad"
+        }
+      ],
+      "catalog_terms": [
+        "Rugby Americas North Sevens | Women"
       ]
     },
     {

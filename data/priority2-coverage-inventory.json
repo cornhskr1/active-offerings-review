@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T15:03:41.585835+00:00",
-  "schedule_generated_at": "2026-09-26T15:00:13.358133+00:00",
+  "registry_generated_at": "2026-09-26T16:07:41.302718+00:00",
+  "schedule_generated_at": "2026-09-26T15:19:06.124487+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 287,
-      "NO_LINKED_SOURCE": 88,
-      "OFFICIAL_WINDOW_ONLY": 99,
+      "NO_LINKED_SOURCE": 84,
+      "OFFICIAL_WINDOW_ONLY": 103,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 75,
+      "DATED_WINDOW": 79,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 27,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 85,
+      "PENDING_DATES": 81,
       "RECURRING_WINDOW": 452
     },
     "reported_gap_areas": 14,
@@ -257,9 +257,9 @@
     "Rugby": {
       "identities": 33,
       "split_children": 10,
-      "no_linked_source": 6,
+      "no_linked_source": 2,
       "adapter_gaps": 22,
-      "pending_dates": 4
+      "pending_dates": 0
     },
     "Soccer": {
       "identities": 344,
@@ -6334,11 +6334,19 @@
       "identity_key": "rugby-na-ran-championship-men",
       "approval_parent": "Rugby Americas North Championship | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "April 25–June 13, 2026 (last published slate)",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "rugby-na-ran-championship-men",
+          "type": "official-event-window",
+          "configured_league": "Rugby Americas North Championship | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -6347,11 +6355,19 @@
       "identity_key": "rugby-na-ran-championship-women",
       "approval_parent": "Rugby Americas North Championship | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "May 16–June 6, 2026 (last published slate)",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "rugby-na-ran-championship-women",
+          "type": "official-event-window",
+          "configured_league": "Rugby Americas North Championship | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -6360,11 +6376,19 @@
       "identity_key": "rugby-na-ran-sevens-men",
       "approval_parent": "Rugby Americas North Sevens | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "November 28–29, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "rugby-na-ran-sevens-men",
+          "type": "official-event-window",
+          "configured_league": "Rugby Americas North Sevens | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -6373,11 +6397,19 @@
       "identity_key": "rugby-na-ran-sevens-women",
       "approval_parent": "Rugby Americas North Sevens | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "November 28–29, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "rugby-na-ran-sevens-women",
+          "type": "official-event-window",
+          "configured_league": "Rugby Americas North Sevens | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

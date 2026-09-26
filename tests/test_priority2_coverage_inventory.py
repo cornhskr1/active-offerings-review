@@ -18,6 +18,39 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_ran_senior_divisions_have_separate_published_windows(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        self.assertNotIn("rugby-ran", sources)
+        for kind, division, start, end in (
+            ("championship", "Men", "2026-04-25", "2026-06-13"),
+            ("championship", "Women", "2026-05-16", "2026-06-06"),
+            ("sevens", "Men", "2026-11-28", "2026-11-29"),
+            ("sevens", "Women", "2026-11-28", "2026-11-29"),
+        ):
+            with self.subTest(kind=kind, division=division):
+                base = f"Rugby Americas North {'Championship' if kind == 'championship' else 'Sevens'}"
+                league = f"{base} | {division}"
+                source_id = f"rugby-na-ran-{kind}-{division.lower()}"
+                row = self.rows[("Rugby", league)]
+                self.assertEqual(f"{base} | Men and Women", row["approval_parent"])
+                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(0, row["events_in_window"])
+                source = sources[source_id]
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual([league], source["catalog_terms"])
+                self.assertEqual([(start, end, league)], [
+                    (event["start_date"], event["end_date"], event["league"])
+                    for event in source["official_events"]
+                ])
+                self.assertIn("not an unattended fixture adapter" if kind == "sevens"
+                              else "does not establish an unattended fixture adapter",
+                              source["source_note"])
+
+
     def test_pr7s_professional_divisions_are_paused_holds(self):
         season = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
         rugby = next(sport for sport in season["sports"] if sport["sport"] == "Rugby")

@@ -16,6 +16,32 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_ran_window_sources_resolve_only_to_their_children(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))};
+"""
+        script += "\n".join(function_source(name) for name in (
+            "eventSourceIds", "sourceCatalogMapping", "mappedCatalogEventForSource",
+        ))
+        script += """
+for(const [kind,division,start,end] of [
+  ['championship','Men','2026-04-25','2026-06-13'],
+  ['championship','Women','2026-05-16','2026-06-06'],
+  ['sevens','Men','2026-11-28','2026-11-29'],
+  ['sevens','Women','2026-11-28','2026-11-29']
+]){
+  const base=`Rugby Americas North ${kind==='sevens'?'Sevens':'Championship'}`;
+  const mapping=mappedCatalogEventForSource(`rugby-na-ran-${kind}-${division.toLowerCase()}`);
+  assert.equal(mapping.catalog_event,`${base} | ${division}`);
+  assert.equal(mapping.parent_catalog_event,`${base} | Men and Women`);
+  assert.equal(mapping.season_start_date,start);
+  assert.equal(mapping.season_end_date,end);
+}
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_paused_pr7s_divisions_are_visible_separate_holds(self):
         script = """
 const assert=require('node:assert/strict');
