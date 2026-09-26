@@ -16,6 +16,29 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_2027_senior_world_cup_sources_resolve_to_separate_approved_children(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))};
+"""
+        script += "\n".join(function_source(name) for name in (
+            "eventSourceIds", "sourceCatalogMapping", "mappedCatalogEventForSource",
+        ))
+        script += """
+for(const [division,start,end] of [
+  ['Women','2027-08-20','2027-09-05'],
+  ['Men','2027-09-10','2027-09-26']
+]){
+  const mapping=mappedCatalogEventForSource(`volleyball-fivb-world-championships-${division.toLowerCase()}`);
+  assert.equal(mapping.catalog_event,`Volleyball World Championships | ${division}`);
+  assert.equal(mapping.parent_catalog_event,'Volleyball World Championships | Men and Women');
+  assert.equal(mapping.season_start_date,start);
+  assert.equal(mapping.season_end_date,end);
+}
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_beach_continental_cup_scope_holds_remain_visible_out_of_season(self):
         script = """
 const assert=require('node:assert/strict');
