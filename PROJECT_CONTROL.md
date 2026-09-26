@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Tennis coverage — verify separate Division I men's and women's calendars and source scope**
+**Current task:** **NCAA Track and Field coverage — verify indoor and outdoor, men's and women's calendars and source scope**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -166,6 +166,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 26 — Swimming:** NCAA publishes separate 2027 Division I Swimming and Diving Championships in Austin: women March 17–20 and men March 24–27. The catalog approves Swimming only, and the combined championship page does not establish a swimming-only fixture source. Both operational children now record their own dates as documented fail-closed scope holds, with no source linkage or inferred diving approval. The source-state total remains 109 NO_LINKED_SOURCE and 76 OFFICIAL_WINDOW_ONLY; PENDING_DATES falls from 123 to 121 and DOCUMENTED_HOLD rises from nine to 11. NCAA Tennis is next; the NCAA section remains open. Official evidence: https://www.ncaa.org/championship/division-i/swimming-and-diving/ .
 
+**NCAA checkpoint, September 26 — Tennis:** NCAA’s Division I men’s and women’s championship page publishes singles/doubles competition November 17–22, 2026 and team finals-site competition May 20–29, 2027 in Athens. The governing body confirms individual championships are held in the fall while team championships remain in spring. Each approved men’s and women’s operational child now has its own source ID with both exact published windows, classified official-window-only. The shared NCAA page does not supply gender-specific match dates, earlier team rounds, or unattended regular-season fixtures; those remain manual checks. Systemwide NO_LINKED_SOURCE falls from 109 to 107, OFFICIAL_WINDOW_ONLY rises from 76 to 78, and PENDING_DATES falls from 121 to 119. NCAA Track and Field is next; NCAA remains open. Official evidence: https://www.ncaa.org/championship/division-i/tennis/ and https://www.ncaa.org/media-center-di-mens-and-womens-singles-and-doubles-tennis-championships-moved-permanently-to-the-fall/ .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -223,4 +225,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #113 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Swimming begins with two pending/no-source children; this candidate records separate 2027 dates as swimming-only scope holds, without linking the combined swimming-and-diving source. Expected systemwide totals are 109 NO_LINKED_SOURCE, 76 OFFICIAL_WINDOW_ONLY, 121 PENDING_DATES, 11 DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Tennis is next. The FBS source-scope hold remains unresolved.
+**Current checkpoint:** Priority 2; Active Offerings PR #114 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Tennis begins with two pending/no-source children; this candidate links separate gender identities to the published individual and team championship windows without asserting fixture completeness. Expected systemwide totals are 107 NO_LINKED_SOURCE, 78 OFFICIAL_WINDOW_ONLY, 119 PENDING_DATES, 11 DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Track and Field is next.
