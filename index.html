@@ -1123,7 +1123,7 @@ function uncoveredMappedEvents(sportName){
     const identities=(event.coverage_children||[]).length?event.coverage_children:[event];
     identities.forEach(identity=>{
       const seasonStatus=mappedSeasonStatus(identity);
-      if(seasonStatus==='out')return;
+      if(seasonStatus==='out'&&!identity.season_hold)return;
       const ids=eventSourceIds(identity);
       if(ids.some(id=>configured.has(id)))return;
       gaps.push({
@@ -1167,15 +1167,19 @@ function scheduleCoverageAttention(dayKey){
         :'Do not treat zero detected games as confirmation that no offerings exist. Compare the operator menu or wagering activity before clearing this league.'
     };
   });
-  const unmapped=uncoveredMappedEvents('Basketball').map(gap=>({
+  const unmapped=uncoveredMappedEvents().filter(gap=>
+    gap.sport==='Basketball'||(gap.sport.startsWith('NCAA ')&&gap.event.season_hold)
+  ).map(gap=>({
     severity:'AMBER',
-    type:gap.season_status==='in'?'SCHEDULE COVERAGE GAP':'SEASON COVERAGE GAP',
+    type:gap.event.season_hold?'SCOPE/CALENDAR HOLD':gap.season_status==='in'?'SCHEDULE COVERAGE GAP':'SEASON COVERAGE GAP',
     sport:gap.sport,
     league:gap.league,
     region:gap.region,
     event:`${gap.league} · schedule coverage`,
     start_time:`${dayKey}T12:00:00-05:00`,
-    reason:gap.season_status==='in'
+    reason:gap.event.season_hold&&gap.event.hold_reason
+      ?gap.event.hold_reason
+      :gap.season_status==='in'
       ?'Approved and in season, but no automated schedule source is connected.'
       :'Approved competition has no verified current season dates and no automated schedule source is connected.',
     staff_action:`Check the ${gap.governing_body||gap.region+' governing body'} calendar and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.`

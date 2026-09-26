@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Wrestling coverage — verify Division I men's calendar and source scope, then assess the NCAA section exit gate**
+**Current task:** **Volleyball coverage — next fixed Priority 2 section after NCAA exit**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -108,7 +108,7 @@ The separate season audit finds 131 identities with pending dates, 24 with no se
 | Order | Coverage section | First check |
 |---:|---|---|
 | 1 | Basketball | 89 identities; 26 split children; six documented no-source holds, zero pending dates, six documented holds; section exit passed |
-| 2 | NCAA sports | 35 identities; 24 split children; resolve child-specific calendars and source scope across Football, Basketball, Volleyball, Baseball, and Softball; FBS remains under source-scope review |
+| 2 | NCAA sports | **Section exit passed**: 35 identities; 23 exact official windows, four scoped adapters, one visible FBS adapter gap, and seven visible documented holds |
 | 3 | Volleyball | 26 identities; 18 split children without linked sources and eight adapter gaps |
 | 4 | Rugby, Surfing, Table Tennis, Tennis | Finish split-child date and source states before proceeding to broad gaps |
 | 5 | Soccer | 344 identities; 236 currently attached only to gap-type sources; verify division and country scope |
@@ -172,6 +172,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 26 — Water Polo:** NCAA titles separate men’s and women’s championships National Collegiate, while the exact catalog children are Division I. The men’s broader championship is December 4–6, 2026 in La Jolla; the women’s is April 23–25, 2027 at Stanford. These dates are attached to the correct children only as documented fail-closed scope context, with no National Collegiate source linkage or inferred Division I-only championship approval. Systemwide PENDING_DATES falls from 115 to 113 and DOCUMENTED_HOLD rises from 11 to 13; NO_LINKED_SOURCE remains 103. NCAA Wrestling is next, followed by the section exit check. Official evidence: https://www.ncaa.org/championship/national-collegiate/mens-water-polo/ and https://www.ncaa.org/championship/national-collegiate/womens-water-polo/ .
 
+**NCAA checkpoint, September 26 — Wrestling and section exit:** NCAA's Division I men's championship page publishes March 18–20, 2027 at Enterprise Center in St. Louis. The exact `Division I Wrestling | Men` identity now has an official-window-only source; qualifying tournaments and unattended regular-season fixtures are not inferred. The section audit accounts for all 35 NCAA operational identities: 23 official-window-only, four exact-scope configured adapters, one FBS adapter gap, and seven documented no-source holds. No NCAA identity retains a pending date or source-scope-review state. Review Today now displays the seven holds, including an out-of-season scope hold, and marks the FBS exact-scope source as a missing adapter with its official scoreboard for manual review. Its integration test checks all eight visible exceptions. Systemwide NO_LINKED_SOURCE falls from 103 to 102 and OFFICIAL_WINDOW_ONLY rises from 82 to 83; PENDING_DATES remains 113 and DOCUMENTED_HOLD remains 13. The NCAA section exit gate passes on these explicit fail-closed exceptions; Volleyball is next. Official evidence: https://www.ncaa.org/championship/division-i/mens-wrestling/ .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -229,4 +231,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #116 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Water Polo begins with two pending/no-source children; this candidate records the National Collegiate championship dates as separate Division I scope holds, without linking broader sources. Expected systemwide totals are 103 NO_LINKED_SOURCE, 82 OFFICIAL_WINDOW_ONLY, 113 PENDING_DATES, 13 DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Wrestling and section exit review are next.
+**Current checkpoint:** Priority 2; Active Offerings PR #117 merged. The inventory contains 722 mapped operational identities and 144 split children. This candidate completes NCAA Wrestling and verifies the NCAA section exit with eight visible fail-closed exceptions. Expected systemwide totals are 102 NO_LINKED_SOURCE, 83 OFFICIAL_WINDOW_ONLY, 113 PENDING_DATES, 13 DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. Volleyball is next after this candidate merges.
