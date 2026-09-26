@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T18:44:10.837569+00:00",
-  "schedule_generated_at": "2026-09-26T18:22:08.031380+00:00",
+  "registry_generated_at": "2026-09-26T19:22:05.680819+00:00",
+  "schedule_generated_at": "2026-09-26T19:19:07.417838+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,22 +11,22 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 185,
-      "ADAPTER_GAP": 291,
+      "ADAPTER_GAP": 290,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 122,
+      "OFFICIAL_WINDOW_ONLY": 123,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 125,
+      "DATED_WINDOW": 137,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 30,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 54,
-      "RECURRING_WINDOW": 439
+      "PENDING_DATES": 53,
+      "RECURRING_WINDOW": 428
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 295,
+    "reported_gap_labels": 291,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 238,
-      "pending_dates": 49
+      "adapter_gaps": 237,
+      "pending_dates": 48
     },
     "Surfing": {
       "identities": 6,
@@ -8518,8 +8518,8 @@
       "identity_key": "soccer-spain-copa-de-la-reina-women",
       "approval_parent": "Copa de la Reina | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 9, 2026–May 15, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -8539,8 +8539,8 @@
       "identity_key": "soccer-spain-copa-del-rey-men",
       "approval_parent": "Copa del Rey | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 26, 2026–April 24, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -9085,8 +9085,8 @@
       "identity_key": "soccer-netherlands-eerste-divisie-men",
       "approval_parent": "Eerste Divisie | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 7, 2026–May 14, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -9274,8 +9274,8 @@
       "identity_key": "soccer-netherlands-eredivisie-men",
       "approval_parent": "Eredivisie | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 7, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10303,14 +10303,14 @@
       "identity_key": "soccer-netherlands-johan-cruyff-shield-dutch-super-cup-men",
       "approval_parent": "Johan Cruyff Shield / Dutch Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 2, 2026 · completed; 2027 date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-netherlands-johan-cruyff-shield-dutch-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Johan Cruyff Shield / Dutch Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -10366,8 +10366,8 @@
       "identity_key": "soccer-netherlands-knvb-beker-dutch-cup-men",
       "approval_parent": "KNVB Beker / Dutch Cup | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 1, 2026–April 18, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10450,8 +10450,8 @@
       "identity_key": "soccer-spain-laliga-men",
       "approval_parent": "LaLiga | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 15, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10660,8 +10660,8 @@
       "identity_key": "soccer-spain-liga-f-women",
       "approval_parent": "Liga F | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 29, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -11878,8 +11878,8 @@
       "identity_key": "soccer-spain-primera-federaci-n-femenina-women",
       "approval_parent": "Primera Federación Femenina | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 12, 2026–June 6, 2027 (promotion phase)",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12193,8 +12193,8 @@
       "identity_key": "soccer-spain-segunda-divisi-n-men",
       "approval_parent": "Segunda División | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026–June 20, 2027 (promotion playoffs)",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -12760,8 +12760,8 @@
       "identity_key": "soccer-spain-supercopa-de-espa-a-femenina-women",
       "approval_parent": "Supercopa de España Femenina | Women",
       "kind": "catalog",
-      "season_window": "January 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "January 19–24, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12781,8 +12781,8 @@
       "identity_key": "soccer-spain-supercopa-de-espa-a-men",
       "approval_parent": "Supercopa de España | Men",
       "kind": "catalog",
-      "season_window": "February 2–7, 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 2–6, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
