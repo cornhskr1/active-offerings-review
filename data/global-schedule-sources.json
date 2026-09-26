@@ -3748,38 +3748,55 @@
       ]
     },
     {
-      "id": "volleyball-fivb-vnl",
+      "id": "volleyball-fivb-vnl-women",
       "source_type": "official-event-window",
       "sport": "Volleyball",
-      "league": "Volleyball Nations League | Men and Women",
+      "league": "Volleyball Nations League | Women",
       "region": "International",
-      "endpoint": "https://live.app.fivb.com/",
-      "official_schedule_url": "https://live.app.fivb.com/",
+      "endpoint": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/",
+      "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/",
       "endpoint_validation": "published-window",
-      "coverage_status": "current-published-events",
+      "coverage_status": "published-event-window",
+      "source_note": "Volleyball World publishes the 2026 women’s VNL from 2026-06-03 through 2026-07-26, including the Finals. This is a completed edition window; 2027 dates and an unattended gender-specific fixture adapter remain unverified.",
       "official_events": [
         {
-          "source_id": "volleyball-fivb-vnl",
-          "league": "Volleyball Nations League | Men and Women",
-          "name": "Volleyball Nations League 2026 | Women",
+          "source_id": "volleyball-fivb-vnl-women",
+          "league": "Volleyball Nations League | Women",
+          "name": "2026 Volleyball Nations League | Women",
           "start_date": "2026-06-03",
           "end_date": "2026-07-26",
-          "location": "International",
-          "official_schedule_url": "https://live.app.fivb.com/"
-        },
-        {
-          "source_id": "volleyball-fivb-vnl",
-          "league": "Volleyball Nations League | Men and Women",
-          "name": "Volleyball Nations League 2026 | Men",
-          "start_date": "2026-06-10",
-          "end_date": "2026-08-02",
-          "location": "International",
-          "official_schedule_url": "https://live.app.fivb.com/"
+          "location": "International (Finals in China)",
+          "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/"
         }
       ],
       "catalog_terms": [
-        "Fédération Internationale de Volleyball (FIVB)",
-        "Volleyball Nations League | Men and Women"
+        "Volleyball Nations League | Women"
+      ]
+    },
+    {
+      "id": "volleyball-fivb-vnl-men",
+      "source_type": "official-event-window",
+      "sport": "Volleyball",
+      "league": "Volleyball Nations League | Men",
+      "region": "International",
+      "endpoint": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/",
+      "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "Volleyball World publishes the 2026 men’s VNL from 2026-06-10 through 2026-08-02, including the Finals. This is a completed edition window; 2027 dates and an unattended gender-specific fixture adapter remain unverified.",
+      "official_events": [
+        {
+          "source_id": "volleyball-fivb-vnl-men",
+          "league": "Volleyball Nations League | Men",
+          "name": "2026 Volleyball Nations League | Men",
+          "start_date": "2026-06-10",
+          "end_date": "2026-08-02",
+          "location": "International (Finals in China)",
+          "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/"
+        }
+      ],
+      "catalog_terms": [
+        "Volleyball Nations League | Men"
       ]
     },
     {

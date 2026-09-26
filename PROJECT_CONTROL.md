@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **Volleyball coverage — FIVB Volleyball Nations League men and women after Challenger Cup holds**
+**Current task:** **Volleyball coverage — FIVB Volleyball World Championships men and women after VNL calendars**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -190,6 +190,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **Volleyball checkpoint, September 26 — Challenger Cup:** FIVB and Volleyball World explicitly call the separate July 4–7, 2024 men's and women's Volleyball Challenger Cups the **final editions**. The expanded VNL uses ranking-based replacement after 2024. Both catalog children remain approved legal identities but have visible out-of-season holds and no current schedule linkage; neither may inherit VNL or another Challenger calendar. The legacy combined-parent gap now points to the final-edition evidence and cannot schedule either child. Systemwide PENDING_DATES falls from 99 to 97 and DOCUMENTED_HOLD rises from 23 to 25; NO_LINKED_SOURCE remains 98 and other linkage states are unchanged. Volleyball remains open; Volleyball Nations League men and women are next. Official evidence: https://www.fivb.com/china-and-the-philippines-set-to-host-volleyball-challenger-cup-2024/ , https://www.fivb.com/rosters-released-for-2024-volleyball-challenger-cup/ , and https://www.fivb.com/2025-in-preview-first-expanded-vnl-edition-with-18-teams-per-gender/ .
 
+**Volleyball checkpoint, September 26 — Volleyball Nations League:** FIVB and Volleyball World publish separate completed 2026 VNL editions: women June 3–July 26, with Finals in Macao, China, and men June 10–August 2, with Finals in Ningbo, China. The approved combined legal parent retains two operational children with independent dated windows and official calendar references. The old combined source is replaced with two division-specific official-event-window records. Neither record claims an unattended fixture adapter or 2027 exact dates. Systemwide NO_LINKED_SOURCE falls from 98 to 96, OFFICIAL_WINDOW_ONLY rises from 89 to 91, PENDING_DATES falls from 97 to 95, and DATED_WINDOW rises from 65 to 67. Volleyball remains open; Volleyball World Championships men and women are next. Official evidence: https://www.fivb.com/volleyball-world-reveals-2026-vnl-match-schedule/ , https://www.fivb.com/dominican-republic-set-for-another-vnl-challenge/ , https://www.fivb.com/cubas-resurgence-gathers-pace-for-vnl-2026/ , and https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/ .
+
 **Deferred validation finding:** `scripts/validate_catalog_identity.py` fails against the unchanged main baseline because the schedule-only generic `ncaa-football` feed publishes events without an approved source ID. The same failure occurs before this Volleyball change. Retain it for the later schedule/identity regression review; it does not establish a Volleyball source or alter the current fixed queue.
 
 ## Recovered work from September 23–24
@@ -249,4 +251,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #126 merged. This Challenger Cup change is based on current main. The inventory contains 722 mapped operational identities and 144 split children. Expected systemwide totals after both changes are 98 NO_LINKED_SOURCE, 89 OFFICIAL_WINDOW_ONLY, 97 PENDING_DATES, 65 DATED_WINDOW, 1 PARTIAL_WINDOW, 25 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. The final-edition Challenger Cup children remain visible holds with no current source. Volleyball remains open; Volleyball Nations League men and women are next.
+**Current checkpoint:** Priority 2; Active Offerings PR #127 merged. This VNL change is based on current main. The inventory contains 722 mapped operational identities and 144 split children. Expected systemwide totals are 96 NO_LINKED_SOURCE, 91 OFFICIAL_WINDOW_ONLY, 95 PENDING_DATES, 67 DATED_WINDOW, 1 PARTIAL_WINDOW, 25 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. The completed 2026 VNL windows are division-specific; 2027 dates and unattended fixture adapters remain unverified. Volleyball remains open; Volleyball World Championships men and women are next.
