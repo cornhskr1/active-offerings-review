@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T21:30:33.045441+00:00",
-  "schedule_generated_at": "2026-09-26T21:26:41.785892+00:00",
+  "registry_generated_at": "2026-09-26T21:54:10.435679+00:00",
+  "schedule_generated_at": "2026-09-26T21:50:24.867270+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,19 +11,19 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 289,
+      "ADAPTER_GAP": 287,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 125,
+      "OFFICIAL_WINDOW_ONLY": 127,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 156,
+      "DATED_WINDOW": 159,
       "DESCRIPTIVE_WINDOW": 57,
       "DOCUMENTED_HOLD": 37,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 23,
-      "PENDING_DATES": 50,
-      "RECURRING_WINDOW": 384
+      "PARTIAL_WINDOW": 26,
+      "PENDING_DATES": 48,
+      "RECURRING_WINDOW": 380
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 289,
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 236,
-      "pending_dates": 67
+      "adapter_gaps": 234,
+      "pending_dates": 68
     },
     "Surfing": {
       "identities": 6,
@@ -7512,8 +7512,8 @@
       "identity_key": "soccer-bulgaria-bulgarian-cup-men",
       "approval_parent": "Bulgarian Cup | Men",
       "kind": "catalog",
-      "season_window": "October 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026 district preliminary stage through September 19; 2027 final date pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7533,8 +7533,8 @@
       "identity_key": "soccer-bulgaria-bulgarian-first-professional-league-parva-liga-men",
       "approval_parent": "Bulgarian First Professional League / Parva Liga | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 17, 2026–2027 final and play-off dates pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7554,14 +7554,14 @@
       "identity_key": "soccer-bulgaria-bulgarian-supercup-men",
       "approval_parent": "Bulgarian Supercup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "September 9, 2026 · completed; next edition date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-bulgaria-bulgarian-supercup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Bulgarian Supercup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -8816,8 +8816,8 @@
       "identity_key": "soccer-romania-cupa-rom-niei-men",
       "approval_parent": "Cupa României | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 8, 2026–May 12, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10706,8 +10706,8 @@
       "identity_key": "soccer-romania-liga-i-men",
       "approval_parent": "Liga I | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 17, 2026–May 30, 2027 league play-off; other post-season boundaries pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12891,14 +12891,14 @@
       "identity_key": "soccer-romania-supercupa-rom-niei-men",
       "approval_parent": "Supercupa României | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "July 12, 2026 · completed; next edition date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-romania-supercupa-rom-niei-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Supercupa României | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -14694,7 +14694,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14715,7 +14715,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
