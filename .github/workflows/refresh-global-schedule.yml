@@ -10,6 +10,7 @@ on:
       - data/soccer-*-sources.json
       - data/tennis-schedule.json
       - scripts/refresh_global_schedule.py
+      - tests/test_competition_identity_registry.py
       - .github/workflows/refresh-global-schedule.yml
   schedule:
     - cron: "7 * * * *"

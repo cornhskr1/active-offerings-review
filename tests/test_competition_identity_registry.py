@@ -258,7 +258,14 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
     def test_football_preseason_alias_does_not_collapse_into_nfl(self):
         football = {item["league"]: item for item in self.registry["competitions"]
                     if item["sport"] == "Football"}
-        self.assertEqual(8, len(football))
+        approved = {event["catalog_event"]
+                    for sport in self.season_map["sports"] if sport["sport"] == "Football"
+                    for group in sport["groups"] for event in group["events"]}
+        self.assertEqual(7, len(approved))
+        self.assertTrue(approved.issubset(football))
+        # NCAA Football is a schedule-only label: it can appear when the
+        # rolling feed has games, but must not be required as catalog approval.
+        self.assertLessEqual(set(football) - approved, {"NCAA Football"})
         self.assertIn("Hall of Fame Game", [a["name"] for a in football["NFL Preseason"].get("aliases", [])])
         self.assertNotIn("NFL", [a["name"] for a in football["National Football League (NFL)"].get("aliases", [])])
         held = {item.get("observed_official_name") for item in self.registry["alias_review_queue"]
