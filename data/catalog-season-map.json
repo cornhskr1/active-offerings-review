@@ -3210,10 +3210,10 @@
             {
               "key": "rugby-na-pr7s",
               "catalog_event": "Premier Rugby Sevens (PR7s) | Men and Women",
-              "season_window": "No current official season published",
+              "season_window": "Professional circuit paused; no current season",
               "season_status": "out",
-              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
-              "last_verified": "2026-09-18",
+              "season_basis": "PR7s announced March 12, 2026 that its professional circuit remains paused pending progress toward a global sevens calendar and player-release window.",
+              "last_verified": "2026-09-26",
               "fun_fact": "PR7s was built around paired men’s and women’s sevens competitions at the same events.",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
@@ -3221,14 +3221,22 @@
                 {
                   "key": "rugby-na-pr7s-men",
                   "label": "Premier Rugby Sevens (PR7s) | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "Professional circuit paused; no current men's season",
+                  "season_basis": "PR7s professional competition update, March 12, 2026; no current men's circuit window or fixture schedule",
+                  "season_status": "out",
+                  "season_hold": true,
+                  "hold_reason": "PR7s says its professional circuit remains paused until progress toward a global sevens calendar supports competition. The men’s PR7s identity has no current season or fixtures; PR7s RISE youth programs and other sevens circuits do not supply this professional schedule.",
+                  "last_verified": "2026-09-26"
                 },
                 {
                   "key": "rugby-na-pr7s-women",
                   "label": "Premier Rugby Sevens (PR7s) | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "Professional circuit paused; no current women's season",
+                  "season_basis": "PR7s professional competition update, March 12, 2026; no current women's circuit window or fixture schedule",
+                  "season_status": "out",
+                  "season_hold": true,
+                  "hold_reason": "PR7s says its professional circuit remains paused until progress toward a global sevens calendar supports competition. The women’s PR7s identity has no current season or fixtures; PR7s RISE youth programs and other sevens circuits do not supply this professional schedule.",
+                  "last_verified": "2026-09-26"
                 }
               ]
             }

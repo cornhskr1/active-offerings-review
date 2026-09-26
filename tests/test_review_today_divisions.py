@@ -16,6 +16,28 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_paused_pr7s_divisions_are_visible_separate_holds(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={global:JSON.parse(fs.readFileSync('data/global-schedule-sources.json')),
+  seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))};
+function todayKey(){return '2026-09-26'}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "sourceCatalogMapping", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-26').filter(card=>card.league.startsWith('Premier Rugby Sevens (PR7s) |'));
+assert.deepEqual(cards.map(card=>card.league).sort(),[
+  'Premier Rugby Sevens (PR7s) | Men','Premier Rugby Sevens (PR7s) | Women']);
+assert(cards.every(card=>card.type==='SCOPE/CALENDAR HOLD' && /professional circuit remains paused/.test(card.reason)));
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_six_nations_sources_resolve_to_separate_children(self):
         script = """
 const assert=require('node:assert/strict');

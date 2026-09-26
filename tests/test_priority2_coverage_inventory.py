@@ -18,6 +18,24 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_pr7s_professional_divisions_are_paused_holds(self):
+        season = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
+        rugby = next(sport for sport in season["sports"] if sport["sport"] == "Rugby")
+        parent = next(event for group in rugby["groups"] for event in group["events"]
+                      if event["key"] == "rugby-na-pr7s")
+        self.assertNotIn(("Rugby", parent["catalog_event"]), self.rows)
+        for child in parent["coverage_children"]:
+            with self.subTest(division=child["label"]):
+                row = self.rows[("Rugby", child["label"])]
+                self.assertEqual(("DOCUMENTED_HOLD", "NO_LINKED_SOURCE"),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([], row["sources"])
+                self.assertTrue(child["season_hold"])
+                self.assertIn("professional circuit remains paused", child["hold_reason"])
+                self.assertNotIn("season_start_date", child)
+                self.assertNotIn("source_id", child)
+
+
     def test_2027_six_nations_windows_and_links_are_division_specific(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
