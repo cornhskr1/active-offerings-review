@@ -530,7 +530,7 @@ th{font-size:11px!important}
 <div class="card intake-today" id="intakeToday"><div class="intake-today-head"><div><div class="intake-today-title">Published catalog change detected</div><div class="small" id="intakeTodayText"></div></div><button class="intake-open-btn" type="button" id="openIntakeBtn">Open Change Queue</button></div></div>
 </section>
 
-<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies. Collegiate golf, soccer, tennis, and swimming/diving remain in the source data but are not displayed because no wagering review is conducted for those sports.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
+<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies. The display covers baseball, men's and women's basketball, football, men's and women's soccer, softball, volleyball, and wrestling. Other NCAA sports remain in the source data and approved catalog.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
   <div class="section-title">Nebraska Collegiate — Basketball Futures Cutoffs</div>
   <p class="small">Regular-season futures must be disabled before the first legitimate regular-season contest. A narrower subset used to determine the market outcome — such as away games, home games, conference games, or similar subsets — does not move that cutoff. Postseason futures must be disabled before the first legitimate postseason contest, if applicable. Combination markets must be removed by the earliest applicable cutoff among all included Nebraska collegiate components. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
   <div class="futures-guidance">
@@ -697,11 +697,12 @@ function normCollegeSport(v){
     .trim();
 }
 function isNonWageredNcaaSport(item){
-  const sport=normCollegeSport(item?.sport||'');
-  const excluded=sport==='golf'||sport==='soccer'||sport==='tennis'||sport==='swimming diving'||sport==='swimming and diving';
-  if(!excluded)return false;
+  const rawSport=normCollegeSport(item?.sport||'');
+  const sport=rawSport.replace(/^ncaa\s+/,'');
+  const reviewSports=new Set(['baseball','basketball','football','soccer','softball','volleyball','wrestling']);
   const context=`${item?.league||''} ${item?.type||''} ${item?.source||''}`.toLowerCase();
-  return Boolean(item?.school)||/\bncaa\b|\bcollege\b|\bcollegiate\b/.test(context);
+  const collegiate=Boolean(item?.school)||rawSport.startsWith('ncaa ')||/\bncaa\b|\bcollege\b|\bcollegiate\b/.test(context);
+  return collegiate&&!reviewSports.has(sport);
 }
 function collegeAliases(school){
   const s=String(school||'').toLowerCase();
@@ -1142,6 +1143,7 @@ function uncoveredMappedEvents(sportName){
 
 function scheduleCoverageAttention(dayKey){
   const configured=(DATA.global?.sources||[]).filter(source=>{
+    if(isNonWageredNcaaSport(source))return false;
     if(!['partial','missing'].includes(source.coverage_status))return false;
     const mapped=mappedCatalogEventForSource(source.id);
     return mapped&&(mappedSeasonStatus(mapped)==='in'||mapped.season_window_complete===false);
@@ -1169,7 +1171,7 @@ function scheduleCoverageAttention(dayKey){
     };
   });
   const unmapped=uncoveredMappedEvents().filter(gap=>
-    gap.sport==='Basketball'||gap.event.season_hold
+    !isNonWageredNcaaSport(gap) && (gap.sport==='Basketball'||gap.event.season_hold)
   ).map(gap=>({
     severity:'AMBER',
     type:gap.event.season_hold?'SCOPE/CALENDAR HOLD':gap.season_status==='in'?'SCHEDULE COVERAGE GAP':'SEASON COVERAGE GAP',

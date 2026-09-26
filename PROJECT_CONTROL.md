@@ -4,7 +4,7 @@
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
 **Current task:** **Rugby coverage — begin split-child date and source review after Volleyball section exit**
-**Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
+**Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 remains active. User-directed Review Today display cleanup is a bounded Priority 2 exception; resume Rugby next.**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
 
@@ -198,6 +198,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **Schedule validation follow-up:** Public PR #130 removed the generic `NCAA Football` feed's unapproved source-ID dependency, and the subsequent scheduled refresh on main completed. The regenerated inventory now reports 14 gap areas and 302 gap labels; the earlier 13/303 baseline and schedule-only label are historical. `scripts/validate_catalog_identity.py` passes with zero ghost approvals and zero held split-parent events. The full 143-test suite passes after updating two stale schedule-only expectations and the Volleyball child-source expectation.
 
+**Review Today display decision, September 26:** After PR #131 merged, the user directed a bounded cleanup of NCAA sports shown in Review Today. Display only baseball, men's and women's basketball, football, men's and women's soccer, softball, volleyball, and wrestling. Filter the same way across mapped events, priority cards, Nebraska collegiate alerts, and schedule coverage attention; leave all other NCAA approvals, season states, source data, and inventory rows intact. This is a display rule, not a catalog approval or a claim of complete schedule coverage. The user explicitly requested this interruption to the fixed Priority 2 section queue; resume Rugby split-child coverage after the display change.
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -255,4 +257,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #130 merged and the next scheduled refresh completed on main. This World Club Championships section-exit change is based on that main. The inventory contains 722 mapped operational identities and 144 split children. Expected systemwide totals after this work are 92 NO_LINKED_SOURCE, 95 OFFICIAL_WINDOW_ONLY, 91 PENDING_DATES, 71 DATED_WINDOW, 1 PARTIAL_WINDOW, 25 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. Volleyball's 26 identities have supported states with no pending date or source-scope-review rows. Unattended fixtures remain unverified where only official windows exist; Rugby split children are next.
+**Current checkpoint:** Priority 2; Active Offerings PR #131 merged. The inventory contains 722 mapped operational identities and 144 split children. Systemwide totals remain 92 NO_LINKED_SOURCE, 95 OFFICIAL_WINDOW_ONLY, 91 PENDING_DATES, 71 DATED_WINDOW, 1 PARTIAL_WINDOW, 25 DOCUMENTED_HOLD, 287 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. The user-directed NCAA Review Today display cleanup does not alter these counts. Rugby split children are next.

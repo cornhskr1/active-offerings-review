@@ -76,6 +76,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -101,6 +102,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -127,6 +129,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -139,7 +142,7 @@ assert(!cards.some(card=>card.league==='Beach Pro Tour | Women'&&card.type==='SC
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 
-    def test_ncaa_section_holds_and_fbs_adapter_gap_are_visible(self):
+    def test_review_today_shows_only_wagered_ncaa_holds_and_fbs_gap(self):
         script = """
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -153,14 +156,15 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
 const cards=scheduleCoverageAttention('2026-09-26');
 const holds=cards.filter(card=>card.sport.startsWith('NCAA ')&&card.type==='SCOPE/CALENDAR HOLD');
-assert.equal(holds.length,7);
-assert(holds.some(card=>card.league==='Division I Swimming | Women'&&/diving does not inherit approval/.test(card.reason)));
-assert(holds.some(card=>card.league==='College Basketball Invitational (CBI) | Men'));
+assert.deepEqual(holds.map(card=>card.league),['College Basketball Invitational (CBI) | Men']);
+assert(cards.every(card=>!card.sport.startsWith('NCAA ')||
+  ['NCAA Baseball','NCAA Basketball','NCAA Football','NCAA Soccer','NCAA Softball','NCAA Volleyball','NCAA Wrestling'].includes(card.sport)));
 const fbs=cards.find(card=>card.league==='Division I Football Bowl Subdivision (FBS)');
 assert(fbs);
 assert.equal(fbs.type,'SCHEDULE COVERAGE GAP');
@@ -186,6 +190,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -218,6 +223,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -248,6 +254,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -282,6 +289,7 @@ function sourceCatalogMapping(){return null}
         script += "\n".join(function_source(name) for name in (
             "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
             "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -312,6 +320,7 @@ function mappedSeasonStatus(value){return value.test_status}
 """
         script += "\n".join(function_source(name) for name in (
             "eventSourceIds", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -341,6 +350,7 @@ function mappedSeasonStatus(value){return value.test_status}
 """
         script += "\n".join(function_source(name) for name in (
             "eventSourceIds", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
@@ -383,6 +393,7 @@ function mappedSeasonStatus(value){return value.test_status}
 """
         script += "\n".join(function_source(name) for name in (
             "eventSourceIds", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
