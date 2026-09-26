@@ -27673,7 +27673,7 @@
       "sport": "NCAA Football",
       "league": "Division I Football Bowl Subdivision (FBS)",
       "region": "United States",
-      "coverage_status": "pending",
+      "coverage_status": "missing",
       "endpoint": "https://www.ncaa.com/scoreboard/football/fbs",
       "official_schedule_url": "https://www.ncaa.com/scoreboard/football/fbs",
       "source_note": "NCAA exposes an exact FBS scoreboard and schedule view. Subdivision scope is verified, but a dependable unattended FBS fixture adapter is not configured; the broader college-football feed remains schedule-only and does not establish FBS approval.",
@@ -39847,6 +39847,37 @@
       ],
       "catalog_terms": [
         "Division I Outdoor Track and Field | Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-26T00:25:52.657991+00:00"
+    },
+    {
+      "id": "ncaa-wrestling-di",
+      "source_type": "official-event-window",
+      "sport": "NCAA Wrestling",
+      "league": "Division I Wrestling | Men",
+      "region": "United States",
+      "endpoint": "https://www.ncaa.org/championship/division-i/mens-wrestling/",
+      "official_schedule_url": "https://www.ncaa.com/sports/wrestling-men/d1",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "NCAA publishes the exact March 18\u201320, 2027 Division I men\u2019s championship at Enterprise Center. This finals-site window does not establish qualifying tournaments or unattended regular-season fixtures.",
+      "official_events": [
+        {
+          "source_id": "ncaa-wrestling-di",
+          "league": "Division I Wrestling | Men",
+          "name": "2027 NCAA Division I Men\u2019s Wrestling championship",
+          "start_date": "2027-03-18",
+          "end_date": "2027-03-20",
+          "location": "Enterprise Center, St. Louis, Missouri",
+          "official_schedule_url": "https://www.ncaa.org/championship/division-i/mens-wrestling/"
+        }
+      ],
+      "catalog_terms": [
+        "Division I Wrestling | Men"
       ],
       "approved_catalog": true,
       "ok": true,

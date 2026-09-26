@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T01:22:33.351172+00:00",
+  "registry_generated_at": "2026-09-26T01:25:54.208615+00:00",
   "schedule_generated_at": "2026-09-26T00:25:52.657991+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
@@ -12,8 +12,8 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 289,
-      "NO_LINKED_SOURCE": 103,
-      "OFFICIAL_WINDOW_ONLY": 82,
+      "NO_LINKED_SOURCE": 102,
+      "OFFICIAL_WINDOW_ONLY": 83,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
@@ -247,7 +247,7 @@
     "NCAA Wrestling": {
       "identities": 1,
       "split_children": 0,
-      "no_linked_source": 1,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -5911,11 +5911,19 @@
       "identity_key": "ncaa-wrestling-di",
       "approval_parent": "Division I Wrestling | Men",
       "kind": "catalog",
-      "season_window": "November–March",
+      "season_window": "November–March; 2027 Division I championship March 18–20",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "ncaa-wrestling-di",
+          "type": "official-event-window",
+          "configured_league": "Division I Wrestling | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
