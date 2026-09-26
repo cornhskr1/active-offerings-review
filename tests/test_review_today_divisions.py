@@ -16,6 +16,32 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_supercopa_calendar_holds_remain_visible_with_configured_gap_sources(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={
+  global:JSON.parse(fs.readFileSync('data/global-schedule.json')),
+  seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))
+};
+function todayKey(){return '2026-09-26'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const holds=scheduleCoverageAttention('2026-09-26').filter(card=>
+  card.sport==='Volleyball'&&card.type==='SCOPE/CALENDAR HOLD'&&card.league.startsWith('Brazilian Supercopa'));
+assert.equal(holds.length,2);
+assert(holds.some(card=>card.league==='Brazilian Supercopa | Men'&&/October 23/.test(card.reason)));
+assert(holds.some(card=>card.league==='Brazilian Supercopa | Women'&&/October 16/.test(card.reason)));
+assert(holds.every(card=>card.source_url==='https://cbv.com.br/volei-de-quadra/supercopa'));
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_retired_beach_tour_holds_remain_visible_out_of_season(self):
         script = """
 const assert=require('node:assert/strict');
@@ -34,7 +60,7 @@ function sourceCatalogMapping(){return null}
         ))
         script += """
 const cards=scheduleCoverageAttention('2026-09-26');
-const holds=cards.filter(card=>card.sport==='Volleyball'&&card.type==='SCOPE/CALENDAR HOLD');
+const holds=cards.filter(card=>card.sport==='Volleyball'&&card.type==='SCOPE/CALENDAR HOLD'&&card.league.startsWith('Beach Volleyball World Tour'));
 assert.equal(holds.length,4);
 assert(holds.some(card=>card.league==='Beach Volleyball World Tour | Men'&&/replaced/.test(card.reason)));
 assert(holds.some(card=>card.league==='Beach Volleyball World Tour Championships | Women'&&/Do not substitute/.test(card.reason)));

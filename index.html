@@ -1125,13 +1125,14 @@ function uncoveredMappedEvents(sportName){
       const seasonStatus=mappedSeasonStatus(identity);
       if(seasonStatus==='out'&&!identity.season_hold)return;
       const ids=eventSourceIds(identity);
-      if(ids.some(id=>configured.has(id)))return;
+      if(ids.some(id=>configured.has(id))&&!identity.season_hold)return;
       gaps.push({
         sport:sport.sport,
         region:group.country||'International',
         league:identity.label||identity.catalog_event,
         governing_body:group.governing_body||'',
         season_status:seasonStatus,
+        source_url:(DATA.global?.sources||[]).find(source=>ids.includes(source.id))?.official_schedule_url||'',
         event:identity
       });
     });
@@ -1177,6 +1178,7 @@ function scheduleCoverageAttention(dayKey){
     region:gap.region,
     event:`${gap.league} · schedule coverage`,
     start_time:`${dayKey}T12:00:00-05:00`,
+    source_url:gap.source_url,
     reason:gap.event.season_hold&&gap.event.hold_reason
       ?gap.event.hold_reason
       :gap.season_status==='in'

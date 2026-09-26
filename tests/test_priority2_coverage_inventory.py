@@ -18,6 +18,22 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_brazilian_supercopa_reports_remain_calendar_holds_with_adapter_gaps(self):
+        expected = {"Men": "October 23", "Women": "October 16"}
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        sources = {source["id"]: source for source in config["sources"]}
+        for gender, date in expected.items():
+            with self.subTest(gender=gender):
+                row = self.rows[("Volleyball", f"Brazilian Supercopa | {gender}")]
+                source_id = f"volleyball-brazil-supercopa-{gender.lower()}"
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("ADAPTER_GAP", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertIn(date, row["season_window"])
+                self.assertIn("still displays 2025", row["hold_reason"])
+                self.assertEqual("coverage-gap", sources[source_id]["source_type"])
+                self.assertNotIn("official_events", sources[source_id])
+
     def test_brazilian_cups_have_separate_last_completed_windows_and_future_adapter_gaps(self):
         expected = {
             "Men": ("2026-01-26", "2026-03-08"),
