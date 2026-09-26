@@ -43,7 +43,7 @@ class NCAASoccerDivisionIdentityTests(unittest.TestCase):
             {child["label"] for child in children},
         )
         self.assertEqual(2, len({child["key"] for child in children}))
-        self.assertTrue(all(not child.get("source_id") for child in children))
+        self.assertEqual({child["key"] for child in children}, {child.get("source_id") for child in children})
 
     def test_parent_is_not_schedulable_and_children_are_distinct(self):
         registry = {
@@ -56,7 +56,7 @@ class NCAASoccerDivisionIdentityTests(unittest.TestCase):
         for child in approval["coverage_children"]:
             self.assertIn(child["label"], registry)
             self.assertEqual(child["key"], registry[child["label"]]["identity_key"])
-            self.assertEqual([], registry[child["label"]]["source_ids"])
+            self.assertEqual([child["key"]], registry[child["label"]]["source_ids"])
 
 
 if __name__ == "__main__":

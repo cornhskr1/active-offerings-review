@@ -1,9 +1,9 @@
 # Project Control Ledger
 
 **Deadline:** October 1, 2026  
-**Last reconciled:** September 25, 2026
+**Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Soccer coverage — verify separate Division I men's and women's calendars and exact source scope**
+**Current task:** **NCAA Softball coverage — verify Division I women's calendar and exact source scope**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -160,6 +160,8 @@ Each section exits only when every identity has either verified, correctly scope
 **NCAA checkpoint, September 25 — Lacrosse:** The NCAA's separate Division I future-sites pages publish men's championship weekend May 29 and 31, 2027 at Lincoln Financial Field and women's May 28 and 30 at Subaru Park. Each split child now receives only its own two exact finals dates as official-window-only evidence; earlier rounds and regular-season fixtures remain unestablished. NCAA.org's women's event card names Johnny Unitas Stadium in Towson, which conflicts with NCAA.com's future-sites page, current women's sport page, NCAA tickets, and the published host selection identifying Subaru Park. The future-sites record and corroborating NCAA sources govern this mapping; the conflict is recorded in the women's source note for recheck. Systemwide NO_LINKED_SOURCE falls from 114 to 112, OFFICIAL_WINDOW_ONLY rises from 71 to 73, and PENDING_DATES falls from 127 to 125. NCAA Soccer is next. Official evidence: https://www.ncaa.com/championships/lacrosse-men/d1/future-info , https://www.ncaa.com/championships/lacrosse-women/d1/future-info , https://www.ncaa.com/sports/lacrosse-women/d1 , and https://www.ncaa.org/news/media-center-ncaa-announces-more-than-240-host-site-selections/ .
 
 
+**NCAA checkpoint, September 26 — Soccer:** NCAA's separate Division I event pages publish the 2026 men's College Cup semifinal and final on December 11 and 14, and the women's on December 10 and 13, at WakeMed Soccer Park in Cary. Each approved split child links only to its own two exact finals dates as an official-window-only source. The recurring August–December indicator remains; these dates do not establish earlier championship rounds or unattended regular-season fixtures. Systemwide NO_LINKED_SOURCE falls from 112 to 110, OFFICIAL_WINDOW_ONLY rises from 73 to 75, and PENDING_DATES falls from 125 to 123. NCAA Softball is next; NCAA remains open. Official evidence: https://www.ncaa.org/championship/division-i/mens-soccer/ and https://www.ncaa.org/championship/division-i/womens-soccer/ .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -217,4 +219,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #110 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Lacrosse begins with two pending/no-source children; this candidate links the separate 2027 championship weekend dates and records the conflicting NCAA women's venue pages. Expected systemwide totals are 112 NO_LINKED_SOURCE, 73 OFFICIAL_WINDOW_ONLY, 125 PENDING_DATES, nine DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Soccer is next.
+**Current checkpoint:** Priority 2; Active Offerings PR #111 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Soccer begins with two pending/no-source children; this candidate links separate 2026 College Cup finals dates. Expected systemwide totals are 110 NO_LINKED_SOURCE, 75 OFFICIAL_WINDOW_ONLY, 123 PENDING_DATES, nine DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Softball is next. The FBS source-scope hold remains unresolved.
