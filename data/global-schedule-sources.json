@@ -3854,15 +3854,56 @@
       "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Beach Pro Tour | Men and Women"]
     },
     {
-      "id": "volleyball-fivb-world-championships",
-      "source_type": "coverage-gap",
+      "id": "volleyball-fivb-world-championships-women",
+      "source_type": "official-event-window",
       "sport": "Volleyball",
-      "league": "Volleyball World Championships | Men and Women",
+      "league": "Volleyball World Championships | Women",
       "region": "International",
-      "official_schedule_url": "https://www.fivb.com/volleyball/",
-      "coverage_status": "no-current-edition",
-      "source_note": "No senior 2026 edition; age-group world championships are not routed through this approval.",
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Volleyball World Championships | Men and Women"]
+      "endpoint": "https://www.fivb.com/the-2027-fivb-womens-volleyball-world-cup-american-host-cities-revealed/",
+      "official_schedule_url": "https://www.fivb.com/the-2027-fivb-womens-volleyball-world-cup-american-host-cities-revealed/",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "FIVB confirms the 2027 senior World Championship edition is renamed World Cup; the catalog’s approved World Championships identity remains the legal parent. The published division window is not unattended fixture coverage, and age-group or beach competitions are excluded.",
+      "official_events": [
+        {
+          "source_id": "volleyball-fivb-world-championships-women",
+          "league": "Volleyball World Championships | Women",
+          "name": "2027 FIVB Volleyball Women’s World Cup (formerly World Championship)",
+          "start_date": "2027-08-20",
+          "end_date": "2027-09-05",
+          "location": "United States and Canada",
+          "official_schedule_url": "https://www.fivb.com/the-2027-fivb-womens-volleyball-world-cup-american-host-cities-revealed/"
+        }
+      ],
+      "catalog_terms": [
+        "Volleyball World Championships | Women"
+      ]
+    },
+    {
+      "id": "volleyball-fivb-world-championships-men",
+      "source_type": "official-event-window",
+      "sport": "Volleyball",
+      "league": "Volleyball World Championships | Men",
+      "region": "International",
+      "endpoint": "https://www.fivb.com/wp-content/uploads/2024/03/VB_CALENDAR_2025-2028_17.12.25.pdf",
+      "official_schedule_url": "https://www.fivb.com/wp-content/uploads/2024/03/VB_CALENDAR_2025-2028_17.12.25.pdf",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "FIVB confirms the 2027 senior World Championship edition is renamed World Cup; the catalog’s approved World Championships identity remains the legal parent. The published division window is not unattended fixture coverage, and age-group or beach competitions are excluded.",
+      "official_events": [
+        {
+          "source_id": "volleyball-fivb-world-championships-men",
+          "league": "Volleyball World Championships | Men",
+          "name": "2027 FIVB Volleyball Men’s World Cup (formerly World Championship)",
+          "start_date": "2027-09-10",
+          "end_date": "2027-09-26",
+          "location": "Poland",
+          "official_schedule_url": "https://www.fivb.com/wp-content/uploads/2024/03/VB_CALENDAR_2025-2028_17.12.25.pdf"
+        }
+      ],
+      "catalog_terms": [
+        "Volleyball World Championships | Men"
+      ]
     },
     {
       "id": "volleyball-fivb-beach-world-tour",

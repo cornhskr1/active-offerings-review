@@ -49,7 +49,7 @@ class VolleyballDivisionIdentityTests(unittest.TestCase):
                 {f"{base} | Men", f"{base} | Women"},
                 {child["label"] for child in children},
             )
-            if approval["key"] in {"volleyball-fivb-beach-pro-tour", "volleyball-cev-champions-league", "volleyball-fivb-vnl"}:
+            if approval["key"] in {"volleyball-fivb-beach-pro-tour", "volleyball-cev-champions-league", "volleyball-fivb-vnl", "volleyball-fivb-world-championships"}:
                 self.assertTrue(all(child.get("source_id") == child["key"] for child in children))
             else:
                 self.assertTrue(all(not child.get("source_id") for child in children))

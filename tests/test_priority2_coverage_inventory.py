@@ -18,6 +18,35 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_renamed_2027_world_cups_map_only_to_senior_world_championship_children(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        self.assertNotIn("volleyball-fivb-world-championships", sources)
+        for division, start, end in (
+            ("Women", "2027-08-20", "2027-09-05"),
+            ("Men", "2027-09-10", "2027-09-26"),
+        ):
+            with self.subTest(division=division):
+                league = f"Volleyball World Championships | {division}"
+                source_id = f"volleyball-fivb-world-championships-{division.lower()}"
+                row = self.rows[("Volleyball", league)]
+                self.assertEqual("Volleyball World Championships | Men and Women", row["approval_parent"])
+                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(0, row["events_in_window"])
+                source = sources[source_id]
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual("published-event-window", source["coverage_status"])
+                self.assertEqual(league, source["league"])
+                self.assertEqual([(start, end, league)], [
+                    (event["start_date"], event["end_date"], event["league"])
+                    for event in source["official_events"]
+                ])
+                self.assertIn("renamed World Cup", source["source_note"])
+                self.assertIn("age-group or beach competitions are excluded", source["source_note"])
+
     def test_vnl_divisions_have_independent_completed_windows_without_fixture_adapters(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
