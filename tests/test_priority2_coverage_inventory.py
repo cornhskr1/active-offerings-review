@@ -18,6 +18,32 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_svns_top_tier_windows_are_linked_to_each_division(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        for division in ("Men", "Women"):
+            with self.subTest(division=division):
+                league = f"SVNS | {division}"
+                source_id = f"rugby-intl-svns-{division.lower()}"
+                row = self.rows[("Rugby", league)]
+                self.assertEqual("SVNS | Men and Women", row["approval_parent"])
+                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(0, row["events_in_window"])
+                source = sources[source_id]
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual("published-event-window", source["coverage_status"])
+                self.assertEqual(league, source["league"])
+                self.assertEqual([("2026-11-28", "2027-05-30", league)], [
+                    (event["start_date"], event["end_date"], event["league"])
+                    for event in source["official_events"]
+                ])
+                self.assertIn("does not establish an unattended match fixture adapter",
+                              source["source_note"])
+                self.assertIn("SVNS 2 or 3", source["source_note"])
+
     def test_2026_club_world_championship_windows_are_division_specific(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
