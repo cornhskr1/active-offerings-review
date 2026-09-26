@@ -42,6 +42,10 @@ def main() -> None:
     alias_crosswalk = json.loads((DATA / "competition-alias-crosswalk.json").read_text(encoding="utf-8"))
     source_config = json.loads((DATA / "global-schedule-sources.json").read_text(encoding="utf-8"))
 
+    # Catalog labels are not globally unique inside a sport. Soccer alone has
+    # nine country-specific identities that share labels such as "Ligue 1" or
+    # "President's Cup". Use the stable catalog key as the operational key so
+    # those identities cannot absorb each other's sources or events.
     competitions: dict[tuple[str, str], dict] = {}
     split_parents: set[tuple[str, str]] = set()
 
@@ -51,16 +55,25 @@ def main() -> None:
             return
         ids = ([clean(event.get("source_id"))] if event.get("source_id") else [])
         ids.extend(clean(value) for value in event.get("source_ids") or [])
+        identity_key = clean(event.get("key"))
+        if not identity_key:
+            raise ValueError(f"Catalog identity lacks a stable key: {sport} / {league}")
         entry = {
             "sport": sport,
             "league": league,
+            "identity_key": identity_key,
             "source_ids": sorted(set(filter(None, ids))),
             "participants": [],
             "events": [],
         }
-        if child:
-            entry["identity_key"] = clean(event.get("key"))
-        competitions[(sport, league)] = entry
+        identity = (sport, identity_key)
+        if identity in competitions:
+            existing = competitions[identity]
+            if existing["league"] != league:
+                raise ValueError(f"Catalog key changes label: {sport} / {identity_key}")
+            existing["source_ids"] = sorted(set(existing["source_ids"] + entry["source_ids"]))
+            return
+        competitions[identity] = entry
 
     for sport_block in season_map.get("sports", []):
         sport = clean(sport_block.get("sport"))
@@ -84,8 +97,18 @@ def main() -> None:
         sport, league = clean(mapping.get("sport")), clean(mapping.get("catalog_event"))
         if not sport or not league:
             continue
-        entry = competitions.setdefault((sport, league), {"sport": sport, "league": league, "source_ids": [], "participants": [], "events": []})
         source_id = clean(mapping.get("source_id"))
+        candidates = [
+            entry for (entry_sport, _), entry in competitions.items()
+            if entry_sport == sport and entry["league"] == league
+        ]
+        source_matches = [entry for entry in candidates if source_id in entry["source_ids"]]
+        if len(source_matches) == 1:
+            entry = source_matches[0]
+        elif len(candidates) == 1:
+            entry = candidates[0]
+        else:
+            raise ValueError(f"Source mapping does not resolve one catalog identity: {sport} / {league} / {source_id}")
         if source_id and source_id not in entry["source_ids"]:
             entry["source_ids"].append(source_id)
     for mapping in season_map.get("catalog_event_mappings", []):
@@ -101,10 +124,11 @@ def main() -> None:
     # A source label is not a second approved competition. Resolve its events
     # to a catalog identity only when that source ID has exactly one catalog
     # target in the same sport. Shared feeds retain their explicit event label.
-    source_targets: dict[tuple[str, str], set[str]] = defaultdict(set)
-    for (sport, league), entry in competitions.items():
+    source_targets: dict[tuple[str, str], set[tuple[str, str]]] = defaultdict(set)
+    for identity, entry in competitions.items():
+        sport = entry["sport"]
         for source_id in entry["source_ids"]:
-            source_targets[(sport, source_id)].add(league)
+            source_targets[(sport, source_id)].add(identity)
     source_labels: dict[tuple[str, str], dict[str, str]] = defaultdict(dict)
     split_source_ids = {
         (clean(source.get("sport")), clean(source.get("id")))
@@ -112,15 +136,15 @@ def main() -> None:
         if (clean(source.get("sport")), clean(source.get("league"))) in split_parents
     }
 
-    def unique_target(sport: str, source_id: str) -> str:
+    def unique_target(sport: str, source_id: str) -> tuple[str, str] | None:
         targets = source_targets.get((sport, source_id), set())
-        return next(iter(targets)) if len(targets) == 1 else ""
+        return next(iter(targets)) if len(targets) == 1 else None
 
     for source in source_config.get("sources", []):
         sport, source_id, label = (clean(source.get(field)) for field in ("sport", "id", "league"))
         target = unique_target(sport, source_id)
-        if target and label and key(label) != key(target):
-            source_labels[(sport, target)][label] = source_id
+        if target and label and key(label) != key(competitions[target]["league"]):
+            source_labels[target][label] = source_id
 
     observed_participants: dict[tuple[str, str], set[str]] = defaultdict(set)
     observed_events: dict[tuple[str, str], dict[str, dict]] = defaultdict(dict)
@@ -136,15 +160,21 @@ def main() -> None:
             continue
         target = unique_target(sport, source_id)
         if target:
-            if key(league) != key(target):
-                source_labels[(sport, target)][league] = source_id
-            league = target
-        entry = competitions.setdefault((sport, league), {"sport": sport, "league": league, "source_ids": [], "participants": [], "events": []})
+            if key(league) != key(competitions[target]["league"]):
+                source_labels[target][league] = source_id
+            identity = target
+        else:
+            label_targets = [
+                candidate for candidate in catalog_identities
+                if candidate[0] == sport and competitions[candidate]["league"] == league
+            ]
+            identity = label_targets[0] if len(label_targets) == 1 else (sport, f"schedule:{league}")
+        entry = competitions.setdefault(identity, {"sport": sport, "league": league, "source_ids": [], "participants": [], "events": []})
         if source_id and source_id not in entry["source_ids"]:
             entry["source_ids"].append(source_id)
         sides = participants(name)
-        observed_participants[(sport, league)].update(sides)
-        observed_events[(sport, league)][key(name)] = {
+        observed_participants[identity].update(sides)
+        observed_events[identity][key(name)] = {
             "name": name,
             "start_time": clean(event.get("start_time")),
             "participants": sides,
@@ -154,20 +184,27 @@ def main() -> None:
         (entry["sport"], entry.get("identity_key")): entry
         for entry in competitions.values() if entry.get("identity_key")
     }
-    claimed_names = {(entry["sport"], key(entry["league"])): entry for entry in competitions.values()}
+    catalog_labels: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    claimed_names = {}
+    for identity in catalog_identities:
+        entry = competitions[identity]
+        normalized = (entry["sport"], key(entry["league"]))
+        catalog_labels[(entry["sport"], entry["league"])].append(entry)
+        claimed_names[normalized] = entry if normalized not in claimed_names else False
     alias_names = set()
     for row in alias_crosswalk["reviewed_aliases"]:
         sport, alias = row["sport"], clean(row["alias"])
         identity_key, catalog_identity = clean(row.get("identity_key")), clean(row.get("catalog_identity"))
         if bool(identity_key) == bool(catalog_identity):
             raise ValueError(f"Alias needs exactly one target type: {sport} / {alias}")
-        target = identities.get((sport, identity_key)) if identity_key else competitions.get((sport, catalog_identity))
-        if not target or (not identity_key and (sport, catalog_identity) not in catalog_identities):
+        label_targets = catalog_labels.get((sport, catalog_identity), [])
+        target = identities.get((sport, identity_key)) if identity_key else (label_targets[0] if len(label_targets) == 1 else None)
+        if not target:
             raise ValueError(f"Alias target is not a catalog identity: {sport} / {identity_key or catalog_identity}")
         if row.get("name_type") not in {"official", "operator", "data-provider"} or not str(row.get("evidence_url", "")).startswith("https://"):
             raise ValueError(f"Alias lacks reviewed official evidence: {sport} / {alias}")
         normalized = (sport, key(alias))
-        if not normalized[1] or (claimed_names.get(normalized) not in (None, target)):
+        if not normalized[1] or (normalized in claimed_names and claimed_names[normalized] is not target):
             raise ValueError(f"Alias collides with another competition: {sport} / {alias}")
         if normalized in alias_names:
             raise ValueError(f"Duplicate alias: {sport} / {alias}")
@@ -183,7 +220,7 @@ def main() -> None:
         target.setdefault("aliases", []).append(alias_entry)
 
     output_competitions = []
-    for identity, entry in sorted(competitions.items(), key=lambda item: (item[0][0].casefold(), item[0][1].casefold())):
+    for identity, entry in sorted(competitions.items(), key=lambda item: (item[1]["sport"].casefold(), item[1]["league"].casefold(), item[1].get("identity_key", "").casefold())):
         entry["source_ids"] = sorted(set(filter(None, entry["source_ids"])))
         if source_labels.get(identity):
             entry["source_labels"] = [{"name": label, "source_id": source_id} for label, source_id in sorted(source_labels[identity].items(), key=lambda item: item[0].casefold())]
@@ -214,25 +251,27 @@ def main() -> None:
     audit_sports = []
     for sport_block in season_map.get("sports", []):
         sport = clean(sport_block.get("sport"))
-        catalog_names = {league for item_sport, league in catalog_identities if item_sport == sport}
+        catalog_entries = [competitions[identity] for identity in catalog_identities if identity[0] == sport]
+        catalog_names = {entry["league"] for entry in catalog_entries}
         registered = [entry for entry in output_competitions if entry["sport"] == sport]
         shared_sources = []
         unmapped_sources = []
         for (source_sport, source_id), source in sorted(source_by_id.items()):
             if source_sport != sport:
                 continue
-            targets = sorted(source_targets.get((sport, source_id), set()), key=str.casefold)
+            target_ids = sorted(source_targets.get((sport, source_id), set()))
+            targets = [competitions[target]["league"] for target in target_ids]
             if len(targets) > 1:
                 shared_sources.append({"source_id": source_id, "label": clean(source.get("league")), "catalog_targets": targets})
             elif not targets:
                 unmapped_sources.append({"source_id": source_id, "label": clean(source.get("league"))})
         audit_sports.append({
             "sport": sport,
-            "catalog_identities": len(catalog_names),
+            "catalog_identities": len(catalog_entries),
             "registry_identities": len(registered),
             "organizer_alias_identities": sum(bool(entry.get("aliases")) for entry in registered),
             "source_label_identities": sum(bool(entry.get("source_labels")) for entry in registered),
-            "schedule_only_labels": sorted((entry["league"] for entry in registered if entry["league"] not in catalog_names), key=str.casefold),
+            "schedule_only_labels": sorted((entry["league"] for entry in registered if not entry.get("identity_key")), key=str.casefold),
             "shared_sources_for_review": shared_sources,
             "sources_without_catalog_target": unmapped_sources,
         })
