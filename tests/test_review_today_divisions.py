@@ -16,6 +16,31 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_beach_continental_cup_scope_holds_remain_visible_out_of_season(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={
+  global:JSON.parse(fs.readFileSync('data/global-schedule.json')),
+  seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))
+};
+function todayKey(){return '2026-09-26'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const holds=scheduleCoverageAttention('2026-09-26').filter(card=>
+  card.sport==='Volleyball' && card.type==='SCOPE/CALENDAR HOLD' &&
+  card.league.startsWith('FIVB Beach Volleyball Continental Cup |'));
+assert.equal(holds.length,2);
+assert(holds.every(card=>/Do not substitute/.test(card.reason)));
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_supercopa_calendar_holds_remain_visible_with_configured_gap_sources(self):
         script = """
 const assert=require('node:assert/strict');
