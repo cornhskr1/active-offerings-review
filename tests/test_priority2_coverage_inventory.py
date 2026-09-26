@@ -18,6 +18,28 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_brazilian_superliga_2026_27_dates_stay_on_visible_division_holds(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        for league, suffix, division in (
+            ("Superliga Feminina | Women", "women", "feminina"),
+            ("Superliga Masculina | Men", "men", "masculina"),
+        ):
+            with self.subTest(league=league):
+                row = self.rows[("Volleyball", league)]
+                source_id = f"volleyball-brazil-superliga-{suffix}"
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("ADAPTER_GAP", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertIn("dates pending official CBV publication", row["season_window"])
+                self.assertIn("still displays 2025–26", row["hold_reason"])
+                self.assertIn("Do not reuse last season", row["hold_reason"])
+                self.assertEqual("coverage-gap", sources[source_id]["source_type"])
+                self.assertEqual(f"https://cbv.com.br/volei-de-quadra/superliga-a-{division}",
+                                 sources[source_id]["official_schedule_url"])
+                self.assertNotIn("official_events", sources[source_id])
+
     def test_italian_volleyball_calendars_keep_divisions_and_unpublished_dates_separate(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")

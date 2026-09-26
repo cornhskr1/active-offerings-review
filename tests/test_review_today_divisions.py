@@ -122,6 +122,38 @@ assert.equal(fbs.source_url,'https://www.ncaa.com/scoreboard/football/fbs');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 
+    def test_brazilian_superliga_holds_remain_visible_out_of_season(self):
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:['women','men'].map(gender=>({
+  id:`volleyball-brazil-superliga-${gender}`,sport:'Volleyball',
+  league:gender==='women'?'Superliga Feminina | Women':'Superliga Masculina | Men',
+  region:'Brazil',coverage_status:'missing',official_schedule_url:`https://cbv.com.br/${gender}`
+}))},seasonMap:{source_mappings:[],catalog_event_mappings:[],sports:[{
+  sport:'Volleyball',groups:[{country:'Brazil',events:['women','men'].map(gender=>({
+    key:`volleyball-brazil-superliga-${gender}`,
+    catalog_event:gender==='women'?'Superliga Feminina | Women':'Superliga Masculina | Men',
+    source_id:`volleyball-brazil-superliga-${gender}`,season_status:'out',
+    season_hold:true,hold_reason:`CBV ${gender} 2026–27 dates unverified`
+  }))}]
+}]}};
+function todayKey(){return '2026-09-26'}
+function sourceCatalogMapping(){return null}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "mappedCatalogEventForSource",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+const cards=scheduleCoverageAttention('2026-09-26');
+assert.equal(cards.length,2);
+assert(cards.every(card=>card.type==='SCOPE/CALENDAR HOLD'));
+assert(cards.every(card=>/2026–27 dates unverified/.test(card.reason)));
+assert.notEqual(cards[0].source_url,cards[1].source_url);
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_partial_italian_superlega_calendar_raises_gap_for_manual_review(self):
         script = """
 const assert=require('node:assert/strict');
