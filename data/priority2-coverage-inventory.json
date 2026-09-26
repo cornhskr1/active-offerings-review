@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T19:39:47.698270+00:00",
-  "schedule_generated_at": "2026-09-26T19:34:57.588519+00:00",
+  "registry_generated_at": "2026-09-26T19:46:36.705410+00:00",
+  "schedule_generated_at": "2026-09-26T19:42:20.766020+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 144,
+      "DATED_WINDOW": 147,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 32,
+      "DOCUMENTED_HOLD": 34,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 2,
+      "PARTIAL_WINDOW": 5,
       "PENDING_DATES": 52,
-      "RECURRING_WINDOW": 419
+      "RECURRING_WINDOW": 411
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 290,
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 237,
-      "pending_dates": 48
+      "pending_dates": 51
     },
     "Surfing": {
       "identities": 6,
@@ -6733,8 +6733,8 @@
       "identity_key": "soccer-austria-2-liga-men",
       "approval_parent": "2. Liga | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7174,8 +7174,8 @@
       "identity_key": "soccer-austria-austrian-bundesliga-men",
       "approval_parent": "Austrian Bundesliga | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–May 30, 2027 league rounds; June 2027 European play-off pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -7195,8 +7195,8 @@
       "identity_key": "soccer-austria-austrian-cup-men",
       "approval_parent": "Austrian Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–May 1, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7216,9 +7216,10 @@
       "identity_key": "soccer-austria-austrian-frauen-bundesliga-women",
       "approval_parent": "Austrian Frauen-Bundesliga | Women",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 active; full final-phase boundary pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "The full 2026–27 Frauen Bundesliga end and any final-phase scope require explicit verification.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -8046,7 +8047,7 @@
           "id": "uefa-soccer-belgium-championship-playoffs-i-and-ii-men",
           "type": "coverage-gap",
           "configured_league": "Championship Playoffs I and II | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -13056,8 +13057,8 @@
       "identity_key": "soccer-switzerland-swiss-challenge-league-men",
       "approval_parent": "Swiss Challenge League | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 24, 2026–May 28, 2027 regular season; June barrage separate",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13077,8 +13078,8 @@
       "identity_key": "soccer-switzerland-swiss-cup-men",
       "approval_parent": "Swiss Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026–June 6, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13098,8 +13099,8 @@
       "identity_key": "soccer-switzerland-swiss-super-league-men",
       "approval_parent": "Swiss Super League | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 25, 2026–May 30, 2027 regular season; June barrage separate",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14106,9 +14107,10 @@
       "identity_key": "soccer-austria-fb-frauen-cup-women",
       "approval_parent": "ÖFB Frauen Cup | Women",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 4, 2026 first round; 2027 final pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Women’s cup final date and full window remain unverified.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -14711,7 +14713,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
