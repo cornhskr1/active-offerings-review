@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T16:07:41.302718+00:00",
-  "schedule_generated_at": "2026-09-26T15:19:06.124487+00:00",
+  "registry_generated_at": "2026-09-26T16:13:13.618923+00:00",
+  "schedule_generated_at": "2026-09-26T16:09:17.708063+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,21 +12,21 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 179,
       "ADAPTER_GAP": 287,
-      "NO_LINKED_SOURCE": 84,
-      "OFFICIAL_WINDOW_ONLY": 103,
+      "NO_LINKED_SOURCE": 80,
+      "OFFICIAL_WINDOW_ONLY": 107,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 79,
+      "DATED_WINDOW": 83,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 27,
+      "DOCUMENTED_HOLD": 29,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 81,
+      "PENDING_DATES": 75,
       "RECURRING_WINDOW": 452
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 301,
+    "reported_gap_labels": 300,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -271,9 +271,9 @@
     "Surfing": {
       "identities": 6,
       "split_children": 6,
-      "no_linked_source": 6,
+      "no_linked_source": 2,
       "adapter_gaps": 0,
-      "pending_dates": 6
+      "pending_dates": 0
     },
     "Table Tennis": {
       "identities": 3,
@@ -3616,7 +3616,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Esports",
@@ -6343,7 +6343,7 @@
           "id": "rugby-na-ran-championship-men",
           "type": "official-event-window",
           "configured_league": "Rugby Americas North Championship | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6364,7 +6364,7 @@
           "id": "rugby-na-ran-championship-women",
           "type": "official-event-window",
           "configured_league": "Rugby Americas North Championship | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6385,7 +6385,7 @@
           "id": "rugby-na-ran-sevens-men",
           "type": "official-event-window",
           "configured_league": "Rugby Americas North Sevens | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6406,7 +6406,7 @@
           "id": "rugby-na-ran-sevens-women",
           "type": "official-event-window",
           "configured_league": "Rugby Americas North Sevens | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -13999,9 +13999,10 @@
       "identity_key": "surfing-wsl-big-wave-men",
       "approval_parent": "Big Wave Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "",
+      "season_window": "2026–27 Big Wave Tour dates not published",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "No WSL-published 2026–27 men’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -14012,9 +14013,10 @@
       "identity_key": "surfing-wsl-big-wave-women",
       "approval_parent": "Big Wave Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "",
+      "season_window": "2026–27 Big Wave Tour dates not published",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "No WSL-published 2026–27 women’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -14025,11 +14027,19 @@
       "identity_key": "surfing-wsl-championship-tour-men",
       "approval_parent": "Championship Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "April 1–December 20, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "surfing-wsl-championship-tour-men",
+          "type": "official-event-window",
+          "configured_league": "Championship Tour | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14038,11 +14048,19 @@
       "identity_key": "surfing-wsl-championship-tour-women",
       "approval_parent": "Championship Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "April 1–December 20, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "surfing-wsl-championship-tour-women",
+          "type": "official-event-window",
+          "configured_league": "Championship Tour | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14051,11 +14069,19 @@
       "identity_key": "surfing-wsl-longboard-men",
       "approval_parent": "Longboard Championship Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "July 25, 2026–March 21, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "surfing-wsl-longboard-men",
+          "type": "official-event-window",
+          "configured_league": "Longboard Championship Tour | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -14064,11 +14090,19 @@
       "identity_key": "surfing-wsl-longboard-women",
       "approval_parent": "Longboard Championship Tour | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "July 25, 2026–March 21, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "surfing-wsl-longboard-women",
+          "type": "official-event-window",
+          "configured_league": "Longboard Championship Tour | Women",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {

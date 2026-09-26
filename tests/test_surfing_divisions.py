@@ -42,7 +42,11 @@ class SurfingDivisionIdentityTests(unittest.TestCase):
                 {child["label"] for child in children},
             )
             self.assertTrue(all(child.get("key") for child in children))
-            self.assertTrue(all(not child.get("source_id") for child in children))
+            if approval["key"] == "surfing-wsl-big-wave":
+                self.assertTrue(all(not child.get("source_id") for child in children))
+                self.assertTrue(all(child.get("season_hold") for child in children))
+            else:
+                self.assertTrue(all(child.get("source_id") == child["key"] for child in children))
             child_keys.extend(child["key"] for child in children)
 
         self.assertEqual(len(child_keys), len(set(child_keys)))

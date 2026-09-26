@@ -16,6 +16,37 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_surfing_tour_sources_and_big_wave_holds(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={global:JSON.parse(fs.readFileSync('data/global-schedule-sources.json')),
+  seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))};
+function todayKey(){return '2026-09-26'}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
+            "mappedSeasonStatus", "sourceCatalogMapping", "mappedCatalogEventForSource",
+            "normCollegeSport", "isNonWageredNcaaSport",
+            "uncoveredMappedEvents", "scheduleCoverageAttention",
+        ))
+        script += """
+for(const [kind,base,start,end] of [
+  ['championship-tour','Championship Tour','2026-04-01','2026-12-20'],
+  ['longboard','Longboard Championship Tour','2026-07-25','2027-03-21']
+]) for(const division of ['Men','Women']){
+  const mapping=mappedCatalogEventForSource(`surfing-wsl-${kind}-${division.toLowerCase()}`);
+  assert.equal(mapping.catalog_event,`${base} | ${division}`);
+  assert.equal(mapping.parent_catalog_event,`${base} | Men and Women`);
+  assert.equal(mapping.season_start_date,start);
+  assert.equal(mapping.season_end_date,end);
+}
+const holds=scheduleCoverageAttention('2026-09-26').filter(card=>card.league.startsWith('Big Wave Tour |'));
+assert.deepEqual(holds.map(card=>card.league).sort(),['Big Wave Tour | Men','Big Wave Tour | Women']);
+assert(holds.every(card=>card.type==='SCOPE/CALENDAR HOLD'));
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_ran_window_sources_resolve_only_to_their_children(self):
         script = """
 const assert=require('node:assert/strict');

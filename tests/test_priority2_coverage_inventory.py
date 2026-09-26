@@ -18,6 +18,39 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_surfing_tour_children_have_separate_windows_and_big_wave_holds(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        self.assertNotIn("surfing-wsl-championship-tour", sources)
+        self.assertNotIn("surfing-wsl-longboard", sources)
+        for kind, base, start, end in (
+            ("championship-tour", "Championship Tour", "2026-04-01", "2026-12-20"),
+            ("longboard", "Longboard Championship Tour", "2026-07-25", "2027-03-21"),
+        ):
+            for division in ("Men", "Women"):
+                with self.subTest(kind=kind, division=division):
+                    league = f"{base} | {division}"
+                    sid = f"surfing-wsl-{kind}-{division.lower()}"
+                    row = self.rows[("Surfing", league)]
+                    self.assertEqual(f"{base} | Men and Women", row["approval_parent"])
+                    self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                     (row["season_state"], row["coverage_state"]))
+                    self.assertEqual([sid], [source["id"] for source in row["sources"]])
+                    self.assertEqual(0, row["events_in_window"])
+                    self.assertEqual([(start, end, league)], [
+                        (event["start_date"], event["end_date"], event["league"])
+                        for event in sources[sid]["official_events"]
+                    ])
+                    self.assertEqual([league], sources[sid]["catalog_terms"])
+        for division in ("Men", "Women"):
+            row = self.rows[("Surfing", f"Big Wave Tour | {division}")]
+            self.assertEqual(("DOCUMENTED_HOLD", "NO_LINKED_SOURCE"),
+                             (row["season_state"], row["coverage_state"]))
+            self.assertEqual([], row["sources"])
+            self.assertIn("No WSL-published 2026–27", row["hold_reason"])
+
+
     def test_ran_senior_divisions_have_separate_published_windows(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
