@@ -11,19 +11,19 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 185,
-      "ADAPTER_GAP": 295,
+      "ADAPTER_GAP": 292,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 118,
+      "OFFICIAL_WINDOW_ONLY": 121,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 105,
+      "DATED_WINDOW": 116,
       "DESCRIPTIVE_WINDOW": 58,
       "DOCUMENTED_HOLD": 30,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 58,
-      "RECURRING_WINDOW": 455
+      "PENDING_DATES": 55,
+      "RECURRING_WINDOW": 447
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 295,
@@ -265,8 +265,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 242,
-      "pending_dates": 53
+      "adapter_gaps": 239,
+      "pending_dates": 50
     },
     "Surfing": {
       "identities": 6,
@@ -8644,8 +8644,8 @@
       "identity_key": "soccer-france-coup-lffp-women",
       "approval_parent": "Coup LFFP | Women",
       "kind": "catalog",
-      "season_window": "November 2026–March 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 22, 2026–April 10, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10807,8 +10807,8 @@
       "identity_key": "soccer-portugal-liga-portugal-2-men",
       "approval_parent": "Liga Portugal 2 | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 9, 2026–May 16, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10870,8 +10870,8 @@
       "identity_key": "soccer-france-ligue-1-men",
       "approval_parent": "Ligue 1 | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 23, 2026–May 29, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10912,8 +10912,8 @@
       "identity_key": "soccer-france-ligue-2-men",
       "approval_parent": "Ligue 2 | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 8, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -11710,8 +11710,8 @@
       "identity_key": "soccer-france-premi-re-ligue-women",
       "approval_parent": "Première Ligue | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 5, 2026–June 5, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -11794,8 +11794,8 @@
       "identity_key": "soccer-portugal-primeira-liga-men",
       "approval_parent": "Primeira Liga | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 9, 2026–May 16, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -12172,8 +12172,8 @@
       "identity_key": "soccer-france-seconde-ligue-women",
       "approval_parent": "Seconde Ligue | Women",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 6, 2026–May 9, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12970,14 +12970,14 @@
       "identity_key": "soccer-portugal-superta-a-c-ndido-de-oliveira-men",
       "approval_parent": "Supertaça Cândido de Oliveira | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 1, 2026 · completed",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-portugal-superta-a-c-ndido-de-oliveira-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Supertaça Cândido de Oliveira | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -12991,14 +12991,14 @@
       "identity_key": "soccer-portugal-superta-a-feminina-women",
       "approval_parent": "Supertaça Feminina | Women",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "September 6, 2026 · completed",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-portugal-superta-a-feminina-women",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Supertaça Feminina | Women",
           "refresh_ok": true,
           "events_in_window": 0
@@ -13201,8 +13201,8 @@
       "identity_key": "soccer-portugal-ta-a-da-liga-men",
       "approval_parent": "Taça da Liga | Men",
       "kind": "catalog",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "October 27, 2026–January 9, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13411,14 +13411,14 @@
       "identity_key": "soccer-france-troph-e-des-champions-men",
       "approval_parent": "Trophée des Champions | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "August 16, 2026 · completed",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-france-troph-e-des-champions-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Trophée des Champions | Men",
           "refresh_ok": true,
           "events_in_window": 0
