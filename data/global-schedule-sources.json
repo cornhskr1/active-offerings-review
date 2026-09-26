@@ -3811,36 +3811,52 @@
       "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Volleyball Challenger Cup | Men and Women"]
     },
     {
-      "id": "volleyball-fivb-club-world",
+      "id": "volleyball-fivb-club-world-women",
       "source_type": "official-event-window",
       "sport": "Volleyball",
-      "league": "Volleyball World Club Championships | Men and Women",
+      "league": "Volleyball World Club Championships | Women",
       "region": "International",
-      "endpoint": "https://en.volleyballworld.com/volleyball/competitions/club-world-championship-men/competition/host-city",
-      "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/club-world-championship-men/competition/host-city",
+      "endpoint": "https://www.fivb.com/eight-teams-confirmed-for-the-2026-fivb-womens-club-world-championship-in-sao-paulo/",
+      "official_schedule_url": "https://www.fivb.com/eight-teams-confirmed-for-the-2026-fivb-womens-club-world-championship-in-sao-paulo/",
       "endpoint_validation": "published-window",
-      "coverage_status": "current-published-events",
+      "coverage_status": "published-event-window",
+      "source_note": "FIVB publishes the separate women's 2026 Club World Championship window in São Paulo. The event window does not establish an unattended match fixture adapter or coverage for the men's competition.",
       "official_events": [
         {
-          "source_id": "volleyball-fivb-club-world",
-          "league": "Volleyball World Club Championships | Men and Women",
+          "source_id": "volleyball-fivb-club-world-women",
+          "league": "Volleyball World Club Championships | Women",
           "name": "FIVB Volleyball Women’s Club World Championship 2026",
           "start_date": "2026-12-08",
           "end_date": "2026-12-13",
           "location": "São Paulo, Brazil",
-          "official_schedule_url": "https://en.volleyballworld.com/news/sao-paulo-to-host-2026-fivb-volleyball-women-s-club-world-championship"
-        },
+          "official_schedule_url": "https://www.fivb.com/eight-teams-confirmed-for-the-2026-fivb-womens-club-world-championship-in-sao-paulo/"
+        }
+      ],
+      "catalog_terms": ["Volleyball World Club Championships | Women"]
+    },
+    {
+      "id": "volleyball-fivb-club-world-men",
+      "source_type": "official-event-window",
+      "sport": "Volleyball",
+      "league": "Volleyball World Club Championships | Men",
+      "region": "International",
+      "endpoint": "https://www.fivb.com/poland-to-host-the-fivb-volleyball-mens-club-world-championship-in-2026-and-2027/",
+      "official_schedule_url": "https://www.fivb.com/poland-to-host-the-fivb-volleyball-mens-club-world-championship-in-2026-and-2027/",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "FIVB publishes the separate men's 2026 Club World Championship window in Poland. The event window does not establish an unattended match fixture adapter or coverage for the women's competition; 2027 dates remain pending.",
+      "official_events": [
         {
-          "source_id": "volleyball-fivb-club-world",
-          "league": "Volleyball World Club Championships | Men and Women",
+          "source_id": "volleyball-fivb-club-world-men",
+          "league": "Volleyball World Club Championships | Men",
           "name": "FIVB Volleyball Men’s Club World Championship 2026",
           "start_date": "2026-12-15",
           "end_date": "2026-12-20",
           "location": "Poland",
-          "official_schedule_url": "https://en.volleyballworld.com/volleyball/competitions/club-world-championship-men/competition/host-city"
+          "official_schedule_url": "https://www.fivb.com/poland-to-host-the-fivb-volleyball-mens-club-world-championship-in-2026-and-2027/"
         }
       ],
-      "catalog_terms": ["Fédération Internationale de Volleyball (FIVB)", "Volleyball World Club Championships | Men and Women"]
+      "catalog_terms": ["Volleyball World Club Championships | Men"]
     },
     {
       "id": "volleyball-fivb-beach-pro-tour",

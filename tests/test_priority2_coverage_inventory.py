@@ -18,6 +18,35 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_2026_club_world_championship_windows_are_division_specific(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        self.assertNotIn("volleyball-fivb-club-world", sources)
+        for division, start, end in (
+            ("Women", "2026-12-08", "2026-12-13"),
+            ("Men", "2026-12-15", "2026-12-20"),
+        ):
+            with self.subTest(division=division):
+                league = f"Volleyball World Club Championships | {division}"
+                source_id = f"volleyball-fivb-club-world-{division.lower()}"
+                row = self.rows[("Volleyball", league)]
+                self.assertEqual("Volleyball World Club Championships | Men and Women", row["approval_parent"])
+                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(0, row["events_in_window"])
+                source = sources[source_id]
+                self.assertEqual("official-event-window", source["source_type"])
+                self.assertEqual("published-event-window", source["coverage_status"])
+                self.assertEqual(league, source["league"])
+                self.assertEqual([(start, end, league)], [
+                    (event["start_date"], event["end_date"], event["league"])
+                    for event in source["official_events"]
+                ])
+                self.assertIn("does not establish an unattended match fixture adapter",
+                              source["source_note"])
+
     def test_renamed_2027_world_cups_map_only_to_senior_world_championship_children(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
@@ -868,7 +897,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Football"]["adapter_gaps"])
 
         self.assertEqual(
-            [{"sport": "Football", "league": "NCAA Football"}],
+            [],
             self.inventory["summary"]["schedule_only_not_independent_approvals"],
         )
 
@@ -1113,7 +1142,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
         self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
         self.assertEqual(
-            [{"sport": "Football", "league": "NCAA Football"}],
+            [],
             self.inventory["summary"]["schedule_only_not_independent_approvals"],
         )
         self.assertEqual(len(self.rows), self.inventory["summary"]["catalog_operational_identities"])
