@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T02:28:35.419083+00:00",
+  "registry_generated_at": "2026-09-26T02:36:49.017385+00:00",
   "schedule_generated_at": "2026-09-26T00:25:52.657991+00:00",
   "schedule_window_start": "2026-09-25",
   "schedule_window_end": "2026-10-02",
@@ -19,10 +19,10 @@
     "season_states": {
       "DATED_WINDOW": 65,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 23,
+      "DOCUMENTED_HOLD": 25,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 99,
+      "PENDING_DATES": 97,
       "RECURRING_WINDOW": 452
     },
     "reported_gap_areas": 13,
@@ -299,7 +299,7 @@
       "split_children": 18,
       "no_linked_source": 14,
       "adapter_gaps": 6,
-      "pending_dates": 9
+      "pending_dates": 7
     }
   },
   "identities": [
@@ -14683,9 +14683,10 @@
       "identity_key": "volleyball-fivb-challenger-cup-men",
       "approval_parent": "Volleyball Challenger Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "",
+      "season_window": "Final edition July 4–7, 2024; no current edition",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "FIVB identifies the 2024 men’s Volleyball Challenger Cup as the final edition. No 2025 or 2026 edition is established; the expanded VNL now uses ranking-based replacement. Do not use a VNL, continental, or other Challenger event as this catalog identity.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
@@ -14696,9 +14697,10 @@
       "identity_key": "volleyball-fivb-challenger-cup-women",
       "approval_parent": "Volleyball Challenger Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "Division-specific dates pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "",
+      "season_window": "Final edition July 4–7, 2024; no current edition",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "FIVB identifies the 2024 women’s Volleyball Challenger Cup as the final edition. No 2025 or 2026 edition is established; the expanded VNL now uses ranking-based replacement. Do not use a VNL, continental, or other Challenger event as this catalog identity.",
       "coverage_state": "NO_LINKED_SOURCE",
       "sources": [],
       "events_in_window": 0
