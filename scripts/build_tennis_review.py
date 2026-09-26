@@ -37,14 +37,18 @@ def norm(value):
 
 def tennis_catalog_source_ids(season_map):
     ids = set()
+    def collect(event):
+        if event.get("source_id"):
+            ids.add(event["source_id"])
+        ids.update(event.get("source_ids") or [])
+        for child in event.get("coverage_children") or []:
+            collect(child)
     for sport in season_map.get("sports") or []:
         if sport.get("sport") != "Tennis":
             continue
         for group in sport.get("groups") or []:
             for event in group.get("events") or []:
-                source_id = event.get("source_id")
-                if source_id:
-                    ids.add(source_id)
+                collect(event)
     return ids
 
 

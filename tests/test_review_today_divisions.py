@@ -16,6 +16,32 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
+    def test_tennis_tour_children_resolve_and_show_progress(self):
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={seasonMap:JSON.parse(fs.readFileSync('data/catalog-season-map.json'))};
+function todayKey(){return '2026-09-26'}
+"""
+        script += "\n".join(function_source(name) for name in (
+            "exactSeasonStatus", "annualSeasonStatus", "seasonProgressHtml",
+            "eventSourceIds", "sourceCatalogMapping", "mappedCatalogEventForSource",
+        ))
+        script += """
+for(const family of ['itf-world-tour','utr-pro-tour','usta-pro-circuit'])
+  for(const division of ['Men','Women']){
+    const mapped=mappedCatalogEventForSource(`tennis-${family}-${division.toLowerCase()}`);
+    assert(mapped);
+    assert.equal(mapped.catalog_event.endsWith(` | ${division}`),true);
+    assert.equal(mapped.parent_catalog_event.endsWith(' | Men and Women'),true);
+    assert.match(seasonProgressHtml(mapped,annualSeasonStatus(mapped)),/role="progressbar"/);
+  }
+const united=mappedCatalogEventForSource('tennis-united-cup');
+assert.equal(united.season_hold,true);
+assert.equal(seasonProgressHtml(united,'in'),'');
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_table_tennis_children_and_mltt_show_separate_season_progress(self):
         script = """
 const assert=require('node:assert/strict');

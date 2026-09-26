@@ -18,6 +18,43 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_tennis_source_scope_and_united_cup_hold(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+        for old in ("tennis-australian-open", "tennis-french-open", "tennis-wimbledon",
+                    "tennis-us-open", "tennis-usta-pro-circuit", "tennis-itf-world-tour",
+                    "tennis-utr-pro-tour"):
+            self.assertNotIn(old, sources)
+        for league, window in (
+            ("Australian Open", ("2027-01-11", "2027-01-31")),
+            ("Roland-Garros / French Open", ("2027-05-17", "2027-06-06")),
+            ("Wimbledon", ("2027-06-28", "2027-07-11")),
+            ("United States Open", ("2026-08-23", "2026-09-13")),
+        ):
+            for division in ("Men", "Women"):
+                row = self.rows[("Tennis", f"{league} | {division}")]
+                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                                 (row["season_state"], row["coverage_state"]))
+                sid = row["identity_key"]
+                self.assertEqual([sid], [source["id"] for source in row["sources"]])
+                self.assertEqual([f"{league} | {division}"], sources[sid]["catalog_terms"])
+                event = sources[sid]["official_events"][0]
+                self.assertEqual(window, (event["start_date"], event["end_date"]))
+        for league, expected in (("USTA Pro Circuit", "ADAPTER_GAP"),
+                                 ("ITF World Tennis Tour", "ADAPTER_CONFIGURED"),
+                                 ("UTR Pro Tennis Tour", "ADAPTER_CONFIGURED")):
+            for division in ("Men", "Women"):
+                row = self.rows[("Tennis", f"{league} | {division}")]
+                self.assertEqual(("RECURRING_WINDOW", expected),
+                                 (row["season_state"], row["coverage_state"]))
+                self.assertEqual([row["identity_key"]],
+                                 [source["id"] for source in row["sources"]])
+        united = self.rows[("Tennis", "United Cup | Men and Women")]
+        self.assertEqual("DOCUMENTED_HOLD", united["season_state"])
+        self.assertEqual("ADAPTER_GAP", united["coverage_state"])
+        self.assertIn("no 2027 match calendar", united["hold_reason"])
+
     def test_table_tennis_windows_are_scoped_to_three_operational_identities(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")

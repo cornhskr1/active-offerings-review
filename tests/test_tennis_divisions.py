@@ -61,15 +61,33 @@ class TennisDivisionIdentityTests(unittest.TestCase):
             )
             self.assertNotIn(approval["catalog_event"], registry)
             for child in children:
-                self.assertFalse(child.get("source_id"))
+                self.assertEqual(child["key"], child.get("source_id"))
                 self.assertEqual(
                     child["key"],
                     registry[child["label"]]["identity_key"],
                 )
+                self.assertEqual([child["key"]], registry[child["label"]]["source_ids"])
                 child_keys.append(child["key"])
 
         self.assertEqual(14, len(child_keys))
         self.assertEqual(len(child_keys), len(set(child_keys)))
+
+    def test_tennis_watch_division_source_ids_match_catalog_children(self):
+        config = json.loads((DATA / "tennis-v2-config.json").read_text(encoding="utf-8"))
+        expected = {
+            "itf-men": "tennis-itf-world-tour-men",
+            "itf-women": "tennis-itf-world-tour-women",
+            "utr-men": "tennis-utr-pro-tour-men",
+            "utr-women": "tennis-utr-pro-tour-women",
+        }
+        registry = self.registry_events()
+        for tour, source in expected.items():
+            with self.subTest(tour=tour):
+                self.assertEqual(source, config["tour_approval_map"][tour])
+                self.assertEqual([source], registry[next(
+                    child["label"] for parent in self.season_events().values()
+                    for child in parent.get("coverage_children", []) if child["key"] == source
+                )]["source_ids"])
 
     def test_united_cup_remains_one_mixed_team_competition(self):
         united_cup = self.season_events()[MIXED_KEY]
