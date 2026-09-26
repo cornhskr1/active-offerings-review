@@ -41,7 +41,22 @@ def catalog_identities(season_map):
         label = item.get("label") or item.get("catalog_event")
         if not label:
             raise ValueError(f"Missing operational label: {sport}")
-        key = (sport, label)
+        identity_key = item.get("key") or ""
+        if not identity_key:
+            candidates = [
+                row for (row_sport, _), row in rows.items()
+                if row_sport == sport and row["league"] == label
+            ]
+            item_sources = set(source_ids(item))
+            source_matches = [row for row in candidates if row["mapped_source_ids"] & item_sources]
+            if len(source_matches) == 1:
+                source_matches[0]["mapped_source_ids"].update(item_sources)
+                return
+            if len(candidates) == 1:
+                candidates[0]["mapped_source_ids"].update(item_sources)
+                return
+            raise ValueError(f"Mapping lacks a stable or uniquely resolvable identity: {sport} / {label}")
+        key = (sport, identity_key)
         if key in rows:
             # source_mappings repeat some sports entries; the sport hierarchy is
             # authoritative for the legal parent and child identity.
@@ -50,7 +65,7 @@ def catalog_identities(season_map):
         rows[key] = {
             "sport": sport,
             "league": label,
-            "identity_key": item.get("key") or "",
+            "identity_key": identity_key,
             "approval_parent": parent or item.get("catalog_event") or label,
             "kind": "split-child" if parent else kind,
             "season_window": item.get("season_window") or "",
@@ -93,13 +108,16 @@ def build():
     catalog_rows = catalog_identities(season_map)
     configured = {(item["sport"], item["id"]): item for item in schedule_sources}
     observed = {(item["sport"], item["id"]): item for item in schedule.get("sources", [])}
-    registry_rows = {(item["sport"], item["league"]): item for item in registry["competitions"]}
+    registry_rows = {
+        (item["sport"], item["identity_key"]): item
+        for item in registry["competitions"] if item.get("identity_key")
+    }
     missing = set(catalog_rows) - set(registry_rows)
     if missing:
         raise ValueError(f"Catalog identities missing from registry: {sorted(missing)[:5]}")
 
     identities = []
-    for key, mapped in sorted(catalog_rows.items()):
+    for key, mapped in sorted(catalog_rows.items(), key=lambda item: (item[1]["sport"], item[1]["league"], item[1]["identity_key"])):
         entry = registry_rows[key]
         if mapped["kind"] == "split-child" and entry.get("identity_key") != mapped["identity_key"]:
             raise ValueError(f"Child key mismatch: {key}")
@@ -133,7 +151,10 @@ def build():
             "events_in_window": len(entry.get("events", [])),
         })
 
-    schedule_only = sorted(set(registry_rows) - set(catalog_rows))
+    schedule_only = sorted(
+        (item["sport"], item["league"])
+        for item in registry["competitions"] if not item.get("identity_key")
+    )
     states = Counter(item["coverage_state"] for item in identities)
     seasons = Counter(item["season_state"] for item in identities)
     sports = defaultdict(lambda: {"identities": 0, "split_children": 0, "no_linked_source": 0, "adapter_gaps": 0, "pending_dates": 0})

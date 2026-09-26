@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T17:07:42.601871+00:00",
-  "schedule_generated_at": "2026-09-26T17:04:40.438292+00:00",
+  "registry_generated_at": "2026-09-26T17:24:00.428755+00:00",
+  "schedule_generated_at": "2026-09-26T17:19:37.732171+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
-    "catalog_operational_identities": 722,
+    "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 184,
-      "ADAPTER_GAP": 287,
+      "ADAPTER_CONFIGURED": 185,
+      "ADAPTER_GAP": 295,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 118,
       "SOURCE_SCOPE_REVIEW": 69
@@ -22,11 +22,11 @@
       "DOCUMENTED_HOLD": 30,
       "NO_WINDOW": 24,
       "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 57,
-      "RECURRING_WINDOW": 447
+      "PENDING_DATES": 58,
+      "RECURRING_WINDOW": 455
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 297,
+    "reported_gap_labels": 295,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -262,11 +262,11 @@
       "pending_dates": 0
     },
     "Soccer": {
-      "identities": 344,
+      "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 234,
-      "pending_dates": 52
+      "adapter_gaps": 242,
+      "pending_dates": 53
     },
     "Surfing": {
       "identities": 6,
@@ -1550,7 +1550,7 @@
           "id": "basketball-il-league-cup",
           "type": "official-event-window",
           "configured_league": "League Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -7975,7 +7975,7 @@
       "season_window": "Annual season-opening event · next date pending",
       "season_state": "PENDING_DATES",
       "season_status": "out",
-      "coverage_state": "ADAPTER_CONFIGURED",
+      "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
           "id": "soccer-afc-bangladesh-challenge-cup-men",
@@ -7983,7 +7983,21 @@
           "configured_league": "Challenge Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
-        },
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "Challenge Cup | Men",
+      "identity_key": "soccer-scotland-challenge-cup-men",
+      "approval_parent": "Challenge Cup | Men",
+      "kind": "catalog",
+      "season_window": "July 2026–May 2027",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
         {
           "id": "uefa-soccer-scotland-challenge-cup-men",
           "type": "espn-daily",
@@ -8048,14 +8062,28 @@
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
-          "id": "caf-soccer-zambia-charity-shield-men",
+          "id": "soccer-afc-malaysia-charity-shield-men",
           "type": "coverage-gap",
           "configured_league": "Charity Shield | Men",
           "refresh_ok": true,
           "events_in_window": 0
-        },
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "Charity Shield | Men",
+      "identity_key": "soccer-zambia-charity-shield-men",
+      "approval_parent": "Charity Shield | Men",
+      "kind": "catalog",
+      "season_window": "Annual August event",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
         {
-          "id": "soccer-afc-malaysia-charity-shield-men",
+          "id": "caf-soccer-zambia-charity-shield-men",
           "type": "coverage-gap",
           "configured_league": "Charity Shield | Men",
           "refresh_ok": true,
@@ -10748,7 +10776,21 @@
           "configured_league": "Liga Nacional | Men",
           "refresh_ok": true,
           "events_in_window": 0
-        },
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "Liga Nacional | Men",
+      "identity_key": "soccer-honduras-liga-nacional-men",
+      "approval_parent": "Liga Nacional | Men",
+      "kind": "catalog",
+      "season_window": "January–May / July–December",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
         {
           "id": "concacaf-soccer-honduras-liga-nacional-men",
           "type": "coverage-gap",
@@ -10834,16 +10876,30 @@
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
-          "id": "caf-soccer-ivory-coast-ligue-1-men",
-          "type": "coverage-gap",
-          "configured_league": "Ligue 1 | Men",
-          "refresh_ok": true,
-          "events_in_window": 0
-        },
-        {
           "id": "ligue1",
           "type": "adapter",
           "configured_league": "Ligue 1",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "Ligue 1 | Men",
+      "identity_key": "soccer-ivory-coast-ligue-1-men",
+      "approval_parent": "Ligue 1 | Men",
+      "kind": "catalog",
+      "season_window": "September–June",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "caf-soccer-ivory-coast-ligue-1-men",
+          "type": "coverage-gap",
+          "configured_league": "Ligue 1 | Men",
           "refresh_ok": true,
           "events_in_window": 0
         }
@@ -11559,10 +11615,10 @@
           "type": "espn-daily",
           "configured_league": "Players Cup | Women",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
@@ -11681,21 +11737,49 @@
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
+          "id": "uefa-soccer-ireland-president-s-cup-men",
+          "type": "coverage-gap",
+          "configured_league": "President’s Cup | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "President’s Cup | Men",
+      "identity_key": "soccer-suriname-president-s-cup-men",
+      "approval_parent": "President’s Cup | Men",
+      "kind": "catalog",
+      "season_window": "Annual single-match event · next official date pending",
+      "season_state": "PENDING_DATES",
+      "season_status": "out",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
           "id": "concacaf-soccer-suriname-presidents-cup-men",
           "type": "coverage-gap",
           "configured_league": "President’s Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
-        },
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "President’s Cup | Men",
+      "identity_key": "soccer-united-arab-emirates-president-s-cup-men",
+      "approval_parent": "President’s Cup | Men",
+      "kind": "catalog",
+      "season_window": "September–May",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
         {
           "id": "soccer-afc-united-arab-emirates-presidents-cup-men",
-          "type": "coverage-gap",
-          "configured_league": "President’s Cup | Men",
-          "refresh_ok": true,
-          "events_in_window": 0
-        },
-        {
-          "id": "uefa-soccer-ireland-president-s-cup-men",
           "type": "coverage-gap",
           "configured_league": "President’s Cup | Men",
           "refresh_ok": true,
@@ -11758,13 +11842,6 @@
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
-          "id": "concacaf-soccer-el-salvador-primera-division-men",
-          "type": "coverage-gap",
-          "configured_league": "Primera División | Men",
-          "refresh_ok": true,
-          "events_in_window": 0
-        },
-        {
           "id": "conmebol-soccer-chile-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
@@ -11773,6 +11850,27 @@
         }
       ],
       "events_in_window": 1
+    },
+    {
+      "sport": "Soccer",
+      "league": "Primera División | Men",
+      "identity_key": "soccer-el-salvador-primera-divisi-n-men",
+      "approval_parent": "Primera División | Men",
+      "kind": "catalog",
+      "season_window": "January–May / July–December",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "concacaf-soccer-el-salvador-primera-division-men",
+          "type": "coverage-gap",
+          "configured_league": "Primera División | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -12101,13 +12199,6 @@
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
-          "id": "conmebol-soccer-uruguay-segunda-division-men",
-          "type": "espn-daily",
-          "configured_league": "Segunda División | Men",
-          "refresh_ok": true,
-          "events_in_window": 0
-        },
-        {
           "id": "uefa-soccer-spain-segunda-divisi-n-men",
           "type": "espn-daily",
           "configured_league": "Segunda División | Men",
@@ -12116,6 +12207,27 @@
         }
       ],
       "events_in_window": 15
+    },
+    {
+      "sport": "Soccer",
+      "league": "Segunda División | Men",
+      "identity_key": "soccer-uruguay-segunda-divisi-n-men",
+      "approval_parent": "Segunda División | Men",
+      "kind": "catalog",
+      "season_window": "March–November",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "conmebol-soccer-uruguay-segunda-division-men",
+          "type": "espn-daily",
+          "configured_league": "Segunda División | Men",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -12444,14 +12556,28 @@
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
-          "id": "soccer-afc-india-super-cup-men",
+          "id": "uefa-soccer-iceland-super-cup-men",
           "type": "coverage-gap",
           "configured_league": "Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
-        },
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Soccer",
+      "league": "Super Cup | Men",
+      "identity_key": "soccer-india-super-cup-men",
+      "approval_parent": "Super Cup | Men",
+      "kind": "catalog",
+      "season_window": "April–May",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
         {
-          "id": "uefa-soccer-iceland-super-cup-men",
+          "id": "soccer-afc-india-super-cup-men",
           "type": "coverage-gap",
           "configured_league": "Super Cup | Men",
           "refresh_ok": true,

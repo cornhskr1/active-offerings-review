@@ -1350,7 +1350,10 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             [],
             self.inventory["summary"]["schedule_only_not_independent_approvals"],
         )
-        self.assertEqual(len(self.rows), self.inventory["summary"]["catalog_operational_identities"])
+        self.assertEqual(
+            len(self.inventory["identities"]),
+            self.inventory["summary"]["catalog_operational_identities"],
+        )
 
 
 if __name__ == "__main__":
