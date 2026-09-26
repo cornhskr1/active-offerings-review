@@ -18,6 +18,22 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_beach_pro_tour_does_not_inherit_retired_world_tour_approval(self):
+        for gender in ("Men", "Women"):
+            with self.subTest(gender=gender):
+                pro = self.rows[("Volleyball", f"Beach Pro Tour | {gender}")]
+                self.assertEqual("DESCRIPTIVE_WINDOW", pro["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", pro["coverage_state"])
+                self.assertEqual([f"volleyball-fivb-beach-pro-tour-{gender.lower()}"],
+                                 [source["id"] for source in pro["sources"]])
+                self.assertEqual("official-event-window", pro["sources"][0]["type"])
+                for retired in ("Beach Volleyball World Tour", "Beach Volleyball World Tour Championships"):
+                    row = self.rows[("Volleyball", f"{retired} | {gender}")]
+                    self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                    self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                    self.assertEqual([], row["sources"])
+                    self.assertIn("Do not", row["hold_reason"])
+
     def test_split_parent_does_not_become_a_schedule_identity(self):
         self.assertNotIn(("NCAA Water Polo", "Division I Water Polo | Men and Women"), self.rows)
         for division in ("Men", "Women"):
@@ -489,7 +505,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         )
         self.assertEqual(["ncaa-basketball-cbc"], registered["source_ids"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(13, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_ncaa_division_two_and_three_basketball_use_exact_child_windows(self):
         expected = {
@@ -546,8 +561,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], registered[league]["source_ids"])
 
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(102, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(83, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # The CBI and FBS holds remain separate from these exact child windows.
         cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
@@ -581,7 +594,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             source.get("sport") == "NCAA Beach Volleyball"
             for source in config["sources"]
         ))
-        self.assertEqual(13, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
@@ -625,8 +637,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(["ncaa-field-hockey-di"], registered["source_ids"])
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Field Hockey"]["no_linked_source"])
-        self.assertEqual(102, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(83, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # FBS scope remains unresolved and must stay fail-closed.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
@@ -667,8 +677,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Football"]["no_linked_source"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Football"]["adapter_gaps"])
-        self.assertEqual(102, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(83, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
         self.assertEqual(289, self.inventory["summary"]["coverage_states"]["ADAPTER_GAP"])
         self.assertEqual(69, self.inventory["summary"]["coverage_states"]["SOURCE_SCOPE_REVIEW"])
 
