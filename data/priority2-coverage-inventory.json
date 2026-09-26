@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T19:22:05.680819+00:00",
-  "schedule_generated_at": "2026-09-26T19:19:07.417838+00:00",
+  "registry_generated_at": "2026-09-26T19:39:47.698270+00:00",
+  "schedule_generated_at": "2026-09-26T19:34:57.588519+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,23 +10,23 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 185,
+      "ADAPTER_CONFIGURED": 184,
       "ADAPTER_GAP": 290,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 123,
+      "OFFICIAL_WINDOW_ONLY": 124,
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 137,
+      "DATED_WINDOW": 144,
       "DESCRIPTIVE_WINDOW": 58,
-      "DOCUMENTED_HOLD": 30,
+      "DOCUMENTED_HOLD": 32,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 1,
-      "PENDING_DATES": 53,
-      "RECURRING_WINDOW": 428
+      "PARTIAL_WINDOW": 2,
+      "PENDING_DATES": 52,
+      "RECURRING_WINDOW": 419
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 291,
+    "reported_gap_labels": 290,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -7342,9 +7342,10 @@
       "identity_key": "soccer-belgium-belgian-cup-beker-van-belgi-men",
       "approval_parent": "Belgian Cup / Beker van België | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 underway; earliest amateur round and final date pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
+      "hold_reason": "Published round dates do not establish full cup bounds; amateur qualifying start and final date are not verified.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -7363,8 +7364,8 @@
       "identity_key": "soccer-belgium-belgian-pro-league-men",
       "approval_parent": "Belgian Pro League | Men",
       "kind": "catalog",
-      "season_window": "July–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 7, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -7384,14 +7385,14 @@
       "identity_key": "soccer-belgium-belgian-super-cup-men",
       "approval_parent": "Belgian Super Cup | Men",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "July 31, 2026 · 2027 date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-belgium-belgian-super-cup-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Belgian Super Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -7993,8 +7994,8 @@
       "identity_key": "soccer-scotland-challenge-cup-men",
       "approval_parent": "Challenge Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 11, 2026–April 4, 2027 latest final weekend",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -8014,8 +8015,8 @@
       "identity_key": "soccer-belgium-challenger-pro-league-men",
       "approval_parent": "Challenger Pro League | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 14, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8035,16 +8036,17 @@
       "identity_key": "soccer-belgium-championship-playoffs-i-and-ii-men",
       "approval_parent": "Championship Playoffs I and II | Men",
       "kind": "catalog",
-      "season_window": "March–May 2027",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
-      "coverage_state": "ADAPTER_CONFIGURED",
+      "season_window": "No 2026–27 Jupiler Pro League championship play-offs",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "The catalog line remains as a legal parent, but the named top-division play-offs do not exist in the 2026–27 format.",
+      "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
-          "id": "belgium",
-          "type": "adapter",
-          "configured_league": "Jupiler Pro League",
-          "refresh_ok": true,
+          "id": "uefa-soccer-belgium-championship-playoffs-i-and-ii-men",
+          "type": "coverage-gap",
+          "configured_league": "Championship Playoffs I and II | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -12088,8 +12090,8 @@
       "identity_key": "soccer-scotland-scottish-championship-men",
       "approval_parent": "Scottish Championship | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–April 30, 2027 regular season",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -12109,8 +12111,8 @@
       "identity_key": "soccer-scotland-scottish-cup-men",
       "approval_parent": "Scottish Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 1, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -12130,8 +12132,8 @@
       "identity_key": "soccer-scotland-scottish-league-cup-men",
       "approval_parent": "Scottish League Cup | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 11–December 13, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -12151,8 +12153,8 @@
       "identity_key": "soccer-scotland-scottish-premiership-men",
       "approval_parent": "Scottish Premiership | Men",
       "kind": "catalog",
-      "season_window": "July 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 31, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -14709,7 +14711,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],

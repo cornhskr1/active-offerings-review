@@ -149,10 +149,10 @@
       "sport": "Soccer",
       "country": "Belgium",
       "catalog_event": "Belgian Pro League | Men",
-      "season_window": "July–May",
-      "season_start": "07-01",
-      "season_end": "05-31",
-      "last_verified": "2026-09-16"
+      "season_window": "August 7, 2026–May 23, 2027",
+      "last_verified": "2026-09-26",
+      "season_start_date": "2026-08-07",
+      "season_end_date": "2027-05-23"
     },
     {
       "source_id": "denmark",
@@ -4926,56 +4926,59 @@
             {
               "key": "soccer-belgium-belgian-pro-league-men",
               "catalog_event": "Belgian Pro League | Men",
-              "season_window": "July–May",
-              "season_basis": "Existing connected public schedule source and controlled annual season window",
-              "last_verified": "2026-09-18",
+              "season_window": "August 7, 2026–May 23, 2027",
+              "season_basis": "Pro League 2026–27 calendar: 34 rounds, no top-division championship play-offs; connected ESPN top-division feed remains scoped to league fixtures.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "belgium"
+              "source_id": "belgium",
+              "season_start_date": "2026-08-07",
+              "season_end_date": "2027-05-23"
             },
             {
               "key": "soccer-belgium-challenger-pro-league-men",
               "catalog_event": "Challenger Pro League | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "August 14, 2026–May 22, 2027",
+              "season_basis": "Pro League 2026–27 calendar confirms the August 14 opener, regular season through May 1, and separate promotion play-offs on May 6, 9, 15, and 22; unattended fixture adapter remains missing.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-belgium-challenger-pro-league-men"
+              "source_id": "uefa-soccer-belgium-challenger-pro-league-men",
+              "season_start_date": "2026-08-14",
+              "season_end_date": "2027-05-22"
             },
             {
               "key": "soccer-belgium-belgian-cup-beker-van-belgi-men",
               "catalog_event": "Belgian Cup / Beker van België | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026–27 underway; earliest amateur round and final date pending",
+              "season_basis": "Pro League lists September 26–27 last-64 round and subsequent rounds, but says amateur rounds began in summer and final date is still pending.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-belgium-belgian-cup-beker-van-belgi-men"
+              "source_id": "uefa-soccer-belgium-belgian-cup-beker-van-belgi-men",
+              "season_hold": true,
+              "hold_reason": "Published round dates do not establish full cup bounds; amateur qualifying start and final date are not verified."
             },
             {
               "key": "soccer-belgium-belgian-super-cup-men",
               "catalog_event": "Belgian Super Cup | Men",
-              "season_window": "2026 edition completed · next official date pending",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "July 31, 2026 · 2027 date pending",
+              "season_basis": "Pro League calendar confirms the single 2026 Volkswagen Supercup date; no 2027 edition or unattended adapter is established.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
               "season_status": "out",
-              "source_id": "uefa-soccer-belgium-belgian-super-cup-men"
+              "source_id": "uefa-soccer-belgium-belgian-super-cup-men",
+              "season_start_date": "2026-07-31",
+              "season_end_date": "2026-07-31"
             },
             {
               "key": "soccer-belgium-championship-playoffs-i-and-ii-men",
               "catalog_event": "Championship Playoffs I and II | Men",
-              "season_window": "March–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "No 2026–27 Jupiler Pro League championship play-offs",
+              "season_basis": "Pro League 2026–27 top division uses 34 rounds without championship play-offs. Challenger promotion play-offs are a different competition and cannot satisfy this catalog line.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "03-01",
-              "season_end": "05-31",
-              "source_id": "belgium"
+              "source_id": "uefa-soccer-belgium-championship-playoffs-i-and-ii-men",
+              "season_hold": true,
+              "hold_reason": "The catalog line remains as a legal parent, but the named top-division play-offs do not exist in the 2026–27 format.",
+              "season_status": "out"
             }
           ]
         },
@@ -7580,57 +7583,58 @@
             {
               "key": "soccer-scotland-scottish-premiership-men",
               "catalog_event": "Scottish Premiership | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "July 31, 2026–May 23, 2027",
+              "season_basis": "SPFL opening fixture July 31; league round 38 May 15–16 and Premiership play-off final second leg May 23. ESPN league feed may omit play-off fixtures.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-scotland-scottish-premiership-men"
+              "source_id": "uefa-soccer-scotland-scottish-premiership-men",
+              "season_start_date": "2026-07-31",
+              "season_end_date": "2027-05-23"
             },
             {
               "key": "soccer-scotland-scottish-championship-men",
               "catalog_event": "Scottish Championship | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "July 31, 2026–April 30, 2027 regular season",
+              "season_basis": "SPFL published regular-season bounds; promotion/relegation play-off fixtures may extend past April 30 and are not covered by this date window.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-scotland-scottish-championship-men"
+              "source_id": "uefa-soccer-scotland-scottish-championship-men",
+              "season_start_date": "2026-07-31",
+              "season_end_date": "2027-04-30",
+              "season_window_complete": false
             },
             {
               "key": "soccer-scotland-scottish-cup-men",
               "catalog_event": "Scottish Cup | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "August 1, 2026–May 22, 2027",
+              "season_basis": "Scottish FA 2026–27 men’s Cup calendar includes preliminary rounds from August 1 and final May 22; ESPN feed may omit preliminary rounds.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-scotland-scottish-cup-men"
+              "source_id": "uefa-soccer-scotland-scottish-cup-men",
+              "season_start_date": "2026-08-01",
+              "season_end_date": "2027-05-22"
             },
             {
               "key": "soccer-scotland-scottish-league-cup-men",
               "catalog_event": "Scottish League Cup | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "July 11–December 13, 2026",
+              "season_basis": "SPFL 2026–27 Premier Sports Cup group stage begins July 11 and final is December 13; ESPN feed scope through group stage needs monitoring.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-scotland-scottish-league-cup-men"
+              "source_id": "uefa-soccer-scotland-scottish-league-cup-men",
+              "season_start_date": "2026-07-11",
+              "season_end_date": "2026-12-13"
             },
             {
               "key": "soccer-scotland-challenge-cup-men",
               "catalog_event": "Challenge Cup | Men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "August 11, 2026–April 4, 2027 latest final weekend",
+              "season_basis": "SPFL KDM Evolution Trophy starts August 11; final is March 27–28 or April 3–4. League phase includes Premiership B teams and permits 15-year-olds; age and team composition require separate regulatory checks, not an assumed fixture approval.",
+              "last_verified": "2026-09-26",
               "restrictions": [],
-              "season_start": "07-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-scotland-challenge-cup-men"
+              "source_id": "uefa-soccer-scotland-challenge-cup-men",
+              "season_start_date": "2026-08-11",
+              "season_end_date": "2027-04-04"
             }
           ]
         },

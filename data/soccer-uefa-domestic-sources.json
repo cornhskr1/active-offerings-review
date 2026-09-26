@@ -143,15 +143,29 @@
       ]
     },
     {
+      "id": "uefa-soccer-belgium-championship-playoffs-i-and-ii-men",
+      "sport": "Soccer",
+      "league": "Championship Playoffs I and II | Men",
+      "region": "Belgium",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://www.proleague.be/fr/informations/calendrier-2026-2027-club-brugge-kv-kortrijk-en-match-douverture-de-la-nouvelle-saison-premier-super-sunday-lors-de-la-4eme-journee",
+      "official_schedule_url": "https://www.proleague.be/fr/informations/calendrier-2026-2027-club-brugge-kv-kortrijk-en-match-douverture-de-la-nouvelle-saison-premier-super-sunday-lors-de-la-4eme-journee",
+      "source_note": "No Jupiler Pro League championship play-offs in 2026–27. Do not inherit the top-division feed or the separate Challenger promotion play-offs.",
+      "catalog_terms": [
+        "Championship Playoffs I and II | Men"
+      ]
+    },
+    {
       "id": "uefa-soccer-belgium-challenger-pro-league-men",
       "sport": "Soccer",
       "league": "Challenger Pro League | Men",
       "region": "Belgium",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.rbfa.be/",
-      "official_schedule_url": "https://www.rbfa.be/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.proleague.be/fr/informations/calendrier-2026-2027-un-duel-de-nouveaux-venus-pour-lancer-la-challenger-pro-league",
+      "official_schedule_url": "https://www.proleague.be/fr/informations/calendrier-2026-2027-un-duel-de-nouveaux-venus-pour-lancer-la-challenger-pro-league",
+      "source_note": "Pro League confirms August 14 opening and May 22 promotion play-off end; no unattended daily adapter is connected.",
       "catalog_terms": [
         "Challenger Pro League | Men"
       ]
@@ -163,9 +177,9 @@
       "region": "Belgium",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.rbfa.be/",
-      "official_schedule_url": "https://www.rbfa.be/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.proleague.be/nieuws/croky-cup-krijgt-prominente-plaats-in-kalender-van-2026-2027",
+      "official_schedule_url": "https://www.proleague.be/nieuws/croky-cup-krijgt-prominente-plaats-in-kalender-van-2026-2027",
+      "source_note": "Official later-round calendar; summer amateur qualifying start and final date remain pending, with no unattended adapter.",
       "catalog_terms": [
         "Belgian Cup / Beker van België | Men"
       ]
@@ -175,13 +189,24 @@
       "sport": "Soccer",
       "league": "Belgian Super Cup | Men",
       "region": "Belgium",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.rbfa.be/",
-      "official_schedule_url": "https://www.rbfa.be/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie",
+      "official_schedule_url": "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie",
+      "source_note": "Pro League calendar and result establish the completed July 31, 2026 Supercup only; no 2027 date or unattended adapter.",
       "catalog_terms": [
         "Belgian Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-belgium-belgian-super-cup-men",
+          "league": "Belgian Super Cup | Men",
+          "name": "Volkswagen Supercup 2026",
+          "start_date": "2026-07-31",
+          "end_date": "2026-07-31",
+          "location": "Belgium",
+          "official_schedule_url": "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie"
+        }
       ]
     },
     {
@@ -1716,8 +1741,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.1/scoreboard",
-      "official_schedule_url": "https://www.scottishfa.co.uk/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://spfl.co.uk/news/key-dates-for-202627",
+      "source_note": "SPFL division-specific regular season dates; connected ESPN feed scope must be checked for post-season play-offs.",
       "catalog_terms": [
         "Scottish Premiership | Men"
       ]
@@ -1730,8 +1755,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.2/scoreboard",
-      "official_schedule_url": "https://www.scottishfa.co.uk/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://spfl.co.uk/news/key-dates-for-202627",
+      "source_note": "SPFL division-specific regular season dates; connected ESPN feed scope must be checked for post-season play-offs.",
       "catalog_terms": [
         "Scottish Championship | Men"
       ]
@@ -1744,8 +1769,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.tennents/scoreboard",
-      "official_schedule_url": "https://www.scottishfa.co.uk/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://www.scottishfa.co.uk/en/scottish-cup/scottish-gas-mens-scottish-cup/format-rules",
+      "source_note": "Scottish FA dates include preliminary rounds; connected ESPN Scottish Cup feed may omit preliminary ties.",
       "catalog_terms": [
         "Scottish Cup | Men"
       ]
@@ -1758,8 +1783,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.cis/scoreboard",
-      "official_schedule_url": "https://www.scottishfa.co.uk/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://spfl.co.uk/news/premier-sports-cup-202627-draw",
+      "source_note": "SPFL group-stage through final dates; connected ESPN League Cup feed requires group-stage scope checks.",
       "catalog_terms": [
         "Scottish League Cup | Men"
       ]
@@ -1772,8 +1797,8 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.challenge/scoreboard",
-      "official_schedule_url": "https://www.scottishfa.co.uk/",
-      "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
+      "official_schedule_url": "https://spfl.co.uk/league/challenge-cup/format",
+      "source_note": "SPFL KDM Evolution Trophy dates and B-team format; connected ESPN Challenge Cup feed requires league-phase scope checks. Fifteen-year-olds may participate, so age checks remain necessary.",
       "catalog_terms": [
         "Challenge Cup | Men"
       ]
