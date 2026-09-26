@@ -858,7 +858,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.2/scoreboard",
-      "official_schedule_url": "https://www.dfb.de/",
+      "official_schedule_url": "https://www.bundesliga.com/en/2bundesliga/matchday",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "2. Bundesliga | Men"
@@ -872,7 +872,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.dfb_pokal/scoreboard",
-      "official_schedule_url": "https://www.dfb.de/",
+      "official_schedule_url": "https://www.dfb.de/maenner/wettbewerbe/dfb-pokal/rahmentermine",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "DFB-Pokal | Men"
@@ -886,8 +886,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.dfb.de/",
-      "official_schedule_url": "https://www.dfb.de/",
-      "source_note": "The approved competition and season are mapped to the DFB, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.dfb.de/news/das-ist-der-rahmenspielplan-fuer-die-saison-2026/2027",
+      "source_note": "DFB publishes the women's opening fixture and May 23 finale; no dependable women-only daily adapter is connected.",
       "catalog_terms": [
         "Frauen Bundesliga | Women"
       ]
@@ -900,8 +900,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.dfb.de/",
-      "official_schedule_url": "https://www.dfb.de/",
-      "source_note": "The approved competition and season are mapped to the DFB, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://www.dfb.de/frauen/dfb-wettbewerbe-frauen/dfb-pokal/rahmentermine",
+      "source_note": "DFB publishes the women's August play-offs through May 17 final; no dependable women-only daily adapter is connected.",
       "catalog_terms": [
         "DFB-Pokal Frauen | Women"
       ]
@@ -911,13 +911,24 @@
       "sport": "Soccer",
       "league": "DFL-Supercup | Men",
       "region": "Germany",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.dfb.de/",
-      "official_schedule_url": "https://www.dfb.de/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://datencenter.dfb.de/en/competitions/german-super-cup/seasons/19388/teams/bayern-munich",
+      "official_schedule_url": "https://datencenter.dfb.de/en/competitions/german-super-cup/seasons/19388/teams/bayern-munich",
+      "source_note": "DFB records the August 22, 2026 result under Franz Beckenbauer Supercup, the current name for the approved DFL-Supercup identity; no unattended adapter or 2027 date is claimed.",
       "catalog_terms": [
         "DFL-Supercup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-germany-dfl-supercup-men",
+          "league": "DFL-Supercup | Men",
+          "name": "Franz Beckenbauer Supercup 2026",
+          "start_date": "2026-08-22",
+          "end_date": "2026-08-22",
+          "location": "Dortmund, Germany",
+          "official_schedule_url": "https://datencenter.dfb.de/en/competitions/german-super-cup/seasons/19388/teams/bayern-munich"
+        }
       ]
     },
     {
@@ -1096,7 +1107,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.coppa_italia/scoreboard",
-      "official_schedule_url": "https://www.figc.it/",
+      "official_schedule_url": "https://www.legaseriea.it/coppa-italia/calendario-risultati",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Coppa Italia | Men",
@@ -1111,8 +1122,8 @@
       "source_type": "coverage-gap",
       "coverage_status": "pending",
       "endpoint": "https://www.figc.it/",
-      "official_schedule_url": "https://www.figc.it/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "official_schedule_url": "https://en.legaseriea.it/supercoppa",
+      "source_note": "The approved men's Supercoppa is separate from the women's January event and the youth Primavera super cup. An exact 2026 match record and dependable daily adapter are not yet attached.",
       "catalog_terms": [
         "Supercoppa Italiana | Men",
         "Supercoppa Italiana | Men and Women"
@@ -1126,7 +1137,7 @@
       "source_type": "espn-daily",
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.2/scoreboard",
-      "official_schedule_url": "https://www.figc.it/",
+      "official_schedule_url": "https://www.legab.it/seriebkt/calendario",
       "source_note": "Connected daily match feed; only events inside the dashboard review window are published.",
       "catalog_terms": [
         "Serie B | Men"
