@@ -18,6 +18,18 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
+    def test_beach_continental_cup_holds_do_not_inherit_2026_regional_championships(self):
+        for gender in ("Men", "Women"):
+            with self.subTest(gender=gender):
+                row = self.rows[("Volleyball", f"FIVB Beach Volleyball Continental Cup | {gender}")]
+                self.assertEqual("split-child", row["kind"])
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                self.assertEqual([], row["sources"])
+                self.assertIn("2024 AVC Continental Cup", row["season_window"])
+                self.assertIn("2026 regional championships or tour finals", row["hold_reason"])
+                self.assertIn("Do not substitute", row["hold_reason"])
+
     def test_cev_champions_league_calendars_are_division_specific(self):
         expected = {"Men": "2027-05-15", "Women": "2027-05-01"}
         config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
