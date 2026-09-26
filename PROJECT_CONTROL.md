@@ -3,7 +3,7 @@
 **Deadline:** October 1, 2026  
 **Last reconciled:** September 26, 2026
 **Active priority:** **Priority 2 — Complete season and schedule coverage linked to Review Today**
-**Current task:** **NCAA Water Polo coverage — verify separate Division I men's and women's calendars and source scope**
+**Current task:** **NCAA Wrestling coverage — verify Division I men's calendar and source scope, then assess the NCAA section exit gate**
 **Scope-switch status:** **Priority 1 gate passed September 24; Priority 2 is active and remains frozen until its gate passes**
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
@@ -170,6 +170,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **NCAA checkpoint, September 26 — Track and Field:** NCAA publishes separate Division I indoor and outdoor championship identities covering both men and women. The indoor finals are March 12–13, 2027 in Fayetteville; outdoor finals are June 9–12, 2027 in Eugene. Four operational children now have separate source IDs and only their correct indoor/outdoor finals windows as official-window-only evidence. The combined pages do not establish gender-specific session dates or unattended regular-season fixtures. NCAA.com’s outdoor future-sites page lists 2027 first-round sites at Jacksonville and College Station, while the NCAA.org event page labels a 2026–27 schedule of events at Lexington and Fayetteville; preliminary rounds are deliberately excluded pending reconciliation. Systemwide NO_LINKED_SOURCE falls from 107 to 103, OFFICIAL_WINDOW_ONLY rises from 78 to 82, and PENDING_DATES falls from 119 to 115. NCAA Water Polo is next; NCAA remains open. Official evidence: https://www.ncaa.org/championship/division-i/indoor-track-and-field/ , https://www.ncaa.org/championship/division-i/outdoor-track-and-field/ , and https://www.ncaa.com/championships/trackfield-outdoor/d1/future-info .
 
+**NCAA checkpoint, September 26 — Water Polo:** NCAA titles separate men’s and women’s championships National Collegiate, while the exact catalog children are Division I. The men’s broader championship is December 4–6, 2026 in La Jolla; the women’s is April 23–25, 2027 at Stanford. These dates are attached to the correct children only as documented fail-closed scope context, with no National Collegiate source linkage or inferred Division I-only championship approval. Systemwide PENDING_DATES falls from 115 to 113 and DOCUMENTED_HOLD rises from 11 to 13; NO_LINKED_SOURCE remains 103. NCAA Wrestling is next, followed by the section exit check. Official evidence: https://www.ncaa.org/championship/national-collegiate/mens-water-polo/ and https://www.ncaa.org/championship/national-collegiate/womens-water-polo/ .
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
@@ -227,4 +229,4 @@ Before beginning work, record:
 - Expected gate total after work
 - Any blocker or deliberate hold
 
-**Current checkpoint:** Priority 2; Active Offerings PR #115 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Track and Field begins with four pending/no-source children; this candidate links distinct indoor/outdoor, men's/women's finals windows without claiming preliminary-round or fixture completeness. Expected systemwide totals are 103 NO_LINKED_SOURCE, 82 OFFICIAL_WINDOW_ONLY, 115 PENDING_DATES, 11 DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Water Polo is next.
+**Current checkpoint:** Priority 2; Active Offerings PR #116 merged. The inventory contains 722 mapped operational identities and 144 split children. NCAA Water Polo begins with two pending/no-source children; this candidate records the National Collegiate championship dates as separate Division I scope holds, without linking broader sources. Expected systemwide totals are 103 NO_LINKED_SOURCE, 82 OFFICIAL_WINDOW_ONLY, 113 PENDING_DATES, 13 DOCUMENTED_HOLD, 289 ADAPTER_GAP, and 69 SOURCE_SCOPE_REVIEW. NCAA remains open; NCAA Wrestling and section exit review are next.

@@ -24,7 +24,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             row = self.rows[("NCAA Water Polo", f"Division I Water Polo | {division}")]
             self.assertEqual("split-child", row["kind"])
             self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
-            self.assertEqual("PENDING_DATES", row["season_state"])
+            self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
             self.assertEqual([], row["sources"])
 
     def test_complete_world_cup_window_and_gap_do_not_pretend_to_be_fixture_adapter(self):
@@ -469,7 +469,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         )
         self.assertEqual(["ncaa-basketball-cbc"], registered["source_ids"])
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(11, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(13, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
     def test_ncaa_division_two_and_three_basketball_use_exact_child_windows(self):
         expected = {
@@ -561,7 +561,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             source.get("sport") == "NCAA Beach Volleyball"
             for source in config["sources"]
         ))
-        self.assertEqual(11, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
+        self.assertEqual(13, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
@@ -868,6 +868,30 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertIn("first-round dates and venues require separate reconciliation", sources["ncaa-track-outdoor-di-men"]["source_note"])
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Track and Field"]["pending_dates"])
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Track and Field"]["no_linked_source"])
+
+    def test_ncaa_water_polo_national_collegiate_dates_remain_division_scope_holds(self):
+        expected = {
+            "Division I Water Polo | Men": "December 4–6, 2026",
+            "Division I Water Polo | Women": "April 23–25, 2027",
+        }
+        season = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
+        approval = next(item for item in season["sports"] if item["sport"] == "NCAA Water Polo")["groups"][0]["events"][0]
+        children = {child["label"]: child for child in approval["coverage_children"]}
+        for league, dates in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("NCAA Water Polo", league)]
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                self.assertEqual([], row["sources"])
+                self.assertIn(dates, row["hold_reason"])
+                self.assertIn("National Collegiate", row["hold_reason"])
+                self.assertIn("Division I-only", row["hold_reason"])
+                self.assertTrue(children[league]["season_hold"])
+                self.assertNotIn("season_start", children[league])
+                self.assertNotIn("source_id", children[league])
+        self.assertNotIn(("NCAA Water Polo", approval["catalog_event"]), self.rows)
+        self.assertEqual(0, self.inventory["by_sport"]["NCAA Water Polo"]["pending_dates"])
+        self.assertEqual(2, self.inventory["by_sport"]["NCAA Water Polo"]["no_linked_source"])
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
