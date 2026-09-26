@@ -884,9 +884,9 @@
       "region": "Georgia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://gff.ge/",
-      "official_schedule_url": "https://gff.ge/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://www.erovnuliliga.ge/en/calendar",
+      "official_schedule_url": "https://www.erovnuliliga.ge/en/calendar",
+      "source_note": "Official 2026 top-division rounds finish December 6; separate qualification playoff scope is not verified and no unattended adapter is connected.",
       "catalog_terms": [
         "Erovnuli Liga | Men"
       ]
@@ -898,9 +898,9 @@
       "region": "Georgia",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://gff.ge/",
-      "official_schedule_url": "https://gff.ge/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "endpoint": "https://gff.ge/ge/media/news/31481",
+      "official_schedule_url": "https://gff.ge/ge/media/news/31481",
+      "source_note": "GFF first stage begins May 24 with lower-tier entrants and top-division entry in July; final date, age eligibility, and unattended fixture coverage require review.",
       "catalog_terms": [
         "Georgian Cup | Men"
       ]
@@ -910,13 +910,24 @@
       "sport": "Soccer",
       "league": "Georgian Super Cup | Men",
       "region": "Georgia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://gff.ge/",
-      "official_schedule_url": "https://gff.ge/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete",
+      "endpoint": "https://www.gff.ge/ge/media/news/31600",
+      "official_schedule_url": "https://www.gff.ge/ge/media/news/31600",
+      "source_note": "GFF 2026 four-team Slava Metreveli Super Cup window includes both June 27 semifinals and July 1 final/third-place match; next edition and unattended feed are unclaimed.",
       "catalog_terms": [
         "Georgian Super Cup | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-georgia-georgian-super-cup-men",
+          "league": "Georgian Super Cup | Men",
+          "name": "Georgian Slava Metreveli Super Cup 2026",
+          "start_date": "2026-06-27",
+          "end_date": "2026-07-01",
+          "location": "Georgia",
+          "official_schedule_url": "https://www.gff.ge/ge/media/news/31600"
+        }
       ]
     },
     {
