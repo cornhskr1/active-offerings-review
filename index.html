@@ -1111,7 +1111,11 @@ function renderUpcomingSportBoard(events){
     return `<details class="activity-sport"><summary><span class="activity-sport-name">${esc(sport)}</span><span class="activity-sport-count">${leagues.size} league${leagues.size===1?'':'s'} · ${sportEvents.length} event${sportEvents.length===1?'':'s'}</span></summary><div class="activity-sport-body">${[...leagues.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([league,leagueEvents])=>{
       const sourceIds=new Set(leagueEvents.map(event=>event.source_id).filter(Boolean));
       const scheduleLinks=[...new Set((DATA.global?.sources||[]).filter(source=>sourceIds.has(source.id)).map(source=>source.official_schedule_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
-      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
+      const mappedSeasons=leagueEvents.map(mappedCatalogEventForScheduleEvent);
+      const season=mappedSeasons[0];
+      const sameSeason=season&&mappedSeasons.every(mapped=>mapped&&mapped.key===season.key&&mapped.catalog_event===season.catalog_event);
+      const progress=sameSeason?seasonProgressHtml(season,mappedSeasonStatus(season)):'';
+      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${reviewPill} ${pill('blue',sport)}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
 }
@@ -2108,7 +2112,7 @@ function annualSeasonStatus(event){
   return start<=end?(key>=start&&key<=end?'in':'out'):(key>=start||key<=end?'in':'out');
 }
 function seasonProgressHtml(event,status){
-  if(status!=='in')return'';
+  if(status!=='in'||event?.season_hold||event?.season_window_complete===false)return'';
   const today=todayKey(),year=Number(today.slice(0,4)),md=today.slice(5);
   let startKey=event?.season_start_date,endKey=event?.season_end_date;
   if(!startKey||!endKey){
@@ -2128,7 +2132,7 @@ function seasonProgressHtml(event,status){
   if(!Number.isFinite(start)||!Number.isFinite(end)||end<=start)return'';
   if(now<start||now>end)return'';
   const pct=Math.max(0,Math.min(100,Math.round(((now-start)/(end-start))*100)));
-  return `<div class="season-progress" title="${pct}% through the mapped season window"><div class="season-progress-track"><div class="season-progress-fill" style="width:${pct}%"></div></div><span class="season-progress-label">${pct}%</span></div>`;
+  return `<div class="season-progress" role="progressbar" aria-label="Season progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" title="${pct}% through the mapped season window"><div class="season-progress-track"><div class="season-progress-fill" style="width:${pct}%"></div></div><span class="season-progress-label">Season ${pct}%</span></div>`;
 }
 function eventSourceIds(event){
   return [
@@ -2527,7 +2531,7 @@ function renderNcaaCatalog(cat,q,seasonFilter){
     mappedEvents+=events.filter(x=>x.status).length;
     return `<details class="ncaa-catalog-sport" ${(q||seasonFilter!=='all'||CATALOG_HEALTH_FILTER!=='all')?'open':''}><summary><span>${esc(sportName)}</span><span>${events.length} approved ${events.length===1?'event':'events'}</span></summary><div class="ncaa-event-list">${events.map(item=>{
       const hasChildren=(item.mapping?.coverage_children||[]).length>0;
-      return `<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${hasChildren?'<div class="catalog-approval-note">Catalog approval — coverage tracked separately below</div>':item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}${hasChildren?renderCoverageChildren(item.mapping,section.sport):catalogEntryHealthHtml(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping))}</article>`;
+      return `<article class="ncaa-event"><div class="ncaa-event-main"><div><div class="ncaa-event-name">${item.mapping?catalogEventNameHtml(item.mapping,item.parts.name):esc(item.parts.name)}</div>${hasChildren?'<div class="catalog-approval-note">Catalog approval — coverage tracked separately below</div>':item.mapping?.season_window?`<div class="catalog-season-detail">${esc(item.mapping.season_window)}</div>${seasonProgressHtml(item.mapping,item.status)}`:''}</div>${mappedSeasonBadge(item.status)}</div>${item.parts.restriction?`<div class="catalog-event-restriction">${esc(item.parts.restriction)}</div>`:''}${hasChildren?renderCoverageChildren(item.mapping,section.sport):catalogEntryHealthHtml(section.sport,[item.parts.name,item.line],eventSourceIds(item.mapping))}</article>`;
     }).join('')}</div></details>`;
   }).filter(Boolean);
   if(!sports.length&&!controlsHit)return'';

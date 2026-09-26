@@ -200,6 +200,8 @@ Each section exits only when every identity has either verified, correctly scope
 
 **Review Today display decision, September 26:** After PR #131 merged, the user directed a bounded cleanup of NCAA sports shown in Review Today. Display only baseball, men's and women's basketball, football, men's and women's soccer, softball, volleyball, and wrestling. Filter the same way across mapped events, priority cards, Nebraska collegiate alerts, and schedule coverage attention; leave all other NCAA approvals, season states, source data, and inventory rows intact. This is a display rule, not a catalog approval or a claim of complete schedule coverage. The user explicitly requested this interruption to the fixed Priority 2 section queue; resume Rugby split-child coverage after the display change.
 
+**Season visualization decision, September 26:** The user requested visible season progress during Priority 2 work. Existing in-season bars were present on some mapped catalog cards but omitted NCAA single-competition cards and Review Today's upcoming league groups. Use the same verified exact or recurring window calculation in those views, label the value as **Season** progress, and suppress the bar for partial windows, holds, unknown dates, and mixed league identities. The season percentage describes elapsed time within a competition's mapped window; it is separate from the Priority 2 section-exit progress metric. This bounded visualization update does not change coverage inventory counts; resume Rugby afterward.
+
 ## Recovered work from September 23–24
 
 Forty pull requests were merged during the reconstruction window: 26 in Active Offerings and 14 in the private portal.
