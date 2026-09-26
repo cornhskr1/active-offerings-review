@@ -9030,11 +9030,11 @@
             {
               "key": "volleyball-cev-champions-league",
               "catalog_event": "CEV Champions League | Men and Women",
-              "season_window": "October 2026–May 2027",
-              "season_start": "10-01",
-              "season_end": "05-31",
-              "season_basis": "The catalog approval covers separate men's and women's competitions; division-specific dates and schedule coverage require independent verification.",
-              "last_verified": "2026-09-18",
+              "season_window": "October 20, 2026–May 16, 2027 (division dates below)",
+              "season_start": "10-20",
+              "season_end": "05-16",
+              "season_basis": "CEV publishes separate 2027 men’s and women’s calendars; use each operational child for schedule linkage.",
+              "last_verified": "2026-09-26",
               "fun_fact": "The CEV Champions League brings together leading men’s and women’s clubs from national leagues across Europe.",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
@@ -9042,14 +9042,20 @@
                 {
                   "key": "volleyball-cev-champions-league-men",
                   "label": "CEV Champions League | Men",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "2026-10-20–2027-05-16",
+                  "season_basis": "CEV 2027 competition overview publishes early rounds through the men’s May 15–16 Final Four; published phases are not an unattended match feed.",
+                  "season_start_date": "2026-10-20",
+                  "season_end_date": "2027-05-16",
+                  "source_id": "volleyball-cev-champions-league-men"
                 },
                 {
                   "key": "volleyball-cev-champions-league-women",
                   "label": "CEV Champions League | Women",
-                  "season_window": "Division-specific dates pending",
-                  "season_basis": "Division-specific calendar verification pending"
+                  "season_window": "2026-10-20–2027-05-02",
+                  "season_basis": "CEV 2027 competition overview publishes early rounds through the women’s May 1–2 Final Four; published phases are not an unattended match feed.",
+                  "season_start_date": "2026-10-20",
+                  "season_end_date": "2027-05-02",
+                  "source_id": "volleyball-cev-champions-league-women"
                 }
               ]
             }
