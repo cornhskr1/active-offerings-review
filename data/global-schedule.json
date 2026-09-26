@@ -27668,6 +27668,87 @@
       "checked_at": "2026-09-26T00:25:52.657991+00:00"
     },
     {
+      "id": "ncaa-football-fbs",
+      "source_type": "coverage-gap",
+      "sport": "NCAA Football",
+      "league": "Division I Football Bowl Subdivision (FBS)",
+      "region": "United States",
+      "coverage_status": "pending",
+      "endpoint": "https://www.ncaa.com/scoreboard/football/fbs",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/football/fbs",
+      "source_note": "NCAA exposes an exact FBS scoreboard and schedule view. Subdivision scope is verified, but a dependable unattended FBS fixture adapter is not configured; the broader college-football feed remains schedule-only and does not establish FBS approval.",
+      "catalog_terms": [
+        "Division I Football Bowl Subdivision (FBS)"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "note": "NCAA exposes an exact FBS scoreboard and schedule view. Subdivision scope is verified, but a dependable unattended FBS fixture adapter is not configured; the broader college-football feed remains schedule-only and does not establish FBS approval.",
+      "checked_at": "2026-09-25T23:34:14.197427+00:00"
+    },
+    {
+      "id": "ncaa-football-fcs",
+      "source_type": "official-event-window",
+      "sport": "NCAA Football",
+      "league": "Division I Football Championship Subdivision (FCS)",
+      "region": "United States",
+      "endpoint": "https://www.ncaa.org/championship/division-i/football/",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/football/fcs",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "NCAA identifies its Division I Football Championship as the FCS tournament and publishes the Jan. 11, 2027 championship game in Nashville. This is an exact-scope official window reference only; unattended regular-season fixture coverage is not established.",
+      "official_events": [
+        {
+          "source_id": "ncaa-football-fcs",
+          "league": "Division I Football Championship Subdivision (FCS)",
+          "name": "2026-27 NCAA Division I FCS Football Championship",
+          "start_date": "2027-01-11",
+          "end_date": "2027-01-11",
+          "location": "FirstBank Stadium, Nashville, Tennessee",
+          "official_schedule_url": "https://www.ncaa.org/championship/division-i/football/"
+        }
+      ],
+      "catalog_terms": [
+        "Division I Football Championship Subdivision (FCS)"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-25T23:34:14.197427+00:00"
+    },
+    {
+      "id": "ncaa-football-dii",
+      "source_type": "official-event-window",
+      "sport": "NCAA Football",
+      "league": "Division II Football",
+      "region": "United States",
+      "endpoint": "https://www.ncaa.org/championship/division-ii/football/",
+      "official_schedule_url": "https://www.ncaa.com/scoreboard/football/d2",
+      "endpoint_validation": "published-window",
+      "coverage_status": "published-event-window",
+      "source_note": "NCAA publishes the Dec. 19, 2026 Division II Football Championship in McKinney and a dedicated Division II football scoreboard. This is an exact-scope official window reference only; unattended regular-season fixture coverage is not established.",
+      "official_events": [
+        {
+          "source_id": "ncaa-football-dii",
+          "league": "Division II Football",
+          "name": "2026 NCAA Division II Football Championship",
+          "start_date": "2026-12-19",
+          "end_date": "2026-12-19",
+          "location": "McKinney ISD Stadium, McKinney, Texas",
+          "official_schedule_url": "https://www.ncaa.org/championship/division-ii/football/"
+        }
+      ],
+      "catalog_terms": [
+        "Division II Football"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
+      "errors": [],
+      "checked_at": "2026-09-25T23:34:14.197427+00:00"
+    },
+    {
       "id": "basketball-fiba-3x3-tour-men",
       "source_type": "official-event-window",
       "sport": "Basketball",

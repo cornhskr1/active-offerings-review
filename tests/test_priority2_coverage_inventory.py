@@ -380,7 +380,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         # The current college-football feed does not establish FBS-only scope.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_baseball_adapter_maps_only_division_one_men(self):
         identity = ("NCAA Baseball", "Division I Baseball | Men")
@@ -436,7 +436,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         # The football feed still does not establish FBS-only scope.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_postseason_basketball_keeps_published_window_and_canceled_hold_distinct(self):
         crown = self.rows[("NCAA Basketball", "College Basketball Crown (CBC) | Men")]
@@ -526,15 +526,15 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], registered[league]["source_ids"])
 
         self.assertEqual(1, self.inventory["by_sport"]["NCAA Basketball"]["no_linked_source"])
-        self.assertEqual(120, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(65, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(117, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(68, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # The CBI and FBS holds remain separate from these exact child windows.
         cbi = self.rows[("NCAA Basketball", "College Basketball Invitational (CBI) | Men")]
         self.assertEqual("DOCUMENTED_HOLD", cbi["season_state"])
         self.assertEqual("NO_LINKED_SOURCE", cbi["coverage_state"])
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_beach_volleyball_keeps_national_collegiate_scope_fail_closed(self):
         row = self.rows[("NCAA Beach Volleyball", "Division I Beach Volleyball | Women")]
@@ -564,7 +564,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(8, self.inventory["summary"]["season_states"]["DOCUMENTED_HOLD"])
 
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
 
     def test_ncaa_field_hockey_uses_exact_division_one_championship_window(self):
         row = self.rows[("NCAA Field Hockey", "Division I Field Hockey | Women")]
@@ -605,12 +605,56 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(["ncaa-field-hockey-di"], registered["source_ids"])
 
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Field Hockey"]["no_linked_source"])
-        self.assertEqual(119, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
-        self.assertEqual(66, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(117, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(68, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
 
         # FBS scope remains unresolved and must stay fail-closed.
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", fbs["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
+
+    def test_ncaa_football_subdivisions_use_exact_scope_sources(self):
+        fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
+        self.assertEqual("ADAPTER_GAP", fbs["coverage_state"])
+        self.assertEqual(["ncaa-football-fbs"], [source["id"] for source in fbs["sources"]])
+        self.assertEqual("coverage-gap", fbs["sources"][0]["type"])
+
+        fcs = self.rows[("NCAA Football", "Division I Football Championship Subdivision (FCS)")]
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", fcs["coverage_state"])
+        self.assertEqual(["ncaa-football-fcs"], [source["id"] for source in fcs["sources"]])
+        self.assertIn("Jan. 11, 2027", fcs["season_window"])
+
+        dii = self.rows[("NCAA Football", "Division II Football")]
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", dii["coverage_state"])
+        self.assertEqual(["ncaa-football-dii"], [source["id"] for source in dii["sources"]])
+        self.assertIn("Dec. 19", dii["season_window"])
+
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        configured = {source["id"]: source for source in config["sources"]}
+        self.assertEqual("https://www.ncaa.com/scoreboard/football/fbs", configured["ncaa-football-fbs"]["official_schedule_url"])
+        self.assertEqual("2027-01-11", configured["ncaa-football-fcs"]["official_events"][0]["start_date"])
+        self.assertEqual("2026-12-19", configured["ncaa-football-dii"]["official_events"][0]["start_date"])
+
+        registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
+        registered = {
+            item["league"]: item["source_ids"]
+            for item in registry["competitions"]
+            if item["sport"] == "NCAA Football"
+        }
+        self.assertEqual(["ncaa-football-fbs"], registered["Division I Football Bowl Subdivision (FBS)"])
+        self.assertEqual(["ncaa-football-fcs"], registered["Division I Football Championship Subdivision (FCS)"])
+        self.assertEqual(["ncaa-football-dii"], registered["Division II Football"])
+
+        self.assertEqual(0, self.inventory["by_sport"]["NCAA Football"]["no_linked_source"])
+        self.assertEqual(1, self.inventory["by_sport"]["NCAA Football"]["adapter_gaps"])
+        self.assertEqual(117, self.inventory["summary"]["coverage_states"]["NO_LINKED_SOURCE"])
+        self.assertEqual(68, self.inventory["summary"]["coverage_states"]["OFFICIAL_WINDOW_ONLY"])
+        self.assertEqual(289, self.inventory["summary"]["coverage_states"]["ADAPTER_GAP"])
+        self.assertEqual(69, self.inventory["summary"]["coverage_states"]["SOURCE_SCOPE_REVIEW"])
+
+        self.assertEqual(
+            [{"sport": "Football", "league": "NCAA Football"}],
+            self.inventory["summary"]["schedule_only_not_independent_approvals"],
+        )
 
     def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
