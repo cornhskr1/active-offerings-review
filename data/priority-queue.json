@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T13:01:00.130494+00:00",
-  "card_count": 166,
+  "generated_at": "2026-09-27T17:44:00.227986+00:00",
+  "card_count": 159,
   "red_count": 25,
-  "amber_count": 141,
+  "amber_count": 134,
   "cards": [
     {
       "key": "event|761844",
@@ -41,27 +41,6 @@
       "start_time": "2026-09-27T2:00 P.M.",
       "status": "SCHEDULED",
       "title": "Creighton vs Washburn",
-      "athletes": [],
-      "triggers": [
-        "Nebraska collegiate home-event/site restriction"
-      ],
-      "staff_actions": [
-        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-      ],
-      "reason": "Nebraska collegiate home-event/site restriction",
-      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-    },
-    {
-      "key": "event|ne|Creighton|Men's Tennis|2026-09-27|Northwest Missouri State",
-      "severity": "RED",
-      "type": "NOT PERMISSIBLE",
-      "sport": "Men's Tennis",
-      "game": null,
-      "league": "Creighton Collegiate",
-      "event": "Creighton vs Northwest Missouri State",
-      "start_time": "2026-09-27T9:00 A.M.",
-      "status": "SCHEDULED",
-      "title": "Creighton vs Northwest Missouri State",
       "athletes": [],
       "triggers": [
         "Nebraska collegiate home-event/site restriction"
@@ -176,6 +155,31 @@
       ],
       "reason": "Nebraska collegiate home-event/site restriction",
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
+      "key": "event|761833",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "game": null,
+      "league": "MLS",
+      "event": "St. Louis CITY SC at Red Bull New York",
+      "start_time": "2026-09-30T23:30Z",
+      "status": "UPCOMING",
+      "title": "St. Louis CITY SC at Red Bull New York · 2 athletes",
+      "athletes": [
+        "Matthew Dos Santos",
+        "Adri Mehmeti"
+      ],
+      "triggers": [
+        "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE",
+        "Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE | Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
     },
     {
       "key": "event|ne|Nebraska|Softball|2026-10-01|Scarlet vs. Cream",
@@ -535,153 +539,6 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401922310",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "New Caledonia at Vanuatu",
-      "start_time": "2026-09-27T04:00Z",
-      "status": "UPCOMING",
-      "title": "New Caledonia at Vanuatu",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401924630",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "Tahiti at Cook Islands",
-      "start_time": "2026-09-27T04:00Z",
-      "status": "UPCOMING",
-      "title": "Tahiti at Cook Islands",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401922309",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "Papua New Guinea at Fiji",
-      "start_time": "2026-09-27T07:00Z",
-      "status": "UPCOMING",
-      "title": "Papua New Guinea at Fiji",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|esports-r6-regional-8720",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Esports",
-      "game": "Rainbow Six Siege",
-      "league": "Regional Closed Leagues",
-      "event": "Edward Gaming vs. LGD Gaming",
-      "start_time": "2026-09-27T09:00:00Z",
-      "status": "LIVE",
-      "title": "Edward Gaming vs. LGD Gaming",
-      "athletes": [],
-      "triggers": [
-        "Regional Closed Leagues - NO IN-GAME WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401914142",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "New Zealand at China",
-      "start_time": "2026-09-27T11:35Z",
-      "status": "UPCOMING",
-      "title": "New Zealand at China",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401917066",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "Sri Lanka at Seychelles",
-      "start_time": "2026-09-27T12:00Z",
-      "status": "UPCOMING",
-      "title": "Sri Lanka at Seychelles",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|esports-r6-regional-8721",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Esports",
-      "game": "Rainbow Six Siege",
-      "league": "Regional Closed Leagues",
-      "event": "All Gamers vs. Leviatan",
-      "start_time": "2026-09-27T12:30:00Z",
-      "status": "UPCOMING",
-      "title": "All Gamers vs. Leviatan",
-      "athletes": [],
-      "triggers": [
-        "Regional Closed Leagues - NO IN-GAME WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
       "key": "event|401860358",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -690,7 +547,7 @@
       "league": "Campeonato Brasileiro Série B | Men",
       "event": "Avaí at Criciúma",
       "start_time": "2026-09-27T14:00Z",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "title": "Avaí at Criciúma",
       "athletes": [],
       "triggers": [
@@ -2200,10 +2057,10 @@
       "sport": "Soccer",
       "game": null,
       "league": "International Friendlies | Men",
-      "event": "Palestine at China",
+      "event": "Turkmenistan at China",
       "start_time": "2026-10-02T11:35Z",
       "status": "UPCOMING",
-      "title": "Palestine at China",
+      "title": "Turkmenistan at China",
       "athletes": [],
       "triggers": [
         "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
