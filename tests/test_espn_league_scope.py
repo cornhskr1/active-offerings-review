@@ -50,6 +50,29 @@ class EspnLeagueScopeTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             verified_events(payload, source)
 
+    def test_ncaa_soccer_requires_division_one_season_and_timed_fixture(self):
+        sources = json.loads((ROOT / "data/global-schedule-sources.json").read_text())["sources"]
+        configured = {source["id"]: source for source in sources}
+        for key, expected_id, slug, gender in (
+            ("ncaa-soccer-di-men", "5487", "usa.ncaa.m.1", "Men"),
+            ("ncaa-soccer-di-women", "5499", "usa.ncaa.w.1", "Women"),
+        ):
+            with self.subTest(key=key):
+                source = configured[key]
+                event = {"id": "123", "uid": f"s:600~l:{expected_id}~e:123",
+                         "date": "2026-10-03T21:00Z", "competitions": [{"timeValid": True,
+                         "competitors": [{"team": {"displayName": "Home"}},
+                                         {"team": {"displayName": "Away"}}]}]}
+                league = {"id": expected_id, "slug": slug,
+                          "season": {"displayName": f"2026 NCAA Division I {gender}'s Soccer"}}
+                payload = {"leagues": [league], "events": [event]}
+                self.assertEqual([event], verified_events(payload, source))
+                with self.assertRaises(ValueError):
+                    verified_events({**payload, "leagues": [{**league, "season": {
+                        "displayName": f"2026 NCAA Division II {gender}'s Soccer"}}]}, source)
+                self.assertEqual([], verified_events({**payload, "events": [{**event, "competitions": [{
+                    **event["competitions"][0], "timeValid": False}]}]}, source))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T21:47:56.312012+00:00",
-  "schedule_generated_at": "2026-09-27T21:44:40.525476+00:00",
+  "registry_generated_at": "2026-09-27T22:05:28.547452+00:00",
+  "schedule_generated_at": "2026-09-27T22:02:05.268196+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,10 +10,10 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 280,
+      "ADAPTER_CONFIGURED": 282,
       "ADAPTER_GAP": 247,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 140
+      "OFFICIAL_WINDOW_ONLY": 138
     },
     "season_states": {
       "DATED_WINDOW": 214,
@@ -24,8 +24,8 @@
       "PENDING_DATES": 32,
       "RECURRING_WINDOW": 287
     },
-    "reported_gap_areas": 14,
-    "reported_gap_labels": 256,
+    "reported_gap_areas": 13,
+    "reported_gap_labels": 255,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -371,7 +371,7 @@
           "events_in_window": 33
         }
       ],
-      "events_in_window": 24
+      "events_in_window": 23
     },
     {
       "sport": "Baseball",
@@ -5597,11 +5597,11 @@
           "id": "ncaa-football-fbs",
           "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Bowl Subdivision (FBS)",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 56
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 56
     },
     {
       "sport": "NCAA Football",
@@ -5618,11 +5618,11 @@
           "id": "ncaa-football-fcs",
           "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Championship Subdivision (FCS)",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 55
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 55
     },
     {
       "sport": "NCAA Football",
@@ -5773,13 +5773,13 @@
       "season_window": "August–December; 2026 College Cup 12-11 and 12-14",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-soccer-di-men",
-          "type": "official-event-window",
+          "type": "espn-daily",
           "configured_league": "Division I Soccer | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5794,13 +5794,13 @@
       "season_window": "August–December; 2026 College Cup 12-10 and 12-13",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-soccer-di-women",
-          "type": "official-event-window",
+          "type": "espn-daily",
           "configured_league": "Division I Soccer | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -14909,7 +14909,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14930,7 +14930,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
