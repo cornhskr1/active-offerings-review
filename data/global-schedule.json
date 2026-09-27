@@ -4,8 +4,8 @@
   "timezone": "America/Chicago",
   "window_start": "2026-09-26",
   "window_end": "2026-10-03",
-  "event_count": 1274,
-  "discovered_event_count": 1329,
+  "event_count": 1275,
+  "discovered_event_count": 1330,
   "catalog_rejected_event_count": 55,
   "events": [
     {
@@ -8099,6 +8099,25 @@
       "season_stage": null,
       "location": "Parken Stadium \u00b7 Copenhagen, Denmark",
       "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.nations/scoreboard",
+      "catalog_approval": "EXPLICIT SOURCE MAPPING",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false
+    },
+    {
+      "id": "rugby-rfl-womens-super-league-2354574",
+      "source_id": "rugby-rfl-womens-super-league",
+      "sport": "Rugby",
+      "league": "Women\u2019s Super League | Women",
+      "region": "England",
+      "name": "York Valkyrie at Wigan Warriors",
+      "start_time": "2026-09-27T16:30:00Z",
+      "status": "UPCOMING",
+      "status_detail": "Final",
+      "season_stage": "POSTSEASON",
+      "location": "The Brick Community Stadium",
+      "source_endpoint": "https://www.rugby-league.com/match-centre",
       "catalog_approval": "EXPLICIT SOURCE MAPPING",
       "u18_matches": [],
       "u18_risk": false,
@@ -33872,7 +33891,7 @@
       "league": "RFL competitions",
       "region": "England",
       "official_schedule_url": "https://www.rugby-league.com/match-centre",
-      "source_note": "All five approved RFL competitions are season mapped; a dependable unattended official fixture adapter is pending.",
+      "source_note": "The four remaining RFL identities are season mapped but lack a verified unattended fixture adapter. The separate senior Women's Super League source is scoped to its exact division; this shared gap ID is retained for alias and catalog references.",
       "catalog_terms": [
         "Rugby Football League (RFL)",
         "Super League Rugby | Men",
@@ -33884,7 +33903,7 @@
       "approved_catalog": true,
       "ok": true,
       "events": 0,
-      "note": "All five approved RFL competitions are season mapped; a dependable unattended official fixture adapter is pending.",
+      "note": "The four remaining RFL identities are season mapped but lack a verified unattended fixture adapter. The separate senior Women's Super League source is scoped to its exact division; this shared gap ID is retained for alias and catalog references.",
       "checked_at": "2026-09-27T02:19:15.564828+00:00"
     },
     {
@@ -33893,8 +33912,8 @@
       "sport": "Rugby",
       "league": "Top 14 and Pro D2",
       "region": "France",
-      "official_schedule_url": "https://www.lnr.fr/calendrier-resultats",
-      "source_note": "Top 14 and Pro D2 are season mapped; a dependable unattended LNR fixture adapter is pending.",
+      "official_schedule_url": "https://www.lnr.fr/actualite/calendrier-20262027-les-dates-connues",
+      "source_note": "LNR's previous shared calendar URL returns 404. This governing-body 2026\u201327 calendar establishes the Top 14 and Pro D2 season bounds; separate competition match pages still need exact unattended fixture adapters.",
       "catalog_terms": [
         "Ligue Nationale de Rugby (LNR)",
         "Top 14 | Men",
@@ -33903,7 +33922,7 @@
       "approved_catalog": true,
       "ok": true,
       "events": 0,
-      "note": "Top 14 and Pro D2 are season mapped; a dependable unattended LNR fixture adapter is pending.",
+      "note": "LNR's previous shared calendar URL returns 404. This governing-body 2026\u201327 calendar establishes the Top 14 and Pro D2 season bounds; separate competition match pages still need exact unattended fixture adapters.",
       "checked_at": "2026-09-27T02:19:15.564828+00:00"
     },
     {
@@ -42769,6 +42788,27 @@
       "events": 0,
       "note": "FAW removed the Nathaniel MG Cup from the 2026\u201327 calendar. This catalog identity is held pending an official future edition; no unattended fixture adapter is connected.",
       "checked_at": "2026-09-27T02:19:15.564828+00:00"
+    },
+    {
+      "id": "rugby-rfl-womens-super-league",
+      "source_type": "rfl-match-centre",
+      "sport": "Rugby",
+      "league": "Women\u2019s Super League | Women",
+      "region": "England",
+      "endpoint": "https://www.rugby-league.com/ajaxAPI",
+      "official_schedule_url": "https://www.rugby-league.com/match-centre",
+      "competition_id": 36,
+      "division_id": 2493,
+      "division_label": "Betfred Women's Super League",
+      "source_note": "RFL match-centre senior Women's Super League fixtures only. The competition filter alone includes youth divisions; admit only the exact senior division label and exclude under-19 teams. Other RFL competitions remain adapter gaps.",
+      "catalog_terms": [
+        "Women\u2019s Super League | Women"
+      ],
+      "approved_catalog": true,
+      "ok": true,
+      "events": 1,
+      "errors": [],
+      "checked_at": "2026-09-27T02:36:07.409148+00:00"
     }
   ],
   "coverage_gaps": [

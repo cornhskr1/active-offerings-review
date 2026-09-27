@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from catalog_identity import exact_league_match, normalize_identity, restriction_scope
+from rfl_fixture_adapter import parse_rfl_match_centre
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1774,6 +1775,35 @@ for source in CFG.get("sources",[]):
             "note":source.get("source_note") or "Approved in-season league; no dependable complete public schedule adapter is currently available.",
             "checked_at":NOW_UTC.isoformat()
         })
+        continue
+    if source.get("source_type")=="rfl-match-centre":
+        try:
+            params={
+                "ajax":1,"type":"loadPlugin","plugin":"match_center",
+                "params[limit]":80,
+                "params[compID]":source["competition_id"],
+                "params[comps]":source["competition_id"],
+                "params[divisionID]":source["division_id"],
+                "params[displayType]":"fixtures",
+                "params[template]":"main_match_centre.twig",
+                "params[preview_link]":"/match-centre/match-preview",
+                "params[report_link]":"/match-centre/match-report",
+                "params[load-more-button]":"yes",
+            }
+            response=requests.get(source["endpoint"],params=params,
+                headers={**HEADERS,"Referer":source["official_schedule_url"],
+                         "X-Requested-With":"XMLHttpRequest"},timeout=35)
+            response.raise_for_status()
+            for parsed in parse_rfl_match_centre(response.text,source,TODAY,END):
+                if parsed["id"] in seen:
+                    continue
+                seen.add(parsed["id"])
+                events.append(parsed)
+                count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type") in ("cfl-schedule","ifl-schedule"):
         try:

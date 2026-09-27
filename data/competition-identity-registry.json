@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T02:23:21.171696+00:00",
+  "generated_at": "2026-09-27T02:37:48.818270+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
   "schedule_generated_at": "2026-09-27T02:19:15.564828+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "competition_count": 731,
-  "event_count": 1197,
+  "event_count": 1198,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -10598,10 +10598,23 @@
       "league": "Women’s Super League | Women",
       "identity_key": "rugby-eng-womens-super-league",
       "source_ids": [
-        "rugby-rfl"
+        "rugby-rfl",
+        "rugby-rfl-womens-super-league"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Wigan Warriors",
+        "York Valkyrie"
+      ],
+      "events": [
+        {
+          "name": "York Valkyrie at Wigan Warriors",
+          "start_time": "2026-09-27T16:30:00Z",
+          "participants": [
+            "York Valkyrie",
+            "Wigan Warriors"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "Betfred Women’s Super League",
@@ -10609,7 +10622,7 @@
           "evidence_url": "https://www.rugby-league.com/competitions/pro-national/betfred-womens-super-league"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Rugby",

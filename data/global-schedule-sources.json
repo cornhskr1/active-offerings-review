@@ -3403,7 +3403,7 @@
       "league": "RFL competitions",
       "region": "England",
       "official_schedule_url": "https://www.rugby-league.com/match-centre",
-      "source_note": "All five approved RFL competitions are season mapped; a dependable unattended official fixture adapter is pending.",
+      "source_note": "The four remaining RFL identities are season mapped but lack a verified unattended fixture adapter. The separate senior Women's Super League source is scoped to its exact division; this shared gap ID is retained for alias and catalog references.",
       "catalog_terms": [
         "Rugby Football League (RFL)",
         "Super League Rugby | Men",
@@ -3414,13 +3414,27 @@
       ]
     },
     {
+      "id": "rugby-rfl-womens-super-league",
+      "source_type": "rfl-match-centre",
+      "sport": "Rugby",
+      "league": "Women’s Super League | Women",
+      "region": "England",
+      "endpoint": "https://www.rugby-league.com/ajaxAPI",
+      "official_schedule_url": "https://www.rugby-league.com/match-centre",
+      "competition_id": 36,
+      "division_id": 2493,
+      "division_label": "Betfred Women's Super League",
+      "source_note": "RFL match-centre senior Women's Super League fixtures only. The competition filter alone includes youth divisions; admit only the exact senior division label and exclude under-19 teams. Other RFL competitions remain adapter gaps.",
+      "catalog_terms": ["Women’s Super League | Women"]
+    },
+    {
       "id": "rugby-lnr",
       "source_type": "coverage-gap",
       "sport": "Rugby",
       "league": "Top 14 and Pro D2",
       "region": "France",
-      "official_schedule_url": "https://www.lnr.fr/calendrier-resultats",
-      "source_note": "Top 14 and Pro D2 are season mapped; a dependable unattended LNR fixture adapter is pending.",
+      "official_schedule_url": "https://www.lnr.fr/actualite/calendrier-20262027-les-dates-connues",
+      "source_note": "LNR's previous shared calendar URL returns 404. This governing-body 2026–27 calendar establishes the Top 14 and Pro D2 season bounds; separate competition match pages still need exact unattended fixture adapters.",
       "catalog_terms": [
         "Ligue Nationale de Rugby (LNR)",
         "Top 14 | Men",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T02:02:13.380862+00:00",
-  "schedule_generated_at": "2026-09-27T01:58:52.906620+00:00",
+  "registry_generated_at": "2026-09-27T02:37:48.818270+00:00",
+  "schedule_generated_at": "2026-09-27T02:19:15.564828+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,19 +10,19 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 242,
-      "ADAPTER_GAP": 280,
+      "ADAPTER_CONFIGURED": 243,
+      "ADAPTER_GAP": 279,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
-      "DATED_WINDOW": 207,
+      "DATED_WINDOW": 208,
       "DESCRIPTIVE_WINDOW": 54,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 291
+      "RECURRING_WINDOW": 290
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -257,7 +257,7 @@
       "identities": 33,
       "split_children": 10,
       "no_linked_source": 2,
-      "adapter_gaps": 22,
+      "adapter_gaps": 21,
       "pending_dates": 0
     },
     "Soccer": {
@@ -371,7 +371,7 @@
           "events_in_window": 44
         }
       ],
-      "events_in_window": 21
+      "events_in_window": 23
     },
     {
       "sport": "Baseball",
@@ -6787,10 +6787,10 @@
       "identity_key": "rugby-eng-womens-super-league",
       "approval_parent": "Women’s Super League | Women",
       "kind": "catalog",
-      "season_window": "March–October",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "May 16–September 27, 2026; Grand Final September 27",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-rfl",
@@ -6798,9 +6798,16 @@
           "configured_league": "RFL competitions",
           "refresh_ok": true,
           "events_in_window": 0
+        },
+        {
+          "id": "rugby-rfl-womens-super-league",
+          "type": "rfl-match-centre",
+          "configured_league": "Women’s Super League | Women",
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Rugby",
