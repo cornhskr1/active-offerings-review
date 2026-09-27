@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T07:23:03.832632+00:00",
+  "registry_generated_at": "2026-09-27T07:33:17.300906+00:00",
   "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 260,
-      "ADAPTER_GAP": 262,
+      "ADAPTER_CONFIGURED": 262,
+      "ADAPTER_GAP": 260,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 215,
+      "adapter_gaps": 213,
       "pending_dates": 87
     },
     "Surfing": {
@@ -10432,11 +10432,11 @@
       "season_window": "September 2, 2026 opening; 2027 final date pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-japan-jleague-cup-men",
-          "type": "coverage-gap",
+          "type": "jleague-fixtures",
           "configured_league": "J.League Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -10474,11 +10474,11 @@
       "season_window": "August 8, 2026–June 6, 2027 promotion play-off final",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-japan-j2-league-men",
-          "type": "coverage-gap",
+          "type": "jleague-fixtures",
           "configured_league": "J2 League | Men",
           "refresh_ok": true,
           "events_in_window": 0

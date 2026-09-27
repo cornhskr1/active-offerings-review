@@ -44,7 +44,7 @@ def parse_epcr_matches(page, source, today, end):
             continue
         if not isinstance(match_id, int) or start.tzinfo is None or not all(isinstance(n, str) and n.strip() for n in (home, away)):
             continue
-        if any(re.search(r'\b(?:tbc|tbd|under[ -]?\d{1,2}|u[ -]?\d{1,2}s?)\b', n, re.I) for n in (home, away)):
+        if any(re.search(r'\b(?:tbc|tbd|under[ -]?\d{1,2}s?|u[ -]?\d{1,2}s?)\b', n, re.I) for n in (home, away)):
             continue
         if not today <= start.astimezone(CENTRAL).date() <= end:
             continue
