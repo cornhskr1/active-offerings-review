@@ -2,6 +2,7 @@
 from pathlib import Path
 import json, datetime, requests, re, time, html, os
 import xml.etree.ElementTree as ET
+from urllib.parse import urlsplit, parse_qs
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -16,6 +17,7 @@ from thai_league_fixture_adapter import parse_thai_league_matches
 from espn_league_scope import verified_events as verified_espn_league_events
 from official_motorsports_calendar import PARSERS as MOTORSPORTS_CALENDAR_PARSERS
 from espn_college_football_scope import exclusive_events as exclusive_college_football_events
+from official_ncaa_scoreboard import scoreboard_query, exact_contests, event_from_contest
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -2217,6 +2219,61 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"cross_subdivision_held":len(held_ids),
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-ncaa-division-one":
+        try:
+            page=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
+            page.raise_for_status()
+            query_url,season_year=scoreboard_query(page.text,source["ncaa_sport_code"])
+            query=urlsplit(query_url)
+            parameters=parse_qs(query.query)
+            if set(parameters)!={"meta","extensions"}:
+                raise ValueError("NCAA contest query changed")
+            def fetch_ncaa_day(day):
+                payloads={}
+                for division in (1,2,3):
+                    variables={"sportCode":source["ncaa_sport_code"],"division":division,
+                        "seasonYear":season_year,"contestDate":day.strftime("%m/%d/%Y")}
+                    response=requests.get(f"{query.scheme}://{query.netloc}",
+                        params={"meta":parameters["meta"][0],"extensions":parameters["extensions"][0],
+                            "variables":json.dumps(variables,separators=(",",":"))},
+                        headers=HEADERS,timeout=25)
+                    response.raise_for_status()
+                    payloads[division]=response.json()
+                return exact_contests(payloads,day)
+            candidate_events=[];held_cross=set();held_untimed=set();held_status=set()
+            days=[TODAY+datetime.timedelta(days=offset) for offset in range(-1,(END-TODAY).days+2)]
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                futures={pool.submit(fetch_ncaa_day,day):day for day in days}
+                for future in as_completed(futures):
+                    day=futures[future]
+                    try:
+                        rows,crossover,untimed=future.result()
+                        held_cross.update(row["contestId"] for row in crossover)
+                        held_untimed.update(row["contestId"] for row in untimed)
+                        for row in rows:
+                            if str(row.get("statusCodeDisplay") or "").lower() in ("postponed","canceled","cancelled"):
+                                held_status.add(row["contestId"])
+                                continue
+                            parsed=event_from_contest(source,row)
+                            local_day=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00")).astimezone(TZ).date()
+                            if TODAY<=local_day<=END:
+                                candidate_events.append(parsed)
+                    except Exception as exc:
+                        errors.append(f"{day.isoformat()}: {str(exc)[:100]}")
+            if not errors:
+                for parsed in candidate_events:
+                    key=(parsed["id"],parsed["start_time"])
+                    if key in seen:continue
+                    seen.add(key);events.append(parsed);count+=1
+            source_status.append({**source,"approved_catalog":True,"ok":not errors,
+                "events":count,"cross_division_held":len(held_cross),
+                "untimed_held":len(held_untimed),"status_held":len(held_status),
+                "errors":errors[:3],
+                "checked_at":NOW_UTC.isoformat()})
+        except Exception as exc:
+            source_status.append({**source,"approved_catalog":True,"ok":False,"events":0,
+                "errors":[str(exc)[:110]],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="espn-daily":
         source_event_start=len(events)

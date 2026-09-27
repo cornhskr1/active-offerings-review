@@ -2329,29 +2329,21 @@
     },
     {
       "id": "ncaa-field-hockey-di",
-      "source_type": "official-event-window",
+      "source_type": "official-ncaa-division-one",
       "sport": "NCAA Field Hockey",
       "league": "Division I Field Hockey | Women",
       "region": "United States",
-      "endpoint": "https://www.ncaa.org/championship/division-i/field-hockey/",
+      "endpoint": "https://www.ncaa.com/scoreboard/fieldhockey/d1",
       "official_schedule_url": "https://www.ncaa.com/scoreboard/fieldhockey/d1",
-      "endpoint_validation": "published-window",
-      "coverage_status": "published-event-window",
-      "source_note": "NCAA publishes the Nov. 20–22, 2026 Division I women's Field Hockey Championship at Trager Stadium in Louisville. This is an official championship window reference only; unattended regular-season fixture coverage is not established.",
-      "official_events": [
-        {
-          "source_id": "ncaa-field-hockey-di",
-          "league": "Division I Field Hockey | Women",
-          "name": "2026 NCAA Division I Field Hockey Championship",
-          "start_date": "2026-11-20",
-          "end_date": "2026-11-22",
-          "location": "Trager Stadium, Louisville, Kentucky",
-          "official_schedule_url": "https://www.ncaa.org/championship/division-i/field-hockey/"
-        }
+      "coverage_status": "partial",
+      "source_note": "NCAA Division I field hockey scoreboard supplies timed, named contests. Games also listed in Division II or III and fixtures without a confirmed time are held. Unpublished postseason opponents and complete postseason coverage remain partial.",
+      "catalog_terms": ["Division I Field Hockey | Women"],
+      "official_championship_url": "https://www.ncaa.org/championship/division-i/field-hockey/",
+      "official_championship_dates": [
+        "2026-11-20",
+        "2026-11-22"
       ],
-      "catalog_terms": [
-        "Division I Field Hockey | Women"
-      ]
+      "ncaa_sport_code": "WFH"
     },
     {
       "id": "ncaa-golf-di-men",
@@ -4924,47 +4916,39 @@
     },
     {
       "id": "ncaa-soccer-di-men",
-      "source_type": "espn-daily",
+      "source_type": "official-ncaa-division-one",
       "sport": "NCAA Soccer",
       "league": "Division I Soccer | Men",
       "region": "United States",
-      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.ncaa.m.1/scoreboard",
+      "endpoint": "https://www.ncaa.com/scoreboard/soccer-men/d1",
       "official_schedule_url": "https://www.ncaa.com/scoreboard/soccer-men/d1",
       "coverage_status": "partial",
-      "source_note": "ESPN publishes a distinct Division I men's soccer season and timed team fixtures. NCAA lists the 2026 College Cup finals on Dec. 11 and 14; later knockout opponents and complete postseason coverage remain unverified. NCAA scoreboard is the official scope reference. Fixtures without a confirmed kickoff time are held from cards.",
+      "source_note": "NCAA Division I men's scoreboard supplies timed, named contests. Games also listed in Division II or III and fixtures without a confirmed time are held. Unpublished College Cup opponents and complete postseason coverage remain partial.",
       "catalog_terms": ["Division I Soccer | Men"],
-      "espn_league_id": "5487",
-      "espn_league_slug": "usa.ncaa.m.1",
-      "espn_season_scope": "NCAA Division I Men's Soccer",
       "official_championship_url": "https://www.ncaa.org/championship/division-i/mens-soccer/",
       "official_championship_dates": [
         "2026-12-11",
         "2026-12-14"
       ],
-      "espn_require_all_days": true,
-      "espn_hold_untimed": true
+      "ncaa_sport_code": "MSO"
     },
     {
       "id": "ncaa-soccer-di-women",
-      "source_type": "espn-daily",
+      "source_type": "official-ncaa-division-one",
       "sport": "NCAA Soccer",
       "league": "Division I Soccer | Women",
       "region": "United States",
-      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.ncaa.w.1/scoreboard",
+      "endpoint": "https://www.ncaa.com/scoreboard/soccer-women/d1",
       "official_schedule_url": "https://www.ncaa.com/scoreboard/soccer-women/d1",
       "coverage_status": "partial",
-      "source_note": "ESPN publishes a distinct Division I women's soccer season and timed team fixtures. NCAA lists the 2026 College Cup finals on Dec. 10 and 13; later knockout opponents and complete postseason coverage remain unverified. NCAA scoreboard is the official scope reference. Fixtures without a confirmed kickoff time are held from cards.",
+      "source_note": "NCAA Division I women's scoreboard supplies timed, named contests. Games also listed in Division II or III and fixtures without a confirmed time are held. Unpublished College Cup opponents and complete postseason coverage remain partial.",
       "catalog_terms": ["Division I Soccer | Women"],
-      "espn_league_id": "5499",
-      "espn_league_slug": "usa.ncaa.w.1",
-      "espn_season_scope": "NCAA Division I Women's Soccer",
       "official_championship_url": "https://www.ncaa.org/championship/division-i/womens-soccer/",
       "official_championship_dates": [
         "2026-12-10",
         "2026-12-13"
       ],
-      "espn_require_all_days": true,
-      "espn_hold_untimed": true
+      "ncaa_sport_code": "WSO"
     },
     {
       "id": "ncaa-softball-di",
