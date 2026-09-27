@@ -77,11 +77,12 @@
       "sport": "Soccer",
       "league": "Liga FPD | Men",
       "region": "Costa Rica",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fcrf.cr/",
-      "official_schedule_url": "https://www.fcrf.cr/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "espn_league_id": "4005",
+      "espn_league_slug": "crc.1",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/scoreboard",
+      "official_schedule_url": "https://www.unafut.com/calendario/",
+      "source_note": "ESPN's Costa Rican Primera Division feed contains named, timed 2026 top-flight matches. Later Apertura knockout fixtures must be verified as published; the UNAFUT calendar is the governing reference, not a second fixture stream.",
       "catalog_terms": [
         "Liga FPD | Men"
       ]
@@ -119,11 +120,12 @@
       "sport": "Soccer",
       "league": "Primera División | Men",
       "region": "El Salvador",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://fesfut.org.sv/",
-      "official_schedule_url": "https://fesfut.org.sv/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "espn_league_id": "3943",
+      "espn_league_slug": "slv.1",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/scoreboard",
+      "official_schedule_url": "https://laprimera.com.sv/",
+      "source_note": "ESPN's Salvadoran Primera Division feed contains named, timed 2026 senior Apertura fixtures. Future knockout pairings remain pending until published by the league.",
       "catalog_terms": [
         "Primera División | Men"
       ]

@@ -13,6 +13,7 @@ from epcr_fixture_adapter import parse_epcr_matches
 from jleague_fixture_adapter import parse_jleague_matches
 from saru_fixture_adapter import parse_saru_matches
 from thai_league_fixture_adapter import parse_thai_league_matches
+from espn_league_scope import verified_events as verified_espn_league_events
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -2163,7 +2164,9 @@ for source in CFG.get("sources",[]):
                 day=futures[future]
                 try:
                     _,data=future.result()
-                    for ev in data.get("events",[]):
+                    rows=(verified_espn_league_events(data,source)
+                          if source.get("espn_league_id") else data.get("events",[]))
+                    for ev in rows:
                         event_name=str(ev.get("name") or ev.get("shortName") or "")
                         if any(re.search(pattern,event_name,re.I) for pattern in source.get("exclude_name_patterns",[])):
                             continue
