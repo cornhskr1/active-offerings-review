@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T01:53:42.431831+00:00",
-  "schedule_generated_at": "2026-09-27T01:50:31.486251+00:00",
+  "registry_generated_at": "2026-09-27T02:02:13.380862+00:00",
+  "schedule_generated_at": "2026-09-27T01:58:52.906620+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -16,13 +16,13 @@
       "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
-      "DATED_WINDOW": 204,
+      "DATED_WINDOW": 207,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 61,
+      "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 295
+      "RECURRING_WINDOW": 291
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -6254,8 +6254,8 @@
       "identity_key": "rugby-nz-farah-palmer",
       "approval_parent": "Farah Palmer Cup | Women",
       "kind": "catalog",
-      "season_window": "July–September",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 29–October 11, 2026; Championship final October 10 and Premiership final October 11",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -6296,8 +6296,8 @@
       "identity_key": "rugby-nz-heartland",
       "approval_parent": "Heartland Championship | Men",
       "kind": "catalog",
-      "season_window": "August–October",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 15–October 18, 2026; finals October 17/18 weekend",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -6338,8 +6338,8 @@
       "identity_key": "rugby-nz-npc",
       "approval_parent": "National Provincial Championship (NPC) | Men",
       "kind": "catalog",
-      "season_window": "August–October",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "July 30–October 25, 2026; final on October 24/25 weekend",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -6660,9 +6660,10 @@
       "identity_key": "rugby-intl-rugby-championship",
       "approval_parent": "The Rugby Championship | Men",
       "kind": "catalog",
-      "season_window": "August–October",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "No 2026 tournament; 2027 edition scheduled in SANZAAR cycle",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "SANZAAR schedules international tours instead of The Rugby Championship in 2026. Recheck the 2027 tournament schedule; tour fixtures do not inherit this catalog approval.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -14846,7 +14847,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14867,7 +14868,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],

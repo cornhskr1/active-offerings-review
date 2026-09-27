@@ -2242,7 +2242,11 @@ function mappedSeasonStatus(event){
   }
   const planned=exactSeasonStatus(event)||annualSeasonStatus(event);
   if(planned)return planned;
-  if(event?.season_status)return event.season_status;
+  if(event?.season_status){
+    if(event.season_status_year&&Number(todayKey().slice(0,4))!==event.season_status_year)return null;
+    return event.season_status;
+  }
+  if(event?.season_hold)return null;
   const ids=eventSourceIds(event);
   if(ids.length){
     const sources=(DATA.global?.sources||[]).filter(x=>ids.includes(x.id));
