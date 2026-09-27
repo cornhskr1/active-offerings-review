@@ -1084,7 +1084,7 @@ function renderIssueBoard(cards,events){
       const severity=red?'red':'amber';
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
-      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD'].includes(c.type));
+      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE'].includes(c.type));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
       const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
@@ -1127,7 +1127,7 @@ function renderUpcomingSportBoard(events){
       const season=mappedSeasons[0];
       const sameSeason=season&&mappedSeasons.every(mapped=>mapped&&mapped.key===season.key&&mapped.catalog_event===season.catalog_event);
       const progress=sameSeason?seasonProgressHtml(season,mappedSeasonStatus(season)):'';
-      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row"><div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
+      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row"><div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}${event.source_stale?' · STALE SOURCE — VERIFY':''}</div></div><span class="row-meta">${esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
 }
@@ -1240,6 +1240,20 @@ function scheduleCoverageAttention(dayKey){
   return [...configured,...unmapped,...(DATA.coverage?.identities?.length?groupedActiveCoverageGaps(dayKey):[])];
 }
 
+function staleScheduleSourceAttention(events,dayKey){
+  const stale=events.filter(event=>event.sport==='Tennis'&&event.source_stale);
+  if(!stale.length)return [];
+  const sources=new Set(stale.map(event=>event.source_id).filter(Boolean));
+  return [{
+    severity:'AMBER',type:'STALE SCHEDULE SOURCE',sport:'Tennis',
+    league:'Tennis tournament calendars',region:'International',
+    event:`${sources.size} stale feeds · ${stale.length} affected tournament cards`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:`Last tennis calendar: ${String(DATA.tennis?.generated_at||'unknown').slice(0,10)}. Affected sources: ${[...sources].join(', ')}. Tournament dates and participant fields require verification.`,
+    staff_action:'Check current official tournament calendars and participant fields before relying on these cards or clearing U18 exposure.'
+  }];
+}
+
 function buildTodayModel(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -1279,7 +1293,7 @@ function buildTodayModel(){
   const boxingWindowAlerts=[];
   for(let i=0;i<8;i++)boxingWindowAlerts.push(...boxingReviewAlerts(addDays(start,i),events));
 
-  const coverageAlerts=scheduleCoverageAttention(start);
+  const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start)];
   const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
   const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+boxingWindowAlerts.length+coverageAlerts.length;
 
@@ -1396,7 +1410,7 @@ function renderToday(){
             ${label?pill(color,label):''}
             <div>
               <b>${esc(e.name)}</b>
-              <div class="row-meta">${game?esc(game):''}${game&&e.season_stage?' · ':''}${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}</div>
+              <div class="row-meta">${game?esc(game):''}${game&&e.season_stage?' · ':''}${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}${e.source_stale?' · STALE SOURCE — VERIFY':''}</div>
             </div>
             <span class="row-meta">${esc(eventTime(e.start_time))}</span>
           </div>`;
