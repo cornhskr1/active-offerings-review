@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T00:54:17.587280+00:00",
-  "schedule_generated_at": "2026-09-27T00:50:31.758609+00:00",
+  "registry_generated_at": "2026-09-27T01:02:17.268880+00:00",
+  "schedule_generated_at": "2026-09-27T00:59:14.560235+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 199,
+      "DATED_WINDOW": 204,
       "DESCRIPTIVE_WINDOW": 54,
       "DOCUMENTED_HOLD": 61,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 60,
+      "PARTIAL_WINDOW": 61,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 301
+      "RECURRING_WINDOW": 295
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 224,
-      "pending_dates": 86
+      "pending_dates": 87
     },
     "Surfing": {
       "identities": 6,
@@ -13892,8 +13892,8 @@
       "identity_key": "soccer-uzbekistan-uzbekistan-cup-men",
       "approval_parent": "Uzbekistan Cup | Men",
       "kind": "catalog",
-      "season_window": "April–October",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "March 22, 2026 qualifying start; final pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13913,8 +13913,8 @@
       "identity_key": "soccer-uzbekistan-uzbekistan-super-cup-men",
       "approval_parent": "Uzbekistan Super Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual February event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "March 15, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13934,8 +13934,8 @@
       "identity_key": "soccer-uzbekistan-uzbekistan-super-league-men",
       "approval_parent": "Uzbekistan Super League | Men",
       "kind": "catalog",
-      "season_window": "March–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 27–December 3, 2026 (published final round)",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13955,8 +13955,8 @@
       "identity_key": "soccer-vietnam-v-league-1-men",
       "approval_parent": "V.League 1 | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 4, 2026–May 22, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13997,8 +13997,8 @@
       "identity_key": "soccer-vietnam-vietnamese-cup-men",
       "approval_parent": "Vietnamese Cup | Men",
       "kind": "catalog",
-      "season_window": "September–June",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 18, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14018,8 +14018,8 @@
       "identity_key": "soccer-vietnam-vietnamese-super-cup-men",
       "approval_parent": "Vietnamese Super Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual August event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 30, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -14709,7 +14709,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14730,7 +14730,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
