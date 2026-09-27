@@ -49,11 +49,11 @@
       "sport": "Soccer",
       "league": "Northern Super League | Women",
       "region": "Canada",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.nsl.ca/",
-      "official_schedule_url": "https://www.nsl.ca/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/can.w.nsl/scoreboard",
+      "official_schedule_url": "https://www.nsl.ca/schedule",
+      "source_note": "Exact 2026 Northern Super League women's match feed checked against the league schedule; daily named fixtures enter Review Today.",
       "catalog_terms": [
         "Northern Super League | Women"
       ]

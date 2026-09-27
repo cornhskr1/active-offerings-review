@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T05:11:50.066380+00:00",
+  "registry_generated_at": "2026-09-27T05:26:19.123702+00:00",
   "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 251,
-      "ADAPTER_GAP": 271,
+      "ADAPTER_CONFIGURED": 253,
+      "ADAPTER_GAP": 269,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 222,
+      "adapter_gaps": 220,
       "pending_dates": 87
     },
     "Surfing": {
@@ -8356,11 +8356,11 @@
       "season_window": "January–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "conmebol-soccer-argentina-copa-argentina-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Copa Argentina | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -11642,11 +11642,11 @@
       "season_window": "April–November",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-canada-northern-super-league-women",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Northern Super League | Women",
           "refresh_ok": true,
           "events_in_window": 0

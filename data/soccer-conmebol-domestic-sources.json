@@ -35,11 +35,11 @@
       "sport": "Soccer",
       "league": "Copa Argentina | Men",
       "region": "Argentina",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.afa.com.ar/",
-      "official_schedule_url": "https://www.afa.com.ar/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/arg.copa/scoreboard",
+      "official_schedule_url": "https://www.copaargentina.org/",
+      "source_note": "Exact 2026 men's Copa Argentina match feed checked against the competition's official quarterfinal listing; cup scope stays separate from Primera Division.",
       "catalog_terms": [
         "Copa Argentina | Men"
       ]
