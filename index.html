@@ -699,6 +699,15 @@ function normCollegeSport(v){
     .replace(/[^a-z0-9]+/g,' ')
     .trim();
 }
+function reviewSport(item){
+  const sport=String(item?.sport||'').trim();
+  const normalized=normCollegeSport(sport);
+  const context=`${item?.league||''} ${item?.type||''} ${item?.source||''}`;
+  if(normalized.replace(/^ncaa\s+/,'')==='basketball' &&
+      (Boolean(item?.school)||/^ncaa\b/i.test(sport)||/\bncaa\b|\bcollegiate\b/i.test(context)))
+    return 'NCAA Basketball';
+  return sport||'Event';
+}
 function isNonWageredNcaaSport(item){
   const rawSport=normCollegeSport(item?.sport||'');
   const sport=rawSport.replace(/^ncaa\s+/,'');
@@ -742,7 +751,7 @@ function authoritativeCollegeAlerts(dayKey,dayEvents){
       return{
         severity:red?'RED':'AMBER',
         type:'NEBRASKA COLLEGIATE',
-        sport:c.sport||g?.sport||'NCAA',
+        sport:reviewSport({...c, sport:c.sport||g?.sport||'NCAA'}),
         league:g?.league||`NCAA ${c.sport||'Basketball'}`,
         event:g?.name||`${c.school} ${c.sport} vs. ${c.opponent||'TBA'}`,
         start_time:g?.start_time||`${c.date}T12:00:00`,
@@ -845,7 +854,7 @@ function basketballReviewEvents(){
     })
     .map(e=>({
       ...e,
-      sport:'Basketball',
+      sport:'NCAA Basketball',
       league:`${e.league||('NCAA '+(e.gender||'')+' Basketball')} · ${e.division||''}`.replace(/\s+·\s*$/,''),
       region:'United States',
       season_stage:(e.championship_id||e.bracket_id||e.round_number)?'POSTSEASON':'REGULAR SEASON',
@@ -925,7 +934,7 @@ function basketballIntelligenceAlerts(dayKey){
     rows.push({
       severity:'RED',
       type:'NCAA BASKETBALL U18',
-      sport:'Basketball',
+      sport:'NCAA Basketball',
       league:`${x.league||'NCAA Basketball'}${x.division?` · ${x.division}`:''}`,
       event:x.event,
       start_time:x.start_time,
@@ -940,7 +949,7 @@ function basketballIntelligenceAlerts(dayKey){
     rows.push({
       severity:'AMBER',
       type:'NCAA BASKETBALL RESTRICTION',
-      sport:'Basketball',
+      sport:'NCAA Basketball',
       league:`${x.league||'NCAA Basketball'}${x.division?` · ${x.division}`:''}`,
       event:x.event,
       start_time:x.start_time,
@@ -1042,7 +1051,7 @@ function renderIssueBoard(cards,events){
   if(!cards.length)return'<div class="empty">No RED or AMBER issues in the eight-day review window.</div>';
   const groups=new Map();
   cards.forEach(card=>{
-    const sport=card.sport||'Event';
+    const sport=reviewSport(card);
     const baseLeague=card.league||card.type||'Unassigned league';
     const league=reviewLeagueLabel(card,baseLeague);
     const region=regionForAttentionCard(card,events);
@@ -1096,7 +1105,7 @@ function renderUpcomingSportBoard(events){
   if(!events.length)return'<div class="empty">No mapped upcoming activity in the eight-day window.</div>';
   const sports=new Map();
   events.forEach(event=>{
-    const sport=event.sport||'Event';
+    const sport=reviewSport(event);
     const mapped=mappedCatalogEventForScheduleEvent(event);
     const baseLeague=regionLeagueLabel(
       mapped?.country||event.region,
@@ -1351,7 +1360,7 @@ function renderToday(){
     dayEvents.forEach(e=>{
       const mapped=mappedCatalogEventForScheduleEvent(e);
       const baseLeague=regionLeagueLabel(mapped?.country||e.region,mapped?.review_label||mapped?.catalog_event||e.league);
-      const k=`${e.sport} · ${reviewLeagueLabel(e,baseLeague)}`;
+      const k=`${reviewSport(e)} · ${reviewLeagueLabel(e,baseLeague)}`;
       (leagueGroups[k]??=[]).push(e);
     });
 
@@ -1476,8 +1485,8 @@ function collegeFuturesAttention(dayKey){
       rows.push({
         severity,
         type:'NEBRASKA COLLEGIATE FUTURES',
-        sport:p.sport,
-        league:'NCAA Basketball',
+        sport:/(?:men'?s|women'?s)\s+basketball|^basketball$/i.test(p.sport)?'NCAA Basketball':`NCAA ${p.sport}`,
+        league:`NCAA ${p.sport}`,
         event:`${p.school} ${p.sport} · ${kind==='regular'?'Regular-season':'Postseason'} futures cutoff`,
         start_time:`${contest.date}T12:00:00`,
         reason:days<0
@@ -2725,4 +2734,4 @@ document.getElementById('catalogHealth').addEventListener('click',event=>{
 
 loadAll();
 </script>
-</body></html>
+</body></html
