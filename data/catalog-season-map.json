@@ -4723,11 +4723,9 @@
             {
               "key": "soccer-australia-a-league-men-and-women",
               "catalog_event": "A-League | Men and Women",
-              "season_window": "October 16, 2026–May 9, 2027",
-              "season_start": "10-16",
-              "season_end": "05-09",
-              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026–27 separate men’s and women’s seasons; child dates govern",
+              "season_basis": "The legal parent preserves the combined catalog wording; the men’s and women’s children carry their distinct final-series boundaries.",
+              "last_verified": "2026-09-27",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
               "coverage_children": [
@@ -4735,28 +4733,26 @@
                   "key": "soccer-australia-a-league-men",
                   "label": "A-League | Men",
                   "source_id": "soccer-afc-australia-a-league-men-and-women-men",
-                  "season_window": "October 16, 2026–May 9, 2027",
-                  "season_start": "10-16",
-                  "season_end": "05-09"
+                  "season_window": "October 16, 2026–June 6, 2027 men’s Grand Final",
+                  "season_start_date": "2026-10-16",
+                  "season_end_date": "2027-06-06"
                 },
                 {
                   "key": "soccer-australia-a-league-women",
                   "label": "A-League | Women",
                   "source_id": "soccer-afc-australia-a-league-men-and-women-women",
-                  "season_window": "October 16, 2026–May 9, 2027",
-                  "season_start": "10-16",
-                  "season_end": "05-09"
+                  "season_window": "October 18, 2026–May 16, 2027 women’s season end",
+                  "season_start_date": "2026-10-18",
+                  "season_end_date": "2027-05-16"
                 }
               ]
             },
             {
               "key": "soccer-australia-australia-cup-men-and-women",
               "catalog_event": "Australia Cup | Men and Women",
-              "season_window": "July–October",
-              "season_start": "07-01",
-              "season_end": "10-31",
-              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026 men’s national cup; women’s national competition unverified",
+              "season_basis": "The legal parent preserves the catalog wording. Football Australia publishes a men’s 2026 Cup calendar; no separate senior women’s Australia Cup fixture or tournament was established by its 2026–27 domestic match calendar.",
+              "last_verified": "2026-09-27",
               "restrictions": [],
               "identity_model": "combined-approval-separate-competitions",
               "coverage_children": [
@@ -4764,15 +4760,16 @@
                   "key": "soccer-australia-australia-cup-men",
                   "label": "Australia Cup | Men",
                   "source_id": "soccer-afc-australia-australia-cup-men",
-                  "season_window": "July–October",
-                  "season_start": "07-01",
-                  "season_end": "10-31"
+                  "season_window": "2026 qualifying start pending; July 14 national final rounds–October 10 final",
+                  "season_end_date": "2026-10-10",
+                  "season_window_complete": false
                 },
                 {
                   "key": "soccer-australia-australia-cup-women",
                   "label": "Australia Cup | Women",
                   "source_id": "soccer-afc-australia-australia-cup-women",
-                  "season_window": "Schedule mapping pending"
+                  "season_window": "Senior women’s Australia Cup date and competition scope pending",
+                  "season_hold": true
                 }
               ]
             }
@@ -4877,45 +4874,43 @@
             {
               "key": "soccer-bangladesh-bangladesh-premier-league-men",
               "catalog_event": "Bangladesh Premier League | Men",
-              "season_window": "November–May",
-              "season_start": "11-01",
-              "season_end": "05-31",
+              "season_window": "2026–27 Bangladesh top-flight dates and identity scope pending",
               "source_id": "soccer-afc-bangladesh-bangladesh-premier-league-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "BFF’s 2026–27 circulars refer to the Bangladesh Football League (BFL), while the catalog says Bangladesh Premier League. The current name/continuity, actual fixtures, and match boundaries require verification before attaching a season.",
+              "last_verified": "2026-09-27",
+              "restrictions": [],
+              "season_hold": true
             },
             {
               "key": "soccer-bangladesh-federation-cup-men",
               "catalog_event": "Federation Cup | Men",
-              "season_window": "December–May",
-              "season_start": "12-01",
-              "season_end": "05-31",
+              "season_window": "2026–27 Federation Cup match dates pending",
               "source_id": "soccer-afc-bangladesh-federation-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "BFF lists the 2026–27 Federation Cup in its competition procurement notices, but those notices do not establish first fixture, final, or full match scope.",
+              "last_verified": "2026-09-27",
+              "restrictions": [],
+              "season_hold": true
             },
             {
               "key": "soccer-bangladesh-independence-cup-men",
               "catalog_event": "Independence Cup | Men",
-              "season_window": "November–December",
-              "season_start": "11-01",
-              "season_end": "12-31",
+              "season_window": "Current senior Independence Cup edition pending",
               "source_id": "soccer-afc-bangladesh-independence-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "BFF’s current 2026–27 competition circulars list the BFL, Federation Cup, and Challenge Cup, while its published Independence Cup regulations are historical. No current senior edition schedule was established.",
+              "last_verified": "2026-09-27",
+              "restrictions": [],
+              "season_hold": true
             },
             {
               "key": "soccer-bangladesh-challenge-cup-men",
               "catalog_event": "Challenge Cup | Men",
-              "season_window": "Annual season-opening event · next date pending",
+              "season_window": "2026–27 Challenge Cup match date pending",
               "season_status": "out",
               "source_id": "soccer-afc-bangladesh-challenge-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "BFF includes the 2026–27 Challenge Cup in broadcast and sponsorship notices, without an official match date or evidence of its exact single-event format.",
+              "last_verified": "2026-09-27",
+              "restrictions": [],
+              "season_hold": true
             }
           ]
         },
