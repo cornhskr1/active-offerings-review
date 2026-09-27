@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from catalog_identity import exact_league_match, normalize_identity, restriction_scope
 from rfl_fixture_adapter import parse_rfl_match_centre
 from lnr_fixture_adapter import current_round as lnr_current_round, parse_lnr_round
+from prem_fixture_adapter import parse_prem_matches
 from epcr_fixture_adapter import parse_epcr_matches
 from jleague_fixture_adapter import parse_jleague_matches
 
@@ -1749,6 +1750,29 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="prem-rugby-matches":
+        try:
+            page=requests.get(source["official_schedule_url"],headers=HEADERS,timeout=35)
+            page.raise_for_status()
+            public_config=re.search(r'window\.__NUXT__\.config=\{public:\{.{0,1000}?apiKey:"([^"]+)"',page.text)
+            if not public_config:
+                raise ValueError("PREM public feed configuration missing")
+            response=requests.get(source["endpoint"],params={
+                "provider":"rugbyviz", "season":source["season_id"],
+                "compId":source["competition_id"], "sort":"date",
+            },headers={**HEADERS,"X-API-KEY":public_config.group(1),
+                       "X-APP-ID":"web","X-REALM":"prl"},timeout=35)
+            response.raise_for_status()
+            for parsed in parse_prem_matches(response.json(),source,TODAY,END):
+                if parsed["id"] not in seen:
+                    seen.add(parsed["id"])
+                    events.append(parsed)
+                    count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type")=="hockeytech-schedule":
         try:
             for parsed in fetch_hockeytech_schedule(source):

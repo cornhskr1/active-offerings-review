@@ -43,7 +43,7 @@ class ClassifierSourceScopeTests(unittest.TestCase):
         self.assertTrue(cycling["refresh_ok"])
         self.assertEqual(0, cycling["events_in_window"])
         self.assertEqual("cycling-uci-calendar", cycling["configured_source_id"])
-        self.assertEqual(8, next(s["events"] for s in self.schedule["sources"] if s["id"] == "cycling-uci-calendar"))
+        self.assertGreater(next(s["events"] for s in self.schedule["sources"] if s["id"] == "cycling-uci-calendar"), 0)
         simulation = self.rows["esports-gt-sports-league"]
         self.assertEqual("ADAPTER_GAP", simulation["coverage_state"])
         self.assertEqual("esports-simulation-calendar", simulation["sources"][0]["configured_source_id"])

@@ -3396,16 +3396,32 @@
       "catalog_terms": ["European Rugby Challenge Cup | Men"]
     },
     {
-      "id": "rugby-premiership",
-      "source_type": "coverage-gap",
+      "id": "rugby-prem-gallagher",
+      "source_type": "prem-rugby-matches",
       "sport": "Rugby",
-      "league": "Premiership Rugby competitions",
+      "league": "Gallagher Premiership Rugby | Men",
       "region": "England",
-      "official_schedule_url": "https://www.premiershiprugby.com/fixtures-results",
-      "source_note": "Premiership and Premiership Rugby Cup seasons are mapped; a dependable unattended official fixture adapter is pending.",
+      "endpoint": "https://rugby-union-feeds.incrowdsports.com/v1/matches",
+      "official_schedule_url": "https://www.premrugby.com/fixtures-results?competition=gallagher-prem",
+      "competition_id": 1011,
+      "season_id": 202601,
+      "source_note": "Exact 2026–27 PREM match-feed competition and season. Only named, timed fixtures in the Central Time review window are admitted; update edition ID before next season.",
       "catalog_terms": [
-        "Premiership Rugby",
-        "Gallagher Premiership Rugby | Men",
+        "Gallagher Premiership Rugby | Men"
+      ]
+    },
+    {
+      "id": "rugby-prem-cup",
+      "source_type": "prem-rugby-matches",
+      "sport": "Rugby",
+      "league": "Premiership Rugby Cup | Men",
+      "region": "England",
+      "endpoint": "https://rugby-union-feeds.incrowdsports.com/v1/matches",
+      "official_schedule_url": "https://www.premrugby.com/fixtures-results?competition=prem-rugby-cup",
+      "competition_id": 1297,
+      "season_id": 202601,
+      "source_note": "Exact 2026–27 PREM match-feed competition and season. Only named, timed fixtures in the Central Time review window are admitted; update edition ID before next season.",
+      "catalog_terms": [
         "Premiership Rugby Cup | Men"
       ]
     },

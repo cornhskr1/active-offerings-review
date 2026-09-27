@@ -22,35 +22,18 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
         self.assertEqual(60, next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
         self.assertEqual(731, len(INVENTORY["identities"]))
 
-    def test_catalog_index_exposes_all_identities_without_generating_alerts(self):
-        start = HTML.index("function catalogCoverageRows(")
-        end = HTML.index("\nfunction uncoveredMappedEvents(", start)
-        script = """
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const DATA={coverage:JSON.parse(fs.readFileSync('data/priority2-coverage-inventory.json'))};
-let query='';
-const document={getElementById(){return {value:query}}};
-const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
-function mappedCatalogEventForScheduleEvent(event){return {key:event.key}}
-""" + HTML[start:end] + """
-const full=renderCatalogCoverageIndex();
-assert.match(full,/731 Operational Identities/);
-assert.equal((full.match(/data-open-catalog=/g)||[]).length,731);
-assert.match(full,/soccer-uzbekistan|Uzbekistan Cup/);
-assert.doesNotMatch(full,/staff_action|MANUAL REVIEW REQUIRED/);
-const lazy=renderCatalogCoverageIndex([],true);
-assert.match(lazy,/731 Operational Identities/);
-assert.equal((lazy.match(/data-open-catalog=/g)||[]).length,0);
-assert.match(lazy,/Open to load catalog identities/);
-query='Uzbekistan Cup';
-const filtered=renderCatalogCoverageIndex([{key:'soccer-uzbekistan-uzbekistan-cup-men'}]);
-assert.equal((filtered.match(/data-open-catalog=/g)||[]).length,1);
-assert.match(filtered,/1 upcoming mapped event in Today \\+ 7/);
-const searched=renderCatalogCoverageIndex([{key:'soccer-uzbekistan-uzbekistan-cup-men'}],true);
-assert.equal((searched.match(/data-open-catalog=/g)||[]).length,1);
-"""
-        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+    def test_catalog_stays_in_its_own_tab(self):
+        today = HTML[HTML.index('<section class="panel active" id="today"'):HTML.index('<section class="panel" id="catalog"')]
+        self.assertNotIn('todayCatalogSearch', today)
+        self.assertNotIn('Full Catalog Coverage', today)
+        self.assertIn('id="catalogHealth"', HTML)
+        self.assertIn('id="catalogSearch"', HTML)
+        self.assertNotIn('renderCatalogCoverageIndex', HTML)
+        today_render = HTML[HTML.index('function renderToday()'):HTML.index('function collegeReg(')]
+        self.assertNotIn('OK · NO REVIEW', today_render)
+        self.assertNotIn('coverage index', today_render.lower())
+        self.assertIn("document.getElementById('todayDays').innerHTML=TODAY_MODEL.sportBoard;", today_render)
+        self.assertIn('${dayEvents.length} scheduled', today_render)
 
     def test_past_due_ncaa_futures_alert_occurs_once(self):
         start = HTML.index("function collegeFuturesAttention(")
@@ -83,7 +66,7 @@ const element=id=>elements.get(id)||elements.set(id,{innerHTML:'',textContent:''
 const buttons=['attention','date','sport'].map(todayView=>({dataset:{todayView},
   classList:{toggle(){}},setAttribute(){},textContent:''}));
 const document={getElementById:element,querySelector(){return buttons[0]},querySelectorAll(){return buttons}};
-let builds=0,dayCalls=0,queueCalls=0,sportCalls=0,indexCalls=0;
+let builds=0,dayCalls=0,queueCalls=0,sportCalls=0;
 function buildTodayModel(){builds++;return{global:{},start:'2026-09-26',end:'2026-10-03',events:[],pqCards:[],
   coverageAlerts:[],red:1,amber:2,dayCards:new Map(),windowCards:null,queueRendered:false,dateHtml:null,sportBoard:null}}
 function todayKey(){return '2026-09-26'}
@@ -91,7 +74,6 @@ function addDays(_,i){return `2026-09-${String(26+i).padStart(2,'0')}`}
 function attentionCardsForDay(){dayCalls++;return[]}
 function renderIssueBoard(){queueCalls++;return'issue-board'}
 function renderUpcomingSportBoard(){sportCalls++;return'sport-board'}
-function renderCatalogCoverageIndex(_,lazy){assert.equal(lazy,true);indexCalls++;return'catalog-index'}
 function fmtDateTime(){return''}
 function esc(value){return String(value)}
 function prettyDay(value){return value}
@@ -104,7 +86,7 @@ assert.equal(element('todayAlerts').hidden,true);
 TODAY_VIEW='sport';renderToday();
 assert.equal(builds,1);
 assert.equal(sportCalls,1);
-assert.equal(indexCalls,1);
+assert.equal(element('todayDays').innerHTML,'sport-board');
 assert.equal(queueCalls,0);
 TODAY_VIEW='attention';renderToday();
 assert.equal(queueCalls,1);
@@ -116,6 +98,36 @@ TODAY_VIEW='attention';renderToday();
 assert.equal(queueCalls,1);
 assert.equal(builds,1);
 assert.equal(element('todayAlerts').open,false);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+
+    def test_ncaa_basketball_attention_uses_one_sport_group(self):
+        helper = HTML[HTML.index("function normCollegeSport("):HTML.index("function isNonWageredNcaaSport(")]
+        board = HTML[HTML.index("function renderIssueBoard("):HTML.index("function renderUpcomingSportBoard(")]
+        script = """
+const assert=require('node:assert/strict');
+function reviewLeagueLabel(_,label){return label}
+function regionForAttentionCard(){return 'United States'}
+function pill(_,label){return label}
+function esc(value){return String(value)}
+function regionLeagueLabel(region,league){return `${region} — ${league}`}
+function esportsGameLabel(){return ''}
+function ctKey(value){return String(value).slice(0,10)}
+function prettyDay(value){return value}
+function eventTime(){return '12:00'}
+""" + helper + board + """
+const cards=[
+  {sport:"Men's Basketball",school:'Nebraska',league:'NCAA Men',severity:'AMBER',event:'Men'},
+  {sport:"Women's Basketball",type:'NEBRASKA COLLEGIATE',league:'NCAA Women',severity:'AMBER',event:'Women'},
+  {sport:'NCAA Basketball',league:'NCAA Division II',severity:'AMBER',event:'DII'},
+  {sport:'Basketball',league:'WNBA',severity:'AMBER',event:'Pro'}
+];
+const html=renderIssueBoard(cards,[]);
+assert.equal((html.match(/class="issue-sport-name">NCAA Basketball/g)||[]).length,1);
+assert.equal((html.match(/class="issue-sport-name">Basketball/g)||[]).length,1);
+assert.doesNotMatch(html,/class="issue-sport-name">(?:Men's|Women's) Basketball/);
+assert.match(html,/NCAA Men/);
+assert.match(html,/NCAA Women/);
 """
         subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
 
