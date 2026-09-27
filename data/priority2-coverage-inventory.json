@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T05:47:21.124255+00:00",
+  "registry_generated_at": "2026-09-27T07:23:03.832632+00:00",
   "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 258,
-      "ADAPTER_GAP": 264,
+      "ADAPTER_CONFIGURED": 260,
+      "ADAPTER_GAP": 262,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -257,7 +257,7 @@
       "identities": 33,
       "split_children": 10,
       "no_linked_source": 2,
-      "adapter_gaps": 15,
+      "adapter_gaps": 13,
       "pending_dates": 0
     },
     "Soccer": {
@@ -6219,16 +6219,23 @@
       "identity_key": "rugby-eu-challenge-cup",
       "approval_parent": "European Rugby Challenge Cup | Men",
       "kind": "catalog",
-      "season_window": "December–May",
+      "season_window": "October–May",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-epcr",
           "type": "coverage-gap",
           "configured_league": "EPCR competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-epcr-challenge",
+          "type": "epcr-fixtures",
+          "configured_league": "European Rugby Challenge Cup | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6240,16 +6247,23 @@
       "identity_key": "rugby-eu-champions-cup",
       "approval_parent": "European Rugby Champions Cup | Men",
       "kind": "catalog",
-      "season_window": "December–May",
+      "season_window": "October–May",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-epcr",
           "type": "coverage-gap",
           "configured_league": "EPCR competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-epcr-champions",
+          "type": "epcr-fixtures",
+          "configured_league": "European Rugby Champions Cup | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],

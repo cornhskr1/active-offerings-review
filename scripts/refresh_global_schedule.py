@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from catalog_identity import exact_league_match, normalize_identity, restriction_scope
 from rfl_fixture_adapter import parse_rfl_match_centre
 from lnr_fixture_adapter import current_round as lnr_current_round, parse_lnr_round
+from epcr_fixture_adapter import parse_epcr_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1802,6 +1803,20 @@ for source in CFG.get("sources",[]):
                 seen.add(parsed["id"])
                 events.append(parsed)
                 count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="epcr-fixtures":
+        try:
+            response=requests.get(source["official_schedule_url"],headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            for parsed in parse_epcr_matches(response.text,source,TODAY,END):
+                if parsed["id"] not in seen:
+                    seen.add(parsed["id"])
+                    events.append(parsed)
+                    count+=1
         except Exception as e:
             errors.append(str(e)[:110])
         source_status.append({**source,"approved_catalog":True,"ok":not errors,

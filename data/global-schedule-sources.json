@@ -3362,12 +3362,38 @@
       "league": "EPCR competitions",
       "region": "Europe / International Club Rugby",
       "official_schedule_url": "https://www.epcrugby.com/fixtures",
-      "source_note": "Both approved EPCR competitions are mapped; reconnect when the 2026–27 official fixtures enter the review window.",
+      "source_note": "Shared EPCR catalog and alias reference; separate exact Champions Cup and Challenge Cup sources emit fixtures.",
       "catalog_terms": [
         "European Professional Club Rugby (EPCR)",
         "European Rugby Champions Cup | Men",
         "European Rugby Challenge Cup | Men"
       ]
+    },
+    {
+      "id": "rugby-epcr-champions",
+      "source_type": "epcr-fixtures",
+      "sport": "Rugby",
+      "league": "European Rugby Champions Cup | Men",
+      "region": "Europe / International Club Rugby",
+      "competition_slug": "champions-cup",
+      "competition_id": 1008,
+      "competition_name": "Investec Champions Cup",
+      "official_schedule_url": "https://www.epcrugby.com/champions-cup/matches",
+      "source_note": "Exact official EPCR competition fixture list; named, dated future first-team matches only.",
+      "catalog_terms": ["European Rugby Champions Cup | Men"]
+    },
+    {
+      "id": "rugby-epcr-challenge",
+      "source_type": "epcr-fixtures",
+      "sport": "Rugby",
+      "league": "European Rugby Challenge Cup | Men",
+      "region": "Europe / International Club Rugby",
+      "competition_slug": "challenge-cup",
+      "competition_id": 1026,
+      "competition_name": "European Challenge Cup",
+      "official_schedule_url": "https://www.epcrugby.com/challenge-cup/matches",
+      "source_note": "Exact official EPCR competition fixture list; named, dated future first-team matches only.",
+      "catalog_terms": ["European Rugby Challenge Cup | Men"]
     },
     {
       "id": "rugby-premiership",
