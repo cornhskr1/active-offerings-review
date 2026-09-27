@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T21:44:25.482555+00:00",
+  "generated_at": "2026-09-27T21:47:56.312012+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
-  "schedule_generated_at": "2026-09-27T19:27:03.072533+00:00",
+  "schedule_generated_at": "2026-09-27T21:44:40.525476+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "competition_count": 731,
-  "event_count": 1139,
+  "event_count": 1142,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -84,7 +84,6 @@
         "Cleveland Guardians",
         "Colorado Rockies",
         "Detroit Tigers",
-        "Diamondbacks/Phillies",
         "Houston Astros",
         "Kansas City Royals",
         "Los Angeles Angels",
@@ -96,6 +95,7 @@
         "New York Yankees",
         "Padres/Cubs",
         "Philadelphia Phillies",
+        "Phillies/Braves",
         "Pittsburgh Pirates",
         "Rangers/Astros",
         "San Diego Padres",
@@ -106,6 +106,7 @@
         "Texas Rangers",
         "Toronto Blue Jays",
         "Washington Nationals",
+        "White Sox/Astros",
         "Yankees/Red Sox"
       ],
       "events": [
@@ -230,19 +231,27 @@
           ]
         },
         {
-          "name": "Diamondbacks/Phillies at Atlanta Braves",
+          "name": "Chicago White Sox at Rangers/Astros",
+          "start_time": "2026-09-30T21:00Z",
+          "participants": [
+            "Chicago White Sox",
+            "Rangers/Astros"
+          ]
+        },
+        {
+          "name": "Philadelphia Phillies at Atlanta Braves",
           "start_time": "2026-10-01T18:00Z",
           "participants": [
-            "Diamondbacks/Phillies",
+            "Philadelphia Phillies",
             "Atlanta Braves"
           ]
         },
         {
-          "name": "Chicago White Sox at Rangers/Astros",
+          "name": "Chicago White Sox at Houston Astros",
           "start_time": "2026-10-01T21:00Z",
           "participants": [
             "Chicago White Sox",
-            "Rangers/Astros"
+            "Houston Astros"
           ]
         },
         {
@@ -262,9 +271,12 @@
           ]
         },
         {
-          "name": "TBD at Cleveland Guardians",
+          "name": "White Sox/Astros at Cleveland Guardians",
           "start_time": "2026-10-03T04:00Z",
-          "participants": []
+          "participants": [
+            "White Sox/Astros",
+            "Cleveland Guardians"
+          ]
         },
         {
           "name": "Yankees/Red Sox at Tampa Bay Rays",
@@ -283,9 +295,12 @@
           ]
         },
         {
-          "name": "TBD at Los Angeles Dodgers",
+          "name": "Phillies/Braves at Los Angeles Dodgers",
           "start_time": "2026-10-04T04:00Z",
-          "participants": []
+          "participants": [
+            "Phillies/Braves",
+            "Los Angeles Dodgers"
+          ]
         }
       ],
       "aliases": [
@@ -3107,9 +3122,19 @@
       ],
       "participants": [
         "Golden Lions",
-        "KaBuM! Eports"
+        "KaBuM! Eports",
+        "LOS",
+        "LOUD"
       ],
       "events": [
+        {
+          "name": "LOUD vs. LOS",
+          "start_time": "2026-09-27T16:00:00Z",
+          "participants": [
+            "LOUD",
+            "LOS"
+          ]
+        },
         {
           "name": "KaBuM! Eports vs. Golden Lions",
           "start_time": "2026-09-28T21:00:00Z",
@@ -3337,20 +3362,8 @@
       "source_ids": [
         "esports-lol-lcs"
       ],
-      "participants": [
-        "Cloud9 Kia",
-        "Team Liquid Alienware"
-      ],
-      "events": [
-        {
-          "name": "Team Liquid Alienware vs. Cloud9 Kia",
-          "start_time": "2026-09-27T20:00:00Z",
-          "participants": [
-            "Team Liquid Alienware",
-            "Cloud9 Kia"
-          ]
-        }
-      ],
+      "participants": [],
+      "events": [],
       "aliases": [
         {
           "name": "LCS",
@@ -3358,7 +3371,7 @@
           "evidence_url": "https://lolesports.com/en-US/news/lcs"
         }
       ],
-      "participant_coverage": "OBSERVED"
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Esports",
@@ -5541,7 +5554,13 @@
         "motorsports-motogp"
       ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "MOTUL GRAND PRIX OF JAPAN",
+          "start_time": "2026-10-02T17:00:00Z",
+          "participants": []
+        }
+      ],
       "aliases": [
         {
           "name": "MotoGP",
@@ -5665,8 +5684,25 @@
       "source_ids": [
         "motorsports-nhra"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "NHRA Nationals",
+        "The Rock"
+      ],
+      "events": [
+        {
+          "name": "NHRA Nationals at The Rock",
+          "start_time": "2026-09-27T17:00:00Z",
+          "participants": [
+            "NHRA Nationals",
+            "The Rock"
+          ]
+        },
+        {
+          "name": "NAPA Auto Parts NHRA Midwest Nationals",
+          "start_time": "2026-10-02T17:00:00Z",
+          "participants": []
+        }
+      ],
       "aliases": [
         {
           "name": "NHRA Mission Foods Drag Racing Series",
@@ -5680,7 +5716,7 @@
           "source_id": "motorsports-nhra"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Motorsports",
@@ -8127,14 +8163,6 @@
           ]
         },
         {
-          "name": "Missouri State Bears at Western Kentucky Hilltoppers",
-          "start_time": "2026-10-03T16:00Z",
-          "participants": [
-            "Missouri State Bears",
-            "Western Kentucky Hilltoppers"
-          ]
-        },
-        {
           "name": "SE Louisiana Lions at East Texas A&M Lions",
           "start_time": "2026-10-03T16:00Z",
           "participants": [
@@ -8215,19 +8243,19 @@
           ]
         },
         {
+          "name": "Liberty Flames at Jacksonville State Gamecocks",
+          "start_time": "2026-10-03T17:00Z",
+          "participants": [
+            "Liberty Flames",
+            "Jacksonville State Gamecocks"
+          ]
+        },
+        {
           "name": "Louisville Cardinals at Notre Dame Fighting Irish",
           "start_time": "2026-10-03T17:00Z",
           "participants": [
             "Louisville Cardinals",
             "Notre Dame Fighting Irish"
-          ]
-        },
-        {
-          "name": "Marshall Thundering Herd at UL Monroe Warhawks",
-          "start_time": "2026-10-03T17:00Z",
-          "participants": [
-            "Marshall Thundering Herd",
-            "UL Monroe Warhawks"
           ]
         },
         {
@@ -8247,6 +8275,14 @@
           ]
         },
         {
+          "name": "Northeastern Huskies at UNC Wilmington Seahawks",
+          "start_time": "2026-10-03T17:00Z",
+          "participants": [
+            "Northeastern Huskies",
+            "UNC Wilmington Seahawks"
+          ]
+        },
+        {
           "name": "Old Dominion Monarchs at Georgia Southern Eagles",
           "start_time": "2026-10-03T17:00Z",
           "participants": [
@@ -8260,22 +8296,6 @@
           "participants": [
             "South Dakota State Jackrabbits",
             "St. Thomas Tommies"
-          ]
-        },
-        {
-          "name": "Stonehill Skyhawks at Chicago State Cougars",
-          "start_time": "2026-10-03T17:00Z",
-          "participants": [
-            "Stonehill Skyhawks",
-            "Chicago State Cougars"
-          ]
-        },
-        {
-          "name": "Western Illinois Leathernecks at Tennessee State Tigers",
-          "start_time": "2026-10-03T17:00Z",
-          "participants": [
-            "Western Illinois Leathernecks",
-            "Tennessee State Tigers"
           ]
         },
         {
@@ -8359,19 +8379,27 @@
           ]
         },
         {
-          "name": "Liberty Flames at Jacksonville State Gamecocks",
-          "start_time": "2026-10-03T18:00Z",
-          "participants": [
-            "Liberty Flames",
-            "Jacksonville State Gamecocks"
-          ]
-        },
-        {
           "name": "LSU New Orleans Privateers at Northwestern State Demons",
           "start_time": "2026-10-03T18:00Z",
           "participants": [
             "LSU New Orleans Privateers",
             "Northwestern State Demons"
+          ]
+        },
+        {
+          "name": "Marshall Thundering Herd at UL Monroe Warhawks",
+          "start_time": "2026-10-03T18:00Z",
+          "participants": [
+            "Marshall Thundering Herd",
+            "UL Monroe Warhawks"
+          ]
+        },
+        {
+          "name": "Missouri State Bears at Western Kentucky Hilltoppers",
+          "start_time": "2026-10-03T18:00Z",
+          "participants": [
+            "Missouri State Bears",
+            "Western Kentucky Hilltoppers"
           ]
         },
         {
@@ -8399,14 +8427,6 @@
           ]
         },
         {
-          "name": "Northeastern Huskies at UNC Wilmington Seahawks",
-          "start_time": "2026-10-03T18:00Z",
-          "participants": [
-            "Northeastern Huskies",
-            "UNC Wilmington Seahawks"
-          ]
-        },
-        {
           "name": "Northern Colorado Bears at Southern Utah Thunderbirds",
           "start_time": "2026-10-03T18:00Z",
           "participants": [
@@ -8420,14 +8440,6 @@
           "participants": [
             "Portland State Vikings",
             "Idaho State Bengals"
-          ]
-        },
-        {
-          "name": "Presbyterian Blue Hose at Winthrop Eagles",
-          "start_time": "2026-10-03T18:00Z",
-          "participants": [
-            "Presbyterian Blue Hose",
-            "Winthrop Eagles"
           ]
         },
         {
@@ -8452,6 +8464,14 @@
           "participants": [
             "Stephen F. Austin Lumberjacks",
             "Nicholls Colonels"
+          ]
+        },
+        {
+          "name": "Stonehill Skyhawks at Chicago State Cougars",
+          "start_time": "2026-10-03T18:00Z",
+          "participants": [
+            "Stonehill Skyhawks",
+            "Chicago State Cougars"
           ]
         },
         {
@@ -8551,14 +8571,6 @@
           ]
         },
         {
-          "name": "Saint Mary's Gaels at Pepperdine Waves",
-          "start_time": "2026-10-03T19:00Z",
-          "participants": [
-            "Saint Mary's Gaels",
-            "Pepperdine Waves"
-          ]
-        },
-        {
           "name": "San Diego State Aztecs at Washington State Cougars",
           "start_time": "2026-10-03T19:00Z",
           "participants": [
@@ -8572,6 +8584,14 @@
           "participants": [
             "UNLV Rebels",
             "UTEP Miners"
+          ]
+        },
+        {
+          "name": "Western Illinois Leathernecks at Tennessee State Tigers",
+          "start_time": "2026-10-03T19:00Z",
+          "participants": [
+            "Western Illinois Leathernecks",
+            "Tennessee State Tigers"
           ]
         },
         {
@@ -8596,22 +8616,6 @@
           "participants": [
             "Ball State Cardinals",
             "Toledo Rockets"
-          ]
-        },
-        {
-          "name": "Butler Bulldogs at St. John's Red Storm",
-          "start_time": "2026-10-03T20:00Z",
-          "participants": [
-            "Butler Bulldogs",
-            "St. John's Red Storm"
-          ]
-        },
-        {
-          "name": "Central Michigan Chippewas at Eastern Michigan Eagles",
-          "start_time": "2026-10-03T20:00Z",
-          "participants": [
-            "Central Michigan Chippewas",
-            "Eastern Michigan Eagles"
           ]
         },
         {
@@ -8711,6 +8715,14 @@
           ]
         },
         {
+          "name": "Presbyterian Blue Hose at Winthrop Eagles",
+          "start_time": "2026-10-03T20:00Z",
+          "participants": [
+            "Presbyterian Blue Hose",
+            "Winthrop Eagles"
+          ]
+        },
+        {
           "name": "Purdue Fort Wayne Mastodons at Robert Morris Colonials",
           "start_time": "2026-10-03T20:00Z",
           "participants": [
@@ -8724,6 +8736,14 @@
           "participants": [
             "Radford Highlanders",
             "South Carolina Upstate Spartans"
+          ]
+        },
+        {
+          "name": "Saint Mary's Gaels at Pepperdine Waves",
+          "start_time": "2026-10-03T20:00Z",
+          "participants": [
+            "Saint Mary's Gaels",
+            "Pepperdine Waves"
           ]
         },
         {
@@ -8783,6 +8803,14 @@
           ]
         },
         {
+          "name": "Butler Bulldogs at St. John's Red Storm",
+          "start_time": "2026-10-03T21:00Z",
+          "participants": [
+            "Butler Bulldogs",
+            "St. John's Red Storm"
+          ]
+        },
+        {
           "name": "Columbia Lions at Pennsylvania Quakers",
           "start_time": "2026-10-03T21:00Z",
           "participants": [
@@ -8820,6 +8848,14 @@
           "participants": [
             "Troy Trojans",
             "Southern Miss Golden Eagles"
+          ]
+        },
+        {
+          "name": "Central Michigan Chippewas at Eastern Michigan Eagles",
+          "start_time": "2026-10-03T22:00Z",
+          "participants": [
+            "Central Michigan Chippewas",
+            "Eastern Michigan Eagles"
           ]
         },
         {
@@ -10046,14 +10082,6 @@
         "USA Perpignan"
       ],
       "events": [
-        {
-          "name": "Montpellier Hérault Rugby at Stade Toulousain",
-          "start_time": "2026-09-27T19:05:00Z",
-          "participants": [
-            "Montpellier Hérault Rugby",
-            "Stade Toulousain"
-          ]
-        },
         {
           "name": "LOU Rugby at Union Bordeaux-Bègles",
           "start_time": "2026-10-03T12:30:00Z",
@@ -21099,12 +21127,10 @@
     {
       "area": "Motorsports",
       "state": "PARTIAL SCHEDULE COVERAGE",
-      "note": "4 approved competitions still lack a dependable automated adapter.",
+      "note": "2 approved competitions still lack a dependable automated adapter.",
       "competitions": [
         "Camping World Superstar Racing Experience (SRX) Series",
-        "Formula E World Championship",
-        "Nitrocross",
-        "Repco Supercars Championship"
+        "Nitrocross"
       ]
     },
     {
