@@ -2219,6 +2219,8 @@ for source in CFG.get("sources",[]):
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="espn-daily":
+        source_event_start=len(events)
+        held_untimed=0
         def fetch_espn_day(day):
             last_error=None
             for attempt in range(3):
@@ -2246,6 +2248,8 @@ for source in CFG.get("sources",[]):
                     _,data=future.result()
                     rows=(verified_espn_league_events(data,source)
                           if source.get("espn_league_id") else data.get("events",[]))
+                    if source.get("espn_hold_untimed"):
+                        held_untimed+=len(data["events"])-len(rows)
                     for ev in rows:
                         event_name=str(ev.get("name") or ev.get("shortName") or "")
                         if any(re.search(pattern,event_name,re.I) for pattern in source.get("exclude_name_patterns",[])):
@@ -2259,11 +2263,17 @@ for source in CFG.get("sources",[]):
                         count+=1
                 except Exception as e:
                     errors.append(f"{day.isoformat()}: {str(e)[:110]}")
+        if errors and source.get("espn_require_all_days"):
+            for parsed in events[source_event_start:]:
+                seen.discard((parsed["id"],parsed["start_time"]))
+            del events[source_event_start:]
+            count=0
         source_status.append({
             **source,
             "approved_catalog":True,
-            "ok":not errors or count>0,
+            "ok":not errors if source.get("espn_require_all_days") else (not errors or count>0),
             "events":count,
+            **({"untimed_held":held_untimed} if source.get("espn_hold_untimed") else {}),
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
