@@ -392,11 +392,11 @@
       "sport": "Soccer",
       "league": "Copa Libertadores Femenina | Women",
       "region": "International",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.conmebol.com/libertadores-femenina/",
-      "official_schedule_url": "https://www.conmebol.com/libertadores-femenina/",
-      "source_note": "CONMEBOL publishes the official tournament calendar, but no dependable complete unattended match adapter is currently available.",
+      "source_type": "official-conmebol-femenina-fixtures",
+      "coverage_status": "partial",
+      "endpoint": "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026",
+      "official_schedule_url": "https://www.conmebol.com/wp-content/uploads/2026/09/Calendario-CONMEBOL-Libertadores-Femenina-2026.pdf",
+      "source_note": "The official 2026 article publishes 24 dated and timed group fixtures in Ecuador. Six games with unidentified Colombian representatives are held. Knockout opponents and future editions remain partial; this adapter fails closed if the published list changes unexpectedly.",
       "catalog_terms": [
         "Copa Libertadores Femenina | Women"
       ]
