@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T18:56:41.092074+00:00",
+  "generated_at": "2026-09-27T19:30:22.195465+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
-  "schedule_generated_at": "2026-09-27T18:53:32.716674+00:00",
+  "schedule_generated_at": "2026-09-27T19:27:03.072533+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "competition_count": 731,
-  "event_count": 1137,
+  "event_count": 1139,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -5581,8 +5581,29 @@
       "source_ids": [
         "motorsports-nascar-cup"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Kansas",
+        "Las Vegas",
+        "NASCAR Cup Series"
+      ],
+      "events": [
+        {
+          "name": "NASCAR Cup Series at Kansas",
+          "start_time": "2026-09-27T19:00Z",
+          "participants": [
+            "NASCAR Cup Series",
+            "Kansas"
+          ]
+        },
+        {
+          "name": "NASCAR Cup Series at Las Vegas",
+          "start_time": "2026-10-04T21:30Z",
+          "participants": [
+            "NASCAR Cup Series",
+            "Las Vegas"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "NASCAR Cup Series",
@@ -5595,7 +5616,7 @@
           "evidence_url": "https://www.nascar.com/kansas-racetwo-cup/"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Motorsports",
@@ -5604,8 +5625,20 @@
       "source_ids": [
         "motorsports-nascar-oreilly"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Las Vegas",
+        "NASCAR O'Reilly Auto Parts Series"
+      ],
+      "events": [
+        {
+          "name": "NASCAR O'Reilly Auto Parts Series at Las Vegas",
+          "start_time": "2026-10-03T23:30Z",
+          "participants": [
+            "NASCAR O'Reilly Auto Parts Series",
+            "Las Vegas"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "O'Reilly Auto Parts Series",
@@ -5623,7 +5656,7 @@
           "evidence_url": "https://www.nascar.com/news-media/2025/08/18/oreilly-auto-parts-to-assume-title-sponsorship-of-nascars-secondary-series/"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Motorsports",
@@ -10143,20 +10176,8 @@
         "rugby-rfl",
         "rugby-rfl-womens-super-league"
       ],
-      "participants": [
-        "Wigan Warriors",
-        "York Valkyrie"
-      ],
-      "events": [
-        {
-          "name": "York Valkyrie at Wigan Warriors",
-          "start_time": "2026-09-27T16:30:00Z",
-          "participants": [
-            "York Valkyrie",
-            "Wigan Warriors"
-          ]
-        }
-      ],
+      "participants": [],
+      "events": [],
       "aliases": [
         {
           "name": "Betfred Women’s Super League",
@@ -10164,7 +10185,7 @@
           "evidence_url": "https://www.rugby-league.com/competitions/pro-national/betfred-womens-super-league"
         }
       ],
-      "participant_coverage": "OBSERVED"
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Rugby",
@@ -21072,12 +21093,10 @@
     {
       "area": "Motorsports",
       "state": "PARTIAL SCHEDULE COVERAGE",
-      "note": "6 approved competitions still lack a dependable automated adapter.",
+      "note": "4 approved competitions still lack a dependable automated adapter.",
       "competitions": [
         "Camping World Superstar Racing Experience (SRX) Series",
         "Formula E World Championship",
-        "IndyCar Series",
-        "NASCAR Craftsman Truck Series",
         "Nitrocross",
         "Repco Supercars Championship"
       ]
