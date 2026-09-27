@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T00:46:10.271035+00:00",
-  "schedule_generated_at": "2026-09-27T00:42:55.258392+00:00",
+  "registry_generated_at": "2026-09-27T00:54:17.587280+00:00",
+  "schedule_generated_at": "2026-09-27T00:50:31.758609+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 192,
+      "DATED_WINDOW": 199,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 60,
+      "DOCUMENTED_HOLD": 61,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 58,
+      "PARTIAL_WINDOW": 60,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 311
+      "RECURRING_WINDOW": 301
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 224,
-      "pending_dates": 84
+      "pending_dates": 86
     },
     "Surfing": {
       "identities": 6,
@@ -8061,8 +8061,8 @@
       "identity_key": "soccer-malaysia-charity-shield-men",
       "approval_parent": "Charity Shield | Men",
       "kind": "catalog",
-      "season_window": "Annual season-opening event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 21, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -8124,8 +8124,8 @@
       "identity_key": "soccer-singapore-community-shield-men",
       "approval_parent": "Community Shield | Men",
       "kind": "catalog",
-      "season_window": "Annual season-opening event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 6, 2026 completed · next date pending",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11113,8 +11113,8 @@
       "identity_key": "soccer-malaysia-malaysia-cup-men",
       "approval_parent": "Malaysia Cup | Men",
       "kind": "catalog",
-      "season_window": "September–December",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "January 22–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11134,8 +11134,8 @@
       "identity_key": "soccer-malaysia-malaysia-fa-cup-men",
       "approval_parent": "Malaysia FA Cup | Men",
       "kind": "catalog",
-      "season_window": "June–August",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 1, 2026–January 16, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -11155,8 +11155,8 @@
       "identity_key": "soccer-malaysia-malaysia-super-league-men",
       "approval_parent": "Malaysia Super League | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 21, 2026–May 23, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12377,9 +12377,10 @@
       "identity_key": "soccer-singapore-singapore-cup-men",
       "approval_parent": "Singapore Cup | Men",
       "kind": "catalog",
-      "season_window": "November–December",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "Singapore Cup 2026–27 fixture dates pending",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "Current Singapore Cup competition dates and entrant scope are not yet documented on a governing fixture page.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -12398,8 +12399,8 @@
       "identity_key": "soccer-singapore-singapore-premier-league-men",
       "approval_parent": "Singapore Premier League | Men",
       "kind": "catalog",
-      "season_window": "January–December",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 11, 2026–May 16, 2027 scheduled fixtures",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13282,8 +13283,8 @@
       "identity_key": "soccer-thailand-thai-fa-cup-men",
       "approval_parent": "Thai FA Cup | Men",
       "kind": "catalog",
-      "season_window": "September–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 22–23, 2026 qualifying start; final pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13303,8 +13304,8 @@
       "identity_key": "soccer-thailand-thai-league-1-men",
       "approval_parent": "Thai League 1 | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 4, 2026–May 30, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13324,8 +13325,8 @@
       "identity_key": "soccer-thailand-thai-league-cup-men",
       "approval_parent": "Thai League Cup | Men",
       "kind": "catalog",
-      "season_window": "September–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 5–6, 2026 qualifying start; final pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
