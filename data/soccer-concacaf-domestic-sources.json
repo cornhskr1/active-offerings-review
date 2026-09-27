@@ -49,11 +49,11 @@
       "sport": "Soccer",
       "league": "Northern Super League | Women",
       "region": "Canada",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.nsl.ca/",
-      "official_schedule_url": "https://www.nsl.ca/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/can.w.nsl/scoreboard",
+      "official_schedule_url": "https://www.nsl.ca/schedule",
+      "source_note": "Exact 2026 Northern Super League women's match feed checked against the league schedule; daily named fixtures enter Review Today.",
       "catalog_terms": [
         "Northern Super League | Women"
       ]
@@ -147,11 +147,11 @@
       "sport": "Soccer",
       "league": "Liga Nacional | Men",
       "region": "Guatemala",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://fedefutguate.gt/",
-      "official_schedule_url": "https://fedefutguate.gt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/scoreboard",
+      "official_schedule_url": "https://ligagt.org/calendario/",
+      "source_note": "Exact 2026 Liga Bantrab Apertura daily fixtures matched against the league's official calendar; not a Concacaf or lower-division feed.",
       "catalog_terms": [
         "Liga Nacional | Men"
       ]
@@ -175,11 +175,11 @@
       "sport": "Soccer",
       "league": "Liga Nacional | Men",
       "region": "Honduras",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://fenafuth.org.hn/",
-      "official_schedule_url": "https://fenafuth.org.hn/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/scoreboard",
+      "official_schedule_url": "https://www.lnphn.com/",
+      "source_note": "Exact Liga Hondubet first-team feed; September 20 results and October 9-11 named fixtures match the league, with reserve fixtures excluded.",
       "catalog_terms": [
         "Liga Nacional | Men"
       ]
@@ -343,11 +343,11 @@
       "sport": "Soccer",
       "league": "USL Cup | Men",
       "region": "United States",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.uslsoccer.com/",
-      "official_schedule_url": "https://www.uslsoccer.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.usl.l1.cup/scoreboard",
+      "official_schedule_url": "https://www.uslchampionship.com/prinx-tires-usl-cup",
+      "source_note": "ESPN USL Cup match feed checked against USL and Hartford Athletic: Hartford hosts Louisville in the October 4, 2026 final at 3 p.m. ET. USL Championship, League One, and U.S. Open Cup are separate feeds.",
       "catalog_terms": [
         "USL Cup | Men"
       ]
@@ -372,11 +372,11 @@
       "sport": "Soccer",
       "league": "NWSL Challenge Cup | Women",
       "region": "United States",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.nwslsoccer.com/",
-      "official_schedule_url": "https://www.nwslsoccer.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl.cup/scoreboard",
+      "official_schedule_url": "https://www.nwslsoccer.com/schedule/challenge-cup",
+      "source_note": "Exact Challenge Cup fixture feed; 2026 June 26 final was verified against NWSL, while 2027 participants remain unannounced.",
       "catalog_terms": [
         "NWSL Challenge Cup | Women"
       ]
@@ -386,11 +386,11 @@
       "sport": "Soccer",
       "league": "USL Super League | Women",
       "region": "United States",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.uslsuperleague.com/",
-      "official_schedule_url": "https://www.uslsuperleague.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.w.usl.1/scoreboard",
+      "official_schedule_url": "https://www.gainbridgesuperleague.com/league-schedule/",
+      "source_note": "Gainbridge Super League is the renamed approved USL Super League. ESPN exact league feed matches the official 2026 Fall schedule; USL W League and men’s USL feeds are excluded.",
       "catalog_terms": [
         "USL Super League | Women"
       ]

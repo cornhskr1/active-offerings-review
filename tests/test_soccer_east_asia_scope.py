@@ -55,7 +55,10 @@ class EastAsiaScopeTests(unittest.TestCase):
         self.assertEqual(("espn-daily", "complete"), (j1["source_type"], j1["coverage_status"]))
         self.assertTrue(j1["endpoint"].endswith("jpn.1/scoreboard"))
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory["soccer-japan-j1-league-men"]["coverage_state"])
-        for key in set(self.events) - {"soccer-japan-j1-league-men"}:
+        for key in ("soccer-japan-j2-league-men", "soccer-japan-j-league-cup-men"):
+            self.assertEqual("jleague-fixtures", self.sources[self.events[key]["source_id"]]["source_type"])
+            self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+        for key in set(self.events) - {"soccer-japan-j1-league-men", "soccer-japan-j2-league-men", "soccer-japan-j-league-cup-men"}:
             self.assertEqual("coverage-gap", self.sources[self.events[key]["source_id"]]["source_type"])
             self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
 

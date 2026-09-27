@@ -35,11 +35,11 @@
       "sport": "Soccer",
       "league": "Copa Argentina | Men",
       "region": "Argentina",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.afa.com.ar/",
-      "official_schedule_url": "https://www.afa.com.ar/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/arg.copa/scoreboard",
+      "official_schedule_url": "https://www.copaargentina.org/",
+      "source_note": "Exact 2026 men's Copa Argentina match feed checked against the competition's official quarterfinal listing; cup scope stays separate from Primera Division.",
       "catalog_terms": [
         "Copa Argentina | Men"
       ]
@@ -147,11 +147,11 @@
       "sport": "Soccer",
       "league": "Supercopa do Brasil | Men",
       "region": "Brazil",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.cbf.com.br/",
-      "official_schedule_url": "https://www.cbf.com.br/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.supercopa_do_brazil/scoreboard",
+      "official_schedule_url": "https://www.cbf.com.br/futebol-brasileiro/jogos/supercopa-do-brasil/masculino/2026/flamengo-x-corinthians/831969",
+      "source_note": "Exact single-match Supercopa Rei feed checked against CBF's professional men's February 1, 2026 final; 2027 contestants are not inferred.",
       "catalog_terms": [
         "Supercopa do Brasil | Men"
       ]
@@ -203,11 +203,11 @@
       "sport": "Soccer",
       "league": "Copa Colombia | Men",
       "region": "Colombia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://dimayor.com.co/",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.copa/scoreboard",
       "official_schedule_url": "https://dimayor.com.co/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_note": "Exact Copa BetPlay DIMAYOR match feed; the October 3 Millonarios-Barranquilla cup match is independently confirmed and remains separate from league play.",
       "catalog_terms": [
         "Copa Colombia | Men"
       ]

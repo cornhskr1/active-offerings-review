@@ -31,7 +31,8 @@ def parse_rfl_match_centre(page, source, today, end):
             continue
         for card in re.split(r'(?=<div data-matchid="[^"]*"[^>]*class="[^"]*fixture-card)', section)[1:]:
             division = re.search(r'<span class="division-label"[^>]*>(.*?)</span>', card, re.S)
-            if not division or clean(division.group(1)) != source["division_label"]:
+            allowed_divisions = source.get("division_labels") or [source["division_label"]]
+            if not division or clean(division.group(1)) not in allowed_divisions:
                 continue
             teams = [clean(name) for name in re.findall(
                 r'<span class="team-name d-none d-lg-block"[^>]*>(.*?)</span>', card, re.S

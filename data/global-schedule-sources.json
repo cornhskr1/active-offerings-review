@@ -3362,12 +3362,38 @@
       "league": "EPCR competitions",
       "region": "Europe / International Club Rugby",
       "official_schedule_url": "https://www.epcrugby.com/fixtures",
-      "source_note": "Both approved EPCR competitions are mapped; reconnect when the 2026–27 official fixtures enter the review window.",
+      "source_note": "Shared EPCR catalog and alias reference; separate exact Champions Cup and Challenge Cup sources emit fixtures.",
       "catalog_terms": [
         "European Professional Club Rugby (EPCR)",
         "European Rugby Champions Cup | Men",
         "European Rugby Challenge Cup | Men"
       ]
+    },
+    {
+      "id": "rugby-epcr-champions",
+      "source_type": "epcr-fixtures",
+      "sport": "Rugby",
+      "league": "European Rugby Champions Cup | Men",
+      "region": "Europe / International Club Rugby",
+      "competition_slug": "champions-cup",
+      "competition_id": 1008,
+      "competition_name": "Investec Champions Cup",
+      "official_schedule_url": "https://www.epcrugby.com/champions-cup/matches",
+      "source_note": "Exact official EPCR competition fixture list; named, dated future first-team matches only.",
+      "catalog_terms": ["European Rugby Champions Cup | Men"]
+    },
+    {
+      "id": "rugby-epcr-challenge",
+      "source_type": "epcr-fixtures",
+      "sport": "Rugby",
+      "league": "European Rugby Challenge Cup | Men",
+      "region": "Europe / International Club Rugby",
+      "competition_slug": "challenge-cup",
+      "competition_id": 1026,
+      "competition_name": "European Challenge Cup",
+      "official_schedule_url": "https://www.epcrugby.com/challenge-cup/matches",
+      "source_note": "Exact official EPCR competition fixture list; named, dated future first-team matches only.",
+      "catalog_terms": ["European Rugby Challenge Cup | Men"]
     },
     {
       "id": "rugby-premiership",
@@ -3403,7 +3429,7 @@
       "league": "RFL competitions",
       "region": "England",
       "official_schedule_url": "https://www.rugby-league.com/match-centre",
-      "source_note": "The four remaining RFL identities are season mapped but lack a verified unattended fixture adapter. The separate senior Women's Super League source is scoped to its exact division; this shared gap ID is retained for alias and catalog references.",
+      "source_note": "Legacy RFL catalog and alias reference. All five approved competition identities have separate match-centre adapters; this shared ID must not emit fixtures.",
       "catalog_terms": [
         "Rugby Football League (RFL)",
         "Super League Rugby | Men",
@@ -3411,6 +3437,75 @@
         "World Club Challenge | Men",
         "Women’s Super League | Women",
         "Women’s Challenge Cup | Women"
+      ]
+    },
+    {
+      "source_type": "rfl-match-centre",
+      "sport": "Rugby",
+      "region": "England",
+      "endpoint": "https://www.rugby-league.com/ajaxAPI",
+      "official_schedule_url": "https://www.rugby-league.com/match-centre",
+      "id": "rugby-rfl-super-league",
+      "league": "Super League Rugby | Men",
+      "competition_id": 1,
+      "division_id": 2468,
+      "division_label": "Betfred Super League",
+      "source_note": "Exact senior Betfred Super League match-centre records. 2026 semi-final results verified; future TBD final remains excluded until opponents are named.",
+      "catalog_terms": [
+        "Super League Rugby | Men"
+      ]
+    },
+    {
+      "source_type": "rfl-match-centre",
+      "sport": "Rugby",
+      "region": "England",
+      "endpoint": "https://www.rugby-league.com/ajaxAPI",
+      "official_schedule_url": "https://www.rugby-league.com/match-centre",
+      "id": "rugby-rfl-challenge-cup",
+      "league": "Challenge Cup | Men",
+      "competition_id": 4,
+      "division_label": "Betfred Challenge Cup",
+      "source_note": "Exact men’s Betfred Challenge Cup records. 2026 final and semifinal match records verified; no next-edition fixtures claimed.",
+      "catalog_terms": [
+        "Challenge Cup | Men"
+      ]
+    },
+    {
+      "source_type": "rfl-match-centre",
+      "sport": "Rugby",
+      "region": "England",
+      "endpoint": "https://www.rugby-league.com/ajaxAPI",
+      "official_schedule_url": "https://www.rugby-league.com/match-centre",
+      "id": "rugby-rfl-womens-challenge-cup",
+      "league": "Women’s Challenge Cup | Women",
+      "competition_id": 37,
+      "division_label": "Betfred Womens Challenge Cup Knock Out Stage",
+      "division_labels": [
+        "Betfred Womens Challenge Cup Knock Out Stage",
+        "Betfred Womens Challenge Cup Group A",
+        "Betfred Womens Challenge Cup Group B",
+        "Betfred Womens Challenge Cup Group C",
+        "Betfred Womens Challenge Cup Group D"
+      ],
+      "source_note": "Exact 2026 senior women’s Challenge Cup stage labels in RFL competition 37. Other stage labels fail closed until checked; no next-edition fixtures claimed.",
+      "catalog_terms": [
+        "Women’s Challenge Cup | Women"
+      ]
+    },
+    {
+      "source_type": "rfl-match-centre",
+      "sport": "Rugby",
+      "region": "England",
+      "endpoint": "https://www.rugby-league.com/ajaxAPI",
+      "official_schedule_url": "https://www.rugby-league.com/match-centre",
+      "id": "rugby-rfl-world-club-challenge",
+      "league": "World Club Challenge | Men",
+      "competition_id": 45,
+      "division_id": 2467,
+      "division_label": "World Club Challenge",
+      "source_note": "Exact RFL World Club Challenge match-centre records. 2026 Hull KR–Brisbane match verified; no future annual fixture inferred.",
+      "catalog_terms": [
+        "World Club Challenge | Men"
       ]
     },
     {
@@ -3434,10 +3529,38 @@
       "league": "Top 14 and Pro D2",
       "region": "France",
       "official_schedule_url": "https://www.lnr.fr/actualite/calendrier-20262027-les-dates-connues",
-      "source_note": "LNR's previous shared calendar URL returns 404. This governing-body 2026–27 calendar establishes the Top 14 and Pro D2 season bounds; separate competition match pages still need exact unattended fixture adapters.",
+      "source_note": "Legacy LNR catalog and alias reference. Exact Top 14 and Pro D2 match-centre sources are configured separately; this shared ID must not emit fixtures.",
       "catalog_terms": [
         "Ligue Nationale de Rugby (LNR)",
         "Top 14 | Men",
+        "Pro D2 | Men"
+      ]
+    },
+    {
+      "id": "rugby-lnr-top14",
+      "source_type": "lnr-fixtures",
+      "sport": "Rugby",
+      "league": "Top 14 | Men",
+      "region": "France",
+      "endpoint": "https://top14.lnr.fr/calendrier-et-resultats/{season}",
+      "official_schedule_url": "https://top14.lnr.fr/calendrier-et-resultats/2026-2027",
+      "regular_rounds": 26,
+      "source_note": "Official LNR Top 14 2026–27 match pages. Admits only dated individual regular-season match cards with kickoff and named teams; no Pro D2 or access match.",
+      "catalog_terms": [
+        "Top 14 | Men"
+      ]
+    },
+    {
+      "id": "rugby-lnr-prod2",
+      "source_type": "lnr-fixtures",
+      "sport": "Rugby",
+      "league": "Pro D2 | Men",
+      "region": "France",
+      "endpoint": "https://prod2.lnr.fr/calendrier-et-resultats/{season}",
+      "official_schedule_url": "https://prod2.lnr.fr/calendrier-et-resultats/2026-2027",
+      "regular_rounds": 30,
+      "source_note": "Official LNR Pro D2 2026–27 match pages. Admits only dated individual regular-season match cards with kickoff and named teams; no Top 14 or access match.",
+      "catalog_terms": [
         "Pro D2 | Men"
       ]
     },
