@@ -51,17 +51,17 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
 
     def test_french_womens_divisions_and_cup_do_not_share_a_fixture_adapter(self):
         expected = {
-            "soccer-france-premi-re-ligue-women": ("2026-09-05", "2027-06-05", "ADAPTER_CONFIGURED"),
-            "soccer-france-seconde-ligue-women": ("2026-09-06", "2027-05-09", "ADAPTER_GAP"),
-            "soccer-france-coup-lffp-women": ("2026-08-22", "2027-04-10", "ADAPTER_GAP"),
+            "soccer-france-premi-re-ligue-women": ("2026-09-05", "2027-06-05", "ADAPTER_CONFIGURED", "16277"),
+            "soccer-france-seconde-ligue-women": ("2026-09-06", "2027-05-09", "ADAPTER_GAP", "17085"),
+            "soccer-france-coup-lffp-women": ("2026-08-22", "2027-04-10", "ADAPTER_GAP", "17085"),
         }
-        for key, (start, end, coverage) in expected.items():
+        for key, (start, end, coverage, notice) in expected.items():
             with self.subTest(key=key):
                 event = self.events[key]
                 source = self.sources[event["source_id"]]
                 self.assertEqual((start, end), (event["season_start_date"], event["season_end_date"]))
                 self.assertEqual(coverage, self.inventory[key]["coverage_state"])
-                self.assertIn("fff.fr/article/16277", source["official_schedule_url"])
+                self.assertIn(f"fff.fr/article/{notice}", source["official_schedule_url"])
 
     def test_portuguese_professional_competitions_stay_distinct(self):
         league = self.events["soccer-portugal-liga-portugal-2-men"]

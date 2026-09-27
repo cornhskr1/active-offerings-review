@@ -11,6 +11,7 @@ from lnr_fixture_adapter import current_round as lnr_current_round, parse_lnr_ro
 from prem_fixture_adapter import parse_prem_matches
 from epcr_fixture_adapter import parse_epcr_matches
 from jleague_fixture_adapter import parse_jleague_matches
+from saru_fixture_adapter import parse_saru_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1750,6 +1751,39 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="saru-matches":
+        try:
+            params={
+                "startDate": TODAY.isoformat(),
+                "endDate": (END + datetime.timedelta(days=1)).isoformat(),
+                "pageIndex": 0, "pageSize": 100, "IsAscending": "true",
+                "competitionId": source["competition_id"],
+            }
+            response=requests.get(source["endpoint"],params=params,headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            payload=response.json()
+            total=payload.get("totalDataCount")
+            if not isinstance(total,int) or total<0 or total>1000:
+                raise ValueError("SA Rugby match count is missing or unreasonable")
+            rows=payload.get("items")
+            if not isinstance(rows,list):
+                raise ValueError("SA Rugby match items missing")
+            for page in range(1,(total+99)//100):
+                params["pageIndex"]=page
+                extra=requests.get(source["endpoint"],params=params,headers=HEADERS,timeout=35)
+                extra.raise_for_status()
+                rows.extend(extra.json()["items"])
+            payload["items"]=rows
+            for parsed in parse_saru_matches(payload,source,TODAY,END):
+                if parsed["id"] not in seen:
+                    seen.add(parsed["id"])
+                    events.append(parsed)
+                    count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type")=="prem-rugby-matches":
         try:
             page=requests.get(source["official_schedule_url"],headers=HEADERS,timeout=35)
