@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T00:31:27.018956+00:00",
-  "schedule_generated_at": "2026-09-27T00:28:21.352707+00:00",
+  "registry_generated_at": "2026-09-27T00:46:10.271035+00:00",
+  "schedule_generated_at": "2026-09-27T00:42:55.258392+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 189,
+      "DATED_WINDOW": 192,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 56,
+      "DOCUMENTED_HOLD": 60,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 56,
-      "PENDING_DATES": 34,
-      "RECURRING_WINDOW": 318
+      "PARTIAL_WINDOW": 58,
+      "PENDING_DATES": 32,
+      "RECURRING_WINDOW": 311
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -1676,7 +1676,7 @@
           "id": "basketball-ar-lnb",
           "type": "official-event-window",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -9070,9 +9070,9 @@
       "identity_key": "soccer-india-durand-cup-men",
       "approval_parent": "Durand Cup | Men",
       "kind": "catalog",
-      "season_window": "July–August",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "July 25–August 23, 2026",
+      "season_state": "DATED_WINDOW",
+      "season_status": "out",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -9952,9 +9952,10 @@
       "identity_key": "soccer-iran-hazfi-cup-men",
       "approval_parent": "Hazfi Cup | Men",
       "kind": "catalog",
-      "season_window": "September–May",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "Current Hazfi Cup edition and dates pending verification",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "No governing-body fixture window for the next senior Hazfi Cup was established; the prior 2025–26 cup was interrupted.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -10015,9 +10016,10 @@
       "identity_key": "soccer-india-indian-super-league-men",
       "approval_parent": "Indian Super League | Men",
       "kind": "catalog",
-      "season_window": "Most recent season: February 14–May 21, 2026 · next schedule pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2026–27 season approved; revised kickoff and fixtures pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
+      "hold_reason": "AIFF withdrew the previously designated September 4 kickoff on August 19; exact current competition dates and fixtures remain unannounced.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -10078,9 +10080,10 @@
       "identity_key": "soccer-iran-iranian-super-cup-men",
       "approval_parent": "Iranian Super Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual August event",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "Next Iranian Super Cup fixture pending verification",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "No current senior Super Cup opponent pair or fixture date was established; the annual August assumption is not evidence.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -10099,8 +10102,8 @@
       "identity_key": "soccer-iraq-iraq-fa-cup-men",
       "approval_parent": "Iraq FA Cup | Men",
       "kind": "catalog",
-      "season_window": "January–June",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "December 13, 2026–May 14, 2027 (announced)",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10120,8 +10123,8 @@
       "identity_key": "soccer-iraq-iraqi-premier-league-men",
       "approval_parent": "Iraqi Premier League | Men",
       "kind": "catalog",
-      "season_window": "September–June",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 11, 2026 opener; 2027 conclusion pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10141,9 +10144,9 @@
       "identity_key": "soccer-iraq-iraqi-super-cup-men",
       "approval_parent": "Iraqi Super Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual single event · next date pending",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
+      "season_window": "December 14–18, 2026 (announced four-team format)",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -11576,8 +11579,8 @@
       "identity_key": "soccer-iran-persian-gulf-pro-league-men",
       "approval_parent": "Persian Gulf Pro League | Men",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 season underway in August 2026; exact end pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -12584,9 +12587,10 @@
       "identity_key": "soccer-india-super-cup-men",
       "approval_parent": "Super Cup | Men",
       "kind": "catalog",
-      "season_window": "April–May",
-      "season_state": "RECURRING_WINDOW",
-      "season_status": "",
+      "season_window": "AIFF Super Cup 2026–27 dates pending",
+      "season_state": "DOCUMENTED_HOLD",
+      "season_status": "out",
+      "hold_reason": "The AIFF competition page identifies the previous 2025–26 champion but provides no confirmed 2026–27 fixture window.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
