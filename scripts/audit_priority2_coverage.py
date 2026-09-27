@@ -19,6 +19,21 @@ def source_ids(item):
     return sorted(set(([item["source_id"]] if item.get("source_id") else []) + item.get("source_ids", [])))
 
 
+def configured_scope_owners(schedule_sources):
+    """Map exact emitted identities to the configured adapter that owns them."""
+    owners = {}
+    for source in schedule_sources:
+        for sid in source.get("scope_source_ids", []) + [
+            event["source_id"] for event in source.get("official_events", [])
+            if event.get("source_id")
+        ]:
+            key = (source["sport"], sid)
+            if key in owners and owners[key]["id"] != source["id"]:
+                raise ValueError(f"Ambiguous configured source scope: {key}")
+            owners[key] = source
+    return owners
+
+
 def season_state(item):
     if item.get("nonseasonal") is True:
         return "EVENT_BASED_APPROVAL"
@@ -109,7 +124,9 @@ def build():
     catalog = read("catalog-live.json")
     catalog_rows = catalog_identities(season_map)
     configured = {(item["sport"], item["id"]): item for item in schedule_sources}
+    scope_owners = configured_scope_owners(schedule_sources)
     observed = {(item["sport"], item["id"]): item for item in schedule.get("sources", [])}
+    event_counts = Counter((item["sport"], item.get("source_id")) for item in schedule.get("events", []))
     registry_rows = {
         (item["sport"], item["identity_key"]): item
         for item in registry["competitions"] if item.get("identity_key")
@@ -126,14 +143,17 @@ def build():
         ids = sorted(set(entry.get("source_ids", [])) | mapped["mapped_source_ids"])
         sources = []
         for sid in ids:
-            source = configured.get((key[0], sid))
-            health = observed.get((key[0], sid))
+            direct = configured.get((key[0], sid))
+            source = direct or scope_owners.get((key[0], sid))
+            health = observed.get((key[0], source["id"] if source else sid))
             sources.append({
                 "id": sid,
                 "type": (source or {}).get("source_type") or ("adapter" if source else "not-in-schedule-config"),
                 "configured_league": (source or {}).get("league") or "",
+                **({"configured_source_id": source["id"], "scope": "published-event" if source.get("source_type") == "official-event-window" else "classified-identity"}
+                   if source and not direct else {}),
                 "refresh_ok": (health or {}).get("ok"),
-                "events_in_window": (health or {}).get("events", 0),
+                "events_in_window": event_counts[(key[0], sid)] if source and not direct else (health or {}).get("events", 0),
             })
         types = {source["type"] for source in sources}
         if "not-in-schedule-config" in types:
