@@ -16,6 +16,7 @@ class SoccerNslCopaScopeTests(unittest.TestCase):
         expected = {
             "concacaf-soccer-canada-northern-super-league-women": "can.w.nsl",
             "conmebol-soccer-argentina-copa-argentina-men": "arg.copa",
+            "conmebol-soccer-colombia-copa-colombia-men": "col.copa",
         }
         for source_id, slug in expected.items():
             with self.subTest(source_id=source_id):
@@ -30,6 +31,7 @@ class SoccerNslCopaScopeTests(unittest.TestCase):
         reviewed = {(r.get("identity_key"), r.get("alias")) for r in aliases["reviewed_aliases"]}
         self.assertIn(("soccer-canada-northern-super-league-women", "Northern Super League"), reviewed)
         self.assertIn(("soccer-argentina-copa-argentina-men", "Copa Argentina AXION energy"), reviewed)
+        self.assertIn(("soccer-colombia-copa-colombia-men", "Copa BetPlay DIMAYOR"), reviewed)
 
 
 if __name__ == "__main__":

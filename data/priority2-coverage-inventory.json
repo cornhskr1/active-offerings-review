@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T05:26:19.123702+00:00",
+  "registry_generated_at": "2026-09-27T05:30:50.030276+00:00",
   "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 253,
-      "ADAPTER_GAP": 269,
+      "ADAPTER_CONFIGURED": 254,
+      "ADAPTER_GAP": 268,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 220,
+      "adapter_gaps": 219,
       "pending_dates": 87
     },
     "Surfing": {
@@ -8440,11 +8440,11 @@
       "season_window": "March–November",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "conmebol-soccer-colombia-copa-colombia-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Copa Colombia | Men",
           "refresh_ok": true,
           "events_in_window": 0
