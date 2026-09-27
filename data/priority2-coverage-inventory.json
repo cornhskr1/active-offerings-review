@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T00:03:30.084373+00:00",
-  "schedule_generated_at": "2026-09-27T00:00:10.172075+00:00",
+  "registry_generated_at": "2026-09-27T00:31:27.018956+00:00",
+  "schedule_generated_at": "2026-09-27T00:28:21.352707+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,13 +17,13 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 187,
+      "DATED_WINDOW": 189,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 51,
+      "DOCUMENTED_HOLD": 56,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 55,
-      "PENDING_DATES": 36,
-      "RECURRING_WINDOW": 324
+      "PARTIAL_WINDOW": 56,
+      "PENDING_DATES": 34,
+      "RECURRING_WINDOW": 318
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 224,
-      "pending_dates": 85
+      "pending_dates": 84
     },
     "Surfing": {
       "identities": 6,
@@ -1676,7 +1676,7 @@
           "id": "basketball-ar-lnb",
           "type": "official-event-window",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -3204,7 +3204,7 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 4
     },
     {
       "sport": "Cycling",
@@ -6775,8 +6775,8 @@
       "identity_key": "soccer-australia-a-league-men",
       "approval_parent": "A-League | Men and Women",
       "kind": "split-child",
-      "season_window": "October 16, 2026–May 9, 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "October 16, 2026–June 6, 2027 men’s Grand Final",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -6796,8 +6796,8 @@
       "identity_key": "soccer-australia-a-league-women",
       "approval_parent": "A-League | Men and Women",
       "kind": "split-child",
-      "season_window": "October 16, 2026–May 9, 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "October 18, 2026–May 16, 2027 women’s season end",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -7132,8 +7132,8 @@
       "identity_key": "soccer-australia-australia-cup-men",
       "approval_parent": "Australia Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "July–October",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026 qualifying start pending; July 14 national final rounds–October 10 final",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7153,8 +7153,8 @@
       "identity_key": "soccer-australia-australia-cup-women",
       "approval_parent": "Australia Cup | Men and Women",
       "kind": "split-child",
-      "season_window": "Schedule mapping pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "Senior women’s Australia Cup date and competition scope pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7301,8 +7301,8 @@
       "identity_key": "soccer-bangladesh-bangladesh-premier-league-men",
       "approval_parent": "Bangladesh Premier League | Men",
       "kind": "catalog",
-      "season_window": "November–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 Bangladesh top-flight dates and identity scope pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -7976,8 +7976,8 @@
       "identity_key": "soccer-bangladesh-challenge-cup-men",
       "approval_parent": "Challenge Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual season-opening event · next date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2026–27 Challenge Cup match date pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9742,8 +9742,8 @@
       "identity_key": "soccer-bangladesh-federation-cup-men",
       "approval_parent": "Federation Cup | Men",
       "kind": "catalog",
-      "season_window": "December–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2026–27 Federation Cup match dates pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -9994,8 +9994,8 @@
       "identity_key": "soccer-bangladesh-independence-cup-men",
       "approval_parent": "Independence Cup | Men",
       "kind": "catalog",
-      "season_window": "November–December",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Current senior Independence Cup edition pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
