@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-26T23:59:52.338896+00:00",
-  "schedule_generated_at": "2026-09-26T23:54:09.841676+00:00",
+  "registry_generated_at": "2026-09-27T00:03:30.084373+00:00",
+  "schedule_generated_at": "2026-09-27T00:00:10.172075+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -17,16 +17,16 @@
       "SOURCE_SCOPE_REVIEW": 69
     },
     "season_states": {
-      "DATED_WINDOW": 183,
+      "DATED_WINDOW": 187,
       "DESCRIPTIVE_WINDOW": 54,
-      "DOCUMENTED_HOLD": 50,
+      "DOCUMENTED_HOLD": 51,
       "NO_WINDOW": 24,
-      "PARTIAL_WINDOW": 52,
+      "PARTIAL_WINDOW": 55,
       "PENDING_DATES": 36,
-      "RECURRING_WINDOW": 332
+      "RECURRING_WINDOW": 324
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 279,
+    "reported_gap_labels": 277,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -266,7 +266,7 @@
       "split_children": 44,
       "no_linked_source": 0,
       "adapter_gaps": 224,
-      "pending_dates": 82
+      "pending_dates": 85
     },
     "Surfing": {
       "identities": 6,
@@ -9217,8 +9217,8 @@
       "identity_key": "soccer-japan-emperor-s-cup-men",
       "approval_parent": "Emperor’s Cup | Men",
       "kind": "catalog",
-      "season_window": "May–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 19, 2026–January 1, 2027 national tournament",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10225,8 +10225,8 @@
       "identity_key": "soccer-japan-j-league-cup-men",
       "approval_parent": "J.League Cup | Men",
       "kind": "catalog",
-      "season_window": "March–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 2, 2026 opening; 2027 final date pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10246,8 +10246,8 @@
       "identity_key": "soccer-japan-j1-league-men",
       "approval_parent": "J1 League | Men",
       "kind": "catalog",
-      "season_window": "February 6–December 19, 2026",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 7, 2026–June 6, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
@@ -10267,8 +10267,8 @@
       "identity_key": "soccer-japan-j2-league-men",
       "approval_parent": "J2 League | Men",
       "kind": "catalog",
-      "season_window": "February–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 8, 2026–June 6, 2027 promotion play-off final",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10288,8 +10288,8 @@
       "identity_key": "soccer-japan-japanese-super-cup-men",
       "approval_parent": "Japanese Super Cup | Men",
       "kind": "catalog",
-      "season_window": "Annual February event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Next senior Japanese Super Cup date pending",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10330,8 +10330,8 @@
       "identity_key": "soccer-korea-k-league-1-men",
       "approval_parent": "K League 1 | Men",
       "kind": "catalog",
-      "season_window": "February–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 28–December 6, 2026 league phases; relegation tie scope pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10351,8 +10351,8 @@
       "identity_key": "soccer-korea-k-league-2-men",
       "approval_parent": "K League 2 | Men",
       "kind": "catalog",
-      "season_window": "February–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "February 28–December 6, 2026 league and promotion play-offs; later tie scope pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -10414,8 +10414,8 @@
       "identity_key": "soccer-korea-korean-fa-cup-men",
       "approval_parent": "Korean FA Cup | Men",
       "kind": "catalog",
-      "season_window": "March–December",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "June 20, 2026–June 5, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
