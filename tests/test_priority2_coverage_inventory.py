@@ -1021,14 +1021,12 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         fbs = self.rows[("NCAA Football", "Division I Football Bowl Subdivision (FBS)")]
         self.assertEqual("ADAPTER_CONFIGURED", fbs["coverage_state"])
 
-    def test_ncaa_field_hockey_uses_exact_division_one_championship_window(self):
+    def test_ncaa_field_hockey_uses_exact_division_one_scoreboard(self):
         row = self.rows[("NCAA Field Hockey", "Division I Field Hockey | Women")]
         self.assertEqual("RECURRING_WINDOW", row["season_state"])
-        self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
         self.assertEqual(["ncaa-field-hockey-di"], [source["id"] for source in row["sources"]])
-        self.assertEqual("official-event-window", row["sources"][0]["type"])
-        self.assertTrue(row["sources"][0]["refresh_ok"])
-        self.assertEqual(0, row["sources"][0]["events_in_window"])
+        self.assertEqual("official-ncaa-division-one", row["sources"][0]["type"])
 
         season_map = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
         sport = next(item for item in season_map["sports"] if item["sport"] == "NCAA Field Hockey")
@@ -1043,13 +1041,10 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("NCAA Field Hockey", source["sport"])
         self.assertEqual("Division I Field Hockey | Women", source["league"])
         self.assertEqual(["Division I Field Hockey | Women"], source["catalog_terms"])
-        self.assertEqual("2026-11-20", source["official_events"][0]["start_date"])
-        self.assertEqual("2026-11-22", source["official_events"][0]["end_date"])
-
-        schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text(encoding="utf-8"))
-        refreshed = {item["id"]: item for item in schedule["sources"]}["ncaa-field-hockey-di"]
-        self.assertTrue(refreshed["ok"])
-        self.assertEqual(0, refreshed["events"])
+        self.assertEqual("WFH", source["ncaa_sport_code"])
+        self.assertEqual("official-ncaa-division-one", source["source_type"])
+        self.assertEqual(["2026-11-20", "2026-11-22"], source["official_championship_dates"])
+        self.assertEqual("partial", source["coverage_status"])
 
         registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
         registered = next(
@@ -1201,14 +1196,14 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
     def test_ncaa_soccer_has_separate_division_one_fixture_feeds(self):
         expected = {
-            "Division I Soccer | Men": ("ncaa-soccer-di-men", "5487", "usa.ncaa.m.1", ["2026-12-11", "2026-12-14"]),
-            "Division I Soccer | Women": ("ncaa-soccer-di-women", "5499", "usa.ncaa.w.1", ["2026-12-10", "2026-12-13"]),
+            "Division I Soccer | Men": ("ncaa-soccer-di-men", "MSO", ["2026-12-11", "2026-12-14"]),
+            "Division I Soccer | Women": ("ncaa-soccer-di-women", "WSO", ["2026-12-10", "2026-12-13"]),
         }
         config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
         sources = {source["id"]: source for source in config["sources"]}
         registry = json.loads((ROOT / "data" / "competition-identity-registry.json").read_text(encoding="utf-8"))
         registered = {item["league"]: item for item in registry["competitions"] if item["sport"] == "NCAA Soccer"}
-        for league, (source_id, espn_id, slug, dates) in expected.items():
+        for league, (source_id, sport_code, dates) in expected.items():
             with self.subTest(league=league):
                 row = self.rows[("NCAA Soccer", league)]
                 self.assertEqual("Division I Soccer | Men and Women", row["approval_parent"])
@@ -1218,13 +1213,12 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], registered[league]["source_ids"])
                 source = sources[source_id]
                 self.assertEqual([league], source["catalog_terms"])
-                self.assertEqual("espn-daily", source["source_type"])
-                self.assertEqual((espn_id, slug), (source["espn_league_id"], source["espn_league_slug"]))
+                self.assertEqual("official-ncaa-division-one", source["source_type"])
+                self.assertEqual(sport_code, source["ncaa_sport_code"])
+                self.assertEqual(f"https://www.ncaa.com/scoreboard/soccer-{'men' if sport_code=='MSO' else 'women'}/d1", source["endpoint"])
                 self.assertEqual(dates, source["official_championship_dates"])
-                self.assertTrue(source["espn_hold_untimed"])
-                self.assertTrue(source["espn_require_all_days"])
                 self.assertEqual("partial", source["coverage_status"])
-                self.assertIn("complete postseason coverage remain unverified", source["source_note"])
+                self.assertIn("Division II or III", source["source_note"])
         self.assertNotIn(("NCAA Soccer", "Division I Soccer | Men and Women"), self.rows)
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Soccer"]["pending_dates"])
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Soccer"]["no_linked_source"])

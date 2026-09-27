@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T22:05:28.547452+00:00",
-  "schedule_generated_at": "2026-09-27T22:02:05.268196+00:00",
+  "registry_generated_at": "2026-09-27T22:50:44.634739+00:00",
+  "schedule_generated_at": "2026-09-27T22:46:43.640779+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,10 +10,10 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 282,
+      "ADAPTER_CONFIGURED": 283,
       "ADAPTER_GAP": 247,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 138
+      "OFFICIAL_WINDOW_ONLY": 137
     },
     "season_states": {
       "DATED_WINDOW": 214,
@@ -5570,13 +5570,13 @@
       "season_window": "August–November; 2026 NCAA championship Nov. 20–22",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-field-hockey-di",
-          "type": "official-event-window",
+          "type": "official-ncaa-division-one",
           "configured_league": "Division I Field Hockey | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5777,13 +5777,13 @@
       "sources": [
         {
           "id": "ncaa-soccer-di-men",
-          "type": "espn-daily",
+          "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
           "refresh_ok": null,
           "events_in_window": 0
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 171
     },
     {
       "sport": "NCAA Soccer",
@@ -5798,13 +5798,13 @@
       "sources": [
         {
           "id": "ncaa-soccer-di-women",
-          "type": "espn-daily",
+          "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Women",
           "refresh_ok": null,
           "events_in_window": 0
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 339
     },
     {
       "sport": "NCAA Softball",
@@ -14909,7 +14909,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14930,7 +14930,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
