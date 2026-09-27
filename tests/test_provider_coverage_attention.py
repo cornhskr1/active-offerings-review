@@ -13,6 +13,7 @@ class ProviderCoverageAttentionTests(unittest.TestCase):
         html = (ROOT / "index.html").read_text()
         start = html.index("function renderIssueBoard(")
         end = html.index("\nfunction renderUpcomingSportBoard(", start)
+        sport_helper = html[html.index("function normCollegeSport("):html.index("function isNonWageredNcaaSport(")]
         script = """
 const assert=require('node:assert/strict');
 const pill=(_,label)=>label;
@@ -24,7 +25,7 @@ const esportsGameLabel=()=>'';
 const prettyDay=()=>{throw Error('coverage gap has no fixture date')};
 const eventTime=()=>{throw Error('coverage gap has no fixture time')};
 const ctKey=()=>{throw Error('coverage gap has no fixture date')};
-""" + html[start:end] + """
+""" + sport_helper + html[start:end] + """
 const htmlOut=renderIssueBoard([{severity:'AMBER',type:'SCHEDULE COVERAGE GAP',
   sport:'Rugby',league:'New Zealand Rugby competitions',region:'New Zealand',
   event:'3 approved competitions · shared fixture feed gap',
