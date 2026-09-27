@@ -147,11 +147,11 @@
       "sport": "Soccer",
       "league": "Liga Nacional | Men",
       "region": "Guatemala",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://fedefutguate.gt/",
-      "official_schedule_url": "https://fedefutguate.gt/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/scoreboard",
+      "official_schedule_url": "https://ligagt.org/calendario/",
+      "source_note": "Exact 2026 Liga Bantrab Apertura daily fixtures matched against the league's official calendar; not a Concacaf or lower-division feed.",
       "catalog_terms": [
         "Liga Nacional | Men"
       ]
