@@ -124,6 +124,36 @@
         "UCI Asia Tour",
         "UCI Europe Tour",
         "UCI Oceania Tour"
+      ],
+      "scope_source_ids": [
+        "cycling-bmx-worlds",
+        "cycling-cadel-evans",
+        "cycling-cyclocross-worlds",
+        "cycling-giro-ditalia",
+        "cycling-gp-montreal",
+        "cycling-gp-quebec",
+        "cycling-gravel-worlds",
+        "cycling-il-lombardia",
+        "cycling-indoor-worlds",
+        "cycling-liege-bastogne-liege",
+        "cycling-milan-san-remo",
+        "cycling-mtb-marathon-worlds",
+        "cycling-mtb-worlds",
+        "cycling-paris-roubaix",
+        "cycling-road-worlds",
+        "cycling-snow-bike-worlds",
+        "cycling-tour-de-france",
+        "cycling-tour-flanders",
+        "cycling-tour-guangxi",
+        "cycling-track-worlds",
+        "cycling-uae-tour",
+        "cycling-uci-africa-tour",
+        "cycling-uci-america-tour",
+        "cycling-uci-asia-tour",
+        "cycling-uci-europe-tour",
+        "cycling-uci-oceania-tour",
+        "cycling-urban-worlds",
+        "cycling-vuelta"
       ]
     },
     {
@@ -141,6 +171,10 @@
         "Championship Darts Corporation (CDC)",
         "Main Tour Events",
         "Cross Border Darts Challenge"
+      ],
+      "scope_source_ids": [
+        "darts-cdc-cross-border",
+        "darts-cdc-main-tour"
       ]
     },
     {
@@ -159,6 +193,11 @@
         "PDC Players Championship",
         "PDC World Championship",
         "Premier League Darts"
+      ],
+      "scope_source_ids": [
+        "darts-pdc-players-championship",
+        "darts-pdc-premier-league",
+        "darts-pdc-world-championship"
       ]
     },
     {
@@ -184,6 +223,21 @@
         "First Stand Tournament",
         "Mid-Season Invitational",
         "League of Legends World Championship"
+      ],
+      "scope_source_ids": [
+        "esports-lol-cblol",
+        "esports-lol-cblol-cup",
+        "esports-lol-first-stand",
+        "esports-lol-lck",
+        "esports-lol-lck-cup",
+        "esports-lol-lcp",
+        "esports-lol-lcs",
+        "esports-lol-lcs-lock-in",
+        "esports-lol-lec",
+        "esports-lol-lec-versus",
+        "esports-lol-lpl",
+        "esports-lol-msi",
+        "esports-lol-worlds"
       ]
     },
     {
@@ -202,6 +256,11 @@
         "Regional Leagues and Stages",
         "Valorant Masters",
         "Valorant Champions"
+      ],
+      "scope_source_ids": [
+        "esports-valorant-champions",
+        "esports-valorant-masters",
+        "esports-valorant-regional"
       ]
     },
     {
@@ -221,6 +280,12 @@
         "BLAST R6 Major Events",
         "Regional Closed Leagues",
         "Challenger Series"
+      ],
+      "scope_source_ids": [
+        "esports-r6-challenger",
+        "esports-r6-global",
+        "esports-r6-majors",
+        "esports-r6-regional"
       ]
     },
     {
@@ -269,7 +334,11 @@
       "endpoint": "https://pro.eslgaming.com/tour/dota2/",
       "official_schedule_url": "https://pro.eslgaming.com/tour/dota2/",
       "source_note": "Official ESL Pro Tour Dota 2 calendar restricted to top-level DreamLeague and ESL One events. Division 2 and qualifiers are excluded.",
-      "catalog_terms": ["Electronic Sports League (ESL) Pro Tour - Dota 2", "DreamLeague"]
+      "catalog_terms": ["Electronic Sports League (ESL) Pro Tour - Dota 2", "DreamLeague"],
+      "scope_source_ids": [
+        "esports-dota-dreamleague",
+        "esports-dota-esl-pro-tour"
+      ]
     },
     {
       "id": "esports-dota-ewc-calendar",
@@ -305,7 +374,10 @@
       "endpoint": "https://pro.eslgaming.com/tour/cs/",
       "official_schedule_url": "https://pro.eslgaming.com/tour/cs/",
       "source_note": "Official ESL Pro Tour calendar restricted to event cards linking to ESL Pro League. IEM and ESL Challenger competitions are excluded.",
-      "catalog_terms": ["Electronic Sports League (ESL) Pro League"]
+      "catalog_terms": ["Electronic Sports League (ESL) Pro League"],
+      "scope_source_ids": [
+        "esports-cs2-esl-pro-league"
+      ]
     },
     {
       "id": "esports-pgl-cs2-calendar",
@@ -317,7 +389,10 @@
       "endpoint": "https://news.pglesports.com/api/events",
       "official_schedule_url": "https://www.pglesports.com/",
       "source_note": "Official PGL events feed restricted to PGL CS2 and PGL Masters CS2 events. PGL Dota 2 events are explicitly excluded. NO IN-GAME WAGERS remains attached through the catalog leaf.",
-      "catalog_terms": ["Professional Gamers League (PGL) CS2"]
+      "catalog_terms": ["Professional Gamers League (PGL) CS2"],
+      "scope_source_ids": [
+        "esports-cs2-pgl"
+      ]
     },
     {
       "id": "esports-simulation-calendar",
@@ -328,7 +403,12 @@
       "coverage_status": "pending",
       "endpoint": "",
       "source_note": "The eAdriatic, NextGen eBasket, and GT Sports schedules require a stable publisher-owned schedule source before automation.",
-      "catalog_terms": ["eAdriatic / eJadranskaLiga", "NextGen eBasket League", "eAdriatic League", "GT Sports League"]
+      "catalog_terms": ["eAdriatic / eJadranskaLiga", "NextGen eBasket League", "eAdriatic League", "GT Sports League"],
+      "scope_source_ids": [
+        "esports-eadriatic-league",
+        "esports-eadriatic-nextgen",
+        "esports-gt-sports-league"
+      ]
     },
     {
       "id": "esports-rlcs",
@@ -438,6 +518,9 @@
       "catalog_terms": [
         "National Football League",
         "NFL"
+      ],
+      "scope_source_ids": [
+        "football-nfl-preseason"
       ]
     },
     {

@@ -1343,9 +1343,11 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(0, self.inventory["by_sport"]["NCAA Water Polo"]["pending_dates"])
         self.assertEqual(2, self.inventory["by_sport"]["NCAA Water Polo"]["no_linked_source"])
 
-    def test_unconfigured_reference_and_schedule_only_names_remain_visible(self):
+    def test_scoped_classifier_and_schedule_only_names_remain_visible(self):
         cycling = self.rows[("Cycling", "Cadel Evans Great Ocean Road Race")]
-        self.assertEqual("SOURCE_SCOPE_REVIEW", cycling["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", cycling["coverage_state"])
+        self.assertEqual("cycling-uci-calendar", cycling["sources"][0]["configured_source_id"])
+        self.assertEqual("classified-identity", cycling["sources"][0]["scope"])
         self.assertEqual(
             [],
             self.inventory["summary"]["schedule_only_not_independent_approvals"],
