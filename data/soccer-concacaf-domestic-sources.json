@@ -372,11 +372,11 @@
       "sport": "Soccer",
       "league": "NWSL Challenge Cup | Women",
       "region": "United States",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.nwslsoccer.com/",
-      "official_schedule_url": "https://www.nwslsoccer.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl.cup/scoreboard",
+      "official_schedule_url": "https://www.nwslsoccer.com/schedule/challenge-cup",
+      "source_note": "Exact Challenge Cup fixture feed; 2026 June 26 final was verified against NWSL, while 2027 participants remain unannounced.",
       "catalog_terms": [
         "NWSL Challenge Cup | Women"
       ]

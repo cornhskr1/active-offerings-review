@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T05:36:43.712397+00:00",
+  "registry_generated_at": "2026-09-27T05:40:30.864528+00:00",
   "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
@@ -10,14 +10,14 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 256,
-      "ADAPTER_GAP": 266,
+      "ADAPTER_CONFIGURED": 257,
+      "ADAPTER_GAP": 265,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
-      "DATED_WINDOW": 212,
-      "DESCRIPTIVE_WINDOW": 54,
+      "DATED_WINDOW": 213,
+      "DESCRIPTIVE_WINDOW": 53,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 217,
+      "adapter_gaps": 216,
       "pending_dates": 87
     },
     "Surfing": {
@@ -11534,14 +11534,14 @@
       "identity_key": "soccer-united-states-nwsl-challenge-cup-women",
       "approval_parent": "NWSL Challenge Cup | Women",
       "kind": "catalog",
-      "season_window": "February 20, 2026 · completed",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_window": "June 26, 2026 · completed",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-united-states-nwsl-challenge-cup-women",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "NWSL Challenge Cup | Women",
           "refresh_ok": true,
           "events_in_window": 0
