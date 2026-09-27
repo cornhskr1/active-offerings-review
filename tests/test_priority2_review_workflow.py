@@ -1,0 +1,69 @@
+"""The Review Today catalog index and bulk exception report share the full inventory."""
+
+import json
+import subprocess
+import unittest
+from pathlib import Path
+
+from scripts.report_priority2_exceptions import cohorts
+
+
+ROOT = Path(__file__).resolve().parents[1]
+HTML = (ROOT / "index.html").read_text(encoding="utf-8")
+INVENTORY = json.loads((ROOT / "data" / "priority2-coverage-inventory.json").read_text())
+
+
+class Priority2ReviewWorkflowTests(unittest.TestCase):
+    def test_bulk_report_covers_exceptions_without_multiplying_identity_total(self):
+        groups = cohorts(INVENTORY)
+        soccer_gaps = next(g for g in groups if (g["kind"], g["state"], g["sport"]) == ("coverage", "ADAPTER_GAP", "Soccer"))
+        self.assertEqual(224, soccer_gaps["count"])
+        self.assertEqual(224, len(set(soccer_gaps["identity_keys"])))
+        self.assertEqual(60, next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
+        self.assertEqual(731, len(INVENTORY["identities"]))
+
+    def test_catalog_index_exposes_all_identities_without_generating_alerts(self):
+        start = HTML.index("function renderCatalogCoverageIndex(")
+        end = HTML.index("\nfunction uncoveredMappedEvents(", start)
+        script = """
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={coverage:JSON.parse(fs.readFileSync('data/priority2-coverage-inventory.json'))};
+let query='';
+const document={getElementById(){return {value:query}}};
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+function mappedCatalogEventForScheduleEvent(event){return {key:event.key}}
+""" + HTML[start:end] + """
+const full=renderCatalogCoverageIndex();
+assert.match(full,/731 Operational Identities/);
+assert.equal((full.match(/data-open-catalog=/g)||[]).length,731);
+assert.match(full,/soccer-uzbekistan|Uzbekistan Cup/);
+assert.doesNotMatch(full,/staff_action|MANUAL REVIEW REQUIRED/);
+query='Uzbekistan Cup';
+const filtered=renderCatalogCoverageIndex([{key:'soccer-uzbekistan-uzbekistan-cup-men'}]);
+assert.equal((filtered.match(/data-open-catalog=/g)||[]).length,1);
+assert.match(filtered,/1 upcoming mapped event in Today \\+ 7/);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+
+    def test_past_due_ncaa_futures_alert_occurs_once(self):
+        start = HTML.index("function collegeFuturesAttention(")
+        end = HTML.index("\nfunction renderCollege(", start)
+        script = """
+const assert=require('node:assert/strict');
+const DATA={collegeFutures:{programs:[{school:'Nebraska',sport:'Football',
+  regular_season_futures:{days_to_cutoff:-1},
+  first_regular_season_contest:{date:'2026-09-25',time:'12:00',opponent:'Visitor'}}]}};
+function todayKey(){return '2026-09-26'}
+function ctKey(value){return value.slice(0,10)}
+function prettyDay(value){return value}
+""" + HTML[start:end] + """
+assert.equal(collegeFuturesAttention('2026-09-26').length,1);
+for(const day of ['2026-09-27','2026-09-28','2026-09-29'])
+  assert.equal(collegeFuturesAttention(day).length,0);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+
+
+if __name__ == "__main__":
+    unittest.main()
