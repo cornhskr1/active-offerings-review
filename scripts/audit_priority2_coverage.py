@@ -146,6 +146,9 @@ def build():
             direct = configured.get((key[0], sid))
             source = direct or scope_owners.get((key[0], sid))
             health = observed.get((key[0], source["id"] if source else sid))
+            # A prior gap record is not a successful check of a newly configured adapter.
+            if health and source and health.get("source_type") != source.get("source_type"):
+                health = None
             sources.append({
                 "id": sid,
                 "type": (source or {}).get("source_type") or ("adapter" if source else "not-in-schedule-config"),

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T14:31:57.431686+00:00",
-  "schedule_generated_at": "2026-09-27T14:15:45.938425+00:00",
+  "registry_generated_at": "2026-09-27T14:41:07.858397+00:00",
+  "schedule_generated_at": "2026-09-27T14:37:52.799601+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 268,
-      "ADAPTER_GAP": 254,
+      "ADAPTER_CONFIGURED": 270,
+      "ADAPTER_GAP": 252,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 286
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 265,
+    "reported_gap_labels": 262,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 210,
+      "adapter_gaps": 208,
       "pending_dates": 87
     },
     "Surfing": {
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -10902,13 +10902,13 @@
       "season_window": "January–May / July–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-costa-rica-liga-fpd-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Liga FPD | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -12084,13 +12084,13 @@
       "season_window": "January–May / July–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-el-salvador-primera-division-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
