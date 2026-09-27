@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T23:14:10.153545+00:00",
-  "schedule_generated_at": "2026-09-27T23:10:43.108552+00:00",
+  "registry_generated_at": "2026-09-27T23:23:32.524755+00:00",
+  "schedule_generated_at": "2026-09-27T23:19:52.051104+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 283,
-      "ADAPTER_GAP": 247,
+      "ADAPTER_CONFIGURED": 284,
+      "ADAPTER_GAP": 246,
       "NO_LINKED_SOURCE": 57,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -20,9 +20,9 @@
       "DESCRIPTIVE_WINDOW": 50,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
-      "PARTIAL_WINDOW": 61,
+      "PARTIAL_WINDOW": 62,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 281
+      "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 255,
@@ -264,8 +264,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 208,
-      "pending_dates": 87
+      "adapter_gaps": 207,
+      "pending_dates": 88
     },
     "Surfing": {
       "identities": 6,
@@ -4456,7 +4456,7 @@
           "id": "golf-aig-womens-open",
           "type": "official-event-window",
           "configured_league": "AIG Women’s Open",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4624,7 +4624,7 @@
           "id": "golf-masters",
           "type": "official-event-window",
           "configured_league": "Masters Tournament",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4645,7 +4645,7 @@
           "id": "golf-pga-championship",
           "type": "official-event-window",
           "configured_league": "PGA Championship",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4729,7 +4729,7 @@
           "id": "golf-ryder-cup",
           "type": "official-event-window",
           "configured_league": "Ryder Cup",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4771,7 +4771,7 @@
           "id": "golf-open-championship",
           "type": "official-event-window",
           "configured_league": "The Open Championship",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4813,7 +4813,7 @@
           "id": "golf-us-open",
           "type": "official-event-window",
           "configured_league": "United States Open Championship (U.S. Open)",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4834,7 +4834,7 @@
           "id": "golf-us-womens-open",
           "type": "official-event-window",
           "configured_league": "United States Women’s Open Championship (U.S. Women’s Open)",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -8569,16 +8569,16 @@
       "identity_key": "soccer-international-copa-libertadores-femenina-women",
       "approval_parent": "Copa Libertadores Femenina | Women",
       "kind": "catalog",
-      "season_window": "October 2026 tournament calendar pending match adapter",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "October 15–31, 2026; 24 group fixtures published October 15–22, knockout pairings pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-conmebol-libertadores-femenina",
-          "type": "coverage-gap",
+          "type": "official-conmebol-femenina-fixtures",
           "configured_league": "Copa Libertadores Femenina | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -14965,7 +14965,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14986,7 +14986,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
