@@ -15,6 +15,7 @@ from saru_fixture_adapter import parse_saru_matches
 from thai_league_fixture_adapter import parse_thai_league_matches
 from espn_league_scope import verified_events as verified_espn_league_events
 from official_motorsports_calendar import PARSERS as MOTORSPORTS_CALENDAR_PARSERS
+from espn_college_football_scope import exclusive_events as exclusive_college_football_events
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -30,6 +31,23 @@ NOW_UTC = datetime.datetime.now(datetime.timezone.utc)
 TODAY = datetime.datetime.now(TZ).date()
 END = TODAY + datetime.timedelta(days=int(CFG.get("window_days",7)))
 HEADERS = {"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
+COLLEGE_FOOTBALL_DAY_CACHE={}
+
+def fetch_college_football_day(source,day):
+    day_key=day.strftime("%Y%m%d")
+    if day_key not in COLLEGE_FOOTBALL_DAY_CACHE:
+        pair={}
+        for group in ("80","81"):
+            response=requests.get(source["endpoint"],
+                params={"dates":day_key,"groups":group,"limit":"500"},
+                headers=HEADERS,timeout=25)
+            response.raise_for_status()
+            pair[group]=response.json()
+        COLLEGE_FOOTBALL_DAY_CACHE[day_key]=pair
+    pair=COLLEGE_FOOTBALL_DAY_CACHE[day_key]
+    group=source["espn_group"]
+    return exclusive_college_football_events(pair[group],
+        pair["81" if group=="80" else "80"],group)
 
 ESPORTS_GAME_NAMES={
     "lol":"League of Legends",
@@ -2178,6 +2196,27 @@ for source in CFG.get("sources",[]):
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
+        continue
+    if source.get("source_type")=="espn-college-football-subdivision":
+        held_ids=set()
+        days=[TODAY+datetime.timedelta(days=offset) for offset in range((END-TODAY).days+1)]
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            futures={pool.submit(fetch_college_football_day,source,day):day for day in days}
+            for future in as_completed(futures):
+                day=futures[future]
+                try:
+                    rows,held=future.result()
+                    held_ids.update(str(event["id"]) for event in held)
+                    for ev in rows:
+                        parsed=parse_event(source,ev)
+                        key=(parsed["id"],parsed["start_time"])
+                        if key in seen:continue
+                        seen.add(key);events.append(parsed);count+=1
+                except Exception as e:
+                    errors.append(f"{day.isoformat()}: {str(e)[:90]}")
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"cross_subdivision_held":len(held_ids),
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="espn-daily":
         def fetch_espn_day(day):

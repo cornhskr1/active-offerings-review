@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T19:30:22.195465+00:00",
-  "schedule_generated_at": "2026-09-27T19:27:03.072533+00:00",
+  "registry_generated_at": "2026-09-27T21:47:56.312012+00:00",
+  "schedule_generated_at": "2026-09-27T21:44:40.525476+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,10 +10,10 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 278,
-      "ADAPTER_GAP": 248,
+      "ADAPTER_CONFIGURED": 280,
+      "ADAPTER_GAP": 247,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 141
+      "OFFICIAL_WINDOW_ONLY": 140
     },
     "season_states": {
       "DATED_WINDOW": 214,
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 287
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 258,
+    "reported_gap_labels": 256,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -166,7 +166,7 @@
       "identities": 3,
       "split_children": 0,
       "no_linked_source": 0,
-      "adapter_gaps": 1,
+      "adapter_gaps": 0,
       "pending_dates": 0
     },
     "NCAA Golf": {
@@ -371,7 +371,7 @@
           "events_in_window": 33
         }
       ],
-      "events_in_window": 23
+      "events_in_window": 24
     },
     {
       "sport": "Baseball",
@@ -3684,10 +3684,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Esports",
@@ -3983,10 +3983,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Esports",
@@ -5145,7 +5145,7 @@
           "id": "motorsports-formula-e",
           "type": "official-motorsports-calendar",
           "configured_league": "Formula E World Championship",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5210,11 +5210,11 @@
           "id": "motorsports-motogp",
           "type": "official-motorsports-calendar",
           "configured_league": "MotoGP World Championship",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Motorsports",
@@ -5294,11 +5294,11 @@
           "id": "motorsports-nhra",
           "type": "official-motorsports-calendar",
           "configured_league": "NHRA Mission Foods Drag Racing Series",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Motorsports",
@@ -5336,7 +5336,7 @@
           "id": "motorsports-supercars",
           "type": "official-motorsports-calendar",
           "configured_league": "Repco Supercars Championship",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5591,13 +5591,13 @@
       "season_window": "August–January",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-football-fbs",
-          "type": "coverage-gap",
+          "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Bowl Subdivision (FBS)",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5612,13 +5612,13 @@
       "season_window": "August–January; 2026-27 NCAA FCS championship Jan. 11, 2027",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "ncaa-football-fcs",
-          "type": "official-event-window",
+          "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Championship Subdivision (FCS)",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6754,10 +6754,10 @@
           "type": "lnr-fixtures",
           "configured_league": "Top 14 | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Rugby",
