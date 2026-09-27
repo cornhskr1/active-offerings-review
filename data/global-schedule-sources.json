@@ -3104,49 +3104,27 @@
       ]
     },
     {
-      "id": "motorsports-motogp-calendar",
-      "source_type": "official-event-window",
+      "id": "motorsports-motogp",
+      "source_type": "official-motorsports-calendar",
       "sport": "Motorsports",
       "league": "MotoGP World Championship",
       "region": "International",
       "endpoint": "https://www.motogp.com/en/calendar/2026",
       "official_schedule_url": "https://www.motogp.com/en/calendar/2026",
-      "coverage_status": "current-published-events",
-      "official_events": [
-        {
-          "source_id": "motorsports-motogp",
-          "league": "MotoGP World Championship",
-          "name": "MotoGP Grand Prix of Austria",
-          "start_date": "2026-09-18",
-          "end_date": "2026-09-20",
-          "location": "Red Bull Ring · Spielberg, Austria",
-          "official_schedule_url": "https://www.motogp.com/en/calendar/2026"
-        }
-      ],
+      "calendar_format": "motogp",
       "catalog_terms": [
         "MotoGP World Championship"
       ]
     },
     {
-      "id": "motorsports-nhra-calendar",
-      "source_type": "official-event-window",
+      "id": "motorsports-nhra",
+      "source_type": "official-motorsports-calendar",
       "sport": "Motorsports",
       "league": "NHRA Mission Foods Drag Racing Series",
       "region": "United States",
-      "endpoint": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
-      "official_schedule_url": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan",
-      "coverage_status": "current-published-events",
-      "official_events": [
-        {
-          "source_id": "motorsports-nhra",
-          "league": "NHRA Mission Foods Drag Racing Series",
-          "name": "Dodge NHRA Great Lakes Nationals presented by Mopar",
-          "start_date": "2026-09-18",
-          "end_date": "2026-09-20",
-          "location": "US 131 Motorsports Park · Martin, Michigan",
-          "official_schedule_url": "https://nhra.com/news/2026/nhra-countdown-championship-ready-kickoff-michigan"
-        }
-      ],
+      "endpoint": "https://www.nhra.com/schedule/2026",
+      "official_schedule_url": "https://www.nhra.com/schedule/2026",
+      "calendar_format": "nhra",
       "catalog_terms": [
         "National Hot Rod Association (NHRA) Mission Foods Drag Racing Series"
       ]
@@ -3177,24 +3155,27 @@
     },
     {
       "id": "motorsports-supercars",
-      "source_type": "coverage-gap",
+      "source_type": "official-motorsports-calendar",
       "sport": "Motorsports",
       "league": "Repco Supercars Championship",
       "region": "Australia",
+      "endpoint": "https://www.supercars.com/calendar",
       "official_schedule_url": "https://www.supercars.com/calendar",
-      "source_note": "Season is mapped; a dependable unattended official event adapter is still pending.",
+      "calendar_format": "supercars",
       "catalog_terms": [
         "Repco Supercars Championship"
       ]
     },
     {
       "id": "motorsports-formula-e",
-      "source_type": "coverage-gap",
+      "source_type": "official-motorsports-calendar",
       "sport": "Motorsports",
       "league": "Formula E World Championship",
       "region": "International",
+      "endpoint": "https://www.fiaformulae.com/en/calendar",
       "official_schedule_url": "https://www.fiaformulae.com/en/calendar",
-      "source_note": "The 2025–26 season is complete; reconnect when the next official championship calendar begins.",
+      "calendar_format": "formula-e",
+      "source_note": "The 2026–27 calendar lists 21 rounds; the Americas placeholder lacks a specific venue and is held out of event cards until published.",
       "catalog_terms": [
         "Formula E World Championship"
       ]

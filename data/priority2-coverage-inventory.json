@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T18:21:06.900374+00:00",
-  "schedule_generated_at": "2026-09-27T18:17:37.148135+00:00",
+  "registry_generated_at": "2026-09-27T19:30:22.195465+00:00",
+  "schedule_generated_at": "2026-09-27T19:27:03.072533+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,22 +10,22 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 274,
-      "ADAPTER_GAP": 250,
+      "ADAPTER_CONFIGURED": 278,
+      "ADAPTER_GAP": 248,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 143
+      "OFFICIAL_WINDOW_ONLY": 141
     },
     "season_states": {
       "DATED_WINDOW": 214,
-      "DESCRIPTIVE_WINDOW": 52,
+      "DESCRIPTIVE_WINDOW": 51,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 286
+      "RECURRING_WINDOW": 287
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 262,
+    "reported_gap_labels": 258,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -131,7 +131,7 @@
       "identities": 12,
       "split_children": 0,
       "no_linked_source": 0,
-      "adapter_gaps": 4,
+      "adapter_gaps": 2,
       "pending_dates": 0
     },
     "NCAA Baseball": {
@@ -5136,16 +5136,16 @@
       "identity_key": "motorsports-intl-formula-e",
       "approval_parent": "Formula E World Championship",
       "kind": "catalog",
-      "season_window": "December 6, 2025–August 16, 2026 · completed",
-      "season_state": "DESCRIPTIVE_WINDOW",
-      "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "season_window": "December 18, 2026–July 25, 2027",
+      "season_state": "RECURRING_WINDOW",
+      "season_status": "",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-formula-e",
-          "type": "coverage-gap",
+          "type": "official-motorsports-calendar",
           "configured_league": "Formula E World Championship",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5189,7 +5189,7 @@
           "id": "motorsports-indycar",
           "type": "espn-daily",
           "configured_league": "IndyCar Series",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5204,15 +5204,13 @@
       "season_window": "February 27–November 22, 2026",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-motogp",
-          "type": "official-event-window",
+          "type": "official-motorsports-calendar",
           "configured_league": "MotoGP World Championship",
-          "configured_source_id": "motorsports-motogp-calendar",
-          "scope": "published-event",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5233,7 +5231,7 @@
           "id": "motorsports-nascar-truck",
           "type": "espn-daily",
           "configured_league": "NASCAR Craftsman Truck Series",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -5254,11 +5252,11 @@
           "id": "motorsports-nascar-cup",
           "type": "espn-daily",
           "configured_league": "NASCAR Cup Series (NCS)",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Motorsports",
@@ -5275,11 +5273,11 @@
           "id": "motorsports-nascar-oreilly",
           "type": "espn-daily",
           "configured_league": "NASCAR O’Reilly Auto Parts Series",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Motorsports",
@@ -5290,15 +5288,13 @@
       "season_window": "March–November 15, 2026",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-nhra",
-          "type": "official-event-window",
+          "type": "official-motorsports-calendar",
           "configured_league": "NHRA Mission Foods Drag Racing Series",
-          "configured_source_id": "motorsports-nhra-calendar",
-          "scope": "published-event",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5334,13 +5330,13 @@
       "season_window": "February 20–November 29, 2026",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-supercars",
-          "type": "coverage-gap",
+          "type": "official-motorsports-calendar",
           "configured_league": "Repco Supercars Championship",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6856,10 +6852,10 @@
           "type": "rfl-match-centre",
           "configured_league": "Women’s Super League | Women",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Rugby",
@@ -10904,7 +10900,7 @@
           "id": "concacaf-soccer-costa-rica-liga-fpd-men",
           "type": "espn-daily",
           "configured_league": "Liga FPD | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -12086,11 +12082,11 @@
           "id": "concacaf-soccer-el-salvador-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 15
     },
     {
       "sport": "Soccer",
@@ -14913,7 +14909,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14934,7 +14930,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
