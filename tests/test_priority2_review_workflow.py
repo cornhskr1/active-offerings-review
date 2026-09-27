@@ -101,6 +101,36 @@ assert.equal(element('todayAlerts').open,false);
 """
         subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
 
+    def test_ncaa_basketball_attention_uses_one_sport_group(self):
+        helper = HTML[HTML.index("function normCollegeSport("):HTML.index("function isNonWageredNcaaSport(")]
+        board = HTML[HTML.index("function renderIssueBoard("):HTML.index("function renderUpcomingSportBoard(")]
+        script = """
+const assert=require('node:assert/strict');
+function reviewLeagueLabel(_,label){return label}
+function regionForAttentionCard(){return 'United States'}
+function pill(_,label){return label}
+function esc(value){return String(value)}
+function regionLeagueLabel(region,league){return `${region} — ${league}`}
+function esportsGameLabel(){return ''}
+function ctKey(value){return String(value).slice(0,10)}
+function prettyDay(value){return value}
+function eventTime(){return '12:00'}
+""" + helper + board + """
+const cards=[
+  {sport:"Men's Basketball",school:'Nebraska',league:'NCAA Men',severity:'AMBER',event:'Men'},
+  {sport:"Women's Basketball",type:'NEBRASKA COLLEGIATE',league:'NCAA Women',severity:'AMBER',event:'Women'},
+  {sport:'NCAA Basketball',league:'NCAA Division II',severity:'AMBER',event:'DII'},
+  {sport:'Basketball',league:'WNBA',severity:'AMBER',event:'Pro'}
+];
+const html=renderIssueBoard(cards,[]);
+assert.equal((html.match(/class="issue-sport-name">NCAA Basketball/g)||[]).length,1);
+assert.equal((html.match(/class="issue-sport-name">Basketball/g)||[]).length,1);
+assert.doesNotMatch(html,/class="issue-sport-name">(?:Men's|Women's) Basketball/);
+assert.match(html,/NCAA Men/);
+assert.match(html,/NCAA Women/);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+
 
 if __name__ == "__main__":
     unittest.main()
