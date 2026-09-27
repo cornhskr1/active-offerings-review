@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T14:41:07.858397+00:00",
-  "schedule_generated_at": "2026-09-27T14:37:52.799601+00:00",
+  "registry_generated_at": "2026-09-27T18:21:06.900374+00:00",
+  "schedule_generated_at": "2026-09-27T18:17:37.148135+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,10 +10,10 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 270,
-      "ADAPTER_GAP": 252,
+      "ADAPTER_CONFIGURED": 274,
+      "ADAPTER_GAP": 250,
       "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 145
+      "OFFICIAL_WINDOW_ONLY": 143
     },
     "season_states": {
       "DATED_WINDOW": 214,
@@ -131,7 +131,7 @@
       "identities": 12,
       "split_children": 0,
       "no_linked_source": 0,
-      "adapter_gaps": 6,
+      "adapter_gaps": 4,
       "pending_dates": 0
     },
     "NCAA Baseball": {
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -3684,10 +3684,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Esports",
@@ -5183,13 +5183,13 @@
       "season_window": "March 1–September 6, 2026 · completed",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-indycar",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "IndyCar Series",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5227,13 +5227,13 @@
       "season_window": "February 13–November 6, 2026",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-nascar-truck",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "NASCAR Craftsman Truck Series",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5248,15 +5248,13 @@
       "season_window": "February 1–November 8, 2026",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-nascar-cup",
-          "type": "official-event-window",
-          "configured_league": "NASCAR National Series",
-          "configured_source_id": "motorsports-nascar-bristol",
-          "scope": "published-event",
-          "refresh_ok": true,
+          "type": "espn-daily",
+          "configured_league": "NASCAR Cup Series (NCS)",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -5271,15 +5269,13 @@
       "season_window": "February 14–November 7, 2026",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "motorsports-nascar-oreilly",
-          "type": "official-event-window",
-          "configured_league": "NASCAR National Series",
-          "configured_source_id": "motorsports-nascar-bristol",
-          "scope": "published-event",
-          "refresh_ok": true,
+          "type": "espn-daily",
+          "configured_league": "NASCAR O’Reilly Auto Parts Series",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6005,10 +6001,10 @@
           "type": "adapter",
           "configured_league": "NCAA Volleyball",
           "refresh_ok": true,
-          "events_in_window": 397
+          "events_in_window": 396
         }
       ],
-      "events_in_window": 351
+      "events_in_window": 350
     },
     {
       "sport": "NCAA Water Polo",

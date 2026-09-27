@@ -260,7 +260,10 @@ def parse_event(source, ev):
         if c.get("homeAway")=="home": home=name
         elif c.get("homeAway")=="away": away=name
     name=ev.get("name") or ev.get("shortName") or "Scheduled event"
-    if home and away:
+    if source.get("espn_event_kind")=="race":
+        # Driver entrants are not opposing teams; preserve the race title.
+        pass
+    elif home and away:
         name=f"{away} at {home}"
     elif len(participant_names)>=2:
         name=f"{participant_names[0]} vs {participant_names[1]}"

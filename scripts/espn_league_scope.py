@@ -18,6 +18,14 @@ def verified_events(payload, source):
         uid = str(event.get("uid") or "")
         if not re.search(r"(?:^|~)l:" + re.escape(expected_id) + r"(?:~|$)", uid):
             raise ValueError("ESPN event belongs to a different competition")
+        if source.get("espn_event_kind") == "race":
+            # A race has a field of drivers, or no entrants before the start.
+            # Never apply the two-team fixture rule to this event type.
+            if (not event.get("id") or not event.get("date")
+                    or not str(event.get("name") or "").strip()
+                    or not event.get("competitions")):
+                raise ValueError("ESPN league event lacks an identified race")
+            continue
         competitors = (event.get("competitions") or [{}])[0].get("competitors") or []
         if (not event.get("id") or not event.get("date") or len(competitors) != 2
                 or not all((side.get("team") or {}).get("displayName") for side in competitors)):
