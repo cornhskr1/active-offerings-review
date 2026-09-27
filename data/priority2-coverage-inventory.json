@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T02:37:48.818270+00:00",
-  "schedule_generated_at": "2026-09-27T02:19:15.564828+00:00",
+  "registry_generated_at": "2026-09-27T05:11:50.066380+00:00",
+  "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,19 +10,19 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 243,
-      "ADAPTER_GAP": 279,
+      "ADAPTER_CONFIGURED": 251,
+      "ADAPTER_GAP": 271,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
-      "DATED_WINDOW": 208,
+      "DATED_WINDOW": 212,
       "DESCRIPTIVE_WINDOW": 54,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 290
+      "RECURRING_WINDOW": 286
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 277,
@@ -257,14 +257,14 @@
       "identities": 33,
       "split_children": 10,
       "no_linked_source": 2,
-      "adapter_gaps": 21,
+      "adapter_gaps": 15,
       "pending_dates": 0
     },
     "Soccer": {
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 224,
+      "adapter_gaps": 222,
       "pending_dates": 87
     },
     "Surfing": {
@@ -6173,13 +6173,20 @@
       "season_window": "January–June",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-rfl",
           "type": "coverage-gap",
           "configured_league": "RFL competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-rfl-challenge-cup",
+          "type": "rfl-match-centre",
+          "configured_league": "Challenge Cup | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6429,16 +6436,23 @@
       "identity_key": "rugby-fr-prod2",
       "approval_parent": "Pro D2 | Men",
       "kind": "catalog",
-      "season_window": "August–June",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 28, 2026–June 4, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-lnr",
           "type": "coverage-gap",
           "configured_league": "Top 14 and Pro D2",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-lnr-prod2",
+          "type": "lnr-fixtures",
+          "configured_league": "Pro D2 | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6642,13 +6656,20 @@
       "season_window": "February–October",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-rfl",
           "type": "coverage-gap",
           "configured_league": "RFL competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-rfl-super-league",
+          "type": "rfl-match-centre",
+          "configured_league": "Super League Rugby | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6703,16 +6724,23 @@
       "identity_key": "rugby-fr-top14",
       "approval_parent": "Top 14 | Men",
       "kind": "catalog",
-      "season_window": "September–June",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 5, 2026–June 26, 2027",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-lnr",
           "type": "coverage-gap",
           "configured_league": "Top 14 and Pro D2",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-lnr-top14",
+          "type": "lnr-fixtures",
+          "configured_league": "Top 14 | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6748,13 +6776,20 @@
       "season_window": "March–June",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-rfl",
           "type": "coverage-gap",
           "configured_league": "RFL competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-rfl-womens-challenge-cup",
+          "type": "rfl-match-centre",
+          "configured_league": "Women’s Challenge Cup | Women",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6839,13 +6874,20 @@
       "season_window": "Annual February event",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-rfl",
           "type": "coverage-gap",
           "configured_league": "RFL competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-rfl-world-club-challenge",
+          "type": "rfl-match-centre",
+          "configured_league": "World Club Challenge | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -13974,14 +14016,14 @@
       "identity_key": "soccer-united-states-usl-cup-men",
       "approval_parent": "USL Cup | Men",
       "kind": "catalog",
-      "season_window": "April–November",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "April 25–October 4, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-united-states-usl-cup-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "USL Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -14016,14 +14058,14 @@
       "identity_key": "soccer-united-states-usl-super-league-women",
       "approval_parent": "USL Super League | Women",
       "kind": "catalog",
-      "season_window": "August–May",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "August 15–December 12, 2026",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-united-states-usl-super-league-women",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "USL Super League | Women",
           "refresh_ok": true,
           "events_in_window": 0

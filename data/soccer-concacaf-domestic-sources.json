@@ -343,11 +343,11 @@
       "sport": "Soccer",
       "league": "USL Cup | Men",
       "region": "United States",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.uslsoccer.com/",
-      "official_schedule_url": "https://www.uslsoccer.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.usl.l1.cup/scoreboard",
+      "official_schedule_url": "https://www.uslchampionship.com/prinx-tires-usl-cup",
+      "source_note": "ESPN USL Cup match feed checked against USL and Hartford Athletic: Hartford hosts Louisville in the October 4, 2026 final at 3 p.m. ET. USL Championship, League One, and U.S. Open Cup are separate feeds.",
       "catalog_terms": [
         "USL Cup | Men"
       ]
@@ -386,11 +386,11 @@
       "sport": "Soccer",
       "league": "USL Super League | Women",
       "region": "United States",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.uslsuperleague.com/",
-      "official_schedule_url": "https://www.uslsuperleague.com/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "complete",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.w.usl.1/scoreboard",
+      "official_schedule_url": "https://www.gainbridgesuperleague.com/league-schedule/",
+      "source_note": "Gainbridge Super League is the renamed approved USL Super League. ESPN exact league feed matches the official 2026 Fall schedule; USL W League and men’s USL feeds are excluded.",
       "catalog_terms": [
         "USL Super League | Women"
       ]

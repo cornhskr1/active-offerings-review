@@ -31,6 +31,41 @@ def card(match_id, home, away, division, clock="17:30", round_text="Round: Final
 
 
 class RflFixtureAdapterTests(unittest.TestCase):
+    def test_remaining_rfl_competitions_have_distinct_exact_sources(self):
+        mapping = json.loads((ROOT / "data" / "catalog-season-map.json").read_text())
+        configured = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text())
+        sources = {source["id"]: source for source in configured["sources"]}
+        expected = {
+            "rugby-eng-super-league": ("rugby-rfl-super-league", 1, "Betfred Super League"),
+            "rugby-eng-challenge-cup": ("rugby-rfl-challenge-cup", 4, "Betfred Challenge Cup"),
+            "rugby-eng-womens-challenge-cup": ("rugby-rfl-womens-challenge-cup", 37, "Betfred Womens Challenge Cup Knock Out Stage"),
+            "rugby-eng-world-club-challenge": ("rugby-rfl-world-club-challenge", 45, "World Club Challenge"),
+        }
+        rugby = next(sport for sport in mapping["sports"] if sport["sport"] == "Rugby")
+        events = {event["key"]: event for group in rugby["groups"] for event in group["events"]}
+        for key, (source_id, comp_id, label) in expected.items():
+            with self.subTest(key=key):
+                self.assertEqual(source_id, events[key]["source_id"])
+                self.assertIn("rugby-rfl", events[key]["source_ids"])
+                self.assertEqual(("rfl-match-centre", comp_id, label),
+                                 tuple(sources[source_id][field] for field in
+                                       ("source_type", "competition_id", "division_label")))
+
+    def test_cup_stages_fail_closed_on_neighboring_competitions(self):
+        sources = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text())
+        women = next(source for source in sources["sources"]
+                     if source["id"] == "rugby-rfl-womens-challenge-cup")
+        page = '<div class="match-centre"><div class="matches"><h3 class="comp-divider">Sat 30th May 2026</h3>' + "".join((
+            card(11, "Wigan Warriors", "Leeds Rhinos", "Betfred Womens Challenge Cup Knock Out Stage"),
+            card(12, "Wigan Warriors Under 19s", "Leeds Rhinos", "Betfred Womens Challenge Cup Knock Out Stage"),
+            card(13, "Hull KR", "Warrington Wolves", "Betfred Challenge Cup"),
+            card(14, "Wigan Warriors", "Leeds Rhinos", "Betfred Womens Challenge Cup Under 19s"),
+        )) + '</div></div>'
+        events = parse_rfl_match_centre(page, women, datetime.date(2026, 5, 30),
+                                        datetime.date(2026, 6, 6))
+        self.assertEqual(["rugby-rfl-womens-challenge-cup-11"],
+                         [event["id"] for event in events])
+
     def test_admits_final_but_not_promotion_youth_or_other_divisions(self):
         page = '<div class="match-centre"><div class="matches"><h3 class="comp-divider">Sun 27th September 2026</h3>' + "".join((
             card(1, "Wigan Warriors", "York Valkyrie", "Betfred Women's Super League"),

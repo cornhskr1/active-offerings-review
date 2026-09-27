@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from catalog_identity import exact_league_match, normalize_identity, restriction_scope
 from rfl_fixture_adapter import parse_rfl_match_centre
+from lnr_fixture_adapter import current_round as lnr_current_round, parse_lnr_round
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1783,13 +1784,14 @@ for source in CFG.get("sources",[]):
                 "params[limit]":80,
                 "params[compID]":source["competition_id"],
                 "params[comps]":source["competition_id"],
-                "params[divisionID]":source["division_id"],
                 "params[displayType]":"fixtures",
                 "params[template]":"main_match_centre.twig",
                 "params[preview_link]":"/match-centre/match-preview",
                 "params[report_link]":"/match-centre/match-report",
                 "params[load-more-button]":"yes",
             }
+            if source.get("division_id") is not None:
+                params["params[divisionID]"] = source["division_id"]
             response=requests.get(source["endpoint"],params=params,
                 headers={**HEADERS,"Referer":source["official_schedule_url"],
                          "X-Requested-With":"XMLHttpRequest"},timeout=35)
@@ -1800,6 +1802,28 @@ for source in CFG.get("sources",[]):
                 seen.add(parsed["id"])
                 events.append(parsed)
                 count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="lnr-fixtures":
+        try:
+            season_year=TODAY.year if TODAY.month>=7 else TODAY.year-1
+            base=source["endpoint"].format(season=f"{season_year}-{season_year+1}")
+            response=requests.get(base,headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            first_round=lnr_current_round(response.text)
+            if not 1 <= first_round <= source["regular_rounds"]:
+                raise ValueError("LNR regular round outside configured scope")
+            for number in range(first_round,min(first_round+3,source["regular_rounds"]+1)):
+                round_response=requests.get(f"{base}/j{number}",headers=HEADERS,timeout=35)
+                round_response.raise_for_status()
+                for parsed in parse_lnr_round(round_response.text,source,season_year,TODAY,END):
+                    if parsed["id"] not in seen:
+                        seen.add(parsed["id"])
+                        events.append(parsed)
+                        count+=1
         except Exception as e:
             errors.append(str(e)[:110])
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
