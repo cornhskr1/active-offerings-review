@@ -3128,41 +3128,6 @@
       ]
     },
     {
-      "id": "motorsports-nascar-bristol",
-      "source_type": "official-event-window",
-      "sport": "Motorsports",
-      "league": "NASCAR National Series",
-      "region": "United States",
-      "endpoint": "https://www.nascar.com/",
-      "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/",
-      "endpoint_validation": "published-window",
-      "coverage_status": "current-published-events",
-      "official_events": [
-        {
-          "source_id": "motorsports-nascar-oreilly",
-          "league": "NASCAR O’Reilly Auto Parts Series",
-          "name": "Food City 300",
-          "start_date": "2026-09-18",
-          "end_date": "2026-09-18",
-          "location": "Bristol Motor Speedway · Bristol, Tennessee",
-          "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/"
-        },
-        {
-          "source_id": "motorsports-nascar-cup",
-          "league": "NASCAR Cup Series (NCS)",
-          "name": "Bass Pro Shops Night Race",
-          "start_date": "2026-09-19",
-          "end_date": "2026-09-19",
-          "location": "Bristol Motor Speedway · Bristol, Tennessee",
-          "official_schedule_url": "https://www.nascar.com/weekend-schedule/weekend-schedule-for-2026-bristol-motor-speedway-chase-race/"
-        }
-      ],
-      "catalog_terms": [
-        "NASCAR Cup Series (NCS)",
-        "NASCAR O’Reilly Auto Parts Series"
-      ]
-    },
-    {
       "id": "motorsports-nhra-calendar",
       "source_type": "official-event-window",
       "sport": "Motorsports",
@@ -3235,25 +3200,61 @@
       ]
     },
     {
+      "id": "motorsports-nascar-cup",
+      "source_type": "espn-daily",
+      "sport": "Motorsports",
+      "league": "NASCAR Cup Series (NCS)",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/racing/nascar-premier/scoreboard",
+      "official_schedule_url": "https://www.nascar.com/nascar-cup-series/2026/schedule/",
+      "espn_league_id": "2021",
+      "espn_league_slug": "nascar-premier",
+      "espn_event_kind": "race",
+      "catalog_terms": [
+        "NASCAR Cup Series (NCS)"
+      ]
+    },
+    {
+      "id": "motorsports-nascar-oreilly",
+      "source_type": "espn-daily",
+      "sport": "Motorsports",
+      "league": "NASCAR O’Reilly Auto Parts Series",
+      "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/racing/nascar-secondary/scoreboard",
+      "official_schedule_url": "https://www.nascar.com/nascar-oreilly-auto-parts-series/2026/schedule/",
+      "espn_league_id": "2022",
+      "espn_league_slug": "nascar-secondary",
+      "espn_event_kind": "race",
+      "catalog_terms": [
+        "NASCAR O’Reilly Auto Parts Series"
+      ]
+    },
+    {
       "id": "motorsports-indycar",
-      "source_type": "coverage-gap",
+      "source_type": "espn-daily",
       "sport": "Motorsports",
       "league": "IndyCar Series",
       "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/racing/irl/scoreboard",
       "official_schedule_url": "https://www.indycar.com/Schedule",
-      "source_note": "The 2026 season is complete; retain the mapping and reconnect when the next official schedule is published.",
+      "espn_league_id": "2040",
+      "espn_league_slug": "irl",
+      "espn_event_kind": "race",
       "catalog_terms": [
         "IndyCar Series"
       ]
     },
     {
       "id": "motorsports-nascar-truck",
-      "source_type": "coverage-gap",
+      "source_type": "espn-daily",
       "sport": "Motorsports",
       "league": "NASCAR Craftsman Truck Series",
       "region": "United States",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/racing/nascar-truck/scoreboard",
       "official_schedule_url": "https://www.nascar.com/nascar-craftsman-truck-series/2026/schedule/",
-      "source_note": "Season is mapped; the current official race-weekend adapter does not yet cover the Truck Series.",
+      "espn_league_id": "2023",
+      "espn_league_slug": "nascar-truck",
+      "espn_event_kind": "race",
       "catalog_terms": [
         "NASCAR Craftsman Truck Series"
       ]
