@@ -1,9 +1,11 @@
 name: Refresh Tennis Intelligence
 
-# The tournament-calendar crawl is retained for explicit investigations only.
-# Lane 1 consumes the separately maintained verified U18 registry/cache.
+# Refresh tournament dates daily; the separate weekly registry job maintains
+# verified U18 identities. The calendar quality gate blocks incomplete output.
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "11 11 * * *"
 
 permissions:
   contents: write

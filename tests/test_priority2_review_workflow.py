@@ -35,6 +35,30 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
         self.assertIn("document.getElementById('todayDays').innerHTML=TODAY_MODEL.sportBoard;", today_render)
         self.assertIn('${dayEvents.length} scheduled', today_render)
 
+    def test_stale_tennis_calendars_make_one_issue_and_label_cards(self):
+        start = HTML.index("function staleScheduleSourceAttention(")
+        end = HTML.index("\nfunction buildTodayModel(", start)
+        script = """
+const assert=require('node:assert/strict');
+const DATA={tennis:{generated_at:'2026-09-16T11:31:56Z'}};
+""" + HTML[start:end] + """
+const events=Array.from({length:27},(_,i)=>({sport:'Tennis',
+  source_id:`tennis-source-${i%5}`,source_stale:true}));
+events.push({sport:'Motorsports',source_id:'other',source_stale:true});
+const cards=staleScheduleSourceAttention(events,'2026-09-27');
+assert.equal(cards.length,1);
+assert.equal(cards[0].type,'STALE SCHEDULE SOURCE');
+assert.match(cards[0].event,/5 stale feeds · 27 affected tournament cards/);
+assert.match(cards[0].reason,/2026-09-16/);
+assert.equal(staleScheduleSourceAttention([],'2026-09-27').length,0);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+        today_render = HTML[HTML.index('function renderUpcomingSportBoard('):HTML.index('function collegeReg(')]
+        self.assertEqual(2, today_render.count("e.source_stale?' · STALE SOURCE — VERIFY':''") +
+                         today_render.count("event.source_stale?' · STALE SOURCE — VERIFY':''"))
+        workflow = (ROOT / ".github/workflows/refresh-tennis-intelligence.yml").read_text()
+        self.assertIn('cron: "11 11 * * *"', workflow)
+
     def test_past_due_ncaa_futures_alert_occurs_once(self):
         start = HTML.index("function collegeFuturesAttention(")
         end = HTML.index("\nfunction renderCollege(", start)
