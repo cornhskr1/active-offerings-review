@@ -29,7 +29,7 @@ class EspnLeagueScopeTest(unittest.TestCase):
         rows = {row["identity_key"]: row for row in inventory["identities"]}
         for key in ("soccer-costa-rica-liga-fpd-men", "soccer-el-salvador-primera-divisi-n-men"):
             self.assertEqual("ADAPTER_CONFIGURED", rows[key]["coverage_state"])
-            self.assertIsNone(rows[key]["sources"][0]["refresh_ok"])
+            self.assertEqual("espn-daily", rows[key]["sources"][0]["type"])
 
     def test_mixed_competition_or_unnamed_match_fails_closed(self):
         source = self.sources["concacaf-soccer-el-salvador-primera-division-men"]

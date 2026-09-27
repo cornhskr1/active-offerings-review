@@ -14,6 +14,7 @@ from jleague_fixture_adapter import parse_jleague_matches
 from saru_fixture_adapter import parse_saru_matches
 from thai_league_fixture_adapter import parse_thai_league_matches
 from espn_league_scope import verified_events as verified_espn_league_events
+from official_motorsports_calendar import PARSERS as MOTORSPORTS_CALENDAR_PARSERS
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1603,6 +1604,29 @@ def fetch_official_event_window(source):
             parsed.append(event)
     return parsed
 
+def fetch_official_motorsports_calendar(source):
+    response=requests.get(source["endpoint"],headers=HEADERS,timeout=45)
+    response.raise_for_status()
+    parser=MOTORSPORTS_CALENDAR_PARSERS[source["calendar_format"]]
+    calendar=parser(response.text,source["official_schedule_url"])
+    for item in calendar:
+        if item["end"] is None:
+            # NHRA's index has omitted an end date for a race. Its event page
+            # publishes one; an unresolved omission fails this source check.
+            detail=requests.get(item["url"],headers=HEADERS,timeout=35)
+            detail.raise_for_status()
+            match=re.search(r'"endDate"\s*:\s*"(\d{4}-\d{2}-\d{2})',detail.text)
+            if not match:raise ValueError(f'Official event end date missing: {item["id"]}')
+            item["end"]=datetime.date.fromisoformat(match.group(1))
+    parsed=[]
+    for item in calendar:
+        event=tournament_window_event(source,source["id"],source["league"],
+            item["name"],item["start"],item["end"],item["location"],item["url"])
+        if event:
+            event["id"]=f'{source["id"]}-{item["id"]}'
+            parsed.append(event)
+    return calendar,parsed
+
 def fetch_tennis_intelligence(source):
     """Promote approved tournament families from Tennis Watch into Review Today.
 
@@ -2077,6 +2101,20 @@ for source in CFG.get("sources",[]):
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
+        continue
+    if source.get("source_type")=="official-motorsports-calendar":
+        calendar=[]
+        try:
+            calendar,review_events=fetch_official_motorsports_calendar(source)
+            for parsed in review_events:
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"calendar_events":len(calendar),"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type") in ("official-event-window","pgl-cs2-calendar","esl-esports-calendar"):
         try:
