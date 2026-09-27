@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T05:40:30.864528+00:00",
+  "registry_generated_at": "2026-09-27T05:47:21.124255+00:00",
   "schedule_generated_at": "2026-09-27T02:41:39.878730+00:00",
   "schedule_window_start": "2026-09-26",
   "schedule_window_end": "2026-10-03",
@@ -10,14 +10,14 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 257,
-      "ADAPTER_GAP": 265,
+      "ADAPTER_CONFIGURED": 258,
+      "ADAPTER_GAP": 264,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
-      "DATED_WINDOW": 213,
-      "DESCRIPTIVE_WINDOW": 53,
+      "DATED_WINDOW": 214,
+      "DESCRIPTIVE_WINDOW": 52,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 216,
+      "adapter_gaps": 215,
       "pending_dates": 87
     },
     "Surfing": {
@@ -13007,14 +13007,14 @@
       "identity_key": "soccer-brazil-supercopa-do-brasil-men",
       "approval_parent": "Supercopa do Brasil | Men",
       "kind": "catalog",
-      "season_window": "January 2026 · completed",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_window": "February 1, 2026 · completed",
+      "season_state": "DATED_WINDOW",
       "season_status": "out",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "conmebol-soccer-brazil-supercopa-do-brasil-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Supercopa do Brasil | Men",
           "refresh_ok": true,
           "events_in_window": 0
