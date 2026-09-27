@@ -22,8 +22,12 @@ class MalaysiaSingaporeThailandScopeTests(unittest.TestCase):
         for key, e in self.events.items():
             self.assertNotIn("season_start", e)
             self.assertNotIn("season_end", e)
-            self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
-            self.assertEqual("coverage-gap", self.sources[e["source_id"]]["source_type"])
+            if key.startswith("soccer-thailand-"):
+                self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+                self.assertEqual("thai-league-matches", self.sources[e["source_id"]]["source_type"])
+            else:
+                self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
+                self.assertEqual("coverage-gap", self.sources[e["source_id"]]["source_type"])
 
     def test_malaysia_shield_shares_one_league_fixture(self):
         league = self.events["soccer-malaysia-malaysia-super-league-men"]
