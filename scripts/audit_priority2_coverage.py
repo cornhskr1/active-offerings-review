@@ -20,6 +20,8 @@ def source_ids(item):
 
 
 def season_state(item):
+    if item.get("nonseasonal") is True:
+        return "EVENT_BASED_APPROVAL"
     if item.get("season_hold") is True:
         return "DOCUMENTED_HOLD"
     if item.get("season_window_complete") is False:
