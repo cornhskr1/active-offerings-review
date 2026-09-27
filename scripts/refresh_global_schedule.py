@@ -12,6 +12,7 @@ from prem_fixture_adapter import parse_prem_matches
 from epcr_fixture_adapter import parse_epcr_matches
 from jleague_fixture_adapter import parse_jleague_matches
 from saru_fixture_adapter import parse_saru_matches
+from thai_league_fixture_adapter import parse_thai_league_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1751,6 +1752,34 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="thai-league-matches":
+        try:
+            tournaments=requests.get(source["tournament_index"],params={"season":source["season_id"]},headers=HEADERS,timeout=35)
+            tournaments.raise_for_status()
+            catalog=tournaments.json()
+            if not isinstance(catalog,list) or not any(
+                row.get("id")==source["tournament_id"] and row.get("name_en")==source["tournament_name"]
+                for row in catalog
+            ):
+                raise ValueError("Thai League season/tournament identity not verified")
+            response=requests.get(source["endpoint"],params={
+                "tournament":source["tournament_id"],"only_valid_match":"true",
+                "match_status":"fixtures","none_pagination":"True",
+            },headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            rows=response.json()
+            if not isinstance(rows,list) or len(rows)>1000:
+                raise ValueError("Thai League match list missing or unreasonable")
+            for parsed in parse_thai_league_matches(rows,source,TODAY,END,NOW_UTC):
+                if parsed["id"] not in seen:
+                    seen.add(parsed["id"])
+                    events.append(parsed)
+                    count+=1
+        except Exception as e:
+            errors.append(str(e)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type")=="saru-matches":
         try:
             params={
