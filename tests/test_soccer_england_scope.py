@@ -85,8 +85,11 @@ class EnglandSoccerScopeTests(unittest.TestCase):
     def test_wsl2_and_legacy_championship_label_do_not_share_an_adapter(self):
         current = self.sources["uefa-soccer-england-super-league-2-women"]
         legacy = self.sources["uefa-soccer-england-championship-women"]
-        self.assertEqual("coverage-gap", current["source_type"])
+        self.assertEqual("official-wsl2-fixtures", current["source_type"])
         self.assertEqual("coverage-gap", legacy["source_type"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory["Super League 2 | Women"]["coverage_state"])
+        self.assertEqual("ADAPTER_GAP", self.inventory["The Championship | Women"]["coverage_state"])
+        self.assertEqual("DOCUMENTED_HOLD", self.inventory["The Championship | Women"]["season_state"])
         self.assertEqual(
             "https://www.wslfootball.com/fixtures/wsl2",
             current["official_schedule_url"],

@@ -17,8 +17,8 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
     def test_bulk_report_covers_exceptions_without_multiplying_identity_total(self):
         groups = cohorts(INVENTORY)
         soccer_gaps = next(g for g in groups if (g["kind"], g["state"], g["sport"]) == ("coverage", "ADAPTER_GAP", "Soccer"))
-        self.assertEqual(207, soccer_gaps["count"])
-        self.assertEqual(207, len(set(soccer_gaps["identity_keys"])))
+        self.assertEqual(206, soccer_gaps["count"])
+        self.assertEqual(206, len(set(soccer_gaps["identity_keys"])))
         self.assertEqual(61, next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
         self.assertEqual(731, len(INVENTORY["identities"]))
 

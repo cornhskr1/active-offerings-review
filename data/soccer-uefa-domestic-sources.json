@@ -474,11 +474,11 @@
       "sport": "Soccer",
       "league": "Super League 2 | Women",
       "region": "England",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.thefa.com/",
+      "source_type": "official-wsl2-fixtures",
+      "coverage_status": "partial",
+      "endpoint": "https://www.wslfootball.com/fixtures/wsl2",
       "official_schedule_url": "https://www.wslfootball.com/fixtures/wsl2",
-      "source_note": "Official BWSL2 fixtures are scoped to the current women’s second tier, but no dependable unattended adapter is connected yet.",
+      "source_note": "Official WSL Football rolling page provides named, timed BWSL2 fixtures. The adapter checks competition badge and match URL; it fails closed if a ten-match page may truncate the eight-day window. Full season and promotion play-off coverage remain partial.",
       "catalog_terms": [
         "Super League 2 | Women"
       ]
