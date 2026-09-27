@@ -1075,17 +1075,18 @@ function renderIssueBoard(cards,events){
       const severity=red?'red':'amber';
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
+      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD'].includes(c.type));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
       const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
         ${pill(severity,red?'NOT PERMISSIBLE':'MANUAL REVIEW')}
         <span class="issue-card-title">${esc(regionLeagueLabel(group.region,group.league))}</span>
-        <span class="issue-card-count">${affected.size} event${affected.size===1?'':'s'}${athletes.size?` · ${athletes.size} athlete${athletes.size===1?'':'s'}`:''}</span>
+        <span class="issue-card-count">${coverageOnly?`${group.cards.length} coverage issue${group.cards.length===1?'':'s'}`:`${affected.size} event${affected.size===1?'':'s'}`}${athletes.size?` · ${athletes.size} athlete${athletes.size===1?'':'s'}`:''}</span>
       </summary><div class="issue-card-body">${group.cards.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(card=>{
         const who=(card.athletes||[]).length?` · ${(card.athletes||[]).join(', ')}`:'';
         const game=esportsGameLabel(card);
         const detail=[game,card.reason||''].filter(Boolean).join(' · ');
-        return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(detail)}${esc(who)}</div></div><span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${esc(eventTime(card.start_time))}</span></div>`;
+        return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(detail)}${esc(who)}</div></div>${coverageOnly?'':`<span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${esc(eventTime(card.start_time))}</span>`}</div>`;
       }).join('')}${actions.length?`<div class="issue-card-action"><b>Staff check:</b> ${esc(actions.join(' '))} <b>Scope:</b> all licensed sportsbook platforms. ${sourceLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' ')}</div>`:''}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
@@ -1182,6 +1183,38 @@ function uncoveredMappedEvents(sportName){
   return gaps;
 }
 
+function groupedActiveCoverageGaps(dayKey){
+  const sourceById=new Map((DATA.global?.sources||[]).map(source=>[source.id,source]));
+  const identityByKey=new Map();
+  (DATA.seasonMap?.sports||[]).forEach(sport=>(sport.groups||[]).forEach(group=>(group.events||[]).forEach(event=>{
+    ((event.coverage_children||[]).length?event.coverage_children:[event]).forEach(identity=>identityByKey.set(identity.key,identity));
+  })));
+  const groups=new Map();
+  (DATA.coverage?.identities||[]).forEach(row=>{
+    if(row.coverage_state!=='ADAPTER_GAP'||isNonWageredNcaaSport(row))return;
+    const identity=identityByKey.get(row.identity_key);
+    if(!identity||mappedSeasonStatus(identity)!=='in')return;
+    (row.sources||[]).filter(link=>link.type==='coverage-gap').forEach(link=>{
+      const source=sourceById.get(link.id);
+      if(!source||['missing','partial'].includes(source.coverage_status))return;
+      if(!groups.has(link.id))groups.set(link.id,{source,rows:[]});
+      groups.get(link.id).rows.push(row);
+    });
+  });
+  return [...groups.values()].filter(group=>group.rows.length>1).map(({source,rows})=>({
+    severity:'AMBER',
+    type:'SCHEDULE COVERAGE GAP',
+    sport:source.sport,
+    league:source.league,
+    region:source.region,
+    event:`${rows.length} approved competitions · shared fixture feed gap`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:`Current catalog identities: ${rows.map(row=>row.league).join('; ')}. No dependable unattended fixture feed is connected for this provider.`,
+    source_url:source.official_schedule_url||'',
+    staff_action:'Check the governing calendar and operator menu for this provider as one review. A zero-event feed does not establish that no wagering is offered.'
+  }));
+}
+
 function scheduleCoverageAttention(dayKey){
   const configured=(DATA.global?.sources||[]).filter(source=>{
     if(isNonWageredNcaaSport(source))return false;
@@ -1229,7 +1262,7 @@ function scheduleCoverageAttention(dayKey){
       :'Approved competition has no verified current season dates and no automated schedule source is connected.',
     staff_action:`Check the ${gap.governing_body||gap.region+' governing body'} calendar and the operator menu or wagering activity before clearing this league. Do not treat zero detected games as confirmation that no offerings exist.`
   }));
-  return [...configured,...unmapped];
+  return [...configured,...unmapped,...(DATA.coverage?.identities?.length?groupedActiveCoverageGaps(dayKey):[])];
 }
 
 function buildTodayModel(){
