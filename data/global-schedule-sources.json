@@ -3738,12 +3738,25 @@
       "league": "South African Rugby Union competitions",
       "region": "South Africa",
       "official_schedule_url": "https://www.sarugby.co.za/match-centre/",
-      "source_note": "Currie Cup and Varsity Cup are season mapped; a dependable unattended official fixture adapter is pending.",
+      "source_note": "The Currie Cup First Division and Varsity Cup remain uncovered. A separate official match-centre adapter covers only the Currie Cup Premier Division; the broad catalog label does not establish First Division coverage.",
       "catalog_terms": [
         "South African Rugby Union (SARU)",
         "Currie Cup | Men",
         "Varsity Cup | Men"
       ]
+    },
+    {
+      "id": "rugby-saru-currie-premier",
+      "source_type": "saru-matches",
+      "sport": "Rugby",
+      "league": "Currie Cup | Men",
+      "region": "South Africa",
+      "endpoint": "https://springboks.rugby/api/match-centre/matches",
+      "official_schedule_url": "https://springboks.rugby/tournaments/carling-currie-cup-premier-division",
+      "competition_id": "bb147660-39c0-4528-aaf3-b74e77af923c",
+      "coverage_status": "partial",
+      "source_note": "Exact Premier Division match feed only. First Division remains a coverage gap; the 2026 Premier final was September 12, so no current eight-day fixture is expected. The feed advances season by dated match records, without inventing future fixtures.",
+      "catalog_terms": ["Currie Cup | Men"]
     },
     {
       "id": "rugby-mlr",

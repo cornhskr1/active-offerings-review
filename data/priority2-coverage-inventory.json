@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T13:25:30.870968+00:00",
-  "schedule_generated_at": "2026-09-27T08:01:39.051787+00:00",
+  "registry_generated_at": "2026-09-27T14:10:15.999175+00:00",
+  "schedule_generated_at": "2026-09-27T13:52:04.279937+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 264,
-      "ADAPTER_GAP": 258,
+      "ADAPTER_CONFIGURED": 265,
+      "ADAPTER_GAP": 257,
       "NO_LINKED_SOURCE": 64,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 286
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 266,
+    "reported_gap_labels": 265,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -257,7 +257,7 @@
       "identities": 33,
       "split_children": 10,
       "no_linked_source": 2,
-      "adapter_gaps": 11,
+      "adapter_gaps": 10,
       "pending_dates": 0
     },
     "Soccer": {
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4260,7 +4260,7 @@
           "events_in_window": 14
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 11
     },
     {
       "sport": "Esports",
@@ -6201,13 +6201,20 @@
       "season_window": "July–September",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-saru",
           "type": "coverage-gap",
           "configured_league": "South African Rugby Union competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-saru-currie-premier",
+          "type": "saru-matches",
+          "configured_league": "Currie Cup | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6305,11 +6312,11 @@
           "id": "rugby-prem-gallagher",
           "type": "prem-rugby-matches",
           "configured_league": "Gallagher Premiership Rugby | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 6
     },
     {
       "sport": "Rugby",
@@ -6438,7 +6445,7 @@
           "id": "rugby-prem-cup",
           "type": "prem-rugby-matches",
           "configured_league": "Premiership Rugby Cup | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6684,10 +6691,10 @@
           "type": "rfl-match-centre",
           "configured_league": "Super League Rugby | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Rugby",
@@ -11303,10 +11310,10 @@
           "type": "adapter",
           "configured_league": "MLS",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -14910,7 +14917,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14931,7 +14938,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
