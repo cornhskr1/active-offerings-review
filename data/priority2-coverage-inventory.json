@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-27T22:50:44.634739+00:00",
-  "schedule_generated_at": "2026-09-27T22:46:43.640779+00:00",
+  "registry_generated_at": "2026-09-27T23:14:10.153545+00:00",
+  "schedule_generated_at": "2026-09-27T23:10:43.108552+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -12,17 +12,17 @@
     "coverage_states": {
       "ADAPTER_CONFIGURED": 283,
       "ADAPTER_GAP": 247,
-      "NO_LINKED_SOURCE": 64,
-      "OFFICIAL_WINDOW_ONLY": 137
+      "NO_LINKED_SOURCE": 57,
+      "OFFICIAL_WINDOW_ONLY": 144
     },
     "season_states": {
-      "DATED_WINDOW": 214,
-      "DESCRIPTIVE_WINDOW": 51,
+      "DATED_WINDOW": 221,
+      "DESCRIPTIVE_WINDOW": 50,
       "DOCUMENTED_HOLD": 62,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 61,
       "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 287
+      "RECURRING_WINDOW": 281
     },
     "reported_gap_areas": 13,
     "reported_gap_labels": 255,
@@ -109,7 +109,7 @@
     "Golf": {
       "identities": 19,
       "split_children": 0,
-      "no_linked_source": 7,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -4447,11 +4447,19 @@
       "identity_key": "golf-aig-womens-open",
       "approval_parent": "AIG Women’s Open",
       "kind": "catalog",
-      "season_window": "July 30–August 2, 2026 · completed",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027-07-28–2027-08-01 · 2027 AIG Women’s Open",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-aig-womens-open",
+          "type": "official-event-window",
+          "configured_league": "AIG Women’s Open",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -4607,11 +4615,19 @@
       "identity_key": "golf-masters",
       "approval_parent": "Masters Tournament",
       "kind": "catalog",
-      "season_window": "April 9–12, 2026 · completed",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027-04-05–2027-04-11 · 2027 Masters Tournament",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-masters",
+          "type": "official-event-window",
+          "configured_league": "Masters Tournament",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -4620,11 +4636,19 @@
       "identity_key": "golf-pga-championship",
       "approval_parent": "PGA Championship",
       "kind": "catalog",
-      "season_window": "May 14–17, 2026 · completed",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027-05-17–2027-05-23 · 2027 PGA Championship",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-pga-championship",
+          "type": "official-event-window",
+          "configured_league": "PGA Championship",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -4696,11 +4720,19 @@
       "identity_key": "golf-ryder-cup",
       "approval_parent": "Ryder Cup",
       "kind": "catalog",
-      "season_window": "Next edition September 2027",
-      "season_state": "DESCRIPTIVE_WINDOW",
-      "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "2027-09-13–2027-09-19 · 2027 Ryder Cup",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-ryder-cup",
+          "type": "official-event-window",
+          "configured_league": "Ryder Cup",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -4730,11 +4762,19 @@
       "identity_key": "golf-open-championship",
       "approval_parent": "The Open Championship",
       "kind": "catalog",
-      "season_window": "July 16–19, 2026 · completed",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027-07-11–2027-07-18 · 155th Open Championship",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-open-championship",
+          "type": "official-event-window",
+          "configured_league": "The Open Championship",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -4764,11 +4804,19 @@
       "identity_key": "golf-us-open",
       "approval_parent": "United States Open Championship (U.S. Open)",
       "kind": "catalog",
-      "season_window": "June 18–21, 2026 · completed",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027-06-17–2027-06-20 · 2027 U.S. Open",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-us-open",
+          "type": "official-event-window",
+          "configured_league": "United States Open Championship (U.S. Open)",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -4777,11 +4825,19 @@
       "identity_key": "golf-us-womens-open",
       "approval_parent": "United States Women’s Open Championship (U.S. Women’s Open)",
       "kind": "catalog",
-      "season_window": "June 4–7, 2026 · completed",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "2027-06-03–2027-06-06 · 2027 U.S. Women’s Open",
+      "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "golf-us-womens-open",
+          "type": "official-event-window",
+          "configured_league": "United States Women’s Open Championship (U.S. Women’s Open)",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5576,11 +5632,11 @@
           "id": "ncaa-field-hockey-di",
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Field Hockey | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 100
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 100
     },
     {
       "sport": "NCAA Football",
@@ -5779,11 +5835,11 @@
           "id": "ncaa-soccer-di-men",
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 169
         }
       ],
-      "events_in_window": 171
+      "events_in_window": 169
     },
     {
       "sport": "NCAA Soccer",
@@ -5800,8 +5856,8 @@
           "id": "ncaa-soccer-di-women",
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 341
         }
       ],
       "events_in_window": 339
