@@ -15,6 +15,25 @@ def publisher_access_issue(status, body):
     return None
 
 
+def schedule_source_warning(payload, tour_ids, now):
+    """Keep a blocked tour unhealthy even when other tours refresh the cache."""
+    generated = payload.get("generated_at")
+    if not generated:
+        return "Tennis intelligence schedule has no generation time"
+    try:
+        checked = datetime.datetime.fromisoformat(str(generated).replace("Z", "+00:00"))
+        if checked.tzinfo is None:
+            checked = checked.replace(tzinfo=datetime.timezone.utc)
+    except ValueError:
+        return "Tennis intelligence schedule has an invalid generation time"
+    if now - checked.astimezone(datetime.timezone.utc) > datetime.timedelta(hours=72):
+        return "Tennis intelligence schedule is more than 72 hours old; retaining last known good events"
+    for lane in (payload.get("quality_gate") or {}).get("degraded_lanes") or []:
+        if lane.get("tour_id") in set(tour_ids or []):
+            return lane.get("reason") or "Tennis publisher access blocked; manual verification required"
+    return None
+
+
 def parse_date(value):
     value = " ".join(str(value or "").split())
     for fmt in ("%d %B %Y", "%d %b %Y", "%B %d, %Y", "%b %d, %Y", "%Y-%m-%d"):

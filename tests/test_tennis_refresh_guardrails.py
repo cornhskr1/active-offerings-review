@@ -1,9 +1,11 @@
 import unittest
+import datetime
 
 from scripts.tennis_refresh_guardrails import (
     calendar_discovery_issue, challenger_calendar_card_dates,
     challenger_score_event_url, date_range,
     publisher_access_issue,
+    schedule_source_warning,
 )
 
 
@@ -84,6 +86,23 @@ class CalendarDiscoveryIssueTests(unittest.TestCase):
             "overlapping_candidate_links": 1,
         }
         self.assertIsNone(calendar_discovery_issue(health, True))
+
+
+class ScheduleSourceHealthTests(unittest.TestCase):
+    def test_partial_refresh_only_blocks_the_degraded_identity(self):
+        now = datetime.datetime(2026, 9, 28, 12, tzinfo=datetime.timezone.utc)
+        payload = {
+            "generated_at": "2026-09-28T11:30:00+00:00",
+            "quality_gate": {"passed": True, "complete": False, "degraded_lanes": [
+                {"tour_id": "atp-challenger", "reason": "ATP Challenger publisher access blocked; manual verification required"}
+            ]},
+        }
+        self.assertIn("blocked", schedule_source_warning(payload, ["atp-challenger"], now))
+        for tour_id in ("itf-men", "itf-women", "utr-men", "utr-women"):
+            with self.subTest(tour_id=tour_id):
+                self.assertIsNone(schedule_source_warning(payload, [tour_id], now))
+        self.assertIn("72 hours", schedule_source_warning({**payload,
+            "generated_at": "2026-09-16T11:30:00+00:00"}, ["itf-men"], now))
 
 
 if __name__ == "__main__":

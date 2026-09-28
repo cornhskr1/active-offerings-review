@@ -1614,14 +1614,6 @@ with sync_playwright() as pw:
         else:
             t["status_color"]="GREEN";t["regulatory_status"]="OK — NO U18 EXPOSURE IDENTIFIED"
 
-    # Persist cheap bulk official age resolutions. Deep scan will add profile-based
-    # resolutions to the same cache without forcing this refresh to wait on them.
-    AGE_CACHE_PATH.write_text(json.dumps({
-      "schema_version":1,
-      "generated_at":NOW.isoformat(),
-      "records":persistent_age_cache
-    },indent=2,ensure_ascii=False),encoding="utf-8")
-
     browser.close()
 
 exposure={norm(p["name"]) for t in tournaments for p in t.get("confirmed_u18",[])}
@@ -1740,6 +1732,7 @@ out={"schema_version":6,"generated_at":NOW.isoformat(),"timezone":"America/Chica
 # ---------------- Quality gate ----------------
 quality_issues=[]
 critical_issues=[]
+degraded_lanes=[]
 
 # Never publish GREEN without a credible field.
 for t in tournaments:
@@ -1756,7 +1749,10 @@ if (not any(t.get("tour_id")=="atp-challenger" for t in tournaments)
                 for source in [chal_health.get("current_page") or {},
                                chal_health.get("calendar_fallback") or {},
                                *((chal_health.get("archive_fallback") or {}).get("sources") or [])])):
-    critical_issues.append("ATP_CHALLENGER_PUBLISHER_ACCESS_BLOCKED")
+    degraded_lanes.append({
+        "tour_id":"atp-challenger",
+        "reason":"ATP Challenger publisher access blocked; manual verification required"
+    })
 chal_issue=calendar_discovery_issue(
     chal_health,any(t.get("tour_id")=="atp-challenger" for t in tournaments)
 )
@@ -1786,6 +1782,15 @@ if wta125_issue=="OVERLAP_WITHOUT_EVENT":
 elif wta125_issue=="DATES_UNRESOLVED":
     critical_issues.append("WTA125_CALENDAR_DATES_UNRESOLVED")
 
+# A partial publication must have reached every ITF and UTR calendar it claims
+# to refresh. An HTTP success alone is not a tournament/field clearance.
+for lane,key in (("itf-men","itf_men"),("itf-women","itf_women")):
+    if not (health.get(key) or {}).get("ok"):
+        critical_issues.append(f"{lane.upper()}_PUBLISHER_ACCESS_FAILED")
+for region in health.get("utr") or []:
+    if not region.get("ok"):
+        critical_issues.append(f"UTR_PUBLISHER_ACCESS_FAILED: {region.get('region')}")
+
 # Coverage gaps are visible quality warnings, not fatal.
 for family in FAMILIES:
     n=sum(t.get("tour_id")==family["id"] for t in tournaments)
@@ -1794,7 +1799,9 @@ for family in FAMILIES:
 
 quality_gate={
   "passed":not critical_issues,
+  "complete":not critical_issues and not degraded_lanes,
   "critical_issues":critical_issues,
+  "degraded_lanes":degraded_lanes,
   "warnings":quality_issues,
   "checked_at":NOW.isoformat()
 }
@@ -1804,6 +1811,11 @@ schedule_out["quality_gate"]=quality_gate
 if critical_issues:
     print(json.dumps({"quality_gate":"FAILED","critical_issues":critical_issues},indent=2))
     raise SystemExit(2)
+
+AGE_CACHE_PATH.write_text(json.dumps({
+  "schema_version":1,"generated_at":NOW.isoformat(),
+  "records":persistent_age_cache
+},indent=2,ensure_ascii=False),encoding="utf-8")
 
 (DATA/"tennis-schedule.json").write_text(json.dumps(schedule_out,indent=2,ensure_ascii=False),encoding="utf-8")
 (DATA/"tennis-u18-registry.json").write_text(json.dumps(registry_out,indent=2,ensure_ascii=False),encoding="utf-8")
