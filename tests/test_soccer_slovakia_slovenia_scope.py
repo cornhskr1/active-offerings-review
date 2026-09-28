@@ -15,11 +15,12 @@ class SlovakiaSloveniaScopeTests(unittest.TestCase):
         cls.events = {e["key"]: e for g in soccer["groups"] if g.get("country") in {"Slovakia", "Slovenia"} for e in g["events"]}
         cls.inventory = {x["identity_key"]: x for x in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
 
-    def test_five_independent_missing_adapters(self):
+    def test_five_independent_sources_and_one_partial_league_adapter(self):
         self.assertEqual(5, len(self.events))
         self.assertEqual(5, len({e["source_id"] for e in self.events.values()}))
         for key, event in self.events.items():
-            self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
+            expected = "ADAPTER_CONFIGURED" if key == "soccer-slovenia-slovenian-prvaliga-men" else "ADAPTER_GAP"
+            self.assertEqual(expected, self.inventory[key]["coverage_state"])
             self.assertEqual(event["source_id"], self.inventory[key]["sources"][0]["id"])
 
     def test_slovak_league_and_early_cup_match(self):
