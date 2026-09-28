@@ -39,6 +39,7 @@ from nzs_prvaliga_fixture_adapter import next_round as nzs_next_round, verified_
 from fsf_meistaradeildin_fixture_adapter import next_round as fsf_next_round
 from lff_virsliga_fixture_adapter import next_round as lff_next_round
 from ejl_premium_fixture_adapter import next_round as ejl_next_round, verified_match as ejl_verified_match
+from lfflt_alyga_fixture_adapter import next_round as lfflt_next_round, verified_match as lfflt_verified_match
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2370,6 +2371,34 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-lfflt-alyga-next-round":
+        published_count=held_other=0;rows=[];candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            rows,published_count,held_other=lfflt_next_round(response.content,source,TODAY)
+            def verify_lfflt(row):
+                detail=requests.get("https://www.lff.lt"+row[5],headers=HEADERS,timeout=25)
+                detail.raise_for_status()
+                return lfflt_verified_match(detail.content,row,source)
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                fixtures=list(pool.map(verify_lfflt,rows))
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"season_pairings":published_count,
+            "verified_next_round_fixtures":len(rows) if not errors else 0,
+            "other_future_fixtures_held":held_other,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-ejl-premium-next-round":
