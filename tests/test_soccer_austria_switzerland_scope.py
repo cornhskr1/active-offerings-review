@@ -37,7 +37,8 @@ class AustriaSwitzerlandScopeTests(unittest.TestCase):
                 event = self.events[key]
                 self.assertTrue(event['season_hold'])
                 self.assertEqual('DOCUMENTED_HOLD', self.inventory[key]['season_state'])
-                self.assertEqual('ADAPTER_GAP', self.inventory[key]['coverage_state'])
+                self.assertEqual('ADAPTER_CONFIGURED', self.inventory[key]['coverage_state'])
+                self.assertEqual('official-oefb-round-fixtures', self.sources[event['source_id']]['source_type'])
         self.assertNotEqual(self.events['soccer-austria-austrian-cup-men']['source_id'],
                             self.events['soccer-austria-fb-frauen-cup-women']['source_id'])
 
