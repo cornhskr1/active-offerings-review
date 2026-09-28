@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T00:12:07.242871+00:00",
-  "schedule_generated_at": "2026-09-28T00:08:29.202398+00:00",
+  "registry_generated_at": "2026-09-28T01:26:43.950459+00:00",
+  "schedule_generated_at": "2026-09-28T01:22:18.416752+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 287,
-      "ADAPTER_GAP": 243,
+      "ADAPTER_CONFIGURED": 288,
+      "ADAPTER_GAP": 242,
       "NO_LINKED_SOURCE": 57,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 252,
+    "reported_gap_labels": 251,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 204,
+      "adapter_gaps": 203,
       "pending_dates": 88
     },
     "Surfing": {
@@ -3167,10 +3167,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 2
     },
     {
       "sport": "Cycling",
@@ -3236,10 +3236,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "sport": "Cycling",
@@ -3374,10 +3374,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Cycling",
@@ -12174,13 +12174,13 @@
       "season_window": "September 20, 2026 opening; final pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-qatar-qsl-cup-men",
-          "type": "coverage-gap",
+          "type": "official-qsl-cup-fixtures",
           "configured_league": "QSL Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -12579,11 +12579,11 @@
           "id": "soccer-italy-serie-a-women",
           "type": "official-figc-serie-a-women-fixtures",
           "configured_league": "Serie A | Women",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -14966,7 +14966,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14987,7 +14987,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
