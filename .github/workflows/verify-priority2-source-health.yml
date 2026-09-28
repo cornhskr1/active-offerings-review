@@ -13,6 +13,40 @@ permissions:
   contents: read
 
 jobs:
+  challenger_diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect official calendar responses
+        run: |
+          python3 -m pip install --quiet playwright
+          python3 -m playwright install chromium
+          python3 - <<'PY'
+          from playwright.sync_api import sync_playwright
+          urls=[
+            'https://www.atptour.com/en/atp-challenger-tour/calendar',
+            'https://www.atptour.com/en/atp-challenger-tour/calendar?year=2026',
+            'https://www.atptour.com/en/atp-challenger-tour/calendar?surfaceType=hard&year=2026',
+            'https://www.atptour.com/en/scores/results-archive?tournamentType=ch&year=2026',
+          ]
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(headless=True)
+            page=browser.new_page()
+            for url in urls:
+              try:
+                response=page.goto(url,wait_until='domcontentloaded',timeout=25000)
+                page.wait_for_timeout(2500)
+                body=page.locator('body').inner_text(timeout=5000)
+                links=page.locator('a[href*="/en/tournaments/"]').evaluate_all(
+                  'els=>els.slice(0,5).map(a=>({text:a.innerText,href:a.href,parent:a.parentElement?.innerText?.slice(0,250)}))')
+                print({'url':url,'status':response.status if response else None,
+                       'body_length':len(body),'has_columbus':'Columbus Challenger' in body,
+                       'body_sample':body[-1200:],'links':links},flush=True)
+              except Exception as exc:
+                print({'url':url,'error':str(exc)[:250]},flush=True)
+            browser.close()
+          PY
   tennis:
     runs-on: ubuntu-latest
     timeout-minutes: 35
