@@ -23,28 +23,38 @@ jobs:
         run: python3 -m unittest discover -s tests -q
   tennis:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Install Chromium
         run: |
           python3 -m pip install --quiet playwright
-          python3 -m playwright install --with-deps chromium
-      - name: Probe live Tennis publishers (external blocks remain visible)
-        id: tennis_probe
-        continue-on-error: true
-        env:
-          TENNIS_REFRESH_REGISTRY: "0"
-        run: python3 scripts/refresh_tennis_intelligence.py
-      - name: Report ATP Challenger discovery
-        if: steps.tennis_probe.outcome == 'success'
+          python3 -m playwright install chromium
+      - name: Probe official Tennis access without publishing data
         run: |
           python3 - <<'PY'
-          import json
-          from pathlib import Path
-          data=json.loads(Path('data/tennis-intelligence.json').read_text())
-          print(json.dumps({'atp_challenger':data.get('source_health',{}).get('atp_challenger',{}),
-                            'quality_gate':data.get('quality_gate',{})},indent=2))
+          import sys
+          from playwright.sync_api import sync_playwright
+          sys.path.insert(0,'scripts')
+          from tennis_refresh_guardrails import publisher_access_issue
+          urls={
+            'ATP Challenger calendar':'https://www.atptour.com/en/atp-challenger-tour/calendar',
+            'ITF men':'https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/',
+            'ITF women':'https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/',
+            'UTR Americas':'https://app.utrsports.net/club/11313',
+          }
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(headless=True)
+            page=browser.new_page(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36')
+            for name,url in urls.items():
+              try:
+                response=page.goto(url,wait_until='domcontentloaded',timeout=25000)
+                body=page.locator('body').inner_text(timeout=5000)
+                status=response.status if response else None
+                print(f'{name}: HTTP {status}; {publisher_access_issue(status,body) or "ACCESSIBLE"}',flush=True)
+              except Exception as exc:
+                print(f'{name}: ACCESS_ERROR {str(exc)[:150]}',flush=True)
+            browser.close()
           PY
   nbb:
     runs-on: ubuntu-latest
