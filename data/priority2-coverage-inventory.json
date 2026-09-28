@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T17:14:27.066979+00:00",
-  "schedule_generated_at": "2026-09-28T17:09:28.860028+00:00",
+  "registry_generated_at": "2026-09-28T17:38:18.067400+00:00",
+  "schedule_generated_at": "2026-09-28T17:33:39.900878+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 309,
-      "ADAPTER_GAP": 229,
+      "ADAPTER_CONFIGURED": 310,
+      "ADAPTER_GAP": 228,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 238,
+    "reported_gap_labels": 237,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 192,
+      "adapter_gaps": 191,
       "pending_dates": 88
     },
     "Surfing": {
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5868,10 +5868,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
           "refresh_ok": true,
-          "events_in_window": 156
+          "events_in_window": 157
         }
       ],
-      "events_in_window": 156
+      "events_in_window": 157
     },
     {
       "sport": "NCAA Soccer",
@@ -14226,13 +14226,13 @@
       "season_window": "February 27–December 3, 2026 (published final round)",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-uzbekistan-uzbekistan-super-league-men",
-          "type": "coverage-gap",
+          "type": "official-pfl-uz-superleague-fixtures",
           "configured_league": "Uzbekistan Super League | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -14253,7 +14253,7 @@
           "id": "soccer-afc-vietnam-vleague-1-men",
           "type": "official-vpf-vleague-fixtures",
           "configured_league": "V.League 1 | Men",
-          "refresh_ok": null,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],

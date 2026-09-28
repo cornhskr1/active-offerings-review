@@ -33,6 +33,7 @@ from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_roun
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
 from vpf_fixture_adapter import parse_vleague
+from pfl_uz_fixture_adapter import parse_superleague as parse_pfl_uz_superleague, TOURNAMENT_ID as PFL_UZ_TOURNAMENT_ID, SEASON_ID as PFL_UZ_SEASON_ID
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2364,6 +2365,32 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-pfl-uz-superleague-fixtures":
+        published_count=held_untimed=0
+        candidates=[]
+        try:
+            response=requests.get(source["endpoint"],params={"tournamentId":PFL_UZ_TOURNAMENT_ID,
+                "seasonId":PFL_UZ_SEASON_ID},headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures,held_untimed,published_count,next_start=parse_pfl_uz_superleague(
+                response.json(),source,NOW_UTC)
+            if held_untimed and not fixtures and next_start and next_start.astimezone(TZ).date()<=END:
+                raise ValueError("PFL next round has only placeholder kickoffs inside review window")
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_regular_fixtures":published_count,
+            "placeholder_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-vpf-vleague-fixtures":

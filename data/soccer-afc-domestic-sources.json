@@ -653,11 +653,11 @@
       "sport": "Soccer",
       "league": "Uzbekistan Super League | Men",
       "region": "Uzbekistan",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://pfl.uz/news/superliga-2026-taqvim-rejasi-klublar-bilan-kelishildi",
-      "official_schedule_url": "https://pfl.uz/news/superliga-2026-taqvim-rejasi-klublar-bilan-kelishildi",
-      "source_note": "PFL records February 27 opening and its revised calendar places the last league round December 3. World Cup interruption and fixture changes require checks; complete unattended ingestion remains a gap.",
+      "source_type": "official-pfl-uz-superleague-fixtures",
+      "coverage_status": "partial",
+      "endpoint": "https://api.pfl.uz/v1/web/game/calendar",
+      "official_schedule_url": "https://pfl.uz/en/tours/calendar?tournamentId=1&seasonId=11",
+      "source_note": "PFL's official 2026 senior Superliga API provides 30 eight-match rounds. Only the next validated round with named senior clubs, a venue, and a non-placeholder kickoff is eligible for Review Today. Later rounds currently use midnight placeholders and remain held; every refresh rechecks the edition and complete round structure.",
       "catalog_terms": [
         "Uzbekistan Super League | Men"
       ]
@@ -671,7 +671,7 @@
       "coverage_status": "pending",
       "endpoint": "https://pfl.uz/en/match/4480",
       "official_schedule_url": "https://pfl.uz/en/match/4480",
-      "source_note": "PFL records March 22 qualification, including lower-tier participants; its revised calendar allocates May Cup play and December semifinal activity. Final date and athlete scope remain unresolved; unattended ingestion remains a gap.",
+      "source_note": "PFL's 2026 Cup API lists four October quarterfinal pairings, but their 19:00Z timestamps render at midnight in Uzbekistan and the venues are absent; the September 16 publisher announcement gives only an October 20–21 date range. Earlier rounds include lower-tier participants, so athlete eligibility also requires review. Do not publish the API placeholders as exact kickoff cards; unattended ingestion remains a gap.",
       "catalog_terms": [
         "Uzbekistan Cup | Men"
       ]
@@ -685,7 +685,7 @@
       "coverage_status": "pending",
       "endpoint": "https://pfl.uz/news/ozbekiston-superkubogi-2026-chempionat-va-kubok-goliblari-ortasidagi-bellashuvga-bobur-arena-mezbonlik-qiladi",
       "official_schedule_url": "https://pfl.uz/news/ozbekiston-superkubogi-2026-chempionat-va-kubok-goliblari-ortasidagi-bellashuvga-bobur-arena-mezbonlik-qiladi",
-      "source_note": "PFL scheduled the senior Neftchi–Paxtakor 2026 Super Cup on March 15, not an annual February assumption. Next edition pending; unattended ingestion remains a gap.",
+      "source_note": "PFL's exact Super Cup competition ID lists one completed senior Neftchi–Paxtakor final on March 15, 2026. It does not establish a 2027 edition or a future fixture; retain the next-edition gap.",
       "catalog_terms": [
         "Uzbekistan Super Cup | Men"
       ]

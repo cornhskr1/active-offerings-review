@@ -26,6 +26,10 @@ class UzbekistanVietnamScopeTests(unittest.TestCase):
                 self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
                 self.assertEqual("official-vpf-vleague-fixtures", self.sources[event["source_id"]]["source_type"])
                 self.assertEqual("partial", self.sources[event["source_id"]]["coverage_status"])
+            elif key == "soccer-uzbekistan-uzbekistan-super-league-men":
+                self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+                self.assertEqual("official-pfl-uz-superleague-fixtures", self.sources[event["source_id"]]["source_type"])
+                self.assertEqual("partial", self.sources[event["source_id"]]["coverage_status"])
             else:
                 self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
                 self.assertEqual("coverage-gap", self.sources[event["source_id"]]["source_type"])
