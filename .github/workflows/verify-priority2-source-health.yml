@@ -13,6 +13,14 @@ permissions:
   contents: read
 
 jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install parser dependencies
+        run: python3 -m pip install --quiet requests lxml beautifulsoup4
+      - name: Test source adapters and quality gates
+        run: python3 -m unittest discover -s tests -q
   tennis:
     runs-on: ubuntu-latest
     timeout-minutes: 35
@@ -22,11 +30,14 @@ jobs:
         run: |
           python3 -m pip install --quiet playwright
           python3 -m playwright install --with-deps chromium
-      - name: Run guarded publisher refresh without publishing data
+      - name: Probe live Tennis publishers (external blocks remain visible)
+        id: tennis_probe
+        continue-on-error: true
         env:
           TENNIS_REFRESH_REGISTRY: "0"
         run: python3 scripts/refresh_tennis_intelligence.py
       - name: Report ATP Challenger discovery
+        if: steps.tennis_probe.outcome == 'success'
         run: |
           python3 - <<'PY'
           import json

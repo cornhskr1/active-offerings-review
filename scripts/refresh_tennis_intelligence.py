@@ -1756,7 +1756,7 @@ if (not any(t.get("tour_id")=="atp-challenger" for t in tournaments)
                 for source in [chal_health.get("current_page") or {},
                                chal_health.get("calendar_fallback") or {},
                                *((chal_health.get("archive_fallback") or {}).get("sources") or [])])):
-    quality_issues.append("ATP_CHALLENGER_PUBLISHER_ACCESS_BLOCKED")
+    critical_issues.append("ATP_CHALLENGER_PUBLISHER_ACCESS_BLOCKED")
 chal_issue=calendar_discovery_issue(
     chal_health,any(t.get("tour_id")=="atp-challenger" for t in tournaments)
 )
