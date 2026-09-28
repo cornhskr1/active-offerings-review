@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T01:26:43.950459+00:00",
-  "schedule_generated_at": "2026-09-28T01:22:18.416752+00:00",
+  "registry_generated_at": "2026-09-28T01:57:18.222163+00:00",
+  "schedule_generated_at": "2026-09-28T01:52:46.768523+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 251,
+    "reported_gap_labels": 250,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -12180,11 +12180,11 @@
           "id": "soccer-afc-qatar-qsl-cup-men",
           "type": "official-qsl-cup-fixtures",
           "configured_league": "QSL Cup | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 9
     },
     {
       "sport": "Soccer",
@@ -14966,7 +14966,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14987,7 +14987,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-event-window",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],

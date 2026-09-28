@@ -37,6 +37,11 @@ class GulfScopeTests(unittest.TestCase):
             self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
         self.assertIn("rescheduled edition originally announced for 2025–26", self.events["soccer-qatar-qatar-cup-men"]["season_basis"])
         self.assertEqual("ADAPTER_GAP", self.inventory["soccer-qatar-qatar-cup-men"]["coverage_state"])
+        cup = self.sources[self.events["soccer-qatar-qatar-cup-men"]["source_id"]]
+        self.assertEqual("https://www.qsl.qa/en/qatar-cup-fixtures-results", cup["official_schedule_url"])
+        self.assertIn("TBD for kickoff", cup["source_note"])
+        self.assertIn("Al Sadd and Al Rayyan", self.events["soccer-qatar-qatar-cup-men"]["season_basis"])
+        self.assertFalse(any("QSL 2" in e["catalog_event"] for e in self.events.values()))
 
     def test_partial_boundaries_and_uae_super_cup_hold(self):
         partial = set(self.events) - {
