@@ -2271,10 +2271,19 @@ for source in CFG.get("sources",[]):
             article=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
             article.raise_for_status()
             pdf_link=mfl_pdf_url(article.text,kind)
-            pdf=requests.get(pdf_link,headers=HEADERS,timeout=25)
-            pdf.raise_for_status()
+            # The official file host has intermittently returned a 200 HTML
+            # interstitial to unattended runners. Retry the exact verified
+            # attachment with an explicit PDF accept header; never parse HTML
+            # or use a cached round when the publisher cannot be reached.
+            pdf=None
+            for attempt in range(3):
+                pdf=requests.get(pdf_link,headers={**HEADERS,"Accept":"application/pdf"},
+                    params={"ao_retry":attempt} if attempt else None,timeout=25)
+                pdf.raise_for_status()
+                if pdf.content.startswith(b"%PDF"):
+                    break
             if not pdf.content.startswith(b"%PDF"):
-                raise ValueError("MFL fixture attachment is no longer a PDF")
+                raise ValueError(f"MFL fixture attachment returned {pdf.headers.get('content-type','unknown')} instead of PDF")
             fixtures,held_lower_tier=parse_mfl_schedule(mfl_pdf_text(pdf.content),source,kind,END)
             published_count=len(fixtures)+held_lower_tier
             for parsed in fixtures:

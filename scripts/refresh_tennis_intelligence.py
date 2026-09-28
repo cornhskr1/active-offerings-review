@@ -5,7 +5,8 @@ from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
-from tennis_refresh_guardrails import calendar_discovery_issue
+from tennis_refresh_guardrails import (calendar_discovery_issue, challenger_score_event_url,
+                                       date_range, parse_date)
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
@@ -125,37 +126,6 @@ def merge_registry_records(records,exposure_names=None):
     merged.sort(key=lambda row:(not row.get("current_exposure"),row.get("name","").lower()))
     return merged
 
-def parse_date(s):
-    s=" ".join(str(s or "").split())
-    for f in ("%d %B %Y","%d %b %Y","%B %d, %Y","%b %d, %Y","%Y-%m-%d"):
-        try:return datetime.datetime.strptime(s,f).date()
-        except Exception:pass
-    return None
-
-def date_range(text):
-    t=" ".join(str(text or "").split())
-    pats=[
-      r'(\d{1,2})\s+([A-Za-z]+)\s+(?:to|[-–])\s+(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})',
-      r'(\d{1,2})\s*[-–]\s*(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})',
-      r'([A-Za-z]+)\s+(\d{1,2})\s*[-–]\s*(\d{1,2}),?\s+(\d{4})',
-    ]
-    for i,p in enumerate(pats):
-        m=re.search(p,t,re.I)
-        if not m:continue
-        try:
-            if i==0:
-                d1,m1,d2,m2,y=m.groups()
-                a=parse_date(f"{d1} {m1} {y}"); b=parse_date(f"{d2} {m2} {y}")
-            elif i==1:
-                d1,d2,m1,y=m.groups()
-                a=parse_date(f"{d1} {m1} {y}"); b=parse_date(f"{d2} {m1} {y}")
-            else:
-                m1,d1,d2,y=m.groups()
-                a=parse_date(f"{d1} {m1} {y}"); b=parse_date(f"{d2} {m1} {y}")
-            if a and b:return a,b
-        except Exception:pass
-    return None,None
-
 def overlaps(a,b): return bool(a and b and a<=END and b>=TODAY)
 
 class Browser:
@@ -191,7 +161,7 @@ class Browser:
             except Exception:pass
             text=self.page.locator("body").inner_text(timeout=8000)
             links=self.page.locator("a").evaluate_all(
-                """els=>els.map(a=>{
+                r"""els=>els.map(a=>{
                     const nearest=(a.closest('tr,article,li,section,div')?.innerText||'').trim();
                     let dateContext='';
                     let node=a.parentElement;
@@ -245,16 +215,6 @@ def discover_generic(browser,url,tid,tour,gender,href_pattern):
           "source_url":href,"participants":[],"participant_source":"Official tour/tournament page"
         })
     return out,{"ok":True,"events":len(out),"url":url}
-
-def calendar_overlap_mentions(text):
-    """Count visible date ranges in the current Today+7 window."""
-    count=0
-    for m in re.finditer(r'(\d{1,2})\s*[-–]\s*(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})',str(text or ''),re.I):
-        d1,d2,mon,year=m.groups()
-        a=parse_date(f"{d1} {mon} {year}")
-        b=parse_date(f"{d2} {mon} {year}")
-        if overlaps(a,b):count+=1
-    return count
 
 def _dict_first(d,keys):
     for k in keys:
@@ -434,7 +394,7 @@ def tournament_page_dates(browser,url):
     patterns=[
       r'([A-Za-z]+\s+\d{1,2})\s*[-–]\s*([A-Za-z]+\s+\d{1,2}),?\s*(\d{4})',
       r'(\d{1,2})\s*[-–]\s*(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})',
-      r'(\d{1,2})\s+([A-Za-z]+)\s+(?:to|[-–])\s+(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})'
+      r'(\d{1,2})\s+([A-Za-z]+)\s+(?:to|[-–])\s+(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})'
     ]
     for i,p in enumerate(patterns):
         m=re.search(p,text,re.I)
@@ -460,7 +420,8 @@ def discover_atp_current(browser,url,tid,tour):
     snap=browser.snapshot(url,2600)
     out=[];seen=set();candidates=[]
     health={"ok":snap.get("ok",False),"events":0,"url":url,
-            "candidate_tournament_links":0,"error":snap.get("error")}
+            "candidate_tournament_links":0,"dated_candidate_links":0,
+            "overlapping_candidate_links":0,"error":snap.get("error")}
     if not snap.get("ok"):
         return out,health
 
@@ -470,25 +431,41 @@ def discover_atp_current(browser,url,tid,tour):
     for a in snap.get("links",[]):
         href=str(a.get("href") or "")
         text=" ".join(str(a.get("text") or "").split())
-        if not re.search(r'/en/tournaments/',href,re.I):
+        score_url=challenger_score_event_url(href) if tid=="atp-challenger" else None
+        if not re.search(r'/en/tournaments/',href,re.I) and not score_url:
             continue
+        if score_url:
+            # Score links are the Challenger page's own event links. Several
+            # tabs point to the same event, so resolve one official event page.
+            href=score_url
         if any(x in href.lower() for x in ("/overview","/draws","/results")):
             href=re.sub(r'/(overview|draws|results)/?$', '/overview', href, flags=re.I)
         if href in seen:continue
         # Exclude generic tournament directory links.
         if re.search(r'/en/tournaments/?$',href,re.I):continue
         seen.add(href)
-        candidates.append((text,href))
+        candidates.append((text,href,bool(score_url)))
+
+    if tid=="atp-challenger" and any(score_link for _,_,score_link in candidates):
+        # The current page also has generic site navigation. Its event score
+        # cards are the exact Challenger candidates and must not fall behind
+        # the crawl limit because of unrelated tournament directory links.
+        candidates=[candidate for candidate in candidates if candidate[2]]
 
     health["candidate_tournament_links"]=len(candidates)
 
-    for text,href in candidates[:30]:
+    for text,href,_ in candidates[:30]:
         st,en,page_text=tournament_page_dates(browser,href)
+        if st and en:
+            health["dated_candidate_links"]+=1
         if not overlaps(st,en):
             continue
+        health["overlapping_candidate_links"]+=1
 
         # Prefer tab/link text; fall back to tournament page heading patterns.
         name=clean_tournament_name(text)
+        if tid=="atp-challenger" and re.fullmatch(r'(?:Live Scores|Draws|Results|Daily Schedule|Order of Play)',name,re.I):
+            name=href.split("/en/scores/current-challenger/",1)[-1].split("/",1)[0].replace("-"," ").title()
         if not name or len(name)<3:
             m=re.search(r'\b([A-Z][A-Za-z0-9 .&\'-]{3,80})\b',page_text)
             name=clean_tournament_name(m.group(1) if m else "ATP Tournament")
@@ -671,12 +648,14 @@ def discover_atp_challenger(browser):
         source_health.append({"url":source,"ok":snap.get("ok",False),"error":snap.get("error")})
         if not snap.get("ok"):continue
         text=snap.get("text") or ""
-        overlap_mentions+=calendar_overlap_mentions(text)
+        overlap_mentions+=sum(
+            overlaps(*date_range(line)) for line in str(text).splitlines()
+        )
 
         # 1) Use official tournament links and their surrounding card text.
         for a in snap.get("links",[]):
             href=str(a.get("href") or "")
-            if "/en/tournaments/" not in href:continue
+            if not re.search(r'/en/(?:tournaments/|scores/(?:archive|current-challenger)/)',href,re.I):continue
             parent=str(a.get("parent") or a.get("text") or "")
             st,en=date_range(parent)
             if not overlaps(st,en):continue
@@ -707,7 +686,7 @@ def discover_atp_challenger(browser):
         for line,st,en in current_lines:
             for a in links:
                 href=str(a.get("href") or "")
-                if "/en/tournaments/" not in href:continue
+                if not re.search(r'/en/(?:tournaments/|scores/(?:archive|current-challenger)/)',href,re.I):continue
                 atxt=" ".join(str(a.get("text") or "").split())
                 if not atxt or len(atxt)<3:continue
                 if norm(atxt) not in norm(line):continue
@@ -1359,7 +1338,9 @@ with sync_playwright() as pw:
         if x2:x=x2
         h={"current_page":h,"archive_fallback":h2,"ok":h.get("ok") or h2.get("ok"),
            "events":len(x),"url":ATP_CHAL,
-           "candidate_tournament_links":h.get("candidate_tournament_links",0)}
+           "candidate_tournament_links":h.get("candidate_tournament_links",0),
+           "dated_candidate_links":h.get("dated_candidate_links",0),
+           "overlapping_candidate_links":h.get("overlapping_candidate_links",0)}
     tournaments+=x;health["atp_challenger"]=h
 
     x,h=discover_wta_lane(browser,WTA_CAL,"wta","WTA Tour")
@@ -1708,8 +1689,16 @@ for t in tournaments:
         critical_issues.append(f"IMPLAUSIBLE_ACTIVE_FIELD_SIZE: {t.get('tour')} | {t.get('tournament')} | {t.get('participant_count')}")
 
 chal_health=health.get("atp_challenger") or {}
-if chal_health.get("ok") and int(chal_health.get("candidate_tournament_links") or 0)>0 and not any(t.get("tour_id")=="atp-challenger" for t in tournaments):
-    critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_HAS_TOURNAMENT_LINKS_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+chal_issue=calendar_discovery_issue(
+    chal_health,any(t.get("tour_id")=="atp-challenger" for t in tournaments)
+)
+if chal_issue=="OVERLAP_WITHOUT_EVENT":
+    critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_HAS_OVERLAPPING_TOURNAMENT_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+elif chal_issue=="DATES_UNRESOLVED":
+    critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_DATES_UNRESOLVED")
+if (not any(t.get("tour_id")=="atp-challenger" for t in tournaments)
+        and int((chal_health.get("archive_fallback") or {}).get("calendar_overlap_mentions") or 0)>0):
+    critical_issues.append("ATP_CHALLENGER_ARCHIVE_HAS_OVERLAPPING_TOURNAMENT_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
 
 wta_health=health.get("wta") or {}
 wta_issue=calendar_discovery_issue(
