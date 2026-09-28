@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from tennis_refresh_guardrails import (calendar_discovery_issue, challenger_score_event_url,
                                        challenger_calendar_card_dates, date_range, parse_date,
-                                       publisher_access_issue)
+                                       publisher_access_issue, challenger_degradation)
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
@@ -1744,25 +1744,10 @@ for t in tournaments:
         critical_issues.append(f"IMPLAUSIBLE_ACTIVE_FIELD_SIZE: {t.get('tour')} | {t.get('tournament')} | {t.get('participant_count')}")
 
 chal_health=health.get("atp_challenger") or {}
-if (not any(t.get("tour_id")=="atp-challenger" for t in tournaments)
-        and any(str(source.get("error") or "").startswith("PUBLISHER_")
-                for source in [chal_health.get("current_page") or {},
-                               chal_health.get("calendar_fallback") or {},
-                               *((chal_health.get("archive_fallback") or {}).get("sources") or [])])):
-    degraded_lanes.append({
-        "tour_id":"atp-challenger",
-        "reason":"ATP Challenger publisher access blocked; manual verification required"
-    })
-chal_issue=calendar_discovery_issue(
-    chal_health,any(t.get("tour_id")=="atp-challenger" for t in tournaments)
-)
-if chal_issue=="OVERLAP_WITHOUT_EVENT":
-    critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_HAS_OVERLAPPING_TOURNAMENT_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
-elif chal_issue=="DATES_UNRESOLVED":
-    critical_issues.append("ATP_CHALLENGER_CURRENT_PAGE_DATES_UNRESOLVED")
-if (not any(t.get("tour_id")=="atp-challenger" for t in tournaments)
-        and int((chal_health.get("archive_fallback") or {}).get("calendar_overlap_mentions") or 0)>0):
-    critical_issues.append("ATP_CHALLENGER_ARCHIVE_HAS_OVERLAPPING_TOURNAMENT_BUT_TODAY7_DISCOVERY_RETURNED_ZERO")
+chal_warning=challenger_degradation(
+    chal_health,any(t.get("tour_id")=="atp-challenger" for t in tournaments))
+if chal_warning:
+    degraded_lanes.append({"tour_id":"atp-challenger","reason":chal_warning})
 
 wta_health=health.get("wta") or {}
 wta_issue=calendar_discovery_issue(

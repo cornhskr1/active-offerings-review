@@ -2,7 +2,7 @@ import unittest
 import datetime
 
 from scripts.tennis_refresh_guardrails import (
-    calendar_discovery_issue, challenger_calendar_card_dates,
+    calendar_discovery_issue, challenger_calendar_card_dates, challenger_degradation,
     challenger_score_event_url, date_range,
     publisher_access_issue,
     schedule_source_warning,
@@ -89,6 +89,26 @@ class CalendarDiscoveryIssueTests(unittest.TestCase):
 
 
 class ScheduleSourceHealthTests(unittest.TestCase):
+    def test_unresolved_challenger_dates_degrade_only_that_lane(self):
+        health = {"ok":True,"candidate_tournament_links":100,
+                  "dated_candidate_links":0,"overlapping_candidate_links":0,
+                  "current_page":{"error":"PUBLISHER_HTTP_403"}}
+        warning = challenger_degradation(health,False)
+        self.assertIn("dates unresolved",warning)
+        self.assertIsNone(challenger_degradation(health,True))
+        payload = {"generated_at":"2026-09-28T18:50:00+00:00",
+                   "quality_gate":{"passed":True,"complete":False,
+                                   "degraded_lanes":[{"tour_id":"atp-challenger","reason":warning}]}}
+        now = datetime.datetime(2026,9,28,19,tzinfo=datetime.timezone.utc)
+        self.assertEqual(warning,schedule_source_warning(payload,["atp-challenger"],now))
+        self.assertIsNone(schedule_source_warning(payload,["itf-men"],now))
+
+    def test_overlap_and_archive_gaps_remain_visible(self):
+        self.assertIn("overlapping tournament",challenger_degradation(
+            {"ok":True,"overlapping_candidate_links":1},False))
+        self.assertIn("archive",challenger_degradation(
+            {"ok":False,"archive_fallback":{"calendar_overlap_mentions":1}},False))
+
     def test_partial_refresh_only_blocks_the_degraded_identity(self):
         now = datetime.datetime(2026, 9, 28, 12, tzinfo=datetime.timezone.utc)
         payload = {

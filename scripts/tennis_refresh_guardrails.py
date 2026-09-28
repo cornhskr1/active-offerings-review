@@ -129,3 +129,24 @@ def calendar_discovery_issue(health, has_events):
     if candidate_links > 0 and dated_links == 0:
         return "DATES_UNRESOLVED"
     return None
+
+
+def challenger_degradation(health, has_events):
+    """Confine an unverified ATP Challenger discovery to its own source lane."""
+    if has_events:
+        return None
+    health = health or {}
+    issue = calendar_discovery_issue(health, False)
+    if issue == "OVERLAP_WITHOUT_EVENT":
+        return "ATP Challenger official calendar has an overlapping tournament but no verified event; manual verification required"
+    if issue == "DATES_UNRESOLVED":
+        return "ATP Challenger official calendar dates unresolved; manual verification required"
+    if int((health.get("archive_fallback") or {}).get("calendar_overlap_mentions") or 0) > 0:
+        return "ATP Challenger archive has an overlapping tournament but no verified event; manual verification required"
+    sources = [health.get("current_page") or {}, health.get("calendar_fallback") or {},
+               *((health.get("archive_fallback") or {}).get("sources") or [])]
+    if any(str(source.get("error") or "").startswith("PUBLISHER_") for source in sources):
+        return "ATP Challenger publisher access blocked; manual verification required"
+    if not health.get("ok"):
+        return "ATP Challenger publisher unavailable; manual verification required"
+    return None
