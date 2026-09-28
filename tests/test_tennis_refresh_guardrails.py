@@ -3,6 +3,7 @@ import unittest
 from scripts.tennis_refresh_guardrails import (
     calendar_discovery_issue, challenger_calendar_card_dates,
     challenger_score_event_url, date_range,
+    publisher_access_issue,
 )
 
 
@@ -37,6 +38,11 @@ class AtpChallengerCalendarTests(unittest.TestCase):
 
 
 class CalendarDiscoveryIssueTests(unittest.TestCase):
+    def test_cloudflare_block_is_source_error_not_calendar_data(self):
+        self.assertEqual(publisher_access_issue(403, "Sorry, you have been blocked"), "PUBLISHER_HTTP_403")
+        self.assertEqual(publisher_access_issue(200, "Sorry, you have been blocked"), "PUBLISHER_ACCESS_BLOCKED")
+        self.assertIsNone(calendar_discovery_issue({"ok":False,"error":"PUBLISHER_HTTP_403"},False))
+
     def test_valid_empty_week_does_not_fail(self):
         health = {
             "ok": True,

@@ -5,6 +5,16 @@ import datetime
 import re
 
 
+def publisher_access_issue(status, body):
+    """Recognize a transport/block page before treating it as a calendar."""
+    if status in (401, 403, 429):
+        return f"PUBLISHER_HTTP_{status}"
+    text = str(body or "").lower()
+    if "sorry, you have been blocked" in text or "unable to access atptour.com" in text:
+        return "PUBLISHER_ACCESS_BLOCKED"
+    return None
+
+
 def parse_date(value):
     value = " ".join(str(value or "").split())
     for fmt in ("%d %B %Y", "%d %b %Y", "%B %d, %Y", "%b %d, %Y", "%Y-%m-%d"):

@@ -6,7 +6,8 @@ from zoneinfo import ZoneInfo
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from tennis_refresh_guardrails import (calendar_discovery_issue, challenger_score_event_url,
-                                       challenger_calendar_card_dates, date_range, parse_date)
+                                       challenger_calendar_card_dates, date_range, parse_date,
+                                       publisher_access_issue)
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
@@ -155,12 +156,16 @@ class Browser:
 
         try:
             self.page.on("response",on_response)
-            self.page.goto(url,wait_until="domcontentloaded",timeout=35000)
+            response=self.page.goto(url,wait_until="domcontentloaded",timeout=35000)
             self.page.wait_for_timeout(wait)
             # Give JS-heavy sports sites one extra opportunity to settle.
             try:self.page.wait_for_load_state("networkidle",timeout=5000)
             except Exception:pass
             text=self.page.locator("body").inner_text(timeout=8000)
+            access_issue=publisher_access_issue(response.status if response else None,text)
+            if access_issue:
+                return {"ok":False,"url":self.page.url,"text":"","links":[],"rows":[],
+                        "html":"","payloads":[],"error":access_issue}
             links=self.page.locator("a").evaluate_all(
                 r"""els=>els.map(a=>{
                     const nearest=(a.closest('tr,article,li,section,div')?.innerText||'').trim();
@@ -1746,6 +1751,12 @@ for t in tournaments:
         critical_issues.append(f"IMPLAUSIBLE_ACTIVE_FIELD_SIZE: {t.get('tour')} | {t.get('tournament')} | {t.get('participant_count')}")
 
 chal_health=health.get("atp_challenger") or {}
+if (not any(t.get("tour_id")=="atp-challenger" for t in tournaments)
+        and any(str(source.get("error") or "").startswith("PUBLISHER_")
+                for source in [chal_health.get("current_page") or {},
+                               chal_health.get("calendar_fallback") or {},
+                               *((chal_health.get("archive_fallback") or {}).get("sources") or [])])):
+    quality_issues.append("ATP_CHALLENGER_PUBLISHER_ACCESS_BLOCKED")
 chal_issue=calendar_discovery_issue(
     chal_health,any(t.get("tour_id")=="atp-challenger" for t in tournaments)
 )
