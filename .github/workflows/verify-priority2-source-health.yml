@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install parser dependencies
-        run: python3 -m pip install --quiet requests lxml beautifulsoup4
+        run: python3 -m pip install --quiet requests lxml beautifulsoup4 pypdf
       - name: Test source adapters and quality gates
         run: python3 -m unittest discover -s tests -q
   tennis:
