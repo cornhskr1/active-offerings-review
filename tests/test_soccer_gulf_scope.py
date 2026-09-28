@@ -37,6 +37,11 @@ class GulfScopeTests(unittest.TestCase):
             self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
         self.assertIn("rescheduled edition originally announced for 2025–26", self.events["soccer-qatar-qatar-cup-men"]["season_basis"])
         self.assertEqual("ADAPTER_GAP", self.inventory["soccer-qatar-qatar-cup-men"]["coverage_state"])
+        cup = self.sources[self.events["soccer-qatar-qatar-cup-men"]["source_id"]]
+        self.assertEqual("https://www.qsl.qa/en/qatar-cup-fixtures-results", cup["official_schedule_url"])
+        self.assertIn("TBD for kickoff", cup["source_note"])
+        self.assertIn("Al Sadd and Al Rayyan", self.events["soccer-qatar-qatar-cup-men"]["season_basis"])
+        self.assertFalse(any("QSL 2" in e["catalog_event"] for e in self.events.values()))
 
     def test_partial_boundaries_and_uae_super_cup_hold(self):
         partial = set(self.events) - {
@@ -70,9 +75,13 @@ class GulfScopeTests(unittest.TestCase):
         qsl_source = self.sources[self.events["soccer-qatar-qsl-cup-men"]["source_id"]]
         self.assertEqual("official-qsl-cup-fixtures", qsl_source["source_type"])
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory["soccer-qatar-qsl-cup-men"]["coverage_state"])
+        league_source = self.sources[self.events["soccer-qatar-qatar-stars-league-men"]["source_id"]]
+        self.assertEqual("official-qsl-stars-fixtures", league_source["source_type"])
+        self.assertEqual("partial", league_source["coverage_status"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory["soccer-qatar-qatar-stars-league-men"]["coverage_state"])
         for key in set(self.events) - {
             "soccer-saudi-arabia-saudi-pro-league-men", "soccer-saudi-arabia-king-cup-men",
-            "soccer-qatar-qsl-cup-men",
+            "soccer-qatar-qsl-cup-men", "soccer-qatar-qatar-stars-league-men",
         }:
             self.assertEqual("coverage-gap", self.sources[self.events[key]["source_id"]]["source_type"])
 

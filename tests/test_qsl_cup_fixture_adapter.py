@@ -46,7 +46,7 @@ class QslCupFixtureTests(unittest.TestCase):
         rows = {x["identity_key"]: x for x in build()["identities"]}
         self.assertEqual("ADAPTER_CONFIGURED", rows["soccer-qatar-qsl-cup-men"]["coverage_state"])
         self.assertEqual("ADAPTER_GAP", rows["soccer-qatar-qatar-cup-men"]["coverage_state"])
-        self.assertEqual("ADAPTER_GAP", rows["soccer-qatar-qatar-stars-league-men"]["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", rows["soccer-qatar-qatar-stars-league-men"]["coverage_state"])
         self.assertEqual("partial", self.source["coverage_status"])
 
 
