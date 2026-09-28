@@ -36,6 +36,7 @@ from vpf_fixture_adapter import parse_vleague
 from pfl_uz_fixture_adapter import parse_superleague as parse_pfl_uz_superleague, TOURNAMENT_ID as PFL_UZ_TOURNAMENT_ID, SEASON_ID as PFL_UZ_SEASON_ID
 from flf_bgl_fixture_adapter import overview as flf_bgl_overview, match_card as flf_bgl_match_card
 from nzs_prvaliga_fixture_adapter import next_round as nzs_next_round, verified_match as nzs_verified_match
+from fsf_meistaradeildin_fixture_adapter import next_round as fsf_next_round
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2368,6 +2369,27 @@ for source in CFG.get("sources",[]):
             "events":count,"published_round_fixtures":published_count,
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-fsf-meistaradeildin-next-round":
+        published_count=0;candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures,published_count=fsf_next_round(response.json(),source,NOW_UTC)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"season_pairings":published_count,
+            "verified_next_round_fixtures":len(fixtures) if not errors else 0,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-nzs-prvaliga-next-round":
         published_count=0
