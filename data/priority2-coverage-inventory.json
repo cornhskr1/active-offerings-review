@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T15:56:41.545749+00:00",
-  "schedule_generated_at": "2026-09-28T15:46:35.953010+00:00",
+  "registry_generated_at": "2026-09-28T17:14:27.066979+00:00",
+  "schedule_generated_at": "2026-09-28T17:09:28.860028+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 308,
-      "ADAPTER_GAP": 230,
+      "ADAPTER_CONFIGURED": 309,
+      "ADAPTER_GAP": 229,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 242,
+    "reported_gap_labels": 238,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 193,
+      "adapter_gaps": 192,
       "pending_dates": 88
     },
     "Surfing": {
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2876,7 +2876,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2899,7 +2899,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2922,7 +2922,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2945,7 +2945,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2968,7 +2968,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2991,7 +2991,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3014,7 +3014,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3037,7 +3037,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3060,7 +3060,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3083,7 +3083,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3106,7 +3106,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3129,7 +3129,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3152,11 +3152,11 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Cycling",
@@ -3175,11 +3175,11 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Cycling",
@@ -3198,11 +3198,11 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Cycling",
@@ -3221,7 +3221,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3244,7 +3244,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3267,11 +3267,11 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 5
     },
     {
       "sport": "Cycling",
@@ -3290,7 +3290,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3313,7 +3313,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3336,7 +3336,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3359,7 +3359,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3382,7 +3382,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3405,7 +3405,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3428,7 +3428,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3451,7 +3451,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3487,7 +3487,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3510,7 +3510,7 @@
           "configured_league": "Approved UCI Cycling",
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -8315,7 +8315,7 @@
           "id": "uefa-soccer-belgium-challenger-pro-league-men",
           "type": "official-belgian-challenger-round",
           "configured_league": "Challenger Pro League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -9072,7 +9072,7 @@
           "id": "uefa-soccer-croatia-croatian-football-league-supersport-hnl-men",
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Croatian Football League / SuperSport HNL | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -9178,7 +9178,7 @@
           "id": "uefa-soccer-czech-republic-czech-first-league-men",
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech First League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -9199,7 +9199,7 @@
           "id": "uefa-soccer-czech-republic-czech-national-football-league-men",
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech National Football League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14247,13 +14247,13 @@
       "season_window": "September 4, 2026–May 22, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-vietnam-vleague-1-men",
-          "type": "coverage-gap",
+          "type": "official-vpf-vleague-fixtures",
           "configured_league": "V.League 1 | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],

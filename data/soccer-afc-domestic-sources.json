@@ -695,11 +695,11 @@
       "sport": "Soccer",
       "league": "V.League 1 | Men",
       "region": "Vietnam",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://vpf.vn/tin-tuc/tin-vleague/thong-cao-bao-chi-le-boc-tham-xep-lich-thi-dau-cac-giai-bong-da-chuyen-nghiep-quoc-gia-2026-27/",
-      "official_schedule_url": "https://vpf.vn/tin-tuc/tin-vleague/thong-cao-bao-chi-le-boc-tham-xep-lich-thi-dau-cac-giai-bong-da-chuyen-nghiep-quoc-gia-2026-27/",
-      "source_note": "VPF dates the 14-club 2026–27 V.League 1 September 4–May 22, separately from V.League 2. Complete unattended ingestion remains a gap.",
+      "source_type": "official-vpf-vleague-fixtures",
+      "coverage_status": "partial",
+      "endpoint": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
+      "official_schedule_url": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
+      "source_note": "VPF publishes all 182 regular-season pairings. Only exact dated and timed games enter Review Today; 91 month-only fixtures remain held. One future Bac Ninh–Nam Dinh pairing is repeated three times, with a Ninh Binh counterpart missing; affected matches are held until the publisher corrects them. Later amendments require refresh verification.",
       "catalog_terms": [
         "V.League 1 | Men"
       ]
@@ -713,7 +713,7 @@
       "coverage_status": "pending",
       "endpoint": "https://vpf.vn/tin-tuc/tin-noi-bat/sacombank-la-nha-tai-tro-chinh-giai-hang-nhat-quoc-gia-va-cup-quoc-gia-2026-27/",
       "official_schedule_url": "https://vpf.vn/tin-tuc/tin-noi-bat/sacombank-la-nha-tai-tro-chinh-giai-hang-nhat-quoc-gia-va-cup-quoc-gia-2026-27/",
-      "source_note": "VPF dates the 2026–27 National Cup September 18–May 30, with V.League 1 and 2 entrants. Lower-division athlete and match scope require checks; unattended ingestion remains a gap.",
+      "source_note": "VPF 2026–27 Cup page currently lists only 11 qualifying ties through October 6. V.League 2 and potentially younger participants require athlete scope review; later rounds and fixtures are not yet published. Retain an adapter gap rather than imply full cup coverage.",
       "catalog_terms": [
         "Vietnamese Cup | Men"
       ]
@@ -727,7 +727,7 @@
       "coverage_status": "pending",
       "endpoint": "https://vpf.vn/tin-tuc/doi-gianh-sieu-cup-quoc-gia-2025-26-nhan-800-trieu-tien-thuong/",
       "official_schedule_url": "https://vpf.vn/tin-tuc/doi-gianh-sieu-cup-quoc-gia-2025-26-nhan-800-trieu-tien-thuong/",
-      "source_note": "VPF dates the 2025–26 senior National Super Cup August 30, 2026; its edition label differs from the 2026–27 league season. Next edition pending; unattended ingestion remains a gap.",
+      "source_note": "VPF 2025–26 Super Cup was August 30, 2026, a completed event with an edition label distinct from the 2026–27 league. Next edition and unattended fixtures remain pending; do not inherit league or cup matches.",
       "catalog_terms": [
         "Vietnamese Super Cup | Men"
       ]

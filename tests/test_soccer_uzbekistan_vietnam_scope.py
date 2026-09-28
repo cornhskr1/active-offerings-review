@@ -22,8 +22,13 @@ class UzbekistanVietnamScopeTests(unittest.TestCase):
         for key, event in self.events.items():
             self.assertNotIn("season_start", event)
             self.assertNotIn("season_end", event)
-            self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
-            self.assertEqual("coverage-gap", self.sources[event["source_id"]]["source_type"])
+            if key == "soccer-vietnam-v-league-1-men":
+                self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+                self.assertEqual("official-vpf-vleague-fixtures", self.sources[event["source_id"]]["source_type"])
+                self.assertEqual("partial", self.sources[event["source_id"]]["coverage_status"])
+            else:
+                self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
+                self.assertEqual("coverage-gap", self.sources[event["source_id"]]["source_type"])
 
     def test_uzbekistan_cup_qualifying_does_not_invent_final(self):
         cup = self.events["soccer-uzbekistan-uzbekistan-cup-men"]
