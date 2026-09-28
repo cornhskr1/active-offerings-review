@@ -29,7 +29,10 @@ class GeorgiaScopeTests(unittest.TestCase):
         self.assertNotIn("season_end_date", cup)
         for event in (league, cup):
             self.assertEqual("PARTIAL_WINDOW", self.inventory[event["key"]]["season_state"])
-            self.assertEqual("ADAPTER_GAP", self.inventory[event["key"]]["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[league["key"]]["coverage_state"])
+        self.assertEqual("official-georgia-erovnuli-linked-fixtures",
+                         self.sources[league["source_id"]]["source_type"])
+        self.assertEqual("ADAPTER_GAP", self.inventory[cup["key"]]["coverage_state"])
 
     def test_super_cup_window_includes_semifinals(self):
         key = "soccer-georgia-georgian-super-cup-men"

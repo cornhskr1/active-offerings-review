@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T20:38:25.173932+00:00",
-  "schedule_generated_at": "2026-09-28T20:33:31.885132+00:00",
+  "registry_generated_at": "2026-09-28T20:46:52.711662+00:00",
+  "schedule_generated_at": "2026-09-28T20:42:25.960362+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 319,
-      "ADAPTER_GAP": 219,
+      "ADAPTER_CONFIGURED": 320,
+      "ADAPTER_GAP": 218,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 228,
+    "reported_gap_labels": 227,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 182,
+      "adapter_gaps": 181,
       "pending_dates": 88
     },
     "Surfing": {
@@ -9592,13 +9592,13 @@
       "season_window": "February 28–December 6, 2026 league rounds; qualification scope pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-georgia-erovnuli-liga-men",
-          "type": "coverage-gap",
+          "type": "official-georgia-erovnuli-linked-fixtures",
           "configured_league": "Erovnuli Liga | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -10904,11 +10904,11 @@
           "id": "uefa-soccer-ireland-league-of-ireland-premier-division-men",
           "type": "official-loi-premier-fixtures",
           "configured_league": "League of Ireland Premier Division | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
