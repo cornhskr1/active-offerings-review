@@ -359,14 +359,15 @@
       "sport": "Soccer",
       "league": "Malaysia Super League | Men",
       "region": "Malaysia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.malaysianfootballleague.com/",
-      "official_schedule_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
-      "source_note": "MFL confirms August 21–May 23 league. Opening fixture is also the Charity Shield; no duplicate fixture should be emitted. Complete unattended adapter remains missing.",
+      "source_type": "official-mfl-fixture-pdf",
+      "coverage_status": "partial",
+      "endpoint": "https://www.malaysianfootballleague.com/Content/Post/Watch/6260",
+      "official_schedule_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6260",
+      "source_note": "MFL’s September 2 PDF has all six named and timed LS5 fixtures on October 16–18; the opening Charity Shield was also match 1 of this league and must not be duplicated. This adapter is partial to the verified round and fails closed beyond October 18; the final league round still has TBD dates/times.",
       "catalog_terms": [
         "Malaysia Super League | Men"
-      ]
+      ],
+      "mfl_competition": "league"
     },
     {
       "id": "soccer-afc-malaysia-malaysia-cup-men",
@@ -377,7 +378,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.malaysianfootballleague.com/",
       "official_schedule_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
-      "source_note": "MFL dates January 22–May 30 Malaysia Cup and includes Liga A1 teams. Lower-tier age and exact match scope review remain open; no complete adapter.",
+      "source_note": "MFL dates January 22–May 30, 2027 for the distinct Malaysia Cup, including Liga A1 teams. Pairings and timed fixtures are not yet published; lower-tier eligibility and an unattended exact-cup adapter remain gaps.",
       "catalog_terms": [
         "Malaysia Cup | Men"
       ]
@@ -387,14 +388,15 @@
       "sport": "Soccer",
       "league": "Malaysia FA Cup | Men",
       "region": "Malaysia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.malaysianfootballleague.com/",
-      "official_schedule_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
-      "source_note": "MFL dates September 1–January 16 FA Cup and includes Liga A1 teams. Lower-tier age and exact match scope review remain open; no complete adapter.",
+      "source_type": "official-mfl-fixture-pdf",
+      "coverage_status": "partial",
+      "endpoint": "https://www.malaysianfootballleague.com/Content/Post/Watch/6431",
+      "official_schedule_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6431",
+      "source_note": "MFL’s September 17 PDF has four named and timed quarterfinal second legs on October 9–11. One Kelantan City FC match is held because it involves a lower-tier entrant; the three senior-only fixtures are candidates. This adapter is partial through October 11; later ties and lower-tier age eligibility remain unverified.",
       "catalog_terms": [
         "Malaysia FA Cup | Men"
-      ]
+      ],
+      "mfl_competition": "fa-cup"
     },
     {
       "id": "soccer-afc-malaysia-charity-shield-men",
@@ -405,7 +407,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.malaysianfootballleague.com/",
       "official_schedule_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6186",
-      "source_note": "MFL reports the completed August 21 JDT 3–0 Kuching City Charity Shield, counted as the same league opener. One physical match must not be ingested twice; no complete adapter.",
+      "source_note": "MFL confirms the completed August 21 JDT–Kuching City Charity Shield counted as league match 1. It is an independent approval identity, but no second fixture card may be emitted for the same physical contest; next edition pending.",
       "catalog_terms": [
         "Charity Shield | Men"
       ]
