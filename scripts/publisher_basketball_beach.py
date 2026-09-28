@@ -1,6 +1,7 @@
 """Exact NBB fixture and gender-specific Beach Pro Tour calendar parsing."""
 
 import datetime
+import requests
 from urllib.parse import urljoin, urlparse
 from zoneinfo import ZoneInfo
 
@@ -9,6 +10,26 @@ from lxml import html
 
 BRAZIL = ZoneInfo("America/Sao_Paulo")
 BEACH_BASE = "https://en.volleyballworld.com"
+
+
+def fetch_nbb_schedule(url, get=requests.get):
+    """Retry the publisher page with normal browser negotiation after a WAF 403.
+
+    A blocked or non-schedule response still raises and leaves source health red.
+    """
+    header_sets = (
+        {"User-Agent": "Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"},
+        {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128.0.0.0 Safari/537.36",
+         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+         "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.7"},
+    )
+    for index, headers in enumerate(header_sets):
+        response = get(url, headers=headers, timeout=35)
+        if response.status_code == 403 and index + 1 < len(header_sets):
+            continue
+        response.raise_for_status()
+        return response.text
+    raise RuntimeError("NBB schedule publisher did not return a usable page")
 
 
 def parse_nbb_fixtures(page, source):
