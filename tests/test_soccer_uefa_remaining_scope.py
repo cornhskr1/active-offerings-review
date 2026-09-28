@@ -38,7 +38,11 @@ class RemainingUefaScopeTests(unittest.TestCase):
             self.assertFalse(e["season_window_complete"])
             self.assertNotIn("season_end_date", e)
             self.assertEqual("PARTIAL_WINDOW", self.inventory[key]["season_state"])
-            self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
+            if key == "soccer-luxembourg-national-division-bgl-ligue-men":
+                self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+                self.assertEqual("official-flf-bgl-next-round", self.sources[e["source_id"]]["source_type"])
+            else:
+                self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
         self.assertIn("separately scoped", self.events["soccer-israel-toto-cup-men"]["season_basis"])
 
     def test_unverified_editions_are_held_and_futsal_is_distinct(self):
