@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T22:01:48.240973+00:00",
-  "schedule_generated_at": "2026-09-28T21:57:22.192128+00:00",
+  "registry_generated_at": "2026-09-28T23:47:06.144435+00:00",
+  "schedule_generated_at": "2026-09-28T23:41:24.799437+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,22 +10,22 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 325,
-      "ADAPTER_GAP": 213,
+      "ADAPTER_CONFIGURED": 326,
+      "ADAPTER_GAP": 212,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
     "season_states": {
       "DATED_WINDOW": 220,
-      "DESCRIPTIVE_WINDOW": 50,
-      "DOCUMENTED_HOLD": 63,
+      "DESCRIPTIVE_WINDOW": 48,
+      "DOCUMENTED_HOLD": 65,
       "EVENT_BASED_APPROVAL": 24,
       "PARTIAL_WINDOW": 62,
       "PENDING_DATES": 32,
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 223,
+    "reported_gap_labels": 221,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 176,
+      "adapter_gaps": 175,
       "pending_dates": 88
     },
     "Surfing": {
@@ -5868,10 +5868,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
           "refresh_ok": true,
-          "events_in_window": 157
+          "events_in_window": 156
         }
       ],
-      "events_in_window": 157
+      "events_in_window": 156
     },
     {
       "sport": "NCAA Soccer",
@@ -8183,13 +8183,13 @@
       "season_window": "April–October",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-canada-canadian-championship-men",
-          "type": "coverage-gap",
+          "type": "official-canada-championship-final",
           "configured_league": "Canadian Championship | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -8202,8 +8202,9 @@
       "approval_parent": "Canadian Cup | Men",
       "kind": "catalog",
       "season_window": "No current standalone 2026 competition schedule located",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
+      "hold_reason": "No separate current senior Canadian Cup men’s competition verified; the TELUS Canadian Championship and its Voyageurs Cup trophy cannot be duplicated under this line.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
@@ -13370,7 +13371,7 @@
           "id": "uefa-soccer-switzerland-swiss-challenge-league-men",
           "type": "official-sfl-season-pdf",
           "configured_league": "Swiss Challenge League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -13412,7 +13413,7 @@
           "id": "uefa-soccer-switzerland-swiss-super-league-men",
           "type": "official-sfl-season-pdf",
           "configured_league": "Swiss Super League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14329,8 +14330,9 @@
       "approval_parent": "Voyager Cup | Women",
       "kind": "catalog",
       "season_window": "No current standalone 2026 competition schedule located",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
+      "hold_reason": "The inaugural W Canadian Championship is not established as the exact approved Voyager Cup women identity; hold its fixtures pending explicit regulatory mapping.",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
         {
