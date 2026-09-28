@@ -32,8 +32,12 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
                                  (child["season_start_date"], child["season_end_date"]))
                 source = sources[child["source_id"]]
                 self.assertEqual((sport, child["label"]), (source["sport"], source["league"]))
-                self.assertEqual("coverage-gap", source["source_type"])
-                self.assertEqual("missing", source["coverage_status"])
+                if key == "soccer-italy-serie-a-women":
+                    self.assertEqual("official-figc-serie-a-women-fixtures", source["source_type"])
+                    self.assertEqual("partial", source["coverage_status"])
+                else:
+                    self.assertEqual("coverage-gap", source["source_type"])
+                    self.assertEqual("missing", source["coverage_status"])
                 self.assertTrue(source["official_schedule_url"].startswith("https://"))
 
 

@@ -66,7 +66,8 @@ class GermanyItalySoccerScopeTests(unittest.TestCase):
         for men, women in pairs:
             with self.subTest(men=men):
                 self.assertNotEqual(self.events[men]["source_id"], self.events[women]["source_id"])
-                self.assertEqual("ADAPTER_GAP", self.inventory[women]["coverage_state"])
+                expected = "ADAPTER_CONFIGURED" if women == "soccer-italy-serie-a-women" else "ADAPTER_GAP"
+                self.assertEqual(expected, self.inventory[women]["coverage_state"])
         self.assertEqual("ADAPTER_GAP", self.inventory[pairs[2][0]]["coverage_state"])
         self.assertEqual("2026-08-08", self.events[pairs[1][0]]["season_start_date"])
         self.assertEqual("2027-05-19", self.events[pairs[1][0]]["season_end_date"])
