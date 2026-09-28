@@ -41,6 +41,7 @@ from lff_virsliga_fixture_adapter import next_round as lff_next_round
 from ejl_premium_fixture_adapter import next_round as ejl_next_round, verified_match as ejl_verified_match
 from lfflt_alyga_fixture_adapter import next_round as lfflt_next_round, verified_match as lfflt_verified_match
 from ksi_besta_fixture_adapter import next_round as ksi_next_round, urls as ksi_urls, PHASES as KSI_PHASES
+from obos_ligaen_fixture_adapter import next_round as obos_next_round
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2372,6 +2373,28 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-obos-ligaen-next-round":
+        page_count=held_other=0;fixtures=[];candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures,page_count,held_other=obos_next_round(response.content,source,TODAY)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"distinct_page_pairings":page_count,
+            "verified_next_round_fixtures":len(fixtures) if not errors else 0,
+            "other_future_fixtures_held":held_other,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-ksi-besta-final-groups-next-round":

@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 317,
-      "ADAPTER_GAP": 221,
+      "ADAPTER_CONFIGURED": 318,
+      "ADAPTER_GAP": 220,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 184,
+      "adapter_gaps": 183,
       "pending_dates": 88
     },
     "Surfing": {
@@ -11786,13 +11786,13 @@
       "season_window": "April 5–December 21, 2026, including qualification",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-norway-obos-ligaen-men",
-          "type": "coverage-gap",
+          "type": "official-obos-ligaen-next-round",
           "configured_league": "OBOS-ligaen | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
