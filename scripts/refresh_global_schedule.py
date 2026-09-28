@@ -25,6 +25,7 @@ from figc_serie_a_women_fixture_adapter import parse_figc_rounds
 from qsl_cup_fixture_adapter import parse_qsl_cup_fixtures
 from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text, parse_mfl_schedule
+from publisher_basketball_beach import parse_nbb_fixtures, parse_beach_calendar
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -41,6 +42,7 @@ TODAY = datetime.datetime.now(TZ).date()
 END = TODAY + datetime.timedelta(days=int(CFG.get("window_days",7)))
 HEADERS = {"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
 COLLEGE_FOOTBALL_DAY_CACHE={}
+BEACH_CALENDAR_CACHE={}
 
 def fetch_college_football_day(source,day):
     day_key=day.strftime("%Y%m%d")
@@ -720,7 +722,12 @@ def fetch_ocs_golf_season(source):
 def fetch_jgto_golf_season(source):
     """Read JGTO's main-tour cards, excluding the separately labelled overseas majors."""
     endpoint=source["endpoint"].format(year=TODAY.year)
-    r=requests.get(endpoint,headers=HEADERS,timeout=30)
+    for attempt in range(3):
+        r=requests.get(endpoint,headers={**HEADERS,"Accept":"text/html"},timeout=30)
+        if r.status_code not in (429,502,503,504):
+            break
+        if attempt<2:
+            time.sleep(attempt+1)
     r.raise_for_status()
     registry=[]
     review=[]
@@ -747,6 +754,8 @@ def fetch_jgto_golf_season(source):
         if today_event:
             review.append(today_event)
     registry.sort(key=lambda x:(x["start_date"],x["display_name"]))
+    if len(registry)<10:
+        raise ValueError("JGTO main-tour calendar incomplete")
     return registry,review
 
 def fetch_official_golf_calendar(source):
@@ -2298,6 +2307,56 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "held_lower_tier":held_lower_tier,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-nbb-fixtures":
+        published_count=0
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            fixtures=parse_nbb_fixtures(response.text,source)
+            published_count=len(fixtures)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                    continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_fixtures":published_count,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-beach-pro-calendar":
+        published_count=0
+        try:
+            if END.year!=source.get("calendar_year"):
+                raise ValueError("Beach Pro Tour calendar year needs verification")
+            lookback=TODAY-datetime.timedelta(days=14)
+            months={(lookback.year,lookback.month),(TODAY.year,TODAY.month),(END.year,END.month)}
+            for year,month in sorted(months):
+                cache_key=(year,month)
+                if cache_key not in BEACH_CALENDAR_CACHE:
+                    endpoint=source["endpoint"].format(year=year,month=month)
+                    response=requests.get(endpoint,headers=HEADERS,timeout=35)
+                    response.raise_for_status()
+                    BEACH_CALENDAR_CACHE[cache_key]=response.json()
+                calendar=parse_beach_calendar(BEACH_CALENDAR_CACHE[cache_key],source,year,month)
+                published_count+=len(calendar)
+                for item in calendar:
+                    parsed=tournament_window_event(source,source["id"],source["league"],
+                        item["name"],item["start"],item["end"],item["location"],item["url"])
+                    if not parsed:continue
+                    parsed["id"]=f'{source["id"]}-{item["id"]}'
+                    key=(parsed["id"],parsed["start_time"])
+                    if key in seen:continue
+                    seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_tournaments":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type") in ("official-event-window","pgl-cs2-calendar","esl-esports-calendar"):
