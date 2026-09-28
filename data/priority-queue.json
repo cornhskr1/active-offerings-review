@@ -1,56 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-28T00:44:20.800613+00:00",
-  "card_count": 144,
-  "red_count": 25,
-  "amber_count": 119,
+  "generated_at": "2026-09-28T06:52:04.272859+00:00",
+  "card_count": 143,
+  "red_count": 23,
+  "amber_count": 120,
   "cards": [
-    {
-      "key": "event|761844",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "game": null,
-      "league": "MLS",
-      "event": "Inter Miami CF at Columbus Crew",
-      "start_time": "2026-09-27T23:00Z",
-      "status": "LIVE",
-      "title": "Inter Miami CF at Columbus Crew · 2 athletes",
-      "athletes": [
-        "Alexander Shaw",
-        "Tristan Brown"
-      ],
-      "triggers": [
-        "Known U18 — Alexander Shaw (Inter Miami CF) · EXACT TEAM + LEAGUE",
-        "Known U18 — Tristan Brown (Columbus Crew) · EXACT TEAM + LEAGUE"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Alexander Shaw (Inter Miami CF) · EXACT TEAM + LEAGUE | Known U18 — Tristan Brown (Columbus Crew) · EXACT TEAM + LEAGUE",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
-    {
-      "key": "event|ne|Creighton|Men's Tennis|2026-09-27|Washburn",
-      "severity": "RED",
-      "type": "NOT PERMISSIBLE",
-      "sport": "Men's Tennis",
-      "game": null,
-      "league": "Creighton Collegiate",
-      "event": "Creighton vs Washburn",
-      "start_time": "2026-09-27T2:00 P.M.",
-      "status": "SCHEDULED",
-      "title": "Creighton vs Washburn",
-      "athletes": [],
-      "triggers": [
-        "Nebraska collegiate home-event/site restriction"
-      ],
-      "staff_actions": [
-        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-      ],
-      "reason": "Nebraska collegiate home-event/site restriction",
-      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-    },
     {
       "key": "event|ne|Nebraska|Women's Tennis|2026-09-28|UTR Pro Tennis Tour Tournament",
       "severity": "RED",
@@ -539,69 +493,6 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401842166",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "USL League One (USL1) | Men",
-      "event": "Westchester SC at One Knoxville",
-      "start_time": "2026-09-27T23:00Z",
-      "status": "LIVE",
-      "title": "Westchester SC at One Knoxville",
-      "athletes": [],
-      "triggers": [
-        "USL League One (USL1) | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL League One (USL1) | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401877886",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "Primera A | Men",
-      "event": "Deportes Tolima at Fortaleza CEIF",
-      "start_time": "2026-09-27T23:05Z",
-      "status": "LIVE",
-      "title": "Deportes Tolima at Fortaleza CEIF",
-      "athletes": [],
-      "triggers": [
-        "Primera A | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Primera A | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401877955",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "Primera A | Men",
-      "event": "Águilas Doradas at Deportivo Cali",
-      "start_time": "2026-09-28T01:10Z",
-      "status": "UPCOMING",
-      "title": "Águilas Doradas at Deportivo Cali",
-      "athletes": [],
-      "triggers": [
-        "Primera A | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Primera A | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
       "key": "event|401902642",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -1043,6 +934,27 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401921545",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Men",
+      "event": "Bolivia at Argentina",
+      "start_time": "2026-09-29T23:00Z",
+      "status": "UPCOMING",
+      "title": "Bolivia at Argentina",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401905189",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -1313,27 +1225,6 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401921545",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "Bolivia at Argentina",
-      "start_time": "2026-09-30T18:00Z",
-      "status": "UPCOMING",
-      "title": "Bolivia at Argentina",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -3027,6 +2918,90 @@
       "start_time": "2026-10-05T01:15Z",
       "status": "UPCOMING",
       "title": "América de Cali at Llaneros FC",
+      "athletes": [],
+      "triggers": [
+        "Primera A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Primera A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401912454",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Men",
+      "event": "Sri Lanka at Mauritius",
+      "start_time": "2026-10-05T15:00Z",
+      "status": "UPCOMING",
+      "title": "Sri Lanka at Mauritius",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401918508",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Men",
+      "event": "Congo DR at Uganda",
+      "start_time": "2026-10-05T18:00Z",
+      "status": "UPCOMING",
+      "title": "Congo DR at Uganda",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401896386",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Men",
+      "event": "Gibraltar at Liechtenstein",
+      "start_time": "2026-10-05T18:45Z",
+      "status": "UPCOMING",
+      "title": "Gibraltar at Liechtenstein",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401877960",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Primera A | Men",
+      "event": "Independiente Santa Fe at Independiente Medellín",
+      "start_time": "2026-10-06T00:00Z",
+      "status": "UPCOMING",
+      "title": "Independiente Santa Fe at Independiente Medellín",
       "athletes": [],
       "triggers": [
         "Primera A | Men - NO PROPOSITION WAGERS"
