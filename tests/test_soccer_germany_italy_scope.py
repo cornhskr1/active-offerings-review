@@ -35,16 +35,16 @@ class GermanyItalySoccerScopeTests(unittest.TestCase):
 
     def test_german_womens_calendar_does_not_inherit_mens_adapter(self):
         expected = {
-            "soccer-germany-frauen-bundesliga-women": ("2026-08-21", "2027-05-23"),
-            "soccer-germany-dfb-pokal-frauen-women": ("2026-08-15", "2027-05-17"),
+            "soccer-germany-frauen-bundesliga-women": (("2026-08-21", "2027-05-23"), "official-dfb-frauen-bundesliga-season", "ADAPTER_CONFIGURED"),
+            "soccer-germany-dfb-pokal-frauen-women": (("2026-08-15", "2027-05-17"), "coverage-gap", "ADAPTER_GAP"),
         }
-        for key, dates in expected.items():
+        for key, (dates, source_type, coverage_state) in expected.items():
             with self.subTest(key=key):
                 event = self.events[key]
                 source = self.sources[event["source_id"]]
                 self.assertEqual(dates, (event["season_start_date"], event["season_end_date"]))
-                self.assertEqual("coverage-gap", source["source_type"])
-                self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
+                self.assertEqual(source_type, source["source_type"])
+                self.assertEqual(coverage_state, self.inventory[key]["coverage_state"])
                 self.assertIn("dfb.de", source["official_schedule_url"])
 
     def test_german_supercup_is_the_completed_mens_event(self):
