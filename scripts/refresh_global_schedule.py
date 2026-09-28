@@ -20,6 +20,7 @@ from espn_college_football_scope import exclusive_events as exclusive_college_fo
 from official_ncaa_scoreboard import scoreboard_query, exact_contests, event_from_contest
 from conmebol_femenina_fixture_adapter import parse_group_fixtures
 from wsl2_fixture_adapter import parse_wsl2_fixtures
+from faw_cymru_premier_fixture_adapter import parse_phase_one_fixtures
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -2180,6 +2181,24 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_fixtures":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-faw-cymru-premier-fixtures":
+        def fetch_faw_match(url):
+            detail=requests.get(url,headers=HEADERS,timeout=25)
+            detail.raise_for_status()
+            return detail.text
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
+            response.raise_for_status()
+            fixtures=parse_phase_one_fixtures(response.text,source,TODAY,END,NOW_UTC,fetch_faw_match)
+            for parsed in fixtures:
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type") in ("official-event-window","pgl-cs2-calendar","esl-esports-calendar"):
         try:
