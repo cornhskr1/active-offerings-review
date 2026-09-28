@@ -44,6 +44,7 @@ from ksi_besta_fixture_adapter import next_round as ksi_next_round, urls as ksi_
 from obos_ligaen_fixture_adapter import next_round as obos_next_round
 from loi_premier_fixture_adapter import validate_page as loi_validate_page, parse_pages as loi_parse_pages, PARAMS as LOI_PARAMS, AJAX_PATH as LOI_AJAX_PATH
 from georgia_erovnuli_fixture_adapter import candidates as georgia_candidates, verified_match as georgia_verified_match
+from nike_liga_fixture_adapter import parse_fixtures as parse_nike_liga_fixtures
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2403,6 +2404,27 @@ for source in CFG.get("sources",[]):
             "events":count,"upcoming_page_matches":page_count,
             "linked_window_fixtures_verified":len(rows) if not errors else 0,
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-nike-liga-fixtures":
+        published_count=held_untimed=0;candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures,held_untimed,published_count=parse_nike_liga_fixtures(response.content,source)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_regular_season_fixtures":published_count,
+            "untimed_fixtures_held":held_untimed,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-loi-premier-fixtures":
         page_count=0;candidates=[]
