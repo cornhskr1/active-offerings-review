@@ -67,8 +67,12 @@ class GulfScopeTests(unittest.TestCase):
             self.assertEqual("complete", source["coverage_status"])
             self.assertTrue(source["endpoint"].endswith(suffix))
             self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+        qsl_source = self.sources[self.events["soccer-qatar-qsl-cup-men"]["source_id"]]
+        self.assertEqual("official-qsl-cup-fixtures", qsl_source["source_type"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory["soccer-qatar-qsl-cup-men"]["coverage_state"])
         for key in set(self.events) - {
-            "soccer-saudi-arabia-saudi-pro-league-men", "soccer-saudi-arabia-king-cup-men"
+            "soccer-saudi-arabia-saudi-pro-league-men", "soccer-saudi-arabia-king-cup-men",
+            "soccer-qatar-qsl-cup-men",
         }:
             self.assertEqual("coverage-gap", self.sources[self.events[key]["source_id"]]["source_type"])
 
