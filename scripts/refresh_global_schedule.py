@@ -30,6 +30,7 @@ from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
 from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
+from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -2345,6 +2346,30 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "untimed_fixtures_held":held_untimed,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-central-europe-league-fixtures":
+        published_count=held_untimed=0
+        candidates=[];pending_seen=set()
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
+            response.raise_for_status()
+            fixtures,held_untimed,published_count=parse_central_europe_fixtures(response.text,source)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                    continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen or key in pending_seen:continue
+                pending_seen.add(key);candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_round_fixtures":published_count,
+            "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-italy-volleyball-fixtures":
