@@ -28,6 +28,7 @@ from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text
 from publisher_basketball_beach import parse_nbb_fixtures, parse_beach_calendar
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
+from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -2310,6 +2311,27 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "held_lower_tier":held_lower_tier,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-italy-volleyball-fixtures":
+        published_count=0
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            parser=parse_superlega if source["id"]=="volleyball-italy-superlega" else parse_serie_a1
+            fixtures=parser(response.text,source,TODAY,END)
+            published_count=len(fixtures)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                    continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_fixtures":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-pfl-event-calendar":
