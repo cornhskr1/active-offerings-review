@@ -41,7 +41,8 @@ class BelgiumScotlandScopeTests(unittest.TestCase):
         self.assertEqual('DOCUMENTED_HOLD', self.inventory[playoffs['key']]['season_state'])
         challenger = self.events['soccer-belgium-challenger-pro-league-men']
         self.assertEqual(('2026-08-14', '2027-05-22'), (challenger['season_start_date'], challenger['season_end_date']))
-        self.assertEqual('ADAPTER_GAP', self.inventory[challenger['key']]['coverage_state'])
+        self.assertEqual('ADAPTER_CONFIGURED', self.inventory[challenger['key']]['coverage_state'])
+        self.assertEqual('partial', self.sources[challenger['source_id']]['coverage_status'])
         cup = self.events['soccer-belgium-belgian-cup-beker-van-belgi-men']
         self.assertTrue(cup['season_hold'])
         self.assertEqual('ADAPTER_GAP', self.inventory[cup['key']]['coverage_state'])
