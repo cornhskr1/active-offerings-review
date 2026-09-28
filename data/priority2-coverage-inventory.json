@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 288,
-      "ADAPTER_GAP": 242,
+      "ADAPTER_CONFIGURED": 289,
+      "ADAPTER_GAP": 241,
       "NO_LINKED_SOURCE": 57,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 203,
+      "adapter_gaps": 202,
       "pending_dates": 88
     },
     "Surfing": {
@@ -12216,13 +12216,13 @@
       "season_window": "August 20, 2026 opening; final round pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-qatar-qatar-stars-league-men",
-          "type": "coverage-gap",
+          "type": "official-qsl-stars-fixtures",
           "configured_league": "Qatar Stars League | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],

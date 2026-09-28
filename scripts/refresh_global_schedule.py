@@ -23,6 +23,7 @@ from wsl2_fixture_adapter import parse_wsl2_fixtures
 from faw_cymru_premier_fixture_adapter import parse_phase_one_fixtures
 from figc_serie_a_women_fixture_adapter import parse_figc_rounds
 from qsl_cup_fixture_adapter import parse_qsl_cup_fixtures
+from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -2240,6 +2241,26 @@ for source in CFG.get("sources",[]):
             errors.append(str(exc)[:110])
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-qsl-stars-fixtures":
+        published_count=0
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
+            response.raise_for_status()
+            fixtures=parse_qsl_stars_fixtures(response.text,source,NOW_UTC,END)
+            published_count=len(fixtures)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                    continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_week_fixtures":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type") in ("official-event-window","pgl-cs2-calendar","esl-esports-calendar"):
