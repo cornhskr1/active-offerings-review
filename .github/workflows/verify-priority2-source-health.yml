@@ -1,0 +1,54 @@
+name: Verify Priority 2 source health
+
+on:
+  pull_request:
+    paths:
+      - "scripts/refresh_tennis_intelligence.py"
+      - "scripts/tennis_refresh_guardrails.py"
+      - "scripts/publisher_basketball_beach.py"
+      - "scripts/refresh_global_schedule.py"
+      - ".github/workflows/verify-priority2-source-health.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  tennis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Chromium
+        run: |
+          python3 -m pip install --quiet playwright
+          python3 -m playwright install --with-deps chromium
+      - name: Run guarded publisher refresh without publishing data
+        env:
+          TENNIS_REFRESH_REGISTRY: "0"
+        run: python3 scripts/refresh_tennis_intelligence.py
+      - name: Report ATP Challenger discovery
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('data/tennis-intelligence.json').read_text())
+          print(json.dumps(data.get('source_health',{}).get('atp_challenger',{}),indent=2))
+          PY
+  nbb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install parser dependencies
+        run: python3 -m pip install --quiet requests lxml
+      - name: Probe exact NBB schedule page (publisher block remains visible)
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          from publisher_basketball_beach import fetch_nbb_schedule,parse_nbb_fixtures
+          source={'catalog_terms':['Novo Basquete Brasil (NBB) | Men']}
+          page=fetch_nbb_schedule('https://lnb.com.br/nbb/tabela-de-jogos')
+          print('Verified NBB fixtures:',len(parse_nbb_fixtures(page,source)))
+          PY

@@ -25,7 +25,7 @@ from figc_serie_a_women_fixture_adapter import parse_figc_rounds
 from qsl_cup_fixture_adapter import parse_qsl_cup_fixtures
 from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text, parse_mfl_schedule
-from publisher_basketball_beach import parse_nbb_fixtures, parse_beach_calendar
+from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, parse_beach_calendar
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
 from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
@@ -2395,9 +2395,7 @@ for source in CFG.get("sources",[]):
     if source.get("source_type")=="official-nbb-fixtures":
         published_count=0
         try:
-            response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
-            response.raise_for_status()
-            fixtures=parse_nbb_fixtures(response.text,source)
+            fixtures=parse_nbb_fixtures(fetch_nbb_schedule(source["endpoint"]),source)
             published_count=len(fixtures)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))

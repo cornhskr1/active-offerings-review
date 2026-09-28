@@ -49,6 +49,36 @@ def challenger_score_event_url(url):
     return (url or '')[:match.start(1)] + match.group(1) + '/live-scores'
 
 
+def challenger_calendar_card_dates(card, context, year):
+    """Read an ATP calendar card only when its year is explicitly established.
+
+    The calendar often prints the year in the month heading and omits it from
+    individual cards. Do not borrow a date from a neighboring event or infer a
+    year from the computer clock alone.
+    """
+    card = " ".join(str(card or "").split())
+    context = " ".join(str(context or "").split())
+    direct = date_range(card)
+    if all(direct):
+        return direct if direct[0].year == year else (None, None)
+    months = r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
+    patterns = (
+        rf"\b\d{{1,2}}\s+{months}\s*(?:to|[-–])\s*\d{{1,2}}\s+{months}\b",
+        rf"\b\d{{1,2}}\s*[-–]\s*\d{{1,2}}\s+{months}\b",
+        rf"\b{months}\s+\d{{1,2}}\s*[-–]\s*\d{{1,2}}\b",
+    )
+    fragments = [m.group() for pattern in patterns for m in re.finditer(pattern, card, re.I)]
+    if len(fragments) != 1:
+        return None, None
+    headings = re.findall(rf"\b({months})\s*,\s*(20\d{{2}})\b", context, re.I)
+    if not headings or any(int(found_year) != year for _, found_year in headings):
+        return None, None
+    dates = date_range(f"{fragments[0]}, {year}")
+    if not all(dates) or dates[0] > dates[1]:
+        return None, None
+    return dates
+
+
 def calendar_discovery_issue(health, has_events):
     """Return a WTA discovery failure code, or None for a valid empty window.
 

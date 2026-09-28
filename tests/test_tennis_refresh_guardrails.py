@@ -1,7 +1,8 @@
 import unittest
 
 from scripts.tennis_refresh_guardrails import (
-    calendar_discovery_issue, challenger_score_event_url, date_range,
+    calendar_discovery_issue, challenger_calendar_card_dates,
+    challenger_score_event_url, date_range,
 )
 
 
@@ -20,6 +21,19 @@ class AtpChallengerCalendarTests(unittest.TestCase):
             {"https://www.atptour.com/en/scores/current-challenger/columbus/9194/live-scores"},
         )
         self.assertIsNone(challenger_score_event_url("https://www.atptour.com/en/scores/current-challenger"))
+
+    def test_calendar_card_uses_publisher_month_year(self):
+        dates = challenger_calendar_card_dates(
+            "Columbus Challenger | 28 September - 4 October, Indoor Challenger 75",
+            "September, 2026 (24 events)", 2026)
+        self.assertEqual(tuple(d.isoformat() for d in dates), ("2026-09-28", "2026-10-04"))
+
+    def test_missing_year_or_multiple_cards_fail_closed(self):
+        card = "Columbus Challenger | 28 September - 4 October"
+        self.assertEqual(challenger_calendar_card_dates(card, "September events", 2026), (None, None))
+        self.assertEqual(challenger_calendar_card_dates(card, "September, 2025", 2026), (None, None))
+        multiple = card + " | Porto Open 28 September - 4 October"
+        self.assertEqual(challenger_calendar_card_dates(multiple, "September, 2026", 2026), (None, None))
 
 
 class CalendarDiscoveryIssueTests(unittest.TestCase):

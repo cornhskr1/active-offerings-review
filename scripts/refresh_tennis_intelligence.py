@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from tennis_refresh_guardrails import (calendar_discovery_issue, challenger_score_event_url,
-                                       date_range, parse_date)
+                                       challenger_calendar_card_dates, date_range, parse_date)
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
@@ -18,6 +18,7 @@ END=TODAY+datetime.timedelta(days=7)
 ATP_CAL="https://www.atptour.com/en/scores/current"
 ATP_CHAL="https://www.atptour.com/en/scores/current-challenger"
 ATP_CHAL_ARCHIVE=f"https://www.atptour.com/en/scores/results-archive?tournamentType=ch&year={TODAY.year}"
+ATP_CHAL_CALENDAR="https://www.atptour.com/en/atp-challenger-tour/calendar"
 ATP_RANK="https://www.atptour.com/en/rankings/singles?rankRange=1-1000"
 WTA_CAL="https://www.wtatennis.com/tournaments"
 WTA_125="https://www.wtatennis.com/tournaments/wta-125"
@@ -174,7 +175,7 @@ class Browser:
                             break;
                         }
                     }
-                    return {text:(a.innerText||'').trim(),href:a.href||'',parent:dateContext||nearest};
+                    return {text:(a.innerText||'').trim(),href:a.href||'',parent:dateContext||nearest,nearest};
                 })"""
             )
             rows=self.page.locator("tr").evaluate_all(
@@ -707,6 +708,58 @@ def discover_atp_challenger(browser):
     health={"ok":any(x["ok"] for x in source_health),"events":len(out),
             "url":ATP_CHAL_ARCHIVE,"calendar_overlap_mentions":overlap_mentions,
             "sources":source_health}
+    return out,health
+
+def discover_atp_challenger_calendar(browser):
+    """Use ATP's dedicated calendar when current scores and archive cards fail."""
+    snap=browser.snapshot(ATP_CHAL_CALENDAR,2500)
+    health={"ok":snap.get("ok",False),"url":ATP_CHAL_CALENDAR,"events":0,
+            "candidate_tournament_links":0,"dated_candidate_links":0,
+            "overlapping_candidate_links":0,"error":snap.get("error")}
+    if not snap.get("ok"):
+        return [],health
+    out=[];seen=set()
+    for link in snap.get("links",[]):
+        href=str(link.get("href") or "")
+        if not re.search(r'^https://www\.atptour\.com/en/tournaments/[^/]+/\d+/(?:overview|results|draws)(?:/|$)',href,re.I):
+            continue
+        href=re.sub(r'/(?:overview|results|draws)/?$', '/overview', href, flags=re.I)
+        if href in seen:continue
+        seen.add(href)
+        health["candidate_tournament_links"]+=1
+        card=str(link.get("nearest") or "")
+        context=str(link.get("parent") or "")
+        start,end=challenger_calendar_card_dates(card,context,TODAY.year)
+        if not (start and end):
+            # An ancestor is safe only when it contains a single dated card.
+            start,end=challenger_calendar_card_dates(context,context,TODAY.year)
+        if not (start and end):
+            # The month header can be outside the card ancestor. Use the card
+            # only as a short-list, then require the linked ATP overview to
+            # independently confirm its exact year and dates.
+            tentative=challenger_calendar_card_dates(card,f"{TODAY:%B}, {TODAY.year}",TODAY.year)
+            if all(tentative) and overlaps(*tentative):
+                verified_start,verified_end,_=tournament_page_dates(browser,href)
+                if (verified_start,verified_end)==tentative:
+                    start,end=tentative
+        if not (start and end):continue
+        health["dated_candidate_links"]+=1
+        if not overlaps(start,end):continue
+        health["overlapping_candidate_links"]+=1
+        name=clean_tournament_name(re.split(r'\s*\|\s*(?=\d{1,2}\s+[A-Za-z]+)',
+            str(link.get("text") or ""),maxsplit=1)[0])
+        if not name or re.fullmatch(r'(?:Results|Draws|Scores|Overview)',name,re.I):
+            continue
+        out.append({
+          "id":hashlib.sha1(f"atp-challenger|{href}|{start}".encode()).hexdigest()[:12],
+          "tour_id":"atp-challenger","tour":"ATP Challenger Tour","gender":"MEN",
+          "tournament":name,"start_date":start.isoformat(),"end_date":end.isoformat(),
+          "location":"","category":"",
+          "status":"ACTIVE" if start<=TODAY<=end else "UPCOMING",
+          "source_url":href,"participants":[],
+          "participant_source":"ATP Challenger official calendar"
+        })
+    health["events"]=len(out)
     return out,health
 
 def classify_wta_tournament(browser,t):
@@ -1333,14 +1386,18 @@ with sync_playwright() as pw:
     x,h=discover_atp_current(browser,ATP_CAL,"atp","ATP Tour");tournaments+=x;health["atp"]=h
     x,h=discover_atp_current(browser,ATP_CHAL,"atp-challenger","ATP Challenger Tour")
     if not x:
-        # Preserve the official results archive as a secondary fallback.
-        x2,h2=discover_atp_challenger(browser)
+        # The official calendar lists each dated event directly. The archive
+        # remains a final fallback when its Results links can be resolved.
+        x2,h2=discover_atp_challenger_calendar(browser)
         if x2:x=x2
-        h={"current_page":h,"archive_fallback":h2,"ok":h.get("ok") or h2.get("ok"),
+        x3,h3=([],{}) if x else discover_atp_challenger(browser)
+        if x3:x=x3
+        h={"current_page":h,"calendar_fallback":h2,"archive_fallback":h3,
+           "ok":h.get("ok") or h2.get("ok") or h3.get("ok"),
            "events":len(x),"url":ATP_CHAL,
-           "candidate_tournament_links":h.get("candidate_tournament_links",0),
-           "dated_candidate_links":h.get("dated_candidate_links",0),
-           "overlapping_candidate_links":h.get("overlapping_candidate_links",0)}
+           "candidate_tournament_links":h.get("candidate_tournament_links",0)+h2.get("candidate_tournament_links",0),
+           "dated_candidate_links":h.get("dated_candidate_links",0)+h2.get("dated_candidate_links",0),
+           "overlapping_candidate_links":h.get("overlapping_candidate_links",0)+h2.get("overlapping_candidate_links",0)}
     tournaments+=x;health["atp_challenger"]=h
 
     x,h=discover_wta_lane(browser,WTA_CAL,"wta","WTA Tour")
