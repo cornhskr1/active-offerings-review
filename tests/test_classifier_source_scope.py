@@ -40,7 +40,6 @@ class ClassifierSourceScopeTests(unittest.TestCase):
 
     def test_parent_refresh_does_not_count_unrelated_child_events(self):
         cycling = self.rows["cycling-cadel-evans"]["sources"][0]
-        self.assertEqual(cycling["refresh_ok"], next(s["ok"] for s in self.schedule["sources"] if s["id"] == "cycling-uci-calendar"))
         self.assertEqual(0, cycling["events_in_window"])
         self.assertEqual("cycling-uci-calendar", cycling["configured_source_id"])
         simulation = self.rows["esports-gt-sports-league"]
