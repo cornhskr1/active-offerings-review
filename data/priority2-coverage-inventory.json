@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T18:59:52.763974+00:00",
-  "schedule_generated_at": "2026-09-28T18:55:53.817642+00:00",
+  "registry_generated_at": "2026-09-28T19:27:59.771431+00:00",
+  "schedule_generated_at": "2026-09-28T19:22:55.357747+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 313,
-      "ADAPTER_GAP": 225,
+      "ADAPTER_CONFIGURED": 314,
+      "ADAPTER_GAP": 224,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 235,
+    "reported_gap_labels": 233,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 188,
+      "adapter_gaps": 187,
       "pending_dates": 88
     },
     "Surfing": {
@@ -9997,7 +9997,7 @@
           "id": "uefa-soccer-faroe-islands-faroe-islands-premier-league-men",
           "type": "official-fsf-meistaradeildin-next-round",
           "configured_league": "Faroe Islands Premier League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -10793,13 +10793,13 @@
       "season_window": "March 6–November 8, 2026 league rounds; qualification ties pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-latvia-latvian-higher-league-virsl-ga-men",
-          "type": "coverage-gap",
+          "type": "official-lff-virsliga-next-round",
           "configured_league": "Latvian Higher League / Virslīga | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -12780,7 +12780,7 @@
           "id": "uefa-soccer-slovenia-slovenian-prvaliga-men",
           "type": "official-nzs-prvaliga-next-round",
           "configured_league": "Slovenian PrvaLiga | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14703,11 +14703,11 @@
           "id": "tennis-itf-world-tour-men",
           "type": "tennis-intelligence",
           "configured_league": "ITF World Tennis Tour | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 12
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 12
     },
     {
       "sport": "Tennis",
@@ -14724,11 +14724,11 @@
           "id": "tennis-itf-world-tour-women",
           "type": "tennis-intelligence",
           "configured_league": "ITF World Tennis Tour | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 11
     },
     {
       "sport": "Tennis",
@@ -14829,11 +14829,11 @@
           "id": "tennis-utr-pro-tour-men",
           "type": "tennis-intelligence",
           "configured_league": "UTR Pro Tennis Tour | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 3
     },
     {
       "sport": "Tennis",
@@ -14850,11 +14850,11 @@
           "id": "tennis-utr-pro-tour-women",
           "type": "tennis-intelligence",
           "configured_league": "UTR Pro Tennis Tour | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Tennis",
