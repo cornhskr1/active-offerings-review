@@ -43,6 +43,7 @@ from lfflt_alyga_fixture_adapter import next_round as lfflt_next_round, verified
 from ksi_besta_fixture_adapter import next_round as ksi_next_round, urls as ksi_urls, PHASES as KSI_PHASES
 from obos_ligaen_fixture_adapter import next_round as obos_next_round
 from loi_premier_fixture_adapter import validate_page as loi_validate_page, parse_pages as loi_parse_pages, PARAMS as LOI_PARAMS, AJAX_PATH as LOI_AJAX_PATH
+from georgia_erovnuli_fixture_adapter import candidates as georgia_candidates, verified_match as georgia_verified_match
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2375,6 +2376,33 @@ for source in CFG.get("sources",[]):
             "events":count,"published_round_fixtures":published_count,
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-georgia-erovnuli-linked-fixtures":
+        page_count=0;rows=[];candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            rows,page_count=georgia_candidates(response.content,source,TODAY,END)
+            def verify_georgia(row):
+                detail=requests.get("https://erovnuliliga.ge"+row[5],headers=HEADERS,timeout=25)
+                detail.raise_for_status()
+                return georgia_verified_match(detail.content,row,source)
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                fixtures=list(pool.map(verify_georgia,rows))
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"upcoming_page_matches":page_count,
+            "linked_window_fixtures_verified":len(rows) if not errors else 0,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-loi-premier-fixtures":
         page_count=0;candidates=[]
