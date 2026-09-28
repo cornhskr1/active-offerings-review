@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T12:40:12.151563+00:00",
-  "schedule_generated_at": "2026-09-28T12:14:59.903925+00:00",
+  "registry_generated_at": "2026-09-28T12:54:17.474750+00:00",
+  "schedule_generated_at": "2026-09-28T12:45:58.502067+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 299,
-      "ADAPTER_GAP": 239,
+      "ADAPTER_CONFIGURED": 301,
+      "ADAPTER_GAP": 237,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -292,7 +292,7 @@
       "identities": 26,
       "split_children": 18,
       "no_linked_source": 8,
-      "adapter_gaps": 6,
+      "adapter_gaps": 4,
       "pending_dates": 1
     }
   },
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1675,11 +1675,11 @@
           "id": "basketball-ar-lnb",
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 9
     },
     {
       "sport": "Basketball",
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2588,7 +2588,7 @@
           "id": "combat-pfl-africa",
           "type": "official-pfl-event-calendar",
           "configured_league": "PFL Africa",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2609,7 +2609,7 @@
           "id": "combat-pfl-champions",
           "type": "official-pfl-event-calendar",
           "configured_league": "PFL Champions Series",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2630,7 +2630,7 @@
           "id": "combat-pfl-europe",
           "type": "official-pfl-event-calendar",
           "configured_league": "PFL Europe",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2651,11 +2651,11 @@
           "id": "combat-pfl-mena",
           "type": "official-pfl-event-calendar",
           "configured_league": "PFL MENA",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Combat Sports",
@@ -15260,13 +15260,13 @@
       "season_window": "October 4, 2026–April 25, 2027 (possible fifth Scudetto final)",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "volleyball-italy-serie-a1-women",
-          "type": "coverage-gap",
+          "type": "official-italy-volleyball-fixtures",
           "configured_league": "Serie A1 | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -15281,13 +15281,13 @@
       "season_window": "Published 2026–27 first-leg fixtures October 17–December 20, 2026; return leg and playoffs pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "volleyball-italy-superlega",
-          "type": "coverage-gap",
+          "type": "official-italy-volleyball-fixtures",
           "configured_league": "SuperLega | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],

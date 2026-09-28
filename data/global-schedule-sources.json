@@ -4585,24 +4585,26 @@
     },
     {
       "id": "volleyball-italy-superlega",
-      "source_type": "coverage-gap",
+      "source_type": "official-italy-volleyball-fixtures",
       "sport": "Volleyball",
       "league": "SuperLega | Men",
       "region": "Italy",
       "official_schedule_url": "https://ww2.legavolley.it/Calendario.asp",
-      "coverage_status": "missing",
-      "source_note": "Official 2026–27 first-leg fixtures begin October 17 and run through December 20; return leg and playoffs remain unverified. A dependable unattended SuperLega-only fixture adapter is still required.",
+      "endpoint": "https://ww2.legavolley.it/Calendario.asp?Anno=2026&IdCampionato=999&Fase=1",
+      "coverage_status": "partial-2026-first-leg",
+      "source_note": "Exact 2026–27 SuperLega first-leg rows only. The separate Serie A2, Supercoppa, return leg and playoffs are not included; stale publication horizon fails closed.",
       "catalog_terms": ["Italian Volleyball Federation (FIPAV)", "SuperLega | Men"]
     },
     {
       "id": "volleyball-italy-serie-a1-women",
-      "source_type": "coverage-gap",
+      "source_type": "official-italy-volleyball-fixtures",
       "sport": "Volleyball",
       "league": "Serie A1 | Women",
       "region": "Italy",
       "official_schedule_url": "https://www.legavolleyfemminile.it/calendario/",
-      "coverage_status": "missing",
-      "source_note": "Official 2026–27 Serie A1 calendar and possible April 25 Scudetto final are published; an unattended A1-only fixture adapter is still missing. Do not ingest Serie A2 rows from the shared calendar.",
+      "endpoint": "https://www.legavolleyfemminile.it/sale-lattesa-per-la-nuova-lvf-a1-fineco-ufficiale-la-programmazione-delle-prime-cinque-giornate/",
+      "coverage_status": "partial-five-published-rounds",
+      "source_note": "Official 2026–27 Serie A1 first-five-round timed bulletin, through October 28. Later rounds and postseason require separate verified publication; no Serie A2 rows.",
       "catalog_terms": ["Italian Volleyball Federation (FIPAV)", "Serie A1 | Women"]
     },
     {
