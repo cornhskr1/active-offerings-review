@@ -1213,15 +1213,15 @@
     },
     {
       "id": "basketball-br-nbb",
-      "source_type": "official-event-window",
+      "source_type": "official-nbb-fixtures",
       "sport": "Basketball",
       "league": "Novo Basquete Brasil (NBB) | Men",
       "region": "Brazil",
       "endpoint": "https://lnb.com.br/nbb/tabela-de-jogos",
       "official_schedule_url": "https://lnb.com.br/nbb/tabela-de-jogos",
       "endpoint_validation": "published-schedule",
-      "coverage_status": "published-schedule-window",
-      "source_note": "Liga Nacional de Basquete's official NBB schedule confirms the 2026-27 season begins October 17, 2026 and currently publishes games through December 29. Later rounds, the season completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
+      "coverage_status": "partial-published-fixtures",
+      "source_note": "The LNB's official 2026/27 NBB schedule publishes named, timed regular-season matches from October 17. The exact fixture adapter checks edition, game identity, teams and Brazil-local kickoffs. Later rounds and playoffs are not covered until the publisher lists them.",
       "catalog_terms": ["Novo Basquete Brasil (NBB) | Men"]
     },
     {
@@ -5361,30 +5361,34 @@
     },
     {
       "id": "volleyball-fivb-beach-pro-tour-men",
-      "source_type": "official-event-window",
+      "source_type": "official-beach-pro-calendar",
       "sport": "Volleyball",
       "league": "Beach Pro Tour | Men",
       "region": "International",
-      "endpoint": "https://www.fivb.com/from-world-champions-to-rising-stars-volleyball-world-announces-stops-for-2026-beach-pro-tour/",
+      "endpoint": "https://en.volleyballworld.com/api/v1/globalschedule/bpt/competitions/{year}/{month}",
       "official_schedule_url": "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/2026/",
       "endpoint_validation": "published-schedule",
-      "coverage_status": "published-schedule-window",
-      "source_note": "FIVB confirms the 2026 Beach Pro Tour has men’s draws and publishes Elite/Challenge stops March–August. Futures began February 5. Later Futures and the exact final Pro Tour date need verification; the new November Beach World Series is a separate successor. This official calendar reference is not an unattended gender-filtered fixture adapter.",
+      "coverage_status": "partial-published-event-calendar",
+      "calendar_year": 2026,
+      "beach_gender": "men",
+      "source_note": "Volleyball World's official monthly Beach Pro Tour calendar publishes tournament windows with a separate men's tournament ID. This adapter emits exact gender-specific event windows, not individual matches or a verified participant field; unpublished months remain open.",
       "catalog_terms": [
         "Beach Pro Tour | Men"
       ]
     },
     {
       "id": "volleyball-fivb-beach-pro-tour-women",
-      "source_type": "official-event-window",
+      "source_type": "official-beach-pro-calendar",
       "sport": "Volleyball",
       "league": "Beach Pro Tour | Women",
       "region": "International",
-      "endpoint": "https://www.fivb.com/from-world-champions-to-rising-stars-volleyball-world-announces-stops-for-2026-beach-pro-tour/",
+      "endpoint": "https://en.volleyballworld.com/api/v1/globalschedule/bpt/competitions/{year}/{month}",
       "official_schedule_url": "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/2026/",
       "endpoint_validation": "published-schedule",
-      "coverage_status": "published-schedule-window",
-      "source_note": "FIVB confirms the 2026 Beach Pro Tour has women’s draws and publishes Elite/Challenge stops March–August. Futures began February 5. Later Futures and the exact final Pro Tour date need verification; the new November Beach World Series is a separate successor. This official calendar reference is not an unattended gender-filtered fixture adapter.",
+      "coverage_status": "partial-published-event-calendar",
+      "calendar_year": 2026,
+      "beach_gender": "women",
+      "source_note": "Volleyball World's official monthly Beach Pro Tour calendar publishes tournament windows with a separate women's tournament ID. This adapter emits exact gender-specific event windows, not individual matches or a verified participant field; unpublished months remain open.",
       "catalog_terms": [
         "Beach Pro Tour | Women"
       ]
