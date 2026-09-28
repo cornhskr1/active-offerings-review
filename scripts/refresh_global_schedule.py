@@ -34,6 +34,7 @@ from central_europe_league_fixtures import parse_fixtures as parse_central_europ
 from belgian_pro_league_fixtures import parse_challenger_round
 from vpf_fixture_adapter import parse_vleague
 from pfl_uz_fixture_adapter import parse_superleague as parse_pfl_uz_superleague, TOURNAMENT_ID as PFL_UZ_TOURNAMENT_ID, SEASON_ID as PFL_UZ_SEASON_ID
+from flf_bgl_fixture_adapter import overview as flf_bgl_overview, match_card as flf_bgl_match_card
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2366,6 +2367,37 @@ for source in CFG.get("sources",[]):
             "events":count,"published_round_fixtures":published_count,
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-flf-bgl-next-round":
+        published_count=0
+        candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            round_number,rows,published_count=flf_bgl_overview(response.content,source,TODAY)
+            # Every linked next-round match page confirms the exact senior league,
+            # pairing, kickoff, round and venue. One failure holds the whole batch.
+            def verify_flf(row):
+                path,summary=row
+                detail=requests.get("https://www.flf.lu"+path,headers=HEADERS,timeout=25)
+                detail.raise_for_status()
+                return flf_bgl_match_card(detail.content,path,round_number,summary,source)
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                fixtures=list(pool.map(verify_flf,rows))
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"season_pairings":published_count,
+            "verified_next_round_fixtures":len(rows) if not errors else 0,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-pfl-uz-superleague-fixtures":
         published_count=held_untimed=0
