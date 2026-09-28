@@ -26,6 +26,8 @@ from qsl_cup_fixture_adapter import parse_qsl_cup_fixtures
 from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text, parse_mfl_schedule
 from publisher_basketball_beach import parse_nbb_fixtures, parse_beach_calendar
+from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
+from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -43,6 +45,7 @@ END = TODAY + datetime.timedelta(days=int(CFG.get("window_days",7)))
 HEADERS = {"User-Agent":"Mozilla/5.0 (compatible; ActiveOfferingsReview/1.0; public compliance reference)"}
 COLLEGE_FOOTBALL_DAY_CACHE={}
 BEACH_CALENDAR_CACHE={}
+PFL_EVENT_CACHE={}
 
 def fetch_college_football_day(source,day):
     day_key=day.strftime("%Y%m%d")
@@ -2309,6 +2312,64 @@ for source in CFG.get("sources",[]):
             "held_lower_tier":held_lower_tier,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
+    if source.get("source_type")=="official-pfl-event-calendar":
+        published_count=0
+        try:
+            if "cards" not in PFL_EVENT_CACHE:
+                response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+                response.raise_for_status()
+                PFL_EVENT_CACHE["cards"]=pfl_upcoming_links(response.text)
+            cards=[card for card in PFL_EVENT_CACHE["cards"] if card["source_id"]==source["id"]]
+            for card in cards:
+                if card["url"] not in PFL_EVENT_CACHE:
+                    detail=requests.get(card["url"],headers=HEADERS,timeout=35)
+                    detail.raise_for_status()
+                    PFL_EVENT_CACHE[card["url"]]=pfl_verified_event(detail.text,card)
+                item=PFL_EVENT_CACHE[card["url"]]
+                published_count+=1
+                parsed=tournament_window_event(source,source["id"],source["league"],
+                    item["title"],item["date"],item["date"],item["location"],item["url"])
+                if not parsed:continue
+                parsed["requires_bout_review"]=True
+                parsed["date_only"]=True
+                parsed["status_detail"]="Official PFL event date only · bout authority and participant ages need review"
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_events":published_count,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-arg-lnb-fixtures":
+        published_count=0
+        try:
+            response=None
+            for attempt in range(2):
+                try:
+                    response=requests.get(source["endpoint"],params={
+                        "handler":"ProximosPartidos","fechaInicio":TODAY.isoformat(),
+                        "fechaFin":END.isoformat()},headers={**HEADERS,"Accept":"text/html"},timeout=25)
+                    response.raise_for_status()
+                    break
+                except requests.exceptions.Timeout:
+                    if attempt:raise
+            fixtures=parse_arg_lnb_fixtures(response.text,source,TODAY,END)
+            published_count=len(fixtures)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                    continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_fixtures":published_count,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type")=="official-nbb-fixtures":
         published_count=0
         try:
@@ -2532,6 +2593,8 @@ for source in CFG.get("sources",[]):
                         held_untimed+=len(data["events"])-len(rows)
                     for ev in rows:
                         event_name=str(ev.get("name") or ev.get("shortName") or "")
+                        if source["id"]=="pfl" and any(pattern.search(event_name) for pattern in PFL_SERIES.values()):
+                            continue
                         if any(re.search(pattern,event_name,re.I) for pattern in source.get("exclude_name_patterns",[])):
                             continue
                         parsed=parse_event(source,ev)

@@ -1176,15 +1176,15 @@
     },
     {
       "id": "basketball-ar-lnb",
-      "source_type": "official-event-window",
+      "source_type": "official-arg-lnb-fixtures",
       "sport": "Basketball",
       "league": "Liga Nacional de Básquet (LNB) | Men",
       "region": "Argentina",
-      "endpoint": "https://www.laliganacional.com.ar/laliga/noticia/52355/asamblea-general-ordinaria-se-confirmo-el-formato-de-competencia-de-la-temporada-2026-27",
+      "endpoint": "https://www.laliganacional.com.ar/laliga/fixture",
       "official_schedule_url": "https://www.laliganacional.com.ar/laliga/fixture",
       "endpoint_validation": "published-schedule",
-      "coverage_status": "published-schedule-window",
-      "source_note": "AdC confirms the 2026-27 Liga Nacional begins September 27, 2026. Its official fixture page is linked, but the completion date and an unattended fixture adapter remain unpublished, so the season window stays descriptive.",
+      "coverage_status": "partial-published-fixtures",
+      "source_note": "The top-division Liga Nacional fixture page exposes an exact date-range response with named clubs, Argentina-local tipoffs, and publisher match IDs. The adapter reads only the requested review window and fails closed on changed pairings, dates, or links. Later dates and playoffs depend on the publisher's rolling schedule.",
       "catalog_terms": ["Liga Nacional de Básquet (LNB) | Men"]
     },
     {
@@ -5096,6 +5096,54 @@
         "PFL MENA",
         "PFL Africa"
       ]
+    },
+    {
+      "id": "combat-pfl-champions",
+      "source_type": "official-pfl-event-calendar",
+      "sport": "Combat Sports",
+      "league": "PFL Champions Series",
+      "region": "International",
+      "endpoint": "https://pflmma.com/events",
+      "official_schedule_url": "https://pflmma.com/events",
+      "coverage_status": "partial-published-event-calendar",
+      "source_note": "Official PFL event dates only. Each fight and participant age require separate review; unclassified PFL events are not assigned to this series.",
+      "catalog_terms": ["PFL Champions Series"]
+    },
+    {
+      "id": "combat-pfl-europe",
+      "source_type": "official-pfl-event-calendar",
+      "sport": "Combat Sports",
+      "league": "PFL Europe",
+      "region": "Europe",
+      "endpoint": "https://pflmma.com/events",
+      "official_schedule_url": "https://pflmma.com/events",
+      "coverage_status": "partial-published-event-calendar",
+      "source_note": "Official PFL event dates only. Each fight and participant age require separate review; city-branded PFL events are not assigned to Europe without explicit series wording.",
+      "catalog_terms": ["PFL Europe"]
+    },
+    {
+      "id": "combat-pfl-mena",
+      "source_type": "official-pfl-event-calendar",
+      "sport": "Combat Sports",
+      "league": "PFL MENA",
+      "region": "Middle East and North Africa",
+      "endpoint": "https://pflmma.com/events",
+      "official_schedule_url": "https://pflmma.com/events",
+      "coverage_status": "partial-published-event-calendar",
+      "source_note": "Official PFL MENA event date only. The bout card, professional status and participant ages require individual staff review before clearing an offering.",
+      "catalog_terms": ["PFL MENA"]
+    },
+    {
+      "id": "combat-pfl-africa",
+      "source_type": "official-pfl-event-calendar",
+      "sport": "Combat Sports",
+      "league": "PFL Africa",
+      "region": "Africa",
+      "endpoint": "https://pflmma.com/events",
+      "official_schedule_url": "https://pflmma.com/events",
+      "coverage_status": "partial-published-event-calendar",
+      "source_note": "Official PFL Africa event date only. The bout card, professional status and participant ages require individual staff review before clearing an offering.",
+      "catalog_terms": ["PFL Africa"]
     },
     {
       "id": "ncaa-soccer-di-men",

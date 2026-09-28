@@ -446,10 +446,10 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             with self.subTest(gender=gender):
                 pro = self.rows[("Volleyball", f"Beach Pro Tour | {gender}")]
                 self.assertEqual("DESCRIPTIVE_WINDOW", pro["season_state"])
-                self.assertEqual("OFFICIAL_WINDOW_ONLY", pro["coverage_state"])
+                self.assertEqual("ADAPTER_CONFIGURED", pro["coverage_state"])
                 self.assertEqual([f"volleyball-fivb-beach-pro-tour-{gender.lower()}"],
                                  [source["id"] for source in pro["sources"]])
-                self.assertEqual("official-event-window", pro["sources"][0]["type"])
+                self.assertEqual("official-beach-pro-calendar", pro["sources"][0]["type"])
                 for retired in ("Beach Volleyball World Tour", "Beach Volleyball World Tour Championships"):
                     row = self.rows[("Volleyball", f"{retired} | {gender}")]
                     self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
@@ -706,7 +706,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         descriptive_windows = {
             "League Cup | Men": "basketball-il-league-cup",
-            "Liga Nacional de Básquet (LNB) | Men": "basketball-ar-lnb",
         }
         for league, source_id in descriptive_windows.items():
             with self.subTest(league=league):
@@ -714,6 +713,11 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("DESCRIPTIVE_WINDOW", row["season_state"])
                 self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+
+        lnb = self.rows[("Basketball", "Liga Nacional de Básquet (LNB) | Men")]
+        self.assertEqual("DESCRIPTIVE_WINDOW", lnb["season_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", lnb["coverage_state"])
+        self.assertEqual("official-arg-lnb-fixtures", lnb["sources"][0]["type"])
 
         holds = {
             "KBL Cup | Men": "has not published a 2026 KBL Cup schedule",
@@ -746,7 +750,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
         descriptive_windows = {
-            "Novo Basquete Brasil (NBB) | Men": "basketball-br-nbb",
             "Philippine Basketball Association (PBA) | Men": "basketball-ph-pba",
         }
         for league, source_id in descriptive_windows.items():
@@ -756,6 +759,10 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        nbb = self.rows[("Basketball", "Novo Basquete Brasil (NBB) | Men")]
+        self.assertEqual("ADAPTER_CONFIGURED", nbb["coverage_state"])
+        self.assertEqual("official-nbb-fixtures", nbb["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
         self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])

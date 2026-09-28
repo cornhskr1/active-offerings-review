@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T06:47:04.664439+00:00",
-  "schedule_generated_at": "2026-09-28T06:42:35.627809+00:00",
+  "registry_generated_at": "2026-09-28T12:40:12.151563+00:00",
+  "schedule_generated_at": "2026-09-28T12:14:59.903925+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,10 +10,10 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 294,
+      "ADAPTER_CONFIGURED": 299,
       "ADAPTER_GAP": 239,
-      "NO_LINKED_SOURCE": 57,
-      "OFFICIAL_WINDOW_ONLY": 141
+      "NO_LINKED_SOURCE": 53,
+      "OFFICIAL_WINDOW_ONLY": 140
     },
     "season_states": {
       "DATED_WINDOW": 220,
@@ -67,7 +67,7 @@
     "Combat Sports": {
       "identities": 14,
       "split_children": 0,
-      "no_linked_source": 12,
+      "no_linked_source": 8,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -1669,13 +1669,13 @@
       "season_window": "2026-27 season begins September 27, 2026; completion date not yet published",
       "season_state": "DESCRIPTIVE_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-ar-lnb",
-          "type": "official-event-window",
+          "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -1794,7 +1794,7 @@
           "id": "basketball-br-nbb",
           "type": "official-nbb-fixtures",
           "configured_league": "Novo Basquete Brasil (NBB) | Men",
-          "refresh_ok": null,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2582,8 +2582,16 @@
       "season_window": "",
       "season_state": "EVENT_BASED_APPROVAL",
       "season_status": "in",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "combat-pfl-africa",
+          "type": "official-pfl-event-calendar",
+          "configured_league": "PFL Africa",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2595,8 +2603,16 @@
       "season_window": "",
       "season_state": "EVENT_BASED_APPROVAL",
       "season_status": "in",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "combat-pfl-champions",
+          "type": "official-pfl-event-calendar",
+          "configured_league": "PFL Champions Series",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2608,8 +2624,16 @@
       "season_window": "",
       "season_state": "EVENT_BASED_APPROVAL",
       "season_status": "in",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "combat-pfl-europe",
+          "type": "official-pfl-event-calendar",
+          "configured_league": "PFL Europe",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -2621,8 +2645,16 @@
       "season_window": "",
       "season_state": "EVENT_BASED_APPROVAL",
       "season_status": "in",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "combat-pfl-mena",
+          "type": "official-pfl-event-calendar",
+          "configured_league": "PFL MENA",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -3684,10 +3716,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Esports",
@@ -4519,11 +4551,11 @@
           "id": "golf-japan-tour",
           "type": "jgto-golf-season",
           "configured_league": "Japan Golf Tour",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Golf",
@@ -5633,10 +5665,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Field Hockey | Women",
           "refresh_ok": true,
-          "events_in_window": 75
+          "events_in_window": 76
         }
       ],
-      "events_in_window": 75
+      "events_in_window": 76
     },
     {
       "sport": "NCAA Football",
@@ -14966,7 +14998,7 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-beach-pro-calendar",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14987,7 +15019,7 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-beach-pro-calendar",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
