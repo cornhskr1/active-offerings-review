@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T01:57:18.222163+00:00",
+  "registry_generated_at": "2026-09-28T02:52:16.364882+00:00",
   "schedule_generated_at": "2026-09-28T01:52:46.768523+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 289,
-      "ADAPTER_GAP": 241,
+      "ADAPTER_CONFIGURED": 291,
+      "ADAPTER_GAP": 239,
       "NO_LINKED_SOURCE": 57,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 202,
+      "adapter_gaps": 200,
       "pending_dates": 88
     },
     "Surfing": {
@@ -11393,13 +11393,13 @@
       "season_window": "September 1, 2026–January 16, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-malaysia-malaysia-fa-cup-men",
-          "type": "coverage-gap",
+          "type": "official-mfl-fixture-pdf",
           "configured_league": "Malaysia FA Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -11414,13 +11414,13 @@
       "season_window": "August 21, 2026–May 23, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-malaysia-malaysia-super-league-men",
-          "type": "coverage-gap",
+          "type": "official-mfl-fixture-pdf",
           "configured_league": "Malaysia Super League | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
