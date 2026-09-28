@@ -48,6 +48,7 @@ from nike_liga_fixture_adapter import parse_fixtures as parse_nike_liga_fixtures
 from ekstraklasa_fixture_adapter import next_round as ekstraklasa_next_round
 from dfb_frauen_bundesliga_adapter import parse_season as parse_dfb_frauen_bundesliga
 from sfl_fixture_adapter import publisher_pdf_url as sfl_publisher_pdf_url, parse_pdf as parse_sfl_pdf
+from canada_championship_final import parse_final as parse_canada_championship_final
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2450,6 +2451,23 @@ for source in CFG.get("sources",[]):
             "round_fixtures":len(fixtures) if not errors else 0,
             "untimed_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-canada-championship-final":
+        parsed=None
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            parsed=parse_canada_championship_final(response.content,source)
+            if parsed:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                key=(parsed["id"],parsed["start_time"])
+                if start>NOW_UTC and TODAY<=start.astimezone(TZ).date()<=END and key not in seen:
+                    seen.add(key);events.append(parsed);count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"verified_final":bool(parsed) and not errors,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-sfl-season-pdf":
         published_count=round_count=0;candidates=[]
