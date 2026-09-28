@@ -2215,28 +2215,30 @@
       "sport": "Soccer",
       "league": "Swiss Super League | Men",
       "region": "Switzerland",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://sfl.ch/de/articles/sfl-veroffentlichtspielplane-der-saison-202627",
-      "official_schedule_url": "https://sfl.ch/de/articles/sfl-veroffentlichtspielplane-der-saison-202627",
-      "source_note": "Official SFL league schedule; June promotion/relegation barrage is outside the mapped regular-season window and unattended adapter is missing.",
+      "source_type": "official-sfl-season-pdf",
+      "coverage_status": "partial",
+      "endpoint": "https://origins-sportlab-payload-s3.origins-digital.com/sfl/images/Brack_Super_League_Spielplan-Calendrier_21-09-26_Season-2026-27",
+      "official_schedule_url": "https://sfl.ch/de/anspielzeiten",
+      "source_note": "The SFL links a separately revised 2026/27 fixture PDF for this exact senior division. Named timed regular-season pairings through the published first phase are checked on each refresh; later phases and the interdivision barrage remain outside this partial adapter. A replaced publisher link or changed PDF revision fails closed.",
       "catalog_terms": [
         "Swiss Super League | Men"
-      ]
+      ],
+      "publisher_page": "https://sfl.ch/de/anspielzeiten"
     },
     {
       "id": "uefa-soccer-switzerland-swiss-challenge-league-men",
       "sport": "Soccer",
       "league": "Swiss Challenge League | Men",
       "region": "Switzerland",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://sfl.ch/de/articles/sfl-veroffentlichtspielplane-der-saison-202627",
-      "official_schedule_url": "https://sfl.ch/de/articles/sfl-veroffentlichtspielplane-der-saison-202627",
-      "source_note": "Official SFL league schedule; June promotion/relegation barrage is outside the mapped regular-season window and unattended adapter is missing.",
+      "source_type": "official-sfl-season-pdf",
+      "coverage_status": "partial",
+      "endpoint": "https://origins-sportlab-payload-s3.origins-digital.com/sfl/images/dieci_Challenge_League_Spielplan-Calendrier_2026-27",
+      "official_schedule_url": "https://sfl.ch/de/anspielzeiten",
+      "source_note": "The SFL links a separately revised 2026/27 fixture PDF for this exact senior division. Named timed regular-season pairings through the published first phase are checked on each refresh; later phases and the interdivision barrage remain outside this partial adapter. A replaced publisher link or changed PDF revision fails closed.",
       "catalog_terms": [
         "Swiss Challenge League | Men"
-      ]
+      ],
+      "publisher_page": "https://sfl.ch/de/anspielzeiten"
     },
     {
       "id": "uefa-soccer-switzerland-swiss-cup-men",
