@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T00:02:23.629464+00:00",
-  "schedule_generated_at": "2026-09-27T23:58:47.402540+00:00",
+  "registry_generated_at": "2026-09-28T00:12:07.242871+00:00",
+  "schedule_generated_at": "2026-09-28T00:08:29.202398+00:00",
   "schedule_window_start": "2026-09-27",
   "schedule_window_end": "2026-10-04",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 286,
-      "ADAPTER_GAP": 244,
+      "ADAPTER_CONFIGURED": 287,
+      "ADAPTER_GAP": 243,
       "NO_LINKED_SOURCE": 57,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 253,
+    "reported_gap_labels": 252,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 205,
+      "adapter_gaps": 204,
       "pending_dates": 88
     },
     "Surfing": {
@@ -9104,11 +9104,11 @@
           "id": "uefa-soccer-wales-cymru-premier-men",
           "type": "official-faw-cymru-premier-fixtures",
           "configured_league": "Cymru Premier | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 9
     },
     {
       "sport": "Soccer",
@@ -12573,13 +12573,13 @@
       "season_window": "September 26, 2026–May 16, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-italy-serie-a-women",
-          "type": "coverage-gap",
+          "type": "official-figc-serie-a-women-fixtures",
           "configured_league": "Serie A | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
