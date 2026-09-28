@@ -47,6 +47,7 @@ from georgia_erovnuli_fixture_adapter import candidates as georgia_candidates, v
 from nike_liga_fixture_adapter import parse_fixtures as parse_nike_liga_fixtures
 from ekstraklasa_fixture_adapter import next_round as ekstraklasa_next_round
 from dfb_frauen_bundesliga_adapter import parse_season as parse_dfb_frauen_bundesliga
+from sfl_fixture_adapter import publisher_pdf_url as sfl_publisher_pdf_url, parse_pdf as parse_sfl_pdf
 from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2449,6 +2450,31 @@ for source in CFG.get("sources",[]):
             "round_fixtures":len(fixtures) if not errors else 0,
             "untimed_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-sfl-season-pdf":
+        published_count=round_count=0;candidates=[]
+        try:
+            page=requests.get(source["publisher_page"],headers=HEADERS,timeout=30)
+            page.raise_for_status()
+            pdf_url=sfl_publisher_pdf_url(page.content,source)
+            response=requests.get(pdf_url,headers={**HEADERS,"Accept":"application/pdf"},timeout=30)
+            response.raise_for_status()
+            if not response.content.startswith(b"%PDF-"):
+                raise ValueError("SFL publisher did not return a PDF")
+            fixtures,round_count,published_count=parse_sfl_pdf(response.content,source,TODAY,END)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_rounds":round_count,"season_pairings":published_count,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-dfb-frauen-bundesliga-season":
         published_count=held_untimed=0;candidates=[]
