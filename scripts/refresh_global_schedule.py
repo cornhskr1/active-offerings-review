@@ -33,6 +33,7 @@ from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_roun
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
 from vpf_fixture_adapter import parse_vleague
+from tennis_refresh_guardrails import schedule_source_warning
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -1681,17 +1682,8 @@ def fetch_tennis_intelligence(source):
     """
     path=DATA/"tennis-schedule.json"
     payload=json.loads(path.read_text(encoding="utf-8"))
-    generated=payload.get("generated_at")
-    stale_warning=None
-    if generated:
-        checked=datetime.datetime.fromisoformat(str(generated).replace("Z","+00:00"))
-        if checked.tzinfo is None:checked=checked.replace(tzinfo=datetime.timezone.utc)
-        if NOW_UTC-checked.astimezone(datetime.timezone.utc)>datetime.timedelta(hours=72):
-            # Preserve the last known good tournament set instead of silently
-            # deleting approved coverage. The source remains visibly unhealthy
-            # and all retained events are marked stale for staff review.
-            stale_warning="Tennis intelligence schedule is more than 72 hours old; retaining last known good events"
     allowed=set(source.get("tour_ids") or [])
+    stale_warning=schedule_source_warning(payload,allowed,NOW_UTC)
     parsed=[]
     for item in payload.get("tournaments") or []:
         if item.get("tour_id") not in allowed:continue
