@@ -773,13 +773,24 @@
       "sport": "Soccer",
       "league": "Coupe de France | Women",
       "region": "France",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fff.fr/",
+      "source_type": "official-event-window",
+      "coverage_status": "partial-window",
+      "endpoint": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
       "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
-      "source_note": "FFF publishes the 2026–27 federal rounds and May 22–23 final; regional opening rounds are not established here and no dependable women-only daily feed is connected.",
+      "source_note": "FFF publishes the complete 2026–27 federal-round calendar from the November 22 first federal round through the May 22–23 final. Regional rounds begin earlier and remain outside this national window; no women-only unattended match feed is claimed.",
       "catalog_terms": [
         "Coupe de France | Men and Women"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-france-coupe-de-france-women",
+          "league": "Coupe de France | Women",
+          "name": "Coupe de France Féminine 2026–27 federal phase",
+          "start_date": "2026-11-22",
+          "end_date": "2027-05-23",
+          "location": "France",
+          "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html"
+        }
       ]
     },
     {
@@ -816,7 +827,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.fff.fr/",
       "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
-      "source_note": "FFF's 2026–27 women’s competition calendar does not establish a Trophée des Championnes date; no dependable daily adapter is connected.",
+      "source_note": "FFF's current 2026–27 national women's calendar lists Première Ligue, Seconde Ligue, Coupe de France Féminine and Coupe LFFP but does not publish a Trophée des Championnes date. Keep this identity fail-closed until FFF publishes a current edition date.",
       "catalog_terms": [
         "Trophée des Championnes | Women"
       ]
@@ -858,7 +869,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.fff.fr/",
       "official_schedule_url": "https://www.fff.fr/article/17085-communique-sur-la-seconde-ligue-et-la-coupe-lffp.html",
-      "source_note": "FFF's July 20 revision confirms an eleven-team Seconde Ligue for 2026–27 and updates its fixture list. The September 6–May 9 window remains mapped; no dependable unattended match feed is connected.",
+      "source_note": "FFF's July 20 revision establishes an eleven-team Seconde Ligue for 2026–27 and replaces the earlier twelve-club fixture list. The season runs September 6–May 9; exact current match evidence exists on FFF regional pages, but no dependable complete unattended league feed is connected.",
       "catalog_terms": [
         "Seconde Ligue | Women"
       ]
@@ -868,13 +879,24 @@
       "sport": "Soccer",
       "league": "Coup LFFP | Women",
       "region": "France",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fff.fr/",
-      "official_schedule_url": "https://www.fff.fr/article/17085-communique-sur-la-seconde-ligue-et-la-coupe-lffp.html",
-      "source_note": "The approved catalog label is retained. FFF revised the 2026–27 Coupe de la LFFP fixture list after Seconde Ligue became eleven teams; August 22–April 10 remains the published season window. No dependable competition-specific daily feed is connected.",
+      "source_type": "official-event-window",
+      "coverage_status": "complete-calendar-window",
+      "endpoint": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "source_note": "FFF publishes every 2026–27 Coupe de la LFFP competition date: five league-phase matchdays, the January 27 play-off, February 17 quarterfinals, March 17 semifinals, and April 10 final. This is official calendar coverage, not an unattended match feed.",
       "catalog_terms": [
         "Coup LFFP | Women"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-france-coup-lffp-women",
+          "league": "Coup LFFP | Women",
+          "name": "Coupe de la LFFP 2026–27",
+          "start_date": "2026-08-22",
+          "end_date": "2027-04-10",
+          "location": "France",
+          "official_schedule_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html"
+        }
       ]
     },
     {
