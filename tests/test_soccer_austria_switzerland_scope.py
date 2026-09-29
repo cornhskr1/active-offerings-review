@@ -54,6 +54,8 @@ class AustriaSwitzerlandScopeTests(unittest.TestCase):
         self.assertIn('football.ch', cup['official_schedule_url'])
         self.assertIn('sfl.ch', league['official_schedule_url'])
         self.assertNotEqual(cup['official_schedule_url'], league['official_schedule_url'])
+        self.assertEqual('official-high-yield-cup-fixtures', cup['source_type'])
+        self.assertEqual('ADAPTER_CONFIGURED', self.inventory['soccer-switzerland-swiss-cup-men']['coverage_state'])
 
 
 if __name__ == '__main__':
