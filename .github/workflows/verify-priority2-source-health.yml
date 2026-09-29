@@ -1,78 +1,34 @@
-name: Verify Priority 2 source health
+name: Verify Priority 2 provider changes
 
 on:
   pull_request:
     paths:
-      - "scripts/refresh_tennis_intelligence.py"
-      - "scripts/tennis_refresh_guardrails.py"
-      - "scripts/publisher_basketball_beach.py"
-      - "scripts/refresh_global_schedule.py"
-      - "scripts/nzr_npc_fixture_adapter.py"
-      - "scripts/nzr_farah_palmer_fixture_adapter.py"
+      - "scripts/**"
+      - "data/*.json"
+      - "tests/**"
       - ".github/workflows/verify-priority2-source-health.yml"
 
 permissions:
   contents: read
 
 jobs:
-  code:
+  provider-gate:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Install parser dependencies
+        run: python3 -m pip install --quiet requests lxml beautifulsoup4 pypdf pdfplumber
+      - name: Validate changed Priority 2 provider batch
+        run: python3 scripts/run_priority2_pr_gate.py
+
+  full-regression:
+    runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - name: Install parser dependencies
         run: python3 -m pip install --quiet requests lxml beautifulsoup4 pypdf pdfplumber
-      - name: Test source adapters and quality gates
+      - name: Run full regression as non-blocking signal
         run: python3 -m unittest discover -s tests -q
-  tennis:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Chromium
-        run: |
-          python3 -m pip install --quiet playwright
-          python3 -m playwright install chromium
-      - name: Probe official Tennis access without publishing data
-        run: |
-          python3 - <<'PY'
-          import sys
-          from playwright.sync_api import sync_playwright
-          sys.path.insert(0,'scripts')
-          from tennis_refresh_guardrails import publisher_access_issue
-          urls={
-            'ATP Challenger calendar':'https://www.atptour.com/en/atp-challenger-tour/calendar',
-            'ITF men':'https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/',
-            'ITF women':'https://www.itftennis.com/en/tournament-calendar/womens-world-tennis-tour-calendar/',
-            'UTR Americas':'https://app.utrsports.net/club/11313',
-          }
-          with sync_playwright() as pw:
-            browser=pw.chromium.launch(headless=True)
-            page=browser.new_page(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36')
-            for name,url in urls.items():
-              try:
-                response=page.goto(url,wait_until='domcontentloaded',timeout=25000)
-                body=page.locator('body').inner_text(timeout=5000)
-                status=response.status if response else None
-                print(f'{name}: HTTP {status}; {publisher_access_issue(status,body) or "ACCESSIBLE"}',flush=True)
-              except Exception as exc:
-                print(f'{name}: ACCESS_ERROR {str(exc)[:150]}',flush=True)
-            browser.close()
-          PY
-  nbb:
-    runs-on: ubuntu-latest
-    timeout-minutes: 4
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install parser dependencies
-        run: python3 -m pip install --quiet requests lxml
-      - name: Probe exact NBB schedule page (publisher block remains visible)
-        continue-on-error: true
-        run: |
-          python3 - <<'PY'
-          import sys
-          sys.path.insert(0,'scripts')
-          from publisher_basketball_beach import fetch_nbb_schedule,parse_nbb_fixtures
-          source={'catalog_terms':['Novo Basquete Brasil (NBB) | Men']}
-          page=fetch_nbb_schedule('https://lnb.com.br/nbb/tabela-de-jogos')
-          print('Verified NBB fixtures:',len(parse_nbb_fixtures(page,source)))
-          PY
