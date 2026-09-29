@@ -35,6 +35,9 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
                 if key == "soccer-italy-serie-a-women":
                     self.assertEqual("official-figc-serie-a-women-fixtures", source["source_type"])
                     self.assertEqual("partial", source["coverage_status"])
+                elif key.startswith("basketball-fiba-"):
+                    self.assertEqual("official-publisher-basketball-fixtures", source["source_type"])
+                    self.assertEqual("partial", source["coverage_status"])
                 else:
                     self.assertEqual("coverage-gap", source["source_type"])
                     self.assertEqual("missing", source["coverage_status"])
