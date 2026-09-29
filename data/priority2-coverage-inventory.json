@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 352,
-      "ADAPTER_GAP": 180,
+      "ADAPTER_CONFIGURED": 357,
+      "ADAPTER_GAP": 175,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 146
     },
@@ -47,7 +47,7 @@
       "identities": 89,
       "split_children": 26,
       "no_linked_source": 6,
-      "adapter_gaps": 6,
+      "adapter_gaps": 1,
       "pending_dates": 0
     },
     "Bowling": {
@@ -906,13 +906,13 @@
       "season_window": "June 1–7, 2026",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-fiba-3x3-world-cup-men",
-          "type": "coverage-gap",
+          "type": "official-publisher-basketball-fixtures",
           "configured_league": "FIBA 3x3 World Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -927,13 +927,13 @@
       "season_window": "June 1–7, 2026",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-fiba-3x3-world-cup-women",
-          "type": "coverage-gap",
+          "type": "official-publisher-basketball-fixtures",
           "configured_league": "FIBA 3x3 World Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -1109,13 +1109,13 @@
       "season_window": "November 24, 2025–September 12, 2027, including six qualifier windows and the finals",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-fiba-world-cup-men",
-          "type": "coverage-gap",
+          "type": "official-publisher-basketball-fixtures",
           "configured_league": "FIBA Basketball World Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -1130,13 +1130,13 @@
       "season_window": "September 4–13, 2026",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-fiba-world-cup-women",
-          "type": "coverage-gap",
+          "type": "official-publisher-basketball-fixtures",
           "configured_league": "FIBA Basketball World Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -1648,13 +1648,13 @@
       "season_window": "March–December competition calendar",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "chile-lnb",
-          "type": "coverage-gap",
-          "configured_league": "Liga Nacional de Basquetbol de Chile (LNB)",
-          "refresh_ok": true,
+          "type": "official-publisher-basketball-fixtures",
+          "configured_league": "Liga Nacional de Basquetbol de Chile (LNB) | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
