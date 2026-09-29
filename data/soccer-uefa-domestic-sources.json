@@ -2083,11 +2083,11 @@
       "sport": "Soccer",
       "league": "Supercopa de España | Men",
       "region": "Spain",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
+      "source_type": "official-rfef-supercopa-2027",
+      "coverage_status": "partial",
       "endpoint": "https://rfef.es/es/noticias/definida-la-hoja-de-ruta-de-la-supercopa-2027-que-se-celebrara-en-estambul",
       "official_schedule_url": "https://rfef.es/es/noticias/definida-la-hoja-de-ruta-de-la-supercopa-2027-que-se-celebrara-en-estambul",
-      "source_note": "RFEF's newer Istanbul schedule sets men's semifinals February 2–3 and final February 6, superseding its earlier February 7 plan. No dependable daily adapter is linked.",
+      "source_note": "RFEF publishes both 2027 men's Supercopa semifinal pairings, February 2–3 kickoffs and Istanbul stadiums. The February 6 final remains held until its semifinal winners are known.",
       "catalog_terms": [
         "Supercopa de España | Men"
       ]
@@ -2097,13 +2097,24 @@
       "sport": "Soccer",
       "league": "Primera Federación Femenina | Women",
       "region": "Spain",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
-      "official_schedule_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
-      "source_note": "RFEF dates the women's second tier September 12–13 through June 5–6 promotion phase. No dependable daily adapter is linked.",
+      "source_type": "official-event-window",
+      "coverage_status": "published-calendar",
+      "endpoint": "https://rfef.es/es/noticias/calendario-completo-primera-federacion-femenina-temporada-202627",
+      "official_schedule_url": "https://rfef.es/es/noticias/calendario-completo-primera-federacion-femenina-temporada-202627",
+      "source_note": "RFEF publishes the complete 2026–27 Primera Federación Femenina calendar and confirms the September 12–13 opening through the June 5–6 promotion phase. Individual kickoff times remain outside this source, so no unattended match adapter is claimed.",
       "catalog_terms": [
         "Primera Federación Femenina | Women"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-spain-primera-federaci-n-femenina-women",
+          "league": "Primera Federación Femenina | Women",
+          "name": "Primera Federación Femenina 2026–27",
+          "start_date": "2026-09-12",
+          "end_date": "2027-06-06",
+          "location": "Spain",
+          "official_schedule_url": "https://rfef.es/es/noticias/calendario-completo-primera-federacion-femenina-temporada-202627"
+        }
       ]
     },
     {
@@ -2125,13 +2136,24 @@
       "sport": "Soccer",
       "league": "Supercopa de España Femenina | Women",
       "region": "Spain",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
+      "source_type": "official-event-window",
+      "coverage_status": "calendar-window",
       "endpoint": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
       "official_schedule_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
-      "source_note": "RFEF women's football final four is January 19–24, separate from the men's February event. No dependable daily adapter is linked.",
+      "source_note": "RFEF publishes the women's 2027 Supercopa final-four window January 19–24. Exact pairings and kickoffs are not yet published, so this is an official window only, not a match adapter.",
       "catalog_terms": [
         "Supercopa de España Femenina | Women"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-spain-supercopa-de-espa-a-femenina-women",
+          "league": "Supercopa de España Femenina | Women",
+          "name": "Supercopa de España Femenina 2027",
+          "start_date": "2027-01-19",
+          "end_date": "2027-01-24",
+          "location": "Spain",
+          "official_schedule_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627"
+        }
       ]
     },
     {
