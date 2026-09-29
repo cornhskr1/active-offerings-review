@@ -485,24 +485,24 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                             or (row["season_state"], row["coverage_state"]) == ("DOCUMENTED_HOLD", "NO_LINKED_SOURCE")
                             for row in ncaa))
 
-    def test_complete_world_cup_window_and_gap_do_not_pretend_to_be_fixture_adapter(self):
+    def test_world_cup_window_keeps_scope_while_fixture_adapter_is_partial(self):
         row = self.rows[("Basketball", "FIBA Basketball World Cup | Men")]
-        self.assertEqual("ADAPTER_GAP", row["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
         self.assertEqual("DATED_WINDOW", row["season_state"])
         self.assertEqual("November 24, 2025–September 12, 2027, including six qualifier windows and the finals", row["season_window"])
-        self.assertEqual("coverage-gap", row["sources"][0]["type"])
+        self.assertEqual("official-publisher-basketball-fixtures", row["sources"][0]["type"])
         afl = self.rows[("Aussie Rules", "Australian Football League (AFL)")]
         self.assertEqual("ADAPTER_CONFIGURED", afl["coverage_state"])
 
-    def test_chile_league_and_cup_keep_distinct_schedule_gaps(self):
+    def test_chile_league_is_configured_while_cup_stays_a_distinct_gap(self):
         expected = {
-            "Liga Nacional de Basquetbol de Chile (LNB) | Men": "chile-lnb",
-            "Copa Chile | Men": "chile-copa",
+            "Liga Nacional de Basquetbol de Chile (LNB) | Men": ("chile-lnb", "ADAPTER_CONFIGURED"),
+            "Copa Chile | Men": ("chile-copa", "ADAPTER_GAP"),
         }
-        for league, source_id in expected.items():
+        for league, (source_id, coverage_state) in expected.items():
             with self.subTest(league=league):
                 row = self.rows[("Basketball", league)]
-                self.assertEqual("ADAPTER_GAP", row["coverage_state"])
+                self.assertEqual(coverage_state, row["coverage_state"])
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
 
     def test_fiba_3x3_tour_keeps_mens_calendar_and_womens_scope_hold_separate(self):
