@@ -54,20 +54,21 @@ class SpainNetherlandsScopeTests(unittest.TestCase):
                 self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
                 self.assertIn(event["source_id"], self.sources)
 
-    def test_supercups_do_not_inherit_other_gender_or_league_adapters(self):
-        for key in (
-            "soccer-spain-supercopa-de-espa-a-men",
-            "soccer-spain-supercopa-de-espa-a-femenina-women",
-            "soccer-spain-primera-federaci-n-femenina-women",
-        ):
-            with self.subTest(key=key):
-                source = self.sources[self.events[key]["source_id"]]
-                self.assertEqual("coverage-gap", source["source_type"])
-                self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
-        self.assertNotEqual(
-            self.events["soccer-spain-supercopa-de-espa-a-men"]["source_id"],
-            self.events["soccer-spain-supercopa-de-espa-a-femenina-women"]["source_id"],
-        )
+    def test_supercups_and_womens_second_tier_keep_separate_scope(self):
+        men = "soccer-spain-supercopa-de-espa-a-men"
+        women = "soccer-spain-supercopa-de-espa-a-femenina-women"
+        primera = "soccer-spain-primera-federaci-n-femenina-women"
+
+        self.assertEqual("official-rfef-supercopa-2027", self.sources[self.events[men]["source_id"]]["source_type"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[men]["coverage_state"])
+
+        self.assertEqual("official-event-window", self.sources[self.events[women]["source_id"]]["source_type"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", self.inventory[women]["coverage_state"])
+
+        self.assertEqual("official-event-window", self.sources[self.events[primera]["source_id"]]["source_type"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", self.inventory[primera]["coverage_state"])
+
+        self.assertNotEqual(self.events[men]["source_id"], self.events[women]["source_id"])
 
     def test_dutch_shield_is_completed_window_only(self):
         key = "soccer-netherlands-johan-cruyff-shield-dutch-super-cup-men"
