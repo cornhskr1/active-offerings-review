@@ -17,8 +17,8 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
     def test_bulk_report_covers_exceptions_without_multiplying_identity_total(self):
         groups = cohorts(INVENTORY)
         soccer_gaps = next(g for g in groups if (g["kind"], g["state"], g["sport"]) == ("coverage", "ADAPTER_GAP", "Soccer"))
-        self.assertEqual(173, soccer_gaps["count"])
-        self.assertEqual(173, len(set(soccer_gaps["identity_keys"])))
+        self.assertEqual(172, soccer_gaps["count"])
+        self.assertEqual(172, len(set(soccer_gaps["identity_keys"])))
         self.assertEqual(61, next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
         self.assertEqual(731, len(INVENTORY["identities"]))
 
@@ -125,6 +125,27 @@ assert.match(cards[0].staff_action,/exact teams/);
 """
         subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
         self.assertIn('...heldMatchupAttention(start)', HTML)
+
+    def test_young_lions_age_hold_appears_only_in_fixture_window(self):
+        start = HTML.index("function heldAgeReviewAttention(")
+        end = HTML.index("\nfunction buildTodayModel(", start)
+        script = """
+const assert=require('node:assert/strict');
+const source={id:'spl',sport:'Soccer',league:'Singapore Premier League | Men',
+ region:'Singapore',ok:true,young_lions_age_review_in_window:1,
+ official_schedule_url:'https://spl.sg/fixtures/'};
+const DATA={global:{sources:[source]}};
+""" + HTML[start:end] + """
+const cards=heldAgeReviewAttention('2026-10-04');
+assert.equal(cards.length,1);
+assert.equal(cards[0].type,'PLAYER AGE REVIEW');
+assert.match(cards[0].event,/1 Young Lions fixture held/);
+assert.match(cards[0].staff_action,/player birth dates/);
+source.young_lions_age_review_in_window=0;
+assert.equal(heldAgeReviewAttention('2026-09-29').length,0);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+        self.assertIn('...heldAgeReviewAttention(start)', HTML)
 
     def test_past_due_ncaa_futures_alert_occurs_once(self):
         start = HTML.index("function collegeFuturesAttention(")

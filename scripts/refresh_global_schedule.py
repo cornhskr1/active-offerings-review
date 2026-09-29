@@ -50,6 +50,7 @@ from georgia_erovnuli_fixture_adapter import candidates as georgia_candidates, v
 from nike_liga_fixture_adapter import parse_fixtures as parse_nike_liga_fixtures
 from ekstraklasa_fixture_adapter import next_round as ekstraklasa_next_round
 from dfb_frauen_bundesliga_adapter import parse_season as parse_dfb_frauen_bundesliga
+from spl_fixture_adapter import parse_fixtures as parse_spl_fixtures
 from sfl_fixture_adapter import publisher_pdf_url as sfl_publisher_pdf_url, parse_pdf as parse_sfl_pdf
 from canada_championship_final import parse_final as parse_canada_championship_final
 from tennis_refresh_guardrails import schedule_source_warning
@@ -1839,6 +1840,31 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type")=="official-spl-season-fixtures":
+        published=held_young_lions=held_in_window=0
+        candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+            response.raise_for_status()
+            fixtures,held_young_lions,published,held_starts=parse_spl_fixtures(response.content,source)
+            held_in_window=sum(start>NOW_UTC and TODAY<=start.astimezone(TZ).date()<=END
+                               for start in held_starts)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"season_pairings":published,
+            "young_lions_age_review_held":held_young_lions,
+            "young_lions_age_review_in_window":held_in_window,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type")=="thai-league-matches":
         try:
             tournaments=requests.get(source["tournament_index"],params={"season":source["season_id"]},headers=HEADERS,timeout=35)

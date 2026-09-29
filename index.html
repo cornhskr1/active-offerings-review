@@ -1322,6 +1322,21 @@ function heldMatchupAttention(dayKey){
   }));
 }
 
+function heldAgeReviewAttention(dayKey){
+  return (DATA.global?.sources||[]).filter(source=>
+    source.approved_catalog!==false&&source.ok===true&&
+    Number(source.young_lions_age_review_in_window||0)>0
+  ).map(source=>({
+    severity:'AMBER',type:'PLAYER AGE REVIEW',sport:source.sport,
+    league:source.league,region:source.region,
+    event:`${source.young_lions_age_review_in_window} Young Lions fixture${source.young_lions_age_review_in_window===1?'':'s'} held · player ages pending`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:'The official league schedule names Young Lions, but a senior competition label does not establish every participant is 18 or older. These fixtures are held out of approved scheduled activity.',
+    source_url:source.official_schedule_url||source.endpoint||'',
+    staff_action:'Check the current match roster and official player birth dates before treating the matchup as eligible. Review the operator menu for offerings on the held fixture.'
+  }));
+}
+
 function buildTodayModel(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -1364,7 +1379,7 @@ function buildTodayModel(){
   for(let i=0;i<8;i++)combatWindowAlerts.push(...combatBoutReviewAlerts(addDays(start,i),events));
 
   const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start),
-    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start)];
+    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start)];
   const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
   const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+boxingWindowAlerts.length+combatWindowAlerts.length+coverageAlerts.length;
 
