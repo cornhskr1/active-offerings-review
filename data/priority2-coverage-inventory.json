@@ -11,21 +11,21 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 337,
-      "ADAPTER_GAP": 201,
+      "ADAPTER_GAP": 199,
       "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 140
+      "OFFICIAL_WINDOW_ONLY": 142
     },
     "season_states": {
       "DATED_WINDOW": 220,
       "DESCRIPTIVE_WINDOW": 48,
-      "DOCUMENTED_HOLD": 65,
+      "DOCUMENTED_HOLD": 66,
       "EVENT_BASED_APPROVAL": 24,
-      "PARTIAL_WINDOW": 62,
-      "PENDING_DATES": 32,
-      "RECURRING_WINDOW": 280
+      "PARTIAL_WINDOW": 63,
+      "PENDING_DATES": 31,
+      "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 211,
+    "reported_gap_labels": 209,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,8 +264,8 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 166,
-      "pending_dates": 88
+      "adapter_gaps": 164,
+      "pending_dates": 87
     },
     "Surfing": {
       "identities": 6,
@@ -8948,11 +8948,11 @@
       "season_window": "August 22, 2026–April 10, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-france-coup-lffp-women",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Coup LFFP | Women",
           "refresh_ok": true,
           "events_in_window": 0
@@ -9008,14 +9008,14 @@
       "identity_key": "soccer-france-coupe-de-france-women",
       "approval_parent": "Coupe de France | Men and Women",
       "kind": "split-child",
-      "season_window": "August 2026–May 2027",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "Federal phase November 22, 2026–May 23, 2027; regional phase begins earlier",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-france-coupe-de-france-women",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Coupe de France | Women",
           "refresh_ok": true,
           "events_in_window": 0
@@ -13706,8 +13706,8 @@
       "identity_key": "soccer-france-troph-e-des-championnes-women",
       "approval_parent": "Trophée des Championnes | Women",
       "kind": "catalog",
-      "season_window": "2026 edition completed · next official date pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "No 2026–27 date published by FFF · hold",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
       "coverage_state": "ADAPTER_GAP",
       "sources": [
@@ -13719,7 +13719,8 @@
           "events_in_window": 0
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 0,
+      "hold_reason": "No current 2026–27 metropolitan FFF Trophée des Championnes date is published; previous editions and the Réunion regional competition cannot establish this identity's current schedule."
     },
     {
       "sport": "Soccer",
