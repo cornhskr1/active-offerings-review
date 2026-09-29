@@ -29,6 +29,7 @@ class IrelandIcelandScopeTests(unittest.TestCase):
         self.assertEqual("2026-11-08", ireland["season_end_date"])
         self.assertFalse(ireland["season_window_complete"])
         self.assertEqual("2026-05-10", cup["season_start_date"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[cup["key"]]["coverage_state"])
 
     def test_c_division_hold_and_senior_single_events(self):
         c = self.events["soccer-iceland-league-cup-c-men"]
