@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 336,
-      "ADAPTER_GAP": 202,
+      "ADAPTER_CONFIGURED": 337,
+      "ADAPTER_GAP": 201,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 212,
+    "reported_gap_labels": 211,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 167,
+      "adapter_gaps": 166,
       "pending_dates": 88
     },
     "Surfing": {
@@ -9282,7 +9282,7 @@
       "identity_key": "soccer-sweden-damallsvenskan-women",
       "approval_parent": "Damallsvenskan | Women",
       "kind": "catalog",
-      "season_window": "Late March–November 2026; exact match and qualification bounds pending",
+      "season_window": "Late March–November 22, 2026 including qualification window",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
@@ -13222,7 +13222,7 @@
       "identity_key": "soccer-sweden-superettan-men",
       "approval_parent": "Superettan | Men",
       "kind": "catalog",
-      "season_window": "April 4–November 7, 2026 league season; qualification boundary pending",
+      "season_window": "April 4–December 6, 2026 including qualification window",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
@@ -13327,7 +13327,7 @@
       "identity_key": "soccer-sweden-svenska-cupen-men",
       "approval_parent": "Svenska Cupen | Men and Women",
       "kind": "split-child",
-      "season_window": "Men’s round one June 2–11, 2026; 2027 group and knockout dates pending",
+      "season_window": "Men’s rounds 1–2 completed in 2026; 2027 group and knockout dates/pairings pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_GAP",
@@ -13348,16 +13348,16 @@
       "identity_key": "soccer-sweden-svenska-cupen-women",
       "approval_parent": "Svenska Cupen | Men and Women",
       "kind": "split-child",
-      "season_window": "Women’s round one May 19–28, 2026; 2027 group and knockout dates pending",
+      "season_window": "Women’s round 3 September 22–October 22, 2026; group and knockout play continues in 2027",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-sweden-svenska-cupen-women",
-          "type": "coverage-gap",
+          "type": "official-svff-womens-cup-current",
           "configured_league": "Svenska Cupen | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
