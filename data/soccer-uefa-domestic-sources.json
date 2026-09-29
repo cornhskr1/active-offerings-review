@@ -2149,7 +2149,7 @@
       "coverage_status": "complete",
       "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/swe.1/scoreboard",
       "official_schedule_url": "https://www.svenskfotboll.se/nyheter/serier/2025/12/spelordning-allsvenskan-2026",
-      "source_note": "SvFF April 4–November 29 league schedule; qualification ties may fall outside ESPN daily top-flight scope.",
+      "source_note": "SvFF confirms the April 4–November 29 Allsvenskan league season; its existing ESPN daily adapter remains scoped to league play, while the November/December qualification ties stay outside that feed.",
       "catalog_terms": [
         "Allsvenskan | Men"
       ]
@@ -2163,7 +2163,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.svenskfotboll.se/nyheter/serier/2025/12/spelprogram-obos-damallsvenskan-2026/",
       "official_schedule_url": "https://www.svenskfotboll.se/nyheter/serier/2025/12/spelprogram-obos-damallsvenskan-2026/",
-      "source_note": "Official late-March opening and league schedule; exact bounds and unattended adapter pending.",
+      "source_note": "SvFF confirms the 2026 OBOS Damallsvenskan schedule and exact kickoffs through round 26; the November 19–22 qualification tie is a separate boundary. A dependable unattended exact-league feed is not yet connected.",
       "catalog_terms": [
         "Damallsvenskan | Women"
       ]
@@ -2177,7 +2177,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.svenskfotboll.se/nyheter/serier/2025/12/spelordning-for-superettan-2026/",
       "official_schedule_url": "https://www.svenskfotboll.se/nyheter/serier/2025/12/spelordning-for-superettan-2026/",
-      "source_note": "SvFF April 4–November 7 league season; subsequent qualification and unattended adapter pending.",
+      "source_note": "SvFF confirms the April 4–November 7 Superettan league season and the November 21–December 6 qualification structure. No dependable unattended exact-league fixture adapter is connected yet.",
       "catalog_terms": [
         "Superettan | Men"
       ]
@@ -2191,7 +2191,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.svenskfotboll.se/serier-cuper/svenska-cupen/speldatum/",
       "official_schedule_url": "https://www.svenskfotboll.se/serier-cuper/svenska-cupen/speldatum/",
-      "source_note": "Men’s 2026–27 edition begins June 2, 2026, then continues in 2027; exact final date and unattended adapter pending.",
+      "source_note": "SvFF confirms the 2026–27 men's Cup round 1 and round 2 windows; the next group stage and knockout phase are in 2027 and exact future pairings are not yet published. Keep the adapter gap visible.",
       "catalog_terms": [
         "Svenska Cupen | Men and Women"
       ]
@@ -2201,11 +2201,11 @@
       "sport": "Soccer",
       "league": "Svenska Cupen | Women",
       "region": "Sweden",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.svenskfotboll.se/serier-cuper/svenska-cupen/speldatum/",
-      "official_schedule_url": "https://www.svenskfotboll.se/serier-cuper/svenska-cupen/speldatum/",
-      "source_note": "Women’s 2026–27 edition begins May 19, 2026, then continues spring 2027; exact final date and unattended adapter pending.",
+      "source_type": "official-svff-womens-cup-current",
+      "coverage_status": "partial",
+      "endpoint": "https://www.svenskfotboll.se/svenskacupen/",
+      "official_schedule_url": "https://www.svenskfotboll.se/svenskacupen/",
+      "source_note": "SvFF publishes exact named and timed 2026–27 women's Cup round-3 match cards during the September 22–October 22 phase. This adapter is current-phase only; the 2027 group stage and knockout rounds require fresh publication.",
       "catalog_terms": [
         "Svenska Cupen | Men and Women"
       ]

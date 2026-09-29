@@ -36,7 +36,8 @@ class SwedenFinlandScopeTests(unittest.TestCase):
                 self.assertNotIn('season_end_date', item)
                 self.assertFalse(item['season_window_complete'])
                 self.assertEqual('PARTIAL_WINDOW', self.inventory[key]['season_state'])
-                self.assertEqual('ADAPTER_GAP', self.inventory[key]['coverage_state'])
+                expected = 'ADAPTER_CONFIGURED' if key == 'soccer-sweden-svenska-cupen-women' else 'ADAPTER_GAP'
+                self.assertEqual(expected, self.inventory[key]['coverage_state'])
         self.assertNotEqual(self.children['soccer-sweden-svenska-cupen-men']['source_id'], self.children['soccer-sweden-svenska-cupen-women']['source_id'])
 
     def test_league_qualification_is_not_hidden_in_regular_season(self):
