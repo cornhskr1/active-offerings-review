@@ -53,6 +53,7 @@ from dfb_frauen_bundesliga_adapter import parse_season as parse_dfb_frauen_bunde
 from spl_fixture_adapter import parse_fixtures as parse_spl_fixtures
 from auf_fixture_adapter import parse_fixtures as parse_auf_fixtures
 from sfl_fixture_adapter import publisher_pdf_url as sfl_publisher_pdf_url, parse_pdf as parse_sfl_pdf
+from nzr_npc_fixture_adapter import publisher_pdf_url as npc_publisher_pdf_url, parse_pdf as parse_npc_pdf
 from canada_championship_final import parse_final as parse_canada_championship_final
 from tennis_refresh_guardrails import schedule_source_warning
 
@@ -2549,6 +2550,31 @@ for source in CFG.get("sources",[]):
             errors.append(str(exc)[:110])
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"verified_final":bool(parsed) and not errors,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-nzr-npc-pdf":
+        published_count=round_count=0;candidates=[]
+        try:
+            page=requests.get(source["publisher_page"],headers=HEADERS,timeout=30)
+            page.raise_for_status()
+            pdf_url=npc_publisher_pdf_url(page.content,source)
+            response=requests.get(pdf_url,headers={**HEADERS,"Accept":"application/pdf"},timeout=30)
+            response.raise_for_status()
+            if not response.content.startswith(b"%PDF-"):
+                raise ValueError("NZ Rugby did not return an NPC PDF")
+            fixtures,round_count,published_count=parse_npc_pdf(response.content,source,TODAY,END)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_rounds":round_count,"season_pairings":published_count,
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-sfl-season-pdf":

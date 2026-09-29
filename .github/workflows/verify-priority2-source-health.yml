@@ -7,6 +7,7 @@ on:
       - "scripts/tennis_refresh_guardrails.py"
       - "scripts/publisher_basketball_beach.py"
       - "scripts/refresh_global_schedule.py"
+      - "scripts/nzr_npc_fixture_adapter.py"
       - ".github/workflows/verify-priority2-source-health.yml"
 
 permissions:
@@ -18,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install parser dependencies
-        run: python3 -m pip install --quiet requests lxml beautifulsoup4 pypdf
+        run: python3 -m pip install --quiet requests lxml beautifulsoup4 pypdf pdfplumber
       - name: Test source adapters and quality gates
         run: python3 -m unittest discover -s tests -q
   tennis:
