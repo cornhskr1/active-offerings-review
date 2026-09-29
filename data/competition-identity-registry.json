@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-29T13:16:59.882741+00:00",
+  "generated_at": "2026-09-29T13:31:35.261022+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
-  "schedule_generated_at": "2026-09-29T13:12:00.037649+00:00",
+  "schedule_generated_at": "2026-09-29T13:24:58.734485+00:00",
   "schedule_window_start": "2026-09-29",
   "schedule_window_end": "2026-10-06",
   "competition_count": 731,
-  "event_count": 1696,
+  "event_count": 1700,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -14873,10 +14873,52 @@
       "league": "Farah Palmer Cup | Women",
       "identity_key": "rugby-nz-farah-palmer",
       "source_ids": [
-        "rugby-nzr"
+        "rugby-nzr-farah-palmer-2026"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Auckland Storm",
+        "Canterbury",
+        "Hawke's Bay Tui",
+        "Manawatū Cyclones",
+        "Northland Kauri",
+        "Otago Spirit",
+        "Waitomo Waikato",
+        "Wellington Pride"
+      ],
+      "events": [
+        {
+          "name": "Hawke's Bay Tui at Wellington Pride",
+          "start_time": "2026-10-03T01:05:00Z",
+          "participants": [
+            "Hawke's Bay Tui",
+            "Wellington Pride"
+          ]
+        },
+        {
+          "name": "Otago Spirit at Northland Kauri",
+          "start_time": "2026-10-03T01:05:00Z",
+          "participants": [
+            "Otago Spirit",
+            "Northland Kauri"
+          ]
+        },
+        {
+          "name": "Waitomo Waikato at Auckland Storm",
+          "start_time": "2026-10-03T01:05:00Z",
+          "participants": [
+            "Waitomo Waikato",
+            "Auckland Storm"
+          ]
+        },
+        {
+          "name": "Manawatū Cyclones at Canterbury",
+          "start_time": "2026-10-04T01:05:00Z",
+          "participants": [
+            "Manawatū Cyclones",
+            "Canterbury"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "FPC",
@@ -14884,7 +14926,7 @@
           "evidence_url": "https://www.nzrugby.co.nz/teams-and-competitions/national/farah-palmer-cup"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Rugby",
@@ -14975,6 +15017,12 @@
           "name": "Bunnings Warehouse Heartland Championship",
           "name_type": "official",
           "evidence_url": "https://www.nzrugby.co.nz/teams-and-competitions/national/bunnings-warehouse-heartland-championship"
+        }
+      ],
+      "source_labels": [
+        {
+          "name": "New Zealand Rugby competitions",
+          "source_id": "rugby-nzr"
         }
       ],
       "participant_coverage": "NOT AVAILABLE"
