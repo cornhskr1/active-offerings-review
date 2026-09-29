@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-29T12:37:39.557714+00:00",
-  "schedule_generated_at": "2026-09-29T12:31:44.791413+00:00",
+  "registry_generated_at": "2026-09-29T13:11:39.762714+00:00",
+  "schedule_generated_at": "2026-09-29T12:55:18.574571+00:00",
   "schedule_window_start": "2026-09-29",
   "schedule_window_end": "2026-10-06",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 332,
-      "ADAPTER_GAP": 206,
+      "ADAPTER_CONFIGURED": 333,
+      "ADAPTER_GAP": 205,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 217,
+    "reported_gap_labels": 215,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -257,7 +257,7 @@
       "identities": 33,
       "split_children": 10,
       "no_linked_source": 2,
-      "adapter_gaps": 9,
+      "adapter_gaps": 8,
       "pending_dates": 0
     },
     "Soccer": {
@@ -2727,7 +2727,7 @@
           "id": "cricket-bbl",
           "type": "espn-daily",
           "configured_league": "Big Bash League (BBL) | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2853,7 +2853,7 @@
           "id": "cricket-wbbl",
           "type": "espn-daily",
           "configured_league": "Women's Big Bash League (WBBL) | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6365,13 +6365,20 @@
       "season_window": "August 29–October 11, 2026; Championship final October 10 and Premiership final October 11",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-nzr",
           "type": "coverage-gap",
           "configured_league": "New Zealand Rugby competitions",
           "refresh_ok": true,
+          "events_in_window": 0
+        },
+        {
+          "id": "rugby-nzr-farah-palmer-2026",
+          "type": "official-nzr-farah-palmer-semifinals",
+          "configured_league": "Farah Palmer Cup | Women",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -6451,13 +6458,6 @@
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
-        {
-          "id": "rugby-nzr",
-          "type": "coverage-gap",
-          "configured_league": "New Zealand Rugby competitions",
-          "refresh_ok": true,
-          "events_in_window": 0
-        },
         {
           "id": "rugby-nzr-npc-2026",
           "type": "official-nzr-npc-pdf",
@@ -8154,7 +8154,7 @@
           "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
           "type": "official-auf-fixtures",
           "configured_league": "Campeonato Femenino | Women",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -8765,11 +8765,11 @@
           "id": "conmebol-soccer-uruguay-copa-uruguay-men",
           "type": "official-auf-fixtures",
           "configured_league": "Copa Uruguay | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",

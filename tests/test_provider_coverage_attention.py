@@ -35,7 +35,7 @@ assert.doesNotMatch(htmlOut,/1 event|12:00/);
 """
         subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
 
-    def test_nz_rugby_two_current_gaps_are_one_issue(self):
+    def test_nz_rugby_one_remaining_gap_is_not_a_shared_provider_issue(self):
         html = (ROOT / "index.html").read_text()
         names = ("exactSeasonStatus", "annualSeasonStatus", "eventSourceIds",
                  "mappedSeasonStatus", "groupedActiveCoverageGaps")
@@ -55,11 +55,7 @@ function isNonWageredNcaaSport(){return false}
 """ + "\n".join(functions) + """
 const cards=groupedActiveCoverageGaps('2026-09-26');
 const nz=cards.filter(card=>card.league==='New Zealand Rugby competitions');
-assert.equal(nz.length,1);
-assert.match(nz[0].event,/2 approved competitions/);
-for(const name of ['Heartland Championship','Farah Palmer Cup'])
-  assert(nz[0].reason.includes(name));
-assert(!nz[0].reason.includes('National Provincial Championship'));
+assert.equal(nz.length,0);
 assert(cards.length<10,'current shared gaps must remain a small provider-level queue');
 """
         subprocess.run(["node", "-e", script], cwd=ROOT, check=True)

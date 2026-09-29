@@ -10,13 +10,12 @@ from audit_priority2_coverage import build  # noqa: E402
 
 
 class ProviderCohortTests(unittest.TestCase):
-    def test_nz_rugby_reports_only_the_two_unresolved_identities(self):
+    def test_nz_rugby_shared_cohort_dissolves_after_second_adapter(self):
         groups = provider_cohorts(build(), source_config())
-        nz = next(group for group in groups if group["provider"] == "provincial.rugby")
-        self.assertEqual(("Rugby", 2), (nz["sport"], nz["count"]))
-        self.assertEqual({"rugby-nz-heartland", "rugby-nz-farah-palmer"},
-                         {row["identity_key"] for row in nz["identities"]})
-        self.assertEqual(["rugby-nzr"] * 2, [row["source_id"] for row in nz["identities"]])
+        self.assertFalse(any(group["provider"] == "provincial.rugby" for group in groups))
+        rows = {row["identity_key"]: row for row in build()["identities"]}
+        self.assertEqual("ADAPTER_GAP", rows["rugby-nz-heartland"]["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", rows["rugby-nz-farah-palmer"]["coverage_state"])
 
     def test_configured_and_window_only_rows_cannot_enter_gap_report(self):
         rows = [
