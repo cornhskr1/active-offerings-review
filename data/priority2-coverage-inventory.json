@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 343,
-      "ADAPTER_GAP": 189,
+      "ADAPTER_CONFIGURED": 346,
+      "ADAPTER_GAP": 186,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 146
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 199,
+    "reported_gap_labels": 196,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 154,
+      "adapter_gaps": 151,
       "pending_dates": 87
     },
     "Surfing": {
@@ -7031,13 +7031,13 @@
       "season_window": "July 31, 2026–May 30, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-austria-2-liga-men",
-          "type": "coverage-gap",
+          "type": "official-high-yield-soccer-fixtures",
           "configured_league": "2. Liga | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -8232,13 +8232,13 @@
       "season_window": "April–November",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "concacaf-soccer-canada-canadian-premier-league-men",
-          "type": "coverage-gap",
+          "type": "official-high-yield-soccer-fixtures",
           "configured_league": "Canadian Premier League | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -13877,13 +13877,13 @@
       "season_window": "August 14, 2026 opening; final round pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-united-arab-emirates-uae-pro-league-men",
-          "type": "coverage-gap",
+          "type": "official-high-yield-soccer-fixtures",
           "configured_league": "UAE Pro League | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],

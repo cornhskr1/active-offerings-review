@@ -31,6 +31,12 @@ class AustriaSwitzerlandScopeTests(unittest.TestCase):
                 self.assertEqual(state, self.inventory[key]['season_state'])
                 self.assertIn(event['source_id'], self.sources)
 
+    def test_austria_second_tier_has_exact_round_adapter(self):
+        key = 'soccer-austria-2-liga-men'
+        source = self.sources[self.events[key]['source_id']]
+        self.assertEqual('official-high-yield-soccer-fixtures', source['source_type'])
+        self.assertEqual('ADAPTER_CONFIGURED', self.inventory[key]['coverage_state'])
+
     def test_womens_competitions_do_not_inherit_mens_windows(self):
         for key in ('soccer-austria-austrian-frauen-bundesliga-women', 'soccer-austria-fb-frauen-cup-women'):
             with self.subTest(key=key):
