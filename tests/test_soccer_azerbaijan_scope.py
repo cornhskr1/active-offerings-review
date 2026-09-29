@@ -17,12 +17,15 @@ class AzerbaijanScopeTests(unittest.TestCase):
         cls.sources = {s["id"]: s for s in json.loads((DATA / "soccer-uefa-domestic-sources.json").read_text())["sources"]}
         cls.inventory = {x["identity_key"]: x for x in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
 
-    def test_distinct_league_and_cup_gaps(self):
+    def test_distinct_league_and_cup_sources(self):
         self.assertEqual(2, len(self.events))
         self.assertEqual(2, len({e["source_id"] for e in self.events.values()}))
-        for key, event in self.events.items():
-            self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
-            self.assertEqual("coverage-gap", self.sources[event["source_id"]]["source_type"])
+        league = self.events["soccer-azerbaijan-azerbaijan-premier-league-apl-men"]
+        cup = self.events["soccer-azerbaijan-azerbaijan-cup-men"]
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[league["key"]]["coverage_state"])
+        self.assertEqual("official-affa-latest-round", self.sources[league["source_id"]]["source_type"])
+        self.assertEqual("ADAPTER_GAP", self.inventory[cup["key"]]["coverage_state"])
+        self.assertEqual("coverage-gap", self.sources[cup["source_id"]]["source_type"])
 
     def test_cup_includes_lower_tier_qualifiers(self):
         cup = self.events["soccer-azerbaijan-azerbaijan-cup-men"]
