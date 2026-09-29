@@ -31,6 +31,8 @@ def parse_round(page, source):
             or source.get("catalog_terms") != ["Liga I | Men"]
             or source.get("league") != "Liga I | Men"):
         raise ValueError("Romania Liga I catalog scope changed")
+    if isinstance(page, bytes):
+        page = page.decode("utf-8")
     doc = html.fromstring(page)
     text = _norm(doc.text_content())
     if TITLE not in text or PUBLISHED not in text:
