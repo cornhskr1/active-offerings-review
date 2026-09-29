@@ -11,9 +11,9 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 338,
-      "ADAPTER_GAP": 196,
+      "ADAPTER_GAP": 195,
       "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 144
+      "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
       "DATED_WINDOW": 220,
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 206,
+    "reported_gap_labels": 205,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 161,
+      "adapter_gaps": 160,
       "pending_dates": 87
     },
     "Surfing": {
@@ -7638,15 +7638,14 @@
       "identity_key": "soccer-belgium-belgian-cup-beker-van-belgi-men",
       "approval_parent": "Belgian Cup / Beker van België | Men",
       "kind": "catalog",
-      "season_window": "2026–27 underway; earliest amateur round and final date pending",
-      "season_state": "DOCUMENTED_HOLD",
+      "season_window": "September 26, 2026–April 22, 2027 published rounds; final date pending",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "hold_reason": "Published round dates do not establish full cup bounds; amateur qualifying start and final date are not verified.",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-belgium-belgian-cup-beker-van-belgi-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Belgian Cup / Beker van België | Men",
           "refresh_ok": true,
           "events_in_window": 0
