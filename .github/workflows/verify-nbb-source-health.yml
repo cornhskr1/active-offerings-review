@@ -1,0 +1,31 @@
+name: Verify NBB source health
+
+on:
+  pull_request:
+    paths:
+      - "scripts/publisher_basketball_beach.py"
+      - "data/global-schedule-sources.json"
+      - ".github/workflows/verify-nbb-source-health.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  nbb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install parser dependencies
+        run: python3 -m pip install --quiet requests lxml
+      - name: Probe exact NBB schedule page
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          from publisher_basketball_beach import fetch_nbb_schedule,parse_nbb_fixtures
+          source={'catalog_terms':['Novo Basquete Brasil (NBB) | Men']}
+          page=fetch_nbb_schedule('https://lnb.com.br/nbb/tabela-de-jogos')
+          print('Verified NBB fixtures:',len(parse_nbb_fixtures(page,source)))
+          PY
