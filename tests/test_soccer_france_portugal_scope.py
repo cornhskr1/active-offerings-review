@@ -53,7 +53,7 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
         expected = {
             "soccer-france-premi-re-ligue-women": ("2026-09-05", "2027-06-05", "ADAPTER_CONFIGURED", "16277"),
             "soccer-france-seconde-ligue-women": ("2026-09-06", "2027-05-09", "ADAPTER_GAP", "17085"),
-            "soccer-france-coup-lffp-women": ("2026-08-22", "2027-04-10", "ADAPTER_GAP", "17085"),
+            "soccer-france-coup-lffp-women": ("2026-08-22", "2027-04-10", "OFFICIAL_WINDOW_ONLY", "16277"),
         }
         for key, (start, end, coverage, notice) in expected.items():
             with self.subTest(key=key):
@@ -62,6 +62,13 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
                 self.assertEqual((start, end), (event["season_start_date"], event["season_end_date"]))
                 self.assertEqual(coverage, self.inventory[key]["coverage_state"])
                 self.assertIn(f"fff.fr/article/{notice}", source["official_schedule_url"])
+
+    def test_french_womens_cup_calendar_and_trophee_hold_are_explicit(self):
+        cup = self.events["soccer-france-coupe-de-france-men-and-women"]["coverage_children"]
+        women = next(x for x in cup if x["key"] == "soccer-france-coupe-de-france-women")
+        self.assertEqual(("2026-11-22", "2027-05-23"), (women["season_start_date"], women["season_end_date"]))
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", self.inventory["soccer-france-coupe-de-france-women"]["coverage_state"])
+        self.assertEqual("DOCUMENTED_HOLD", self.inventory["soccer-france-troph-e-des-championnes-women"]["season_state"])
 
     def test_portuguese_professional_competitions_stay_distinct(self):
         league = self.events["soccer-portugal-liga-portugal-2-men"]
