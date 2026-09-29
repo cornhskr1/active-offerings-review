@@ -31,6 +31,7 @@ from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl
 from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
 from dbu_betinia_fixture_adapter import round_fixtures as dbu_betinia_round, verified_fixture as dbu_betinia_detail
+from official_window_activity import reviewable_window_start
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
 from vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round, MOBILE_URL
@@ -1654,11 +1655,15 @@ def fetch_official_event_window(source):
         r.raise_for_status()
     parsed=[]
     for item,start,end in dated:
+        if not reviewable_window_start(start,end,TODAY,END):
+            continue
         event=tournament_window_event(
             source,item["source_id"],item["league"],item["name"],start,end,
             item.get("location"),item.get("official_schedule_url")
         )
         if event:
+            event["date_only"]=True
+            event["status"]="UPCOMING"
             # Multi-country tours can supply the event's country instead of
             # inheriting a generic "International" region from the source.
             if item.get("region"):

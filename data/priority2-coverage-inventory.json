@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-28T23:47:06.144435+00:00",
-  "schedule_generated_at": "2026-09-28T23:41:24.799437+00:00",
+  "registry_generated_at": "2026-09-29T00:48:42.060728+00:00",
+  "schedule_generated_at": "2026-09-29T00:43:55.740320+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 326,
-      "ADAPTER_GAP": 212,
+      "ADAPTER_CONFIGURED": 327,
+      "ADAPTER_GAP": 211,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 221,
+    "reported_gap_labels": 219,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 175,
+      "adapter_gaps": 174,
       "pending_dates": 88
     },
     "Surfing": {
@@ -3716,10 +3716,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Esports",
@@ -8189,7 +8189,7 @@
           "id": "concacaf-soccer-canada-canadian-championship-men",
           "type": "official-canada-championship-final",
           "configured_league": "Canadian Championship | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -9299,11 +9299,11 @@
       "season_window": "July 24, 2026–June 6, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-denmark-danish-1st-division-men",
-          "type": "coverage-gap",
+          "type": "official-dbu-betinia-round",
           "configured_league": "Danish 1st Division | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -12213,11 +12213,11 @@
           "id": "soccer-afc-qatar-qsl-cup-men",
           "type": "official-qsl-cup-fixtures",
           "configured_league": "QSL Cup | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
