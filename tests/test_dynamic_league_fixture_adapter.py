@@ -10,7 +10,7 @@ from scripts.dynamic_league_fixture_adapter import (
 
 class DynamicLeagueAdapterTests(unittest.TestCase):
     def test_affa_discovers_latest_notice(self):
-        page = b'<html><body><a href="/index.php/news/misli-premyer-liqas-vii-turun-tyinatlar/99999">Misli Premyer Liqası: VII turun təyinatları</a></body></html>'
+        page = '<html><body><a href="/index.php/news/misli-premyer-liqas-vii-turun-tyinatlar/99999">Misli Premyer Liqası: VII turun təyinatları</a></body></html>'.encode("utf-8")
         url = affa_latest_notice_url(page, "https://www.affa.az/index.php?lang=az&r=77")
         self.assertIn("/news/misli-premyer-liqas-vii-turun-tyinatlar/", url)
 
