@@ -59,6 +59,49 @@ assert.equal(staleScheduleSourceAttention([],'2026-09-27').length,0);
         workflow = (ROOT / ".github/workflows/refresh-tennis-intelligence.yml").read_text()
         self.assertIn('cron: "11 11 * * *"', workflow)
 
+    def test_failed_current_sources_make_one_issue_per_publisher(self):
+        start = HTML.index("function failedScheduleSourceAttention(")
+        end = HTML.index("\nfunction buildTodayModel(", start)
+        script = """
+const assert=require('node:assert/strict');
+const sources=[
+  {id:'pba',sport:'Basketball',region:'Philippines',ok:false,source_type:'official-event-window',
+   official_schedule_url:'https://www.pba.ph/schedule',errors:['403 Forbidden']},
+  {id:'governors',sport:'Basketball',region:'Philippines',ok:false,source_type:'official-event-window',
+   official_schedule_url:'https://www.pba.ph/governors',errors:['403 Forbidden']},
+  {id:'nbb',sport:'Basketball',region:'Brazil',ok:false,source_type:'official-fixtures',
+   official_schedule_url:'https://lnb.com.br/nbb',errors:['403 Forbidden']},
+  {id:'challenger',sport:'Tennis',region:'International',ok:false,source_type:'tennis-intelligence',
+   official_schedule_url:'https://www.atptour.com/challenger',errors:['Dates unresolved']},
+  {id:'vpf',sport:'Soccer',region:'Vietnam',ok:false,source_type:'official-fixtures',
+   official_schedule_url:'https://vpf.vn/schedule',coverage_status:'partial',errors:['403 Forbidden']},
+  {id:'itf',sport:'Tennis',region:'International',ok:false,source_type:'tennis-intelligence',
+   official_schedule_url:'https://www.itftennis.com/calendar',errors:['Stale']},
+  {id:'gap',sport:'Rugby',region:'New Zealand',ok:false,source_type:'coverage-gap',
+   official_schedule_url:'https://www.provincial.rugby/npc',errors:['Gap']}
+];
+const DATA={global:{sources}};
+const mapped={pba:['PBA','in'],governors:['Governor’s Cup','in'],nbb:['NBB','out'],
+ challenger:['ATP Challenger','in'],vpf:['V.League 1','in'],itf:['ITF','in'],gap:['NPC','in']};
+function mappedCatalogEventForSource(id){return mapped[id]?{catalog_event:mapped[id][0],status:mapped[id][1]}:null}
+function mappedSeasonStatus(event){return event.status}
+function isNonWageredNcaaSport(){return false}
+""" + HTML[start:end] + """
+const events=[{sport:'Tennis',source_id:'itf',source_stale:true}];
+const cards=failedScheduleSourceAttention(events,'2026-09-28');
+assert.equal(cards.length,3);
+assert.deepEqual(cards.map(c=>c.league).sort(),['atptour.com','pba.ph','vpf.vn']);
+const pba=cards.find(c=>c.league==='pba.ph');
+assert.match(pba.event,/2 approved competitions · 2 failed source checks/);
+assert.equal(pba.type,'SCHEDULE SOURCE FAILED');
+assert.doesNotMatch(pba.reason,/NBB|ITF|NPC/);
+assert.match(cards.find(c=>c.league==='vpf.vn').reason,/coverage is incomplete/);
+assert.equal(failedScheduleSourceAttention(events,'2026-09-29').length,3);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+        self.assertIn('...failedScheduleSourceAttention(events,start)', HTML)
+        self.assertIn('if(source.ok===false)return false; // The source-health issue covers this same identity.', HTML)
+
     def test_past_due_ncaa_futures_alert_occurs_once(self):
         start = HTML.index("function collegeFuturesAttention(")
         end = HTML.index("\nfunction renderCollege(", start)

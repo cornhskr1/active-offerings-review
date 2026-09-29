@@ -100,9 +100,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                     self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
                                      (row["season_state"], row["coverage_state"]))
                     self.assertEqual([sid], [source["id"] for source in row["sources"]])
-                    # The scheduled refresh now emits a tour-window marker.
-                    # This count is not evidence of an individual heat or fixture.
-                    self.assertEqual(1, row["events_in_window"])
+                    # A season envelope has no dated heat in Review Today.
+                    self.assertEqual(0, row["events_in_window"])
                     self.assertEqual([(start, end, league)], [
                         (event["start_date"], event["end_date"], event["league"])
                         for event in sources[sid]["official_events"]
@@ -516,7 +515,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 "type": "official-event-window",
                 "configured_league": "FIBA 3x3 World Tour | Men",
                 "refresh_ok": True,
-                "events_in_window": 1,
+                "events_in_window": 0,
             }],
             men["sources"],
         )

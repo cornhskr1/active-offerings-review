@@ -1103,7 +1103,7 @@ function renderIssueBoard(cards,events){
       const severity=red?'red':'amber';
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
-      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE'].includes(c.type));
+      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED'].includes(c.type));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
       const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
@@ -1212,6 +1212,7 @@ function groupedActiveCoverageGaps(dayKey){
 function scheduleCoverageAttention(dayKey){
   const configured=(DATA.global?.sources||[]).filter(source=>{
     if(isNonWageredNcaaSport(source))return false;
+    if(source.ok===false)return false; // The source-health issue covers this same identity.
     if(!['partial','missing'].includes(source.coverage_status))return false;
     const mapped=mappedCatalogEventForSource(source.id);
     return mapped&&(mappedSeasonStatus(mapped)==='in'||mapped.season_window_complete===false);
@@ -1273,6 +1274,40 @@ function staleScheduleSourceAttention(events,dayKey){
   }];
 }
 
+function failedScheduleSourceAttention(events,dayKey){
+  const staleCardSources=new Set(events.filter(event=>event.sport==='Tennis'&&event.source_stale)
+    .map(event=>event.source_id));
+  const groups=new Map();
+  (DATA.global?.sources||[]).forEach(source=>{
+    if(source.ok!==false||source.approved_catalog===false||
+       source.source_type==='coverage-gap'||isNonWageredNcaaSport(source)||
+       staleCardSources.has(source.id))return;
+    const mapped=mappedCatalogEventForSource(source.id);
+    if(!mapped||mappedSeasonStatus(mapped)!=='in')return;
+    const url=source.official_schedule_url||source.endpoint||'';
+    let host=source.id;
+    try{host=new URL(url).hostname.replace(/^www\./,'')||host}catch{}
+    const key=`${source.sport}|||${host}`;
+    if(!groups.has(key))groups.set(key,{sport:source.sport,region:source.region,
+      host,url,sources:[],identities:new Set(),errors:new Set()});
+    const group=groups.get(key);
+    group.sources.push(source.id);
+    group.identities.add(mapped.catalog_event||source.league);
+    if(['partial','missing'].includes(source.coverage_status))
+      group.errors.add('Published fixture coverage is incomplete.');
+    (source.errors||[]).filter(Boolean).forEach(error=>group.errors.add(error));
+  });
+  return [...groups.values()].map(group=>({
+    severity:'AMBER',type:'SCHEDULE SOURCE FAILED',sport:group.sport,
+    league:group.host,region:group.region,
+    event:`${group.identities.size} approved competition${group.identities.size===1?'':'s'} · ${group.sources.length} failed source check${group.sources.length===1?'':'s'}`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:`Affected: ${[...group.identities].join('; ')}. ${[...group.errors].join(' ')||'The published schedule source did not complete successfully.'}`,
+    source_url:group.url,
+    staff_action:'Check the publisher schedule and operator menu before clearing activity. A failed feed or zero detected events does not establish that no wagering is offered.'
+  }));
+}
+
 function buildTodayModel(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -1314,7 +1349,8 @@ function buildTodayModel(){
   const combatWindowAlerts=[];
   for(let i=0;i<8;i++)combatWindowAlerts.push(...combatBoutReviewAlerts(addDays(start,i),events));
 
-  const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start)];
+  const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start),
+    ...failedScheduleSourceAttention(events,start)];
   const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
   const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+boxingWindowAlerts.length+combatWindowAlerts.length+coverageAlerts.length;
 
