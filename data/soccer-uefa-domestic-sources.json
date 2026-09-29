@@ -1696,7 +1696,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
       "official_schedule_url": "https://www.fpf.pt/pt/Competi%C3%A7%C3%B5es/Futebol-Feminino/Liga-BPI/Agenda",
-      "source_note": "FPF Liga BPI competition calendar is the scoped authority; no dependable daily adapter is connected.",
+      "source_note": "FPF's 2026–27 format confirms a ten-club Liga BPI with a first phase and relegation play-off, but the format document does not publish exact timed fixtures. Keep the dedicated agenda as the authority and the unattended adapter gap visible.",
       "catalog_terms": [
         "Liga BPI | Women"
       ]
@@ -1724,7 +1724,7 @@
       "coverage_status": "pending",
       "endpoint": "https://www.fpf.pt/",
       "official_schedule_url": "https://www.fpf.pt/Competicoes/Futebol/Feminino/Taca-de-Portugal-Feminina/Jogos-e-Resultados",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_note": "FPF retains a separate women's Taça de Portugal competition and results centre, but no verified 2026–27 timed fixture feed is connected. Do not borrow Liga BPI or men's cup events.",
       "catalog_terms": [
         "Taça de Portugal Feminina | Women"
       ]
@@ -1786,9 +1786,9 @@
       "region": "Portugal",
       "source_type": "coverage-gap",
       "coverage_status": "pending",
-      "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.fpf.pt/pt/Competi%C3%A7%C3%B5es/Futebol-Feminino/Ta%C3%A7a-da-Liga-Feminina-Placard/Vencedores",
-      "source_note": "FPF women's football league cup is separate from the men's Allianz Cup and women's futsal cup; no dependable daily adapter is connected.",
+      "endpoint": "https://www.fpf.pt/DownloadDocument.ashx?id=32613",
+      "official_schedule_url": "https://www.fpf.pt/DownloadDocument.ashx?id=32613",
+      "source_note": "FPF's 2026–27 format confirms the women's football league cup as a separate ten-club, three-phase competition. The format document does not provide exact timed fixtures, so the adapter gap remains.",
       "catalog_terms": [
         "Taça da Liga Feminina | Women"
       ]
@@ -1812,11 +1812,11 @@
       "sport": "Soccer",
       "league": "Taça da Liga | Men",
       "region": "Portugal",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.fpf.pt/",
-      "official_schedule_url": "https://www.ligaportugal.pt/news/27682/definido-o-arranque-das-competicoes-profissionais-2026-27",
-      "source_note": "Liga Portugal publishes the Allianz Cup quarterfinals and Final Four window; no dependable competition-only daily adapter is connected.",
+      "source_type": "official-liga-portugal-allianz-cup",
+      "coverage_status": "partial",
+      "endpoint": "https://www.ligaportugal.pt/competition/914/allianz-cup/round/20262027",
+      "official_schedule_url": "https://www.ligaportugal.pt/competition/914/allianz-cup/round/20262027",
+      "source_note": "Liga Portugal's 2026–27 Allianz Cup page publishes four exact quarterfinal pairings and kickoffs for October 27–29. The January 5–9 Final Four remains outside this adapter until exact semifinal pairings and times are published.",
       "catalog_terms": [
         "Taça da Liga | Men"
       ]

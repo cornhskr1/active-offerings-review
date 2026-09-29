@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 335,
-      "ADAPTER_GAP": 203,
+      "ADAPTER_CONFIGURED": 336,
+      "ADAPTER_GAP": 202,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 213,
+    "reported_gap_labels": 212,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 168,
+      "adapter_gaps": 167,
       "pending_dates": 88
     },
     "Surfing": {
@@ -13519,13 +13519,13 @@
       "season_window": "October 27, 2026–January 9, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-portugal-ta-a-da-liga-men",
-          "type": "coverage-gap",
+          "type": "official-liga-portugal-allianz-cup",
           "configured_league": "Taça da Liga | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
