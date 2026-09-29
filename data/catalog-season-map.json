@@ -5983,8 +5983,8 @@
               "key": "soccer-france-coupe-de-france-men-and-women",
               "catalog_event": "Coupe de France | Men and Women",
               "season_window": "August 2026–May 2027",
-              "season_basis": "The catalog approval covers separate men’s and women’s competitions; operational coverage is tracked independently.",
-              "last_verified": "2026-09-18",
+              "season_basis": "The catalog approval covers separate men's and women's competitions. Men's fixture coverage remains independent; FFF publishes the women's 2026–27 federal-round calendar from November 22 through the May 22–23 final, while regional opening rounds remain separately administered.",
+              "last_verified": "2026-09-29",
               "restrictions": [],
               "season_start": "08-01",
               "season_end": "05-31",
@@ -6002,9 +6002,10 @@
                   "key": "soccer-france-coupe-de-france-women",
                   "label": "Coupe de France | Women",
                   "source_id": "uefa-soccer-france-coupe-de-france-women",
-                  "season_window": "August 2026–May 2027",
-                  "season_start": "08-01",
-                  "season_end": "05-31"
+                  "season_window": "Federal phase November 22, 2026–May 23, 2027; regional phase begins earlier",
+                  "season_start_date": "2026-11-22",
+                  "season_end_date": "2027-05-23",
+                  "season_window_complete": false
                 }
               ]
             },
@@ -6023,12 +6024,14 @@
             {
               "key": "soccer-france-troph-e-des-championnes-women",
               "catalog_event": "Trophée des Championnes | Women",
-              "season_window": "2026 edition completed · next official date pending",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "No 2026–27 date published by FFF · hold",
+              "season_basis": "FFF's current national women's calendar omits a Trophée des Championnes date. The catalog approval remains preserved, but no current edition is inferred from prior seasons or from the unrelated Réunion competition of the same translated name.",
+              "last_verified": "2026-09-29",
               "restrictions": [],
               "season_status": "out",
-              "source_id": "uefa-soccer-france-troph-e-des-championnes-women"
+              "source_id": "uefa-soccer-france-troph-e-des-championnes-women",
+              "season_hold": true,
+              "hold_reason": "No current 2026–27 metropolitan FFF Trophée des Championnes date is published. Do not use the Réunion regional competition or a previous national edition as current schedule evidence."
             }
           ]
         },
@@ -6081,8 +6084,8 @@
               "key": "soccer-france-seconde-ligue-women",
               "catalog_event": "Seconde Ligue | Women",
               "season_window": "September 6, 2026–May 9, 2027",
-              "season_basis": "FFF publishes first and final matchdays for the 2026–27 Seconde Ligue. Its July 20 revision establishes eleven clubs and replaces the earlier twelve-club fixture list: https://www.fff.fr/article/17085-communique-sur-la-seconde-ligue-et-la-coupe-lffp.html",
-              "last_verified": "2026-09-27",
+              "season_basis": "FFF publishes the September 6, 2026 opening and May 9, 2027 final matchday. Its July 20 revision establishes eleven clubs and supersedes the earlier twelve-club fixture list; unattended full-league fixture ingestion remains pending.",
+              "last_verified": "2026-09-29",
               "restrictions": [],
               "season_start_date": "2026-09-06",
               "season_end_date": "2027-05-09",
@@ -6092,8 +6095,8 @@
               "key": "soccer-france-coup-lffp-women",
               "catalog_event": "Coup LFFP | Women",
               "season_window": "August 22, 2026–April 10, 2027",
-              "season_basis": "FFF calls the approved catalog identity Coupe de la LFFP and publishes the first matchday and final; the catalog label is unchanged. Its July 20 announcement revises the fixture list after Seconde Ligue became eleven clubs: https://www.fff.fr/article/17085-communique-sur-la-seconde-ligue-et-la-coupe-lffp.html",
-              "last_verified": "2026-09-27",
+              "season_basis": "FFF publishes all 2026–27 competition dates: five league-phase matchdays from August 22 through December 9, January 27 play-off, February 17 quarterfinals, March 17 semifinals, and April 10 final. This establishes an official competition window, not individual match coverage.",
+              "last_verified": "2026-09-29",
               "restrictions": [],
               "season_start_date": "2026-08-22",
               "season_end_date": "2027-04-10",
