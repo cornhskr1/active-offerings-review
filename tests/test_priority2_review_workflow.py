@@ -102,6 +102,30 @@ assert.equal(failedScheduleSourceAttention(events,'2026-09-29').length,3);
         self.assertIn('...failedScheduleSourceAttention(events,start)', HTML)
         self.assertIn('if(source.ok===false)return false; // The source-health issue covers this same identity.', HTML)
 
+    def test_held_matchups_make_one_issue_per_source(self):
+        start = HTML.index("function heldMatchupAttention(")
+        end = HTML.index("\nfunction buildTodayModel(", start)
+        script = """
+const assert=require('node:assert/strict');
+const DATA={global:{sources:[
+  {id:'wnba',sport:'Basketball',league:'WNBA',region:'United States',unresolved_matchups_held:2,
+   official_schedule_url:'https://www.wnba.com/schedule'},
+  {id:'riot',sport:'Esports',league:'Valorant calendar',region:'International',unresolved_matchups_held:4},
+  {id:'other',sport:'Rugby',league:'Rugby',unresolved_matchups_held:0},
+  {id:'discovery',sport:'Esports',league:'Unapproved',approved_catalog:false,unresolved_matchups_held:1}
+]}};
+""" + HTML[start:end] + """
+const cards=heldMatchupAttention('2026-09-28');
+assert.equal(cards.length,2);
+assert.deepEqual(cards.map(c=>c.event),[
+ '2 scheduled matchups held · opponents pending',
+ '4 scheduled matchups held · opponents pending']);
+assert(cards.every(c=>c.type==='MATCHUP NOT VERIFIED'&&c.severity==='AMBER'));
+assert.match(cards[0].staff_action,/exact teams/);
+"""
+        subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
+        self.assertIn('...heldMatchupAttention(start)', HTML)
+
     def test_past_due_ncaa_futures_alert_occurs_once(self):
         start = HTML.index("function collegeFuturesAttention(")
         end = HTML.index("\nfunction renderCollege(", start)

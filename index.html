@@ -1103,7 +1103,7 @@ function renderIssueBoard(cards,events){
       const severity=red?'red':'amber';
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
-      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED'].includes(c.type));
+      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED','MATCHUP NOT VERIFIED'].includes(c.type));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
       const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
@@ -1308,6 +1308,20 @@ function failedScheduleSourceAttention(events,dayKey){
   }));
 }
 
+function heldMatchupAttention(dayKey){
+  return (DATA.global?.sources||[]).filter(source=>
+    source.approved_catalog!==false&&Number(source.unresolved_matchups_held||0)>0
+  ).map(source=>({
+    severity:'AMBER',type:'MATCHUP NOT VERIFIED',sport:source.sport,
+    league:source.league,region:source.region,
+    event:`${source.unresolved_matchups_held} scheduled matchup${source.unresolved_matchups_held===1?'':'s'} held · opponents pending`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:'The publisher lists a fixture slot with at least one TBD/TBA opponent. It is held out of scheduled approved activity until both participants are named and scope can be checked.',
+    source_url:source.official_schedule_url||source.endpoint||'',
+    staff_action:'Check the current publisher matchups and operator menu. Verify the exact teams and any participant restrictions before clearing these fixtures.'
+  }));
+}
+
 function buildTodayModel(){
   const global=DATA.global||{events:[]};
   const pq=DATA.priority||{cards:[]};
@@ -1350,7 +1364,7 @@ function buildTodayModel(){
   for(let i=0;i<8;i++)combatWindowAlerts.push(...combatBoutReviewAlerts(addDays(start,i),events));
 
   const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start),
-    ...failedScheduleSourceAttention(events,start)];
+    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start)];
   const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
   const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+boxingWindowAlerts.length+combatWindowAlerts.length+coverageAlerts.length;
 
