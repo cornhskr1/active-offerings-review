@@ -29,6 +29,18 @@ class QslCupFixtureTests(unittest.TestCase):
         self.assertEqual("2026-10-01T17:15:00Z", events[-1]["start_time"])
         self.assertTrue(all(x["source_id"] == self.source["id"] for x in events))
 
+    def test_completed_results_leave_six_upcoming_cards(self):
+        rows = self.page.split('<tr>')
+        self.assertEqual(10, len(rows))
+        completed = ''.join('<tr>' + row.split('</tr>')[0].split('<a href=')[0] + '</tr>'
+                            for row in rows[1:4])
+        page = self.page.replace('<tr>' + '<tr>'.join(rows[1:4]), '')
+        page += '<div class="tab-pane fade show active" id="group-121-res"><table>' + completed + '</table></div>'
+        events = parse_qsl_cup_fixtures(page, self.source, self.now)
+        self.assertEqual([f'qsl-cup-2026-27-{i}' for i in range(13, 19)], [e['id'] for e in events])
+        with self.assertRaises(ValueError):
+            parse_qsl_cup_fixtures(page.replace('<span>10</span>', '<span>12</span>'), self.source, self.now)
+
     def test_missing_duplicate_or_stale_round_fails_closed(self):
         for page, source, now in (
             (self.page, {**self.source, "catalog_terms": ["Qatar Cup | Men"]}, self.now),

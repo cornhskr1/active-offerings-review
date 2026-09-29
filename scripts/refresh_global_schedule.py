@@ -32,7 +32,7 @@ from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
-from vpf_fixture_adapter import parse_vleague
+from vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round, MOBILE_URL
 from pfl_uz_fixture_adapter import parse_superleague as parse_pfl_uz_superleague, TOURNAMENT_ID as PFL_UZ_TOURNAMENT_ID, SEASON_ID as PFL_UZ_SEASON_ID
 from flf_bgl_fixture_adapter import overview as flf_bgl_overview, match_card as flf_bgl_match_card
 from nzs_prvaliga_fixture_adapter import next_round as nzs_next_round, verified_match as nzs_verified_match
@@ -2781,11 +2781,19 @@ for source in CFG.get("sources",[]):
     if source.get("source_type")=="official-vpf-vleague-fixtures":
         published_count=held_untimed=0
         candidates=[]
+        fallback_used=False
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
-            response.raise_for_status()
-            response.encoding="utf-8"
-            fixtures,held_untimed,published_count=parse_vleague(response.text,source)
+            if response.status_code==403:
+                mobile=requests.get(MOBILE_URL,headers=HEADERS,timeout=30)
+                mobile.raise_for_status()
+                mobile.encoding="utf-8"
+                fixtures,published_count=parse_vleague_mobile_round(mobile.text,source,NOW_UTC)
+                fallback_used=True
+            else:
+                response.raise_for_status()
+                response.encoding="utf-8"
+                fixtures,held_untimed,published_count=parse_vleague(response.text,source)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
                 if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
@@ -2799,6 +2807,7 @@ for source in CFG.get("sources",[]):
                 seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_regular_fixtures":published_count,
+            "mobile_round_fallback":fallback_used,
             "undated_or_scope_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue

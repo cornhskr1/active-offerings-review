@@ -1,6 +1,8 @@
 import unittest
+import datetime
+from pathlib import Path
 
-from scripts.vpf_fixture_adapter import parse_vleague
+from scripts.vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round
 
 
 SOURCE = {"id": "soccer-afc-vietnam-vleague-1-men", "sport": "Soccer",
@@ -46,6 +48,19 @@ class VpfFixtureTests(unittest.TestCase):
             parse_vleague(season_page().replace("sid=154439", "sid=other", 1), SOURCE)
         with self.assertRaisesRegex(ValueError, "182-match"):
             parse_vleague(season_page().replace('class="jstable-row"', 'class="missing-row"', 1), SOURCE)
+
+    def test_official_mobile_round_after_calendar_403(self):
+        page = (Path(__file__).parent / "fixtures/vpf_mobile_round_three.html").read_text()
+        now = datetime.datetime(2026, 9, 28, tzinfo=datetime.timezone.utc)
+        events, rows = parse_vleague_mobile_round(page, SOURCE, now)
+        self.assertEqual((6, 7), (len(events), rows))
+        self.assertEqual("2026-10-08T12:15:00Z", events[0]["start_time"])
+        self.assertEqual("HLHT at TCVT", events[0]["name"])
+        for damaged in (page.replace('>ĐNFC</a>', '>ĐNFC</a>'.replace('ĐNFC', ''), 1),
+                        page.replace("Vòng 3 LPBank", "Vòng 3 SACOMBANK", 1),
+                        page.replace('class="jo-match-in-week"', 'class="missing"', 1)):
+            with self.assertRaises(ValueError):
+                parse_vleague_mobile_round(damaged, SOURCE, now)
 
 
 if __name__ == "__main__":
