@@ -1580,11 +1580,11 @@
       "sport": "Soccer",
       "league": "Montenegrin First League | Men",
       "region": "Montenegro",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
+      "source_type": "official-fscg-cfl-round",
+      "coverage_status": "partial",
       "endpoint": "https://fscg.me/takmicenja/meridianbet-1-cfl/",
       "official_schedule_url": "https://fscg.me/takmicenja/meridianbet-1-cfl/",
-      "source_note": "FSCG 2026/27 senior top-division results include August 1 opener; spring end and play-off scope remain unverified. Manual calendar only, no unattended adapter.",
+      "source_note": "FSCG publishes the exact 2026–27 Meridianbet 1. CFL schedule with named clubs, dates, kickoffs and venues. The scoped adapter verifies the five round-10 fixtures on October 10 at 17:00 local time; later published rounds remain outside this first adapter slice and the 2027 end/play-off scope is still incomplete.",
       "catalog_terms": [
         "Montenegrin First League | Men"
       ]
@@ -2027,13 +2027,33 @@
       "sport": "Soccer",
       "league": "Serbian SuperLiga | Men",
       "region": "Serbia",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.superliga.rs/pregled-odigranih-meceva-1-kola-mozzart-bet-super-lige-srbije-3/",
-      "official_schedule_url": "https://www.superliga.rs/pregled-odigranih-meceva-1-kola-mozzart-bet-super-lige-srbije-3/",
-      "source_note": "League confirms July 17–19 opening round; final and post-season bounds plus unattended adapter remain pending.",
+      "source_type": "official-event-window",
+      "coverage_status": "published-calendar",
+      "endpoint": "https://www.superliga.rs/sezona/raspored-i-rezultati/",
+      "official_schedule_url": "https://www.superliga.rs/sezona/raspored-i-rezultati/",
+      "source_note": "The official Mozzart Bet SuperLiga schedule publishes named future round pairings for October 10 and October 17, 2026, but current kickoff fields remain --:--. Treat these as official round windows only; do not emit timed match cards until exact kickoffs are published.",
       "catalog_terms": [
         "Serbian SuperLiga | Men"
+      ],
+      "official_events": [
+        {
+          "source_id": "uefa-soccer-serbia-serbian-superliga-men",
+          "league": "Serbian SuperLiga | Men",
+          "name": "Serbian SuperLiga 2026–27 · Round 11",
+          "start_date": "2026-10-10",
+          "end_date": "2026-10-10",
+          "location": "Serbia",
+          "official_schedule_url": "https://www.superliga.rs/sezona/raspored-i-rezultati/"
+        },
+        {
+          "source_id": "uefa-soccer-serbia-serbian-superliga-men",
+          "league": "Serbian SuperLiga | Men",
+          "name": "Serbian SuperLiga 2026–27 · Round 12",
+          "start_date": "2026-10-17",
+          "end_date": "2026-10-17",
+          "location": "Serbia",
+          "official_schedule_url": "https://www.superliga.rs/sezona/raspored-i-rezultati/"
+        }
       ]
     },
     {

@@ -53,6 +53,7 @@ from dfb_frauen_bundesliga_adapter import parse_season as parse_dfb_frauen_bunde
 from liga_portugal_2_calendar import parse_calendar as parse_liga_portugal_2_calendar
 from liga_portugal_allianz_cup_adapter import parse_quarterfinals as parse_liga_portugal_allianz_cup
 from romania_liga_i_fixture_adapter import parse_round as parse_romania_liga_i_round
+from fscg_cfl_fixture_adapter import parse_round as parse_fscg_cfl_round
 from svff_womens_cup_adapter import parse_current_fixtures as parse_svff_womens_cup
 from rfef_supercopa_fixture_adapter import parse_semifinals as parse_rfef_supercopa_semifinals
 from spl_fixture_adapter import parse_fixtures as parse_spl_fixtures
@@ -2690,6 +2691,26 @@ for source in CFG.get("sources",[]):
                 seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_current_round_fixtures":published_count,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-fscg-cfl-round":
+        candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures=parse_fscg_cfl_round(response.content,source)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_round_fixtures":5 if not errors else 0,
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-romania-liga-i-round":

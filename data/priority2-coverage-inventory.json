@@ -10,10 +10,10 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 338,
-      "ADAPTER_GAP": 195,
+      "ADAPTER_CONFIGURED": 339,
+      "ADAPTER_GAP": 193,
       "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 145
+      "OFFICIAL_WINDOW_ONLY": 146
     },
     "season_states": {
       "DATED_WINDOW": 220,
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 205,
+    "reported_gap_labels": 203,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 160,
+      "adapter_gaps": 158,
       "pending_dates": 87
     },
     "Surfing": {
@@ -11581,13 +11581,13 @@
       "season_window": "August 1, 2026 first league fixture–2027 final round pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-montenegro-montenegrin-first-league-men",
-          "type": "coverage-gap",
+          "type": "official-fscg-cfl-round",
           "configured_league": "Montenegrin First League | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -12567,14 +12567,14 @@
       "identity_key": "soccer-serbia-serbian-superliga-men",
       "approval_parent": "Serbian SuperLiga | Men",
       "kind": "catalog",
-      "season_window": "July 17, 2026–2027 final rounds pending",
+      "season_window": "July 17, 2026–at least October 17, 2026 published rounds; 2027 final rounds pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
       "sources": [
         {
           "id": "uefa-soccer-serbia-serbian-superliga-men",
-          "type": "coverage-gap",
+          "type": "official-event-window",
           "configured_league": "Serbian SuperLiga | Men",
           "refresh_ok": true,
           "events_in_window": 0
