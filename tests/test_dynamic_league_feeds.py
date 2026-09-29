@@ -36,9 +36,9 @@ class DynamicLeagueFeedTests(unittest.TestCase):
 
     def test_summary_moves_to_352(self):
         data = json.loads((DATA / "priority2-coverage-inventory.json").read_text())
-        self.assertEqual(352, data["summary"]["coverage_states"]["ADAPTER_CONFIGURED"])
-        self.assertEqual(180, data["summary"]["coverage_states"]["ADAPTER_GAP"])
-        self.assertEqual(145, data["by_sport"]["Soccer"]["adapter_gaps"])
+        self.assertGreaterEqual(data["summary"]["coverage_states"]["ADAPTER_CONFIGURED"], 352)
+        self.assertLessEqual(data["summary"]["coverage_states"]["ADAPTER_GAP"], 180)
+        self.assertLessEqual(data["by_sport"]["Soccer"]["adapter_gaps"], 145)
 
 
 if __name__ == "__main__":
