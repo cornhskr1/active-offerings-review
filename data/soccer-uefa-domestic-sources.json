@@ -773,14 +773,15 @@
       "sport": "Soccer",
       "league": "Veikkausliiga | Men",
       "region": "Finland",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.veikkausliiga.com/uutiset/2025/12/19/veikkausliigan-runkosarjan-2026-otteluohjelma-julkaistaan-ennatyksellisen-varhain-avauspaiva-44-aivan-taynna-otteluita",
+      "source_type": "espn-daily",
+      "coverage_status": "partial",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fin.1/scoreboard",
       "official_schedule_url": "https://www.veikkausliiga.com/uutiset/2025/12/19/veikkausliigan-runkosarjan-2026-otteluohjelma-julkaistaan-ennatyksellisen-varhain-avauspaiva-44-aivan-taynna-otteluita",
-      "source_note": "Official league opening and championship-round dates; qualification boundary and unattended adapter remain pending.",
+      "source_note": "Connected ESPN Finnish Veikkausliiga daily scoreboard for the approved men's top division. Official Veikkausliiga material establishes the 2026 league phase through November 8; qualification ties remain outside this source scope. Require every review-window day to refresh successfully before publishing cards.",
       "catalog_terms": [
         "Veikkausliiga | Men"
-      ]
+      ],
+      "espn_require_all_days": true
     },
     {
       "id": "uefa-soccer-finland-finnish-cup-men",
@@ -1228,14 +1229,15 @@
       "sport": "Soccer",
       "league": "Israeli Premier League / Ligat Ha’Al | Men",
       "region": "Israel",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.football.org.il/leagues/games/game/?game_id=1120561",
+      "source_type": "espn-daily",
+      "coverage_status": "partial",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/isr.1/scoreboard",
       "official_schedule_url": "https://www.football.org.il/leagues/games/game/?game_id=1120561",
-      "source_note": "IFA senior WINNER league round-one match record dates August 22; full post-season boundary is not verified. No unattended fixture adapter is connected; dates do not establish catalog approval.",
+      "source_note": "Connected ESPN Israeli Premier League daily scoreboard for the approved senior men's top division. IFA establishes the 2026–27 league identity and August 22 opening; championship/relegation phase boundaries remain separately documented. Require every review-window day to refresh successfully before publishing cards.",
       "catalog_terms": [
         "Israeli Premier League / Ligat Ha’Al | Men"
-      ]
+      ],
+      "espn_require_all_days": true
     },
     {
       "id": "uefa-soccer-israel-israel-state-cup-men",

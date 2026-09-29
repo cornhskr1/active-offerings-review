@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 339,
-      "ADAPTER_GAP": 193,
+      "ADAPTER_CONFIGURED": 343,
+      "ADAPTER_GAP": 189,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 146
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 203,
+    "reported_gap_labels": 199,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 158,
+      "adapter_gaps": 154,
       "pending_dates": 87
     },
     "Surfing": {
@@ -10505,13 +10505,13 @@
       "season_window": "August 22, 2026 first senior round–2027 championship/relegation rounds pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-israel-israeli-premier-league-ligat-ha-al-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Israeli Premier League / Ligat Ha’Al | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -10631,13 +10631,13 @@
       "season_window": "February 28–December 6, 2026 league phases; relegation tie scope pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-korea-k-league-1-men",
-          "type": "coverage-gap",
+          "type": "official-kleague-next-fixture",
           "configured_league": "K League 1 | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -10652,13 +10652,13 @@
       "season_window": "February 28–December 6, 2026 league and promotion play-offs; later tie scope pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "soccer-afc-korea-k-league-2-men",
-          "type": "coverage-gap",
+          "type": "official-kleague-next-fixture",
           "configured_league": "K League 2 | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -14276,13 +14276,13 @@
       "season_window": "April 4–November 8, 2026 league phases; qualification boundary pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-finland-veikkausliiga-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Veikkausliiga | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],

@@ -45,6 +45,7 @@ class SwedenFinlandScopeTests(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertFalse(self.events[key]['season_window_complete'])
                 self.assertEqual('PARTIAL_WINDOW', self.inventory[key]['season_state'])
+        self.assertEqual('ADAPTER_CONFIGURED', self.inventory['soccer-finland-veikkausliiga-men']['coverage_state'])
 
 
 if __name__ == '__main__':
