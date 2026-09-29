@@ -72,7 +72,7 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
         self.assertEqual("2027-01-09", cup["season_end_date"])
         self.assertNotEqual(league["source_id"], cup["source_id"])
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory[league["key"]]["coverage_state"])
-        self.assertEqual("ADAPTER_GAP", self.inventory[cup["key"]]["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[cup["key"]]["coverage_state"])
 
 
 if __name__ == "__main__":
