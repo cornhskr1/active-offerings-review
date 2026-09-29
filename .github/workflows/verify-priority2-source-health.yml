@@ -9,6 +9,9 @@ on:
       - "scripts/refresh_global_schedule.py"
       - "scripts/nzr_npc_fixture_adapter.py"
       - "scripts/nzr_farah_palmer_fixture_adapter.py"
+      - "scripts/vpf_fixture_adapter.py"
+      - "tests/test_vpf_fixture_adapter.py"
+      - "tests/fixtures/vpf_topbar_round_three.html"
       - ".github/workflows/verify-priority2-source-health.yml"
 
 permissions:
@@ -75,4 +78,30 @@ jobs:
           source={'catalog_terms':['Novo Basquete Brasil (NBB) | Men']}
           page=fetch_nbb_schedule('https://lnb.com.br/nbb/tabela-de-jogos')
           print('Verified NBB fixtures:',len(parse_nbb_fixtures(page,source)))
+          PY
+  vpf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install parser dependencies
+        run: python3 -m pip install --quiet requests lxml
+      - name: Probe three official VPF paths without publishing data
+        run: |
+          python3 - <<'PY'
+          import datetime,requests,sys
+          sys.path.insert(0,'scripts')
+          from vpf_fixture_adapter import SEASON_URL,MOBILE_URL,TOPBAR_URL,parse_vleague_topbar_round
+          source={'id':'soccer-afc-vietnam-vleague-1-men','sport':'Soccer',
+                  'league':'V.League 1 | Men','region':'Vietnam','catalog_terms':['V.League 1 | Men']}
+          for label,url in [('season',SEASON_URL),('mobile',MOBILE_URL),('topbar',TOPBAR_URL)]:
+              try:
+                  response=requests.get(url,headers={'User-Agent':'Mozilla/5.0'},timeout=20)
+                  print(f'{label}: HTTP {response.status_code}',flush=True)
+                  if label=='topbar' and response.ok:
+                      response.encoding='utf-8'
+                      fixtures,rows=parse_vleague_topbar_round(response.text,source,datetime.datetime.now(datetime.timezone.utc))
+                      print(f'topbar: {len(fixtures)} future fixtures in {rows} verified cards',flush=True)
+              except Exception as exc:
+                  print(f'{label}: ACCESS_OR_PARSE_ERROR {str(exc)[:150]}',flush=True)
           PY

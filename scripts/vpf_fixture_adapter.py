@@ -14,6 +14,7 @@ EDITION_ID = "154439"
 HANOI = ZoneInfo("Asia/Ho_Chi_Minh")
 SEASON_URL = "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1"
 MOBILE_URL = "https://vpf.vn/mobile/"
+TOPBAR_URL = "https://vpf.vn/vl1/"
 
 
 def _team(row, side):
@@ -176,4 +177,77 @@ def parse_vleague_mobile_round(page, source, now):
                        "season_stage": "REGULAR", "location": None, "source_endpoint": links[0].get("href")})
     if len(clubs) != 14 or not events:
         raise ValueError("VPF mobile round clubs or future fixtures changed")
+    return events, len(cards)
+
+
+def parse_vleague_topbar_round(page, source, now):
+    """Read the edition-scoped seven-match topbar round on VPF's league page."""
+    if source["id"] != SOURCE_ID or source.get("catalog_terms") != [source["league"]]:
+        raise ValueError("VPF catalog scope changed")
+    doc = html.fromstring(page)
+    panels = doc.xpath('//*[@id="topbar-ltd-vleague"]')
+    if len(panels) != 1:
+        raise ValueError("VPF topbar league panel changed")
+    panel = panels[0]
+    tabs = doc.xpath('//*[@data-league="vleague"]//span[contains(@class,"jo-title-text")]')
+    if len(tabs) != 1 or "LPBank 2026/27" not in tabs[0].text_content():
+        raise ValueError("VPF topbar league edition changed")
+    widgets = panel.xpath('.//div[contains(@class,"jscaruselcont")]')
+    if len(widgets) != 1:
+        raise ValueError("VPF topbar widget changed")
+    cards = widgets[0].xpath('.//li[contains(@class,"jo-topbar-match")]')
+    if len(cards) != 7:
+        raise ValueError("VPF topbar round is incomplete")
+    events, seen, clubs, rounds = [], set(), set(), set()
+    for card in cards:
+        label = card.xpath('string(.//div[contains(@class,"jo-matchday-name")])').strip()
+        if not re.fullmatch(r"Vòng \d+", label):
+            raise ValueError("VPF topbar round changed")
+        rounds.add(label)
+        date_label = card.xpath('string(.//div[contains(@class,"jo-match-time")][1])').strip()
+        match = re.fullmatch(r"(\d{1,2})/(\d{2}) (\d{1,2}:\d{2})", date_label)
+        if not match:
+            raise ValueError("VPF topbar fixture date changed")
+        month = int(match.group(2))
+        date = datetime.date(2026 if month >= 9 else 2027, month, int(match.group(1)))
+        if not datetime.date(2026, 9, 4) <= date <= datetime.date(2027, 5, 22):
+            raise ValueError("VPF topbar date outside edition")
+        teams = []
+        for side in ("home", "away"):
+            links = card.xpath(f'.//td[contains(@class,"jo-{side}-team")]//div[contains(@class,"js_div_particName")]/a')
+            if len(links) != 1:
+                raise ValueError("VPF topbar clubs changed")
+            link = urlparse(links[0].get("href", ""))
+            if (link.netloc != "vpf.vn" or not re.fullmatch(r"/team/[a-z0-9-]+/", link.path)
+                    or parse_qs(link.query).get("sid") != [EDITION_ID]):
+                raise ValueError("VPF topbar club edition changed")
+            teams.append((links[0].text_content().strip(), link.path))
+        if not all(name for name, _ in teams) or teams[0][1] == teams[1][1]:
+            raise ValueError("VPF topbar club pairing changed")
+        clubs.update(team_id for _, team_id in teams)
+        links = card.xpath('.//td[contains(@class,"jo-match-score")]//div[contains(@class,"jo-fixture")]//a')
+        if len(links) != 1:
+            raise ValueError("VPF topbar match link changed")
+        link = urlparse(links[0].get("href", ""))
+        if (link.netloc != "vpf.vn" or not re.fullmatch(r"/match/[a-z0-9-]+/", link.path)
+                or link.path in seen):
+            raise ValueError("VPF topbar match identity changed")
+        seen.add(link.path)
+        clock = links[0].text_content().strip()
+        if re.fullmatch(r"\d+\s*-\s*\d+", clock):
+            continue
+        if clock != match.group(3):
+            raise ValueError("VPF topbar kickoff disagrees with date label")
+        start = datetime.datetime.combine(date, datetime.time.fromisoformat(clock), HANOI)
+        if start.astimezone(datetime.timezone.utc) <= now:
+            raise ValueError("VPF topbar round has stale fixture")
+        events.append({"id": f"vpf-vleague1-{link.path.strip('/').split('/')[-1]}",
+                       "source_id": source["id"], "sport": source["sport"],
+                       "league": source["league"], "region": source["region"],
+                       "name": f"{teams[1][0]} at {teams[0][0]}",
+                       "start_time": start.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
+                       "status": "UPCOMING", "status_detail": "Official 2026–27 V.League 1 current round",
+                       "season_stage": "REGULAR", "location": None, "source_endpoint": links[0].get("href")})
+    if len(rounds) != 1 or len(clubs) != 14 or not events:
+        raise ValueError("VPF topbar round clubs or fixtures changed")
     return events, len(cards)

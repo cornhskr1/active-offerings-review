@@ -35,7 +35,8 @@ from official_window_activity import reviewable_window_start
 from schedule_matchup_guard import unresolved_matchup
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
-from vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round, MOBILE_URL
+from vpf_fixture_adapter import (parse_vleague, parse_vleague_mobile_round,
+                                 parse_vleague_topbar_round, MOBILE_URL, TOPBAR_URL)
 from pfl_uz_fixture_adapter import parse_superleague as parse_pfl_uz_superleague, TOURNAMENT_ID as PFL_UZ_TOURNAMENT_ID, SEASON_ID as PFL_UZ_SEASON_ID
 from flf_bgl_fixture_adapter import overview as flf_bgl_overview, match_card as flf_bgl_match_card
 from nzs_prvaliga_fixture_adapter import next_round as nzs_next_round, verified_match as nzs_verified_match
@@ -2911,14 +2912,22 @@ for source in CFG.get("sources",[]):
         published_count=held_untimed=0
         candidates=[]
         fallback_used=False
+        topbar_used=False
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
             if response.status_code==403:
                 mobile=requests.get(MOBILE_URL,headers=HEADERS,timeout=30)
-                mobile.raise_for_status()
-                mobile.encoding="utf-8"
-                fixtures,published_count=parse_vleague_mobile_round(mobile.text,source,NOW_UTC)
-                fallback_used=True
+                if mobile.status_code==403:
+                    topbar=requests.get(TOPBAR_URL,headers=HEADERS,timeout=30)
+                    topbar.raise_for_status()
+                    topbar.encoding="utf-8"
+                    fixtures,published_count=parse_vleague_topbar_round(topbar.text,source,NOW_UTC)
+                    topbar_used=True
+                else:
+                    mobile.raise_for_status()
+                    mobile.encoding="utf-8"
+                    fixtures,published_count=parse_vleague_mobile_round(mobile.text,source,NOW_UTC)
+                    fallback_used=True
             else:
                 response.raise_for_status()
                 response.encoding="utf-8"
@@ -2937,6 +2946,7 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_regular_fixtures":published_count,
             "mobile_round_fallback":fallback_used,
+            "topbar_round_fallback":topbar_used,
             "undated_or_scope_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue

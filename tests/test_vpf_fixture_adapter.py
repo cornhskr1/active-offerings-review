@@ -2,7 +2,8 @@ import unittest
 import datetime
 from pathlib import Path
 
-from scripts.vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round
+from scripts.vpf_fixture_adapter import (parse_vleague, parse_vleague_mobile_round,
+                                         parse_vleague_topbar_round)
 
 
 SOURCE = {"id": "soccer-afc-vietnam-vleague-1-men", "sport": "Soccer",
@@ -61,6 +62,22 @@ class VpfFixtureTests(unittest.TestCase):
                         page.replace('class="jo-match-in-week"', 'class="missing"', 1)):
             with self.assertRaises(ValueError):
                 parse_vleague_mobile_round(damaged, SOURCE, now)
+
+    def test_official_topbar_round_matches_mobile_and_fails_closed(self):
+        now = datetime.datetime(2026, 9, 29, tzinfo=datetime.timezone.utc)
+        page = (Path(__file__).parent / "fixtures/vpf_topbar_round_three.html").read_text()
+        mobile = (Path(__file__).parent / "fixtures/vpf_mobile_round_three.html").read_text()
+        events, rows = parse_vleague_topbar_round(page, SOURCE, now)
+        mobile_events, _ = parse_vleague_mobile_round(mobile, SOURCE, now)
+        self.assertEqual((len(events), rows), (6, 7))
+        self.assertEqual({(e["id"], e["start_time"]) for e in events},
+                         {(e["id"], e["start_time"]) for e in mobile_events})
+        for damaged in (page.replace("LPBank 2026/27", "LPBank 2025/26", 1),
+                        page.replace("sid=154439", "sid=other"),
+                        page.replace('class="jo-topbar-match"', 'class="missing"', 1),
+                        page.replace("08/10 19:15", "08/10 19:00", 1)):
+            with self.assertRaises(ValueError):
+                parse_vleague_topbar_round(damaged, SOURCE, now)
 
 
 if __name__ == "__main__":

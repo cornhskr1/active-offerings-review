@@ -699,7 +699,7 @@
       "coverage_status": "partial",
       "endpoint": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
       "official_schedule_url": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
-      "source_note": "VPF's season calendar publishes 182 pairings, with month-only and anomalous pairings held when accessible. If that endpoint returns 403, the official mobile page supplies only its complete seven-match current league round; it does not establish season-wide health. Only named, exact timed future fixtures enter Review Today. Later amendments require refresh verification.",
+      "source_note": "VPF's season calendar publishes 182 pairings, with month-only and anomalous pairings held when accessible. If that endpoint returns 403, the official mobile page supplies its complete seven-match current league round; if mobile also returns 403, VPF’s official league topbar can supply the same edition-scoped complete round. Neither fallback establishes season-wide health. Only named, exact timed future fixtures enter Review Today. Later amendments require refresh verification.",
       "catalog_terms": [
         "V.League 1 | Men"
       ]
