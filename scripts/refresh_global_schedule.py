@@ -32,6 +32,7 @@ from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
 from dbu_betinia_fixture_adapter import round_fixtures as dbu_betinia_round, verified_fixture as dbu_betinia_detail
 from official_window_activity import reviewable_window_start
+from schedule_matchup_guard import unresolved_matchup
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
 from vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round, MOBILE_URL
@@ -3308,6 +3309,16 @@ for source in CFG.get("sources",[]):
 discovered_event_count=len(events)
 rejected_events=[ev for ev in events if not event_is_approved(ev)]
 events=[ev for ev in events if event_is_approved(ev)]
+held_matchups=[ev for ev in events if unresolved_matchup(ev)]
+if held_matchups:
+    held_ids={id(ev) for ev in held_matchups}
+    events=[ev for ev in events if id(ev) not in held_ids]
+    for state in source_status:
+        routed_ids={state.get("id"),*(state.get("scope_source_ids") or [])}
+        held_count=sum(ev.get("source_id") in routed_ids for ev in held_matchups)
+        if held_count:
+            state["unresolved_matchups_held"]=held_count
+            state["events"]=max(0,int(state.get("events") or 0)-held_count)
 for ev in events:
     ev["catalog_approval"]="EXPLICIT SOURCE MAPPING"
 for state in source_status:
@@ -3464,6 +3475,7 @@ out={
     "event_count":len(events),
     "discovered_event_count":discovered_event_count,
     "catalog_rejected_event_count":len(rejected_events),
+    "unresolved_matchup_count":len(held_matchups),
     "events":events,
     "tour_calendars":tour_calendars,
     "sources":source_status,
