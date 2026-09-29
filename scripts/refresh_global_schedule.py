@@ -30,6 +30,7 @@ from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
 from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
+from dbu_betinia_fixture_adapter import round_fixtures as dbu_betinia_round, verified_fixture as dbu_betinia_detail
 from central_europe_league_fixtures import parse_fixtures as parse_central_europe_fixtures
 from belgian_pro_league_fixtures import parse_challenger_round
 from vpf_fixture_adapter import parse_vleague, parse_vleague_mobile_round, MOBILE_URL
@@ -2323,6 +2324,32 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
             "held_lower_tier":held_lower_tier,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-dbu-betinia-round":
+        published_count=verified_count=0
+        candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures,published_count=dbu_betinia_round(response.text,source)
+            for fixture in fixtures:
+                detail=requests.get(fixture[-1],headers=HEADERS,timeout=25)
+                detail.raise_for_status()
+                parsed=dbu_betinia_detail(detail.text,fixture,source)
+                verified_count+=1
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_phase_pairings":published_count,
+            "verified_round_fixtures":verified_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-oefb-round-fixtures":
