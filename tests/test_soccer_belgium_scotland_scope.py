@@ -44,8 +44,9 @@ class BelgiumScotlandScopeTests(unittest.TestCase):
         self.assertEqual('ADAPTER_CONFIGURED', self.inventory[challenger['key']]['coverage_state'])
         self.assertEqual('partial', self.sources[challenger['source_id']]['coverage_status'])
         cup = self.events['soccer-belgium-belgian-cup-beker-van-belgi-men']
-        self.assertTrue(cup['season_hold'])
-        self.assertEqual('ADAPTER_GAP', self.inventory[cup['key']]['coverage_state'])
+        self.assertNotIn('season_hold', cup)
+        self.assertEqual('OFFICIAL_WINDOW_ONLY', self.inventory[cup['key']]['coverage_state'])
+        self.assertEqual('PARTIAL_WINDOW', self.inventory[cup['key']]['season_state'])
         self.assertEqual('ADAPTER_GAP', self.inventory[playoffs['key']]['coverage_state'])
 
     def test_belgian_supercup_is_only_a_single_official_window(self):
