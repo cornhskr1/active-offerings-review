@@ -54,6 +54,12 @@ class BalkanScopeTests(unittest.TestCase):
             [(event["start_date"], event["end_date"]) for event in source["official_events"]],
         )
 
+    def test_bosnia_top_flight_has_dynamic_official_adapter(self):
+        key = "soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men"
+        source = self.sources[self.events[key]["source_id"]]
+        self.assertEqual("official-bih-wwin-fixtures", source["source_type"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+
     def test_bosnia_supercup_stays_held_after_newer_postponement(self):
         key = "soccer-bosnia-and-herzegovina-bosnian-super-cup-men"
         event = self.events[key]
@@ -64,6 +70,7 @@ class BalkanScopeTests(unittest.TestCase):
 
     def test_other_unverified_balkan_competitions_remain_fail_closed(self):
         changed = {
+            "soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men",
             "soccer-montenegro-montenegrin-first-league-men",
             "soccer-serbia-serbian-superliga-men",
         }

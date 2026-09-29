@@ -130,11 +130,11 @@
       "sport": "Soccer",
       "league": "Azerbaijan Premier League (APL) | Men",
       "region": "Azerbaijan",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.affa.az/index.php/yarlar/misli-premyer-liqas/tqvim/i-dvr/2436",
+      "source_type": "official-affa-latest-round",
+      "coverage_status": "partial",
+      "endpoint": "https://www.affa.az/index.php?lang=az&r=77",
       "official_schedule_url": "https://www.affa.az/index.php/yarlar/misli-premyer-liqas/tqvim/i-dvr/2436",
-      "source_note": "AFFA publishes the first 2026–27 league rounds beginning August 14; final matchday and any qualification scope remain unverified. Official page is a manual reference, not an unattended fixture adapter.",
+      "source_note": "AFFA's Premier League news page publishes round appointment notices with exact senior pairings, kickoffs, and venues. The adapter discovers the latest Misli Premier League appointment notice and parses its timed fixtures; later rounds remain publication-dependent.",
       "catalog_terms": [
         "Azerbaijan Premier League (APL) | Men"
       ]
@@ -281,11 +281,11 @@
       "sport": "Soccer",
       "league": "Premier League of Bosnia and Herzegovina | Men",
       "region": "Bosnia and Herzegovina",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.nfsbih.ba/en/news/football-m/wwin-league-bh/wwin-league-bih-competition-draw-held/",
-      "official_schedule_url": "https://www.nfsbih.ba/en/news/football-m/wwin-league-bh/wwin-league-bih-competition-draw-held/",
-      "source_note": "2026–27 Wwin League senior opening round is August 8–9. The final boundary and unattended fixture adapter remain pending; youth league schedules are separate.",
+      "source_type": "official-bih-wwin-fixtures",
+      "coverage_status": "partial",
+      "endpoint": "https://www.nfsbih.ba/en/news/football-m/wwin-league-bh/",
+      "official_schedule_url": "https://www.nfsbih.ba/en/news/football-m/wwin-league-bh/",
+      "source_note": "NS/FSBiH's Wwin League page publishes exact senior fixture tables with dates and kickoff times. The adapter parses the current published timed fixtures and admits only future review-window cards; later rounds remain federation-dependent.",
       "catalog_terms": [
         "Premier League of Bosnia and Herzegovina | Men"
       ]
@@ -1530,11 +1530,11 @@
       "sport": "Soccer",
       "league": "Maltese Premier League | Men",
       "region": "Malta",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://matchcentre.mfa.com.mt/team/39617/58539/table",
-      "official_schedule_url": "https://matchcentre.mfa.com.mt/team/39617/58539/table",
-      "source_note": "Malta FA matchcentre lists the 2026/27 VBET Malta Premier opening phase, and the league organizer scheduled its August 14 start. Final-phase dates remain unverified. No unattended fixture adapter is connected; dates do not establish catalog approval. Organizer opening-round fixture announcement: https://www.maltafootball.com/2026/07/01/vbet-malta-premier-2026-27-opening-round-match-sequence-released/ .",
+      "source_type": "official-malta-ticket-fixtures",
+      "coverage_status": "partial",
+      "endpoint": "https://tickets.mfa.com.mt/",
+      "official_schedule_url": "https://matchcentre.mfa.com.mt/competition/58539",
+      "source_note": "Malta FA's official ticket portal publishes named, dated, timed VBET Malta Premier fixtures. The adapter verifies the current October 9–11 senior league cards from the official MFA ticket publication; later matchdays remain outside this slice.",
       "catalog_terms": [
         "Maltese Premier League | Men"
       ]

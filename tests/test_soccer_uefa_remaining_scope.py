@@ -45,6 +45,9 @@ class RemainingUefaScopeTests(unittest.TestCase):
                 self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
                 self.assertEqual("espn-daily", self.sources[e["source_id"]]["source_type"])
                 self.assertTrue(self.sources[e["source_id"]]["endpoint"].endswith("isr.1/scoreboard"))
+            elif key == "soccer-malta-maltese-premier-league-men":
+                self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
+                self.assertEqual("official-malta-ticket-fixtures", self.sources[e["source_id"]]["source_type"])
             else:
                 self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
         self.assertIn("separately scoped", self.events["soccer-israel-toto-cup-men"]["season_basis"])
