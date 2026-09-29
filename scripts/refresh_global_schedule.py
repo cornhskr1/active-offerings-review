@@ -56,6 +56,7 @@ from romania_liga_i_fixture_adapter import parse_round as parse_romania_liga_i_r
 from fscg_cfl_fixture_adapter import parse_round as parse_fscg_cfl_round
 from kleague_fixture_adapter import parse_next_fixture as parse_kleague_next_fixture
 from high_yield_soccer_fixture_adapter import parse_fixtures as parse_high_yield_soccer_fixtures
+from high_yield_cup_fixture_adapter import parse_fixtures as parse_high_yield_cup_fixtures
 from svff_womens_cup_adapter import parse_current_fixtures as parse_svff_womens_cup
 from rfef_supercopa_fixture_adapter import parse_semifinals as parse_rfef_supercopa_semifinals
 from spl_fixture_adapter import parse_fixtures as parse_spl_fixtures
@@ -2693,6 +2694,28 @@ for source in CFG.get("sources",[]):
                 seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_current_round_fixtures":published_count,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-high-yield-cup-fixtures":
+        candidates=[]
+        published_count=0
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures=parse_high_yield_cup_fixtures(response.content,source)
+            published_count=len(fixtures)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_scoped_fixtures":published_count,
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-high-yield-soccer-fixtures":
