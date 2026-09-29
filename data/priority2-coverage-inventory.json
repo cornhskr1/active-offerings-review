@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 333,
-      "ADAPTER_GAP": 205,
+      "ADAPTER_CONFIGURED": 334,
+      "ADAPTER_GAP": 204,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 215,
+    "reported_gap_labels": 214,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 170,
+      "adapter_gaps": 169,
       "pending_dates": 88
     },
     "Surfing": {
@@ -11116,13 +11116,13 @@
       "season_window": "August 9, 2026–May 16, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-portugal-liga-portugal-2-men",
-          "type": "coverage-gap",
+          "type": "official-liga-portugal-2-calendar",
           "configured_league": "Liga Portugal 2 | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
