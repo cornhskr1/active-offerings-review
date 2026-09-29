@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-29T08:26:16.739299+00:00",
-  "schedule_generated_at": "2026-09-29T08:21:11.750798+00:00",
+  "registry_generated_at": "2026-09-29T09:59:43.530722+00:00",
+  "schedule_generated_at": "2026-09-29T09:54:32.734613+00:00",
   "schedule_window_start": "2026-09-29",
   "schedule_window_end": "2026-10-06",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 329,
-      "ADAPTER_GAP": 209,
+      "ADAPTER_CONFIGURED": 331,
+      "ADAPTER_GAP": 207,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 280
     },
     "reported_gap_areas": 13,
-    "reported_gap_labels": 219,
+    "reported_gap_labels": 218,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 172,
+      "adapter_gaps": 170,
       "pending_dates": 88
     },
     "Surfing": {
@@ -4289,10 +4289,10 @@
           "configured_source_id": "esports-riot-valorant-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Esports",
@@ -8141,13 +8141,13 @@
       "season_window": "March–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
-          "type": "coverage-gap",
+          "type": "official-auf-fixtures",
           "configured_league": "Campeonato Femenino | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -8527,11 +8527,11 @@
           "id": "conmebol-soccer-chile-copa-chile-men",
           "type": "espn-daily",
           "configured_league": "Copa Chile | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -8752,13 +8752,13 @@
       "season_window": "August–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "conmebol-soccer-uruguay-copa-uruguay-men",
-          "type": "coverage-gap",
+          "type": "official-auf-fixtures",
           "configured_league": "Copa Uruguay | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
