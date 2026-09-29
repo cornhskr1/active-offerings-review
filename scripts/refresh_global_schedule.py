@@ -51,6 +51,7 @@ from nike_liga_fixture_adapter import parse_fixtures as parse_nike_liga_fixtures
 from ekstraklasa_fixture_adapter import next_round as ekstraklasa_next_round
 from dfb_frauen_bundesliga_adapter import parse_season as parse_dfb_frauen_bundesliga
 from liga_portugal_2_calendar import parse_calendar as parse_liga_portugal_2_calendar
+from romania_liga_i_fixture_adapter import parse_round as parse_romania_liga_i_round
 from spl_fixture_adapter import parse_fixtures as parse_spl_fixtures
 from auf_fixture_adapter import parse_fixtures as parse_auf_fixtures
 from sfl_fixture_adapter import publisher_pdf_url as sfl_publisher_pdf_url, parse_pdf as parse_sfl_pdf
@@ -2644,6 +2645,26 @@ for source in CFG.get("sources",[]):
             "events":count,"season_pairings":published_count,
             "untimed_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-romania-liga-i-round":
+        candidates=[]
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            response.raise_for_status()
+            fixtures=parse_romania_liga_i_round(response.content,source)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_round_fixtures":8 if not errors else 0,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-liga-portugal-2-calendar":
         published_count=held_placeholder=held_reserve=0;candidates=[]
