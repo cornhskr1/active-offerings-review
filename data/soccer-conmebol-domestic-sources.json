@@ -175,11 +175,15 @@
       "sport": "Soccer",
       "league": "Copa Chile | Men",
       "region": "Chile",
-      "source_type": "coverage-gap",
-      "coverage_status": "pending",
-      "endpoint": "https://www.anfp.cl/",
-      "official_schedule_url": "https://www.anfp.cl/",
-      "source_note": "Season is mapped, but no dependable automated daily event feed is connected yet.",
+      "source_type": "espn-daily",
+      "coverage_status": "partial",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.copa_chi/scoreboard",
+      "espn_league_id": "8312",
+      "espn_league_slug": "chi.copa_chi",
+      "espn_hold_untimed": true,
+      "espn_require_all_days": true,
+      "official_schedule_url": "https://www.campeonatochileno.cl/competition/copa-chile-coca-cola-zero-azucar/",
+      "source_note": "The scoped ESPN Copa Chile feed's Coquimbo Unido–Cobreloa October 7 return leg matches ANFP's named fixture and 19:00 Chile kickoff. The current round is verified; later knockout fixtures and season end remain partial.",
       "catalog_terms": [
         "Copa Chile | Men"
       ]

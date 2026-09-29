@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-29T01:14:42.690874+00:00",
-  "schedule_generated_at": "2026-09-29T01:08:45.693673+00:00",
+  "registry_generated_at": "2026-09-29T02:51:48.207544+00:00",
+  "schedule_generated_at": "2026-09-29T02:46:44.361676+00:00",
   "schedule_window_start": "2026-09-28",
   "schedule_window_end": "2026-10-05",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 731,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 327,
-      "ADAPTER_GAP": 211,
+      "ADAPTER_CONFIGURED": 328,
+      "ADAPTER_GAP": 210,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 140
     },
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 174,
+      "adapter_gaps": 173,
       "pending_dates": 88
     },
     "Surfing": {
@@ -2313,10 +2313,10 @@
           "type": "adapter",
           "configured_league": "WNBA",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 8
     },
     {
       "sport": "Bowling",
@@ -4176,10 +4176,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 17
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 16
+      "events_in_window": 15
     },
     {
       "sport": "Esports",
@@ -4289,10 +4289,10 @@
           "configured_source_id": "esports-riot-valorant-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 8
     },
     {
       "sport": "Esports",
@@ -6085,10 +6085,10 @@
           "type": "adapter",
           "configured_league": "NCAA Volleyball",
           "refresh_ok": true,
-          "events_in_window": 352
+          "events_in_window": 351
         }
       ],
-      "events_in_window": 306
+      "events_in_window": 305
     },
     {
       "sport": "NCAA Water Polo",
@@ -8521,13 +8521,13 @@
       "season_window": "January–December",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "conmebol-soccer-chile-copa-chile-men",
-          "type": "coverage-gap",
+          "type": "espn-daily",
           "configured_league": "Copa Chile | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
