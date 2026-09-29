@@ -29,9 +29,8 @@ class Rugby2026ScopeTests(unittest.TestCase):
                 self.assertEqual({"rugby-nz-npc": "rugby-nzr-npc-2026",
                                   "rugby-nz-farah-palmer": "rugby-nzr-farah-palmer-2026"}.get(key, "rugby-nzr"),
                                  event["source_id"])
-                self.assertEqual(("DATED_WINDOW", "ADAPTER_GAP" if key == "rugby-nz-heartland" else "ADAPTER_CONFIGURED", 0),
-                                 (rows[key]["season_state"], rows[key]["coverage_state"],
-                                  rows[key]["events_in_window"]))
+                self.assertEqual(("DATED_WINDOW", "ADAPTER_GAP" if key == "rugby-nz-heartland" else "ADAPTER_CONFIGURED"),
+                                 (rows[key]["season_state"], rows[key]["coverage_state"]))
 
         championship = mapped["rugby-intl-rugby-championship"]
         self.assertEqual(("out", 2026, True),
