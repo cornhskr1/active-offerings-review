@@ -449,7 +449,7 @@
       "coverage_status": "partial",
       "endpoint": "https://www.qsl.qa/en/qsl_cup/fixtures_results",
       "official_schedule_url": "https://www.qsl.qa/en/qsl_cup/fixtures_results",
-      "source_note": "Official 2026–27 QSL Cup upcoming-round table lists nine named, timed senior club fixtures. The adapter validates the complete current round and fails closed when it goes stale; later league rounds, knockouts, and the final remain partial.",
+      "source_note": "Official 2026–27 QSL Cup current-round tables split completed results from named, timed upcoming fixtures. The adapter reconciles the nine match numbers and emits only future fixtures; later rounds, knockouts, and the final remain partial.",
       "catalog_terms": [
         "QSL Cup | Men"
       ]
@@ -699,7 +699,7 @@
       "coverage_status": "partial",
       "endpoint": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
       "official_schedule_url": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
-      "source_note": "VPF publishes all 182 regular-season pairings. Only exact dated and timed games enter Review Today; 91 month-only fixtures remain held. One future Bac Ninh–Nam Dinh pairing is repeated three times, with a Ninh Binh counterpart missing; affected matches are held until the publisher corrects them. Later amendments require refresh verification.",
+      "source_note": "VPF's season calendar publishes 182 pairings, with month-only and anomalous pairings held when accessible. If that endpoint returns 403, the official mobile page supplies only its complete seven-match current league round; it does not establish season-wide health. Only named, exact timed future fixtures enter Review Today. Later amendments require refresh verification.",
       "catalog_terms": [
         "V.League 1 | Men"
       ]

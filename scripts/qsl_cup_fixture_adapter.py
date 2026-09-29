@@ -18,7 +18,20 @@ def parse_qsl_cup_fixtures(page, source, now):
     if not pane:
         raise ValueError("QSL Cup upcoming fixture pane missing")
     rows = re.findall(r'<tr>(.*?)</tr>', pane.group(1), re.S)
-    if len(rows) != 9:
+    result_pane = re.search(r'<div class="tab-pane fade show active" id="group-121-res".*?<table[^>]*>(.*?)</table>', page, re.S)
+    completed = re.findall(r'<tr>(.*?)</tr>', result_pane.group(1), re.S) if result_pane else []
+    completed_ids = []
+    for row in completed:
+        match = re.search(r'<div class="table__date__round">\s*<span>(\d+)</span>', row)
+        if not match or not re.search(r'\d{2}/\d{2}/26', row):
+            raise ValueError("QSL Cup completed match identity changed")
+        completed_ids.append(int(match.group(1)))
+    fixture_ids = [int(m.group(1)) for row in rows if (m := re.search(
+        r'<div class="table__date__round">\s*<span>(\d+)</span>', row))]
+    if (len(rows) + len(completed) != 9 or len(fixture_ids) != len(rows)
+            or sorted(completed_ids + fixture_ids) != list(range(10, 19))
+            or completed_ids != list(range(10, 10 + len(completed)))
+            or fixture_ids != list(range(10 + len(completed), 19))):
         raise ValueError("QSL Cup published round has an unexpected fixture count")
     events = []
     seen = set()
