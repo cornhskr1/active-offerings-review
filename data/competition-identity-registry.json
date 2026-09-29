@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-29T20:21:06.507944+00:00",
+  "generated_at": "2026-09-29T20:47:18.586315+00:00",
   "catalog_menu_version": "9.22.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 9.22.26",
-  "schedule_generated_at": "2026-09-29T20:15:02.827757+00:00",
+  "schedule_generated_at": "2026-09-29T20:41:24.519052+00:00",
   "schedule_window_start": "2026-09-29",
   "schedule_window_end": "2026-10-06",
   "competition_count": 731,
-  "event_count": 1706,
+  "event_count": 1709,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -19414,6 +19414,7 @@
         "New Zealand",
         "Niger",
         "Nigeria",
+        "Palestine",
         "Panama",
         "Papua New Guinea",
         "Paraguay",
@@ -19429,7 +19430,6 @@
         "Tahiti",
         "Tajikistan",
         "Tunisia",
-        "Turkmenistan",
         "Uganda",
         "United States",
         "Uruguay",
@@ -19574,10 +19574,10 @@
           ]
         },
         {
-          "name": "Turkmenistan at China",
+          "name": "Palestine at China",
           "start_time": "2026-10-02T11:35Z",
           "participants": [
-            "Turkmenistan",
+            "Palestine",
             "China"
           ]
         },
@@ -23349,8 +23349,40 @@
       "source_ids": [
         "uefa-soccer-sweden-svenska-cupen-women"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Djurgården",
+        "Eskilstuna United DFF",
+        "Piteå IF DFF",
+        "Sunnanå SK",
+        "Älvsjö AIK FF",
+        "Örebro SK FK"
+      ],
+      "events": [
+        {
+          "name": "Eskilstuna United DFF at Örebro SK FK",
+          "start_time": "2026-09-30T17:00:00Z",
+          "participants": [
+            "Eskilstuna United DFF",
+            "Örebro SK FK"
+          ]
+        },
+        {
+          "name": "Piteå IF DFF at Sunnanå SK",
+          "start_time": "2026-09-30T17:00:00Z",
+          "participants": [
+            "Piteå IF DFF",
+            "Sunnanå SK"
+          ]
+        },
+        {
+          "name": "Djurgården at Älvsjö AIK FF",
+          "start_time": "2026-09-30T18:00:00Z",
+          "participants": [
+            "Djurgården",
+            "Älvsjö AIK FF"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "Svenska Cupen damer",
@@ -23358,7 +23390,7 @@
           "evidence_url": "https://www.svenskfotboll.se/serier-cuper/svenska-cupen/damer-grupper/"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
