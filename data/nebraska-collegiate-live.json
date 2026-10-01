@@ -1,28 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T22:14:04.033819+00:00",
+  "generated_at": "2026-10-01T05:49:44.221380+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-09-30",
-  "window_end": "2026-10-07",
+  "window_start": "2026-10-01",
+  "window_end": "2026-10-08",
   "events": [
-    {
-      "school": "Creighton",
-      "sport": "Women's Soccer",
-      "date": "2026-09-30",
-      "time": "11:00 A.M.",
-      "site": "HOME",
-      "opponent": "Villanova",
-      "location": "Omaha, Neb. (Morrison Stadium)",
-      "phase": "REGULAR SEASON",
-      "status": "FINAL",
-      "result": "L 1-2",
-      "source_url": "https://gocreighton.com/sports/womens-soccer/schedule/text",
-      "played_in_nebraska": true,
-      "matchup_label": "VS",
-      "site_test": "NOT PERMISSIBLE",
-      "site_color": "red",
-      "regulatory_site_label": "PLAYED IN NEBRASKA"
-    },
     {
       "school": "Nebraska",
       "sport": "Softball",
@@ -667,6 +649,81 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Omaha",
+      "sport": "Women's Soccer",
+      "date": "2026-10-08",
+      "time": "3 p.m. CT",
+      "site": "AWAY",
+      "opponent": "North Dakota",
+      "location": "Grand Forks, N.D.",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://omahamavs.com/sports/womens-soccer/schedule",
+      "played_in_nebraska": false,
+      "matchup_label": "AT",
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Softball",
+      "date": "2026-10-08",
+      "time": "3:30 PM CDT",
+      "site": "HOME",
+      "opponent": "Scarlet vs. Cream",
+      "location": "Lincoln, Neb. / Bowlin Stadium",
+      "promotional_label": null,
+      "phase": "FALL EXHIBITION",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/softball/schedule",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Volleyball",
+      "date": "2026-10-08",
+      "time": "5:30 PM CDT",
+      "site": "AWAY",
+      "opponent": "Indiana",
+      "location": "Bloomington, Ind. / Wilkinson Hall",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/volleyball/schedule?view=list",
+      "played_in_nebraska": false,
+      "matchup_label": "AT",
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Women's Soccer",
+      "date": "2026-10-08",
+      "time": "6:00 PM CDT",
+      "site": "AWAY",
+      "opponent": "Maryland",
+      "location": "College Park, Md.",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/soccer/schedule",
+      "played_in_nebraska": false,
+      "matchup_label": "AT",
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA"
     }
   ],
   "sources": [
@@ -758,7 +815,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 3
+      "events_in_window": 2
     },
     {
       "school": "Creighton",
@@ -830,7 +887,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "school": "Nebraska",
@@ -857,7 +914,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "school": "Nebraska",
@@ -884,7 +941,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "school": "Nebraska",
@@ -1010,7 +1067,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "school": "Omaha",
@@ -1027,25 +1084,25 @@
       "configured": 11,
       "loaded": 11,
       "pending_publication": 0,
-      "events_in_window": 12
+      "events_in_window": 11
     },
     "Nebraska": {
       "configured": 15,
       "loaded": 15,
       "pending_publication": 0,
-      "events_in_window": 13
+      "events_in_window": 16
     },
     "Omaha": {
       "configured": 13,
       "loaded": 13,
       "pending_publication": 0,
-      "events_in_window": 11
+      "events_in_window": 12
     }
   },
   "validation": {
-    "events_checked": 36,
+    "events_checked": 39,
     "in_state_not_permissible": 23,
-    "outside_nebraska": 11,
+    "outside_nebraska": 14,
     "manual_location_review": 2,
     "duplicate_events": 0
   }
