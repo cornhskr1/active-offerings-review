@@ -1,35 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T23:47:50.170914+00:00",
-  "card_count": 145,
+  "generated_at": "2026-10-01T05:50:14.723665+00:00",
+  "card_count": 173,
   "red_count": 22,
-  "amber_count": 123,
+  "amber_count": 151,
   "cards": [
-    {
-      "key": "event|761833",
-      "severity": "RED",
-      "type": "U18 EXPOSURE",
-      "sport": "Soccer",
-      "game": null,
-      "league": "MLS",
-      "event": "St. Louis CITY SC at Red Bull New York",
-      "start_time": "2026-09-30T23:30Z",
-      "status": "LIVE",
-      "title": "St. Louis CITY SC at Red Bull New York · 2 athletes",
-      "athletes": [
-        "Matthew Dos Santos",
-        "Adri Mehmeti"
-      ],
-      "triggers": [
-        "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE",
-        "Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE"
-      ],
-      "staff_actions": [
-        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-      ],
-      "reason": "Known U18 — Matthew Dos Santos (Red Bull New York) · EXACT TEAM + LEAGUE | Known U18 — Adri Mehmeti (New York Red Bulls) · APPROVED ALIAS + LEAGUE",
-      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
-    },
     {
       "key": "event|ne|Nebraska|Softball|2026-10-01|Scarlet vs. Cream",
       "severity": "RED",
@@ -472,234 +447,66 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401842261",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
+      "key": "event|ne|Nebraska|Softball|2026-10-08|Scarlet vs. Cream",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Softball",
       "game": null,
-      "league": "USL Championship | Men",
-      "event": "Detroit City FC at Brooklyn FC",
-      "start_time": "2026-09-30T23:00Z",
-      "status": "LIVE",
-      "title": "Detroit City FC at Brooklyn FC",
+      "league": "Nebraska Collegiate",
+      "event": "Nebraska vs Scarlet vs. Cream",
+      "start_time": "2026-10-08T3:30 PM CDT",
+      "status": "SCHEDULED",
+      "title": "Nebraska vs Scarlet vs. Cream",
       "athletes": [],
       "triggers": [
-        "USL Championship | Men - NO PROPOSITION WAGERS"
+        "Nebraska collegiate home-event/site restriction"
       ],
       "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
       ],
-      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|401841982",
+      "key": "event|esports-r6-regional-8836",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "USL League One (USL1) | Men",
-      "event": "Spokane Velocity FC at Chattanooga Red Wolves",
-      "start_time": "2026-09-30T23:00Z",
-      "status": "LIVE",
-      "title": "Spokane Velocity FC at Chattanooga Red Wolves",
-      "athletes": [],
-      "triggers": [
-        "USL League One (USL1) | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL League One (USL1) | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401842259",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "USL Championship | Men",
-      "event": "Sporting JAX at Miami FC",
-      "start_time": "2026-09-30T23:00Z",
-      "status": "LIVE",
-      "title": "Sporting JAX at Miami FC",
-      "athletes": [],
-      "triggers": [
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401842260",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "USL Championship | Men",
-      "event": "Indy Eleven at Rhode Island FC",
-      "start_time": "2026-09-30T23:30Z",
-      "status": "LIVE",
-      "title": "Indy Eleven at Rhode Island FC",
-      "athletes": [],
-      "triggers": [
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|arg-lnb-v2-TiDA-uHw1VGkmiAVQFl8iE-siFNugNqisCc-DPTf6HvwPwdBEXbtg==",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Basketball",
-      "game": null,
-      "league": "Liga Nacional de Básquet (LNB) | Men",
-      "event": "FERRO at ARGENTINO (J)",
-      "start_time": "2026-10-01T00:00:00Z",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "CAG by VARREL vs. BNK FEARX",
+      "start_time": "2026-10-01T09:00:00Z",
       "status": "UPCOMING",
-      "title": "FERRO at ARGENTINO (J)",
+      "title": "CAG by VARREL vs. BNK FEARX",
       "athletes": [],
       "triggers": [
-        "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS"
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
       ],
       "staff_actions": [
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
-      "reason": "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS",
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|401921545",
+      "key": "event|esports-r6-regional-8837",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "Bolivia at Argentina",
-      "start_time": "2026-10-01T00:00Z",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "SCARZ vs. Dplus Kia",
+      "start_time": "2026-10-01T12:00:00Z",
       "status": "UPCOMING",
-      "title": "Bolivia at Argentina",
+      "title": "SCARZ vs. Dplus Kia",
       "athletes": [],
       "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
       ],
       "staff_actions": [
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401842262",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "USL Championship | Men",
-      "event": "New Mexico United at FC Tulsa",
-      "start_time": "2026-10-01T00:00Z",
-      "status": "UPCOMING",
-      "title": "New Mexico United at FC Tulsa",
-      "athletes": [],
-      "triggers": [
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|arg-lnb-v2vFoIza9XMpSIqq7QNXClyg0D-2L6tr7dToMHpowBqC7u7cgWAD6I2g==",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Basketball",
-      "game": null,
-      "league": "Liga Nacional de Básquet (LNB) | Men",
-      "event": "INSTITUTO at SAN MARTÍN (C)",
-      "start_time": "2026-10-01T00:30:00Z",
-      "status": "UPCOMING",
-      "title": "INSTITUTO at SAN MARTÍN (C)",
-      "athletes": [],
-      "triggers": [
-        "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401877865",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "Primera A | Men",
-      "event": "Atlético Junior at Atlético Nacional",
-      "start_time": "2026-10-01T01:00Z",
-      "status": "UPCOMING",
-      "title": "Atlético Junior at Atlético Nacional",
-      "athletes": [],
-      "triggers": [
-        "Primera A | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "Primera A | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401842263",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "USL Championship | Men",
-      "event": "Las Vegas Lights FC at Sacramento Republic FC",
-      "start_time": "2026-10-01T02:00Z",
-      "status": "UPCOMING",
-      "title": "Las Vegas Lights FC at Sacramento Republic FC",
-      "athletes": [],
-      "triggers": [
-        "USL Championship | Men - NO PROPOSITION WAGERS"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-    },
-    {
-      "key": "event|401924629",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Soccer",
-      "game": null,
-      "league": "International Friendlies | Men",
-      "event": "Tahiti at Cook Islands",
-      "start_time": "2026-10-01T02:00Z",
-      "status": "UPCOMING",
-      "title": "Tahiti at Cook Islands",
-      "athletes": [],
-      "triggers": [
-        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
-      ],
-      "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
-      ],
-      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -745,6 +552,111 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|esports-r6-regional-8318",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "100 Thieves vs. For Fun Esports",
+      "start_time": "2026-10-01T18:00:00Z",
+      "status": "UPCOMING",
+      "title": "100 Thieves vs. For Fun Esports",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8319",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "M80 vs. Wildcard",
+      "start_time": "2026-10-01T19:00:00Z",
+      "status": "UPCOMING",
+      "title": "M80 vs. Wildcard",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8320",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Spacestation Gaming vs. Cloud9",
+      "start_time": "2026-10-01T20:00:00Z",
+      "status": "UPCOMING",
+      "title": "Spacestation Gaming vs. Cloud9",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8321",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Outlast Gaming vs. Shopify Rebellion",
+      "start_time": "2026-10-01T21:00:00Z",
+      "status": "UPCOMING",
+      "title": "Outlast Gaming vs. Shopify Rebellion",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8322",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "DarkZero vs. Five Fears",
+      "start_time": "2026-10-01T22:00:00Z",
+      "status": "UPCOMING",
+      "title": "DarkZero vs. Five Fears",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401860367",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -787,7 +699,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2lBIa4yBK5M_fpjZFeHVpwkrrFyjDMCJ9hDoQPEdGgkSFFQgGybHWlw==",
+      "key": "event|arg-lnb-v2HwDEyMWp4eW-iHedQIVzzhAbwtzSGMA4IcwNqzN2_GmaC3DZ36PHTQ==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -826,6 +738,48 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "Primera A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8722",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Tyloo vs. Pozy",
+      "start_time": "2026-10-02T05:30:00Z",
+      "status": "UPCOMING",
+      "title": "Tyloo vs. Pozy",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8723",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Four Angry Men vs. One Coin",
+      "start_time": "2026-10-02T09:00:00Z",
+      "status": "UPCOMING",
+      "title": "Four Angry Men vs. One Coin",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -892,6 +846,27 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|esports-r6-regional-8724",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Titan Esports Club vs. Edward Gaming",
+      "start_time": "2026-10-02T12:00:00Z",
+      "status": "UPCOMING",
+      "title": "Titan Esports Club vs. Edward Gaming",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401923178",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -910,6 +885,111 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8323",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Outlast Gaming vs. Spacestation Gaming",
+      "start_time": "2026-10-02T18:00:00Z",
+      "status": "UPCOMING",
+      "title": "Outlast Gaming vs. Spacestation Gaming",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8324",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Five Fears vs. Shopify Rebellion",
+      "start_time": "2026-10-02T19:00:00Z",
+      "status": "UPCOMING",
+      "title": "Five Fears vs. Shopify Rebellion",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8325",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Cloud9 vs. Wildcard",
+      "start_time": "2026-10-02T20:00:00Z",
+      "status": "UPCOMING",
+      "title": "Cloud9 vs. Wildcard",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8326",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "M80 vs. 100 Thieves",
+      "start_time": "2026-10-02T21:00:00Z",
+      "status": "UPCOMING",
+      "title": "M80 vs. 100 Thieves",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8327",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "For Fun Esports vs. DarkZero",
+      "start_time": "2026-10-02T22:00:00Z",
+      "status": "UPCOMING",
+      "title": "For Fun Esports vs. DarkZero",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -1018,7 +1098,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2KYhtL150b8A2_B0cYEmF0jXCTZV4jygrkn0f55EShnM58BBqHUjfGg==",
+      "key": "event|arg-lnb-v2SxpxUtqVYKSCpfZAstH_H-c2avaHKQVjigXxJT70HL_xjPn8Efxx3g==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -1144,6 +1224,48 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|esports-r6-regional-8725",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Kingzero eSports vs. Four Angry Men",
+      "start_time": "2026-10-03T05:30:00Z",
+      "status": "UPCOMING",
+      "title": "Kingzero eSports vs. Four Angry Men",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8726",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Leviatan vs. LGD Gaming",
+      "start_time": "2026-10-03T09:00:00Z",
+      "status": "UPCOMING",
+      "title": "Leviatan vs. LGD Gaming",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401926846",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -1162,6 +1284,27 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8727",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "All Gamers vs. Tyloo",
+      "start_time": "2026-10-03T12:30:00Z",
+      "status": "UPCOMING",
+      "title": "All Gamers vs. Tyloo",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -1795,7 +1938,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2wIwfihRzAgOQPcNoh8QJhHb39FOH0SeWxLZnUjNaZe3rbSLB-oNRYg==",
+      "key": "event|arg-lnb-v2eOfunsQi6GVjMCHxWt5QF9GUgN69HoZVrjf5d7-pCNmEi9sYZYTpow==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -1942,6 +2085,69 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|esports-r6-regional-8728",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "One Coin vs. Edward Gaming",
+      "start_time": "2026-10-04T05:30:00Z",
+      "status": "UPCOMING",
+      "title": "One Coin vs. Edward Gaming",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8729",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Leviatan vs. Pozy",
+      "start_time": "2026-10-04T09:00:00Z",
+      "status": "UPCOMING",
+      "title": "Leviatan vs. Pozy",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8730",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Titan Esports Club vs. Kingzero eSports",
+      "start_time": "2026-10-04T12:30:00Z",
+      "status": "UPCOMING",
+      "title": "Titan Esports Club vs. Kingzero eSports",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401922038",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -1984,6 +2190,27 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|esports-r6-regional-8620",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "INTZ vs. Imperial Esports",
+      "start_time": "2026-10-04T16:00:00Z",
+      "status": "UPCOMING",
+      "title": "INTZ vs. Imperial Esports",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401922273",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -2005,6 +2232,27 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|esports-r6-regional-8621",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "FaZe Clan vs. Black Dragons",
+      "start_time": "2026-10-04T17:15:00Z",
+      "status": "UPCOMING",
+      "title": "FaZe Clan vs. Black Dragons",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401916425",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -2023,6 +2271,27 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8622",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Team Liquid Alienware vs. LOS",
+      "start_time": "2026-10-04T18:30:00Z",
+      "status": "UPCOMING",
+      "title": "Team Liquid Alienware vs. LOS",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -2065,6 +2334,48 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "USL Cup | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8623",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "Fluxo W7M vs. LOUD",
+      "start_time": "2026-10-04T19:45:00Z",
+      "status": "UPCOMING",
+      "title": "Fluxo W7M vs. LOUD",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8624",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "FURIA vs. Lucky Five",
+      "start_time": "2026-10-04T21:00:00Z",
+      "status": "UPCOMING",
+      "title": "FURIA vs. Lucky Five",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
@@ -2194,7 +2505,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2jB5iPAgPr2u3u6yBM4yAw5LwHMIOdPlF1I7cLvTI-p6_5f1MrFcSvQ==",
+      "key": "event|arg-lnb-v2n3jq6EIgU2vU8Whplo950SU8i-ufdLsJ74mKlN06xbIApJCReLourA==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -2341,7 +2652,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2XxOVj7QyfWS-dw9dOt-mjR9dgzt8DRUSJknb3Wlm9jk22EOwSY-NbQ==",
+      "key": "event|arg-lnb-v2I0pp1e60Dh7_Ofs4qHwZuKdGcqSC5wz6g6ptdFHz7GQbMXGpuowNeQ==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -2530,7 +2841,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2WDHab0Rl9zjNXbFVT9CFqCylOlCcL1bVZsWA6DCbbH5aHrKIOBijlg==",
+      "key": "event|arg-lnb-v2wkiztIdWHBhnq-dpqBmMwG2bptb_os-CeZnY-D2MEMNJl0HdIuf8cQ==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -2950,7 +3261,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2K5qFqxCqR3NGfiMDyOelPUiW3mPH0roe41NLd4n5EGxXzlNirT-fMg==",
+      "key": "event|arg-lnb-v2apzostb8q1gsgIsIgvBpzL7fMnnLidsNh0hUQW_eL5GcCZOIRxSH3w==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3013,7 +3324,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2yHpu5XZn0u6-Zf8GULBCb9wd28BjQsW0GIgzs0hyLpz7JZgZgVweeQ==",
+      "key": "event|arg-lnb-v2BUy-Rf5oJoeHVGezPhFFrmCfRAN0tSBBtFFq_4VyZfu7Yu07DzTjJg==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3052,6 +3363,279 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "Primera A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401925167",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Russia  at India",
+      "start_time": "2026-10-08T18:00Z",
+      "status": "UPCOMING",
+      "title": "Russia  at India",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401860378",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Campeonato Brasileiro Série B | Men",
+      "event": "Criciúma at Ceará",
+      "start_time": "2026-10-08T22:30Z",
+      "status": "UPCOMING",
+      "title": "Criciúma at Ceará",
+      "athletes": [],
+      "triggers": [
+        "Campeonato Brasileiro Série B | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Campeonato Brasileiro Série B | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401841251",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Campeonato Brasileiro Série A | Men",
+      "event": "Flamengo at Santos",
+      "start_time": "2026-10-08T22:30Z",
+      "status": "UPCOMING",
+      "title": "Flamengo at Santos",
+      "athletes": [],
+      "triggers": [
+        "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401860381",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Campeonato Brasileiro Série B | Men",
+      "event": "Novorizontino at Náutico",
+      "start_time": "2026-10-08T22:30Z",
+      "status": "UPCOMING",
+      "title": "Novorizontino at Náutico",
+      "athletes": [],
+      "triggers": [
+        "Campeonato Brasileiro Série B | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Campeonato Brasileiro Série B | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401841256",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Campeonato Brasileiro Série A | Men",
+      "event": "Atlético-MG at Athletico-PR",
+      "start_time": "2026-10-08T23:00Z",
+      "status": "UPCOMING",
+      "title": "Atlético-MG at Athletico-PR",
+      "athletes": [],
+      "triggers": [
+        "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|arg-lnb-v2YQIe6WYQhtIAJvMZ5KQvZc9P_TBGBfA6qnpBwRAR8wIY1mq0MiumlQ==",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Basketball",
+      "game": null,
+      "league": "Liga Nacional de Básquet (LNB) | Men",
+      "event": "SAN MARTÍN (C) at RACING (CH)",
+      "start_time": "2026-10-09T00:00:00Z",
+      "status": "UPCOMING",
+      "title": "SAN MARTÍN (C) at RACING (CH)",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|arg-lnb-v2XkY8y45UwaFs2OYKaU9Q39Iv92mkIcRN3Oe0jVSoN6kn-0W9gOxWtw==",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Basketball",
+      "game": null,
+      "league": "Liga Nacional de Básquet (LNB) | Men",
+      "event": "FERRO at INDEPENDIENTE (O)",
+      "start_time": "2026-10-09T00:30:00Z",
+      "status": "UPCOMING",
+      "title": "FERRO at INDEPENDIENTE (O)",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401841254",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Campeonato Brasileiro Série A | Men",
+      "event": "Bahia at Palmeiras",
+      "start_time": "2026-10-09T00:30Z",
+      "status": "UPCOMING",
+      "title": "Bahia at Palmeiras",
+      "athletes": [],
+      "triggers": [
+        "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401841248",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Campeonato Brasileiro Série A | Men",
+      "event": "Coritiba at Fluminense",
+      "start_time": "2026-10-09T00:30Z",
+      "status": "UPCOMING",
+      "title": "Coritiba at Fluminense",
+      "athletes": [],
+      "triggers": [
+        "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Campeonato Brasileiro Série A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401879561",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Liga Nacional | Men",
+      "event": "Municipal at Antigua GFC",
+      "start_time": "2026-10-09T01:00Z",
+      "status": "UPCOMING",
+      "title": "Municipal at Antigua GFC",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|arg-lnb-v2Dc1VJq7abB9zxIphryOX-RWp0ekSDdy4dAEiNb3YIPX0IRkystKmOw==",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Basketball",
+      "game": null,
+      "league": "Liga Nacional de Básquet (LNB) | Men",
+      "event": "GIMNASIA (CR) at SAN LORENZO",
+      "start_time": "2026-10-09T01:05:00Z",
+      "status": "UPCOMING",
+      "title": "GIMNASIA (CR) at SAN LORENZO",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401877887",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Primera A | Men",
+      "event": "Millonarios at Fortaleza CEIF",
+      "start_time": "2026-10-09T01:10Z",
+      "status": "UPCOMING",
+      "title": "Millonarios at Fortaleza CEIF",
+      "athletes": [],
+      "triggers": [
+        "Primera A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Primera A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8824",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "ENTERPRISE Esports vs. Man LFO",
+      "start_time": "2026-10-09T04:30:00Z",
+      "status": "UPCOMING",
+      "title": "ENTERPRISE Esports vs. Man LFO",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     }
   ]
