@@ -1,52 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-02T08:33:37.044963+00:00",
-  "card_count": 163,
-  "red_count": 22,
-  "amber_count": 141,
+  "generated_at": "2026-10-02T15:47:35.111061+00:00",
+  "card_count": 186,
+  "red_count": 27,
+  "amber_count": 159,
   "cards": [
-    {
-      "key": "event|ne|Nebraska|Softball|2026-10-01|Scarlet vs. Cream",
-      "severity": "RED",
-      "type": "NOT PERMISSIBLE",
-      "sport": "Softball",
-      "game": null,
-      "league": "Nebraska Collegiate",
-      "event": "Nebraska vs Scarlet vs. Cream",
-      "start_time": "2026-10-01",
-      "status": "SCHEDULED",
-      "title": "Nebraska vs Scarlet vs. Cream",
-      "athletes": [],
-      "triggers": [
-        "Nebraska collegiate home-event/site restriction"
-      ],
-      "staff_actions": [
-        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-      ],
-      "reason": "Nebraska collegiate home-event/site restriction",
-      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-    },
-    {
-      "key": "event|ne|Omaha|Volleyball|2026-10-01|South Dakota State",
-      "severity": "RED",
-      "type": "NOT PERMISSIBLE",
-      "sport": "Volleyball",
-      "game": null,
-      "league": "Omaha Collegiate",
-      "event": "Omaha vs South Dakota State",
-      "start_time": "2026-10-01T6:30 p.m.",
-      "status": "SCHEDULED",
-      "title": "Omaha vs South Dakota State",
-      "athletes": [],
-      "triggers": [
-        "Nebraska collegiate home-event/site restriction"
-      ],
-      "staff_actions": [
-        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-      ],
-      "reason": "Nebraska collegiate home-event/site restriction",
-      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
-    },
     {
       "key": "event|ne|Omaha|Softball|2026-10-02|Bellevue",
       "severity": "RED",
@@ -468,25 +426,157 @@
       "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
-      "key": "event|esports-r6-regional-8722",
-      "severity": "AMBER",
-      "type": "CATALOG RESTRICTION",
-      "sport": "Esports",
-      "game": "Rainbow Six Siege",
-      "league": "Regional Closed Leagues",
-      "event": "Tyloo vs. Pozy",
-      "start_time": "2026-10-02T05:30:00Z",
+      "key": "event|401884781",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Bundesliga",
+      "event": "Werder Bremen at Borussia Dortmund",
+      "start_time": "2026-10-09T18:30Z",
       "status": "UPCOMING",
-      "title": "Tyloo vs. Pozy",
-      "athletes": [],
+      "title": "Werder Bremen at Borussia Dortmund · 1 athlete",
+      "athletes": [
+        "Mathis Albert"
+      ],
       "triggers": [
-        "Regional Closed Leagues - NO IN-GAME WAGERS"
+        "Known U18 — Mathis Albert (Borussia Dortmund) · EXACT TEAM + LEAGUE"
       ],
       "staff_actions": [
-        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
       ],
-      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
-      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      "reason": "Known U18 — Mathis Albert (Borussia Dortmund) · EXACT TEAM + LEAGUE",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|401876447",
+      "severity": "RED",
+      "type": "U18 EXPOSURE",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Ligue 1",
+      "event": "Lyon at Lens",
+      "start_time": "2026-10-09T18:45Z",
+      "status": "UPCOMING",
+      "title": "Lyon at Lens · 2 athletes",
+      "athletes": [
+        "Mezian Mesloub",
+        "Adil Hamdani"
+      ],
+      "triggers": [
+        "Known U18 — Mezian Mesloub (RC Lens) · APPROVED ALIAS + LEAGUE",
+        "Known U18 — Adil Hamdani (Olympique Lyonnais) · APPROVED ALIAS + LEAGUE"
+      ],
+      "staff_actions": [
+        "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+      ],
+      "reason": "Known U18 — Mezian Mesloub (RC Lens) · APPROVED ALIAS + LEAGUE | Known U18 — Adil Hamdani (Olympique Lyonnais) · APPROVED ALIAS + LEAGUE",
+      "staff_action": "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings."
+    },
+    {
+      "key": "event|ne|Creighton|Softball|2026-10-09|Kirkwood Community College",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Softball",
+      "game": null,
+      "league": "Creighton Collegiate",
+      "event": "Creighton vs Kirkwood Community College",
+      "start_time": "2026-10-09T5:00 P.M.",
+      "status": "SCHEDULED",
+      "title": "Creighton vs Kirkwood Community College",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
+      "key": "event|ne|Creighton|Volleyball|2026-10-09|Butler",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Volleyball",
+      "game": null,
+      "league": "Creighton Collegiate",
+      "event": "Creighton vs Butler",
+      "start_time": "2026-10-09T6:00 PM",
+      "status": "SCHEDULED",
+      "title": "Creighton vs Butler",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
+      "key": "event|ne|Nebraska|Baseball|2026-10-09|Creighton",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Baseball",
+      "game": null,
+      "league": "Nebraska Collegiate",
+      "event": "Nebraska vs Creighton",
+      "start_time": "2026-10-09T6:00 PM CDT",
+      "status": "SCHEDULED",
+      "title": "Nebraska vs Creighton",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
+      "key": "event|ne|Omaha|Volleyball|2026-10-09|St. Thomas",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Volleyball",
+      "game": null,
+      "league": "Omaha Collegiate",
+      "event": "Omaha vs St. Thomas",
+      "start_time": "2026-10-09T6:30 p.m.",
+      "status": "SCHEDULED",
+      "title": "Omaha vs St. Thomas",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+    },
+    {
+      "key": "event|ne|Nebraska|Men's Basketball|2026-10-09|Saint Louis (Exh.)",
+      "severity": "RED",
+      "type": "NOT PERMISSIBLE",
+      "sport": "Men's Basketball",
+      "game": null,
+      "league": "Nebraska Collegiate",
+      "event": "Nebraska vs Saint Louis (Exh.)",
+      "start_time": "2026-10-09T7:00 PM CDT",
+      "status": "SCHEDULED",
+      "title": "Nebraska vs Saint Louis (Exh.)",
+      "athletes": [],
+      "triggers": [
+        "Nebraska collegiate home-event/site restriction"
+      ],
+      "staff_actions": [
+        "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
+      ],
+      "reason": "Nebraska collegiate home-event/site restriction",
+      "staff_action": "Confirm the event is not offered where the Nebraska collegiate site restriction applies."
     },
     {
       "key": "event|esports-r6-regional-8723",
@@ -497,7 +587,7 @@
       "league": "Regional Closed Leagues",
       "event": "Four Angry Men vs. One Coin",
       "start_time": "2026-10-02T09:00:00Z",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "title": "Four Angry Men vs. One Coin",
       "athletes": [],
       "triggers": [
@@ -579,10 +669,10 @@
       "sport": "Esports",
       "game": "Rainbow Six Siege",
       "league": "Regional Closed Leagues",
-      "event": "Titan Esports Club vs. Edward Gaming",
+      "event": "Edward Gaming vs. Titan Esports Club",
       "start_time": "2026-10-02T12:00:00Z",
       "status": "UPCOMING",
-      "title": "Titan Esports Club vs. Edward Gaming",
+      "title": "Edward Gaming vs. Titan Esports Club",
       "athletes": [],
       "triggers": [
         "Regional Closed Leagues - NO IN-GAME WAGERS"
@@ -825,7 +915,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2iG4_Nhmio42rEPbv4xGaR0aZ7nIPEoyYhLTpbySoUUztbuUoMMYK9w==",
+      "key": "event|arg-lnb-v27RR5U4qEipCTByVVczF_iqXGh-s4R3pJBDoHJSocHr60sPVlOi4DYw==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -856,6 +946,27 @@
       "start_time": "2026-10-03T00:00Z",
       "status": "UPCOMING",
       "title": "Paraguay at Colombia",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401928085",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Vanuatu at Papua New Guinea",
+      "start_time": "2026-10-03T00:00Z",
+      "status": "UPCOMING",
+      "title": "Vanuatu at Papua New Guinea",
       "athletes": [],
       "triggers": [
         "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
@@ -936,10 +1047,10 @@
       "sport": "Soccer",
       "game": null,
       "league": "International Friendlies | Men",
-      "event": "Fiji at Vanuatu",
+      "event": "Vanuatu at Fiji",
       "start_time": "2026-10-03T04:00Z",
       "status": "UPCOMING",
-      "title": "Fiji at Vanuatu",
+      "title": "Vanuatu at Fiji",
       "athletes": [],
       "triggers": [
         "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
@@ -1665,7 +1776,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2HLY_BQrLxSo75oeflEvYIuwwcMftLsFbhQP6yRptY0dZafavHDxqtw==",
+      "key": "event|arg-lnb-v2C48XG-gBLwEYc7yVPgGhUox_cxVi6xPgImsEJxWUYpfZjown_3doEg==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -1965,10 +2076,10 @@
       "sport": "Soccer",
       "game": null,
       "league": "International Friendlies | Men",
-      "event": "Ghana at Morocco",
+      "event": "Mali at Morocco",
       "start_time": "2026-10-04T18:00Z",
       "status": "UPCOMING",
-      "title": "Ghana at Morocco",
+      "title": "Mali at Morocco",
       "athletes": [],
       "triggers": [
         "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
@@ -2253,7 +2364,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2q8gt17yH1kOcgTwNrv8eKeL0X3TxqR2Bnwg8eCwd4Yufqnkz7X4VvA==",
+      "key": "event|arg-lnb-v2CIx8bAAFvAhmo990ermdt2i_MJ08UYoUTn0C3t4yNTlpO2VkuCAnKw==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -2358,6 +2469,27 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
+      "key": "event|401928087",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Men",
+      "event": "Kenya at Rwanda",
+      "start_time": "2026-10-05T16:00Z",
+      "status": "UPCOMING",
+      "title": "Kenya at Rwanda",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
       "key": "event|401918508",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
@@ -2442,7 +2574,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2NdaVd3LCo8QELOetunZyTR_4sWwAVne36-x4L-OfZJ5eoUrLS63lHA==",
+      "key": "event|arg-lnb-v24w5x2Nuq7pyIySuqQy9Xn0yuvY_u-FtGx3BNiCX7JUgNdrfFaFtZlg==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -2631,7 +2763,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2WIkNTYvhc5TC9sPMoD1ifj0ExFlYs2jg9aJ1rkgcEa8j8lpRnkGWLg==",
+      "key": "event|arg-lnb-v2V9y0ilr4EAmC0Xk-nOfPxdRDzAOFVE7GUe0OGqc-xl42ThiotNQ0Fg==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3051,7 +3183,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2NvYbFFzARdgbJ2xBmSOcej4Y9Loqta-tBZbEAdLC4eGveSLGX3JA7Q==",
+      "key": "event|arg-lnb-v2Meb4DrZtBH4bCkTjHR0Gw3f4gihDOLzescOLQkag1FOZtoJtpdWoaQ==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3114,7 +3246,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2KECXoKkShDHfIbOGHMvKAW1ilkSzTIedQI0V1ZhZfbk7F7SspW3ZKw==",
+      "key": "event|arg-lnb-v2wLDS6noi0CTiU0jltIyB_uZ1hYW8-kIduq5cDFKMfk8LOQ_R44MfKg==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3261,7 +3393,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2AOPsS8_l47PiqkmRhZzbSoJ8Jh9oMK-Gnq_Ws9BRY_wGqruAbCo6wQ==",
+      "key": "event|arg-lnb-v2h1dy-pE3eCDkgj29No5SUQRhSdKA90VD1c9rgv4dglab8_lv2R3E2w==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3282,7 +3414,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2BsXaBnflnJLLo8PcB7Nd4pg5lc1i5mJfVFRA82c-6f10mqgjTb33tg==",
+      "key": "event|arg-lnb-v2xOTzYsvR_1cBwoFWchoutobunbe8O0kcmP-njh0tAd4txmPopscvNA==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3366,7 +3498,7 @@
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     },
     {
-      "key": "event|arg-lnb-v2lPXDWa44j2nRudWeJhoJ0DDpb24vKeV3LLGxCDBYeB9yNe27JCSBYg==",
+      "key": "event|arg-lnb-v26k_RKValjBRg7nsf6Gjie3ExQppFDFs51Fk8CsIop1CVAcvPLnMD6g==",
       "severity": "AMBER",
       "type": "CATALOG RESTRICTION",
       "sport": "Basketball",
@@ -3426,6 +3558,363 @@
         "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
       ],
       "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|esports-r6-regional-8825",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Esports",
+      "game": "Rainbow Six Siege",
+      "league": "Regional Closed Leagues",
+      "event": "7VEN vs. Chiefs Esports Club",
+      "start_time": "2026-10-09T07:30:00Z",
+      "status": "UPCOMING",
+      "title": "7VEN vs. Chiefs Esports Club",
+      "athletes": [],
+      "triggers": [
+        "Regional Closed Leagues - NO IN-GAME WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Regional Closed Leagues - NO IN-GAME WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401915884",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Faroe Islands at Andorra",
+      "start_time": "2026-10-09T10:00Z",
+      "status": "UPCOMING",
+      "title": "Faroe Islands at Andorra",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401922349",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Georgia at Moldova",
+      "start_time": "2026-10-09T14:00Z",
+      "status": "UPCOMING",
+      "title": "Georgia at Moldova",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401888280",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Süper Lig | Men",
+      "event": "Kasimpasa at Galatasaray",
+      "start_time": "2026-10-09T17:00Z",
+      "status": "UPCOMING",
+      "title": "Kasimpasa at Galatasaray",
+      "athletes": [],
+      "triggers": [
+        "Süper Lig | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Süper Lig | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401917872",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Luxembourg at Malta",
+      "start_time": "2026-10-09T17:00Z",
+      "status": "UPCOMING",
+      "title": "Luxembourg at Malta",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401917870",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Japan at Haiti",
+      "start_time": "2026-10-09T18:00Z",
+      "status": "UPCOMING",
+      "title": "Japan at Haiti",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401902581",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Australia at Germany",
+      "start_time": "2026-10-09T18:30Z",
+      "status": "UPCOMING",
+      "title": "Australia at Germany",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401916334",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Philippines at Peru",
+      "start_time": "2026-10-09T20:00Z",
+      "status": "UPCOMING",
+      "title": "Philippines at Peru",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401915439",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Liga Nacional | Men",
+      "event": "Juticalpa FC at Platense",
+      "start_time": "2026-10-09T21:00Z",
+      "status": "UPCOMING",
+      "title": "Juticalpa FC at Platense",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401878628",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "USL Super League | Women",
+      "event": "DC Power FC at Sporting Jax",
+      "start_time": "2026-10-09T23:00Z",
+      "status": "UPCOMING",
+      "title": "DC Power FC at Sporting Jax",
+      "athletes": [],
+      "triggers": [
+        "USL Super League | Women - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "USL Super League | Women - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401902450",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Denmark at Canada",
+      "start_time": "2026-10-09T23:00Z",
+      "status": "UPCOMING",
+      "title": "Denmark at Canada",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|arg-lnb-v2OfpYLtBm4sN0uIqebkximbGl0KwIzEpn9f92cH9-kG3T3YTp15QnCg==",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Basketball",
+      "game": null,
+      "league": "Liga Nacional de Básquet (LNB) | Men",
+      "event": "OBERÁ at LANÚS",
+      "start_time": "2026-10-09T23:30:00Z",
+      "status": "UPCOMING",
+      "title": "OBERÁ at LANÚS",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional de Básquet (LNB) | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401842276",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "USL Championship | Men",
+      "event": "FC Tulsa at Lexington",
+      "start_time": "2026-10-09T23:30Z",
+      "status": "UPCOMING",
+      "title": "FC Tulsa at Lexington",
+      "athletes": [],
+      "triggers": [
+        "USL Championship | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "USL Championship | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401877775",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Primera A | Men",
+      "event": "Águilas Doradas at Alianza FC",
+      "start_time": "2026-10-10T00:30Z",
+      "status": "UPCOMING",
+      "title": "Águilas Doradas at Alianza FC",
+      "athletes": [],
+      "triggers": [
+        "Primera A | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Primera A | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401916246",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "Jamaica at Mexico",
+      "start_time": "2026-10-10T01:00Z",
+      "status": "UPCOMING",
+      "title": "Jamaica at Mexico",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401915421",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "Liga Nacional | Men",
+      "event": "CD Choloma at FC Motagua",
+      "start_time": "2026-10-10T01:30Z",
+      "status": "UPCOMING",
+      "title": "CD Choloma at FC Motagua",
+      "athletes": [],
+      "triggers": [
+        "Liga Nacional | Men - NO PROPOSITION WAGERS"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "Liga Nacional | Men - NO PROPOSITION WAGERS",
+      "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+    },
+    {
+      "key": "event|401919979",
+      "severity": "AMBER",
+      "type": "CATALOG RESTRICTION",
+      "sport": "Soccer",
+      "game": null,
+      "league": "International Friendlies | Women",
+      "event": "El Salvador at Paraguay",
+      "start_time": "2026-10-10T01:30Z",
+      "status": "UPCOMING",
+      "title": "El Salvador at Paraguay",
+      "athletes": [],
+      "triggers": [
+        "International Friendlies | Men and Women | $1,000 WAGER LIMIT"
+      ],
+      "staff_actions": [
+        "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
+      ],
+      "reason": "International Friendlies | Men and Women | $1,000 WAGER LIMIT",
       "staff_action": "Review the applicable catalog restriction and confirm active markets comply across all licensed sportsbook platforms."
     }
   ]
