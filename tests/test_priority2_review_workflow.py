@@ -20,7 +20,7 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
         self.assertEqual(145, soccer_gaps["count"])
         self.assertEqual(145, len(set(soccer_gaps["identity_keys"])))
         self.assertEqual(63, next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
-        self.assertEqual(731, len(INVENTORY["identities"]))
+        self.assertEqual(733, len(INVENTORY["identities"]))
 
     def test_catalog_stays_in_its_own_tab(self):
         today = HTML[HTML.index('<section class="panel active" id="today"'):HTML.index('<section class="panel" id="catalog"')]
