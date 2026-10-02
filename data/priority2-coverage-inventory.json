@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "9.22.26",
-  "registry_generated_at": "2026-09-29T13:11:39.762714+00:00",
+  "registry_generated_at": "2026-10-02T16:49:00+00:00",
   "schedule_generated_at": "2026-09-29T12:55:18.574571+00:00",
   "schedule_window_start": "2026-09-29",
   "schedule_window_end": "2026-10-06",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
-    "catalog_operational_identities": 731,
+    "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 352,
-      "ADAPTER_GAP": 180,
+      "ADAPTER_GAP": 181,
       "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 146
+      "OFFICIAL_WINDOW_ONLY": 147
     },
     "season_states": {
-      "DATED_WINDOW": 220,
+      "DATED_WINDOW": 221,
       "DESCRIPTIVE_WINDOW": 48,
       "DOCUMENTED_HOLD": 66,
-      "EVENT_BASED_APPROVAL": 24,
+      "EVENT_BASED_APPROVAL": 25,
       "PARTIAL_WINDOW": 63,
       "PENDING_DATES": 31,
       "RECURRING_WINDOW": 279
@@ -72,10 +72,10 @@
       "pending_dates": 0
     },
     "Cricket": {
-      "identities": 7,
+      "identities": 9,
       "split_children": 0,
       "no_linked_source": 0,
-      "adapter_gaps": 0,
+      "adapter_gaps": 1,
       "pending_dates": 0
     },
     "Cycling": {
@@ -2735,6 +2735,27 @@
     },
     {
       "sport": "Cricket",
+      "league": "ICC Men’s Cricket World Cup | Men",
+      "identity_key": "cricket-int-world-cup",
+      "approval_parent": "ICC Men’s Cricket World Cup | Men",
+      "kind": "catalog",
+      "season_window": "October 2–November 21, 2027",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "cricket-int-world-cup",
+          "type": "official-event-window",
+          "configured_league": "ICC Men’s Cricket World Cup | Men",
+          "refresh_ok": null,
+          "events_in_window": 0
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Cricket",
       "league": "ICC T20 World Cup | Men",
       "identity_key": "cricket-int-t20-world-cup",
       "approval_parent": "ICC T20 World Cup | Men",
@@ -2770,6 +2791,27 @@
           "type": "espn-daily",
           "configured_league": "Indian Premier League | Men",
           "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
+      "events_in_window": 0
+    },
+    {
+      "sport": "Cricket",
+      "league": "One Day International (ODI) | Men",
+      "identity_key": "cricket-int-odi",
+      "approval_parent": "One Day International (ODI) | Men",
+      "kind": "catalog",
+      "season_window": "Event-by-event international ODI schedule · no single annual season",
+      "season_state": "EVENT_BASED_APPROVAL",
+      "season_status": "",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "cricket-int-odi",
+          "type": "coverage-gap",
+          "configured_league": "One Day International (ODI) | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
