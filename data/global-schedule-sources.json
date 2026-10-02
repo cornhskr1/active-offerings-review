@@ -107,6 +107,46 @@
       ]
     },
     {
+      "id": "cricket-int-odi",
+      "sport": "Cricket",
+      "league": "One Day International (ODI) | Men",
+      "region": "International",
+      "source_type": "coverage-gap",
+      "coverage_status": "missing",
+      "endpoint": "https://www.icc-cricket.com/fixtures-results",
+      "official_schedule_url": "https://www.icc-cricket.com/fixtures-results",
+      "source_note": "ICC Fixtures & Results is the authoritative current schedule for men's ODI matches across bilateral series and ICC competitions. ODI is a match format rather than one tournament; a dependable unattended format-scoped adapter is not yet connected, so this remains a visible coverage gap instead of inferring fixtures.",
+      "catalog_terms": [
+        "One Day International (ODI) | Men"
+      ]
+    },
+    {
+      "id": "cricket-int-world-cup",
+      "sport": "Cricket",
+      "league": "ICC Men’s Cricket World Cup | Men",
+      "region": "International",
+      "source_type": "official-event-window",
+      "coverage_status": "published-event-window",
+      "endpoint": "https://www.icc-cricket.com/tournaments/icc-cricket-world-cup-2027/news/fixture-schedule-announced-for-icc-men-s-cricket-world-cup-2027",
+      "official_schedule_url": "https://www.icc-cricket.com/tournaments/icc-cricket-world-cup-2027/news/fixture-schedule-announced-for-icc-men-s-cricket-world-cup-2027",
+      "endpoint_validation": "published-window",
+      "source_note": "ICC published the full 2027 Men’s Cricket World Cup fixture schedule on October 1, 2026. Tournament-level coverage uses the exact October 2–November 21, 2027 published window; it does not create an annual recurring season or claim an unattended match-by-match adapter.",
+      "official_events": [
+        {
+          "source_id": "cricket-int-world-cup",
+          "league": "ICC Men’s Cricket World Cup | Men",
+          "name": "ICC Men’s Cricket World Cup 2027",
+          "start_date": "2027-10-02",
+          "end_date": "2027-11-21",
+          "location": "South Africa / Zimbabwe / Namibia",
+          "official_schedule_url": "https://www.icc-cricket.com/tournaments/icc-cricket-world-cup-2027/news/fixture-schedule-announced-for-icc-men-s-cricket-world-cup-2027"
+        }
+      ],
+      "catalog_terms": [
+        "ICC Men’s Cricket World Cup | Men"
+      ]
+    },
+    {
       "id": "cycling-uci-calendar",
       "sport": "Cycling",
       "league": "Approved UCI Cycling",
