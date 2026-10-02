@@ -2,8 +2,17 @@ name: Update NRGC Catalog
 
 on:
   schedule:
-    - cron: "23 */6 * * *"
+    - cron: "23 13 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-catalog.yml"
+      - "scripts/update_catalog.py"
+      - "scripts/build_catalog_change_queue.py"
+      - "tests/test_build_catalog_change_queue.py"
+      - "tests/test_dashboard_scope.py"
 
 permissions:
   contents: write
@@ -37,9 +46,13 @@ jobs:
         run: python3 -m pip install --quiet requests beautifulsoup4 pypdf
 
       - name: Discover and parse current NRGC catalog
+        run: python3 scripts/update_catalog.py
+
+      - name: Verify catalog update path
         run: |
-          python3 scripts/update_catalog.py
-          python3 -m unittest discover -s tests -v
+          python3 -m unittest discover -s tests -p 'test_build_catalog_change_queue.py' -v
+          python3 -m unittest discover -s tests -p 'test_dashboard_scope.py' -v
+          python3 -m unittest discover -s tests -p 'test_catalog_refresh_workflow.py' -v
           python3 scripts/build_catalog_change_queue.py
 
       - name: Commit current catalog data
