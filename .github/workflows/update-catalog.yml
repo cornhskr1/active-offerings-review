@@ -52,6 +52,7 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -p 'test_build_catalog_change_queue.py' -v
           python3 -m unittest discover -s tests -p 'test_dashboard_scope.py' -v
+          python3 -m unittest discover -s tests -p 'test_catalog_refresh_workflow.py' -v
           python3 scripts/build_catalog_change_queue.py
 
       - name: Commit current catalog data
