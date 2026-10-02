@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-02T15:51:36.292305+00:00",
-  "input_signature": "e8b666ba1b6efd68e2f965b8ecb1109d6c78f7678220f46cae2aa75e2a543ded",
+  "generated_at": "2026-10-02T17:28:29.527366+00:00",
+  "input_signature": "7b65afa36726ecc07688be94ac0c9400d118707ebc3b9695c98a99df6be34165",
   "catalog": {
     "source_label": "Nebraska Authorized Sports Wagering Menu 10.1.26",
     "menu_version": "10.1.26",
@@ -15,112 +15,11 @@
     "mapping_required": true
   },
   "summary": {
-    "open_total": 2,
-    "catalog_additions": 2,
+    "open_total": 0,
+    "catalog_additions": 0,
     "catalog_changes": 0,
     "catalog_removals": 0,
-    "blocked_from_review_today": 2
+    "blocked_from_review_today": 0
   },
-  "open_items": [
-    {
-      "id": "catalog-intake-848b38a2f334b416",
-      "item_type": "catalog-addition",
-      "sport": "Cricket",
-      "severity": "AMBER",
-      "detected_at": "2026-10-02T16:00:00.728719+00:00",
-      "publication_gate": "BLOCKED",
-      "publishable": false,
-      "review_today_eligible": false,
-      "guardrail": "The published catalog controls approval; Review Today eligibility may not be inferred until the detected entry is explicitly mapped.",
-      "status": "SETUP REQUIRED",
-      "line_role": "approved-event",
-      "catalog_line": "One Day International (ODI) | Men",
-      "previous_catalog_line": null,
-      "catalog_approval_state": "PRESENT",
-      "mapped_event": null,
-      "missing_setup": [
-        {
-          "code": "hierarchy",
-          "label": "Confirm sport, region, and governing body"
-        },
-        {
-          "code": "official-source",
-          "label": "Verify the official competition source"
-        },
-        {
-          "code": "season-mapping",
-          "label": "Map the season or event dates"
-        },
-        {
-          "code": "schedule-source",
-          "label": "Configure the official schedule source and source ID"
-        },
-        {
-          "code": "restriction-scope",
-          "label": "Review applicable catalog restrictions"
-        },
-        {
-          "code": "publication-validation",
-          "label": "Validate the approved-only publication gate"
-        }
-      ],
-      "evidence": {
-        "catalog_label": "Nebraska Authorized Sports Wagering Menu 10.1.26",
-        "catalog_version": "10.1.26",
-        "catalog_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2010.1.26.pdf"
-      },
-      "title": "New approved catalog approved event",
-      "recommended_action": "Complete the mapping and source setup before the entry can appear in Review Today."
-    },
-    {
-      "id": "catalog-intake-e6b1e1e19aa9e25e",
-      "item_type": "catalog-addition",
-      "sport": "Cricket",
-      "severity": "AMBER",
-      "detected_at": "2026-10-02T16:00:00.728719+00:00",
-      "publication_gate": "BLOCKED",
-      "publishable": false,
-      "review_today_eligible": false,
-      "guardrail": "The published catalog controls approval; Review Today eligibility may not be inferred until the detected entry is explicitly mapped.",
-      "status": "SETUP REQUIRED",
-      "line_role": "approved-event",
-      "catalog_line": "ICC Men’s Cricket World Cup | Men",
-      "previous_catalog_line": null,
-      "catalog_approval_state": "PRESENT",
-      "mapped_event": null,
-      "missing_setup": [
-        {
-          "code": "hierarchy",
-          "label": "Confirm sport, region, and governing body"
-        },
-        {
-          "code": "official-source",
-          "label": "Verify the official competition source"
-        },
-        {
-          "code": "season-mapping",
-          "label": "Map the season or event dates"
-        },
-        {
-          "code": "schedule-source",
-          "label": "Configure the official schedule source and source ID"
-        },
-        {
-          "code": "restriction-scope",
-          "label": "Review applicable catalog restrictions"
-        },
-        {
-          "code": "publication-validation",
-          "label": "Validate the approved-only publication gate"
-        }
-      ],
-      "evidence": {
-        "catalog_label": "Nebraska Authorized Sports Wagering Menu 10.1.26",
-        "catalog_version": "10.1.26",
-        "catalog_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2010.1.26.pdf"
-      },
-      "title": "New approved catalog approved event",
-      "recommended_action": "Complete the mapping and source setup before the entry can appear in Review Today."
-    }
-  ]
+  "open_items": []
 }
