@@ -55,6 +55,27 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("ADAPTER_GAP", united["coverage_state"])
         self.assertIn("no 2027 match calendar", united["hold_reason"])
 
+    def test_new_cricket_approvals_keep_event_based_and_tournament_coverage_distinct(self):
+        sources = {source["id"]: source for source in json.loads(
+            (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
+        )["sources"]}
+
+        odi = self.rows[("Cricket", "One Day International (ODI) | Men")]
+        self.assertEqual(("EVENT_BASED_APPROVAL", "ADAPTER_GAP"),
+                         (odi["season_state"], odi["coverage_state"]))
+        self.assertEqual(["cricket-int-odi"], [source["id"] for source in odi["sources"]])
+        self.assertEqual("coverage-gap", sources["cricket-int-odi"]["source_type"])
+
+        world_cup = self.rows[("Cricket", "ICC Men’s Cricket World Cup | Men")]
+        self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                         (world_cup["season_state"], world_cup["coverage_state"]))
+        self.assertEqual(["cricket-int-world-cup"], [source["id"] for source in world_cup["sources"]])
+        self.assertEqual("official-event-window", sources["cricket-int-world-cup"]["source_type"])
+        self.assertEqual(("2027-10-02", "2027-11-21"), (
+            sources["cricket-int-world-cup"]["official_events"][0]["start_date"],
+            sources["cricket-int-world-cup"]["official_events"][0]["end_date"],
+        ))
+
     def test_table_tennis_windows_are_scoped_to_three_operational_identities(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
