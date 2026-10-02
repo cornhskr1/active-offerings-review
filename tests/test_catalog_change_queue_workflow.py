@@ -4,6 +4,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "refresh-catalog-change-queue.yml").read_text(encoding="utf-8")
+DEPLOY = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text(encoding="utf-8")
 
 
 class CatalogChangeQueueWorkflowTests(unittest.TestCase):
@@ -25,6 +26,9 @@ class CatalogChangeQueueWorkflowTests(unittest.TestCase):
 
     def test_queue_output_is_committed(self):
         self.assertIn("git add data/catalog-change-queue.json", WORKFLOW)
+
+    def test_pages_redeploy_after_queue_refresh(self):
+        self.assertIn("- Refresh Catalog Change Queue", DEPLOY)
 
 
 if __name__ == "__main__":
