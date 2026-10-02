@@ -84,7 +84,7 @@ class SoccerCountryIdentityScopeTests(unittest.TestCase):
             for item in self.inventory["identities"]
         ]
         self.assertEqual([], [key for key, count in Counter(keys).items() if count > 1])
-        self.assertEqual(731, len(keys))
+        self.assertEqual(733, len(keys))
 
 
 if __name__ == "__main__":
