@@ -206,8 +206,12 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
     def test_cricket_aliases_preserve_gender_and_county_division(self):
         cricket = {item["league"]: item for item in self.registry["competitions"]
                    if item["sport"] == "Cricket"}
-        self.assertEqual(7, len(cricket))
+        self.assertEqual(9, len(cricket))
         self.assertEqual(11, sum(len(item.get("aliases", [])) for item in cricket.values()))
+        self.assertEqual(["cricket-int-odi"], cricket["One Day International (ODI) | Men"]["source_ids"])
+        self.assertEqual(["cricket-int-world-cup"], cricket["ICC Men’s Cricket World Cup | Men"]["source_ids"])
+        self.assertFalse(cricket["One Day International (ODI) | Men"].get("aliases"))
+        self.assertFalse(cricket["ICC Men’s Cricket World Cup | Men"].get("aliases"))
         self.assertIn("WBBL", [alias["name"] for alias in cricket["Women’s Big Bash League (WBBL) | Women"]["aliases"]])
         self.assertNotIn("WBBL", [alias["name"] for alias in cricket["Big Bash League (BBL) | Men"].get("aliases", [])])
         self.assertIn("Rothesay County Championship Division Two", [alias["name"] for alias in cricket["Rothesay County Championship Division 2 | Men"]["aliases"]])
