@@ -23,7 +23,7 @@ class ClassifierSourceScopeTests(unittest.TestCase):
         keys = {(r["sport"], s["id"]) for r in self.inventory["identities"] for s in r["sources"]}
         self.assertTrue(set(owners).issubset(keys))
         self.assertNotIn("SOURCE_SCOPE_REVIEW", self.inventory["summary"]["coverage_states"])
-        self.assertEqual(731, len(self.rows))
+        self.assertEqual(733, len(self.rows))
         for (sport, child), parent in owners.items():
             if parent["id"] == child:
                 continue  # Already configured directly; no derived scope required.

@@ -20,7 +20,8 @@ class EventBasedCoverageStateTests(unittest.TestCase):
         approvals = [e for sport in season_map["sports"] if sport["sport"] in {"Boxing", "Combat Sports"}
                      for group in sport["groups"] for e in group["events"]]
         self.assertEqual(24, len(approvals))
-        self.assertEqual(24, inventory["summary"]["season_states"]["EVENT_BASED_APPROVAL"])
+        self.assertEqual(25, inventory["summary"]["season_states"]["EVENT_BASED_APPROVAL"])
+        self.assertEqual("EVENT_BASED_APPROVAL", rows["cricket-int-odi"]["season_state"])
         self.assertNotIn("NO_WINDOW", inventory["summary"]["season_states"])
         for approval in approvals:
             self.assertTrue(approval["nonseasonal"])
