@@ -105,6 +105,49 @@ assert.equal(isNonWageredNcaaSport({sport:'Tennis',league:'NCAA Division I Tenni
         self.assertIn("groups[x.sport||x.catalog_section||'Other']", HTML)
         self.assertNotIn('id="restrictionRows"', HTML)
 
+    def test_restriction_notes_preserve_full_catalog_context(self):
+        start = HTML.index("function restrictionColor(")
+        end = HTML.index("\nfunction registryNameKey(", start)
+        script = """const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const DATA={catalog:JSON.parse(fs.readFileSync('data/catalog-live.json','utf8'))};
+const esc=value=>String(value??'');
+const elements={
+  restrictionSearch:{value:''},restrictionColor:{value:'all'},
+  restrictionSummary:{innerHTML:''},restrictionSource:{innerHTML:''},
+  restrictionGeneral:{hidden:false,open:false},restrictionGeneralBody:{innerHTML:''},
+  restrictionGroups:{innerHTML:''}
+};
+const document={getElementById:id=>elements[id]};
+""" + HTML[start:end] + """
+const notes=catalogSportNotes(DATA.catalog);
+assert.deepEqual(notes.map(n=>n.sport).sort(),['Boxing','Combat Sports','NCAA','Olympics'].sort());
+for(const sport of ['Boxing','Combat Sports']){
+  const note=notes.find(n=>n.sport===sport);
+  assert.match(note.content,/professional, sanctioned/);
+  assert.match(note.content,/lacking recognized professional oversight are not approved for wagering/);
+}
+assert.equal(notes.find(n=>n.sport==='NCAA').content.length,4);
+assert.match(notes.find(n=>n.sport==='NCAA').content[3],/first postseason contest/);
+const wide=catalogWideStandards(DATA.catalog);
+assert.equal(wide.general.length,16);
+assert.equal(wide.integrity.length,6);
+assert.match(wide.summary,/Approval of a league or event does not authorize any wager type/);
+renderRestrictions();
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-entry"/g)||[]).length,41);
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-context"/g)||[]).length,4);
+assert.match(elements.restrictionGeneralBody.innerHTML,/Event and wager integrity standards/);
+elements.restrictionColor.value='red';renderRestrictions();
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-entry"/g)||[]).length,35);
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-context"/g)||[]).length,0);
+elements.restrictionColor.value='amber';renderRestrictions();
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-entry"/g)||[]).length,6);
+elements.restrictionColor.value='all';elements.restrictionSearch.value='sanctioned';renderRestrictions();
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-context"/g)||[]).length,2);
+assert.equal((elements.restrictionGroups.innerHTML.match(/class="watch-entry"/g)||[]).length,0);
+"""
+        subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
+
     def test_known_u18_is_grouped_by_sport_and_league(self):
         self.assertIn('id="u18Groups"', HTML)
         self.assertIn('class="registry-league"', HTML)

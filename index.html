@@ -513,6 +513,28 @@ th{font-size:11px!important}
 .watch-legend{margin-bottom:16px}
 #restrictions .toolbar input{flex:1;min-width:240px;max-width:620px}
 #restrictions .toolbar select{min-width:195px}
+.watch-general{border:1px solid #cbd8e3;border-radius:11px;overflow:hidden;background:#fff;margin:0 0 14px}
+.watch-general>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 15px;background:#eef4f8;border-left:5px solid #315d83;color:#213d54}
+.watch-general>summary::-webkit-details-marker{display:none}
+.watch-general>summary b{display:block;font-size:14px}.watch-general>summary small{display:block;margin-top:2px;color:#526575;font-size:11px;font-weight:500}
+.watch-general>summary>span:last-child{white-space:nowrap;font-size:11px;font-weight:800}
+.watch-general[open]>summary{border-bottom:1px solid #d8e2e9}
+#restrictionGeneralBody{padding:16px;color:#303940}
+.watch-standard-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.watch-standard-grid h3{font-size:13px;margin:0 0 8px;color:#243849}
+.watch-standard-grid ul{margin:0;padding-left:20px;display:grid;gap:7px;font-size:12px;line-height:1.5}
+.watch-summary-source{font-size:13px;line-height:1.55;font-weight:650;max-width:100ch;margin:0 0 16px;color:#34495b}.watch-standard-grid li::marker{color:#315d83;font-weight:800}
+.watch-source-link{display:inline-block;margin-top:14px;font-size:11px;font-weight:800;color:#145f94}
+.watch-context{background:#f2f7fb;border:1px solid #c9d9e6;border-left:5px solid #315d83;border-radius:9px;padding:12px 14px;color:#283b4b}
+.watch-context-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.035em}
+.watch-context-heading a{color:#145f94;text-transform:none;letter-spacing:0;font-size:11px;white-space:nowrap}
+.watch-context p{max-width:78ch;margin:0;font-size:13px;line-height:1.6}
+.watch-context ul{margin:0;padding-left:19px;display:grid;gap:8px;max-width:85ch;font-size:13px;line-height:1.5}
+.watch-entry-name{display:block;color:#202b34;font-size:13px;font-weight:900;margin-bottom:3px}
+.watch-entry-rule{display:block;font-size:12px;line-height:1.5;font-weight:750}
+.watch-status-group.red .watch-entry-rule{color:#922720}
+.watch-status-group.amber .watch-entry-rule{color:#704b08}
+@media(max-width:700px){.watch-standard-grid{grid-template-columns:1fr}.watch-general>summary{align-items:flex-start}.watch-general>summary>span:last-child{font-size:10px}.watch-context{padding:11px 12px}.watch-context-heading{align-items:flex-start;flex-direction:column;gap:4px}}
 .watch-groups{display:grid;gap:10px}
 .watch-sport{border:1px solid #cfd6dc;border-radius:11px;overflow:hidden;background:#fff}
 .watch-sport>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 14px;background:#f3f5f6}
@@ -607,7 +629,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 <div class="futures-grid" id="collegeFuturesGrid"></div>
 </div></section>
 
-<section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="watch-intro">Published catalog restrictions, organized for staff review. The catalog controls approval; confirm the applicable event and market before making a determination.</p><div class="source-note" id="restrictionSource"></div><div class="watch-summary" id="restrictionSummary"></div><div class="toolbar"><input id="restrictionSearch" aria-label="Search restrictions" placeholder="Search sport, league, or restriction…"><select id="restrictionColor" aria-label="Filter restriction status"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Sport → status → catalog text.</b> Open a sport to inspect its published restriction lines. Search and status filters open matching sports.</div><div class="catalog-legend-box watch-legend"><div class="catalog-legend-title">Restriction status</div><div class="season-legend"><span class="pill red">NOT PERMISSIBLE</span><span class="pill amber">REVIEW / LIMIT</span><span class="season-note">Red identifies a prohibited wager or market. Amber calls for a limit, cutoff, or staff check. A restriction line does not grant approval to an event or other markets.</span></div></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
+<section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="watch-intro">Published catalog restrictions, organized for staff review. The catalog controls approval; confirm the applicable event and market before making a determination.</p><div class="source-note" id="restrictionSource"></div><div class="watch-summary" id="restrictionSummary"></div><details class="watch-general" id="restrictionGeneral"><summary><span><b>Catalog-wide standards</b><small>General restrictions and integrity requirements for every sport</small></span><span>Read source text</span></summary><div id="restrictionGeneralBody"></div></details><div class="toolbar"><input id="restrictionSearch" aria-label="Search restrictions" placeholder="Search sport, league, or restriction…"><select id="restrictionColor" aria-label="Filter restriction status"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Sport → source note → specific market line.</b> Open a sport for the full applicable note and indexed market wording. Status filters show specific market lines; catalog-wide and sport notes appear in All.</div><div class="catalog-legend-box watch-legend"><div class="catalog-legend-title">Restriction status</div><div class="season-legend"><span class="pill red">NOT PERMISSIBLE</span><span class="pill amber">REVIEW / LIMIT</span><span class="season-note">Colors identify indexed event and market restrictions. Full catalog notes carry the wider conditions and are not reduced to a color. No line grants approval to an event or other markets.</span></div></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
 
 <section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified under-18 participant evidence, including the dedicated professional-tennis registry and verified tennis age-cache discoveries. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" aria-label="Search known under-18 participants" placeholder="Search athlete, team, sport, or league…"></div><div class="watch-help"><b>Organized by sport and league:</b> open a sport, then a league, to review its verified athletes. Search opens matching groups automatically.</div><div class="watch-groups" id="u18Groups"></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
@@ -1707,23 +1729,76 @@ function renderCollege(){
   }).join(''):`<div class="empty">No matching events.</div>`;
 }
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
+function joinCatalogLines(lines){
+  return (lines||[]).map(x=>String(x||'').trim()).filter(Boolean).reduce((out,line)=>out+(out&&!out.endsWith('-')?' ':'')+line,'');
+}
+function catalogBullets(lines){
+  const bullets=[];let current=[];
+  (lines||[]).forEach(raw=>{
+    const line=String(raw||'').trim();
+    if(!line||/^\d+$/.test(line)||/^Table of Contents /.test(line))return;
+    if(line.startsWith('•')){if(current.length)bullets.push(joinCatalogLines(current));current=[line.slice(1).trim()]}
+    else if(current.length)current.push(line);
+  });
+  if(current.length)bullets.push(joinCatalogLines(current));
+  return bullets;
+}
+function catalogWideStandards(catalog){
+  const lines=(catalog.pages||[]).flatMap(page=>page.lines||[]);
+  const summary=lines.indexOf('Summary'),categories=lines.indexOf('Title 296 Event Categories');
+  const general=lines.indexOf('General Restrictions and Standards'),integrity=lines.indexOf('Event and Wager Integrity Standards');
+  const next=lines.indexOf('Recent Additions',integrity+1);
+  return {summary:summary<0||categories<0?'':joinCatalogLines(lines.slice(summary+1,categories)),
+    general:general<0||integrity<0?[]:catalogBullets(lines.slice(general+1,integrity)),
+    integrity:integrity<0?[]:catalogBullets(lines.slice(integrity+1,next<0?undefined:next))};
+}
+function catalogSportNotes(catalog){
+  const settings={Boxing:['Boxing Restriction','Sanctioning standard'], 'Combat Sports':['Restriction','Sanctioning standard'],
+    NCAA:['Restrictions:','NCAA restrictions'],Olympics:['General Olympic Note','Olympic event scope']};
+  return (catalog.sections||[]).map(section=>{
+    const setting=settings[section.sport];if(!setting)return null;
+    const [marker,title]=setting,lines=section.lines||[],at=lines.indexOf(marker);if(at<0)return null;
+    const end=section.sport==='Olympics'?lines.indexOf('Summer Olympic Games',at+1):-1;
+    const rawLines=lines.slice(at,end<0?undefined:end);
+    const content=section.sport==='NCAA'?catalogBullets(rawLines.slice(1)):joinCatalogLines(rawLines.slice(1));
+    if(!content||Array.isArray(content)&&!content.length)return null;
+    const page=(catalog.pages||[]).find(p=>p.page>=section.page_start&&p.page<=section.page_start+2&&(p.lines||[]).includes(marker))?.page||section.page_start;
+    return {sport:section.sport,title,content,page,rawLines};
+  }).filter(Boolean);
+}
+function catalogMarketLine(text){
+  const raw=String(text||''),parts=raw.match(/^(.*?)\s+-\s+((?:NO |MARKETS |WAGERS? |PROHIBITED|NOT PERMISSIBLE).*)$/i);
+  return parts?`<span class="watch-entry-name">${esc(parts[1])}</span><span class="watch-entry-rule">${esc(parts[2])}</span>`:`<span class="watch-entry-rule">${esc(raw)}</span>`;
+}
 function renderRestrictions(){
   const q=(document.getElementById('restrictionSearch').value||'').trim().toLowerCase(),f=document.getElementById('restrictionColor').value||'all';
-  const all=DATA.catalog?.restrictions||[],redTotal=all.filter(x=>restrictionColor(x)==='red').length,amberTotal=all.length-redTotal;
-  const sportTotal=new Set(all.map(x=>x.sport||x.catalog_section||'Other')).size;
-  document.getElementById('restrictionSummary').innerHTML=[[all.length,'catalog restrictions'],[redTotal,'not permissible'],[amberTotal,'review / limit'],[sportTotal,'sports covered']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
-  const catalog=DATA.catalog||{},source=document.getElementById('restrictionSource');
-  const sourceName=catalog.source_label||'Current NRGC catalog',sourceUrl=String(catalog.pdf_url||'');
+  const catalog=DATA.catalog||{},all=catalog.restrictions||[],notes=catalogSportNotes(catalog);
+  const noteLines=new Map(notes.map(n=>[n.sport,new Set(n.rawLines)]));
+  const specific=all.filter(x=>!noteLines.get(x.sport)?.has(x.text));
+  const sports=new Set([...all.map(x=>x.sport||x.catalog_section||'Other'),...notes.map(n=>n.sport)]);
+  document.getElementById('restrictionSummary').innerHTML=[[sports.size,'sports covered'],[specific.length,'specific catalog lines'],[notes.length,'full sport notes'],[catalog.page_count||'—','source pages']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  const source=document.getElementById('restrictionSource'),sourceName=catalog.source_label||'Current NRGC catalog',sourceUrl=String(catalog.pdf_url||'');
   source.innerHTML=`Source: ${sourceUrl.startsWith('https://')?`<a href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(sourceName)} ↗</a>`:esc(sourceName)}${catalog.page_count?` · ${esc(catalog.page_count)} pages`:''}`;
-  const rows=all.filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});
-  const groups={};rows.forEach(x=>(groups[x.sport||x.catalog_section||'Other']??=[]).push(x));
-  document.getElementById('restrictionGroups').innerHTML=Object.entries(groups).sort(([a],[b])=>a.localeCompare(b)).map(([sport,items],index)=>{
-    const red=items.filter(x=>restrictionColor(x)==='red').length,amber=items.length-red,open=q||f!=='all'||index===0;
+  const wide=catalogWideStandards(catalog),general=document.getElementById('restrictionGeneral');
+  const generalText=[...wide.general,...wide.integrity].join(' ').toLowerCase();
+  general.hidden=f!=='all'||Boolean(q&&!('catalog-wide standards general restrictions integrity requirements '+generalText).includes(q));
+  if(q&&!general.hidden)general.open=true;
+  document.getElementById('restrictionGeneralBody').innerHTML=wide.general.length||wide.integrity.length
+    ?`<div class="watch-summary-source">${wide.summary?esc(wide.summary):"The source summary is unavailable; consult the current catalog."}</div><div class="watch-standard-grid"><section><h3>General restrictions and standards</h3><ul>${wide.general.map(line=>`<li>${esc(line)}</li>`).join('')}</ul></section><section><h3>Event and wager integrity standards</h3><ul>${wide.integrity.map(line=>`<li>${esc(line)}</li>`).join('')}</ul></section></div>${sourceUrl.startsWith('https://')?`<a class="watch-source-link" href="${esc(sourceUrl)}#page=4" target="_blank" rel="noopener noreferrer">View catalog pages 4–5 ↗</a>`:''}`
+    :'<p>Catalog-wide source text is unavailable. Open the current catalog for the controlling requirements.</p>';
+  const rows=specific.filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});
+  const visibleNotes=f==='all'?notes.filter(n=>!q||`${n.sport} ${n.title} ${Array.isArray(n.content)?n.content.join(' '):n.content}`.toLowerCase().includes(q)):[];
+  const groups={};rows.forEach(x=>(groups[x.sport||x.catalog_section||'Other']??={items:[],note:null}).items.push(x));
+  visibleNotes.forEach(n=>(groups[n.sport]??={items:[],note:null}).note=n);
+  document.getElementById('restrictionGroups').innerHTML=Object.entries(groups).sort(([a],[b])=>a.localeCompare(b)).map(([sport,group],index)=>{
+    const items=group.items,red=items.filter(x=>restrictionColor(x)==='red').length,amber=items.length-red,open=q||f!=='all'||index===0;
+    const n=group.note,note=n?`<section class="watch-context"><div class="watch-context-heading"><span>${esc(n.title)}</span>${sourceUrl.startsWith('https://')?`<a href="${esc(sourceUrl)}#page=${esc(n.page)}" target="_blank" rel="noopener noreferrer">Catalog p. ${esc(n.page)} ↗</a>`:''}</div>${Array.isArray(n.content)?`<ul>${n.content.map(line=>`<li>${esc(line)}</li>`).join('')}</ul>`:`<p>${esc(n.content)}</p>`}</section>`:'';
     const statusGroup=(color,label)=>{const matching=items.filter(x=>restrictionColor(x)===color);if(!matching.length)return '';
-      return `<section class="watch-status-group ${color}" aria-label="${esc(label)}"><div class="watch-status-heading"><span>${esc(label)}</span><span>${matching.length} ${matching.length===1?'entry':'entries'}</span></div><div class="watch-entry-list">${matching.map(x=>`<article class="watch-entry"><div class="watch-entry-text">${esc(x.text)}</div>${x.catalog_section&&x.catalog_section!==sport?`<div class="watch-entry-section">Catalog section: ${esc(x.catalog_section)}</div>`:''}</article>`).join('')}</div></section>`;
+      return `<section class="watch-status-group ${color}" aria-label="${esc(label)}"><div class="watch-status-heading"><span>${esc(label)}</span><span>${matching.length} ${matching.length===1?'entry':'entries'}</span></div><div class="watch-entry-list">${matching.map(x=>`<article class="watch-entry"><div class="watch-entry-text">${catalogMarketLine(x.text)}</div>${x.catalog_section&&x.catalog_section!==sport?`<div class="watch-entry-section">Catalog section: ${esc(x.catalog_section)}</div>`:''}</article>`).join('')}</div></section>`;
     };
-    return `<details class="watch-sport catalog-sport" ${open?'open':''}><summary><span class="watch-sport-name">${esc(sport)}</span><span class="watch-counts">${items.length} ${items.length===1?'restriction':'restrictions'}${red?` · ${red} not permissible`:''}${amber?` · ${amber} review / limit`:''}</span></summary><div class="watch-body">${statusGroup('red','Not permissible')}${statusGroup('amber','Review / limit')}</div></details>`;
-  }).join('')||'<div class="empty">No restrictions match the selected search and status.</div>';
+    const count=[items.length?`${items.length} ${items.length===1?'market line':'market lines'}`:'',n?n.title:''].filter(Boolean).join(' · ');
+    return `<details class="watch-sport catalog-sport" ${open?'open':''}><summary><span class="watch-sport-name">${esc(sport)}</span><span class="watch-counts">${count}</span></summary><div class="watch-body">${note}${statusGroup('red','Not permissible')}${statusGroup('amber','Review / limit')}</div></details>`;
+  }).join('')||'<div class="empty">No specific catalog lines or notes match this search and status.</div>';
 }
 function registryNameKey(value){return String(value||'').toLowerCase().replace(/[’'`]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
 function tennisRegistryIdentity(record){
