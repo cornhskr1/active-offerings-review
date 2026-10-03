@@ -99,7 +99,9 @@ assert.equal(isNonWageredNcaaSport({sport:'Tennis',league:'NCAA Division I Tenni
     def test_restriction_watch_is_grouped_by_sport(self):
         self.assertIn('id="restrictionSummary"', HTML)
         self.assertIn('id="restrictionGroups"', HTML)
-        self.assertIn('class="restriction-card ${c}"', HTML)
+        self.assertIn('class="watch-status-group ${color}"', HTML)
+        self.assertIn('class="watch-entry"', HTML)
+        self.assertIn('id="restrictionSource"', HTML)
         self.assertIn("groups[x.sport||x.catalog_section||'Other']", HTML)
         self.assertNotIn('id="restrictionRows"', HTML)
 
