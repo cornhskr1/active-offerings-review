@@ -22,7 +22,7 @@ class DashboardScopeTests(unittest.TestCase):
 
     def test_catalog_health_distinguishes_source_counts_from_identity_progress(self):
         self.assertIn("coverage:'data/priority2-coverage-inventory.json'", HTML)
-        self.assertIn("Priority 2 identity coverage:", HTML)
+        self.assertIn("Competition schedule coverage:", HTML)
         self.assertIn("Connected sources", HTML)
         self.assertIn("Sources need setup", HTML)
         self.assertIn("buttons count schedule source records", HTML)
@@ -113,3 +113,4 @@ assert.equal(isNonWageredNcaaSport({sport:'Tennis',league:'NCAA Division I Tenni
 
 if __name__ == "__main__":
     unittest.main()
+

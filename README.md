@@ -26,7 +26,9 @@ Do not place patron information, confidential operator materials, internal audit
 ## Current architecture
 The HTML is the user interface. Structured JSON files under `/data` define the source registry, coverage policy, and refresh strategy.
 
-The next production step is attaching automated refresh jobs that retrieve public source data and write normalized JSON consumed by the site.
+GitHub Actions retrieves public sources and publishes normalized JSON consumed by the site. Scheduled and manual workflows refresh the catalog, schedules, coverage inventory, collegiate evidence, and participant registries. The browser reload control fetches those published files; it does not start the collection workflows or record a completed staff review.
+
+Source publication dates and load availability are shown separately. Schedule windows and successful file loading do not establish complete participant-age coverage or verification of actual sportsbook offerings. Staff must resolve coverage issues, inspect the active operator markets, and document their review.
 
 ## Coverage principle
 **Never Green by Absence:** zero known U18 athletes does not mean a league is cleared. Schedule, participant, age, and freshness coverage must be sufficient for the current review cycle.
@@ -55,3 +57,4 @@ The site is static and does not require `app.py`, Flask, Docker, or a paid serve
 The **Known U18 Tennis** registry and age cache remain the public evidence source used by compliance review. The full browser-based tournament-calendar crawl is retained as a manual investigation tool only; it is no longer scheduled automatically because calendar discovery is expensive, season-dependent, and not required for exact identity screening in the private Transaction Compliance Portal.
 
 A schedule appearance, name similarity, or source record never creates catalog approval. The portal uses verified identity evidence only for Nebraska U18 restriction screening, and a missing match is never treated as an all-clear.
+

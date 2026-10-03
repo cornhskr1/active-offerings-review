@@ -1,0 +1,41 @@
+name: Verify staff dashboard
+
+on:
+  pull_request:
+    paths:
+      - index.html
+      - tests/test_dashboard_scope.py
+      - tests/test_review_today_divisions.py
+      - tests/test_published_data_status.py
+      - .github/workflows/verify-dashboard.yml
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - tests/test_dashboard_scope.py
+      - tests/test_review_today_divisions.py
+      - tests/test_published_data_status.py
+      - .github/workflows/verify-dashboard.yml
+
+permissions:
+  contents: read
+
+jobs:
+  dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check dashboard JavaScript syntax
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          html = Path('index.html').read_text(encoding='utf-8')
+          Path('/tmp/dashboard-script.js').write_text(re.search(r'<script>([\s\S]*)</script>', html).group(1))
+          PY
+          node --check /tmp/dashboard-script.js
+      - name: Verify staff views, division coverage, and published-data status
+        run: python3 -m unittest tests.test_dashboard_scope tests.test_review_today_divisions tests.test_published_data_status -q
