@@ -1,5 +1,7 @@
 # Project Control Ledger
 
+**Commissioner and industry presentation follow-up, October 3, 2026:** The opening headline is shortened to “Review Priorities,” with compact supporting copy that states staff must verify actual sportsbook offerings. Restriction Watch now uses the approved catalog's sport section hierarchy, a source link, compact metrics, and status-grouped published catalog lines. Search and status filters continue to open matching sports. The 48 source entries, existing 35 red / 13 amber classification, catalog source file, approval authority, and staff workflow remain unchanged. The restriction registry contains some short or fragmentary published lines; this presentation does not complete or reinterpret them. JavaScript syntax and all-entry/status/search rendering were checked, followed by QA preview inspection. Repository checks and PR review will be recorded in the PR.
+
 **Deadline:** October 1, 2026  
 **Last reconciled:** October 2, 2026 (presentation checkpoint; coverage baseline retained)
 

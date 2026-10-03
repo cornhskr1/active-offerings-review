@@ -502,13 +502,37 @@ th{font-size:11px!important}
 .nav-count{display:none;margin-left:5px;min-width:20px;padding:2px 6px;border-radius:999px;background:#d28a00;color:#fff;font-size:10px;text-align:center}
 .nav-count.show{display:inline-block}
 @media(max-width:700px){.intake-item>summary{grid-template-columns:1fr}.intake-checklist{grid-template-columns:1fr}.intake-today-head{align-items:flex-start;flex-direction:column}}
-.watch-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}.watch-summary .metric{margin:0}
-.watch-help{font-size:13px;color:#5b6570;line-height:1.45;margin:2px 0 10px}.watch-groups{display:grid;gap:10px}
-.watch-sport{border:1px solid #cfd6dc;border-radius:11px;overflow:hidden;background:#fff}.watch-sport>summary{cursor:pointer;list-style:none;padding:13px 14px;background:#f3f5f6;display:flex;justify-content:space-between;align-items:center;gap:12px}.watch-sport>summary::-webkit-details-marker{display:none}.watch-sport[open]>summary{background:#eef1f3;border-bottom:1px solid #dfe4e8}.watch-sport-name{font-size:16px;font-weight:950}.watch-counts{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.watch-body{padding:12px 13px 14px}
-.restriction-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.restriction-card{border:1px solid #dfe4e8;border-left:5px solid var(--amber);border-radius:9px;padding:11px 12px;background:#fffaf0}.restriction-card.red{border-color:#e8aaa5;border-left-color:var(--red);background:#fff4f2}.restriction-card.amber{border-left-color:var(--amber)}.restriction-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:7px}.restriction-scope{font-size:14px;font-weight:900}.restriction-text{font-size:13px;line-height:1.5;color:#333b42}.restriction-section{font-size:12px;color:#68717a;margin-top:7px}
+/* Restriction Watch follows the approved catalog's section hierarchy. */
+#restrictions .card{padding:22px;border-color:#dce3e9}
+.watch-intro{max-width:850px;color:#52606b;font-size:13px;line-height:1.55;margin:0 0 10px}
+#restrictionSource{margin:0 0 12px}
+.watch-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:12px 0}
+.watch-summary .metric{margin:0;background:#f7f9fb;border-color:#dce3e9;padding:13px}
+.watch-summary .metric b{font-size:23px;letter-spacing:-.5px}
+.watch-help{font-size:12px;color:#5b6570;line-height:1.5;margin:0 0 12px}
+.watch-legend{margin-bottom:16px}
+#restrictions .toolbar input{flex:1;min-width:240px;max-width:620px}
+#restrictions .toolbar select{min-width:195px}
+.watch-groups{display:grid;gap:10px}
+.watch-sport{border:1px solid #cfd6dc;border-radius:11px;overflow:hidden;background:#fff}
+.watch-sport>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 14px;background:#f3f5f6}
+.watch-sport>summary::-webkit-details-marker{display:none}
+.watch-sport[open]>summary{background:#eef1f3;border-bottom:1px solid #dfe4e8}
+.watch-sport-name{font-size:16px;font-weight:900}
+.watch-counts{color:#59636d;font-size:12px;font-weight:800;text-align:right}
+.watch-body{display:grid;gap:12px;padding:13px;background:#f8fafb}
+.watch-status-group{border:1px solid #d8dee3;border-radius:9px;background:#fff;overflow:hidden}
+.watch-status-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:9px 12px;background:#fff1ef;border-left:5px solid var(--red);color:#922720;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.035em}
+.watch-status-group.amber .watch-status-heading{background:#fff8ea;border-left-color:var(--amber);color:#704b08}
+.watch-status-heading span:last-child{font-size:10px;letter-spacing:0;white-space:nowrap}
+.watch-entry-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.watch-entry{padding:12px 13px;border-top:1px solid #e6eaed;min-width:0}
+.watch-entry:nth-child(even){border-left:1px solid #e6eaed}
+.watch-entry-text{font-size:13px;line-height:1.5;font-weight:700;overflow-wrap:anywhere}
+.watch-entry-section{font-size:11px;color:#68717a;margin-top:5px}
 .registry-leagues{display:grid;gap:8px}.registry-league{border:1px solid #dfe4e8;border-radius:9px;overflow:hidden;background:#fafbfb}.registry-league>summary{cursor:pointer;list-style:none;padding:10px 11px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;font-weight:900}.registry-league>summary::-webkit-details-marker{display:none}.registry-league[open]>summary{border-bottom:1px solid #e2e6e9;background:#f5f7f8}.registry-athletes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:9px}.registry-athlete{border:1px solid #dfe4e8;border-left:5px solid var(--red);border-radius:9px;padding:10px 11px;background:#fff}.registry-athlete-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.registry-athlete-name{font-size:14px;font-weight:950}.registry-athlete-meta{font-size:12px;color:#59636d;margin-top:5px;line-height:1.45}.registry-athlete a{color:#075d93}
 @media(max-width:1050px){.watch-summary{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){.watch-summary,.restriction-grid,.registry-athletes{grid-template-columns:1fr}.watch-sport>summary{align-items:flex-start;flex-direction:column}.watch-counts{justify-content:flex-start}}
+@media(max-width:700px){#restrictions .card{padding:16px}.watch-summary{grid-template-columns:repeat(2,1fr)}.watch-summary .metric{padding:10px}.watch-summary .metric b{font-size:20px}.watch-sport>summary{align-items:flex-start;flex-direction:column;gap:4px}.watch-counts{text-align:left}.watch-entry-list,.registry-athletes{grid-template-columns:1fr}.watch-entry:nth-child(even){border-left:0}.watch-entry{padding:11px 12px}#restrictions .toolbar input,#restrictions .toolbar select{max-width:none;width:100%}}
 
 /* Commissioner introduction, with the staff workspace immediately below. */
 html{scroll-padding-top:76px}body{background:#f3f5f7}
@@ -521,11 +545,11 @@ html{scroll-padding-top:76px}body{background:#f3f5f7}
 .hero{position:relative;overflow:hidden;grid-template-columns:minmax(0,1fr) 350px;align-items:center;padding:32px;gap:36px;background:linear-gradient(120deg,#15212d 0%,#273847 100%);border-radius:18px;box-shadow:0 10px 28px rgba(20,33,45,.12)}
 .hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:#c44940}
 .eyebrow{color:#ffc2b8;font-size:10px;letter-spacing:.16em}
-.hero h1{max-width:720px;font-size:clamp(30px,3.2vw,46px);line-height:1.12;letter-spacing:-1.3px;margin:12px 0 16px}
-.hero .intro-copy{max-width:650px;font-size:14px;line-height:1.65;color:#e0e7ed}
-.intro-evidence{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-size:11px;color:#c9d7e2}
+.hero h1{max-width:720px;font-size:clamp(32px,3.2vw,46px);line-height:1.1;letter-spacing:-1.3px;margin:10px 0 12px}
+.hero .intro-copy{max-width:600px;font-size:13px;line-height:1.55;color:#e0e7ed}
+.intro-evidence{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:11px;color:#c9d7e2}
 .intro-evidence span{display:flex;align-items:center;gap:7px}.intro-evidence span:before{content:"";width:4px;height:4px;border-radius:50%;background:#f09b8c}
-.intro-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.intro-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .intro-actions button{font:inherit;font-size:12px;font-weight:800;border-radius:8px;min-height:44px;padding:11px 15px;cursor:pointer;border:1px solid #7b8d9b;color:#fff;background:transparent}
 .intro-actions .intro-primary{background:#fff;color:#1b2b39;border-color:#fff}.intro-actions button:hover{background:#e8eef3;color:#1b2b39}
 .refreshbox{position:relative;border:1px solid #dfe6ec;border-radius:12px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
@@ -543,7 +567,7 @@ html{scroll-padding-top:76px}body{background:#f3f5f7}
 .today-view-switch button{min-height:42px}.workspace-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:20px 4px 0;font-size:10px;color:#596773}
 button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #4f8dbb;outline-offset:3px}
 @media(max-width:900px){.hero{padding:26px;gap:24px;grid-template-columns:minmax(0,1fr) 300px}.hero h1{font-size:34px}.intro-evidence{gap:8px 14px}}
-@media(max-width:700px){.app{padding:14px 10px 24px}.workspace-brand{padding-bottom:12px}.workspace-name{font-size:18px}.workspace-boundary{max-width:108px;font-size:9px}.nav button,.nav .portal-link{font-size:11px;padding:9px 11px}.hero{grid-template-columns:1fr;padding:24px 20px;gap:22px;margin-top:12px}.hero h1{font-size:34px;letter-spacing:-.8px;margin:10px 0 14px}.hero .intro-copy{font-size:13px}.intro-evidence{margin-top:16px}.intro-actions{margin-top:20px}.intro-actions button{flex:1;padding:10px;font-size:11px}.refreshbox{padding:15px}.guide-grid{grid-template-columns:1fr;gap:15px}#today>.card{padding:16px}#todayMetrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric.review-metric{padding:12px}.review-metric b{font-size:25px}.review-heading .section-title{font-size:19px}.today-view-switch button{min-height:46px}.workspace-footer{font-size:10px}}
+@media(max-width:700px){.app{padding:14px 10px 24px}.workspace-brand{padding-bottom:12px}.workspace-name{font-size:18px}.workspace-boundary{max-width:108px;font-size:9px}.nav button,.nav .portal-link{font-size:11px;padding:9px 11px}.hero{grid-template-columns:1fr;padding:24px 20px;gap:22px;margin-top:12px}.hero h1{font-size:32px;letter-spacing:-.8px;margin:8px 0 12px}.hero .intro-copy{font-size:12px}.intro-evidence{margin-top:16px}.intro-actions{margin-top:20px}.intro-actions button{flex:1;padding:10px;font-size:11px}.refreshbox{padding:15px}.guide-grid{grid-template-columns:1fr;gap:15px}#today>.card{padding:16px}#todayMetrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric.review-metric{padding:12px}.review-metric b{font-size:25px}.review-heading .section-title{font-size:19px}.today-view-switch button{min-height:46px}.workspace-footer{font-size:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 </style>
@@ -563,7 +587,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 
 <section class="panel active" id="today">
 <div class="hero">
-<div class="intro"><div class="eyebrow">Daily Active Offerings Review</div><h1>See what needs attention.<br>Know where to look next.</h1><p class="intro-copy">Upcoming events, catalog restrictions, and known under-18 participants in one workspace—supporting staff review of Nebraska sportsbook offerings.</p><div class="intro-evidence"><span>Published schedules</span><span>Catalog requirements</span><span>Participant evidence</span></div><div class="intro-actions"><button type="button" class="intro-primary" id="introAttentionBtn">View Attention Queue</button><button type="button" id="introCatalogBtn">Explore Approved Catalog</button></div></div>
+<div class="intro"><div class="eyebrow">Daily Active Offerings Review</div><h1>Review Priorities</h1><p class="intro-copy">Upcoming events, catalog restrictions, and known under-18 participants, organized for staff review. Verify actual sportsbook offerings before recording findings.</p><div class="intro-evidence"><span>Published schedules</span><span>Catalog requirements</span><span>Participant evidence</span></div><div class="intro-actions"><button type="button" class="intro-primary" id="introAttentionBtn">View Attention Queue</button><button type="button" id="introCatalogBtn">Explore Approved Catalog</button></div></div>
 <div class="refreshbox"><div class="refresh-heading">Published data</div><button type="button" id="refreshBtn">↻ Reload Published Data</button><div class="refresh-meta"><div class="refresh-line"><span>Data reloaded</span><b id="reviewTime">—</b></div><div class="refresh-line"><span>Schedule published</span><b id="dataTime">—</b></div><div class="refresh-status" role="status" aria-live="polite" id="refreshStatus">Loading published data…</div></div><p class="refresh-help">Reloads the available published files. Source collection runs separately. Reloading does not record a completed staff review.</p><details class="data-disclosure"><summary>Source dates &amp; availability</summary><p>Each source has its own publication date. A successful reload does not establish complete schedule coverage, participant ages, or verified sportsbook offerings.</p><div id="feedDates" class="feed-date-list">Source dates appear after loading.</div></details></div>
 </div>
 <details class="workspace-guide"><summary>How to use this review</summary><div class="guide-grid"><div><b>Find the next staff check</b><p>Start with the Attention Queue for restrictions and coverage issues. By Date and By Sport arrange the same upcoming schedule. No listed alert does not mean every offering is cleared.</p></div><div><b>Confirm the applicable approval</b><p>The published NRGC catalog controls approval. A scheduled event or connected source does not establish permission to offer every market.</p></div><div><b>Verify the actual offering</b><p>Staff checks active sportsbook events and markets, confirms unresolved evidence, and documents the review. This public-information workspace does not inspect operator systems or confidential reports. Internet access is needed to load published data.</p></div></div></details>
@@ -583,7 +607,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 <div class="futures-grid" id="collegeFuturesGrid"></div>
 </div></section>
 
-<section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager or market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="watch-summary" id="restrictionSummary"></div><div class="toolbar"><input id="restrictionSearch" aria-label="Search restrictions" placeholder="Search sport, league, or restriction…"><select id="restrictionColor" aria-label="Filter restriction status"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Organized by sport:</b> open a sport to review its exact catalog restrictions. Searching or selecting a status opens every matching sport automatically.</div><div class="legend"><span>🔴 <b>NOT PERMISSIBLE</b></span><span>🟠 <b>REVIEW / LIMIT</b></span></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
+<section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="watch-intro">Published catalog restrictions, organized for staff review. The catalog controls approval; confirm the applicable event and market before making a determination.</p><div class="source-note" id="restrictionSource"></div><div class="watch-summary" id="restrictionSummary"></div><div class="toolbar"><input id="restrictionSearch" aria-label="Search restrictions" placeholder="Search sport, league, or restriction…"><select id="restrictionColor" aria-label="Filter restriction status"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Sport → status → catalog text.</b> Open a sport to inspect its published restriction lines. Search and status filters open matching sports.</div><div class="catalog-legend-box watch-legend"><div class="catalog-legend-title">Restriction status</div><div class="season-legend"><span class="pill red">NOT PERMISSIBLE</span><span class="pill amber">REVIEW / LIMIT</span><span class="season-note">Red identifies a prohibited wager or market. Amber calls for a limit, cutoff, or staff check. A restriction line does not grant approval to an event or other markets.</span></div></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
 
 <section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified under-18 participant evidence, including the dedicated professional-tennis registry and verified tennis age-cache discoveries. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" aria-label="Search known under-18 participants" placeholder="Search athlete, team, sport, or league…"></div><div class="watch-help"><b>Organized by sport and league:</b> open a sport, then a league, to review its verified athletes. Search opens matching groups automatically.</div><div class="watch-groups" id="u18Groups"></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
@@ -1684,16 +1708,21 @@ function renderCollege(){
 }
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
 function renderRestrictions(){
-  const q=(document.getElementById('restrictionSearch').value||'').toLowerCase(),f=document.getElementById('restrictionColor').value||'all';
+  const q=(document.getElementById('restrictionSearch').value||'').trim().toLowerCase(),f=document.getElementById('restrictionColor').value||'all';
   const all=DATA.catalog?.restrictions||[],redTotal=all.filter(x=>restrictionColor(x)==='red').length,amberTotal=all.length-redTotal;
   const sportTotal=new Set(all.map(x=>x.sport||x.catalog_section||'Other')).size;
   document.getElementById('restrictionSummary').innerHTML=[[all.length,'catalog restrictions'],[redTotal,'not permissible'],[amberTotal,'review / limit'],[sportTotal,'sports covered']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  const catalog=DATA.catalog||{},source=document.getElementById('restrictionSource');
+  const sourceName=catalog.source_label||'Current NRGC catalog',sourceUrl=String(catalog.pdf_url||'');
+  source.innerHTML=`Source: ${sourceUrl.startsWith('https://')?`<a href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(sourceName)} ↗</a>`:esc(sourceName)}${catalog.page_count?` · ${esc(catalog.page_count)} pages`:''}`;
   const rows=all.filter(x=>{const c=restrictionColor(x),hay=`${x.scope_label||x.sport} ${x.catalog_section||''} ${x.text}`.toLowerCase();return(f==='all'||c===f)&&(!q||hay.includes(q))});
   const groups={};rows.forEach(x=>(groups[x.sport||x.catalog_section||'Other']??=[]).push(x));
   document.getElementById('restrictionGroups').innerHTML=Object.entries(groups).sort(([a],[b])=>a.localeCompare(b)).map(([sport,items],index)=>{
     const red=items.filter(x=>restrictionColor(x)==='red').length,amber=items.length-red,open=q||f!=='all'||index===0;
-    const cards=items.map(x=>{const c=restrictionColor(x),scope=x.scope_label||x.sport||sport,section=x.catalog_section||x.sport||'';return `<article class="restriction-card ${c}"><div class="restriction-card-head"><div class="restriction-scope">${esc(scope)}</div>${pill(c,c==='red'?'NOT PERMISSIBLE':'REVIEW / LIMIT')}</div><div class="restriction-text">${esc(x.text)}</div>${section&&section!==scope?`<div class="restriction-section">Catalog section: ${esc(section)}</div>`:''}</article>`}).join('');
-    return `<details class="watch-sport" ${open?'open':''}><summary><span class="watch-sport-name">${esc(sport)}</span><span class="watch-counts">${pill('gray',`${items.length} ${items.length===1?'restriction':'restrictions'}`)}${red?pill('red',`${red} NOT PERMISSIBLE`):''}${amber?pill('amber',`${amber} REVIEW / LIMIT`):''}</span></summary><div class="watch-body"><div class="restriction-grid">${cards}</div></div></details>`;
+    const statusGroup=(color,label)=>{const matching=items.filter(x=>restrictionColor(x)===color);if(!matching.length)return '';
+      return `<section class="watch-status-group ${color}" aria-label="${esc(label)}"><div class="watch-status-heading"><span>${esc(label)}</span><span>${matching.length} ${matching.length===1?'entry':'entries'}</span></div><div class="watch-entry-list">${matching.map(x=>`<article class="watch-entry"><div class="watch-entry-text">${esc(x.text)}</div>${x.catalog_section&&x.catalog_section!==sport?`<div class="watch-entry-section">Catalog section: ${esc(x.catalog_section)}</div>`:''}</article>`).join('')}</div></section>`;
+    };
+    return `<details class="watch-sport catalog-sport" ${open?'open':''}><summary><span class="watch-sport-name">${esc(sport)}</span><span class="watch-counts">${items.length} ${items.length===1?'restriction':'restrictions'}${red?` · ${red} not permissible`:''}${amber?` · ${amber} review / limit`:''}</span></summary><div class="watch-body">${statusGroup('red','Not permissible')}${statusGroup('amber','Review / limit')}</div></details>`;
   }).join('')||'<div class="empty">No restrictions match the selected search and status.</div>';
 }
 function registryNameKey(value){return String(value||'').toLowerCase().replace(/[’'`]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
