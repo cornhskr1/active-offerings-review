@@ -56,7 +56,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1p
 body{font-size:16px!important;line-height:1.5!important}
 .nav button{font-size:14px!important}
 .eyebrow{font-size:12px!important}
-.hero p{font-size:15px!important;line-height:1.5!important}
+.hero .intro-copy{font-size:15px!important;line-height:1.5!important}
 .refresh-meta{font-size:13px!important}
 .section-title{font-size:22px!important}
 .small{font-size:13px!important;line-height:1.45!important}
@@ -509,11 +509,49 @@ th{font-size:11px!important}
 .registry-leagues{display:grid;gap:8px}.registry-league{border:1px solid #dfe4e8;border-radius:9px;overflow:hidden;background:#fafbfb}.registry-league>summary{cursor:pointer;list-style:none;padding:10px 11px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;font-weight:900}.registry-league>summary::-webkit-details-marker{display:none}.registry-league[open]>summary{border-bottom:1px solid #e2e6e9;background:#f5f7f8}.registry-athletes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:9px}.registry-athlete{border:1px solid #dfe4e8;border-left:5px solid var(--red);border-radius:9px;padding:10px 11px;background:#fff}.registry-athlete-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.registry-athlete-name{font-size:14px;font-weight:950}.registry-athlete-meta{font-size:12px;color:#59636d;margin-top:5px;line-height:1.45}.registry-athlete a{color:#075d93}
 @media(max-width:1050px){.watch-summary{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.watch-summary,.restriction-grid,.registry-athletes{grid-template-columns:1fr}.watch-sport>summary{align-items:flex-start;flex-direction:column}.watch-counts{justify-content:flex-start}}
+
+/* Commissioner introduction, with the staff workspace immediately below. */
+html{scroll-padding-top:76px}body{background:#f3f5f7}
+.app{padding-top:20px}
+.workspace-brand{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 4px 16px}
+.workspace-name{font-size:20px;font-weight:800;letter-spacing:-.5px;color:#18222c}
+.workspace-subtitle{font-size:11px;color:#596773;margin-top:2px}
+.workspace-boundary{font-size:10px;font-weight:800;letter-spacing:.08em;color:#596773;text-align:right}
+.nav{background:#202a34;border-radius:12px}.nav button,.nav .portal-link{min-height:44px;font-size:12px}
+.hero{position:relative;overflow:hidden;grid-template-columns:minmax(0,1fr) 350px;align-items:center;padding:32px;gap:36px;background:linear-gradient(120deg,#15212d 0%,#273847 100%);border-radius:18px;box-shadow:0 10px 28px rgba(20,33,45,.12)}
+.hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:#c44940}
+.eyebrow{color:#ffc2b8;font-size:10px;letter-spacing:.16em}
+.hero h1{max-width:720px;font-size:clamp(30px,3.2vw,46px);line-height:1.12;letter-spacing:-1.3px;margin:12px 0 16px}
+.hero .intro-copy{max-width:650px;font-size:14px;line-height:1.65;color:#e0e7ed}
+.intro-evidence{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-size:11px;color:#c9d7e2}
+.intro-evidence span{display:flex;align-items:center;gap:7px}.intro-evidence span:before{content:"";width:4px;height:4px;border-radius:50%;background:#f09b8c}
+.intro-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.intro-actions button{font:inherit;font-size:12px;font-weight:800;border-radius:8px;min-height:44px;padding:11px 15px;cursor:pointer;border:1px solid #7b8d9b;color:#fff;background:transparent}
+.intro-actions .intro-primary{background:#fff;color:#1b2b39;border-color:#fff}.intro-actions button:hover{background:#e8eef3;color:#1b2b39}
+.refreshbox{position:relative;border:1px solid #dfe6ec;border-radius:12px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.refresh-heading{font-size:12px;font-weight:800;margin-bottom:10px;color:#253849}
+.refreshbox button{background:#f2f6f9;border-color:#c5d2dd;min-height:44px;color:#233f56}.refreshbox button:disabled{cursor:wait;opacity:.65}
+.refresh-meta{font-size:11px;gap:9px}.refresh-line{align-items:baseline}.refresh-line b{text-align:right}.refresh-status{line-height:1.5;font-weight:700}
+.hero .refresh-help{font-size:11px;color:#5b6772;line-height:1.55;margin:10px 0 0}
+.data-disclosure{border-top:1px solid #e1e7ed;margin-top:12px;padding-top:10px;font-size:11px;color:#3a4c5d}
+.data-disclosure>summary{cursor:pointer;font-weight:800;min-height:24px}.data-disclosure p{font-size:10px;line-height:1.5;color:#596773;margin:8px 0}
+.feed-date-list{max-height:250px;overflow:auto;margin-top:8px}.feed-date-row{padding:8px 0;border-top:1px solid #e8edf1;display:grid;gap:3px}.feed-date-row span{font-size:10px;color:#596773}.feed-date-row .feed-problem{color:#825207}
+.workspace-guide{border:1px solid #dce3e9;background:#fff;border-radius:10px;margin-top:12px;padding:10px 16px;color:#34495b;font-size:11px}
+.workspace-guide>summary{cursor:pointer;font-weight:800;min-height:24px;line-height:24px}.guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding:14px 0 8px}.guide-grid b{font-size:12px;display:block;color:#243849;margin-bottom:5px}.guide-grid p{margin:0;font-size:11px;line-height:1.65;color:#596773}
+#today>.card{padding:22px;border-color:#dce3e9}.review-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}.review-heading .section-title{margin-bottom:8px}.review-period{font-size:12px;font-weight:700;color:#596773}.review-subtitle{font-size:11px;color:#596773;margin:0 0 12px;line-height:1.6}
+#todayMetrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}.metric.review-metric{padding:15px;background:#f7f9fb;border-color:#dce3e9}.review-metric b{font-size:27px;letter-spacing:-.6px}.review-metric span{font-size:10px;letter-spacing:.025em}.review-metric.red b{color:#a62c24}.review-metric.amber b{color:#875510}
+.today-view-switch button{min-height:42px}.workspace-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:20px 4px 0;font-size:10px;color:#596773}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #4f8dbb;outline-offset:3px}
+@media(max-width:900px){.hero{padding:26px;gap:24px;grid-template-columns:minmax(0,1fr) 300px}.hero h1{font-size:34px}.intro-evidence{gap:8px 14px}}
+@media(max-width:700px){.app{padding:14px 10px 24px}.workspace-brand{padding-bottom:12px}.workspace-name{font-size:18px}.workspace-boundary{max-width:108px;font-size:9px}.nav button,.nav .portal-link{font-size:11px;padding:9px 11px}.hero{grid-template-columns:1fr;padding:24px 20px;gap:22px;margin-top:12px}.hero h1{font-size:34px;letter-spacing:-.8px;margin:10px 0 14px}.hero .intro-copy{font-size:13px}.intro-evidence{margin-top:16px}.intro-actions{margin-top:20px}.intro-actions button{flex:1;padding:10px;font-size:11px}.refreshbox{padding:15px}.guide-grid{grid-template-columns:1fr;gap:15px}#today>.card{padding:16px}#todayMetrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric.review-metric{padding:12px}.review-metric b{font-size:25px}.review-heading .section-title{font-size:19px}.today-view-switch button{min-height:46px}.workspace-footer{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
 <div class="app">
-<nav class="nav" id="nav">
+<header class="workspace-brand"><div><div class="workspace-name">Active Offerings</div><div class="workspace-subtitle">Sports wagering review workspace</div></div><div class="workspace-boundary">PUBLIC INFORMATION<br>STAFF REVIEW</div></header>
+<nav class="nav" id="nav" aria-label="Review workspace">
 <button class="active" data-panel="today">Review Today</button>
 <button data-panel="college">Nebraska Collegiate</button>
 <button data-panel="restrictions">Restriction Watch</button>
@@ -525,14 +563,15 @@ th{font-size:11px!important}
 
 <section class="panel active" id="today">
 <div class="hero">
-<div><div class="eyebrow">Daily Active Offerings Review</div><h1>Review the next eight days</h1><p>Attention Queue shows flagged issues. By Date and By Sport show the same upcoming schedule in two arrangements.</p></div>
-<div class="refreshbox"><button id="refreshBtn">↻ Refresh Review</button><div class="refresh-meta"><div class="refresh-line"><span>Review performed</span><b id="reviewTime">—</b></div><div class="refresh-line"><span>Underlying data</span><b id="dataTime">—</b></div><div class="refresh-status" id="refreshStatus">Loading current public data…</div><div style="font-size:9px;color:#68717a;margin-top:6px;line-height:1.3">Refresh Review reloads the latest published data. It does not run GitHub data-collection workflows.</div></div></div>
+<div class="intro"><div class="eyebrow">Daily Active Offerings Review</div><h1>See what needs attention.<br>Know where to look next.</h1><p class="intro-copy">Upcoming events, catalog restrictions, and known under-18 participants in one workspace—supporting staff review of Nebraska sportsbook offerings.</p><div class="intro-evidence"><span>Published schedules</span><span>Catalog requirements</span><span>Participant evidence</span></div><div class="intro-actions"><button type="button" class="intro-primary" id="introAttentionBtn">View Attention Queue</button><button type="button" id="introCatalogBtn">Explore Approved Catalog</button></div></div>
+<div class="refreshbox"><div class="refresh-heading">Published data</div><button type="button" id="refreshBtn">↻ Reload Published Data</button><div class="refresh-meta"><div class="refresh-line"><span>Data reloaded</span><b id="reviewTime">—</b></div><div class="refresh-line"><span>Schedule published</span><b id="dataTime">—</b></div><div class="refresh-status" role="status" aria-live="polite" id="refreshStatus">Loading published data…</div></div><p class="refresh-help">Reloads the available published files. Source collection runs separately. Reloading does not record a completed staff review.</p><details class="data-disclosure"><summary>Source dates &amp; availability</summary><p>Each source has its own publication date. A successful reload does not establish complete schedule coverage, participant ages, or verified sportsbook offerings.</p><div id="feedDates" class="feed-date-list">Source dates appear after loading.</div></details></div>
 </div>
-<div class="card"><div class="section-title">Today + 7 Review</div><div class="schedule-warning" id="scheduleWarning"></div><div class="metrics" id="todayMetrics"></div><div class="today-view-switch" role="group" aria-label="Review layout"><button type="button" data-today-view="attention" aria-pressed="false">Attention Queue</button><button type="button" data-today-view="date" class="active" aria-pressed="true">By Date</button><button type="button" data-today-view="sport" aria-pressed="false">By Sport</button></div><details class="today-alerts" id="todayAlerts" hidden><summary id="todayAlertsSummary">Attention queue</summary><div class="today-alerts-body" id="todayAlertsBody"></div></details><div id="todayDays"></div></div>
+<details class="workspace-guide"><summary>How to use this review</summary><div class="guide-grid"><div><b>Find the next staff check</b><p>Start with the Attention Queue for restrictions and coverage issues. By Date and By Sport arrange the same upcoming schedule. No listed alert does not mean every offering is cleared.</p></div><div><b>Confirm the applicable approval</b><p>The published NRGC catalog controls approval. A scheduled event or connected source does not establish permission to offer every market.</p></div><div><b>Verify the actual offering</b><p>Staff checks active sportsbook events and markets, confirms unresolved evidence, and documents the review. This public-information workspace does not inspect operator systems or confidential reports. Internet access is needed to load published data.</p></div></div></details>
+<div class="card"><div class="review-heading"><div class="section-title">Upcoming Event Review</div><div class="review-period" id="reviewPeriod">Today and the next seven days · Central Time</div></div><p class="review-subtitle">Choose issues, dates, or sports. Counts reflect available published evidence and review items; staff verification remains necessary.</p><div class="schedule-warning" id="scheduleWarning"></div><div class="metrics" id="todayMetrics"></div><div class="today-view-switch" role="group" aria-label="Review layout"><button type="button" data-today-view="attention" aria-pressed="false">Attention Queue</button><button type="button" data-today-view="date" class="active" aria-pressed="true">By Date</button><button type="button" data-today-view="sport" aria-pressed="false">By Sport</button></div><details class="today-alerts" id="todayAlerts" hidden><summary id="todayAlertsSummary">Attention queue</summary><div class="today-alerts-body" id="todayAlertsBody"></div></details><div id="todayDays"></div></div>
 <div class="card intake-today" id="intakeToday"><div class="intake-today-head"><div><div class="intake-today-title">Published catalog change detected</div><div class="small" id="intakeTodayText"></div></div><button class="intake-open-btn" type="button" id="openIntakeBtn">Open Change Queue</button></div></div>
 </section>
 
-<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN unless another restriction applies. The display covers baseball, men's and women's basketball, football, men's and women's soccer, softball, volleyball, and wrestling. Other NCAA sports remain in the source data and approved catalog.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
+<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN for the location check only; other restrictions and market checks still apply. The display covers baseball, men's and women's basketball, football, men's and women's soccer, softball, volleyball, and wrestling. Other NCAA sports remain in the source data and approved catalog.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool" aria-label="Filter Nebraska collegiate school"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus" aria-label="Filter Nebraska collegiate location status"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
   <div class="section-title">Nebraska Collegiate — Basketball Futures Cutoffs</div>
   <p class="small">Regular-season futures must be disabled before the first legitimate regular-season contest. A narrower subset used to determine the market outcome — such as away games, home games, conference games, or similar subsets — does not move that cutoff. Postseason futures must be disabled before the first legitimate postseason contest, if applicable. Combination markets must be removed by the earliest applicable cutoff among all included Nebraska collegiate components. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
   <div class="futures-guidance">
@@ -544,26 +583,27 @@ th{font-size:11px!important}
 <div class="futures-grid" id="collegeFuturesGrid"></div>
 </div></section>
 
-<section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager or market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="watch-summary" id="restrictionSummary"></div><div class="toolbar"><input id="restrictionSearch" placeholder="Search sport, league, or restriction…"><select id="restrictionColor"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Organized by sport:</b> open a sport to review its exact catalog restrictions. Searching or selecting a status opens every matching sport automatically.</div><div class="legend"><span>🔴 <b>NOT PERMISSIBLE</b></span><span>🟠 <b>REVIEW / LIMIT</b></span></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
+<section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="small">Exact restriction text from the current NRGC catalog. RED means the wager or market is not permissible. AMBER means a limit, cutoff, or manual review condition applies.</p><div class="watch-summary" id="restrictionSummary"></div><div class="toolbar"><input id="restrictionSearch" aria-label="Search restrictions" placeholder="Search sport, league, or restriction…"><select id="restrictionColor" aria-label="Filter restriction status"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Organized by sport:</b> open a sport to review its exact catalog restrictions. Searching or selecting a status opens every matching sport automatically.</div><div class="legend"><span>🔴 <b>NOT PERMISSIBLE</b></span><span>🟠 <b>REVIEW / LIMIT</b></span></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
 
-<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Combined verified U18 intelligence, including the dedicated professional-tennis registry and verified tennis age-cache discoveries. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" placeholder="Search athlete, team, sport, or league…"></div><div class="watch-help"><b>Organized by sport and league:</b> open a sport, then a league, to review its verified athletes. Search opens matching groups automatically.</div><div class="watch-groups" id="u18Groups"></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
+<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Verified under-18 participant evidence, including the dedicated professional-tennis registry and verified tennis age-cache discoveries. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" aria-label="Search known under-18 participants" placeholder="Search athlete, team, sport, or league…"></div><div class="watch-help"><b>Organized by sport and league:</b> open a sport, then a league, to review its verified athletes. Search opens matching groups automatically.</div><div class="watch-groups" id="u18Groups"></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
 <section class="panel" id="intake">
   <div class="card">
     <div class="section-title">Published Catalog Change Queue</div>
-    <p class="small">Automatically compares the live, published NRGC catalog with the last completed dashboard crosswalk.</p>
-    <div class="intake-guardrail"><b>Fail-closed publication gate:</b> The published catalog controls approval. A detected addition, wording change, or removal remains blocked from Review Today until its hierarchy, source, season, restriction, and schedule mappings are reviewed and completed.</div>
+    <p class="small">Shows the latest published comparison of the NRGC catalog and the reviewed competition mappings. Reloading this page does not retrieve a new catalog from the publisher.</p>
+    <div class="intake-guardrail"><b>Unreviewed changes remain on hold:</b> The published catalog controls approval. A detected addition, wording change, or removal remains blocked from Review Today until its catalog placement, source, season, restriction, and schedule mappings are reviewed and completed.</div>
     <div class="source-note" id="intakeSource"></div>
     <div class="metrics" id="intakeMetrics"></div>
     <div class="toolbar">
-      <input id="intakeSearch" placeholder="Search sport or published catalog line…">
-      <select id="intakeType"><option value="all">All change types</option><option value="catalog-addition">Catalog additions</option><option value="catalog-change">Catalog changes</option><option value="catalog-removal">Catalog removals</option></select>
+      <input id="intakeSearch" aria-label="Search catalog changes" placeholder="Search sport or published catalog line…">
+      <select id="intakeType" aria-label="Filter catalog change type"><option value="all">All change types</option><option value="catalog-addition">Catalog additions</option><option value="catalog-change">Catalog changes</option><option value="catalog-removal">Catalog removals</option></select>
     </div>
     <div class="intake-list" id="intakeQueue"></div>
   </div>
 </section>
 
-<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog &amp; Coverage</div><div id="catalogSource" class="source-note"></div><div id="catalogHealth" class="catalog-health"></div><div class="toolbar"><input id="catalogSearch" placeholder="Search sport, country, league, event…"><select id="catalogSeason"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Underlined names open the verified official source in a new tab. The published catalog remains the approval authority; schedule coverage and source health never create approval.</div><div id="catalogSections"></div></div></section>
+<section class="panel" id="catalog"><div class="card"><div class="section-title">Approved Catalog &amp; Coverage</div><div id="catalogSource" class="source-note"></div><div id="catalogHealth" class="catalog-health"></div><div class="toolbar"><input id="catalogSearch" aria-label="Search approved catalog" placeholder="Search sport, country, league, event…"><select id="catalogSeason" aria-label="Filter catalog season status"><option value="all">All season statuses</option><option value="in">In season</option><option value="out">Out of season</option><option value="unmapped">Season not mapped</option></select></div><div class="catalog-legend-grid"><div class="catalog-legend-box"><div class="catalog-legend-title">Compliance Status</div><div class="season-legend"><span class="pill green">PERMISSIBLE</span><span class="pill amber">RESTRICTION / CUTOFF</span><span class="pill red">NOT PERMISSIBLE</span><span class="season-note">Compliance colors control the staff review response.</span></div></div><div class="catalog-legend-box"><div class="catalog-legend-title">Season Mapping</div><div class="season-legend"><span class="season-pill in-season">IN SEASON</span><span class="season-pill out-season">OUT OF SEASON</span><span class="season-pill unmapped">SEASON NOT MAPPED</span><span class="season-note">Season colors are informational and do not change compliance status.</span></div></div></div><div class="catalog-help"><b>Hierarchy:</b> section/region → governing body → approved league/event → applicable restriction. Underlined names open the verified official source in a new tab. The published catalog remains the approval authority; schedule coverage and source health never create approval.</div><div id="catalogSections"></div></div></section>
+<footer class="workspace-footer"><span>Public information supports review; staff verifies actual sportsbook offerings.</span><span>Active Offerings · Interface release 1.1</span></footer>
 </div>
 <script>
 const DATA={};
@@ -577,6 +617,8 @@ const FILES={
   tennis:'data/tennis-intelligence.json', tennisReview:'data/tennis-review.json', tennisRegistry:'data/tennis-u18-registry.json', tennisCache:'data/tennis-age-cache.json',
   olympicsSummer:'data/olympics-summer-program.json', olympicsWinter:'data/olympics-winter-program.json'
 };
+const FEED_LABELS={global:'Approved sports schedule',coverage:'Competition coverage',priority:'Attention queue',college:'Nebraska collegiate schedules',collegeFutures:'Nebraska collegiate futures',catalog:'Approved catalog',catalogStatus:'Catalog publication status',seasonMap:'Competition season dates',catalogOfficialSources:'Catalog source references',known:'Known U18 registry',intake:'Catalog change queue',ncaa:'NCAA football schedules and rosters',ncaaAge:'NCAA football age evidence',basketball:'NCAA basketball schedules',basketballIntel:'NCAA basketball age and restriction evidence',basketballDI:'NCAA basketball team mapping',basketballRosters:'NCAA basketball rosters',tennis:'Tennis participant evidence',tennisReview:'Tennis review evidence',tennisRegistry:'Tennis U18 registry',tennisCache:'Tennis age evidence',olympicsSummer:'Summer Olympics program',olympicsWinter:'Winter Olympics program'};
+let LAST_LOAD_RESULTS=[];
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const CT='America/Chicago';
 function fmtDateTime(v){if(!v)return '—';try{return new Intl.DateTimeFormat('en-US',{timeZone:CT,month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(v))}catch(_){return String(v)}}
@@ -612,87 +654,82 @@ async function fetchJson(url,timeoutMs=8000){
 }
 
 
+function scheduleWindowStatus(feed,start,end){
+  const usable=[feed?.window_start,feed?.window_end].every(value=>{
+    if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;
+    const date=new Date(`${value}T12:00:00Z`);
+    return Number.isFinite(date.getTime())&&date.toISOString().slice(0,10)===value;
+  });
+  if(!usable)return 'not reported';
+  if(feed.window_start>start||feed.window_end<end)return 'incomplete';
+  if(feed.window_start<start)return 'older publication';
+  return 'covers review dates';
+}
+function publishedLoadStatus(results,displayErrors=[]){
+  const failed=results.filter(([,ok])=>!ok);
+  const loaded=results.length-failed.length;
+  if(displayErrors.length)return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. Display issue: ${displayErrors.join(', ')}. Some views could not be updated.`};
+  if(failed.length)return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. ${failed.length} unavailable on this reload; check source availability below.`};
+  const start=todayKey(),end=addDays(start,7);
+  const windows=[scheduleWindowStatus(DATA.global,start,end),scheduleWindowStatus(DATA.basketball,start,end)];
+  const needsCheck=windows.some(status=>status!=='covers review dates');
+  return {tone:needsCheck?'status-warn':'',text:`${loaded}/${results.length} published files loaded. ${needsCheck?'Schedule dates need verification; see the coverage notice below.':'Schedule windows cover the review dates; source and participant checks remain separate.'}`};
+}
+function renderPublishedDates(results){
+  const host=document.getElementById('feedDates');
+  if(!host)return;
+  const states=new Map(results);
+  host.innerHTML=Object.keys(FILES).map(key=>{
+    const feed=DATA[key],ok=states.get(key);
+    const stamp=feed?.generated_at;
+    const validStamp=stamp&&Number.isFinite(new Date(stamp).getTime());
+    const date=validStamp?new Intl.DateTimeFormat('en-US',{timeZone:CT,year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(stamp)):'Publication date not reported';
+    const available=ok?'Loaded':feed?'Reload unavailable — previous loaded copy retained':'Unavailable — no loaded copy';
+    const window=feed?.window_start||feed?.window_end?`<span>Schedule dates: ${esc(feed.window_start||'not reported')} through ${esc(feed.window_end||'not reported')}</span>`:'';
+    return `<div class="feed-date-row"><b>${esc(FEED_LABELS[key]||key)}</b><span>${esc(date)}</span><span class="${ok?'':'feed-problem'}">${esc(available)}</span>${window}</div>`;
+  }).join('');
+}
 async function loadAll(){
   const btn=document.getElementById('refreshBtn');
   const st=document.getElementById('refreshStatus');
   btn.disabled=true;
-  btn.textContent='Refreshing…';
+  btn.textContent='Reloading…';
   st.className='refresh-status';
-  st.textContent='Loading current public data…';
-
-  let results=[];
+  st.textContent='Loading published data…';
   try{
-    results=await Promise.all(Object.entries(FILES).map(async([k,u])=>{
-      try{
-        DATA[k]=await fetchJson(u,8000);
-        return [k,true];
-      }catch(e){
-        console.warn(`Feed load failed: ${k}`,e);
-        return [k,false];
-      }
+    const results=await Promise.all(Object.entries(FILES).map(async([key,url])=>{
+      try{DATA[key]=await fetchJson(url,8000);return [key,true]}
+      catch(e){console.warn(`Feed load failed: ${key}`,e);return [key,false]}
     }));
-
-    const bad=results.filter(x=>!x[1]).map(x=>x[0]);
-
-    // Rendering errors must not strand the Refresh button.
-    try{
-      renderAll();
-    }catch(renderErr){
-      console.error('Render failure',renderErr);
-      st.className='refresh-status status-warn';
-      st.textContent=`Public feeds loaded, but the page hit a display error: ${renderErr.message||renderErr}`;
-      return;
-    }
-
+    LAST_LOAD_RESULTS=results;
     document.getElementById('reviewTime').textContent=fmtDateTime(new Date());
-
-    const times=['global','priority','college','collegeFutures','catalog','seasonMap','catalogOfficialSources','ncaa','basketball','basketballIntel','basketballDI','basketballRosters','tennisReview','tennisRegistry','tennis','olympicsSummer','olympicsWinter']
-      .map(k=>DATA[k]?.generated_at)
-      .filter(Boolean)
-      .map(x=>new Date(x).getTime())
-      .filter(Number.isFinite);
-
-    document.getElementById('dataTime').textContent=
-      times.length?fmtDateTime(Math.max(...times)):'—';
-
-    const current=todayKey();
-    const globalEnd=DATA.global?.window_end||'';
-    const globalStart=DATA.global?.window_start||'';
-    const scheduleBehind=Boolean(globalEnd && globalEnd<addDays(current,7));
-    const scheduleStartsPast=Boolean(globalStart && globalStart<current);
-
-    if(bad.length){
-      st.className='refresh-status status-warn';
-      st.textContent=`Refresh complete with ${bad.length} feed issue${bad.length===1?'':'s'}: ${bad.join(', ')}.`;
-    }else if(scheduleBehind||scheduleStartsPast){
-      st.className='refresh-status status-warn';
-      st.textContent=`All ${results.length} feeds loaded, but schedule coverage is stale. Run Refresh Approved Sports Schedule.`;
-    }else{
-      st.className='refresh-status status-ok';
-      st.textContent=`Refresh complete · ${results.length}/${results.length} public feeds loaded and current.`;
-    }
+    const scheduleStamp=DATA.global?.generated_at;
+    document.getElementById('dataTime').textContent=scheduleStamp&&Number.isFinite(new Date(scheduleStamp).getTime())?fmtDateTime(scheduleStamp):'Not reported';
+    renderPublishedDates(results);
+    const displayErrors=renderAll();
+    const status=publishedLoadStatus(results,displayErrors);
+    st.className=`refresh-status ${status.tone}`.trim();
+    st.textContent=status.text;
   }catch(e){
-    console.error('Refresh Review failure',e);
+    console.error('Published data reload failure',e);
     st.className='refresh-status status-warn';
-    st.textContent=`Refresh Review encountered an error: ${e.message||e}`;
+    st.textContent=`Published data reload encountered a display error: ${e.message||e}`;
   }finally{
     btn.disabled=false;
-    btn.textContent='↻ Refresh Review';
+    btn.textContent='↻ Reload Published Data';
   }
 }
 function safeRender(name,fn){
-  try{fn()}
-  catch(e){console.error(`${name} render failed`,e)}
+  try{fn();return null}
+  catch(e){console.error(`${name} render failed`,e);return name}
 }
 function renderAll(){
   TODAY_MODEL=null;
-  safeRender('Review Today',renderToday);
-  safeRender('Nebraska Collegiate',renderCollege);
-  safeRender('Restriction Watch',renderRestrictions);
-  safeRender('Known U18',renderU18);
-  safeRender('Catalog Intake',renderIntake);
-  safeRender('Approved Catalog & Coverage',renderCatalog);
+  return [safeRender('Review Today',renderToday),safeRender('Nebraska Collegiate',renderCollege),
+    safeRender('Restriction Watch',renderRestrictions),safeRender('Known U18',renderU18),
+    safeRender('Catalog Changes',renderIntake),safeRender('Approved Catalog & Coverage',renderCatalog)].filter(Boolean);
 }
+
 function normCollegeSport(v){
   return String(v||'').toLowerCase()
     .replace(/women'?s|men'?s/g,'')
@@ -1400,12 +1437,12 @@ function renderToday(){
     const bbStart=DATA.basketball?.window_start||'';
     const bbEnd=DATA.basketball?.window_end||'';
     const basketballStale=Boolean(bbEnd && bbEnd<needEnd);
-    if(staleStart||shortEnd||basketballStale){
+    if(staleStart||shortEnd||basketballStale||scheduleWindowStatus(global,start,end)!=='covers review dates'||scheduleWindowStatus(DATA.basketball,start,end)!=='covers review dates'){
       warning.classList.add('show');
       const notes=[];
-      if(staleStart||shortEnd)notes.push(`Approved Sports Schedule: ${feedStart||'unknown'} through ${feedEnd||'unknown'}. Run <b>Refresh Approved Sports Schedule</b>.`);
-      if(basketballStale)notes.push(`NCAA Basketball: ${bbStart||'unknown'} through ${bbEnd||'unknown'}. Run <b>Refresh NCAA Basketball</b>.`);
-      warning.innerHTML=`<b>Schedule coverage needs refresh.</b> ${notes.join(' ')}`;
+      if(scheduleWindowStatus(global,start,end)!=='covers review dates')notes.push(`Approved sports schedule: ${feedStart||'not reported'} through ${feedEnd||'not reported'}. Verify the official schedule and request an updated publication.`);
+      if(scheduleWindowStatus(DATA.basketball,start,end)!=='covers review dates')notes.push(`NCAA basketball: ${bbStart||'not reported'} through ${bbEnd||'not reported'}. Verify the official schedule and request an updated publication.`);
+      warning.innerHTML=`<b>Schedule dates need verification.</b> ${notes.join(' ')}`;
     }else{
       warning.classList.remove('show');
       warning.innerHTML='';
@@ -1414,8 +1451,10 @@ function renderToday(){
 
   document.getElementById('todayMetrics').innerHTML=[
     [events.length,'scheduled events in eight days'],
-    [new Set(events.map(e=>regionLeagueLabel(e.region,e.league))).size,'leagues with fixtures']
-  ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+    [new Set(events.map(e=>regionLeagueLabel(e.region,e.league))).size,'leagues with fixtures'],
+    [red,'restriction review items'],[amber,'coverage / evidence review items']
+  ].map((x,i)=>`<div class="metric review-metric ${i===2?'red':i===3?'amber':''}"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  document.getElementById('reviewPeriod').textContent=`${prettyDay(start)} – ${prettyDay(end)} · Central Time`;
 
   const alerts=document.getElementById('todayAlerts');
   const attentionButton=document.querySelector('[data-today-view="attention"]');
@@ -1515,7 +1554,7 @@ function renderToday(){
 function collegeReg(e){
   if(e.played_in_nebraska||e.site_test==='NOT PERMISSIBLE')return{c:'red',label:'PLAYED IN NEBRASKA',test:'NOT PERMISSIBLE'};
   if(e.site_color==='amber'||e.site_test==='MANUAL LOCATION REVIEW')return{c:'amber',label:e.regulatory_site_label||'LOCATION REVIEW',test:'MANUAL REVIEW'};
-  if(e.location)return{c:'green',label:'OUTSIDE NEBRASKA',test:'OK · NO REVIEW'};
+  if(e.location)return{c:'green',label:'OUTSIDE NEBRASKA',test:'LOCATION CHECK ONLY'};
   return{c:'amber',label:'LOCATION REVIEW',test:'MANUAL REVIEW'};
 }
 function collegeMatchupLabel(e){
@@ -2807,15 +2846,21 @@ function renderCatalogHealth(){
   rows.forEach(row=>counts[row.state]++);
   const coverage=DATA.coverage?.summary||{},identityStates=coverage.coverage_states||{};
   const identityTotal=coverage.catalog_operational_identities;
-  const identityText=identityTotal?`<div class="catalog-health-note"><b>Priority 2 identity coverage:</b> ${identityTotal} total · ${identityStates.ADAPTER_CONFIGURED||0} adapter configured · ${identityStates.OFFICIAL_WINDOW_ONLY||0} official window only · ${identityStates.ADAPTER_GAP||0} adapter gap · ${identityStates.NO_LINKED_SOURCE||0} no linked source · ${identityStates.SOURCE_SCOPE_REVIEW||0} source scope review.</div>`:'';
+  const identityText=identityTotal?`<div class="catalog-health-note"><b>Competition schedule coverage:</b> ${identityTotal} total · ${identityStates.ADAPTER_CONFIGURED||0} schedule connections configured · ${identityStates.OFFICIAL_WINDOW_ONLY||0} competition dates only · ${identityStates.ADAPTER_GAP||0} automated schedules not connected · ${identityStates.NO_LINKED_SOURCE||0} source not linked · ${identityStates.SOURCE_SCOPE_REVIEW||0} source scope needs review.</div>`:'';
   const latest=DATA.global?.generated_at||rows.map(row=>row.source.checked_at).filter(Boolean).sort().at(-1);
   const buttons=[['all','Full catalog',null,''],['connected','Connected sources',counts.connected,''],['setup','Sources need setup',counts.setup,'attention'],['source','Source errors',counts.source,'issue']]
     .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}${count==null?'':`: ${count}`}</button>`).join('');
-  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div>${identityText}<div class="catalog-health-note">The buttons count schedule source records and filter the catalog; they are not a completion percentage. Identity totals show Priority 2 mapping progress. Schedule status, last checked time, and the official schedule appear inside the matching catalog entry.</div>`;
+  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div>${identityText}<div class="catalog-health-note">The buttons count schedule source records and filter the catalog; they are not a completion percentage. Competition totals describe schedule connections. A configured connection does not establish complete season coverage or a successful current source check. Schedule status, last checked time, and the official schedule appear inside the matching catalog entry.</div>`;
 }
 // interactions
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
 document.getElementById('refreshBtn').addEventListener('click',loadAll);
+document.getElementById('introAttentionBtn').addEventListener('click',()=>{
+  document.querySelector('button[data-panel="today"]').click();
+  TODAY_VIEW='attention';renderToday();
+  document.querySelector('.today-view-switch').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+});
+document.getElementById('introCatalogBtn').addEventListener('click',()=>document.querySelector('button[data-panel="catalog"]').click());
 document.querySelector('.today-view-switch').addEventListener('click',event=>{
   const button=event.target.closest('[data-today-view]');
   if(!button)return;
@@ -2835,3 +2880,4 @@ document.getElementById('catalogHealth').addEventListener('click',event=>{
 loadAll();
 </script>
 </body></html>
+
