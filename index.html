@@ -56,7 +56,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1p
 body{font-size:16px!important;line-height:1.5!important}
 .nav button{font-size:14px!important}
 .eyebrow{font-size:12px!important}
-.hero p{font-size:15px!important;line-height:1.5!important}
+.hero .intro-copy{font-size:15px!important;line-height:1.5!important}
 .refresh-meta{font-size:13px!important}
 .section-title{font-size:22px!important}
 .small{font-size:13px!important;line-height:1.45!important}
@@ -532,7 +532,7 @@ html{scroll-padding-top:76px}body{background:#f3f5f7}
 .refresh-heading{font-size:12px;font-weight:800;margin-bottom:10px;color:#253849}
 .refreshbox button{background:#f2f6f9;border-color:#c5d2dd;min-height:44px;color:#233f56}.refreshbox button:disabled{cursor:wait;opacity:.65}
 .refresh-meta{font-size:11px;gap:9px}.refresh-line{align-items:baseline}.refresh-line b{text-align:right}.refresh-status{line-height:1.5;font-weight:700}
-.hero .refresh-help{font-size:10px;color:#5b6772;line-height:1.55;margin:10px 0 0}
+.hero .refresh-help{font-size:11px;color:#5b6772;line-height:1.55;margin:10px 0 0}
 .data-disclosure{border-top:1px solid #e1e7ed;margin-top:12px;padding-top:10px;font-size:11px;color:#3a4c5d}
 .data-disclosure>summary{cursor:pointer;font-weight:800;min-height:24px}.data-disclosure p{font-size:10px;line-height:1.5;color:#596773;margin:8px 0}
 .feed-date-list{max-height:250px;overflow:auto;margin-top:8px}.feed-date-row{padding:8px 0;border-top:1px solid #e8edf1;display:grid;gap:3px}.feed-date-row span{font-size:10px;color:#596773}.feed-date-row .feed-problem{color:#825207}
@@ -655,7 +655,12 @@ async function fetchJson(url,timeoutMs=8000){
 
 
 function scheduleWindowStatus(feed,start,end){
-  if(!feed?.window_start||!feed?.window_end)return 'not reported';
+  const usable=[feed?.window_start,feed?.window_end].every(value=>{
+    if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;
+    const date=new Date(`${value}T12:00:00Z`);
+    return Number.isFinite(date.getTime())&&date.toISOString().slice(0,10)===value;
+  });
+  if(!usable)return 'not reported';
   if(feed.window_start>start||feed.window_end<end)return 'incomplete';
   if(feed.window_start<start)return 'older publication';
   return 'covers review dates';

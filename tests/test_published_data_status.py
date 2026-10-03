@@ -47,6 +47,8 @@ assert.match(publishedLoadStatus([['global',true],['basketball',true]]).text,/ne
 const check=feed=>scheduleWindowStatus(feed,'2026-10-02','2026-10-09');
 assert.equal(check(undefined),'not reported');
 assert.equal(check({window_start:'2026-10-02'}),'not reported');
+assert.equal(check({window_start:'2026-10-02',window_end:'unknown'}),'not reported');
+assert.equal(check({window_start:'2026-02-30',window_end:'2026-10-09'}),'not reported');
 assert.equal(check({window_start:'2026-10-03',window_end:'2026-10-10'}),'incomplete');
 assert.equal(check({window_start:'2026-10-02',window_end:'2026-10-08'}),'incomplete');
 assert.equal(check({window_start:'2026-10-01',window_end:'2026-10-09'}),'older publication');
