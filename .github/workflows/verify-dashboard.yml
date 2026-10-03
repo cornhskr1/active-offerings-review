@@ -6,6 +6,7 @@ on:
       - index.html
       - tests/test_dashboard_scope.py
       - tests/test_review_today_divisions.py
+      - tests/test_priority2_review_workflow.py
       - tests/test_published_data_status.py
       - .github/workflows/verify-dashboard.yml
   push:
@@ -14,6 +15,7 @@ on:
       - index.html
       - tests/test_dashboard_scope.py
       - tests/test_review_today_divisions.py
+      - tests/test_priority2_review_workflow.py
       - tests/test_published_data_status.py
       - .github/workflows/verify-dashboard.yml
 
@@ -38,4 +40,4 @@ jobs:
           PY
           node --check /tmp/dashboard-script.js
       - name: Verify staff views, division coverage, and published-data status
-        run: python3 -m unittest tests.test_dashboard_scope tests.test_review_today_divisions tests.test_published_data_status -q
+        run: python3 -m unittest tests.test_dashboard_scope tests.test_review_today_divisions tests.test_priority2_review_workflow tests.test_published_data_status -q

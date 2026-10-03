@@ -168,6 +168,8 @@ for(const day of ['2026-09-27','2026-09-28','2026-09-29'])
     def test_three_review_views_defer_queue_and_keep_collapse_state(self):
         start = HTML.index("let TODAY_MODEL=null;")
         end = HTML.index("\nfunction collegeReg(", start)
+        helper_start = HTML.index("function scheduleWindowStatus(")
+        helper_end = HTML.index("\nfunction publishedLoadStatus(", helper_start)
         script = """
 const assert=require('node:assert/strict');
 const DATA={basketball:{},basketballIntel:{},tennisReview:{summary:{}}};
@@ -190,7 +192,7 @@ function fmtDateTime(){return''}
 function esc(value){return String(value)}
 function prettyDay(value){return value}
 function regionLeagueLabel(value){return value}
-""" + HTML[start:end] + """
+""" + HTML[helper_start:helper_end] + HTML[start:end] + """
 renderToday();
 assert.equal(builds,1);
 assert.equal(queueCalls,0);
@@ -246,3 +248,4 @@ assert.match(html,/NCAA Women/);
 
 if __name__ == "__main__":
     unittest.main()
+
