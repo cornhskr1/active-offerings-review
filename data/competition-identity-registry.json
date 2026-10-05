@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-04T21:25:04.946172+00:00",
+  "generated_at": "2026-10-05T00:53:43.441553+00:00",
   "catalog_menu_version": "10.1.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 10.1.26",
-  "schedule_generated_at": "2026-10-04T21:17:58.292809+00:00",
+  "schedule_generated_at": "2026-10-05T00:48:01.676582+00:00",
   "schedule_window_start": "2026-10-04",
   "schedule_window_end": "2026-10-11",
   "competition_count": 733,
@@ -2814,11 +2814,6 @@
           "participants": []
         },
         {
-          "name": "Vuelta Internacional Femenina a Costa Rica",
-          "start_time": "2026-10-04T05:01:00Z",
-          "participants": []
-        },
-        {
           "name": "Caribbean Elite Road Cycling Championships - ME ITT",
           "start_time": "2026-10-10T17:00:00Z",
           "participants": []
@@ -2850,11 +2845,6 @@
       ],
       "participants": [],
       "events": [
-        {
-          "name": "Oita Urban Classic Road Race",
-          "start_time": "2026-10-04T05:01:00Z",
-          "participants": []
-        },
         {
           "name": "Tour de Kyushu",
           "start_time": "2026-10-10T17:00:00Z",
@@ -2899,16 +2889,6 @@
       ],
       "participants": [],
       "events": [
-        {
-          "name": "Coppa Agostoni - Giro delle Brianze",
-          "start_time": "2026-10-04T05:01:00Z",
-          "participants": []
-        },
-        {
-          "name": "Tour de Vendée",
-          "start_time": "2026-10-04T05:01:00Z",
-          "participants": []
-        },
         {
           "name": "Binche - Chimay - Binche / Mémorial Frank Vandenbroucke",
           "start_time": "2026-10-06T17:00:00Z",
@@ -3429,8 +3409,20 @@
       "source_ids": [
         "esports-lol-lcs"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "LYON",
+        "Team Liquid Alienware"
+      ],
+      "events": [
+        {
+          "name": "Team Liquid Alienware vs. LYON",
+          "start_time": "2026-10-04T20:00:00Z",
+          "participants": [
+            "Team Liquid Alienware",
+            "LYON"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "LCS",
@@ -3438,7 +3430,7 @@
           "evidence_url": "https://lolesports.com/en-US/news/lcs"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Esports",
@@ -3646,6 +3638,14 @@
           "participants": [
             "FaZe Clan",
             "Black Dragons"
+          ]
+        },
+        {
+          "name": "Team Liquid Alienware vs. FURIA",
+          "start_time": "2026-10-09T00:00:00Z",
+          "participants": [
+            "Team Liquid Alienware",
+            "FURIA"
           ]
         },
         {
@@ -27473,8 +27473,30 @@
       "source_ids": [
         "uefa-soccer-sweden-svenska-cupen-women"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Alingsås IF FF",
+        "Enskede IK",
+        "IF Brommapojkarna",
+        "IF Elfsborg"
+      ],
+      "events": [
+        {
+          "name": "IF Elfsborg at Alingsås IF FF",
+          "start_time": "2026-10-08T16:30:00Z",
+          "participants": [
+            "IF Elfsborg",
+            "Alingsås IF FF"
+          ]
+        },
+        {
+          "name": "IF Brommapojkarna at Enskede IK",
+          "start_time": "2026-10-08T17:00:00Z",
+          "participants": [
+            "IF Brommapojkarna",
+            "Enskede IK"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "Svenska Cupen damer",
@@ -27482,7 +27504,7 @@
           "evidence_url": "https://www.svenskfotboll.se/serier-cuper/svenska-cupen/damer-grupper/"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
