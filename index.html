@@ -666,7 +666,7 @@ let LAST_LOAD_RESULTS=[];
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const CT='America/Chicago';
 function fmtDateTime(v){if(!v)return '—';try{return new Intl.DateTimeFormat('en-US',{timeZone:CT,month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(v))}catch(_){return String(v)}}
-function ctKey(v){try{const p=new Intl.DateTimeFormat('en-CA',{timeZone:CT,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(v));const g=t=>p.find(x=>x.type===t)?.value;return `${g('year')}-${g('month')}-${g('day')}`}catch(_){return ''}}
+function ctKey(v){if(/^\d{4}-\d{2}-\d{2}$/.test(String(v||'')))return String(v);try{const p=new Intl.DateTimeFormat('en-CA',{timeZone:CT,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(v));const g=t=>p.find(x=>x.type===t)?.value;return `${g('year')}-${g('month')}-${g('day')}`}catch(_){return ''}}
 function todayKey(){return ctKey(new Date())}
 function keyBetween(key,start,end){return key>=start&&key<=end}
 function dateDiffDays(a,b){
@@ -679,7 +679,7 @@ function dateDiffDays(a,b){
 
 function addDays(key,n){const d=new Date(`${key}T12:00:00-05:00`);d.setDate(d.getDate()+n);return ctKey(d)}
 function prettyDay(key){const d=new Date(`${key}T12:00:00-05:00`);return new Intl.DateTimeFormat('en-US',{timeZone:CT,weekday:'short',month:'short',day:'numeric'}).format(d)}
-function eventTime(v){if(!v)return 'TBA';if(/^\d{4}-\d{2}-\d{2}T\d{1,2}:/.test(v)&&!/[zZ]|[+-]\d\d:?\d\d$/.test(v)){return v.split('T')[1]||'TBA'}try{return new Intl.DateTimeFormat('en-US',{timeZone:CT,hour:'numeric',minute:'2-digit'}).format(new Date(v))}catch(_){return String(v).replace(/^.*T/,'')}}
+function eventTime(v){if(/^\d{4}-\d{2}-\d{2}$/.test(String(v||'')))return 'DATE ONLY';if(!v)return 'TBA';if(/^\d{4}-\d{2}-\d{2}T\d{1,2}:/.test(v)&&!/[zZ]|[+-]\d\d:?\d\d$/.test(v)){return v.split('T')[1]||'TBA'}try{return new Intl.DateTimeFormat('en-US',{timeZone:CT,hour:'numeric',minute:'2-digit'}).format(new Date(v))}catch(_){return String(v).replace(/^.*T/,'')}}
 function pill(color,text){return `<span class="pill ${color}">${esc(text)}</span>`}
 function severityColor(s){return String(s).toUpperCase()==='RED'?'red':String(s).toUpperCase()==='GREEN'?'green':'amber'}
 async function fetchJson(url,tries=3){let err;for(let i=0;i<tries;i++){try{const r=await fetch(`${url}?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`${r.status}`);return await r.json()}catch(e){err=e;await new Promise(res=>setTimeout(res,250*(i+1)))}}throw err}
@@ -781,14 +781,17 @@ function normCollegeSport(v){
     .trim();
 }
 function reviewSport(item){
-  const sport=String(item?.sport||'').trim();
-  const normalized=normCollegeSport(sport);
+  const raw=String(item?.sport||'').trim();
+  const mapped=typeof mappedCatalogEventForScheduleEvent==='function'
+    ?mappedCatalogEventForScheduleEvent(item):null;
+  const sport=mapped?.sport||raw;
+  const normalized=normCollegeSport(sport).replace(/^ncaa\s+/,'');
   const context=`${item?.league||''} ${item?.type||''} ${item?.source||''}`;
-  if(normalized.replace(/^ncaa\s+/,'')==='basketball' &&
-      (Boolean(item?.school)||/^ncaa\b/i.test(sport)||/\bncaa\b|\bcollegiate\b/i.test(context)))
-    return 'NCAA Basketball';
+  const collegiate=Boolean(item?.school)||/^ncaa\b/i.test(sport)||/\bncaa\b|\bcollege\b|\bcollegiate\b/i.test(context);
+  if(collegiate&&normalized)return 'NCAA '+normalized.replace(/\b\w/g,c=>c.toUpperCase());
   return sport||'Event';
 }
+
 function isNonWageredNcaaSport(item){
   const rawSport=normCollegeSport(item?.sport||'');
   const sport=rawSport.replace(/^ncaa\s+/,'');
@@ -835,7 +838,10 @@ function authoritativeCollegeAlerts(dayKey,dayEvents){
         sport:reviewSport({...c, sport:c.sport||g?.sport||'NCAA'}),
         league:g?.league||`NCAA ${c.sport||'Basketball'}`,
         event:g?.name||`${c.school} ${c.sport} vs. ${c.opponent||'TBA'}`,
-        start_time:g?.start_time||`${c.date}T12:00:00`,
+        start_time:g?.start_time||c.date,
+      date_only:!g?.start_time&&!c.time,
+      time_label:!g?.start_time?c.time:'',
+      source_url:c.source_url||'',
         reason:red
           ?`${c.school} is participating in a collegiate event played in Nebraska${c.location?` · ${c.location}`:''}.`
           :`${c.school} collegiate event location has not yet been resolved from the authoritative school schedule.`,
@@ -1042,8 +1048,17 @@ function basketballIntelligenceAlerts(dayKey){
   return rows;
 }
 
+function priorityQueueIncludes(item){
+  return !isNonWageredNcaaSport(item)&&reviewSport(item)!=='NCAA Soccer';
+}
+function authoritativeCollegePriorityKey(event){
+  return `event|ne|${event.school}|${event.sport}|${event.date}|${event.opponent||'TBA'}`;
+}
+
 function attentionCardsForDay(dayKey,events,pqCards){
-  const cards=[...pqCards.filter(c=>ctKey(c.start_time)===dayKey)];
+  const authoritative=visibleCollegeEvents().filter(c=>String(c.date||'')===dayKey&&['red','amber'].includes(collegeReg(c).c));
+  const replacedKeys=new Set(authoritative.map(authoritativeCollegePriorityKey));
+  const cards=[...pqCards.filter(c=>ctKey(c.start_time)===dayKey&&!(replacedKeys.has(c.key)&&c.type==='NOT PERMISSIBLE'&&!(c.athletes||[]).length&&(c.triggers||[]).every(trigger=>trigger==='Nebraska collegiate home-event/site restriction')))];
   authoritativeCollegeAlerts(dayKey,events.filter(e=>ctKey(e.start_time)===dayKey)).forEach(c=>{
     if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
   });
@@ -1062,7 +1077,7 @@ function attentionCardsForDay(dayKey,events,pqCards){
   tennisIntelligenceAlerts(dayKey,events).forEach(c=>{
     if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
   });
-  return cards;
+  return cards.filter(priorityQueueIncludes);
 }
 
 function tennisIntelligenceAlerts(dayKey,events){
@@ -1195,7 +1210,7 @@ function renderIssueBoard(cards,events){
         const who=(card.athletes||[]).length?` · ${(card.athletes||[]).join(', ')}`:'';
         const game=esportsGameLabel(card);
         const detail=[game,card.reason||''].filter(Boolean).join(' · ');
-        return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(detail)}${esc(who)}</div></div>${coverageOnly?'':`<span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${card.date_only?'DATE ONLY':esc(eventTime(card.start_time))}</span>`}</div>`;
+        return `<div class="issue-detail"><div><b>${esc(card.event||card.title||'Scheduled event')}</b><div class="row-meta">${esc(detail)}${esc(who)}</div></div>${coverageOnly?'':`<span class="row-meta">${esc(prettyDay(ctKey(card.start_time)))} · ${card.date_only?'DATE ONLY':esc(card.time_label||eventTime(card.start_time))}</span>`}</div>`;
       }).join('')}${actions.length?`<div class="issue-card-action"><b>Staff check:</b> ${esc(actions.join(' '))} <b>Scope:</b> all licensed sportsbook platforms. ${sourceLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' ')}</div>`:''}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
@@ -1437,34 +1452,22 @@ function buildTodayModel(){
     return keyBetween(k,start,end) && !isNonWageredNcaaSport(c);
   });
 
-  const collegiateAttention=visibleCollegeEvents().filter(c=>
-    keyBetween(String(c.date||''),start,end) &&
-    ['red','amber'].includes(collegeReg(c).c)
-  );
-  const collegiateRed=collegiateAttention.filter(c=>collegeReg(c).c==='red');
-  const collegiateAmber=collegiateAttention.filter(c=>collegeReg(c).c==='amber');
-
-  const basketballWindowAlerts=[];
-  for(let i=0;i<8;i++)basketballWindowAlerts.push(...basketballIntelligenceAlerts(addDays(start,i)));
-  const basketballRed=basketballWindowAlerts.filter(c=>c.severity==='RED').length;
-  const basketballAmber=basketballWindowAlerts.filter(c=>c.severity==='AMBER').length;
-
-  const futuresWindowAlerts=[];
-  for(let i=0;i<8;i++)futuresWindowAlerts.push(...collegeFuturesAttention(addDays(start,i)));
-  const futuresRed=futuresWindowAlerts.filter(c=>c.severity==='RED').length;
-  const futuresAmber=futuresWindowAlerts.filter(c=>c.severity==='AMBER').length;
-
-  const boxingWindowAlerts=[];
-  for(let i=0;i<8;i++)boxingWindowAlerts.push(...boxingReviewAlerts(addDays(start,i),events));
-  const combatWindowAlerts=[];
-  for(let i=0;i<8;i++)combatWindowAlerts.push(...combatBoutReviewAlerts(addDays(start,i),events));
-
   const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start),
-    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start)];
-  const red=pqCards.filter(c=>c.severity==='RED').length+collegiateRed.length+basketballRed+futuresRed;
-  const amber=pqCards.filter(c=>c.severity==='AMBER').length+collegiateAmber.length+basketballAmber+futuresAmber+boxingWindowAlerts.length+combatWindowAlerts.length+coverageAlerts.length;
+    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start)]
+    .filter(priorityQueueIncludes);
+  const dayCards=new Map();
+  const windowCards=[];
+  for(let i=0;i<8;i++){
+    const day=addDays(start,i);
+    const cards=attentionCardsForDay(day,events,pqCards);
+    dayCards.set(day,cards);
+    windowCards.push(...cards);
+  }
+  windowCards.push(...coverageAlerts);
+  const red=windowCards.filter(c=>c.severity==='RED').length;
+  const amber=windowCards.filter(c=>c.severity==='AMBER').length;
 
-  return {global,start,end,events,pqCards,coverageAlerts,red,amber,dayCards:new Map(),windowCards:null,queueRendered:false,dateHtml:null,sportBoard:null};
+  return {global,start,end,events,pqCards,coverageAlerts,red,amber,dayCards,windowCards,queueRendered:false,dateHtml:null,sportBoard:null};
 }
 let TODAY_MODEL=null;
 function renderToday(){
