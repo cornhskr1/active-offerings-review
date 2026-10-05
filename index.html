@@ -1058,7 +1058,7 @@ function authoritativeCollegePriorityKey(event){
 function attentionCardsForDay(dayKey,events,pqCards){
   const authoritative=visibleCollegeEvents().filter(c=>String(c.date||'')===dayKey&&['red','amber'].includes(collegeReg(c).c));
   const replacedKeys=new Set(authoritative.map(authoritativeCollegePriorityKey));
-  const cards=[...pqCards.filter(c=>ctKey(c.start_time)===dayKey&&!replacedKeys.has(c.key))];
+  const cards=[...pqCards.filter(c=>ctKey(c.start_time)===dayKey&&!(replacedKeys.has(c.key)&&c.type==='NOT PERMISSIBLE'&&!(c.athletes||[]).length&&(c.triggers||[]).every(trigger=>trigger==='Nebraska collegiate home-event/site restriction')))];
   authoritativeCollegeAlerts(dayKey,events.filter(e=>ctKey(e.start_time)===dayKey)).forEach(c=>{
     if(!cards.some(existing=>sameAlert(existing,c)))cards.push(c);
   });

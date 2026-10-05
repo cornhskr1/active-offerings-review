@@ -59,7 +59,7 @@ const sameAlert=(a,b)=>a.event===b.event;
             "ctKey", "normCollegeSport", "reviewSport", "isNonWageredNcaaSport",
             "priorityQueueIncludes", "authoritativeCollegePriorityKey", "attentionCardsForDay")) + """
 const pq=[
- {key:authoritativeCollegePriorityKey(event),sport:'Baseball',league:'Nebraska Collegiate',start_time:event.date,event:'Nebraska vs Red-White Series: Game 1'},
+ {key:authoritativeCollegePriorityKey(event),type:'NOT PERMISSIBLE',sport:'Baseball',league:'Nebraska Collegiate',start_time:event.date,event:'Nebraska vs Red-White Series: Game 1'},
  {key:'other-age-risk',sport:'NCAA Baseball',type:'U18 EXPOSURE',start_time:event.date,event:'Another event'},
  {key:'unmatched-source',sport:'NCAA Baseball',start_time:event.date,event:'Unmatched event'},
  {sport:'NCAA Soccer',start_time:event.date,event:'Soccer'}
