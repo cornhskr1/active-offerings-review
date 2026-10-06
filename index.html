@@ -1856,11 +1856,16 @@ function combinedKnownU18Rows(){
     return{
       sport:'Tennis',league:'Professional Tennis',team:'Active-field watchlist',lane:'Active-field watchlist',
       athlete,age:best.age,age_label:best.age_label||best.age||'U18',source:best.source||'Official tennis profile',
+      last_verified:best.last_verified||'',
       source_url:best.source_url||best.profile_url,aliases:[...names].filter(name=>registryNameKey(name)!==registryNameKey(athlete)),
       registry_origin:inRegistry?'TENNIS REGISTRY':'AGE CACHE PROMOTION'
     };
   });
   return{rows:[...general,...tennis],generalCount:general.length,tennisCount:tennis.length,cacheOnly};
+}
+function u18LastVerifiedLabel(value){
+  const text=String(value||'');
+  return /^\d{4}-\d{2}-\d{2}(?:T|$)/.test(text)&&Number.isFinite(Date.parse(text))?text.slice(0,10):'Not recorded';
 }
 function renderU18(){
   const q=(document.getElementById('u18Search').value||'').toLowerCase();
@@ -1873,7 +1878,7 @@ function renderU18(){
   const athleteCard=x=>{
     const athlete=x.source_url?`<a href="${esc(x.source_url)}" target="_blank" rel="noopener"><b>${esc(x.athlete)}</b></a>`:`<b>${esc(x.athlete)}</b>`;
     const origin=x.registry_origin==='AGE CACHE PROMOTION'?pill('blue','CACHE PROMOTED'):pill('red','VERIFIED U18');
-    return `<article class="registry-athlete"><div class="registry-athlete-head"><div class="registry-athlete-name">${athlete}</div>${origin}</div><div class="registry-athlete-meta"><b>${esc(x.age_label||x.age||'U18')}</b>${x.team||x.lane?` · ${esc(x.team||x.lane)}`:''}${(x.aliases||[]).length?`<br>Aliases: ${esc(x.aliases.join(', '))}`:''}</div></article>`;
+    return `<article class="registry-athlete"><div class="registry-athlete-head"><div class="registry-athlete-name">${athlete}</div>${origin}</div><div class="registry-athlete-meta"><b>${esc(x.age_label||x.age||'U18')}</b>${x.team||x.lane?` · ${esc(x.team||x.lane)}`:''}${(x.aliases||[]).length?`<br>Aliases: ${esc(x.aliases.join(', '))}`:''}<br>Last verified: ${esc(u18LastVerifiedLabel(x.last_verified))}</div></article>`;
   };
   const sports={};rec.forEach(x=>{const sport=x.sport||'Other',league=x.league||'League not specified';sports[sport]??={};(sports[sport][league]??=[]).push(x)});
   document.getElementById('u18Groups').innerHTML=Object.entries(sports).sort(([a],[b])=>a.localeCompare(b)).map(([sport,leagues],sportIndex)=>{
