@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06T13:16:21.359231+00:00",
+  "generated_at": "2026-10-06T13:23:40.781778+00:00",
   "catalog_menu_version": "10.1.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 10.1.26",
-  "schedule_generated_at": "2026-10-06T13:06:36.331077+00:00",
+  "schedule_generated_at": "2026-10-06T13:16:42.675276+00:00",
   "schedule_window_start": "2026-10-06",
   "schedule_window_end": "2026-10-13",
   "competition_count": 733,
-  "event_count": 2059,
+  "event_count": 2061,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -15218,8 +15218,30 @@
       "source_ids": [
         "rugby-nzr-farah-palmer-2026"
       ],
-      "participants": [],
-      "events": [],
+      "participants": [
+        "Auckland Storm",
+        "Canterbury",
+        "Northland Kauri",
+        "Wellington Pride"
+      ],
+      "events": [
+        {
+          "name": "Northland Kauri at Wellington Pride",
+          "start_time": "2026-10-09T23:05:00Z",
+          "participants": [
+            "Northland Kauri",
+            "Wellington Pride"
+          ]
+        },
+        {
+          "name": "Auckland Storm at Canterbury",
+          "start_time": "2026-10-11T03:05:00Z",
+          "participants": [
+            "Auckland Storm",
+            "Canterbury"
+          ]
+        }
+      ],
       "aliases": [
         {
           "name": "FPC",
@@ -15227,7 +15249,7 @@
           "evidence_url": "https://www.nzrugby.co.nz/teams-and-competitions/national/farah-palmer-cup"
         }
       ],
-      "participant_coverage": "NOT AVAILABLE"
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Rugby",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-06T13:12:47.073044+00:00",
-  "schedule_generated_at": "2026-10-06T13:06:36.331077+00:00",
+  "registry_generated_at": "2026-10-06T13:23:40.781778+00:00",
+  "schedule_generated_at": "2026-10-06T13:16:42.675276+00:00",
   "schedule_window_start": "2026-10-06",
   "schedule_window_end": "2026-10-13",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -2651,7 +2651,7 @@
           "id": "combat-pfl-mena",
           "type": "official-pfl-event-calendar",
           "configured_league": "PFL MENA",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6413,11 +6413,11 @@
           "id": "rugby-nzr-farah-palmer-2026",
           "type": "official-nzr-farah-palmer-semifinals",
           "configured_league": "Farah Palmer Cup | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Rugby",
