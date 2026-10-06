@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-06T10:14:08.746998+00:00",
-  "schedule_generated_at": "2026-10-06T10:06:46.135312+00:00",
+  "registry_generated_at": "2026-10-06T12:40:49.813127+00:00",
+  "schedule_generated_at": "2026-10-06T12:33:51.817874+00:00",
   "schedule_window_start": "2026-10-06",
   "schedule_window_end": "2026-10-13",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 191,
+    "reported_gap_labels": 189,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -9472,11 +9472,11 @@
           "id": "caf-soccer-egypt-egyptian-premier-league-men",
           "type": "official-egypt-premier-scope",
           "configured_league": "Egyptian Premier League | Men",
-          "refresh_ok": null,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -10186,7 +10186,7 @@
           "id": "soccer-afc-saudi-arabia-first-division-league-men",
           "type": "official-saudi-first-division-scope",
           "configured_league": "First Division League | Men",
-          "refresh_ok": null,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -10399,10 +10399,10 @@
           "type": "espn-daily",
           "configured_league": "International Friendlies | Women",
           "refresh_ok": true,
-          "events_in_window": 37
+          "events_in_window": 39
         }
       ],
-      "events_in_window": 24
+      "events_in_window": 25
     },
     {
       "sport": "Soccer",
