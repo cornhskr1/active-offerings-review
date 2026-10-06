@@ -1,65 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-05T22:00:37.694156+00:00",
+  "generated_at": "2026-10-06T06:18:03.101103+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-10-05",
-  "window_end": "2026-10-12",
+  "window_start": "2026-10-06",
+  "window_end": "2026-10-13",
   "events": [
-    {
-      "school": "Creighton",
-      "sport": "Women's Golf",
-      "date": "2026-10-05",
-      "time": "",
-      "site": "AWAY",
-      "opponent": "Marilyn Smith Sunflower Invitational",
-      "location": "Lawrence, KS",
-      "phase": "REGULAR SEASON",
-      "status": "SCHEDULED",
-      "result": "-",
-      "source_url": "https://gocreighton.com/sports/womens-golf/schedule/text",
-      "played_in_nebraska": false,
-      "matchup_label": "AT",
-      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
-      "site_color": "green",
-      "regulatory_site_label": "OUTSIDE NEBRASKA"
-    },
-    {
-      "school": "Nebraska",
-      "sport": "Women's Golf",
-      "date": "2026-10-05",
-      "time": "9:00 AM CDT",
-      "site": "AWAY",
-      "opponent": "Oklahoma Intercollegiate presented by PDI",
-      "location": "Wichita, Kan. (Wichita CC)",
-      "promotional_label": null,
-      "phase": "REGULAR SEASON",
-      "status": "SCHEDULED",
-      "result": "",
-      "source_url": "https://huskers.com/sports/womens-golf/schedule",
-      "played_in_nebraska": false,
-      "matchup_label": "AT",
-      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
-      "site_color": "green",
-      "regulatory_site_label": "OUTSIDE NEBRASKA"
-    },
-    {
-      "school": "Omaha",
-      "sport": "Women's Golf",
-      "date": "2026-10-05",
-      "time": "TBA",
-      "site": "AWAY",
-      "opponent": "Marilynn Smith Sunflower Invitational",
-      "location": "Lawrence, KS",
-      "phase": "REGULAR SEASON",
-      "status": "SCHEDULED",
-      "result": "",
-      "source_url": "https://omahamavs.com/sports/womens-golf/schedule",
-      "played_in_nebraska": false,
-      "matchup_label": "AT",
-      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
-      "site_color": "green",
-      "regulatory_site_label": "OUTSIDE NEBRASKA"
-    },
     {
       "school": "Creighton",
       "sport": "Men's Tennis",
@@ -612,6 +557,25 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Baseball",
+      "date": "2026-10-13",
+      "time": "TBA",
+      "site": "HOME",
+      "opponent": "Red-White Series: Game 2",
+      "location": "Lincoln, Neb. / Hawks Field at Haymarket Park",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/baseball/schedule",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
     }
   ],
   "sources": [
@@ -694,7 +658,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "school": "Creighton",
@@ -721,7 +685,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "school": "Nebraska",
@@ -820,7 +784,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "school": "Nebraska",
@@ -946,7 +910,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "school": "Omaha",
@@ -972,7 +936,7 @@
       "configured": 11,
       "loaded": 11,
       "pending_publication": 0,
-      "events_in_window": 9
+      "events_in_window": 8
     },
     "Nebraska": {
       "configured": 15,
@@ -984,13 +948,13 @@
       "configured": 13,
       "loaded": 13,
       "pending_publication": 0,
-      "events_in_window": 10
+      "events_in_window": 9
     }
   },
   "validation": {
-    "events_checked": 33,
-    "in_state_not_permissible": 18,
-    "outside_nebraska": 15,
+    "events_checked": 31,
+    "in_state_not_permissible": 19,
+    "outside_nebraska": 12,
     "manual_location_review": 0,
     "duplicate_events": 0
   }
