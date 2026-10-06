@@ -54,6 +54,17 @@ class QslCupFixtureTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     parse_qsl_cup_fixtures(page, source, now)
 
+    def test_current_round_tbd_is_explicit_and_never_a_timed_card(self):
+        page=(ROOT/'tests/fixtures/qsl-cup-tbd-20261006.html').read_text()
+        with self.assertRaisesRegex(ValueError,'9 published pairings lack date/kickoff'):
+            parse_qsl_cup_fixtures(page,self.source,datetime.datetime(2026,10,6,tzinfo=datetime.timezone.utc))
+
+    def test_new_match_numbers_do_not_reuse_completed_round_dates(self):
+        page=self.page
+        for i in range(18,9,-1):page=page.replace(f'<span>{i}</span>',f'<span>{i+9}</span>')
+        events=parse_qsl_cup_fixtures(page,self.source,self.now)
+        self.assertEqual('qsl-cup-2026-27-19',events[0]['id'])
+
     def test_other_qatar_competitions_remain_gaps(self):
         rows = {x["identity_key"]: x for x in build()["identities"]}
         self.assertEqual("ADAPTER_CONFIGURED", rows["soccer-qatar-qsl-cup-men"]["coverage_state"])
