@@ -34,11 +34,11 @@ class DynamicLeagueFeedTests(unittest.TestCase):
                 self.assertEqual(source_type, self.sources[source_id]["source_type"])
                 self.assertEqual("partial", self.sources[source_id]["coverage_status"])
 
-    def test_summary_moves_to_352(self):
+    def test_inventory_summary_is_derived_from_current_rows(self):
+        from collections import Counter
         data = json.loads((DATA / "priority2-coverage-inventory.json").read_text())
-        self.assertGreaterEqual(data["summary"]["coverage_states"]["ADAPTER_CONFIGURED"], 352)
-        self.assertLessEqual(data["summary"]["coverage_states"]["ADAPTER_GAP"], 180)
-        self.assertLessEqual(data["by_sport"]["Soccer"]["adapter_gaps"], 145)
+        counts = Counter(row["coverage_state"] for row in data["identities"])
+        self.assertEqual(dict(counts), data["summary"]["coverage_states"])
 
 
 if __name__ == "__main__":

@@ -10,6 +10,8 @@ on:
       - data/soccer-*-sources.json
       - data/tennis-schedule.json
       - scripts/refresh_global_schedule.py
+      - scripts/high_yield_three_league_adapter.py
+      - scripts/audit_priority2_coverage.py
       - scripts/publisher_basketball_beach.py
       - scripts/arg_lnb_fixture_adapter.py
       - scripts/pfl_event_calendar.py
@@ -46,13 +48,15 @@ jobs:
         run: python3 scripts/refresh_global_schedule.py
       - name: Rebuild competition identities and reviewed aliases
         run: python3 scripts/build_competition_identity_registry.py
+      - name: Rebuild Priority 2 coverage inventory
+        run: python3 scripts/audit_priority2_coverage.py
       - name: Validate division mappings and aliases
         run: python3 -m unittest tests.test_competition_identity_registry tests.test_basketball_divisions
       - name: Commit refreshed data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/global-schedule.json data/competition-identity-registry.json
+          git add data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

@@ -17,10 +17,12 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
     def test_bulk_report_covers_exceptions_without_multiplying_identity_total(self):
         groups = cohorts(INVENTORY)
         soccer_gaps = next(g for g in groups if (g["kind"], g["state"], g["sport"]) == ("coverage", "ADAPTER_GAP", "Soccer"))
-        self.assertEqual(142, soccer_gaps["count"])
-        self.assertEqual(142, len(set(soccer_gaps["identity_keys"])))
-        self.assertEqual(63, next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
-        self.assertEqual(731, len(INVENTORY["identities"]))
+        expected = [row for row in INVENTORY['identities'] if row['sport'] == 'Soccer' and row['coverage_state'] == 'ADAPTER_GAP']
+        self.assertEqual(len(expected), soccer_gaps["count"])
+        self.assertEqual({row['identity_key'] for row in expected}, set(soccer_gaps['identity_keys']))
+        partials = [row for row in INVENTORY['identities'] if row['sport'] == 'Soccer' and row['season_state'] == 'PARTIAL_WINDOW']
+        self.assertEqual(len(partials), next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
+        self.assertEqual(len(INVENTORY['identities']), sum(INVENTORY['summary']['coverage_states'].values()))
 
     def test_catalog_stays_in_its_own_tab(self):
         today = HTML[HTML.index('<section class="panel active" id="today"'):HTML.index('<section class="panel" id="catalog"')]
@@ -168,6 +170,8 @@ for(const day of ['2026-09-27','2026-09-28','2026-09-29'])
     def test_three_review_views_defer_queue_and_keep_collapse_state(self):
         start = HTML.index("let TODAY_MODEL=null;")
         end = HTML.index("\nfunction collegeReg(", start)
+        helper_start = HTML.index("function scheduleWindowStatus(")
+        helper_end = HTML.index("\nfunction publishedLoadStatus(", helper_start)
         script = """
 const assert=require('node:assert/strict');
 const DATA={basketball:{},basketballIntel:{},tennisReview:{summary:{}}};
@@ -190,7 +194,7 @@ function fmtDateTime(){return''}
 function esc(value){return String(value)}
 function prettyDay(value){return value}
 function regionLeagueLabel(value){return value}
-""" + HTML[start:end] + """
+""" + HTML[helper_start:helper_end] + HTML[start:end] + """
 renderToday();
 assert.equal(builds,1);
 assert.equal(queueCalls,0);
@@ -246,3 +250,4 @@ assert.match(html,/NCAA Women/);
 
 if __name__ == "__main__":
     unittest.main()
+

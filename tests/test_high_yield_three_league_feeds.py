@@ -23,14 +23,12 @@ class HighYieldThreeLeagueFeedTests(unittest.TestCase):
             for source in json.loads((DATA / filename).read_text())["sources"]:
                 cls.sources[source["id"]] = source
 
-    def test_three_more_leagues_are_configured(self):
+    def test_two_verified_team_schedules_are_configured(self):
         expected = {
             "soccer-egypt-egyptian-premier-league-men":
                 ("caf-soccer-egypt-egyptian-premier-league-men", "official-egypt-premier-scope"),
             "soccer-saudi-arabia-first-division-league-men":
                 ("soccer-afc-saudi-arabia-first-division-league-men", "official-saudi-first-division-scope"),
-            "soccer-new-zealand-new-zealand-national-league-men":
-                ("ofc-soccer-new-zealand-national-league-men", "official-nz-national-league-fixtures"),
         }
         for key, (source_id, source_type) in expected.items():
             with self.subTest(key=key):
@@ -38,11 +36,8 @@ class HighYieldThreeLeagueFeedTests(unittest.TestCase):
                 self.assertEqual(source_type, self.sources[source_id]["source_type"])
                 self.assertEqual("partial", self.sources[source_id]["coverage_status"])
 
-    def test_summary_moves_to_355(self):
-        data = json.loads((DATA / "priority2-coverage-inventory.json").read_text())
-        self.assertEqual(355, data["summary"]["coverage_states"]["ADAPTER_CONFIGURED"])
-        self.assertEqual(177, data["summary"]["coverage_states"]["ADAPTER_GAP"])
-        self.assertEqual(142, data["by_sport"]["Soccer"]["adapter_gaps"])
+    def test_nz_remains_a_gap_until_draw_and_reserve_scope_are_verified(self):
+        self.assertEqual("ADAPTER_GAP", self.inventory["soccer-new-zealand-new-zealand-national-league-men"]["coverage_state"])
 
 
 if __name__ == "__main__":

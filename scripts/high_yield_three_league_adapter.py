@@ -1,117 +1,107 @@
-"""Scoped official fixtures for Egypt Premier League, Saudi First Division, and NZ National League."""
+"""Partial team schedules from the Egyptian Pro League and SAFF publishers."""
 
 import datetime
+import json
 import re
 from zoneinfo import ZoneInfo
 
 from lxml import html
 
 
-CAIRO = ZoneInfo("Africa/Cairo")
-RIYADH = ZoneInfo("Asia/Riyadh")
-AUCKLAND = ZoneInfo("Pacific/Auckland")
-
-
 def _norm(value):
     return " ".join(str(value or "").replace("\xa0", " ").split())
 
 
+def _scope(source, source_id, league):
+    if source.get("id") != source_id or source.get("league") != league or source.get("catalog_terms") != [league]:
+        raise ValueError("Publisher catalog scope changed")
+
+
+def _event(source, fixture_id, start, home, away, detail, stage, venue=None):
+    if not home or not away or home == away:
+        raise ValueError("Publisher pairing is missing or ambiguous")
+    return {
+        "id": fixture_id, "source_id": source["id"], "sport": source["sport"],
+        "league": source["league"], "region": source["region"],
+        "name": f"{away} at {home}",
+        "start_time": start.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
+        "status": "UPCOMING", "status_detail": detail, "season_stage": stage,
+        "location": venue, "source_endpoint": source["endpoint"],
+    }
+
+
 def parse_egypt_fixture(page, source):
-    if (source.get("id") != "caf-soccer-egypt-egyptian-premier-league-men"
-            or source.get("league") != "Egyptian Premier League | Men"
-            or source.get("catalog_terms") != ["Egyptian Premier League | Men"]):
-        raise ValueError("Egypt Premier League catalog scope changed")
-    if isinstance(page, bytes):
-        page = page.decode("utf-8")
-    text = _norm(html.fromstring(page).text_content())
-    required = ("المصري", "القناة", "الجولة 6", "الأحد 11 أكتوبر 2026", "05:00")
-    for marker in required:
-        if marker not in text:
-            raise ValueError(f"Egypt Premier League publication changed: {marker}")
-    local = datetime.datetime(2026, 10, 11, 17, 0, tzinfo=CAIRO)
-    return [{
-        "id": "egypt-premier-r6-20261011-al-qanah-al-masry",
-        "source_id": source["id"], "sport": source["sport"], "league": source["league"],
-        "region": source["region"], "name": "Al Masry at Al Qanah",
-        "start_time": local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
-        "status": "UPCOMING", "status_detail": "Egyptian Pro League published round 6 fixture",
-        "season_stage": "ROUND 6", "source_endpoint": source["endpoint"],
-    }]
+    _scope(source, "caf-soccer-egypt-egyptian-premier-league-men", "Egyptian Premier League | Men")
+    doc = html.fromstring(page)
+    states = doc.xpath('//script[@id="ng-state" and @type="application/json"]/text()')
+    if len(states) != 1:
+        raise ValueError("Egypt publisher structured fixture data missing")
+    state = json.loads(states[0])
+    bodies = [v["body"] for v in state.values() if isinstance(v, dict) and isinstance(v.get("body"), list)]
+    if len(bodies) != 1:
+        raise ValueError("Egypt publisher fixture list is ambiguous")
+    events, seen = [], set()
+    for row in bodies[0]:
+        if row.get("championshipId") != 1667 or row.get("championshipName") != "الدوري المصري":
+            continue
+        if row.get("homeScore") is not None or row.get("awayScore") is not None or row.get("isDelayed"):
+            continue
+        status = row.get("currentMatchStatus") or {}
+        if status.get("matchStatusName") == "انتهت":
+            continue
+        stamp = row.get("date", "")
+        start = datetime.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+        if start.tzinfo is None or start.utcoffset() is None:
+            raise ValueError("Egypt publisher kickoff lacks explicit timezone")
+        fixture_id = row.get("id")
+        if not isinstance(fixture_id, int) or fixture_id in seen:
+            raise ValueError("Egypt publisher fixture identifier missing or duplicated")
+        seen.add(fixture_id)
+        events.append(_event(source, f"egypt-premier-{fixture_id}", start,
+            _norm(row.get("homeTeamName")), _norm(row.get("awayTeamName")),
+            "Egyptian Pro League structured team fixture (partial coverage)",
+            f"ROUND {row.get('week')}", row.get("stadiumName")))
+    if not events:
+        raise ValueError("Egypt publisher contained no upcoming league fixtures")
+    return events
 
 
 def parse_saudi_fixture(page, source):
-    if (source.get("id") != "soccer-afc-saudi-arabia-first-division-league-men"
-            or source.get("league") != "First Division League | Men"
-            or source.get("catalog_terms") != ["First Division League | Men"]):
-        raise ValueError("Saudi First Division catalog scope changed")
-    if isinstance(page, bytes):
-        page = page.decode("utf-8")
-    text = _norm(html.fromstring(page).text_content())
-    required = ("First Division League", "Wednesday 14-10-2026", "18:30", "Al Jandal", "Al Okhdood")
-    for marker in required:
-        if marker not in text:
-            raise ValueError(f"Saudi First Division publication changed: {marker}")
-    local = datetime.datetime(2026, 10, 14, 18, 30, tzinfo=RIYADH)
-    return [{
-        "id": "saudi-first-division-20261014-al-jandal-al-okhdood",
-        "source_id": source["id"], "sport": source["sport"], "league": source["league"],
-        "region": source["region"], "name": "Al Okhdood at Al Jandal",
-        "start_time": local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
-        "status": "UPCOMING", "status_detail": "SAFF published First Division fixture",
-        "season_stage": "REGULAR", "location": "Al-Orobah Club Stadium (Al Jouf)",
-        "source_endpoint": source["endpoint"],
-    }]
-
-
-NZ_TEAMS = (
-    "Auckland City FC", "Auckland FC Reserves", "Auckland United FC",
-    "Birkenhead United AFC", "Cashmere Technical FC", "Eastern Suburbs AFC",
-    "Ferrymead Bays", "Monsoon Poon Miramar Rangers",
-    "Thirsty Whale Napier City Rovers", "Wellington Olympic AFC",
-    "WPX Academy Men's Reserve Team",
-)
-
-
-def parse_nz_fixtures(page, source):
-    if (source.get("id") != "ofc-soccer-new-zealand-national-league-men"
-            or source.get("league") != "New Zealand National League | Men"
-            or source.get("catalog_terms") != ["New Zealand National League | Men"]):
-        raise ValueError("NZ National League catalog scope changed")
-    if isinstance(page, bytes):
-        page = page.decode("utf-8")
+    _scope(source, "soccer-afc-saudi-arabia-first-division-league-men", "First Division League | Men")
     doc = html.fromstring(page)
-    text = _norm(doc.text_content())
-    if "Dettol Men's National League 2026" not in text:
-        raise ValueError("NZ National League page identity changed")
-
-    # The Sporty fixture widget renders each match as one visible text block.
     events, seen = [], set()
-    for node in doc.xpath("//div|//li|//tr"):
-        value = _norm(node.text_content())
-        if "vs" not in value.lower():
+    for clock_cell in doc.xpath('//td[starts-with(@id,"fixture_td_1_")]'):
+        row = clock_cell.getparent()
+        table = row.getparent()
+        while table is not None and table.tag != "table":
+            table = table.getparent()
+        if table is None:
+            raise ValueError("SAFF fixture table missing")
+        previous = list(table.itersiblings(preceding=True))
+        if len(previous) < 2:
+            raise ValueError("SAFF fixture date or competition missing")
+        competition, date_table = previous[:2]
+        links = competition.xpath('.//a[@href="championship.php?id=416"]')
+        if len(links) != 1 or _norm(links[0].text_content()) != "First Division League":
             continue
-        dm = re.search(r"(\d{2}/\d{2}/2026)\s+(\d{1,2}:\d{2}\s*[AP]M)", value, re.I)
-        if not dm:
-            continue
-        teams = [team for team in NZ_TEAMS if team in value]
-        if len(teams) != 2 or teams[0] == teams[1]:
-            continue
-        day = datetime.datetime.strptime(dm.group(1), "%d/%m/%Y").date()
-        clock = datetime.datetime.strptime(dm.group(2).upper().replace(" ", ""), "%I:%M%p").time()
-        local = datetime.datetime.combine(day, clock, AUCKLAND)
-        key = (day, teams[0], teams[1])
-        if key in seen:
-            continue
-        seen.add(key)
-        slug = re.sub(r"[^a-z0-9]+", "-", teams[0].lower()).strip("-")
-        events.append({
-            "id": f"nz-national-{day:%Y%m%d}-{slug}",
-            "source_id": source["id"], "sport": source["sport"], "league": source["league"],
-            "region": source["region"], "name": f"{teams[1]} at {teams[0]}",
-            "start_time": local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
-            "status": "UPCOMING", "status_detail": "NZ Football published championship fixture",
-            "season_stage": "CHAMPIONSHIP", "source_endpoint": source["endpoint"],
-        })
+        dates = date_table.xpath('.//a[contains(@href,"calendar_date=")]/@href')
+        if len(dates) != 1:
+            raise ValueError("SAFF fixture date is ambiguous")
+        day = datetime.date.fromisoformat(dates[0].split("calendar_date=")[-1])
+        clock = _norm(clock_cell.text_content())
+        if not re.fullmatch(r"\d{2}:\d{2}", clock):
+            raise ValueError("SAFF fixture kickoff missing")
+        cells = row.xpath('./td')
+        if len(cells) != 5:
+            raise ValueError("SAFF fixture pairing layout changed")
+        home, away = (_norm(cells[i].text_content()) for i in (1, 3))
+        fixture_id = clock_cell.get("id").removeprefix("fixture_td_1_")
+        if fixture_id in seen:
+            raise ValueError("SAFF fixture identifier duplicated")
+        seen.add(fixture_id)
+        start = datetime.datetime.combine(day, datetime.time.fromisoformat(clock), ZoneInfo("Asia/Riyadh"))
+        events.append(_event(source, f"saudi-first-division-{fixture_id}", start, home, away,
+            "SAFF published team fixture (partial coverage)", "REGULAR", _norm(cells[4].text_content())))
     if not events:
-        raise ValueError("NZ National League page contained no timed men's fixtures")
+        raise ValueError("SAFF page contained no timed First Division fixtures")
     return events

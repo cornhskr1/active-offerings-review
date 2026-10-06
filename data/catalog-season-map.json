@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T00:00:00-05:00",
+  "generated_at": "2026-10-02T16:32:00+00:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -5008,7 +5008,8 @@
               "last_verified": "2026-09-29",
               "restrictions": [],
               "source_id": "uefa-soccer-belgium-belgian-cup-beker-van-belgi-men",
-              "season_start_date": "2026-09-26"
+              "season_start_date": "2026-09-26",
+              "season_window_complete": false
             },
             {
               "key": "soccer-belgium-belgian-super-cup-men",
@@ -5582,8 +5583,8 @@
               "season_start": "08-01",
               "season_end": "05-31",
               "source_id": "caf-soccer-egypt-egyptian-premier-league-men",
-              "season_basis": "The Egyptian Pro League's official club fixture pages publish exact senior Premier League dates and kickoffs. A scoped official adapter verifies the October 11 Al Qanah–Al Masry Round 6 fixture; broader round coverage remains publisher-dependent.",
-              "last_verified": "2026-09-29",
+              "season_basis": "The official Al Masry page provides structured senior Egyptian Premier League fixtures with explicit ISO timestamps. Only this team schedule is connected; the full league, changed dates and later phases still require verification.",
+              "last_verified": "2026-10-06",
               "restrictions": []
             },
             {
@@ -7225,8 +7226,8 @@
               "key": "soccer-new-zealand-new-zealand-national-league-men",
               "catalog_event": "New Zealand National League | Men",
               "season_window": "March 21–December 13, 2026",
-              "season_basis": "New Zealand Football's official Sporty championship page publishes the Dettol Men's National League 2026 fixture widget with named and timed Championship-phase matches. A dynamic adapter parses those exact publisher fixtures; reserve-team and player-age review remains separate from event scheduling.",
-              "last_verified": "2026-09-29",
+              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
+              "last_verified": "2026-09-18",
               "restrictions": [],
               "season_start": "03-21",
               "season_end": "12-13",
@@ -7640,8 +7641,8 @@
               "catalog_event": "First Division League | Men",
               "season_window": "2026–27 First Division underway by September 18, 2026; opening and finish pending",
               "source_id": "soccer-afc-saudi-arabia-first-division-league-men",
-              "season_basis": "SAFF's official First Division team pages publish exact senior league fixtures. A scoped official adapter verifies Al Jandal–Al Okhdood on October 14 at 18:30 Saudi time; later league and playoff coverage remains outside this first slice.",
-              "last_verified": "2026-09-29",
+              "season_basis": "SAFF publishes dated senior First Division fixtures on the Al Jandal team page. The adapter reads each fixture row with its own date, competition, pairing and Saudi-local kickoff. This is partial team coverage, not the full league or playoffs.",
+              "last_verified": "2026-10-06",
               "restrictions": [],
               "season_window_complete": false
             },
@@ -9668,7 +9669,7 @@
     {
       "sport": "Cricket",
       "mapping_status": "complete",
-      "summary_label": "7 approved competitions · 7 season mapped",
+      "summary_label": "9 approved competitions · 9 mapped",
       "catalog_snapshot_lines": [
         "Australia",
         "Cricket Australia (CA)",
@@ -9684,7 +9685,9 @@
         "United Arab Emirates",
         "International Cricket Council",
         "The Ashes | Men",
-        "ICC T20 World Cup | Men"
+        "ICC T20 World Cup | Men",
+        "One Day International (ODI) | Men",
+        "ICC Men’s Cricket World Cup | Men"
       ],
       "groups": [
         {
@@ -9782,6 +9785,27 @@
               "source_id": "cricket-t20-world-cup",
               "season_basis": "Event-specific tournament calendar; do not treat as an annual February window",
               "last_verified": "2026-09-18",
+              "restrictions": []
+            },
+            {
+              "key": "cricket-int-odi",
+              "catalog_event": "One Day International (ODI) | Men",
+              "season_window": "Event-by-event international ODI schedule · no single annual season",
+              "nonseasonal": true,
+              "source_id": "cricket-int-odi",
+              "season_basis": "ICC publishes men's ODI fixtures across bilateral series and ICC competitions. Treat ODI as a match format with event-by-event scheduling rather than inventing a recurring annual season.",
+              "last_verified": "2026-10-02",
+              "restrictions": []
+            },
+            {
+              "key": "cricket-int-world-cup",
+              "catalog_event": "ICC Men’s Cricket World Cup | Men",
+              "season_window": "October 2–November 21, 2027",
+              "season_start_date": "2027-10-02",
+              "season_end_date": "2027-11-21",
+              "source_id": "cricket-int-world-cup",
+              "season_basis": "ICC published the full 2027 Men's Cricket World Cup schedule on October 1, 2026. The tournament is mapped to its exact published window and is not treated as an annual recurring season.",
+              "last_verified": "2026-10-02",
               "restrictions": []
             }
           ]
