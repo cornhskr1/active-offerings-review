@@ -449,7 +449,7 @@
       "coverage_status": "partial",
       "endpoint": "https://www.qsl.qa/en/qsl_cup/fixtures_results",
       "official_schedule_url": "https://www.qsl.qa/en/qsl_cup/fixtures_results",
-      "source_note": "Official 2026–27 QSL Cup current-round tables split completed results from named, timed upcoming fixtures. The adapter reconciles the nine match numbers and emits only future fixtures; later rounds, knockouts, and the final remain partial.",
+      "source_note": "Official 2026–27 QSL Cup current-round tables split completed results from named, timed upcoming fixtures. The adapter reads the current round match numbers and emits only future timed fixtures. The October 6 pane contains nine pairings with TBD kickoffs, so source health remains held; later rounds, knockouts, and the final remain partial.",
       "catalog_terms": [
         "QSL Cup | Men"
       ]
@@ -611,11 +611,11 @@
       "sport": "Soccer",
       "league": "UAE Pro League | Men",
       "region": "United Arab Emirates",
-      "source_type": "official-high-yield-soccer-fixtures",
+      "source_type": "official-uae-adnoc-fixtures",
       "coverage_status": "partial",
-      "endpoint": "https://www.uaeproleague.ae/en",
-      "official_schedule_url": "https://www.uaeproleague.ae/en",
-      "source_note": "Official UAE Pro League home/fixture publication lists six exact ADNOC Pro League fixtures on October 1–2, 2026 with kickoff times. The scoped adapter emits only those current published fixtures; later matchweeks remain outside this slice.",
+      "endpoint": "https://www.uaeproleague.ae/en/fixtures",
+      "official_schedule_url": "https://www.uaeproleague.ae/en/fixtures",
+      "source_note": "Discover the exact ADNOC PRO LEAGUE 2026/27 competition in the publisher fixture directory and read that competition's match API. Every row must identify ADNOC; ADIB Cup, U23 and Super Cup records cannot satisfy this league identity. Named timed league rows are eligible; completed and TBC rows are excluded. Partial timing coverage only.",
       "catalog_terms": [
         "UAE Pro League | Men"
       ]

@@ -55,6 +55,7 @@ from liga_portugal_allianz_cup_adapter import parse_quarterfinals as parse_liga_
 from romania_liga_i_fixture_adapter import parse_round as parse_romania_liga_i_round
 from fscg_cfl_fixture_adapter import parse_round as parse_fscg_cfl_round
 from kleague_fixture_adapter import parse_next_fixture as parse_kleague_next_fixture
+from uae_pro_league_fixtures import discover_league_competition, parse_league_matches
 from high_yield_soccer_fixture_adapter import parse_fixtures as parse_high_yield_soccer_fixtures
 from high_yield_cup_fixture_adapter import parse_fixtures as parse_high_yield_cup_fixtures
 from dynamic_league_fixture_adapter import affa_latest_notice_url, parse_affa_notice, parse_bih_fixtures, parse_malta_tickets
@@ -2826,6 +2827,32 @@ for source in CFG.get("sources",[]):
                 seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_scoped_fixtures":published_count,
+            "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-uae-adnoc-fixtures":
+        candidates=[];published_count=held_untimed=completed_count=0
+        try:
+            directory=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
+            directory.raise_for_status()
+            competition_id=discover_league_competition(directory.content,source)
+            response=requests.get("https://www.uaeproleague.ae/en/fixtures/matches",
+                params={"seasonCompetitionId":competition_id,"weekNumber":"","teamId":""},
+                headers={**HEADERS,"X-Requested-With":"XMLHttpRequest"},timeout=30)
+            response.raise_for_status()
+            fixtures,held_untimed,completed_count,published_count=parse_league_matches(response.json(),source)
+            for parsed in fixtures:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key not in seen:candidates.append((key,parsed))
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"published_league_records":published_count,
+            "untimed_fixtures_held":held_untimed,"completed_fixtures_skipped":completed_count,
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-high-yield-soccer-fixtures":

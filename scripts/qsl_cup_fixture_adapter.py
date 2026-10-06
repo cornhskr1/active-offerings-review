@@ -10,7 +10,9 @@ TEAM = re.compile(r'<a\b[^>]*href=/?en/[^ >]+[^>]*class="(?:table__result__team 
 
 
 def parse_qsl_cup_fixtures(page, source, now):
-    if source.get("catalog_terms") != ["QSL Cup | Men"]:
+    if (source.get("id") != "soccer-afc-qatar-qsl-cup-men"
+            or source.get("league") != "QSL Cup | Men"
+            or source.get("catalog_terms") != ["QSL Cup | Men"]):
         raise ValueError("QSL Cup source has the wrong catalog identity")
     if "QSL cup" not in page or "2026-2027" not in page:
         raise ValueError("QSL Cup season identity changed")
@@ -28,11 +30,12 @@ def parse_qsl_cup_fixtures(page, source, now):
         completed_ids.append(int(match.group(1)))
     fixture_ids = [int(m.group(1)) for row in rows if (m := re.search(
         r'<div class="table__date__round">\s*<span>(\d+)</span>', row))]
-    if (len(rows) + len(completed) != 9 or len(fixture_ids) != len(rows)
-            or sorted(completed_ids + fixture_ids) != list(range(10, 19))
-            or completed_ids != list(range(10, 10 + len(completed)))
-            or fixture_ids != list(range(10 + len(completed), 19))):
-        raise ValueError("QSL Cup published round has an unexpected fixture count")
+    if (not rows or len(rows)>9 or len(fixture_ids)!=len(rows)
+            or len(set(completed_ids+fixture_ids))!=len(completed_ids+fixture_ids)):
+        raise ValueError("QSL Cup published fixture identity is missing or duplicated")
+    if any(re.search(r'\bTBD\b',row) for row in rows):
+        # Do not convert known pairings into timed cards or mark the source healthy.
+        raise ValueError(f"QSL Cup: {sum(bool(re.search(r'\bTBD\b',row)) for row in rows)} published pairings lack date/kickoff")
     events = []
     seen = set()
     teams_seen = set()

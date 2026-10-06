@@ -32,7 +32,7 @@ class HighYieldThreeFeedTests(unittest.TestCase):
         for key, source_id in expected.items():
             with self.subTest(key=key):
                 self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
-                self.assertEqual("official-high-yield-soccer-fixtures", self.sources[source_id]["source_type"])
+                self.assertEqual("official-uae-adnoc-fixtures" if source_id=="soccer-afc-united-arab-emirates-uae-pro-league-men" else "official-high-yield-soccer-fixtures", self.sources[source_id]["source_type"])
                 self.assertEqual("partial", self.sources[source_id]["coverage_status"])
 
     def test_summary_moves_to_346(self):

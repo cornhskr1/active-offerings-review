@@ -1,14 +1,18 @@
 # Priority 2 source reliability register
 
-Baseline: normal publication `2026-10-06T12:33:51.817874+00:00`, review window 2026-10-06–2026-10-13. 23 failed non-gap source checks. This register records source failures, not distinct catalog identity totals; shared publishers are grouped below. Refresh the baseline after the next normal run.
+Baseline: normal publication `2026-10-06T12:50:19.469603+00:00`, review window 2026-10-06–2026-10-13, 2,138 event cards and 21 failed non-gap source checks. This register records source failures, not distinct catalog identity totals; shared publishers are grouped below. [Normal run after #262](https://github.com/cornhskr1/active-offerings-review/actions/runs/37466144707) succeeded.
 
-## Current batch: changed-round soccer
+## Current batch: Gulf fixture scope
 
-- Post-#248 normal publication passed: 2,125 event cards, Egypt healthy (one in-window card) and Saudi healthy (zero in-window cards). #261 is merged; its own normal refresh is still running at this checkpoint.
-- Montenegro: the publisher changed round 10 to October 8/10 and 14:00/18:00/19:00 local. Parse current date headers and exact fixture rows, preserving IDs, venues, home/away and Europe/Podgorica time. Five current-window fixtures pass focused validation; normal runner verification remains pending after merge.
-- Czech First League: the live widget contains 17 matches across rounds 10/11 plus a postponed round-6 fixture. Validate row identity/date/pairing, accept the actual number of published matches, and hold placeholders/reserves. Eight current-window fixtures pass focused validation; normal runner verification remains pending after merge.
-- Portugal: the live Allianz Cup page returned no matches. Do not reuse historical or neighbouring competition rows; this warning remains unresolved.
-- No linkage-count increase or full-season coverage claim. Do not subtract two failures from the published total until a normal run verifies the repairs.
+- UAE: the official homepage fixture slice is ADIB Cup, not ADNOC league. Select the exact 2026/27 ADNOC competition from the fixture directory and read its league-filter API; reject Cup/U23/Super Cup responses. October 6 live evidence: 182 records, 35 completed, 56 upcoming with published kickoffs, 91 untimed holds. Next timed league fixture October 16: zero cards in this review window. Normal runner verification remains pending after merge.
+- Qatar: the current QSL Cup pane contains nine named pairings with TBD dates/kickoffs. Replace old round-number pinning with unique publisher match identity checks and an explicit unpublished-kickoff warning. Keep the source unresolved until dates and times are published.
+- No linkage-count increase or full-season coverage claim.
+
+## Verified changed-round soccer repairs
+
+- #262 normal publication verifies Montenegro healthy with five current-window fixtures and Czech First League healthy with eight (17 publisher records across multiple rounds). Both remain partial publisher-panel feeds; date changes preserve stable fixture IDs. These two warnings are removed from the current failure register.
+- Egypt and Saudi remain healthy after #248; partial team schedules do not establish full league coverage.
+- Portugal's live Allianz Cup page returned no matches; the warning remains unresolved.
 
 ## Current batch: dynamic federation feeds
 
@@ -42,8 +46,6 @@ Baseline: normal publication `2026-10-06T12:33:51.817874+00:00`, review window 2
 | www.malaysianfootballleague.com | `soccer-afc-malaysia-malaysia-fa-cup-men` | MFL published round does not cover the full review window | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 | www.qsl.qa | `soccer-afc-qatar-qsl-cup-men` | QSL Cup published round has an unexpected fixture count | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 | www.uaeproleague.ae | `soccer-afc-united-arab-emirates-uae-pro-league-men` | published kickoff changed: United - Hatta | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
-| www.chanceliga.cz | `uefa-soccer-czech-republic-czech-first-league-men` | Chance Liga scoreboard round size changed | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
-| fscg.me | `uefa-soccer-montenegro-montenegrin-first-league-men` | FSCG round 10 fixture changed: Mornar - Jezero | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 | www.ligaportugal.pt | `uefa-soccer-portugal-ta-a-da-liga-men` | Allianz Cup competition page identity changed | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 
 ### Discovery or parsing unavailable
@@ -51,7 +53,7 @@ Baseline: normal publication `2026-10-06T12:33:51.817874+00:00`, review window 2
 | Publisher | Source | Published failure | Next evidence gate |
 |---|---|---|---|
 | Tennis intelligence | `tennis-atp-challenger` | ATP Challenger official calendar dates unresolved; manual verification required | Resolve official tournament date discovery; pass the tennis quality gate before publication. |
-| www.affa.az | `uefa-soccer-azerbaijan-azerbaijan-premier-league-apl-men` | 'utf-8' codec can't decode byte 0xc9 in position 806: invalid continuation byte | Discover current appointments; exact current fixture parsing and normal-run proof. |
+| www.affa.az | `uefa-soccer-azerbaijan-azerbaijan-premier-league-apl-men` | AFFA latest appointment publication contains only past fixtures | Discover current appointments; exact current fixture parsing and normal-run proof. |
 | www.nfsbih.ba | `uefa-soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men` | BiH Wwin League page contained no timed fixtures | Locate official timed league payload; exact row scope, opponents, year and timezone. |
 
 ### Connection or certificate failure
@@ -64,7 +66,7 @@ Baseline: normal publication `2026-10-06T12:33:51.817874+00:00`, review window 2
 ## Batch order and completion gate
 
 1. Complete current federation-discovery corrections and verify their warnings on a normal run.
-2. Group changed-round soccer sources (Qatar, UAE, Czech Republic, Montenegro, Portugal) by publisher; retain partial-phase boundaries.
+2. Finish Gulf scope repair and normal runner verification; retain Qatar and Portugal evidence holds. Czech/Montenegro are verified partial repairs.
 3. Review rugby finals, Argentina basketball, PFL date changes and Malaysia round-window gaps with their exact official fixture evidence.
 4. Review access and connection failures by shared publisher (PBA, RFEF, LNB, then remaining federation hosts); a successful retry is not full coverage.
 5. Resolve ATP Challenger through its separate tennis workflow and quality gate.

@@ -15,17 +15,10 @@ def source(source_id, league, region):
 
 
 class HighYieldFixtureAdapterTests(unittest.TestCase):
-    def test_uae_current_slice_is_timed(self):
-        page = """<html><body>ADNOC Pro League View all fixtures
-        United Hatta 17:15 Sharjah Al Dhafra 17:15 Bani Yas Al Wahda 19:45
-        Al Ain Ajman 17:15 Al Wasl Kalba 17:15 Khorfakkan Al Jazira 19:45
-        </body></html>"""
-        events = parse_fixtures(
-            page,
-            source("soccer-afc-united-arab-emirates-uae-pro-league-men", "UAE Pro League | Men", "United Arab Emirates"),
-        )
-        self.assertEqual(6, len(events))
-        self.assertEqual("2026-10-01T13:15:00Z", events[0]["start_time"])
+    def test_uae_homepage_cannot_supply_league_fixtures(self):
+        with self.assertRaisesRegex(ValueError,'source identity not configured'):
+            parse_fixtures('<html>ADNOC Pro League View all fixtures United Hatta 17:15</html>',
+                source('soccer-afc-united-arab-emirates-uae-pro-league-men','UAE Pro League | Men','United Arab Emirates'))
 
     def test_cpl_current_slice_is_timed(self):
         page = """<html><body>Canadian Premier League OneSoccer Atlético Ottawa Cavalry FC 19:00

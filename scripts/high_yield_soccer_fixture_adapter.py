@@ -9,7 +9,6 @@ from lxml import html
 
 VIENNA = ZoneInfo("Europe/Vienna")
 TORONTO = ZoneInfo("America/Toronto")
-DUBAI = ZoneInfo("Asia/Dubai")
 
 EXPECTED = {
     "uefa-soccer-austria-2-liga-men": {
@@ -38,20 +37,6 @@ EXPECTED = {
             ("2026-10-03", "19:00", "FC Supra", "Pacific FC"),
         ],
         "zone": TORONTO,
-        "stage": "REGULAR",
-    },
-    "soccer-afc-united-arab-emirates-uae-pro-league-men": {
-        "league": "UAE Pro League | Men",
-        "markers": ("ADNOC Pro League", "View all fixtures"),
-        "fixtures": [
-            ("2026-10-01", "17:15", "United", "Hatta"),
-            ("2026-10-01", "17:15", "Sharjah", "Al Dhafra"),
-            ("2026-10-01", "19:45", "Bani Yas", "Al Wahda"),
-            ("2026-10-02", "17:15", "Al Ain", "Ajman"),
-            ("2026-10-02", "17:15", "Al Wasl", "Kalba"),
-            ("2026-10-02", "19:45", "Khorfakkan", "Al Jazira"),
-        ],
-        "zone": DUBAI,
         "stage": "REGULAR",
     },
 }
