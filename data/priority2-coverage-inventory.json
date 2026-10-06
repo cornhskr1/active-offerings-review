@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-06T16:52:16.683197+00:00",
-  "schedule_generated_at": "2026-10-06T16:45:55.443098+00:00",
+  "registry_generated_at": "2026-10-06T21:42:01.195234+00:00",
+  "schedule_generated_at": "2026-10-06T21:35:14.563726+00:00",
   "schedule_window_start": "2026-10-06",
   "schedule_window_end": "2026-10-13",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 10
     },
     {
       "sport": "Esports",
@@ -5931,7 +5931,7 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Women",
           "refresh_ok": true,
-          "events_in_window": 267
+          "events_in_window": 266
         }
       ],
       "events_in_window": 266
@@ -12213,10 +12213,10 @@
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
