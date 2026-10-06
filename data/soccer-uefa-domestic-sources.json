@@ -422,7 +422,7 @@
       "coverage_status": "partial",
       "endpoint": "https://www.chanceliga.cz/rozpis-zapasu/2027?id_stage=1&month=0&round=0&type=1",
       "official_schedule_url": "https://www.chanceliga.cz/rozpis-zapasu/2027?id_stage=1&month=0&round=0&type=1",
-      "source_note": "LFA 2026–27 Chance Liga next published round only; later championship/playoff phase and schedule changes remain separate checks.",
+      "source_note": "LFA 2026–27 Chance Liga currently published scoreboard fixtures, including multiple rounds and rescheduled matches. Each row retains its match ID, exact pairing, date and local kickoff; untimed/reserve candidates are held. Partial panel coverage only; later championship/playoff phases need separate verification.",
       "catalog_terms": [
         "Czech First League | Men"
       ]
@@ -1586,7 +1586,7 @@
       "coverage_status": "partial",
       "endpoint": "https://fscg.me/takmicenja/meridianbet-1-cfl/",
       "official_schedule_url": "https://fscg.me/takmicenja/meridianbet-1-cfl/",
-      "source_note": "FSCG publishes the exact 2026–27 Meridianbet 1. CFL schedule with named clubs, dates, kickoffs and venues. The scoped adapter verifies the five round-10 fixtures on October 10 at 17:00 local time; later published rounds remain outside this first adapter slice and the 2027 end/play-off scope is still incomplete.",
+      "source_note": "FSCG current 2026–27 Meridianbet 1. CFL panel: parse each dated header and exact match row, stable ID, opponents, kickoff and venue. The October 6 publication moves four round-10 matches to October 8 and the fifth to October 10 with revised kickoffs. Partial current-panel coverage; later phases and 2027 end/playoff scope remain unverified.",
       "catalog_terms": [
         "Montenegrin First League | Men"
       ]

@@ -2873,11 +2873,12 @@ for source in CFG.get("sources",[]):
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-fscg-cfl-round":
-        candidates=[]
+        candidates=[];published_count=0
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
             response.raise_for_status()
             fixtures=parse_fscg_cfl_round(response.content,source)
+            published_count=len(fixtures)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
                 if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
@@ -2889,7 +2890,7 @@ for source in CFG.get("sources",[]):
             for key,parsed in candidates:
                 seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
-            "events":count,"published_round_fixtures":5 if not errors else 0,
+            "events":count,"published_round_fixtures":published_count,
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-romania-liga-i-round":
