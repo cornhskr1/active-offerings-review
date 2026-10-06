@@ -58,6 +58,29 @@ class FarahPalmerAdapterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "weekday"):
             parse_semifinals(changed, SOURCE)
 
+    def test_live_published_finals_and_new_zealand_clock(self):
+        raw=(Path(__file__).parent/'fixtures/nzr-fpc-finals-20261006.html').read_bytes()
+        events,regular,held=parse_semifinals(raw,SOURCE)
+        finals=[e for e in events if e['season_stage']=='FINAL']
+        self.assertEqual((6,30,0),(len(events),regular,held))
+        self.assertEqual(['Northland Kauri at Wellington Pride','Auckland Storm at Canterbury'],[e['name'] for e in finals])
+        self.assertEqual(['2026-10-09T23:05:00Z','2026-10-11T03:05:00Z'],[e['start_time'] for e in finals])
+
+    def test_final_scope_and_partial_pairings_are_held(self):
+        raw=(Path(__file__).parent/'fixtures/nzr-fpc-finals-20261006.html').read_bytes()
+        for altered in [raw.replace(b'>Northland<',b'>Auckland<'),raw.replace(b'12.05pm',b'13.05pm'),raw.replace(b'Saturday 10 October',b'Sunday 10 October')]:
+            with self.subTest(altered=altered[-100:]),self.assertRaises(ValueError):
+                parse_semifinals(altered,SOURCE)
+        events,_,held=parse_semifinals(raw.replace(b'>Northland<',b'>TBC<'),SOURCE)
+        self.assertEqual((5,1),(len(events),held))
+
+    def test_final_kickoff_change_preserves_publisher_slot_identity(self):
+        raw=(Path(__file__).parent/'fixtures/nzr-fpc-finals-20261006.html').read_bytes()
+        before=parse_semifinals(raw,SOURCE)[0][-2]
+        after=parse_semifinals(raw.replace(b'12.05pm',b'1.05pm'),SOURCE)[0][-2]
+        self.assertEqual(before['id'],after['id'])
+        self.assertEqual('2026-10-10T00:05:00Z',after['start_time'])
+
 
 if __name__ == "__main__":
     unittest.main()

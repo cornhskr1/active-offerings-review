@@ -41,17 +41,29 @@ def upcoming_event_links(page):
 
 def verified_event(detail_page, card):
     document = html.fromstring(detail_page)
+    if card.get("source_id") not in SERIES or not SERIES[card["source_id"]].search(card["title"]):
+        raise ValueError("PFL event card has the wrong regional series")
+    matches = []
     for raw in document.xpath('//script[@type="application/ld+json"]/text()'):
         payload = json.loads(raw)
         graph = payload.get("@graph", []) if isinstance(payload, dict) else []
-        for item in graph:
-            if (item.get("@type") != "SportsEvent" or item.get("name") != card["title"]
-                    or item.get("url") != card["url"]):
-                continue
-            start = datetime.datetime.fromisoformat(item["startDate"])
-            end = datetime.datetime.fromisoformat(item["endDate"])
-            if start.tzinfo is None or end.tzinfo is None or start.date() != end.date():
-                raise ValueError("PFL event date changed")
-            return {**card, "date": start.date(),
-                    "location": (item.get("location") or {}).get("name") or ""}
-    raise ValueError("PFL event detail did not verify the named series")
+        matches.extend(item for item in graph if item.get("@type") == "SportsEvent"
+                       and item.get("name") == card["title"] and item.get("url") == card["url"])
+    if len(matches) != 1:
+        raise ValueError("PFL event detail did not uniquely verify the named series")
+    item = matches[0]
+    start = datetime.datetime.fromisoformat(item["startDate"])
+    end = datetime.datetime.fromisoformat(item["endDate"])
+    if (start.tzinfo is None or end.tzinfo is None or end < start
+            or end-start > datetime.timedelta(days=1)):
+        raise ValueError("PFL event date changed")
+    if item.get("eventStatus", "https://schema.org/EventScheduled") != "https://schema.org/EventScheduled":
+        raise ValueError("PFL event is not scheduled")
+    displayed = [" ".join(n.text_content().split()).upper() for n in document.xpath(
+        '//p[contains(concat(" ",normalize-space(@class)," ")," event-info-date-large ")]')]
+    expected = f"{start.strftime('%a %b').upper()} {start.day}"
+    if (displayed and displayed != [expected]) or (start.date() != end.date() and displayed != [expected]):
+        raise ValueError("PFL displayed event date did not verify structured start date")
+    # Date-only evidence: the end stamp is never turned into an extra event day or bout time.
+    return {**card, "date": start.date(),
+            "location": (item.get("location") or {}).get("name") or ""}

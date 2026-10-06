@@ -8,13 +8,14 @@ on:
       - data/catalog-season-map.json
       - data/tennis-v2-config.json
       - scripts/build_tennis_review.py
+      - .github/workflows/refresh-tennis-review.yml
 
 permissions:
   contents: write
 
 concurrency:
-  group: tennis-review-feed
-  cancel-in-progress: true
+  group: active-offerings-data
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -26,6 +27,10 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
       - name: Build focused tennis review feed
         run: python3 scripts/build_tennis_review.py
       - name: Run tennis guardrail tests
@@ -40,6 +45,12 @@ jobs:
             exit 0
           fi
           git commit -m "Refresh focused tennis review feed"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+          done
+          echo "Tennis review publication could not save after three attempts."
+          exit 1
