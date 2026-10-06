@@ -1,6 +1,14 @@
 # Priority 2 source reliability register
 
-Baseline: normal publication `2026-10-06T10:06:46.135312+00:00`, review window 2026-10-06–2026-10-13. 23 failed non-gap source checks. This register records source failures, not distinct catalog identity totals; shared publishers are grouped below. Refresh the baseline after the next normal run.
+Baseline: normal publication `2026-10-06T12:33:51.817874+00:00`, review window 2026-10-06–2026-10-13. 23 failed non-gap source checks. This register records source failures, not distinct catalog identity totals; shared publishers are grouped below. Refresh the baseline after the next normal run.
+
+## Current batch: changed-round soccer
+
+- Post-#248 normal publication passed: 2,125 event cards, Egypt healthy (one in-window card) and Saudi healthy (zero in-window cards). #261 is merged; its own normal refresh is still running at this checkpoint.
+- Montenegro: the publisher changed round 10 to October 8/10 and 14:00/18:00/19:00 local. Parse current date headers and exact fixture rows, preserving IDs, venues, home/away and Europe/Podgorica time. Five current-window fixtures pass focused validation; normal runner verification remains pending after merge.
+- Czech First League: the live widget contains 17 matches across rounds 10/11 plus a postponed round-6 fixture. Validate row identity/date/pairing, accept the actual number of published matches, and hold placeholders/reserves. Eight current-window fixtures pass focused validation; normal runner verification remains pending after merge.
+- Portugal: the live Allianz Cup page returned no matches. Do not reuse historical or neighbouring competition rows; this warning remains unresolved.
+- No linkage-count increase or full-season coverage claim. Do not subtract two failures from the published total until a normal run verifies the repairs.
 
 ## Current batch: dynamic federation feeds
 

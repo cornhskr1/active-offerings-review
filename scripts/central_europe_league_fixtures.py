@@ -38,11 +38,13 @@ def parse_fixtures(page, source):
         raise ValueError("League catalog scope changed")
     doc = html.fromstring(page)
     if kind == "chance":
+        if source.get("league") != "Czech First League | Men":
+            raise ValueError("Chance Liga catalog scope changed")
         if "Chance Liga" not in doc.xpath("string(//title)"):
             raise ValueError("Chance Liga page identity changed")
         rows = doc.xpath('//ul[contains(@class,"scoreboard-horizontal")]/li')
-        if len(rows) != 16:
-            raise ValueError("Chance Liga scoreboard round size changed")
+        if not rows:
+            raise ValueError("Chance Liga scoreboard fixtures missing")
         events, held, seen = [], 0, set()
         for row in rows:
             links = row.xpath('.//span[contains(@class,"score-container")]//span[contains(@class,"score")]/b/a[contains(@href,"/zapas/")]')
@@ -59,15 +61,18 @@ def parse_fixtures(page, source):
             date_match = re.search(r"\b(\d{2}/\d{2}/\d{2})\b", date_text)
             teams = row.xpath('.//span[contains(@class,"game-container")]/span[contains(@class,"team")]//img/@alt')
             kickoff = re.search(r"\b(\d{1,2}:\d{2})\b", " ".join(links[0].itertext()))
-            if not round_match or not date_match or len(teams) != 2 or not kickoff:
+            if not round_match or not date_match or len(teams) != 2:
                 raise ValueError("Chance Liga published fixture changed")
             date = datetime.datetime.strptime(date_match.group(1), "%d/%m/%y").date()
             if not datetime.date(2026, 7, 1) <= date <= datetime.date(2027, 6, 30):
                 raise ValueError("Chance Liga edition changed")
+            if not kickoff or any(re.search(r"\b(?:TBC|TBD|U\d{2})\b|(?:\sB|\sII)$", team, re.I) for team in teams):
+                held += 1
+                continue
             events.append(_event(source, f"chance-{match.group(1)}", *teams, date,
                 kickoff.group(1), PRAGUE, urljoin(source["endpoint"], links[0].get("href")), round_match.group(1)))
-        if len(events) != 8:
-            raise ValueError("Chance Liga next round is incomplete")
+        if not events and not held:
+            raise ValueError("Chance Liga contains no upcoming fixture evidence")
         return events, held, len(rows)
     if kind == "national":
         if "Chance Národní Liga" not in doc.xpath("string(//title)"):

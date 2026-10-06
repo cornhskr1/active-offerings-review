@@ -1,20 +1,13 @@
-"""Exact 2026-27 Meridianbet 1. CFL round 10 fixtures from FSCG's official competition page."""
+"""Current named, timed 2026–27 Meridianbet 1. CFL fixtures from FSCG."""
 
 import datetime
 import re
+from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 from lxml import html
 
-
 PODGORICA = ZoneInfo("Europe/Podgorica")
-EXPECTED = [
-    ("2026-10-10", "17:00", "Mornar", "Jezero", "SRC Topolica"),
-    ("2026-10-10", "17:00", "Otrant-Olympic", "OFK Mladost Lob.bet", "Stadion Velika plaža"),
-    ("2026-10-10", "17:00", "Bokelj sbbet", "Petrovac", "Stadion pod Vrmcem"),
-    ("2026-10-10", "17:00", "Budućnost", "Sutjeska", "Gradski stadion"),
-    ("2026-10-10", "17:00", "Arsenal", "Dečić", "Stadion FK Arsenal"),
-]
 
 
 def _norm(value):
@@ -26,42 +19,59 @@ def parse_round(page, source):
             or source.get("league") != "Montenegrin First League | Men"
             or source.get("catalog_terms") != ["Montenegrin First League | Men"]):
         raise ValueError("Montenegro 1. CFL catalog scope changed")
-    if isinstance(page, bytes):
-        page = page.decode("utf-8")
-    doc = html.fromstring(page)
-    text = _norm(doc.text_content())
-    if "Meridianbet 1. CFL" not in text or "2026/27" not in text or "10. kolo" not in text:
-        raise ValueError("FSCG Meridianbet 1. CFL page identity changed")
-
-    events = []
-    for date_text, clock, home, away, venue in EXPECTED:
-        marker = datetime.date.fromisoformat(date_text).strftime("%d.%m.%Y.") + clock
-        pattern = re.compile(
-            re.escape(marker) + r".{0,180}" + re.escape(home) + r".{0,90}" + re.escape(away),
-            re.I,
-        )
-        if not pattern.search(text):
-            raise ValueError(f"FSCG round 10 fixture changed: {home} - {away}")
-        if venue not in text:
-            raise ValueError(f"FSCG round 10 venue changed: {home} - {away}")
-
-        date = datetime.date.fromisoformat(date_text)
-        local = datetime.datetime.combine(date, datetime.time.fromisoformat(clock), PODGORICA)
-        slug = re.sub(r"[^a-z0-9]+", "-", home.lower()).strip("-")
+    doc = html.fromstring(page, parser=html.HTMLParser(encoding="utf-8"))
+    headers = doc.xpath('//div[@class="text"][h1]')
+    if len(headers) != 1 or _norm(headers[0].xpath('string(./h1)')) != "Meridianbet 1. CFL" or _norm(headers[0].xpath('string(./h2)')) != "2026/27":
+        raise ValueError("FSCG Meridianbet 1. CFL edition changed")
+    # Read only the current-fixtures panel, never the archive or a neighbouring league.
+    tables = doc.xpath('//div[@id="tabContent_1_1"]//table[contains(concat(" ",normalize-space(@class)," ")," fixtures ")]')
+    if len(tables) != 1:
+        raise ValueError("FSCG current fixture table missing or ambiguous")
+    day, events, seen = None, [], set()
+    for row in tables[0].xpath('./tr|./tbody/tr'):
+        if row.xpath('./th'):
+            marker = re.search(r"\b(\d{2}\.\d{2}\.\d{4})\.", _norm(row.text_content()))
+            if not marker:
+                raise ValueError("FSCG current fixture date missing")
+            day = datetime.datetime.strptime(marker.group(1), "%d.%m.%Y").date()
+            if not datetime.date(2026,7,1) <= day <= datetime.date(2027,6,30):
+                raise ValueError("FSCG fixture date outside edition")
+            continue
+        cells = row.xpath('./td')
+        if not cells:
+            continue
+        match_id = row.get('data-id', '')
+        if len(cells) != 6 or day is None or not match_id.isdigit() or match_id in seen:
+            raise ValueError("FSCG fixture structure or identifier changed")
+        seen.add(match_id)
+        round_marker = re.fullmatch(r"(\d+)\. kolo", _norm(cells[1].text_content()))
+        if not round_marker:
+            raise ValueError("FSCG fixture round missing")
+        home_links, away_links = (cells[i].xpath('.//a[starts-with(@href,"/klubovi/")]') for i in (3,4))
+        if len(home_links) != 1 or len(away_links) != 1:
+            raise ValueError("FSCG fixture clubs missing")
+        home, away = (_norm(links[0].text_content()) for links in (home_links, away_links))
+        if not home or not away or home == away or any(re.search(r"\b(?:TBC|TBD|U\d{2})\b", team, re.I) for team in (home,away)):
+            raise ValueError("FSCG fixture pairing unidentified")
+        scores = [_norm(cells[i].xpath(f'string(.//span[@class="res{j}"])')) for i,j in ((3,1),(4,2))]
+        if all(score.isdigit() for score in scores):
+            continue
+        if scores != ['-','-']:
+            raise ValueError("FSCG fixture score/status ambiguous")
+        clock, venue = _norm(cells[0].text_content()), _norm(cells[2].text_content())
+        if not re.fullmatch(r"\d{2}:\d{2}",clock) or not venue:
+            raise ValueError("FSCG fixture kickoff or venue missing")
+        local = datetime.datetime.combine(day, datetime.time.fromisoformat(clock), PODGORICA)
+        detail = row.xpath('.//a[starts-with(@href,"/utakmice/")]/@href')
         events.append({
-            "id": f"montenegro-cfl-r10-{date:%Y%m%d}-{slug}",
-            "source_id": source["id"],
-            "sport": source["sport"],
-            "league": source["league"],
-            "region": source["region"],
+            "id": f"montenegro-cfl-{match_id}", "source_id": source["id"],
+            "sport": source["sport"], "league": source["league"], "region": source["region"],
             "name": f"{away} at {home}",
             "start_time": local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
-            "status": "UPCOMING",
-            "status_detail": "FSCG published Meridianbet 1. CFL round 10",
-            "season_stage": "ROUND 10",
-            "location": venue,
-            "source_endpoint": source["endpoint"],
+            "status": "UPCOMING", "status_detail": "FSCG published current Meridianbet 1. CFL fixture",
+            "season_stage": f"ROUND {round_marker.group(1)}", "location": venue,
+            "source_endpoint": urljoin(source["endpoint"],detail[0]) if len(detail)==1 else source["endpoint"],
         })
-    if len(events) != 5:
-        raise ValueError("FSCG round 10 publication incomplete")
+    if not events:
+        raise ValueError("FSCG current panel contained no timed upcoming fixtures")
     return events
