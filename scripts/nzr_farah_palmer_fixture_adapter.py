@@ -1,4 +1,4 @@
-"""Named 2026 Farah Palmer Cup semifinals from NZ Rugby's broadcast schedule."""
+"""Named 2026 Farah Palmer Cup semifinals and finals from NZ Rugby's broadcast schedule."""
 
 import datetime
 import re
@@ -15,7 +15,7 @@ CLUBS = {
     "Tasman", "Waitomo Waikato", "Wellington Pride",
 }
 DATES = re.compile(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) (\d{1,2}) "
-                   r"(August|September|October), (\d{1,2}):(\d{2})(am|pm)")
+                   r"(August|September|October), (\d{1,2})[.:](\d{2})(am|pm)")
 
 
 def _text(node):
@@ -37,15 +37,18 @@ def _date(value):
     date = datetime.date(2026, datetime.datetime.strptime(month, "%B").month, int(day))
     if date.strftime("%A") != weekday:
         raise ValueError("Farah Palmer Cup weekday and 2026 edition disagree")
+    if not 1 <= int(hour) <= 12:
+        raise ValueError("Farah Palmer Cup clock hour invalid")
     clock = (int(hour) % 12) + (12 if period == "pm" else 0)
     return datetime.datetime.combine(date, datetime.time(clock, int(minute)), AUCKLAND)
 
 
 def parse_semifinals(page, source):
-    if (source.get("catalog_terms") != ["Farah Palmer Cup | Women"]
+    if (source.get("id") != "rugby-nzr-farah-palmer-2026"
+            or source.get("catalog_terms") != ["Farah Palmer Cup | Women"]
             or source.get("league") != "Farah Palmer Cup | Women"):
         raise ValueError("Farah Palmer Cup catalog scope changed")
-    doc = html.fromstring(page)
+    doc = html.fromstring(page, parser=html.HTMLParser(encoding="utf-8"))
     title = _text(doc.xpath("//h1")[0]) if doc.xpath("//h1") else ""
     if title != "Where to watch the Farah Palmer Cup, presented by Hilux":
         raise ValueError("NZ Rugby Farah Palmer Cup page identity changed")
@@ -72,6 +75,7 @@ def parse_semifinals(page, source):
     division = None
     division_counts = {"Championship": 0, "Premiership": 0}
     semifinalists = set()
+    finalists_by_division = {"Championship": set(), "Premiership": set()}
     events = []
     for row in rows:
         home, away, stamp, watch = _cells(row)
@@ -83,6 +87,7 @@ def parse_semifinals(page, source):
                 or not watch):
             raise ValueError("Farah Palmer Cup semifinal pairing or division changed")
         semifinalists.update((home, away))
+        finalists_by_division[division].update((home, away))
         division_counts[division] += 1
         local = _date(stamp)
         if local.date() not in (datetime.date(2026, 10, 3), datetime.date(2026, 10, 4)):
@@ -100,8 +105,34 @@ def parse_semifinals(page, source):
     if len(events) != 4 or len(semifinalists) != 8 or set(division_counts.values()) != {2}:
         raise ValueError("Farah Palmer Cup semifinals incomplete")
     finals = sections[6].xpath(".//table/tbody/tr[td]")
-    if len(finals) != 4 or [_cells(row)[:3] for row in finals] != [
-            ["Championship", "", ""], ["TBC", "TBC", ""],
-            ["Premiership", "", ""], ["TBC", "TBC", ""]]:
+    if len(finals) != 4:
         raise ValueError("Farah Palmer Cup final publication changed")
-    return events, len(regular), 2
+    aliases = {"Wellington": "Wellington Pride", "Northland": "Northland Kauri",
+               "Auckland": "Auckland Storm"}
+    held = 0
+    for offset, division in ((0, "Championship"), (2, "Premiership")):
+        if _cells(finals[offset])[:3] != [division, "", ""]:
+            raise ValueError("Farah Palmer Cup final division changed")
+        home, away, stamp, watch = _cells(finals[offset+1])
+        if home in ("TBC", "TBD") or away in ("TBC", "TBD"):
+            held += 1
+            continue
+        home, away = aliases.get(home, home), aliases.get(away, away)
+        if (home == away or not {home, away} <= finalists_by_division[division]
+                or not watch):
+            raise ValueError("Farah Palmer Cup final pairing or division changed")
+        local = _date(stamp)
+        # Exact published season/division boundaries; read each kickoff rather than pinning it.
+        expected_day = datetime.date(2026, 10, 10 if division == "Championship" else 11)
+        if local.date() != expected_day:
+            raise ValueError("Farah Palmer Cup final date outside verified division window")
+        events.append({
+            "id": f"nzr-fpc-2026-final-{division.lower()}",
+            "source_id": source["id"], "sport": source["sport"],
+            "league": source["league"], "region": source["region"],
+            "name": f"{away} at {home}",
+            "start_time": local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
+            "status": "UPCOMING", "status_detail": f"NZ Rugby published {division} final",
+            "season_stage": "FINAL", "source_endpoint": source["endpoint"],
+        })
+    return events, len(regular), held

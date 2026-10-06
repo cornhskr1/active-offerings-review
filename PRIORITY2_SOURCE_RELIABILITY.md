@@ -1,10 +1,17 @@
 # Priority 2 source reliability register
 
-Baseline: normal publication `2026-10-06T12:50:19.469603+00:00`, review window 2026-10-06–2026-10-13, 2,138 event cards and 21 failed non-gap source checks. This register records source failures, not distinct catalog identity totals; shared publishers are grouped below. [Normal run after #262](https://github.com/cornhskr1/active-offerings-review/actions/runs/37466144707) succeeded.
+Baseline: normal publication `2026-10-06T13:06:36.331077+00:00`, review window 2026-10-06–2026-10-13, 2,138 event cards and 20 failed non-gap source checks. This register records source failures, not distinct catalog identity totals; shared publishers are grouped below. [Normal run after #263](https://github.com/cornhskr1/active-offerings-review/actions/runs/37468206881) succeeded.
+
+## Current batch: published finals, date-only evidence and save reliability
+
+- Farah Palmer Cup: October 6 live NZ Rugby broadcast evidence now names both division finals and exact New Zealand-local kickoffs. Admit only named members of their published semifinal division, exact scoped shortened-name aliases and verified division dates. Focused refresh emits two finals; regular/semifinal evidence remains validated, and unknown final pairings stay held. Normal publication is required after merge.
+- PFL MENA: unique scheduled MENA 12 record starts December 11 and ends December 12 midnight. The visible Friday December 11 headline corroborates the structured start. Keep the event date-only; never infer bout times or another event day from the end stamp. Focused refresh verifies one published event with zero current-window cards. Bout authority/professional status/ages remain staff review items.
+- Tennis review: #263-triggered build and guardrail tests passed, but save lost a race with another main update. Share the short data-publication queue, sync before build and retry fetch/rebase/push without force. Local collision simulation preserves both unrelated updates. Browser discovery retains its separate queue.
+- Argentina: this live attempt returned 403; no recovery claim. Malaysia FA Cup's partial quarterfinal horizon remains unresolved. Inventory counts do not change.
 
 ## Current batch: Gulf fixture scope
 
-- UAE: the official homepage fixture slice is ADIB Cup, not ADNOC league. Select the exact 2026/27 ADNOC competition from the fixture directory and read its league-filter API; reject Cup/U23/Super Cup responses. October 6 live evidence: 182 records, 35 completed, 56 upcoming with published kickoffs, 91 untimed holds. Next timed league fixture October 16: zero cards in this review window. Normal runner verification remains pending after merge.
+- UAE: the official homepage fixture slice is ADIB Cup, not ADNOC league. Select the exact 2026/27 ADNOC competition from the fixture directory and read its league-filter API; reject Cup/U23/Super Cup responses. October 6 live evidence: 182 records, 35 completed, 56 upcoming with published kickoffs, 91 untimed holds. Next timed league fixture October 16: zero cards in this review window. Normal #263 publication verifies this exact league source healthy, with zero current-window cards.
 - Qatar: the current QSL Cup pane contains nine named pairings with TBD dates/kickoffs. Replace old round-number pinning with unique publisher match identity checks and an explicit unpublished-kickoff warning. Keep the source unresolved until dates and times are published.
 - No linkage-count increase or full-season coverage claim.
 
@@ -41,11 +48,10 @@ Baseline: normal publication `2026-10-06T12:50:19.469603+00:00`, review window 2
 | Publisher | Source | Published failure | Next evidence gate |
 |---|---|---|---|
 | www.laliganacional.com.ar | `basketball-ar-lnb` | Argentina LNB response crossed the requested date window | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
-| www.provincial.rugby | `rugby-nzr-farah-palmer-2026` | Farah Palmer Cup final publication changed | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
+| www.provincial.rugby | `rugby-nzr-farah-palmer-2026` | Farah Palmer Cup final publication changed | Published division finals now pass focused verification; require normal-run publication after merge. |
 | pflmma.com | `combat-pfl-mena` | PFL event date changed | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 | www.malaysianfootballleague.com | `soccer-afc-malaysia-malaysia-fa-cup-men` | MFL published round does not cover the full review window | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
-| www.qsl.qa | `soccer-afc-qatar-qsl-cup-men` | QSL Cup published round has an unexpected fixture count | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
-| www.uaeproleague.ae | `soccer-afc-united-arab-emirates-uae-pro-league-men` | published kickoff changed: United - Hatta | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
+| www.qsl.qa | `soccer-afc-qatar-qsl-cup-men` | QSL Cup: 9 published pairings lack date/kickoff | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 | www.ligaportugal.pt | `uefa-soccer-portugal-ta-a-da-liga-men` | Allianz Cup competition page identity changed | Recheck current competition/phase, fixture dates and names; support changes without inventing or silently dropping evidence. |
 
 ### Discovery or parsing unavailable
