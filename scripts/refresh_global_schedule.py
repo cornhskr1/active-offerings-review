@@ -2748,7 +2748,7 @@ for source in CFG.get("sources",[]):
             notice_url=affa_latest_notice_url(listing.content,source["endpoint"])
             response=requests.get(notice_url,headers=HEADERS,timeout=30)
             response.raise_for_status()
-            fixtures=parse_affa_notice(response.content,{**source,"endpoint":notice_url})
+            fixtures=parse_affa_notice(response.content,{**source,"endpoint":notice_url},review_date=TODAY)
             published_count=len(fixtures)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
