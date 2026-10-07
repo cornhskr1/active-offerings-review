@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-06T21:42:01.195234+00:00",
-  "schedule_generated_at": "2026-10-06T21:35:14.563726+00:00",
+  "registry_generated_at": "2026-10-07T01:33:14.826494+00:00",
+  "schedule_generated_at": "2026-10-07T01:26:42.876284+00:00",
   "schedule_window_start": "2026-10-06",
   "schedule_window_end": "2026-10-13",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -3310,10 +3310,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 3
     },
     {
       "sport": "Cycling",
@@ -4741,10 +4741,10 @@
           "type": "ocs-golf-season",
           "configured_league": "PGA Tour of Australasia",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Golf",
@@ -8884,10 +8884,10 @@
           "type": "espn-daily",
           "configured_league": "Copa del Rey | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -11834,7 +11834,7 @@
           "id": "uefa-soccer-norway-obos-ligaen-men",
           "type": "official-obos-ligaen-next-round",
           "configured_league": "OBOS-ligaen | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
