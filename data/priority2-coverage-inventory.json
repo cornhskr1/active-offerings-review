@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-07T16:27:37.140804+00:00",
-  "schedule_generated_at": "2026-10-07T16:21:19.647753+00:00",
+  "registry_generated_at": "2026-10-07T22:02:07.954360+00:00",
+  "schedule_generated_at": "2026-10-07T21:56:26.341463+00:00",
   "schedule_window_start": "2026-10-07",
   "schedule_window_end": "2026-10-14",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -1675,11 +1675,11 @@
           "id": "basketball-ar-lnb",
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 15
     },
     {
       "sport": "Basketball",
@@ -2790,7 +2790,7 @@
           "id": "cricket-ipl",
           "type": "espn-daily",
           "configured_league": "Indian Premier League | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
