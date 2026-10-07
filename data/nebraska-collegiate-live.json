@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06T22:39:02.585572+00:00",
+  "generated_at": "2026-10-07T05:56:53.593799+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-10-06",
-  "window_end": "2026-10-13",
+  "window_start": "2026-10-07",
+  "window_end": "2026-10-14",
   "events": [
     {
       "school": "Creighton",
@@ -576,6 +576,44 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Baseball",
+      "date": "2026-10-14",
+      "time": "5:00 PM CDT",
+      "site": "HOME",
+      "opponent": "Red-White Series: Game 3",
+      "location": "Lincoln, Neb. / Hawks Field at Haymarket Park",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/baseball/schedule",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Nebraska",
+      "sport": "Women's Tennis",
+      "date": "2026-10-14",
+      "time": "TBA",
+      "site": "NEUTRAL",
+      "opponent": "ITA Regionals",
+      "location": "Memphis, Tenn.",
+      "promotional_label": null,
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://huskers.com/sports/womens-tennis/schedule",
+      "played_in_nebraska": false,
+      "matchup_label": "VS",
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA"
     }
   ],
   "sources": [
@@ -685,7 +723,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "school": "Nebraska",
@@ -802,7 +840,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "school": "Nebraska",
@@ -942,7 +980,7 @@
       "configured": 15,
       "loaded": 15,
       "pending_publication": 0,
-      "events_in_window": 14
+      "events_in_window": 16
     },
     "Omaha": {
       "configured": 13,
@@ -952,9 +990,9 @@
     }
   },
   "validation": {
-    "events_checked": 31,
-    "in_state_not_permissible": 19,
-    "outside_nebraska": 12,
+    "events_checked": 33,
+    "in_state_not_permissible": 20,
+    "outside_nebraska": 13,
     "manual_location_review": 0,
     "duplicate_events": 0
   }
