@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-07T08:41:27.219844+00:00",
-  "schedule_generated_at": "2026-10-07T08:33:38.520344+00:00",
+  "registry_generated_at": "2026-10-07T16:27:37.140804+00:00",
+  "schedule_generated_at": "2026-10-07T16:21:19.647753+00:00",
   "schedule_window_start": "2026-10-07",
   "schedule_window_end": "2026-10-14",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -2790,7 +2790,7 @@
           "id": "cricket-ipl",
           "type": "espn-daily",
           "configured_league": "Indian Premier League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2853,7 +2853,7 @@
           "id": "cricket-county-d2",
           "type": "espn-daily",
           "configured_league": "Rothesay County Championship Division 2 | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4331,10 +4331,10 @@
           "configured_source_id": "esports-riot-valorant-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 6
     },
     {
       "sport": "Esports",
@@ -7093,7 +7093,7 @@
           "id": "uefa-soccer-lithuania-a-lyga-men",
           "type": "official-lfflt-alyga-next-round",
           "configured_league": "A Lyga | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -8652,7 +8652,7 @@
           "id": "soccer-conmebol-libertadores-femenina",
           "type": "official-conmebol-femenina-fixtures",
           "configured_league": "Copa Libertadores Femenina | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8884,10 +8884,10 @@
           "type": "espn-daily",
           "configured_league": "Copa del Rey | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -9557,10 +9557,10 @@
           "type": "official-high-yield-cup-fixtures",
           "configured_league": "Emperor’s Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -11834,7 +11834,7 @@
           "id": "uefa-soccer-norway-obos-ligaen-men",
           "type": "official-obos-ligaen-next-round",
           "configured_league": "OBOS-ligaen | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -13665,10 +13665,10 @@
           "type": "thai-league-matches",
           "configured_league": "Thai League Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -14276,10 +14276,10 @@
           "type": "official-pfl-uz-superleague-fixtures",
           "configured_league": "Uzbekistan Super League | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
