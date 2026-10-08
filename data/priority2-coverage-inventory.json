@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-07T22:02:07.954360+00:00",
-  "schedule_generated_at": "2026-10-07T21:56:26.341463+00:00",
+  "registry_generated_at": "2026-10-08T01:57:41.335636+00:00",
+  "schedule_generated_at": "2026-10-08T01:49:54.510476+00:00",
   "schedule_window_start": "2026-10-07",
   "schedule_window_end": "2026-10-14",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -368,10 +368,10 @@
           "type": "adapter",
           "configured_league": "MLB",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Baseball",
@@ -1676,10 +1676,10 @@
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
           "refresh_ok": true,
-          "events_in_window": 15
+          "events_in_window": 13
         }
       ],
-      "events_in_window": 15
+      "events_in_window": 13
     },
     {
       "sport": "Basketball",
@@ -2874,7 +2874,7 @@
           "id": "cricket-ashes",
           "type": "espn-daily",
           "configured_league": "The Ashes | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -3195,10 +3195,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Cycling",
@@ -10399,7 +10399,7 @@
           "type": "espn-daily",
           "configured_league": "International Friendlies | Women",
           "refresh_ok": true,
-          "events_in_window": 39
+          "events_in_window": 38
         }
       ],
       "events_in_window": 25
@@ -11494,7 +11494,7 @@
           "id": "soccer-afc-malaysia-malaysia-super-league-men",
           "type": "official-mfl-fixture-pdf",
           "configured_league": "Malaysia Super League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -12738,11 +12738,11 @@
           "id": "soccer-afc-singapore-singapore-premier-league-men",
           "type": "official-spl-season-fixtures",
           "configured_league": "Singapore Premier League | Men",
-          "refresh_ok": true,
-          "events_in_window": 3
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
