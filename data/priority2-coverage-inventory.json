@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-08T16:30:49.157612+00:00",
-  "schedule_generated_at": "2026-10-08T16:23:35.081136+00:00",
+  "registry_generated_at": "2026-10-08T22:07:04.328334+00:00",
+  "schedule_generated_at": "2026-10-08T22:00:15.732267+00:00",
   "schedule_window_start": "2026-10-08",
   "schedule_window_end": "2026-10-15",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -2853,7 +2853,7 @@
           "id": "cricket-county-d2",
           "type": "espn-daily",
           "configured_league": "Rothesay County Championship Division 2 | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2895,7 +2895,7 @@
           "id": "cricket-wbbl",
           "type": "espn-daily",
           "configured_league": "Women's Big Bash League (WBBL) | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 13
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 13
     },
     {
       "sport": "Esports",
@@ -5910,10 +5910,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
           "refresh_ok": true,
-          "events_in_window": 159
+          "events_in_window": 160
         }
       ],
-      "events_in_window": 159
+      "events_in_window": 160
     },
     {
       "sport": "NCAA Soccer",
@@ -6596,10 +6596,10 @@
           "type": "lnr-fixtures",
           "configured_league": "Pro D2 | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Rugby",
@@ -8188,7 +8188,7 @@
           "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
           "type": "official-auf-fixtures",
           "configured_league": "Campeonato Femenino | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8799,7 +8799,7 @@
           "id": "conmebol-soccer-uruguay-copa-uruguay-men",
           "type": "official-auf-fixtures",
           "configured_league": "Copa Uruguay | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9514,11 +9514,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": true,
-          "events_in_window": 9
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9640,11 +9640,11 @@
           "id": "uefa-soccer-georgia-erovnuli-liga-men",
           "type": "official-georgia-erovnuli-linked-fixtures",
           "configured_league": "Erovnuli Liga | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -10947,10 +10947,10 @@
           "type": "official-loi-premier-fixtures",
           "configured_league": "League of Ireland Premier Division | Men",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -13391,11 +13391,11 @@
           "id": "uefa-soccer-sweden-svenska-cupen-women",
           "type": "official-svff-womens-cup-current",
           "configured_league": "Svenska Cupen | Women",
-          "refresh_ok": true,
-          "events_in_window": 2
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -14213,10 +14213,10 @@
           "type": "espn-daily",
           "configured_league": "USL Super League | Women",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
