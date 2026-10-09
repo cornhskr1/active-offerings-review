@@ -1,54 +1,35 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-08T18:21:14.347765+00:00",
+  "generated_at": "2026-10-09T17:53:49.207051+00:00",
   "timezone": "America/Chicago",
   "mode": "shadow",
-  "window_start": "2026-10-08",
-  "window_end": "2026-10-15",
-  "source_generated_at": "2026-10-08T17:52:37.010711+00:00",
+  "window_start": "2026-10-09",
+  "window_end": "2026-10-16",
+  "source_generated_at": "2026-10-09T17:26:41.948223+00:00",
   "summary": {
     "approved_tournaments": 67,
-    "active_fields_screened": 33,
-    "field_pending": 34,
-    "actionable_alerts": 1,
-    "verified_u18_alerts": 1,
+    "active_fields_screened": 22,
+    "field_pending": 45,
+    "actionable_alerts": 0,
+    "verified_u18_alerts": 0,
     "identity_reviews": 0,
     "blocked_unapproved_or_unmapped": 0
   },
-  "alerts": [
-    {
-      "id": "tennis-u18|5c0f8580a1ee",
-      "severity": "RED",
-      "type": "TENNIS U18 ACTIVE FIELD",
-      "sport": "Tennis",
-      "league": "ITF Women's World Tennis Tour",
-      "event": "W15 Cipolletti",
-      "start_time": "2026-10-05T12:00:00Z",
-      "end_date": "2026-10-11",
-      "location": "",
-      "source_id": "tennis-itf-world-tour-women",
-      "source_url": "https://www.itftennis.com/en/tournament/w15-cipolletti/arg/2026/w-itf-arg-2026-013/draws-and-results/",
-      "athletes": [
-        "Abril Pajello"
-      ],
-      "reason": "Verified U18 athlete confirmed in an active draw or order of play.",
-      "staff_action": "Review athlete-specific performance/nonperformance markets involving the confirmed U18 participant across all licensed sportsbook platforms."
-    }
-  ],
+  "alerts": [],
   "coverage": [
     {
       "source_id": "tennis-itf-world-tour-men",
       "tournaments": 25,
-      "active_fields": 11,
-      "field_pending": 14,
+      "active_fields": 6,
+      "field_pending": 19,
       "u18_alerts": 0
     },
     {
       "source_id": "tennis-itf-world-tour-women",
       "tournaments": 30,
-      "active_fields": 10,
-      "field_pending": 20,
-      "u18_alerts": 1
+      "active_fields": 4,
+      "field_pending": 26,
+      "u18_alerts": 0
     },
     {
       "source_id": "tennis-utr-pro-tour-men",
