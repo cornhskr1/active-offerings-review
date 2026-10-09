@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-09T16:13:42.756240+00:00",
-  "schedule_generated_at": "2026-10-09T16:07:00.127383+00:00",
+  "registry_generated_at": "2026-10-09T20:57:47.324673+00:00",
+  "schedule_generated_at": "2026-10-09T20:51:00.471519+00:00",
   "schedule_window_start": "2026-10-09",
   "schedule_window_end": "2026-10-16",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -1367,7 +1367,7 @@
           "id": "basketball-ph-governors",
           "type": "official-event-window",
           "configured_league": "Governor’s Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -1857,7 +1857,7 @@
           "id": "basketball-ph-pba",
           "type": "official-event-window",
           "configured_league": "Philippine Basketball Association (PBA) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2769,7 +2769,7 @@
           "id": "cricket-t20-world-cup",
           "type": "espn-daily",
           "configured_league": "ICC T20 World Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2874,7 +2874,7 @@
           "id": "cricket-ashes",
           "type": "espn-daily",
           "configured_league": "The Ashes | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 15
+          "events_in_window": 16
         }
       ],
-      "events_in_window": 15
+      "events_in_window": 16
     },
     {
       "sport": "Esports",
@@ -6127,10 +6127,10 @@
           "type": "adapter",
           "configured_league": "NCAA Volleyball",
           "refresh_ok": true,
-          "events_in_window": 464
+          "events_in_window": 341
         }
       ],
-      "events_in_window": 418
+      "events_in_window": 333
     },
     {
       "sport": "NCAA Water Polo",
@@ -6435,10 +6435,10 @@
           "type": "prem-rugby-matches",
           "configured_league": "Gallagher Premiership Rugby | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 4
     },
     {
       "sport": "Rugby",
@@ -6596,10 +6596,10 @@
           "type": "lnr-fixtures",
           "configured_league": "Pro D2 | Men",
           "refresh_ok": true,
-          "events_in_window": 14
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 14
+      "events_in_window": 9
     },
     {
       "sport": "Rugby",
@@ -7073,10 +7073,10 @@
           "type": "official-high-yield-soccer-fixtures",
           "configured_league": "2. Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -9179,10 +9179,10 @@
           "type": "official-faw-cymru-premier-fixtures",
           "configured_league": "Cymru Premier | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -9347,10 +9347,10 @@
           "type": "official-dbu-betinia-round",
           "configured_league": "Danish 1st Division | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -9514,11 +9514,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
@@ -10947,10 +10947,10 @@
           "type": "official-loi-premier-fixtures",
           "configured_league": "League of Ireland Premier Division | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -11052,10 +11052,10 @@
           "type": "official-romania-liga-i-round",
           "configured_league": "Liga I | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -11157,10 +11157,10 @@
           "type": "official-liga-portugal-2-calendar",
           "configured_league": "Liga Portugal 2 | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -11538,10 +11538,10 @@
           "type": "official-malta-ticket-fixtures",
           "configured_league": "Maltese Premier League | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -13413,10 +13413,10 @@
           "type": "official-sfl-season-pdf",
           "configured_league": "Swiss Challenge League | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
