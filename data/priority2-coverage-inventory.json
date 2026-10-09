@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-08T22:07:04.328334+00:00",
-  "schedule_generated_at": "2026-10-08T22:00:15.732267+00:00",
+  "registry_generated_at": "2026-10-09T02:08:47.374013+00:00",
+  "schedule_generated_at": "2026-10-09T02:02:10.715096+00:00",
   "schedule_window_start": "2026-10-08",
   "schedule_window_end": "2026-10-15",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -1676,10 +1676,10 @@
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
           "refresh_ok": true,
-          "events_in_window": 14
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 14
+      "events_in_window": 11
     },
     {
       "sport": "Basketball",
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 13
+          "events_in_window": 16
         }
       ],
-      "events_in_window": 13
+      "events_in_window": 16
     },
     {
       "sport": "Esports",
@@ -7745,11 +7745,11 @@
           "id": "uefa-soccer-iceland-besta-deild-karla-rvalsdeild-men",
           "type": "official-ksi-besta-final-groups-next-round",
           "configured_league": "Besta deild karla / Úrvalsdeild | Men",
-          "refresh_ok": true,
-          "events_in_window": 6
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9514,11 +9514,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 9
     },
     {
       "sport": "Soccer",
