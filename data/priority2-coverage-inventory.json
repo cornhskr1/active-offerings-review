@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-10T13:40:53.857086+00:00",
-  "schedule_generated_at": "2026-10-10T13:33:51.873005+00:00",
+  "registry_generated_at": "2026-10-10T18:36:03.151437+00:00",
+  "schedule_generated_at": "2026-10-10T18:29:04.212563+00:00",
   "schedule_window_start": "2026-10-10",
   "schedule_window_end": "2026-10-17",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -1676,10 +1676,10 @@
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 12
+      "events_in_window": 11
     },
     {
       "sport": "Basketball",
@@ -2895,7 +2895,7 @@
           "id": "cricket-wbbl",
           "type": "espn-daily",
           "configured_league": "Women's Big Bash League (WBBL) | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -3758,10 +3758,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Esports",
@@ -4331,10 +4331,10 @@
           "configured_source_id": "esports-riot-valorant-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 5
     },
     {
       "sport": "Esports",
@@ -5931,10 +5931,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Women",
           "refresh_ok": true,
-          "events_in_window": 297
+          "events_in_window": 296
         }
       ],
-      "events_in_window": 297
+      "events_in_window": 296
     },
     {
       "sport": "NCAA Softball",
@@ -6435,10 +6435,10 @@
           "type": "prem-rugby-matches",
           "configured_league": "Gallagher Premiership Rugby | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 2
     },
     {
       "sport": "Rugby",
@@ -6884,10 +6884,10 @@
           "type": "lnr-fixtures",
           "configured_league": "Top 14 | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 2
     },
     {
       "sport": "Rugby",
@@ -7745,11 +7745,11 @@
           "id": "uefa-soccer-iceland-besta-deild-karla-rvalsdeild-men",
           "type": "official-ksi-besta-final-groups-next-round",
           "configured_league": "Besta deild karla / Úrvalsdeild | Men",
-          "refresh_ok": true,
-          "events_in_window": 6
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -8358,10 +8358,10 @@
           "type": "official-belgian-challenger-round",
           "configured_league": "Challenger Pro League | Men",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9115,10 +9115,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Croatian Football League / SuperSport HNL | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -9179,10 +9179,10 @@
           "type": "official-faw-cymru-premier-fixtures",
           "configured_league": "Cymru Premier | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9221,10 +9221,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech First League | Men",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 9
     },
     {
       "sport": "Soccer",
@@ -9242,10 +9242,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech National Football League | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9347,10 +9347,10 @@
           "type": "official-dbu-betinia-round",
           "configured_league": "Danish 1st Division | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -9641,10 +9641,10 @@
           "type": "official-georgia-erovnuli-linked-fixtures",
           "configured_league": "Erovnuli Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -10039,11 +10039,11 @@
           "id": "uefa-soccer-faroe-islands-faroe-islands-premier-league-men",
           "type": "official-fsf-meistaradeildin-next-round",
           "configured_league": "Faroe Islands Premier League | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -10399,7 +10399,7 @@
           "type": "espn-daily",
           "configured_league": "International Friendlies | Women",
           "refresh_ok": true,
-          "events_in_window": 27
+          "events_in_window": 28
         }
       ],
       "events_in_window": 22
@@ -11052,10 +11052,10 @@
           "type": "official-romania-liga-i-round",
           "configured_league": "Liga I | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -11538,10 +11538,10 @@
           "type": "official-malta-ticket-fixtures",
           "configured_league": "Maltese Premier League | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -11623,10 +11623,10 @@
           "type": "official-fscg-cfl-round",
           "configured_league": "Montenegrin First League | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -12296,11 +12296,11 @@
           "id": "soccer-afc-qatar-qatar-stars-league-men",
           "type": "official-qsl-stars-fixtures",
           "configured_league": "Qatar Stars League | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -12611,11 +12611,11 @@
           "id": "uefa-soccer-serbia-serbian-superliga-men",
           "type": "official-event-window",
           "configured_league": "Serbian SuperLiga | Men",
-          "refresh_ok": true,
-          "events_in_window": 2
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -12781,10 +12781,10 @@
           "type": "official-nike-liga-fixtures",
           "configured_league": "Slovak First Football League / Slovak 1. Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -13455,10 +13455,10 @@
           "type": "official-sfl-season-pdf",
           "configured_league": "Swiss Super League | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -15311,10 +15311,10 @@
           "type": "official-italy-volleyball-fixtures",
           "configured_league": "Serie A1 | Women",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 12
+      "events_in_window": 11
     },
     {
       "sport": "Volleyball",
