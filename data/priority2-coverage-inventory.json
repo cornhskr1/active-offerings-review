@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-10T07:04:15.090120+00:00",
-  "schedule_generated_at": "2026-10-10T06:58:13.741012+00:00",
+  "registry_generated_at": "2026-10-10T13:40:53.857086+00:00",
+  "schedule_generated_at": "2026-10-10T13:33:51.873005+00:00",
   "schedule_window_start": "2026-10-10",
   "schedule_window_end": "2026-10-17",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -2895,7 +2895,7 @@
           "id": "cricket-wbbl",
           "type": "espn-daily",
           "configured_league": "Women's Big Bash League (WBBL) | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 14
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 14
+      "events_in_window": 15
     },
     {
       "sport": "Esports",
@@ -7073,10 +7073,10 @@
           "type": "official-high-yield-soccer-fixtures",
           "configured_league": "2. Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -9115,10 +9115,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Croatian Football League / SuperSport HNL | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -9221,10 +9221,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech First League | Men",
           "refresh_ok": true,
-          "events_in_window": 13
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 13
+      "events_in_window": 10
     },
     {
       "sport": "Soccer",
@@ -9242,10 +9242,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech National Football League | Men",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -9347,10 +9347,10 @@
           "type": "official-dbu-betinia-round",
           "configured_league": "Danish 1st Division | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -9514,11 +9514,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": true,
-          "events_in_window": 7
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9641,10 +9641,10 @@
           "type": "official-georgia-erovnuli-linked-fixtures",
           "configured_league": "Erovnuli Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -10399,10 +10399,10 @@
           "type": "espn-daily",
           "configured_league": "International Friendlies | Women",
           "refresh_ok": true,
-          "events_in_window": 26
+          "events_in_window": 27
         }
       ],
-      "events_in_window": 21
+      "events_in_window": 22
     },
     {
       "sport": "Soccer",
@@ -10610,10 +10610,10 @@
           "type": "jleague-fixtures",
           "configured_league": "J2 League | Men",
           "refresh_ok": true,
-          "events_in_window": 16
+          "events_in_window": 14
         }
       ],
-      "events_in_window": 16
+      "events_in_window": 14
     },
     {
       "sport": "Soccer",
@@ -10841,11 +10841,11 @@
           "id": "uefa-soccer-latvia-latvian-higher-league-virsl-ga-men",
           "type": "official-lff-virsliga-next-round",
           "configured_league": "Latvian Higher League / Virslīga | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -11157,10 +11157,10 @@
           "type": "official-liga-portugal-2-calendar",
           "configured_league": "Liga Portugal 2 | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -11579,11 +11579,11 @@
           "id": "uefa-soccer-estonia-meistriliiga-premium-liiga-men",
           "type": "official-ejl-premium-next-round",
           "configured_league": "Meistriliiga / Premium Liiga | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -12739,10 +12739,10 @@
           "type": "official-spl-season-fixtures",
           "configured_league": "Singapore Premier League | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -12781,10 +12781,10 @@
           "type": "official-nike-liga-fixtures",
           "configured_league": "Slovak First Football League / Slovak 1. Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -12822,11 +12822,11 @@
           "id": "uefa-soccer-slovenia-slovenian-prvaliga-men",
           "type": "official-nzs-prvaliga-next-round",
           "configured_league": "Slovenian PrvaLiga | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -13644,10 +13644,10 @@
           "type": "thai-league-matches",
           "configured_league": "Thai League 1 | Men",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -13918,11 +13918,11 @@
           "id": "soccer-afc-united-arab-emirates-uae-pro-league-men",
           "type": "official-uae-adnoc-fixtures",
           "configured_league": "UAE Pro League | Men",
-          "refresh_ok": true,
-          "events_in_window": 4
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -14276,10 +14276,10 @@
           "type": "official-pfl-uz-superleague-fixtures",
           "configured_league": "Uzbekistan Super League | Men",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
