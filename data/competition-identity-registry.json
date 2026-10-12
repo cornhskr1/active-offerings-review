@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-12T00:33:34.075545+00:00",
+  "generated_at": "2026-10-12T07:23:35.529137+00:00",
   "catalog_menu_version": "10.1.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 10.1.26",
-  "schedule_generated_at": "2026-10-12T00:27:29.284937+00:00",
-  "schedule_window_start": "2026-10-11",
-  "schedule_window_end": "2026-10-18",
+  "schedule_generated_at": "2026-10-12T07:16:32.752488+00:00",
+  "schedule_window_start": "2026-10-12",
+  "schedule_window_end": "2026-10-19",
   "competition_count": 733,
-  "event_count": 2361,
+  "event_count": 2011,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -80,14 +80,6 @@
       ],
       "events": [
         {
-          "name": "Cleveland Guardians at Tampa Bay Rays",
-          "start_time": "2026-10-14T00:00Z",
-          "participants": [
-            "Cleveland Guardians",
-            "Tampa Bay Rays"
-          ]
-        },
-        {
           "name": "Milwaukee Brewers at Los Angeles Dodgers",
           "start_time": "2026-10-17T01:00Z",
           "participants": [
@@ -104,8 +96,16 @@
           ]
         },
         {
+          "name": "Cleveland Guardians at Tampa Bay Rays",
+          "start_time": "2026-10-19T21:00Z",
+          "participants": [
+            "Cleveland Guardians",
+            "Tampa Bay Rays"
+          ]
+        },
+        {
           "name": "Los Angeles Dodgers at Milwaukee Brewers",
-          "start_time": "2026-10-19T00:00Z",
+          "start_time": "2026-10-20T00:00Z",
           "participants": [
             "Los Angeles Dodgers",
             "Milwaukee Brewers"
@@ -926,7 +926,13 @@
         "basketball-polynesian-men"
       ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "FIBA Polynesian Cup 2026",
+          "start_time": "2026-10-19T17:00:00Z",
+          "participants": []
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -937,7 +943,13 @@
         "basketball-polynesian-women"
       ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "FIBA Women's Polynesian Cup 2026",
+          "start_time": "2026-10-19T17:00:00Z",
+          "participants": []
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -1229,6 +1241,7 @@
         "BOCA",
         "FERRO",
         "GIMNASIA (CR)",
+        "INDEPENDIENTE (O)",
         "LA UNION FSA",
         "LANÚS",
         "OBERÁ",
@@ -1318,6 +1331,14 @@
           "participants": [
             "OLIMPICO (LB)",
             "REGATAS (C)"
+          ]
+        },
+        {
+          "name": "LANÚS at INDEPENDIENTE (O)",
+          "start_time": "2026-10-20T00:00:00Z",
+          "participants": [
+            "LANÚS",
+            "INDEPENDIENTE (O)"
           ]
         }
       ],
@@ -1422,38 +1443,6 @@
         "Washington Wizards"
       ],
       "events": [
-        {
-          "name": "Dallas Mavericks at Houston Rockets",
-          "start_time": "2026-10-11T10:00Z",
-          "participants": [
-            "Dallas Mavericks",
-            "Houston Rockets"
-          ]
-        },
-        {
-          "name": "Orlando Magic at Cleveland Cavaliers",
-          "start_time": "2026-10-11T22:30Z",
-          "participants": [
-            "Orlando Magic",
-            "Cleveland Cavaliers"
-          ]
-        },
-        {
-          "name": "Milwaukee Bucks at Charlotte Hornets",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Milwaukee Bucks",
-            "Charlotte Hornets"
-          ]
-        },
-        {
-          "name": "Chicago Bulls at Denver Nuggets",
-          "start_time": "2026-10-12T01:00Z",
-          "participants": [
-            "Chicago Bulls",
-            "Denver Nuggets"
-          ]
-        },
         {
           "name": "London Lions at Portland Trail Blazers",
           "start_time": "2026-10-12T20:00Z",
@@ -1731,22 +1720,6 @@
         "Tasmania JackJumpers"
       ],
       "events": [
-        {
-          "name": "Adelaide 36ers at Sydney Kings",
-          "start_time": "2026-10-11T04:00Z",
-          "participants": [
-            "Adelaide 36ers",
-            "Sydney Kings"
-          ]
-        },
-        {
-          "name": "Cairns Taipans at Illawarra Hawks",
-          "start_time": "2026-10-11T06:00Z",
-          "participants": [
-            "Cairns Taipans",
-            "Illawarra Hawks"
-          ]
-        },
         {
           "name": "New Zealand Breakers at Sydney Kings",
           "start_time": "2026-10-14T08:30Z",
@@ -2155,7 +2128,7 @@
       "events": [
         {
           "name": "Atlanta Dream at Golden State Valkyries",
-          "start_time": "2026-10-17T19:30Z",
+          "start_time": "2026-10-20T00:00Z",
           "participants": [
             "Atlanta Dream",
             "Golden State Valkyries"
@@ -2522,10 +2495,10 @@
         "ufc"
       ],
       "participants": [
+        "Cody Chovancek",
         "Greg Foster",
         "Jason Asher",
-        "Katlyn Cerminara",
-        "Mackenzie Stiller"
+        "SuYoung You"
       ],
       "events": [
         {
@@ -2537,11 +2510,11 @@
           ]
         },
         {
-          "name": "Katlyn Cerminara vs Mackenzie Stiller",
+          "name": "SuYoung You vs Cody Chovancek",
           "start_time": "2026-10-17T21:00Z",
           "participants": [
-            "Katlyn Cerminara",
-            "Mackenzie Stiller"
+            "SuYoung You",
+            "Cody Chovancek"
           ]
         }
       ],
@@ -2918,7 +2891,7 @@
       "events": [
         {
           "name": "Tour de Kyushu",
-          "start_time": "2026-10-11T05:01:00Z",
+          "start_time": "2026-10-12T05:01:00Z",
           "participants": []
         }
       ],
@@ -3585,65 +3558,18 @@
         "Dplus Kia",
         "Edward Gaming",
         "Elevate",
-        "FaZe Clan",
-        "Fluxo W7M",
         "FURIA",
         "FURY",
         "G2 Esports",
         "Geekay Esports",
-        "Kingzero eSports",
-        "LGD Gaming",
         "M80",
-        "One Coin",
         "SCARZ",
         "Sharper Esports",
         "Team Falcons",
-        "Team Liquid Alienware",
-        "Tyloo",
         "Virtus.pro",
         "Weibo Gaming"
       ],
       "events": [
-        {
-          "name": "LGD Gaming vs. Tyloo",
-          "start_time": "2026-10-11T05:30:00Z",
-          "participants": [
-            "LGD Gaming",
-            "Tyloo"
-          ]
-        },
-        {
-          "name": "One Coin vs. Kingzero eSports",
-          "start_time": "2026-10-11T09:00:00Z",
-          "participants": [
-            "One Coin",
-            "Kingzero eSports"
-          ]
-        },
-        {
-          "name": "LGD Gaming vs. One Coin",
-          "start_time": "2026-10-11T12:30:00Z",
-          "participants": [
-            "LGD Gaming",
-            "One Coin"
-          ]
-        },
-        {
-          "name": "Team Liquid Alienware vs. Fluxo W7M",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Team Liquid Alienware",
-            "Fluxo W7M"
-          ]
-        },
-        {
-          "name": "FaZe Clan vs. Team Liquid Alienware",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "FaZe Clan",
-            "Team Liquid Alienware"
-          ]
-        },
         {
           "name": "Team Falcons vs. G2 Esports",
           "start_time": "2026-10-12T16:00:00Z",
@@ -3803,27 +3729,9 @@
         "100 Thieves",
         "G2 Esports",
         "LOUD",
-        "NRG",
-        "T1",
         "Team Vitality"
       ],
       "events": [
-        {
-          "name": "100 Thieves vs. NRG",
-          "start_time": "2026-10-11T09:00:00Z",
-          "participants": [
-            "100 Thieves",
-            "NRG"
-          ]
-        },
-        {
-          "name": "T1 vs. G2 Esports",
-          "start_time": "2026-10-11T12:00:00Z",
-          "participants": [
-            "T1",
-            "G2 Esports"
-          ]
-        },
         {
           "name": "LOUD vs. Team Vitality",
           "start_time": "2026-10-16T06:00:00Z",
@@ -3954,11 +3862,9 @@
         "Buffalo Bills",
         "Carolina Panthers",
         "Chicago Bears",
-        "Cincinnati Bengals",
         "Cleveland Browns",
         "Dallas Cowboys",
         "Denver Broncos",
-        "Detroit Lions",
         "Green Bay Packers",
         "Houston Texans",
         "Indianapolis Colts",
@@ -3967,8 +3873,6 @@
         "Las Vegas Raiders",
         "Los Angeles Chargers",
         "Los Angeles Rams",
-        "Miami Dolphins",
-        "Minnesota Vikings",
         "New England Patriots",
         "New Orleans Saints",
         "New York Giants",
@@ -3982,110 +3886,6 @@
         "Washington Commanders"
       ],
       "events": [
-        {
-          "name": "Philadelphia Eagles at Jacksonville Jaguars",
-          "start_time": "2026-10-11T13:30Z",
-          "participants": [
-            "Philadelphia Eagles",
-            "Jacksonville Jaguars"
-          ]
-        },
-        {
-          "name": "Chicago Bears at Green Bay Packers",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Chicago Bears",
-            "Green Bay Packers"
-          ]
-        },
-        {
-          "name": "Cincinnati Bengals at Miami Dolphins",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Cincinnati Bengals",
-            "Miami Dolphins"
-          ]
-        },
-        {
-          "name": "Cleveland Browns at New York Jets",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Cleveland Browns",
-            "New York Jets"
-          ]
-        },
-        {
-          "name": "Houston Texans at Tennessee Titans",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Houston Texans",
-            "Tennessee Titans"
-          ]
-        },
-        {
-          "name": "Indianapolis Colts at Pittsburgh Steelers",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Indianapolis Colts",
-            "Pittsburgh Steelers"
-          ]
-        },
-        {
-          "name": "Las Vegas Raiders at New England Patriots",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Las Vegas Raiders",
-            "New England Patriots"
-          ]
-        },
-        {
-          "name": "Minnesota Vikings at New Orleans Saints",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Minnesota Vikings",
-            "New Orleans Saints"
-          ]
-        },
-        {
-          "name": "New York Giants at Washington Commanders",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "New York Giants",
-            "Washington Commanders"
-          ]
-        },
-        {
-          "name": "Denver Broncos at Los Angeles Chargers",
-          "start_time": "2026-10-11T20:05Z",
-          "participants": [
-            "Denver Broncos",
-            "Los Angeles Chargers"
-          ]
-        },
-        {
-          "name": "Detroit Lions at Arizona Cardinals",
-          "start_time": "2026-10-11T20:25Z",
-          "participants": [
-            "Detroit Lions",
-            "Arizona Cardinals"
-          ]
-        },
-        {
-          "name": "San Francisco 49ers at Seattle Seahawks",
-          "start_time": "2026-10-11T20:25Z",
-          "participants": [
-            "San Francisco 49ers",
-            "Seattle Seahawks"
-          ]
-        },
-        {
-          "name": "Baltimore Ravens at Atlanta Falcons",
-          "start_time": "2026-10-12T00:20Z",
-          "participants": [
-            "Baltimore Ravens",
-            "Atlanta Falcons"
-          ]
-        },
         {
           "name": "Buffalo Bills at Los Angeles Rams",
           "start_time": "2026-10-13T00:15Z",
@@ -4196,6 +3996,14 @@
           "participants": [
             "Dallas Cowboys",
             "Green Bay Packers"
+          ]
+        },
+        {
+          "name": "Washington Commanders at San Francisco 49ers",
+          "start_time": "2026-10-20T00:15Z",
+          "participants": [
+            "Washington Commanders",
+            "San Francisco 49ers"
           ]
         }
       ],
@@ -4323,11 +4131,6 @@
       "participants": [],
       "events": [
         {
-          "name": "Open de España pres. by Madrid",
-          "start_time": "2026-10-08T04:00Z",
-          "participants": []
-        },
-        {
           "name": "DP World India Championship",
           "start_time": "2026-10-15T04:00Z",
           "participants": []
@@ -4350,7 +4153,13 @@
         "golf-japan-tour"
       ],
       "participants": [],
-      "events": [],
+      "events": [
+        {
+          "name": "Japan Open Golf Championship",
+          "start_time": "2026-10-15T04:00:00Z",
+          "participants": []
+        }
+      ],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4361,13 +4170,7 @@
         "golf-korn-ferry-tour"
       ],
       "participants": [],
-      "events": [
-        {
-          "name": "Korn Ferry Tour Championship",
-          "start_time": "2026-10-08T04:00Z",
-          "participants": []
-        }
-      ],
+      "events": [],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4378,13 +4181,7 @@
         "golf-ladies-european-tour"
       ],
       "participants": [],
-      "events": [
-        {
-          "name": "Aramco Korea Championship",
-          "start_time": "2026-10-08T04:00:00Z",
-          "participants": []
-        }
-      ],
+      "events": [],
       "aliases": [
         {
           "name": "LET",
@@ -4487,16 +4284,6 @@
       "participants": [],
       "events": [
         {
-          "name": "WA PGA Championship",
-          "start_time": "2026-10-08T04:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "WA PGA AA Championship",
-          "start_time": "2026-10-10T04:00:00Z",
-          "participants": []
-        },
-        {
           "name": "WA Open Qualifier",
           "start_time": "2026-10-12T04:00:00Z",
           "participants": []
@@ -4530,13 +4317,7 @@
         "golf-pga-tour"
       ],
       "participants": [],
-      "events": [
-        {
-          "name": "Baycurrent Classic",
-          "start_time": "2026-10-08T04:00Z",
-          "participants": []
-        }
-      ],
+      "events": [],
       "aliases": [
         {
           "name": "PGA Tour",
@@ -4561,11 +4342,6 @@
       ],
       "participants": [],
       "events": [
-        {
-          "name": "Constellation FURYK & FRIENDS",
-          "start_time": "2026-10-09T04:00Z",
-          "participants": []
-        },
         {
           "name": "SAS Championship",
           "start_time": "2026-10-16T04:00Z",
@@ -4611,13 +4387,7 @@
         "golf-sunshine-tour"
       ],
       "participants": [],
-      "events": [
-        {
-          "name": "The Fortress Invitational",
-          "start_time": "2026-10-08T04:00:00Z",
-          "participants": []
-        }
-      ],
+      "events": [],
       "participant_coverage": "NOT AVAILABLE"
     },
     {
@@ -4890,30 +4660,6 @@
         "Winnipeg Jets"
       ],
       "events": [
-        {
-          "name": "Seattle Kraken at Washington Capitals",
-          "start_time": "2026-10-11T21:00Z",
-          "participants": [
-            "Seattle Kraken",
-            "Washington Capitals"
-          ]
-        },
-        {
-          "name": "Vancouver Canucks at New York Rangers",
-          "start_time": "2026-10-11T22:00Z",
-          "participants": [
-            "Vancouver Canucks",
-            "New York Rangers"
-          ]
-        },
-        {
-          "name": "Carolina Hurricanes at Philadelphia Flyers",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Carolina Hurricanes",
-            "Philadelphia Flyers"
-          ]
-        },
         {
           "name": "Florida Panthers at Buffalo Sabres",
           "start_time": "2026-10-12T17:00Z",
@@ -5305,6 +5051,38 @@
             "Carolina Hurricanes",
             "Calgary Flames"
           ]
+        },
+        {
+          "name": "Anaheim Ducks at New York Rangers",
+          "start_time": "2026-10-19T23:00Z",
+          "participants": [
+            "Anaheim Ducks",
+            "New York Rangers"
+          ]
+        },
+        {
+          "name": "Colorado Avalanche at Philadelphia Flyers",
+          "start_time": "2026-10-19T23:00Z",
+          "participants": [
+            "Colorado Avalanche",
+            "Philadelphia Flyers"
+          ]
+        },
+        {
+          "name": "San Jose Sharks at Toronto Maple Leafs",
+          "start_time": "2026-10-19T23:30Z",
+          "participants": [
+            "San Jose Sharks",
+            "Toronto Maple Leafs"
+          ]
+        },
+        {
+          "name": "Pittsburgh Penguins at Utah Mammoth",
+          "start_time": "2026-10-20T01:00Z",
+          "participants": [
+            "Pittsburgh Penguins",
+            "Utah Mammoth"
+          ]
         }
       ],
       "source_labels": [
@@ -5637,13 +5415,7 @@
         "motorsports-motogp"
       ],
       "participants": [],
-      "events": [
-        {
-          "name": "PERTAMINA GRAND PRIX OF INDONESIA",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        }
-      ],
+      "events": [],
       "aliases": [
         {
           "name": "MotoGP",
@@ -5696,19 +5468,10 @@
         "motorsports-nascar-cup"
       ],
       "participants": [
-        "Charlotte",
         "NASCAR Cup Series",
         "Phoenix"
       ],
       "events": [
-        {
-          "name": "NASCAR Cup Series at Charlotte",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "NASCAR Cup Series",
-            "Charlotte"
-          ]
-        },
         {
           "name": "NASCAR Cup Series at Phoenix",
           "start_time": "2026-10-18T19:00Z",
@@ -5740,19 +5503,10 @@
         "motorsports-nascar-oreilly"
       ],
       "participants": [
-        "Charlotte",
         "NASCAR O'Reilly Auto Parts Series",
         "Phoenix"
       ],
       "events": [
-        {
-          "name": "NASCAR O'Reilly Auto Parts Series at Charlotte",
-          "start_time": "2026-10-12T00:00Z",
-          "participants": [
-            "NASCAR O'Reilly Auto Parts Series",
-            "Charlotte"
-          ]
-        },
         {
           "name": "NASCAR O'Reilly Auto Parts Series at Phoenix",
           "start_time": "2026-10-17T23:30Z",
@@ -5848,13 +5602,7 @@
         "motorsports-supercars"
       ],
       "participants": [],
-      "events": [
-        {
-          "name": "2026 Repco Bathurst 1000",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        }
-      ],
+      "events": [],
       "aliases": [
         {
           "name": "Supercars Championship",
@@ -6159,259 +5907,11 @@
       ],
       "events": [
         {
-          "name": "Bellarmine at William & Mary",
-          "start_time": "2026-10-11T15:00:00Z",
-          "participants": [
-            "Bellarmine",
-            "William & Mary"
-          ]
-        },
-        {
-          "name": "Longwood at Michigan St.",
-          "start_time": "2026-10-11T15:00:00Z",
-          "participants": [
-            "Longwood",
-            "Michigan St."
-          ]
-        },
-        {
-          "name": "Monmouth at Michigan",
-          "start_time": "2026-10-11T15:00:00Z",
-          "participants": [
-            "Monmouth",
-            "Michigan"
-          ]
-        },
-        {
-          "name": "Towson at Bryant",
-          "start_time": "2026-10-11T15:00:00Z",
-          "participants": [
-            "Towson",
-            "Bryant"
-          ]
-        },
-        {
-          "name": "App State at Vermont",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "App State",
-            "Vermont"
-          ]
-        },
-        {
-          "name": "Boston U. at Boston College",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Boston U.",
-            "Boston College"
-          ]
-        },
-        {
-          "name": "Central Mich. at Saint Louis",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Central Mich.",
-            "Saint Louis"
-          ]
-        },
-        {
-          "name": "Colgate at Georgetown",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Colgate",
-            "Georgetown"
-          ]
-        },
-        {
-          "name": "Columbia at La Salle",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Columbia",
-            "La Salle"
-          ]
-        },
-        {
-          "name": "Dartmouth at Quinnipiac",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Dartmouth",
-            "Quinnipiac"
-          ]
-        },
-        {
-          "name": "Davidson at Rider",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Davidson",
-            "Rider"
-          ]
-        },
-        {
-          "name": "Delaware at Lafayette",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Delaware",
-            "Lafayette"
-          ]
-        },
-        {
-          "name": "Hofstra at Villanova",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Hofstra",
-            "Villanova"
-          ]
-        },
-        {
-          "name": "Holy Cross at Providence",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Holy Cross",
-            "Providence"
-          ]
-        },
-        {
-          "name": "Northwestern at Princeton",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Northwestern",
-            "Princeton"
-          ]
-        },
-        {
-          "name": "Ohio at Indiana",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Ohio",
-            "Indiana"
-          ]
-        },
-        {
-          "name": "Penn St. at Kent St.",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Penn St.",
-            "Kent St."
-          ]
-        },
-        {
           "name": "Queens (NC) at Old Dominion",
-          "start_time": "2026-10-11T16:00:00Z",
+          "start_time": "2026-10-12T17:00:00Z",
           "participants": [
             "Queens (NC)",
             "Old Dominion"
-          ]
-        },
-        {
-          "name": "Saint Joseph's at Penn",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Saint Joseph's",
-            "Penn"
-          ]
-        },
-        {
-          "name": "Stonehill at Northeastern",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Stonehill",
-            "Northeastern"
-          ]
-        },
-        {
-          "name": "Temple at Yale",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Temple",
-            "Yale"
-          ]
-        },
-        {
-          "name": "Drexel at Lehigh",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Drexel",
-            "Lehigh"
-          ]
-        },
-        {
-          "name": "Fairfield at VCU",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Fairfield",
-            "VCU"
-          ]
-        },
-        {
-          "name": "Harvard at Syracuse",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Harvard",
-            "Syracuse"
-          ]
-        },
-        {
-          "name": "Massachusetts at Brown",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Massachusetts",
-            "Brown"
-          ]
-        },
-        {
-          "name": "North Carolina at Liberty",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "North Carolina",
-            "Liberty"
-          ]
-        },
-        {
-          "name": "Sacred Heart at UMass Lowell",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Sacred Heart",
-            "UMass Lowell"
-          ]
-        },
-        {
-          "name": "Merrimack at Maine",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Merrimack",
-            "Maine"
-          ]
-        },
-        {
-          "name": "New Haven at New Hampshire",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "New Haven",
-            "New Hampshire"
-          ]
-        },
-        {
-          "name": "UAlbany at Cornell",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "UAlbany",
-            "Cornell"
-          ]
-        },
-        {
-          "name": "Duke at California",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Duke",
-            "California"
-          ]
-        },
-        {
-          "name": "Wake Forest at Stanford",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Wake Forest",
-            "Stanford"
           ]
         },
         {
@@ -6972,6 +6472,14 @@
           "participants": [
             "California",
             "UC Davis"
+          ]
+        },
+        {
+          "name": "Monmouth at Virginia",
+          "start_time": "2026-10-19T16:00:00Z",
+          "participants": [
+            "Monmouth",
+            "Virginia"
           ]
         }
       ],
@@ -8277,7 +7785,6 @@
         "Boston College",
         "Boston U.",
         "Bowling Green",
-        "Bradley",
         "Brown",
         "Bryant",
         "Bucknell",
@@ -8289,8 +7796,6 @@
         "Campbell",
         "Canisius",
         "Central Ark.",
-        "Central Conn. St.",
-        "Charlotte",
         "Chicago St.",
         "Clemson",
         "Cleveland St.",
@@ -8321,7 +7826,6 @@
         "Fairfield",
         "FDU",
         "FGCU",
-        "FIU",
         "Fla. Atlantic",
         "Fordham",
         "Furman",
@@ -8483,166 +7987,6 @@
         "Yale"
       ],
       "events": [
-        {
-          "name": "Eastern Ill. at UTRGV",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Eastern Ill.",
-            "UTRGV"
-          ]
-        },
-        {
-          "name": "FDU at Le Moyne",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "FDU",
-            "Le Moyne"
-          ]
-        },
-        {
-          "name": "Howard at Stonehill",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Howard",
-            "Stonehill"
-          ]
-        },
-        {
-          "name": "Memphis at Temple",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Memphis",
-            "Temple"
-          ]
-        },
-        {
-          "name": "Mercyhurst at Central Conn. St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Mercyhurst",
-            "Central Conn. St."
-          ]
-        },
-        {
-          "name": "SIUE at Houston Christian",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "SIUE",
-            "Houston Christian"
-          ]
-        },
-        {
-          "name": "Southern Ind. at UIW",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Southern Ind.",
-            "UIW"
-          ]
-        },
-        {
-          "name": "Western Ill. at Lindenwood",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Western Ill.",
-            "Lindenwood"
-          ]
-        },
-        {
-          "name": "Central Ark. at West Florida",
-          "start_time": "2026-10-11T21:00:00Z",
-          "participants": [
-            "Central Ark.",
-            "West Florida"
-          ]
-        },
-        {
-          "name": "Rhode Island at Fordham",
-          "start_time": "2026-10-11T21:00:00Z",
-          "participants": [
-            "Rhode Island",
-            "Fordham"
-          ]
-        },
-        {
-          "name": "Stony Brook at George Mason",
-          "start_time": "2026-10-11T21:00:00Z",
-          "participants": [
-            "Stony Brook",
-            "George Mason"
-          ]
-        },
-        {
-          "name": "Chicago St. at New Haven",
-          "start_time": "2026-10-11T22:00:00Z",
-          "participants": [
-            "Chicago St.",
-            "New Haven"
-          ]
-        },
-        {
-          "name": "Creighton at Akron",
-          "start_time": "2026-10-11T22:00:00Z",
-          "participants": [
-            "Creighton",
-            "Akron"
-          ]
-        },
-        {
-          "name": "Kansas City at NC State",
-          "start_time": "2026-10-11T22:00:00Z",
-          "participants": [
-            "Kansas City",
-            "NC State"
-          ]
-        },
-        {
-          "name": "Bradley at Belmont",
-          "start_time": "2026-10-11T23:00:00Z",
-          "participants": [
-            "Bradley",
-            "Belmont"
-          ]
-        },
-        {
-          "name": "Evansville at Western Mich.",
-          "start_time": "2026-10-11T23:00:00Z",
-          "participants": [
-            "Evansville",
-            "Western Mich."
-          ]
-        },
-        {
-          "name": "South Fla. at Charlotte",
-          "start_time": "2026-10-11T23:00:00Z",
-          "participants": [
-            "South Fla.",
-            "Charlotte"
-          ]
-        },
-        {
-          "name": "Tulsa at Missouri St.",
-          "start_time": "2026-10-11T23:00:00Z",
-          "participants": [
-            "Tulsa",
-            "Missouri St."
-          ]
-        },
-        {
-          "name": "UAB at FIU",
-          "start_time": "2026-10-11T23:00:00Z",
-          "participants": [
-            "UAB",
-            "FIU"
-          ]
-        },
-        {
-          "name": "Clemson at Stanford",
-          "start_time": "2026-10-12T01:00:00Z",
-          "participants": [
-            "Clemson",
-            "Stanford"
-          ]
-        },
         {
           "name": "West Virginia at American",
           "start_time": "2026-10-12T17:00:00Z",
@@ -9850,6 +9194,22 @@
             "Utah Tech",
             "Grand Canyon"
           ]
+        },
+        {
+          "name": "Georgetown at Pittsburgh",
+          "start_time": "2026-10-19T23:00:00Z",
+          "participants": [
+            "Georgetown",
+            "Pittsburgh"
+          ]
+        },
+        {
+          "name": "UCLA at Northwestern",
+          "start_time": "2026-10-19T23:00:00Z",
+          "participants": [
+            "UCLA",
+            "Northwestern"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -9874,7 +9234,6 @@
         "App State",
         "Arizona",
         "Arizona St.",
-        "Ark.-Pine Bluff",
         "Arkansas",
         "Arkansas St.",
         "Army West Point",
@@ -9939,7 +9298,6 @@
         "Eastern Ill.",
         "Eastern Ky.",
         "Eastern Mich.",
-        "Eastern Wash.",
         "Elon",
         "ETSU",
         "Evansville",
@@ -9973,7 +9331,6 @@
         "Houston",
         "Houston Christian",
         "Howard",
-        "Idaho",
         "Idaho St.",
         "Illinois",
         "Illinois St.",
@@ -10018,7 +9375,6 @@
         "Marshall",
         "Maryland",
         "Massachusetts",
-        "McNeese",
         "Memphis",
         "Mercer",
         "Mercyhurst",
@@ -10065,7 +9421,6 @@
         "Notre Dame",
         "Oakland",
         "Ohio",
-        "Ohio St.",
         "Oklahoma",
         "Oklahoma St.",
         "Old Dominion",
@@ -10085,7 +9440,6 @@
         "Presbyterian",
         "Princeton",
         "Providence",
-        "Purdue",
         "Purdue Fort Wayne",
         "Queens (NC)",
         "Quinnipiac",
@@ -10105,7 +9459,6 @@
         "Sam Houston",
         "Samford",
         "San Diego",
-        "San Diego St.",
         "San Francisco",
         "San Jose St.",
         "Santa Clara",
@@ -10152,7 +9505,6 @@
         "Towson",
         "Troy",
         "Tulsa",
-        "UAB",
         "UAlbany",
         "UC Davis",
         "UC Irvine",
@@ -10211,790 +9563,6 @@
         "Youngstown St."
       ],
       "events": [
-        {
-          "name": "Le Moyne at Howard",
-          "start_time": "2026-10-11T15:00:00Z",
-          "participants": [
-            "Le Moyne",
-            "Howard"
-          ]
-        },
-        {
-          "name": "Charlotte at Memphis",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Charlotte",
-            "Memphis"
-          ]
-        },
-        {
-          "name": "La Salle at VCU",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "La Salle",
-            "VCU"
-          ]
-        },
-        {
-          "name": "NJIT at Maine",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "NJIT",
-            "Maine"
-          ]
-        },
-        {
-          "name": "Northwestern at Maryland",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Northwestern",
-            "Maryland"
-          ]
-        },
-        {
-          "name": "Rice at East Carolina",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Rice",
-            "East Carolina"
-          ]
-        },
-        {
-          "name": "Utah at West Virginia",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Utah",
-            "West Virginia"
-          ]
-        },
-        {
-          "name": "Wagner at LIU",
-          "start_time": "2026-10-11T16:00:00Z",
-          "participants": [
-            "Wagner",
-            "LIU"
-          ]
-        },
-        {
-          "name": "Oklahoma St. at UCF",
-          "start_time": "2026-10-11T16:30:00Z",
-          "participants": [
-            "Oklahoma St.",
-            "UCF"
-          ]
-        },
-        {
-          "name": "Akron at Massachusetts",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Akron",
-            "Massachusetts"
-          ]
-        },
-        {
-          "name": "Buffalo at Western Mich.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Buffalo",
-            "Western Mich."
-          ]
-        },
-        {
-          "name": "Campbell at Northeastern",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Campbell",
-            "Northeastern"
-          ]
-        },
-        {
-          "name": "Central Ark. at West Ga.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Central Ark.",
-            "West Ga."
-          ]
-        },
-        {
-          "name": "Coastal Carolina at App State",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Coastal Carolina",
-            "App State"
-          ]
-        },
-        {
-          "name": "Col. of Charleston at Towson",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Col. of Charleston",
-            "Towson"
-          ]
-        },
-        {
-          "name": "Drake at Indiana St.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Drake",
-            "Indiana St."
-          ]
-        },
-        {
-          "name": "Duquesne at George Mason",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Duquesne",
-            "George Mason"
-          ]
-        },
-        {
-          "name": "Elon at Monmouth",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Elon",
-            "Monmouth"
-          ]
-        },
-        {
-          "name": "ETSU at VMI",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "ETSU",
-            "VMI"
-          ]
-        },
-        {
-          "name": "FIU at Liberty",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "FIU",
-            "Liberty"
-          ]
-        },
-        {
-          "name": "Fordham at Saint Joseph's",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Fordham",
-            "Saint Joseph's"
-          ]
-        },
-        {
-          "name": "George Washington at Dayton",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "George Washington",
-            "Dayton"
-          ]
-        },
-        {
-          "name": "Hampton at Hofstra",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Hampton",
-            "Hofstra"
-          ]
-        },
-        {
-          "name": "Jackson St. at Ark.-Pine Bluff",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Jackson St.",
-            "Ark.-Pine Bluff"
-          ]
-        },
-        {
-          "name": "Jacksonville at FGCU",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Jacksonville",
-            "FGCU"
-          ]
-        },
-        {
-          "name": "Kansas St. at Baylor",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Kansas St.",
-            "Baylor"
-          ]
-        },
-        {
-          "name": "Kent St. at Ohio",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Kent St.",
-            "Ohio"
-          ]
-        },
-        {
-          "name": "Lipscomb at Queens (NC)",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Lipscomb",
-            "Queens (NC)"
-          ]
-        },
-        {
-          "name": "Little Rock at Eastern Ky.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Little Rock",
-            "Eastern Ky."
-          ]
-        },
-        {
-          "name": "Louisiana at Georgia St.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Louisiana",
-            "Georgia St."
-          ]
-        },
-        {
-          "name": "Miami (OH) at Eastern Mich.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Miami (OH)",
-            "Eastern Mich."
-          ]
-        },
-        {
-          "name": "Michigan St. at Purdue",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Michigan St.",
-            "Purdue"
-          ]
-        },
-        {
-          "name": "Nebraska at Rutgers",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Nebraska",
-            "Rutgers"
-          ]
-        },
-        {
-          "name": "North Florida at Stetson",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "North Florida",
-            "Stetson"
-          ]
-        },
-        {
-          "name": "Northwestern St. at A&M-Corpus Christi",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Northwestern St.",
-            "A&M-Corpus Christi"
-          ]
-        },
-        {
-          "name": "Southern U. at Prairie View",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Southern U.",
-            "Prairie View"
-          ]
-        },
-        {
-          "name": "St. Bonaventure at Rhode Island",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "St. Bonaventure",
-            "Rhode Island"
-          ]
-        },
-        {
-          "name": "Temple at South Fla.",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Temple",
-            "South Fla."
-          ]
-        },
-        {
-          "name": "UNCW at Drexel",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "UNCW",
-            "Drexel"
-          ]
-        },
-        {
-          "name": "Vermont at Bryant",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Vermont",
-            "Bryant"
-          ]
-        },
-        {
-          "name": "Virginia at SMU",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Virginia",
-            "SMU"
-          ]
-        },
-        {
-          "name": "Western Ky. at Delaware",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Western Ky.",
-            "Delaware"
-          ]
-        },
-        {
-          "name": "William & Mary at Stony Brook",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "William & Mary",
-            "Stony Brook"
-          ]
-        },
-        {
-          "name": "Wisconsin at Michigan",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": [
-            "Wisconsin",
-            "Michigan"
-          ]
-        },
-        {
-          "name": "Abilene Christian at Austin Peay",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Abilene Christian",
-            "Austin Peay"
-          ]
-        },
-        {
-          "name": "Arkansas St. at Louisiana Tech",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Arkansas St.",
-            "Louisiana Tech"
-          ]
-        },
-        {
-          "name": "Central Conn. St. at Mercyhurst",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Central Conn. St.",
-            "Mercyhurst"
-          ]
-        },
-        {
-          "name": "Davidson at Richmond",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Davidson",
-            "Richmond"
-          ]
-        },
-        {
-          "name": "East Texas A&M at Nicholls",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "East Texas A&M",
-            "Nicholls"
-          ]
-        },
-        {
-          "name": "Eastern Wash. at Northern Colo.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Eastern Wash.",
-            "Northern Colo."
-          ]
-        },
-        {
-          "name": "Fla. Atlantic at Tulsa",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Fla. Atlantic",
-            "Tulsa"
-          ]
-        },
-        {
-          "name": "Grambling at Alabama St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Grambling",
-            "Alabama St."
-          ]
-        },
-        {
-          "name": "Houston Christian at McNeese",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Houston Christian",
-            "McNeese"
-          ]
-        },
-        {
-          "name": "Kansas City at South Dakota St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Kansas City",
-            "South Dakota St."
-          ]
-        },
-        {
-          "name": "Lindenwood at Eastern Ill.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Lindenwood",
-            "Eastern Ill."
-          ]
-        },
-        {
-          "name": "Middle Tenn. at Missouri St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Middle Tenn.",
-            "Missouri St."
-          ]
-        },
-        {
-          "name": "Morehead St. at Southeast Mo. St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Morehead St.",
-            "Southeast Mo. St."
-          ]
-        },
-        {
-          "name": "New Haven at Chicago St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "New Haven",
-            "Chicago St."
-          ]
-        },
-        {
-          "name": "New Mexico St. at Sam Houston",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "New Mexico St.",
-            "Sam Houston"
-          ]
-        },
-        {
-          "name": "Ohio St. at Minnesota",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Ohio St.",
-            "Minnesota"
-          ]
-        },
-        {
-          "name": "Omaha at North Dakota St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Omaha",
-            "North Dakota St."
-          ]
-        },
-        {
-          "name": "Oral Roberts at South Dakota",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Oral Roberts",
-            "South Dakota"
-          ]
-        },
-        {
-          "name": "Saint Louis at Loyola Chicago",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Saint Louis",
-            "Loyola Chicago"
-          ]
-        },
-        {
-          "name": "St. Thomas (MN) at North Dakota",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "St. Thomas (MN)",
-            "North Dakota"
-          ]
-        },
-        {
-          "name": "Tarleton St. at North Ala.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Tarleton St.",
-            "North Ala."
-          ]
-        },
-        {
-          "name": "Texas Southern at Alabama A&M",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Texas Southern",
-            "Alabama A&M"
-          ]
-        },
-        {
-          "name": "Texas Tech at TCU",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Texas Tech",
-            "TCU"
-          ]
-        },
-        {
-          "name": "The Citadel at Western Caro.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "The Citadel",
-            "Western Caro."
-          ]
-        },
-        {
-          "name": "Troy at Southern Miss.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Troy",
-            "Southern Miss."
-          ]
-        },
-        {
-          "name": "UAB at UTSA",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "UAB",
-            "UTSA"
-          ]
-        },
-        {
-          "name": "UIC at Murray St.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "UIC",
-            "Murray St."
-          ]
-        },
-        {
-          "name": "UMass Lowell at UAlbany",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "UMass Lowell",
-            "UAlbany"
-          ]
-        },
-        {
-          "name": "UTRGV at Southeastern La.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "UTRGV",
-            "Southeastern La."
-          ]
-        },
-        {
-          "name": "Valparaiso at UNI",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Valparaiso",
-            "UNI"
-          ]
-        },
-        {
-          "name": "Western Ill. at Southern Ind.",
-          "start_time": "2026-10-11T18:00:00Z",
-          "participants": [
-            "Western Ill.",
-            "Southern Ind."
-          ]
-        },
-        {
-          "name": "Colorado Col. at San Jose St.",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Colorado Col.",
-            "San Jose St."
-          ]
-        },
-        {
-          "name": "Colorado St. at San Diego St.",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Colorado St.",
-            "San Diego St."
-          ]
-        },
-        {
-          "name": "Grand Canyon at Air Force",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Grand Canyon",
-            "Air Force"
-          ]
-        },
-        {
-          "name": "Houston at Arizona St.",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Houston",
-            "Arizona St."
-          ]
-        },
-        {
-          "name": "Kansas at Colorado",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Kansas",
-            "Colorado"
-          ]
-        },
-        {
-          "name": "Southern Utah at Weber St.",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Southern Utah",
-            "Weber St."
-          ]
-        },
-        {
-          "name": "UC Davis at New Mexico",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "UC Davis",
-            "New Mexico"
-          ]
-        },
-        {
-          "name": "ULM at Marshall",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "ULM",
-            "Marshall"
-          ]
-        },
-        {
-          "name": "Utah St. at Boise St.",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Utah St.",
-            "Boise St."
-          ]
-        },
-        {
-          "name": "Utah Tech at Idaho St.",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Utah Tech",
-            "Idaho St."
-          ]
-        },
-        {
-          "name": "Wyoming at UNLV",
-          "start_time": "2026-10-11T19:00:00Z",
-          "participants": [
-            "Wyoming",
-            "UNLV"
-          ]
-        },
-        {
-          "name": "Denver at San Diego",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Denver",
-            "San Diego"
-          ]
-        },
-        {
-          "name": "Fresno St. at Gonzaga",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Fresno St.",
-            "Gonzaga"
-          ]
-        },
-        {
-          "name": "Idaho at Northern Ariz.",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Idaho",
-            "Northern Ariz."
-          ]
-        },
-        {
-          "name": "Illinois at UCLA",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Illinois",
-            "UCLA"
-          ]
-        },
-        {
-          "name": "Indiana at Southern California",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Indiana",
-            "Southern California"
-          ]
-        },
-        {
-          "name": "Iowa at Oregon",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Iowa",
-            "Oregon"
-          ]
-        },
-        {
-          "name": "Iowa St. at Arizona",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Iowa St.",
-            "Arizona"
-          ]
-        },
-        {
-          "name": "Lamar University at SFA",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Lamar University",
-            "SFA"
-          ]
-        },
-        {
-          "name": "Penn St. at Washington",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Penn St.",
-            "Washington"
-          ]
-        },
-        {
-          "name": "Texas St. at Oregon St.",
-          "start_time": "2026-10-11T20:00:00Z",
-          "participants": [
-            "Texas St.",
-            "Oregon St."
-          ]
-        },
-        {
-          "name": "Old Dominion at James Madison",
-          "start_time": "2026-10-11T22:00:00Z",
-          "participants": [
-            "Old Dominion",
-            "James Madison"
-          ]
-        },
-        {
-          "name": "UTEP at Hawaii",
-          "start_time": "2026-10-12T01:00:00Z",
-          "participants": [
-            "UTEP",
-            "Hawaii"
-          ]
-        },
         {
           "name": "BYU at Cincinnati",
           "start_time": "2026-10-12T23:00:00Z",
@@ -13015,7 +11583,6 @@
         "Alabama A&M Bulldogs",
         "Alabama Crimson Tide",
         "Alabama State Hornets",
-        "Alcorn State Braves",
         "American University Eagles",
         "App State Mountaineers",
         "Arizona State Sun Devils",
@@ -13145,7 +11712,6 @@
         "Lafayette Leopards",
         "Lamar Cardinals",
         "Le Moyne Dolphins",
-        "Lehigh Mountain Hawks",
         "Liberty Flames",
         "Lindenwood Lions",
         "Lipscomb Bisons",
@@ -13275,7 +11841,6 @@
         "Southeast Missouri State Redhawks",
         "Southern Illinois Salukis",
         "Southern Indiana Screaming Eagles",
-        "Southern Jaguars",
         "Southern Miss Golden Eagles",
         "Southern Utah Thunderbirds",
         "St. John's Red Storm",
@@ -13360,438 +11925,6 @@
         "Youngstown State Penguins"
       ],
       "events": [
-        {
-          "name": "Arkansas-Pine Bluff Golden Lions at Bethune-Cookman Wildcats",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "Arkansas-Pine Bluff Golden Lions",
-            "Bethune-Cookman Wildcats"
-          ]
-        },
-        {
-          "name": "Grambling Tigers at Florida A&M Rattlers",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "Grambling Tigers",
-            "Florida A&M Rattlers"
-          ]
-        },
-        {
-          "name": "North Texas Mean Green at Temple Owls",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "North Texas Mean Green",
-            "Temple Owls"
-          ]
-        },
-        {
-          "name": "Washington Huskies at Penn State Nittany Lions",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "Washington Huskies",
-            "Penn State Nittany Lions"
-          ]
-        },
-        {
-          "name": "Alabama A&M Bulldogs at Texas Southern Tigers",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Alabama A&M Bulldogs",
-            "Texas Southern Tigers"
-          ]
-        },
-        {
-          "name": "Alabama State Hornets at Prairie View A&M Panthers",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Alabama State Hornets",
-            "Prairie View A&M Panthers"
-          ]
-        },
-        {
-          "name": "Bellarmine Knights at Stetson Hatters",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Bellarmine Knights",
-            "Stetson Hatters"
-          ]
-        },
-        {
-          "name": "Boston College Eagles at NC State Wolfpack",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Boston College Eagles",
-            "NC State Wolfpack"
-          ]
-        },
-        {
-          "name": "California Golden Bears at Notre Dame Fighting Irish",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "California Golden Bears",
-            "Notre Dame Fighting Irish"
-          ]
-        },
-        {
-          "name": "Clemson Tigers at Florida State Seminoles",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Clemson Tigers",
-            "Florida State Seminoles"
-          ]
-        },
-        {
-          "name": "Coppin State Eagles at Delaware State Hornets",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Coppin State Eagles",
-            "Delaware State Hornets"
-          ]
-        },
-        {
-          "name": "Davidson Wildcats at George Washington Revolutionaries",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Davidson Wildcats",
-            "George Washington Revolutionaries"
-          ]
-        },
-        {
-          "name": "Duke Blue Devils at Virginia Tech Hokies",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Duke Blue Devils",
-            "Virginia Tech Hokies"
-          ]
-        },
-        {
-          "name": "Florida Atlantic Owls at East Carolina Pirates",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Florida Atlantic Owls",
-            "East Carolina Pirates"
-          ]
-        },
-        {
-          "name": "Georgia Tech Yellow Jackets at Miami Hurricanes",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Georgia Tech Yellow Jackets",
-            "Miami Hurricanes"
-          ]
-        },
-        {
-          "name": "Iowa Hawkeyes at Michigan State Spartans",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Iowa Hawkeyes",
-            "Michigan State Spartans"
-          ]
-        },
-        {
-          "name": "Iowa State Cyclones at Cincinnati Bearcats",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Iowa State Cyclones",
-            "Cincinnati Bearcats"
-          ]
-        },
-        {
-          "name": "Jackson State Tigers at Southern Jaguars",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Jackson State Tigers",
-            "Southern Jaguars"
-          ]
-        },
-        {
-          "name": "Jacksonville Dolphins at Queens University Royals",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Jacksonville Dolphins",
-            "Queens University Royals"
-          ]
-        },
-        {
-          "name": "Kansas Jayhawks at UCF Knights",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Kansas Jayhawks",
-            "UCF Knights"
-          ]
-        },
-        {
-          "name": "Lipscomb Bisons at Florida Gulf Coast Eagles",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Lipscomb Bisons",
-            "Florida Gulf Coast Eagles"
-          ]
-        },
-        {
-          "name": "Mississippi Valley State Delta Devils at Alcorn State Braves",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Mississippi Valley State Delta Devils",
-            "Alcorn State Braves"
-          ]
-        },
-        {
-          "name": "Morgan State Bears at Maryland Eastern Shore Hawks",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Morgan State Bears",
-            "Maryland Eastern Shore Hawks"
-          ]
-        },
-        {
-          "name": "NJIT Highlanders at New Hampshire Wildcats",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "NJIT Highlanders",
-            "New Hampshire Wildcats"
-          ]
-        },
-        {
-          "name": "North Carolina Tar Heels at Virginia Cavaliers",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "North Carolina Tar Heels",
-            "Virginia Cavaliers"
-          ]
-        },
-        {
-          "name": "South Carolina State Bulldogs at Howard Bison",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "South Carolina State Bulldogs",
-            "Howard Bison"
-          ]
-        },
-        {
-          "name": "Stanford Cardinal at Louisville Cardinals",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Stanford Cardinal",
-            "Louisville Cardinals"
-          ]
-        },
-        {
-          "name": "Syracuse Orange at Wake Forest Demon Deacons",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Syracuse Orange",
-            "Wake Forest Demon Deacons"
-          ]
-        },
-        {
-          "name": "Texas A&M Aggies at Arkansas Razorbacks",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Texas A&M Aggies",
-            "Arkansas Razorbacks"
-          ]
-        },
-        {
-          "name": "UAlbany Great Danes at Binghamton Bearcats",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "UAlbany Great Danes",
-            "Binghamton Bearcats"
-          ]
-        },
-        {
-          "name": "Florida Gators at Vanderbilt Commodores",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Florida Gators",
-            "Vanderbilt Commodores"
-          ]
-        },
-        {
-          "name": "Holy Cross Crusaders at Bucknell Bison",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Holy Cross Crusaders",
-            "Bucknell Bison"
-          ]
-        },
-        {
-          "name": "Lafayette Leopards at Colgate Raiders",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Lafayette Leopards",
-            "Colgate Raiders"
-          ]
-        },
-        {
-          "name": "LSU Tigers at Tennessee Volunteers",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "LSU Tigers",
-            "Tennessee Volunteers"
-          ]
-        },
-        {
-          "name": "Memphis Tigers at Rice Owls",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Memphis Tigers",
-            "Rice Owls"
-          ]
-        },
-        {
-          "name": "North Florida Ospreys at West Florida Argonauts",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "North Florida Ospreys",
-            "West Florida Argonauts"
-          ]
-        },
-        {
-          "name": "Ole Miss Rebels at Kentucky Wildcats",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Ole Miss Rebels",
-            "Kentucky Wildcats"
-          ]
-        },
-        {
-          "name": "South Florida Bulls at UTSA Roadrunners",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "South Florida Bulls",
-            "UTSA Roadrunners"
-          ]
-        },
-        {
-          "name": "UAB Blazers at Tulane Green Wave",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "UAB Blazers",
-            "Tulane Green Wave"
-          ]
-        },
-        {
-          "name": "USC Trojans at Indiana Hoosiers",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "USC Trojans",
-            "Indiana Hoosiers"
-          ]
-        },
-        {
-          "name": "Wichita State Shockers at Tulsa Golden Hurricane",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Wichita State Shockers",
-            "Tulsa Golden Hurricane"
-          ]
-        },
-        {
-          "name": "Xavier Musketeers at Creighton Bluejays",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Xavier Musketeers",
-            "Creighton Bluejays"
-          ]
-        },
-        {
-          "name": "George Mason Patriots at Fordham Rams",
-          "start_time": "2026-10-11T18:30Z",
-          "participants": [
-            "George Mason Patriots",
-            "Fordham Rams"
-          ]
-        },
-        {
-          "name": "Arizona Wildcats at Baylor Bears",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Arizona Wildcats",
-            "Baylor Bears"
-          ]
-        },
-        {
-          "name": "Auburn Tigers at Missouri Tigers",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Auburn Tigers",
-            "Missouri Tigers"
-          ]
-        },
-        {
-          "name": "Georgia Bulldogs at Alabama Crimson Tide",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Georgia Bulldogs",
-            "Alabama Crimson Tide"
-          ]
-        },
-        {
-          "name": "Kansas State Wildcats at Colorado Buffaloes",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Kansas State Wildcats",
-            "Colorado Buffaloes"
-          ]
-        },
-        {
-          "name": "Lehigh Mountain Hawks at Navy Midshipmen",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Lehigh Mountain Hawks",
-            "Navy Midshipmen"
-          ]
-        },
-        {
-          "name": "Pittsburgh Panthers at SMU Mustangs",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Pittsburgh Panthers",
-            "SMU Mustangs"
-          ]
-        },
-        {
-          "name": "South Carolina Gamecocks at Mississippi State Bulldogs",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "South Carolina Gamecocks",
-            "Mississippi State Bulldogs"
-          ]
-        },
-        {
-          "name": "Texas Longhorns at Oklahoma Sooners",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Texas Longhorns",
-            "Oklahoma Sooners"
-          ]
-        },
-        {
-          "name": "Minnesota Golden Gophers at Ohio State Buckeyes",
-          "start_time": "2026-10-11T20:00Z",
-          "participants": [
-            "Minnesota Golden Gophers",
-            "Ohio State Buckeyes"
-          ]
-        },
-        {
-          "name": "TCU Horned Frogs at Arizona State Sun Devils",
-          "start_time": "2026-10-11T21:00Z",
-          "participants": [
-            "TCU Horned Frogs",
-            "Arizona State Sun Devils"
-          ]
-        },
-        {
-          "name": "Illinois Fighting Illini at Purdue Boilermakers",
-          "start_time": "2026-10-11T22:00Z",
-          "participants": [
-            "Illinois Fighting Illini",
-            "Purdue Boilermakers"
-          ]
-        },
         {
           "name": "Howard Bison at UMBC Retrievers",
           "start_time": "2026-10-13T21:00Z",
@@ -16071,6 +14204,22 @@
             "Florida Gators",
             "Texas Longhorns"
           ]
+        },
+        {
+          "name": "Mississippi Valley State Delta Devils at Alabama A&M Bulldogs",
+          "start_time": "2026-10-19T23:00Z",
+          "participants": [
+            "Mississippi Valley State Delta Devils",
+            "Alabama A&M Bulldogs"
+          ]
+        },
+        {
+          "name": "Texas Southern Tigers at Arkansas-Pine Bluff Golden Lions",
+          "start_time": "2026-10-19T23:00Z",
+          "participants": [
+            "Texas Southern Tigers",
+            "Arkansas-Pine Bluff Golden Lions"
+          ]
         }
       ],
       "aliases": [
@@ -17124,30 +15273,6 @@
       ],
       "events": [
         {
-          "name": "Arminia Bielefeld at VfL Bochum",
-          "start_time": "2026-10-11T11:30Z",
-          "participants": [
-            "Arminia Bielefeld",
-            "VfL Bochum"
-          ]
-        },
-        {
-          "name": "Karlsruher SC at St. Pauli",
-          "start_time": "2026-10-11T11:30Z",
-          "participants": [
-            "Karlsruher SC",
-            "St. Pauli"
-          ]
-        },
-        {
-          "name": "SpVgg Greuther Fürth at Hertha Berlin",
-          "start_time": "2026-10-11T11:30Z",
-          "participants": [
-            "SpVgg Greuther Fürth",
-            "Hertha Berlin"
-          ]
-        },
-        {
           "name": "1. FC Nürnberg at Energie Cottbus",
           "start_time": "2026-10-16T16:30Z",
           "participants": [
@@ -17244,7 +15369,9 @@
         "FC Džiugas",
         "FC Hegelmann",
         "FK Banga",
+        "FK Kauno Žalgiris",
         "FK Panevėžys",
+        "FK Sūduva",
         "FK TransINVEST",
         "FK Žalgiris"
       ],
@@ -17271,6 +15398,14 @@
           "participants": [
             "FC Hegelmann",
             "FK Žalgiris"
+          ]
+        },
+        {
+          "name": "FK Kauno Žalgiris at FK Sūduva",
+          "start_time": "2026-10-19T15:45:00Z",
+          "participants": [
+            "FK Kauno Žalgiris",
+            "FK Sūduva"
           ]
         }
       ],
@@ -17708,6 +15843,7 @@
       "participants": [
         "AIK",
         "BK Häcken",
+        "Degerfors IF",
         "Djurgården",
         "GAIS",
         "Halmstads BK",
@@ -17723,22 +15859,6 @@
         "Örgryte IS"
       ],
       "events": [
-        {
-          "name": "Djurgården at Hammarby IF",
-          "start_time": "2026-10-11T12:00Z",
-          "participants": [
-            "Djurgården",
-            "Hammarby IF"
-          ]
-        },
-        {
-          "name": "Örgryte IS at BK Häcken",
-          "start_time": "2026-10-11T14:30Z",
-          "participants": [
-            "Örgryte IS",
-            "BK Häcken"
-          ]
-        },
         {
           "name": "Halmstads BK at IF Elfsborg",
           "start_time": "2026-10-12T17:00Z",
@@ -17810,6 +15930,14 @@
             "Hammarby IF",
             "Halmstads BK"
           ]
+        },
+        {
+          "name": "Kalmar FF at Degerfors IF",
+          "start_time": "2026-10-19T17:00Z",
+          "participants": [
+            "Kalmar FF",
+            "Degerfors IF"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -17826,8 +15954,10 @@
         "Argentinos Juniors",
         "Atlético Tucumán",
         "Banfield",
+        "Barracas Central",
         "Belgrano (Córdoba)",
         "Boca Juniors",
+        "Central Córdoba (Santiago del Estero)",
         "Defensa y Justicia",
         "Deportivo Riestra",
         "Estudiantes de La Plata",
@@ -17848,49 +15978,10 @@
         "Sarmiento (Junín)",
         "Talleres (Córdoba)",
         "Tigre",
+        "Unión (Santa Fe)",
         "Vélez Sarsfield"
       ],
       "events": [
-        {
-          "name": "Deportivo Riestra at San Lorenzo",
-          "start_time": "2026-10-11T17:45Z",
-          "participants": [
-            "Deportivo Riestra",
-            "San Lorenzo"
-          ]
-        },
-        {
-          "name": "Argentinos Juniors at Platense",
-          "start_time": "2026-10-11T20:00Z",
-          "participants": [
-            "Argentinos Juniors",
-            "Platense"
-          ]
-        },
-        {
-          "name": "Independiente Rivadavia at Rosario Central",
-          "start_time": "2026-10-11T20:00Z",
-          "participants": [
-            "Independiente Rivadavia",
-            "Rosario Central"
-          ]
-        },
-        {
-          "name": "Belgrano (Córdoba) at Racing Club",
-          "start_time": "2026-10-11T22:15Z",
-          "participants": [
-            "Belgrano (Córdoba)",
-            "Racing Club"
-          ]
-        },
-        {
-          "name": "Independiente at Talleres (Córdoba)",
-          "start_time": "2026-10-12T00:30Z",
-          "participants": [
-            "Independiente",
-            "Talleres (Córdoba)"
-          ]
-        },
         {
           "name": "Vélez Sarsfield at Lanús",
           "start_time": "2026-10-12T19:00Z",
@@ -18010,6 +16101,30 @@
             "River Plate",
             "Belgrano (Córdoba)"
           ]
+        },
+        {
+          "name": "Barracas Central at Sarmiento (Junín)",
+          "start_time": "2026-10-19T22:00Z",
+          "participants": [
+            "Barracas Central",
+            "Sarmiento (Junín)"
+          ]
+        },
+        {
+          "name": "Central Córdoba (Santiago del Estero) at Newell's Old Boys",
+          "start_time": "2026-10-19T22:00Z",
+          "participants": [
+            "Central Córdoba (Santiago del Estero)",
+            "Newell's Old Boys"
+          ]
+        },
+        {
+          "name": "Unión (Santa Fe) at Deportivo Riestra",
+          "start_time": "2026-10-20T00:15Z",
+          "participants": [
+            "Unión (Santa Fe)",
+            "Deportivo Riestra"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -18060,102 +16175,6 @@
         "Tristán Suárez"
       ],
       "events": [
-        {
-          "name": "Chaco For Ever at Deportivo Madryn",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Chaco For Ever",
-            "Deportivo Madryn"
-          ]
-        },
-        {
-          "name": "San Martín (Tucumán) at Atlanta",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "San Martín (Tucumán)",
-            "Atlanta"
-          ]
-        },
-        {
-          "name": "Acassuso at Defensores de Belgrano",
-          "start_time": "2026-10-11T18:30Z",
-          "participants": [
-            "Acassuso",
-            "Defensores de Belgrano"
-          ]
-        },
-        {
-          "name": "Deportivo Morón at Estudiantes (Buenos Aires)",
-          "start_time": "2026-10-11T18:30Z",
-          "participants": [
-            "Deportivo Morón",
-            "Estudiantes (Buenos Aires)"
-          ]
-        },
-        {
-          "name": "San Miguel at Almirante Brown",
-          "start_time": "2026-10-11T18:30Z",
-          "participants": [
-            "San Miguel",
-            "Almirante Brown"
-          ]
-        },
-        {
-          "name": "Colón (Santa Fe) at Mitre (Santiago del Estero)",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Colón (Santa Fe)",
-            "Mitre (Santiago del Estero)"
-          ]
-        },
-        {
-          "name": "Gimnasia y Tiro (Salta) at Gimnasia y Esgrima (Jujuy)",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Gimnasia y Tiro (Salta)",
-            "Gimnasia y Esgrima (Jujuy)"
-          ]
-        },
-        {
-          "name": "Güemes at Patronato",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Güemes",
-            "Patronato"
-          ]
-        },
-        {
-          "name": "Nueva Chicago at Temperley",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Nueva Chicago",
-            "Temperley"
-          ]
-        },
-        {
-          "name": "Ferro Carril Oeste at Central Norte",
-          "start_time": "2026-10-11T20:00Z",
-          "participants": [
-            "Ferro Carril Oeste",
-            "Central Norte"
-          ]
-        },
-        {
-          "name": "San Martín (San Juan) at Deportivo Maipú",
-          "start_time": "2026-10-11T20:00Z",
-          "participants": [
-            "San Martín (San Juan)",
-            "Deportivo Maipú"
-          ]
-        },
-        {
-          "name": "San Telmo at Ciudad de Bolívar",
-          "start_time": "2026-10-11T22:30Z",
-          "participants": [
-            "San Telmo",
-            "Ciudad de Bolívar"
-          ]
-        },
         {
           "name": "Los Andes at Racing (Córdoba)",
           "start_time": "2026-10-12T20:00Z",
@@ -18397,30 +16416,6 @@
       ],
       "events": [
         {
-          "name": "Austria Lustenau at TSV Hartberg",
-          "start_time": "2026-10-11T12:30Z",
-          "participants": [
-            "Austria Lustenau",
-            "TSV Hartberg"
-          ]
-        },
-        {
-          "name": "Wolfsberger at SC Rheindorf Altach",
-          "start_time": "2026-10-11T12:30Z",
-          "participants": [
-            "Wolfsberger",
-            "SC Rheindorf Altach"
-          ]
-        },
-        {
-          "name": "Rapid Vienna at LASK Linz",
-          "start_time": "2026-10-11T15:00Z",
-          "participants": [
-            "Rapid Vienna",
-            "LASK Linz"
-          ]
-        },
-        {
           "name": "TSV Hartberg at Rapid Vienna",
           "start_time": "2026-10-16T17:30Z",
           "participants": [
@@ -18624,57 +16619,15 @@
       "source_ids": [
         "belgium"
       ],
-      "participants": [
-        "Antwerp",
-        "KV Mechelen",
-        "KVC Westerlo",
-        "OH Leuven",
-        "Royal Charleroi SC",
-        "Sint-Truidense",
-        "Standard Liege",
-        "Union St.-Gilloise"
-      ],
-      "events": [
-        {
-          "name": "Royal Charleroi SC at Standard Liege",
-          "start_time": "2026-10-11T11:30Z",
-          "participants": [
-            "Royal Charleroi SC",
-            "Standard Liege"
-          ]
-        },
-        {
-          "name": "OH Leuven at Union St.-Gilloise",
-          "start_time": "2026-10-11T14:00Z",
-          "participants": [
-            "OH Leuven",
-            "Union St.-Gilloise"
-          ]
-        },
-        {
-          "name": "Antwerp at KVC Westerlo",
-          "start_time": "2026-10-11T16:30Z",
-          "participants": [
-            "Antwerp",
-            "KVC Westerlo"
-          ]
-        },
-        {
-          "name": "Sint-Truidense at KV Mechelen",
-          "start_time": "2026-10-11T17:15Z",
-          "participants": [
-            "Sint-Truidense",
-            "KV Mechelen"
-          ]
-        }
-      ],
+      "participants": [],
+      "events": [],
       "source_labels": [
         {
           "name": "Jupiler Pro League",
           "source_id": "belgium"
         }
       ],
-      "participant_coverage": "OBSERVED"
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Soccer",
@@ -18786,30 +16739,6 @@
         "Universitario de Vinto"
       ],
       "events": [
-        {
-          "name": "The Strongest at Real Potosí",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "The Strongest",
-            "Real Potosí"
-          ]
-        },
-        {
-          "name": "Nacional Potosí at Aurora",
-          "start_time": "2026-10-11T21:15Z",
-          "participants": [
-            "Nacional Potosí",
-            "Aurora"
-          ]
-        },
-        {
-          "name": "Blooming at Bolívar",
-          "start_time": "2026-10-11T23:30Z",
-          "participants": [
-            "Blooming",
-            "Bolívar"
-          ]
-        },
         {
           "name": "Guabirá at GV San José",
           "start_time": "2026-10-12T19:00Z",
@@ -18987,22 +16916,6 @@
         "Werder Bremen"
       ],
       "events": [
-        {
-          "name": "Borussia Mönchengladbach at FC Cologne",
-          "start_time": "2026-10-11T13:30Z",
-          "participants": [
-            "Borussia Mönchengladbach",
-            "FC Cologne"
-          ]
-        },
-        {
-          "name": "Schalke 04 at SC Freiburg",
-          "start_time": "2026-10-11T15:30Z",
-          "participants": [
-            "Schalke 04",
-            "SC Freiburg"
-          ]
-        },
         {
           "name": "FC Cologne at Eintracht Frankfurt",
           "start_time": "2026-10-16T18:30Z",
@@ -19467,49 +17380,10 @@
         "Remo",
         "Santos",
         "São Paulo",
-        "Vasco da Gama"
+        "Vasco da Gama",
+        "Vitória"
       ],
       "events": [
-        {
-          "name": "Santos at Atlético-MG",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Santos",
-            "Atlético-MG"
-          ]
-        },
-        {
-          "name": "Corinthians at Palmeiras",
-          "start_time": "2026-10-11T20:30Z",
-          "participants": [
-            "Corinthians",
-            "Palmeiras"
-          ]
-        },
-        {
-          "name": "Fluminense at Flamengo",
-          "start_time": "2026-10-11T20:30Z",
-          "participants": [
-            "Fluminense",
-            "Flamengo"
-          ]
-        },
-        {
-          "name": "Internacional at Grêmio",
-          "start_time": "2026-10-11T20:30Z",
-          "participants": [
-            "Internacional",
-            "Grêmio"
-          ]
-        },
-        {
-          "name": "Mirassol at Bahia",
-          "start_time": "2026-10-11T22:30Z",
-          "participants": [
-            "Mirassol",
-            "Bahia"
-          ]
-        },
         {
           "name": "Botafogo at Coritiba",
           "start_time": "2026-10-12T19:00Z",
@@ -19605,6 +17479,14 @@
             "Red Bull Bragantino",
             "Remo"
           ]
+        },
+        {
+          "name": "Vitória at Corinthians",
+          "start_time": "2026-10-19T23:00Z",
+          "participants": [
+            "Vitória",
+            "Corinthians"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -19625,7 +17507,6 @@
         "Ceará",
         "CRB",
         "Criciúma",
-        "Cuiabá",
         "Fortaleza",
         "Goiás",
         "Juventude",
@@ -19639,46 +17520,6 @@
         "Vila Nova"
       ],
       "events": [
-        {
-          "name": "São Bernardo at Juventude",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "São Bernardo",
-            "Juventude"
-          ]
-        },
-        {
-          "name": "Sport at Atlético Goianiense",
-          "start_time": "2026-10-11T19:10Z",
-          "participants": [
-            "Sport",
-            "Atlético Goianiense"
-          ]
-        },
-        {
-          "name": "Vila Nova at Náutico",
-          "start_time": "2026-10-11T20:30Z",
-          "participants": [
-            "Vila Nova",
-            "Náutico"
-          ]
-        },
-        {
-          "name": "Avaí at Cuiabá",
-          "start_time": "2026-10-11T21:30Z",
-          "participants": [
-            "Avaí",
-            "Cuiabá"
-          ]
-        },
-        {
-          "name": "Goiás at Operário PR",
-          "start_time": "2026-10-11T21:30Z",
-          "participants": [
-            "Goiás",
-            "Operário PR"
-          ]
-        },
         {
           "name": "CRB at Fortaleza",
           "start_time": "2026-10-12T19:00Z",
@@ -19782,6 +17623,14 @@
             "Novorizontino",
             "Vila Nova"
           ]
+        },
+        {
+          "name": "Náutico at Goiás",
+          "start_time": "2026-10-19T22:30Z",
+          "participants": [
+            "Náutico",
+            "Goiás"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -19812,6 +17661,7 @@
         "Cerro Largo",
         "Danubio",
         "Defensor Sporting",
+        "Deportivo Maldonado",
         "Juventud",
         "Liverpool",
         "Montevideo City Torque",
@@ -19822,30 +17672,6 @@
         "Racing (Montevideo)"
       ],
       "events": [
-        {
-          "name": "Racing (Montevideo) at Juventud",
-          "start_time": "2026-10-11T14:00Z",
-          "participants": [
-            "Racing (Montevideo)",
-            "Juventud"
-          ]
-        },
-        {
-          "name": "Albion FC at Cerro Largo",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Albion FC",
-            "Cerro Largo"
-          ]
-        },
-        {
-          "name": "Nacional at Central Español Fútbol Club",
-          "start_time": "2026-10-11T21:30Z",
-          "participants": [
-            "Nacional",
-            "Central Español Fútbol Club"
-          ]
-        },
         {
           "name": "Cerro Largo at Cerro",
           "start_time": "2026-10-16T22:00Z",
@@ -19900,6 +17726,14 @@
           "participants": [
             "Peñarol",
             "Liverpool"
+          ]
+        },
+        {
+          "name": "Deportivo Maldonado at Nacional",
+          "start_time": "2026-10-19T23:00Z",
+          "participants": [
+            "Deportivo Maldonado",
+            "Nacional"
           ]
         }
       ],
@@ -20387,21 +18221,11 @@
       ],
       "participants": [
         "Atlético Nacional",
-        "Fortaleza CEIF",
         "Independiente Medellín",
-        "Independiente Santa Fe",
         "Internacional de Bogotá",
         "Llaneros FC"
       ],
       "events": [
-        {
-          "name": "Fortaleza CEIF at Independiente Santa Fe",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Fortaleza CEIF",
-            "Independiente Santa Fe"
-          ]
-        },
         {
           "name": "Independiente Medellín at Atlético Nacional",
           "start_time": "2026-10-15T01:30Z",
@@ -20468,31 +18292,9 @@
       "source_ids": [
         "uefa-soccer-spain-copa-del-rey-men"
       ],
-      "participants": [
-        "AE Prat",
-        "Atlético Unión Güímar",
-        "CF San Rafael",
-        "Sporting Hortaleza"
-      ],
-      "events": [
-        {
-          "name": "Sporting Hortaleza at Atlético Unión Güímar",
-          "start_time": "2026-10-11T11:00Z",
-          "participants": [
-            "Sporting Hortaleza",
-            "Atlético Unión Güímar"
-          ]
-        },
-        {
-          "name": "CF San Rafael at AE Prat",
-          "start_time": "2026-10-11T14:00Z",
-          "participants": [
-            "CF San Rafael",
-            "AE Prat"
-          ]
-        }
-      ],
-      "participant_coverage": "OBSERVED"
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Soccer",
@@ -21068,38 +18870,6 @@
       ],
       "events": [
         {
-          "name": "AC Horsens at Silkeborg IF",
-          "start_time": "2026-10-11T12:00Z",
-          "participants": [
-            "AC Horsens",
-            "Silkeborg IF"
-          ]
-        },
-        {
-          "name": "Viborg FF at Randers FC",
-          "start_time": "2026-10-11T12:00Z",
-          "participants": [
-            "Viborg FF",
-            "Randers FC"
-          ]
-        },
-        {
-          "name": "Lyngby Boldklub at Brøndby IF",
-          "start_time": "2026-10-11T14:00Z",
-          "participants": [
-            "Lyngby Boldklub",
-            "Brøndby IF"
-          ]
-        },
-        {
-          "name": "F.C. København at FC Midtjylland",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "F.C. København",
-            "FC Midtjylland"
-          ]
-        },
-        {
           "name": "Sønderjyske Fodbold at AGF",
           "start_time": "2026-10-12T17:00Z",
           "participants": [
@@ -21145,6 +18915,14 @@
           "participants": [
             "AGF",
             "F.C. København"
+          ]
+        },
+        {
+          "name": "FC Midtjylland at Viborg FF",
+          "start_time": "2026-10-19T17:00Z",
+          "participants": [
+            "FC Midtjylland",
+            "Viborg FF"
           ]
         }
       ],
@@ -21209,16 +18987,22 @@
       ],
       "participants": [
         "Almere City",
+        "De Graafschap",
         "FC Den Bosch",
+        "FC Dordrecht",
         "FC Eindhoven",
         "FC Emmen",
         "FC Volendam",
         "Helmond Sport",
         "Heracles Almelo",
+        "Jong Ajax",
         "Jong AZ",
+        "Jong FC Utrecht",
+        "Jong PSV",
         "MVV Maastricht",
         "NAC Breda",
         "RKC Waalwijk",
+        "Roda JC Kerkrade",
         "TOP Oss",
         "Vitesse",
         "VVV-Venlo"
@@ -21279,6 +19063,30 @@
             "Heracles Almelo",
             "MVV Maastricht"
           ]
+        },
+        {
+          "name": "De Graafschap at Jong Ajax",
+          "start_time": "2026-10-19T18:00Z",
+          "participants": [
+            "De Graafschap",
+            "Jong Ajax"
+          ]
+        },
+        {
+          "name": "FC Dordrecht at Jong PSV",
+          "start_time": "2026-10-19T18:00Z",
+          "participants": [
+            "FC Dordrecht",
+            "Jong PSV"
+          ]
+        },
+        {
+          "name": "Roda JC Kerkrade at Jong FC Utrecht",
+          "start_time": "2026-10-19T18:00Z",
+          "participants": [
+            "Roda JC Kerkrade",
+            "Jong FC Utrecht"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -21301,9 +19109,21 @@
       "source_ids": [
         "caf-soccer-egypt-egyptian-premier-league-men"
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participants": [
+        "أبو قير للأسمدة",
+        "المصري"
+      ],
+      "events": [
+        {
+          "name": "أبو قير للأسمدة at المصري",
+          "start_time": "2026-10-19T20:00:00Z",
+          "participants": [
+            "أبو قير للأسمدة",
+            "المصري"
+          ]
+        }
+      ],
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
@@ -21365,38 +19185,6 @@
         "Vålerenga"
       ],
       "events": [
-        {
-          "name": "Tromso at Fredrikstad",
-          "start_time": "2026-10-11T12:30Z",
-          "participants": [
-            "Tromso",
-            "Fredrikstad"
-          ]
-        },
-        {
-          "name": "Hamarkameratene at IK Start",
-          "start_time": "2026-10-11T15:00Z",
-          "participants": [
-            "Hamarkameratene",
-            "IK Start"
-          ]
-        },
-        {
-          "name": "Sarpsborg FK at Aalesund",
-          "start_time": "2026-10-11T15:00Z",
-          "participants": [
-            "Sarpsborg FK",
-            "Aalesund"
-          ]
-        },
-        {
-          "name": "Molde at Lillestrom",
-          "start_time": "2026-10-11T17:15Z",
-          "participants": [
-            "Molde",
-            "Lillestrom"
-          ]
-        },
         {
           "name": "Vålerenga at KFUM Oslo",
           "start_time": "2026-10-12T17:00Z",
@@ -21596,38 +19384,6 @@
       ],
       "events": [
         {
-          "name": "Willem II at FC Utrecht",
-          "start_time": "2026-10-11T10:15Z",
-          "participants": [
-            "Willem II",
-            "FC Utrecht"
-          ]
-        },
-        {
-          "name": "ADO Den Haag at Telstar",
-          "start_time": "2026-10-11T12:30Z",
-          "participants": [
-            "ADO Den Haag",
-            "Telstar"
-          ]
-        },
-        {
-          "name": "SC Cambuur at PEC Zwolle",
-          "start_time": "2026-10-11T12:30Z",
-          "participants": [
-            "SC Cambuur",
-            "PEC Zwolle"
-          ]
-        },
-        {
-          "name": "FC Groningen at Excelsior",
-          "start_time": "2026-10-11T14:45Z",
-          "participants": [
-            "FC Groningen",
-            "Excelsior"
-          ]
-        },
-        {
           "name": "Excelsior at Heerenveen",
           "start_time": "2026-10-16T18:00Z",
           "participants": [
@@ -21716,9 +19472,11 @@
         "uefa-soccer-georgia-erovnuli-liga-men"
       ],
       "participants": [
+        "Dila",
         "Dinamo BT",
         "Dinamo TB",
         "Gagra",
+        "Iberia 1999",
         "Meshakhte",
         "Rustavi",
         "Samgurali",
@@ -21756,6 +19514,14 @@
           "participants": [
             "Rustavi",
             "Torpedo"
+          ]
+        },
+        {
+          "name": "Iberia 1999 at Dila",
+          "start_time": "2026-10-19T15:00:00Z",
+          "participants": [
+            "Iberia 1999",
+            "Dila"
           ]
         }
       ],
@@ -22329,11 +20095,13 @@
         "1. FSV Mainz 05",
         "Bayer 04 Leverkusen",
         "Eintracht Frankfurt",
+        "FC Bayern München",
         "Hamburger SV",
         "RB Leipzig",
         "SC Freiburg",
         "SV Werder Bremen",
         "TSG Hoffenheim",
+        "VfB Stuttgart",
         "VfL Wolfsburg"
       ],
       "events": [
@@ -22383,6 +20151,14 @@
           "participants": [
             "VfL Wolfsburg",
             "1. FSV Mainz 05"
+          ]
+        },
+        {
+          "name": "VfB Stuttgart at FC Bayern München",
+          "start_time": "2026-10-19T16:00:00Z",
+          "participants": [
+            "VfB Stuttgart",
+            "FC Bayern München"
           ]
         }
       ],
@@ -22498,7 +20274,6 @@
         "Georgia",
         "Germany",
         "Haiti",
-        "India",
         "Indonesia",
         "Jamaica",
         "Japan",
@@ -22516,7 +20291,6 @@
         "Paraguay",
         "Peru",
         "Philippines",
-        "Russia",
         "Saudi Arabia",
         "Spain",
         "United States",
@@ -22524,14 +20298,6 @@
         "Venezuela"
       ],
       "events": [
-        {
-          "name": "Russia at India",
-          "start_time": "2026-10-11T12:30Z",
-          "participants": [
-            "Russia",
-            "India"
-          ]
-        },
         {
           "name": "Georgia at Moldova",
           "start_time": "2026-10-12T14:00Z",
@@ -22887,38 +20653,6 @@
       ],
       "events": [
         {
-          "name": "V-Varen Nagasaki at JEF United Ichihara-Chiba",
-          "start_time": "2026-10-11T05:00Z",
-          "participants": [
-            "V-Varen Nagasaki",
-            "JEF United Ichihara-Chiba"
-          ]
-        },
-        {
-          "name": "Sanfrecce Hiroshima at Tokyo Verdy 1969",
-          "start_time": "2026-10-11T06:00Z",
-          "participants": [
-            "Sanfrecce Hiroshima",
-            "Tokyo Verdy 1969"
-          ]
-        },
-        {
-          "name": "Shimizu S-Pulse at Mito Hollyhock",
-          "start_time": "2026-10-11T06:00Z",
-          "participants": [
-            "Shimizu S-Pulse",
-            "Mito Hollyhock"
-          ]
-        },
-        {
-          "name": "Nagoya Grampus at Kawasaki Frontale",
-          "start_time": "2026-10-11T07:00Z",
-          "participants": [
-            "Nagoya Grampus",
-            "Kawasaki Frontale"
-          ]
-        },
-        {
           "name": "Gamba Osaka at Shimizu S-Pulse",
           "start_time": "2026-10-17T04:00Z",
           "participants": [
@@ -23237,10 +20971,12 @@
         "Deportivo",
         "Elche",
         "Espanyol",
+        "Getafe",
         "Levante",
         "Málaga",
         "Osasuna",
         "Racing Santander",
+        "Rayo Vallecano",
         "Real Betis",
         "Real Madrid",
         "Real Sociedad",
@@ -23249,38 +20985,6 @@
         "Villarreal"
       ],
       "events": [
-        {
-          "name": "Celta Vigo at Elche",
-          "start_time": "2026-10-11T12:00Z",
-          "participants": [
-            "Celta Vigo",
-            "Elche"
-          ]
-        },
-        {
-          "name": "Deportivo at Real Sociedad",
-          "start_time": "2026-10-11T14:15Z",
-          "participants": [
-            "Deportivo",
-            "Real Sociedad"
-          ]
-        },
-        {
-          "name": "Osasuna at Real Betis",
-          "start_time": "2026-10-11T16:30Z",
-          "participants": [
-            "Osasuna",
-            "Real Betis"
-          ]
-        },
-        {
-          "name": "Valencia at Racing Santander",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Valencia",
-            "Racing Santander"
-          ]
-        },
         {
           "name": "Sevilla at Levante",
           "start_time": "2026-10-12T19:00Z",
@@ -23359,6 +21063,14 @@
           "participants": [
             "Sevilla",
             "Real Madrid"
+          ]
+        },
+        {
+          "name": "Rayo Vallecano at Getafe",
+          "start_time": "2026-10-19T19:00Z",
+          "participants": [
+            "Rayo Vallecano",
+            "Getafe"
           ]
         }
       ],
@@ -23480,6 +21192,22 @@
           "participants": [
             "Dundalk",
             "Sligo Rovers"
+          ]
+        },
+        {
+          "name": "Galway United at Waterford",
+          "start_time": "2026-10-19T18:45:00Z",
+          "participants": [
+            "Galway United",
+            "Waterford"
+          ]
+        },
+        {
+          "name": "St Patrick's Athletic at Derry City",
+          "start_time": "2026-10-19T18:45:00Z",
+          "participants": [
+            "St Patrick's Athletic",
+            "Derry City"
           ]
         }
       ],
@@ -23887,14 +21615,6 @@
       ],
       "events": [
         {
-          "name": "Saprissa at Escorpiones Belén",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Saprissa",
-            "Escorpiones Belén"
-          ]
-        },
-        {
           "name": "Puntarenas FC at Cartaginés",
           "start_time": "2026-10-14T00:00Z",
           "participants": [
@@ -23956,6 +21676,22 @@
           "participants": [
             "Herediano",
             "Pérez Zeledón"
+          ]
+        },
+        {
+          "name": "AD San Carlos at Sporting San José",
+          "start_time": "2026-10-20T00:00Z",
+          "participants": [
+            "AD San Carlos",
+            "Sporting San José"
+          ]
+        },
+        {
+          "name": "Puntarenas FC at Escorpiones Belén",
+          "start_time": "2026-10-20T02:00Z",
+          "participants": [
+            "Puntarenas FC",
+            "Escorpiones Belén"
           ]
         }
       ],
@@ -24033,30 +21769,6 @@
         "Toluca"
       ],
       "events": [
-        {
-          "name": "Santos at Atlético de San Luis",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Santos",
-            "Atlético de San Luis"
-          ]
-        },
-        {
-          "name": "Necaxa at Pachuca",
-          "start_time": "2026-10-11T23:10Z",
-          "participants": [
-            "Necaxa",
-            "Pachuca"
-          ]
-        },
-        {
-          "name": "Cruz Azul at Pumas UNAM",
-          "start_time": "2026-10-12T01:15Z",
-          "participants": [
-            "Cruz Azul",
-            "Pumas UNAM"
-          ]
-        },
         {
           "name": "Atlas at Necaxa",
           "start_time": "2026-10-17T01:00Z",
@@ -24155,38 +21867,6 @@
       ],
       "events": [
         {
-          "name": "Deportivo Mixco at Suchitepequez",
-          "start_time": "2026-10-11T16:30Z",
-          "participants": [
-            "Deportivo Mixco",
-            "Suchitepequez"
-          ]
-        },
-        {
-          "name": "Comunicaciones at Deportivo San Pedro",
-          "start_time": "2026-10-11T21:00Z",
-          "participants": [
-            "Comunicaciones",
-            "Deportivo San Pedro"
-          ]
-        },
-        {
-          "name": "Marquense at Municipal",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Marquense",
-            "Municipal"
-          ]
-        },
-        {
-          "name": "Cobán Imperial at Antigua GFC",
-          "start_time": "2026-10-12T01:10Z",
-          "participants": [
-            "Cobán Imperial",
-            "Antigua GFC"
-          ]
-        },
-        {
           "name": "Aurora FC at Comunicaciones",
           "start_time": "2026-10-14T23:00Z",
           "participants": [
@@ -24265,6 +21945,14 @@
             "Suchitepequez",
             "Marquense"
           ]
+        },
+        {
+          "name": "Xelajú MC at Antigua GFC",
+          "start_time": "2026-10-20T01:00Z",
+          "participants": [
+            "Xelajú MC",
+            "Antigua GFC"
+          ]
         }
       ],
       "aliases": [
@@ -24298,22 +21986,6 @@
         "UPNFM"
       ],
       "events": [
-        {
-          "name": "Real España at CD Estrella Roja",
-          "start_time": "2026-10-11T21:00Z",
-          "participants": [
-            "Real España",
-            "CD Estrella Roja"
-          ]
-        },
-        {
-          "name": "CA Independiente Siguatepeque at Olancho FC",
-          "start_time": "2026-10-11T23:15Z",
-          "participants": [
-            "CA Independiente Siguatepeque",
-            "Olancho FC"
-          ]
-        },
         {
           "name": "Olancho FC at Club Deportivo Marathón",
           "start_time": "2026-10-15T23:15Z",
@@ -24414,35 +22086,12 @@
         "Liga de Quito",
         "Macará",
         "Manta F.C.",
+        "Mushuc Runa",
         "Orense",
         "Técnico Universitario",
         "Universidad Católica (Quito)"
       ],
       "events": [
-        {
-          "name": "Macará at Universidad Católica (Quito)",
-          "start_time": "2026-10-11T16:30Z",
-          "participants": [
-            "Macará",
-            "Universidad Católica (Quito)"
-          ]
-        },
-        {
-          "name": "Deportivo Cuenca at Orense",
-          "start_time": "2026-10-11T18:45Z",
-          "participants": [
-            "Deportivo Cuenca",
-            "Orense"
-          ]
-        },
-        {
-          "name": "Barcelona SC at Liga de Quito",
-          "start_time": "2026-10-11T21:30Z",
-          "participants": [
-            "Barcelona SC",
-            "Liga de Quito"
-          ]
-        },
         {
           "name": "Técnico Universitario at Deportivo Cuenca",
           "start_time": "2026-10-16T20:30Z",
@@ -24498,6 +22147,14 @@
             "Universidad Católica (Quito)",
             "Barcelona SC"
           ]
+        },
+        {
+          "name": "Orense at Mushuc Runa",
+          "start_time": "2026-10-19T20:30Z",
+          "participants": [
+            "Orense",
+            "Mushuc Runa"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -24530,30 +22187,6 @@
         "Troyes"
       ],
       "events": [
-        {
-          "name": "Strasbourg at Nice",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Strasbourg",
-            "Nice"
-          ]
-        },
-        {
-          "name": "AJ Auxerre at Stade Rennais",
-          "start_time": "2026-10-11T15:15Z",
-          "participants": [
-            "AJ Auxerre",
-            "Stade Rennais"
-          ]
-        },
-        {
-          "name": "Marseille at Troyes",
-          "start_time": "2026-10-11T18:45Z",
-          "participants": [
-            "Marseille",
-            "Troyes"
-          ]
-        },
         {
           "name": "Toulouse at Le Mans",
           "start_time": "2026-10-16T18:45Z",
@@ -24663,9 +22296,11 @@
         "Grenoble",
         "Guingamp",
         "Metz",
+        "Montpellier",
         "Nantes",
         "Pau",
         "Red Star FC 93",
+        "Rodez Aveyron",
         "Saint-Étienne",
         "Sochaux",
         "Stade de Reims",
@@ -24742,6 +22377,14 @@
           "participants": [
             "Saint-Étienne",
             "Red Star FC 93"
+          ]
+        },
+        {
+          "name": "Montpellier at Rodez Aveyron",
+          "start_time": "2026-10-19T18:45Z",
+          "participants": [
+            "Montpellier",
+            "Rodez Aveyron"
           ]
         }
       ],
@@ -24853,14 +22496,6 @@
         "Vancouver Whitecaps"
       ],
       "events": [
-        {
-          "name": "LA Galaxy at St. Louis CITY SC",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "LA Galaxy",
-            "St. Louis CITY SC"
-          ]
-        },
         {
           "name": "Atlanta United FC at CF Montréal",
           "start_time": "2026-10-14T23:30Z",
@@ -25139,71 +22774,9 @@
       "source_ids": [
         "soccer-afc-malaysia-malaysia-super-league-men"
       ],
-      "participants": [
-        "DPMM FC",
-        "JOHOR DARUL TA'ZIM",
-        "KELANTAN RED WARRIOR FC",
-        "KUALA LUMPUR CITY FC",
-        "KUCHING CITY FC",
-        "MELAKA FC",
-        "NEGERI SEMBILAN FC",
-        "PENANG FC",
-        "SABAH FC",
-        "SELANGOR FC",
-        "STAR CITY FC",
-        "TERENGGANU FC"
-      ],
-      "events": [
-        {
-          "name": "STAR CITY FC at KELANTAN RED WARRIOR FC",
-          "start_time": "2026-10-16T13:00:00Z",
-          "participants": [
-            "STAR CITY FC",
-            "KELANTAN RED WARRIOR FC"
-          ]
-        },
-        {
-          "name": "SABAH FC at NEGERI SEMBILAN FC",
-          "start_time": "2026-10-17T09:00:00Z",
-          "participants": [
-            "SABAH FC",
-            "NEGERI SEMBILAN FC"
-          ]
-        },
-        {
-          "name": "PENANG FC at SELANGOR FC",
-          "start_time": "2026-10-17T12:15:00Z",
-          "participants": [
-            "PENANG FC",
-            "SELANGOR FC"
-          ]
-        },
-        {
-          "name": "KUALA LUMPUR CITY FC at MELAKA FC",
-          "start_time": "2026-10-17T13:00:00Z",
-          "participants": [
-            "KUALA LUMPUR CITY FC",
-            "MELAKA FC"
-          ]
-        },
-        {
-          "name": "KUCHING CITY FC at DPMM FC",
-          "start_time": "2026-10-18T12:15:00Z",
-          "participants": [
-            "KUCHING CITY FC",
-            "DPMM FC"
-          ]
-        },
-        {
-          "name": "JOHOR DARUL TA'ZIM at TERENGGANU FC",
-          "start_time": "2026-10-18T13:00:00Z",
-          "participants": [
-            "JOHOR DARUL TA'ZIM",
-            "TERENGGANU FC"
-          ]
-        }
-      ],
-      "participant_coverage": "OBSERVED"
+      "participants": [],
+      "events": [],
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Soccer",
@@ -25245,9 +22818,61 @@
       "source_ids": [
         "uefa-soccer-estonia-meistriliiga-premium-liiga-men"
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participants": [
+        "FC Kuressaare",
+        "FC Nõmme United",
+        "Harju JK Laagri",
+        "JK Narva Trans",
+        "Nõmme Kalju FC",
+        "Paide Linnameeskond",
+        "Pärnu JK Vaprus",
+        "Tallinna FC Flora",
+        "Tallinna FCI Levadia",
+        "Tartu JK Tammeka"
+      ],
+      "events": [
+        {
+          "name": "FC Nõmme United at Harju JK Laagri",
+          "start_time": "2026-10-13T15:00:00Z",
+          "participants": [
+            "FC Nõmme United",
+            "Harju JK Laagri"
+          ]
+        },
+        {
+          "name": "Nõmme Kalju FC at Pärnu JK Vaprus",
+          "start_time": "2026-10-13T15:00:00Z",
+          "participants": [
+            "Nõmme Kalju FC",
+            "Pärnu JK Vaprus"
+          ]
+        },
+        {
+          "name": "FC Kuressaare at JK Narva Trans",
+          "start_time": "2026-10-14T15:00:00Z",
+          "participants": [
+            "FC Kuressaare",
+            "JK Narva Trans"
+          ]
+        },
+        {
+          "name": "Tartu JK Tammeka at Paide Linnameeskond",
+          "start_time": "2026-10-14T16:00:00Z",
+          "participants": [
+            "Tartu JK Tammeka",
+            "Paide Linnameeskond"
+          ]
+        },
+        {
+          "name": "Tallinna FCI Levadia at Tallinna FC Flora",
+          "start_time": "2026-10-15T16:00:00Z",
+          "participants": [
+            "Tallinna FCI Levadia",
+            "Tallinna FC Flora"
+          ]
+        }
+      ],
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
@@ -25713,22 +23338,6 @@
       ],
       "events": [
         {
-          "name": "Club Olimpia at Rubio Ñú",
-          "start_time": "2026-10-11T20:00Z",
-          "participants": [
-            "Club Olimpia",
-            "Rubio Ñú"
-          ]
-        },
-        {
-          "name": "Guaraní at Libertad",
-          "start_time": "2026-10-11T22:20Z",
-          "participants": [
-            "Guaraní",
-            "Libertad"
-          ]
-        },
-        {
           "name": "Sportivo Ameliano at 2 de Mayo",
           "start_time": "2026-10-12T20:00Z",
           "participants": [
@@ -25834,30 +23443,6 @@
         "UTC"
       ],
       "events": [
-        {
-          "name": "Sporting Cristal at UTC",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Sporting Cristal",
-            "UTC"
-          ]
-        },
-        {
-          "name": "Alianza Atlético at Sport Boys",
-          "start_time": "2026-10-11T20:30Z",
-          "participants": [
-            "Alianza Atlético",
-            "Sport Boys"
-          ]
-        },
-        {
-          "name": "Alianza Lima at Cusco FC",
-          "start_time": "2026-10-11T23:30Z",
-          "participants": [
-            "Alianza Lima",
-            "Cusco FC"
-          ]
-        },
         {
           "name": "Cusco FC at Sport Huancayo",
           "start_time": "2026-10-16T18:00Z",
@@ -26065,33 +23650,10 @@
         "Manchester United",
         "Newcastle United",
         "Nottingham Forest",
-        "Sunderland"
+        "Sunderland",
+        "Tottenham Hotspur"
       ],
       "events": [
-        {
-          "name": "Everton at Hull City",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Everton",
-            "Hull City"
-          ]
-        },
-        {
-          "name": "Nottingham Forest at Crystal Palace",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Nottingham Forest",
-            "Crystal Palace"
-          ]
-        },
-        {
-          "name": "Manchester City at Liverpool",
-          "start_time": "2026-10-11T15:30Z",
-          "participants": [
-            "Manchester City",
-            "Liverpool"
-          ]
-        },
         {
           "name": "Newcastle United at Coventry City",
           "start_time": "2026-10-12T19:00Z",
@@ -26170,6 +23732,14 @@
           "participants": [
             "Arsenal",
             "Nottingham Forest"
+          ]
+        },
+        {
+          "name": "Coventry City at Tottenham Hotspur",
+          "start_time": "2026-10-19T19:00Z",
+          "participants": [
+            "Coventry City",
+            "Tottenham Hotspur"
           ]
         }
       ],
@@ -26296,45 +23866,25 @@
       ],
       "participants": [
         "Alverca",
-        "Arouca",
-        "Benfica",
-        "C.D. Nacional",
-        "Estrela",
+        "Braga",
         "FC Famalicao",
-        "Rio Ave",
-        "Vitória de Guimaraes"
+        "Gil Vicente"
       ],
       "events": [
-        {
-          "name": "C.D. Nacional at Rio Ave",
-          "start_time": "2026-10-11T14:30Z",
-          "participants": [
-            "C.D. Nacional",
-            "Rio Ave"
-          ]
-        },
-        {
-          "name": "Vitória de Guimaraes at Benfica",
-          "start_time": "2026-10-11T17:00Z",
-          "participants": [
-            "Vitória de Guimaraes",
-            "Benfica"
-          ]
-        },
-        {
-          "name": "Estrela at Arouca",
-          "start_time": "2026-10-11T19:30Z",
-          "participants": [
-            "Estrela",
-            "Arouca"
-          ]
-        },
         {
           "name": "Alverca at FC Famalicao",
           "start_time": "2026-10-12T19:15Z",
           "participants": [
             "Alverca",
             "FC Famalicao"
+          ]
+        },
+        {
+          "name": "Gil Vicente at Braga",
+          "start_time": "2026-10-19T19:15Z",
+          "participants": [
+            "Gil Vicente",
+            "Braga"
           ]
         }
       ],
@@ -26354,14 +23904,15 @@
         "conmebol-soccer-colombia-primera-a-men"
       ],
       "participants": [
+        "Alianza FC",
         "América de Cali",
         "Atlético Bucaramanga",
         "Atlético Junior",
         "Atlético Nacional",
         "Boyacá Chicó FC",
-        "Cúcuta Deportivo",
         "Deportes Tolima",
         "Deportivo Cali",
+        "Deportivo Pasto",
         "Deportivo Pereira",
         "Independiente Medellín",
         "Independiente Santa Fe",
@@ -26372,30 +23923,6 @@
         "Águilas Doradas"
       ],
       "events": [
-        {
-          "name": "Deportes Tolima at Jaguares de Córdoba",
-          "start_time": "2026-10-11T21:05Z",
-          "participants": [
-            "Deportes Tolima",
-            "Jaguares de Córdoba"
-          ]
-        },
-        {
-          "name": "Cúcuta Deportivo at Boyacá Chicó FC",
-          "start_time": "2026-10-11T23:10Z",
-          "participants": [
-            "Cúcuta Deportivo",
-            "Boyacá Chicó FC"
-          ]
-        },
-        {
-          "name": "Independiente Medellín at América de Cali",
-          "start_time": "2026-10-12T01:15Z",
-          "participants": [
-            "Independiente Medellín",
-            "América de Cali"
-          ]
-        },
         {
           "name": "Águilas Doradas at Atlético Bucaramanga",
           "start_time": "2026-10-13T23:30Z",
@@ -26483,6 +24010,14 @@
             "Atlético Junior",
             "Deportivo Cali"
           ]
+        },
+        {
+          "name": "Alianza FC at Deportivo Pasto",
+          "start_time": "2026-10-20T01:05Z",
+          "participants": [
+            "Alianza FC",
+            "Deportivo Pasto"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -26495,50 +24030,10 @@
         "conmebol-soccer-chile-primera-division-men"
       ],
       "participants": [
-        "Colo Colo",
-        "Coquimbo Unido",
-        "Deportes Concepcion",
-        "Deportes Limache",
-        "Everton CD",
-        "La Serena",
-        "Palestino",
         "Universidad de Chile",
-        "Unión La Calera",
         "Ñublense"
       ],
       "events": [
-        {
-          "name": "La Serena at Everton CD",
-          "start_time": "2026-10-11T15:30Z",
-          "participants": [
-            "La Serena",
-            "Everton CD"
-          ]
-        },
-        {
-          "name": "Colo Colo at Coquimbo Unido",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Colo Colo",
-            "Coquimbo Unido"
-          ]
-        },
-        {
-          "name": "Unión La Calera at Deportes Concepcion",
-          "start_time": "2026-10-11T20:30Z",
-          "participants": [
-            "Unión La Calera",
-            "Deportes Concepcion"
-          ]
-        },
-        {
-          "name": "Palestino at Deportes Limache",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Palestino",
-            "Deportes Limache"
-          ]
-        },
         {
           "name": "Ñublense at Universidad de Chile",
           "start_time": "2026-10-12T20:00Z",
@@ -26572,30 +24067,6 @@
         "Águila"
       ],
       "events": [
-        {
-          "name": "CD FAS at Atletico Balboa",
-          "start_time": "2026-10-11T21:00Z",
-          "participants": [
-            "CD FAS",
-            "Atletico Balboa"
-          ]
-        },
-        {
-          "name": "Isidro Metapán at Águila",
-          "start_time": "2026-10-11T21:00Z",
-          "participants": [
-            "Isidro Metapán",
-            "Águila"
-          ]
-        },
-        {
-          "name": "Internacional Santa Tecla at Alianza FC",
-          "start_time": "2026-10-11T23:30Z",
-          "participants": [
-            "Internacional Santa Tecla",
-            "Alianza FC"
-          ]
-        },
         {
           "name": "CD Municipal Limeño at Internacional Santa Tecla",
           "start_time": "2026-10-17T01:00Z",
@@ -26811,22 +24282,6 @@
       ],
       "events": [
         {
-          "name": "Al Riyadh at Al Fayha",
-          "start_time": "2026-10-11T13:40Z",
-          "participants": [
-            "Al Riyadh",
-            "Al Fayha"
-          ]
-        },
-        {
-          "name": "Al Taawoun at Al Shabab",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Al Taawoun",
-            "Al Shabab"
-          ]
-        },
-        {
           "name": "Al Kholood at Al Faisaly",
           "start_time": "2026-10-15T13:40Z",
           "participants": [
@@ -26904,6 +24359,38 @@
           "participants": [
             "Al Khaleej",
             "Al Fateh"
+          ]
+        },
+        {
+          "name": "Al Ahli at Al Fayha",
+          "start_time": "2026-10-19T15:05Z",
+          "participants": [
+            "Al Ahli",
+            "Al Fayha"
+          ]
+        },
+        {
+          "name": "Al Kholood at Abha",
+          "start_time": "2026-10-19T15:20Z",
+          "participants": [
+            "Al Kholood",
+            "Abha"
+          ]
+        },
+        {
+          "name": "Al Faisaly at Al Shabab",
+          "start_time": "2026-10-19T18:00Z",
+          "participants": [
+            "Al Faisaly",
+            "Al Shabab"
+          ]
+        },
+        {
+          "name": "Al Hazem at Al Hilal",
+          "start_time": "2026-10-19T18:00Z",
+          "participants": [
+            "Al Hazem",
+            "Al Hilal"
           ]
         }
       ],
@@ -27036,22 +24523,6 @@
       ],
       "events": [
         {
-          "name": "Celtic at Motherwell",
-          "start_time": "2026-10-11T11:00Z",
-          "participants": [
-            "Celtic",
-            "Motherwell"
-          ]
-        },
-        {
-          "name": "St Johnstone at Aberdeen",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "St Johnstone",
-            "Aberdeen"
-          ]
-        },
-        {
           "name": "Dundee United at St Johnstone",
           "start_time": "2026-10-17T14:00Z",
           "participants": [
@@ -27137,6 +24608,7 @@
         "Las Palmas",
         "Leganés",
         "Mallorca",
+        "RC Celta Fortuna",
         "Real Oviedo",
         "Real Sociedad II",
         "Real Valladolid",
@@ -27144,38 +24616,6 @@
         "Tenerife"
       ],
       "events": [
-        {
-          "name": "Castellón at FC Andorra",
-          "start_time": "2026-10-11T12:00Z",
-          "participants": [
-            "Castellón",
-            "FC Andorra"
-          ]
-        },
-        {
-          "name": "Leganés at Almería",
-          "start_time": "2026-10-11T14:15Z",
-          "participants": [
-            "Leganés",
-            "Almería"
-          ]
-        },
-        {
-          "name": "Las Palmas at Mallorca",
-          "start_time": "2026-10-11T16:30Z",
-          "participants": [
-            "Las Palmas",
-            "Mallorca"
-          ]
-        },
-        {
-          "name": "Sporting Gijón at Cádiz",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Sporting Gijón",
-            "Cádiz"
-          ]
-        },
         {
           "name": "Albacete at Real Valladolid",
           "start_time": "2026-10-12T12:00Z",
@@ -27287,6 +24727,14 @@
             "CD Sabadell",
             "Burgos"
           ]
+        },
+        {
+          "name": "Tenerife at RC Celta Fortuna",
+          "start_time": "2026-10-19T18:30Z",
+          "participants": [
+            "Tenerife",
+            "RC Celta Fortuna"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -27353,52 +24801,13 @@
         "Lecce",
         "Monza",
         "Napoli",
+        "Parma",
         "Sassuolo",
         "Torino",
         "Udinese",
         "Venezia"
       ],
       "events": [
-        {
-          "name": "AS Roma at Como",
-          "start_time": "2026-10-11T10:30Z",
-          "participants": [
-            "AS Roma",
-            "Como"
-          ]
-        },
-        {
-          "name": "Bologna at Lecce",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Bologna",
-            "Lecce"
-          ]
-        },
-        {
-          "name": "Monza at Lazio",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Monza",
-            "Lazio"
-          ]
-        },
-        {
-          "name": "AC Milan at Sassuolo",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "AC Milan",
-            "Sassuolo"
-          ]
-        },
-        {
-          "name": "Juventus at Cagliari",
-          "start_time": "2026-10-11T18:45Z",
-          "participants": [
-            "Juventus",
-            "Cagliari"
-          ]
-        },
         {
           "name": "Venezia at Atalanta",
           "start_time": "2026-10-12T16:30Z",
@@ -27478,6 +24887,22 @@
             "Lazio",
             "Juventus"
           ]
+        },
+        {
+          "name": "Cagliari at Monza",
+          "start_time": "2026-10-19T16:30Z",
+          "participants": [
+            "Cagliari",
+            "Monza"
+          ]
+        },
+        {
+          "name": "Torino at Parma",
+          "start_time": "2026-10-19T18:45Z",
+          "participants": [
+            "Torino",
+            "Parma"
+          ]
         }
       ],
       "participant_coverage": "OBSERVED"
@@ -27489,70 +24914,8 @@
       "source_ids": [
         "soccer-italy-serie-a-women"
       ],
-      "participants": [
-        "Como 1907",
-        "Como Women",
-        "Fiorentina",
-        "Inter",
-        "Juventus",
-        "Lazio",
-        "Milan",
-        "Napoli Women",
-        "Parma",
-        "Roma",
-        "Sassuolo",
-        "Ternana Women"
-      ],
-      "events": [
-        {
-          "name": "Napoli Women at Sassuolo",
-          "start_time": "2026-10-17T10:30:00Z",
-          "participants": [
-            "Napoli Women",
-            "Sassuolo"
-          ]
-        },
-        {
-          "name": "Fiorentina at Como Women",
-          "start_time": "2026-10-17T13:00:00Z",
-          "participants": [
-            "Fiorentina",
-            "Como Women"
-          ]
-        },
-        {
-          "name": "Lazio at Ternana Women",
-          "start_time": "2026-10-17T16:00:00Z",
-          "participants": [
-            "Lazio",
-            "Ternana Women"
-          ]
-        },
-        {
-          "name": "Como 1907 at Juventus",
-          "start_time": "2026-10-18T10:30:00Z",
-          "participants": [
-            "Como 1907",
-            "Juventus"
-          ]
-        },
-        {
-          "name": "Milan at Roma",
-          "start_time": "2026-10-18T13:00:00Z",
-          "participants": [
-            "Milan",
-            "Roma"
-          ]
-        },
-        {
-          "name": "Parma at Inter",
-          "start_time": "2026-10-18T16:00:00Z",
-          "participants": [
-            "Parma",
-            "Inter"
-          ]
-        }
-      ],
+      "participants": [],
+      "events": [],
       "aliases": [
         {
           "name": "Serie A Women",
@@ -27560,7 +24923,7 @@
           "evidence_url": "https://www.figc.it/it/serie-a-women/tutte-le-competizioni"
         }
       ],
-      "participant_coverage": "OBSERVED"
+      "participant_coverage": "NOT AVAILABLE"
     },
     {
       "sport": "Soccer",
@@ -27592,30 +24955,6 @@
         "Virtus Entella"
       ],
       "events": [
-        {
-          "name": "Mantova at Catanzaro",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Mantova",
-            "Catanzaro"
-          ]
-        },
-        {
-          "name": "Carrarese at Padova",
-          "start_time": "2026-10-11T15:15Z",
-          "participants": [
-            "Carrarese",
-            "Padova"
-          ]
-        },
-        {
-          "name": "Hellas Verona at Modena",
-          "start_time": "2026-10-11T17:30Z",
-          "participants": [
-            "Hellas Verona",
-            "Modena"
-          ]
-        },
         {
           "name": "Catanzaro at Hellas Verona",
           "start_time": "2026-10-16T18:30Z",
@@ -27874,9 +25213,61 @@
       "source_ids": [
         "uefa-soccer-slovenia-slovenian-prvaliga-men"
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participants": [
+        "Aluminij",
+        "Bravo Ljubljana",
+        "Brinje Grosuplje",
+        "Celje",
+        "Kalcer Radomlje",
+        "Koper",
+        "Maribor",
+        "Mura",
+        "Nafta 1903",
+        "Olimpija Ljubljana"
+      ],
+      "events": [
+        {
+          "name": "Olimpija Ljubljana at Aluminij",
+          "start_time": "2026-10-16T15:30:00Z",
+          "participants": [
+            "Olimpija Ljubljana",
+            "Aluminij"
+          ]
+        },
+        {
+          "name": "Kalcer Radomlje at Bravo Ljubljana",
+          "start_time": "2026-10-17T13:00:00Z",
+          "participants": [
+            "Kalcer Radomlje",
+            "Bravo Ljubljana"
+          ]
+        },
+        {
+          "name": "Nafta 1903 at Mura",
+          "start_time": "2026-10-17T15:30:00Z",
+          "participants": [
+            "Nafta 1903",
+            "Mura"
+          ]
+        },
+        {
+          "name": "Brinje Grosuplje at Koper",
+          "start_time": "2026-10-18T13:00:00Z",
+          "participants": [
+            "Brinje Grosuplje",
+            "Koper"
+          ]
+        },
+        {
+          "name": "Celje at Maribor",
+          "start_time": "2026-10-18T16:00:00Z",
+          "participants": [
+            "Celje",
+            "Maribor"
+          ]
+        }
+      ],
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
@@ -28050,38 +25441,6 @@
         "Volos NFC"
       ],
       "events": [
-        {
-          "name": "Levadiakos at Iraklis",
-          "start_time": "2026-10-11T14:00Z",
-          "participants": [
-            "Levadiakos",
-            "Iraklis"
-          ]
-        },
-        {
-          "name": "Panetolikos at Kifisia",
-          "start_time": "2026-10-11T14:00Z",
-          "participants": [
-            "Panetolikos",
-            "Kifisia"
-          ]
-        },
-        {
-          "name": "Volos NFC at Aris",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "Volos NFC",
-            "Aris"
-          ]
-        },
-        {
-          "name": "Panathinaikos at Olympiacos",
-          "start_time": "2026-10-11T18:00Z",
-          "participants": [
-            "Panathinaikos",
-            "Olympiacos"
-          ]
-        },
         {
           "name": "Kalamata at PAOK",
           "start_time": "2026-10-12T15:00Z",
@@ -28541,33 +25900,10 @@
         "Kocaelispor",
         "Konyaspor",
         "Samsunspor",
+        "Trabzonspor",
         "Çorum FK"
       ],
       "events": [
-        {
-          "name": "Istanbul Basaksehir at Konyaspor",
-          "start_time": "2026-10-11T10:30Z",
-          "participants": [
-            "Istanbul Basaksehir",
-            "Konyaspor"
-          ]
-        },
-        {
-          "name": "Çorum FK at Gaziantep FK",
-          "start_time": "2026-10-11T13:00Z",
-          "participants": [
-            "Çorum FK",
-            "Gaziantep FK"
-          ]
-        },
-        {
-          "name": "Kocaelispor at Besiktas",
-          "start_time": "2026-10-11T16:00Z",
-          "participants": [
-            "Kocaelispor",
-            "Besiktas"
-          ]
-        },
         {
           "name": "Goztepe at Eyupspor",
           "start_time": "2026-10-12T17:00Z",
@@ -28638,6 +25974,14 @@
           "participants": [
             "Gaziantep FK",
             "Istanbul Basaksehir"
+          ]
+        },
+        {
+          "name": "Besiktas at Trabzonspor",
+          "start_time": "2026-10-19T17:00Z",
+          "participants": [
+            "Besiktas",
+            "Trabzonspor"
           ]
         }
       ],
@@ -29130,14 +26474,6 @@
         "Wrexham"
       ],
       "events": [
-        {
-          "name": "Portsmouth at Southampton",
-          "start_time": "2026-10-11T11:00Z",
-          "participants": [
-            "Portsmouth",
-            "Southampton"
-          ]
-        },
         {
           "name": "Blackburn Rovers at Bristol City",
           "start_time": "2026-10-13T18:45Z",
@@ -30320,14 +27656,6 @@
       ],
       "events": [
         {
-          "name": "Spokane Velocity FC at One Knoxville",
-          "start_time": "2026-10-11T19:00Z",
-          "participants": [
-            "Spokane Velocity FC",
-            "One Knoxville"
-          ]
-        },
-        {
           "name": "Spokane Velocity FC at Greenville Triumph",
           "start_time": "2026-10-14T23:00Z",
           "participants": [
@@ -30418,14 +27746,6 @@
         "Tampa Bay Sun FC"
       ],
       "events": [
-        {
-          "name": "Lexington SC at Fort Lauderdale United FC",
-          "start_time": "2026-10-11T23:00Z",
-          "participants": [
-            "Lexington SC",
-            "Fort Lauderdale United FC"
-          ]
-        },
         {
           "name": "DC Power FC at Carolina Ascent FC",
           "start_time": "2026-10-16T23:30Z",
@@ -30783,13 +28103,23 @@
       "participants": [],
       "events": [
         {
-          "name": "China Open",
-          "start_time": "2026-09-27T04:00Z",
+          "name": "Rolex Shanghai Masters",
+          "start_time": "2026-10-05T04:00Z",
           "participants": []
         },
         {
-          "name": "Rolex Shanghai Masters",
-          "start_time": "2026-10-05T04:00Z",
+          "name": "Almaty Open",
+          "start_time": "2026-10-19T04:00Z",
+          "participants": []
+        },
+        {
+          "name": "BNP Paribas Fortis European Open",
+          "start_time": "2026-10-19T04:00Z",
+          "participants": []
+        },
+        {
+          "name": "Grand Prix Auvergne-Rhône-Alpes",
+          "start_time": "2026-10-19T04:00Z",
           "participants": []
         }
       ],
@@ -30826,36 +28156,6 @@
       ],
       "participants": [],
       "events": [
-        {
-          "name": "M15 Burgas",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "M15 Pontevedra",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "M15+H Rodez",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "M25 Darwin",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "M25 Kigali",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "M25 Luan",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
         {
           "name": "M15 Bol",
           "start_time": "2026-10-12T17:00:00Z",
@@ -30938,61 +28238,6 @@
       ],
       "participants": [],
       "events": [
-        {
-          "name": "W15 Cipolletti",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W15 Maanshan",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W15 Székesfehérvár",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W35 Lagos",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W35 Las Vegas, NV",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W35 Seville",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W35 Villeneuve D'Ascq",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W35 Wagga Wagga",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W50 Burgas",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W50 Heraklion",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "W50 Lexington, SC",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
         {
           "name": "W100 Edmond, OK",
           "start_time": "2026-10-12T17:00:00Z",
@@ -31154,17 +28399,7 @@
       "events": [
         {
           "name": "UTR Pro Fall Slam San Diego Men Free–$55 Divisio",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "UTR PTT Boca Raton Men",
-          "start_time": "2026-10-11T17:00:00Z",
-          "participants": []
-        },
-        {
-          "name": "UTR PTT Cordoba +H Men",
-          "start_time": "2026-10-11T17:00:00Z",
+          "start_time": "2026-10-12T17:00:00Z",
           "participants": []
         },
         {
@@ -31249,21 +28484,6 @@
       "participants": [],
       "events": [
         {
-          "name": "China Open",
-          "start_time": "2026-09-27T04:00Z",
-          "participants": []
-        },
-        {
-          "name": "Suzhou Open",
-          "start_time": "2026-10-03T04:00Z",
-          "participants": []
-        },
-        {
-          "name": "Samsun Open",
-          "start_time": "2026-10-04T04:00Z",
-          "participants": []
-        },
-        {
           "name": "Dongfeng Voyah Wuhan Open",
           "start_time": "2026-10-09T04:00Z",
           "participants": []
@@ -31281,6 +28501,21 @@
         {
           "name": "Vanda Pharmaceuticals Mallorca Women's Championships presented by Ecotrans Group",
           "start_time": "2026-10-11T04:00Z",
+          "participants": []
+        },
+        {
+          "name": "Kinoshita Group Japan Open",
+          "start_time": "2026-10-19T04:00Z",
+          "participants": []
+        },
+        {
+          "name": "Ningbo Open",
+          "start_time": "2026-10-19T04:00Z",
+          "participants": []
+        },
+        {
+          "name": "Río Ladies Open by MundoTênis Tours",
+          "start_time": "2026-10-19T04:00Z",
           "participants": []
         }
       ],
