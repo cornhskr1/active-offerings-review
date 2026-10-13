@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-13T07:44:28.071759+00:00",
-  "schedule_generated_at": "2026-10-13T07:38:42.971961+00:00",
+  "registry_generated_at": "2026-10-13T15:58:50.060562+00:00",
+  "schedule_generated_at": "2026-10-13T15:53:18.557909+00:00",
   "schedule_window_start": "2026-10-13",
   "schedule_window_end": "2026-10-20",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -347,10 +347,10 @@
           "type": "thesportsdb",
           "configured_league": "KBO League",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Baseball",
@@ -2727,7 +2727,7 @@
           "id": "cricket-bbl",
           "type": "espn-daily",
           "configured_league": "Big Bash League (BBL) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2769,7 +2769,7 @@
           "id": "cricket-t20-world-cup",
           "type": "espn-daily",
           "configured_league": "ICC T20 World Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2853,7 +2853,7 @@
           "id": "cricket-county-d2",
           "type": "espn-daily",
           "configured_league": "Rothesay County Championship Division 2 | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -2874,7 +2874,7 @@
           "id": "cricket-ashes",
           "type": "espn-daily",
           "configured_league": "The Ashes | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2895,7 +2895,7 @@
           "id": "cricket-wbbl",
           "type": "espn-daily",
           "configured_league": "Women's Big Bash League (WBBL) | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 10
     },
     {
       "sport": "Esports",
@@ -7557,10 +7557,10 @@
           "type": "official-oefb-round-fixtures",
           "configured_league": "Austrian Frauen-Bundesliga | Women",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -11579,11 +11579,11 @@
           "id": "uefa-soccer-estonia-meistriliiga-premium-liiga-men",
           "type": "official-ejl-premium-next-round",
           "configured_league": "Meistriliiga / Premium Liiga | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
