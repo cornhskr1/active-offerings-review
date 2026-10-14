@@ -1,29 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-14T04:50:44.725276+00:00",
+  "generated_at": "2026-10-14T11:49:11.199827+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-10-13",
-  "window_end": "2026-10-20",
+  "window_start": "2026-10-14",
+  "window_end": "2026-10-21",
   "events": [
-    {
-      "school": "Nebraska",
-      "sport": "Baseball",
-      "date": "2026-10-13",
-      "time": "5:00 PM CDT",
-      "site": "HOME",
-      "opponent": "Red-White Series: Game 2",
-      "location": "Lincoln, Neb. / Hawks Field at Haymarket Park",
-      "promotional_label": null,
-      "phase": "REGULAR SEASON",
-      "status": "SCHEDULED",
-      "result": "",
-      "source_url": "https://huskers.com/sports/baseball/schedule",
-      "played_in_nebraska": true,
-      "matchup_label": "VS",
-      "site_test": "NOT PERMISSIBLE",
-      "site_color": "red",
-      "regulatory_site_label": "PLAYED IN NEBRASKA"
-    },
     {
       "school": "Nebraska",
       "sport": "Baseball",
@@ -611,6 +592,42 @@
       "site_test": "NOT PERMISSIBLE",
       "site_color": "red",
       "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Creighton",
+      "sport": "Women's Soccer",
+      "date": "2026-10-21",
+      "time": "6:00 P.M.",
+      "site": "HOME",
+      "opponent": "Connecticut",
+      "location": "Omaha, Neb. (Morrison Stadium)",
+      "phase": "REGULAR SEASON",
+      "status": "SCHEDULED",
+      "result": "-",
+      "source_url": "https://gocreighton.com/sports/womens-soccer/schedule/text",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
+    },
+    {
+      "school": "Omaha",
+      "sport": "Women's Basketball",
+      "date": "2026-10-21",
+      "time": "6:30 p.m. CT",
+      "site": "HOME",
+      "opponent": "Concordia (Neb.)",
+      "location": "Omaha, Neb. / Sapp Fieldhouse",
+      "phase": "EXHIBITION",
+      "status": "SCHEDULED",
+      "result": "",
+      "source_url": "https://omahamavs.com/sports/womens-basketball/schedule",
+      "played_in_nebraska": true,
+      "matchup_label": "VS",
+      "site_test": "NOT PERMISSIBLE",
+      "site_color": "red",
+      "regulatory_site_label": "PLAYED IN NEBRASKA"
     }
   ],
   "sources": [
@@ -702,7 +719,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "school": "Creighton",
@@ -720,7 +737,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "school": "Nebraska",
@@ -936,7 +953,7 @@
       "ok": true,
       "schedule_available": true,
       "availability": "published",
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "school": "Omaha",
@@ -971,24 +988,24 @@
       "configured": 11,
       "loaded": 11,
       "pending_publication": 0,
-      "events_in_window": 9
+      "events_in_window": 10
     },
     "Nebraska": {
       "configured": 15,
       "loaded": 15,
       "pending_publication": 0,
-      "events_in_window": 13
+      "events_in_window": 12
     },
     "Omaha": {
       "configured": 13,
       "loaded": 13,
       "pending_publication": 0,
-      "events_in_window": 11
+      "events_in_window": 12
     }
   },
   "validation": {
-    "events_checked": 33,
-    "in_state_not_permissible": 14,
+    "events_checked": 34,
+    "in_state_not_permissible": 15,
     "outside_nebraska": 19,
     "manual_location_review": 0,
     "duplicate_events": 0
