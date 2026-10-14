@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-14T07:35:30.795397+00:00",
-  "schedule_generated_at": "2026-10-14T07:29:10.496615+00:00",
+  "registry_generated_at": "2026-10-14T13:43:14.519678+00:00",
+  "schedule_generated_at": "2026-10-14T13:37:23.473242+00:00",
   "schedule_window_start": "2026-10-14",
   "schedule_window_end": "2026-10-21",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -347,10 +347,10 @@
           "type": "thesportsdb",
           "configured_league": "KBO League",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Baseball",
@@ -2727,7 +2727,7 @@
           "id": "cricket-bbl",
           "type": "espn-daily",
           "configured_league": "Big Bash League (BBL) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9242,10 +9242,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech National Football League | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
@@ -10568,10 +10568,10 @@
           "type": "jleague-fixtures",
           "configured_league": "J.League Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
