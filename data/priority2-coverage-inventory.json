@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-14T01:14:38.636453+00:00",
-  "schedule_generated_at": "2026-10-14T01:08:48.029273+00:00",
-  "schedule_window_start": "2026-10-13",
-  "schedule_window_end": "2026-10-20",
+  "registry_generated_at": "2026-10-14T07:35:30.795397+00:00",
+  "schedule_generated_at": "2026-10-14T07:29:10.496615+00:00",
+  "schedule_window_start": "2026-10-14",
+  "schedule_window_end": "2026-10-21",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
     "catalog_operational_identities": 733,
@@ -368,7 +368,7 @@
           "type": "adapter",
           "configured_league": "MLB",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 10
         }
       ],
       "events_in_window": 4
@@ -452,10 +452,10 @@
           "type": "mlbstats",
           "configured_league": "Professional Baseball League of the Dominican Republic (LIDOM)",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 12
+      "events_in_window": 15
     },
     {
       "sport": "Baseball",
@@ -1676,10 +1676,10 @@
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 11
     },
     {
       "sport": "Basketball",
@@ -1753,10 +1753,10 @@
           "type": "adapter",
           "configured_league": "NBA",
           "refresh_ok": true,
-          "events_in_window": 29
+          "events_in_window": 35
         }
       ],
-      "events_in_window": 29
+      "events_in_window": 35
     },
     {
       "sport": "Basketball",
@@ -1774,10 +1774,10 @@
           "type": "adapter",
           "configured_league": "National Basketball League (NBL)",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 8
     },
     {
       "sport": "Basketball",
@@ -2313,10 +2313,10 @@
           "type": "adapter",
           "configured_league": "WNBA",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Bowling",
@@ -2707,10 +2707,10 @@
           "type": "adapter",
           "configured_league": "Ultimate Fighting Championship",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Cricket",
@@ -2832,7 +2832,7 @@
           "id": "cricket-county-d1",
           "type": "espn-daily",
           "configured_league": "Rothesay County Championship Division 1 | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 7
     },
     {
       "sport": "Esports",
@@ -5087,10 +5087,10 @@
           "type": "adapter",
           "configured_league": "NHL",
           "refresh_ok": true,
-          "events_in_window": 62
+          "events_in_window": 48
         }
       ],
-      "events_in_window": 61
+      "events_in_window": 48
     },
     {
       "sport": "Ice Hockey",
@@ -5728,10 +5728,10 @@
           "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Bowl Subdivision (FBS)",
           "refresh_ok": true,
-          "events_in_window": 62
+          "events_in_window": 61
         }
       ],
-      "events_in_window": 62
+      "events_in_window": 61
     },
     {
       "sport": "NCAA Football",
@@ -5910,10 +5910,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
           "refresh_ok": true,
-          "events_in_window": 177
+          "events_in_window": 179
         }
       ],
-      "events_in_window": 177
+      "events_in_window": 179
     },
     {
       "sport": "NCAA Soccer",
@@ -5931,10 +5931,10 @@
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Women",
           "refresh_ok": true,
-          "events_in_window": 238
+          "events_in_window": 255
         }
       ],
-      "events_in_window": 238
+      "events_in_window": 255
     },
     {
       "sport": "NCAA Softball",
@@ -6127,10 +6127,10 @@
           "type": "adapter",
           "configured_league": "NCAA Volleyball",
           "refresh_ok": true,
-          "events_in_window": 343
+          "events_in_window": 344
         }
       ],
-      "events_in_window": 296
+      "events_in_window": 297
     },
     {
       "sport": "NCAA Water Polo",
@@ -7220,10 +7220,10 @@
           "type": "espn-daily",
           "configured_league": "AFC Champions League Elite | Men",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -7937,10 +7937,10 @@
           "type": "espn-daily",
           "configured_league": "CAF Champions League | Men",
           "refresh_ok": true,
-          "events_in_window": 16
+          "events_in_window": 17
         }
       ],
-      "events_in_window": 16
+      "events_in_window": 17
     },
     {
       "sport": "Soccer",
@@ -8000,10 +8000,10 @@
           "type": "espn-daily",
           "configured_league": "CONCACAF Central American Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -8168,10 +8168,10 @@
           "type": "espn-daily",
           "configured_league": "Campeonato Brasileiro Série B | Men",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 10
     },
     {
       "sport": "Soccer",
@@ -8231,10 +8231,10 @@
           "type": "official-canada-championship-final",
           "configured_league": "Canadian Championship | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -8337,10 +8337,10 @@
           "type": "espn-daily",
           "configured_league": "Challenge Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 20
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 20
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -8548,10 +8548,10 @@
           "type": "espn-daily",
           "configured_league": "Copa Bolivia | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -8569,10 +8569,10 @@
           "type": "espn-daily",
           "configured_league": "Copa Chile | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -8590,10 +8590,10 @@
           "type": "espn-daily",
           "configured_league": "Copa Colombia | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -8674,10 +8674,10 @@
           "type": "espn-daily",
           "configured_league": "Copa Libertadores | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -9599,10 +9599,10 @@
           "type": "espn-daily",
           "configured_league": "English Football League (EFL) Trophy | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9788,10 +9788,10 @@
           "type": "espn-daily",
           "configured_league": "European Qualifiers | Women",
           "refresh_ok": true,
-          "events_in_window": 16
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 16
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9871,7 +9871,7 @@
           "id": "uefa-soccer-ireland-fai-cup-men",
           "type": "official-high-yield-cup-fixtures",
           "configured_league": "FAI Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -10187,10 +10187,10 @@
           "type": "official-saudi-first-division-scope",
           "configured_league": "First Division League | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -10399,10 +10399,10 @@
           "type": "espn-daily",
           "configured_league": "International Friendlies | Women",
           "refresh_ok": true,
-          "events_in_window": 13
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 13
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -10589,10 +10589,10 @@
           "type": "espn-daily",
           "configured_league": "J1 League | Men",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 20
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 20
     },
     {
       "sport": "Soccer",
@@ -10610,10 +10610,10 @@
           "type": "jleague-fixtures",
           "configured_league": "J2 League | Men",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 20
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 20
     },
     {
       "sport": "Soccer",
@@ -10800,10 +10800,10 @@
           "type": "adapter",
           "configured_league": "La Liga",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 11
     },
     {
       "sport": "Soccer",
@@ -10905,10 +10905,10 @@
           "type": "espn-daily",
           "configured_league": "League One | Men",
           "refresh_ok": true,
-          "events_in_window": 23
+          "events_in_window": 24
         }
       ],
-      "events_in_window": 23
+      "events_in_window": 24
     },
     {
       "sport": "Soccer",
@@ -11031,10 +11031,10 @@
           "type": "espn-daily",
           "configured_league": "Liga FPD | Men",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -11094,10 +11094,10 @@
           "type": "espn-daily",
           "configured_league": "Liga MX | Men",
           "refresh_ok": true,
-          "events_in_window": 13
+          "events_in_window": 18
         }
       ],
-      "events_in_window": 13
+      "events_in_window": 18
     },
     {
       "sport": "Soccer",
@@ -11432,10 +11432,10 @@
           "type": "adapter",
           "configured_league": "MLS",
           "refresh_ok": true,
-          "events_in_window": 30
+          "events_in_window": 31
         }
       ],
-      "events_in_window": 30
+      "events_in_window": 31
     },
     {
       "sport": "Soccer",
@@ -11835,10 +11835,10 @@
           "type": "official-obos-ligaen-next-round",
           "configured_league": "OBOS-ligaen | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -11961,10 +11961,10 @@
           "type": "espn-daily",
           "configured_league": "Players Cup | Women",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 13
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 13
     },
     {
       "sport": "Soccer",
@@ -12171,10 +12171,10 @@
           "type": "espn-daily",
           "configured_league": "Primera A | Men",
           "refresh_ok": true,
-          "events_in_window": 15
+          "events_in_window": 14
         }
       ],
-      "events_in_window": 15
+      "events_in_window": 14
     },
     {
       "sport": "Soccer",
@@ -12213,10 +12213,10 @@
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
@@ -12444,10 +12444,10 @@
           "type": "espn-daily",
           "configured_league": "Scottish Championship | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -12865,10 +12865,10 @@
           "type": "espn-daily",
           "configured_league": "South African Premier Division | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -13686,10 +13686,10 @@
           "type": "espn-daily",
           "configured_league": "The Championship | Men",
           "refresh_ok": true,
-          "events_in_window": 25
+          "events_in_window": 17
         }
       ],
-      "events_in_window": 25
+      "events_in_window": 17
     },
     {
       "sport": "Soccer",
@@ -13898,10 +13898,10 @@
           "type": "espn-daily",
           "configured_league": "U.S. Open Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -14150,10 +14150,10 @@
           "type": "espn-daily",
           "configured_league": "USL Championship | Men",
           "refresh_ok": true,
-          "events_in_window": 15
+          "events_in_window": 17
         }
       ],
-      "events_in_window": 15
+      "events_in_window": 17
     },
     {
       "sport": "Soccer",
@@ -14192,10 +14192,10 @@
           "type": "espn-daily",
           "configured_league": "USL League One (USL1) | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 11
     },
     {
       "sport": "Soccer",
@@ -15311,10 +15311,10 @@
           "type": "official-italy-volleyball-fixtures",
           "configured_league": "Serie A1 | Women",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 14
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 14
     },
     {
       "sport": "Volleyball",
