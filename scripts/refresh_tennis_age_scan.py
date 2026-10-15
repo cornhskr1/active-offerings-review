@@ -3,6 +3,7 @@ import json, re, datetime, os
 from pathlib import Path
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
+from athlete_age_evidence import reviewed, update_cache
 
 from playwright.sync_api import sync_playwright
 
@@ -47,15 +48,6 @@ def date_value(raw):
 def parse_age_evidence(text,on_date):
     txt=" ".join(str(text or "").split())
 
-    for pat in (
-      r'\bAge\s*:?\s*(1[4-9]|[2-4]\d)\b',
-      r'\bage\s+(1[4-9]|[2-4]\d)\s*(?:years?|yrs?)?\b'
-    ):
-        m=re.search(pat,txt,re.I)
-        if m:
-            age=int(m.group(1))
-            return age,None,f"Official profile lists age {age}."
-
     patterns=[
       r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})',
       r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\s*:?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})',
@@ -69,21 +61,20 @@ def parse_age_evidence(text,on_date):
             age=age_from_dob(dob,on_date)
             if 14<=age<=50:
                 return age,dob.isoformat(),f"Official profile lists date of birth {dob.isoformat()}."
+    for pat in (
+      r'\bAge\s*:?\s*(1[4-9]|[2-4]\d)\b',
+      r'\bage\s+(1[4-9]|[2-4]\d)\s*(?:years?|yrs?)?\b'
+    ):
+        m=re.search(pat,txt,re.I)
+        if m:
+            age=int(m.group(1))
+            return age,None,f"Official profile lists age {age}."
+
     return None,None,None
 
 def extract_age_from_json(obj,on_date):
     """Recursively inspect official JSON/XHR for age or birth-date fields."""
     if isinstance(obj,dict):
-        # Direct age keys.
-        for k,v in obj.items():
-            lk=str(k).lower().replace("_","").replace("-","")
-            if lk in ("age","playerage","currentage"):
-                try:
-                    age=int(v)
-                    if 14<=age<=50:
-                        return age,None,f"Official profile data lists age {age}."
-                except Exception:pass
-
         # DOB/birthdate keys.
         for k,v in obj.items():
             lk=str(k).lower().replace("_","").replace("-","")
@@ -93,6 +84,16 @@ def extract_age_from_json(obj,on_date):
                     age=age_from_dob(dob,on_date)
                     if 14<=age<=50:
                         return age,dob.isoformat(),f"Official profile data lists date of birth {dob.isoformat()}."
+
+        # Direct age keys.
+        for k,v in obj.items():
+            lk=str(k).lower().replace("_","").replace("-","")
+            if lk in ("age","playerage","currentage"):
+                try:
+                    age=int(v)
+                    if 14<=age<=50:
+                        return age,None,f"Official profile data lists age {age}."
+                except Exception:pass
 
         for v in obj.values():
             found=extract_age_from_json(v,on_date)
@@ -291,6 +292,8 @@ for x in exceptions_doc.get("exceptions",[]):
     name=x.get("name")
     if not name:continue
     key=norm(name)
+    if reviewed(cache.get(key,{})):
+        continue
     if cache.get(key,{}).get("age_status") in ("VERIFIED U18","VERIFIED 18+"):
         continue
     queue[key]={
@@ -324,7 +327,7 @@ with sync_playwright() as pw:
         key=norm(item["name"])
         if result:
             age,dob,evidence,source_url=result
-            cache[key]={
+            update_cache(cache, {
               "name":item["name"],
               "age":age,
               "dob":dob,
@@ -335,11 +338,11 @@ with sync_playwright() as pw:
               "last_verified":NOW.isoformat(),
               "verification_method":"official_directory_profile_search",
               "attempt_count":int(cache.get(key,{}).get("attempt_count",0))+1
-            }
+            })
             resolved+=1
         else:
             previous=cache.get(key,{})
-            cache[key]={
+            update_cache(cache, {
               **previous,
               "name":item["name"],
               "age":None,
@@ -349,7 +352,7 @@ with sync_playwright() as pw:
               "attempt_count":int(previous.get("attempt_count",0))+1,
               "last_tournament":item.get("tournament"),
               "last_tour":item.get("tour")
-            }
+            })
             not_found+=1
 
         if i%10==0:
@@ -358,6 +361,7 @@ with sync_playwright() as pw:
     browser.close()
 
 CACHE_PATH.write_text(json.dumps({
+  **cache_doc,
   "schema_version":2,
   "generated_at":NOW.isoformat(),
   "batch_size":BATCH_SIZE,

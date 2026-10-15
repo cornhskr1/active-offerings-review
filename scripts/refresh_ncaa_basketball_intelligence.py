@@ -2,6 +2,7 @@
 from pathlib import Path
 import datetime, json, re
 from zoneinfo import ZoneInfo
+from athlete_age_evidence import age_on, age_status_on
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -53,6 +54,17 @@ def team_match(registry_team, event_team):
 
 def athlete_match(a, b):
     return norm(a) == norm(b) and bool(norm(a))
+
+def event_age_date(event):
+    value = str(event.get("start_time") or "")
+    try:
+        if not re.match(r"^\d{4}-\d{2}-\d{2}(?:$|T)", value):
+            return None
+        if len(value) == 10:
+            return datetime.date.fromisoformat(value)
+        return datetime.datetime.fromisoformat(value.replace("Z", "+00:00")).date()
+    except ValueError:
+        return None
 
 def rostered_verified_u18(rec, gender=None):
     """Return True only when the verified registry athlete is present on the current active roster."""
@@ -152,17 +164,19 @@ verified_u18 = []
 for rec in known.get("records", []):
     if norm(rec.get("sport")) != "basketball":
         continue
-    if str(rec.get("status") or "").upper() not in ("VERIFIED", "VERIFIED U18"):
+    current_status = age_status_on(rec, TODAY) if rec.get("age_evidence") else rec.get("status")
+    if str(current_status or "").upper() not in ("VERIFIED", "VERIFIED U18"):
         continue
     verified_u18.append({
+        **rec,
         "sport": "Basketball",
         "league": rec.get("league"),
         "team": rec.get("team"),
         "athlete": rec.get("athlete"),
-        "age": rec.get("age"),
+        "age": age_on(rec, TODAY) if rec.get("age_evidence") else rec.get("age"),
         "age_label": rec.get("age_label"),
         "status": "VERIFIED U18",
-        "source": known.get("source", "Known U18 registry")
+        "source": rec.get("source") or known.get("source", "Known U18 registry")
     })
 
 events = [
@@ -172,6 +186,7 @@ events = [
 ]
 
 active_exposures = []
+age_reviews = []
 roster_matched_verified_u18 = []
 roster_unmatched_verified_u18 = []
 
@@ -184,19 +199,32 @@ for rec in verified_u18:
     else:
         roster_unmatched_verified_u18.append(rec)
 
+reviewed_basketball = [rec for rec in known.get("records", [])
+                      if norm(rec.get("sport")) == "basketball" and rec.get("age_evidence")]
+event_candidates = [rec for rec in roster_matched_verified_u18 if not rec.get("age_evidence")]
+for rec in reviewed_basketball:
+    league_text = str(rec.get("league") or "").lower()
+    gender = "Women" if "women" in league_text else "Men" if "men" in league_text else None
+    if rostered_verified_u18(rec, gender):
+        event_candidates.append(rec)
+
 for ev in events:
-    matches = []
-    for rec in roster_matched_verified_u18:
+    matches, reviews = [], []
+    for rec in event_candidates:
+        status = age_status_on(rec, event_age_date(ev)) if rec.get("age_evidence") else "VERIFIED U18"
+        if status == "VERIFIED 18+":
+            continue
         league_text = str(rec.get("league") or "").lower()
         rec_gender = "Women" if "women" in league_text else "Men" if "men" in league_text else None
         if rec_gender and ev.get("gender") and str(ev.get("gender")) != rec_gender:
             continue
         if team_match(rec.get("team"), ev.get("home")) or team_match(rec.get("team"), ev.get("away")):
-            matches.append({
+            (matches if status == "VERIFIED U18" else reviews).append({
                 "athlete": rec.get("athlete"),
                 "team": rec.get("team"),
-                "age": rec.get("age"),
-                "age_label": rec.get("age_label")
+                "age": age_on(rec, event_age_date(ev)) if rec.get("age_evidence") else rec.get("age"),
+                "age_label": rec.get("age_label"),
+                **({"age_evidence": rec["age_evidence"]} if rec.get("age_evidence") else {})
             })
     if matches:
         active_exposures.append({
@@ -213,6 +241,16 @@ for ev in events:
             "reason": "Verified U18 athlete is matched to the current roster of a team in this scheduled NCAA basketball event.",
             "staff_action": rules["u18"]["staff_action"],
             "athletes": matches
+        })
+    if reviews:
+        age_reviews.append({
+            "event_id": ev.get("id"), "contest_id": ev.get("contest_id"),
+            "league": ev.get("league"), "division": ev.get("division"), "gender": ev.get("gender"),
+            "event": ev.get("name"), "home": ev.get("home"), "away": ev.get("away"),
+            "start_time": ev.get("start_time"), "event_date_missing": event_age_date(ev) is None,
+            "severity": "AMBER", "athletes": reviews,
+            "reason": "Roster-matched athlete requires DOB or event-date review before U18 status can be established.",
+            "staff_action": "Confirm the athlete's date of birth and the event date; conflicting or age-only evidence is not an all-clear."
         })
 
 special_restrictions = []
@@ -265,6 +303,8 @@ out = {
     "roster_unmatched_verified_u18": roster_unmatched_verified_u18,
     "active_exposure_count": len(active_exposures),
     "active_exposures": active_exposures,
+    "age_review_count": len(age_reviews),
+    "age_reviews": age_reviews,
     "catalog_special_rules_count": len(catalog_rules),
     "catalog_special_rules": catalog_rules,
     "special_restriction_count": len(special_restrictions),

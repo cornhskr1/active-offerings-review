@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import datetime, json, re
+from athlete_age_evidence import age_on, age_status_on
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -65,11 +66,14 @@ for rec in old_cache.get("records", []):
     key = roster_key(rec.get("gender"), rec.get("team"), rec.get("athlete"))
     old_by_key[key] = rec
 
+known_basketball_records = []
 known_basketball_u18 = []
 for rec in known_u18.get("records", []):
     if norm(rec.get("sport")) != "basketball":
         continue
-    if str(rec.get("status") or "").upper() not in ("VERIFIED", "VERIFIED U18"):
+    known_basketball_records.append(rec)
+    current_status = age_status_on(rec, TODAY) if rec.get("age_evidence") else rec.get("status")
+    if str(current_status or "").upper() not in ("VERIFIED", "VERIFIED U18"):
         continue
     known_basketball_u18.append(rec)
 
@@ -77,6 +81,19 @@ def known_u18_match(team, athlete):
     nt, na = norm(team), norm(athlete)
     for rec in known_basketball_u18:
         if norm(rec.get("athlete")) != na:
+            continue
+        rt = norm(rec.get("team"))
+        if not rt or not nt or rt == nt or rt in nt or nt in rt:
+            return rec
+    return None
+
+def reviewed_age_match(team, athlete):
+    nt, na = norm(team), norm(athlete)
+    for rec in known_basketball_records:
+        if not rec.get("age_evidence"):
+            continue
+        names = [rec.get("athlete"), *(rec.get("aliases") or [])]
+        if na not in {norm(name) for name in names if name}:
             continue
         rt = norm(rec.get("team"))
         if not rt or not nt or rt == nt or rt in nt or nt in rt:
@@ -108,9 +125,19 @@ for team_row in rosters.get("teams", []):
         dob = old.get("dob") or source_dob
         dob_date = parse_dob(dob)
 
-        # Preserve verified/manual statuses from older cache. Never downgrade them.
+        # Reviewed evidence supersedes legacy labels; otherwise preserve manual statuses.
         old_status = str(old.get("status") or "").upper()
-        if old_status in ("VERIFIED U18", "VERIFIED 18+"):
+        reviewed_age = reviewed_age_match(team, athlete) or (old if old.get("age_evidence") else None)
+        if reviewed_age:
+            evidence = reviewed_age["age_evidence"]
+            dob = evidence.get("dob") if evidence.get("status") == "verified_dob" else None
+            dob_date = parse_dob(dob)
+            status = age_status_on(reviewed_age, TODAY)
+            evidence_source = reviewed_age.get("source") or old.get("evidence_source") or "Reviewed age evidence"
+            evidence_note = reviewed_age.get("evidence") or reviewed_age.get("age_label") or "Exact age requires verification."
+            evidence_url = reviewed_age.get("source_url") or old.get("evidence_url")
+            verified_at = old.get("verified_at")
+        elif old_status in ("VERIFIED U18", "VERIFIED 18+"):
             status = old_status
             evidence_source = old.get("evidence_source")
             evidence_note = old.get("evidence_note")
@@ -168,7 +195,7 @@ for team_row in rosters.get("teams", []):
                 evidence_url = old.get("evidence_url")
                 verified_at = old.get("verified_at")
 
-        calculated_age = calc_age(dob_date, TODAY) if dob_date else None
+        calculated_age = age_on(reviewed_age, TODAY) if reviewed_age else calc_age(dob_date, TODAY) if dob_date else None
 
         priority_reasons = []
         known_for_priority = known_u18_match(team, athlete)
@@ -185,6 +212,10 @@ for team_row in rosters.get("teams", []):
             priority_reasons.append("FRESHMAN")
 
         records.append({
+            **old,
+            **({key: reviewed_age[key] for key in (
+                "age_evidence", "aliases", "official_player_id", "last_verified", "checked_at"
+            ) if key in reviewed_age} if reviewed_age else {}),
             "player_id": pid or old.get("player_id"),
             "gender": gender,
             "division": "Division I",
@@ -231,7 +262,7 @@ summary = {
     "athletes_total": len(records),
     "verified_u18": sum(1 for x in records if x["status"] == "VERIFIED U18"),
     "verified_18_plus": sum(1 for x in records if x["status"] == "VERIFIED 18+"),
-    "age_review": sum(1 for x in records if x["status"] == "AGE REVIEW"),
+    "age_review": sum(1 for x in records if x["status"] in ("AGE REVIEW", "TARGETED REVIEW")),
     "unresolved": sum(1 for x in records if x["status"] == "UNRESOLVED"),
     "source_dob": sum(1 for x in records if x.get("source_dob")),
     "source_age": sum(1 for x in records if x.get("source_age") not in (None, "")),

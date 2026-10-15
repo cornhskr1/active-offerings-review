@@ -1,12 +1,26 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, datetime
+import json, datetime, re
 
 from catalog_identity import exact_team_in_event, team_event_match
+from athlete_age_evidence import age_status_on, name_key
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 NOW = datetime.datetime.now(datetime.timezone.utc)
+
+def event_age_date(event):
+    value = str(event.get("start_time") or "")
+    try:
+        if not re.match(r"^\d{4}-\d{2}-\d{2}(?:$|T)", value):
+            return None
+        if len(value) == 10:
+            return datetime.date.fromisoformat(value)
+        # Screening follows the event's calendar date as written, independent
+        # of the dashboard's display timezone and its birthday-boundary shifts.
+        return datetime.datetime.fromisoformat(value.replace("Z", "+00:00")).date()
+    except ValueError:
+        return None
 
 def nfl_restriction_is_in_scope(event, restriction):
     sport=str(event.get("sport") or "").lower()
@@ -106,27 +120,63 @@ soccer_events=[e for e in schedule.get("events",[]) if e.get("sport")=="Soccer" 
 
 for player in soccer_records:
     for ev in soccer_events:
+        # Reviewed evidence supersedes the historic watchlist label. An exact
+        # DOB must establish U18 status on this event's date before creating RED.
+        age_status = age_status_on(player, event_age_date(ev)) if player.get("age_evidence") else "VERIFIED U18"
+        if age_status == "VERIFIED 18+":
+            continue
         matched,match_basis=team_event_match(
             player.get("team"),player.get("league"),ev.get("name"),ev.get("league")
         )
         if matched:
-            c=ensure_event(ev,"RED","U18 EXPOSURE")
+            confirmed = age_status == "VERIFIED U18"
+            c=ensure_event(ev,"RED" if confirmed else "AMBER","U18 EXPOSURE" if confirmed else "AGE EVIDENCE REVIEW")
             push_unique(c["athletes"], player.get("athlete"))
-            push_unique(c["triggers"], f"Known U18 — {player.get('athlete')} ({player.get('team')}) · {match_basis}")
-            push_unique(c["staff_actions"], "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.")
+            if confirmed:
+                c["type"] = "U18 EXPOSURE"
+                push_unique(c.setdefault("confirmed_u18_athletes", []), player.get("athlete"))
+                push_unique(c["triggers"], f"Known U18 — {player.get('athlete')} ({player.get('team')}) · {match_basis}")
+                push_unique(c["staff_actions"], "Search known U18 athlete names in active SWSP markets and review athlete-specific performance/nonperformance offerings.")
+            else:
+                c["age_review_required"] = True
+                c["event_date_missing"] = event_age_date(ev) is None
+                push_unique(c.setdefault("age_review_athletes", []), player.get("athlete"))
+                push_unique(c["triggers"], f"Age evidence review — {player.get('athlete')} ({player.get('team')}) · {match_basis}")
+                push_unique(c["staff_actions"], "Confirm the athlete's date of birth and the event date before determining U18 status; conflicting or age-only evidence is not an all-clear.")
 
 # B) Verified NCAA Football U18 + upcoming team game.
 football_events=[e for e in schedule.get("events",[]) if e.get("league")=="NCAA Football" and e.get("status") in ("UPCOMING","LIVE")]
+reviewed_football = [record for record in known.get("records", [])
+                    if record.get("sport") in ("Football", "NCAA Football") and record.get("age_evidence")]
 
 for player in football.get("known_u18",[]):
     team=player.get("team")
+    identities = [record for record in reviewed_football
+                  if name_key(record.get("team")) == name_key(team)
+                  and name_key(player.get("athlete")) in {
+                      name_key(value) for value in [record.get("athlete"), *(record.get("aliases") or [])] if value}]
+    evidence_player = identities[0] if len(identities) == 1 else (
+        {"age_evidence": {"status": "unknown"}} if identities else player)
     for ev in football_events:
+        age_status = age_status_on(evidence_player, event_age_date(ev)) if evidence_player.get("age_evidence") else "VERIFIED U18"
+        if age_status == "VERIFIED 18+":
+            continue
         matched,match_basis=exact_team_in_event(team,ev.get("name"))
         if matched:
-            c=ensure_event(ev,"RED","U18 EXPOSURE")
+            confirmed = age_status == "VERIFIED U18"
+            c=ensure_event(ev,"RED" if confirmed else "AMBER","U18 EXPOSURE" if confirmed else "AGE EVIDENCE REVIEW")
             push_unique(c["athletes"], player.get("athlete"))
-            push_unique(c["triggers"], f"Verified U18 — {player.get('athlete')} ({team}) · {match_basis}")
-            push_unique(c["staff_actions"], "Review athlete-specific NCAA markets involving the verified U18 participant.")
+            if confirmed:
+                c["type"] = "U18 EXPOSURE"
+                push_unique(c.setdefault("confirmed_u18_athletes", []), player.get("athlete"))
+                push_unique(c["triggers"], f"Verified U18 — {player.get('athlete')} ({team}) · {match_basis}")
+                push_unique(c["staff_actions"], "Review athlete-specific NCAA markets involving the verified U18 participant.")
+            else:
+                c["age_review_required"] = True
+                c["event_date_missing"] = event_age_date(ev) is None
+                push_unique(c.setdefault("age_review_athletes", []), player.get("athlete"))
+                push_unique(c["triggers"], f"Age evidence review — {player.get('athlete')} ({team}) · {match_basis}")
+                push_unique(c["staff_actions"], "Confirm the athlete's date of birth and the event date before determining U18 status.")
 
 # C) HIGH-risk unresolved NCAA athletes only, aggregated by current game.
 # MEDIUM / LOW / UNKNOWN remain in NCAA Football Age Vetting.

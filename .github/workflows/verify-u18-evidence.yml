@@ -1,0 +1,72 @@
+name: Verify reviewed athlete age evidence
+
+on:
+  pull_request:
+    paths:
+      - data/known-u18.json
+      - data/tennis-*.json
+      - data/athlete-age-evidence-review.json
+      - scripts/*age*.py
+      - scripts/refresh_tennis_intelligence.py
+      - scripts/build_tennis_review.py
+      - scripts/refresh_priority_queue.py
+      - scripts/refresh_ncaa_basketball_intelligence.py
+      - index.html
+      - tests/test_reviewed_age*.py
+      - tests/test_tennis_registry_merge.py
+      - tests/test_build_tennis_review.py
+      - tests/test_u18_verification_dates.py
+      - .github/workflows/verify-u18-evidence.yml
+  push:
+    branches: [main]
+    paths:
+      - data/known-u18.json
+      - data/tennis-*.json
+      - data/athlete-age-evidence-review.json
+      - scripts/*age*.py
+      - scripts/refresh_tennis_intelligence.py
+      - scripts/build_tennis_review.py
+      - scripts/refresh_priority_queue.py
+      - scripts/refresh_ncaa_basketball_intelligence.py
+      - index.html
+      - tests/test_reviewed_age*.py
+      - tests/test_tennis_registry_merge.py
+      - tests/test_build_tennis_review.py
+      - tests/test_u18_verification_dates.py
+      - .github/workflows/verify-u18-evidence.yml
+
+permissions:
+  contents: read
+
+jobs:
+  offline-evidence-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and dashboard syntax
+        run: |
+          python3 -m compileall -q scripts tests
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          for path in Path('data').glob('*.json'):
+              json.loads(path.read_text())
+          html = Path('index.html').read_text()
+          Path('/tmp/dashboard-script.js').write_text(re.search(r'<script>([\s\S]*)</script>', html).group(1))
+          PY
+          node --check /tmp/dashboard-script.js
+      - name: Verify evidence, birthdays, aliases and refresh preservation offline
+        run: >-
+          python3 -m unittest
+          tests.test_reviewed_age_evidence
+          tests.test_reviewed_age_consumers
+          tests.test_tennis_registry_merge
+          tests.test_build_tennis_review
+          tests.test_tennis_refresh_guardrails
+          tests.test_u18_verification_dates -v

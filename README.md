@@ -58,3 +58,15 @@ The **Known U18 Tennis** registry and age cache remain the public evidence sourc
 
 A schedule appearance, name similarity, or source record never creates catalog approval. The portal uses verified identity evidence only for Nebraska U18 restriction screening, and a missing match is never treated as an all-clear.
 
+
+## Reviewed athlete age evidence
+
+`data/athlete-age-evidence-review.json` records the 2026-10-14 official-source review (84 input rows, 82 distinct athletes). Corrected records carry `age_evidence.status`: `verified_dob`, `conflicting_dob`, `age_only`, or `unknown`. Only `verified_dob` has an authoritative `age_evidence.dob`. Conflicts retain all candidate dates and official source links; a displayed age or birth year is not converted into an invented DOB.
+
+`data/known-u18.json` retains historical adults. `data/tennis-u18-registry.json` schema 2 has a durable `records` array containing all retained identities; `verified_u18` is a compatibility view, not a lifetime age classification. Stable official player IDs reconcile names, while recorded aliases remain searchable. Different official IDs never merge merely because a name matches.
+
+Screening derives age from the full verified DOB and the event's written calendar date. An adult on the event date is not a U18 hit. Conflicting/insufficient evidence or an invalid event date requires review. The ambiguous February 28 eighteenth-anniversary boundary for a February 29 birth in a non-leap year also requires review.
+
+`age_evidence.checked_at` means the official evidence was reviewed on that date. `last_verified` remains its originally recorded source verification timestamp, and `generated_at` means only file generation. Automated ranking/cache refreshes preserve reviewed identity and age evidence even after an athlete ages out or disappears from current rankings.
+
+Deploy consumers that read durable records and derive event-date age before publishing these corrected source records. The offline **Verify reviewed athlete age evidence** workflow checks birthdays, uncertainty, aliases, conflicting identities, and refresh preservation on the exact proposed change.
