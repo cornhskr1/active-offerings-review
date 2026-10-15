@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-14T21:45:54.173134+00:00",
+  "generated_at": "2026-10-15T04:48:54.386721+00:00",
   "screening_date": "2026-10-14",
   "sport": "NCAA Basketball",
   "method": "Roster-matched U18 screening plus catalog-validated explicit special-tournament metadata detection.",
@@ -8,22 +8,98 @@
   "verified_u18": [
     {
       "sport": "Basketball",
+      "country": "United States",
       "league": "NCAA Men's Basketball",
       "team": "Duke",
       "athlete": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
       "age": 17,
       "age_label": "17",
+      "lane": "Persistent futures / awards",
       "status": "VERIFIED U18",
+      "canonical_name": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
+      "age_evidence": {
+        "status": "verified_dob",
+        "checked_at": "2026-10-14",
+        "sources": [
+          {
+            "url": "https://www.feb.es/Documentos/Archivo/upload/PLANTILLASCADETEMASCULINO2025.pdf",
+            "title": "Federacion Espanola de Baloncesto: Cadete Masculino 2025 rosters",
+            "publication_date": null,
+            "evidence": "Page 1, Barca roster, number 44: Joaquim Bertrand Boumtje Boumtje, 30/05/2009."
+          }
+        ],
+        "review": {
+          "id": "official-age-review-2026-10-14",
+          "input_names": [
+            "Joaquim \u201cJoJo\u201d Boumtje Boumtje"
+          ],
+          "notes": "Opened official federation PDF and visually inspected page 1. FIBA official profile search result corroborates May 30, 2009, but its page could not be opened, so FEB is the primary DOB evidence. Current Duke roster confirms the athlete's Barcelona background and Duke identity: https://goduke.com/sports/mens-basketball/roster/joaquim-boumtje-boumtje/24896 .",
+          "input_records": [
+            {
+              "name": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
+              "recorded_dob": null,
+              "recorded_age": 17,
+              "recorded_birth_year": null,
+              "original_last_verified": ""
+            }
+          ]
+        },
+        "dob": "2009-05-30"
+      },
+      "dob": "2009-05-30",
+      "age_as_of": "2026-10-14",
+      "birth_year": 2009,
+      "age_status": "VERIFIED U18",
+      "evidence": "Page 1, Barca roster, number 44: Joaquim Bertrand Boumtje Boumtje, 30/05/2009.",
+      "source_url": "https://www.feb.es/Documentos/Archivo/upload/PLANTILLASCADETEMASCULINO2025.pdf",
       "source": "Known U18 registry displayed in Active Offerings Review System"
     },
     {
       "sport": "Basketball",
+      "country": "United States",
       "league": "NCAA Men's Basketball",
       "team": "Texas",
       "athlete": "Marcus Spears Jr.",
       "age": 17,
       "age_label": "17",
+      "lane": "Persistent futures / awards",
       "status": "VERIFIED U18",
+      "canonical_name": "Marcus Spears Jr.",
+      "age_evidence": {
+        "status": "verified_dob",
+        "checked_at": "2026-10-14",
+        "sources": [
+          {
+            "url": "https://www.fiba.basketball/en/players/386982-marcus-spears",
+            "title": "Marcus Spears | FIBA Basketball",
+            "publication_date": null,
+            "evidence": "FIBA player profile lists Date of Birth: Apr 8, 2009."
+          }
+        ],
+        "review": {
+          "id": "official-age-review-2026-10-14",
+          "input_names": [
+            "Marcus Spears Jr."
+          ],
+          "notes": "Opened FIBA page confirms full DOB. FIBA U16 AmeriCup 2025 profile identifies Dynamic Prep HS, matching the background in current Texas roster: https://texaslonghorns.com/sports/mens-basketball/roster/marcus-spears-jr/17155 .",
+          "input_records": [
+            {
+              "name": "Marcus Spears Jr.",
+              "recorded_dob": null,
+              "recorded_age": 17,
+              "recorded_birth_year": null,
+              "original_last_verified": ""
+            }
+          ]
+        },
+        "dob": "2009-04-08"
+      },
+      "dob": "2009-04-08",
+      "age_as_of": "2026-10-14",
+      "birth_year": 2009,
+      "age_status": "VERIFIED U18",
+      "evidence": "FIBA player profile lists Date of Birth: Apr 8, 2009.",
+      "source_url": "https://www.fiba.basketball/en/players/386982-marcus-spears",
       "source": "Known U18 registry displayed in Active Offerings Review System"
     }
   ],
@@ -31,12 +107,50 @@
   "roster_matched_verified_u18": [
     {
       "sport": "Basketball",
+      "country": "United States",
       "league": "NCAA Men's Basketball",
       "team": "Texas",
       "athlete": "Marcus Spears Jr.",
       "age": 17,
       "age_label": "17",
+      "lane": "Persistent futures / awards",
       "status": "VERIFIED U18",
+      "canonical_name": "Marcus Spears Jr.",
+      "age_evidence": {
+        "status": "verified_dob",
+        "checked_at": "2026-10-14",
+        "sources": [
+          {
+            "url": "https://www.fiba.basketball/en/players/386982-marcus-spears",
+            "title": "Marcus Spears | FIBA Basketball",
+            "publication_date": null,
+            "evidence": "FIBA player profile lists Date of Birth: Apr 8, 2009."
+          }
+        ],
+        "review": {
+          "id": "official-age-review-2026-10-14",
+          "input_names": [
+            "Marcus Spears Jr."
+          ],
+          "notes": "Opened FIBA page confirms full DOB. FIBA U16 AmeriCup 2025 profile identifies Dynamic Prep HS, matching the background in current Texas roster: https://texaslonghorns.com/sports/mens-basketball/roster/marcus-spears-jr/17155 .",
+          "input_records": [
+            {
+              "name": "Marcus Spears Jr.",
+              "recorded_dob": null,
+              "recorded_age": 17,
+              "recorded_birth_year": null,
+              "original_last_verified": ""
+            }
+          ]
+        },
+        "dob": "2009-04-08"
+      },
+      "dob": "2009-04-08",
+      "age_as_of": "2026-10-14",
+      "birth_year": 2009,
+      "age_status": "VERIFIED U18",
+      "evidence": "FIBA player profile lists Date of Birth: Apr 8, 2009.",
+      "source_url": "https://www.fiba.basketball/en/players/386982-marcus-spears",
       "source": "Known U18 registry displayed in Active Offerings Review System"
     }
   ],
@@ -44,17 +158,57 @@
   "roster_unmatched_verified_u18": [
     {
       "sport": "Basketball",
+      "country": "United States",
       "league": "NCAA Men's Basketball",
       "team": "Duke",
       "athlete": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
       "age": 17,
       "age_label": "17",
+      "lane": "Persistent futures / awards",
       "status": "VERIFIED U18",
+      "canonical_name": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
+      "age_evidence": {
+        "status": "verified_dob",
+        "checked_at": "2026-10-14",
+        "sources": [
+          {
+            "url": "https://www.feb.es/Documentos/Archivo/upload/PLANTILLASCADETEMASCULINO2025.pdf",
+            "title": "Federacion Espanola de Baloncesto: Cadete Masculino 2025 rosters",
+            "publication_date": null,
+            "evidence": "Page 1, Barca roster, number 44: Joaquim Bertrand Boumtje Boumtje, 30/05/2009."
+          }
+        ],
+        "review": {
+          "id": "official-age-review-2026-10-14",
+          "input_names": [
+            "Joaquim \u201cJoJo\u201d Boumtje Boumtje"
+          ],
+          "notes": "Opened official federation PDF and visually inspected page 1. FIBA official profile search result corroborates May 30, 2009, but its page could not be opened, so FEB is the primary DOB evidence. Current Duke roster confirms the athlete's Barcelona background and Duke identity: https://goduke.com/sports/mens-basketball/roster/joaquim-boumtje-boumtje/24896 .",
+          "input_records": [
+            {
+              "name": "Joaquim \u201cJoJo\u201d Boumtje Boumtje",
+              "recorded_dob": null,
+              "recorded_age": 17,
+              "recorded_birth_year": null,
+              "original_last_verified": ""
+            }
+          ]
+        },
+        "dob": "2009-05-30"
+      },
+      "dob": "2009-05-30",
+      "age_as_of": "2026-10-14",
+      "birth_year": 2009,
+      "age_status": "VERIFIED U18",
+      "evidence": "Page 1, Barca roster, number 44: Joaquim Bertrand Boumtje Boumtje, 30/05/2009.",
+      "source_url": "https://www.feb.es/Documentos/Archivo/upload/PLANTILLASCADETEMASCULINO2025.pdf",
       "source": "Known U18 registry displayed in Active Offerings Review System"
     }
   ],
   "active_exposure_count": 0,
   "active_exposures": [],
+  "age_review_count": 0,
+  "age_reviews": [],
   "catalog_special_rules_count": 2,
   "catalog_special_rules": [
     {
