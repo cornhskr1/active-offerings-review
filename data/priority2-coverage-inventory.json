@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-15T07:26:05.331165+00:00",
-  "schedule_generated_at": "2026-10-15T07:19:46.174517+00:00",
+  "registry_generated_at": "2026-10-15T13:27:22.440076+00:00",
+  "schedule_generated_at": "2026-10-15T13:20:21.305111+00:00",
   "schedule_window_start": "2026-10-15",
   "schedule_window_end": "2026-10-22",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -9640,11 +9640,11 @@
           "id": "uefa-soccer-georgia-erovnuli-liga-men",
           "type": "official-georgia-erovnuli-linked-fixtures",
           "configured_league": "Erovnuli Liga | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -11115,10 +11115,10 @@
           "type": "espn-daily",
           "configured_league": "Liga Nacional | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 10
     },
     {
       "sport": "Soccer",
