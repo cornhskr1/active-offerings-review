@@ -3,6 +3,8 @@ from pathlib import Path
 import json, re, datetime, hashlib, difflib, os
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
+from athlete_age_evidence import (identity as evidence_identity, merge_records,
+    partition_registry, age_status_on, reviewed, update_cache, index_records)
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from tennis_refresh_guardrails import (calendar_discovery_issue, challenger_score_event_url,
@@ -66,67 +68,16 @@ def norm(s):
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
 def registry_index(records):
-    """Index canonical names and aliases without duplicating displayed athletes."""
-    out={}
-    for record in records or []:
-        for name in [record.get("name"),*(record.get("aliases") or [])]:
-            if name:out[norm(name)]=record
-    return out
+    """Index exact names/aliases without silently resolving ID collisions."""
+    return index_records(records)
 
 def registry_identity(record):
-    """Prefer stable official player IDs; fall back to the normalized name."""
-    url=str(record.get("source_url") or record.get("profile_url") or "")
-    match=re.search(r"/players/[^/]+/(\d{6,})/",url,re.I)
-    if match:return f"itf:{match.group(1)}"
-    return f"name:{norm(record.get('name'))}"
+    """Prefer explicit and URL-based stable IDs over display names."""
+    return evidence_identity(record)
 
 def merge_registry_records(records,exposure_names=None):
-    """Collapse initials/full-name aliases and preserve every matchable identity."""
-    groups={}
-    for record in records or []:
-        if not record or not record.get("name"):continue
-        groups.setdefault(registry_identity(record),[]).append(record)
-
-    exposure_names=set(exposure_names or [])
-    merged=[]
-    for rows in groups.values():
-        names=[]
-        for row in rows:
-            for value in [row.get("name"),*(row.get("aliases") or [])]:
-                names.append(value)
-                if value:
-                    unqualified=re.sub(r"\s*\((?:WC|Q|LL|ALT)\)\s*$","",str(value),flags=re.I).strip()
-                    if unqualified and unqualified!=str(value).strip():names.append(unqualified)
-        names=[str(name).strip() for name in names if str(name or "").strip()]
-        unique_names=[];seen=set()
-        for name in names:
-            key=norm(name)
-            if key not in seen:
-                seen.add(key);unique_names.append(name)
-
-        def name_score(name):
-            qualifier=bool(re.search(r"\s*\((?:WC|Q|LL|ALT)\)\s*$",name,re.I))
-            initial=bool(re.search(r"(?:^|\s)[A-Za-z]\.?(?:\s|$)",name))
-            return (not qualifier,not initial,len(name.split()),len(name))
-
-        canonical_name=max(unique_names,key=name_score)
-        preferred=max(rows,key=lambda row:(
-            norm(row.get("name"))==norm(canonical_name),
-            sum(value not in (None,"",[],{}) for value in row.values())
-        ))
-        combined=dict(preferred)
-        for row in rows:
-            for key,value in row.items():
-                if combined.get(key) in (None,"",[],{}) and value not in (None,"",[],{}):
-                    combined[key]=value
-        combined["name"]=canonical_name
-        aliases=[name for name in unique_names if norm(name)!=norm(canonical_name)]
-        if aliases:combined["aliases"]=sorted(aliases,key=str.lower)
-        else:combined.pop("aliases",None)
-        combined["current_exposure"]=any(norm(name) in exposure_names for name in unique_names)
-        merged.append(combined)
-    merged.sort(key=lambda row:(not row.get("current_exposure"),row.get("name","").lower()))
-    return merged
+    """Preserve reviewed evidence, historical identities and all matching aliases."""
+    return merge_records(records, exposure_names)
 
 def overlaps(a,b): return bool(a and b and a<=END and b>=TODAY)
 
@@ -1213,16 +1164,6 @@ def age_from_dob(dob,on_date):
 def parse_age_evidence(text,on_date):
     txt=" ".join(str(text or "").split())
 
-    # Explicit age labels.
-    for pat in (
-      r'\bAge\s*:?\s*(1[4-9]|[2-4]\d)\b',
-      r'\bage\s+(1[4-9]|[2-4]\d)\s*(?:years?|yrs?)?\b'
-    ):
-        m=re.search(pat,txt,re.I)
-        if m:
-            age=int(m.group(1))
-            return age,None,f"Official profile lists age {age}."
-
     # Explicit DOB fields only. Bare dates elsewhere on the page are ignored.
     dob_patterns=[
       r'(?:Date of Birth|Date of birth|DOB|Born|Birthday)\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})',
@@ -1241,6 +1182,16 @@ def parse_age_evidence(text,on_date):
                     return age,dob.isoformat(),f"Official profile lists date of birth {dob.isoformat()}."
             except Exception:
                 pass
+    # Explicit age labels.
+    for pat in (
+      r'\bAge\s*:?\s*(1[4-9]|[2-4]\d)\b',
+      r'\bage\s+(1[4-9]|[2-4]\d)\s*(?:years?|yrs?)?\b'
+    ):
+        m=re.search(pat,txt,re.I)
+        if m:
+            age=int(m.group(1))
+            return age,None,f"Official profile lists age {age}."
+
     return None,None,None
 
 def resolve_profile_age(browser,person,on_date):
@@ -1327,8 +1278,8 @@ def junior_watch_index(browser):
                   "name":name,"gender":gender,"birth_year":yob,
                   "source":"ITF official junior rankings","source_url":a["href"]
                 }
-                # In 2026, 2009+ birth years are unambiguously under 18.
-                if yob>=2009:
+                # A birth year is only certainly U18 when its maximum possible age is <18.
+                if 0 <= YEAR-yob < 18:
                     rec.update({
                       "age":YEAR-yob,
                       "age_status":"VERIFIED U18",
@@ -1370,18 +1321,15 @@ def fuzzy_watch_match(name,watch):
 YEAR=TODAY.year
 REFRESH_REGISTRY=os.environ.get("TENNIS_REFRESH_REGISTRY","0").strip().lower() in ("1","true","yes")
 seed=load(DATA/"tennis-known-u18.json",{}).get("records",[])
-seed_index={}
-for x in seed:
-    if x.get("name"):
-        seed_index[norm(x["name"])]={"name":x["name"],"age":x.get("age"),"age_status":"VERIFIED U18",
-          "source":x.get("source") or "Verified U18 registry","source_url":x.get("source_url"),
-          "evidence":"Previously verified U18 registry record."}
+# Keep seed DOB, review provenance, status, IDs and aliases intact.
+seed_index=registry_index(seed)
 
 # Routine field refreshes reuse the durable verified registry. Rebuilding the
 # junior universe and broad ATP/WTA age indexes is maintenance work and must not
 # sit in the time-critical tournament path.
 saved_registry=load(DATA/"tennis-u18-registry.json",{})
-saved_u18=registry_index(saved_registry.get("verified_u18",[]))
+saved_records=saved_registry.get("records") or saved_registry.get("verified_u18",[])
+saved_u18=registry_index(saved_records)
 saved_candidates=registry_index(saved_registry.get("junior_targeted_candidates",[]))
 
 with sync_playwright() as pw:
@@ -1450,7 +1398,13 @@ with sync_playwright() as pw:
         health["atp_age_index"]={"ok":True,"mode":"skipped-routine-field-refresh"}
         health["wta_age_index"]={"ok":True,"mode":"skipped-routine-field-refresh"}
         broad_age_index={}
-    u18_index={**junior_u18,**seed_index}
+    # Durable rows survive ranking omissions and birthdays. Reviewed corrections
+    # win over fresh, lower-quality age/year observations.
+    durable_records, current_records, reviewed_candidates = partition_registry(
+        [*saved_records, *junior_u18.values(), *seed_index.values()], TODAY)
+    known_age_index=registry_index(durable_records)
+    u18_index=registry_index(current_records)
+    junior_candidates={**junior_candidates, **registry_index(reviewed_candidates)}
 
     # If ATP/WTA official calendar discovery failed, keep the page useful with the
     # mapped public schedule while clearly identifying it as a fallback.
@@ -1473,8 +1427,16 @@ with sync_playwright() as pw:
     # Promote current bulk ATP/WTA ranking results into the persistent cache in memory
     # so they can immediately resolve tournament entrants during this run.
     for k,v in broad_age_index.items():
-        persistent_age_cache[k]={**persistent_age_cache.get(k,{}),**v,
-          "last_verified":NOW.isoformat(),"verification_method":"bulk_official_ranking"}
+        update_cache(persistent_age_cache, {**v,
+          "last_verified":NOW.isoformat(),"verification_method":"bulk_official_ranking"})
+
+    # Reconcile reviewed cache evidence before classifying any current field.
+    # A cache/registry DOB conflict must become review now, not after output.
+    durable_records,current_records,reviewed_candidates=partition_registry(
+        [*durable_records,*[r for r in persistent_age_cache.values() if reviewed(r)]],TODAY)
+    known_age_index=registry_index(durable_records)
+    u18_index=registry_index(current_records)
+    junior_candidates={**junior_candidates,**registry_index(reviewed_candidates)}
 
     for t in tournaments:
         people=participant_links(browser,t)
@@ -1487,23 +1449,23 @@ with sync_playwright() as pw:
         for p in people:
             k=norm(p["name"])
 
-            # 1. Exact verified U18 universe / persistent U18 cache.
-            if k in u18_index:
-                rec={**p,**u18_index[k],"screening_status":"VERIFIED_U18"}
-                parts.append(rec)
-                continue
-
+            # Event-date evidence overrides stale snapshots and bucket names.
             cached=persistent_age_cache.get(k)
-            if cached and cached.get("age_status")=="VERIFIED U18":
-                parts.append({**p,**cached,"screening_status":"VERIFIED_U18"})
+            known=known_age_index.get(k)
+            if cached and reviewed(cached) and not reviewed(known or {}):
+                known=cached
+            known=known or cached
+            status=age_status_on(known or {}, t.get("start_date"))
+            if status=="VERIFIED U18":
+                parts.append({**p,**known,"screening_status":"VERIFIED_U18"})
                 continue
-
-            # 2. Known adult evidence clears the player from targeted review.
-            if cached and cached.get("age_status")=="VERIFIED 18+":
-                parts.append({**p,**cached,"screening_status":"NO_U18_INDICATOR"})
+            if status=="VERIFIED 18+":
+                parts.append({**p,**known,"screening_status":"NO_U18_INDICATOR"})
                 continue
-            if k in broad_age_index and broad_age_index[k].get("age_status")=="VERIFIED 18+":
-                parts.append({**p,**broad_age_index[k],"screening_status":"NO_U18_INDICATOR"})
+            if known and known.get("age_evidence"):
+                rec={**p,**known,"screening_status":"TARGETED_REVIEW",
+                     "candidate_reason":"Reviewed age evidence requires exact DOB resolution."}
+                parts.append(rec);targeted.append(rec)
                 continue
 
             # 3. Exact junior-watch candidate (e.g. 2008 birth year).
@@ -1588,12 +1550,9 @@ with sync_playwright() as pw:
         for ap in t.get("acceptance_pool_people",[]) or []:
             k=norm(ap.get("name"))
             hit=None
-            if k in u18_index:
-                hit={**ap,**u18_index[k],"screening_status":"VERIFIED_U18"}
-            else:
-                cached=persistent_age_cache.get(k)
-                if cached and cached.get("age_status")=="VERIFIED U18":
-                    hit={**ap,**cached,"screening_status":"VERIFIED_U18"}
+            candidate=known_age_index.get(k) or persistent_age_cache.get(k)
+            if candidate and age_status_on(candidate,t.get("start_date"))=="VERIFIED U18":
+                hit={**ap,**candidate,"screening_status":"VERIFIED_U18"}
             if hit:
                 t["pre_draw_u18"].append(hit)
 
@@ -1619,12 +1578,17 @@ with sync_playwright() as pw:
 exposure={norm(p["name"]) for t in tournaments for p in t.get("confirmed_u18",[])}
 pre_draw_watch={norm(p["name"]) for t in tournaments for p in t.get("pre_draw_u18",[])}
 cache_verified=[record for record in persistent_age_cache.values()
-                if str(record.get("age_status") or "").upper()=="VERIFIED U18"]
-base_registry=merge_registry_records(u18_index.values(),exposure)
+                if age_status_on(record,TODAY)=="VERIFIED U18" or reviewed(record)]
+base_registry=merge_registry_records(durable_records,exposure)
 base_registry_ids={registry_identity(record) for record in base_registry}
 cache_promotion_ids={registry_identity(record) for record in cache_verified}-base_registry_ids
-registry=merge_registry_records([*base_registry,*cache_verified],exposure)
-targeted_registry=merge_registry_records(junior_candidates.values())
+all_registry,registry,reviewed_targeted=partition_registry(
+    [*base_registry,*cache_verified],TODAY,exposure)
+# Preserve the independent discovery queue without letting it replace reviews.
+known_names=registry_index(all_registry)
+new_candidates=[row for row in junior_candidates.values()
+                if norm(row.get("name")) not in known_names]
+targeted_registry=merge_registry_records([*reviewed_targeted,*new_candidates])
 
 exceptions=[]
 for t in tournaments:
@@ -1701,10 +1665,15 @@ schedule_out={
 }
 
 registry_out={
- "schema_version":1,"generated_at":NOW.isoformat(),
+ **{key:value for key,value in saved_registry.items()
+    if key not in ("records","verified_u18","junior_targeted_candidates","summary","source_health")},
+ "schema_version":2,"generated_at":NOW.isoformat(),
+ "records":all_registry,
  "verified_u18":registry,
  "junior_targeted_candidates":targeted_registry,
  "summary":{"unique_verified_u18":len(registry),
+            "durable_athletes":len(all_registry),
+            "historical_adults":sum(age_status_on(x,TODAY)=="VERIFIED 18+" for x in all_registry),
             "targeted_identity_reviews":len(targeted_registry),
             "age_cache_promotions":len(cache_promotion_ids)},
  "source_health":health.get("itf_juniors",[])
@@ -1798,6 +1767,7 @@ if critical_issues:
     raise SystemExit(2)
 
 AGE_CACHE_PATH.write_text(json.dumps({
+  **load(AGE_CACHE_PATH,{}),
   "schema_version":1,"generated_at":NOW.isoformat(),
   "records":persistent_age_cache
 },indent=2,ensure_ascii=False),encoding="utf-8")

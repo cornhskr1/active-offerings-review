@@ -9,7 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "scripts" / "refresh_tennis_intelligence.py"
 TREE = ast.parse(SOURCE.read_text(encoding="utf-8"), filename=str(SOURCE))
 FUNCTIONS = {node.name: node for node in TREE.body if isinstance(node, ast.FunctionDef)}
-NAMESPACE = {"re": re}
+from scripts.athlete_age_evidence import identity, merge_records
+NAMESPACE = {"re": re, "evidence_identity": identity, "merge_records": merge_records}
 for name in ("norm", "registry_identity", "merge_registry_records"):
     module = ast.Module(body=[FUNCTIONS[name]], type_ignores=[])
     exec(compile(module, str(SOURCE), "exec"), NAMESPACE)

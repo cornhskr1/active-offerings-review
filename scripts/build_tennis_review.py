@@ -14,6 +14,10 @@ import json
 import re
 from pathlib import Path
 from zoneinfo import ZoneInfo
+try:
+    from athlete_age_evidence import age_status_on, merge_records, reviewed, index_records
+except ModuleNotFoundError:
+    from scripts.athlete_age_evidence import age_status_on, merge_records, reviewed, index_records
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,13 +57,8 @@ def tennis_catalog_source_ids(season_map):
 
 
 def verified_registry_index(registry):
-    records = registry.get("verified_u18") or []
-    out = {}
-    for record in records:
-        for name in [record.get("name"), *(record.get("aliases") or [])]:
-            if name:
-                out[norm(name)] = record
-    return out
+    records = registry.get("records") or registry.get("verified_u18") or []
+    return index_records(records)
 
 
 def targeted_registry_index(registry):
@@ -80,7 +79,7 @@ def verified_age_cache_index(age_cache):
         values = records
     out = {}
     for record in values:
-        if str(record.get("age_status") or "").upper() != "VERIFIED U18":
+        if str(record.get("age_status") or "").upper() not in ("VERIFIED U18", "VERIFIED 18+") and not reviewed(record):
             continue
         for name in [record.get("name"), *(record.get("aliases") or [])]:
             if name:
@@ -120,7 +119,14 @@ def exact_active_matches(tournament, verified, targeted):
     for participant in participants:
         key = norm(participant.get("name"))
         if key in verified:
-            red[key] = {**participant, **verified[key]}
+            record = verified[key]
+            status = age_status_on(record, tournament.get("start_date"))
+            # Legacy registry fixtures without a status retain prior behavior;
+            # explicit adult or uncertain evidence can never become RED.
+            if status == "VERIFIED U18" or (not record.get("age_evidence") and not record.get("age_status")):
+                red[key] = {**participant, **record}
+            elif status != "VERIFIED 18+":
+                amber[key] = {**participant, **record}
         elif key in targeted:
             amber[key] = {**participant, **targeted[key]}
     return list(red.values()), list(amber.values())
@@ -134,8 +140,11 @@ def build_review(intelligence, registry, season_map, config, age_cache=None):
     blocked = []
     # A profile already verified U18 must be actionable immediately; it must not
     # wait for the slower weekly registry rebuild to be promoted.
-    verified = verified_age_cache_index(age_cache or {})
-    verified.update(verified_registry_index(registry))
+    candidates = [*verified_age_cache_index(age_cache or {}).values(),
+                  *verified_registry_index(registry).values()]
+    # Merge stable IDs and recorded aliases before indexing; audited evidence
+    # cannot be overwritten by a stale U18 cache or registry snapshot.
+    verified = verified_registry_index({"records": merge_records(candidates)})
     targeted = targeted_registry_index(registry)
 
     for tournament in intelligence.get("tournaments") or []:
