@@ -27,6 +27,7 @@ from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text, parse_mfl_schedule
 from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, parse_beach_calendar
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
+from thesportsdb_fixture_adapter import PublicClient, collect as collect_thesportsdb
 from european_basketball_fixture_adapter import parse_fixtures as parse_european_basketball_fixtures, validate_review_window as validate_european_basketball_window
 from fiba_report_fixture_adapter import fetch_fiba_report_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
@@ -180,26 +181,8 @@ CONTROLLED_CLASSIFIERS={
     "ubisoft-r6-calendar","pgl-cs2-calendar","esl-esports-calendar",
 }
 
-def thesportsdb_json(endpoint, params):
-    """Pace and retry the public feed so transient throttling does not erase leagues."""
-    time.sleep(2.1)
-    last_error = None
-    for attempt in range(4):
-        try:
-            r=requests.get(endpoint,params=params,headers=HEADERS,timeout=18)
-            if r.status_code==429:
-                retry_after=r.headers.get("Retry-After")
-                wait=float(retry_after) if retry_after and retry_after.isdigit() else 3.0*(attempt+1)
-                time.sleep(min(wait,12.0))
-                last_error=RuntimeError("TheSportsDB rate limit persisted after retry")
-                continue
-            r.raise_for_status()
-            return r.json()
-        except Exception as exc:
-            last_error=exc
-            if attempt<3:
-                time.sleep(2.0*(attempt+1))
-    raise last_error or RuntimeError("TheSportsDB request failed")
+THESPORTSDB_CLIENT = PublicClient()
+
 
 def catalog_blob():
     p = DATA/"catalog-live.json"
@@ -433,36 +416,6 @@ def parse_event(source, ev):
             pass
     return parsed
 
-def parse_thesportsdb_event(source, ev):
-    timestamp=ev.get("strTimestamp")
-    if timestamp and not str(timestamp).endswith("Z"):
-        timestamp=f"{timestamp}Z"
-    if not timestamp:
-        date=ev.get("dateEvent")
-        time=ev.get("strTime") or "12:00:00"
-        timestamp=f"{date}T{time}Z" if date else None
-    home=ev.get("strHomeTeam")
-    away=ev.get("strAwayTeam")
-    name=f"{away} at {home}" if home and away else (ev.get("strEvent") or "Scheduled event")
-    raw_status=str(ev.get("strStatus") or "").upper()
-    status="COMPLETED" if raw_status in ("FT","AET","MATCH FINISHED","FINISHED") else "UPCOMING"
-    venue=ev.get("strVenue")
-    country=ev.get("strCountry")
-    location=" · ".join(x for x in (venue,country) if x) or None
-    return {
-        "id":str(ev.get("idEvent") or f'{source["id"]}-{timestamp}-{name}'),
-        "source_id":source["id"],
-        "sport":source["sport"],
-        "league":source["league"],
-        "region":source.get("region"),
-        "name":name,
-        "start_time":timestamp,
-        "status":status,
-        "status_detail":ev.get("strStatus") or "Scheduled",
-        "season_stage":None,
-        "location":location,
-        "source_endpoint":source["endpoint"]
-    }
 
 def parse_mlbstats_event(source, game):
     teams=game.get("teams") or {}
@@ -3670,58 +3623,21 @@ for source in CFG.get("sources",[]):
             "checked_at":NOW_UTC.isoformat()
         })
         continue
-    if source.get("source_type")=="thesportsdb":
+    if source.get("source_type") in ("thesportsdb", "thesportsdb-day"):
+        diagnostics = {}
         try:
-            data=thesportsdb_json(source["endpoint"],{"id":source["league_id"]})
-            for ev in data.get("events") or []:
-                parsed=parse_thesportsdb_event(source,ev)
-                if not parsed.get("start_time"):
-                    continue
-                event_date=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00")).astimezone(TZ).date()
-                if event_date<TODAY or event_date>END:
-                    continue
-                key=(parsed["id"],parsed["start_time"])
+            fixtures, diagnostics = collect_thesportsdb(source, TODAY, END, TZ, NOW_UTC, THESPORTSDB_CLIENT)
+            for parsed in fixtures:
+                key = (parsed["id"], parsed["start_time"])
                 if key in seen:
                     continue
                 seen.add(key)
                 events.append(parsed)
-                count+=1
-        except Exception as e:
-            errors.append(str(e)[:110])
-        source_status.append({
-            **source,
-            "approved_catalog":True,
-            "ok":not errors,
-            "events":count,
-            "errors":errors[:3],
-            "checked_at":NOW_UTC.isoformat()
-        })
-        continue
-    if source.get("source_type")=="thesportsdb-day":
-        for offset in range((END-TODAY).days+1):
-            day=TODAY+datetime.timedelta(days=offset)
-            try:
-                data=thesportsdb_json(source["endpoint"],{"d":day.isoformat(),"s":source.get("sport_query") or source["sport"]})
-                for ev in data.get("events") or []:
-                    if str(ev.get("idLeague") or "")!=str(source["league_id"]):
-                        continue
-                    parsed=parse_thesportsdb_event(source,ev)
-                    key=(parsed["id"],parsed["start_time"])
-                    if key in seen:
-                        continue
-                    seen.add(key)
-                    events.append(parsed)
-                    count+=1
-            except Exception as e:
-                errors.append(f"{day.isoformat()}: {str(e)[:110]}")
-        source_status.append({
-            **source,
-            "approved_catalog":True,
-            "ok":not errors or count>0,
-            "events":count,
-            "errors":errors[:3],
-            "checked_at":NOW_UTC.isoformat()
-        })
+                count += 1
+        except Exception as exc:
+            diagnostics = {"ok": False, "errors": [str(exc)[:180]], "coverage_complete": False}
+        source_status.append({**source, **diagnostics, "approved_catalog": True,
+                              "events": count, "checked_at": NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="mlbstats":
         try:
