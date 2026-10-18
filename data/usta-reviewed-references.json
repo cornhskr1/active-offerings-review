@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-18T17:50:09.473626+00:00",
+  "purpose": "Exact calendar provenance for existing ITF tournaments only. No new fixtures, approval expansion, participant verification or complete USTA coverage.",
+  "calendars": {
+    "men": {
+      "source_id": "tennis-usta-pro-circuit-men",
+      "url": "https://www.usta.com/content/dam/usta/pro-circuit/2026/2026-mens-pro-circuit-calendar.pdf",
+      "sha256": "a8fd391c0f953f89e38d05098263712290f9a861223dfc596b7c289173975782",
+      "published_revision": "2026-08-26"
+    },
+    "women": {
+      "source_id": "tennis-usta-pro-circuit-women",
+      "url": "https://www.usta.com/content/dam/usta/pro-circuit/2026/2026-womens-pro-circuit-calendar.pdf",
+      "sha256": "79ae089ef7274eca4a09df7db2a758818465c1cbdc4ac8529ff9c36724734274",
+      "published_revision": "2026-08-26"
+    }
+  },
+  "references": [
+    {
+      "calendar": "men",
+      "source_id": "tennis-itf-world-tour-men",
+      "source_url": "https://www.itftennis.com/en/tournament/m15-lexington-ky/usa/2026/m-itf-usa-2026-042/fact-sheet/",
+      "tour_id": "itf-men",
+      "gender": "MEN",
+      "tournament": "M15 Lexington, KY",
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-18",
+      "level": "M15",
+      "week_start": "2026-10-12",
+      "usta_row": "           12-Oct-2026                   Week 41                                                                                  Austin, TX (H)                        Lexington, KY (H)",
+      "usta_cell": "Lexington, KY (H)",
+      "usta_page": 1,
+      "usta_week_number": 41,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "OFFICIAL_PAGE_RETRIEVED",
+        "url": "https://www.itftennis.com/en/tournament/m15-lexington-ky/usa/2026/m-itf-usa-2026-042/",
+        "limitation": null
+      }
+    },
+    {
+      "calendar": "men",
+      "source_id": "tennis-itf-world-tour-men",
+      "source_url": "https://www.itftennis.com/en/tournament/m25-austin-tx/usa/2026/m-itf-usa-2026-045/fact-sheet/",
+      "tour_id": "itf-men",
+      "gender": "MEN",
+      "tournament": "M25 Austin, TX",
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-18",
+      "level": "M25",
+      "week_start": "2026-10-12",
+      "usta_row": "           12-Oct-2026                   Week 41                                                                                  Austin, TX (H)                        Lexington, KY (H)",
+      "usta_cell": "Austin, TX (H)",
+      "usta_page": 1,
+      "usta_week_number": 41,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "OFFICIAL_PAGE_RETRIEVED",
+        "url": "https://www.itftennis.com/en/tournament/m25-austin-tx/usa/2026/m-itf-usa-2026-045/fact-sheet/",
+        "limitation": null
+      }
+    },
+    {
+      "calendar": "women",
+      "source_id": "tennis-itf-world-tour-women",
+      "source_url": "https://www.itftennis.com/en/tournament/w100-edmond-ok/usa/2026/w-itf-usa-2026-049/fact-sheet/",
+      "tour_id": "itf-women",
+      "gender": "WOMEN",
+      "tournament": "W100 Edmond, OK",
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-18",
+      "level": "W100",
+      "week_start": "2026-10-12",
+      "usta_row": "            12-Oct-2026                    Week 41                                                                          Edmond, OK (H)                                                           Redding, CA (H)",
+      "usta_cell": "Edmond, OK (H)",
+      "usta_page": 1,
+      "usta_week_number": 41,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "OFFICIAL_PAGE_RETRIEVED",
+        "url": "https://www.itftennis.com/en/tournament/w100-edmond-ok/usa/2026/w-itf-usa-2026-049/",
+        "limitation": null
+      }
+    },
+    {
+      "calendar": "women",
+      "source_id": "tennis-itf-world-tour-women",
+      "source_url": "https://www.itftennis.com/en/tournament/w35-redding-ca/usa/2026/w-itf-usa-2026-050/fact-sheet/",
+      "tour_id": "itf-women",
+      "gender": "WOMEN",
+      "tournament": "W35 Redding, CA",
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-18",
+      "level": "W35",
+      "week_start": "2026-10-12",
+      "usta_row": "            12-Oct-2026                    Week 41                                                                          Edmond, OK (H)                                                           Redding, CA (H)",
+      "usta_cell": "Redding, CA (H)",
+      "usta_page": 1,
+      "usta_week_number": 41,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "OFFICIAL_PAGE_RETRIEVED",
+        "url": "https://www.itftennis.com/en/tournament/w35-redding-ca/usa/2026/w-itf-usa-2026-050/",
+        "limitation": null
+      }
+    },
+    {
+      "calendar": "men",
+      "source_id": "tennis-itf-world-tour-men",
+      "source_url": "https://www.itftennis.com/en/tournament/m15-ithaca/usa/2026/m-itf-usa-2026-041/fact-sheet/",
+      "tour_id": "itf-men",
+      "gender": "MEN",
+      "tournament": "M15 Ithaca",
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-25",
+      "level": "M15",
+      "week_start": "2026-10-19",
+      "usta_row": "           19-Oct-2026                   Week 42                                  Fort Worth, TX ATP 75 (H)                                                              Ithaca, NY (IH)",
+      "usta_cell": "Ithaca, NY (IH)",
+      "usta_page": 1,
+      "usta_week_number": 42,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "OFFICIAL_SEARCH_RESULT",
+        "url": "https://www.itftennis.com/en/tournament/m15-ithaca/usa/2026/m-itf-usa-2026-041/",
+        "limitation": "Fact-sheet open returned accessibility error. Official root URL search result, indexed last week, confirmed exact key, grade and dates."
+      }
+    },
+    {
+      "calendar": "women",
+      "source_id": "tennis-itf-world-tour-women",
+      "source_url": "https://www.itftennis.com/en/tournament/w35-bakersfield-ca/usa/2026/w-itf-usa-2026-057/fact-sheet/",
+      "tour_id": "itf-women",
+      "gender": "WOMEN",
+      "tournament": "W35 Bakersfield, CA",
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-25",
+      "level": "W35",
+      "week_start": "2026-10-19",
+      "usta_row": "            19-Oct-2026                    Week 42                                                                                                                              Austin, TX (H)     Bakersfield, CA (H)",
+      "usta_cell": "Bakersfield, CA (H)",
+      "usta_page": 1,
+      "usta_week_number": 42,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "ACCESSIBILITY_ERROR",
+        "url": "https://www.itftennis.com/en/tournament/w35-bakersfield-ca/usa/2026/w-itf-usa-2026-057/fact-sheet/",
+        "limitation": "Fact-sheet and root page returned tool accessibility errors; not a fresh page verification. No bypass attempted."
+      }
+    },
+    {
+      "calendar": "women",
+      "source_id": "tennis-itf-world-tour-women",
+      "source_url": "https://www.itftennis.com/en/tournament/w50-austin/usa/2026/w-itf-usa-2026-052/fact-sheet/",
+      "tour_id": "itf-women",
+      "gender": "WOMEN",
+      "tournament": "W50 Austin",
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-25",
+      "level": "W50",
+      "week_start": "2026-10-19",
+      "usta_row": "            19-Oct-2026                    Week 42                                                                                                                              Austin, TX (H)     Bakersfield, CA (H)",
+      "usta_cell": "Austin, TX (H)",
+      "usta_page": 1,
+      "usta_week_number": 42,
+      "date_basis": "USTA corroborates week-start only; end_date is an unchanged ITF snapshot guard.",
+      "itf_verification": {
+        "status": "ACCESSIBILITY_ERROR",
+        "url": "https://www.itftennis.com/en/tournament/w50-austin/usa/2026/w-itf-usa-2026-052/fact-sheet/",
+        "limitation": "Fact-sheet and root page returned tool accessibility errors; not a fresh page verification. No bypass attempted."
+      }
+    }
+  ],
+  "limitations": [
+    "Fort Worth ATP 75 appears for week 2026-10-19 in the USTA men calendar but has no current canonical ATP Challenger row; do not infer complete USTA coverage.",
+    "End dates are ITF snapshot-derived, never inferred from a seven-day USTA week.",
+    "Calendar grades are not literal dollar prize amounts: M25 Austin and W35 Redding official pages list $30000; grade values remain M25 and W35.",
+    "Existing participant and U18 restrictions remain unchanged."
+  ]
+}
