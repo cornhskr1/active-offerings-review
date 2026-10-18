@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T16:58:05.667073+00:00",
-  "schedule_generated_at": "2026-10-18T16:44:56.738338+00:00",
+  "registry_generated_at": "2026-10-18T17:43:08.347924+00:00",
+  "schedule_generated_at": "2026-10-18T17:28:43.807011+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 361,
-      "ADAPTER_GAP": 175,
+      "ADAPTER_CONFIGURED": 362,
+      "ADAPTER_GAP": 174,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 277
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 185,
+    "reported_gap_labels": 184,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 139,
+      "adapter_gaps": 138,
       "pending_dates": 89
     },
     "Surfing": {
@@ -9256,11 +9256,11 @@
       "season_window": "August 15, 2026–May 17, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-germany-dfb-pokal-frauen-women",
-          "type": "coverage-gap",
+          "type": "official-dfb-womens-cup-fixtures",
           "configured_league": "DFB-Pokal Frauen | Women",
           "refresh_ok": true,
           "events_in_window": 0
@@ -9514,11 +9514,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -11728,11 +11728,11 @@
           "id": "uefa-soccer-luxembourg-national-division-bgl-ligue-men",
           "type": "official-flf-bgl-next-round",
           "configured_league": "National Division / BGL Ligue | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -12653,11 +12653,11 @@
           "id": "soccer-italy-serie-a-women",
           "type": "official-figc-serie-a-women-fixtures",
           "configured_league": "Serie A | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
