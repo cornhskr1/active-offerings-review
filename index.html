@@ -1217,7 +1217,7 @@ function renderIssueBoard(cards,events){
       const severity=red?'red':'amber';
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
-      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED','MATCHUP NOT VERIFIED'].includes(c.type));
+      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED','MATCHUP NOT VERIFIED','POSTPONED FIXTURE'].includes(c.type));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
       const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
@@ -1450,7 +1450,7 @@ function heldMatchupAttention(dayKey){
 function postponedFixtureAttention(dayKey){
   return (DATA.global?.sources||[]).filter(source=>source.approved_catalog!==false&&
     Number(source.postponed_fixtures_held||0)>0).map(source=>({
-    severity:'AMBER',type:'POSTPONED FIXTURE',sport:source.sport,league:source.league,region:source.region,
+    severity:'AMBER',type:'POSTPONED FIXTURE',event_date_missing:true,sport:source.sport,league:source.league,region:source.region,
     event:`${source.postponed_fixtures_held} postponed fixture${source.postponed_fixtures_held===1?'':'s'} held · new date pending`,
     start_time:`${dayKey}T12:00:00-05:00`,
     reason:'The publisher explicitly marks this fixture postponed without a replacement kickoff. It is excluded from timed scheduled activity, not treated as cleared.',

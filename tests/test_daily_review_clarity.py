@@ -48,6 +48,10 @@ DATA.global={sources:[{sport:'Soccer',league:'Chance Liga',ok:true,postponed_fix
 const cards=postponedFixtureAttention(todayKey());
 assert.equal(cards.length,1);assert.equal(cards[0].type,'POSTPONED FIXTURE');
 assert.equal(cards[0].league,'Chance Liga');assert.match(cards[0].event,/1 postponed fixture/);
+const rendered=renderIssueBoard(cards,[]);
+assert.match(rendered,/1 coverage issue/);assert.doesNotMatch(rendered,/12:00/);
+const mixed=renderIssueBoard([...cards,{...cards[0],type:'AGE EVIDENCE REVIEW',event:'Other review',event_date_missing:true}],[]);
+assert.doesNotMatch(mixed,/12:00/);
 """)
 
     def test_each_schedule_feed_is_checked(self):
