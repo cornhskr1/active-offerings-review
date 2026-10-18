@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T15:47:08.909141+00:00",
-  "schedule_generated_at": "2026-10-18T15:34:37.029468+00:00",
+  "registry_generated_at": "2026-10-18T16:06:58.144273+00:00",
+  "schedule_generated_at": "2026-10-18T15:52:29.578758+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 356,
-      "ADAPTER_GAP": 179,
+      "ADAPTER_CONFIGURED": 358,
+      "ADAPTER_GAP": 177,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 145
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 279
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 189,
+    "reported_gap_labels": 187,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 143,
+      "adapter_gaps": 141,
       "pending_dates": 89
     },
     "Surfing": {
@@ -6336,7 +6336,7 @@
           "id": "rugby-saru-currie-premier",
           "type": "saru-matches",
           "configured_league": "Currie Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9193,11 +9193,11 @@
       "season_window": "July 24, 2026–May 12, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-czech-republic-czech-cup-men",
-          "type": "coverage-gap",
+          "type": "official-czech-cup-fixtures",
           "configured_league": "Czech Cup | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -9221,10 +9221,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech First League | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -11728,11 +11728,11 @@
           "id": "uefa-soccer-luxembourg-national-division-bgl-ligue-men",
           "type": "official-flf-bgl-next-round",
           "configured_league": "National Division / BGL Ligue | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -12781,10 +12781,10 @@
           "type": "official-nike-liga-fixtures",
           "configured_league": "Slovak First Football League / Slovak 1. Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -14439,17 +14439,17 @@
       "season_window": "August–May",
       "season_state": "RECURRING_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "caf-soccer-zambia-zambia-super-league-men",
-          "type": "coverage-gap",
+          "type": "official-zpl-transitional-calendars",
           "configured_league": "Zambia Super League | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 10
     },
     {
       "sport": "Soccer",
@@ -15331,11 +15331,11 @@
           "id": "volleyball-italy-superlega",
           "type": "official-italy-volleyball-fixtures",
           "configured_league": "SuperLega | Men",
-          "refresh_ok": true,
-          "events_in_window": 10
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 0
     },
     {
       "sport": "Volleyball",
