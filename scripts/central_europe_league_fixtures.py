@@ -31,8 +31,14 @@ def _event(source, identifier, home, away, date, clock, zone, link, round_number
     }
 
 
-def parse_fixtures(page, source):
-    """Return timed candidates, untimed/reserve holds, and verified page row count."""
+def parse_fixtures(page, source, *, hold_counts=None):
+    """Return timed candidates, all held rows, and verified page row count.
+
+    Optional hold_counts exposes explicitly postponed fixtures separately from
+    untimed/reserve holds, without changing the established three-value return.
+    """
+    if hold_counts is not None:
+        hold_counts["postponed_fixtures_held"] = 0
     kind = SOURCES[source["id"]]
     if source.get("catalog_terms") != [source["league"]]:
         raise ValueError("League catalog scope changed")
@@ -45,8 +51,24 @@ def parse_fixtures(page, source):
         rows = doc.xpath('//ul[contains(@class,"scoreboard-horizontal")]/li')
         if not rows:
             raise ValueError("Chance Liga scoreboard fixtures missing")
-        events, held, seen = [], 0, set()
+        events, held, seen, postponed = [], 0, set(), set()
         for row in rows:
+            # An explicitly postponed publisher card has no fixture link or
+            # replacement kickoff. Keep it as a visible hold instead of losing
+            # every other verified match in the rolling panel. Other missing
+            # links still fail closed below.
+            notice = " ".join(row.xpath('string(.//span[contains(@class,"score-container")]/span[@class="info"])').split())
+            if notice == "odloženo":
+                teams = row.xpath('.//span[contains(@class,"game-container")]/span[contains(@class,"team")]//img/@alt')
+                date_text = " ".join(row.xpath('string(.//span[contains(@class,"info-container")]/span[contains(@class,"date")])').split())
+                if (len(teams) != 2 or any(not team.strip() for team in teams)
+                        or teams[0] == teams[1] or tuple(teams) in postponed
+                        or date_text or row.xpath('.//b[contains(@class,"time")]')
+                        or row.xpath('.//a[contains(@href,"/zapas/")]')):
+                    raise ValueError("Chance Liga postponed fixture evidence changed")
+                postponed.add(tuple(teams))
+                held += 1
+                continue
             links = row.xpath('.//span[contains(@class,"score-container")]//span[contains(@class,"score")]/b/a[contains(@href,"/zapas/")]')
             if len(links) != 1:
                 raise ValueError("Chance Liga match link changed")
@@ -73,6 +95,8 @@ def parse_fixtures(page, source):
                 kickoff.group(1), PRAGUE, urljoin(source["endpoint"], links[0].get("href")), round_match.group(1)))
         if not events and not held:
             raise ValueError("Chance Liga contains no upcoming fixture evidence")
+        if hold_counts is not None:
+            hold_counts["postponed_fixtures_held"] = len(postponed)
         return events, held, len(rows)
     if kind == "national":
         if "Chance Národní Liga" not in doc.xpath("string(//title)"):

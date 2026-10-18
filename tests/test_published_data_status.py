@@ -28,6 +28,7 @@ class PublishedDataStatusTests(unittest.TestCase):
         self.run_js("""
 const DATA={global:{window_start:'2026-10-02',window_end:'2026-10-09'},
  basketball:{window_start:'2026-10-02',window_end:'2026-10-09'}};
+DATA.college={...DATA.global};DATA.tennisReview={...DATA.global};
 function todayKey(){return '2026-10-02'}
 function addDays(){return '2026-10-09'}
 """, """
@@ -40,7 +41,7 @@ DATA.basketball.window_end='2026-10-05';
 assert.equal(publishedLoadStatus([['global',true],['basketball',true]]).tone,'status-warn');
 delete DATA.basketball.window_end;
 assert.match(publishedLoadStatus([['global',true],['basketball',true]]).text,/need verification/);
-""", ["scheduleWindowStatus", "publishedLoadStatus"])
+""", ["scheduleWindowStatus", "reviewFeedWindows", "publishedLoadStatus"])
 
     def test_schedule_windows_hold_missing_future_and_short_dates(self):
         self.run_js("", """
@@ -62,7 +63,7 @@ assert.equal(publishedLoadStatus([['global',true],['known',false]]).tone,'status
 const result=publishedLoadStatus([['global',true]],['Known U18']);
 assert.match(result.text,/Display issue: Known U18/);
 assert.equal(result.tone,'status-warn');
-""", ["scheduleWindowStatus", "publishedLoadStatus"])
+""", ["scheduleWindowStatus", "reviewFeedWindows", "publishedLoadStatus"])
 
     def test_source_dates_distinguish_retained_and_missing_copies(self):
         self.run_js("""
@@ -106,7 +107,7 @@ function renderAll(){return ['Restriction Watch']}
  assert.equal(nodes.dataTime.textContent,'2026-10-02T20:00:00Z');
  assert.deepEqual(LAST_LOAD_RESULTS,[['global',true],['known',false]]);
 })().catch(e=>{console.error(e);process.exitCode=1});
-""", ["scheduleWindowStatus", "publishedLoadStatus", "loadAll"])
+""", ["scheduleWindowStatus", "reviewFeedWindows", "publishedLoadStatus", "loadAll"])
 
 
 if __name__ == "__main__":
