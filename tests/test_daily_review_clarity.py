@@ -54,6 +54,22 @@ const mixed=renderIssueBoard([...cards,{...cards[0],type:'AGE EVIDENCE REVIEW',e
 assert.doesNotMatch(mixed,/12:00/);
 """)
 
+    def test_partial_basketball_fixtures_keep_phase_coverage_attention(self):
+        self.run_js("""
+const assert=require('node:assert/strict'),fs=require('fs');
+for(const [key,path] of Object.entries(FILES))DATA[key]=JSON.parse(fs.readFileSync(path));
+const ids=new Set(['basketball-euroleague','eurocup-basketball','basketball-womens-euroleague','fiba-bcl']);
+const sources=JSON.parse(fs.readFileSync('data/global-schedule-sources.json')).sources.filter(s=>ids.has(s.id));
+assert.equal(sources.length,4);
+DATA.global={sources:sources.map(s=>({...s,ok:true,events:8}))};
+const cards=scheduleCoverageAttention('2026-10-18');
+for(const source of sources){
+ assert.equal(source.coverage_status,'partial');
+ const label=mappedCatalogEventForSource(source.id)?.catalog_event||source.league;
+ assert.ok(cards.some(c=>c.league===label&&c.type==='SCHEDULE COVERAGE GAP'),source.id);
+}
+""")
+
     def test_each_schedule_feed_is_checked(self):
         self.run_js("""
 const assert=require('node:assert/strict');

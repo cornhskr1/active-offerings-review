@@ -26,8 +26,9 @@ class OfficialWindowActivityTests(unittest.TestCase):
                 end = datetime.date.fromisoformat(event.get("end_date") or event["start_date"])
                 if start <= review_end and end >= today:
                     current.append((event["source_id"], start, end))
-        self.assertEqual(11, len(current))
-        self.assertIn("basketball-euroleague", {sid for sid, _, _ in current})
+        self.assertEqual(9, len(current))
+        self.assertNotIn("basketball-euroleague", {sid for sid, _, _ in current})
+        self.assertNotIn("basketball-womens-euroleague", {sid for sid, _, _ in current})
         self.assertIn("surfing-wsl-championship-tour-women", {sid for sid, _, _ in current})
         self.assertFalse(any(reviewable_window_start(start, end, today, review_end)
                              for _, start, end in current))

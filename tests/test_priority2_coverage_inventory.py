@@ -670,7 +670,6 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             "Copa Super 8 | Men": "basketball-br-super8",
             "Copa del Rey | Men": "basketball-es-copa",
             "Coppa Italia | Men": "basketball-it-cup",
-            "EuroLeague | Men": "basketball-euroleague",
         }
         for league, source_id in expected_windows.items():
             with self.subTest(league=league):
@@ -686,9 +685,19 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual([], danish["sources"])
         self.assertIn("full Danish Cup schedule", danish["hold_reason"])
 
+    def test_verified_basketball_windows_are_promoted_to_exact_fixture_adapters(self):
+        for league, source_id, adapter in (
+            ("EuroLeague | Men", "basketball-euroleague", "official-european-basketball-fixtures"),
+            ("FIBA Women's EuroLeague | Women", "basketball-womens-euroleague", "official-fiba-report-fixtures"),
+        ):
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(adapter, row["sources"][0]["type"])
+
     def test_third_basketball_source_batch_uses_official_windows(self):
         dated_windows = {
-            "FIBA Women's EuroLeague | Women": "basketball-womens-euroleague",
             "French Cup | Men": "basketball-fr-cup",
             "Greek Cup | Men": "basketball-gr-cup",
             "Greek Super Cup | Men": "basketball-gr-supercup",
