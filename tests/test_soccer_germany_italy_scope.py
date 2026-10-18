@@ -36,7 +36,7 @@ class GermanyItalySoccerScopeTests(unittest.TestCase):
     def test_german_womens_calendar_does_not_inherit_mens_adapter(self):
         expected = {
             "soccer-germany-frauen-bundesliga-women": (("2026-08-21", "2027-05-23"), "official-dfb-frauen-bundesliga-season", "ADAPTER_CONFIGURED"),
-            "soccer-germany-dfb-pokal-frauen-women": (("2026-08-15", "2027-05-17"), "coverage-gap", "ADAPTER_GAP"),
+            "soccer-germany-dfb-pokal-frauen-women": (("2026-08-15", "2027-05-17"), "official-dfb-womens-cup-fixtures", "ADAPTER_GAP"),
         }
         for key, (dates, source_type, coverage_state) in expected.items():
             with self.subTest(key=key):
@@ -44,7 +44,15 @@ class GermanyItalySoccerScopeTests(unittest.TestCase):
                 source = self.sources[event["source_id"]]
                 self.assertEqual(dates, (event["season_start_date"], event["season_end_date"]))
                 self.assertEqual(source_type, source["source_type"])
-                self.assertEqual(coverage_state, self.inventory[key]["coverage_state"])
+                # Generated inventory may lag this source-only release until the
+                # normal refresh; it must never borrow the men's identity.
+                allowed_states = {coverage_state}
+                if source_type == "official-dfb-womens-cup-fixtures":
+                    allowed_states.add("ADAPTER_CONFIGURED")
+                    self.assertEqual("DFB-Pokal Frauen | Women", source["league"])
+                    self.assertEqual("partial", source["coverage_status"])
+                    self.assertFalse(source["coverage_complete"])
+                self.assertIn(self.inventory[key]["coverage_state"], allowed_states)
                 self.assertIn("dfb.de", source["official_schedule_url"])
 
     def test_german_supercup_is_the_completed_mens_event(self):
