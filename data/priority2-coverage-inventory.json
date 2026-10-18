@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T16:06:58.144273+00:00",
-  "schedule_generated_at": "2026-10-18T15:52:29.578758+00:00",
+  "registry_generated_at": "2026-10-18T16:28:17.641041+00:00",
+  "schedule_generated_at": "2026-10-18T16:13:20.334230+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,19 +10,19 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 358,
+      "ADAPTER_CONFIGURED": 359,
       "ADAPTER_GAP": 177,
       "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 145
+      "OFFICIAL_WINDOW_ONLY": 144
     },
     "season_states": {
       "DATED_WINDOW": 221,
       "DESCRIPTIVE_WINDOW": 48,
       "DOCUMENTED_HOLD": 65,
       "EVENT_BASED_APPROVAL": 25,
-      "PARTIAL_WINDOW": 64,
+      "PARTIAL_WINDOW": 66,
       "PENDING_DATES": 31,
-      "RECURRING_WINDOW": 279
+      "RECURRING_WINDOW": 277
     },
     "reported_gap_areas": 14,
     "reported_gap_labels": 187,
@@ -258,7 +258,7 @@
       "split_children": 10,
       "no_linked_source": 2,
       "adapter_gaps": 8,
-      "pending_dates": 0
+      "pending_dates": 2
     },
     "Soccer": {
       "identities": 353,
@@ -6320,16 +6320,16 @@
       "identity_key": "rugby-za-currie-cup",
       "approval_parent": "Currie Cup | Men",
       "kind": "catalog",
-      "season_window": "July–September",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "June 13–September 12, 2026 · published division fixtures",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
       "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
-          "id": "rugby-saru",
-          "type": "coverage-gap",
-          "configured_league": "South African Rugby Union competitions",
-          "refresh_ok": true,
+          "id": "rugby-saru-currie-first",
+          "type": "saru-exact-matches",
+          "configured_league": "Currie Cup | Men",
+          "refresh_ok": false,
           "events_in_window": 0
         },
         {
@@ -6993,16 +6993,16 @@
       "identity_key": "rugby-us-womens-events",
       "approval_parent": "Women’s USA Rugby Events | Women",
       "kind": "catalog",
-      "season_window": "September 20, 2026 · current published event",
-      "season_state": "RECURRING_WINDOW",
+      "season_window": "September 20–October 30, 2026 · USA Women WXV subset",
+      "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "rugby-usa",
-          "type": "official-event-window",
+          "type": "saru-exact-matches",
           "configured_league": "Women’s USA Rugby Events | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9115,10 +9115,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Croatian Football League / SuperSport HNL | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -10039,11 +10039,11 @@
           "id": "uefa-soccer-faroe-islands-faroe-islands-premier-league-men",
           "type": "official-fsf-meistaradeildin-next-round",
           "configured_league": "Faroe Islands Premier League | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -11623,10 +11623,10 @@
           "type": "official-fscg-cfl-round",
           "configured_league": "Montenegrin First League | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
@@ -15311,10 +15311,10 @@
           "type": "official-italy-volleyball-fixtures",
           "configured_league": "Serie A1 | Women",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 9
     },
     {
       "sport": "Volleyball",
