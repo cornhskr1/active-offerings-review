@@ -1,0 +1,49 @@
+{
+  "observed_on": "2026-10-18",
+  "evidence_kind": "Minimal observations from ordinary unauthenticated GETs of official public pages; not fabricated match data.",
+  "calendars": [
+    {
+      "source_id": "chile-lnb",
+      "identity_key": "basketball-cl-lnb",
+      "url": "https://lnbchile.com/liga/uno/calendario",
+      "http_status": 200,
+      "response_bytes": 49174,
+      "response_sha256": "dc92ab1575e8978ed807cbb487416359fa3009b237f482a5256f3942d962d6d8",
+      "title": "Calendario Liga Chery | LNB Chile",
+      "competition_slug": "liga/uno",
+      "calendar_component_competition_id": 1,
+      "match_links": 0,
+      "embedded_scheduled_at_fields": 0,
+      "coverage_conclusion": "Public HTML is a calendar shell, not an explicitly empty fixture response."
+    },
+    {
+      "source_id": "chile-copa",
+      "identity_key": "basketball-cl-copa",
+      "url": "https://lnbchile.com/copa-chile/calendario",
+      "http_status": 200,
+      "response_bytes": 48760,
+      "response_sha256": "71691766ddd36087eb53343d8a661d124d9f5b180b2ce45008c0564d3d753942",
+      "title": "Calendario Copa Chile | LNB Chile",
+      "competition_slug": "copa-chile",
+      "calendar_component_competition_id": 3,
+      "match_links": 0,
+      "embedded_scheduled_at_fields": 0,
+      "coverage_conclusion": "Public HTML is a calendar shell, not an explicitly empty fixture response."
+    }
+  ],
+  "date_interpretation": {
+    "timezone": "America/Santiago",
+    "timezone_basis": "The official CalendarPage groups scheduledAt values with timeZone America/Santiago; formatChileDate uses the same zone.",
+    "calendar_script_url": "https://lnbchile.com/_next/static/chunks/02u~wpvgdw~oq.js?dpl=dpl_3XtsiV7JUgtBhMnXp352pv7tHkMg",
+    "display_season_label": "Temporada 2026",
+    "display_label_is_fixture_year_evidence": false,
+    "year_basis": "The current CalendarPage script hard-codes the display label. No fixture timestamp or authoritative season payload is present in these public HTML responses."
+  },
+  "blocked_dependency": "Current site code obtains fixtures from an authenticated backend. No credential was used, no authenticated backend result was obtained, and no backend endpoint should be configured.",
+  "historical_copa_evidence": {
+    "url": "https://lnbchile.com/copa-chile",
+    "final_url": "https://lnbchile.com/copa-chile/match/con-vs-eso-2026-05-08",
+    "note": "The public page names CD Univ. Concepcion as champion, 80-74 versus ESO. This historical final is not evidence of a current or upcoming schedule."
+  },
+  "revisit_condition": "A supported public response with exact competition, authoritative fixture year/date, and timezone or offset must be verified before these identities leave coverage-gap."
+}

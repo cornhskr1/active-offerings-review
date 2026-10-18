@@ -17,6 +17,9 @@ on:
       - scripts/uae_pro_league_fixtures.py
       - scripts/qsl_cup_fixture_adapter.py
       - scripts/audit_priority2_coverage.py
+      - scripts/audit_basketball_coverage.py
+      - scripts/european_basketball_fixture_adapter.py
+      - scripts/fiba_report_fixture_adapter.py
       - scripts/publisher_basketball_beach.py
       - scripts/arg_lnb_fixture_adapter.py
       - scripts/pfl_event_calendar.py
@@ -56,13 +59,15 @@ jobs:
         run: python3 scripts/build_competition_identity_registry.py
       - name: Rebuild Priority 2 coverage inventory
         run: python3 scripts/audit_priority2_coverage.py
+      - name: Reconcile basketball operational coverage
+        run: python3 scripts/audit_basketball_coverage.py
       - name: Validate division mappings and aliases
-        run: python3 -m unittest tests.test_competition_identity_registry tests.test_basketball_divisions
+        run: python3 -m unittest tests.test_competition_identity_registry tests.test_basketball_divisions tests.test_basketball_coverage_acceptance
       - name: Commit refreshed data
         run: |
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json
+          git add data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json data/basketball-coverage-acceptance.json BASKETBALL_COVERAGE_STATUS.md
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

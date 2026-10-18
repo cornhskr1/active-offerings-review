@@ -27,6 +27,8 @@ from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text, parse_mfl_schedule
 from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, parse_beach_calendar
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
+from european_basketball_fixture_adapter import parse_fixtures as parse_european_basketball_fixtures, validate_review_window as validate_european_basketball_window
+from fiba_report_fixture_adapter import fetch_fiba_report_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
 from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
@@ -1855,6 +1857,43 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type") in ("official-european-basketball-fixtures", "official-fiba-report-fixtures"):
+        candidates=[]
+        evidence={}
+        try:
+            if source["source_type"] == "official-european-basketball-fixtures":
+                validate_european_basketball_window(source,TODAY,END)
+                response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
+                response.raise_for_status()
+                payload=response.json()
+                fixtures=parse_european_basketball_fixtures(payload,source)
+                evidence={"published_fixtures":payload["total"],"remaining_unplayed_fixtures":len(fixtures),"fixture_coverage_end":source["coverage_end"],
+                    "review_window_complete":True,"coverage_note":"Published regular season only; postseason and next-season fixture coverage are not established."}
+            else:
+                fixtures,evidence=fetch_fiba_report_fixtures(source,TODAY,END)
+                if not evidence.get("review_window_complete"):
+                    raise ValueError("FIBA published report does not establish the complete review window")
+            for parsed in fixtures:
+                if parsed.get("date_only"):
+                    # Preserve the publisher's written date without inventing a kickoff.
+                    if not TODAY<=datetime.date.fromisoformat(parsed["start_time"])<=END:
+                        continue
+                else:
+                    start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                    if start.tzinfo is None:
+                        raise ValueError("Published basketball kickoff has no timezone")
+                    if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                        continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);candidates.append(parsed)
+        except Exception as exc:
+            errors.append(str(exc)[:240])
+        if not errors:
+            events.extend(candidates);count=len(candidates)
+        source_status.append({**source,**evidence,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type")=="official-auf-fixtures":
         published=held_amateur=0
         candidates=[]

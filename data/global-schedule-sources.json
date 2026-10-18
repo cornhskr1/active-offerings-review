@@ -1081,41 +1081,35 @@
     },
     {
       "id": "basketball-euroleague",
-      "source_type": "official-event-window",
+      "source_type": "official-european-basketball-fixtures",
       "sport": "Basketball",
       "league": "EuroLeague | Men",
       "region": "Europe",
-      "endpoint": "https://www.euroleaguebasketball.net/euroleague/news/the-2026-27-euroleague-schedule-is-official/",
-      "official_schedule_url": "https://www.euroleaguebasketball.net/euroleague/game-center/",
-      "endpoint_validation": "published-window",
-      "coverage_status": "published-event-window",
-      "source_note": "Euroleague Basketball confirms the 2026/27 competition runs September 24, 2026–May 30, 2027, including regular season, Play-In, playoffs and Final Four. An unattended fixture adapter remains pending.",
-      "official_events": [
-        {
-          "source_id": "basketball-euroleague",
-          "league": "EuroLeague | Men",
-          "name": "EuroLeague 2026/27",
-          "start_date": "2026-09-24",
-          "end_date": "2027-05-30",
-          "location": "Europe",
-          "official_schedule_url": "https://www.euroleaguebasketball.net/euroleague/game-center/"
-        }
-      ],
+      "endpoint": "https://mediagamecenter.euroleague.net/api/games?seasonCode=E2026",
+      "official_schedule_url": "https://mediagamecenter.euroleague.net/?c=E",
+      "publisher_page": "https://mediacentre.euroleague.net/en/app/2/communication/communication/preview/24407",
+      "endpoint_validation": "published-schedule",
+      "coverage_status": "partial",
       "catalog_terms": [
         "EuroLeague | Men"
-      ]
+      ],
+      "competition_code": "E",
+      "season_code": "E2026",
+      "schedule_scope": "regular-season",
+      "coverage_start": "2026-09-24",
+      "coverage_end": "2027-04-16",
+      "source_note": "The official Media Game Center publishes all 380 confirmed EuroLeague 2026/27 regular-season fixtures, with exact competition, season, round, club IDs and UTC/local tipoff evidence. The adapter fails closed on partial payloads, changed identities or ambiguous times. Coverage ends 2027-04-16; postseason fixtures and participant ages are not established by this schedule."
     },
     {
       "id": "basketball-womens-euroleague",
-      "source_type": "official-event-window",
+      "source_type": "official-fiba-report-fixtures",
       "sport": "Basketball",
       "league": "FIBA Women's EuroLeague | Women",
       "region": "Europe",
-      "endpoint": "https://www.fiba.basketball/en/events/euroleague-women-26-27",
+      "endpoint": "https://reports.fiba.basketball/api/list.php?path=2027%2FEuroLeague+Women",
       "official_schedule_url": "https://www.fiba.basketball/en/events/euroleague-women-26-27/games",
-      "endpoint_validation": "published-window",
-      "coverage_status": "published-event-window",
-      "source_note": "FIBA confirms the 2026-27 EuroLeague Women competition runs September 23, 2026–April 18, 2027. An unattended fixture adapter remains pending.",
+      "coverage_status": "partial",
+      "source_note": "Official FIBA current 2026-27 competition report; exact published regular-season matchups only. Public directory discovery checks the current PDF on each refresh. Printed UTC times are preserved; missing times stay date-only. Unresolved later-phase pairings and dates are held, not invented. No qualifier/finals scope substitution.",
       "official_events": [
         {
           "source_id": "basketball-womens-euroleague",
@@ -1129,7 +1123,8 @@
       ],
       "catalog_terms": [
         "FIBA Women's EuroLeague | Women"
-      ]
+      ],
+      "fiba_report_path": "2027/EuroLeague Women"
     },
     {
       "id": "basketball-fr-cup",
@@ -1300,7 +1295,7 @@
       "endpoint": "https://www.laliganacional.com.ar/laliga/fixture",
       "official_schedule_url": "https://www.laliganacional.com.ar/laliga/fixture",
       "endpoint_validation": "published-schedule",
-      "coverage_status": "partial-published-fixtures",
+      "coverage_status": "partial",
       "source_note": "The top-division Liga Nacional fixture page exposes an exact date-range response with named clubs, Argentina-local tipoffs, and publisher match IDs. The adapter reads only the requested review window and fails closed on changed pairings, dates, or links. Later dates and playoffs depend on the publisher's rolling schedule.",
       "catalog_terms": [
         "Liga Nacional de Básquet (LNB) | Men"
@@ -1341,7 +1336,7 @@
       "endpoint": "https://lnb.com.br/nbb/tabela-de-jogos",
       "official_schedule_url": "https://lnb.com.br/nbb/tabela-de-jogos",
       "endpoint_validation": "published-schedule",
-      "coverage_status": "partial-published-fixtures",
+      "coverage_status": "partial",
       "source_note": "The LNB's official 2026/27 NBB schedule publishes named, timed regular-season matches from October 17. The exact fixture adapter checks edition, game identity, teams and Brazil-local kickoffs. Later rounds and playoffs are not covered until the publisher lists them.",
       "catalog_terms": [
         "Novo Basquete Brasil (NBB) | Men"
@@ -2242,7 +2237,7 @@
       "source_type": "coverage-gap",
       "coverage_status": "missing",
       "official_schedule_url": "https://lnbchile.com/liga/uno/calendario",
-      "source_note": "Official LNB Chile Liga Chery calendar. Authoritative for manual verification; its protected dynamic feed is not used as an unattended adapter.",
+      "source_note": "Official Liga Chery calendar. Rechecked 2026-10-18: the public page is a client-side shell with no fixture records; the backend requires authentication and is not used. Manual verification remains required; this is not a verified empty schedule.",
       "catalog_terms": [
         "Liga Nacional de Basquetbol de Chile"
       ]
@@ -2254,8 +2249,8 @@
       "region": "Chile",
       "source_type": "coverage-gap",
       "coverage_status": "missing",
-      "official_schedule_url": "https://lnbchile.com/liga/uno/calendario",
-      "source_note": "Official LNB Chile calendar. Authoritative for manual Copa Chile verification; its protected dynamic feed is not used as an unattended adapter.",
+      "official_schedule_url": "https://lnbchile.com/copa-chile/calendario",
+      "source_note": "Official Copa Chile calendar. Rechecked 2026-10-18: the public page is a client-side shell with no fixture records; the backend requires authentication and is not used. Manual verification remains required; this is not a verified empty schedule.",
       "catalog_terms": [
         "Copa Chile"
       ]
@@ -2387,26 +2382,36 @@
       "sport": "Basketball",
       "league": "Basketball Champions League",
       "region": "International-Level Competitions",
-      "source_type": "thesportsdb",
+      "source_type": "official-fiba-report-fixtures",
       "coverage_status": "partial",
-      "league_id": "4548",
-      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
+      "endpoint": "https://reports.fiba.basketball/api/list.php?path=2027%2FBCL+2027",
       "catalog_terms": [
         "Basketball Champions League"
-      ]
+      ],
+      "fiba_report_path": "2027/BCL 2027",
+      "source_note": "Official FIBA current 2026-27 competition report; exact published regular-season matchups only. Public directory discovery checks the current PDF on each refresh. Printed UTC times are preserved; missing times stay date-only. Unresolved later-phase pairings and dates are held, not invented. No qualifier/finals scope substitution.",
+      "official_schedule_url": "https://reports.fiba.basketball/?path=2027%2FBCL+2027"
     },
     {
       "id": "eurocup-basketball",
+      "source_type": "official-european-basketball-fixtures",
       "sport": "Basketball",
-      "league": "EuroCup",
-      "region": "Spain",
-      "source_type": "thesportsdb",
+      "league": "EuroCup | Men",
+      "region": "Europe",
+      "endpoint": "https://mediagamecenter.euroleague.net/api/games?seasonCode=U2026",
+      "official_schedule_url": "https://mediagamecenter.euroleague.net/?c=U",
+      "publisher_page": "https://mediacentre.euroleague.net/en/app/2/communication/communication/preview/24408",
+      "endpoint_validation": "published-schedule",
       "coverage_status": "partial",
-      "league_id": "4547",
-      "endpoint": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php",
       "catalog_terms": [
-        "EuroCup"
-      ]
+        "EuroCup | Men"
+      ],
+      "competition_code": "U",
+      "season_code": "U2026",
+      "schedule_scope": "regular-season",
+      "coverage_start": "2026-09-29",
+      "coverage_end": "2027-01-13",
+      "source_note": "The official Media Game Center publishes all 224 confirmed EuroCup 2026/27 regular-season fixtures, with exact competition, season, round, club IDs and UTC/local tipoff evidence. The adapter fails closed on partial payloads, changed identities or ambiguous times. Coverage ends 2027-01-13; postseason fixtures and participant ages are not established by this schedule."
     },
     {
       "id": "france-lnb",
@@ -4554,7 +4559,7 @@
     {
       "id": "rugby-nzr-farah-palmer-2026",
       "source_type": "official-nzr-farah-palmer-semifinals",
-      "coverage_status": "partial-published-fixtures",
+      "coverage_status": "partial",
       "sport": "Rugby",
       "league": "Farah Palmer Cup | Women",
       "region": "New Zealand",

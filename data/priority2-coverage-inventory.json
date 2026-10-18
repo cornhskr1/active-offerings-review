@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T13:50:22.429834+00:00",
+  "registry_generated_at": "2026-10-18T14:39:02.390964+00:00",
   "schedule_generated_at": "2026-10-18T13:35:30.541916+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
@@ -10,10 +10,10 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 354,
+      "ADAPTER_CONFIGURED": 356,
       "ADAPTER_GAP": 179,
       "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 147
+      "OFFICIAL_WINDOW_ONLY": 145
     },
     "season_states": {
       "DATED_WINDOW": 221,
@@ -581,9 +581,9 @@
       "sources": [
         {
           "id": "fiba-bcl",
-          "type": "thesportsdb",
+          "type": "official-fiba-report-fixtures",
           "configured_league": "Basketball Champions League",
-          "refresh_ok": false,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -868,9 +868,9 @@
       "sources": [
         {
           "id": "eurocup-basketball",
-          "type": "thesportsdb",
-          "configured_league": "EuroCup",
-          "refresh_ok": false,
+          "type": "official-european-basketball-fixtures",
+          "configured_league": "EuroCup | Men",
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -885,13 +885,13 @@
       "season_window": "September 24, 2026–May 30, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-euroleague",
-          "type": "official-event-window",
+          "type": "official-european-basketball-fixtures",
           "configured_league": "EuroLeague | Men",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
@@ -1319,13 +1319,13 @@
       "season_window": "September 23, 2026–April 18, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "basketball-womens-euroleague",
-          "type": "official-event-window",
+          "type": "official-fiba-report-fixtures",
           "configured_league": "FIBA Women's EuroLeague | Women",
-          "refresh_ok": true,
+          "refresh_ok": null,
           "events_in_window": 0
         }
       ],
