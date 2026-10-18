@@ -12,7 +12,7 @@ from scripts.tennis_publisher_holds import install_browser_hold
 class BrowserRedirectBoundaryTests(unittest.TestCase):
     def test_real_redirect_and_subresource_hold_before_dispatch(self):
         try:
-            from playwright.sync_api import sync_playwright
+            from playwright.sync_api import sync_playwright, Error as PlaywrightError
         except ImportError:
             if os.environ.get('TENNIS_BROWSER_BOUNDARY_REQUIRED')=='1':
                 raise
@@ -52,14 +52,32 @@ class BrowserRedirectBoundaryTests(unittest.TestCase):
                         if os.environ.get('TENNIS_BROWSER_BOUNDARY_REQUIRED')=='1':
                             raise
                         self.skipTest('Chromium unavailable in local execution sandbox: '+str(exc).splitlines()[0])
-                    page=browser.new_page(service_workers='block');install_browser_hold(page)
-                    for path in ('/held-hop','/chain'):
-                        with self.assertRaises(Exception):page.goto(base+path,timeout=5000)
-                    page.goto(base+'/allowed-hop',timeout=5000)
-                    self.assertIn('allowed final',page.locator('body').inner_text())
-                    page.goto(base+'/page',wait_until='networkidle',timeout=5000)
-                    self.assertIn('allowed',page.locator('body').inner_text())
-                    browser.close()
+                    try:
+                        # Aborted navigation can schedule chrome-error:// after
+                        # goto raises. Never let that pending error-document
+                        # navigation race an independent allowed scenario.
+                        for path in ('/held-hop','/chain','/allowed-hop','/page'):
+                            with self.subTest(path=path):
+                                context=browser.new_context(service_workers='block')
+                                page=context.new_page();install_browser_hold(page)
+                                try:
+                                    if path in ('/held-hop','/chain'):
+                                        with self.assertRaisesRegex(PlaywrightError,"ERR_BLOCKED_BY_CLIENT"):
+                                            page.goto(base+path,timeout=5000)
+                                        self.assertTrue(any(request_path==path for _,request_path in seen),seen)
+                                    else:
+                                        try:
+                                            response=page.goto(base+path,wait_until='networkidle',timeout=5000)
+                                        except PlaywrightError as exc:
+                                            self.fail(f'Allowed scenario {path} failed: {exc}; server requests={seen!r}')
+                                        self.assertIsNotNone(response)
+                                        self.assertEqual(response.status,200)
+                                        expected='allowed final' if path=='/allowed-hop' else 'allowed'
+                                        self.assertIn(expected,page.locator('body').inner_text())
+                                finally:
+                                    context.close()
+                    finally:
+                        browser.close()
             self.assertTrue(any(path=='/held-hop' for _,path in seen))
             self.assertTrue(any(path=='/image-hop' for _,path in seen))
             self.assertTrue(any(path=='/allowed-final' for _,path in seen))
