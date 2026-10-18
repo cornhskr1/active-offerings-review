@@ -29,7 +29,10 @@ class NCAAWaterPoloDivisionIdentityTests(unittest.TestCase):
             {child["label"] for child in children},
         )
         self.assertEqual(2, len({child["key"] for child in children}))
-        self.assertTrue(all(not child.get("source_id") for child in children))
+        by_label={child["label"]:child for child in children}
+        self.assertEqual("ncaa-water-polo-di-men",by_label["Division I Water Polo | Men"]["source_id"])
+        self.assertNotIn("source_id",by_label["Division I Water Polo | Women"])
+        self.assertTrue(all(child["season_hold"] for child in children))
 
     def test_combined_parent_cannot_be_scheduled(self):
         sport = next(item for item in self.season["sports"] if item["sport"] == "NCAA Water Polo")
@@ -42,7 +45,12 @@ class NCAAWaterPoloDivisionIdentityTests(unittest.TestCase):
         self.assertNotIn(approval["catalog_event"], registry)
         for child in approval["coverage_children"]:
             self.assertEqual(child["key"], registry[child["label"]]["identity_key"])
-            self.assertEqual([], registry[child["label"]]["source_ids"])
+            linked=registry[child["label"]]["source_ids"]
+            if child["label"] == "Division I Water Polo | Women":
+                self.assertEqual([],linked)
+            else:
+                # Generated registry may precede normal post-merge publication.
+                self.assertIn(linked, [[], ["ncaa-water-polo-di-men"]])
 
 
 if __name__ == "__main__":

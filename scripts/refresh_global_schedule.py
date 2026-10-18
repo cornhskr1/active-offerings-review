@@ -20,6 +20,7 @@ from espn_league_scope import verified_events as verified_espn_league_events
 from official_motorsports_calendar import PARSERS as MOTORSPORTS_CALENDAR_PARSERS
 from espn_college_football_scope import exclusive_events as exclusive_college_football_events
 from official_ncaa_scoreboard import scoreboard_query, exact_contests, event_from_contest
+from official_ncaa_team_schedule import parse_fixtures as parse_reviewed_ncaa_team_fixtures
 from conmebol_femenina_fixture_adapter import parse_group_fixtures
 from wsl2_fixture_adapter import parse_wsl2_fixtures
 from faw_cymru_premier_fixture_adapter import parse_phase_one_fixtures
@@ -3590,6 +3591,30 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"cross_subdivision_held":len(held_ids),
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="official-ncaa-reviewed-team-fixtures":
+        candidates=[]; held_count=0
+        try:
+            response=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
+            response.raise_for_status()
+            parsed_rows,held_count=parse_reviewed_ncaa_team_fixtures(response.text,source,TODAY,END)
+            for parsed in parsed_rows:
+                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
+                if start.tzinfo is None:
+                    raise ValueError("Reviewed NCAA kickoff lacks timezone")
+                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
+                    continue
+                candidates.append(parsed)
+        except Exception as exc:
+            errors.append(str(exc)[:110])
+        if not errors:
+            for parsed in candidates:
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);events.append(parsed);count+=1
+        source_status.append({**source,"approved_catalog":True,"ok":not errors,
+            "events":count,"unreviewed_or_unavailable_held":held_count,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-ncaa-division-one":
         try:
