@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T19:01:54.356333+00:00",
-  "schedule_generated_at": "2026-10-18T18:48:47.207493+00:00",
+  "registry_generated_at": "2026-10-18T19:26:56.099505+00:00",
+  "schedule_generated_at": "2026-10-18T19:17:11.155542+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,9 +10,9 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 362,
+      "ADAPTER_CONFIGURED": 364,
       "ADAPTER_GAP": 176,
-      "NO_LINKED_SOURCE": 49,
+      "NO_LINKED_SOURCE": 47,
       "OFFICIAL_WINDOW_ONLY": 146
     },
     "season_states": {
@@ -179,7 +179,7 @@
     "NCAA Ice Hockey": {
       "identities": 2,
       "split_children": 2,
-      "no_linked_source": 1,
+      "no_linked_source": 0,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -235,7 +235,7 @@
     "NCAA Water Polo": {
       "identities": 2,
       "split_children": 2,
-      "no_linked_source": 2,
+      "no_linked_source": 1,
       "adapter_gaps": 0,
       "pending_dates": 0
     },
@@ -5881,10 +5881,18 @@
       "season_window": "October–March; National Collegiate Frozen Four March 21 and 23, 2027 (scope hold)",
       "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
-      "hold_reason": "NCAA titles the women's championship National Collegiate, while the exact catalog child is Division I Ice Hockey | Women. The broader championship dates and a Division I scoreboard cannot establish a Division I-only championship source or complete regular-season fixture coverage. Verify the competition and participants manually before clearing this hold.",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
-      "events_in_window": 0
+      "hold_reason": "NCAA titles the women's championship National Collegiate, while the exact catalog child is Division I Ice Hockey | Women. The broader championship dates and a Division I scoreboard cannot establish a Division I-only championship source or complete regular-season fixture coverage. Verify the competition and participants manually before clearing this hold. A separate exact reviewed two-game team schedule now covers a partial Division I regular-season slice; the National Collegiate championship hold remains unchanged.",
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "ncaa-ice-hockey-di-women",
+          "type": "official-ncaa-reviewed-team-fixtures",
+          "configured_league": "Division I Ice Hockey | Women",
+          "refresh_ok": true,
+          "events_in_window": 2
+        }
+      ],
+      "events_in_window": 1
     },
     {
       "sport": "NCAA Lacrosse",
@@ -6175,10 +6183,18 @@
       "season_window": "August–December; 2026 National Collegiate championship December 4–6 (scope hold)",
       "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
-      "hold_reason": "The catalog approves Division I Water Polo | Men, while NCAA titles the men’s championship National Collegiate. The December 4–6, 2026 dates do not establish a Division I-only championship source or unattended Division I fixture coverage. Hold source linkage and verify participant division and the exact offered event manually.",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
-      "events_in_window": 0
+      "hold_reason": "The catalog approves Division I Water Polo | Men, while NCAA titles the men’s championship National Collegiate. The December 4–6, 2026 dates do not establish a Division I-only championship source or unattended Division I fixture coverage. Hold source linkage and verify participant division and the exact offered event manually. A separate exact reviewed two-game team schedule now covers a partial Division I regular-season slice; the National Collegiate championship hold remains unchanged.",
+      "coverage_state": "ADAPTER_CONFIGURED",
+      "sources": [
+        {
+          "id": "ncaa-water-polo-di-men",
+          "type": "official-ncaa-reviewed-team-fixtures",
+          "configured_league": "Division I Water Polo | Men",
+          "refresh_ok": true,
+          "events_in_window": 2
+        }
+      ],
+      "events_in_window": 2
     },
     {
       "sport": "NCAA Water Polo",
