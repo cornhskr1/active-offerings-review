@@ -25,7 +25,12 @@ class ArmeniaScopeTests(unittest.TestCase):
             self.assertFalse(event["season_window_complete"])
             self.assertNotIn("season_end_date", event)
             self.assertEqual("PARTIAL_WINDOW", self.inventory[key]["season_state"])
-            self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
+            expected = "ADAPTER_CONFIGURED" if key.endswith("premier-league-men") else "ADAPTER_GAP"
+            self.assertEqual(expected, self.inventory[key]["coverage_state"])
+            if expected == "ADAPTER_CONFIGURED":
+                source = self.sources[event["source_id"]]
+                self.assertEqual("permission_required", source["access_status"])
+                self.assertFalse(source["coverage_complete"])
         self.assertIn("July 31", self.events["soccer-armenia-armenian-premier-league-men"]["season_window"])
         self.assertIn("August 24", self.events["soccer-armenia-armenian-cup-men"]["season_window"])
 

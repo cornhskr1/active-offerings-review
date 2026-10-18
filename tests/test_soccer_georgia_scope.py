@@ -32,7 +32,9 @@ class GeorgiaScopeTests(unittest.TestCase):
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory[league["key"]]["coverage_state"])
         self.assertEqual("official-georgia-erovnuli-linked-fixtures",
                          self.sources[league["source_id"]]["source_type"])
-        self.assertEqual("ADAPTER_GAP", self.inventory[cup["key"]]["coverage_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory[cup["key"]]["coverage_state"])
+        self.assertEqual("permission_required", self.sources[cup["source_id"]]["access_status"])
+        self.assertFalse(self.sources[cup["source_id"]]["coverage_complete"])
 
     def test_super_cup_window_includes_semifinals(self):
         key = "soccer-georgia-georgian-super-cup-men"

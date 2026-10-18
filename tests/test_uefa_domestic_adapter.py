@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).parents[1]
@@ -17,6 +18,9 @@ START, END = dt.date(2026,10,18), dt.date(2026,10,25)
 
 class UefaTests(unittest.TestCase):
     def setUp(self):
+        # Offline fake-client contract tests only; production defaults stay disabled.
+        access = patch.dict(u.AUTOMATED_ACCESS, {"enabled": True})
+        access.start(); self.addCleanup(access.stop)
         self.spec = next(s for s in u.SCOPES.values() if s['competition_id']=='1079')
         self.source = u.source_config(self.spec['id'])
         self.rows=json.loads((FIX/'1079-matches.json').read_text())
@@ -206,6 +210,30 @@ class UefaTests(unittest.TestCase):
         rows,p=u.ProviderClient(get).fetch(self.source,NOW,START,END)
         self.assertEqual(5,len(rows));self.assertEqual('2026-10-26',calls[1][1]['params']['toDate']);self.assertFalse(p['coverage_complete'])
         with self.assertRaises(ValueError):u.ProviderClient(get).fetch(self.source,NOW.replace(year=2028),START,END)
+
+
+class PermissionHoldTests(unittest.TestCase):
+    def test_default_hold_makes_zero_requests_for_all_seven_sources(self):
+        self.assertIs(False, u.AUTOMATED_ACCESS['enabled'])
+        calls=[]
+        client=u.ProviderClient(get=lambda *a,**k:calls.append((a,k)))
+        enabled=[s for s in u.SCOPES.values() if s['enabled']]
+        self.assertEqual(7,len(enabled))
+        for spec in enabled:
+            source=u.source_config(spec['id'])
+            self.assertEqual('permission_required',source['access_status'])
+            self.assertFalse(source['coverage_complete'])
+            with self.assertRaisesRegex(ValueError,'Permission required'):
+                client.fetch(source,NOW,START,END)
+        for invoke in (lambda:client.page('matches',{}),lambda:client.pages('matches',{},100)):
+            with self.assertRaisesRegex(ValueError,'Permission required'):invoke()
+        self.assertEqual([],calls)
+
+    def test_missing_or_non_boolean_grant_fails_closed(self):
+        for config in ({},{'enabled':'true'},{'enabled':1}):
+            with patch.dict(u.AUTOMATED_ACCESS,config,clear=True):
+                with self.assertRaisesRegex(ValueError,'Permission required'):
+                    u.require_automated_access()
 
 
 class CollectorTests(unittest.TestCase):

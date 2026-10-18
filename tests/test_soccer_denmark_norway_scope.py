@@ -40,7 +40,9 @@ class DenmarkNorwayScopeTests(unittest.TestCase):
         self.assertIn('2027 edition',e['season_window'])
         self.assertNotIn('season_end_date',e)
         self.assertEqual('DOCUMENTED_HOLD',self.inventory[key]['season_state'])
-        self.assertEqual('ADAPTER_GAP',self.inventory[key]['coverage_state'])
+        self.assertEqual('ADAPTER_CONFIGURED',self.inventory[key]['coverage_state'])
+        self.assertEqual("permission_required", self.sources[e['source_id']]["access_status"])
+        self.assertFalse(self.sources[e['source_id']]["coverage_complete"])
         self.assertNotEqual(e['source_id'],self.events['soccer-norway-eliteserien-men']['source_id'])
 
     def test_danish_cup_source_is_separate_from_league(self):
