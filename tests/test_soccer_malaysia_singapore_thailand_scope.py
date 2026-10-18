@@ -27,7 +27,8 @@ class MalaysiaSingaporeThailandScopeTests(unittest.TestCase):
                 self.assertEqual("thai-league-matches", self.sources[e["source_id"]]["source_type"])
             elif key in {"soccer-malaysia-malaysia-super-league-men", "soccer-malaysia-malaysia-fa-cup-men"}:
                 self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
-                self.assertEqual("official-mfl-fixture-pdf", self.sources[e["source_id"]]["source_type"])
+                expected_type = "official-mfl-fa-semifinal-fixtures" if key == "soccer-malaysia-malaysia-fa-cup-men" else "official-mfl-fixture-pdf"
+                self.assertEqual(expected_type, self.sources[e["source_id"]]["source_type"])
             elif key == "soccer-singapore-singapore-premier-league-men":
                 self.assertEqual("ADAPTER_CONFIGURED", self.inventory[key]["coverage_state"])
                 self.assertEqual("official-spl-season-fixtures", self.sources[e["source_id"]]["source_type"])

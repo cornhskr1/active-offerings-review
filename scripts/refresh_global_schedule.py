@@ -29,6 +29,9 @@ from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text
 from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, parse_beach_calendar
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from thesportsdb_fixture_adapter import PublicClient, collect as collect_thesportsdb
+from baltic_cup_fixture_adapter import fetch_fixtures as fetch_baltic_cup_fixtures
+from hns_croatian_cup_fixture_adapter import fetch_fixtures as fetch_croatian_cup_fixtures
+from mfl_fa_semifinal_adapter import fetch_fixtures as fetch_mfl_fa_semifinals
 from zpl_fixture_adapter import fetch_zambia_fixtures
 from czech_cup_fixture_adapter import parse_fixtures as parse_czech_cup_fixtures
 from european_basketball_fixture_adapter import parse_fixtures as parse_european_basketball_fixtures, validate_review_window as validate_european_basketball_window
@@ -1813,6 +1816,29 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type") in ("official-lff-cup-fixtures", "official-hns-croatian-cup-fixtures", "official-mfl-fa-semifinal-fixtures"):
+        candidates=[]
+        evidence={}
+        try:
+            fetcher={"official-lff-cup-fixtures":fetch_baltic_cup_fixtures,
+                "official-hns-croatian-cup-fixtures":fetch_croatian_cup_fixtures,
+                "official-mfl-fa-semifinal-fixtures":fetch_mfl_fa_semifinals}[source["source_type"]]
+            fixtures,evidence=fetcher(source,NOW_UTC)
+            for parsed in fixtures:
+                if not parsed.get("date_only"):
+                    raise ValueError("Published cup date-only boundary changed")
+                day=datetime.date.fromisoformat(parsed["start_time"])
+                if not TODAY<=day<=END:continue
+                key=(parsed["id"],parsed["start_time"])
+                if key in seen:continue
+                seen.add(key);candidates.append(parsed)
+        except Exception as exc:
+            errors.append(str(exc)[:240])
+        if not errors:
+            events.extend(candidates);count=len(candidates)
+        source_status.append({**source,**evidence,"approved_catalog":True,"ok":not errors,
+            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
     if source.get("source_type") in ("official-zpl-transitional-calendars", "official-czech-cup-fixtures"):
         candidates=[]
         evidence={}
