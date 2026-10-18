@@ -192,7 +192,7 @@ class CzechCupFixtureTests(unittest.TestCase):
 
     def test_collector_literal_date_window_and_atomic_failure(self):
         refresh = (Path(__file__).parents[1] / 'scripts/refresh_global_schedule.py').read_text()
-        start = refresh.index('    if source.get("source_type") in ("official-zpl-transitional-calendars", "official-czech-cup-fixtures"):')
+        start = refresh.index('    if source.get("source_type") in ("official-zpl-transitional-calendars"')
         end = refresh.index('    if source.get("source_type") in ("official-european-basketball-fixtures", "official-fiba-report-fixtures"):', start)
         collector = 'for source in configured:\n' + refresh[start:end]
         def bad_last_row(doc):

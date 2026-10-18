@@ -36,6 +36,7 @@ from hns_croatian_cup_fixture_adapter import fetch_fixtures as fetch_croatian_cu
 from mfl_fa_semifinal_adapter import fetch_fixtures as fetch_mfl_fa_semifinals
 from dfb_womens_cup_fixture_adapter import fetch_fixtures as fetch_dfb_womens_cup_fixtures
 from zpl_fixture_adapter import fetch_zambia_fixtures
+from nz_national_league_adapter import fetch_fixtures as fetch_nz_championship_fixtures
 from czech_cup_fixture_adapter import parse_fixtures as parse_czech_cup_fixtures
 from european_basketball_fixture_adapter import parse_fixtures as parse_european_basketball_fixtures, validate_review_window as validate_european_basketball_window
 from fiba_report_fixture_adapter import fetch_fiba_report_fixtures
@@ -1844,12 +1845,15 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,**evidence,"approved_catalog":True,"ok":not errors,
             "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
-    if source.get("source_type") in ("official-zpl-transitional-calendars", "official-czech-cup-fixtures"):
+    if source.get("source_type") in ("official-zpl-transitional-calendars", "official-czech-cup-fixtures", "official-nz-men-championship"):
         candidates=[]
+        candidate_keys=set()
         evidence={}
         try:
             if source["source_type"] == "official-zpl-transitional-calendars":
                 fixtures,evidence=fetch_zambia_fixtures(source,NOW_UTC)
+            elif source["source_type"] == "official-nz-men-championship":
+                fixtures,evidence=fetch_nz_championship_fixtures(source,TODAY)
             else:
                 response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
                 response.raise_for_status()
@@ -1865,11 +1869,12 @@ for source in CFG.get("sources",[]):
                     if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
                         continue
                 key=(parsed["id"],parsed["start_time"])
-                if key in seen:continue
-                seen.add(key);candidates.append(parsed)
+                if key in seen or key in candidate_keys:continue
+                candidate_keys.add(key);candidates.append(parsed)
         except Exception as exc:
             errors.append(str(exc)[:240])
         if not errors:
+            seen.update(candidate_keys)
             events.extend(candidates);count=len(candidates)
         source_status.append({**source,**evidence,"approved_catalog":True,"ok":not errors,
             "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
