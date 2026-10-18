@@ -68,8 +68,16 @@ class BalkanScopeTests(unittest.TestCase):
         self.assertEqual("DOCUMENTED_HOLD", self.inventory[key]["season_state"])
         self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
 
+    def test_kosovo_uses_partial_reviewed_uefa_provider_not_full_coverage(self):
+        key = "soccer-kosovo-superleague-of-kosovo-superliga-e-kosov-s-men"
+        source = self.sources[self.events[key]["source_id"]]
+        self.assertEqual("official-uefa-domestic-reviewed", source["source_type"])
+        self.assertEqual("partial", source["coverage_status"])
+        self.assertFalse(source["coverage_complete"])
+
     def test_other_unverified_balkan_competitions_remain_fail_closed(self):
         changed = {
+            "soccer-kosovo-superleague-of-kosovo-superliga-e-kosov-s-men",
             "soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men",
             "soccer-montenegro-montenegrin-first-league-men",
             "soccer-serbia-serbian-superliga-men",
