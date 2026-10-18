@@ -1,0 +1,23 @@
+name: Verify generated-data workflow queue
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'tests/test_data_workflow_queue.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+      - 'tests/test_data_workflow_queue.py'
+
+permissions:
+  contents: read
+
+jobs:
+  queue-guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify shared queue and safe publication ordering
+        run: python3 -m unittest discover -s tests -p 'test_data_workflow_queue.py' -v

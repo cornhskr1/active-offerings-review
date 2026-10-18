@@ -70,3 +70,18 @@ Screening derives age from the full verified DOB and the event's written calenda
 `age_evidence.checked_at` means the official evidence was reviewed on that date. `last_verified` remains its originally recorded source verification timestamp, and `generated_at` means only file generation. Automated ranking/cache refreshes preserve reviewed identity and age evidence even after an athlete ages out or disappears from current rankings.
 
 Deploy consumers that read durable records and derive event-date age before publishing these corrected source records. The offline **Verify reviewed athlete age evidence** workflow checks birthdays, uncertainty, aliases, conflicting identities, and refresh preservation on the exact proposed change.
+
+## Shared refresh queue
+
+The `active-offerings-data` concurrency group serializes its generated-data
+refresh workflows. Every member uses `queue: max` with `cancel-in-progress: false`:
+GitHub's default single pending slot otherwise replaces an older waiting refresh
+when another workflow joins the group. The queue retains up to 100 pending runs;
+new arrivals beyond that limit are canceled. It is not an unlimited job queue.
+Queued refreshes sync current `main` before generating data and rebase before a
+normal push. Existing independently grouped catalog and tennis workflows are not
+changed by this policy.
+
+See [GitHub concurrency documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
+Run the offline guardrails with
+`python3 -m unittest discover -s tests -p 'test_data_workflow_queue.py' -v`.
