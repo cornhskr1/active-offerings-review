@@ -16,6 +16,12 @@ SERIES = {
 }
 
 
+def _event_name(value):
+    # The publisher's Africa cards include a colon omitted by its detail schema.
+    # Do not fuzzy-match cities, event numbers, regional series, or other words.
+    return " ".join(value.replace(":", " ").split())
+
+
 def upcoming_event_links(page):
     document = html.fromstring(page)
     cards = document.xpath('//div[@id="nav-upcoming"]//div[contains(concat(" ",normalize-space(@class)," ")," event-hub ")]')
@@ -23,7 +29,7 @@ def upcoming_event_links(page):
         raise ValueError("PFL upcoming event cards missing")
     found = []
     for card in cards:
-        title = " ".join(card.xpath('.//div[contains(@class,"event-card-info")]//h3/text()')).strip()
+        title = " ".join(card.xpath('.//div[contains(@class,"event-card-info")]//h3//text()')).strip()
         links = [url for url in card.xpath('.//div[contains(@class,"event-card-info")]//a/@href')
                  if urlparse(url).hostname == "pflmma.com" and urlparse(url).path.startswith("/event/")]
         if not title or len(set(links)) != 1:
@@ -48,20 +54,32 @@ def verified_event(detail_page, card):
         payload = json.loads(raw)
         graph = payload.get("@graph", []) if isinstance(payload, dict) else []
         matches.extend(item for item in graph if item.get("@type") == "SportsEvent"
-                       and item.get("name") == card["title"] and item.get("url") == card["url"])
+                       and isinstance(item.get("name"), str)
+                       and SERIES[card["source_id"]].search(item["name"])
+                       and _event_name(item["name"]) == _event_name(card["title"])
+                       and item.get("url") == card["url"])
     if len(matches) != 1:
         raise ValueError("PFL event detail did not uniquely verify the named series")
     item = matches[0]
     start = datetime.datetime.fromisoformat(item["startDate"])
     end = datetime.datetime.fromisoformat(item["endDate"])
-    if (start.tzinfo is None or end.tzinfo is None or end < start
-            or end-start > datetime.timedelta(days=1)):
+    if start.tzinfo is None or end.tzinfo is None:
         raise ValueError("PFL event date changed")
     if item.get("eventStatus", "https://schema.org/EventScheduled") != "https://schema.org/EventScheduled":
         raise ValueError("PFL event is not scheduled")
     displayed = [" ".join(n.text_content().split()).upper() for n in document.xpath(
         '//p[contains(concat(" ",normalize-space(@class)," ")," event-info-date-large ")]')]
     expected = f"{start.strftime('%a %b').upper()} {start.day}"
+    # Current pages publish an earlier midnight end placeholder, not a real
+    # duration. Accept only the same local date/offset with a visible date match;
+    # neither this exception nor any end stamp supplies bout timing authority.
+    midnight_placeholder = (end < start and end.time() == datetime.time()
+                            and end.date() == start.date()
+                            and end.utcoffset() == start.utcoffset()
+                            and displayed == [expected])
+    if ((end < start and not midnight_placeholder)
+            or end-start > datetime.timedelta(days=1)):
+        raise ValueError("PFL event date changed")
     if (displayed and displayed != [expected]) or (start.date() != end.date() and displayed != [expected]):
         raise ValueError("PFL displayed event date did not verify structured start date")
     # Date-only evidence: the end stamp is never turned into an extra event day or bout time.

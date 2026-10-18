@@ -30,6 +30,7 @@ from qsl_stars_league_fixture_adapter import parse_qsl_stars_fixtures
 from mfl_fixture_adapter import pdf_url as mfl_pdf_url, pdf_text as mfl_pdf_text, parse_mfl_schedule
 from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, parse_beach_calendar
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
+from rolling_publisher_batch import stage_timed_fixtures
 from thesportsdb_fixture_adapter import PublicClient, collect as collect_thesportsdb
 from baltic_cup_fixture_adapter import fetch_fixtures as fetch_baltic_cup_fixtures
 from hns_croatian_cup_fixture_adapter import fetch_fixtures as fetch_croatian_cup_fixtures
@@ -1919,15 +1920,12 @@ for source in CFG.get("sources",[]):
     if source.get("source_type")=="official-auf-fixtures":
         published=held_amateur=0
         candidates=[]
+        diagnostics={}
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
             response.raise_for_status()
-            fixtures,published,held_amateur=parse_auf_fixtures(response.content,source)
-            for parsed in fixtures:
-                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
-                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
-                key=(parsed["id"],parsed["start_time"])
-                if key not in seen:candidates.append((key,parsed))
+            fixtures,published,held_amateur=parse_auf_fixtures(response.content,source,diagnostics=diagnostics)
+            candidates=stage_timed_fixtures(fixtures,source["id"],NOW_UTC,TODAY,END,TZ,seen)
         except Exception as exc:
             errors.append(str(exc)[:110])
         if not errors:
@@ -1936,6 +1934,7 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_phase_pairings":published,
             "amateur_scope_held":held_amateur,
+            "undated_pairings_held":diagnostics.get("undated_pairings_held",0),
             "errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-spl-season-fixtures":
@@ -3388,27 +3387,27 @@ for source in CFG.get("sources",[]):
         continue
     if source.get("source_type")=="official-italy-volleyball-fixtures":
         published_count=0
+        candidates=[]
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
             response.raise_for_status()
             parser=parse_superlega if source["id"]=="volleyball-italy-superlega" else parse_serie_a1
             fixtures=parser(response.text,source,TODAY,END)
             published_count=len(fixtures)
-            for parsed in fixtures:
-                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
-                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
-                    continue
-                key=(parsed["id"],parsed["start_time"])
-                if key in seen:continue
-                seen.add(key);events.append(parsed);count+=1
+            candidates=stage_timed_fixtures(fixtures,source["id"],NOW_UTC,TODAY,END,TZ,seen)
         except Exception as exc:
             errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_fixtures":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-pfl-event-calendar":
         published_count=0
+        candidates=[]
+        candidate_keys=set()
         try:
             if "cards" not in PFL_EVENT_CACHE:
                 response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
@@ -3429,16 +3428,20 @@ for source in CFG.get("sources",[]):
                 parsed["date_only"]=True
                 parsed["status_detail"]="Official PFL event date only · bout authority and participant ages need review"
                 key=(parsed["id"],parsed["start_time"])
-                if key in seen:continue
-                seen.add(key);events.append(parsed);count+=1
+                if key in seen or key in candidate_keys:continue
+                candidate_keys.add(key);candidates.append((key,parsed))
         except Exception as exc:
             errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_events":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="official-arg-lnb-fixtures":
         published_count=0
+        candidates=[]
         try:
             response=None
             for attempt in range(2):
@@ -3452,15 +3455,12 @@ for source in CFG.get("sources",[]):
                     if attempt:raise
             fixtures=parse_arg_lnb_fixtures(response.text,source,TODAY,END)
             published_count=len(fixtures)
-            for parsed in fixtures:
-                start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
-                if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
-                    continue
-                key=(parsed["id"],parsed["start_time"])
-                if key in seen:continue
-                seen.add(key);events.append(parsed);count+=1
+            candidates=stage_timed_fixtures(fixtures,source["id"],NOW_UTC,TODAY,END,TZ,seen)
         except Exception as exc:
             errors.append(str(exc)[:110])
+        if not errors:
+            for key,parsed in candidates:
+                seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_fixtures":published_count,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
