@@ -1,6 +1,6 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-18T15:20:49.517815+00:00
+Catalog 10.1.26 · published schedule 2026-10-18T15:34:37.029468+00:00
 Review dates: 2026-10-18 through 2026-10-25 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
@@ -10,22 +10,23 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Current state | Identities |
 |---|---:|
 | Calendar only | 51 |
-| Fixtures published in this window | 7 |
+| Fixtures published in this window | 20 |
 | Fixture connection missing | 6 |
+| Source checked; no current fixtures | 1 |
 | Competition/scope hold | 6 |
-| Source blocked or failed | 19 |
+| Source blocked or failed | 5 |
 
 | Competition / event | Current state | Source scope / next action |
 |---|---|---|
 | BBL Champions Cup | Competition/scope hold | The current Basketball Bundesliga calendar publishes the league and BBL-Pokal but no BBL Champions Cup. The catalog entry remains approved but must stay fail-closed unless the competition is revived and an official current schedule is published. |
 | BBL-Pokal \| Men | Calendar only | published-event-window |
 | BIG3 \| Men | Calendar only | last-published-event-window |
-| Basketball Bundesliga (BBL) \| Men | Source blocked or failed | partial |
+| Basketball Bundesliga (BBL) \| Men | Fixtures published in this window | partial |
 | Basketball Champions League \| Men | Fixtures published in this window | partial |
-| Basketball League of Serbia / Košarkaška liga Srbije (KLS) \| Men | Source blocked or failed | not reported |
-| Basketbol Süper Ligi (BSL) \| Men | Source blocked or failed | partial |
-| Basketligaen \| Men | Source blocked or failed | partial |
-| Canadian Elite Basketball League (CEBL) \| Men | Source blocked or failed | not reported |
+| Basketball League of Serbia / Košarkaška liga Srbije (KLS) \| Men | Fixtures published in this window | partial |
+| Basketbol Süper Ligi (BSL) \| Men | Fixtures published in this window | partial |
+| Basketligaen \| Men | Fixtures published in this window | partial |
+| Canadian Elite Basketball League (CEBL) \| Men | Source checked; no current fixtures | partial |
 | Caribbean Women's Championship \| Women | Calendar only | last-published-event-window |
 | Central American Women's Championship \| Women | Calendar only | last-published-event-window |
 | Centrobasket Women's Championship \| Women | Calendar only | last-published-event-window |
@@ -60,22 +61,22 @@ Configured connections are not a completion percentage. Published fixtures only 
 | FIBA Women's EuroLeague \| Women | Fixtures published in this window | partial |
 | French Cup \| Men | Calendar only | last-published-event-window |
 | Governor’s Cup \| Men | Source blocked or failed | published-schedule-window |
-| Greek Basket League (GBL) \| Men | Source blocked or failed | not reported |
+| Greek Basket League (GBL) \| Men | Fixtures published in this window | partial |
 | Greek Cup \| Men | Calendar only | last-published-event-window |
 | Greek Super Cup \| Men | Calendar only | published-event-window |
 | Ignite Cup \| Men | Calendar only | published-event-window |
 | KBL Cup \| Men | Competition/scope hold | The Korean Basketball League has not published a 2026 KBL Cup schedule; regular-season or Korea Cup dates cannot stand in for this catalog identity |
 | King Mindaugas Cup \| Men | Calendar only | published-event-window |
-| Korean Basketball League (KBL) \| Men | Source blocked or failed | not reported |
-| LNB Élite \| Men | Source blocked or failed | partial |
+| Korean Basketball League (KBL) \| Men | Fixtures published in this window | partial |
+| LNB Élite \| Men | Fixtures published in this window | partial |
 | League Cup \| Men | Calendar only | published-schedule-window |
-| Lega Basket Serie A (LBA) \| Men | Source blocked or failed | partial |
-| Lietuvos krepšinio lyga (LKL) \| Men | Source blocked or failed | complete |
-| Liga ACB \| Men | Source blocked or failed | partial |
+| Lega Basket Serie A (LBA) \| Men | Fixtures published in this window | partial |
+| Lietuvos krepšinio lyga (LKL) \| Men | Fixtures published in this window | partial |
+| Liga ACB \| Men | Fixtures published in this window | partial |
 | Liga Nacional de Baloncesto Profesional (LNBP) \| Men | Source blocked or failed | partial |
 | Liga Nacional de Basquetbol de Chile (LNB) \| Men | Fixture connection missing | missing |
 | Liga Nacional de Básquet (LNB) \| Men | Source blocked or failed | partial |
-| Ligat Ha’Al / Israeli Basketball Premier League \| Men | Source blocked or failed | partial |
+| Ligat Ha’Al / Israeli Basketball Premier League \| Men | Fixtures published in this window | partial |
 | NBA Draft | Calendar only | last-published-event-window |
 | NBA Preseason Games v. International Teams | Competition/scope hold | The NBA's published 2026 preseason schedule lists NBA-versus-NBA global games, but no matchup against a non-NBA international club; global location alone does not satisfy this identity |
 | National Basketball Association (NBA) \| Men | Fixtures published in this window | not reported |
@@ -87,7 +88,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Philippine Cup \| Men | Calendar only | last-published-event-window |
 | Polish Cup \| Men | Calendar only | last-published-event-window |
 | Polish Supercup \| Men | Calendar only | published-event-window |
-| Polska Liga Koszykówki (PLK) \| Men | Source blocked or failed | partial |
+| Polska Liga Koszykówki (PLK) \| Men | Fixtures published in this window | partial |
 | Presidential Cup \| Men | Calendar only | last-published-event-window |
 | Radivoj Korać Cup \| Men | Calendar only | last-published-event-window |
 | SBL Cup \| Men | Calendar only | published-event-window |
@@ -99,7 +100,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Supercopa de Espana \| Men | Calendar only | last-published-event-window |
 | Supercopa de Liga \| Men | Calendar only | last-published-event-window |
 | Svenska Basketligan (SBL) \| Men | Calendar only | published-event-window |
-| Swiss Basketball League (SBL) \| Men | Source blocked or failed | partial |
+| Swiss Basketball League (SBL) \| Men | Fixtures published in this window | partial |
 | Swiss Cup \| Men | Calendar only | published-event-window |
 | The Basketball Tournament (TBT) \| Men | Calendar only | last-published-event-window |
 | The Basketball Tournament (TBT) \| Women | Competition/scope hold | No official division-specific women's TBT competition or calendar was found. |
