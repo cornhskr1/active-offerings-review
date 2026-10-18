@@ -127,7 +127,7 @@ th{font-size:11px!important}
 .catalog-entry-health{display:grid;gap:5px;border-top:1px solid #e1e7eb;background:#f8fafb;padding:8px 10px}
 .catalog-entry-health-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-size:10px;line-height:1.35;color:#4e5962}
 .catalog-entry-health-state{border:1px solid #9fc4df;border-radius:999px;background:#eaf4fb;color:#174f78;padding:3px 6px;font-weight:900;white-space:nowrap}
-.catalog-entry-health-row.setup .catalog-entry-health-state{border-color:#b8c1c8;background:#f1f3f4;color:#4b565e}
+.catalog-entry-health-row.setup .catalog-entry-health-state,.catalog-entry-health-row.window .catalog-entry-health-state,.catalog-entry-health-row.partial .catalog-entry-health-state,.catalog-entry-health-row.manual .catalog-entry-health-state{border-color:#b8c1c8;background:#f1f3f4;color:#4b565e}
 .catalog-entry-health-row.source .catalog-entry-health-state{border-color:#7f8b94;background:#e6eaed;color:#20272c}
 .catalog-entry-health-copy b{display:block;color:#303940;font-size:11px}.catalog-entry-health-copy span{display:block;margin-top:1px}
 .catalog-entry-health-link{white-space:nowrap;font-weight:850;color:#0b5f96;text-decoration:none}.catalog-entry-health-link:hover{text-decoration:underline}
@@ -2984,16 +2984,29 @@ function healthText(value){
 function catalogCoverageHealth(){
   const sources=(DATA.global?.sources||[]).filter(source=>source.approved_catalog!==false);
   const manualTypes=new Set(['tennis-intelligence']);
-  const setupStates=new Set(['missing','partial','pending','pending-publication']);
+  const setupStates=new Set(['missing','pending','pending-publication']);
   return sources.map(source=>{
     const manual=manualTypes.has(source.source_type);
-    const state=!source.ok&&!manual?'source':setupStates.has(source.coverage_status)?'setup':'connected';
+    const coverage=String(source.coverage_status||'').toLowerCase();
+    // A successful check of a reference or date window is not fixture coverage.
+    // Keep collection failures first, preserving the manual-tennis exception.
+    const state=!source.ok&&!manual?'source'
+      :source.source_type==='coverage-gap'||setupStates.has(coverage)?'setup'
+      :source.source_type==='official-event-window'?'window'
+      :coverage.startsWith('partial')?'partial'
+      :manual?'manual':'connected';
     const term=(source.catalog_terms||[]).slice(-1)[0]||source.league||source.sport||'';
+    const detail=source.source_note||source.note||'';
+    const explanations={
+      setup:'Reference only; a dependable automated schedule source is not connected.',
+      window:'Official competition dates only; exact fixture coverage is not established.',
+      partial:'Schedule coverage is partial; unlisted fixtures or phases are not cleared.',
+      manual:!source.ok?'Manual-only schedule evidence is retained; its age does not create an automated alert.':'Manual schedule evidence only; automated fixture coverage is not established.',
+      connected:'Source check passed; this does not establish complete season coverage.'
+    };
     const issue=state==='source'
-      ?(source.errors||[]).join(' ')||'The published schedule source did not complete successfully.'
-      :state==='setup'
-        ?source.source_note||source.note||`${source.coverage_status==='partial'?'Schedule coverage is partial.':'A dependable automated schedule source is not connected.'}`
-        :manual&&!source.ok?'Manual-only schedule evidence is retained; its age does not create an automated alert.':'Schedule source is connected.';
+      ?[(source.errors||[]).join(' ')||'The published schedule source did not complete successfully.',detail].filter(Boolean).join(' ')
+      :[explanations[state],detail].filter(Boolean).join(' ');
     return{state,source,term,issue};
   });
 }
@@ -3019,22 +3032,22 @@ function catalogEntryHealthHtml(sport,labels,sourceIds){
   if(!rows.length)return'';
   const latest=DATA.global?.generated_at;
   return `<div class="catalog-entry-health">${rows.map(({state,source,issue})=>{
-    const stateLabel=state==='connected'?'CONNECTED':state==='source'?'SOURCE ISSUE':'NEEDS SETUP';
+    const stateLabel={connected:'SOURCE CHECK PASSED',source:'SOURCE ISSUE',setup:'REFERENCE / NEEDS SETUP',window:'DATES ONLY',partial:'PARTIAL COVERAGE',manual:'MANUAL EVIDENCE'}[state];
     const checked=fmtDateTime(source.checked_at||latest);
     const url=source.official_schedule_url||source.public_url;
     const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`:'';
-    return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${checked}${state==='connected'?'':` · ${esc(issue)}`}</span></span>${link}</div>`;
+    return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${checked} · ${esc(issue)}</span></span>${link}</div>`;
   }).join('')}</div>`;
 }
 function renderCatalogHealth(){
   const host=document.getElementById('catalogHealth');if(!host)return;
-  const rows=catalogCoverageHealth(),counts={connected:0,setup:0,source:0};
+  const rows=catalogCoverageHealth(),counts={connected:0,setup:0,window:0,partial:0,manual:0,source:0};
   rows.forEach(row=>counts[row.state]++);
   const coverage=DATA.coverage?.summary||{},identityStates=coverage.coverage_states||{};
   const identityTotal=coverage.catalog_operational_identities;
   const identityText=identityTotal?`<div class="catalog-health-note"><b>Competition schedule coverage:</b> ${identityTotal} total · ${identityStates.ADAPTER_CONFIGURED||0} schedule connections configured · ${identityStates.OFFICIAL_WINDOW_ONLY||0} competition dates only · ${identityStates.ADAPTER_GAP||0} automated schedules not connected · ${identityStates.NO_LINKED_SOURCE||0} source not linked · ${identityStates.SOURCE_SCOPE_REVIEW||0} source scope needs review.</div>`:'';
   const latest=DATA.global?.generated_at||rows.map(row=>row.source.checked_at).filter(Boolean).sort().at(-1);
-  const buttons=[['all','Full catalog',null,''],['connected','Connected sources',counts.connected,''],['setup','Sources need setup',counts.setup,'attention'],['source','Source errors',counts.source,'issue']]
+  const buttons=[['all','Full catalog',null,''],['connected','Source checks passed',counts.connected,''],['setup','Sources need setup',counts.setup,'attention'],['window','Dates only',counts.window,'attention'],['partial','Partial coverage',counts.partial,'attention'],['manual','Manual evidence',counts.manual,'attention'],['source','Source errors',counts.source,'issue']]
     .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}${count==null?'':`: ${count}`}</button>`).join('');
   host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div>${identityText}<div class="catalog-health-note">The buttons count schedule source records and filter the catalog; they are not a completion percentage. Competition totals describe schedule connections. A configured connection does not establish complete season coverage or a successful current source check. Schedule status, last checked time, and the official schedule appear inside the matching catalog entry.</div>`;
 }
