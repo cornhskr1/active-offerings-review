@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T16:28:17.641041+00:00",
-  "schedule_generated_at": "2026-10-18T16:13:20.334230+00:00",
+  "registry_generated_at": "2026-10-18T16:58:05.667073+00:00",
+  "schedule_generated_at": "2026-10-18T16:44:56.738338+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 359,
-      "ADAPTER_GAP": 177,
+      "ADAPTER_CONFIGURED": 361,
+      "ADAPTER_GAP": 175,
       "NO_LINKED_SOURCE": 53,
       "OFFICIAL_WINDOW_ONLY": 144
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 277
     },
     "reported_gap_areas": 14,
-    "reported_gap_labels": 187,
+    "reported_gap_labels": 185,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 141,
+      "adapter_gaps": 139,
       "pending_dates": 89
     },
     "Surfing": {
@@ -6329,14 +6329,14 @@
           "id": "rugby-saru-currie-first",
           "type": "saru-exact-matches",
           "configured_league": "Currie Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         },
         {
           "id": "rugby-saru-currie-premier",
           "type": "saru-matches",
           "configured_league": "Currie Cup | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -6365,10 +6365,10 @@
           "type": "epcr-fixtures",
           "configured_league": "European Rugby Challenge Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Rugby",
@@ -6393,10 +6393,10 @@
           "type": "epcr-fixtures",
           "configured_league": "European Rugby Champions Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Rugby",
@@ -7002,11 +7002,11 @@
           "id": "rugby-usa",
           "type": "saru-exact-matches",
           "configured_league": "Women’s USA Rugby Events | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Rugby",
@@ -9087,17 +9087,17 @@
       "season_window": "August 2026–spring 2027; final date and district qualifier scope pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-croatia-croatian-cup-men",
-          "type": "coverage-gap",
+          "type": "official-hns-croatian-cup-fixtures",
           "configured_league": "Croatian Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -10208,10 +10208,10 @@
           "type": "official-dfb-frauen-bundesliga-season",
           "configured_league": "Frauen Bundesliga | Women",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -10814,11 +10814,11 @@
       "season_window": "May 15–November 20, 2026",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-latvia-latvian-cup-latvijas-kauss-men",
-          "type": "coverage-gap",
+          "type": "official-lff-cup-fixtures",
           "configured_league": "Latvian Cup / Latvijas Kauss | Men",
           "refresh_ok": true,
           "events_in_window": 0
@@ -11471,13 +11471,13 @@
       "sources": [
         {
           "id": "soccer-afc-malaysia-malaysia-fa-cup-men",
-          "type": "official-mfl-fixture-pdf",
+          "type": "official-mfl-fa-semifinal-fixtures",
           "configured_league": "Malaysia FA Cup | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -11728,11 +11728,11 @@
           "id": "uefa-soccer-luxembourg-national-division-bgl-ligue-men",
           "type": "official-flf-bgl-next-round",
           "configured_league": "National Division / BGL Ligue | Men",
-          "refresh_ok": true,
-          "events_in_window": 8
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -12296,11 +12296,11 @@
           "id": "soccer-afc-qatar-qatar-stars-league-men",
           "type": "official-qsl-stars-fixtures",
           "configured_league": "Qatar Stars League | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
