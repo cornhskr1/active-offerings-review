@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T17:43:08.347924+00:00",
-  "schedule_generated_at": "2026-10-18T17:28:43.807011+00:00",
+  "registry_generated_at": "2026-10-18T18:10:51.881583+00:00",
+  "schedule_generated_at": "2026-10-18T18:01:03.473795+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -4126,10 +4126,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Esports",
@@ -13918,7 +13918,7 @@
           "id": "soccer-afc-united-arab-emirates-uae-pro-league-men",
           "type": "official-uae-adnoc-fixtures",
           "configured_league": "UAE Pro League | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14831,6 +14831,15 @@
           "id": "tennis-usta-pro-circuit-men",
           "type": "coverage-gap",
           "configured_league": "USTA Pro Circuit | Men",
+          "crosslisted_reference_count": 3,
+          "crosslisted_event_ids": [
+            "tennis-itf-world-tour-men-2026-10-12-m15-lexington-ky",
+            "tennis-itf-world-tour-men-2026-10-12-m25-austin-tx",
+            "tennis-itf-world-tour-men-2026-10-19-m15-ithaca"
+          ],
+          "reference_status": "references-verified",
+          "reference_note": "Reviewed tournament cross-list references only. USTA remains a manual coverage gap with no independently collected events; these references do not establish circuit-wide or match-level coverage, new approval, or participant-age clearance.",
+          "reference_errors": [],
           "refresh_ok": true,
           "events_in_window": 0
         }
@@ -14852,6 +14861,16 @@
           "id": "tennis-usta-pro-circuit-women",
           "type": "coverage-gap",
           "configured_league": "USTA Pro Circuit | Women",
+          "crosslisted_reference_count": 4,
+          "crosslisted_event_ids": [
+            "tennis-itf-world-tour-women-2026-10-12-w100-edmond-ok",
+            "tennis-itf-world-tour-women-2026-10-12-w35-redding-ca",
+            "tennis-itf-world-tour-women-2026-10-19-w35-bakersfield-ca",
+            "tennis-itf-world-tour-women-2026-10-19-w50-austin"
+          ],
+          "reference_status": "references-verified",
+          "reference_note": "Reviewed tournament cross-list references only. USTA remains a manual coverage gap with no independently collected events; these references do not establish circuit-wide or match-level coverage, new approval, or participant-age clearance.",
+          "reference_errors": [],
           "refresh_ok": true,
           "events_in_window": 0
         }

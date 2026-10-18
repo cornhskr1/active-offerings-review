@@ -1,6 +1,6 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-18T17:28:43.807011+00:00
+Catalog 10.1.26 · published schedule 2026-10-18T18:01:03.473795+00:00
 Review dates: 2026-10-18 through 2026-10-25 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
