@@ -2321,44 +2321,54 @@
             {
               "key": "hockey-usca-nhl-draft",
               "catalog_event": "NHL Draft",
-              "season_window": "Annual June event · 2027 dates pending",
+              "season_window": "2026 edition completed; 2027 dates and start time pending verification",
               "season_status": "out",
-              "season_basis": "Event-specific calendar; do not infer approval activity until the next official dates are published",
-              "last_verified": "2026-09-18",
+              "season_basis": "The completed June 26–27, 2026 selection event is historical evidence only; no recurring June window or future market activity is inferred.",
+              "last_verified": "2026-10-18",
               "fun_fact": "The NHL Draft assigns selection order through the standings, playoffs, trades, and the draft lottery.",
               "restrictions": [
                 "MARKETS CLOSE 1 HOUR PRIOR TO EVENT START"
-              ]
+              ],
+              "source_id": "hockey-usca-nhl-draft",
+              "season_hold": true,
+              "hold_reason": "No official 2027 date, venue, or start time verified. This is a draft-selection event, not a match feed. Preserve the one-hour market-close restriction; never calculate a closing time from date-only evidence."
             },
             {
               "key": "hockey-usca-nhl-skills",
               "catalog_event": "NHL All-Star Skills Challenge",
-              "season_window": "Event dates pending official confirmation",
-              "season_status": "out",
-              "season_basis": "Event-specific calendar; no recurring January–February window is assumed without published dates",
-              "last_verified": "2026-09-18",
+              "season_window": "February 5, 2027",
+              "season_basis": "Official 2027 event date at UBS Arena, Elmont, New York; calendar-only coverage, not an individual contest feed. No recurring window or later edition is inferred.",
+              "last_verified": "2026-10-18",
               "fun_fact": "The Skills Challenge tests individual abilities such as skating speed, shooting accuracy, and shot power.",
-              "restrictions": []
+              "restrictions": [],
+              "source_id": "hockey-usca-nhl-skills",
+              "season_start_date": "2027-02-05",
+              "season_end_date": "2027-02-05"
             },
             {
               "key": "hockey-usca-nhl-all-star",
               "catalog_event": "NHL All-Star Game",
-              "season_window": "Event dates pending official confirmation",
-              "season_status": "out",
-              "season_basis": "Event-specific calendar; no recurring January–February window is assumed without published dates",
-              "last_verified": "2026-09-18",
+              "season_window": "February 6, 2027",
+              "season_basis": "Official 2027 event date at UBS Arena, Elmont, New York; calendar-only coverage, not an individual contest feed. No recurring window or later edition is inferred.",
+              "last_verified": "2026-10-18",
               "fun_fact": "The NHL All-Star format has changed several times, including conference, divisional, and international-team formats.",
-              "restrictions": []
+              "restrictions": [],
+              "source_id": "hockey-usca-nhl-all-star",
+              "season_start_date": "2027-02-06",
+              "season_end_date": "2027-02-06"
             },
             {
               "key": "hockey-usca-four-nations",
               "catalog_event": "Four Nations Face-Off",
-              "season_window": "February 2025 event completed",
+              "season_window": "February 12–20, 2025 edition completed; next edition unverified",
               "season_status": "out",
-              "season_basis": "Completed event-specific tournament; do not treat it as an annual February competition",
-              "last_verified": "2026-09-18",
+              "season_basis": "Completed event-specific tournament; no annual recurrence, next-year rollover, or World Cup of Hockey substitution.",
+              "last_verified": "2026-10-18",
               "fun_fact": "The 2025 Four Nations Face-Off featured Canada, Finland, Sweden, and the United States.",
-              "restrictions": []
+              "restrictions": [],
+              "source_id": "hockey-usca-four-nations",
+              "season_hold": true,
+              "hold_reason": "The official source establishes only the completed 2025 Four Nations edition. No next edition is verified; ordinary NHL, All-Star, Olympics, and World Cup events cannot activate this identity."
             }
           ]
         }
