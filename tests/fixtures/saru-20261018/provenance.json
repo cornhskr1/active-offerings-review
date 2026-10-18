@@ -1,0 +1,25 @@
+{
+  "retrieved_at": "2026-10-18T15:53:51Z",
+  "method": "Public unauthenticated GET; HTTP 200; redirects not used for API queries.",
+  "endpoint": "https://springboks.rugby/api/match-centre/matches",
+  "query": {
+    "startDate": "2026-01-01",
+    "endDate": "2028-01-01",
+    "pageIndex": 0,
+    "pageSize": 100,
+    "IsAscending": "true"
+  },
+  "files": {
+    "currie-first.json": {
+      "competitionId": "56038bac-544a-482e-a5da-6351054efc5d",
+      "totalDataCount": 18
+    },
+    "wxv.json": {
+      "competitionId": "669f0a5d-fc63-4c08-855e-2cbcf51dd401",
+      "totalDataCount": 30
+    }
+  },
+  "minimization": "Player arrays, biographies, referees, image URLs and unrelated fields removed. Match and team identifiers, named opponents, dates, scores, status and venues retained.",
+  "current_match_corroboration": "https://www.world.rugby/wxv/en/match/39ca0cc5-5b4c-4b30-a9a4-3f7572212cb2",
+  "scope": "First Division 2026 only. USA Women WXV Global Series 2026 only, not the entire WXV competition or all USA Rugby events."
+}
