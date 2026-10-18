@@ -4,6 +4,9 @@ import datetime, json, re, requests
 from bs4 import BeautifulSoup
 from zoneinfo import ZoneInfo
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
 DATA.mkdir(exist_ok=True)

@@ -3,6 +3,8 @@ from pathlib import Path
 import json, re, datetime, hashlib, difflib, os
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
+from publisher_access_policy import permission_hold_reason
+from tennis_publisher_holds import (paused_snapshot, install_browser_hold, retain_paused_tournaments, mark_permission_metadata)
 from athlete_age_evidence import (identity as evidence_identity, merge_records,
     partition_registry, age_status_on, reviewed, update_cache, index_records)
 
@@ -84,16 +86,20 @@ def overlaps(a,b): return bool(a and b and a<=END and b>=TODAY)
 class Browser:
     def __init__(self,pw):
         self.browser=pw.chromium.launch(headless=True,args=["--disable-dev-shm-usage"])
-        self.page=self.browser.new_page(viewport={"width":1440,"height":1100},
+        self.page=self.browser.new_page(service_workers="block", viewport={"width":1440,"height":1100},
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36")
+        install_browser_hold(self.page)
         self.page.set_default_timeout(18000)
 
     def close(self): self.browser.close()
 
     def snapshot(self,url,wait=1800):
+        held=paused_snapshot(url)
+        if held:return held
         payloads=[]
         def on_response(resp):
             try:
+                if permission_hold_reason(resp.url):return
                 ctype=(resp.headers.get("content-type") or "").lower()
                 u=resp.url.lower()
                 if ("json" not in ctype and not any(x in u for x in ("/api/","graphql","query","draw","player","acceptance"))):
@@ -794,6 +800,8 @@ def fallback_global_schedule():
     x=load(DATA/"global-schedule.json",{})
     out=[]
     for e in x.get("events",[]):
+        if permission_hold_reason(e.get("source_endpoint") or ""):
+            continue  # Held saved evidence is not a fresh discovery fallback.
         if e.get("sport")!="Tennis" or e.get("status")=="COMPLETED":continue
         try:d=datetime.datetime.fromisoformat(e["start_time"].replace("Z","+00:00")).astimezone(TZ).date()
         except Exception:continue
@@ -1327,6 +1335,7 @@ seed_index=registry_index(seed)
 # Routine field refreshes reuse the durable verified registry. Rebuilding the
 # junior universe and broad ATP/WTA age indexes is maintenance work and must not
 # sit in the time-critical tournament path.
+saved_intelligence=load(DATA/"tennis-intelligence.json",{})
 saved_registry=load(DATA/"tennis-u18-registry.json",{})
 saved_records=saved_registry.get("records") or saved_registry.get("verified_u18",[])
 saved_u18=registry_index(saved_records)
@@ -1358,8 +1367,12 @@ with sync_playwright() as pw:
 
     x,h=discover_wta_lane(browser,WTA_125,"wta-125","WTA 125")
     tournaments+=x;health["wta_125"]=h
-    x,h=discover_itf(browser,ITF_MEN,"itf-men","ITF Men's World Tennis Tour","MEN");tournaments+=x;health["itf_men"]=h
-    x,h=discover_itf(browser,ITF_WOMEN,"itf-women","ITF Women's World Tennis Tour","WOMEN");tournaments+=x;health["itf_women"]=h
+    for url,tid,tour,gender,key in ((ITF_MEN,"itf-men","ITF Men's World Tennis Tour","MEN","itf_men"), (ITF_WOMEN,"itf-women","ITF Women's World Tennis Tour","WOMEN","itf_women")):
+        held=paused_snapshot(url)
+        if held:
+            health[key]=held
+        else:
+            x,h=discover_itf(browser,url,tid,tour,gender);tournaments+=x;health[key]=h
 
     # UTR official regional event discovery
     utr_events=[]; utr_health=[]
@@ -1383,7 +1396,10 @@ with sync_playwright() as pw:
     tournaments+=utr_events;health["utr"]=utr_health
 
     if REFRESH_REGISTRY:
-        junior_u18,junior_candidates,junior_health=junior_watch_index(browser)
+        if permission_hold_reason(ITF_JB):
+            junior_u18,junior_candidates,junior_health=saved_u18,saved_candidates,paused_snapshot(ITF_JB)
+        else:
+            junior_u18,junior_candidates,junior_health=junior_watch_index(browser)
         health["itf_juniors"]=junior_health
         # Resolve the easy majority in bulk only during registry maintenance.
         atp_age,atp_age_health=ranking_age_index(browser,ATP_RANK,r"/en/players/","ATP official rankings")
@@ -1394,7 +1410,7 @@ with sync_playwright() as pw:
     else:
         junior_u18=saved_u18
         junior_candidates=saved_candidates
-        health["itf_juniors"]={"ok":True,"mode":"cached-registry","records":len(saved_u18)+len(saved_candidates)}
+        health["itf_juniors"]=paused_snapshot(ITF_JB) or {"ok":True,"mode":"cached-registry","records":len(saved_u18)+len(saved_candidates)}
         health["atp_age_index"]={"ok":True,"mode":"skipped-routine-field-refresh"}
         health["wta_age_index"]={"ok":True,"mode":"skipped-routine-field-refresh"}
         broad_age_index={}
@@ -1575,6 +1591,8 @@ with sync_playwright() as pw:
 
     browser.close()
 
+tournaments+=retain_paused_tournaments(saved_intelligence)
+
 exposure={norm(p["name"]) for t in tournaments for p in t.get("confirmed_u18",[])}
 pre_draw_watch={norm(p["name"]) for t in tournaments for p in t.get("pre_draw_u18",[])}
 cache_verified=[record for record in persistent_age_cache.values()
@@ -1660,7 +1678,8 @@ schedule_out={
     "participant_field_basis":t.get("participant_field_basis"),
     "participant_field_confidence":t.get("participant_field_confidence"),
     "field_completeness":t.get("field_completeness"),
-    "source_url":t.get("source_url")
+    "source_url":t.get("source_url"),
+    **{k:t[k] for k in ("collection_paused","source_stale","permission_required","permission_hold_reason","source_generated_at") if k in t}
  } for t in tournaments]
 }
 
@@ -1739,7 +1758,9 @@ elif wta125_issue=="DATES_UNRESOLVED":
 # A partial publication must have reached every ITF and UTR calendar it claims
 # to refresh. An HTTP success alone is not a tournament/field clearance.
 for lane,key in (("itf-men","itf_men"),("itf-women","itf_women")):
-    if not (health.get(key) or {}).get("ok"):
+    if (health.get(key) or {}).get("permission_required"):
+        degraded_lanes.append({"tour_id":lane,"reason":health[key]["error"]})
+    elif not (health.get(key) or {}).get("ok"):
         critical_issues.append(f"{lane.upper()}_PUBLISHER_ACCESS_FAILED")
 for region in health.get("utr") or []:
     if not region.get("ok"):
@@ -1759,6 +1780,8 @@ quality_gate={
   "warnings":quality_issues,
   "checked_at":NOW.isoformat()
 }
+for document in (out,schedule_out,registry_out,exceptions_out):
+    mark_permission_metadata(document,NOW.isoformat())
 out["quality_gate"]=quality_gate
 schedule_out["quality_gate"]=quality_gate
 
@@ -1769,7 +1792,8 @@ if critical_issues:
 AGE_CACHE_PATH.write_text(json.dumps({
   **load(AGE_CACHE_PATH,{}),
   "schema_version":1,"generated_at":NOW.isoformat(),
-  "records":persistent_age_cache
+  "records":persistent_age_cache,
+  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat()).get("publisher_permission_holds",[])
 },indent=2,ensure_ascii=False),encoding="utf-8")
 
 (DATA/"tennis-schedule.json").write_text(json.dumps(schedule_out,indent=2,ensure_ascii=False),encoding="utf-8")

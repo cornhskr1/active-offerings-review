@@ -10,6 +10,9 @@ are added without changing the staff-facing Refresh Review control.
 from pathlib import Path
 import json, datetime, urllib.request, urllib.error, ssl, time
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 sources = json.loads((DATA / "sources.json").read_text(encoding="utf-8"))
@@ -23,6 +26,12 @@ rows = []
 for source in sources:
     started = time.time()
     row = dict(source)
+    hold_reason=permission_hold_reason(source["url"])
+    if hold_reason:
+        row.update(ok=False,http_status=None,error=hold_reason,access_status="permission_required",
+                   collection_paused=True,stale=True,checked_at=None)
+        rows.append(row)
+        continue
     row["checked_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
     try:
         req = urllib.request.Request(source["url"], headers=headers, method="GET")

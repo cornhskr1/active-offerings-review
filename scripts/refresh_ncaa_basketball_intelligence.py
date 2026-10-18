@@ -313,6 +313,11 @@ out = {
     "notes": rules.get("principles", [])
 }
 
+if schedule.get("collection_paused") or rosters.get("collection_paused"):
+    out.update(collection_paused=True, stale=True, access_status="permission_required",
+               collection_status_note="Derived from retained observations; publisher collection is paused pending access review.",
+               source_observation_times={"schedule": schedule.get("generated_at"), "rosters": rosters.get("generated_at")})
+
 OUT_PATH.write_text(json.dumps(out, indent=2), encoding="utf-8")
 print(json.dumps({
     "verified_u18_registry": len(verified_u18),

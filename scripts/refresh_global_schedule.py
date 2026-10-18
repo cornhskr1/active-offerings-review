@@ -87,6 +87,10 @@ from canada_championship_final import parse_final as parse_canada_championship_f
 from tennis_refresh_guardrails import schedule_source_warning
 from usta_reference_reconciliation import reconcile_usta_references
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold,
+    source_permission_hold_reason, retained_source_events)
+install_network_guards()
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 CFG = json.loads((DATA/"global-schedule-sources.json").read_text(encoding="utf-8"))
@@ -1809,6 +1813,10 @@ def fetch_esl_calendar(source):
             parsed.append(event)
     return parsed
 
+try:
+    previous_schedule=json.loads((DATA/"global-schedule.json").read_text())
+except (OSError,ValueError):
+    previous_schedule={}
 events=[]
 tour_calendars=[]
 source_status=[]
@@ -1821,6 +1829,23 @@ for source in CFG.get("sources",[]):
         source_status.append({**source,"approved_catalog":None,"ok":False,"events":0,"note":"Current catalog data unavailable; approval match not evaluated."})
         continue
 
+    hold_reason=source_permission_hold_reason(source)
+    if hold_reason:
+        retained=retained_source_events(previous_schedule,source,hold_reason)
+        events.extend(retained)
+        for saved_calendar in previous_schedule.get("tour_calendars",[]):
+            if saved_calendar.get("source_id")==source.get("id"):
+                calendar=deepcopy(saved_calendar)
+                calendar.update(collection_paused=True,stale=True,source_stale=True,collection_status_note=hold_reason)
+                for saved_event in calendar.get("events",[]):
+                    saved_event.update(collection_paused=True,stale=True,source_stale=True,collection_status_note=hold_reason)
+                tour_calendars.append(calendar)
+        previous_status=next((x for x in previous_schedule.get("sources",[]) if x.get("id")==source.get("id")),{})
+        source_status.append({**previous_status,**source,"approved_catalog":True,"ok":False,"events":len(retained),
+            "errors":[hold_reason],"access_status":"permission_required","collection_paused":True,
+            "stale":True,"coverage_complete":False,"checked_at":previous_status.get("checked_at"),
+            "hold_recorded_at":NOW_UTC.isoformat()})
+        continue
     count=0
     errors=[]
     seen=set()

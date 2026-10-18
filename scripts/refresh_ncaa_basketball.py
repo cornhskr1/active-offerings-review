@@ -5,8 +5,14 @@ import json
 import requests
 from zoneinfo import ZoneInfo
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
+if preserve_snapshot_on_hold(DATA / "ncaa-basketball.json", "https://sdataprod.ncaa.com/"):
+    raise SystemExit(0)
+
 CFG = json.loads((DATA / "ncaa-basketball-sources.json").read_text(encoding="utf-8"))
 
 TZ = ZoneInfo(CFG.get("timezone", "America/Chicago"))

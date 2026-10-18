@@ -25,6 +25,11 @@ PDF URL is requested at most once, without redirects or retries.
 """
 
 from collections import Counter
+try:
+    from publisher_access_policy import permission_hold_reason
+except ModuleNotFoundError:
+    from scripts.publisher_access_policy import permission_hold_reason
+
 from copy import deepcopy
 import datetime as dt
 import hashlib
@@ -132,6 +137,8 @@ def _row_issue(row, lane, today, last_day):
 
 def _pdf_issue(calendar, get, cache):
     url, expected = calendar.get("url"), calendar.get("sha256")
+    if permission_hold_reason(url):
+        return "PERMISSION_REQUIRED"
     if (not _pdf_url(url) or not isinstance(expected, str)
             or not re.fullmatch(r"[0-9a-f]{64}", expected)
             or not isinstance(calendar.get("published_revision"), str)
@@ -205,6 +212,21 @@ def reconcile_usta_references(events, sources, tennis_payload, manifest, now, ge
     Source metadata is owned when reference_owner equals OWNER. Foreign event
     calendar references and foreign source metadata are never replaced.
     """
+    hold_reason = permission_hold_reason("https://www.usta.com/")
+    if hold_reason:
+        # Preserve the last saved references, but never imply they were rechecked.
+        held_events, held_sources = deepcopy(events), deepcopy(sources)
+        for event in held_events:
+            for reference in event.get("calendar_references") or []:
+                if isinstance(reference, dict) and reference.get("owner") == OWNER:
+                    reference.update({"collection_paused": True, "source_stale": True,
+                                      "permission_required": True, "permission_hold_reason": hold_reason})
+        for source in held_sources:
+            if source.get("id") in {value[0] for value in LANES.values()}:
+                source.update({"reference_status": "permission-required", "reference_collection_paused": True,
+                               "reference_source_stale": True, "reference_permission_required": True,
+                               "reference_note": hold_reason, "reference_errors": [hold_reason]})
+        return held_events, held_sources
     copied_events, copied_sources = deepcopy(events), deepcopy(sources)
     for event in copied_events:
         refs = event.get("calendar_references")

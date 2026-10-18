@@ -3,8 +3,14 @@ from pathlib import Path
 import datetime, json, re, requests
 from bs4 import BeautifulSoup
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
+if preserve_snapshot_on_hold(DATA / "ncaa-basketball-di-map.json", "https://www.ncaa.com/"):
+    raise SystemExit(0)
+
 NOW = datetime.datetime.now(datetime.timezone.utc)
 
 HEADERS = {

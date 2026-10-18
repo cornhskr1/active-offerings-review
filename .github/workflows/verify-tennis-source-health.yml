@@ -5,6 +5,10 @@ on:
     paths:
       - "scripts/refresh_tennis_intelligence.py"
       - "scripts/tennis_refresh_guardrails.py"
+      - "scripts/tennis_publisher_holds.py"
+      - "tests/test_tennis_browser_redirect_boundary.py"
+      - "tests/test_tennis_publisher_holds.py"
+      - "scripts/publisher_access_policy.py"
       - "data/tennis-*.json"
       - ".github/workflows/verify-tennis-source-health.yml"
 
@@ -21,6 +25,10 @@ jobs:
         run: |
           python3 -m pip install --quiet playwright
           python3 -m playwright install chromium
+      - name: Verify synthetic browser redirects never reach held hosts
+        env:
+          TENNIS_BROWSER_BOUNDARY_REQUIRED: "1"
+        run: python3 -m unittest tests.test_tennis_browser_redirect_boundary tests.test_tennis_publisher_holds -v
       - name: Probe official Tennis access without publishing data
         run: |
           python3 - <<'PY'
@@ -28,6 +36,8 @@ jobs:
           from playwright.sync_api import sync_playwright
           sys.path.insert(0,'scripts')
           from tennis_refresh_guardrails import publisher_access_issue
+          from publisher_access_policy import permission_hold_reason
+          from tennis_publisher_holds import install_browser_hold
           urls={
             'ATP Challenger calendar':'https://www.atptour.com/en/atp-challenger-tour/calendar',
             'ITF men':'https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/',
@@ -36,8 +46,12 @@ jobs:
           }
           with sync_playwright() as pw:
             browser=pw.chromium.launch(headless=True)
-            page=browser.new_page(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36')
+            page=browser.new_page(service_workers="block",user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36')
+            install_browser_hold(page)
             for name,url in urls.items():
+              if permission_hold_reason(url):
+                print(f"{name}: PERMISSION_REQUIRED; probe skipped",flush=True)
+                continue
               try:
                 response=page.goto(url,wait_until='domcontentloaded',timeout=25000)
                 body=page.locator('body').inner_text(timeout=5000)
