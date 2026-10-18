@@ -1,6 +1,6 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-18T14:30:45.206013+00:00
+Catalog 10.1.26 · published schedule 2026-10-18T15:20:49.517815+00:00
 Review dates: 2026-10-18 through 2026-10-25 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
@@ -10,9 +10,8 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Current state | Identities |
 |---|---:|
 | Calendar only | 51 |
-| Fixtures published in this window | 3 |
+| Fixtures published in this window | 7 |
 | Fixture connection missing | 6 |
-| New connection; normal verification pending | 4 |
 | Competition/scope hold | 6 |
 | Source blocked or failed | 19 |
 
@@ -22,7 +21,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | BBL-Pokal \| Men | Calendar only | published-event-window |
 | BIG3 \| Men | Calendar only | last-published-event-window |
 | Basketball Bundesliga (BBL) \| Men | Source blocked or failed | partial |
-| Basketball Champions League \| Men | New connection; normal verification pending | partial |
+| Basketball Champions League \| Men | Fixtures published in this window | partial |
 | Basketball League of Serbia / Košarkaška liga Srbije (KLS) \| Men | Source blocked or failed | not reported |
 | Basketbol Süper Ligi (BSL) \| Men | Source blocked or failed | partial |
 | Basketligaen \| Men | Source blocked or failed | partial |
@@ -36,8 +35,8 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Copa del Rey \| Men | Calendar only | last-published-event-window |
 | Coppa Italia \| Men | Calendar only | last-published-event-window |
 | Danish Cup \| Men | Competition/scope hold | Only the 2026 men's final date is verified; the full Danish Cup schedule and source scope are not publicly established. |
-| EuroCup \| Men | New connection; normal verification pending | partial |
-| EuroLeague \| Men | New connection; normal verification pending | partial |
+| EuroCup \| Men | Fixtures published in this window | partial |
+| EuroLeague \| Men | Fixtures published in this window | partial |
 | FIBA 3x3 World Cup \| Men | Fixture connection missing | missing |
 | FIBA 3x3 World Cup \| Women | Fixture connection missing | missing |
 | FIBA 3x3 World Tour \| Men | Calendar only | current-published-events |
@@ -58,7 +57,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | FIBA Micronesia Cup \| Women | Calendar only | last-published-event-window |
 | FIBA Polynesian Basketball Cup \| Men | Calendar only | published-event-window |
 | FIBA Polynesian Basketball Cup \| Women | Calendar only | published-event-window |
-| FIBA Women's EuroLeague \| Women | New connection; normal verification pending | partial |
+| FIBA Women's EuroLeague \| Women | Fixtures published in this window | partial |
 | French Cup \| Men | Calendar only | last-published-event-window |
 | Governor’s Cup \| Men | Source blocked or failed | published-schedule-window |
 | Greek Basket League (GBL) \| Men | Source blocked or failed | not reported |
