@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T21:03:46.156756+00:00",
-  "schedule_generated_at": "2026-10-18T20:49:11.383794+00:00",
+  "registry_generated_at": "2026-10-18T23:00:28.388191+00:00",
+  "schedule_generated_at": "2026-10-18T22:46:02.495512+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -10,8 +10,8 @@
     "catalog_operational_identities": 733,
     "split_children": 144,
     "coverage_states": {
-      "ADAPTER_CONFIGURED": 365,
-      "ADAPTER_GAP": 175,
+      "ADAPTER_CONFIGURED": 372,
+      "ADAPTER_GAP": 168,
       "NO_LINKED_SOURCE": 47,
       "OFFICIAL_WINDOW_ONLY": 146
     },
@@ -25,7 +25,7 @@
       "RECURRING_WINDOW": 277
     },
     "reported_gap_areas": 15,
-    "reported_gap_labels": 185,
+    "reported_gap_labels": 178,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -264,7 +264,7 @@
       "identities": 353,
       "split_children": 44,
       "no_linked_source": 0,
-      "adapter_gaps": 137,
+      "adapter_gaps": 130,
       "pending_dates": 89
     },
     "Surfing": {
@@ -1634,7 +1634,7 @@
           "type": "thesportsdb-day",
           "configured_league": "Liga Nacional de Baloncesto Profesional (LNBP)",
           "refresh_ok": false,
-          "events_in_window": 9
+          "events_in_window": 8
         }
       ],
       "events_in_window": 6
@@ -7473,13 +7473,13 @@
       "season_window": "July 31, 2026–2027 final round pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-armenia-armenian-premier-league-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Armenian Premier League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -7917,13 +7917,13 @@
       "season_window": "July 17, 2026–2027 final and play-off dates pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-bulgaria-bulgarian-first-professional-league-parva-liga-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Bulgarian First Professional League / Parva Liga | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8238,7 +8238,7 @@
           "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
           "type": "official-auf-fixtures",
           "configured_league": "Campeonato Femenino | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -8849,11 +8849,11 @@
           "id": "conmebol-soccer-uruguay-copa-uruguay-men",
           "type": "official-auf-fixtures",
           "configured_league": "Copa Uruguay | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -9201,13 +9201,13 @@
       "season_window": "July 8, 2026–May 12, 2027",
       "season_state": "DATED_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-romania-cupa-rom-niei-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Cupa României | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10272,13 +10272,13 @@
       "season_window": "May 24, 2026 first stage–final date pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-georgia-georgian-cup-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Georgian Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -11857,13 +11857,13 @@
       "season_state": "DOCUMENTED_HOLD",
       "season_status": "",
       "hold_reason": "Exact 2027 Norwegian Cup final date and full qualifier scope are not verified; do not reuse a March–December 2026 season window.",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-norway-norwegian-cup-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Norwegian Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -12025,13 +12025,13 @@
       "season_window": "August 5, 2026–May 2, 2027 central rounds; district stage scope pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-poland-polish-cup-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Polish Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -13330,13 +13330,13 @@
       "season_window": "August 14, 2026 opening fixture–2027 final round pending",
       "season_state": "PARTIAL_WINDOW",
       "season_status": "",
-      "coverage_state": "ADAPTER_GAP",
+      "coverage_state": "ADAPTER_CONFIGURED",
       "sources": [
         {
           "id": "uefa-soccer-kosovo-superleague-of-kosovo-superliga-e-kosov-s-men",
-          "type": "coverage-gap",
+          "type": "official-uefa-domestic-reviewed",
           "configured_league": "Superleague of Kosovo / Superliga e Kosovës | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
