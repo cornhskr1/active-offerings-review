@@ -2940,6 +2940,98 @@
       ]
     },
     {
+      "id": "hockey-usca-nhl-skills",
+      "source_type": "official-event-window",
+      "sport": "Ice Hockey",
+      "league": "NHL All-Star Skills Challenge",
+      "region": "United States / Canada",
+      "endpoint": "https://www.nhl.com/news/topic/nhl-all-star/nhl-unveils-new-format-for-2027-all-star-weekend",
+      "official_schedule_url": "https://www.nhl.com/news/topic/nhl-all-star/nhl-unveils-new-format-for-2027-all-star-weekend",
+      "coverage_status": "published-event-date",
+      "source_note": "Exact 2027 event only. The announced start time is retained as source evidence; the existing calendar adapter emits date-only markers, not timed games or individual Skills contests. A reachable page is not proof that the recorded edition remains current.",
+      "official_events": [
+        {
+          "source_id": "hockey-usca-nhl-skills",
+          "league": "NHL All-Star Skills Challenge",
+          "name": "2027 NHL All-Star Skills Challenge - official event date",
+          "start_date": "2027-02-05",
+          "end_date": "2027-02-05",
+          "location": "UBS Arena, Elmont, New York",
+          "official_schedule_url": "https://www.nhl.com/news/topic/nhl-all-star/nhl-unveils-new-format-for-2027-all-star-weekend",
+          "published_start_time_evidence": {
+            "announced_time_et": "7 p.m. ET",
+            "local_datetime": "2027-02-05T19:00:00-05:00",
+            "timezone": "America/New_York",
+            "utc_datetime": "2027-02-06T00:00:00Z",
+            "evidence_url": "https://www.nhl.com/news/2026-2027-national-tv-schedule-announced",
+            "note": "Published event start evidence only; not a fixture timestamp or a market-close calculation."
+          }
+        }
+      ],
+      "catalog_terms": [
+        "NHL All-Star Skills Challenge"
+      ]
+    },
+    {
+      "id": "hockey-usca-nhl-all-star",
+      "source_type": "official-event-window",
+      "sport": "Ice Hockey",
+      "league": "NHL All-Star Game",
+      "region": "United States / Canada",
+      "endpoint": "https://www.nhl.com/news/topic/nhl-all-star/nhl-unveils-new-format-for-2027-all-star-weekend",
+      "official_schedule_url": "https://www.nhl.com/news/topic/nhl-all-star/nhl-unveils-new-format-for-2027-all-star-weekend",
+      "coverage_status": "published-event-date",
+      "source_note": "Exact 2027 event only. The announced start time is retained as source evidence; the existing calendar adapter emits date-only markers, not timed games or individual Skills contests. A reachable page is not proof that the recorded edition remains current.",
+      "official_events": [
+        {
+          "source_id": "hockey-usca-nhl-all-star",
+          "league": "NHL All-Star Game",
+          "name": "2027 NHL All-Star Game - official event date",
+          "start_date": "2027-02-06",
+          "end_date": "2027-02-06",
+          "location": "UBS Arena, Elmont, New York",
+          "official_schedule_url": "https://www.nhl.com/news/topic/nhl-all-star/nhl-unveils-new-format-for-2027-all-star-weekend",
+          "published_start_time_evidence": {
+            "announced_time_et": "3 p.m. ET",
+            "local_datetime": "2027-02-06T15:00:00-05:00",
+            "timezone": "America/New_York",
+            "utc_datetime": "2027-02-06T20:00:00Z",
+            "evidence_url": "https://www.nhl.com/news/2026-2027-national-tv-schedule-announced",
+            "note": "Published event start evidence only; not a fixture timestamp or a market-close calculation."
+          }
+        }
+      ],
+      "catalog_terms": [
+        "NHL All-Star Game"
+      ]
+    },
+    {
+      "id": "hockey-usca-four-nations",
+      "source_type": "coverage-gap",
+      "sport": "Ice Hockey",
+      "league": "Four Nations Face-Off",
+      "region": "United States / Canada",
+      "official_schedule_url": "https://www.nhl.com/news/4-nations-face-off-schedule-rosters-canada-united-states-sweden-finland-x9193",
+      "coverage_status": "no-next-edition-verified",
+      "source_note": "The official schedule establishes the completed February 12–20, 2025 tournament only. No next edition or current fixture feed is verified. Keep the documented hold; do not substitute NHL league games, All-Star events, Olympics, or the separate World Cup of Hockey.",
+      "catalog_terms": [
+        "Four Nations Face-Off"
+      ]
+    },
+    {
+      "id": "hockey-usca-nhl-draft",
+      "source_type": "coverage-gap",
+      "sport": "Ice Hockey",
+      "league": "NHL Draft",
+      "region": "United States / Canada",
+      "official_schedule_url": "https://www.nhl.com/news/2026-nhl-draft-to-be-held-in-buffalo",
+      "coverage_status": "pending-next-edition-publication",
+      "source_note": "The June 26–27, 2026 draft in Buffalo is completed historical evidence. No official 2027 date, venue, or start time is verified. This selection event has no opponent fixtures. MARKETS CLOSE 1 HOUR PRIOR TO EVENT START; do not derive a closing time from a calendar date or an assumed annual June window.",
+      "catalog_terms": [
+        "NHL Draft"
+      ]
+    },
+    {
       "id": "pwhl",
       "source_type": "hockeytech-schedule",
       "sport": "Ice Hockey",

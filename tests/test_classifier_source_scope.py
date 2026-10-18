@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
-from scripts.audit_priority2_coverage import configured_scope_owners
+from scripts.audit_priority2_coverage import configured_scope_owners, build as build_current_inventory
 
 
 DATA = Path(__file__).resolve().parents[1] / "data"
@@ -15,7 +15,9 @@ class ClassifierSourceScopeTests(unittest.TestCase):
     def setUpClass(cls):
         cls.config = json.loads((DATA / "global-schedule-sources.json").read_text())
         cls.schedule = json.loads((DATA / "global-schedule.json").read_text())
-        cls.inventory = json.loads((DATA / "priority2-coverage-inventory.json").read_text())
+        # Validate current source/catalog edits without requiring a generated-data
+        # commit before the normal publication workflow rebuilds its snapshot.
+        cls.inventory = build_current_inventory()
         cls.rows = {r["identity_key"]: r for r in cls.inventory["identities"]}
 
     def test_all_classified_children_have_exact_catalog_identities(self):
