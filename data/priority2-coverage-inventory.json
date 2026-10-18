@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T18:24:18.969027+00:00",
-  "schedule_generated_at": "2026-10-18T18:11:12.519706+00:00",
+  "registry_generated_at": "2026-10-18T19:01:54.356333+00:00",
+  "schedule_generated_at": "2026-10-18T18:48:47.207493+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -11,21 +11,21 @@
     "split_children": 144,
     "coverage_states": {
       "ADAPTER_CONFIGURED": 362,
-      "ADAPTER_GAP": 174,
-      "NO_LINKED_SOURCE": 53,
-      "OFFICIAL_WINDOW_ONLY": 144
+      "ADAPTER_GAP": 176,
+      "NO_LINKED_SOURCE": 49,
+      "OFFICIAL_WINDOW_ONLY": 146
     },
     "season_states": {
-      "DATED_WINDOW": 221,
-      "DESCRIPTIVE_WINDOW": 48,
-      "DOCUMENTED_HOLD": 65,
+      "DATED_WINDOW": 223,
+      "DESCRIPTIVE_WINDOW": 47,
+      "DOCUMENTED_HOLD": 67,
       "EVENT_BASED_APPROVAL": 25,
       "PARTIAL_WINDOW": 66,
-      "PENDING_DATES": 31,
+      "PENDING_DATES": 28,
       "RECURRING_WINDOW": 277
     },
-    "reported_gap_areas": 14,
-    "reported_gap_labels": 184,
+    "reported_gap_areas": 15,
+    "reported_gap_labels": 186,
     "schedule_only_not_independent_approvals": []
   },
   "by_sport": {
@@ -116,9 +116,9 @@
     "Ice Hockey": {
       "identities": 14,
       "split_children": 0,
-      "no_linked_source": 4,
-      "adapter_gaps": 0,
-      "pending_dates": 3
+      "no_linked_source": 0,
+      "adapter_gaps": 2,
+      "pending_dates": 0
     },
     "Lacrosse": {
       "identities": 3,
@@ -4983,11 +4983,20 @@
       "identity_key": "hockey-usca-four-nations",
       "approval_parent": "Four Nations Face-Off",
       "kind": "catalog",
-      "season_window": "February 2025 event completed",
-      "season_state": "DESCRIPTIVE_WINDOW",
+      "season_window": "February 12–20, 2025 edition completed; next edition unverified",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "hold_reason": "The official source establishes only the completed 2025 Four Nations edition. No next edition is verified; ordinary NHL, All-Star, Olympics, and World Cup events cannot activate this identity.",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "hockey-usca-four-nations",
+          "type": "coverage-gap",
+          "configured_league": "Four Nations Face-Off",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5038,11 +5047,19 @@
       "identity_key": "hockey-usca-nhl-all-star",
       "approval_parent": "NHL All-Star Game",
       "kind": "catalog",
-      "season_window": "Event dates pending official confirmation",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "February 6, 2027",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "hockey-usca-nhl-all-star",
+          "type": "official-event-window",
+          "configured_league": "NHL All-Star Game",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5051,11 +5068,19 @@
       "identity_key": "hockey-usca-nhl-skills",
       "approval_parent": "NHL All-Star Skills Challenge",
       "kind": "catalog",
-      "season_window": "Event dates pending official confirmation",
-      "season_state": "PENDING_DATES",
-      "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "season_window": "February 5, 2027",
+      "season_state": "DATED_WINDOW",
+      "season_status": "",
+      "coverage_state": "OFFICIAL_WINDOW_ONLY",
+      "sources": [
+        {
+          "id": "hockey-usca-nhl-skills",
+          "type": "official-event-window",
+          "configured_league": "NHL All-Star Skills Challenge",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -5064,11 +5089,20 @@
       "identity_key": "hockey-usca-nhl-draft",
       "approval_parent": "NHL Draft",
       "kind": "catalog",
-      "season_window": "Annual June event · 2027 dates pending",
-      "season_state": "PENDING_DATES",
+      "season_window": "2026 edition completed; 2027 dates and start time pending verification",
+      "season_state": "DOCUMENTED_HOLD",
       "season_status": "out",
-      "coverage_state": "NO_LINKED_SOURCE",
-      "sources": [],
+      "hold_reason": "No official 2027 date, venue, or start time verified. This is a draft-selection event, not a match feed. Preserve the one-hour market-close restriction; never calculate a closing time from date-only evidence.",
+      "coverage_state": "ADAPTER_GAP",
+      "sources": [
+        {
+          "id": "hockey-usca-nhl-draft",
+          "type": "coverage-gap",
+          "configured_league": "NHL Draft",
+          "refresh_ok": true,
+          "events_in_window": 0
+        }
+      ],
       "events_in_window": 0
     },
     {
@@ -11473,11 +11507,11 @@
           "id": "soccer-afc-malaysia-malaysia-fa-cup-men",
           "type": "official-mfl-fa-semifinal-fixtures",
           "configured_league": "Malaysia FA Cup | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -12738,11 +12772,11 @@
           "id": "soccer-afc-singapore-singapore-premier-league-men",
           "type": "official-spl-season-fixtures",
           "configured_league": "Singapore Premier League | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",

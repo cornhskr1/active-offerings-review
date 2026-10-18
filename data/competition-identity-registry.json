@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T18:24:18.969027+00:00",
+  "generated_at": "2026-10-18T19:01:54.356333+00:00",
   "catalog_menu_version": "10.1.26",
   "catalog_source": "Nebraska Authorized Sports Wagering Menu 10.1.26",
-  "schedule_generated_at": "2026-10-18T18:11:12.519706+00:00",
+  "schedule_generated_at": "2026-10-18T18:48:47.207493+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "competition_count": 733,
-  "event_count": 2471,
+  "event_count": 2475,
   "competitions": [
     {
       "sport": "Aussie Rules",
@@ -5127,7 +5127,9 @@
       "sport": "Ice Hockey",
       "league": "Four Nations Face-Off",
       "identity_key": "hockey-usca-four-nations",
-      "source_ids": [],
+      "source_ids": [
+        "hockey-usca-four-nations"
+      ],
       "participants": [],
       "events": [],
       "aliases": [
@@ -5658,7 +5660,9 @@
       "sport": "Ice Hockey",
       "league": "NHL All-Star Game",
       "identity_key": "hockey-usca-nhl-all-star",
-      "source_ids": [],
+      "source_ids": [
+        "hockey-usca-nhl-all-star"
+      ],
       "participants": [],
       "events": [],
       "aliases": [
@@ -5674,7 +5678,9 @@
       "sport": "Ice Hockey",
       "league": "NHL All-Star Skills Challenge",
       "identity_key": "hockey-usca-nhl-skills",
-      "source_ids": [],
+      "source_ids": [
+        "hockey-usca-nhl-skills"
+      ],
       "participants": [],
       "events": [],
       "aliases": [
@@ -5690,7 +5696,9 @@
       "sport": "Ice Hockey",
       "league": "NHL Draft",
       "identity_key": "hockey-usca-nhl-draft",
-      "source_ids": [],
+      "source_ids": [
+        "hockey-usca-nhl-draft"
+      ],
       "participants": [],
       "events": [],
       "aliases": [
@@ -7488,14 +7496,6 @@
           ]
         },
         {
-          "name": "Colorado Buffaloes at Oklahoma State Cowboys",
-          "start_time": "2026-10-24T04:00Z",
-          "participants": [
-            "Colorado Buffaloes",
-            "Oklahoma State Cowboys"
-          ]
-        },
-        {
           "name": "California Golden Bears at SMU Mustangs",
           "start_time": "2026-10-24T16:00Z",
           "participants": [
@@ -7749,6 +7749,14 @@
           "participants": [
             "San Diego State Aztecs",
             "Colorado State Rams"
+          ]
+        },
+        {
+          "name": "Colorado Buffaloes at Oklahoma State Cowboys",
+          "start_time": "2026-10-24T23:00Z",
+          "participants": [
+            "Colorado Buffaloes",
+            "Oklahoma State Cowboys"
           ]
         },
         {
@@ -25472,9 +25480,31 @@
       "source_ids": [
         "soccer-afc-malaysia-malaysia-fa-cup-men"
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participants": [
+        "DPMM FC",
+        "JOHOR DARUL TA'ZIM",
+        "KUCHING CITY FC",
+        "SELANGOR FC"
+      ],
+      "events": [
+        {
+          "name": "JOHOR DARUL TA'ZIM at DPMM FC",
+          "start_time": "2026-10-23",
+          "participants": [
+            "JOHOR DARUL TA'ZIM",
+            "DPMM FC"
+          ]
+        },
+        {
+          "name": "KUCHING CITY FC at SELANGOR FC",
+          "start_time": "2026-10-23",
+          "participants": [
+            "KUCHING CITY FC",
+            "SELANGOR FC"
+          ]
+        }
+      ],
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
@@ -28491,9 +28521,31 @@
       "source_ids": [
         "soccer-afc-singapore-singapore-premier-league-men"
       ],
-      "participants": [],
-      "events": [],
-      "participant_coverage": "NOT AVAILABLE"
+      "participants": [
+        "FC Jurong",
+        "Lion City Sailors FC",
+        "Tampines Rovers FC",
+        "Tanjong Pagar United FC"
+      ],
+      "events": [
+        {
+          "name": "Tampines Rovers FC at FC Jurong",
+          "start_time": "2026-10-25T11:30Z",
+          "participants": [
+            "Tampines Rovers FC",
+            "FC Jurong"
+          ]
+        },
+        {
+          "name": "Tanjong Pagar United FC at Lion City Sailors FC",
+          "start_time": "2026-10-25T11:30Z",
+          "participants": [
+            "Tanjong Pagar United FC",
+            "Lion City Sailors FC"
+          ]
+        }
+      ],
+      "participant_coverage": "OBSERVED"
     },
     {
       "sport": "Soccer",
@@ -33691,6 +33743,15 @@
         "Approved sports simulations",
         "Call of Duty League (CDL)",
         "Rocket League Championship Series (RLCS)"
+      ]
+    },
+    {
+      "area": "Ice Hockey",
+      "state": "PARTIAL SCHEDULE COVERAGE",
+      "note": "2 approved competitions still lack a dependable automated adapter.",
+      "competitions": [
+        "Four Nations Face-Off",
+        "NHL Draft"
       ]
     },
     {
