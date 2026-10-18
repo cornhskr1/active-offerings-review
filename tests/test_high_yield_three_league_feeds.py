@@ -36,8 +36,13 @@ class HighYieldThreeLeagueFeedTests(unittest.TestCase):
                 self.assertEqual(source_type, self.sources[source_id]["source_type"])
                 self.assertEqual("partial", self.sources[source_id]["coverage_status"])
 
-    def test_nz_remains_a_gap_until_draw_and_reserve_scope_are_verified(self):
-        self.assertEqual("ADAPTER_GAP", self.inventory["soccer-new-zealand-new-zealand-national-league-men"]["coverage_state"])
+    def test_nz_verified_championship_is_configured_but_incomplete(self):
+        self.assertEqual("ADAPTER_CONFIGURED", self.inventory["soccer-new-zealand-new-zealand-national-league-men"]["coverage_state"])
+        source = self.sources["ofc-soccer-new-zealand-national-league-men"]
+        self.assertEqual("official-nz-men-championship", source["source_type"])
+        self.assertEqual("partial", source["coverage_status"])
+        self.assertIs(False, source["coverage_complete"])
+        self.assertEqual(["New Zealand National League | Men"], source["catalog_terms"])
 
 
 if __name__ == "__main__":
