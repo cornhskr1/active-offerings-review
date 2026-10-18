@@ -12,7 +12,15 @@ from zoneinfo import ZoneInfo
 
 BASE = 'https://domestic.uefa.com/v2/'
 SOURCE_TYPE = 'official-uefa-domestic-reviewed'
-SCOPES = json.loads((Path(__file__).resolve().parents[1] / 'data/uefa-reviewed-scopes.json').read_text())['scopes']
+REGISTRY = json.loads((Path(__file__).resolve().parents[1] / 'data/uefa-reviewed-scopes.json').read_text())
+SCOPES = REGISTRY['scopes']
+AUTOMATED_ACCESS = REGISTRY.get('automated_access', {})
+PERMISSION_REQUIRED = 'Permission required: automated UEFA collection is paused pending supported publisher access.'
+
+def require_automated_access():
+    if AUTOMATED_ACCESS.get('enabled') is not True:
+        raise ValueError(PERMISSION_REQUIRED)
+
 CENTRAL = ZoneInfo('America/Chicago')
 BAD_NAME = re.compile(r'\b(?:tbc|tbd|unknown|winner|bye|u\s*[- ]?\d\d|under\s*\d\d|reserve|youth)\b|\s(?:II|B)$', re.I)
 
@@ -24,7 +32,8 @@ def source_config(source_id):
     return {'id': source_id, 'sport': 'Soccer', 'league': s['league'], 'region': s['region'],
             'source_type': SOURCE_TYPE, 'coverage_status': 'partial', 'coverage_complete': False,
             'endpoint': BASE + 'matches', 'official_schedule_url': f"https://www.uefa.com/nationalassociations/{s['country'].lower()}/domestic/{s['type'].lower()}/{s['competition_id']}/",
-            'catalog_terms': [s['league']], 'source_note': s['scope_note']}
+            'catalog_terms': [s['league']], 'access_status': 'permission_required',
+            'source_note': PERMISSION_REQUIRED + ' ' + s['scope_note']}
 
 
 def validate_source(source):
@@ -147,6 +156,7 @@ class ProviderClient:
         self.directories = {}
 
     def page(self, route, params):
+        require_automated_access()
         if self.blocked:
             raise ValueError('UEFA provider stopped after access denial/rate limit')
         response = self.get(BASE + route, params=params, timeout=35, allow_redirects=False)
@@ -174,6 +184,7 @@ class ProviderClient:
         raise ValueError('UEFA pagination bound reached; incomplete collection held')
 
     def fetch(self, source, now, start, end):
+        require_automated_access()
         spec = validate_source(source)
         if not dt.date(2026, 10, 18) <= now.date() <= dt.date(2027, 6, 30):
             raise ValueError('UEFA reviewed editions require renewal')

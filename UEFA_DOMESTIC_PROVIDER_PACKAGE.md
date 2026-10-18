@@ -1,10 +1,18 @@
 # UEFA domestic provider family: bounded schedule coverage
 
-## Scope and operational result
+## Current access status: permission required
+
+Automated requests to this UEFA provider are paused before any network call. The seven reviewed identities remain visible, partial and unresolved; the other eight candidates remain gaps. The parser and retained offline fixtures are not evidence of permission to operate the service.
+
+The normal production refresh returned HTTP 403 on its first request and stopped the remaining family. Its precise cause is unknown. Earlier successful research requests did not establish supported automated access. UEFA's [Terms and Conditions, section 6.2](https://www.uefa.com/termsconditions/) restrict automated collection and systematic compilation. Supported publisher access must be established before enabling collection. No contact, credentials, alternate route or access workaround is included here.
+
+`data/uefa-reviewed-scopes.json` defaults automated access to disabled, and the adapter fails closed with “Permission required” before fetching directory or match data. Both direct page requests and the complete collector entry point enforce the hold. This does not disable unrelated refresh sources. Catalog approvals, NCAA visibility exclusions and all eligibility restrictions remain unchanged. An inventory label of `ADAPTER_CONFIGURED` records installed code only, not permission, source health or operational coverage.
+
+## Historical research scope, not operational coverage
 
 One shared parser and public provider contract covers seven reviewed catalog identities across seven countries. This is not seven country adapters and does not promote all fifteen researched identities to working coverage. NCAA presentation/hidden sports, existing providers, catalog approvals, restrictions and athlete-age treatment are unchanged.
 
-Live credential-free checks on October 18, 2026:
+Historical credential-free research responses on October 18, 2026 (not permission or published coverage):
 
 | Exact identity | Provider ID / season | Enabled subset | October 18–25 | Later verified |
 |---|---|---|---:|---:|
@@ -16,7 +24,7 @@ Live credential-free checks on October 18, 2026:
 | Polish Cup, men | 5046 / 2027 | 2 exact round-of-32 ties | 0 | 2, October 27 |
 | Cupa României, men | 5049 / 2027 | 4 exact group-round-2 ties | 0 | 4, October 27–29 |
 
-Thus ten current-week fixtures are live verified, plus eleven explicitly reviewed future-only cup fixtures. Normal refresh queries only its Chicago review window, so those eleven are not falsely published as current-week events. All seven sources remain partial with explicit `coverage_complete=false` and `review_window_complete=false` even when an HTTP request succeeds or returns no rows.
+The retained research responses contained ten then-current-week fixtures and eleven future-only cup fixtures. The production refresh published zero UEFA fixtures; these counts must not be represented as operational coverage. Normal refresh queries only its Chicago review window, so those eleven are not falsely published as current-week events. All seven sources remain partial with explicit `coverage_complete=false` and `review_window_complete=false` even when an HTTP request succeeds or returns no rows.
 
 The eight other researched cup identities remain coverage gaps: Armenia, Azerbaijan, Bosnia-Herzegovina, Bulgaria, Estonia, Kosovo, Serbia and Slovakia. The review registry records them but the collector does not enable them. Armenia lacks adequate independently accessible phase proof (fresh FFA/Pyunik responses were HTTP 403, with no bypass); Azerbaijan/Bosnia/Serbia have midnight placeholders; Estonia's observed tie involves a reserve team; Bulgaria/Slovakia's observed ties lack two reviewed current top-flight clubs; Kosovo had no future rows. These are not declarations that the competitions have no actual fixtures.
 
