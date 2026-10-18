@@ -1,6 +1,8 @@
 """The Priority 2 inventory keeps legal identities and schedule evidence separate."""
 
 import json
+from copy import deepcopy
+from unittest.mock import patch
 import unittest
 from pathlib import Path
 
@@ -54,6 +56,29 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("DOCUMENTED_HOLD", united["season_state"])
         self.assertEqual("ADAPTER_GAP", united["coverage_state"])
         self.assertIn("no 2027 match calendar", united["hold_reason"])
+
+    def test_usta_shared_references_do_not_inflate_coverage(self):
+        from audit_priority2_coverage import read as original_read
+        schedule = deepcopy(original_read("global-schedule.json"))
+        for source in schedule["sources"]:
+            if source["id"] in {"tennis-usta-pro-circuit-men", "tennis-usta-pro-circuit-women"}:
+                source.update(crosslisted_reference_count=2,
+                              crosslisted_event_ids=["existing-itf-one", "existing-itf-two"],
+                              reference_status="verified-references",
+                              reference_note="Calendar provenance only; not new fixtures.")
+        def read(name):
+            return schedule if name == "global-schedule.json" else original_read(name)
+        with patch("audit_priority2_coverage.read", side_effect=read):
+            inventory = build()
+        baseline = self.inventory["summary"]["coverage_states"]
+        self.assertEqual(baseline, inventory["summary"]["coverage_states"])
+        for row in inventory["identities"]:
+            if row["identity_key"] in {"tennis-usta-pro-circuit-men", "tennis-usta-pro-circuit-women"}:
+                self.assertEqual("ADAPTER_GAP", row["coverage_state"])
+                self.assertEqual(0, row["events_in_window"])
+                self.assertEqual(0, row["sources"][0]["events_in_window"])
+                self.assertEqual(2, row["sources"][0]["crosslisted_reference_count"])
+                self.assertEqual("coverage-gap", row["sources"][0]["type"])
 
     def test_new_cricket_approvals_keep_event_based_and_tournament_coverage_distinct(self):
         sources = {source["id"]: source for source in json.loads(

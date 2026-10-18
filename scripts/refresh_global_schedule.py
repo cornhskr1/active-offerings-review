@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+from copy import deepcopy
 import json, datetime, requests, re, time, html, os
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit, parse_qs
@@ -79,6 +80,7 @@ from nzr_npc_fixture_adapter import publisher_pdf_url as npc_publisher_pdf_url, 
 from nzr_farah_palmer_fixture_adapter import parse_semifinals as parse_farah_palmer_semifinals
 from canada_championship_final import parse_final as parse_canada_championship_final
 from tennis_refresh_guardrails import schedule_source_warning
+from usta_reference_reconciliation import reconcile_usta_references
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -3908,6 +3910,25 @@ for ev in events:
             rel.append(x.get("text"))
     ev["restriction_signals"]=rel[:5]
     ev["restriction_risk"]=bool(rel)
+
+# Optional calendar provenance never creates another tournament or approval path.
+# Run after all canonical age/restriction processing and preserve its output.
+if any(row.get("id") in {"tennis-usta-pro-circuit-men", "tennis-usta-pro-circuit-women"}
+       and row.get("approved_catalog") is True for row in source_status):
+    try:
+        events, source_status = reconcile_usta_references(
+            deepcopy(events), deepcopy(source_status),
+            json.loads((DATA/"tennis-schedule.json").read_text(encoding="utf-8")),
+            json.loads((DATA/"usta-reviewed-references.json").read_text(encoding="utf-8")),
+            NOW_UTC,
+        )
+    except Exception as exc:
+        # A failed optional reference check must not erase canonical ITF events.
+        for row in source_status:
+            if row.get("id") in {"tennis-usta-pro-circuit-men", "tennis-usta-pro-circuit-women"}:
+                row.update(reference_status="unavailable", crosslisted_reference_count=0,
+                           crosslisted_event_ids=[], reference_errors=[str(exc)[:160]],
+                           reference_note="USTA calendar reference unavailable; canonical ITF review and USTA adapter gap remain unchanged.")
 
 events.sort(key=lambda x:(x.get("start_time") or "9999",x["sport"],x["league"],x["name"]))
 

@@ -155,6 +155,14 @@ def build():
                 "configured_league": (source or {}).get("league") or "",
                 **({"configured_source_id": source["id"], "scope": "published-event" if source.get("source_type") == "official-event-window" else "classified-identity"}
                    if source and not direct else {}),
+                # Shared calendar references are traceability only, not fixtures
+                # owned by this identity or evidence of a completed adapter.
+                **({field: health[field] for field in (
+                    "crosslisted_reference_count", "crosslisted_event_ids",
+                    "reference_status", "reference_note", "reference_errors"
+                ) if field in health} if health and sid in {
+                    "tennis-usta-pro-circuit-men", "tennis-usta-pro-circuit-women"
+                } else {}),
                 "refresh_ok": (health or {}).get("ok"),
                 "events_in_window": event_counts[(key[0], sid)] if source and not direct else (health or {}).get("events", 0),
             })

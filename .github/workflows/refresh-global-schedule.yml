@@ -9,7 +9,9 @@ on:
       - data/global-schedule-sources.json
       - data/soccer-*-sources.json
       - data/tennis-schedule.json
+      - data/usta-reviewed-references.json
       - scripts/refresh_global_schedule.py
+      - scripts/usta_reference_reconciliation.py
       - scripts/high_yield_three_league_adapter.py
       - scripts/dynamic_league_fixture_adapter.py
       - scripts/baltic_cup_fixture_adapter.py
