@@ -1408,7 +1408,10 @@ function failedScheduleSourceAttention(events,dayKey){
        source.source_type==='coverage-gap'||isNonWageredNcaaSport(source)||
        staleCardSources.has(source.id))return;
     const mapped=mappedCatalogEventForSource(source.id);
-    if(!mapped||mappedSeasonStatus(mapped)!=='in')return;
+    const seasonStatus=mapped?mappedSeasonStatus(mapped):null;
+    // Only a verified out-of-season identity may suppress a failed feed.
+    // Partial/unknown calendars must not lose both failure and coverage alerts.
+    if(!mapped||seasonStatus==='out')return;
     const url=source.official_schedule_url||source.endpoint||'';
     let host=source.id;
     try{host=new URL(url).hostname.replace(/^www\./,'')||host}catch{}
@@ -1418,6 +1421,8 @@ function failedScheduleSourceAttention(events,dayKey){
     const group=groups.get(key);
     group.sources.push(source.id);
     group.identities.add(mapped.catalog_event||source.league);
+    if(seasonStatus!=='in')
+      group.errors.add('This source failure does not establish whether the competition is in season.');
     if(['partial','missing'].includes(source.coverage_status))
       group.errors.add('Published fixture coverage is incomplete.');
     (source.errors||[]).filter(Boolean).forEach(error=>group.errors.add(error));
