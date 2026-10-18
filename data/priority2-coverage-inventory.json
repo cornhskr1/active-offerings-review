@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T23:32:16.118496+00:00",
-  "schedule_generated_at": "2026-10-18T23:16:42.314137+00:00",
+  "registry_generated_at": "2026-10-18T23:57:59.709124+00:00",
+  "schedule_generated_at": "2026-10-18T23:45:12.652996+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -312,7 +312,7 @@
           "id": "afl",
           "type": "adapter",
           "configured_league": "AFL",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -367,7 +367,7 @@
           "id": "mlb",
           "type": "adapter",
           "configured_league": "MLB",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 5
         }
       ],
@@ -485,7 +485,7 @@
           "id": "wbc",
           "type": "adapter",
           "configured_league": "World Baseball Classic",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -583,7 +583,7 @@
           "id": "fiba-bcl",
           "type": "official-fiba-report-fixtures",
           "configured_league": "Basketball Champions League",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 8
         }
       ],
@@ -1325,7 +1325,7 @@
           "id": "basketball-womens-euroleague",
           "type": "official-fiba-report-fixtures",
           "configured_league": "FIBA Women's EuroLeague | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 8
         }
       ],
@@ -1752,7 +1752,7 @@
           "id": "nba",
           "type": "adapter",
           "configured_league": "NBA",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 43
         }
       ],
@@ -1773,7 +1773,7 @@
           "id": "australian-nbl",
           "type": "adapter",
           "configured_league": "National Basketball League (NBL)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -2312,7 +2312,7 @@
           "id": "wnba",
           "type": "adapter",
           "configured_league": "WNBA",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 3
         }
       ],
@@ -2672,7 +2672,7 @@
           "id": "pfl",
           "type": "adapter",
           "configured_league": "Professional Fighters League (PFL)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2706,7 +2706,7 @@
           "id": "ufc",
           "type": "adapter",
           "configured_league": "Ultimate Fighting Championship",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -2727,7 +2727,7 @@
           "id": "cricket-bbl",
           "type": "espn-daily",
           "configured_league": "Big Bash League (BBL) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2769,7 +2769,7 @@
           "id": "cricket-t20-world-cup",
           "type": "espn-daily",
           "configured_league": "ICC T20 World Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2790,7 +2790,7 @@
           "id": "cricket-ipl",
           "type": "espn-daily",
           "configured_league": "Indian Premier League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2832,7 +2832,7 @@
           "id": "cricket-county-d1",
           "type": "espn-daily",
           "configured_league": "Rothesay County Championship Division 1 | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2853,7 +2853,7 @@
           "id": "cricket-county-d2",
           "type": "espn-daily",
           "configured_league": "Rothesay County Championship Division 2 | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2874,7 +2874,7 @@
           "id": "cricket-ashes",
           "type": "espn-daily",
           "configured_league": "The Ashes | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -2895,7 +2895,7 @@
           "id": "cricket-wbbl",
           "type": "espn-daily",
           "configured_league": "Women's Big Bash League (WBBL) | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4454,7 +4454,7 @@
           "configured_league": "NFL",
           "configured_source_id": "nfl",
           "scope": "classified-identity",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4475,7 +4475,7 @@
           "id": "nfl",
           "type": "adapter",
           "configured_league": "NFL",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 26
         }
       ],
@@ -4572,7 +4572,7 @@
           "id": "golf-dp-world-tour",
           "type": "espn-golf-season",
           "configured_league": "DP World Tour",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 2
         }
       ],
@@ -4614,7 +4614,7 @@
           "id": "golf-korn-ferry-tour",
           "type": "espn-golf-season",
           "configured_league": "Korn Ferry Tour",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4635,7 +4635,7 @@
           "id": "golf-liv-golf",
           "type": "espn-golf-season",
           "configured_league": "LIV Golf League",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -4677,7 +4677,7 @@
           "id": "golf-lpga-tour",
           "type": "espn-golf-season",
           "configured_league": "LPGA Tour",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 2
         }
       ],
@@ -4741,10 +4741,10 @@
           "type": "ocs-golf-season",
           "configured_league": "PGA Tour of Australasia",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 5
     },
     {
       "sport": "Golf",
@@ -4761,7 +4761,7 @@
           "id": "golf-pga-tour",
           "type": "espn-golf-season",
           "configured_league": "PGA Tour",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -4782,7 +4782,7 @@
           "id": "golf-pga-tour-champions",
           "type": "espn-golf-season",
           "configured_league": "PGA Tour Champions",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 2
         }
       ],
@@ -4866,7 +4866,7 @@
           "id": "golf-tgl",
           "type": "espn-golf-season",
           "configured_league": "TGL",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5120,7 +5120,7 @@
           "id": "nhl",
           "type": "adapter",
           "configured_league": "NHL",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 50
         }
       ],
@@ -5225,7 +5225,7 @@
           "id": "lacrosse-nll",
           "type": "espn-daily",
           "configured_league": "National Lacrosse League (NLL)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5246,7 +5246,7 @@
           "id": "lacrosse-pll",
           "type": "espn-daily",
           "configured_league": "Premier Lacrosse League (PLL)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5353,7 +5353,7 @@
           "id": "motorsports-indycar",
           "type": "espn-daily",
           "configured_league": "IndyCar Series",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5395,7 +5395,7 @@
           "id": "motorsports-nascar-truck",
           "type": "espn-daily",
           "configured_league": "NASCAR Craftsman Truck Series",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -5416,7 +5416,7 @@
           "id": "motorsports-nascar-cup",
           "type": "espn-daily",
           "configured_league": "NASCAR Cup Series (NCS)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 2
         }
       ],
@@ -5437,7 +5437,7 @@
           "id": "motorsports-nascar-oreilly",
           "type": "espn-daily",
           "configured_league": "NASCAR O’Reilly Auto Parts Series",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -5544,7 +5544,7 @@
           "id": "ncaa-baseball",
           "type": "adapter",
           "configured_league": "NCAA Baseball",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5600,7 +5600,7 @@
           "id": "ncaa-mbb",
           "type": "adapter",
           "configured_league": "NCAA Men's Basketball",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5621,7 +5621,7 @@
           "id": "ncaa-wbb",
           "type": "adapter",
           "configured_league": "NCAA Women's Basketball",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -5740,7 +5740,7 @@
           "id": "ncaa-field-hockey-di",
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Field Hockey | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 100
         }
       ],
@@ -5761,7 +5761,7 @@
           "id": "ncaa-football-fbs",
           "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Bowl Subdivision (FBS)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 56
         }
       ],
@@ -5782,7 +5782,7 @@
           "id": "ncaa-football-fcs",
           "type": "espn-college-football-subdivision",
           "configured_league": "Division I Football Championship Subdivision (FCS)",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 55
         }
       ],
@@ -5951,7 +5951,7 @@
           "id": "ncaa-soccer-di-men",
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 170
         }
       ],
@@ -5972,7 +5972,7 @@
           "id": "ncaa-soccer-di-women",
           "type": "official-ncaa-division-one",
           "configured_league": "Division I Soccer | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 337
         }
       ],
@@ -6168,7 +6168,7 @@
           "id": "ncaa-volleyball",
           "type": "adapter",
           "configured_league": "NCAA Volleyball",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 378
         }
       ],
@@ -7101,7 +7101,7 @@
           "id": "uefa-soccer-germany-2-bundesliga-men",
           "type": "espn-daily",
           "configured_league": "2. Bundesliga | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 12
         }
       ],
@@ -7164,7 +7164,7 @@
           "id": "soccer-afc-australia-a-league-men-and-women-men",
           "type": "espn-daily",
           "configured_league": "A-League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 6
         }
       ],
@@ -7185,7 +7185,7 @@
           "id": "soccer-afc-australia-a-league-men-and-women-women",
           "type": "espn-daily",
           "configured_league": "A-League | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 6
         }
       ],
@@ -7227,7 +7227,7 @@
           "id": "soccer-afc-asian-cup-men",
           "type": "espn-daily",
           "configured_league": "AFC Asian Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -7248,7 +7248,7 @@
           "id": "soccer-afc-asian-cup-women",
           "type": "espn-daily",
           "configured_league": "AFC Asian Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -7269,7 +7269,7 @@
           "id": "soccer-afc-champions-league-elite",
           "type": "espn-daily",
           "configured_league": "AFC Champions League Elite | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -7311,7 +7311,7 @@
           "id": "soccer-caf-afcon",
           "type": "espn-daily",
           "configured_league": "Africa Cup of Nations | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -7332,7 +7332,7 @@
           "id": "soccer-caf-chan",
           "type": "espn-daily",
           "configured_league": "African Nations Championship (CHAN) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -7395,7 +7395,7 @@
           "id": "uefa-soccer-sweden-allsvenskan-men",
           "type": "espn-daily",
           "configured_league": "Allsvenskan | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 14
         }
       ],
@@ -7416,7 +7416,7 @@
           "id": "conmebol-soccer-argentina-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Argentine Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 19
         }
       ],
@@ -7437,7 +7437,7 @@
           "id": "conmebol-soccer-argentina-primera-nacional-men",
           "type": "espn-daily",
           "configured_league": "Argentine Primera Nacional | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 26
         }
       ],
@@ -7563,7 +7563,7 @@
           "id": "uefa-soccer-austria-austrian-bundesliga-men",
           "type": "espn-daily",
           "configured_league": "Austrian Bundesliga | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -7753,7 +7753,7 @@
           "id": "belgium",
           "type": "adapter",
           "configured_league": "Jupiler Pro League",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -7816,7 +7816,7 @@
           "id": "conmebol-soccer-bolivia-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Bolivian Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -7965,7 +7965,7 @@
           "id": "bundesliga",
           "type": "adapter",
           "configured_league": "Bundesliga",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 11
         }
       ],
@@ -7986,7 +7986,7 @@
           "id": "soccer-caf-champions-league",
           "type": "espn-daily",
           "configured_league": "CAF Champions League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 25
         }
       ],
@@ -8007,7 +8007,7 @@
           "id": "soccer-caf-confederation-cup",
           "type": "espn-daily",
           "configured_league": "CAF Confederation Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 23
         }
       ],
@@ -8049,7 +8049,7 @@
           "id": "soccer-concacaf-central-american-cup",
           "type": "espn-daily",
           "configured_league": "CONCACAF Central American Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 4
         }
       ],
@@ -8070,7 +8070,7 @@
           "id": "soccer-concacaf-champions-cup",
           "type": "espn-daily",
           "configured_league": "CONCACAF Champions Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8091,7 +8091,7 @@
           "id": "soccer-concacaf-gold-cup",
           "type": "espn-daily",
           "configured_league": "CONCACAF Gold Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8112,7 +8112,7 @@
           "id": "soccer-concacaf-nations-league",
           "type": "espn-daily",
           "configured_league": "CONCACAF Nations League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8133,7 +8133,7 @@
           "id": "soccer-concacaf-w-champions-cup",
           "type": "espn-daily",
           "configured_league": "CONCACAF W Champions Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8154,7 +8154,7 @@
           "id": "soccer-concacaf-w-championship",
           "type": "espn-daily",
           "configured_league": "CONCACAF W Championship | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8175,7 +8175,7 @@
           "id": "soccer-concacaf-w-gold-cup",
           "type": "espn-daily",
           "configured_league": "CONCACAF W Gold Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8196,7 +8196,7 @@
           "id": "conmebol-soccer-brazil-serie-a-men",
           "type": "espn-daily",
           "configured_league": "Campeonato Brasileiro Série A | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -8217,7 +8217,7 @@
           "id": "conmebol-soccer-brazil-serie-b-men",
           "type": "espn-daily",
           "configured_league": "Campeonato Brasileiro Série B | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -8238,7 +8238,7 @@
           "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
           "type": "official-auf-fixtures",
           "configured_league": "Campeonato Femenino | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -8259,7 +8259,7 @@
           "id": "conmebol-soccer-uruguay-campeonato-men",
           "type": "espn-daily",
           "configured_league": "Campeonato Uruguayo | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 12
         }
       ],
@@ -8386,7 +8386,7 @@
           "id": "uefa-soccer-scotland-challenge-cup-men",
           "type": "espn-daily",
           "configured_league": "Challenge Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8534,7 +8534,7 @@
           "id": "soccer-conmebol-copa-america-femenina",
           "type": "espn-daily",
           "configured_league": "Copa América Femenina | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8555,7 +8555,7 @@
           "id": "conmebol-soccer-argentina-copa-argentina-men",
           "type": "espn-daily",
           "configured_league": "Copa Argentina | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8597,7 +8597,7 @@
           "id": "conmebol-soccer-bolivia-copa-bolivia-men",
           "type": "espn-daily",
           "configured_league": "Copa Bolivia | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 4
         }
       ],
@@ -8618,7 +8618,7 @@
           "id": "conmebol-soccer-chile-copa-chile-men",
           "type": "espn-daily",
           "configured_league": "Copa Chile | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 3
         }
       ],
@@ -8639,7 +8639,7 @@
           "id": "conmebol-soccer-colombia-copa-colombia-men",
           "type": "espn-daily",
           "configured_league": "Copa Colombia | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -8723,7 +8723,7 @@
           "id": "soccer-conmebol-libertadores",
           "type": "espn-daily",
           "configured_league": "Copa Libertadores | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 2
         }
       ],
@@ -8807,7 +8807,7 @@
           "id": "soccer-conmebol-sudamericana",
           "type": "espn-daily",
           "configured_league": "Copa Sudamericana | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 2
         }
       ],
@@ -8849,11 +8849,11 @@
           "id": "conmebol-soccer-uruguay-copa-uruguay-men",
           "type": "official-auf-fixtures",
           "configured_league": "Copa Uruguay | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -8912,7 +8912,7 @@
           "id": "uefa-soccer-spain-copa-de-la-reina-women",
           "type": "espn-daily",
           "configured_league": "Copa de la Reina | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8933,7 +8933,7 @@
           "id": "uefa-soccer-spain-copa-del-rey-men",
           "type": "espn-daily",
           "configured_league": "Copa del Rey | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8954,7 +8954,7 @@
           "id": "conmebol-soccer-brazil-copa-do-brasil-men",
           "type": "espn-daily",
           "configured_league": "Copa do Brasil | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -8975,7 +8975,7 @@
           "id": "uefa-soccer-italy-coppa-italia-men",
           "type": "espn-daily",
           "configured_league": "Coppa Italia | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9080,7 +9080,7 @@
           "id": "uefa-soccer-france-coupe-de-france-men",
           "type": "espn-daily",
           "configured_league": "Coupe de France | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9228,7 +9228,7 @@
           "id": "uefa-soccer-wales-cymru-premier-men",
           "type": "official-faw-cymru-premier-fixtures",
           "configured_league": "Cymru Premier | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 8
         }
       ],
@@ -9333,7 +9333,7 @@
           "id": "uefa-soccer-germany-dfb-pokal-men",
           "type": "espn-daily",
           "configured_league": "DFB-Pokal | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9438,7 +9438,7 @@
           "id": "denmark",
           "type": "adapter",
           "configured_league": "Danish Superliga",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 10
         }
       ],
@@ -9480,7 +9480,7 @@
           "id": "uefa-soccer-netherlands-eerste-divisie-men",
           "type": "espn-daily",
           "configured_league": "Eerste Divisie | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 15
         }
       ],
@@ -9585,7 +9585,7 @@
           "id": "uefa-soccer-norway-eliteserien-men",
           "type": "espn-daily",
           "configured_league": "Eliteserien | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -9627,7 +9627,7 @@
           "id": "uefa-soccer-england-english-football-league-efl-cup-men",
           "type": "espn-daily",
           "configured_league": "English Football League (EFL) Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9648,7 +9648,7 @@
           "id": "uefa-soccer-england-english-football-league-efl-trophy-men",
           "type": "espn-daily",
           "configured_league": "English Football League (EFL) Trophy | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9669,7 +9669,7 @@
           "id": "eredivisie",
           "type": "adapter",
           "configured_league": "Eredivisie",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 14
         }
       ],
@@ -9816,7 +9816,7 @@
           "id": "soccer-uefa-european-qualifiers-men",
           "type": "espn-daily",
           "configured_league": "European Qualifiers | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9837,7 +9837,7 @@
           "id": "soccer-uefa-european-qualifiers-women",
           "type": "espn-daily",
           "configured_league": "European Qualifiers | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9879,7 +9879,7 @@
           "id": "uefa-soccer-england-fa-cup-men",
           "type": "espn-daily",
           "configured_league": "FA Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9900,7 +9900,7 @@
           "id": "uefa-soccer-england-fa-cup-women",
           "type": "espn-daily",
           "configured_league": "FA Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 48
         }
       ],
@@ -9942,7 +9942,7 @@
           "id": "soccer-fifa-club-world-cup",
           "type": "espn-daily",
           "configured_league": "FIFA Club World Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9963,7 +9963,7 @@
           "id": "soccer-fifa-womens-club-world-cup",
           "type": "espn-daily",
           "configured_league": "FIFA Club World Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -9984,7 +9984,7 @@
           "id": "soccer-conmebol-world-cup-qualifiers",
           "type": "espn-daily",
           "configured_league": "FIFA World Cup Qualifiers | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10026,7 +10026,7 @@
           "id": "soccer-fifa-world-cup",
           "type": "espn-daily",
           "configured_league": "FIFA World Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10047,7 +10047,7 @@
           "id": "soccer-fifa-womens-world-cup",
           "type": "espn-daily",
           "configured_league": "FIFA World Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10152,7 +10152,7 @@
           "id": "soccer-finalissima-men",
           "type": "espn-daily",
           "configured_league": "Finalissima | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10173,7 +10173,7 @@
           "id": "soccer-finalissima-women",
           "type": "espn-daily",
           "configured_league": "Finalissima | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10427,7 +10427,7 @@
           "id": "soccer-fifa-friendlies-men",
           "type": "espn-daily",
           "configured_league": "International Friendlies | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10448,7 +10448,7 @@
           "id": "soccer-fifa-friendlies-women",
           "type": "espn-daily",
           "configured_league": "International Friendlies | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10596,7 +10596,7 @@
           "id": "uefa-soccer-israel-israeli-premier-league-ligat-ha-al-men",
           "type": "espn-daily",
           "configured_league": "Israeli Premier League / Ligat Ha’Al | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10638,7 +10638,7 @@
           "id": "soccer-afc-japan-j1-league-men",
           "type": "espn-daily",
           "configured_league": "J1 League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 22
         }
       ],
@@ -10764,7 +10764,7 @@
           "id": "uefa-soccer-netherlands-knvb-beker-dutch-cup-men",
           "type": "espn-daily",
           "configured_league": "KNVB Beker / Dutch Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10785,7 +10785,7 @@
           "id": "soccer-afc-saudi-arabia-king-cup-men",
           "type": "espn-daily",
           "configured_league": "King Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -10849,7 +10849,7 @@
           "id": "laliga",
           "type": "adapter",
           "configured_league": "La Liga",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 15
         }
       ],
@@ -10954,7 +10954,7 @@
           "id": "uefa-soccer-england-league-one-men",
           "type": "espn-daily",
           "configured_league": "League One | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 24
         }
       ],
@@ -10975,7 +10975,7 @@
           "id": "uefa-soccer-england-league-two-men",
           "type": "espn-daily",
           "configured_league": "League Two | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 23
         }
       ],
@@ -11017,7 +11017,7 @@
           "id": "soccer-concacaf-leagues-cup",
           "type": "espn-daily",
           "configured_league": "Leagues Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -11059,7 +11059,7 @@
           "id": "uefa-soccer-spain-liga-f-women",
           "type": "espn-daily",
           "configured_league": "Liga F | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 12
         }
       ],
@@ -11080,7 +11080,7 @@
           "id": "concacaf-soccer-costa-rica-liga-fpd-men",
           "type": "espn-daily",
           "configured_league": "Liga FPD | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -11143,7 +11143,7 @@
           "id": "concacaf-soccer-mexico-liga-mx-men",
           "type": "espn-daily",
           "configured_league": "Liga MX | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 19
         }
       ],
@@ -11164,7 +11164,7 @@
           "id": "concacaf-soccer-guatemala-liga-nacional-men",
           "type": "espn-daily",
           "configured_league": "Liga Nacional | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -11185,7 +11185,7 @@
           "id": "concacaf-soccer-honduras-liga-nacional-men",
           "type": "espn-daily",
           "configured_league": "Liga Nacional | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 7
         }
       ],
@@ -11248,7 +11248,7 @@
           "id": "conmebol-soccer-ecuador-ligapro-serie-a-men",
           "type": "espn-daily",
           "configured_league": "LigaPro Serie A | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 11
         }
       ],
@@ -11269,7 +11269,7 @@
           "id": "ligue1",
           "type": "adapter",
           "configured_league": "Ligue 1",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 14
         }
       ],
@@ -11311,7 +11311,7 @@
           "id": "uefa-soccer-france-ligue-2-men",
           "type": "espn-daily",
           "configured_league": "Ligue 2 | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -11481,7 +11481,7 @@
           "id": "mls",
           "type": "adapter",
           "configured_league": "MLS",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 17
         }
       ],
@@ -11736,7 +11736,7 @@
           "id": "concacaf-soccer-united-states-nwsl-challenge-cup-women",
           "type": "espn-daily",
           "configured_league": "NWSL Challenge Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -11757,7 +11757,7 @@
           "id": "concacaf-soccer-united-states-nwsl-women",
           "type": "espn-daily",
           "configured_league": "National Women’s Soccer League (NWSL) | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 11
         }
       ],
@@ -11799,7 +11799,7 @@
           "id": "concacaf-soccer-united-states-nwsl-women",
           "type": "espn-daily",
           "configured_league": "National Women’s Soccer League (NWSL) | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 11
         }
       ],
@@ -11841,7 +11841,7 @@
           "id": "concacaf-soccer-canada-northern-super-league-women",
           "type": "espn-daily",
           "configured_league": "Northern Super League | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 4
         }
       ],
@@ -11947,7 +11947,7 @@
           "id": "conmebol-soccer-paraguay-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Paraguayan Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -11989,7 +11989,7 @@
           "id": "conmebol-soccer-peru-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Peruvian Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -12010,7 +12010,7 @@
           "id": "uefa-soccer-england-players-cup-women",
           "type": "espn-daily",
           "configured_league": "Players Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 12
         }
       ],
@@ -12094,7 +12094,7 @@
           "id": "epl",
           "type": "adapter",
           "configured_league": "Premier League",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 15
         }
       ],
@@ -12115,7 +12115,7 @@
           "id": "uefa-soccer-france-premi-re-ligue-women",
           "type": "espn-daily",
           "configured_league": "Première Ligue | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 7
         }
       ],
@@ -12199,7 +12199,7 @@
           "id": "primeira",
           "type": "adapter",
           "configured_league": "Primeira Liga",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -12220,7 +12220,7 @@
           "id": "conmebol-soccer-colombia-primera-a-men",
           "type": "espn-daily",
           "configured_league": "Primera A | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 20
         }
       ],
@@ -12241,7 +12241,7 @@
           "id": "conmebol-soccer-chile-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 7
         }
       ],
@@ -12262,7 +12262,7 @@
           "id": "concacaf-soccer-el-salvador-primera-division-men",
           "type": "espn-daily",
           "configured_league": "Primera División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 9
         }
       ],
@@ -12367,7 +12367,7 @@
           "id": "soccer-conmebol-recopa",
           "type": "espn-daily",
           "configured_league": "Recopa Sudamericana | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -12451,7 +12451,7 @@
           "id": "soccer-afc-saudi-arabia-saudi-pro-league-men",
           "type": "espn-daily",
           "configured_league": "Saudi Pro League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 17
         }
       ],
@@ -12493,7 +12493,7 @@
           "id": "uefa-soccer-scotland-scottish-championship-men",
           "type": "espn-daily",
           "configured_league": "Scottish Championship | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 6
         }
       ],
@@ -12514,7 +12514,7 @@
           "id": "uefa-soccer-scotland-scottish-cup-men",
           "type": "espn-daily",
           "configured_league": "Scottish Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 20
         }
       ],
@@ -12535,7 +12535,7 @@
           "id": "uefa-soccer-scotland-scottish-league-cup-men",
           "type": "espn-daily",
           "configured_league": "Scottish League Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -12556,7 +12556,7 @@
           "id": "uefa-soccer-scotland-scottish-premiership-men",
           "type": "espn-daily",
           "configured_league": "Scottish Premiership | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 7
         }
       ],
@@ -12598,7 +12598,7 @@
           "id": "uefa-soccer-spain-segunda-divisi-n-men",
           "type": "espn-daily",
           "configured_league": "Segunda División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 16
         }
       ],
@@ -12619,7 +12619,7 @@
           "id": "conmebol-soccer-uruguay-segunda-division-men",
           "type": "espn-daily",
           "configured_league": "Segunda División | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -12682,7 +12682,7 @@
           "id": "seriea",
           "type": "adapter",
           "configured_league": "Serie A | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 16
         }
       ],
@@ -12724,7 +12724,7 @@
           "id": "uefa-soccer-italy-serie-b-men",
           "type": "espn-daily",
           "configured_league": "Serie B | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -12745,7 +12745,7 @@
           "id": "concacaf-soccer-united-states-shebelieves-cup-women",
           "type": "espn-daily",
           "configured_league": "SheBelieves Cup | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -12914,7 +12914,7 @@
           "id": "caf-soccer-south-africa-south-african-premier-division-men",
           "type": "espn-daily",
           "configured_league": "South African Premier Division | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -13020,7 +13020,7 @@
           "id": "uefa-soccer-greece-super-league-men",
           "type": "espn-daily",
           "configured_league": "Super League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 12
         }
       ],
@@ -13041,7 +13041,7 @@
           "id": "uefa-soccer-england-super-league-women",
           "type": "espn-daily",
           "configured_league": "Super League | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -13209,7 +13209,7 @@
           "id": "conmebol-soccer-brazil-supercopa-do-brasil-men",
           "type": "espn-daily",
           "configured_league": "Supercopa do Brasil | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -13525,7 +13525,7 @@
           "id": "uefa-soccer-turkey-s-per-lig-men",
           "type": "espn-daily",
           "configured_league": "Süper Lig | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 10
         }
       ],
@@ -13651,7 +13651,7 @@
           "id": "uefa-soccer-portugal-ta-a-de-portugal-men",
           "type": "espn-daily",
           "configured_league": "Taça de Portugal | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -13735,7 +13735,7 @@
           "id": "uefa-soccer-england-championship-men",
           "type": "espn-daily",
           "configured_league": "The Championship | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 13
         }
       ],
@@ -13947,7 +13947,7 @@
           "id": "concacaf-soccer-united-states-us-open-cup-men",
           "type": "espn-daily",
           "configured_league": "U.S. Open Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 1
         }
       ],
@@ -14010,7 +14010,7 @@
           "id": "soccer-uefa-champions-league",
           "type": "espn-daily",
           "configured_league": "UEFA Champions League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 18
         }
       ],
@@ -14031,7 +14031,7 @@
           "id": "soccer-uefa-conference-league",
           "type": "espn-daily",
           "configured_league": "UEFA Conference League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 18
         }
       ],
@@ -14052,7 +14052,7 @@
           "id": "soccer-uefa-europa-league",
           "type": "espn-daily",
           "configured_league": "UEFA Europa League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 18
         }
       ],
@@ -14073,7 +14073,7 @@
           "id": "soccer-uefa-euro-men",
           "type": "espn-daily",
           "configured_league": "UEFA European Championship | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14094,7 +14094,7 @@
           "id": "soccer-uefa-euro-women",
           "type": "espn-daily",
           "configured_league": "UEFA European Championship | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14115,7 +14115,7 @@
           "id": "soccer-uefa-nations-league",
           "type": "espn-daily",
           "configured_league": "UEFA Nations League | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14136,7 +14136,7 @@
           "id": "soccer-uefa-super-cup",
           "type": "espn-daily",
           "configured_league": "UEFA Super Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14157,7 +14157,7 @@
           "id": "soccer-uefa-womens-champions-league",
           "type": "espn-daily",
           "configured_league": "UEFA Women’s Champions League | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14178,7 +14178,7 @@
           "id": "soccer-uefa-womens-nations-league",
           "type": "espn-daily",
           "configured_league": "UEFA Women’s Nations League | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14199,7 +14199,7 @@
           "id": "concacaf-soccer-united-states-usl-championship-men",
           "type": "espn-daily",
           "configured_league": "USL Championship | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 15
         }
       ],
@@ -14220,7 +14220,7 @@
           "id": "concacaf-soccer-united-states-usl-cup-men",
           "type": "espn-daily",
           "configured_league": "USL Cup | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14241,7 +14241,7 @@
           "id": "concacaf-soccer-united-states-usl-league-one-men",
           "type": "espn-daily",
           "configured_league": "USL League One (USL1) | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 10
         }
       ],
@@ -14262,7 +14262,7 @@
           "id": "concacaf-soccer-united-states-usl-super-league-women",
           "type": "espn-daily",
           "configured_league": "USL Super League | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 4
         }
       ],
@@ -14367,7 +14367,7 @@
           "id": "uefa-soccer-finland-veikkausliiga-men",
           "type": "espn-daily",
           "configured_league": "Veikkausliiga | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14734,7 +14734,7 @@
           "id": "atp-tennis",
           "type": "espn-daily",
           "configured_league": "ATP Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 5
         }
       ],
@@ -14797,7 +14797,7 @@
           "id": "tennis-itf-world-tour-men",
           "type": "tennis-intelligence",
           "configured_league": "ITF World Tennis Tour | Men",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 27
         }
       ],
@@ -14818,7 +14818,7 @@
           "id": "tennis-itf-world-tour-women",
           "type": "tennis-intelligence",
           "configured_league": "ITF World Tennis Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 30
         }
       ],
@@ -14887,10 +14887,12 @@
             "tennis-itf-world-tour-men-2026-10-12-m25-austin-tx",
             "tennis-itf-world-tour-men-2026-10-19-m15-ithaca"
           ],
-          "reference_status": "references-verified",
-          "reference_note": "Reviewed tournament cross-list references only. USTA remains a manual coverage gap with no independently collected events; these references do not establish circuit-wide or match-level coverage, new approval, or participant-age clearance.",
-          "reference_errors": [],
-          "refresh_ok": true,
+          "reference_status": "permission-required",
+          "reference_note": "Permission required: USTA automated collection is paused pending access review; saved observations are not fresh.",
+          "reference_errors": [
+            "Permission required: USTA automated collection is paused pending access review; saved observations are not fresh."
+          ],
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -14918,10 +14920,12 @@
             "tennis-itf-world-tour-women-2026-10-19-w35-bakersfield-ca",
             "tennis-itf-world-tour-women-2026-10-19-w50-austin"
           ],
-          "reference_status": "references-verified",
-          "reference_note": "Reviewed tournament cross-list references only. USTA remains a manual coverage gap with no independently collected events; these references do not establish circuit-wide or match-level coverage, new approval, or participant-age clearance.",
-          "reference_errors": [],
-          "refresh_ok": true,
+          "reference_status": "permission-required",
+          "reference_note": "Permission required: USTA automated collection is paused pending access review; saved observations are not fresh.",
+          "reference_errors": [
+            "Permission required: USTA automated collection is paused pending access review; saved observations are not fresh."
+          ],
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -15048,7 +15052,7 @@
           "id": "wta-tennis",
           "type": "espn-daily",
           "configured_league": "WTA Tour | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 7
         }
       ],

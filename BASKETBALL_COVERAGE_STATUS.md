@@ -1,6 +1,6 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-18T23:16:42.314137+00:00
+Catalog 10.1.26 · published schedule 2026-10-18T23:45:12.652996+00:00
 Review dates: 2026-10-18 through 2026-10-25 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
@@ -10,11 +10,11 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Current state | Identities |
 |---|---:|
 | Calendar only | 51 |
-| Fixtures published in this window | 20 |
+| Fixtures published in this window | 15 |
 | Fixture connection missing | 6 |
 | Source checked; no current fixtures | 1 |
 | Competition/scope hold | 6 |
-| Source blocked or failed | 5 |
+| Source blocked or failed | 10 |
 
 | Competition / event | Current state | Source scope / next action |
 |---|---|---|
@@ -22,7 +22,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | BBL-Pokal \| Men | Calendar only | published-event-window |
 | BIG3 \| Men | Calendar only | last-published-event-window |
 | Basketball Bundesliga (BBL) \| Men | Fixtures published in this window | partial |
-| Basketball Champions League \| Men | Fixtures published in this window | partial |
+| Basketball Champions League \| Men | Source blocked or failed | partial |
 | Basketball League of Serbia / Košarkaška liga Srbije (KLS) \| Men | Fixtures published in this window | partial |
 | Basketbol Süper Ligi (BSL) \| Men | Fixtures published in this window | partial |
 | Basketligaen \| Men | Fixtures published in this window | partial |
@@ -58,7 +58,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | FIBA Micronesia Cup \| Women | Calendar only | last-published-event-window |
 | FIBA Polynesian Basketball Cup \| Men | Calendar only | published-event-window |
 | FIBA Polynesian Basketball Cup \| Women | Calendar only | published-event-window |
-| FIBA Women's EuroLeague \| Women | Fixtures published in this window | partial |
+| FIBA Women's EuroLeague \| Women | Source blocked or failed | partial |
 | French Cup \| Men | Calendar only | last-published-event-window |
 | Governor’s Cup \| Men | Source blocked or failed | published-schedule-window |
 | Greek Basket League (GBL) \| Men | Fixtures published in this window | partial |
@@ -79,8 +79,8 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Ligat Ha’Al / Israeli Basketball Premier League \| Men | Fixtures published in this window | partial |
 | NBA Draft | Calendar only | last-published-event-window |
 | NBA Preseason Games v. International Teams | Competition/scope hold | The NBA's published 2026 preseason schedule lists NBA-versus-NBA global games, but no matchup against a non-NBA international club; global location alone does not satisfy this identity |
-| National Basketball Association (NBA) \| Men | Fixtures published in this window | not reported |
-| National Basketball League (NBL) \| Men | Fixtures published in this window | complete |
+| National Basketball Association (NBA) \| Men | Source blocked or failed | not reported |
+| National Basketball League (NBL) \| Men | Source blocked or failed | complete |
 | Novo Basquete Brasil (NBB) \| Men | Source blocked or failed | partial |
 | Pacific Games \| Men | Calendar only | last-published-event-window |
 | Pacific Games \| Women | Calendar only | last-published-event-window |
@@ -106,7 +106,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | The Basketball Tournament (TBT) \| Women | Competition/scope hold | No official division-specific women's TBT competition or calendar was found. |
 | Turkish Basketball Cup \| Men | Calendar only | last-published-event-window |
 | Unrivaled Basketball \| Women | Calendar only | published-schedule-window |
-| Women’s National Basketball Association (WNBA) \| Women | Fixtures published in this window | not reported |
+| Women’s National Basketball Association (WNBA) \| Women | Source blocked or failed | not reported |
 
 Detailed source URLs, checks, errors and next actions: [machine-readable register](data/basketball-coverage-acceptance.json).
 Source failures remain unresolved until verified. Calendar windows and documented holds are not completed fixture coverage.
