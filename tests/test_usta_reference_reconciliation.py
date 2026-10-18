@@ -6,7 +6,7 @@ import unittest
 from copy import deepcopy
 from pathlib import Path
 from types import SimpleNamespace
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from scripts.usta_reference_reconciliation import (
     LANES, OWNER, SOURCE_FIELDS, reconcile_usta_references,
@@ -68,6 +68,10 @@ def getter(manifest, status=200, body=None):
 
 class UstaReferenceReconciliationTests(unittest.TestCase):
     def setUp(self):
+        # Exercise retained pure reconciliation with synthetic PDF responses only.
+        hold=patch("scripts.usta_reference_reconciliation.permission_hold_reason",return_value=None)
+        hold.start()
+        self.addCleanup(hold.stop)
         self.events, self.sources, self.payload, self.manifest = fixture()
 
     def run_reconciliation(self, now=NOW, get=None):

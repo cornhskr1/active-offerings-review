@@ -287,5 +287,10 @@ out = {
     "records": records
 }
 
+if rosters.get("collection_paused"):
+    out.update(collection_paused=True, stale=True, access_status="permission_required",
+               collection_status_note="Derived from retained observations; publisher collection is paused pending access review.",
+               source_observation_times={"rosters": rosters.get("generated_at")})
+
 CACHE_PATH.write_text(json.dumps(out, indent=2), encoding="utf-8")
 print(json.dumps(summary))

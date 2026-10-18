@@ -5,6 +5,9 @@ from urllib.parse import urljoin, urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from zoneinfo import ZoneInfo
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 CFG_PATH = DATA / "ncaa-football-sources.json"

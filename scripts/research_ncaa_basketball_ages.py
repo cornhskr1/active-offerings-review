@@ -5,6 +5,9 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"
 CACHE=DATA/"ncaa-basketball-age-cache.json"
@@ -208,6 +211,8 @@ def espn_evidence(rec):
     league=LEAGUES.get(gender)
     if not league or not pid:return None,{"reason":"NO ESPN PROFILE ID"}
     url=ESPN_URL.format(league=league,pid=pid)
+    reason=permission_hold_reason(url)
+    if reason:return None,{"reason":"PERMISSION REQUIRED","error":reason,"url":url}
     try:
         r=requests.get(url,headers=HEADERS,timeout=20); r.raise_for_status()
         payload=r.json()
@@ -253,8 +258,8 @@ for item,rec,do_espn,do_official in candidates:
     attempts=[]
 
     if do_espn:
-        rec["last_researched_espn"]=NOW.isoformat()
         ev,meta=espn_evidence(rec); attempts.append({"source":"ESPN","result":meta})
+        if meta.get("reason")!="PERMISSION REQUIRED":rec["last_researched_espn"]=NOW.isoformat()
         if ev:evidence=ev
 
     if not evidence and do_official:
@@ -288,7 +293,7 @@ for item,rec,do_espn,do_official in candidates:
         if status=="VERIFIED U18":vu18+=1
         else:v18+=1
     else:
-        rec["research_result"]="NO EXPLICIT DOB/AGE"
+        rec["research_result"]=("PERMISSION REQUIRED; OTHER CHECKS UNRESOLVED" if any(a["result"].get("reason")=="PERMISSION REQUIRED" for a in attempts) else "NO EXPLICIT DOB/AGE")
         result["result"]="UNRESOLVED"
         unres+=1
 

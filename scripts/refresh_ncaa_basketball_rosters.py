@@ -3,8 +3,14 @@ from pathlib import Path
 import datetime, json, os, re, time
 import requests
 
+from publisher_access_policy import (install_network_guards, permission_hold_reason, preserve_snapshot_on_hold)
+install_network_guards()
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
+if preserve_snapshot_on_hold(DATA / "ncaa-basketball-rosters.json", "https://site.api.espn.com/"):
+    raise SystemExit(0)
+
 MAP_PATH = DATA / "ncaa-basketball-di-map.json"
 CACHE_PATH = DATA / "ncaa-basketball-rosters.json"
 

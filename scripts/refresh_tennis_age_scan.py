@@ -3,6 +3,8 @@ import json, re, datetime, os
 from pathlib import Path
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
+from publisher_access_policy import permission_hold_reason
+from tennis_publisher_holds import (paused_snapshot, install_browser_hold, retain_paused_tournaments, mark_permission_metadata)
 from athlete_age_evidence import reviewed, update_cache
 
 from playwright.sync_api import sync_playwright
@@ -109,17 +111,22 @@ class Browser:
     def __init__(self,pw):
         self.browser=pw.chromium.launch(headless=True,args=["--disable-dev-shm-usage"])
         self.page=self.browser.new_page(
+            service_workers="block",
             viewport={"width":1440,"height":1000},
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36"
         )
+        install_browser_hold(self.page)
         self.page.set_default_timeout(10000)
 
     def close(self):self.browser.close()
 
     def snapshot(self,url,wait=700):
+        held=paused_snapshot(url)
+        if held:return held
         payloads=[]
         def response_handler(resp):
             try:
+                if permission_hold_reason(resp.url):return
                 ct=(resp.headers.get("content-type") or "").lower()
                 lu=resp.url.lower()
                 if "json" not in ct and not any(x in lu for x in ("api","graphql","player","profile")):
@@ -149,6 +156,7 @@ class Browser:
 
     def fill_search(self,url,name,link_pattern,preferred_domain):
         """Search an official player directory and return the closest official profile link."""
+        if permission_hold_reason(url):return None
         try:
             self.page.goto(url,wait_until="domcontentloaded",timeout=25000)
             self.page.wait_for_timeout(900)
@@ -219,6 +227,8 @@ class Browser:
         return None
 
 def resolve_official_profile(browser,name,profile_url,on_date,gender=None):
+    if permission_hold_reason(profile_url or ""):
+        return None
     urls=[]
     if profile_url and any(d in profile_url.lower() for d in ("atptour.com","wtatennis.com","itftennis.com","utrsports.net")):
         urls.append(profile_url)
@@ -309,10 +319,22 @@ for x in exceptions_doc.get("exceptions",[]):
 items=list(queue.values())[:BATCH_SIZE]
 resolved=0
 not_found=0
+permission_held=0
 
 with sync_playwright() as pw:
     browser=Browser(pw)
     for i,item in enumerate(items,1):
+        hold_reason=permission_hold_reason(item.get("profile_url") or "")
+        if not hold_reason and str(item.get("tour") or "").upper().startswith("ITF"):
+            hold_reason=permission_hold_reason(ITF_PLAYERS)
+        if hold_reason:
+            permission_held+=1
+            key=norm(item["name"])
+            previous=cache.get(key,{})
+            cache[key]={**previous,"name":item["name"],"collection_paused":True,
+                        "source_stale":True,"permission_required":True,
+                        "permission_hold_reason":hold_reason}
+            continue
         try:on_date=datetime.date.fromisoformat(item["event_date"])
         except Exception:on_date=TODAY
 
@@ -365,7 +387,9 @@ CACHE_PATH.write_text(json.dumps({
   "schema_version":2,
   "generated_at":NOW.isoformat(),
   "batch_size":BATCH_SIZE,
-  "processed":len(items),
+  "processed":len(items)-permission_held,
+  "permission_held":permission_held,
+  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat()).get("publisher_permission_holds",[]),
   "resolved_this_run":resolved,
   "unresolved_this_run":not_found,
   "remaining_candidates":max(0,len(queue)-len(items)),
@@ -373,7 +397,9 @@ CACHE_PATH.write_text(json.dumps({
 },indent=2,ensure_ascii=False),encoding="utf-8")
 
 print(json.dumps({
-  "processed":len(items),
+  "processed":len(items)-permission_held,
+  "permission_held":permission_held,
+  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat()).get("publisher_permission_holds",[]),
   "resolved":resolved,
   "not_resolved":not_found,
   "remaining_candidates":max(0,len(queue)-len(items)),

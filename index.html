@@ -595,6 +595,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 <body>
 <div class="app">
 <header class="workspace-brand"><div><div class="workspace-name">Active Offerings</div><div class="workspace-subtitle">Sports wagering review workspace</div></div><div class="workspace-boundary">PUBLIC INFORMATION<br>STAFF REVIEW</div></header>
+<aside class="card" role="status" id="publisherCollectionHold"><strong>Selected collection is paused pending access review.</strong> ESPN, NCAA.com, ITF, USTA, FIBA and FAW are not being refreshed by the updated collectors. Saved information remains available for review and may be stale; a dashboard refresh does not renew those observations. Verify current details before relying on them. Catalog and manual review tools remain available.</aside>
 <nav class="nav" id="nav" aria-label="Review workspace">
 <button class="active" data-panel="today">Review Today</button>
 <button data-panel="college">Nebraska Collegiate</button>
@@ -719,9 +720,15 @@ function publishedLoadStatus(results,displayErrors=[]){
   const loaded=results.length-failed.length;
   if(displayErrors.length)return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. Display issue: ${displayErrors.join(', ')}. Some views could not be updated.`};
   if(failed.length)return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. ${failed.length} unavailable on this reload; check source availability below.`};
+  if(Object.values(DATA).some(feedCollectionPaused))return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. Selected collection is paused; saved observations are not fresh clearance.`};
   const start=todayKey(),end=addDays(start,7);
   const needsCheck=reviewFeedWindows(start,end).some(row=>row.status!=='covers review dates');
   return {tone:needsCheck?'status-warn':'',text:`${loaded}/${results.length} published files loaded. ${needsCheck?'Schedule dates need verification; see the coverage notice below.':'Schedule windows cover the review dates; source and participant checks remain separate.'}`};
+}
+function feedCollectionPaused(feed){
+  return !!(feed?.collection_paused || feed?.publisher_permission_holds?.length ||
+    (feed?.sources||[]).some(row=>row.collection_paused) ||
+    (feed?.lanes||[]).some(row=>row.collection_paused));
 }
 function renderPublishedDates(results){
   const host=document.getElementById('feedDates');
@@ -732,9 +739,10 @@ function renderPublishedDates(results){
     const stamp=feed?.generated_at;
     const validStamp=stamp&&Number.isFinite(new Date(stamp).getTime());
     const date=validStamp?new Intl.DateTimeFormat('en-US',{timeZone:CT,year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(stamp)):'Publication date not reported';
-    const available=ok?'Loaded':feed?'Reload unavailable — previous loaded copy retained':'Unavailable — no loaded copy';
+    const paused=feedCollectionPaused(feed);
+    const available=ok?(paused?'Loaded · collection paused; saved observations may be stale':'Loaded'):feed?'Reload unavailable — previous loaded copy retained':'Unavailable — no loaded copy';
     const window=feed?.window_start||feed?.window_end?`<span>Schedule dates: ${esc(feed.window_start||'not reported')} through ${esc(feed.window_end||'not reported')}</span>`:'';
-    return `<div class="feed-date-row"><b>${esc(FEED_LABELS[key]||key)}</b><span>${esc(date)}</span><span class="${ok?'':'feed-problem'}">${esc(available)}</span>${window}</div>`;
+    return `<div class="feed-date-row"><b>${esc(FEED_LABELS[key]||key)}</b><span>${esc(date)}</span><span class="${ok&&!paused?'':'feed-problem'}">${esc(available)}</span>${window}</div>`;
   }).join('');
 }
 async function loadAll(){
