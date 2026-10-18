@@ -4686,10 +4686,9 @@
       "league": "South African Rugby Union competitions",
       "region": "South Africa",
       "official_schedule_url": "https://www.sarugby.co.za/match-centre/",
-      "source_note": "The Currie Cup First Division and Varsity Cup remain uncovered. A separate official match-centre adapter covers only the Currie Cup Premier Division; the broad catalog label does not establish First Division coverage.",
+      "source_note": "Varsity Cup remains uncovered: its exact public match-centre competition currently returns no fixtures. Separate exact adapters cover the Currie Cup Premier and First Divisions. An empty listing does not establish no events or complete coverage.",
       "catalog_terms": [
         "South African Rugby Union (SARU)",
-        "Currie Cup | Men",
         "Varsity Cup | Men"
       ]
     },
@@ -4703,7 +4702,7 @@
       "official_schedule_url": "https://springboks.rugby/tournaments/carling-currie-cup-premier-division",
       "competition_id": "bb147660-39c0-4528-aaf3-b74e77af923c",
       "coverage_status": "partial",
-      "source_note": "Exact Premier Division match feed only. First Division remains a coverage gap; the 2026 Premier final was September 12, so no current eight-day fixture is expected. The feed advances season by dated match records, without inventing future fixtures.",
+      "source_note": "Exact Premier Division match feed only; a separate exact First Division adapter supplies that division. The 2026 Premier final was September 12. This source remains partial and does not establish next-edition fixtures or complete Currie Cup coverage.",
       "catalog_terms": [
         "Currie Cup | Men"
       ]
@@ -4840,28 +4839,24 @@
     },
     {
       "id": "rugby-usa",
-      "source_type": "official-event-window",
+      "source_type": "saru-exact-matches",
       "sport": "Rugby",
       "league": "Women’s USA Rugby Events | Women",
       "region": "United States",
-      "endpoint": "https://www.sarugby.co.za/match-centre/",
-      "official_schedule_url": "https://www.sarugby.co.za/match-centre/",
-      "coverage_status": "current-published-events",
-      "official_events": [
-        {
-          "source_id": "rugby-usa",
-          "league": "Women’s USA Rugby Events | Women",
-          "name": "Ireland Women vs. USA Women",
-          "start_date": "2026-09-20",
-          "end_date": "2026-09-20",
-          "location": "WXV Global Series",
-          "official_schedule_url": "https://www.sarugby.co.za/match-centre/"
-        }
-      ],
+      "endpoint": "https://springboks.rugby/api/match-centre/matches",
+      "official_schedule_url": "https://springboks.rugby/match-centre/",
+      "coverage_status": "partial",
       "catalog_terms": [
-        "USA Rugby",
         "Women’s USA Rugby Events | Women"
-      ]
+      ],
+      "competition_id": "669f0a5d-fc63-4c08-855e-2cbcf51dd401",
+      "competition_name": "WXV Global Series",
+      "season_id": "513e569c-09fd-46da-ad91-bd91ec0b1476",
+      "season_name": "2026",
+      "required_team_id": "23f44fd1-36cb-4f3e-8d1b-20882b5b631d",
+      "required_team_name": "USA Women",
+      "coverage_complete": false,
+      "source_note": "Exact USA Women matches in the 2026 WXV Global Series only. Other WXV teams, other USA events and future editions are not covered. Published named opponents and UTC kickoffs are checked; incomplete or scored records are held. This feed does not establish complete USA Rugby event coverage."
     },
     {
       "id": "surfing-wsl-big-wave",
@@ -6345,6 +6340,25 @@
       ],
       "catalog_terms": [
         "Brazilian Cup | Women"
+      ]
+    },
+    {
+      "id": "rugby-saru-currie-first",
+      "source_type": "saru-exact-matches",
+      "sport": "Rugby",
+      "league": "Currie Cup | Men",
+      "region": "South Africa",
+      "endpoint": "https://springboks.rugby/api/match-centre/matches",
+      "official_schedule_url": "https://springboks.rugby/match-centre/",
+      "competition_id": "56038bac-544a-482e-a5da-6351054efc5d",
+      "competition_name": "Carling Currie Cup First Division",
+      "season_id": "e2b76a5f-d3e9-42f8-a5cd-4df2b469bd22",
+      "season_name": "2026",
+      "coverage_status": "partial",
+      "coverage_complete": false,
+      "source_note": "Exact 2026 First Division feed only. All 18 currently published June 13–July 24 records have scores and are excluded from upcoming fixtures. No 2027 season is inferred; Premier Division is covered separately. Empty future results remain partial, not proof of no offerings.",
+      "catalog_terms": [
+        "Currie Cup | Men"
       ]
     }
   ]

@@ -13,6 +13,7 @@ from prem_fixture_adapter import parse_prem_matches
 from epcr_fixture_adapter import parse_epcr_matches
 from jleague_fixture_adapter import parse_jleague_matches
 from saru_fixture_adapter import parse_saru_matches
+from saru_exact_fixture_adapter import collect as collect_saru_exact
 from thai_league_fixture_adapter import parse_thai_league_matches
 from espn_league_scope import verified_events as verified_espn_league_events
 from official_motorsports_calendar import PARSERS as MOTORSPORTS_CALENDAR_PARSERS
@@ -1953,6 +1954,23 @@ for source in CFG.get("sources",[]):
             errors.append(str(e)[:110])
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+        continue
+    if source.get("source_type")=="saru-exact-matches":
+        evidence={}
+        try:
+            candidate_events,evidence=collect_saru_exact(source,TODAY,END,requests.get)
+            # Collection and validation are atomic: never publish a partial page set.
+            for parsed in candidate_events:
+                if parsed["id"] not in seen:
+                    seen.add(parsed["id"])
+                    events.append(parsed)
+                    count+=1
+        except Exception as exc:
+            errors.append(str(exc)[:150])
+        source_status.append({**source,**evidence,"approved_catalog":True,
+            "ok":not errors,"events":count,"coverage_status":"partial",
+            "coverage_complete":False,"errors":errors[:3],
+            "checked_at":NOW_UTC.isoformat()})
         continue
     if source.get("source_type")=="saru-matches":
         try:
