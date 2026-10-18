@@ -178,7 +178,7 @@ const DATA={basketball:{},basketballIntel:{},tennisReview:{summary:{}}};
 let TODAY_VIEW='date';
 const elements=new Map();
 const element=id=>elements.get(id)||elements.set(id,{innerHTML:'',textContent:'',hidden:false,
-  dataset:{},classList:{add(){},remove(){}},setAttribute(){},value:''}).get(id);
+  dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},value:''}).get(id);
 const buttons=['attention','date','sport'].map(todayView=>({dataset:{todayView},
   classList:{toggle(){}},setAttribute(){},textContent:''}));
 const document={getElementById:element,querySelector(){return buttons[0]},querySelectorAll(){return buttons}};
@@ -188,7 +188,7 @@ function buildTodayModel(){builds++;return{global:{},start:'2026-09-26',end:'202
 function todayKey(){return '2026-09-26'}
 function addDays(_,i){return `2026-09-${String(26+i).padStart(2,'0')}`}
 function attentionCardsForDay(){dayCalls++;return[]}
-function renderIssueBoard(){queueCalls++;return'issue-board'}
+function renderReviewLanes(){queueCalls++;return'issue-board'}
 function renderUpcomingSportBoard(){sportCalls++;return'sport-board'}
 function fmtDateTime(){return''}
 function esc(value){return String(value)}

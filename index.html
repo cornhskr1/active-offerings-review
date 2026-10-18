@@ -709,14 +709,18 @@ function scheduleWindowStatus(feed,start,end){
   if(feed.window_start<start)return 'older publication';
   return 'covers review dates';
 }
+function reviewFeedWindows(start,end){
+  return [['global','Approved sports schedule'],['basketball','NCAA basketball'],
+    ['college','Nebraska collegiate schedules'],['tennisReview','Tennis review evidence']]
+    .map(([key,label])=>({key,label,feed:DATA[key],status:scheduleWindowStatus(DATA[key],start,end)}));
+}
 function publishedLoadStatus(results,displayErrors=[]){
   const failed=results.filter(([,ok])=>!ok);
   const loaded=results.length-failed.length;
   if(displayErrors.length)return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. Display issue: ${displayErrors.join(', ')}. Some views could not be updated.`};
   if(failed.length)return {tone:'status-warn',text:`${loaded}/${results.length} published files loaded. ${failed.length} unavailable on this reload; check source availability below.`};
   const start=todayKey(),end=addDays(start,7);
-  const windows=[scheduleWindowStatus(DATA.global,start,end),scheduleWindowStatus(DATA.basketball,start,end)];
-  const needsCheck=windows.some(status=>status!=='covers review dates');
+  const needsCheck=reviewFeedWindows(start,end).some(row=>row.status!=='covers review dates');
   return {tone:needsCheck?'status-warn':'',text:`${loaded}/${results.length} published files loaded. ${needsCheck?'Schedule dates need verification; see the coverage notice below.':'Schedule windows cover the review dates; source and participant checks remain separate.'}`};
 }
 function renderPublishedDates(results){
@@ -1213,7 +1217,7 @@ function renderIssueBoard(cards,events){
       const severity=red?'red':'amber';
       const athletes=new Set(group.cards.flatMap(c=>c.athletes||[]));
       const affected=new Set(group.cards.map(c=>c.event||c.title||'Scheduled event'));
-      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED','MATCHUP NOT VERIFIED'].includes(c.type));
+      const coverageOnly=group.cards.every(c=>['SCHEDULE COVERAGE GAP','SEASON COVERAGE GAP','SCOPE/CALENDAR HOLD','STALE SCHEDULE SOURCE','SCHEDULE SOURCE FAILED','MATCHUP NOT VERIFIED','POSTPONED FIXTURE'].includes(c.type));
       const actions=[...new Set(group.cards.map(c=>c.staff_action).filter(Boolean))];
       const sourceLinks=[...new Set(group.cards.map(c=>c.source_url).filter(url=>/^https:\/\//i.test(String(url||''))))];
       return `<details class="issue-card ${severity}"><summary>
@@ -1266,6 +1270,12 @@ function renderUpcomingSportBoard(events){
   }).join('')}</div>`;
 }
 
+function renderReviewLanes(cards,coverageAlerts,events){
+  const coverageSet=new Set(coverageAlerts);
+  const market=cards.filter(card=>!coverageSet.has(card));
+  return `<p class="row-meta"><a href="#marketChecks">Market checks · ${market.length}</a> · <a href="#coverageWork">Coverage needs attention · ${coverageAlerts.length}</a></p><section id="marketChecks" aria-label="Market checks"><h3>Market checks · ${market.length}</h3><p class="row-meta">Check the actual offerings and supporting evidence. No listed alert is not an all-clear.</p>${renderIssueBoard(market,events)}</section>
+    <section id="coverageWork" aria-label="Coverage needs attention"><h3>Coverage needs attention · ${coverageAlerts.length}</h3><p class="row-meta">Schedule gaps, source failures and held fixtures remain unresolved. These checks are separate from market review.</p>${renderIssueBoard(coverageAlerts,events)}</section>`;
+}
 let TODAY_VIEW='date';
 function uncoveredMappedEvents(sportName){
   const configured=new Set((DATA.global?.sources||[]).map(source=>source.id).filter(Boolean));
@@ -1437,6 +1447,18 @@ function heldMatchupAttention(dayKey){
   }));
 }
 
+function postponedFixtureAttention(dayKey){
+  return (DATA.global?.sources||[]).filter(source=>source.approved_catalog!==false&&
+    Number(source.postponed_fixtures_held||0)>0).map(source=>({
+    severity:'AMBER',type:'POSTPONED FIXTURE',event_date_missing:true,sport:source.sport,league:source.league,region:source.region,
+    event:`${source.postponed_fixtures_held} postponed fixture${source.postponed_fixtures_held===1?'':'s'} held · new date pending`,
+    start_time:`${dayKey}T12:00:00-05:00`,
+    reason:'The publisher explicitly marks this fixture postponed without a replacement kickoff. It is excluded from timed scheduled activity, not treated as cleared.',
+    source_url:source.official_schedule_url||source.endpoint||'',
+    staff_action:'Check the official replacement date and the operator menu before reviewing any offering on this fixture.'
+  }));
+}
+
 function heldAgeReviewAttention(dayKey){
   return (DATA.global?.sources||[]).filter(source=>
     source.approved_catalog!==false&&source.ok===true&&
@@ -1468,11 +1490,11 @@ function buildTodayModel(){
     .sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||''));
   const pqCards=(pq.cards||[]).filter(c=>{
     const k=ctKey(c.start_time);
-    return keyBetween(k,start,end) && !isNonWageredNcaaSport(c);
+    return (keyBetween(k,start,end)||(c.age_review_required&&c.event_date_missing)) && !isNonWageredNcaaSport(c);
   });
 
   const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start),
-    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start)]
+    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start),...postponedFixtureAttention(start)]
     .filter(priorityQueueIncludes);
   const dayCards=new Map();
   const windowCards=[];
@@ -1495,24 +1517,9 @@ function renderToday(){
   const {global,end,events,pqCards,coverageAlerts,red,amber}=TODAY_MODEL;
   const warning=document.getElementById('scheduleWarning');
   if(warning){
-    const feedStart=global.window_start||'';
-    const feedEnd=global.window_end||'';
-    const needEnd=end;
-    const staleStart=feedStart && feedStart<start;
-    const shortEnd=feedEnd && feedEnd<needEnd;
-    const bbStart=DATA.basketball?.window_start||'';
-    const bbEnd=DATA.basketball?.window_end||'';
-    const basketballStale=Boolean(bbEnd && bbEnd<needEnd);
-    if(staleStart||shortEnd||basketballStale||scheduleWindowStatus(global,start,end)!=='covers review dates'||scheduleWindowStatus(DATA.basketball,start,end)!=='covers review dates'){
-      warning.classList.add('show');
-      const notes=[];
-      if(scheduleWindowStatus(global,start,end)!=='covers review dates')notes.push(`Approved sports schedule: ${feedStart||'not reported'} through ${feedEnd||'not reported'}. Verify the official schedule and request an updated publication.`);
-      if(scheduleWindowStatus(DATA.basketball,start,end)!=='covers review dates')notes.push(`NCAA basketball: ${bbStart||'not reported'} through ${bbEnd||'not reported'}. Verify the official schedule and request an updated publication.`);
-      warning.innerHTML=`<b>Schedule dates need verification.</b> ${notes.join(' ')}`;
-    }else{
-      warning.classList.remove('show');
-      warning.innerHTML='';
-    }
+    const needsCheck=reviewFeedWindows(start,end).filter(row=>row.status!=='covers review dates');
+    warning.classList.toggle('show',needsCheck.length>0);
+    warning.innerHTML=needsCheck.length?`<b>Schedule dates need verification.</b> ${needsCheck.map(({label,feed,status})=>`${esc(label)}: ${esc(feed?.window_start||'not reported')} through ${esc(feed?.window_end||'not reported')} (${esc(status)}).`).join(' ')} Verify the official sources; loaded files do not establish complete coverage.`:'';
   }
 
   document.getElementById('todayMetrics').innerHTML=[
@@ -1541,7 +1548,7 @@ function renderToday(){
     }
     if(!alerts.dataset.initialized){alerts.open=true;alerts.dataset.initialized='true'}
     if(!TODAY_MODEL.queueRendered){
-      document.getElementById('todayAlertsBody').innerHTML=renderIssueBoard(TODAY_MODEL.windowCards,events);
+      document.getElementById('todayAlertsBody').innerHTML=renderReviewLanes(TODAY_MODEL.windowCards,coverageAlerts,events);
       TODAY_MODEL.queueRendered=true;
     }
     document.getElementById('todayDays').innerHTML='';
@@ -3008,7 +3015,17 @@ function renderCatalogHealth(){
   host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div>${identityText}<div class="catalog-health-note">The buttons count schedule source records and filter the catalog; they are not a completion percentage. Competition totals describe schedule connections. A configured connection does not establish complete season coverage or a successful current source check. Schedule status, last checked time, and the official schedule appear inside the matching catalog entry.</div>`;
 }
 // interactions
-document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(!b)return;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel));window.scrollTo({top:0,behavior:'smooth'})});
+// Keep navigation preferences in this tab only; never persist review findings.
+const PANEL_SCROLL=new Map();
+function activatePanel(button){
+  const current=document.querySelector('.panel.active');
+  if(current?.id===button.dataset.panel)return;
+  if(current)PANEL_SCROLL.set(current.id,window.scrollY);
+  document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===button));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===button.dataset.panel));
+  window.scrollTo({top:PANEL_SCROLL.get(button.dataset.panel)||0,behavior:'instant'});
+}
+document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-panel]');if(b)activatePanel(b)});
 document.getElementById('refreshBtn').addEventListener('click',loadAll);
 document.getElementById('introAttentionBtn').addEventListener('click',()=>{
   document.querySelector('button[data-panel="today"]').click();

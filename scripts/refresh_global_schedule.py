@@ -2456,11 +2456,12 @@ for source in CFG.get("sources",[]):
         continue
     if source.get("source_type")=="official-central-europe-league-fixtures":
         published_count=held_untimed=0
+        hold_counts={}
         candidates=[];pending_seen=set()
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=25)
             response.raise_for_status()
-            fixtures,held_untimed,published_count=parse_central_europe_fixtures(response.text,source)
+            fixtures,held_untimed,published_count=parse_central_europe_fixtures(response.text,source,hold_counts=hold_counts)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
                 if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:
@@ -2475,6 +2476,7 @@ for source in CFG.get("sources",[]):
                 seen.add(key);events.append(parsed);count+=1
         source_status.append({**source,"approved_catalog":True,"ok":not errors,
             "events":count,"published_round_fixtures":published_count,
+            "postponed_fixtures_held":hold_counts.get("postponed_fixtures_held",0),
             "untimed_or_reserve_fixtures_held":held_untimed,"errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()})
         continue

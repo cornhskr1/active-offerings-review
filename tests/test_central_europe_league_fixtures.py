@@ -1,5 +1,7 @@
+import datetime
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
 from scripts.central_europe_league_fixtures import parse_fixtures
 
@@ -56,6 +58,79 @@ class CentralEuropeFixtureTests(unittest.TestCase):
         self.assertEqual('2026-10-09T16:00:00Z',fixtures[0]['start_time'])
         self.assertEqual('2026-10-14T16:00:00Z',fixtures[8]['start_time'])
         self.assertIn('round 6',fixtures[8]['status_detail'])
+
+    def test_explicit_postponement_without_a_link_does_not_erase_timed_fixtures(self):
+        page = (Path(__file__).parent / 'fixtures/czech-current-fixtures-20261018.html').read_text()
+        hold_counts = {}
+        fixtures, held, total = parse_fixtures(page, FIRST, hold_counts=hold_counts)
+        self.assertEqual((2, 1, 4), (len(fixtures), held, total))
+        self.assertEqual({'postponed_fixtures_held': 1}, hold_counts)
+        self.assertEqual('FC Viktoria Plzeň at FK Jablonec', fixtures[0]['name'])
+        self.assertEqual('2026-10-18T16:00:00Z', fixtures[0]['start_time'])
+        self.assertNotIn('Bohemians Praha 1905 at SK Artis Brno', [event['name'] for event in fixtures])
+        self.assertEqual(2, len({event['id'] for event in fixtures}))
+
+    def test_postponement_count_does_not_include_untimed_or_reserve_rows(self):
+        for page, source in ((first_page().replace('pá 18:00', 'TBC', 1), FIRST),
+                             (second_page(), SECOND)):
+            hold_counts = {'postponed_fixtures_held': 99}
+            _, held, _ = parse_fixtures(page, source, hold_counts=hold_counts)
+            self.assertEqual(1, held)
+            self.assertEqual({'postponed_fixtures_held': 0}, hold_counts)
+
+    def test_collector_publishes_explicit_postponement_count(self):
+        page = (Path(__file__).parent / 'fixtures/czech-current-fixtures-20261018.html').read_text()
+        refresh = (Path(__file__).parents[1] / 'scripts/refresh_global_schedule.py').read_text()
+        start = refresh.index('    if source.get("source_type")=="official-central-europe-league-fixtures":')
+        end = refresh.index('    if source.get("source_type")=="official-georgia-erovnuli-linked-fixtures":', start)
+        collector = 'for source in configured:\n' + refresh[start:end]
+        source = {**FIRST, 'source_type': 'official-central-europe-league-fixtures'}
+        for text, expected_ok, expected_count in ((page, True, 1), (page.replace('odloženo', 'unknown'), False, 0)):
+            namespace = {
+                'configured': [source], 'requests': SimpleNamespace(get=lambda *args, **kwargs:
+                    SimpleNamespace(text=text, raise_for_status=lambda: None)),
+                'parse_central_europe_fixtures': parse_fixtures,
+                'datetime': datetime, 'HEADERS': {}, 'TZ': datetime.timezone.utc,
+                'NOW_UTC': datetime.datetime(2026, 10, 18, 10, tzinfo=datetime.timezone.utc),
+                'TODAY': datetime.date(2026, 10, 18), 'END': datetime.date(2026, 10, 25),
+                'events': [], 'seen': set(), 'source_status': [], 'count': 0, 'errors': [],
+            }
+            exec(compile(collector, 'central-europe-collector', 'exec'), namespace)
+            status = namespace['source_status'][0]
+            self.assertEqual(expected_ok, status['ok'])
+            self.assertEqual(expected_count, status['postponed_fixtures_held'])
+            self.assertEqual(2 if expected_ok else 0, status['events'])
+
+    def test_unrecognized_or_contradictory_postponement_still_fails_closed(self):
+        page = (Path(__file__).parent / 'fixtures/czech-current-fixtures-20261018.html').read_text()
+        for changed in (
+            page.replace('odloženo', 'unrecognized status'),
+            page.replace('odloženo', 'odloženo<b class="time">18:00</b>'),
+            page.replace('odloženo', 'odloženo<a href="/zapas/9000-abc-def">details</a>'),
+        ):
+            with self.subTest(changed=changed):
+                with self.assertRaisesRegex(ValueError, 'match link|postponed fixture'):
+                    parse_fixtures(changed, FIRST)
+
+    def test_postponement_requires_unique_named_opponents(self):
+        from lxml import html
+
+        page = (Path(__file__).parent / 'fixtures/czech-current-fixtures-20261018.html').read_text()
+        for mutation in ('missing team', 'same team', 'duplicate row', 'unexpected date'):
+            doc = html.fromstring(page)
+            row = doc.xpath('//li[.//span[@class="info" and text()="odloženo"]]')[0]
+            teams = row.xpath('.//img')
+            if mutation == 'missing team':
+                teams[0].set('alt', '')
+            elif mutation == 'same team':
+                teams[0].set('alt', teams[1].get('alt'))
+            elif mutation == 'duplicate row':
+                row.addnext(html.fromstring(html.tostring(row)))
+            else:
+                row.xpath('.//span[@class="date"]')[0].text = '18/10/26'
+            with self.subTest(mutation=mutation):
+                with self.assertRaisesRegex(ValueError, 'postponed fixture'):
+                    parse_fixtures(html.tostring(doc), FIRST)
 
     def test_variable_widget_size_does_not_silently_drop_a_valid_match(self):
         extra='<li>'+first_page().rsplit('<li>',1)[1].split('</li>',1)[0]+'</li>'
