@@ -806,34 +806,53 @@ function isNonWageredNcaaSport(item){
 }
 function collegeAliases(school){
   const s=String(school||'').toLowerCase();
-  if(s==='nebraska')return['nebraska','cornhuskers','huskers'];
-  if(s==='creighton')return['creighton','bluejays'];
-  if(s==='omaha')return['omaha','omaha mavericks','mavericks','nebraska omaha','uno'];
-  return[s];
+  // Mascots and ambiguous abbreviations are not institution identities.
+  if(s==='nebraska')return['nebraska','nebraska cornhuskers','nebraska huskers'];
+  if(s==='creighton')return['creighton','creighton bluejays'];
+  if(s==='omaha')return['omaha','omaha mavericks','nebraska omaha','nebraska omaha mavericks','university of nebraska omaha'];
+  return s?[s]:[];
+}
+function collegeTeamKey(value){
+  return String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+}
+function collegeGender(item){
+  const context=`${item?.gender||''} ${item?.sport||''} ${item?.league||''} ${item?.source_id||''} ${item?.source_endpoint||''}`.toLowerCase();
+  if(/\bwomen(?:s|’s|'s)?\b|\bfemale\b/.test(context))return 'women';
+  if(/\bmen(?:s|’s|'s)?\b|\bmale\b/.test(context))return 'men';
+  return '';
 }
 function matchesCollegeEvent(globalEvent,collegeEvent){
   if(!globalEvent||!collegeEvent)return false;
   if(ctKey(globalEvent.start_time)!==String(collegeEvent.date||''))return false;
-
-  const gs=normCollegeSport(globalEvent.sport);
-  const cs=normCollegeSport(collegeEvent.sport);
-  if(gs&&cs&&gs!==cs&&!gs.includes(cs)&&!cs.includes(gs))return false;
-
-  const hay=`${globalEvent.name||''} ${globalEvent.location||''}`.toLowerCase();
-  return collegeAliases(collegeEvent.school).some(a=>a&&hay.includes(a));
+  const context=`${globalEvent.sport||''} ${globalEvent.league||''} ${globalEvent.source_id||''}`;
+  // A matching city or mascot cannot turn a professional event into a college event.
+  if(!/\bncaa\b|\bcollege\b|\bcollegiate\b/i.test(context))return false;
+  const gs=normCollegeSport(globalEvent.sport).replace(/^ncaa\s+/,'');
+  const cs=normCollegeSport(collegeEvent.sport).replace(/^ncaa\s+/,'');
+  if(!gs||!cs||gs!==cs)return false;
+  const gg=collegeGender(globalEvent),cg=collegeGender(collegeEvent);
+  if(gg&&cg&&gg!==cg)return false;
+  // Match whole named participants, never venue text or a substring of another team.
+  const teams=String(globalEvent.name||'').split(/\s+(?:at|vs\.?|v\.?|@)\s+/i).map(collegeTeamKey);
+  if(teams.length!==2||teams.some(team=>!team))return false;
+  return collegeAliases(collegeEvent.school).some(alias=>teams.includes(collegeTeamKey(alias)));
 }
-function collegeMatchForGlobal(globalEvent){
-  return visibleCollegeEvents().find(c=>matchesCollegeEvent(globalEvent,c))||null;
+
+function collegeMatchForGlobal(globalEvent,colleges=visibleCollegeEvents()){
+  const matches=colleges.filter(c=>matchesCollegeEvent(globalEvent,c));
+  return matches.length===1?matches[0]:null;
 }
 function authoritativeCollegeAlerts(dayKey,dayEvents){
-  return visibleCollegeEvents()
+  const colleges=visibleCollegeEvents();
+  return colleges
     .filter(c=>{
       if(String(c.date||'')!==dayKey)return false;
       const r=collegeReg(c);
       return r.c==='red'||r.c==='amber';
     })
     .map(c=>{
-      const g=dayEvents.find(e=>matchesCollegeEvent(e,c));
+      const matches=dayEvents.filter(e=>matchesCollegeEvent(e,c)&&collegeMatchForGlobal(e,colleges)===c);
+      const g=matches.length===1?matches[0]:null;
       const r=collegeReg(c);
       const red=r.c==='red';
       return{
