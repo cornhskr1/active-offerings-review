@@ -18,6 +18,7 @@ permissions:
 
 concurrency:
   group: active-offerings-data
+  queue: max
   cancel-in-progress: false
 
 jobs:
