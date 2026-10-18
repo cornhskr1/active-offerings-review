@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T13:50:22.429834+00:00",
-  "schedule_generated_at": "2026-10-18T13:35:30.541916+00:00",
+  "registry_generated_at": "2026-10-18T14:44:58.675647+00:00",
+  "schedule_generated_at": "2026-10-18T14:30:45.206013+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -6393,10 +6393,10 @@
           "type": "epcr-fixtures",
           "configured_league": "European Rugby Champions Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Rugby",
@@ -9514,11 +9514,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -10039,11 +10039,11 @@
           "id": "uefa-soccer-faroe-islands-faroe-islands-premier-league-men",
           "type": "official-fsf-meistaradeildin-next-round",
           "configured_league": "Faroe Islands Premier League | Men",
-          "refresh_ok": true,
-          "events_in_window": 5
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -11728,11 +11728,11 @@
           "id": "uefa-soccer-luxembourg-national-division-bgl-ligue-men",
           "type": "official-flf-bgl-next-round",
           "configured_league": "National Division / BGL Ligue | Men",
-          "refresh_ok": true,
-          "events_in_window": 8
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -14685,7 +14685,7 @@
           "type": "espn-daily",
           "configured_league": "ATP Tour | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 5
         }
       ],
       "events_in_window": 4
@@ -15042,11 +15042,11 @@
           "id": "volleyball-fivb-beach-pro-tour-men",
           "type": "official-beach-pro-calendar",
           "configured_league": "Beach Pro Tour | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Volleyball",
@@ -15063,11 +15063,11 @@
           "id": "volleyball-fivb-beach-pro-tour-women",
           "type": "official-beach-pro-calendar",
           "configured_league": "Beach Pro Tour | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Volleyball",
