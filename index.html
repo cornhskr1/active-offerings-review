@@ -123,6 +123,7 @@ th{font-size:11px!important}
 .health-filter{appearance:none;border:1px solid #aebbc5;background:#fff;border-radius:999px;padding:7px 10px;font:800 11px/1.1 inherit;color:#25313a;cursor:pointer}
 .health-filter:hover,.health-filter.active{border-color:#1769aa;background:#eaf4fb;color:#0b4f83}
 .health-filter.attention{border-color:#8997a2;background:#f1f4f6;color:#35424c}.health-filter.issue{border-color:#59636d;background:#e8ecef;color:#20272c}
+.coverage-progress{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}.coverage-progress button,.coverage-progress .coverage-metric{border:1px solid #b7cbd7;background:#edf6f8;border-radius:9px;padding:12px;text-align:left;color:#173f51;cursor:pointer}.coverage-progress strong{display:block;font-size:25px}.coverage-progress span{display:block;font-size:12px;margin-top:3px}.coverage-progress small{display:block;color:#526775;margin-top:5px}.coverage-progress button.active{outline:2px solid #227ca4}@media(max-width:600px){.coverage-progress{gap:5px}.coverage-progress button,.coverage-progress .coverage-metric{padding:8px}.coverage-progress strong{font-size:17px}.coverage-progress span{font-size:11px}.coverage-progress small{font-size:10px}}
 .catalog-health-note{margin-top:8px;border-top:1px solid #dce4e9;padding-top:8px;color:#4f5c66;font-size:11px}
 .catalog-entry-health{font-size:11px;line-height:1.4;display:grid;gap:5px;border-top:1px solid #e1e7eb;background:#f8fafb;padding:8px 10px}
 .catalog-entry-health-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-size:10px;line-height:1.35;color:#4e5962}
@@ -650,6 +651,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 <footer class="workspace-footer"><span>Public information supports review; staff verifies actual sportsbook offerings.</span><span>Active Offerings · Interface release 1.1</span></footer>
 </div>
 <script src="assets/odds-session.js"></script>
+<script src="assets/catalog-health-summary.js"></script>
 <script>
 const DATA={};
 let ODDS_SESSION=null,ODDS_LOAD_ERROR='';
@@ -3019,6 +3021,7 @@ function renderCatalog(){
 }
 
 let CATALOG_HEALTH_FILTER='all';
+let CATALOG_IDENTITY_HEALTH=null;
 function healthText(value){
   return String(value||'').toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').trim();
 }
@@ -3076,6 +3079,14 @@ function catalogHealthSources(sport,labels,sourceIds){
 }
 function catalogEntryMatchesHealth(sport,labels,sourceIds){
   if(CATALOG_HEALTH_FILTER==='all')return true;
+  if(CATALOG_HEALTH_FILTER.startsWith('identity:')){
+    const filter=CATALOG_HEALTH_FILTER.slice(9),rows=CATALOG_IDENTITY_HEALTH?.rows||[];
+    const terms=new Set((labels||[]).map(healthText));
+    const exactKeys=new Set((labels||[]).filter(label=>rows.some(row=>row.identity_key===label)));
+    const exact=exactKeys.size?rows.filter(row=>exactKeys.has(row.identity_key)):rows.filter(row=>(!sport||healthText(row.sport)===healthText(sport))&&terms.has(healthText(row.league)));
+    const candidates=exact.length?exact:rows.filter(row=>(row.source_ids||[]).some(id=>(sourceIds||[]).includes(id)&&rows.filter(other=>(other.source_ids||[]).includes(id)).length===1));
+    return candidates.some(row=>filter==='mapped'?row.mapped:row.state===filter);
+  }
   const ids=new Set(sourceIds||[]),terms=new Set((labels||[]).map(healthText));
   return catalogActiveCoverageHealth().some(row=>row.state===CATALOG_HEALTH_FILTER&&(ids.size?(ids.has(row.source.id)||(row.source.linked_source_ids||[]).some(id=>ids.has(id))):(!sport||healthText(row.source.sport)===healthText(sport))&&[...(row.source.catalog_terms||[]),row.source.league].some(term=>terms.has(healthText(term)))));
 }
@@ -3110,15 +3121,19 @@ function catalogEntryHealthHtml(sport,labels,sourceIds){
 }
 function renderCatalogHealth(){
   const host=document.getElementById('catalogHealth');if(!host)return;
+  CATALOG_IDENTITY_HEALTH=typeof CatalogHealthSummary==='undefined'?null:CatalogHealthSummary.build({coverage:DATA.coverage,global:DATA.global,oddsMap:DATA.oddsMap,oddsEvents:DATA.oddsEvents,now:new Date().toISOString(),windowStart:todayKey(),windowEnd:addDays(todayKey(),7)});
   const rows=catalogActiveCoverageHealth(),counts={connected:0,setup:0,window:0,partial:0,manual:0,source:0};
   rows.forEach(row=>counts[row.state]++);
-  const coverage=DATA.coverage?.summary||{},identityStates=coverage.coverage_states||{};
-  const identityTotal=coverage.catalog_operational_identities;
-  const identityText=identityTotal?`<div class="catalog-health-note"><b>Competition schedule coverage:</b> ${identityTotal} total · ${identityStates.ADAPTER_CONFIGURED||0} schedule connections configured · ${identityStates.OFFICIAL_WINDOW_ONLY||0} competition dates only · ${identityStates.ADAPTER_GAP||0} automated schedules not connected · ${identityStates.NO_LINKED_SOURCE||0} source not linked · ${identityStates.SOURCE_SCOPE_REVIEW||0} source scope needs review.</div>`:'';
-  const latest=DATA.global?.generated_at||rows.map(row=>row.source.checked_at).filter(Boolean).sort().at(-1);
-  const buttons=[['all','Full catalog',null,''],['connected','Source checks passed',counts.connected,''],['setup','Sources need setup',counts.setup,'attention'],['window','Dates only',counts.window,'attention'],['partial','Partial coverage',counts.partial,'attention'],['manual','Manual evidence',counts.manual,'attention'],['source','Source errors',counts.source,'issue']]
-    .map(([key,label,count,tone])=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${label}${count==null?'':`: ${count}`}</button>`).join('');
-  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Data Health Summary</div><div class="catalog-health-time">Schedule data checked ${fmtDateTime(latest)} · source health is informational and never grants or removes approval.</div></div><div class="catalog-health-actions">${buttons}</div></div><div class="catalog-health-note">Counts describe source records, not approved or fully covered competitions.</div><details class="catalog-health-note"><summary>Connection inventory</summary>${identityText}</details>`;
+  const summary=CATALOG_IDENTITY_HEALTH,totals=summary?.totals||{};
+  const identityTotal=summary?.rows?.length||DATA.coverage?.summary?.catalog_operational_identities||0;
+  const families=summary?.providerFamilies||[];
+  const latest=DATA.global?.generated_at;
+  const button=(key,label,count,tone='')=>`<button type="button" class="health-filter ${tone}${CATALOG_HEALTH_FILTER===key?' active':''}" data-health-filter="${key}">${esc(label)}${count==null?'':`: ${count}`}</button>`;
+  const metrics=summary?`<div class="coverage-progress"><button type="button" data-health-filter="identity:mapped" class="${CATALOG_HEALTH_FILTER==='identity:mapped'?'active':''}"><strong>${totals.mapped||0} / ${identityTotal}</strong><span>Catalog identities mapped</span><small>Active schedule routes; not complete coverage</small></button><button type="button" data-health-filter="identity:fresh" class="${CATALOG_HEALTH_FILTER==='identity:fresh'?'active':''}"><strong>${totals.fresh||0}</strong><span>Identities with current fixtures</span><small>${totals.fresh_events||0} distinct fixtures in this review window</small></button><div class="coverage-metric"><strong>${totals.fresh_events||0}</strong><span>Current fixtures</span><small>Distinct matches in this review window</small></div></div>`:'<div class="catalog-health-note">Coverage summary unavailable; source details remain below.</div>';
+  const identityButtons=summary?[['fresh','Current fixtures'],['stale','Saved fixtures need checking'],['healthy_empty','Checked, no fixtures observed'],['inactive_unknown','Inactive or availability unknown'],['reference_only','Dates / references only'],['unmapped','No active schedule route']].map(([key,label])=>button('identity:'+key,label,totals[key]||0)).join(''):'';
+  const diagnostics=[['connected','Source checks passed',''],['setup','Sources need setup','attention'],['window','Dates only','attention'],['partial','Partial coverage','attention'],['manual','Manual evidence','attention'],['source','Source errors','issue']].map(([key,label,tone])=>button(key,label,counts[key],tone)).join('');
+  const familyNames=families.map(f=>typeof f==='string'?f:f.name).filter(Boolean);
+  host.innerHTML=`<div class="catalog-health-head"><div><div class="catalog-health-title">Coverage at a glance</div><div class="catalog-health-time">${identityTotal} catalog identities · Today through ${esc(prettyDay(addDays(todayKey(),7)))} · Updates with published data</div></div>${button('all','Full catalog',null)}</div>${metrics}<div class="catalog-health-actions">${identityButtons}</div><div class="catalog-health-note">Mapped means an exact schedule connection, not full coverage or event approval. Empty or inactive feeds do not establish an off-season. Saved observation dates are never reset by reloading.</div><details class="catalog-health-note"><summary>Sources and connection details</summary>${familyNames.length?`<p><b>Schedule-source domains with current checks (${families.length}):</b> ${familyNames.map(esc).join(' · ')}</p>`:''}<div>Schedule snapshot ${fmtDateTime(latest)} · The Odds API observations ${oddsObservedRange(DATA.oddsEvents?.events||[])}</div><div class="catalog-health-actions">${diagnostics}</div><div>Current means a successful source check within 24 hours, or within 3 hours for The Odds API, with no stale or access-hold flag. Partial coverage remains partial. These diagnostic counts describe source records, not catalog identities. Source health never grants or removes approval.</div></details>`;
 }
 
 let ODDS_IDENTITY_CACHE=null,ODDS_IDENTITY_SOURCE=null;

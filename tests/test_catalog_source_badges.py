@@ -15,6 +15,7 @@ const assert=require('node:assert/strict');
 const DATA={global:{sources:[],generated_at:'2026-10-18'}};
 const esc=x=>String(x??'').replaceAll('&','&amp;').replaceAll('<','&lt;');
 const fmtDateTime=x=>x;
+const prettyDay=x=>x,todayKey=()=>"2026-10-19",addDays=x=>x;
 const regionLeagueLabel=(_,league)=>league;
 const host={innerHTML:''};
 const document={getElementById:()=>host};

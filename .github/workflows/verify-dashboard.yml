@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - index.html
+      - assets/catalog-health-summary.js
+      - tests/test_catalog_health_summary.py
+      - tests/test_coverage_health_ui.py
       - tests/test_dashboard_scope.py
       - tests/test_review_today_divisions.py
       - tests/test_priority2_review_workflow.py
@@ -14,6 +17,9 @@ on:
     branches: [main]
     paths:
       - index.html
+      - assets/catalog-health-summary.js
+      - tests/test_catalog_health_summary.py
+      - tests/test_coverage_health_ui.py
       - tests/test_dashboard_scope.py
       - tests/test_review_today_divisions.py
       - tests/test_priority2_review_workflow.py
@@ -42,4 +48,4 @@ jobs:
           PY
           node --check /tmp/dashboard-script.js
       - name: Verify staff views, division coverage, and published-data status
-        run: python3 -m unittest tests.test_dashboard_scope tests.test_review_today_divisions tests.test_priority2_review_workflow tests.test_published_data_status tests.test_daily_review_clarity -q
+        run: python3 -m unittest tests.test_dashboard_scope tests.test_review_today_divisions tests.test_priority2_review_workflow tests.test_published_data_status tests.test_daily_review_clarity tests.test_catalog_health_summary tests.test_coverage_health_ui -q
