@@ -98,3 +98,44 @@ current={id:'today'};window.scrollY=950;
 activatePanel({dataset:{panel:'today'}});assert.deepEqual(positions,[0,900]);
 """
         subprocess.run(['node','-e',script],check=True)
+
+    def test_time_conflict_is_one_candidate_and_visible_coverage_work(self):
+        self.run_js("""
+const assert=require('node:assert/strict');
+const e={id:'canonical',name:'Away at Home',sport:'Football',league:'Synthetic',start_time:'2026-10-20T00:20:00Z',
+ odds_observation:{catalog_identity_key:'synthetic',observed_at:'2026-10-19T00:00:00Z'},
+ schedule_time_conflict:{canonical_start_time:'2026-10-20T00:20:00Z',provider_start_time:'2026-10-20T00:22:00Z'}};
+const cards=scheduleTimeConflictAttention([e]);assert.equal(cards.length,1);assert.equal(cards[0].time_label,'TIME CONFLICT');
+const detail=oddsObservationHtml(e);assert.match(detail,/TIME CONFLICT/);assert.match(detail,/7:20 PM/);assert.match(detail,/7:22 PM/);assert.match(detail,/neither kickoff is confirmed/);
+const board=renderIssueBoard(cards,[e]);assert.match(board,/TIME CONFLICT/);assert.match(board,/Neither time is selected/);
+""")
+
+    def test_legacy_source_key_is_exact_unique_and_preserves_preseason_scope(self):
+        self.run_js("""
+const assert=require('node:assert/strict'),fs=require('fs');
+for(const [key,path] of Object.entries(FILES))if(key!=='oddsEvents')DATA[key]=JSON.parse(fs.readFileSync(path));
+assert.equal(oddsIdentityForScheduleEvent({source_id:'nfl',season_stage:'REGULAR SEASON'}),'football-us-nfl');
+assert.equal(oddsIdentityForScheduleEvent({source_id:'mlb',season_stage:'PRESEASON'}),'baseball-us-mlb-spring-training');
+assert.equal(oddsIdentityForScheduleEvent({source_id:'not-mapped',name:'NFL'}),null);
+const nfl=DATA.oddsMap.mappings.find(m=>m.catalog_identity_key==='football-us-nfl');DATA.oddsMap.mappings.push({...nfl,provider_key:'synthetic-ambiguous'});
+assert.equal(oddsIdentityForScheduleEvent({source_id:'nfl'}),null);
+""")
+
+    def test_current_provider_first_without_irrelevant_paused_source_commentary(self):
+        self.run_js(r"""
+const assert=require('node:assert/strict');
+const now=new Date().toISOString();
+DATA.seasonMap={source_mappings:[{key:'synthetic-id',source_id:'legacy'}]};
+DATA.oddsMap={mappings:[{provider_key:'synthetic',catalog_identity_key:'synthetic-id',sport:'Basketball',league:'Synthetic League'}]};
+DATA.oddsEvents={sources:[{provider_key:'synthetic',status:'ok',observed_at:now,stale:false}]};
+ODDS_SESSION={events:[{catalog_identity_key:'synthetic-id',observed_at:now,source_stale:false}]};
+DATA.global={sources:[{id:'legacy',sport:'Basketball',league:'Synthetic League',ok:false,collection_paused:true,endpoint:'https://site.api.espn.com/example',official_schedule_url:'https://example.org/official',errors:['Permission required: ESPN automated collection is paused pending access review.']} ]};
+let html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);
+assert.match(html,/The Odds API · Schedule data available/);assert.match(html,/PARTIAL SCHEDULE/);assert.match(html,/1 event observed/);assert.match(html,/Partial coverage only/);assert.match(html,/https:\/\/example.org\/official/);assert.doesNotMatch(html,/SOURCE ISSUE|ESPN|PAUSED/);assert.match(html,/Approval basis:/);assert.match(html,/Information source:/);assert.match(html,/Coverage:/);
+DATA.oddsMap.mappings.push({provider_key:'other',catalog_identity_key:'other-id',sport:'Basketball',league:'Other'});html=catalogEntryHealthHtml('Basketball',['synthetic-id','other-id'],['legacy']);assert.match(html,/PAUSED/);DATA.oddsMap.mappings.pop();
+DATA.global.sources.push({...DATA.global.sources[0],id:'unreplaced'});html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy','unreplaced']);assert.match(html,/PAUSED/);DATA.global.sources.pop();
+DATA.oddsEvents.sources[0].stale=true;html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/STALE SCHEDULE/);assert.match(html,/ESPN/);assert.match(html,/PAUSED/);assert.doesNotMatch(html,/Schedule data available/);
+DATA.oddsEvents.sources[0].stale=false;DATA.oddsEvents.sources[0].observed_at='2020-01-01T00:00:00Z';html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/STALE SCHEDULE/);assert.match(html,/PAUSED/);
+DATA.oddsEvents.sources[0].observed_at=now;ODDS_SESSION.events=[];html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/NO CURRENT EVENTS/);assert.match(html,/PAUSED/);assert.doesNotMatch(html,/Schedule data available/);
+DATA.oddsEvents.sources[0].status='not_active_in_directory';html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/SOURCE NEEDS ATTENTION/);
+""")

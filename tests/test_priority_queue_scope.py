@@ -86,6 +86,8 @@ const failedScheduleSourceAttention=()=>[];
 const heldMatchupAttention=()=>[];
 const heldAgeReviewAttention=()=>[];
 const postponedFixtureAttention=()=>[];
+const scheduleTimeConflictAttention=()=>[];
+const oddsIdentityForScheduleEvent=()=>null;
 const priorityQueueIncludes=c=>c.sport!=='NCAA Soccer';
 """ + function_source("buildTodayModel").split("let TODAY_MODEL")[0] + """
 const model=buildTodayModel();

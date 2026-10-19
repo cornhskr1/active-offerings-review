@@ -28,13 +28,37 @@ function key(e,identity){
  if(!identity||p.length!==2||p.some(x=>!x)||!timestamp(e.start_time))return null;
  return identity+'|'+p.join('|')+'|'+new Date(e.start_time).toISOString();
 }
+const centralDay=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'});
+function dayPair(e,identity){
+ const k=key(e,identity);if(!k||e.date_only)return null;
+ const day=centralDay.format(new Date(e.start_time));
+ return k.slice(0,k.lastIndexOf('|'))+'|'+day;
+}
+function multipleGameHint(e){return !!(e.doubleheader||e.is_doubleheader||e.game_number||e.gameNumber||e.double_header);}
 function merge(base,session,identityFor){
- const out=base.map(e=>({...e})), byKey=new Map();
- out.forEach((e,i)=>{const k=key(e,identityFor(e));if(k){if(!byKey.has(k))byKey.set(k,[]);byKey.get(k).push(i);}});
- for(const e of session?.events||[]){
+ const out=base.map(e=>({...e})), byKey=new Map(),basePairs=new Map(),incomingPairs=new Map();
+ const add=(map,k,i)=>{if(k){if(!map.has(k))map.set(k,[]);map.get(k).push(i);}};
+ out.forEach((e,i)=>{add(byKey,key(e,identityFor(e)),i);add(basePairs,dayPair(e,identityFor(e)),i);});
+ const incoming=session?.events||[];
+ incoming.forEach((e,i)=>add(incomingPairs,dayPair(e,e.catalog_identity_key),i));
+ for(const e of incoming){
   const k=key(e,e.catalog_identity_key),matches=byKey.get(k)||[];
-  if(matches.length){for(const i of matches)out[i]={...out[i],odds_observation:{provider:'The Odds API',observed_at:e.observed_at,catalog_identity_key:e.catalog_identity_key,source_stale:e.source_stale===true}};}
-  else {byKey.set(k,[out.length]);out.push({...e});}
+  const observation={provider:'The Odds API',observed_at:e.observed_at,catalog_identity_key:e.catalog_identity_key,source_stale:e.source_stale===true,provider_event_id:e.provider_event_id,start_time:e.start_time};
+  if(matches.length){for(const i of matches)out[i]={...out[i],odds_observation:observation};continue;}
+  const pair=dayPair(e,e.catalog_identity_key),candidates=basePairs.get(pair)||[];
+  // Unique exact participants/identity/day on BOTH sides only. A close time
+  // discrepancy is evidence to review, never a silently corrected kickoff.
+  if(candidates.length===1&&incomingPairs.get(pair)?.length===1){
+   const i=candidates[0],original=out[i],delta=Math.abs(Date.parse(original.start_time)-Date.parse(e.start_time));
+   if(delta>0&&delta<=5*60*1000&&!multipleGameHint(original)&&!multipleGameHint(e)){
+    out[i]={...original,odds_observation:observation,schedule_time_conflict:{
+     canonical_event_id:original.id,canonical_source_id:original.source_id||'',canonical_start_time:original.start_time,
+     provider:'The Odds API',provider_event_id:e.provider_event_id,provider_start_time:e.start_time,
+     observed_at:e.observed_at,reason:'Exact matchup has conflicting source times; kickoff remains unresolved.'}};
+    continue;
+   }
+  }
+  byKey.set(k,[out.length]);out.push({...e});
  }
  return out;
 }

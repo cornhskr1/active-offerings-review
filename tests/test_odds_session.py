@@ -30,3 +30,23 @@ assert.equal(api.merge([],clean,()=>null).length,1);
   self.assertNotIn('oddsSessionFile',page);self.assertIn("oddsEvents:'data/odds-api-events.json'",page);self.assertIn('oddsCatalogHealthHtml',page)
   self.assertIn('Existing restrictions still apply.',page)
   self.assertNotIn('Line A',page);self.assertNotIn('Line B',page)
+ def test_close_time_conflict_is_explicit_and_doubleheaders_stay_separate(self):
+  script=r'''
+const assert=require('node:assert/strict'),api=require('./assets/odds-session.js');
+const a={id:'canonical',source_id:'saved',catalog_identity_key:'league',participants:['Away','Home'],start_time:'2026-10-20T00:20:00Z',status:'SCHEDULED',requires_age_review:true,status_detail:'Known age evidence',source_stale:true};
+const b={id:'provider',provider_event_id:'provider-1',catalog_identity_key:'league',participants:['Home','Away'],start_time:'2026-10-20T00:22:00Z',observed_at:'2026-10-19T00:00:00Z'};
+const identify=e=>e.catalog_identity_key,merge=(base,events)=>api.merge(base,{events},identify);
+const saved=JSON.stringify(a),r=merge([a],[b]);assert.equal(r.length,1);assert.equal(r[0].id,a.id);assert.equal(r[0].start_time,a.start_time);assert.equal(r[0].requires_age_review,true);assert.equal(r[0].source_stale,true);assert.equal(r[0].status_detail,a.status_detail);assert.equal(JSON.stringify(a),saved);
+assert.equal(r[0].schedule_time_conflict.provider_event_id,'provider-1');assert.equal(r[0].schedule_time_conflict.provider_start_time,b.start_time);assert.equal(r[0].schedule_time_conflict.canonical_start_time,a.start_time);
+assert.equal(merge([{...a,status:'CANCELLED'}],[b])[0].status,'CANCELLED');
+assert.equal(merge([a],[{...b,start_time:'2026-10-20T00:26:00Z'}]).length,2);
+assert.equal(merge([a,{...a,id:'second',start_time:'2026-10-20T02:20:00Z'}],[b]).length,3);
+assert.equal(merge([a],[b,{...b,provider_event_id:'second',start_time:'2026-10-20T02:20:00Z'}]).length,3);
+assert.equal(merge([{...a,game_number:1}],[b]).length,2);
+assert.equal(merge([{...a,date_only:true}],[b]).length,2);
+assert.equal(merge([a],[{...b,catalog_identity_key:'other'}]).length,2);
+assert.equal(merge([a],[{...b,participants:['Different','Home']}]).length,2);
+assert.equal(merge([{...a,start_time:'2026-10-20T04:59:00Z'}],[{...b,start_time:'2026-10-20T05:01:00Z'}]).length,2);
+assert.equal(merge([a],[{...b,start_time:a.start_time}])[0].schedule_time_conflict,undefined);
+'''
+  subprocess.run(['node','-e',script],cwd=ROOT,check=True)
