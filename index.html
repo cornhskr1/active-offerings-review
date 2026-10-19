@@ -616,7 +616,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 <div class="card intake-today" id="intakeToday"><div class="intake-today-head"><div><div class="intake-today-title">Published catalog change detected</div><div class="small" id="intakeTodayText"></div></div><button class="intake-open-btn" type="button" id="openIntakeBtn">Open Change Queue</button></div></div>
 </section>
 
-<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN for the location check only; other restrictions and market checks still apply. The display covers baseball, men's and women's basketball, football, men's and women's soccer, softball, volleyball, and wrestling. Other NCAA sports remain in the source data and approved catalog.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool" aria-label="Filter Nebraska collegiate school"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus" aria-label="Filter Nebraska collegiate location status"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
+<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN for the location check only; other restrictions and market checks still apply. Calendar collection covers Nebraska football and all three schools’ men’s basketball, women’s basketball, volleyball, baseball and softball. Other saved school-sport observations remain available with stale labels; approved catalog entries are unchanged.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool" aria-label="Filter Nebraska collegiate school"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus" aria-label="Filter Nebraska collegiate location status"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
   <div class="section-title">Nebraska Collegiate — Basketball Futures Cutoffs</div>
   <p class="small">Regular-season futures must be disabled before the first legitimate regular-season contest. A narrower subset used to determine the market outcome — such as away games, home games, conference games, or similar subsets — does not move that cutoff. Postseason futures must be disabled before the first legitimate postseason contest, if applicable. Combination markets must be removed by the earliest applicable cutoff among all included Nebraska collegiate components. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
   <div class="futures-guidance">
@@ -869,9 +869,10 @@ function authoritativeCollegeAlerts(dayKey,dayEvents){
         sport:reviewSport({...c, sport:c.sport||g?.sport||'NCAA'}),
         league:g?.league||`NCAA ${c.sport||'Basketball'}`,
         event:g?.name||`${c.school} ${c.sport} vs. ${c.opponent||'TBA'}`,
-        start_time:g?.start_time||c.date,
-      date_only:!g?.start_time&&!c.time,
-      time_label:!g?.start_time?c.time:'',
+        start_time:c.uid?(c.start_time||c.date):(g?.start_time||c.date),
+      date_only:c.uid?Boolean(c.date_only||c.time_unknown||!c.start_time):!g?.start_time&&!c.time,
+      time_label:c.uid?c.time:!g?.start_time?c.time:'',
+      source_stale:Boolean(c.source_stale),
       source_url:c.source_url||'',
         reason:red
           ?`${c.school} is participating in a collegiate event played in Nebraska${c.location?` · ${c.location}`:''}.`
@@ -1004,6 +1005,8 @@ function basketballCollegeSupplements(){
       const school=basketballSchoolForTeam(e[side]);
       if(!school)continue;
 
+      // Calendar-owned programs must not resurrect cancelled/removed games from stale ESPN snapshots.
+      if((DATA.college?.calendar_programs||[]).some(p=>p.school===school&&normCollegeSport(p.sport)==='basketball'&&collegeGender(p)===collegeGender(e)))continue;
       const other=side==='home'?e.away:e.home;
       const sport=`${e.gender||''}'s Basketball`.replace(/^Men's/,"Men's").replace(/^Women's/,"Women's");
       const candidate={
@@ -1039,7 +1042,7 @@ function allCollegeEvents(){
   return [...(DATA.college?.events||[]),...basketballCollegeSupplements()];
 }
 function visibleCollegeEvents(){
-  return allCollegeEvents().filter(event=>!isNonWageredNcaaSport(event));
+  return allCollegeEvents().filter(event=>!isNonWageredNcaaSport(event)&&!['CANCELLED','CANCELED','REMOVED','COMPLETED'].includes(String(event.status||'').toUpperCase())&&(!DATA.college?.calendar_programs||keyBetween(String(event.date||''),todayKey(),addDays(todayKey(),7))));
 }
 
 
@@ -1700,13 +1703,14 @@ function renderCollegeFutures(){
     return;
   }
 
-  grid.innerHTML=programs.map(p=>{
+  const savedNotice=DATA.collegeFutures?.source_stale?'<p class="source-note">Saved futures cutoff evidence is stale. Calendar subscriptions do not prove the first legitimate regular-season or postseason contest; no new cutoff is inferred from the first future fixture.</p>':'';
+  grid.innerHTML=savedNotice+programs.map(p=>{
     const states=[p.regular_season_futures?.color,p.postseason_futures?.color];
     const c=states.includes('red')?'red':states.includes('amber')?'amber':states.includes('green')?'green':'gray';
     return `<article class="futures-card ${c}">
       <div class="futures-top">
         <div class="futures-title">${esc(p.school)} · ${esc(p.sport)}</div>
-        ${pill(c,c==='red'?'CUTOFF PASSED':c==='amber'?'REVIEW WINDOW':c==='green'?'NOT DUE':'SCHEDULE TBD')}
+        ${pill(p.source_stale?'amber':c,p.source_stale?'SAVED CUTOFF — VERIFY':c==='red'?'CUTOFF PASSED':c==='amber'?'REVIEW WINDOW':c==='green'?'NOT DUE':'SCHEDULE TBD')}
       </div>
       ${futuresCutoffLine('regular',p)}
       ${futuresCutoffLine('postseason',p)}
@@ -1755,7 +1759,7 @@ function renderCollege(){
   const arr=events.filter(e=>(school==='all'||e.school===school)&&(status==='all'||collegeReg(e).c===status));
   const officialEvents=(DATA.college?.events||[]).filter(event=>!isNonWageredNcaaSport(event));
   const sources=DATA.college?.sources||[];
-  const publishedSources=sources.filter(x=>x.schedule_available!==false).length;
+  const publishedSources=sources.filter(x=>x.ok&&x.schedule_available!==false).length;
   const pendingSources=sources.filter(x=>x.availability==='schedule_not_published').length;
   const red=officialEvents.filter(e=>collegeReg(e).c==='red').length;
   const review=officialEvents.filter(e=>collegeReg(e).c==='amber').length;
@@ -1763,11 +1767,15 @@ function renderCollege(){
   const coverageText=Object.entries(coverage).map(([name,x])=>`${name} ${x.loaded}/${x.configured}`).join(' · ');
   const sourceNote=document.getElementById('collegeSource');
   if(sourceNote)sourceNote.innerHTML=`<b>Official school schedules:</b> ${publishedSources}/${sources.length} published${pendingSources?` · ${pendingSources} pending publication`:''}${coverageText?` (${esc(coverageText)})`:''} · ${red} in-state ${red===1?'event':'events'} · ${review} location ${review===1?'review':'reviews'} · refreshed ${fmtDateTime(DATA.college?.generated_at)}`;
+  if(sourceNote&&DATA.college?.calendar_programs){
+    const details=sources.map(s=>`<div><b>${esc(s.school)} · ${esc(s.sport)}</b>: ${esc(s.status||s.availability||(s.ok?'Calendar loaded':'Source needs attention'))} · ${Number(s.events_in_window||0)} rows in review window${s.coverage_note?` · ${esc(s.coverage_note)}`:''} · last retrieved ${fmtDateTime(s.fetched_at)}${s.next_fetch_at?` · next eligible check ${fmtDateTime(s.next_fetch_at)}`:''}${s.error||s.reason?` · ${esc(s.error||s.reason)}`:''}</div>`).join('');
+    sourceNote.innerHTML=`<b>Official school calendars:</b> ${publishedSources}/${sources.length} calendars loaded or validly cached. Huskers calendars request a 60-hour refresh interval; other school calendars are checked no sooner than their published interval. This is not a real-time update guarantee. Empty or unavailable calendars do not establish that no events exist. Other saved sports are stale.<details><summary>Calendar freshness and availability</summary>${details}</details>`;
+  }
   const eventCard=e=>{
     const r=collegeReg(e);
     const source=e.source_url?`<a class="college-source-link" href="${esc(e.source_url)}" target="_blank" rel="noopener">Official schedule ↗</a>`:'';
     const note=e.location_conflict_reason||e.promotional_label;
-    return `<article class="college-card ${r.c}"><div class="college-top"><div class="college-sport">${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</div>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.time||'TBA')}</div><div class="college-matchup-line"><span class="college-team">${esc(e.school)}</span><span class="college-matchup">${esc(collegeMatchupLabel(e))}</span><b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div>${note?`<div class="college-promo">${esc(note)}</div>`:''}<div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('amber','NCAA FEED · LOCATION PENDING')}`:''}</div>${source}</article>`;
+    return `<article class="college-card ${r.c}"><div class="college-top"><div class="college-sport">${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</div>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.time||'TBA')}</div><div class="college-matchup-line"><span class="college-team">${esc(e.school)}</span><span class="college-matchup">${esc(collegeMatchupLabel(e))}</span><b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div>${note?`<div class="college-promo">${esc(note)}</div>`:''}<div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('amber','NCAA FEED · LOCATION PENDING')}`:''}${e.source_stale?` ${pill('amber','SAVED SOURCE — VERIFY')}`:''}${e.status==='TENTATIVE'?` ${pill('amber','TENTATIVE')}`:''}${e.event_type==='exhibition'?` ${pill('gray','EXHIBITION')}`:''}</div>${source}</article>`;
   };
   const timeValue=value=>{
     const match=String(value||'').match(/(\d{1,2}):(\d{2})\s*(a\.?m\.?|p\.?m\.?)?/i);
@@ -1785,7 +1793,7 @@ function renderCollege(){
     const redCount=dayEvents.filter(event=>collegeReg(event).c==='red').length;
     const amberCount=dayEvents.filter(event=>collegeReg(event).c==='amber').length;
     return `<details class="college-day" ${index===0?'open':''}><summary><span>${esc(date==='Date unavailable'?date:prettyDay(date))}</span><span class="college-day-counts">${dayEvents.length} event${dayEvents.length===1?'':'s'}${redCount?` · ${redCount} not permissible`:''}${amberCount?` · ${amberCount} review`:''}</span></summary><div class="college-grid">${dayEvents.map(eventCard).join('')}</div></details>`;
-  }).join(''):`<div class="empty">No matching events.</div>`;
+  }).join(''):`<div class="empty">No loaded events match these filters. An unavailable or empty calendar does not establish that no games exist.</div>`;
 }
 function restrictionColor(x){const t=String(x.text||'').toUpperCase();if(x.scope_type==='GENERAL_U18_PRO'||/\bNO\b|NOT PERMISSIBLE|PROHIBIT/.test(t))return'red';return'amber'}
 function joinCatalogLines(lines){
