@@ -71,7 +71,7 @@
     for(const row of rowsMap.values())for(const id of row.source_ids){
       const s=sourceMap.get(id);if(!s)continue;
       if(reference(s))row._hasReference=true;
-      if(fixtureSource(s))route(row,family(s),id,globalHealthy(s)&&covers(globalData));
+      if(fixtureSource(s))route(row,family(s),id,globalHealthy(s)&&covers(s.source_type==='jolpica-race-schedule'?s:globalData));
     }
     const mappings=new Map(),providerOwners=new Map();
     for(const m of list(oddsMap.mappings)){

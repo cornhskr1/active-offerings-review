@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "provider": "Jolpica-F1",
+  "source_id": "jolpica-f1",
+  "catalog_identity_key": "motorsports-intl-f1",
+  "season": "2026",
+  "observed_at": "2026-10-19T10:03:18.796997Z",
+  "window_start": "2026-10-19T05:00:00Z",
+  "window_end": "2026-10-27T05:00:00Z",
+  "events": [
+    {
+      "id": "jolpica-f1:2026:18:americas",
+      "source_id": "jolpica-f1",
+      "catalog_identity_key": "motorsports-intl-f1",
+      "provider": "Jolpica-F1",
+      "sport": "Motorsports",
+      "league": "Formula One (F1)",
+      "name": "United States Grand Prix",
+      "season": "2026",
+      "round": 18,
+      "circuit_id": "americas",
+      "circuit": "Circuit of the Americas",
+      "date": "2026-10-25",
+      "start_time": "2026-10-25T20:00:00Z",
+      "date_only": false,
+      "status": "UNKNOWN",
+      "observed_at": "2026-10-19T10:03:18.796997Z",
+      "source_stale": false,
+      "source_url": "https://api.jolpi.ca/ergast/f1/current/races/",
+      "coverage_status": "partial",
+      "coverage_complete": false,
+      "license_id": "CC-BY-NC-SA-4.0",
+      "source_updated_at": null,
+      "locality": "Austin",
+      "country": "USA"
+    }
+  ],
+  "license": {
+    "id": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "attribution": "F1 schedule data: Jolpica-F1",
+    "source_url": "https://github.com/jolpica/jolpica-f1",
+    "terms_url": "https://github.com/jolpica/jolpica-f1/blob/main/TERMS.md",
+    "changes": "Selected race schedule facts; normalized dates and filtered review window.",
+    "notice": "Provided without warranty; Jolpica does not endorse this tool."
+  },
+  "dataset_scope": "isolated_jolpica_f1_only",
+  "source_health": {
+    "status": "partial",
+    "reason": "race_schedule_only",
+    "event_count": 1,
+    "stale_event_count": 0
+  },
+  "collector_state": {
+    "halted": false,
+    "last_attempt_at": "2026-10-19T10:03:18.796997Z",
+    "next_fetch_at": "2026-10-20T10:03:18.796997Z"
+  }
+}

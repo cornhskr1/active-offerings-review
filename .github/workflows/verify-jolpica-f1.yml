@@ -1,0 +1,54 @@
+name: Verify licensed F1 schedule
+
+on:
+  pull_request:
+    paths:
+      - scripts/jolpica_f1_schedule.py
+      - scripts/refresh_jolpica_f1.py
+      - scripts/check_jolpica_refresh_safety.py
+      - scripts/check_odds_deploy_safety.py
+      - assets/jolpica-f1.js
+      - assets/catalog-health-summary.js
+      - data/jolpica-f1-events.json
+      - index.html
+      - tests/test_jolpica_f1*.py
+      - tests/test_refresh_jolpica_f1.py
+      - .github/workflows/refresh-jolpica-f1.yml
+      - .github/workflows/verify-jolpica-f1.yml
+      - .github/workflows/deploy-pages.yml
+  push:
+    branches: [main]
+    paths:
+      - scripts/jolpica_f1_schedule.py
+      - scripts/refresh_jolpica_f1.py
+      - scripts/check_jolpica_refresh_safety.py
+      - scripts/check_odds_deploy_safety.py
+      - assets/jolpica-f1.js
+      - assets/catalog-health-summary.js
+      - data/jolpica-f1-events.json
+      - index.html
+      - tests/test_jolpica_f1*.py
+      - tests/test_refresh_jolpica_f1.py
+      - .github/workflows/refresh-jolpica-f1.yml
+      - .github/workflows/verify-jolpica-f1.yml
+      - .github/workflows/deploy-pages.yml
+
+permissions:
+  contents: read
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check assets/jolpica-f1.js
+      - name: Verify offline fixtures and protected source refresh
+        run: |
+          python -m unittest discover -s tests -p 'test_jolpica_f1*.py' -v
+          python -m unittest discover -s tests -p 'test_refresh_jolpica_f1.py' -v
