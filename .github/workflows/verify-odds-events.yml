@@ -1,0 +1,47 @@
+name: Verify zero-quota event integration
+on:
+  pull_request:
+    paths:
+      - index.html
+      - assets/odds-session.js
+      - data/odds-api-catalog-mappings.json
+      - scripts/odds_api_adapter.py
+      - scripts/refresh_odds_api_events.py
+      - scripts/stage_odds_pages.py
+      - scripts/check_odds_deploy_safety.py
+      - tests/test_refresh_odds_api_events.py
+      - tests/test_odds*.py
+      - .github/workflows/deploy-pages.yml
+      - .github/workflows/verify-odds-events.yml
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - assets/odds-session.js
+      - data/odds-api-catalog-mappings.json
+      - scripts/odds_api_adapter.py
+      - scripts/refresh_odds_api_events.py
+      - scripts/stage_odds_pages.py
+      - scripts/check_odds_deploy_safety.py
+      - tests/test_refresh_odds_api_events.py
+      - tests/test_odds*.py
+      - .github/workflows/deploy-pages.yml
+      - .github/workflows/verify-odds-events.yml
+permissions:
+  contents: read
+jobs:
+  offline-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check assets/odds-session.js
+      - name: Verify event scope, zero-credit guards, caching and deployment isolation
+        run: |
+          python -m unittest discover -s tests -p 'test_odds*.py' -v
+          python -m unittest discover -s tests -p 'test_refresh_odds_api_events.py' -v
