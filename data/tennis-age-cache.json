@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-10-18T14:34:04.256255+00:00",
+  "schema_version": 2,
+  "generated_at": "2026-10-19T14:42:57.280871+00:00",
   "records": {
     "anastasia gasanova": {
       "name": "Anastasia Gasanova",
@@ -8821,5 +8821,21 @@
   "processed": 0,
   "resolved_this_run": 0,
   "unresolved_this_run": 0,
-  "remaining_candidates": 0
+  "remaining_candidates": 0,
+  "permission_held": 0,
+  "publisher_permission_holds": [
+    {
+      "publisher": "ITF",
+      "tour_ids": [
+        "itf-men",
+        "itf-women"
+      ],
+      "permission_required": true,
+      "collection_paused": true,
+      "source_stale": true,
+      "reason": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh.",
+      "hold_checked_at": "2026-10-19T14:42:57.280871+00:00",
+      "note": "Saved evidence retained; no new ITF collection or permission verification."
+    }
+  ]
 }
