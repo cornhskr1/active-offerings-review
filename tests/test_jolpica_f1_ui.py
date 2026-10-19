@@ -117,6 +117,31 @@ renderToday();assert.equal(node('todayDays').innerHTML,html);
 TODAY_VIEW='sport';renderToday();TODAY_VIEW='date';renderToday();assert.equal(node('todayDays').innerHTML,html);
 """, ui=True)
 
+    def test_rendered_catalog_card_uses_validated_exact_f1_source(self):
+        self.run_js(r"""
+DATA.seasonMap=JSON.parse(require('node:fs').readFileSync('data/catalog-season-map.json','utf8'));
+todayKey=()=> '2026-10-19';DATA.global={sources:[],events:[]};const before=JSON.stringify({map:DATA.seasonMap,global:DATA.global});
+const f1=oddsCatalogIdentity('motorsports-intl-f1'),formulaE=oddsCatalogIdentity('motorsports-intl-formula-e');
+F1_SNAPSHOT=JolpicaF1.project(sample,now);
+assert.ok(eventSourceIds(f1).includes('jolpica-f1'));assert.ok(!eventSourceIds(formulaE).includes('jolpica-f1'));
+const valid=renderMappedCatalogEvents([f1],'Motorsports');assert.match(valid,/PARTIAL SCHEDULE/);assert.match(valid,/Jolpica-F1/);assert.doesNotMatch(valid,/NOT CONNECTED/);assert.match(valid,/Season progress/);
+F1_SNAPSHOT=JolpicaF1.project(sample,'2026-10-20T11:00:00Z');
+const stale=renderMappedCatalogEvents([f1],'Motorsports');assert.match(stale,/SOURCE NEEDS CHECK/);assert.match(stale,/SAVED EVIDENCE — VERIFY/);assert.doesNotMatch(stale,/NOT CONNECTED/);
+F1_SNAPSHOT=null;
+assert.ok(!eventSourceIds(f1).includes('jolpica-f1'));
+const absent=renderMappedCatalogEvents([f1],'Motorsports');assert.match(absent,/NOT CONNECTED/);assert.doesNotMatch(absent,/PARTIAL SCHEDULE/);
+assert.equal(JSON.stringify({map:DATA.seasonMap,global:DATA.global}),before);
+""", ui=True)
+
+    def test_exact_official_f1_link_not_formula_e(self):
+        import json
+        from scripts.build_catalog_official_sources import EVENT_URL_OVERRIDES
+        registry = json.loads((ROOT / "data/catalog-official-sources.json").read_text())
+        rows = {row["key"]: row for row in registry["events"]}
+        self.assertEqual(rows["motorsports-intl-f1"]["official_url"], "https://www.formula1.com/en/racing/2026")
+        self.assertEqual(EVENT_URL_OVERRIDES["motorsports-intl-f1"], "https://www.formula1.com/en/racing/2026")
+        self.assertIn("fiaformulae.com", rows["motorsports-intl-formula-e"]["official_url"])
+
     def test_static_integration(self):
         self.assertLess(HTML.index('assets/jolpica-f1.js'), HTML.index('const DATA={}'))
         self.assertIn("f1:'data/jolpica-f1-events.json'", HTML)

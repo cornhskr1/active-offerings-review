@@ -188,6 +188,7 @@ BODY_URL_OVERRIDES = {
 }
 
 EVENT_URL_OVERRIDES = {
+    "motorsports-intl-f1": "https://www.formula1.com/en/racing/2026",
     "ncaa-football-fbs": "https://www.ncaa.com/scoreboard/football/fbs",
     "ncaa-football-fcs": "https://www.ncaa.org/championship/division-i/football/",
     "ncaa-football-dii": "https://www.ncaa.org/championship/division-ii/football/",

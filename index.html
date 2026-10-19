@@ -2595,6 +2595,7 @@ function seasonProgressHtml(event,status){
 }
 function eventSourceIds(event){
   return [
+    ...(event?.key==='motorsports-intl-f1'&&typeof F1_SNAPSHOT!=='undefined'&&F1_SNAPSHOT?['jolpica-f1']:[]),
     ...(event?.source_ids||[]),
     ...(event?.source_id?[event.source_id]:[]),
     ...(event?.coverage_children||[]).flatMap(eventSourceIds)
