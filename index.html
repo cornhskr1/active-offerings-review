@@ -595,7 +595,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 <body>
 <div class="app">
 <header class="workspace-brand"><div><div class="workspace-name">Active Offerings</div><div class="workspace-subtitle">Sports wagering review workspace</div></div><div class="workspace-boundary">PUBLIC INFORMATION<br>STAFF REVIEW</div></header>
-<aside class="card" role="status" id="publisherCollectionHold"><strong>Selected collection is paused pending access review.</strong> ESPN, NCAA.com, ITF, USTA, FIBA and FAW are not being refreshed by the updated collectors. Saved information remains available for review and may be stale; a dashboard refresh does not renew those observations. Verify current details before relying on them. Catalog and manual review tools remain available.</aside>
+<aside class="card" role="status" id="publisherCollectionHold"><strong>Some saved sources are paused.</strong> Current schedule providers and observation times appear with their records. Older saved records remain marked stale and need verification; reloading this page does not renew them. Catalog and review tools remain available.</aside>
 <nav class="nav" id="nav" aria-label="Review workspace">
 <button class="active" data-panel="today">Review Today</button>
 <button data-panel="college">Nebraska Collegiate</button>
@@ -1301,7 +1301,7 @@ function renderUpcomingSportBoard(events){
       const season=mappedSeasons[0];
       const sameSeason=season&&mappedSeasons.every(mapped=>mapped&&mapped.key===season.key&&mapped.catalog_event===season.catalog_event);
       const progress=sameSeason?seasonProgressHtml(season,mappedSeasonStatus(season)):'';
-      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${event.requires_bout_review?pill('amber','BOUT AND AGE REVIEW'):''}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}${event.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(event)}</div></div><span class="row-meta">${event.date_only?'DATE ONLY':esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
+      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${event.requires_bout_review?pill('amber','BOUT AND AGE REVIEW'):''}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}${event.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(event)}</div></div><span class="row-meta">${event.schedule_time_conflict?'TIME CONFLICT':event.date_only?'DATE ONLY':esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
 }
@@ -1500,6 +1500,13 @@ function postponedFixtureAttention(dayKey){
   }));
 }
 
+function scheduleTimeConflictAttention(events){
+ return events.filter(e=>e.schedule_time_conflict).map(e=>({severity:'AMBER',type:'SCHEDULE TIME CONFLICT',
+  sport:e.sport,league:e.league,region:e.region,event:e.name,start_time:e.start_time,time_label:'TIME CONFLICT',
+  reason:`Saved source: ${fmtDateTime(e.schedule_time_conflict.canonical_start_time)}; The Odds API: ${fmtDateTime(e.schedule_time_conflict.provider_start_time)}. These are one exact matchup candidate, not two confirmed games. Neither time is selected as authoritative.`,
+  staff_action:'Verify the current official kickoff and actual sportsbook offering. Existing restrictions still apply.'}));
+}
+
 function heldAgeReviewAttention(dayKey){
   return (DATA.global?.sources||[]).filter(source=>
     source.approved_catalog!==false&&source.ok===true&&
@@ -1523,7 +1530,7 @@ function buildTodayModel(){
 
   // Review Today is always anchored to the actual current Central Time date.
   // Published feed window_start/window_end are coverage metadata only.
-  const observedEvents=typeof OddsSession==='undefined'?(global.events||[]):OddsSession.merge(global.events||[],ODDS_SESSION,e=>e.catalog_identity_key||mappedCatalogEventForScheduleEvent(e)?.key);
+  const observedEvents=typeof OddsSession==='undefined'?(global.events||[]):OddsSession.merge(global.events||[],ODDS_SESSION,oddsIdentityForScheduleEvent);
   const globalEvents=observedEvents.filter(e=>{
     const k=ctKey(e.start_time);
     return !['COMPLETED','CANCELLED','REMOVED'].includes(e.status) && keyBetween(k,start,end) && !isNonWageredNcaaSport(e);
@@ -1536,7 +1543,7 @@ function buildTodayModel(){
   });
 
   const coverageAlerts=[...scheduleCoverageAttention(start),...staleScheduleSourceAttention(events,start),
-    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start),...postponedFixtureAttention(start)]
+    ...failedScheduleSourceAttention(events,start),...heldMatchupAttention(start),...heldAgeReviewAttention(start),...postponedFixtureAttention(start),...scheduleTimeConflictAttention(events)]
     .filter(priorityQueueIncludes);
   const dayCards=new Map();
   const windowCards=[];
@@ -1653,7 +1660,7 @@ function renderToday(){
               <b>${esc(e.name)}</b>
               <div class="row-meta">${game?esc(game):''}${game&&e.season_stage?' · ':''}${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}${e.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(e)}</div>
             </div>
-            <span class="row-meta">${e.date_only?'DATE ONLY':esc(eventTime(e.start_time))}</span>
+            <span class="row-meta">${e.schedule_time_conflict?'TIME CONFLICT':e.date_only?'DATE ONLY':esc(eventTime(e.start_time))}</span>
           </div>`;
         }).join('');
 
@@ -3052,18 +3059,33 @@ function catalogEntryMatchesHealth(sport,labels,sourceIds){
   if(CATALOG_HEALTH_FILTER==='all')return true;
   return catalogHealthSources(sport,labels,sourceIds).some(row=>row.state===CATALOG_HEALTH_FILTER);
 }
+function catalogSourceName(source){
+ const errors=(source.errors||[]).join(' ');
+ const paused=errors.match(/Permission required: ([^.]+?) automated collection/i);
+ if(paused)return paused[1];
+ try{return new URL(source.endpoint||source.official_schedule_url||'').hostname.replace(/^www\./,'')||source.id;}catch{return source.id||source.league||'Previous source';}
+}
 function catalogEntryHealthHtml(sport,labels,sourceIds){
   const rows=catalogHealthSources(sport,labels,sourceIds);
   const provider=oddsCatalogHealthHtml(sport,labels,sourceIds);
-  if(!rows.length)return provider;
+  const finish=html=>`<div class="catalog-approval-note"><b>Approval basis:</b> Commission catalog; listed event and market restrictions apply.</div>${html}`;
+  if(!rows.length)return finish(provider||'<div class="catalog-entry-health"><b>Information source:</b> Not linked.<br><b>Coverage:</b> A current schedule has not been established.</div>');
+  const replacements=oddsCatalogRows(sport,labels,sourceIds);
+  const current=replacements.length>0&&replacements.every(row=>row.current&&row.events.length)&&rows.every(row=>replacements.some(replacement=>eventSourceIds(oddsCatalogIdentity(replacement.mapping.catalog_identity_key)).includes(row.source.id)));
   const latest=DATA.global?.generated_at;
-  return `<div class="catalog-entry-health">${rows.map(({state,source,issue})=>{
-    const stateLabel={connected:'SOURCE CHECK PASSED',source:'SOURCE ISSUE',setup:'REFERENCE / NEEDS SETUP',window:'DATES ONLY',partial:'PARTIAL COVERAGE',manual:'MANUAL EVIDENCE'}[state];
+  const legacy=`<div class="catalog-entry-health">${rows.map(({state,source,issue})=>{
+    const paused=source.collection_paused||source.permission_required||(source.errors||[]).some(error=>/permission required|collection is paused/i.test(error));
+    const stateLabel=paused?'PAUSED':{connected:'SOURCE CHECK PASSED',source:'SOURCE ISSUE',setup:'REFERENCE / NEEDS SETUP',window:'DATES ONLY',partial:'PARTIAL COVERAGE',manual:'MANUAL EVIDENCE'}[state];
     const checked=fmtDateTime(source.checked_at||latest);
     const url=source.official_schedule_url||source.public_url;
     const link=url?`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`:'';
-    return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>${esc(regionLeagueLabel(source.region,source.league))}</b><span>Last checked ${checked} · ${esc(issue)}</span></span>${link}</div>`;
-  }).join('')}</div>`+provider;
+    return `<div class="catalog-entry-health-row ${state}"><span class="catalog-entry-health-state">${stateLabel}</span><span class="catalog-entry-health-copy"><b>Information source: ${esc(catalogSourceName(source))} · ${esc(regionLeagueLabel(source.region,source.league))}</b><span>Coverage: ${esc(issue)} · Last checked ${checked}</span></span>${link}</div>`;
+  }).join('')}</div>`;
+  if(current){
+    const links=[...new Set(rows.map(row=>row.source.official_schedule_url||row.source.public_url).filter(Boolean))];
+    return finish(provider+(links.length?`<div class="row-meta">${links.map(url=>`<a class="catalog-entry-health-link" href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''));
+  }
+  return finish(provider+legacy);
 }
 function renderCatalogHealth(){
   const host=document.getElementById('catalogHealth');if(!host)return;
@@ -3089,20 +3111,47 @@ function oddsCatalogIdentity(key){
  return ODDS_IDENTITY_CACHE.get(key)||null;
 }
 
+function oddsIdentityForScheduleEvent(event){
+ const mapped=event.catalog_identity_key||mappedCatalogEventForScheduleEvent(event)?.key;
+ if(mapped)return mapped;
+ // Legacy source mappings can omit the catalog key. Resolve only an exact,
+ // unique configured source link; never infer identity from team/league text.
+ const candidates=(DATA.oddsMap?.mappings||[]).filter(m=>eventSourceIds(oddsCatalogIdentity(m.catalog_identity_key)).includes(event.source_id));
+ return candidates.length===1?candidates[0].catalog_identity_key:null;
+}
+
 function oddsObservationHtml(event){
  const observation=event.odds_observation||(event.session_observation?event:null);if(!observation)return'';
  const identity=oddsCatalogIdentity(observation.catalog_identity_key);
  const rules=(identity?.restrictions||[]).map(r=>typeof r==='string'?r:JSON.stringify(r));
- return `<div class="row-meta"><b>The Odds API</b> · saved schedule observation ${esc(fmtDateTime(observation.observed_at))}${observation.source_stale?' · STALE SOURCE — VERIFY':''}. Not live; venue, participant age, round and event status are not verified by this observation.${rules.length?`<br><b>Catalog restrictions:</b> ${rules.map(esc).join(' · ')}`:''}<br>Existing restrictions still apply. A listed fixture does not establish eligibility.</div>`;
+ const conflict=event.schedule_time_conflict;
+ const conflictHtml=conflict?`<div class="row-meta"><b>TIME CONFLICT — VERIFY</b> · Saved source: ${esc(fmtDateTime(conflict.canonical_start_time))}; The Odds API: ${esc(fmtDateTime(conflict.provider_start_time))}. One matchup candidate; neither kickoff is confirmed.</div>`:'';
+ return `${conflictHtml}<div class="row-meta"><b>The Odds API</b> · saved schedule observation ${esc(fmtDateTime(observation.observed_at))}${observation.source_stale?' · STALE SOURCE — VERIFY':''}. Not live; venue, participant age, round and event status are not verified by this observation.${rules.length?`<br><b>Catalog restrictions:</b> ${rules.map(esc).join(' · ')}`:''}<br>Existing restrictions still apply. A listed fixture does not establish eligibility.</div>`;
 }
 function oddsObservedRange(events){
  const values=events.map(e=>e.observed_at).filter(Boolean).sort((a,b)=>Date.parse(a)-Date.parse(b));
  return values.length?fmtDateTime(values[0])+(Date.parse(values[0])===Date.parse(values.at(-1))?'':' through '+fmtDateTime(values.at(-1))):'not observed';
 }
-function oddsCatalogHealthHtml(sport,labels,sourceIds){
+function oddsCatalogRows(sport,labels,sourceIds){
  const rows=(DATA.oddsMap?.mappings||[]).filter(m=>m.sport===sport&&(labels.includes(m.catalog_identity_key)||labels.includes(m.league)||eventSourceIds(oddsCatalogIdentity(m.catalog_identity_key)).some(id=>sourceIds.includes(id))));
- return rows.map(m=>{const events=(ODDS_SESSION?.events||[]).filter(e=>e.catalog_identity_key===m.catalog_identity_key);const health=(Array.isArray(DATA.oddsEvents?.sources)?DATA.oddsEvents.sources:[]).find(x=>x.provider_key===m.provider_key);return `<div class="catalog-entry-health"><b>The Odds API</b> · ${events.length?`${events.length} saved schedule observations · observed ${esc(oddsObservedRange(events))}`:'Documented identity match; no saved observations loaded'}. Partial schedule evidence only; no odds or eligibility clearance.${health?` Source: ${esc(health.stale?'stale':health.status||'unknown')} · ${esc(health.reason||'')}`:''}</div>`;}).join('');
+ return rows.map(mapping=>{
+  const events=(ODDS_SESSION?.events||[]).filter(e=>e.catalog_identity_key===mapping.catalog_identity_key);
+  const health=(Array.isArray(DATA.oddsEvents?.sources)?DATA.oddsEvents.sources:[]).find(x=>x.provider_key===mapping.provider_key);
+  const checked=Date.parse(health?.observed_at||'');
+  const current=health?.status==='ok'&&!health.stale&&Number.isFinite(checked)&&checked<=Date.now()&&Date.now()-checked<=3*60*60*1000&&!events.some(e=>e.source_stale);
+  return {mapping,events,health,current};
+ });
 }
+function oddsCatalogHealthHtml(sport,labels,sourceIds){
+ return oddsCatalogRows(sport,labels,sourceIds).map(({events,health,current})=>{
+  const status=current?(events.length?'PARTIAL SCHEDULE':'NO CURRENT EVENTS'):events.length?'STALE SCHEDULE':'SOURCE NEEDS ATTENTION';
+  const description=current?(events.length?'Schedule data available':'Schedule checked; no events observed in this window'):events.length?'Saved schedule data needs verification':'Documented match; current schedule data is not established';
+  const observed=events.length?` · ${events.length} event${events.length===1?'':'s'} observed · Observed ${esc(oddsObservedRange(events))}`:'';
+  const detail=current?'Partial coverage only; not eligibility clearance.':health?.reason||'No current observation is available.';
+  return `<div class="catalog-entry-health"><div class="catalog-entry-health-row ${current?'partial':'source'}"><span class="catalog-entry-health-state">${status}</span><span class="catalog-entry-health-copy"><b>Information source: The Odds API · ${description}</b><span>Coverage: ${observed.replace(/^ · /,'')}${observed?' · ':''}${esc(detail)}</span></span></div></div>`;
+ }).join('');
+}
+
 function renderOddsSessionStatus(){
  const host=document.getElementById('oddsSessionStatus');if(!host)return;
  const failed=(Array.isArray(DATA.oddsEvents?.sources)?DATA.oddsEvents.sources:[]).filter(x=>!['ok','current','cached'].includes(x.status)||x.stale===true);
