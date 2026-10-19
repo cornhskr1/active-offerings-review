@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-18T23:57:59.709124+00:00",
-  "schedule_generated_at": "2026-10-18T23:45:12.652996+00:00",
+  "registry_generated_at": "2026-10-19T01:18:49.283687+00:00",
+  "schedule_generated_at": "2026-10-19T01:06:57.900059+00:00",
   "schedule_window_start": "2026-10-18",
   "schedule_window_end": "2026-10-25",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -388,11 +388,11 @@
           "id": "lmp",
           "type": "thesportsdb",
           "configured_league": "Mexican Pacific League",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Baseball",
@@ -1634,7 +1634,7 @@
           "type": "thesportsdb-day",
           "configured_league": "Liga Nacional de Baloncesto Profesional (LNBP)",
           "refresh_ok": false,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
       "events_in_window": 6
@@ -3149,10 +3149,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Cycling",
@@ -3218,10 +3218,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Cycling",
@@ -3310,10 +3310,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 0
     },
     {
       "sport": "Cycling",
@@ -3494,10 +3494,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Cycling",
@@ -4741,10 +4741,10 @@
           "type": "ocs-golf-season",
           "configured_league": "PGA Tour of Australasia",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 4
     },
     {
       "sport": "Golf",
