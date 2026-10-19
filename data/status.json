@@ -1,90 +1,91 @@
 {
-  "generated_at": "2026-10-18T23:32:31.695920+00:00",
+  "generated_at": "2026-10-19T04:49:50.450075+00:00",
   "source_count": 7,
-  "healthy_count": 6,
+  "healthy_count": 5,
   "sources": [
     {
       "id": "nrgc_catalog",
       "name": "NRGC Sports Betting / Catalog",
       "url": "https://nrgc.nebraska.gov/gaming/sports-betting",
       "priority": "CRITICAL",
-      "checked_at": "2026-10-18T23:32:28.671168+00:00",
+      "checked_at": "2026-10-19T04:49:49.368119+00:00",
       "http_status": 200,
       "final_url": "https://nrgc.nebraska.gov/gaming/sports-betting",
       "ok": true,
       "content_type": "text/html; charset=UTF-8",
-      "elapsed_ms": 294
+      "elapsed_ms": 256
     },
     {
       "id": "nebraska_athletics",
       "name": "Nebraska Athletics",
       "url": "https://huskers.com/",
       "priority": "HIGH",
-      "checked_at": "2026-10-18T23:32:28.965342+00:00",
+      "checked_at": "2026-10-19T04:49:49.624869+00:00",
       "http_status": 200,
       "final_url": "https://huskers.com/",
       "ok": true,
       "content_type": "text/html;charset=utf-8",
-      "elapsed_ms": 561
+      "elapsed_ms": 52
     },
     {
       "id": "creighton_athletics",
       "name": "Creighton Athletics",
       "url": "https://gocreighton.com/",
       "priority": "HIGH",
-      "checked_at": "2026-10-18T23:32:29.526494+00:00",
+      "checked_at": "2026-10-19T04:49:49.677302+00:00",
       "http_status": 200,
       "final_url": "https://gocreighton.com/",
       "ok": true,
       "content_type": "text/html;charset=utf-8",
-      "elapsed_ms": 545
+      "elapsed_ms": 352
     },
     {
       "id": "itf",
       "name": "International Tennis Federation",
       "url": "https://www.itftennis.com/",
       "priority": "CRITICAL",
-      "checked_at": "2026-10-18T23:32:30.071501+00:00",
-      "http_status": 200,
-      "final_url": "https://www.itftennis.com/en/",
-      "ok": true,
-      "content_type": "text/html; charset=utf-8",
-      "elapsed_ms": 607
+      "ok": false,
+      "http_status": null,
+      "error": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh.",
+      "access_status": "permission_required",
+      "collection_paused": true,
+      "stale": true,
+      "checked_at": null
     },
     {
       "id": "atp",
       "name": "ATP Tour",
       "url": "https://www.atptour.com/",
       "priority": "CRITICAL",
-      "checked_at": "2026-10-18T23:32:30.678621+00:00",
+      "checked_at": "2026-10-19T04:49:50.030274+00:00",
       "http_status": 403,
       "ok": false,
       "error": "HTTP 403",
-      "elapsed_ms": 91
+      "elapsed_ms": 59
     },
     {
       "id": "wta",
       "name": "WTA",
       "url": "https://www.wtatennis.com/",
       "priority": "CRITICAL",
-      "checked_at": "2026-10-18T23:32:30.769793+00:00",
+      "checked_at": "2026-10-19T04:49:50.089417+00:00",
       "http_status": 200,
       "final_url": "https://www.wtatennis.com/",
       "ok": true,
       "content_type": "text/html;charset=utf-8",
-      "elapsed_ms": 342
+      "elapsed_ms": 121
     },
     {
       "id": "mls",
       "name": "Major League Soccer",
       "url": "https://www.mlssoccer.com/",
       "priority": "HIGH",
-      "checked_at": "2026-10-18T23:32:31.112696+00:00",
+      "checked_at": "2026-10-19T04:49:50.210707+00:00",
       "http_status": 200,
       "final_url": "https://www.mlssoccer.com/",
       "ok": true,
       "content_type": "text/html",
-      "elapsed_ms": 583
+      "elapsed_ms": 239
     }
   ]
 }
