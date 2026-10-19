@@ -336,6 +336,9 @@ function sourceCatalogMapping(){return null}
             "uncoveredMappedEvents", "scheduleCoverageAttention",
         ))
         script += """
+// Isolate the successful partial-coverage path; actual feeds may be permission-paused.
+const fbsSource=DATA.global.sources.find(source=>source.id==='ncaa-football-fbs');
+assert(fbsSource);fbsSource.ok=true;
 const cards=scheduleCoverageAttention('2026-09-26');
 const holds=cards.filter(card=>card.sport.startsWith('NCAA ')&&card.type==='SCOPE/CALENDAR HOLD');
 assert.deepEqual(holds.map(card=>card.league),['College Basketball Invitational (CBI) | Men']);

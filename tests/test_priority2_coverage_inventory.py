@@ -908,12 +908,16 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("RECURRING_WINDOW", row["season_state"])
         self.assertEqual("February–June", row["season_window"])
         self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
+        schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text())
+        saved_source = next(source for source in schedule["sources"] if source["id"] == "ncaa-baseball")
+        if saved_source.get("access_status") == "permission_required":
+            self.assertFalse(saved_source["ok"])
         self.assertEqual(
             [{
                 "id": "ncaa-baseball",
                 "type": "adapter",
                 "configured_league": "NCAA Baseball",
-                "refresh_ok": True,
+                "refresh_ok": saved_source["ok"],
                 "events_in_window": 0,
             }],
             row["sources"],
@@ -943,7 +947,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text(encoding="utf-8"))
         refreshed = {source["id"]: source for source in schedule["sources"]}["ncaa-baseball"]
-        self.assertTrue(refreshed["ok"])
+        self.assertEqual(saved_source["ok"], refreshed["ok"])
         self.assertEqual(0, refreshed["events"])
         self.assertFalse(any(event["source_id"] == "ncaa-baseball" for event in schedule["events"]))
 

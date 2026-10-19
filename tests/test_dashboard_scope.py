@@ -89,7 +89,8 @@ assert.equal(isNonWageredNcaaSport({sport:'Tennis',league:'NCAA Division I Tenni
         self.assertIn("!isNonWageredNcaaSport(gap)", HTML)
 
     def test_collegiate_filter_copy_names_sports_in_review(self):
-        self.assertIn("men's and women's soccer, softball, volleyball, and wrestling", HTML)
+        self.assertIn("Nebraska football and all three schools’ men’s basketball, women’s basketball, volleyball, baseball and softball", HTML)
+        self.assertIn("Other saved school-sport observations remain available with stale labels", HTML)
 
     def test_nebraska_collegiate_events_are_grouped_by_date(self):
         self.assertIn('class="college-day"', HTML)
