@@ -51,8 +51,9 @@ def build_snapshot(config, previous, previous_cache, now, get=requests.get):
         raise ValueError('Calendar configuration must contain the exact sixteen approved programs')
     today = now.astimezone(CT).date()
     end = today + timedelta(days=7)
-    events, statuses, cache = [], [], {}
+    events, calendar_events, statuses, cache = [], [], [], {}
     prior_rows = previous.get('events', [])
+    prior_calendar_rows = previous.get('calendar_events', prior_rows)
     for source in sources:
         key = (source['school'], source['sport'])
         old_cache = previous_cache.get('sources', {}).get(source['id'], {})
@@ -61,7 +62,7 @@ def build_snapshot(config, previous, previous_cache, now, get=requests.get):
         rows = result['events']
         cache[source['id']] = result['cache']
         if not rows and not status.get('ok'):
-            rows = [dict(e, source_stale=True, calendar_status='saved-before-calendar-integration') for e in prior_rows if (e.get('school'), e.get('sport')) == key]
+            rows = [dict(e, source_stale=True, calendar_status='saved-before-calendar-integration') for e in prior_calendar_rows if (e.get('school'), e.get('sport')) == key]
         active_rows = [r for r in rows if str(r.get('status', '')).upper() not in {'CANCELLED', 'CANCELED', 'REMOVED', 'COMPLETED'}]
         dates = sorted(str(r['date']) for r in active_rows if r.get('date'))
         status['events_in_window'] = sum(today.isoformat() <= day <= end.isoformat() for day in dates)
@@ -74,6 +75,7 @@ def build_snapshot(config, previous, previous_cache, now, get=requests.get):
             row.update(source_id=source['id'], school=key[0], sport=key[1])
             if not status.get('ok'):
                 row['source_stale'] = True
+            calendar_events.append(deepcopy(row))
             if str(row.get('status', '')).upper() in {'CANCELLED', 'CANCELED', 'REMOVED', 'COMPLETED'}:
                 continue
             if today.isoformat() <= str(row.get('date') or '') <= end.isoformat():
@@ -95,6 +97,8 @@ def build_snapshot(config, previous, previous_cache, now, get=requests.get):
     coverage = {school: {'configured': sum(s['school'] == school for s in statuses), 'loaded': sum(s['school'] == school and bool(s.get('ok')) for s in statuses)} for school in ('Nebraska', 'Creighton', 'Omaha')}
     return ({'schema_version': 2, 'generated_at': now.isoformat(), 'timezone': 'America/Chicago',
              'window_start': today.isoformat(), 'window_end': end.isoformat(), 'events': events,
+             'calendar_events': calendar_events,
+             'projection_note': 'The review window rolls over saved calendar rows without changing their source observation dates.',
              'sources': statuses, 'coverage': coverage, 'calendar_programs': [{'school': s, 'sport': p} for s, p in sorted(EXPECTED)],
              'calendar_note': 'Official calendar facts; refresh timestamps are not guarantees that the publisher updated its schedule. Unrelated saved programs remain stale.'},
             {'schema_version': 1, 'sources': cache})
