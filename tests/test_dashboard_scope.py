@@ -11,22 +11,22 @@ class DashboardScopeTests(unittest.TestCase):
     def test_catalog_and_coverage_are_one_staff_view(self):
         self.assertIn("Approved Catalog &amp; Coverage", HTML)
         self.assertIn('id="catalogHealth"', HTML)
-        self.assertIn("Data Health Summary", HTML)
+        self.assertIn("Coverage at a glance", HTML)
         self.assertIn("catalogEntryHealthHtml", HTML)
         self.assertIn("Observed", HTML)
         self.assertIn("Official schedule", HTML)
         self.assertIn("function compactCatalogSource", HTML)
-        self.assertIn("Connection inventory</summary>", HTML)
+        self.assertIn("Sources and connection details</summary>", HTML)
         self.assertNotIn("catalog-health-list", HTML)
         self.assertNotIn('data-panel="coverage"', HTML)
         self.assertNotIn('<section class="panel" id="coverage">', HTML)
 
     def test_catalog_health_distinguishes_source_counts_from_identity_progress(self):
         self.assertIn("coverage:'data/priority2-coverage-inventory.json'", HTML)
-        self.assertIn("Competition schedule coverage:", HTML)
+        self.assertIn("Catalog identities mapped", HTML)
         self.assertIn("Source checks passed", HTML)
         self.assertIn("Sources need setup", HTML)
-        self.assertIn("Counts describe source records", HTML)
+        self.assertIn("diagnostic counts describe source records", HTML)
 
     def test_catalog_coverage_uses_exact_source_identity(self):
         self.assertIn("if(ids.size)return ids.has(source.id);", HTML)
