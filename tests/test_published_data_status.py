@@ -18,6 +18,9 @@ def source(name):
 
 
 class PublishedDataStatusTests(unittest.TestCase):
+    def test_retired_publisher_banner_is_removed(self):
+        self.assertNotIn('id="publisherCollectionHold"', HTML)
+
     def run_js(self, setup, body, names):
         script = "const assert=require('node:assert/strict');\nconsole.warn=()=>{};\n" + setup
         script += "\n" + source("feedCollectionPaused") + "\n" + "\n".join(source(name) for name in names)
@@ -47,7 +50,7 @@ assert.match(publishedLoadStatus([['global',true],['basketball',true]]).text,/ne
         self.run_js("const DATA={global:{sources:[{collection_paused:true}]}};", """
 const result=publishedLoadStatus([['global',true]]);
 assert.equal(result.tone,'status-warn');
-assert.match(result.text,/collection is paused/);
+assert.match(result.text,/saved evidence needs verification/);
 assert.equal(feedCollectionPaused({publisher_permission_holds:[{publisher:'ITF'}]}),true);
 assert.equal(feedCollectionPaused({collection_paused:true}),true);
 assert.equal(feedCollectionPaused({}),false);

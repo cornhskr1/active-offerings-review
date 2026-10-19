@@ -13,9 +13,10 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn('id="catalogHealth"', HTML)
         self.assertIn("Data Health Summary", HTML)
         self.assertIn("catalogEntryHealthHtml", HTML)
-        self.assertIn("Last checked", HTML)
+        self.assertIn("Observed", HTML)
         self.assertIn("Official schedule", HTML)
-        self.assertIn("Schedule status, last checked time, and the official schedule appear inside the matching catalog entry", HTML)
+        self.assertIn("function compactCatalogSource", HTML)
+        self.assertIn("Connection inventory</summary>", HTML)
         self.assertNotIn("catalog-health-list", HTML)
         self.assertNotIn('data-panel="coverage"', HTML)
         self.assertNotIn('<section class="panel" id="coverage">', HTML)
@@ -25,7 +26,7 @@ class DashboardScopeTests(unittest.TestCase):
         self.assertIn("Competition schedule coverage:", HTML)
         self.assertIn("Source checks passed", HTML)
         self.assertIn("Sources need setup", HTML)
-        self.assertIn("buttons count schedule source records", HTML)
+        self.assertIn("Counts describe source records", HTML)
 
     def test_catalog_coverage_uses_exact_source_identity(self):
         self.assertIn("if(ids.size)return ids.has(source.id);", HTML)

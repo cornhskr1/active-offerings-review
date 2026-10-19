@@ -130,12 +130,36 @@ DATA.oddsMap={mappings:[{provider_key:'synthetic',catalog_identity_key:'syntheti
 DATA.oddsEvents={sources:[{provider_key:'synthetic',status:'ok',observed_at:now,stale:false}]};
 ODDS_SESSION={events:[{catalog_identity_key:'synthetic-id',observed_at:now,source_stale:false}]};
 DATA.global={sources:[{id:'legacy',sport:'Basketball',league:'Synthetic League',ok:false,collection_paused:true,endpoint:'https://site.api.espn.com/example',official_schedule_url:'https://example.org/official',errors:['Permission required: ESPN automated collection is paused pending access review.']} ]};
+assert.equal(failedScheduleSourceAttention([],todayKey()).length,0);
+DATA.oddsEvents.sources[0].stale=true;let warnings=failedScheduleSourceAttention([],todayKey());assert.equal(warnings.length,1);assert.match(warnings[0].reason,/needs verification/);assert.doesNotMatch(warnings[0].reason,/ESPN|paused/);
+DATA.oddsEvents.sources[0].stale=false;const savedEvents=ODDS_SESSION.events;ODDS_SESSION.events=[];assert.equal(failedScheduleSourceAttention([],todayKey()).length,1);ODDS_SESSION.events=savedEvents;
+const savedMappings=DATA.oddsMap.mappings;DATA.oddsMap.mappings=[];assert.equal(failedScheduleSourceAttention([],todayKey()).length,1);DATA.oddsMap.mappings=savedMappings;
 let html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);
-assert.match(html,/The Odds API · Schedule data available/);assert.match(html,/PARTIAL SCHEDULE/);assert.match(html,/1 event observed/);assert.match(html,/Partial coverage only/);assert.match(html,/https:\/\/example.org\/official/);assert.doesNotMatch(html,/SOURCE ISSUE|ESPN|PAUSED/);assert.match(html,/Approval basis:/);assert.match(html,/Information source:/);assert.match(html,/Coverage:/);
-DATA.oddsMap.mappings.push({provider_key:'other',catalog_identity_key:'other-id',sport:'Basketball',league:'Other'});html=catalogEntryHealthHtml('Basketball',['synthetic-id','other-id'],['legacy']);assert.match(html,/PAUSED/);DATA.oddsMap.mappings.pop();
-DATA.global.sources.push({...DATA.global.sources[0],id:'unreplaced'});html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy','unreplaced']);assert.match(html,/PAUSED/);DATA.global.sources.pop();
-DATA.oddsEvents.sources[0].stale=true;html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/STALE SCHEDULE/);assert.match(html,/ESPN/);assert.match(html,/PAUSED/);assert.doesNotMatch(html,/Schedule data available/);
-DATA.oddsEvents.sources[0].stale=false;DATA.oddsEvents.sources[0].observed_at='2020-01-01T00:00:00Z';html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/STALE SCHEDULE/);assert.match(html,/PAUSED/);
-DATA.oddsEvents.sources[0].observed_at=now;ODDS_SESSION.events=[];html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/NO CURRENT EVENTS/);assert.match(html,/PAUSED/);assert.doesNotMatch(html,/Schedule data available/);
-DATA.oddsEvents.sources[0].status='not_active_in_directory';html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/SOURCE NEEDS ATTENTION/);
+assert.match(html,/The Odds API/);assert.match(html,/PARTIAL SCHEDULE/);assert.match(html,/1 event observed/);assert.match(html,/Partial coverage/);assert.match(html,/https:\/\/example.org\/official/);assert.doesNotMatch(html,/SOURCE ISSUE|ESPN|PAUSED/);assert.doesNotMatch(html,/Permission required|Approval basis:/);
+DATA.oddsMap.mappings.push({provider_key:'other',catalog_identity_key:'other-id',sport:'Basketball',league:'Other'});html=catalogEntryHealthHtml('Basketball',['synthetic-id','other-id'],['legacy']);assert.match(html,/SCHEDULE UNAVAILABLE/);DATA.oddsMap.mappings.pop();
+DATA.global.sources.push({...DATA.global.sources[0],id:'unreplaced'});html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy','unreplaced']);assert.match(html,/NOT CONNECTED/);DATA.global.sources.pop();
+DATA.oddsEvents.sources[0].stale=true;html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/STALE SCHEDULE/);assert.doesNotMatch(html,/ESPN|PAUSED/);assert.doesNotMatch(html,/Schedule data available/);
+DATA.oddsEvents.sources[0].stale=false;DATA.oddsEvents.sources[0].observed_at='2020-01-01T00:00:00Z';html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/STALE SCHEDULE/);assert.doesNotMatch(html,/ESPN|PAUSED/);
+DATA.oddsEvents.sources[0].observed_at=now;ODDS_SESSION.events=[];html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/NO EVENTS OBSERVED/);assert.doesNotMatch(html,/ESPN|PAUSED/);assert.doesNotMatch(html,/Schedule data available/);
+DATA.oddsEvents.sources[0].status='not_active_in_directory';html=catalogEntryHealthHtml('Basketball',['synthetic-id'],['legacy']);assert.match(html,/SCHEDULE UNAVAILABLE/);
+assert.equal(catalogActiveCoverageHealth().length,1);assert.equal(catalogActiveCoverageHealth()[0].state,'source');
+DATA.oddsEvents.sources[0].status='ok';assert.equal(catalogActiveCoverageHealth()[0].state,'partial');
+CATALOG_HEALTH_FILTER='partial';assert.equal(catalogEntryMatchesHealth('Basketball',['synthetic-id'],['legacy']),true);
+CATALOG_HEALTH_FILTER='setup';assert.equal(catalogEntryMatchesHealth('Basketball',['synthetic-id'],['legacy']),false);
+DATA.global.sources.push({...DATA.global.sources[0],id:'unmapped'});assert.ok(catalogActiveCoverageHealth().some(row=>row.source.id==='unmapped'&&row.state==='setup'));
+DATA.oddsMap.mappings=[];html=catalogEntryHealthHtml('Basketball',[],['legacy']);assert.match(html,/NOT CONNECTED/);assert.match(html,/https:\/\/example.org\/official/);assert.doesNotMatch(html,/ESPN|PAUSED/);
+
+DATA.global.sources.push({id:'other-source',sport:'Basketball',league:'Other',ok:true,coverage_status:'partial',endpoint:'https://other.example/schedule',official_schedule_url:'https://other.example/official'});
+html=catalogEntryHealthHtml('Basketball',[],['legacy','other-source']);assert.match(html,/https:\/\/example.org\/official/);assert.match(html,/https:\/\/other.example\/official/);
+
+""")
+
+    def test_prior_edition_window_does_not_assert_current_offseason(self):
+        self.run_js(r"""
+const assert=require('node:assert/strict');
+DATA.global={sources:[{id:'old-cup',coverage_status:'last-published-event-window'}]};
+const event={source_id:'old-cup',season_start_date:'2025-09-12',season_end_date:'2026-04-25',season_window:'September 2025–April 2026'};
+assert.equal(mappedSeasonStatus(event),null);assert.equal(priorEditionWindow(event),true);
+const html=renderMappedCatalogEvents([event],'Basketball');assert.match(html,/current season unconfirmed/);assert.doesNotMatch(html,/OUT OF SEASON/);
+DATA.global.sources[0].coverage_status='published-window';assert.equal(mappedSeasonStatus(event),'out');
 """)

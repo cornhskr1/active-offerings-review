@@ -151,6 +151,6 @@ class PublisherPolicyTests(unittest.TestCase):
         for name in names:self.assertIn('install_network_guards()', (ROOT/'scripts'/f'{name}.py').read_text())
         for name in ['refresh_ncaa_basketball','refresh_ncaa_basketball_di_map','refresh_ncaa_basketball_rosters']:
             text=(ROOT/'scripts'/f'{name}.py').read_text();self.assertLess(text.index('preserve_snapshot_on_hold(DATA'),text.index('requests.get('))
-        self.assertIn('publisherCollectionHold',(ROOT/'index.html').read_text())
+        self.assertIn('function feedCollectionPaused',(ROOT/'index.html').read_text())
 
 if __name__=='__main__':unittest.main()
