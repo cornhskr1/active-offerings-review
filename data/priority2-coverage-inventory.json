@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-19T01:18:49.283687+00:00",
-  "schedule_generated_at": "2026-10-19T01:06:57.900059+00:00",
-  "schedule_window_start": "2026-10-18",
-  "schedule_window_end": "2026-10-25",
+  "registry_generated_at": "2026-10-19T06:20:27.472675+00:00",
+  "schedule_generated_at": "2026-10-19T06:08:36.077336+00:00",
+  "schedule_window_start": "2026-10-19",
+  "schedule_window_end": "2026-10-26",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
     "catalog_operational_identities": 733,
@@ -431,10 +431,10 @@
           "type": "thesportsdb",
           "configured_league": "Nippon Professional Baseball (NPB)",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Baseball",
@@ -452,10 +452,10 @@
           "type": "mlbstats",
           "configured_league": "Professional Baseball League of the Dominican Republic (LIDOM)",
           "refresh_ok": true,
-          "events_in_window": 18
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 18
+      "events_in_window": 15
     },
     {
       "sport": "Baseball",
@@ -4126,10 +4126,10 @@
           "configured_source_id": "esports-riot-lol-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Esports",
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 2
     },
     {
       "sport": "Esports",
@@ -4331,10 +4331,10 @@
           "configured_source_id": "esports-riot-valorant-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Esports",
@@ -4552,10 +4552,10 @@
           "type": "ocs-golf-season",
           "configured_league": "Asian Tour",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Golf",
@@ -4594,10 +4594,10 @@
           "type": "jgto-golf-season",
           "configured_league": "Japan Golf Tour",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Golf",
@@ -4741,10 +4741,10 @@
           "type": "ocs-golf-season",
           "configured_league": "PGA Tour of Australasia",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 3
     },
     {
       "sport": "Golf",
@@ -5459,10 +5459,10 @@
           "type": "official-motorsports-calendar",
           "configured_league": "NHRA Mission Foods Drag Racing Series",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Motorsports",
@@ -9165,10 +9165,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Croatian Football League / SuperSport HNL | Men",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -11207,10 +11207,10 @@
           "type": "official-liga-portugal-2-calendar",
           "configured_league": "Liga Portugal 2 | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -11629,11 +11629,11 @@
           "id": "uefa-soccer-estonia-meistriliiga-premium-liiga-men",
           "type": "official-ejl-premium-next-round",
           "configured_league": "Meistriliiga / Premium Liiga | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -12789,10 +12789,10 @@
           "type": "official-spl-season-fixtures",
           "configured_league": "Singapore Premier League | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -12872,7 +12872,7 @@
           "id": "uefa-soccer-slovenia-slovenian-prvaliga-men",
           "type": "official-nzs-prvaliga-next-round",
           "configured_league": "Slovenian PrvaLiga | Men",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -14325,11 +14325,11 @@
           "id": "soccer-afc-uzbekistan-uzbekistan-super-league-men",
           "type": "official-pfl-uz-superleague-fixtures",
           "configured_league": "Uzbekistan Super League | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -14947,10 +14947,10 @@
           "type": "tennis-intelligence",
           "configured_league": "UTR Pro Tennis Tour | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 4
     },
     {
       "sport": "Tennis",
@@ -14968,10 +14968,10 @@
           "type": "tennis-intelligence",
           "configured_league": "UTR Pro Tennis Tour | Women",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 3
     },
     {
       "sport": "Tennis",
@@ -15116,10 +15116,10 @@
           "type": "official-beach-pro-calendar",
           "configured_league": "Beach Pro Tour | Men",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Volleyball",
@@ -15137,10 +15137,10 @@
           "type": "official-beach-pro-calendar",
           "configured_league": "Beach Pro Tour | Women",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Volleyball",
