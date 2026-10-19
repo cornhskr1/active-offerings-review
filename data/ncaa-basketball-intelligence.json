@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T21:04:40.069090+00:00",
+  "generated_at": "2026-10-19T04:49:35.838272+00:00",
   "screening_date": "2026-10-18",
   "sport": "NCAA Basketball",
   "method": "Roster-matched U18 screening plus catalog-validated explicit special-tournament metadata detection.",
@@ -250,5 +250,13 @@
     "A CBI/CBC restriction alert requires explicit source metadata containing a configured tournament name or alias.",
     "Known U18 exposure is team/event driven; a registry record by itself does not create an event alert.",
     "Unknown age does not create a U18 alert."
-  ]
+  ],
+  "collection_paused": true,
+  "stale": true,
+  "access_status": "permission_required",
+  "collection_status_note": "Derived from retained observations; publisher collection is paused pending access review.",
+  "source_observation_times": {
+    "schedule": "2026-10-18T21:04:24.753304+00:00",
+    "rosters": "2026-10-18T14:08:34.788097+00:00"
+  }
 }
