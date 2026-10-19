@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-18T14:34:04.256255+00:00",
+  "generated_at": "2026-10-19T15:42:56.378170+00:00",
   "age_evidence_review": {
     "id": "official-age-review-2026-10-14",
     "checked_at": "2026-10-14"
@@ -2686,8 +2686,30 @@
     "age_cache_promotions": 0
   },
   "source_health": {
-    "ok": true,
-    "mode": "cached-registry",
-    "records": 65
-  }
+    "ok": false,
+    "url": "https://www.itftennis.com/en/rankings/world-tennis-tour-junior-rankings/?juniorRankingType=ITF&playerType=B",
+    "text": "",
+    "links": [],
+    "rows": [],
+    "html": "",
+    "payloads": [],
+    "permission_required": true,
+    "collection_paused": true,
+    "error": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh."
+  },
+  "publisher_permission_holds": [
+    {
+      "publisher": "ITF",
+      "tour_ids": [
+        "itf-men",
+        "itf-women"
+      ],
+      "permission_required": true,
+      "collection_paused": true,
+      "source_stale": true,
+      "reason": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh.",
+      "hold_checked_at": "2026-10-19T15:42:56.378170+00:00",
+      "note": "Saved evidence retained; no new ITF collection or permission verification."
+    }
+  ]
 }
