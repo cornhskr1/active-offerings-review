@@ -16,7 +16,8 @@ class DailyReviewClarityTests(unittest.TestCase):
         self.run_js("""
 const assert=require('node:assert/strict');
 const fs=require('fs');
-for(const [key,path] of Object.entries(FILES))DATA[key]=JSON.parse(fs.readFileSync(path));
+// Provider snapshots exist only in deployment staging, never in Git fixtures.
+for(const [key,path] of Object.entries(FILES))if(key!=='oddsEvents')DATA[key]=JSON.parse(fs.readFileSync(path));
 const missing={key:'unknown-date-regression',sport:'Tennis',league:'Professional Tennis',
  type:'AGE EVIDENCE REVIEW',severity:'AMBER',event:'Unknown date',start_time:null,
  age_review_required:true,event_date_missing:true};
@@ -57,7 +58,8 @@ assert.doesNotMatch(mixed,/12:00/);
     def test_partial_basketball_fixtures_keep_phase_coverage_attention(self):
         self.run_js("""
 const assert=require('node:assert/strict'),fs=require('fs');
-for(const [key,path] of Object.entries(FILES))DATA[key]=JSON.parse(fs.readFileSync(path));
+// Provider snapshots exist only in deployment staging, never in Git fixtures.
+for(const [key,path] of Object.entries(FILES))if(key!=='oddsEvents')DATA[key]=JSON.parse(fs.readFileSync(path));
 const ids=new Set(['basketball-euroleague','eurocup-basketball','basketball-womens-euroleague','fiba-bcl']);
 const sources=JSON.parse(fs.readFileSync('data/global-schedule-sources.json')).sources.filter(s=>ids.has(s.id));
 assert.equal(sources.length,4);

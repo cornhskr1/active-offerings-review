@@ -190,6 +190,7 @@ function addDays(_,i){return `2026-09-${String(26+i).padStart(2,'0')}`}
 function attentionCardsForDay(){dayCalls++;return[]}
 function renderReviewLanes(){queueCalls++;return'issue-board'}
 function renderUpcomingSportBoard(){sportCalls++;return'sport-board'}
+function renderOddsSessionStatus(){}
 function fmtDateTime(){return''}
 function esc(value){return String(value)}
 function prettyDay(value){return value}

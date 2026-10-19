@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      resume_after_review:
+        description: 'Resume only after reviewing a failed deployment for unexpected API usage'
+        type: boolean
+        default: false
+  schedule:
+    - cron: "17 */3 * * *"
   workflow_run:
     workflows:
       - Refresh Approved Sports Schedule
@@ -21,6 +28,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -30,7 +38,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -41,9 +49,24 @@ jobs:
         with:
           ref: main
           fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify previous deployment before any provider collection
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESUME_AFTER_REVIEW: ${{ inputs.resume_after_review || false }}
+        run: python scripts/check_odds_deploy_safety.py
+      - name: Stage public site and recover last event snapshot
+        run: python scripts/stage_odds_pages.py --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json"
+      - name: Refresh zero-quota event observations only
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python scripts/refresh_odds_api_events.py --config data/odds-api-catalog-mappings.json --previous "$RUNNER_TEMP/odds-previous.json" --output "$RUNNER_TEMP/active-offerings-site/data/odds-api-events.json"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ${{ runner.temp }}/active-offerings-site
+          retention-days: 1
       - id: deployment
         uses: actions/deploy-pages@v4

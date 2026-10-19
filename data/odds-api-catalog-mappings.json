@@ -1,0 +1,774 @@
+{
+  "schema_version": 1,
+  "provider": "The Odds API",
+  "mapping_scope": "Exact documented competition identities only. Conditional keys, futures, and unknown keys are excluded. A mapping does not establish event eligibility or complete coverage.",
+  "documentation_url": "https://the-odds-api.com/sports-odds-data/sports-apis.html",
+  "catalog_version": "10.1.26",
+  "mappings": [
+    {
+      "provider_key": "americanfootball_cfl",
+      "catalog_identity_key": "football-canada-cfl",
+      "sport": "Football",
+      "league": "Canadian Football League (CFL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "americanfootball_ncaaf_fcs",
+      "catalog_identity_key": "ncaa-football-fcs",
+      "sport": "NCAA Football",
+      "league": "Division I Football Championship Subdivision (FCS)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "americanfootball_nfl",
+      "catalog_identity_key": "football-us-nfl",
+      "sport": "Football",
+      "league": "National Football League (NFL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "americanfootball_nfl_preseason",
+      "catalog_identity_key": "football-us-nfl-preseason",
+      "sport": "Football",
+      "league": "NFL Preseason",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "americanfootball_ufl",
+      "catalog_identity_key": "football-us-ufl",
+      "sport": "Football",
+      "league": "United Football League (UFL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "aussierules_afl",
+      "catalog_identity_key": "aussie-rules-au-afl",
+      "sport": "Aussie Rules",
+      "league": "Australian Football League (AFL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "baseball_mlb",
+      "catalog_identity_key": "baseball-us-mlb",
+      "sport": "Baseball",
+      "league": "Major League Baseball (MLB)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "baseball_npb",
+      "catalog_identity_key": "baseball-jp-npb",
+      "sport": "Baseball",
+      "league": "Nippon Professional Baseball (NPB)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "baseball_kbo",
+      "catalog_identity_key": "baseball-kr-kbo",
+      "sport": "Baseball",
+      "league": "KBO League",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "basketball_euroleague",
+      "catalog_identity_key": "basketball-euroleague",
+      "sport": "Basketball",
+      "league": "EuroLeague | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "basketball_nba",
+      "catalog_identity_key": "basketball-us-nba",
+      "sport": "Basketball",
+      "league": "National Basketball Association (NBA) | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "basketball_wnba",
+      "catalog_identity_key": "basketball-us-wnba",
+      "sport": "Basketball",
+      "league": "Women\u2019s National Basketball Association (WNBA) | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "basketball_nbl",
+      "catalog_identity_key": "basketball-au-nbl",
+      "sport": "Basketball",
+      "league": "National Basketball League (NBL) | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "cricket_big_bash",
+      "catalog_identity_key": "cricket-au-bbl",
+      "sport": "Cricket",
+      "league": "Big Bash League (BBL) | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "cricket_icc_world_cup",
+      "catalog_identity_key": "cricket-int-world-cup",
+      "sport": "Cricket",
+      "league": "ICC Men\u2019s Cricket World Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "cricket_ipl",
+      "catalog_identity_key": "cricket-in-ipl",
+      "sport": "Cricket",
+      "league": "Indian Premier League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "cricket_t20_world_cup",
+      "catalog_identity_key": "cricket-int-t20-world-cup",
+      "sport": "Cricket",
+      "league": "ICC T20 World Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "icehockey_nhl",
+      "catalog_identity_key": "hockey-usca-nhl",
+      "sport": "Ice Hockey",
+      "league": "National Hockey League (NHL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "icehockey_liiga",
+      "catalog_identity_key": "hockey-fi-liiga",
+      "sport": "Ice Hockey",
+      "league": "Liiga",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "icehockey_sweden_hockey_league",
+      "catalog_identity_key": "hockey-se-shl",
+      "sport": "Ice Hockey",
+      "league": "Swedish Hockey League (SHL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "lacrosse_pll",
+      "catalog_identity_key": "lacrosse-us-pll",
+      "sport": "Lacrosse",
+      "league": "Premier Lacrosse League (PLL)",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "rugbyleague_nrl",
+      "catalog_identity_key": "rugby-au-nrl",
+      "sport": "Rugby",
+      "league": "National Rugby League (NRL) | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "rugbyunion_six_nations",
+      "catalog_identity_key": "rugby-intl-six-nations-men",
+      "sport": "Rugby",
+      "league": "Six Nations Rugby | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_africa_cup_of_nations",
+      "catalog_identity_key": "soccer-international-africa-cup-of-nations-men",
+      "sport": "Soccer",
+      "league": "Africa Cup of Nations | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_argentina_primera_division",
+      "catalog_identity_key": "soccer-argentina-argentine-primera-divisi-n-men",
+      "sport": "Soccer",
+      "league": "Argentine Primera Divisi\u00f3n | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_australia_aleague",
+      "catalog_identity_key": "soccer-australia-a-league-men",
+      "sport": "Soccer",
+      "league": "A-League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_austria_bundesliga",
+      "catalog_identity_key": "soccer-austria-austrian-bundesliga-men",
+      "sport": "Soccer",
+      "league": "Austrian Bundesliga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_brazil_campeonato",
+      "catalog_identity_key": "soccer-brazil-campeonato-brasileiro-s-rie-a-men",
+      "sport": "Soccer",
+      "league": "Campeonato Brasileiro S\u00e9rie A | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_brazil_serie_b",
+      "catalog_identity_key": "soccer-brazil-campeonato-brasileiro-s-rie-b-men",
+      "sport": "Soccer",
+      "league": "Campeonato Brasileiro S\u00e9rie B | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_chile_campeonato",
+      "catalog_identity_key": "soccer-chile-primera-divisi-n-men",
+      "sport": "Soccer",
+      "league": "Primera Divisi\u00f3n | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_denmark_superliga",
+      "catalog_identity_key": "soccer-denmark-danish-superliga-men",
+      "sport": "Soccer",
+      "league": "Danish Superliga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_efl_champ",
+      "catalog_identity_key": "soccer-england-the-championship-men",
+      "sport": "Soccer",
+      "league": "The Championship | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_england_efl_cup",
+      "catalog_identity_key": "soccer-england-english-football-league-efl-cup-men",
+      "sport": "Soccer",
+      "league": "English Football League (EFL) Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_england_league1",
+      "catalog_identity_key": "soccer-england-league-one-men",
+      "sport": "Soccer",
+      "league": "League One | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_england_league2",
+      "catalog_identity_key": "soccer-england-league-two-men",
+      "sport": "Soccer",
+      "league": "League Two | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_epl",
+      "catalog_identity_key": "soccer-england-premier-league-men",
+      "sport": "Soccer",
+      "league": "Premier League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_fa_cup",
+      "catalog_identity_key": "soccer-england-fa-cup-men",
+      "sport": "Soccer",
+      "league": "FA Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_fifa_world_cup",
+      "catalog_identity_key": "soccer-international-fifa-world-cup-men",
+      "sport": "Soccer",
+      "league": "FIFA World Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_fifa_world_cup_womens",
+      "catalog_identity_key": "soccer-international-fifa-world-cup-women",
+      "sport": "Soccer",
+      "league": "FIFA World Cup | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_fifa_club_world_cup",
+      "catalog_identity_key": "soccer-international-fifa-club-world-cup-men",
+      "sport": "Soccer",
+      "league": "FIFA Club World Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_finland_veikkausliiga",
+      "catalog_identity_key": "soccer-finland-veikkausliiga-men",
+      "sport": "Soccer",
+      "league": "Veikkausliiga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_france_coupe_de_france",
+      "catalog_identity_key": "soccer-france-coupe-de-france-men",
+      "sport": "Soccer",
+      "league": "Coupe de France | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_france_ligue_one",
+      "catalog_identity_key": "soccer-france-ligue-1-men",
+      "sport": "Soccer",
+      "league": "Ligue 1 | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_france_ligue_two",
+      "catalog_identity_key": "soccer-france-ligue-2-men",
+      "sport": "Soccer",
+      "league": "Ligue 2 | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_germany_bundesliga",
+      "catalog_identity_key": "soccer-germany-bundesliga-men",
+      "sport": "Soccer",
+      "league": "Bundesliga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_germany_bundesliga2",
+      "catalog_identity_key": "soccer-germany-2-bundesliga-men",
+      "sport": "Soccer",
+      "league": "2. Bundesliga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_germany_bundesliga_women",
+      "catalog_identity_key": "soccer-germany-frauen-bundesliga-women",
+      "sport": "Soccer",
+      "league": "Frauen Bundesliga | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_germany_dfb_pokal",
+      "catalog_identity_key": "soccer-germany-dfb-pokal-men",
+      "sport": "Soccer",
+      "league": "DFB-Pokal | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_greece_super_league",
+      "catalog_identity_key": "soccer-greece-super-league-men",
+      "sport": "Soccer",
+      "league": "Super League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_italy_coppa_italia",
+      "catalog_identity_key": "soccer-italy-coppa-italia-men",
+      "sport": "Soccer",
+      "league": "Coppa Italia | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_italy_serie_a",
+      "catalog_identity_key": "soccer-italy-serie-a-men",
+      "sport": "Soccer",
+      "league": "Serie A | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_italy_serie_b",
+      "catalog_identity_key": "soccer-italy-serie-b-men",
+      "sport": "Soccer",
+      "league": "Serie B | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_korea_kleague1",
+      "catalog_identity_key": "soccer-korea-k-league-1-men",
+      "sport": "Soccer",
+      "league": "K League 1 | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_mexico_ligamx",
+      "catalog_identity_key": "soccer-mexico-liga-mx-men",
+      "sport": "Soccer",
+      "league": "Liga MX | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_netherlands_eredivisie",
+      "catalog_identity_key": "soccer-netherlands-eredivisie-men",
+      "sport": "Soccer",
+      "league": "Eredivisie | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_norway_eliteserien",
+      "catalog_identity_key": "soccer-norway-eliteserien-men",
+      "sport": "Soccer",
+      "league": "Eliteserien | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_poland_ekstraklasa",
+      "catalog_identity_key": "soccer-poland-ekstraklasa-men",
+      "sport": "Soccer",
+      "league": "Ekstraklasa | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_portugal_primeira_liga",
+      "catalog_identity_key": "soccer-portugal-primeira-liga-men",
+      "sport": "Soccer",
+      "league": "Primeira Liga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_spain_copa_del_rey",
+      "catalog_identity_key": "soccer-spain-copa-del-rey-men",
+      "sport": "Soccer",
+      "league": "Copa del Rey | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_spain_la_liga",
+      "catalog_identity_key": "soccer-spain-laliga-men",
+      "sport": "Soccer",
+      "league": "LaLiga | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_spain_segunda_division",
+      "catalog_identity_key": "soccer-spain-segunda-divisi-n-men",
+      "sport": "Soccer",
+      "league": "Segunda Divisi\u00f3n | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_saudi_arabia_pro_league",
+      "catalog_identity_key": "soccer-saudi-arabia-saudi-pro-league-men",
+      "sport": "Soccer",
+      "league": "Saudi Pro League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_spl",
+      "catalog_identity_key": "soccer-scotland-scottish-premiership-men",
+      "sport": "Soccer",
+      "league": "Scottish Premiership | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_sweden_allsvenskan",
+      "catalog_identity_key": "soccer-sweden-allsvenskan-men",
+      "sport": "Soccer",
+      "league": "Allsvenskan | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_sweden_superettan",
+      "catalog_identity_key": "soccer-sweden-superettan-men",
+      "sport": "Soccer",
+      "league": "Superettan | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_switzerland_superleague",
+      "catalog_identity_key": "soccer-switzerland-swiss-super-league-men",
+      "sport": "Soccer",
+      "league": "Swiss Super League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_turkey_super_league",
+      "catalog_identity_key": "soccer-turkey-s-per-lig-men",
+      "sport": "Soccer",
+      "league": "S\u00fcper Lig | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_uefa_europa_conference_league",
+      "catalog_identity_key": "soccer-international-uefa-conference-league-men",
+      "sport": "Soccer",
+      "league": "UEFA Conference League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_uefa_champs_league",
+      "catalog_identity_key": "soccer-international-uefa-champions-league-men",
+      "sport": "Soccer",
+      "league": "UEFA Champions League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_uefa_champs_league_women",
+      "catalog_identity_key": "soccer-international-uefa-women-s-champions-league-women",
+      "sport": "Soccer",
+      "league": "UEFA Women\u2019s Champions League | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_uefa_europa_league",
+      "catalog_identity_key": "soccer-international-uefa-europa-league-men",
+      "sport": "Soccer",
+      "league": "UEFA Europa League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_uefa_nations_league",
+      "catalog_identity_key": "soccer-international-uefa-nations-league-men",
+      "sport": "Soccer",
+      "league": "UEFA Nations League | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_concacaf_gold_cup",
+      "catalog_identity_key": "soccer-international-concacaf-gold-cup-men",
+      "sport": "Soccer",
+      "league": "CONCACAF Gold Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_concacaf_leagues_cup",
+      "catalog_identity_key": "soccer-international-leagues-cup-men",
+      "sport": "Soccer",
+      "league": "Leagues Cup | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_conmebol_copa_libertadores",
+      "catalog_identity_key": "soccer-international-copa-libertadores-men",
+      "sport": "Soccer",
+      "league": "Copa Libertadores | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_conmebol_copa_sudamericana",
+      "catalog_identity_key": "soccer-international-copa-sudamericana-men",
+      "sport": "Soccer",
+      "league": "Copa Sudamericana | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "soccer_usa_mls",
+      "catalog_identity_key": "soccer-united-states-major-league-soccer-mls-men",
+      "sport": "Soccer",
+      "league": "Major League Soccer (MLS) | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_atp_aus_open_singles",
+      "catalog_identity_key": "tennis-australian-open-men",
+      "sport": "Tennis",
+      "league": "Australian Open | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_atp_french_open",
+      "catalog_identity_key": "tennis-french-open-men",
+      "sport": "Tennis",
+      "league": "Roland-Garros / French Open | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_atp_us_open",
+      "catalog_identity_key": "tennis-us-open-men",
+      "sport": "Tennis",
+      "league": "United States Open | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_atp_wimbledon",
+      "catalog_identity_key": "tennis-wimbledon-men",
+      "sport": "Tennis",
+      "league": "Wimbledon | Men",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_wta_aus_open_singles",
+      "catalog_identity_key": "tennis-australian-open-women",
+      "sport": "Tennis",
+      "league": "Australian Open | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_wta_french_open",
+      "catalog_identity_key": "tennis-french-open-women",
+      "sport": "Tennis",
+      "league": "Roland-Garros / French Open | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_wta_us_open",
+      "catalog_identity_key": "tennis-us-open-women",
+      "sport": "Tennis",
+      "league": "United States Open | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    },
+    {
+      "provider_key": "tennis_wta_wimbledon",
+      "catalog_identity_key": "tennis-wimbledon-women",
+      "sport": "Tennis",
+      "league": "Wimbledon | Women",
+      "region": "",
+      "mapping_basis": "documented_competition_name",
+      "coverage_complete": false
+    }
+  ]
+}
