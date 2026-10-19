@@ -1,6 +1,6 @@
 {
   "schema_version": 6,
-  "generated_at": "2026-10-19T15:42:56.378170+00:00",
+  "generated_at": "2026-10-19T17:28:13.422808+00:00",
   "timezone": "America/Chicago",
   "window_start": "2026-10-19",
   "window_end": "2026-10-26",
@@ -49528,16 +49528,16 @@
       "error": null
     },
     "wta_125": {
-      "ok": true,
+      "ok": false,
       "events": 0,
       "url": "https://www.wtatennis.com/tournaments/wta-125",
-      "candidate_tournament_links": 32,
-      "dated_candidate_links": 89,
+      "candidate_tournament_links": 0,
+      "dated_candidate_links": 0,
       "overlapping_candidate_links": 0,
-      "unresolved_candidate_links": 32,
+      "unresolved_candidate_links": 0,
       "page_dates_resolved": 0,
-      "payload_candidates": 2053,
-      "error": null
+      "payload_candidates": 0,
+      "error": "PUBLISHER_HTTP_429"
     },
     "itf_men": {
       "ok": false,
@@ -49599,16 +49599,12 @@
       "error": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh."
     },
     "atp_age_index": {
-      "ok": false,
-      "records": 0,
-      "url": "https://www.atptour.com/en/rankings/singles?rankRange=1-1000",
-      "error": "PUBLISHER_HTTP_403"
+      "ok": true,
+      "mode": "skipped-routine-field-refresh"
     },
     "wta_age_index": {
       "ok": true,
-      "records": 0,
-      "url": "https://www.wtatennis.com/rankings/singles/",
-      "error": null
+      "mode": "skipped-routine-field-refresh"
     }
   },
   "methodology": {
@@ -49630,7 +49626,7 @@
       "collection_paused": true,
       "source_stale": true,
       "reason": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh.",
-      "hold_checked_at": "2026-10-19T15:42:56.378170+00:00",
+      "hold_checked_at": "2026-10-19T17:28:13.422808+00:00",
       "note": "Saved evidence retained; no new ITF collection or permission verification."
     }
   ],
@@ -49658,6 +49654,6 @@
       "NO_CURRENT_TOURNAMENTS_MAPPED: WTA Tour",
       "NO_CURRENT_TOURNAMENTS_MAPPED: WTA 125"
     ],
-    "checked_at": "2026-10-19T15:42:56.378170+00:00"
+    "checked_at": "2026-10-19T17:28:13.422808+00:00"
   }
 }
