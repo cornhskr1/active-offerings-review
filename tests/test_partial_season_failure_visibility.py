@@ -32,7 +32,7 @@ const exactSeasonStatus=event=>event.test_status||null;
 const annualSeasonStatus=()=>null;
 const eventSourceIds=()=>[];
 const todayKey=()=> '2026-10-18';
-""" + function('mappedSeasonStatus') + '\n' + function('failedScheduleSourceAttention') + """
+""" + function('retiredScheduleSource') + '\n' + function('mappedSeasonStatus') + '\n' + function('failedScheduleSourceAttention') + """
 assert.equal(mappedSeasonStatus(mapped.usa),null);
 assert.equal(mappedSeasonStatus(mapped['currie-first']),null);
 assert.equal(mappedSeasonStatus(mapped.unknown),null);
@@ -57,7 +57,7 @@ const DATA={global:JSON.parse(fs.readFileSync('data/global-schedule.json')),
 const isNonWageredNcaaSport=()=>false;
 const todayKey=()=> '2026-10-18';
 """ + '\n'.join(function(n) for n in ['exactSeasonStatus','annualSeasonStatus','eventSourceIds',
- 'sourceCatalogMapping','mappedSeasonStatus','mappedCatalogEventForSource','failedScheduleSourceAttention']) + """
+ 'retiredScheduleSource','sourceCatalogMapping','mappedSeasonStatus','mappedCatalogEventForSource','failedScheduleSourceAttention']) + """
 // Use published identities/configuration, with deterministic transport failure.
 DATA.global.sources=DATA.global.sources.filter(s=>['rugby-usa','rugby-saru-currie-first','rugby-saru-currie-premier'].includes(s.id)).map(s=>({...s,ok:false,events:0,errors:['HTTP 504']}));
 const cards=failedScheduleSourceAttention([],'2026-10-18');

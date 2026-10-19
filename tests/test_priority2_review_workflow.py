@@ -42,6 +42,7 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
         end = HTML.index("\nfunction buildTodayModel(", start)
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 const DATA={tennis:{generated_at:'2026-09-16T11:31:56Z'}};
 """ + HTML[start:end] + """
 const events=Array.from({length:27},(_,i)=>({sport:'Tennis',
@@ -66,6 +67,7 @@ assert.equal(staleScheduleSourceAttention([],'2026-09-27').length,0);
         end = HTML.index("\nfunction buildTodayModel(", start)
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 const sources=[
   {id:'pba',sport:'Basketball',region:'Philippines',ok:false,source_type:'official-event-window',
    official_schedule_url:'https://www.pba.ph/schedule',errors:['403 Forbidden']},
@@ -109,6 +111,7 @@ assert.equal(failedScheduleSourceAttention(events,'2026-09-29').length,3);
         end = HTML.index("\nfunction buildTodayModel(", start)
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 const DATA={global:{sources:[
   {id:'wnba',sport:'Basketball',league:'WNBA',region:'United States',unresolved_matchups_held:2,
    official_schedule_url:'https://www.wnba.com/schedule'},
@@ -133,6 +136,7 @@ assert.match(cards[0].staff_action,/exact teams/);
         end = HTML.index("\nfunction buildTodayModel(", start)
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 const source={id:'spl',sport:'Soccer',league:'Singapore Premier League | Men',
  region:'Singapore',ok:true,young_lions_age_review_in_window:1,
  official_schedule_url:'https://spl.sg/fixtures/'};
@@ -154,6 +158,7 @@ assert.equal(heldAgeReviewAttention('2026-09-29').length,0);
         end = HTML.index("\nfunction renderCollege(", start)
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 const DATA={collegeFutures:{programs:[{school:'Nebraska',sport:'Football',
   regular_season_futures:{days_to_cutoff:-1},
   first_regular_season_contest:{date:'2026-09-25',time:'12:00',opponent:'Visitor'}}]}};
@@ -174,6 +179,7 @@ for(const day of ['2026-09-27','2026-09-28','2026-09-29'])
         helper_end = HTML.index("\nfunction publishedLoadStatus(", helper_start)
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 const DATA={basketball:{},basketballIntel:{},tennisReview:{summary:{}}};
 let TODAY_VIEW='date';
 const elements=new Map();
@@ -223,6 +229,7 @@ assert.equal(element('todayAlerts').open,false);
         board = HTML[HTML.index("function renderIssueBoard("):HTML.index("function renderUpcomingSportBoard(")]
         script = """
 const assert=require('node:assert/strict');
+const retiredScheduleSource=()=>false;
 function reviewLeagueLabel(_,label){return label}
 function regionForAttentionCard(){return 'United States'}
 function pill(_,label){return label}

@@ -39,8 +39,8 @@ DATA.global.sources[2].source_note='Exact date-only warning.';
 const expected={gap:'setup','gap-legacy':'setup',window:'window','window-partial':'window',
  partial:'partial','partial-round':'partial',complete:'connected',unknown:'connected',
  error:'source','gap-error':'source','window-error':'source',manual:'manual'};
-const labels={setup:'REFERENCE / NEEDS SETUP',window:'DATES ONLY',partial:'PARTIAL COVERAGE',
- connected:'SOURCE CHECK PASSED',source:'SOURCE ISSUE',manual:'MANUAL EVIDENCE'};
+const labels={setup:'NOT CONNECTED',window:'DATES ONLY',partial:'PARTIAL SCHEDULE',
+ connected:'SOURCE CHECKED',source:'SOURCE NEEDS CHECK',manual:'SAVED EVIDENCE'};
 assert.equal(catalogCoverageHealth().length,12);
 for(const row of catalogCoverageHealth()){
  assert.equal(row.state,expected[row.source.id]);
