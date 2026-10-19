@@ -652,10 +652,13 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 </div>
 <script src="assets/odds-session.js"></script>
 <script src="assets/catalog-health-summary.js"></script>
+<script src="assets/jolpica-f1.js"></script>
 <script>
 const DATA={};
 let ODDS_SESSION=null,ODDS_LOAD_ERROR='';
+let F1_SNAPSHOT=null,F1_LOAD_ERROR='';
 const FILES={
+  f1:'data/jolpica-f1-events.json',
   oddsMap:'data/odds-api-catalog-mappings.json', oddsEvents:'data/odds-api-events.json',
   global:'data/global-schedule.json', coverage:'data/priority2-coverage-inventory.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', catalogOfficialSources:'data/catalog-official-sources.json', known:'data/known-u18.json',
@@ -666,7 +669,7 @@ const FILES={
   tennis:'data/tennis-intelligence.json', tennisReview:'data/tennis-review.json', tennisRegistry:'data/tennis-u18-registry.json', tennisCache:'data/tennis-age-cache.json',
   olympicsSummer:'data/olympics-summer-program.json', olympicsWinter:'data/olympics-winter-program.json'
 };
-const FEED_LABELS={oddsMap:'The Odds API identity directory',oddsEvents:'The Odds API event observations',global:'Approved sports schedule',coverage:'Competition coverage',priority:'Attention queue',college:'Nebraska collegiate schedules',collegeFutures:'Nebraska collegiate futures',catalog:'Approved catalog',catalogStatus:'Catalog publication status',seasonMap:'Competition season dates',catalogOfficialSources:'Catalog source references',known:'Known U18 registry',intake:'Catalog change queue',ncaa:'NCAA football schedules and rosters',ncaaAge:'NCAA football age evidence',basketball:'NCAA basketball schedules',basketballIntel:'NCAA basketball age and restriction evidence',basketballDI:'NCAA basketball team mapping',basketballRosters:'NCAA basketball rosters',tennis:'Tennis participant evidence',tennisReview:'Tennis review evidence',tennisRegistry:'Tennis U18 registry',tennisCache:'Tennis age evidence',olympicsSummer:'Summer Olympics program',olympicsWinter:'Winter Olympics program'};
+const FEED_LABELS={f1:'Jolpica-F1 race schedule (CC BY-NC-SA 4.0)',oddsMap:'The Odds API identity directory',oddsEvents:'The Odds API event observations',global:'Approved sports schedule',coverage:'Competition coverage',priority:'Attention queue',college:'Nebraska collegiate schedules',collegeFutures:'Nebraska collegiate futures',catalog:'Approved catalog',catalogStatus:'Catalog publication status',seasonMap:'Competition season dates',catalogOfficialSources:'Catalog source references',known:'Known U18 registry',intake:'Catalog change queue',ncaa:'NCAA football schedules and rosters',ncaaAge:'NCAA football age evidence',basketball:'NCAA basketball schedules',basketballIntel:'NCAA basketball age and restriction evidence',basketballDI:'NCAA basketball team mapping',basketballRosters:'NCAA basketball rosters',tennis:'Tennis participant evidence',tennisReview:'Tennis review evidence',tennisRegistry:'Tennis U18 registry',tennisCache:'Tennis age evidence',olympicsSummer:'Summer Olympics program',olympicsWinter:'Winter Olympics program'};
 let LAST_LOAD_RESULTS=[];
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const CT='America/Chicago';
@@ -742,7 +745,7 @@ function renderPublishedDates(results){
   const states=new Map(results);
   host.innerHTML=Object.keys(FILES).map(key=>{
     const feed=DATA[key],ok=states.get(key);
-    const stamp=feed?.generated_at;
+    const stamp=key==='f1'?feed?.observed_at:feed?.generated_at;
     const validStamp=stamp&&Number.isFinite(new Date(stamp).getTime());
     const date=validStamp?new Intl.DateTimeFormat('en-US',{timeZone:CT,year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(stamp)):'Publication date not reported';
     const paused=feedCollectionPaused(feed);
@@ -786,6 +789,9 @@ function safeRender(name,fn){
   catch(e){console.error(`${name} render failed`,e);return name}
 }
 function renderAll(){
+  F1_SNAPSHOT=null;F1_LOAD_ERROR='';
+  try{if(DATA.f1&&typeof JolpicaF1!=='undefined')F1_SNAPSHOT=JolpicaF1.project(DATA.f1,new Date().toISOString());}
+  catch(_){F1_LOAD_ERROR='Jolpica-F1 snapshot could not be validated; no race observations are displayed.';}
   ODDS_LOAD_ERROR='';
   try{ODDS_SESSION=DATA.oddsEvents?OddsSession.validate(DATA.oddsEvents,DATA.oddsMap):null;}
   catch(_){ODDS_SESSION=null;ODDS_LOAD_ERROR='The Odds API event snapshot is invalid; no provider observations are displayed.';}
@@ -793,6 +799,18 @@ function renderAll(){
   return [safeRender('Review Today',renderToday),safeRender('Nebraska Collegiate',renderCollege),
     safeRender('Restriction Watch',renderRestrictions),safeRender('Known U18',renderU18),
     safeRender('Catalog Changes',renderIntake),safeRender('Approved Catalog & Coverage',renderCatalog)].filter(Boolean);
+}
+
+
+function f1GlobalData(){return typeof JolpicaF1==='undefined'?(DATA.global||{events:[]}):JolpicaF1.global(DATA.global,F1_SNAPSHOT);}
+function f1EventHtml(event){
+ return `<div>Race location: ${esc([event.circuit,event.locality,event.country].filter(Boolean).join(' · '))} · Race status UNKNOWN · Entrants and ages unknown.</div>`;
+}
+function f1SourceHtml(){
+ const snapshot=F1_SNAPSHOT;
+ if(!snapshot)return `<div class="catalog-entry-health row-meta">${esc(F1_LOAD_ERROR||'Jolpica-F1 race observations unavailable.')} Existing catalog approval, restrictions and season mapping are unchanged.</div>`;
+ const l=snapshot.license;
+ return `<div class="catalog-entry-health row-meta"><b>Jolpica-F1 · ${snapshot.current?'PARTIAL RACE SCHEDULE':'SAVED EVIDENCE — VERIFY'}</b> · Observed ${esc(fmtDateTime(snapshot.source.checked_at))}<div>${esc(l.attribution)} · <a href="${esc(l.source_url)}" target="_blank" rel="noopener">Data source</a> · <a href="${esc(l.terms_url)}" target="_blank" rel="noopener">Data-use terms</a> · <a href="${esc(l.url)}" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> (noncommercial, share alike)</div><div>Modifications: ${esc(l.changes)} Displayed in Central Time; date-only races have no inferred kickoff.</div><div>${esc(l.notice)} Race schedule only: entrants, ages and race status unknown. Partial coverage, not wagering approval. Existing catalog restrictions and season mapping remain unchanged.</div></div>`;
 }
 
 function normCollegeSport(v){
@@ -1304,7 +1322,7 @@ function renderUpcomingSportBoard(events){
       const season=mappedSeasons[0];
       const sameSeason=season&&mappedSeasons.every(mapped=>mapped&&mapped.key===season.key&&mapped.catalog_event===season.catalog_event);
       const progress=sameSeason?seasonProgressHtml(season,mappedSeasonStatus(season)):'';
-      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${event.requires_bout_review?pill('amber','BOUT AND AGE REVIEW'):''}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}${event.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(event)}</div></div><span class="row-meta">${event.schedule_time_conflict?'TIME CONFLICT':event.date_only?'DATE ONLY':esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
+      return `<details class="league-group"><summary><span>${esc(league)}</span><span>${leagueEvents.length} event${leagueEvents.length===1?'':'s'}</span></summary><div class="league-events">${scheduleLinks.length?`<div class="row-meta">${scheduleLinks.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">Official schedule ↗</a>`).join(' · ')}</div>`:''}${progress}${leagueEvents.some(e=>e.source_id==='jolpica-f1')?f1SourceHtml():''}${leagueEvents.sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||'')).map(event=>{const game=esportsGameLabel(event);return `<div class="event-row">${event.requires_bout_review?pill('amber','BOUT AND AGE REVIEW'):''}<div><b>${esc(event.name)}</b><div class="row-meta">${game?`${esc(game)} · `:''}${esc(prettyDay(ctKey(event.start_time)))}${event.season_stage?` · ${esc(event.season_stage)}`:''}${event.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(event)}${event.source_id==='jolpica-f1'?f1EventHtml(event):''}</div></div><span class="row-meta">${event.schedule_time_conflict?'TIME CONFLICT':event.date_only?'DATE ONLY':esc(eventTime(event.start_time))}</span></div>`}).join('')}</div></details>`;
     }).join('')}</div></details>`;
   }).join('')}</div>`;
 }
@@ -1529,7 +1547,7 @@ function heldAgeReviewAttention(dayKey){
 }
 
 function buildTodayModel(){
-  const global=DATA.global||{events:[]};
+  const global=typeof f1GlobalData==='function'?f1GlobalData():(DATA.global||{events:[]});
   const pq=DATA.priority||{cards:[]};
   const start=todayKey();
   const end=addDays(start,7);
@@ -1537,9 +1555,11 @@ function buildTodayModel(){
   // Review Today is always anchored to the actual current Central Time date.
   // Published feed window_start/window_end are coverage metadata only.
   const observedEvents=typeof OddsSession==='undefined'?(global.events||[]):OddsSession.merge(global.events||[],ODDS_SESSION,oddsIdentityForScheduleEvent);
+  const dateWindowSources=new Set((global.sources||[]).filter(s=>s.source_type==='official-event-window').map(s=>s.id));
   const globalEvents=observedEvents.filter(e=>{
     const k=ctKey(e.start_time);
-    return !['COMPLETED','CANCELLED','REMOVED'].includes(e.status) && keyBetween(k,start,end) && !isNonWageredNcaaSport(e);
+    const f1Reference=(e.catalog_identity_key==='motorsports-intl-f1'||e.source_id==='motorsports-f1')&&(e.reference_only||dateWindowSources.has(e.source_id));
+    return !f1Reference && !['COMPLETED','CANCELLED','REMOVED'].includes(e.status) && keyBetween(k,start,end) && !isNonWageredNcaaSport(e);
   });
   const events=[...globalEvents,...basketballReviewEvents()]
     .sort((a,b)=>(a.start_time||'').localeCompare(b.start_time||''));
@@ -1653,6 +1673,7 @@ function renderToday(){
           <summary><span>${esc(g)}</span><span>${arr.length} event${arr.length===1?'':'s'}</span></summary>
           <div class="league-events">`;
 
+        if(arr.some(e=>e.source_id==='jolpica-f1'))html+=f1SourceHtml();
         html+=arr.map(e=>{
           const c=collegeMatchForGlobal(e);
           const r=c?collegeReg(c):null;
@@ -1664,7 +1685,7 @@ function renderToday(){
             ${label?pill(color,label):''}
             <div>
               <b>${esc(e.name)}</b>
-              <div class="row-meta">${game?esc(game):''}${game&&e.season_stage?' · ':''}${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}${e.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(e)}</div>
+              <div class="row-meta">${game?esc(game):''}${game&&e.season_stage?' · ':''}${esc(e.season_stage||'')}${c?.location?` · ${esc(c.location)}`:''}${e.source_stale?' · STALE SOURCE — VERIFY':''}${oddsObservationHtml(e)}${e.source_id==='jolpica-f1'?f1EventHtml(e):''}</div>
             </div>
             <span class="row-meta">${e.schedule_time_conflict?'TIME CONFLICT':e.date_only?'DATE ONLY':esc(eventTime(e.start_time))}</span>
           </div>`;
@@ -2752,7 +2773,7 @@ function renderMappedCatalogEvents(events,sport){
   return categories.map(bucket=>`${bucket.category?`<div class="catalog-category-head">${esc(bucket.category)}</div>`:''}<div class="catalog-event-list">${bucket.events.map(event=>{
     const status=mappedSeasonStatus(event);
     const hasChildren=(event.coverage_children||[]).length>0;
-    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div>${hasChildren?'<div class="catalog-approval-note">Catalog approval — coverage tracked separately below</div>':`<div class="catalog-season-detail">${priorEditionWindow(event)?'Prior edition · current season unconfirmed: ':''}${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}`}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${hasChildren?renderCoverageChildren(event,sport):catalogEntryHealthHtml(sport,[event.catalog_event,event.key],eventSourceIds(event))}${tourCalendarHtml(event)}</article>`;
+    return `<article class="catalog-event-card"><div class="catalog-event-main"><div><div class="catalog-event-name">${catalogEventNameHtml(event)}</div>${hasChildren?'<div class="catalog-approval-note">Catalog approval — coverage tracked separately below</div>':`<div class="catalog-season-detail">${priorEditionWindow(event)?'Prior edition · current season unconfirmed: ':''}${esc(event.season_window||event.season_basis||'')}</div>${seasonProgressHtml(event,status)}`}</div>${catalogEntryBadge(event,status)}</div>${(event.notes||[]).length?`<div class="catalog-event-notes">${event.notes.map(note=>`<div class="catalog-event-note">${esc(note)}</div>`).join('')}</div>`:''}${(event.restrictions||[]).length?`<div class="catalog-event-restrictions">${event.restrictions.map(r=>`<div class="catalog-event-restriction">${esc(r)}</div>`).join('')}</div>`:''}${hasChildren?renderCoverageChildren(event,sport):catalogEntryHealthHtml(sport,[event.catalog_event,event.key],eventSourceIds(event))}${event.key==='motorsports-intl-f1'?f1SourceHtml():''}${tourCalendarHtml(event)}</article>`;
   }).join('')}</div>`).join('');
 }
 function olympicCompliancePill(status){
@@ -3026,7 +3047,7 @@ function healthText(value){
   return String(value||'').toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').trim();
 }
 function catalogCoverageHealth(){
-  const sources=(DATA.global?.sources||[]).filter(source=>source.approved_catalog!==false);
+  const sources=((typeof f1GlobalData==='function'?f1GlobalData():DATA.global)?.sources||[]).filter(source=>source.approved_catalog!==false);
   const manualTypes=new Set(['tennis-intelligence']);
   const setupStates=new Set(['missing','pending','pending-publication']);
   return sources.map(source=>{
@@ -3121,7 +3142,7 @@ function catalogEntryHealthHtml(sport,labels,sourceIds){
 }
 function renderCatalogHealth(){
   const host=document.getElementById('catalogHealth');if(!host)return;
-  CATALOG_IDENTITY_HEALTH=typeof CatalogHealthSummary==='undefined'?null:CatalogHealthSummary.build({coverage:DATA.coverage,global:DATA.global,oddsMap:DATA.oddsMap,oddsEvents:DATA.oddsEvents,now:new Date().toISOString(),windowStart:todayKey(),windowEnd:addDays(todayKey(),7)});
+  CATALOG_IDENTITY_HEALTH=typeof CatalogHealthSummary==='undefined'?null:CatalogHealthSummary.build({coverage:typeof JolpicaF1==='undefined'?DATA.coverage:JolpicaF1.coverage(DATA.coverage,F1_SNAPSHOT),global:f1GlobalData(),oddsMap:DATA.oddsMap,oddsEvents:DATA.oddsEvents,now:new Date().toISOString(),windowStart:todayKey(),windowEnd:addDays(todayKey(),7)});
   const rows=catalogActiveCoverageHealth(),counts={connected:0,setup:0,window:0,partial:0,manual:0,source:0};
   rows.forEach(row=>counts[row.state]++);
   const summary=CATALOG_IDENTITY_HEALTH,totals=summary?.totals||{};
