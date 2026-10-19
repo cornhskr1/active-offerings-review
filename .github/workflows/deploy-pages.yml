@@ -57,9 +57,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RESUME_AFTER_REVIEW: ${{ inputs.resume_after_review || false }}
         run: python scripts/check_odds_deploy_safety.py
-      - name: Stage public site and recover last event snapshot
+      - name: Stage site with pinned verified-cache recovery
+        id: stage
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: python scripts/stage_odds_pages.py --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json"
       - name: Refresh zero-quota event observations only
+        if: steps.stage.outputs.recovered != 'true'
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python scripts/refresh_odds_api_events.py --config data/odds-api-catalog-mappings.json --previous "$RUNNER_TEMP/odds-previous.json" --output "$RUNNER_TEMP/active-offerings-site/data/odds-api-events.json"

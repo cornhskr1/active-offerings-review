@@ -4,6 +4,7 @@ No provider credentials or provider requests belong in this module.
 """
 from pathlib import Path
 import argparse
+import os
 import json
 import shutil
 import subprocess
@@ -13,6 +14,9 @@ from urllib.parse import urlparse
 
 MAX_BYTES = 5_000_000
 PRODUCTION = 'https://cornhskr1.github.io/active-offerings-review/'
+
+class CacheMissing(ValueError):
+    pass
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -42,7 +46,7 @@ def recover_previous(url, opener=None):
                     raise ValueError('Existing dashboard requires its prior snapshot')
                 return None
             except Exception:
-                raise ValueError('Cannot establish safe first deployment') from None
+                raise CacheMissing('Cannot establish safe first deployment') from None
         raise ValueError('Previous snapshot unavailable') from None
     except Exception:
         raise ValueError('Previous snapshot unavailable or invalid') from None
@@ -69,8 +73,20 @@ if __name__ == '__main__':
     parser.add_argument('--stage', required=True)
     parser.add_argument('--previous', required=True)
     args = parser.parse_args()
-    previous = recover_previous(PRODUCTION + 'data/odds-api-events.json')
+    recovered_raw = None
+    try:
+        previous = recover_previous(PRODUCTION + 'data/odds-api-events.json')
+    except CacheMissing:
+        from recover_verified_pages_cache import recover
+        proof=json.loads(Path(os.environ['RUNNER_TEMP'],'odds-recovery-proof.json').read_text())
+        recovered_raw=recover(proof,int(os.environ['GITHUB_RUN_ID']))
+        previous=json.loads(recovered_raw)
     # Fail the deployment on uncertain cache recovery: do not erase a halt or
     # last-good snapshot and accidentally restart collection.
     Path(args.previous).write_text(json.dumps(previous or {}))
     stage(args.root, args.stage)
+    if recovered_raw is not None:
+        target=Path(args.stage,'data/odds-api-events.json');target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_bytes(recovered_raw)
+        with open(os.environ['GITHUB_OUTPUT'],'a') as output:output.write('recovered=true\n')
+        print('Restored the verified saved event snapshot unchanged; provider collection is skipped.')

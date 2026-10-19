@@ -135,3 +135,16 @@ class DeployHistoryRecoveryTests(unittest.TestCase):
   self.assertEqual(proved_precollection_failures([success,failed],skipped_anchor),set())
   self.assertEqual(proved_precollection_failures([{**success,'run_attempt':2},failed],skipped_anchor),set())
   self.assertEqual(proved_precollection_failures([{**success,'updated_at':'invalid'},failed],skipped_anchor),set())
+
+class StageFailureProofTests(DeployHistoryRecoveryTests):
+ def test_stage_failure_is_precollection_but_started_collector_is_not(self):
+  current,success,failed,payload=self.fixture()
+  steps=payload['jobs'][0]['steps'];steps[3]['conclusion']='success';steps[4]['conclusion']='failure'
+  self.assertTrue(precollection_failure(failed,payload))
+  steps[5]['conclusion']='failure';self.assertFalse(precollection_failure(failed,payload))
+ def test_only_recovery_contract_can_publish_with_skipped_collector(self):
+  from check_odds_deploy_safety import successful_publication,RECOVERY_STEPS
+  current,success,failed,payload=self.fixture();job=payload['jobs'][0];job.update(run_id=success['id'],conclusion='success')
+  for step in job['steps']:step['conclusion']='success'
+  job['steps'][5]['conclusion']='skipped';self.assertFalse(successful_publication(success,payload))
+  job['steps'][4]['name']=RECOVERY_STEPS[4];self.assertTrue(successful_publication(success,payload))

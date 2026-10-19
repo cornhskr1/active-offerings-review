@@ -66,6 +66,8 @@ DEPLOY_STEPS=['Set up job','Checkout latest main','Run actions/setup-python@v5',
  'Refresh zero-quota event observations only','Run actions/configure-pages@v5',
  'Run actions/upload-pages-artifact@v3','Run actions/deploy-pages@v4',
  'Post Run actions/setup-python@v5','Post Checkout latest main','Complete job']
+RECOVERY_STEPS=DEPLOY_STEPS.copy()
+RECOVERY_STEPS[4]='Stage site with pinned verified-cache recovery'
 def verified_job_steps(run,payload):
  if run.get('run_attempt')!=1 or run.get('status')!='completed':return None
  if not isinstance(payload,dict) or payload.get('total_count')!=1:return None
@@ -78,18 +80,20 @@ def verified_job_steps(run,payload):
  steps=job.get('steps')
  if not isinstance(steps,list) or len(steps)!=len(DEPLOY_STEPS):return None
  if any(not isinstance(step,dict) or step.get('status')!='completed' for step in steps):return None
- if [step.get('name') for step in steps]!=DEPLOY_STEPS:return None
+ if [step.get('name') for step in steps] not in (DEPLOY_STEPS,RECOVERY_STEPS):return None
  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,17,18,19]:return None
  return [step.get('conclusion') for step in steps]
 
 def precollection_failure(run,payload):
  if run.get('conclusion')!='failure':return False
  outcomes=verified_job_steps(run,payload)
- return bool(outcomes and outcomes[:4]==['success','success','success','failure']
-             and outcomes[4:9]==['skipped']*5 and all(x in ('success','skipped') for x in outcomes[9:]))
+ return bool(outcomes and ((outcomes[:4]==['success','success','success','failure'] and outcomes[4:9]==['skipped']*5) or (outcomes[:5]==['success']*4+['failure'] and outcomes[5:9]==['skipped']*4)) and all(x in ('success','skipped') for x in outcomes[9:]))
 
 def successful_publication(run,payload):
- return run.get('conclusion')=='success' and verified_job_steps(run,payload)==['success']*12
+ outcomes=verified_job_steps(run,payload)
+ if run.get('conclusion')!='success' or not outcomes:return False
+ recovery=payload['jobs'][0]['steps'][4]['name']==RECOVERY_STEPS[4]
+ return outcomes==['success']*12 or (recovery and outcomes==['success']*5+['skipped']+['success']*6)
 
 def proved_precollection_failures(runs,get_jobs):
  # Inspect only failures newer than the latest success. Older history remains
@@ -129,6 +133,13 @@ def main():
  resume=os.environ.get('GITHUB_EVENT_NAME')=='workflow_dispatch' and os.environ.get('RESUME_AFTER_REVIEW')=='true'
  proved=proved_precollection_failures(runs,lambda failed_id:get('/actions/runs/'+str(failed_id)+'/jobs?filter=latest&per_page=100')) if not resume else set()
  if not permitted(current,runs,resume,proved):raise ValueError('Previous deployment was not confirmed successful. Review the failure before explicitly resuming collection.')
+ # Artifact restoration is allowed only from the exact verified publication anchor.
+ if not resume:
+  anchors=[r for r in runs if r.get('status')=='completed' and r.get('conclusion')=='success']
+  anchor=max(anchors,key=lambda r:datetime.fromisoformat(r['updated_at'].replace('Z','+00:00'))) if anchors else None
+  if anchor and successful_publication(anchor,get('/actions/runs/'+str(anchor['id'])+'/jobs?filter=latest&per_page=100')):
+   from pathlib import Path
+   Path(os.environ['RUNNER_TEMP'],'odds-recovery-proof.json').write_text(json.dumps({'repository':REPOSITORY,'current_run_id':int(run_id),'anchor_run_id':anchor['id']}))
 if __name__=='__main__':
  try:main()
  except Exception:

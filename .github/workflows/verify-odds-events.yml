@@ -8,6 +8,8 @@ on:
       - scripts/odds_api_adapter.py
       - scripts/refresh_odds_api_events.py
       - scripts/stage_odds_pages.py
+      - scripts/recover_verified_pages_cache.py
+      - tests/test_verified_pages_cache_recovery.py
       - scripts/check_odds_deploy_safety.py
       - tests/test_refresh_odds_api_events.py
       - tests/test_odds*.py
@@ -22,6 +24,8 @@ on:
       - scripts/odds_api_adapter.py
       - scripts/refresh_odds_api_events.py
       - scripts/stage_odds_pages.py
+      - scripts/recover_verified_pages_cache.py
+      - tests/test_verified_pages_cache_recovery.py
       - scripts/check_odds_deploy_safety.py
       - tests/test_refresh_odds_api_events.py
       - tests/test_odds*.py
@@ -44,4 +48,5 @@ jobs:
       - name: Verify event scope, zero-credit guards, caching and deployment isolation
         run: |
           python -m unittest discover -s tests -p 'test_odds*.py' -v
-          python -m unittest discover -s tests -p 'test_refresh_odds_api_events.py' -v
+          python -m unittest discover -s tests -p 'test_refresh_odds_api_events.py'
+          python -m unittest discover -s tests -p 'test_verified_pages_cache_recovery.py' -v
