@@ -154,7 +154,7 @@ assert.equal(heldAgeReviewAttention('2026-09-29').length,0);
         self.assertIn('...heldAgeReviewAttention(start)', HTML)
 
     def test_past_due_ncaa_futures_alert_occurs_once(self):
-        start = HTML.index("function collegeFuturesAttention(")
+        start = HTML.index("function futuresCurrentState(")
         end = HTML.index("\nfunction renderCollege(", start)
         script = """
 const assert=require('node:assert/strict');

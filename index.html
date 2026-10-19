@@ -1066,7 +1066,11 @@ function basketballCollegeSupplements(){
   return rows;
 }
 function allCollegeEvents(){
-  return [...(DATA.college?.events||[]),...basketballCollegeSupplements()];
+  const saved=DATA.college?.events||[];
+  const calendar=DATA.college?.calendar_events;
+  // Full saved calendar rows allow the display window to roll without fetching.
+  const base=Array.isArray(calendar)?[...calendar,...saved.filter(e=>!(DATA.college?.calendar_programs||[]).some(p=>p.school===e.school&&p.sport===e.sport))]:saved;
+  return [...base,...basketballCollegeSupplements()];
 }
 function visibleCollegeEvents(){
   return allCollegeEvents().filter(event=>!isNonWageredNcaaSport(event)&&!['CANCELLED','CANCELED','REMOVED','COMPLETED'].includes(String(event.status||'').toUpperCase())&&(!DATA.college?.calendar_programs||keyBetween(String(event.date||''),todayKey(),addDays(todayKey(),7))));
@@ -1715,9 +1719,25 @@ function collegeMatchupLabel(e){
   return'SITE TBD';
 }
 
+function futuresCurrentState(kind,p,day=todayKey()){
+  const regular=kind==='regular';
+  const original=regular?p.regular_season_futures:p.postseason_futures;
+  const contest=regular?p.first_regular_season_contest:p.first_postseason_contest;
+  const unknown={...(original||{}),color:'amber',label:'CUTOFF UNCONFIRMED',days_to_cutoff:null};
+  if(!contest)return {...unknown,color:'gray',label:'CUTOFF NOT YET KNOWN'};
+  const sameName=x=>String(x||'').toLowerCase().trim().replace(/\s+/g,' ');
+  const evidence=(DATA.college?.calendar_events||DATA.college?.events||[]).filter(e=>e.school===p.school&&e.sport===p.sport&&e.date===contest.date&&sameName(e.opponent)===sameName(contest.opponent));
+  const contradiction=evidence.find(e=>/exhibition|scrimmage/i.test(String(e.event_type||''))||['CANCELLED','CANCELED','REMOVED'].includes(String(e.status||'').toUpperCase()));
+  if(contradiction)return {...unknown,contradiction:true,reason:'Saved cutoff conflicts with the official calendar classification. Confirm the first legitimate contest; no replacement cutoff is inferred.'};
+  const parseDate=x=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(String(x||'')))return NaN;const n=Date.parse(x+'T00:00:00Z');return Number.isFinite(n)&&new Date(n).toISOString().slice(0,10)===x?n:NaN;};
+  const days=(parseDate(contest.date)-parseDate(day))/86400000;
+  if(!Number.isInteger(days))return unknown;
+  return {...(original||{}),days_to_cutoff:days,color:days<0?'red':days<=7?'amber':'green',label:days<0?'CUTOFF DATE PASSED':days===0?'CUTOFF DATE TODAY':days<=7?'CUTOFF APPROACHING':'NOT DUE'};
+}
+
 function futuresCutoffLine(kind,p){
   const isRegular=kind==='regular';
-  const info=isRegular?p.regular_season_futures:p.postseason_futures;
+  const info=futuresCurrentState(kind,p);
   const contest=isRegular?p.first_regular_season_contest:p.first_postseason_contest;
   const c=info?.color||'gray';
   const label=info?.label||'CUTOFF NOT YET KNOWN';
@@ -1731,6 +1751,7 @@ function futuresCutoffLine(kind,p){
     <b>${isRegular?'Regular-season futures':'Postseason futures'}</b>
     ${pill(c,label)}
     <div>${esc(detail)}</div>
+    ${info?.contradiction?`<div class="source-note">${esc(info.reason)}</div>`:''}
     ${info?.days_to_cutoff!=null&&info.days_to_cutoff>0?`<div class="row-meta">${esc(info.days_to_cutoff)} days to cutoff</div>`:''}
   </div>`;
 }
@@ -1747,7 +1768,7 @@ function renderCollegeFutures(){
 
   const savedNotice=DATA.collegeFutures?.source_stale?'<p class="source-note">Saved futures cutoff evidence is stale. Calendar subscriptions do not prove the first legitimate regular-season or postseason contest; no new cutoff is inferred from the first future fixture.</p>':'';
   grid.innerHTML=savedNotice+programs.map(p=>{
-    const states=[p.regular_season_futures?.color,p.postseason_futures?.color];
+    const states=[futuresCurrentState('regular',p).color,futuresCurrentState('postseason',p).color];
     const c=states.includes('red')?'red':states.includes('amber')?'amber':states.includes('green')?'green':'gray';
     return `<article class="futures-card ${c}">
       <div class="futures-top">
@@ -1765,9 +1786,13 @@ function collegeFuturesAttention(dayKey){
   const rows=[];
   for(const p of (DATA.collegeFutures?.programs||[])){
     for(const kind of ['regular','postseason']){
-      const info=kind==='regular'?p.regular_season_futures:p.postseason_futures;
+      const info=futuresCurrentState(kind,p);
       const contest=kind==='regular'?p.first_regular_season_contest:p.first_postseason_contest;
       if(!info||!contest)continue;
+      if(info.contradiction){
+        if(dayKey===todayKey())rows.push({severity:'AMBER',type:'NEBRASKA COLLEGIATE FUTURES',sport:`NCAA ${p.sport}`,league:`NCAA ${p.sport}`,event:`${p.school} ${p.sport} · Cutoff evidence conflict`,start_time:`${dayKey}T12:00:00`,event_date_missing:true,reason:info.reason,staff_action:'Verify the first legitimate contest against the official schedule; do not use the contradicted saved cutoff.',source:p.source_url});
+        continue;
+      }
       const days=info.days_to_cutoff;
       // Review Today only needs operational noise near the actual cutoff.
       if(days==null || days>7 || days<-1)continue;
@@ -1778,10 +1803,10 @@ function collegeFuturesAttention(dayKey){
         sport:/(?:men'?s|women'?s)\s+basketball|^basketball$/i.test(p.sport)?'NCAA Basketball':`NCAA ${p.sport}`,
         league:`NCAA ${p.sport}`,
         event:`${p.school} ${p.sport} · ${kind==='regular'?'Regular-season':'Postseason'} futures cutoff`,
-        start_time:`${contest.date}T12:00:00`,
-        reason:days<0
+        start_time:contest.date,date_only:true,
+        reason:(p.source_stale||DATA.collegeFutures?.source_stale?'Saved cutoff evidence needs verification. ':'')+(days<0
           ?`The ${kind==='regular'?'regular-season':'postseason'} futures cutoff date has passed.`
-          :`${kind==='regular'?'Regular-season':'Postseason'} futures must be disabled before ${prettyDay(contest.date)}${contest.time&&contest.time!=='TBA'?` · ${contest.time}`:''}.`,
+          :`${kind==='regular'?'Regular-season':'Postseason'} futures must be disabled before ${prettyDay(contest.date)}${contest.time&&contest.time!=='TBA'?` · ${contest.time}`:''}.`),
         staff_action:'Verify the applicable Nebraska collegiate futures market is removed before the first applicable contest.',
         source:p.source_url
       });
@@ -1799,7 +1824,7 @@ function renderCollege(){
   const school=document.getElementById('collegeSchool').value||'all';
   const status=document.getElementById('collegeStatus').value||'all';
   const arr=events.filter(e=>(school==='all'||e.school===school)&&(status==='all'||collegeReg(e).c===status));
-  const officialEvents=(DATA.college?.events||[]).filter(event=>!isNonWageredNcaaSport(event));
+  const officialEvents=visibleCollegeEvents();
   const sources=DATA.college?.sources||[];
   const publishedSources=sources.filter(x=>x.ok&&x.schedule_available!==false).length;
   const pendingSources=sources.filter(x=>x.availability==='schedule_not_published').length;
@@ -1810,8 +1835,8 @@ function renderCollege(){
   const sourceNote=document.getElementById('collegeSource');
   if(sourceNote)sourceNote.innerHTML=`<b>Official school schedules:</b> ${publishedSources}/${sources.length} published${pendingSources?` · ${pendingSources} pending publication`:''}${coverageText?` (${esc(coverageText)})`:''} · ${red} in-state ${red===1?'event':'events'} · ${review} location ${review===1?'review':'reviews'} · refreshed ${fmtDateTime(DATA.college?.generated_at)}`;
   if(sourceNote&&DATA.college?.calendar_programs){
-    const details=sources.map(s=>`<div><b>${esc(s.school)} · ${esc(s.sport)}</b>: ${esc(s.status||s.availability||(s.ok?'Calendar loaded':'Source needs attention'))} · ${Number(s.events_in_window||0)} rows in review window${s.coverage_note?` · ${esc(s.coverage_note)}`:''} · last retrieved ${fmtDateTime(s.fetched_at)}${s.next_fetch_at?` · next eligible check ${fmtDateTime(s.next_fetch_at)}`:''}${s.error||s.reason?` · ${esc(s.error||s.reason)}`:''}</div>`).join('');
-    sourceNote.innerHTML=`<b>Official school calendars:</b> ${publishedSources}/${sources.length} calendars loaded or validly cached. Huskers calendars request a 60-hour refresh interval; other school calendars are checked no sooner than their published interval. This is not a real-time update guarantee. Empty or unavailable calendars do not establish that no events exist. Other saved sports are stale.<details><summary>Calendar freshness and availability</summary>${details}</details>`;
+    const details=sources.map(s=>`<div><b>${esc(s.school)} · ${esc(s.sport)}</b>: ${esc(s.status||s.availability||(s.ok?'Calendar loaded':'Source needs attention'))} · ${officialEvents.filter(e=>e.source_id===s.id).length} rows in current review window${DATA.college?.calendar_events?'':s.coverage_note?` · ${esc(s.coverage_note)}`:''} · last retrieved ${fmtDateTime(s.fetched_at)}${s.next_fetch_at?` · next eligible check ${fmtDateTime(s.next_fetch_at)}`:''}${s.error||s.reason?` · ${esc(s.error||s.reason)}`:''}</div>`).join('');
+    sourceNote.innerHTML=`<b>Official school calendars:</b> ${publishedSources}/${sources.length} calendars loaded or validly cached. Huskers calendars request a 60-hour refresh interval; other school calendars are checked no sooner than their published interval. The display window rolls over saved calendar rows without changing their retrieval dates. This is not a real-time update guarantee. Empty or unavailable calendars do not establish that no events exist. Other saved sports are stale.<details><summary>Calendar freshness and availability</summary>${details}</details>`;
   }
   const eventCard=e=>{
     const r=collegeReg(e);
