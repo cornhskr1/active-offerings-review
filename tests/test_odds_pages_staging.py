@@ -148,3 +148,107 @@ class StageFailureProofTests(DeployHistoryRecoveryTests):
   for step in job['steps']:step['conclusion']='success'
   job['steps'][5]['conclusion']='skipped';self.assertFalse(successful_publication(success,payload))
   job['steps'][4]['name']=RECOVERY_STEPS[4];self.assertTrue(successful_publication(success,payload))
+
+class CancelledBeforeJobStartTests(unittest.TestCase):
+ def fixture(self):
+  current,success,failed,payload=DeployHistoryRecoveryTests().fixture()
+  cancelled={**failed,'id':11,'conclusion':'cancelled','updated_at':'2026-10-19T05:00:00Z'}
+  def jobs(run_id):
+   if run_id==11:return {'total_count':0,'jobs':[]}
+   p=json.loads(json.dumps(payload));p['jobs'][0]['run_id']=run_id
+   if run_id==9:
+    p['jobs'][0]['conclusion']='success'
+    for step in p['jobs'][0]['steps']:step['conclusion']='success'
+   return p
+  return current,success,failed,cancelled,jobs
+
+ def test_never_started_cancellation_and_safety_failures_do_not_poison_anchor(self):
+  current,success,failed,cancelled,jobs=self.fixture()
+  runs=[success,failed,cancelled]
+  self.assertFalse(permitted(current,runs))
+  proof=proved_precollection_failures(runs,jobs)
+  self.assertEqual(proof,{10,11})
+  self.assertTrue(permitted(current,runs,precollection_failures=proof))
+  # The storm also contains gate failures that complete after the cancellation.
+  later={**failed,'id':13,'updated_at':'2026-10-19T06:00:00Z'}
+  runs.append(later);proof=proved_precollection_failures(runs,jobs)
+  self.assertEqual(proof,{10,11,13})
+  self.assertTrue(permitted(current,runs,precollection_failures=proof))
+
+ def test_only_completed_first_attempt_cancelled_run_with_exact_zero_jobs(self):
+  from check_odds_deploy_safety import cancelled_before_job_start
+  _,_,_,run,_=self.fixture();empty={'total_count':0,'jobs':[]}
+  self.assertTrue(cancelled_before_job_start(run,empty))
+  for changes in [{'run_attempt':2},{'run_attempt':True},{'run_attempt':'1'},
+                  {'run_attempt':None},{'status':'queued'},{'status':'pending'},
+                  {'status':'in_progress'},{'conclusion':'failure'},
+                  {'conclusion':'timed_out'},{'conclusion':None}]:
+   with self.subTest(changes=changes):self.assertFalse(cancelled_before_job_start({**run,**changes},empty))
+  for payload in [None,[],{}, {'jobs':[]},{'total_count':0},
+                  {'total_count':False,'jobs':[]},{'total_count':'0','jobs':[]},
+                  {'total_count':0.0,'jobs':[]},{'total_count':1,'jobs':[]},
+                  {'total_count':-1,'jobs':[]},{'total_count':0,'jobs':None},
+                  {'total_count':0,'jobs':{}},{'total_count':0,'jobs':[{}]},
+                  {'total_count':1,'jobs':[{}]}]:
+   with self.subTest(payload=payload):self.assertFalse(cancelled_before_job_start(run,payload))
+  self.assertFalse(cancelled_before_job_start(None,empty))
+
+ def test_missing_jobs_started_cancellation_and_api_errors_remain_blocking(self):
+  current,success,failed,cancelled,jobs=self.fixture()
+  for bad in [None,{}, {'total_count':1,'jobs':[]},
+              {'total_count':1,'jobs':[{'run_id':11,'steps':[{'name':'Refresh zero-quota event observations only','conclusion':'success'}]}]}]:
+   with self.subTest(payload=bad):
+    proof=proved_precollection_failures([success,cancelled],lambda n:bad if n==11 else jobs(n))
+    self.assertEqual(proof,set())
+    self.assertFalse(permitted(current,[success,cancelled],precollection_failures=proof))
+  def unavailable(n):
+   if n==11:raise urllib.error.HTTPError('https://api.github.com',503,'unavailable',{},None)
+   return jobs(n)
+  with self.assertRaises(urllib.error.HTTPError):proved_precollection_failures([success,cancelled],unavailable)
+
+ def test_cancellation_proof_cannot_replace_verified_publication_or_clear_collection(self):
+  current,success,failed,cancelled,jobs=self.fixture()
+  self.assertEqual(proved_precollection_failures([cancelled],jobs),set())
+  self.assertFalse(permitted(current,[cancelled],precollection_failures={11}))
+  def unverified_anchor(n):return {'total_count':0,'jobs':[]} if n==9 else jobs(n)
+  self.assertEqual(proved_precollection_failures([success,cancelled],unverified_anchor),set())
+  def collected(n):
+   p=jobs(n)
+   if n==10:p['jobs'][0]['steps'][5]['conclusion']='failure'
+   return p
+  runs=[success,cancelled,{**failed,'updated_at':'2026-10-19T06:00:00Z'}]
+  proof=proved_precollection_failures(runs,collected)
+  self.assertEqual(proof,{11})
+  self.assertFalse(permitted(current,runs,precollection_failures=proof))
+
+ def test_verified_empty_cancellation_tied_with_anchor_timestamp_is_safe(self):
+  current,success,_,cancelled,jobs=self.fixture()
+  cancelled={**cancelled,'updated_at':success['updated_at']}
+  runs=[success,cancelled];proof=proved_precollection_failures(runs,jobs)
+  self.assertEqual(proof,{11})
+  self.assertTrue(permitted(current,runs,precollection_failures=proof))
+
+ def test_main_pins_jobs_to_verified_attempt_not_racing_latest_attempt(self):
+  import os
+  from unittest.mock import patch
+  import check_odds_deploy_safety as safety
+  current,success,failed,cancelled,jobs=self.fixture()
+  current={**current,'repository':{'full_name':safety.REPOSITORY}}
+  calls=[]
+  class GitHub:
+   def open(self,request,timeout):
+    url=request.full_url;calls.append(url)
+    if url.endswith('/actions/runs/12'):data=current
+    elif '/actions/workflows/99/runs?' in url:data={'total_count':3,'workflow_runs':[success,failed,cancelled]}
+    elif '/attempts/1/jobs?per_page=100' in url:data=jobs(int(url.split('/actions/runs/')[1].split('/')[0]))
+    else:raise AssertionError('Unexpected or unpinned GitHub endpoint: '+url)
+    return io.BytesIO(json.dumps(data).encode())
+  with tempfile.TemporaryDirectory() as temp,patch.dict(os.environ,{
+      'GITHUB_REPOSITORY':safety.REPOSITORY,'GH_TOKEN':'synthetic-test-token',
+      'GITHUB_RUN_ID':'12','GITHUB_EVENT_NAME':'push','RESUME_AFTER_REVIEW':'false','RUNNER_TEMP':temp}),patch.object(safety.urllib.request,'build_opener',return_value=GitHub()):
+   safety.main()
+   proof=json.loads((pathlib.Path(temp)/'odds-recovery-proof.json').read_text())
+   self.assertEqual(proof['anchor_run_id'],9)
+  self.assertEqual(sum('/attempts/1/jobs?' in url for url in calls),4)
+  self.assertFalse(any('filter=latest' in url for url in calls))
+
