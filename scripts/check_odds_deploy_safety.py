@@ -29,10 +29,10 @@ def permitted(current,runs,resume=False,precollection_failures=frozenset()):
   latest=max(stamps)
  except (KeyError,ValueError,TypeError,AttributeError):return False
  if resume:return True  # New owner-reviewed dispatch only, never a rerun.
- # Only independently proved no-collection failures may be removed from the
+ # Only independently proved no-collection failures/cancellations may be removed from the
  # completion history. A successful published anchor must still remain.
  checked=[(run,stamp) for run,stamp in zip(prior,stamps)
-          if not (run['id'] in precollection_failures and run.get('conclusion')=='failure')]
+          if not (run['id'] in precollection_failures and run.get('conclusion') in ('failure','cancelled'))]
  if not checked:return False
  latest=max(stamp for _,stamp in checked)
  return all(run.get('conclusion')=='success' for run,stamp in checked if stamp==latest)
@@ -89,6 +89,16 @@ def precollection_failure(run,payload):
  outcomes=verified_job_steps(run,payload)
  return bool(outcomes and ((outcomes[:4]==['success','success','success','failure'] and outcomes[4:9]==['skipped']*5) or (outcomes[:5]==['success']*4+['failure'] and outcomes[5:9]==['skipped']*4)) and all(x in ('success','skipped') for x in outcomes[9:]))
 
+def cancelled_before_job_start(run,payload):
+ # A first-attempt run cancelled while waiting for the Pages lock has no jobs.
+ # The authenticated attempt-1 jobs response must prove absence, not omit it.
+ # Re-runs are excluded: an empty latest attempt cannot clear earlier API use.
+ return (isinstance(run,dict) and type(run.get('run_attempt')) is int
+         and run['run_attempt']==1 and run.get('status')=='completed'
+         and run.get('conclusion')=='cancelled' and isinstance(payload,dict)
+         and type(payload.get('total_count')) is int and payload['total_count']==0
+         and isinstance(payload.get('jobs'),list) and payload['jobs']==[])
+
 def successful_publication(run,payload):
  outcomes=verified_job_steps(run,payload)
  if run.get('conclusion')!='success' or not outcomes:return False
@@ -96,7 +106,7 @@ def successful_publication(run,payload):
  return outcomes==['success']*12 or (recovery and outcomes==['success']*5+['skipped']+['success']*6)
 
 def proved_precollection_failures(runs,get_jobs):
- # Inspect only failures newer than the latest success. Older history remains
+ # Inspect only failures/cancellations newer than the latest success. Older history remains
  # intact and uncertain states are still rejected by permitted().
  try:
   completed=[(r,datetime.fromisoformat(r['updated_at'].replace('Z','+00:00'))) for r in runs if r.get('status')=='completed']
@@ -109,8 +119,9 @@ def proved_precollection_failures(runs,get_jobs):
  if not anchors or not all(successful_publication(r,get_jobs(r['id'])) for r in anchors):return set()
  result=set()
  for run,stamp in completed:
-  if run.get('conclusion')=='failure' and stamp>=latest:
-   if precollection_failure(run,get_jobs(run['id'])):result.add(run['id'])
+  if run.get('conclusion') in ('failure','cancelled') and stamp>=latest:
+   payload=get_jobs(run['id'])
+   if precollection_failure(run,payload) or cancelled_before_job_start(run,payload):result.add(run['id'])
  return result
 
 def main():
@@ -131,16 +142,19 @@ def main():
  if not isinstance(workflow,int):raise ValueError('Workflow identity missing')
  runs=stable_runs(lambda page:get('/actions/workflows/'+str(workflow)+'/runs?per_page=100&page='+str(page)))
  resume=os.environ.get('GITHUB_EVENT_NAME')=='workflow_dispatch' and os.environ.get('RESUME_AFTER_REVIEW')=='true'
- proved=proved_precollection_failures(runs,lambda failed_id:get('/actions/runs/'+str(failed_id)+'/jobs?filter=latest&per_page=100')) if not resume else set()
+ # Pin the jobs read to attempt 1. A concurrent re-run must not make an empty
+ # latest attempt hide jobs from the attempt whose history we are verifying.
+ proved=proved_precollection_failures(runs,lambda failed_id:get('/actions/runs/'+str(failed_id)+'/attempts/1/jobs?per_page=100')) if not resume else set()
  if not permitted(current,runs,resume,proved):raise ValueError('Previous deployment was not confirmed successful. Review the failure before explicitly resuming collection.')
  # Artifact restoration is allowed only from the exact verified publication anchor.
  if not resume:
   anchors=[r for r in runs if r.get('status')=='completed' and r.get('conclusion')=='success']
   anchor=max(anchors,key=lambda r:datetime.fromisoformat(r['updated_at'].replace('Z','+00:00'))) if anchors else None
-  if anchor and successful_publication(anchor,get('/actions/runs/'+str(anchor['id'])+'/jobs?filter=latest&per_page=100')):
+  if anchor and successful_publication(anchor,get('/actions/runs/'+str(anchor['id'])+'/attempts/1/jobs?per_page=100')):
    from pathlib import Path
    Path(os.environ['RUNNER_TEMP'],'odds-recovery-proof.json').write_text(json.dumps({'repository':REPOSITORY,'current_run_id':int(run_id),'anchor_run_id':anchor['id']}))
 if __name__=='__main__':
  try:main()
  except Exception:
   raise SystemExit('Collection blocked: deployment history is failed, uncertain, or unavailable. Review before resuming; no provider request was made.')
+
