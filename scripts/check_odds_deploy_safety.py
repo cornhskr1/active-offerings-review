@@ -3,15 +3,19 @@
 Uses only the workflow's ephemeral, read-only GitHub token. Never reads the
 provider key. The Pages concurrency lock must remain workflow-wide.
 """
-import json,os,urllib.request,urllib.error
+import json,os,re,urllib.request,urllib.error
 from datetime import datetime,timezone
 REPOSITORY='cornhskr1/active-offerings-review'
+WORKFLOW_PATH='.github/workflows/deploy-pages.yml'
+# Audited workflow-wide, literal `pages` lock with cancel-in-progress: false.
+# Review the serialization contract before updating this pin after a YAML edit.
+SERIALIZED_WORKFLOW_BLOB='eaae3f7f1ad34cfbaaacd9a3ab22a089ef617429'
 class HistoryChanged(ValueError):
  pass
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
  def redirect_request(self,*args,**kwargs):raise ValueError('Redirect rejected')
-def permitted(current,runs,resume=False,precollection_failures=frozenset()):
+def permitted(current,runs,resume=False,precollection_failures=frozenset(),pending_runs=frozenset()):
  if (not isinstance(current,dict) or current.get('path')!='.github/workflows/deploy-pages.yml'
      or current.get('head_branch')!='main' or not isinstance(current.get('id'),int)
      or not isinstance(current.get('workflow_id'),int) or not isinstance(current.get('run_number'),int)):
@@ -20,7 +24,8 @@ def permitted(current,runs,resume=False,precollection_failures=frozenset()):
       or r.get('workflow_id')!=current['workflow_id'] or r.get('head_branch')!='main'
       or not isinstance(r.get('run_number'),int) for r in runs):return False
  if current.get('run_attempt')!=1:return False
- prior=[r for r in runs if r['id']!=current['id'] and r.get('status')!='queued']
+ prior=[r for r in runs if r['id']!=current['id'] and r.get('status')!='queued'
+        and not (r.get('status')=='pending' and r['id'] in pending_runs)]
  if not prior:return current['run_number']==1
  if any(r.get('status')!='completed' for r in prior):return False
  try:
@@ -60,6 +65,49 @@ def stable_runs(get_page):
   try:return all_runs(get_page)
   except HistoryChanged:
    if attempt==2:raise
+
+def serialized_pending_runs(current,runs,get_run,get_jobs,get_workflow,workflow_sha,workflow_ref):
+ # `pending` is GitHub's workflow-concurrency waiting state, not a prior failure.
+ # Empty jobs alone are a racy observation. Prove the immutable workflow at BOTH
+ # execution commits uses the same audited workflow-wide lock, which prevents a
+ # successor from starting while this run is active, even after our last read.
+ pending=[r for r in runs if r.get('id')!=current.get('id') and r.get('status')=='pending']
+ if not pending:return set()
+ def identity(run):
+  return (isinstance(run,dict) and all(type(run.get(k)) is int and run[k]>0 for k in ('id','workflow_id','run_number','run_attempt'))
+          and run['run_attempt']==1 and 'conclusion' in run and run.get('path')==WORKFLOW_PATH
+          and run.get('head_branch')=='main' and isinstance(run.get('repository'),dict)
+          and run['repository'].get('full_name')==REPOSITORY
+          and isinstance(run.get('head_repository'),dict) and run['head_repository'].get('full_name')==REPOSITORY
+          and run.get('event') in ('push','schedule','workflow_dispatch','workflow_run')
+          and isinstance(run.get('head_sha'),str) and re.fullmatch('[0-9a-f]{40}',run['head_sha']) is not None)
+ def same_run(a,b):
+  return identity(b) and all(a.get(k)==b.get(k) for k in ('id','workflow_id','run_number','run_attempt','path','head_branch','head_sha','event'))
+ def active(run):return run.get('status')=='in_progress' and run.get('conclusion') is None
+ def audited(sha):
+  payload=get_workflow(sha)
+  return (isinstance(payload,dict) and payload.get('type')=='file'
+          and payload.get('path')==WORKFLOW_PATH and payload.get('sha')==SERIALIZED_WORKFLOW_BLOB)
+ if (not identity(current) or not active(current) or workflow_sha!=current['head_sha']
+     or workflow_ref!=REPOSITORY+'/'+WORKFLOW_PATH+'@refs/heads/main'
+     or not audited(workflow_sha)):return set()
+ result=set()
+ for run in pending:
+  if (not identity(run) or run['workflow_id']!=current['workflow_id']
+      or run['run_number']<=current['run_number'] or run.get('conclusion') is not None
+      or not audited(run['head_sha'])):continue
+  payload=get_jobs(run['id'])
+  if not (isinstance(payload,dict) and type(payload.get('total_count')) is int
+          and payload['total_count']==0 and isinstance(payload.get('jobs'),list) and payload['jobs']==[]):continue
+  latest=get_run(run['id'])
+  if not same_run(run,latest):continue
+  # Replacement of the pending slot may cancel it during verification. The
+  # pinned attempt had no jobs, and the fixed lock rules out a start in between.
+  if ((latest.get('status')=='pending' and latest.get('conclusion') is None)
+      or (latest.get('status')=='completed' and latest.get('conclusion')=='cancelled')):
+   result.add(run['id'])
+ latest_current=get_run(current['id'])
+ return result if same_run(current,latest_current) and active(latest_current) else set()
 
 DEPLOY_STEPS=['Set up job','Checkout latest main','Run actions/setup-python@v5',
  'Verify previous deployment before any provider collection','Stage public site and recover last event snapshot',
@@ -141,11 +189,17 @@ def main():
  workflow=current.get('workflow_id')
  if not isinstance(workflow,int):raise ValueError('Workflow identity missing')
  runs=stable_runs(lambda page:get('/actions/workflows/'+str(workflow)+'/runs?per_page=100&page='+str(page)))
+ pending=serialized_pending_runs(current,runs,
+  lambda identity:get('/actions/runs/'+str(identity)),
+  lambda identity:get('/actions/runs/'+str(identity)+'/attempts/1/jobs?per_page=100'),
+  lambda sha:get('/contents/'+WORKFLOW_PATH+'?ref='+sha),
+  os.environ.get('GITHUB_WORKFLOW_SHA'),os.environ.get('GITHUB_WORKFLOW_REF'))
  resume=os.environ.get('GITHUB_EVENT_NAME')=='workflow_dispatch' and os.environ.get('RESUME_AFTER_REVIEW')=='true'
  # Pin the jobs read to attempt 1. A concurrent re-run must not make an empty
  # latest attempt hide jobs from the attempt whose history we are verifying.
  proved=proved_precollection_failures(runs,lambda failed_id:get('/actions/runs/'+str(failed_id)+'/attempts/1/jobs?per_page=100')) if not resume else set()
- if not permitted(current,runs,resume,proved):raise ValueError('Previous deployment was not confirmed successful. Review the failure before explicitly resuming collection.')
+ if not permitted(current,runs,resume,proved,pending):raise ValueError('Previous deployment was not confirmed successful. Review the failure before explicitly resuming collection.')
+ if pending:print('Verified '+str(len(pending))+' never-started deployment(s) waiting for the same Pages lock.')
  # Artifact restoration is allowed only from the exact verified publication anchor.
  if not resume:
   anchors=[r for r in runs if r.get('status')=='completed' and r.get('conclusion')=='success']
