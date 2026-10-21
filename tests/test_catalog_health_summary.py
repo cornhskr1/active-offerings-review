@@ -166,11 +166,31 @@ const read=name=>JSON.parse(fs.readFileSync(process.argv[2]+'/data/'+name));
 const input={coverage:read('priority2-coverage-inventory.json'),global:read('global-schedule.json'),oddsMap:read('odds-api-catalog-mappings.json'),now:'2026-10-19T10:00:00Z'};
 const actual=require(process.argv[1]).build(input),expected=sandbox.module.exports.build(input);
 if(JSON.stringify(actual)!==JSON.stringify(expected))throw Error('Indexed lookup changed result');
-// Same build function must observe changed timestamps, not retain cross-build health.
+// Retained data refreshes over time, so compare behavior rather than assuming
+// all observations are stale at this historical clock.
 input.now='2026-10-22T10:00:00Z';
-if(require(process.argv[1]).build(input).totals.fresh_events!==0)throw Error('Cached freshness escaped build');
+if(JSON.stringify(require(process.argv[1]).build(input))!==JSON.stringify(sandbox.module.exports.build(input)))throw Error('Indexed lookup changed result after clock change');
 """
         subprocess.run(['node', '-e', script, str(MODULE), str(ROOT)], check=True, capture_output=True, text=True)
+
+    def test_repeated_scoped_builds_recompute_freshness_with_frozen_fixture(self):
+        # One module instance must recompute health across fresh -> stale -> fresh.
+        # A frozen fixture avoids relying on the age of regularly refreshed data.
+        data = dict(coverage={'identities': [{'identity_key': 'a', 'sources': [{'id': 'child'}]}]},
+                    global_=schedule([event(source_id='child', source_endpoint='https://api.vendor.test/game')],
+                                     scope_source_ids=['child']))
+        data['global'] = data.pop('global_')
+        script = r"""
+const input=JSON.parse(require('fs').readFileSync(0,'utf8'));
+const build=require(process.argv[1]).build;
+for(const [now,fresh,stale] of [['2026-10-19T10:00:00Z',1,0],['2026-10-22T10:00:00Z',0,1],['2026-10-19T10:00:00Z',1,0]]){
+  input.now=now;
+  const result=build(input);
+  if(result.totals.fresh_events!==fresh||result.totals.stale_events!==stale)throw Error('Cached freshness escaped build');
+}
+"""
+        subprocess.run(['node', '-e', script, str(MODULE)], input=json.dumps(data),
+                       check=True, capture_output=True, text=True)
 
     def test_scoped_index_preserves_ambiguity_and_domain_matching(self):
         c = {'identities': [{'identity_key': 'a', 'sources': [{'id': 'child'}]}]}
