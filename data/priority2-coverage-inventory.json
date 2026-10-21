@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-21T15:18:06.482698+00:00",
-  "schedule_generated_at": "2026-10-21T15:06:30.489619+00:00",
+  "registry_generated_at": "2026-10-21T19:23:34.723152+00:00",
+  "schedule_generated_at": "2026-10-21T19:16:29.836582+00:00",
   "schedule_window_start": "2026-10-21",
   "schedule_window_end": "2026-10-28",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -871,10 +871,10 @@
           "type": "official-european-basketball-fixtures",
           "configured_league": "EuroCup | Men",
           "refresh_ok": true,
-          "events_in_window": 27
+          "events_in_window": 16
         }
       ],
-      "events_in_window": 27
+      "events_in_window": 16
     },
     {
       "sport": "Basketball",
@@ -892,10 +892,10 @@
           "type": "official-european-basketball-fixtures",
           "configured_league": "EuroLeague | Men",
           "refresh_ok": true,
-          "events_in_window": 20
+          "events_in_window": 19
         }
       ],
-      "events_in_window": 20
+      "events_in_window": 19
     },
     {
       "sport": "Basketball",
@@ -8850,10 +8850,10 @@
           "type": "official-auf-fixtures",
           "configured_league": "Copa Uruguay | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -9038,7 +9038,7 @@
           "id": "uefa-soccer-france-coup-lffp-women",
           "type": "official-event-window",
           "configured_league": "Coup LFFP | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -9101,7 +9101,7 @@
           "id": "uefa-soccer-france-coupe-de-france-women",
           "type": "official-event-window",
           "configured_league": "Coupe de France | Women",
-          "refresh_ok": true,
+          "refresh_ok": false,
           "events_in_window": 0
         }
       ],
@@ -11884,11 +11884,11 @@
           "id": "uefa-soccer-norway-obos-ligaen-men",
           "type": "official-obos-ligaen-next-round",
           "configured_league": "OBOS-ligaen | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -15384,10 +15384,10 @@
           "type": "official-italy-volleyball-fixtures",
           "configured_league": "Serie A1 | Women",
           "refresh_ok": true,
-          "events_in_window": 12
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 12
+      "events_in_window": 7
     },
     {
       "sport": "Volleyball",
