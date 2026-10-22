@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-22T04:42:24.043043+00:00",
-  "schedule_generated_at": "2026-10-22T04:31:29.725802+00:00",
-  "schedule_window_start": "2026-10-21",
-  "schedule_window_end": "2026-10-28",
+  "registry_generated_at": "2026-10-22T10:14:16.406530+00:00",
+  "schedule_generated_at": "2026-10-22T10:02:44.063793+00:00",
+  "schedule_window_start": "2026-10-22",
+  "schedule_window_end": "2026-10-29",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
     "catalog_operational_identities": 733,
@@ -347,10 +347,10 @@
           "type": "thesportsdb",
           "configured_league": "KBO League",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Baseball",
@@ -452,10 +452,10 @@
           "type": "mlbstats",
           "configured_league": "Professional Baseball League of the Dominican Republic (LIDOM)",
           "refresh_ok": true,
-          "events_in_window": 18
+          "events_in_window": 15
         }
       ],
-      "events_in_window": 18
+      "events_in_window": 15
     },
     {
       "sport": "Baseball",
@@ -892,10 +892,10 @@
           "type": "official-european-basketball-fixtures",
           "configured_league": "EuroLeague | Men",
           "refresh_ok": true,
-          "events_in_window": 19
+          "events_in_window": 22
         }
       ],
-      "events_in_window": 19
+      "events_in_window": 22
     },
     {
       "sport": "Basketball",
@@ -1676,10 +1676,10 @@
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 10
     },
     {
       "sport": "Basketball",
@@ -3218,10 +3218,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Cycling",
@@ -3622,10 +3622,10 @@
           "configured_source_id": "darts-pdc-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Darts",
@@ -4594,10 +4594,10 @@
           "type": "jgto-golf-season",
           "configured_league": "Japan Golf Tour",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Golf",
@@ -4657,10 +4657,10 @@
           "type": "official-golf-calendar",
           "configured_league": "Ladies European Tour",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 2
     },
     {
       "sport": "Golf",
@@ -5459,10 +5459,10 @@
           "type": "official-motorsports-calendar",
           "configured_league": "NHRA Mission Foods Drag Racing Series",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Motorsports",
@@ -6646,10 +6646,10 @@
           "type": "lnr-fixtures",
           "configured_league": "Pro D2 | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 9
     },
     {
       "sport": "Rugby",
@@ -7607,10 +7607,10 @@
           "type": "official-oefb-round-fixtures",
           "configured_league": "Austrian Frauen-Bundesliga | Women",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -9038,7 +9038,7 @@
           "id": "uefa-soccer-france-coup-lffp-women",
           "type": "official-event-window",
           "configured_league": "Coup LFFP | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -9101,7 +9101,7 @@
           "id": "uefa-soccer-france-coupe-de-france-women",
           "type": "official-event-window",
           "configured_league": "Coupe de France | Women",
-          "refresh_ok": false,
+          "refresh_ok": true,
           "events_in_window": 0
         }
       ],
@@ -10258,10 +10258,10 @@
           "type": "official-dfb-frauen-bundesliga-season",
           "configured_league": "Frauen Bundesliga | Women",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -11629,11 +11629,11 @@
           "id": "uefa-soccer-estonia-meistriliiga-premium-liiga-men",
           "type": "official-ejl-premium-next-round",
           "configured_league": "Meistriliiga / Premium Liiga | Men",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -12873,10 +12873,10 @@
           "type": "official-nzs-prvaliga-next-round",
           "configured_league": "Slovenian PrvaLiga | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 5
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 5
     },
     {
       "sport": "Soccer",
@@ -13673,10 +13673,10 @@
           "type": "thai-league-matches",
           "configured_league": "Thai FA Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 1
     },
     {
       "sport": "Soccer",
@@ -15383,11 +15383,11 @@
           "id": "volleyball-italy-serie-a1-women",
           "type": "official-italy-volleyball-fixtures",
           "configured_league": "Serie A1 | Women",
-          "refresh_ok": true,
-          "events_in_window": 7
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 0
     },
     {
       "sport": "Volleyball",
