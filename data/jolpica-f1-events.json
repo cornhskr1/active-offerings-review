@@ -5,8 +5,8 @@
   "catalog_identity_key": "motorsports-intl-f1",
   "season": "2026",
   "observed_at": "2026-10-21T15:29:16.365117Z",
-  "window_start": "2026-10-21T05:00:00Z",
-  "window_end": "2026-10-29T05:00:00Z",
+  "window_start": "2026-10-22T05:00:00Z",
+  "window_end": "2026-10-30T05:00:00Z",
   "events": [
     {
       "id": "jolpica-f1:2026:18:americas",
@@ -47,9 +47,8 @@
   "dataset_scope": "isolated_jolpica_f1_only",
   "source_health": {
     "status": "partial",
-    "reason": "race_schedule_only",
     "event_count": 1,
-    "stale_event_count": 0
+    "reason": "cached_schedule"
   },
   "collector_state": {
     "halted": false,
