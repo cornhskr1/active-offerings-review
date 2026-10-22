@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-22T15:19:17.436931+00:00",
-  "schedule_generated_at": "2026-10-22T15:07:59.535099+00:00",
+  "registry_generated_at": "2026-10-22T20:10:59.629314+00:00",
+  "schedule_generated_at": "2026-10-22T19:59:24.979210+00:00",
   "schedule_window_start": "2026-10-22",
   "schedule_window_end": "2026-10-29",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -892,10 +892,10 @@
           "type": "official-european-basketball-fixtures",
           "configured_league": "EuroLeague | Men",
           "refresh_ok": true,
-          "events_in_window": 22
+          "events_in_window": 16
         }
       ],
-      "events_in_window": 22
+      "events_in_window": 16
     },
     {
       "sport": "Basketball",
@@ -6190,11 +6190,11 @@
           "id": "ncaa-water-polo-di-men",
           "type": "official-ncaa-reviewed-team-fixtures",
           "configured_league": "Division I Water Polo | Men",
-          "refresh_ok": true,
-          "events_in_window": 2
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 0
     },
     {
       "sport": "NCAA Water Polo",
@@ -11673,10 +11673,10 @@
           "type": "official-fscg-cfl-round",
           "configured_league": "Montenegrin First League | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
