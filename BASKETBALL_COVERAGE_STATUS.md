@@ -1,6 +1,6 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-22T19:59:24.979210+00:00
+Catalog 10.1.26 · published schedule 2026-10-22T23:15:49.773235+00:00
 Review dates: 2026-10-22 through 2026-10-29 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
@@ -9,12 +9,12 @@ Configured connections are not a completion percentage. Published fixtures only 
 
 | Current state | Identities |
 |---|---:|
-| Calendar only | 51 |
+| Calendar only | 52 |
 | Fixtures published in this window | 17 |
 | Fixture connection missing | 6 |
 | Source checked; no current fixtures | 1 |
 | Competition/scope hold | 6 |
-| Source blocked or failed | 8 |
+| Source blocked or failed | 7 |
 
 | Competition / event | Current state | Source scope / next action |
 |---|---|---|
@@ -60,7 +60,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | FIBA Polynesian Basketball Cup \| Women | Calendar only | published-event-window |
 | FIBA Women's EuroLeague \| Women | Source blocked or failed | partial |
 | French Cup \| Men | Calendar only | last-published-event-window |
-| Governor’s Cup \| Men | Source blocked or failed | published-schedule-window |
+| Governor’s Cup \| Men | Calendar only | published-schedule-window |
 | Greek Basket League (GBL) \| Men | Fixtures published in this window | partial |
 | Greek Cup \| Men | Calendar only | last-published-event-window |
 | Greek Super Cup \| Men | Calendar only | published-event-window |
@@ -69,7 +69,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | King Mindaugas Cup \| Men | Calendar only | published-event-window |
 | Korean Basketball League (KBL) \| Men | Fixtures published in this window | partial |
 | LNB Élite \| Men | Fixtures published in this window | partial |
-| League Cup \| Men | Calendar only | published-schedule-window |
+| League Cup \| Men | Source blocked or failed | published-schedule-window |
 | Lega Basket Serie A (LBA) \| Men | Fixtures published in this window | partial |
 | Lietuvos krepšinio lyga (LKL) \| Men | Fixtures published in this window | partial |
 | Liga ACB \| Men | Fixtures published in this window | partial |
@@ -84,7 +84,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Novo Basquete Brasil (NBB) \| Men | Source blocked or failed | partial |
 | Pacific Games \| Men | Calendar only | last-published-event-window |
 | Pacific Games \| Women | Calendar only | last-published-event-window |
-| Philippine Basketball Association (PBA) \| Men | Source blocked or failed | published-schedule-window |
+| Philippine Basketball Association (PBA) \| Men | Calendar only | published-schedule-window |
 | Philippine Cup \| Men | Calendar only | last-published-event-window |
 | Polish Cup \| Men | Calendar only | last-published-event-window |
 | Polish Supercup \| Men | Calendar only | published-event-window |
