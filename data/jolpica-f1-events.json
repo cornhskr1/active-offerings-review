@@ -4,9 +4,9 @@
   "source_id": "jolpica-f1",
   "catalog_identity_key": "motorsports-intl-f1",
   "season": "2026",
-  "observed_at": "2026-10-21T15:29:16.365117Z",
-  "window_start": "2026-10-22T05:00:00Z",
-  "window_end": "2026-10-30T05:00:00Z",
+  "observed_at": "2026-10-23T15:21:09.733826Z",
+  "window_start": "2026-10-23T05:00:00Z",
+  "window_end": "2026-10-31T05:00:00Z",
   "events": [
     {
       "id": "jolpica-f1:2026:18:americas",
@@ -24,7 +24,7 @@
       "start_time": "2026-10-25T20:00:00Z",
       "date_only": false,
       "status": "UNKNOWN",
-      "observed_at": "2026-10-21T15:29:16.365117Z",
+      "observed_at": "2026-10-23T15:21:09.733826Z",
       "source_stale": false,
       "source_url": "https://api.jolpi.ca/ergast/f1/current/races/",
       "coverage_status": "partial",
@@ -47,12 +47,13 @@
   "dataset_scope": "isolated_jolpica_f1_only",
   "source_health": {
     "status": "partial",
+    "reason": "race_schedule_only",
     "event_count": 1,
-    "reason": "cached_schedule"
+    "stale_event_count": 0
   },
   "collector_state": {
     "halted": false,
-    "last_attempt_at": "2026-10-21T15:29:16.365117Z",
-    "next_fetch_at": "2026-10-22T15:29:16.365117Z"
+    "last_attempt_at": "2026-10-23T15:21:09.733826Z",
+    "next_fetch_at": "2026-10-24T15:21:09.733826Z"
   }
 }
