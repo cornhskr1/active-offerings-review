@@ -51,16 +51,31 @@ def recover_previous(url, opener=None):
     except Exception:
         raise ValueError('Previous snapshot unavailable or invalid') from None
 
+# Only files required by the public website may enter the Pages artifact.
+# New top-level directories are private by default.
+PUBLIC_ROOT_FILES = frozenset({'index.html', '_headers'})
+PUBLIC_DIRECTORIES = frozenset({'assets', 'data'})
+
+def is_public_asset(name):
+    parts = Path(name).parts
+    if not parts or Path(name).is_absolute() or '..' in parts or '.' in parts:
+        return False
+    if len(parts) == 1:
+        return name in PUBLIC_ROOT_FILES
+    return parts[0] in PUBLIC_DIRECTORIES
+
 def stage(root, destination):
     root, destination = Path(root).resolve(), Path(destination).resolve()
-    if destination == root:
-        raise ValueError('Staging must be separate')
+    if destination == root or destination.is_relative_to(root):
+        raise ValueError('Staging must be outside the repository')
     destination.mkdir(parents=True, exist_ok=True)
-    tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0')
+    tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\\0')
     for name in filter(None, tracked):
+        if not is_public_asset(name):
+            continue
         source = root / name
         if source.is_symlink() or not source.resolve().is_relative_to(root):
-            raise ValueError('Unexpected tracked link')
+            raise ValueError('Unexpected public asset link')
         if not source.is_file():
             continue
         target = destination / name
