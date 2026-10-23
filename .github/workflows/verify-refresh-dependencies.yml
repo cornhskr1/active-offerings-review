@@ -1,0 +1,73 @@
+name: Verify Refresh Dependency Pins
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/refresh-global-schedule.yml"
+      - ".github/workflows/refresh-tennis-intelligence.yml"
+      - ".github/workflows/refresh-tennis-registry.yml"
+      - ".github/workflows/deep-tennis-age-scan.yml"
+      - ".github/workflows/refresh-ncaa-basketball.yml"
+      - ".github/workflows/refresh-ncaa-basketball-rosters.yml"
+      - ".github/workflows/verify-refresh-dependencies.yml"
+permissions:
+  contents: read
+jobs:
+  dependency-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [global, tennis, ncaa]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned dependencies
+        shell: bash
+        run: |
+          case "${{ matrix.group }}" in
+            global) python -m pip install --quiet 'requests==2.34.2' 'pypdf==6.21.2' 'pdfplumber==0.11.10' 'lxml==6.0.2' ;;
+            tennis) python -m pip install --quiet 'playwright==1.63.0' ;;
+            ncaa) python -m pip install --quiet 'requests==2.34.2' 'beautifulsoup4==4.15.0' ;;
+          esac
+          python -m pip check
+      - name: Check imports and direct versions
+        shell: bash
+        run: |
+          case "${{ matrix.group }}" in
+            global)
+              python - <<'PY'
+          from importlib.metadata import version
+          import requests, pypdf, pdfplumber, lxml
+          expected = {'requests':'2.34.2','pypdf':'6.21.2','pdfplumber':'0.11.10','lxml':'6.0.2'}
+          assert all(version(k) == v for k, v in expected.items()), {k:version(k) for k in expected}
+          PY
+              ;;
+            tennis)
+              python - <<'PY'
+          from importlib.metadata import version
+          from playwright.sync_api import sync_playwright
+          assert version('playwright') == '1.63.0'
+          PY
+              python -m playwright install chromium
+              python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              page = browser.new_page()
+              page.set_content('<title>Dependency smoke test</title>')
+              assert page.title() == 'Dependency smoke test'
+              browser.close()
+          PY
+              ;;
+            ncaa)
+              python - <<'PY'
+          from importlib.metadata import version
+          import requests, bs4
+          assert version('requests') == '2.34.2'
+          assert version('beautifulsoup4') == '4.15.0'
+          PY
+              ;;
+          esac
