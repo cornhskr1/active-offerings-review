@@ -1,7 +1,7 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-23T04:36:38.195670+00:00
-Review dates: 2026-10-22 through 2026-10-29 (Central Time).
+Catalog 10.1.26 · published schedule 2026-10-23T09:57:20.815985+00:00
+Review dates: 2026-10-23 through 2026-10-30 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
 
@@ -10,11 +10,11 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Current state | Identities |
 |---|---:|
 | Calendar only | 51 |
-| Fixtures published in this window | 16 |
+| Fixtures published in this window | 17 |
 | Fixture connection missing | 6 |
 | Source checked; no current fixtures | 1 |
 | Competition/scope hold | 6 |
-| Source blocked or failed | 9 |
+| Source blocked or failed | 8 |
 
 | Competition / event | Current state | Source scope / next action |
 |---|---|---|
@@ -73,7 +73,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Lega Basket Serie A (LBA) \| Men | Fixtures published in this window | partial |
 | Lietuvos krepšinio lyga (LKL) \| Men | Fixtures published in this window | partial |
 | Liga ACB \| Men | Fixtures published in this window | partial |
-| Liga Nacional de Baloncesto Profesional (LNBP) \| Men | Source blocked or failed | partial |
+| Liga Nacional de Baloncesto Profesional (LNBP) \| Men | Fixtures published in this window | partial |
 | Liga Nacional de Basquetbol de Chile (LNB) \| Men | Fixture connection missing | missing |
 | Liga Nacional de Básquet (LNB) \| Men | Fixtures published in this window | partial |
 | Ligat Ha’Al / Israeli Basketball Premier League \| Men | Fixtures published in this window | partial |
