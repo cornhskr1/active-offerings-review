@@ -35,7 +35,7 @@ jobs:
           git reset --hard origin/main
 
       - name: Install dependencies
-        run: python3 -m pip install --quiet requests
+        run: python3 -m pip install --quiet 'requests==2.34.2'
 
       - name: Refresh NCAA Basketball rosters
         env:
