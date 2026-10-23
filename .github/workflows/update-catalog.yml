@@ -42,7 +42,7 @@ jobs:
           git reset --hard origin/main
 
       - name: Install catalog parser
-        run: python3 -m pip install --quiet requests beautifulsoup4 pypdf
+        run: python3 -m pip install --quiet 'requests==2.34.2' 'beautifulsoup4==4.15.0' 'pypdf==6.21.2'
 
       - name: Discover and parse current NRGC catalog
         run: python3 scripts/update_catalog.py
