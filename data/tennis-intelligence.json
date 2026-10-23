@@ -1,9 +1,9 @@
 {
   "schema_version": 6,
-  "generated_at": "2026-10-22T15:53:00.551206+00:00",
+  "generated_at": "2026-10-23T15:44:29.321182+00:00",
   "timezone": "America/Chicago",
-  "window_start": "2026-10-22",
-  "window_end": "2026-10-29",
+  "window_start": "2026-10-23",
+  "window_end": "2026-10-30",
   "tour_families": [
     {
       "id": "atp",
@@ -53,14 +53,14 @@
     "red_tournaments": 0,
     "amber_tournaments": 65,
     "green_tournaments": 0,
-    "active_field_participants_screened": 332,
+    "active_field_participants_screened": 334,
     "pre_draw_pool_names_screened": 8128,
     "verified_u18_players": 0,
     "pre_draw_u18_watch_players": 10,
     "targeted_review_candidates": 0,
     "verified_u18_registry_records": 30,
     "field_gaps": 65,
-    "no_u18_indicator_count": 332,
+    "no_u18_indicator_count": 334,
     "age_cache_records": 733
   },
   "tournaments": [
@@ -48005,6 +48005,17 @@
           "evidence": "No exact or conservative fuzzy match to the verified U18 / junior-age watch universe."
         },
         {
+          "name": "Santhosh Venkataram",
+          "participant_evidence": "UTR rendered event data",
+          "age": null,
+          "dob": null,
+          "age_status": "NO U18 INDICATOR",
+          "screening_status": "NO_U18_INDICATOR",
+          "source": "UTR official event page",
+          "source_url": "https://app.utrsports.net/events/386104",
+          "evidence": "No exact or conservative fuzzy match to the verified U18 / junior-age watch universe."
+        },
+        {
           "name": "Utr Pro Tennis",
           "participant_evidence": "UTR rendered event data",
           "age": null,
@@ -48020,18 +48031,18 @@
       "participant_field_basis": "UTR event participant data",
       "participant_field_type": "PLAYER_LIST",
       "participant_field_expected_min": 8,
-      "participant_field_confidence": "LOW",
-      "participants_extracted": 3,
+      "participant_field_confidence": "MEDIUM",
+      "participants_extracted": 4,
       "participant_extraction_status": "EXTRACTED",
       "participant_field_complete": false,
-      "participant_count": 3,
+      "participant_count": 4,
       "field_captured": false,
-      "field_completeness": "INCOMPLETE",
+      "field_completeness": "PARTIAL",
       "verified_u18": [],
       "targeted_review": [],
       "targeted_review_count": 0,
       "verified_18plus_count": 0,
-      "no_u18_indicator_count": 3,
+      "no_u18_indicator_count": 4,
       "unresolved_count": 0,
       "confirmed_u18": [],
       "pre_draw_u18": [],
@@ -48050,6 +48061,17 @@
       "status": "UPCOMING",
       "source_url": "https://app.utrsports.net/events/381641",
       "participants": [
+        {
+          "name": "José Luis González",
+          "participant_evidence": "UTR rendered event data",
+          "age": null,
+          "dob": null,
+          "age_status": "NO U18 INDICATOR",
+          "screening_status": "NO_U18_INDICATOR",
+          "source": "UTR official event page",
+          "source_url": "https://app.utrsports.net/events/381641",
+          "evidence": "No exact or conservative fuzzy match to the verified U18 / junior-age watch universe."
+        },
         {
           "name": "PTT Knoxville Men",
           "participant_evidence": "UTR rendered event data",
@@ -48088,18 +48110,18 @@
       "participant_field_basis": "UTR event participant data",
       "participant_field_type": "PLAYER_LIST",
       "participant_field_expected_min": 8,
-      "participant_field_confidence": "LOW",
-      "participants_extracted": 3,
+      "participant_field_confidence": "MEDIUM",
+      "participants_extracted": 4,
       "participant_extraction_status": "EXTRACTED",
       "participant_field_complete": false,
-      "participant_count": 3,
+      "participant_count": 4,
       "field_captured": false,
-      "field_completeness": "INCOMPLETE",
+      "field_completeness": "PARTIAL",
       "verified_u18": [],
       "targeted_review": [],
       "targeted_review_count": 0,
       "verified_18plus_count": 0,
-      "no_u18_indicator_count": 3,
+      "no_u18_indicator_count": 4,
       "unresolved_count": 0,
       "confirmed_u18": [],
       "pre_draw_u18": [],
@@ -49587,25 +49609,25 @@
       "ok": true,
       "events": 0,
       "url": "https://www.wtatennis.com/tournaments",
-      "candidate_tournament_links": 23,
+      "candidate_tournament_links": 22,
       "dated_candidate_links": 178,
       "overlapping_candidate_links": 0,
-      "unresolved_candidate_links": 23,
+      "unresolved_candidate_links": 22,
       "page_dates_resolved": 0,
-      "payload_candidates": 2898,
+      "payload_candidates": 2916,
       "error": null
     },
     "wta_125": {
-      "ok": false,
+      "ok": true,
       "events": 0,
       "url": "https://www.wtatennis.com/tournaments/wta-125",
-      "candidate_tournament_links": 0,
-      "dated_candidate_links": 0,
+      "candidate_tournament_links": 31,
+      "dated_candidate_links": 91,
       "overlapping_candidate_links": 0,
-      "unresolved_candidate_links": 0,
+      "unresolved_candidate_links": 31,
       "page_dates_resolved": 0,
-      "payload_candidates": 0,
-      "error": "PUBLISHER_HTTP_429"
+      "payload_candidates": 2088,
+      "error": null
     },
     "itf_men": {
       "ok": false,
@@ -49694,7 +49716,7 @@
       "collection_paused": true,
       "source_stale": true,
       "reason": "Permission required: ITF automated collection is paused pending access review; saved observations are not fresh.",
-      "hold_checked_at": "2026-10-22T15:53:00.551206+00:00",
+      "hold_checked_at": "2026-10-23T15:44:29.321182+00:00",
       "note": "Saved evidence retained; no new ITF collection or permission verification."
     }
   ],
@@ -49722,6 +49744,6 @@
       "NO_CURRENT_TOURNAMENTS_MAPPED: WTA Tour",
       "NO_CURRENT_TOURNAMENTS_MAPPED: WTA 125"
     ],
-    "checked_at": "2026-10-22T15:53:00.551206+00:00"
+    "checked_at": "2026-10-23T15:44:29.321182+00:00"
   }
 }
