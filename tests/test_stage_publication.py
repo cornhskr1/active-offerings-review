@@ -35,7 +35,7 @@ class PublicPublicationTests(unittest.TestCase):
                 source.parent.mkdir(parents=True, exist_ok=True)
                 source.write_text(name)
             with patch("stage_odds_pages.subprocess.check_output",
-                       return_value=("\\0".join(names) + "\\0").encode()):
+                       return_value=("\0".join(names) + "\0").encode()):
                 stage(root, output)
             self.assertEqual(
                 {p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()},
@@ -52,7 +52,7 @@ class PublicPublicationTests(unittest.TestCase):
             data.mkdir()
             (data / "link.json").symlink_to(outside)
             with patch("stage_odds_pages.subprocess.check_output",
-                       return_value=b"data/link.json\\0"):
+                       return_value=b"data/link.json\0"):
                 with self.assertRaises(ValueError):
                     stage(root, Path(temporary) / "publication")
 
