@@ -69,7 +69,7 @@ def stage(root, destination):
     if destination == root or destination.is_relative_to(root):
         raise ValueError('Staging must be outside the repository')
     destination.mkdir(parents=True, exist_ok=True)
-    tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\\0')
+    tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0')
     for name in filter(None, tracked):
         if not is_public_asset(name):
             continue
