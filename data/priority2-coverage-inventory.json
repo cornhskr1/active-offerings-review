@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-23T10:09:13.737753+00:00",
-  "schedule_generated_at": "2026-10-23T09:57:20.815985+00:00",
+  "registry_generated_at": "2026-10-23T15:06:34.223255+00:00",
+  "schedule_generated_at": "2026-10-23T14:57:03.788300+00:00",
   "schedule_window_start": "2026-10-23",
   "schedule_window_end": "2026-10-30",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 3
     },
     {
       "sport": "Esports",
@@ -11673,10 +11673,10 @@
           "type": "official-fscg-cfl-round",
           "configured_league": "Montenegrin First League | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
@@ -14325,11 +14325,11 @@
           "id": "soccer-afc-uzbekistan-uzbekistan-super-league-men",
           "type": "official-pfl-uz-superleague-fixtures",
           "configured_league": "Uzbekistan Super League | Men",
-          "refresh_ok": true,
-          "events_in_window": 7
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
