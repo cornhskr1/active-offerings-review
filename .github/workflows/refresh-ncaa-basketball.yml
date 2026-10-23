@@ -29,7 +29,7 @@ jobs:
           git reset --hard origin/main
 
       - name: Install dependencies
-        run: python3 -m pip install --quiet requests beautifulsoup4
+        run: python3 -m pip install --quiet 'requests==2.34.2' 'beautifulsoup4==4.15.0'
 
       - name: Refresh NCAA Basketball Division I map
         run: python3 scripts/refresh_ncaa_basketball_di_map.py
