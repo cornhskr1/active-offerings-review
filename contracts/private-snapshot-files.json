@@ -1,0 +1,757 @@
+{
+  "app_commit": "163825d4b46ea9af2869c29c6c2103b03f51ea15",
+  "contract_review": "transport_reviewed_inactive_runtime_acceptance_pending",
+  "family_outputs": {
+    "deep-tennis-age-scan": [
+      "data/tennis-age-cache.json"
+    ],
+    "refresh-catalog-change-queue": [
+      "data/catalog-change-queue.json"
+    ],
+    "refresh-competition-identity-registry": [
+      "data/competition-identity-registry.json"
+    ],
+    "refresh-data": [
+      "data/review-data.json",
+      "data/status.json"
+    ],
+    "refresh-global-schedule": [
+      "BASKETBALL_COVERAGE_STATUS.md",
+      "data/basketball-coverage-acceptance.json",
+      "data/competition-identity-registry.json",
+      "data/global-schedule.json",
+      "data/priority2-coverage-inventory.json"
+    ],
+    "refresh-jolpica-f1": [
+      "data/jolpica-f1-events.json"
+    ],
+    "refresh-ncaa-basketball": [
+      "data/ncaa-basketball-di-map.json",
+      "data/ncaa-basketball-intelligence.json",
+      "data/ncaa-basketball.json"
+    ],
+    "refresh-ncaa-basketball-age-cache": [
+      "data/ncaa-basketball-age-cache.json",
+      "data/ncaa-basketball-age-research-queue.json"
+    ],
+    "refresh-ncaa-basketball-rosters": [
+      "data/ncaa-basketball-rosters.json"
+    ],
+    "refresh-ncaa-football": [
+      "data/ncaa-football-age-review.json",
+      "data/ncaa-football-data.json",
+      "data/ncaa-football-sources.json",
+      "data/review-data.json"
+    ],
+    "refresh-nebraska-collegiate": [
+      "data/nebraska-collegiate-futures.json",
+      "data/nebraska-collegiate-live.json",
+      "data/official-school-calendar-cache.json"
+    ],
+    "refresh-priority-queue": [
+      "data/priority-queue.json"
+    ],
+    "refresh-tennis-intelligence": [
+      "data/tennis-age-cache.json",
+      "data/tennis-exceptions.json",
+      "data/tennis-intelligence.json",
+      "data/tennis-review.json",
+      "data/tennis-schedule.json",
+      "data/tennis-u18-registry.json"
+    ],
+    "refresh-tennis-registry": [
+      "data/tennis-age-cache.json",
+      "data/tennis-exceptions.json",
+      "data/tennis-intelligence.json",
+      "data/tennis-review.json",
+      "data/tennis-schedule.json",
+      "data/tennis-u18-registry.json"
+    ],
+    "refresh-tennis-review": [
+      "data/tennis-review.json"
+    ],
+    "research-ncaa-basketball-ages": [
+      "data/ncaa-basketball-age-cache.json",
+      "data/ncaa-basketball-age-research-queue.json",
+      "data/ncaa-basketball-age-research-results.json"
+    ],
+    "update-catalog": [
+      "data/catalog-change-queue.json",
+      "data/catalog-current.pdf",
+      "data/catalog-live.json",
+      "data/catalog-status.json",
+      "data/competition-identity-registry.json"
+    ]
+  },
+  "outputs": {
+    "BASKETBALL_COVERAGE_STATUS.md": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "0c302640fd7a67954206ee31efc4052025c359dcbc9cb27b2d092f11185640ad",
+      "public": false,
+      "required_types": {},
+      "root_type": "text",
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/basketball-coverage-acceptance.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "fe544b4b06508d8ce32d53417cc1bf5cf22f640305b4a6f4980505c28a0086b8",
+      "public": true,
+      "required_types": {
+        "catalog_menu_version": "str",
+        "identities": "list",
+        "schedule_generated_at": "str",
+        "schema_version": "int",
+        "scope_note": "str",
+        "sport": "str",
+        "summary": "dict",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/catalog-change-queue.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "4178e18cea61cfead43d03a0d86f59a56d613c657422d183379e7fb167da1303",
+      "public": true,
+      "required_types": {
+        "catalog": "dict",
+        "generated_at": "str",
+        "input_signature": "str",
+        "open_items": "list",
+        "policy": "dict",
+        "schema_version": "int",
+        "summary": "dict"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/catalog-current.pdf": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "e79f3a9db9a1bbc921af59fc4cad523d190bb7b40bbb57df70b37b0525375d02",
+      "public": true,
+      "required_types": {},
+      "root_type": "pdf",
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/catalog-live.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "06f9958b75d3553c6aa978689cc86dca90175d86160c50d5e7be7c96df879734",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "line_count": "int",
+        "menu_version": "str",
+        "page_count": "int",
+        "pages": "list",
+        "pdf_url": "str",
+        "restrictions": "list",
+        "schema_version": "int",
+        "sections": "list",
+        "sha256": "str",
+        "source_label": "str",
+        "source_page": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/catalog-status.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "6d3427cf4b149a55e298c19decfe3f32613db0bd2188eac53e08dc621afd5ebe",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "line_count": "int",
+        "menu_version": "str",
+        "page_count": "int",
+        "pdf_url": "str",
+        "restriction_count": "int",
+        "sha256": "str",
+        "source_label": "str"
+      },
+      "root_type": "dict",
+      "schema_version": null,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/competition-identity-registry.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "d18e1a7f087f266824a440ff6677aaa2d44fe85df8af47a0bd1a31e7dfe1dc89",
+      "public": true,
+      "required_types": {
+        "alias_review_queue": "list",
+        "catalog_menu_version": "str",
+        "catalog_source": "str",
+        "competition_count": "int",
+        "competitions": "list",
+        "coverage_gaps": "list",
+        "event_count": "int",
+        "generated_at": "str",
+        "schedule_generated_at": "str",
+        "schedule_window_end": "str",
+        "schedule_window_start": "str",
+        "schema_version": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/global-schedule.json": {
+      "max_bytes": 6596526,
+      "observed_sample_sha256": "799e186c9c02c543de9b40991daeefe1aa83ad9bcf4baff81d8568d7dfb72551",
+      "public": true,
+      "required_types": {
+        "catalog_rejected_event_count": "int",
+        "coverage_gaps": "list",
+        "discovered_event_count": "int",
+        "event_count": "int",
+        "events": "list",
+        "generated_at": "str",
+        "schema_version": "int",
+        "sources": "list",
+        "timezone": "str",
+        "tour_calendars": "list",
+        "unresolved_matchup_count": "int",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/jolpica-f1-events.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "b5b9df77ff5d4da7b46a63c61683b5250871ae035a28a5c0b3988c3b794d7fbb",
+      "public": true,
+      "required_types": {
+        "catalog_identity_key": "str",
+        "collector_state": "dict",
+        "dataset_scope": "str",
+        "events": "list",
+        "license": "dict",
+        "observed_at": "str",
+        "provider": "str",
+        "schema_version": "int",
+        "season": "str",
+        "source_health": "dict",
+        "source_id": "str",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball-age-cache.json": {
+      "max_bytes": 14487100,
+      "observed_sample_sha256": "28de03e8e9de75e763856f95fce80a6a92b5ad24382b7c80d79d61e0289fc545",
+      "public": true,
+      "required_types": {
+        "access_status": "str",
+        "collection_paused": "bool",
+        "collection_status_note": "str",
+        "generated_at": "str",
+        "known_u18_unmatched": "list",
+        "records": "list",
+        "schema_version": "int",
+        "source": "dict",
+        "source_observation_times": "dict",
+        "stale": "bool",
+        "summary": "dict"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball-age-research-queue.json": {
+      "max_bytes": 8637346,
+      "observed_sample_sha256": "66d7dfe4779acab60c5b78141aafba61173c01fe0d8c4e692567de07389fb64e",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "method": "str",
+        "priority_order": "list",
+        "queue": "list",
+        "schema_version": "int",
+        "summary": "dict"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball-age-research-results.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "d1efe51de23d4a8d5e08708d829b5e16df7c731bf89fe548d7f8acc7f3485513",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "results": "list",
+        "schema_version": "int",
+        "summary": "dict"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball-di-map.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "8470dd9184117cb5b328901ccc97ab2b65a87e5663e49ba21caf4923e34550ea",
+      "public": true,
+      "required_types": {
+        "access_status": "str",
+        "collection_hold_recorded_at": "str",
+        "collection_paused": "bool",
+        "collection_status_note": "str",
+        "generated_at": "str",
+        "quality": "dict",
+        "schema_version": "int",
+        "source": "str",
+        "source_urls": "dict",
+        "stale": "bool",
+        "summary": "dict",
+        "teams": "list"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball-intelligence.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "5212f4daa8f673dd9899af35cef4aafdd3a9bfc86d24c796c1f4a4b9efed8619",
+      "public": true,
+      "required_types": {
+        "access_status": "str",
+        "active_exposure_count": "int",
+        "active_exposures": "list",
+        "age_review_count": "int",
+        "age_reviews": "list",
+        "catalog_special_rules": "list",
+        "catalog_special_rules_count": "int",
+        "collection_paused": "bool",
+        "collection_status_note": "str",
+        "events_screened": "int",
+        "generated_at": "str",
+        "method": "str",
+        "notes": "list",
+        "roster_matched_verified_u18": "list",
+        "roster_matched_verified_u18_count": "int",
+        "roster_unmatched_verified_u18": "list",
+        "roster_unmatched_verified_u18_count": "int",
+        "schema_version": "int",
+        "screening_date": "str",
+        "source_observation_times": "dict",
+        "special_restriction_count": "int",
+        "special_restrictions": "list",
+        "sport": "str",
+        "stale": "bool",
+        "verified_u18": "list",
+        "verified_u18_count": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball-rosters.json": {
+      "max_bytes": 9499158,
+      "observed_sample_sha256": "083ec2bc82adfa0cd17a98cf4cd1dbf7c41758fb0a69c0d694442972721a6c8b",
+      "public": true,
+      "required_types": {
+        "access_status": "str",
+        "collection_hold_recorded_at": "str",
+        "collection_paused": "bool",
+        "collection_status_note": "str",
+        "generated_at": "str",
+        "refresh": "dict",
+        "schema_version": "int",
+        "source": "dict",
+        "stale": "bool",
+        "summary": "dict",
+        "teams": "list"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-basketball.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "644887ded19a34c8fcca6a67e39d4f1d291ac0805ac99b4a9f7a577f87c5dacd",
+      "public": true,
+      "required_types": {
+        "access_status": "str",
+        "collection_hold_recorded_at": "str",
+        "collection_paused": "bool",
+        "collection_status_note": "str",
+        "event_count": "int",
+        "events": "list",
+        "generated_at": "str",
+        "lane_count": "int",
+        "lanes": "list",
+        "schema_version": "int",
+        "source": "dict",
+        "stale": "bool",
+        "timezone": "str",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-football-age-review.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "b2eb5ea66310bf5c8047d5a7e6471d28992828075fe94828f3eae8c96c3e3226",
+      "public": true,
+      "required_types": {
+        "age_review_needed": "list",
+        "age_review_needed_count": "int",
+        "bios_screened": "int",
+        "candidates_extracted": "int",
+        "generated_at": "str",
+        "method": "str",
+        "risk_methodology": "dict",
+        "risk_tier_counts": "dict",
+        "schema_version": "int",
+        "scope": "str",
+        "screening_date": "str",
+        "sport": "str",
+        "staff_vetted_records": "list",
+        "staff_vetting_counts": "dict",
+        "team_metrics": "list",
+        "unresolved": "list",
+        "unresolved_count": "int",
+        "verified_18plus": "list",
+        "verified_18plus_count": "int",
+        "verified_u18": "list",
+        "verified_u18_count": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 4,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-football-data.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "2e0e326984a25c4c7a2b947e22cb8357511e9e537b86717f5ff718fe71ff5b63",
+      "public": true,
+      "required_types": {
+        "conference_counts": "dict",
+        "coverage_alerts": "list",
+        "generated_at": "str",
+        "known_u18": "list",
+        "schema_version": "int",
+        "scope": "str",
+        "sport": "str",
+        "teams": "list",
+        "teams_mapped": "int",
+        "teams_partial": "int",
+        "teams_total": "int",
+        "teams_unmapped": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 4,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/ncaa-football-sources.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "82956fa4cc59daecba35ae03bb1fdda2c559a0d2fc13ba4be9a9417aea0d60d3",
+      "public": true,
+      "required_types": {
+        "age_discovery": "dict",
+        "coverage_rule": "str",
+        "last_age_discovery_run": "str",
+        "last_auto_map_run": "str",
+        "note": "str",
+        "path_candidates": "dict",
+        "schema_version": "int",
+        "scope": "str",
+        "sport": "str",
+        "team_count": "int",
+        "teams": "list"
+      },
+      "root_type": "dict",
+      "schema_version": 4,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/nebraska-collegiate-futures.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "3f275361b912ed93dbf88e38cba97dba52364423a6ee72662ae9d1f98e4815a7",
+      "public": true,
+      "required_types": {
+        "alert_window_days": "int",
+        "collection_status_note": "str",
+        "generated_at": "str",
+        "programs": "list",
+        "rules": "dict",
+        "schema_version": "int",
+        "scope": "str",
+        "season": "str",
+        "source_stale": "bool",
+        "sources": "list",
+        "timezone": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/nebraska-collegiate-live.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "0c6f739e8fcfe089a3a81f5ced73822dec48873862a9ff14af5cf0cc64a6dac1",
+      "public": true,
+      "required_types": {
+        "calendar_events": "list",
+        "calendar_note": "str",
+        "calendar_programs": "list",
+        "coverage": "dict",
+        "events": "list",
+        "generated_at": "str",
+        "projection_note": "str",
+        "schema_version": "int",
+        "sources": "list",
+        "timezone": "str",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 2,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/official-school-calendar-cache.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "9c1cd335dd86824e96faffc5e1c77d223d36c9ea513c4501b23367befc80c8d6",
+      "public": true,
+      "required_types": {
+        "schema_version": "int",
+        "sources": "dict"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/priority-queue.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "a6ac0150b19ecba0d30d30851e2cf3f184d9df94c4cf84717f49aa2eac703113",
+      "public": true,
+      "required_types": {
+        "amber_count": "int",
+        "card_count": "int",
+        "cards": "list",
+        "generated_at": "str",
+        "red_count": "int",
+        "schema_version": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/priority2-coverage-inventory.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "2e6a4744eeab065026d0656ec417b32b9d53f997503bf6862e12e61d683c6765",
+      "public": true,
+      "required_types": {
+        "by_sport": "dict",
+        "catalog_menu_version": "str",
+        "identities": "list",
+        "note": "str",
+        "registry_generated_at": "str",
+        "schedule_generated_at": "str",
+        "schedule_window_end": "str",
+        "schedule_window_start": "str",
+        "schema_version": "int",
+        "summary": "dict"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/review-data.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "d0647d00dfa95cb10a4d8dbd5fa61c616a128c77950e8aae552e770115900549",
+      "public": true,
+      "required_types": {
+        "age_review_needed": "list",
+        "background_checked_at": "str",
+        "coverage_alerts": "list",
+        "discovery_signals": "list",
+        "events": "list",
+        "generated_at": "str",
+        "restriction_triggers": "list",
+        "review_window_days": "int",
+        "schema_version": "int",
+        "u18_matches": "list"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/status.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "c0cae5819f197cbf91bd5377d733c55c20fc48780e4877dc0a3d30bed92687e8",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "healthy_count": "int",
+        "source_count": "int",
+        "sources": "list"
+      },
+      "root_type": "dict",
+      "schema_version": null,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/tennis-age-cache.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "9f0eea453e2e94d62f9538ac9acce69c8a17de16e50ed1925c978c97d446c94d",
+      "public": true,
+      "required_types": {
+        "age_evidence_review": "dict",
+        "batch_size": "int",
+        "generated_at": "str",
+        "permission_held": "int",
+        "processed": "int",
+        "publisher_permission_holds": "list",
+        "records": "dict",
+        "remaining_candidates": "int",
+        "resolved_this_run": "int",
+        "schema_version": "int",
+        "unresolved_this_run": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/tennis-exceptions.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "680abdd8cc790ee4ca44826124103483651ac02aa160f9086c4fb7cf8a767d48",
+      "public": true,
+      "required_types": {
+        "count": "int",
+        "exceptions": "list",
+        "generated_at": "str",
+        "publisher_permission_holds": "list",
+        "schema_version": "int"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/tennis-intelligence.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "6a4dc49c2aae7c9cd49ba1acb67bd151854b5287f7e26452dda566afbaba176e",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "live_u18_registry": "list",
+        "methodology": "dict",
+        "publisher_permission_holds": "list",
+        "quality_gate": "dict",
+        "risk_queue": "list",
+        "schema_version": "int",
+        "source_health": "dict",
+        "summary": "dict",
+        "targeted_exceptions": "list",
+        "timezone": "str",
+        "tour_families": "list",
+        "tournaments": "list",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 6,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/tennis-review.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "5976ffd09c6f0f894d3577ccdb41bbd7f6743af598a0d38608359ef6e2782780",
+      "public": true,
+      "required_types": {
+        "alerts": "list",
+        "blocked": "list",
+        "coverage": "list",
+        "generated_at": "str",
+        "guardrails": "dict",
+        "mode": "str",
+        "schema_version": "int",
+        "source_generated_at": "str",
+        "summary": "dict",
+        "timezone": "str",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/tennis-schedule.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "d424f31b7eb6f770ac1ae11892477fd11c4afc384c389f796fa21240ecc8fe9f",
+      "public": true,
+      "required_types": {
+        "generated_at": "str",
+        "publisher_permission_holds": "list",
+        "quality_gate": "dict",
+        "schema_version": "int",
+        "timezone": "str",
+        "tour_families": "list",
+        "tournaments": "list",
+        "window_end": "str",
+        "window_start": "str"
+      },
+      "root_type": "dict",
+      "schema_version": 1,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    },
+    "data/tennis-u18-registry.json": {
+      "max_bytes": 5000000,
+      "observed_sample_sha256": "1c8bcb4e5bb260fe365b319744df5fec55fbe4ad8197c9f68e101f08107f42a3",
+      "public": true,
+      "required_types": {
+        "age_evidence_review": "dict",
+        "generated_at": "str",
+        "junior_targeted_candidates": "list",
+        "publisher_permission_holds": "list",
+        "records": "list",
+        "schema_version": "int",
+        "source_health": "dict",
+        "summary": "dict",
+        "verified_u18": "list"
+      },
+      "root_type": "dict",
+      "schema_version": 2,
+      "semantic_review": "existing_collector_semantics_preserved",
+      "transport_review": "typed_baseline_and_original_family_tests"
+    }
+  },
+  "production_enabled": false,
+  "schema_version": 1
+}
