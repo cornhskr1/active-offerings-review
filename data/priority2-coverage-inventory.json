@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-24T01:14:40.983746+00:00",
-  "schedule_generated_at": "2026-10-24T01:02:28.617811+00:00",
-  "schedule_window_start": "2026-10-23",
-  "schedule_window_end": "2026-10-30",
+  "registry_generated_at": "2026-10-24T05:54:01.218964+00:00",
+  "schedule_generated_at": "2026-10-24T05:42:22.975401+00:00",
+  "schedule_window_start": "2026-10-24",
+  "schedule_window_end": "2026-10-31",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
   "summary": {
     "catalog_operational_identities": 733,
@@ -388,11 +388,11 @@
           "id": "lmp",
           "type": "thesportsdb",
           "configured_league": "Mexican Pacific League",
-          "refresh_ok": true,
-          "events_in_window": 1
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Baseball",
@@ -452,10 +452,10 @@
           "type": "mlbstats",
           "configured_league": "Professional Baseball League of the Dominican Republic (LIDOM)",
           "refresh_ok": true,
-          "events_in_window": 18
+          "events_in_window": 19
         }
       ],
-      "events_in_window": 18
+      "events_in_window": 16
     },
     {
       "sport": "Baseball",
@@ -1634,10 +1634,10 @@
           "type": "thesportsdb-day",
           "configured_league": "Liga Nacional de Baloncesto Profesional (LNBP)",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Basketball",
@@ -1675,11 +1675,11 @@
           "id": "basketball-ar-lnb",
           "type": "official-arg-lnb-fixtures",
           "configured_league": "Liga Nacional de Básquet (LNB) | Men",
-          "refresh_ok": true,
-          "events_in_window": 8
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 0
     },
     {
       "sport": "Basketball",
@@ -3310,10 +3310,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Cycling",
@@ -3356,10 +3356,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 0
     },
     {
       "sport": "Cycling",
@@ -4218,10 +4218,10 @@
           "configured_source_id": "esports-ubisoft-r6-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 3
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 3
+      "events_in_window": 1
     },
     {
       "sport": "Esports",
@@ -4401,7 +4401,7 @@
           "events_in_window": 4
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 3
     },
     {
       "sport": "Football",
@@ -6485,10 +6485,10 @@
           "type": "prem-rugby-matches",
           "configured_league": "Gallagher Premiership Rugby | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 8
     },
     {
       "sport": "Rugby",
@@ -6934,10 +6934,10 @@
           "type": "lnr-fixtures",
           "configured_league": "Top 14 | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 13
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 13
     },
     {
       "sport": "Rugby",
@@ -7607,10 +7607,10 @@
           "type": "official-oefb-round-fixtures",
           "configured_league": "Austrian Frauen-Bundesliga | Women",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -8238,11 +8238,11 @@
           "id": "conmebol-soccer-uruguay-campeonato-femenino-women",
           "type": "official-auf-fixtures",
           "configured_league": "Campeonato Femenino | Women",
-          "refresh_ok": false,
-          "events_in_window": 0
+          "refresh_ok": true,
+          "events_in_window": 2
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 2
     },
     {
       "sport": "Soccer",
@@ -9165,10 +9165,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Croatian Football League / SuperSport HNL | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -9271,10 +9271,10 @@
           "type": "official-central-europe-league-fixtures",
           "configured_league": "Czech First League | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 12
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 12
     },
     {
       "sport": "Soccer",
@@ -9313,10 +9313,10 @@
           "type": "official-dfb-womens-cup-fixtures",
           "configured_league": "DFB-Pokal Frauen | Women",
           "refresh_ok": true,
-          "events_in_window": 1
+          "events_in_window": 3
         }
       ],
-      "events_in_window": 1
+      "events_in_window": 3
     },
     {
       "sport": "Soccer",
@@ -10660,10 +10660,10 @@
           "type": "jleague-fixtures",
           "configured_league": "J2 League | Men",
           "refresh_ok": true,
-          "events_in_window": 11
+          "events_in_window": 18
         }
       ],
-      "events_in_window": 11
+      "events_in_window": 18
     },
     {
       "sport": "Soccer",
@@ -11207,10 +11207,10 @@
           "type": "official-liga-portugal-2-calendar",
           "configured_league": "Liga Portugal 2 | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -11524,10 +11524,10 @@
           "type": "official-mfl-fa-semifinal-fixtures",
           "configured_league": "Malaysia FA Cup | Men",
           "refresh_ok": true,
-          "events_in_window": 2
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -11821,10 +11821,10 @@
           "type": "official-nz-men-championship",
           "configured_league": "New Zealand National League | Men",
           "refresh_ok": true,
-          "events_in_window": 4
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 4
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -12704,10 +12704,10 @@
           "type": "official-figc-serie-a-women-fixtures",
           "configured_league": "Serie A | Women",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 8
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 8
     },
     {
       "sport": "Soccer",
@@ -12831,10 +12831,10 @@
           "type": "official-nike-liga-fixtures",
           "configured_league": "Slovak First Football League / Slovak 1. Liga | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 12
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 12
     },
     {
       "sport": "Soccer",
@@ -13505,10 +13505,10 @@
           "type": "official-sfl-season-pdf",
           "configured_league": "Swiss Super League | Men",
           "refresh_ok": true,
-          "events_in_window": 6
+          "events_in_window": 9
         }
       ],
-      "events_in_window": 6
+      "events_in_window": 9
     },
     {
       "sport": "Soccer",
@@ -13694,10 +13694,10 @@
           "type": "thai-league-matches",
           "configured_league": "Thai League 1 | Men",
           "refresh_ok": true,
-          "events_in_window": 9
+          "events_in_window": 11
         }
       ],
-      "events_in_window": 9
+      "events_in_window": 11
     },
     {
       "sport": "Soccer",
@@ -14347,10 +14347,10 @@
           "type": "official-vpf-vleague-fixtures",
           "configured_league": "V.League 1 | Men",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 10
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 10
     },
     {
       "sport": "Soccer",
@@ -14496,10 +14496,10 @@
           "type": "official-zpl-transitional-calendars",
           "configured_league": "Zambia Super League | Men",
           "refresh_ok": true,
-          "events_in_window": 10
+          "events_in_window": 17
         }
       ],
-      "events_in_window": 10
+      "events_in_window": 17
     },
     {
       "sport": "Soccer",

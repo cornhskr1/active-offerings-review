@@ -1,7 +1,7 @@
 # Basketball operational coverage
 
-Catalog 10.1.26 · published schedule 2026-10-24T01:02:28.617811+00:00
-Review dates: 2026-10-23 through 2026-10-30 (Central Time).
+Catalog 10.1.26 · published schedule 2026-10-24T05:42:22.975401+00:00
+Review dates: 2026-10-24 through 2026-10-31 (Central Time).
 
 Competition and event identities, including separate divisions; not a count of distinct leagues. NCAA Basketball is separate. Linkage, source health and full-phase coverage are different measures. No status grants wagering approval.
 
@@ -10,11 +10,11 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Current state | Identities |
 |---|---:|
 | Calendar only | 51 |
-| Fixtures published in this window | 17 |
+| Fixtures published in this window | 15 |
 | Fixture connection missing | 6 |
-| Source checked; no current fixtures | 1 |
+| Source checked; no current fixtures | 2 |
 | Competition/scope hold | 6 |
-| Source blocked or failed | 8 |
+| Source blocked or failed | 9 |
 
 | Competition / event | Current state | Source scope / next action |
 |---|---|---|
@@ -73,9 +73,9 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Lega Basket Serie A (LBA) \| Men | Fixtures published in this window | partial |
 | Lietuvos krepšinio lyga (LKL) \| Men | Fixtures published in this window | partial |
 | Liga ACB \| Men | Fixtures published in this window | partial |
-| Liga Nacional de Baloncesto Profesional (LNBP) \| Men | Fixtures published in this window | partial |
+| Liga Nacional de Baloncesto Profesional (LNBP) \| Men | Source checked; no current fixtures | partial |
 | Liga Nacional de Basquetbol de Chile (LNB) \| Men | Fixture connection missing | missing |
-| Liga Nacional de Básquet (LNB) \| Men | Fixtures published in this window | partial |
+| Liga Nacional de Básquet (LNB) \| Men | Source blocked or failed | partial |
 | Ligat Ha’Al / Israeli Basketball Premier League \| Men | Fixtures published in this window | partial |
 | NBA Draft | Calendar only | last-published-event-window |
 | NBA Preseason Games v. International Teams | Competition/scope hold | The NBA's published 2026 preseason schedule lists NBA-versus-NBA global games, but no matchup against a non-NBA international club; global location alone does not satisfy this identity |
