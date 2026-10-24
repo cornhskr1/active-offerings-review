@@ -9,7 +9,7 @@ REPOSITORY='cornhskr1/active-offerings-review'
 WORKFLOW_PATH='.github/workflows/deploy-pages.yml'
 # Audited workflow-wide, literal `pages` lock with cancel-in-progress: false.
 # Review the serialization contract before updating this pin after a YAML edit.
-SERIALIZED_WORKFLOW_BLOB='e01a0c6f17d8fb46a647b8725d64690b04aeb6dd'
+SERIALIZED_WORKFLOW_BLOB='1e7aa9808af1e1e50ebb2d306cce92a0c35362e5'
 class HistoryChanged(ValueError):
  pass
 
