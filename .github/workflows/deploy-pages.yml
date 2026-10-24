@@ -62,7 +62,8 @@ jobs:
         id: stage
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/stage_odds_pages.py --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json"
+          DATA_REPO_READ_TOKEN: ${{ secrets.DATA_REPO_READ_TOKEN }}
+        run: python -m scripts.restore_public_snapshot --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json" --checkpoint migration/activation/pages-bootstrap.json
       - name: Refresh zero-quota event observations only
         if: steps.stage.outputs.recovered != 'true'
         env:
