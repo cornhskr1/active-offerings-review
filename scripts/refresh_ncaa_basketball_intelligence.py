@@ -23,6 +23,24 @@ rules = json.loads(RULES_PATH.read_text(encoding="utf-8"))
 rosters = json.loads(ROSTERS_PATH.read_text(encoding="utf-8")) if ROSTERS_PATH.exists() else {"teams":[]}
 catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8")) if CATALOG_PATH.exists() else {"sections":[]}
 
+def preserve_unchanged_held_screening_clock(previous, candidate):
+    """Do not freshen an identical retained screening merely by rebuilding it.
+
+    Meaningful registry/rules/source/age-screening changes are NOT replaced by
+    saved data; they remain visible to the existing publication review boundary.
+    """
+    clocks = {"generated_at", "screening_date"}
+    if (not isinstance(previous, dict) or previous.get("collection_paused") is not True
+            or candidate.get("collection_paused") is not True
+            or any(not isinstance(previous.get(key), str) for key in clocks)):
+        return candidate
+    payload = lambda value: json.dumps({key: item for key, item in value.items() if key not in clocks},
+                                       sort_keys=True, separators=(",", ":"), allow_nan=False)
+    if payload(previous) != payload(candidate):
+        return candidate
+    return {**candidate, **{key: previous[key] for key in clocks}}
+
+
 def norm(v):
     s = str(v or "").lower()
     s = s.replace("&", " and ")
@@ -317,6 +335,10 @@ if schedule.get("collection_paused") or rosters.get("collection_paused"):
     out.update(collection_paused=True, stale=True, access_status="permission_required",
                collection_status_note="Derived from retained observations; publisher collection is paused pending access review.",
                source_observation_times={"schedule": schedule.get("generated_at"), "rosters": rosters.get("generated_at")})
+
+if OUT_PATH.exists():
+    out = preserve_unchanged_held_screening_clock(
+        json.loads(OUT_PATH.read_text(encoding="utf-8")), out)
 
 OUT_PATH.write_text(json.dumps(out, indent=2), encoding="utf-8")
 print(json.dumps({
