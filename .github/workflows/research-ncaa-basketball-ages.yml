@@ -1,55 +1,10 @@
-name: Research NCAA Basketball Ages
-
+name: Retired research-ncaa-basketball-ages
 on:
   workflow_dispatch:
 permissions:
-  contents: write
-
-concurrency:
-  group: active-offerings-data
-  queue: max
-  cancel-in-progress: false
-
+  contents: read
 jobs:
-  research:
+  retired:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-
-      - name: Sync latest main
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
-
-      - name: Install dependencies
-        run: python3 -m pip install --quiet requests beautifulsoup4
-
-      - name: Research NCAA Basketball ages
-        env:
-          MAX_RECORDS: "40"
-          MIN_PRIORITY: "800"
-          ESPN_COOLDOWN_DAYS: "7"
-          OFFICIAL_COOLDOWN_DAYS: "14"
-        run: python3 scripts/research_ncaa_basketball_ages.py
-
-      - name: Rebuild NCAA Basketball age research queue
-        run: python3 scripts/build_ncaa_basketball_age_research_queue.py
-
-      - name: Commit basketball age research
-        run: |
-          git config user.name "active-offerings-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ncaa-basketball-age-cache.json
-          git add data/ncaa-basketball-age-research-results.json
-          git add data/ncaa-basketball-age-research-queue.json
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-          git commit -m "Research NCAA basketball ages"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+      - run: echo "Collector retired; no provider collection"

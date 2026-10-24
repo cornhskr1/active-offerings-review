@@ -1,3 +1,4 @@
+from tests.retired_workflow_policy import historical_workflow_path
 import copy
 import datetime as dt
 import json
@@ -117,7 +118,7 @@ class UefaTests(unittest.TestCase):
                 with self.assertRaises(ValueError):u.source_config(s['id'])
 
     def test_workflow_trigger_and_queue(self):
-        t=(ROOT/'.github/workflows/refresh-global-schedule.yml').read_text()
+        t=historical_workflow_path('refresh-global-schedule.yml').read_text()
         for x in ['scripts/uefa_domestic_adapter.py','data/uefa-reviewed-scopes.json','  queue: max','  cancel-in-progress: false']:self.assertIn(x,t)
 
     def test_four_cup_subsets_are_future_only_and_bounded(self):

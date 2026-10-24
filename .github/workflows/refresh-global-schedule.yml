@@ -1,100 +1,10 @@
-name: Refresh Approved Sports Schedule
-
+name: Retired refresh-global-schedule
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - data/catalog-season-map.json
-      - data/global-schedule-sources.json
-      - data/soccer-*-sources.json
-      - data/tennis-schedule.json
-      - data/usta-reviewed-references.json
-      - scripts/refresh_global_schedule.py
-      - scripts/rolling_publisher_batch.py
-      - scripts/auf_fixture_adapter.py
-      - scripts/italy_volleyball_fixtures.py
-      - scripts/official_ncaa_team_schedule.py
-      - scripts/usta_reference_reconciliation.py
-      - scripts/high_yield_three_league_adapter.py
-      - scripts/dynamic_league_fixture_adapter.py
-      - scripts/baltic_cup_fixture_adapter.py
-      - scripts/hns_croatian_cup_fixture_adapter.py
-      - scripts/mfl_fa_semifinal_adapter.py
-      - scripts/figc_serie_a_women_fixture_adapter.py
-      - scripts/dfb_womens_cup_fixture_adapter.py
-      - scripts/zpl_fixture_adapter.py
-      - scripts/czech_cup_fixture_adapter.py
-      - scripts/nz_national_league_adapter.py
-      - scripts/publisher_access_policy.py
-      - scripts/tennis_publisher_holds.py
-      - scripts/uefa_domestic_adapter.py
-      - data/uefa-reviewed-scopes.json
-      - scripts/fscg_cfl_fixture_adapter.py
-      - scripts/central_europe_league_fixtures.py
-      - scripts/uae_pro_league_fixtures.py
-      - scripts/qsl_cup_fixture_adapter.py
-      - scripts/audit_priority2_coverage.py
-      - scripts/audit_basketball_coverage.py
-      - scripts/european_basketball_fixture_adapter.py
-      - scripts/fiba_report_fixture_adapter.py
-      - scripts/publisher_basketball_beach.py
-      - scripts/arg_lnb_fixture_adapter.py
-      - scripts/thesportsdb_fixture_adapter.py
-      - scripts/saru_exact_fixture_adapter.py
-      - scripts/pfl_event_calendar.py
-      - scripts/nzr_farah_palmer_fixture_adapter.py
-      - scripts/italy_volleyball_fixtures.py
-      - tests/test_competition_identity_registry.py
-      - .github/workflows/refresh-global-schedule.yml
-  schedule:
-    - cron: "7 * * * *"
   workflow_dispatch:
-
 permissions:
-  contents: write
-
-concurrency:
-  group: active-offerings-data
-  queue: max
-  cancel-in-progress: false
-
+  contents: read
 jobs:
-  refresh:
+  retired:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
     steps:
-      - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-      - name: Sync latest main
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
-      - name: Install dependencies
-        run: python3 -m pip install --quiet 'requests==2.34.2' 'pypdf==6.21.2' 'pdfplumber==0.11.10' 'lxml==6.0.2'
-      - name: Run refresh
-        run: python3 scripts/refresh_global_schedule.py
-      - name: Rebuild competition identities and reviewed aliases
-        run: python3 scripts/build_competition_identity_registry.py
-      - name: Rebuild Priority 2 coverage inventory
-        run: python3 scripts/audit_priority2_coverage.py
-      - name: Reconcile basketball operational coverage
-        run: python3 scripts/audit_basketball_coverage.py
-      - name: Validate division mappings and aliases
-        run: python3 -m unittest tests.test_competition_identity_registry tests.test_basketball_divisions tests.test_basketball_coverage_acceptance
-      - name: Commit refreshed data
-        run: |
-          git config user.name "active-offerings-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json data/basketball-coverage-acceptance.json BASKETBALL_COVERAGE_STATUS.md
-          python3 scripts/check_refresh_scope.py data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json data/basketball-coverage-acceptance.json BASKETBALL_COVERAGE_STATUS.md
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-          git commit -m "Refresh approved sports schedule"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+      - run: echo "Collector retired; no provider collection"

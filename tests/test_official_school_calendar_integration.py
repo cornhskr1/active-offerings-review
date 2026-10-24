@@ -1,3 +1,4 @@
+from tests.retired_workflow_policy import historical_workflow_path
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
@@ -59,7 +60,7 @@ class SchoolCalendarIntegrationTests(unittest.TestCase):
         self.assertTrue(new['source_stale'])
 
     def test_workflow_collects_only_offered_calendars_not_legacy_html_or_rosters(self):
-        text=(ROOT/'.github/workflows/refresh-nebraska-collegiate.yml').read_text()
+        text=historical_workflow_path('refresh-nebraska-collegiate.yml').read_text()
         self.assertIn('python3 scripts/refresh_official_school_calendars.py',text)
         self.assertNotIn('python3 scripts/refresh_nebraska_collegiate.py',text)
         self.assertNotIn('python3 scripts/refresh_nebraska_collegiate_futures.py',text)

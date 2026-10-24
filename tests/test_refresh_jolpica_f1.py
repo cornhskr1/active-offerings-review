@@ -1,4 +1,6 @@
 """Offline transport, persistence, history, and single-publisher regressions."""
+from tests.retired_workflow_policy import historical_workflow_path
+
 from datetime import datetime, timezone
 import io
 import json
@@ -257,7 +259,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("github.event.workflow_run.conclusion == 'success'", text)
 
     def test_source_workflow_serializes_and_commits_only_isolated_data(self):
-        text = (ROOT / safety.PATH).read_text()
+        text = historical_workflow_path(Path(safety.PATH).name).read_text()
         self.assertIn('group: active-offerings-data', text)
         self.assertIn('queue: max', text)
         self.assertIn('cancel-in-progress: false', text)

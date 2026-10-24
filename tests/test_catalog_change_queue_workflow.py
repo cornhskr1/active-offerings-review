@@ -1,9 +1,10 @@
+from tests.retired_workflow_policy import historical_workflow_path
 from pathlib import Path
 import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-WORKFLOW = (ROOT / ".github" / "workflows" / "refresh-catalog-change-queue.yml").read_text(encoding="utf-8")
+WORKFLOW = historical_workflow_path('refresh-catalog-change-queue.yml').read_text(encoding="utf-8")
 DEPLOY = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text(encoding="utf-8")
 
 
