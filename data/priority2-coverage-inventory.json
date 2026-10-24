@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "catalog_menu_version": "10.1.26",
-  "registry_generated_at": "2026-10-24T05:54:01.218964+00:00",
-  "schedule_generated_at": "2026-10-24T05:42:22.975401+00:00",
+  "registry_generated_at": "2026-10-24T11:01:07.139936+00:00",
+  "schedule_generated_at": "2026-10-24T10:49:15.660948+00:00",
   "schedule_window_start": "2026-10-24",
   "schedule_window_end": "2026-10-31",
   "note": "A configured source is not proof of current fixtures; no event in a seven-day window is not proof of a gap. A source ID absent from the schedule configuration may be an official-link reference, not a fixture adapter. Coverage-gap sources and absent division dates stay explicit work items. Schedule-only labels do not create catalog approval.",
@@ -3356,10 +3356,10 @@
           "configured_source_id": "cycling-uci-calendar",
           "scope": "classified-identity",
           "refresh_ok": true,
-          "events_in_window": 0
+          "events_in_window": 1
         }
       ],
-      "events_in_window": 0
+      "events_in_window": 1
     },
     {
       "sport": "Cycling",
@@ -7052,11 +7052,11 @@
           "id": "rugby-usa",
           "type": "saru-exact-matches",
           "configured_league": "Women’s USA Rugby Events | Women",
-          "refresh_ok": true,
-          "events_in_window": 2
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 2
+      "events_in_window": 0
     },
     {
       "sport": "Rugby",
@@ -9564,11 +9564,11 @@
           "id": "uefa-soccer-poland-ekstraklasa-men",
           "type": "official-ekstraklasa-next-round",
           "configured_league": "Ekstraklasa | Men",
-          "refresh_ok": true,
-          "events_in_window": 7
+          "refresh_ok": false,
+          "events_in_window": 0
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 0
     },
     {
       "sport": "Soccer",
@@ -10258,10 +10258,10 @@
           "type": "official-dfb-frauen-bundesliga-season",
           "configured_league": "Frauen Bundesliga | Women",
           "refresh_ok": true,
-          "events_in_window": 7
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 7
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -10892,10 +10892,10 @@
           "type": "official-lff-virsliga-next-round",
           "configured_league": "Latvian Higher League / Virslīga | Men",
           "refresh_ok": true,
-          "events_in_window": 5
+          "events_in_window": 4
         }
       ],
-      "events_in_window": 5
+      "events_in_window": 4
     },
     {
       "sport": "Soccer",
@@ -11207,10 +11207,10 @@
           "type": "official-liga-portugal-2-calendar",
           "configured_league": "Liga Portugal 2 | Men",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 6
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 6
     },
     {
       "sport": "Soccer",
@@ -12704,10 +12704,10 @@
           "type": "official-figc-serie-a-women-fixtures",
           "configured_league": "Serie A | Women",
           "refresh_ok": true,
-          "events_in_window": 8
+          "events_in_window": 7
         }
       ],
-      "events_in_window": 8
+      "events_in_window": 7
     },
     {
       "sport": "Soccer",
