@@ -34,10 +34,10 @@ def permitted(current,runs,resume=False,precollection_failures=frozenset(),pendi
   latest=max(stamps)
  except (KeyError,ValueError,TypeError,AttributeError):return False
  if resume:return True  # New owner-reviewed dispatch only, never a rerun.
- # Only independently proved no-collection failures/cancellations may be removed from the
+ # Only independently proved no-collection failures/cancellations/skips may be removed from the
  # completion history. A successful published anchor must still remain.
  checked=[(run,stamp) for run,stamp in zip(prior,stamps)
-          if not (run['id'] in precollection_failures and run.get('conclusion') in ('failure','cancelled'))]
+          if not (run['id'] in precollection_failures and run.get('conclusion') in ('failure','cancelled','skipped'))]
  if not checked:return False
  latest=max(stamp for _,stamp in checked)
  return all(run.get('conclusion')=='success' for run,stamp in checked if stamp==latest)
@@ -116,6 +116,16 @@ DEPLOY_STEPS=['Set up job','Checkout latest main','Run actions/setup-python@v5',
  'Post Run actions/setup-python@v5','Post Checkout latest main','Complete job']
 RECOVERY_STEPS=DEPLOY_STEPS.copy()
 RECOVERY_STEPS[4]='Stage site with pinned verified-cache recovery'
+# Keep exact historical profiles, never normalize arbitrary Action names or SHAs.
+# These are the reviewed immutable Action refs in the current workflow.
+PINNED_RECOVERY_STEPS=RECOVERY_STEPS.copy()
+for index,name in {
+ 2:'Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065',
+ 6:'Run actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b',
+ 7:'Run actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa',
+ 8:'Run actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e',
+ 9:'Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065',
+}.items():PINNED_RECOVERY_STEPS[index]=name
 def verified_job_steps(run,payload):
  if run.get('run_attempt')!=1 or run.get('status')!='completed':return None
  if not isinstance(payload,dict) or payload.get('total_count')!=1:return None
@@ -128,7 +138,7 @@ def verified_job_steps(run,payload):
  steps=job.get('steps')
  if not isinstance(steps,list) or len(steps)!=len(DEPLOY_STEPS):return None
  if any(not isinstance(step,dict) or step.get('status')!='completed' for step in steps):return None
- if [step.get('name') for step in steps] not in (DEPLOY_STEPS,RECOVERY_STEPS):return None
+ if [step.get('name') for step in steps] not in (DEPLOY_STEPS,RECOVERY_STEPS,PINNED_RECOVERY_STEPS):return None
  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,17,18,19]:return None
  return [step.get('conclusion') for step in steps]
 
@@ -147,6 +157,31 @@ def cancelled_before_job_start(run,payload):
          and type(payload.get('total_count')) is int and payload['total_count']==0
          and isinstance(payload.get('jobs'),list) and payload['jobs']==[])
 
+def skipped_before_job_start(run,payload):
+ # A skipped workflow_run deploy is a conditionally omitted job, not a failed
+ # collection. Require the authenticated attempt-1 response to prove exactly
+ # that job, no steps and no assigned runner. Missing evidence stays blocking.
+ if (not isinstance(run,dict) or any(type(run.get(k)) is not int or run[k]<=0
+      for k in ('id','workflow_id','run_number','run_attempt'))
+     or run['run_attempt']!=1 or run.get('status')!='completed'
+     or run.get('conclusion')!='skipped' or run.get('event')!='workflow_run'
+     or run.get('path')!=WORKFLOW_PATH or run.get('head_branch')!='main'
+     or not isinstance(run.get('head_sha'),str)
+     or re.fullmatch('[0-9a-f]{40}',run['head_sha']) is None
+     or any(not isinstance(run.get(k),dict) or run[k].get('full_name')!=REPOSITORY
+            for k in ('repository','head_repository'))):return False
+ if (not isinstance(payload,dict) or type(payload.get('total_count')) is not int
+     or payload['total_count']!=1 or not isinstance(payload.get('jobs'),list)
+     or len(payload['jobs'])!=1):return False
+ job=payload['jobs'][0]
+ return (isinstance(job,dict) and type(job.get('run_id')) is int and job['run_id']==run['id']
+         and type(job.get('run_attempt')) is int and job['run_attempt']==1
+         and job.get('head_sha')==run['head_sha'] and job.get('head_branch')=='main'
+         and job.get('name')=='deploy' and job.get('status')=='completed'
+         and job.get('conclusion')=='skipped' and job.get('steps')==[]
+         and all(k in job and job[k] is None for k in
+                 ('runner_id','runner_name','runner_group_id','runner_group_name')))
+
 def successful_publication(run,payload):
  outcomes=verified_job_steps(run,payload)
  if run.get('conclusion')!='success' or not outcomes:return False
@@ -154,7 +189,7 @@ def successful_publication(run,payload):
  return outcomes==['success']*12 or (recovery and outcomes==['success']*5+['skipped']+['success']*6)
 
 def proved_precollection_failures(runs,get_jobs):
- # Inspect only failures/cancellations newer than the latest success. Older history remains
+ # Inspect only failures/cancellations/skips newer than the latest success. Older history remains
  # intact and uncertain states are still rejected by permitted().
  try:
   completed=[(r,datetime.fromisoformat(r['updated_at'].replace('Z','+00:00'))) for r in runs if r.get('status')=='completed']
@@ -167,9 +202,10 @@ def proved_precollection_failures(runs,get_jobs):
  if not anchors or not all(successful_publication(r,get_jobs(r['id'])) for r in anchors):return set()
  result=set()
  for run,stamp in completed:
-  if run.get('conclusion') in ('failure','cancelled') and stamp>=latest:
+  if run.get('conclusion') in ('failure','cancelled','skipped') and stamp>=latest:
    payload=get_jobs(run['id'])
-   if precollection_failure(run,payload) or cancelled_before_job_start(run,payload):result.add(run['id'])
+   if (precollection_failure(run,payload) or cancelled_before_job_start(run,payload)
+       or skipped_before_job_start(run,payload)):result.add(run['id'])
  return result
 
 def main():
