@@ -1,9 +1,10 @@
+from tests.retired_workflow_policy import historical_workflow_path
 from pathlib import Path
 import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-WORKFLOW = (ROOT / ".github" / "workflows" / "update-catalog.yml").read_text(encoding="utf-8")
+WORKFLOW = historical_workflow_path('update-catalog.yml').read_text(encoding="utf-8")
 
 
 class CatalogRefreshWorkflowTests(unittest.TestCase):

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "purpose": "Immutable historical collector policy; not active execution",
+  "workflows": {
+    "deep-tennis-age-scan.yml": {
+      "historical_sha256": "7bf8538fefdbb25419c0734667dd7de7db140804dccdabf046b8c055890f88b4",
+      "retired_sha256": "ff08105892a436b4cea217f2ba4b3756a1ca289258d88fa2e858631c1cf87504",
+      "source_path": ".github/workflows/deep-tennis-age-scan.yml"
+    },
+    "refresh-catalog-change-queue.yml": {
+      "historical_sha256": "8b9f52fcc1318e7a9aef59f04cb99dfb835f3959a8132fc35bfc9d5a0b770e5d",
+      "retired_sha256": "c71595efaf52d3dd42ef6f9f6baed0bf09c86a7a0f1460e68cc558d2e2676853",
+      "source_path": ".github/workflows/refresh-catalog-change-queue.yml"
+    },
+    "refresh-competition-identity-registry.yml": {
+      "historical_sha256": "5ffc97e37e97f2207be775f8f1fe6277922c69070b0dc1f10388527afd455644",
+      "retired_sha256": "ad938d2cb0b1b0b7796a6a24cd33f1975a8b616853b7b9d9e77a3708b4ead4a2",
+      "source_path": ".github/workflows/refresh-competition-identity-registry.yml"
+    },
+    "refresh-data.yml": {
+      "historical_sha256": "6cd251c669ef14ae25ea8160aa40336bd288562c3de65b8c2f914a1362e6d37d",
+      "retired_sha256": "67c0630f1737581b45a65db1c9dee54fc888dbe302b5377fe1a274e465bca8f0",
+      "source_path": ".github/workflows/refresh-data.yml"
+    },
+    "refresh-global-schedule.yml": {
+      "historical_sha256": "e9634bd4c9aa6bc8a16cd2d668d22b36ee07ff4babd5df2fbfb4db801e7940c5",
+      "retired_sha256": "85e1c0c8c502f800c656a72e38cedba75292fcf2f5d5972d8655b8681e4d8b10",
+      "source_path": ".github/workflows/refresh-global-schedule.yml"
+    },
+    "refresh-jolpica-f1.yml": {
+      "historical_sha256": "bb6de0016414eccddda7fed345df0ae020a2cc72b7d2128dbf6152ac022502af",
+      "retired_sha256": "58dc424d4a593d9a3885985466bab863d887cf196f0b6ebd5a7fc3fec32b9083",
+      "source_path": ".github/workflows/refresh-jolpica-f1.yml"
+    },
+    "refresh-ncaa-basketball-age-cache.yml": {
+      "historical_sha256": "ecd0e4ad98bbcd2d0ec4f750de82949021b8385673640452b843818cb3fb7d67",
+      "retired_sha256": "de5bf5eda17e6943a93e5ad92c7b6e7d39ce9e3f2adba2f77788f5e6bb130f61",
+      "source_path": ".github/workflows/refresh-ncaa-basketball-age-cache.yml"
+    },
+    "refresh-ncaa-basketball-rosters.yml": {
+      "historical_sha256": "2ea779f9e0ad5d6ce0d737d3fd8dc9141b4d7e7774a5d5d8b8047cd262854e93",
+      "retired_sha256": "52656fa0965b47f9b6429b90800891f36c4d1ab9efd670b9bebde6c8c34e0d7c",
+      "source_path": ".github/workflows/refresh-ncaa-basketball-rosters.yml"
+    },
+    "refresh-ncaa-basketball.yml": {
+      "historical_sha256": "953a4c9d077245a61fcb66e03362d4c3705125c7ef11f56b5d2dba63cf42a122",
+      "retired_sha256": "20216899e78f7a6c10addd31fba6b5b33c99778bae048e9833f0b1684fca93c5",
+      "source_path": ".github/workflows/refresh-ncaa-basketball.yml"
+    },
+    "refresh-ncaa-football.yml": {
+      "historical_sha256": "5c39b9d56d4668d8ccdbe0d90d65e7213348acb8be55d3b5287fda73497d4cdc",
+      "retired_sha256": "5ea26dc860bca765dd3714700beebc7b8337d0b642a446dfa216444701b1e233",
+      "source_path": ".github/workflows/refresh-ncaa-football.yml"
+    },
+    "refresh-nebraska-collegiate.yml": {
+      "historical_sha256": "b5aca5a25c9b2c35d37cd0e2cfa88de580ff4aa8d1495297495e9c2544a0f348",
+      "retired_sha256": "488d2e6a88f595c7420a440b9de79d92ee6303736dd01834c70e146a37b31423",
+      "source_path": ".github/workflows/refresh-nebraska-collegiate.yml"
+    },
+    "refresh-priority-queue.yml": {
+      "historical_sha256": "f82995bafe8943489da1583cd7391541bf5a18d20e757041f944c5375ef47d43",
+      "retired_sha256": "c82daea29d1ba95c0ef324075b4762797aa4bded29df97cf9ff4694c3207dc6b",
+      "source_path": ".github/workflows/refresh-priority-queue.yml"
+    },
+    "refresh-tennis-intelligence.yml": {
+      "historical_sha256": "efd9dbf3ddde79d10f85aef4c320f0dd7685de98b5dc729b0cfde79137e3cff1",
+      "retired_sha256": "ed4fbe44a707772355fea340f649431595738e83f95a3d04a6ccbe1d8177db58",
+      "source_path": ".github/workflows/refresh-tennis-intelligence.yml"
+    },
+    "refresh-tennis-registry.yml": {
+      "historical_sha256": "ee8cf5e1170bbfe87e52496cdb94af5b7434dcf4c633ca68bd8fd33741ba8992",
+      "retired_sha256": "fdbe347e52f048cc2909bf9c66860d0c705f1fb15fb5cfd80a761b9f462700c0",
+      "source_path": ".github/workflows/refresh-tennis-registry.yml"
+    },
+    "refresh-tennis-review.yml": {
+      "historical_sha256": "b3e61bef93fbc92f13c31e428044e0455737216faeecb904a204a264408489c9",
+      "retired_sha256": "269ba54212fc35dcaa25363bab318cd2366f0dd2fc7c67ddeecfa7d89c7c675a",
+      "source_path": ".github/workflows/refresh-tennis-review.yml"
+    },
+    "research-ncaa-basketball-ages.yml": {
+      "historical_sha256": "7d27d5e4a39876b24ae3a363db3713e2b2d282506731ac4775e981ee893f0404",
+      "retired_sha256": "073191bf8b5bcaf157aeeef453ca9d2c4cbf421e9704d4073112c39b1cebb276",
+      "source_path": ".github/workflows/research-ncaa-basketball-ages.yml"
+    },
+    "update-catalog.yml": {
+      "historical_sha256": "85425803961aa3befafbed36947866af1f3459845250d5f52ad6c7ebbb85997a",
+      "retired_sha256": "1c0b8a80f21c7fc8a8843de0a65f8f51a11147f2ed1268c1b6cd3ccde5ddb049",
+      "source_path": ".github/workflows/update-catalog.yml"
+    }
+  }
+}

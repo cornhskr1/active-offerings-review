@@ -1,4 +1,6 @@
 """Normal publication must rebuild and commit coverage from the same schedule."""
+from tests.retired_workflow_policy import historical_workflow_path
+
 import unittest
 from pathlib import Path
 
@@ -7,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class CoveragePublicationTests(unittest.TestCase):
     def test_inventory_is_rebuilt_after_schedule_and_identity_registry(self):
-        workflow = (ROOT / '.github/workflows/refresh-global-schedule.yml').read_text()
+        workflow = historical_workflow_path('refresh-global-schedule.yml').read_text()
         self.assertLess(workflow.index('run: python3 scripts/refresh_global_schedule.py'), workflow.index('run: python3 scripts/build_competition_identity_registry.py'))
         self.assertLess(workflow.index('run: python3 scripts/build_competition_identity_registry.py'), workflow.index('run: python3 scripts/audit_priority2_coverage.py'))
         self.assertLess(workflow.index('run: python3 scripts/audit_priority2_coverage.py'), workflow.index('git add data/global-schedule.json'))

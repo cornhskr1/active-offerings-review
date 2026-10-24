@@ -1,0 +1,43 @@
+name: Refresh NCAA Football
+
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: active-offerings-data
+  queue: max
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - name: Run refresh
+        run: python3 scripts/refresh_ncaa_football.py
+      - name: Commit refreshed data
+        run: |
+          git config user.name "active-offerings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ncaa-football-sources.json data/ncaa-football-data.json data/ncaa-football-age-review.json data/review-data.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh NCAA Football mapping and age discovery"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

@@ -1,93 +1,10 @@
-name: Update NRGC Catalog
-
+name: Retired update-catalog
 on:
-  schedule:
-    - cron: "23 13 * * *"
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/update-catalog.yml"
-      - "scripts/update_catalog.py"
-      - "scripts/build_catalog_change_queue.py"
-      - "scripts/build_competition_identity_registry.py"
-      - "tests/test_build_catalog_change_queue.py"
-      - "tests/test_catalog_refresh_workflow.py"
-      - "tests/test_competition_identity_registry.py"
-      - "tests/test_basketball_divisions.py"
-      - "tests/test_dashboard_scope.py"
-
 permissions:
-  contents: write
-
-concurrency:
-  group: "nrgc-catalog-update"
-  cancel-in-progress: false
-
+  contents: read
 jobs:
-  update:
+  retired:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-
-      - name: Sync latest main
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
-
-      - name: Install catalog parser
-        run: python3 -m pip install --quiet 'requests==2.34.2' 'beautifulsoup4==4.15.0' 'pypdf==6.21.2'
-
-      - name: Discover and parse current NRGC catalog
-        run: python3 scripts/update_catalog.py
-
-      - name: Verify catalog update path
-        run: |
-          python3 -m unittest discover -s tests -p 'test_build_catalog_change_queue.py' -v
-          python3 -m unittest discover -s tests -p 'test_dashboard_scope.py' -v
-          python3 -m unittest discover -s tests -p 'test_catalog_refresh_workflow.py' -v
-          python3 scripts/build_catalog_change_queue.py
-
-      - name: Commit current catalog data
-        run: |
-          git config user.name "active-offerings-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add data/catalog-current.pdf data/catalog-live.json data/catalog-status.json data/catalog-change-queue.json
-
-          if git diff --cached --quiet; then
-            echo "Catalog content unchanged."
-          else
-            git commit -m "Update current NRGC sports wagering catalog"
-            git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
-          fi
-
-      - name: Rebuild catalog-aligned competition registry
-        run: python3 scripts/build_competition_identity_registry.py
-
-      - name: Verify catalog-aligned competition registry
-        run: python3 -m unittest tests.test_competition_identity_registry tests.test_basketball_divisions
-
-      - name: Commit catalog-aligned competition registry
-        run: |
-          git config user.name "active-offerings-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add data/competition-identity-registry.json
-
-          if git diff --cached --quiet; then
-            echo "Competition identity registry is already aligned to the current catalog."
-          else
-            git commit -m "Align competition identity registry to current catalog"
-            git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
-          fi
+      - run: echo "Collector retired; no provider collection"

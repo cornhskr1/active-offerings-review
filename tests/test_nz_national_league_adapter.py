@@ -1,3 +1,4 @@
+from tests.retired_workflow_policy import historical_workflow_path
 import copy
 import datetime as dt
 import json
@@ -41,7 +42,7 @@ class NZChampionshipTests(unittest.TestCase):
         self.assertEqual('partial', proof['coverage_status'])
 
     def test_normal_refresh_trigger_preserves_queue(self):
-        text = (ROOT / '.github/workflows/refresh-global-schedule.yml').read_text()
+        text = historical_workflow_path('refresh-global-schedule.yml').read_text()
         self.assertIn('      - scripts/nz_national_league_adapter.py', text)
         self.assertIn('  queue: max', text)
         self.assertIn('  cancel-in-progress: false', text)

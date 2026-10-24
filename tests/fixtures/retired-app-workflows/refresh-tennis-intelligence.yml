@@ -1,0 +1,62 @@
+name: Refresh Tennis Intelligence
+
+# Refresh tournament dates daily; the separate weekly registry job maintains
+# verified U18 identities. The calendar quality gate blocks incomplete output.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "11 11 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  # Tennis browser work must never queue the global dashboard refreshes.
+  group: tennis-pipeline
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - name: Install Chromium
+        run: |
+          python3 -m pip install --quiet 'playwright==1.63.0'
+          python3 -m playwright install --with-deps chromium
+      - name: Validate tennis refresh code
+        run: |
+          python3 -m py_compile scripts/refresh_tennis_intelligence.py scripts/tennis_refresh_guardrails.py
+          python3 -m unittest tests/test_tennis_refresh_guardrails.py
+      - name: Run refresh and quality gate
+        env:
+          # Routine runs reuse the independently maintained U18 registry. They
+          # do not rebuild rankings or research every player's age.
+          TENNIS_REFRESH_REGISTRY: "0"
+        run: python3 scripts/refresh_tennis_intelligence.py
+      - name: Build focused Review Today feed
+        run: python3 scripts/build_tennis_review.py
+      - name: Run tennis guardrail tests
+        run: python3 -m unittest tests/test_build_tennis_review.py
+      - name: Commit refreshed data
+        run: |
+          git config user.name "active-offerings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tennis-intelligence.json data/tennis-schedule.json data/tennis-u18-registry.json data/tennis-exceptions.json data/tennis-age-cache.json data/tennis-review.json
+          python3 scripts/check_refresh_scope.py data/tennis-intelligence.json data/tennis-schedule.json data/tennis-u18-registry.json data/tennis-exceptions.json data/tennis-age-cache.json data/tennis-review.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh tennis intelligence"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

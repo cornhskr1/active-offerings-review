@@ -1,10 +1,11 @@
 """Offline guardrails for GitHub's shared generated-data writer queue."""
+from tests.retired_workflow_policy import historical_workflow_directory
 from pathlib import Path
 import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-WORKFLOWS = ROOT / '.github' / 'workflows'
+WORKFLOWS = historical_workflow_directory()
 SHARED_WRITERS = (
     'refresh-competition-identity-registry.yml',
     'refresh-data.yml',

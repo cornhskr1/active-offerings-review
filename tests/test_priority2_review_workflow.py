@@ -1,4 +1,6 @@
 """The Review Today catalog index and bulk exception report share the full inventory."""
+from tests.retired_workflow_policy import historical_workflow_path
+
 
 import json
 import subprocess
@@ -59,7 +61,7 @@ assert.equal(staleScheduleSourceAttention([],'2026-09-27').length,0);
         today_render = HTML[HTML.index('function renderUpcomingSportBoard('):HTML.index('function collegeReg(')]
         self.assertEqual(2, today_render.count("e.source_stale?' · STALE SOURCE — VERIFY':''") +
                          today_render.count("event.source_stale?' · STALE SOURCE — VERIFY':''"))
-        workflow = (ROOT / ".github/workflows/refresh-tennis-intelligence.yml").read_text()
+        workflow = historical_workflow_path('refresh-tennis-intelligence.yml').read_text()
         self.assertIn('cron: "11 11 * * *"', workflow)
 
     def test_failed_current_sources_make_one_issue_per_publisher(self):
