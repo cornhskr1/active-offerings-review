@@ -1,6 +1,18 @@
 # Active Offerings: controlled data publishing cutover
 
-Status: **DESIGN ONLY — NOT AUTHORIZED FOR PRODUCTION CUTOVER**
+Status: **IMPLEMENTATION PREPARED, INACTIVE — PRODUCTION CUTOVER NOT AUTHORIZED**
+
+The private two-file pilot and isolated authenticated preview have passed their
+checks. [Inactive pilot acceptance](inactive-pilot-acceptance.md) documents the
+protected application-side freshness/ownership gate and remaining acceptance
+boundaries. These preparations do not migrate the 17 existing app writers or
+activate private data in Pages. [Complete snapshot preparation](complete-snapshot-preview.md)
+adds the inactive all-17-family gate, tested hold/identity/evidence invariants,
+an anchored 31-file last-good publication cache and immutable seven-file Portal
+references. Runtime and operational acceptance remain pending; offline security
+checks do not establish production isolation. The definitive prepared writer
+activation ordering and checkpoints are in the data repository’s
+[collector activation plan](https://github.com/cornhskr1/active-offerings-data/blob/main/docs/collector-activation.md).
 
 ## Security objective
 
@@ -31,9 +43,12 @@ against mistakes but can be bypassed by malicious code running in the same job.
    workflow definitions and deployment logic only. Protect `main` with required
    checks and PR review after data writers are migrated. All provider collectors
    in this repository are read-only with respect to this repository.
-2. **Data repository (new, dedicated):** versioned generated, public-safe
-   `data/` outputs only. *No deploy secrets, production workflows, app source,
-   or privileged cross-repository credentials.* Data publishers get write access
+2. **Dedicated data repository (`cornhskr1/active-offerings-data`, existing):**
+   versioned public-safe generated outputs under `published/current/`, plus
+   reviewed packaging tools, contracts and inactive collector templates. Templates
+   resolve protected application collection code at a verified immutable revision;
+   the publication payload is data-only. *No app-deploy secrets or app-write
+   credentials.* Data publishers get write access
    exclusively to this repository, not the app repository. Its branch protections
    and publish policy must account for automated updates.
 3. **Pages deploy:** keep deploying from the protected app repo with read-only
@@ -67,8 +82,9 @@ against mistakes but can be bypassed by malicious code running in the same job.
 - Keep the current production path unchanged.
 
 ### Phase B — shadow data publication
-- Create the dedicated data repository with no sensitive material and
-  publication restrictions; migrate one low-risk collector first.
+- The dedicated data repository and low-risk pilot already exist. Prepared
+  all-family templates remain inactive; verify publication restrictions before
+  activation, without adding sensitive material.
 - Compare generated **hashes and schema/semantic results** with the present
   repository artifacts using synthetic and known-good fixtures.
 - Keep Pages reading `main`; shadow publishes do not affect users or consume
@@ -86,14 +102,17 @@ against mistakes but can be bypassed by malicious code running in the same job.
   update its audited fingerprint in the *same tested PR*.
 
 ### Phase D — cutover and protection
-- Switch Pages to the validated data revision and observe normal refresh
-  schedules for each source family; record exact run IDs and output evidence.
-- Remove direct-to-main data commits from all collector workflows; then make
-  their app-repo tokens read-only or move them out of the app repository.
+- At the separately approved checkpoint, retire every overlapping app writer
+  before enabling the corresponding private collector; make remaining app
+  collector tokens read-only. Do not run duplicate provider collections.
 - **Only then** activate app `main` branch protection/rulesets with required
   checks/reviews, without granting a broad refresh bypass. Verify attempts
   from the data publisher cannot modify app workflows or source files.
-- Monitor and document rollback; retain previous working release until proven.
+- Switch Pages only through the reviewed dormant integration and audited guard
+  profile/checkpoint; retain the last-good publication. Observe normal refresh
+  schedules for each group and record exact run IDs and output evidence.
+- Monitor and rehearse rollback without re-enabling overlapping app writers or
+  weakening protections; retain the previous working release until proven.
 
 ## Acceptance tests
 
@@ -120,7 +139,9 @@ against mistakes but can be bypassed by malicious code running in the same job.
 
 ## Decision / prerequisite
 
-This connector can read and update existing repositories, but does not expose
-a repository-creation or branch-ruleset configuration action. The owner must
-create/authorize the dedicated data repository and configure protection.
-Until then, *do not claim the permission-isolation objective is met*.
+The dedicated data repository already exists and code preparation is authorized.
+Credential changes, access/branch protections and the production source switch
+still require separate specific approval. Prepared templates and offline tests do
+not themselves enforce production permission isolation. Do not activate until the
+reviewed checkpoint, writer retirement, branch rules and deployment guard profile
+agree; then verify the actual runtime evidence before declaring the objective met.

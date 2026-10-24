@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "production_enabled": false,
+  "template": "migration/workflows/deploy-pages.yml.inactive",
+  "template_workflow_blob": "0f76ca30ca7789aaa14eeebbda2e1858d078ca13",
+  "current_guard_workflow_blob": "1e7aa9808af1e1e50ebb2d306cce92a0c35362e5",
+  "required_guard_workflow_blob": "0f76ca30ca7789aaa14eeebbda2e1858d078ca13",
+  "guard_step_profile": "PINNED_RECOVERY_STEPS (unchanged names/order/numbers)",
+  "activation_requires": [
+    "owner source-cutover authorization",
+    "independent exact template/guard review and full CI",
+    "drain old Pages queue before switching workflow",
+    "reviewed migration/activation/pages.json",
+    "exact successful legacy anchor bootstrap checkpoint and retained bytes",
+    "existing private-read credential available; no scope change"
+  ],
+  "retention_days": 1
+}

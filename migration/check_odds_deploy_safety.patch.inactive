@@ -1,0 +1,11 @@
+--- a/scripts/check_odds_deploy_safety.py
++++ b/scripts/check_odds_deploy_safety.py
+@@ -9,7 +9,7 @@
+ WORKFLOW_PATH='.github/workflows/deploy-pages.yml'
+ # Audited workflow-wide, literal `pages` lock with cancel-in-progress: false.
+ # Review the serialization contract before updating this pin after a YAML edit.
+-SERIALIZED_WORKFLOW_BLOB='1e7aa9808af1e1e50ebb2d306cce92a0c35362e5'
++SERIALIZED_WORKFLOW_BLOB='0f76ca30ca7789aaa14eeebbda2e1858d078ca13'
+ class HistoryChanged(ValueError):
+  pass
+ 
