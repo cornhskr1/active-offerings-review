@@ -15,7 +15,7 @@ jobs:
   provider-gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 2
       - name: Install parser dependencies
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Install parser dependencies
         run: python3 -m pip install --quiet requests lxml beautifulsoup4 pypdf pdfplumber
       - name: Run full regression as non-blocking signal
