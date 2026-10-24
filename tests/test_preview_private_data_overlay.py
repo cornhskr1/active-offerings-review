@@ -44,6 +44,30 @@ class OverlayTests(unittest.TestCase):
             overlay(self.site, self.candidate, self.preview)
         self.assertFalse(self.preview.exists())
 
+    def test_failed_candidate_preserves_last_known_good_site(self):
+        prior = {
+            name: (self.site / name).read_bytes()
+            for name in ("index.html", "data/status.json", "data/review-data.json")
+        }
+        (self.candidate / "data/status.json").write_bytes(b'{"modified":true}')
+        with self.assertRaisesRegex(ValueError, "integrity"):
+            overlay(self.site, self.candidate, self.preview)
+        self.assertFalse(self.preview.exists())
+        for name, raw in prior.items():
+            self.assertEqual((self.site / name).read_bytes(), raw)
+
+    def test_invalid_candidate_cannot_overwrite_last_good_preview(self):
+        overlay(self.site, self.candidate, self.preview)
+        previous = {
+            name: (self.preview / name).read_bytes()
+            for name in ("index.html", "data/status.json", "data/review-data.json")
+        }
+        (self.candidate / "data/status.json").write_bytes(b'{"tampered":true}')
+        with self.assertRaisesRegex(ValueError, "must not already"):
+            overlay(self.site, self.candidate, self.preview)
+        for name, raw in previous.items():
+            self.assertEqual((self.preview / name).read_bytes(), raw)
+
     def test_existing_preview_rejected(self):
         self.preview.mkdir()
         with self.assertRaisesRegex(ValueError, "must not already"):
