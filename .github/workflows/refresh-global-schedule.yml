@@ -89,6 +89,7 @@ jobs:
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json data/basketball-coverage-acceptance.json BASKETBALL_COVERAGE_STATUS.md
+          python3 scripts/check_refresh_scope.py data/global-schedule.json data/competition-identity-registry.json data/priority2-coverage-inventory.json data/basketball-coverage-acceptance.json BASKETBALL_COVERAGE_STATUS.md
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

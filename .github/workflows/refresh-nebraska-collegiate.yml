@@ -43,6 +43,7 @@ jobs:
           git config user.name "active-offerings-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/nebraska-collegiate-live.json data/nebraska-collegiate-futures.json data/official-school-calendar-cache.json
+          python3 scripts/check_refresh_scope.py data/nebraska-collegiate-live.json data/nebraska-collegiate-futures.json data/official-school-calendar-cache.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
