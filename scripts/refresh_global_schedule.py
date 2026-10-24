@@ -1844,7 +1844,7 @@ for source in CFG.get("sources",[]):
         source_status.append({**previous_status,**source,"approved_catalog":True,"ok":False,"events":len(retained),
             "errors":[hold_reason],"access_status":"permission_required","collection_paused":True,
             "stale":True,"coverage_complete":False,"checked_at":previous_status.get("checked_at"),
-            "hold_recorded_at":NOW_UTC.isoformat()})
+            "hold_recorded_at":previous_status.get("hold_recorded_at",NOW_UTC.isoformat())})
         continue
     count=0
     errors=[]
@@ -1893,8 +1893,9 @@ for source in CFG.get("sources",[]):
         if not errors:
             seen.update(candidate_keys)
             events.extend(candidates);count=len(candidates)
+        previous_status=next((x for x in previous_schedule.get("sources",[]) if x.get("id")==source.get("id")),{})
         source_status.append({**source,**evidence,"approved_catalog":True,"ok":not errors,
-            "events":count,"errors":errors[:3],"checked_at":NOW_UTC.isoformat()})
+            "events":count,"errors":errors[:3],"checked_at":(previous_status.get("checked_at") if source.get("access_status")=="permission_required" else NOW_UTC.isoformat())})
         continue
     if source.get("source_type") in ("official-zpl-transitional-calendars", "official-czech-cup-fixtures", "official-nz-men-championship"):
         candidates=[]

@@ -141,16 +141,26 @@ class AdapterTests(unittest.TestCase):
             with self.assertRaises(ValueError):_archive_files(raw,hashlib.sha256(raw).hexdigest())
         with self.assertRaises(ValueError):_archive_files(self.archive,'0'*64)
 
-    def test_no_activation_checkpoint_is_shipped_or_inferred(self):
+    def test_activation_checkpoint_is_required_and_guarded_workflow_pinned(self):
         with self.assertRaises((ValueError,OSError)):require_activation(self.f.site)
         root=Path(__file__).resolve().parents[1]
-        self.assertFalse((root/'migration/activation/pages.json').exists())
-        self.assertFalse((root/'migration/activation/pages-bootstrap.json').exists())
+        require_activation(root)
+        from scripts.build_public_reference_snapshot import canonical
+        bootstrap=json.loads((root/'migration/activation/pages-bootstrap.json').read_text())
+        self.assertEqual(bootstrap['repository'],'cornhskr1/active-offerings-review')
+        self.assertEqual(bootstrap['anchor_run_id'],bootstrap['public_manifest']['publisher_run_id'])
+        self.assertEqual(bootstrap['public_snapshot_sha256'],hashlib.sha256(canonical(bootstrap['public_manifest'])).hexdigest())
         plan=json.loads((root/'migration/pages-activation-plan.json').read_text())
         raw=(root/plan['template']).read_bytes()
         self.assertEqual(gitblob(raw),plan['required_guard_workflow_blob'])
         live=(root/'.github/workflows/deploy-pages.yml').read_bytes()
-        self.assertNotEqual(gitblob(live),plan['required_guard_workflow_blob'])
+        self.assertEqual(gitblob(live),plan['required_guard_workflow_blob'])
+        from scripts.check_odds_deploy_safety import SERIALIZED_WORKFLOW_BLOB
+        self.assertEqual(gitblob(live),SERIALIZED_WORKFLOW_BLOB)
+        self.assertIn(b'python -m scripts.restore_public_snapshot',live)
+        self.assertIn(b'DATA_REPO_READ_TOKEN: ${{ secrets.DATA_REPO_READ_TOKEN }}',live)
+        self.assertLess(live.index(b'check_odds_deploy_safety.py'),live.index(b'python -m scripts.restore_public_snapshot'))
+        self.assertLess(live.index(b'python -m scripts.restore_public_snapshot'),live.index(b'ODDS_API_KEY:'))
         self.assertIn(b'refresh_odds_api_events.py --config data/odds-api-catalog-mappings.json',raw)
         self.assertIn(b'group: pages\n  cancel-in-progress: false',raw)
 

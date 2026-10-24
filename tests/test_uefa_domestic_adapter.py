@@ -241,7 +241,7 @@ class CollectorTests(unittest.TestCase):
     def branch(self,fixtures):
         text=(ROOT/'scripts/refresh_global_schedule.py').read_text();a=text.index('    if source.get("source_type") == "official-uefa-domestic-reviewed":');b=text.index('    if source.get("source_type") in ("official-zpl-transitional-calendars"',a)
         source=u.source_config(next(s['id'] for s in u.SCOPES.values() if s['competition_id']=='1079'))
-        ns={'configured':[source],'datetime':dt,'TODAY':START,'END':END,'NOW_UTC':NOW,'TZ':ZoneInfo('America/Chicago'),'events':[],'seen':set(),'source_status':[], 'UEFA_DOMESTIC_CLIENT':SimpleNamespace(fetch=lambda *a:(fixtures,{'coverage_complete':False}))}
+        ns={'configured':[source],'previous_schedule':{'sources':[]},'datetime':dt,'TODAY':START,'END':END,'NOW_UTC':NOW,'TZ':ZoneInfo('America/Chicago'),'events':[],'seen':set(),'source_status':[], 'UEFA_DOMESTIC_CLIENT':SimpleNamespace(fetch=lambda *a:(fixtures,{'coverage_complete':False}))}
         exec('for source in configured:\n    errors=[]\n    count=0\n'+text[a:b],ns)
         return ns
 
