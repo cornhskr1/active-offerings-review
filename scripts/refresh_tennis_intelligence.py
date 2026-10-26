@@ -1368,7 +1368,7 @@ with sync_playwright() as pw:
     x,h=discover_wta_lane(browser,WTA_125,"wta-125","WTA 125")
     tournaments+=x;health["wta_125"]=h
     for url,tid,tour,gender,key in ((ITF_MEN,"itf-men","ITF Men's World Tennis Tour","MEN","itf_men"), (ITF_WOMEN,"itf-women","ITF Women's World Tennis Tour","WOMEN","itf_women")):
-        held=paused_snapshot(url)
+        held=paused_snapshot(url,(saved_intelligence.get("source_health") or {}).get(key))
         if held:
             health[key]=held
         else:
@@ -1780,8 +1780,11 @@ quality_gate={
   "warnings":quality_issues,
   "checked_at":NOW.isoformat()
 }
-for document in (out,schedule_out,registry_out,exceptions_out):
-    mark_permission_metadata(document,NOW.isoformat())
+for filename,document in (("tennis-intelligence.json",out),
+                          ("tennis-schedule.json",schedule_out),
+                          ("tennis-u18-registry.json",registry_out),
+                          ("tennis-exceptions.json",exceptions_out)):
+    mark_permission_metadata(document,NOW.isoformat(),load(DATA/filename,{}))
 out["quality_gate"]=quality_gate
 schedule_out["quality_gate"]=quality_gate
 
@@ -1789,12 +1792,11 @@ if critical_issues:
     print(json.dumps({"quality_gate":"FAILED","critical_issues":critical_issues},indent=2))
     raise SystemExit(2)
 
-AGE_CACHE_PATH.write_text(json.dumps({
+AGE_CACHE_PATH.write_text(json.dumps(mark_permission_metadata({
   **load(AGE_CACHE_PATH,{}),
   "schema_version":1,"generated_at":NOW.isoformat(),
-  "records":persistent_age_cache,
-  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat()).get("publisher_permission_holds",[])
-},indent=2,ensure_ascii=False),encoding="utf-8")
+  "records":persistent_age_cache
+},NOW.isoformat()),indent=2,ensure_ascii=False),encoding="utf-8")
 
 (DATA/"tennis-schedule.json").write_text(json.dumps(schedule_out,indent=2,ensure_ascii=False),encoding="utf-8")
 (DATA/"tennis-u18-registry.json").write_text(json.dumps(registry_out,indent=2,ensure_ascii=False),encoding="utf-8")

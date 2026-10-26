@@ -6,9 +6,11 @@ except ModuleNotFoundError:
     from scripts.publisher_access_policy import permission_hold_reason
 
 
-def paused_snapshot(url):
+def paused_snapshot(url, previous=None):
     reason = permission_hold_reason(url)
     if reason:
+        if previous and previous.get('collection_paused') is True and previous.get('permission_required') is True:
+            return deepcopy(previous)
         return {'ok': False, 'url': url, 'text': '', 'links': [], 'rows': [],
                 'html': '', 'payloads': [], 'permission_required': True,
                 'collection_paused': True, 'error': reason}
@@ -75,12 +77,24 @@ def retain_paused_tournaments(saved):
     return rows
 
 
-def mark_permission_metadata(document, checked_at):
+def mark_permission_metadata(document, checked_at, previous=None):
+    # A new run is not a new permission review. Preserve the original hold
+    # records (including their dates) across every derived tennis output.
+    holds = deepcopy((previous or {}).get('publisher_permission_holds') or [])
+    for row in document.get('publisher_permission_holds') or []:
+        if row not in holds:
+            holds.append(deepcopy(row))
     reason = permission_hold_reason('https://www.itftennis.com/')
-    if reason:
-        document['publisher_permission_holds'] = [{
+    if reason and not any(row.get('publisher') == 'ITF'
+                          and row.get('collection_paused') is True
+                          and row.get('permission_required') is True
+                          and set(row.get('tour_ids') or []) >= {'itf-men', 'itf-women'}
+                          for row in holds):
+        holds.append({
             'publisher': 'ITF', 'tour_ids': ['itf-men', 'itf-women'],
             'permission_required': True, 'collection_paused': True,
             'source_stale': True, 'reason': reason, 'hold_checked_at': checked_at,
-            'note': 'Saved evidence retained; no new ITF collection or permission verification.'}]
+            'note': 'Saved evidence retained; no new ITF collection or permission verification.'})
+    if holds:
+        document['publisher_permission_holds'] = holds
     return document
