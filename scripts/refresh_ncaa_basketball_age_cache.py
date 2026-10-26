@@ -25,6 +25,14 @@ if CACHE_PATH.exists():
 else:
     old_cache = {"records":[]}
 
+if old_cache.get("collection_paused"):
+    # The existing cache is a retained observation, not a fresh roster visit.
+    # Rebuilding changes generated_at/last_seen and can remove unmatched saved
+    # athletes. Keep its bytes until the hold has been separately reviewed.
+    print(json.dumps({"collection_paused": True, "retained_unchanged": True,
+                      "summary": old_cache.get("summary", {})}))
+    raise SystemExit(0)
+
 if KNOWN_U18_PATH.exists():
     try:
         known_u18 = json.loads(KNOWN_U18_PATH.read_text(encoding="utf-8"))
