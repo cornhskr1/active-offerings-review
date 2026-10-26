@@ -178,7 +178,7 @@ for(const day of ['2026-09-27','2026-09-28','2026-09-29'])
         start = HTML.index("let TODAY_MODEL=null;")
         end = HTML.index("\nfunction collegeReg(", start)
         helper_start = HTML.index("function scheduleWindowStatus(")
-        helper_end = HTML.index("\nfunction publishedLoadStatus(", helper_start)
+        helper_end = HTML.index("\nfunction renderPublishedDates(", helper_start)
         script = """
 const assert=require('node:assert/strict');
 const retiredScheduleSource=()=>false;
