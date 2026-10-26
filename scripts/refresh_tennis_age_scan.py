@@ -382,24 +382,23 @@ with sync_playwright() as pw:
 
     browser.close()
 
-CACHE_PATH.write_text(json.dumps({
+CACHE_PATH.write_text(json.dumps(mark_permission_metadata({
   **cache_doc,
-  "schema_version":2,
+  "schema_version":1,
   "generated_at":NOW.isoformat(),
   "batch_size":BATCH_SIZE,
   "processed":len(items)-permission_held,
   "permission_held":permission_held,
-  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat()).get("publisher_permission_holds",[]),
   "resolved_this_run":resolved,
   "unresolved_this_run":not_found,
   "remaining_candidates":max(0,len(queue)-len(items)),
   "records":cache
-},indent=2,ensure_ascii=False),encoding="utf-8")
+},NOW.isoformat()),indent=2,ensure_ascii=False),encoding="utf-8")
 
 print(json.dumps({
   "processed":len(items)-permission_held,
   "permission_held":permission_held,
-  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat()).get("publisher_permission_holds",[]),
+  "publisher_permission_holds":mark_permission_metadata({},NOW.isoformat(),cache_doc).get("publisher_permission_holds",[]),
   "resolved":resolved,
   "not_resolved":not_found,
   "remaining_candidates":max(0,len(queue)-len(items)),
