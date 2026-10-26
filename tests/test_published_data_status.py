@@ -63,11 +63,64 @@ assert.equal(check(undefined),'not reported');
 assert.equal(check({window_start:'2026-10-02'}),'not reported');
 assert.equal(check({window_start:'2026-10-02',window_end:'unknown'}),'not reported');
 assert.equal(check({window_start:'2026-02-30',window_end:'2026-10-09'}),'not reported');
+assert.equal(check({window_start:'2026-10-10',window_end:'2026-10-01'}),'not reported');
+assert.equal(check({window_start:'2026-09-24',window_end:'2026-10-01'}),'ended before review dates');
+assert.equal(check({window_start:'2026-10-10',window_end:'2026-10-17'}),'starts after review dates');
 assert.equal(check({window_start:'2026-10-03',window_end:'2026-10-10'}),'incomplete');
 assert.equal(check({window_start:'2026-10-02',window_end:'2026-10-08'}),'incomplete');
-assert.equal(check({window_start:'2026-10-01',window_end:'2026-10-09'}),'older publication');
+assert.equal(check({window_start:'2026-10-01',window_end:'2026-10-09'}),'covers review dates');
 assert.equal(check({window_start:'2026-10-02',window_end:'2026-10-09'}),'covers review dates');
 """, ["scheduleWindowStatus"])
+
+    def test_missing_dates_are_inclusive_across_month_and_dst_boundaries(self):
+        self.run_js("const CT='America/Chicago';", """
+const check=feed=>scheduleWindowGaps(feed,'2026-10-26','2026-11-02');
+const full=[['2026-10-26','2026-11-02']];
+assert.deepEqual(check(undefined),full);
+assert.deepEqual(check({window_start:'invalid',window_end:'2026-11-02'}),full);
+assert.deepEqual(check({window_start:'2026-10-18',window_end:'2026-10-25'}),full);
+assert.deepEqual(check({window_start:'2026-11-03',window_end:'2026-11-10'}),full);
+assert.deepEqual(check({window_start:'2026-10-25',window_end:'2026-11-01'}),[['2026-11-02','2026-11-02']]);
+assert.deepEqual(check({window_start:'2026-10-23',window_end:'2026-10-30'}),[['2026-10-31','2026-11-02']]);
+assert.deepEqual(check({window_start:'2026-10-27',window_end:'2026-11-01'}),[['2026-10-26','2026-10-26'],['2026-11-02','2026-11-02']]);
+assert.deepEqual(check({window_start:'2026-10-20',window_end:'2026-11-05'}),[]);
+assert.deepEqual(scheduleWindowGaps({window_start:'2026-03-09',window_end:'2026-03-10'},'2026-03-07','2026-03-10'),[['2026-03-07','2026-03-08']]);
+""", ["ctKey", "addDays", "scheduleWindowStatus", "scheduleWindowGaps"])
+
+    def test_notice_distinguishes_expired_and_partial_evidence_and_clears_on_reload(self):
+        self.run_js("""
+const CT='America/Chicago';
+const host={innerHTML:'',visible:false,classList:{toggle:(_,value)=>host.visible=value}};
+const document={getElementById:()=>host};
+const esc=s=>String(s??'').replaceAll('<','&lt;').replaceAll('>','&gt;');
+const DATA={
+ global:{window_start:'2026-10-26',window_end:'2026-11-02'},
+ college:{window_start:'2026-10-25',window_end:'2026-11-03'},
+ basketball:{window_start:'2026-10-18',window_end:'2026-10-25',collection_paused:true},
+ tennisReview:{window_start:'2026-10-23',window_end:'2026-10-30'},
+ tennis:{publisher_permission_holds:[{publisher:'ITF'}]}
+};
+""", """
+const before=JSON.stringify(DATA);
+renderScheduleWarning('2026-10-26','2026-11-02');
+assert.equal(host.visible,true);
+assert.match(host.innerHTML,/NCAA basketball:<[/]b> Verify 2026-10-26 through 2026-11-02/);
+assert.match(host.innerHTML,/ended before this review period/);
+assert.match(host.innerHTML,/Automated collection is paused/);
+assert.match(host.innerHTML,/Tennis review evidence:<[/]b> Verify 2026-10-31 through 2026-11-02/);
+assert.match(host.innerHTML,/Some underlying sources are paused/);
+assert.doesNotMatch(host.innerHTML,/Approved sports schedule|Nebraska collegiate schedules/);
+assert.equal(JSON.stringify(DATA),before,'Rendering must not advance evidence dates');
+DATA.basketball={...DATA.global};DATA.tennisReview={...DATA.global};
+renderScheduleWarning('2026-10-26','2026-11-02');
+assert.equal(host.visible,false);assert.equal(host.innerHTML,'');
+// Source freshness remains separate even when all date windows cover the period.
+assert.equal(publishedLoadStatus([['tennis',true]]).tone,'status-warn');
+DATA.tennisReview={window_start:'<script>',window_end:'2026-11-02'};
+renderScheduleWarning('2026-10-26','2026-11-02');
+assert.equal(host.visible,true);assert.match(host.innerHTML,/missing or invalid/);
+assert.doesNotMatch(host.innerHTML,/<script>/);
+""", ["ctKey", "addDays", "scheduleWindowStatus", "scheduleWindowGaps", "reviewFeedWindows", "renderScheduleWarning", "publishedLoadStatus"])
 
     def test_failed_file_and_display_errors_are_not_success(self):
         self.run_js("const DATA={};", """

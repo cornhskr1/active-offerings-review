@@ -47,6 +47,8 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1p
 .schedule-warning{display:none;margin:0 0 12px;padding:10px 12px;border:1px solid #e5bd6a;border-left:4px solid var(--amber);border-radius:9px;background:#fff8e8;color:#704b08;font-size:11px;line-height:1.4}
 .schedule-warning.show{display:block}
 .schedule-warning b{color:#553800}
+.schedule-warning ul{margin:6px 0;padding-left:20px}
+.schedule-warning li+li{margin-top:5px}
 
 .targeted-exception{border:1px solid #e7c27b;background:var(--amberbg);border-radius:9px;padding:8px 10px;margin:6px 0;font-size:10px}
 .targeted-exception b{font-size:11px}
@@ -714,15 +716,44 @@ function scheduleWindowStatus(feed,start,end){
     const date=new Date(`${value}T12:00:00Z`);
     return Number.isFinite(date.getTime())&&date.toISOString().slice(0,10)===value;
   });
-  if(!usable)return 'not reported';
+  if(!usable||feed.window_start>feed.window_end)return 'not reported';
+  if(feed.window_end<start)return 'ended before review dates';
+  if(feed.window_start>end)return 'starts after review dates';
   if(feed.window_start>start||feed.window_end<end)return 'incomplete';
-  if(feed.window_start<start)return 'older publication';
   return 'covers review dates';
 }
 function reviewFeedWindows(start,end){
   return [['global','Approved sports schedule'],['basketball','NCAA basketball'],
     ['college','Nebraska collegiate schedules'],['tennisReview','Tennis review evidence']]
     .map(([key,label])=>({key,label,feed:DATA[key],status:scheduleWindowStatus(DATA[key],start,end)}));
+}
+function scheduleWindowGaps(feed,start,end){
+  const status=scheduleWindowStatus(feed,start,end);
+  if(status==='covers review dates')return [];
+  if(status!=='incomplete')return [[start,end]];
+  const gaps=[];
+  if(feed.window_start>start)gaps.push([start,addDays(feed.window_start,-1)]);
+  if(feed.window_end<end)gaps.push([addDays(feed.window_end,1),end]);
+  return gaps;
+}
+function renderScheduleWarning(start,end){
+  const warning=document.getElementById('scheduleWarning');
+  if(!warning)return;
+  const needsCheck=reviewFeedWindows(start,end).filter(row=>row.status!=='covers review dates');
+  warning.classList.toggle('show',needsCheck.length>0);
+  if(!needsCheck.length){warning.innerHTML='';return;}
+  const rows=needsCheck.map(({key,label,feed,status})=>{
+    const gaps=scheduleWindowGaps(feed,start,end).map(([first,last])=>first===last?first:`${first} through ${last}`).join('; ');
+    const saved=status==='not reported'?'Saved schedule dates are missing or invalid.':
+      `Saved dates: ${feed.window_start} through ${feed.window_end}${status==='ended before review dates'?' (ended before this review period)':status==='starts after review dates'?' (starts after this review period)':''}.`;
+    // The review feed is derived from tennis intelligence; its build timestamp
+    // and date range do not certify that the underlying observations are fresh.
+    const evidence=key==='tennisReview'?DATA.tennis:null;
+    const paused=feed?.collection_paused?' Automated collection is paused; verify retained evidence.':
+      feedCollectionPaused(feed)||feedCollectionPaused(evidence)?' Some underlying sources are paused; verify retained evidence.':'';
+    return `<li><b>${esc(label)}:</b> Verify ${esc(gaps)}. ${esc(saved)}${esc(paused)}</li>`;
+  });
+  warning.innerHTML=`<b>Schedule date gaps need verification.</b><ul>${rows.join('')}</ul>Reload Published Data checks the latest publication. Source and participant checks remain separate.`;
 }
 function publishedLoadStatus(results,displayErrors=[]){
   const failed=results.filter(([,ok])=>!ok);
@@ -1595,12 +1626,7 @@ function renderToday(){
   const start=todayKey();
   if(!TODAY_MODEL||TODAY_MODEL.start!==start)TODAY_MODEL=buildTodayModel();
   const {global,end,events,pqCards,coverageAlerts,red,amber}=TODAY_MODEL;
-  const warning=document.getElementById('scheduleWarning');
-  if(warning){
-    const needsCheck=reviewFeedWindows(start,end).filter(row=>row.status!=='covers review dates');
-    warning.classList.toggle('show',needsCheck.length>0);
-    warning.innerHTML=needsCheck.length?`<b>Schedule dates need verification.</b> ${needsCheck.map(({label,feed,status})=>`${esc(label)}: ${esc(feed?.window_start||'not reported')} through ${esc(feed?.window_end||'not reported')} (${esc(status)}).`).join(' ')} Verify the official sources; loaded files do not establish complete coverage.`:'';
-  }
+  renderScheduleWarning(start,end);
 
   document.getElementById('todayMetrics').innerHTML=[
     [events.length,'scheduled events in eight days'],
