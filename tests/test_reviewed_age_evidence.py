@@ -57,7 +57,10 @@ class ReviewedDataTests(unittest.TestCase):
         self.assertEqual(evidence_counts, {'verified_dob': 80, 'age_only': 1, 'conflicting_dob': 1})
 
     def test_all_general_identities_and_adults_are_retained(self):
-        rows = load('known-u18')['records']
+        # Preserve the October 14 review contract while allowing later reviewed additions.
+        rows = [row for row in load('known-u18')['records']
+                if row.get('age_evidence', {}).get('review', {}).get('id') ==
+                'official-age-review-2026-10-14']
         self.assertEqual(len(rows), 64)
         self.assertTrue(all(row.get('age_evidence') for row in rows))
         shaw = next(r for r in rows if r['athlete'] == 'Alexander Shaw')

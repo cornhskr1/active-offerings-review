@@ -632,7 +632,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 
 <section class="panel" id="restrictions"><div class="card"><div class="section-title">Restriction Watch</div><p class="watch-intro">Published catalog restrictions, organized for staff review. The catalog controls approval; confirm the applicable event and market before making a determination.</p><div class="source-note" id="restrictionSource"></div><div class="watch-summary" id="restrictionSummary"></div><details class="watch-general" id="restrictionGeneral"><summary><span><b>Catalog-wide standards</b><small>General restrictions and integrity requirements for every sport</small></span><span>Read source text</span></summary><div id="restrictionGeneralBody"></div></details><div class="toolbar"><input id="restrictionSearch" aria-label="Search restrictions" placeholder="Search sport, league, or restriction…"><select id="restrictionColor" aria-label="Filter restriction status"><option value="all">All restriction statuses</option><option value="red">Not permissible</option><option value="amber">Review, limit, or cutoff</option></select></div><div class="watch-help"><b>Sport → source note → specific market line.</b> Open a sport for the full applicable note and indexed market wording. Status filters show specific market lines; catalog-wide and sport notes appear in All.</div><div class="catalog-legend-box watch-legend"><div class="catalog-legend-title">Restriction status</div><div class="season-legend"><span class="pill red">NOT PERMISSIBLE</span><span class="pill amber">REVIEW / LIMIT</span><span class="season-note">Colors identify indexed event and market restrictions. Full catalog notes carry the wider conditions and are not reduced to a color. No line grants approval to an event or other markets.</span></div></div><div class="watch-groups" id="restrictionGroups"></div></div></section>
 
-<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Current under-18 evidence, uncertain records, and historical athletes now verified 18+. Reviewed DOB evidence determines current age; an age-only observation does not establish an exact age today. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" aria-label="Search current and historical athlete age evidence" placeholder="Search athlete, team, sport, or league…"></div><div class="watch-help"><b>Organized by sport and league:</b> open a sport, then a league, to review current and historical evidence. Search opens matching groups automatically.</div><div class="watch-groups" id="u18Groups"></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
+<section class="panel" id="u18"><div class="card"><div class="section-title">Known U18 Registry</div><p class="small">Current under-18 evidence and records needing age review. Athletes with verified DOB evidence leave this list on their eighteenth birthday. Their evidence is retained for Compliance Portal reviews of older events; an age-only observation does not establish an exact age today. A known U18 does not create an event alert until the athlete is linked to current activity. ITF junior rankings are intelligence only; junior competitions are not catalog-approved.</p><div class="metrics" id="u18RegistryMetrics"></div><div class="toolbar"><input id="u18Search" aria-label="Search current U18 and uncertain athlete age evidence" placeholder="Search athlete, team, sport, or league…"></div><div class="watch-help"><b>Organized by sport and league:</b> open a sport, then a league, to review current U18 evidence and uncertain ages. Search opens matching groups automatically.</div><div class="watch-groups" id="u18Groups"></div></div><div class="card"><div class="section-title">NCAA Football Age Intelligence</div><div class="metrics" id="ncaaAgeMetrics"></div><div id="ncaaAgeAlerts"></div></div><div class="card"><div class="section-title">NCAA Basketball U18 & Restriction Intelligence</div><div class="metrics" id="basketballIntelMetrics"></div><div id="basketballIntelAlerts"></div></div></section>
 
 <section class="panel" id="intake">
   <div class="card">
@@ -2050,17 +2050,19 @@ function u18LastVerifiedLabel(value){
 function renderU18(){
   const q=(document.getElementById('u18Search').value||'').toLowerCase();
   const combined=combinedKnownU18Rows();
-  const rec=combined.rows.filter(x=>!q||`${x.sport} ${x.league} ${x.team||x.lane||''} ${x.athlete} ${(x.aliases||[]).join(' ')} ${x.source||''}`.toLowerCase().includes(q));
+  // Keep durable history for event-date screening; only the current view ages out.
+  const onDate=todayKey();
+  const current=combined.rows.filter(x=>registryAgeSummary(x,onDate).status!=='VERIFIED 18+');
+  const rec=current.filter(x=>!q||`${x.sport} ${x.league} ${x.team||x.lane||''} ${x.athlete} ${(x.aliases||[]).join(' ')} ${x.source||''}`.toLowerCase().includes(q));
   document.getElementById('u18RegistryMetrics').innerHTML=[
-    [combined.rows.filter(x=>registryAgeSummary(x).status==='VERIFIED U18').length,'current verified U18'],
-    [combined.rows.filter(x=>registryAgeSummary(x).status==='VERIFIED 18+').length,'historical / verified 18+'],
-    [combined.rows.filter(x=>!['VERIFIED U18','VERIFIED 18+'].includes(registryAgeSummary(x).status)).length,'age uncertain'],
-    [combined.rows.length,'registry records']
+    [current.filter(x=>registryAgeSummary(x,onDate).status==='VERIFIED U18').length,'current verified U18'],
+    [current.filter(x=>registryAgeSummary(x,onDate).status!=='VERIFIED U18').length,'age uncertain'],
+    [current.length,'current registry records']
   ].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
   const athleteCard=x=>{
     const athlete=x.source_url?`<a href="${esc(x.source_url)}" target="_blank" rel="noopener"><b>${esc(x.athlete)}</b></a>`:`<b>${esc(x.athlete)}</b>`;
-    const age=registryAgeSummary(x);
-    const origin=pill(age.color,age.status==='VERIFIED 18+'?'VERIFIED 18+ · HISTORICAL':age.status);
+    const age=registryAgeSummary(x,onDate);
+    const origin=pill(age.color,age.status);
     return `<article class="registry-athlete"><div class="registry-athlete-head"><div class="registry-athlete-name">${athlete}</div>${origin}</div><div class="registry-athlete-meta"><b>${esc(age.label)}</b>${x.team||x.lane?` · ${esc(x.team||x.lane)}`:''}${(x.aliases||[]).length?`<br>Aliases: ${esc(x.aliases.join(', '))}`:''}${x.age_evidence?.status==='verified_dob'&&age.age!==null?`<br>Verified DOB: ${esc(x.age_evidence.dob)}`:''}${x.age_evidence?.checked_at?`<br>Evidence checked: ${esc(u18LastVerifiedLabel(x.age_evidence.checked_at))}`:''}<br>Last verified: ${esc(u18LastVerifiedLabel(x.last_verified))}</div></article>`;
   };
   const sports={};rec.forEach(x=>{const sport=x.sport||'Other',league=x.league||'League not specified';sports[sport]??={};(sports[sport][league]??=[]).push(x)});
@@ -2068,7 +2070,7 @@ function renderU18(){
     const leagueCount=Object.keys(leagues).length,count=Object.values(leagues).reduce((sum,items)=>sum+items.length,0),open=Boolean(q)||sportIndex===0;
     const leagueHtml=Object.entries(leagues).sort(([a],[b])=>a.localeCompare(b)).map(([league,athletes])=>`<details class="registry-league" ${open?'open':''}><summary><span>${esc(league)}</span><span>${athletes.length} ${athletes.length===1?'athlete':'athletes'}</span></summary><div class="registry-athletes">${athletes.sort((a,b)=>String(a.athlete||'').localeCompare(String(b.athlete||''))).map(athleteCard).join('')}</div></details>`).join('');
     return `<details class="watch-sport" ${open?'open':''}><summary><span class="watch-sport-name">${esc(sport)}</span><span class="watch-counts">${pill('gray',`${leagueCount} ${leagueCount===1?'league':'leagues'}`)}${pill('gray',`${count} RECORDS`)}</span></summary><div class="watch-body"><div class="registry-leagues">${leagueHtml}</div></div></details>`;
-  }).join('')||'<div class="empty">No current or historical athletes match this search.</div>';
+  }).join('')||'<div class="empty">No current U18 or age-review records match this search.</div>';
   const a=DATA.ncaaAge||{};
   document.getElementById('ncaaAgeMetrics').innerHTML=[[a.verified_u18_count||0,'verified U18'],[a.verified_18plus_count||0,'verified 18+'],[a.age_review_needed_count||0,'age review'],[a.unresolved_count||0,'broader unresolved'],[a.bios_screened||0,'bios screened']].map(x=>`<div class="metric"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
   const alerts=[...(a.verified_u18||[]).map(x=>({...x,c:'red'})),...(a.age_review_needed||[]).map(x=>({...x,c:'amber'}))];
@@ -3306,4 +3308,5 @@ document.getElementById('catalogHealth').addEventListener('click',event=>{
 loadAll();
 </script>
 </body></html>
+
 

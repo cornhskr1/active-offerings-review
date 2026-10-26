@@ -172,10 +172,11 @@ class ReviewedAgeConsumerTests(unittest.TestCase):
         self.assertTrue(reviews["3"]["event_date_missing"])
         self.assertIn("Birthday Player", {row["athlete"] for row in reviews["3"]["athletes"]})
 
-    def test_public_registry_keeps_history_and_separates_review_dates(self):
+    def test_public_registry_ages_out_current_view_but_keeps_event_date_history(self):
         script = """
 const assert=require('node:assert/strict');
-const todayKey=()=> '2026-10-15';
+let currentDate='2026-10-14';
+const todayKey=()=>currentDate;
 const DATA={known:{records:[{athlete:'General Adult',sport:'Soccer',age:17,
  age_evidence:{status:'verified_dob',dob:'2000-01-01',checked_at:'2026-10-14'}}]},
  tennisRegistry:{records:[{name:'Historic Player',official_player_id:'itf:123',aliases:['H. Player'],
@@ -187,6 +188,7 @@ const esc=value=>String(value??'');const pill=(color,label)=>`<span class="${col
 """ + "\n".join(js_function(name) for name in (
             "registryNameKey", "tennisRegistryIdentity", "registryAgeSummary", "preferredRegistryName",
             "combinedKnownU18Rows", "u18LastVerifiedLabel", "renderU18")) + r"""
+const original=JSON.stringify(DATA);
 const rows=combinedKnownU18Rows().rows;
 assert.equal(rows.length,3);
 const historic=rows.find(r=>r.official_player_id==='itf:123');
@@ -201,14 +203,29 @@ assert.equal(registryAgeSummary(leapBorn,'2026-02-27').status,'VERIFIED U18');
 assert.equal(registryAgeSummary(leapBorn,'2026-02-28').status,'BIRTHDAY REVIEW');
 assert.equal(registryAgeSummary(leapBorn,'2026-03-01').status,'VERIFIED 18+');
 renderU18();
-assert.match(elements.u18Groups.innerHTML,/VERIFIED 18\+ · HISTORICAL/);
+assert.match(elements.u18Groups.innerHTML,/Historic Player/);
+assert.doesNotMatch(elements.u18Groups.innerHTML,/General Adult|VERIFIED 18\+/);
 assert.match(elements.u18Groups.innerHTML,/AGE ONLY/);
 assert.match(elements.u18Groups.innerHTML,/Evidence checked: 2026-10-14/);
 assert.match(elements.u18Groups.innerHTML,/Last verified: 2025-01-02/);
-assert.match(elements.u18RegistryMetrics.innerHTML,/>0<\/b><span>current verified U18/);
+assert.match(elements.u18RegistryMetrics.innerHTML,/>1<\/b><span>current verified U18/);
+assert.match(elements.u18RegistryMetrics.innerHTML,/>2<\/b><span>current registry records/);
 elements.u18Search.value='H. Player';renderU18();
 assert.match(elements.u18Groups.innerHTML,/Historic Player/);
-assert.doesNotMatch(elements.u18Groups.innerHTML,/General Adult/);
+for(const date of ['2026-10-15','2026-10-16','2027-10-15']){
+  currentDate=date;renderU18();
+  assert.match(elements.u18Groups.innerHTML,/No current U18 or age-review records/);
+  assert.doesNotMatch(elements.u18Groups.innerHTML,/Historic Player|General Adult/);
+  assert.match(elements.u18RegistryMetrics.innerHTML,/>0<\/b><span>current verified U18/);
+  assert.match(elements.u18RegistryMetrics.innerHTML,/>1<\/b><span>current registry records/);
+}
+elements.u18Search.value='';renderU18();
+assert.match(elements.u18Groups.innerHTML,/Uncertain Player/);
+assert.doesNotMatch(elements.u18Groups.innerHTML,/Historic Player|General Adult/);
+assert.equal(JSON.stringify(DATA),original);
+assert.equal(combinedKnownU18Rows().rows.length,3);
+assert.equal(registryAgeSummary(historic,'2026-10-14').status,'VERIFIED U18');
+
 """
         subprocess.run(["node", "-e", script], cwd=ROOT, check=True)
 
@@ -287,3 +304,4 @@ assert.match(valid,/Oct 15/);
 
 if __name__ == "__main__":
     unittest.main()
+
