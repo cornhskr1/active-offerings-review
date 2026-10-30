@@ -740,8 +740,12 @@ function renderScheduleWarning(start,end){
   const warning=document.getElementById('scheduleWarning');
   if(!warning)return;
   const needsCheck=reviewFeedWindows(start,end).filter(row=>row.status!=='covers review dates');
-  warning.classList.toggle('show',needsCheck.length>0);
-  if(!needsCheck.length){warning.innerHTML='';return;}
+  const oddsHeld=DATA.oddsEvents?.collector_state?.halted===true||DATA.oddsEvents?.coverage?.collection_halted===true;
+  const oddsInvalid=typeof ODDS_LOAD_ERROR==='string'&&ODDS_LOAD_ERROR;
+  const oddsNotice=oddsInvalid?'<b>The Odds API snapshot could not be validated.</b> No provider observations are displayed.':
+    oddsHeld?'<b>The Odds API collection is on safety hold.</b> No new provider requests are being made. Saved events keep their original observation dates and may age out of this review window. Owner review is required before collection can resume.':'';
+  warning.classList.toggle('show',needsCheck.length>0||!!oddsNotice);
+  if(!needsCheck.length&&!oddsNotice){warning.innerHTML='';return;}
   const rows=needsCheck.map(({key,label,feed,status})=>{
     const gaps=scheduleWindowGaps(feed,start,end).map(([first,last])=>first===last?first:`${first} through ${last}`).join('; ');
     const saved=status==='not reported'?'Saved schedule dates are missing or invalid.':
@@ -753,7 +757,7 @@ function renderScheduleWarning(start,end){
       feedCollectionPaused(feed)||feedCollectionPaused(evidence)?' Some underlying sources are paused; verify retained evidence.':'';
     return `<li><b>${esc(label)}:</b> Verify ${esc(gaps)}. ${esc(saved)}${esc(paused)}</li>`;
   });
-  warning.innerHTML=`<b>Schedule date gaps need verification.</b><ul>${rows.join('')}</ul>Reload Published Data checks the latest publication. Source and participant checks remain separate.`;
+  warning.innerHTML=`${oddsNotice?`<div>${oddsNotice}</div>`:''}${rows.length?`<b>Schedule date gaps need verification.</b><ul>${rows.join('')}</ul>`:''}Reload Published Data checks the latest publication. Source and participant checks remain separate.`;
 }
 function publishedLoadStatus(results,displayErrors=[]){
   const failed=results.filter(([,ok])=>!ok);
@@ -766,7 +770,8 @@ function publishedLoadStatus(results,displayErrors=[]){
   return {tone:needsCheck?'status-warn':'',text:`${loaded}/${results.length} published files loaded. ${needsCheck?'Schedule dates need verification; see the coverage notice below.':'Schedule windows cover the review dates; source and participant checks remain separate.'}`};
 }
 function feedCollectionPaused(feed){
-  return !!(feed?.collection_paused || feed?.publisher_permission_holds?.length ||
+  return !!(feed?.collection_paused || feed?.collector_state?.halted===true ||
+    feed?.coverage?.collection_halted===true || feed?.publisher_permission_holds?.length ||
     (feed?.sources||[]).some(row=>row.collection_paused) ||
     (feed?.lanes||[]).some(row=>row.collection_paused));
 }
