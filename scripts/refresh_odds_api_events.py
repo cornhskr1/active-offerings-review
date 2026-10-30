@@ -22,6 +22,16 @@ ORIGIN = 'https://api.the-odds-api.com'
 INTERVAL = dt.timedelta(hours=3)
 UTC = dt.timezone.utc
 CT = ZoneInfo('America/Chicago')
+PERSISTENT_STOP_REASONS = frozenset({
+    'invalid_control_state', 'previous_cost_not_zero',
+    'provider_auth_or_access_hold', 'zero_credit_header_not_verified',
+    'redirect_rejected', 'rate_limit_manual_recovery_required',
+    'request_outcome_unverified', 'persistent_hold_requires_explicit_recovery',
+})
+SOURCE_FAILURE_REASONS = PERSISTENT_STOP_REASONS | frozenset({
+    'rate_limit_cooldown', 'provider_http_failure', 'invalid_response_shape',
+    'invalid_directory', 'event_validation_failed', 'previous_observation_not_current',
+})
 
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -72,7 +82,9 @@ def _clean_state(raw, keys):
         state.update(halted=True, stop_reason='invalid_control_state')
     if raw.get('halted') is True:
         state['halted'] = True
-        state['stop_reason'] = 'persistent_hold_requires_explicit_recovery'
+        reason = raw.get('stop_reason')
+        state.setdefault('stop_reason', reason if isinstance(reason, str) and reason in PERSISTENT_STOP_REASONS
+                         else 'persistent_hold_requires_explicit_recovery')
     for field in ('stopped_at', 'family_next_fetch_at'):
         if field in raw:
             try: state[field] = _iso(_timestamp(raw[field]))
@@ -98,7 +110,9 @@ def _clean_state(raw, keys):
         status = value.get('status')
         if status in ('ok','failed','not_active_in_directory','not_checked'):
             clean['status'] = status
-        if status != 'ok': clean['reason'] = 'previous_observation_not_current'
+        if status != 'ok':
+            reason = value.get('reason')
+            clean['reason'] = reason if isinstance(reason, str) and reason in SOURCE_FAILURE_REASONS else 'previous_observation_not_current'
         for field in ('last_request_credits','received_events'):
             if field in value and (type(value[field]) is not int or value[field] < 0):
                 state.update(halted=True, stop_reason='invalid_control_state')
@@ -219,7 +233,8 @@ def collect_events(config, previous, now, api_key, get=provider_get):
     directory = state['directory']
     if not isinstance(api_key, str) or not api_key.strip():
         held = True
-        state['stop_reason'] = 'credential_not_configured'
+        if state.get('halted') is not True:
+            state['stop_reason'] = 'credential_not_configured'
     if not _due(state.get('family_next_fetch_at'), now):
         held = True
     if not held and _due(directory.get('next_fetch_at'), now):
@@ -273,6 +288,20 @@ def collect_events(config, previous, now, api_key, get=provider_get):
     return snapshot
 
 
+def collection_summary(snapshot):
+    """Bounded nonsecret run evidence: no raw reasons, URLs or source payloads."""
+    coverage = snapshot.get('coverage', {})
+    reason = coverage.get('stop_reason')
+    allowed = SOURCE_FAILURE_REASONS | {'credential_not_configured', ''}
+    if not isinstance(reason, str) or reason not in allowed:
+        reason = 'unrecognized_reason_requires_review'
+    requests = coverage.get('requests_this_run')
+    return {'requests_this_run': requests if type(requests) is int and 0 <= requests <= 86 else None,
+            'events_in_snapshot': len(snapshot['events']) if isinstance(snapshot.get('events'), list) else None,
+            'collection_halted': coverage.get('collection_halted') is True,
+            'stop_reason': reason}
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Schedule-only, zero-credit-guarded event refresh')
@@ -287,6 +316,7 @@ def main():
         for path, body in ((args.output,result),):
             target=Path(path); target.parent.mkdir(parents=True, exist_ok=True)
             temporary=target.with_name(target.name+'.tmp'); temporary.write_text(json.dumps(body,indent=2)+'\n'); temporary.replace(target)
+        print(json.dumps(collection_summary(result), sort_keys=True))
     except Exception:
         raise SystemExit('Schedule refresh failed; details suppressed to protect credentials.') from None
 

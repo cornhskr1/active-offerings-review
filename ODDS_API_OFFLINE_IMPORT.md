@@ -44,3 +44,26 @@ Events merge by exact catalog identity, explicit timestamp, and two exact partic
 The approved school calendars and all publisher permission holds remain unchanged. The Odds API terms permit user-facing dashboard display but prohibit standalone raw-data redistribution. This application publishes only the incidental data required for its review interface, not a downloadable source-data service.
 
 If deployment fails after a provider request, the next run is blocked before key exposure by read-only GitHub workflow-history checks. Reruns also stop by default. The owner must review the failed run before selecting the explicit resume_after_review workflow input. This prevents an old public cache from silently losing a newly observed quota/authentication halt. Missing or uncertain workflow history fails closed.
+
+## Persistent-stop diagnostics
+
+Known internal stop codes and failed-source codes survive subsequent held runs.
+Only enumerated codes are retained; arbitrary exception text, URLs, credentials
+and unknown prior reasons are discarded. A missing credential does not overwrite
+an existing persistent stop reason. A corrupt control state still takes precedence
+and blocks collection. Each successful snapshot write logs only bounded request
+and event counts, the halt flag and a safe reason code. No provider payload is logged.
+
+The October 22, 2026 stop was traced to successful deployment
+[39871873130](https://github.com/cornhskr1/active-offerings-review/actions/runs/39871873130),
+at `2026-10-22T23:28:23.561076Z`. Its logs contain no original failure code and
+its Pages artifact is no longer listed. Older code replaced its original reason
+on later runs, so the retained generic hold cannot establish whether the cause
+was access, quota-header verification or an uncertain request. The failed Copa
+Libertadores source record identifies where collection stopped, not why.
+
+This diagnostic repair does not recover a lost reason, clear the current hold or
+authorize another provider request. Recovery remains pending owner review; no
+cache reset, assumed zero-cost response, header bypass or automatic retry is
+introduced. `resume_after_review` addresses deployment-history review and does
+not itself clear a persistent collector-state hold.
