@@ -131,6 +131,44 @@ assert.match(result.text,/Display issue: Known U18/);
 assert.equal(result.tone,'status-warn');
 """, ["scheduleWindowStatus", "reviewFeedWindows", "publishedLoadStatus"])
 
+    def test_odds_hold_is_visible_even_when_all_schedule_dates_are_current(self):
+        self.run_js("""
+const host={innerHTML:'',classList:{toggle:(name,value)=>host.visible=value}};
+const document={getElementById:()=>host};
+const DATA={};let ODDS_LOAD_ERROR='';
+for(const key of ['global','basketball','college','tennisReview'])
+ DATA[key]={window_start:'2026-10-30',window_end:'2026-11-06'};
+DATA.oddsEvents={observed_at:'2026-10-30T18:00:00Z',events:[],
+ collector_state:{halted:true,stop_reason:'persistent_hold_requires_explicit_recovery'},
+ coverage:{collection_halted:true,requests_this_run:0}};
+function todayKey(){return '2026-10-30'}
+function addDays(){return '2026-11-06'}
+function esc(s){return String(s)}
+""", """
+const before=JSON.stringify(DATA);
+renderScheduleWarning('2026-10-30','2026-11-06');
+assert.equal(host.visible,true);
+assert.match(host.innerHTML,/collection is on safety hold/);
+assert.match(host.innerHTML,/No new provider requests/);
+assert.match(host.innerHTML,/original observation dates/);
+assert.doesNotMatch(host.innerHTML,/Schedule date gaps/);
+assert.equal(publishedLoadStatus([['oddsEvents',true]]).tone,'status-warn');
+assert.equal(JSON.stringify(DATA),before,'Notice cannot clear or rewrite the hold');
+// Either published hold representation is sufficient; reloading does not clear it.
+delete DATA.oddsEvents.collector_state;
+assert.equal(feedCollectionPaused(DATA.oddsEvents),true);
+renderScheduleWarning('2026-10-30','2026-11-06');assert.equal(host.visible,true);
+DATA.oddsEvents={collector_state:{halted:true}};
+assert.equal(feedCollectionPaused(DATA.oddsEvents),true);
+DATA.oddsEvents={collector_state:{halted:false},coverage:{collection_halted:false}};
+renderScheduleWarning('2026-10-30','2026-11-06');
+assert.equal(host.visible,false);assert.equal(host.innerHTML,'');
+ODDS_LOAD_ERROR='Invalid snapshot <script>untrusted</script>';
+renderScheduleWarning('2026-10-30','2026-11-06');
+assert.equal(host.visible,true);assert.match(host.innerHTML,/could not be validated/);
+assert.doesNotMatch(host.innerHTML,/<script>/);
+""", ["scheduleWindowStatus", "scheduleWindowGaps", "reviewFeedWindows", "renderScheduleWarning", "publishedLoadStatus"])
+
     def test_source_dates_distinguish_retained_and_missing_copies(self):
         self.run_js("""
 const host={innerHTML:''};
