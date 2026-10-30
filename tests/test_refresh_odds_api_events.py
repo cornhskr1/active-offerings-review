@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import unittest
 from unittest.mock import patch
-from scripts.refresh_odds_api_events import collect_events, Response, ORIGIN, provider_get
+from scripts.refresh_odds_api_events import collect_events, collection_summary, Response, ORIGIN, provider_get
 
 CONFIG=json.loads((Path(__file__).resolve().parents[1]/'data/odds-api-catalog-mappings.json').read_text())
 NOW=dt.datetime(2026,10,19,2,tzinfo=dt.timezone.utc)
@@ -37,6 +37,59 @@ def run(transport,previous=None,now=NOW,key='TEST-ONLY-SECRET'):
     return collect_events(CONFIG,previous or {},now,key,transport)
 
 class CollectorTests(unittest.TestCase):
+    def test_original_stop_and_failed_source_reason_survive_held_runs_without_requests(self):
+        for response, reason in [
+            (FakeResponse([], 403), 'provider_auth_or_access_hold'),
+            (FakeResponse([], headers={}), 'zero_credit_header_not_verified'),
+            (RuntimeError('apiKey=TEST-ONLY-SECRET'), 'request_outcome_unverified'),
+        ]:
+            with self.subTest(reason=reason):
+                first = run(Transport([directory(), response]))
+                original = copy.deepcopy(first)
+                for hours, key in [(3, 'TEST-ONLY-SECRET'), (6, None), (24, 'TEST-ONLY-SECRET')]:
+                    transport = Transport([])
+                    after = run(transport, first, NOW + dt.timedelta(hours=hours), key=key)
+                    self.assertEqual(transport.calls, [])
+                    self.assertTrue(after['collector_state']['halted'])
+                    self.assertEqual(after['collector_state']['stopped_at'], original['collector_state']['stopped_at'])
+                    self.assertEqual(after['coverage']['stop_reason'], reason)
+                    self.assertEqual(after['collector_state']['sources'][KEY]['reason'], reason)
+                    self.assertEqual(collection_summary(after)['stop_reason'], reason)
+                    first = after
+                self.assertNotIn('TEST-ONLY-SECRET', json.dumps(after))
+
+    def test_unknown_legacy_stop_does_not_get_a_fabricated_cause_or_clear_its_hold(self):
+        prior = run(Transport([FakeResponse([], 403)]))
+        for value in ['apiKey=TEST-ONLY-SECRET', {'reason': 'TEST-ONLY-SECRET'}, None]:
+            changed = copy.deepcopy(prior)
+            changed['collector_state']['stop_reason'] = value
+            changed['collector_state']['directory']['reason'] = value
+            transport = Transport([])
+            after = run(transport, changed, NOW + dt.timedelta(hours=3))
+            self.assertEqual(transport.calls, [])
+            self.assertTrue(after['coverage']['collection_halted'])
+            self.assertEqual(after['coverage']['stop_reason'], 'persistent_hold_requires_explicit_recovery')
+            self.assertEqual(after['collector_state']['directory']['reason'], 'previous_observation_not_current')
+            self.assertNotIn('TEST-ONLY-SECRET', json.dumps(after))
+
+    def test_invalid_control_state_takes_precedence_over_a_claimed_safe_reason(self):
+        prior = run(Transport([FakeResponse([], 403)]))
+        prior['collector_state']['sources'].pop(KEY)
+        transport = Transport([])
+        after = run(transport, prior, NOW + dt.timedelta(hours=3))
+        self.assertEqual(transport.calls, [])
+        self.assertEqual(after['coverage']['stop_reason'], 'invalid_control_state')
+
+    def test_summary_contains_only_bounded_counts_hold_and_allowlisted_reason(self):
+        snapshot = run(Transport([directory(), FakeResponse([event()])]))
+        self.assertEqual(collection_summary(snapshot), {'requests_this_run': 2, 'events_in_snapshot': 1,
+                                                        'collection_halted': False, 'stop_reason': ''})
+        snapshot['coverage'].update(stop_reason='https://host/?apiKey=TEST-ONLY-SECRET',
+                                    requests_this_run='TEST-ONLY-SECRET')
+        text = json.dumps(collection_summary(snapshot))
+        self.assertNotIn('TEST-ONLY-SECRET', text)
+        self.assertIn('unrecognized_reason_requires_review', text)
+
     def test_routes_are_only_directory_and_events_and_secret_not_output(self):
         t=Transport([directory(),FakeResponse([event()])]);out=run(t)
         self.assertEqual([c[0] for c in t.calls],[ORIGIN+'/v4/sports/',ORIGIN+'/v4/sports/'+KEY+'/events'])
