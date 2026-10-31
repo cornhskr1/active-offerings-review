@@ -116,3 +116,21 @@ Captured-response replay validates 182 league rows: 42 completed, 98 untimed hel
 Validation: 11 focused UAE tests and the full app suite pass (1,257 tests, one existing skip). Negative cases cover missing/duplicate/disguised detail identities, wrong scheme/host/port/path/UUID/query/fragment, unrecognised extra links and cup/U23 scope. The exact executable tree requires its paired trusted-code manifest before normal collection can use it. All catalog, age, publisher, phase and zero-quota safeguards remain unchanged.
 
 Normal publication is still pending for this release, Iceland and the tennis persistence repair. Global run [41225696234](https://github.com/cornhskr1/active-offerings-data/actions/runs/41225696234) collected and packaged but correctly rejected its push when the data parent moved; its candidate was not published. Do not rebase that stale snapshot or manually rerun collection. The last verified global publication remains the 12:16 UTC snapshot.
+
+## Uruguay cup participant-scope review — October 31
+
+The exact configured [Copa AUF Uruguay page](https://www.auf.org.uy/copaaufuruguay/) was retrieved on October 31 (response SHA-256 `f0eaaceae9387b339fc7563a08b6313e4da2ed71b8565f3a5027d599be66b138`). It now publishes eight `OCTAVOS DE FINAL` ties alongside the six original professional groups, two explicitly amateur brackets and the professional second-phase results. Current parser replay still rejects that unreviewed mixed phase with `AUF competition phases changed: OCTAVOS DE FINAL`; no parser defect permitting a scope-preserving fixture gain was demonstrated.
+
+All eight new ties contain one of the exact clubs identified in the page's `Primera Fase - ELIMINATORIA EQUIPOS AMATEUR` bracket. Three ties are scored completed on October 28–29; the remaining five are explicitly timed but include amateur participants:
+
+| Unplayed pairing, home–away | Official local kickoff (Montevideo) | Amateur club identity |
+| --- | --- | --- |
+| Club Atlético San Carlos–Boston River | November 4, 15:00 | `/club-atletico-san-carlos/` |
+| Ferro Carril Fútbol Club–Nacional | November 4, 21:00 | `/ferro-carril-futbol-club/` |
+| Lito–Wanderers | November 5, 16:00 | `/centro-atletico-lito/` |
+| Gladiador (Salto)–Liverpool | November 5, 18:00 | `/gladiador-salto/` |
+| Club Atlético Libertad–Montevideo City Torque | November 5, 21:00 | `/club-atletico-libertad/` |
+
+Do not add these amateur club paths to `CUP_CLUBS`, accept the mixed heading as a professional elimination, or use the professional opponent's approval for the entire pairing. The completed amateur Club Nacional de Futbol path `/club-nacional-de-futbol/` is distinct from professional Nacional `/club-nacional-de-football/`; amateur Wanderers–Durazno `/wanderers-durazno/` is distinct from professional Montevideo Wanderers `/montevideo-wanderers-futbol-club/`. These exact identities matter even where display names resemble approved clubs.
+
+Keep the current source failure and amateur/phase boundaries visible. Later rounds require newly published exact pairings and a separate participant-scope review; competition branding and explicit kickoff do not establish participant eligibility. No code, configuration, catalog, permission, age safeguard or observation timestamp changed. This is a documented scope blocker, not production recovery or completion of the repair program.
