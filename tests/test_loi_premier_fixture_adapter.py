@@ -2,7 +2,7 @@
 
 import unittest
 
-from scripts.loi_premier_fixture_adapter import PARAMS, parse_pages, validate_page
+from scripts.loi_premier_fixture_adapter import NO_UPCOMING, PARAMS, parse_pages, validate_page
 
 
 SOURCE = {"id":"uefa-soccer-ireland-league-of-ireland-premier-division-men",
@@ -51,6 +51,16 @@ class LoiPremierTests(unittest.TestCase):
         response["request"]["competition"] = "2"
         with self.assertRaisesRegex(ValueError, "competition"):
             parse_pages([response], SOURCE)
+
+    def test_exact_terminal_empty_is_healthy(self):
+        self.assertEqual(parse_pages([payload(1, 0, NO_UPCOMING + "\n")], SOURCE), [])
+
+    def test_changed_or_mixed_empty_response_fails_closed(self):
+        with self.assertRaisesRegex(ValueError, "grouping"):
+            parse_pages([payload(1, 0, NO_UPCOMING.replace("upcoming", "scheduled"))], SOURCE)
+        with self.assertRaisesRegex(ValueError, "empty"):
+            parse_pages([payload(1, 2, fixture(6002, "Friday 2 October 2026", "Dundalk", "Bohemians")),
+                         payload(2, 0, NO_UPCOMING)], SOURCE)
 
 
 if __name__ == "__main__":

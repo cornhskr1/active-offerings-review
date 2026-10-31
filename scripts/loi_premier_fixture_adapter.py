@@ -13,6 +13,7 @@ DUBLIN = ZoneInfo("Europe/Dublin")
 PARAMS = {"bid": "23256", "cid": "337", "competition": "1", "limit": "20",
           "paginate": "1", "target": ".fixture__items--23256",
           "template": "full_fixture", "header": "1"}
+NO_UPCOMING = '<h4 class="text-center">No upcoming fixtures</h4>'
 
 
 def _text(node, path):
@@ -48,6 +49,10 @@ def parse_pages(responses, source):
         fragment = response.get("html")
         if not isinstance(fragment, str) or (index < len(responses) and not fragment):
             raise ValueError("LOI fixture response missing")
+        if fragment.strip() == NO_UPCOMING:
+            if len(responses) != 1 or index != 1:
+                raise ValueError("LOI empty fixture response changed")
+            return []
         doc = html.fromstring("<div>" + fragment + "</div>")
         day = None
         for node in doc:
