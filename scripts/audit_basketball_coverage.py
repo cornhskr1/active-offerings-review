@@ -99,6 +99,13 @@ def render_markdown(report):
     for row in report['identities']:
         scopes = '; '.join(sorted(set(s['coverage_status'] for s in row['sources'])))
         detail = row.get('hold_reason') or scopes or row['next_action']
+        if row['operational_state'] == 'SOURCE_BLOCKED_OR_FAILED':
+            failures = []
+            for source in row['sources']:
+                if source['refresh_ok'] is False:
+                    reasons = '; '.join(source['errors']) or 'Refresh failed; no error detail reported.'
+                    failures.append(f"{source['source_id']}: {reasons}")
+            detail = ' '.join(failures + [row['next_action']])
         lines.append(f"| {clean(row['league'])} | {labels[row['operational_state']]} | {clean(detail)} |")
     lines += ['', 'Detailed source URLs, checks, errors and next actions: [machine-readable register](data/basketball-coverage-acceptance.json).',
         'Source failures remain unresolved until verified. Calendar windows and documented holds are not completed fixture coverage.', '']

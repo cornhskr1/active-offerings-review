@@ -2,7 +2,7 @@ import copy
 import json
 import unittest
 from pathlib import Path
-from scripts.audit_basketball_coverage import build
+from scripts.audit_basketball_coverage import build, render_markdown
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -55,3 +55,33 @@ class BasketballAcceptanceTests(unittest.TestCase):
     def test_duplicate_identity_fails(self):
         self.inventory['identities'].append(copy.deepcopy(self.inventory['identities'][0]))
         with self.assertRaises(ValueError): self.state()
+
+    def test_readable_report_exposes_access_hold_with_retained_observations(self):
+        self.publication['sources'][0].update(ok=False, events=43,
+            errors=['Permission required: collection paused; saved observations are not fresh.'])
+        report = build(self.inventory, self.config, self.publication)
+        text = render_markdown(report)
+        self.assertIn('source: Permission required: collection paused; saved observations are not fresh.', text)
+        self.assertIn(report['identities'][0]['next_action'], text)
+        self.assertNotIn('| League | Source blocked or failed | partial |', text)
+        self.assertNotIn('43', text)
+
+    def test_readable_report_keeps_all_failed_sources_and_escapes_errors(self):
+        self.config['sources'].append({'id': 'other', 'source_type': 'exact-fixture'})
+        self.inventory['identities'][0]['sources'].append({'id': 'other'})
+        self.publication['sources'][0].update(ok=False, errors=['Pairing | identity changed\nCheck scope'])
+        self.publication['sources'].append({'id': 'other', 'source_type': 'exact-fixture',
+            'ok': False, 'errors': []})
+        text = render_markdown(build(self.inventory, self.config, self.publication))
+        self.assertIn('source: Pairing \\| identity changed Check scope', text)
+        self.assertIn('other: Refresh failed; no error detail reported.', text)
+
+    def test_readable_report_preserves_healthy_scope_and_documented_hold(self):
+        self.publication['sources'][0]['errors'] = ['Previous failure']
+        text = render_markdown(build(self.inventory, self.config, self.publication))
+        self.assertIn('| League | Fixtures published in this window | partial |', text)
+        self.assertNotIn('Previous failure', text)
+        self.inventory['identities'][0].update(season_state='DOCUMENTED_HOLD', hold_reason='Exact identity unresolved')
+        self.publication['sources'][0]['ok'] = False
+        text = render_markdown(build(self.inventory, self.config, self.publication))
+        self.assertIn('| League | Competition/scope hold | Exact identity unresolved |', text)
