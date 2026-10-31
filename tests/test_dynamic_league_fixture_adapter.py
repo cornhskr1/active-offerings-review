@@ -11,6 +11,14 @@ from scripts.dynamic_league_fixture_adapter import (
 
 
 class DynamicLeagueAdapterTests(unittest.TestCase):
+    BIH_FIXTURES = (
+        ("01.11.2026. 13:00", "BSK", "FK SARAJEVO", "54152329"),
+        ("01.11.2026. 15:00", "FK SLOGA DOBOJ", "FK VELEŽ", "54152333"),
+        ("31.10.2026. 13:00", "FK RADNIK", "NK ŠIROKI BRIJEG", "54152331"),
+        ("31.10.2026. 16:00", "FK ŽELJEZNIČAR", "HŠK ZRINJSKI", "54152330"),
+        ("31.10.2026. 20:45", "NK ČELIK", "FK BORAC", "54152332"),
+    )
+
     def test_affa_discovers_latest_notice(self):
         page = '<html><body><a href="/index.php/news/misli-premyer-liqas-vii-turun-tyinatlar/99999">Misli Premyer Liqası: VII turun təyinatları</a></body></html>'.encode("utf-8")
         url = affa_latest_notice_url(page, "https://www.affa.az/index.php?lang=az&r=77")
@@ -29,17 +37,30 @@ class DynamicLeagueAdapterTests(unittest.TestCase):
         self.assertEqual(1, len(events))
         self.assertEqual("2026-10-03T13:00:00Z", events[0]["start_time"])
 
-    def test_bih_parses_timed_rows(self):
-        source = {
-            "id":"uefa-soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men",
-            "sport":"Soccer","league":"Premier League of Bosnia and Herzegovina | Men","region":"Bosnia and Herzegovina",
-            "catalog_terms":["Premier League of Bosnia and Herzegovina | Men"],"endpoint":"https://example.test"
-        }
-        page = """<html><body><h1>Wwin League BH</h1><table>
-        <tr><td>18.09.2026. 20:00 FK ŽELJEZNIČAR - NK ČELIK</td></tr></table></body></html>"""
-        events = parse_bih_fixtures(page, source)
-        self.assertEqual(1, len(events))
-        self.assertEqual("2026-09-18T18:00:00Z", events[0]["start_time"])
+    def bih_source(self):
+        return dict(id='uefa-soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men',
+            sport='Soccer',league='Premier League of Bosnia and Herzegovina | Men',region='Bosnia and Herzegovina',
+            catalog_terms=['Premier League of Bosnia and Herzegovina | Men'],endpoint='https://example.test')
+
+    def bih_page(self, fixtures=None, result_round=11, fixture_round=12, score="- : -"):
+        rows = []
+        for date, home, away, match_id in fixtures or self.BIH_FIXTURES:
+            rows.append(f'<tr><td colspan="6" class="text-center success"><strong>{date}</strong></td></tr>')
+            rows.append(f'''<tr><td>{home}</td><td></td><td>{score}</td><td></td><td>{away}</td>
+                <td><a href="/en/stats/match/{match_id}-fixture/">Details</a></td></tr>''')
+        return f'''<html><head><title>Wwin League BH</title></head><body><div class="tabelarni">
+            <a href="#round-rezultati">Results round {result_round}</a>
+            <a href="#round-naredno">Fixtures round {fixture_round}</a>
+            <div id="round-naredno"><table>
+            <tr><th>Host</th><th></th><th>Score</th><th></th><th>Guest</th><th></th></tr>
+            {''.join(rows)}</table></div></div></body></html>'''
+
+    def test_bih_current_complete_fixture_round_and_utc(self):
+        events = parse_bih_fixtures(self.bih_page(), self.bih_source())
+        self.assertEqual([f"bih-wwin-{row[3]}" for row in self.BIH_FIXTURES], [event["id"] for event in events])
+        self.assertEqual(["2026-11-01T12:00:00Z", "2026-11-01T14:00:00Z",
+                          "2026-10-31T12:00:00Z", "2026-10-31T15:00:00Z",
+                          "2026-10-31T19:45:00Z"], [event["start_time"] for event in events])
 
     def affa_source(self):
         return dict(id='uefa-soccer-azerbaijan-azerbaijan-premier-league-apl-men',
@@ -74,17 +95,19 @@ class DynamicLeagueAdapterTests(unittest.TestCase):
         page=(Path(__file__).parent / 'fixtures/affa-appointments-20260917.html').read_text().replace('17.09.2026','17.09.2027')
         self.assertTrue(all(e['start_time'].startswith('2027-') for e in parse_affa_notice(page,self.affa_source())))
 
-    def test_bih_pairing_follows_publisher_order_and_year(self):
-        source=dict(id='uefa-soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men',
-            sport='Soccer',league='Premier League of Bosnia and Herzegovina | Men',region='Bosnia and Herzegovina',
-            catalog_terms=['Premier League of Bosnia and Herzegovina | Men'],endpoint='https://example.test')
-        page='<html><h1>Wwin League BH</h1><table><tr><td>18.09.2027. 20:00 FK ŽELJEZNIČAR - NK ČELIK</td></tr></table></html>'
-        event=parse_bih_fixtures(page,source)[0]
-        self.assertEqual('NK ČELIK at FK ŽELJEZNIČAR',event['name'])
-        self.assertEqual('2027-09-18T18:00:00Z',event['start_time'])
-        source['catalog_terms']=['CUP BiH']
+    def test_bih_incomplete_or_changed_fixture_round_fails_closed(self):
+        with self.assertRaisesRegex(ValueError, 'incomplete'):
+            parse_bih_fixtures(self.bih_page(self.BIH_FIXTURES[:-1]), self.bih_source())
+        with self.assertRaisesRegex(ValueError, 'pairing, status'):
+            parse_bih_fixtures(self.bih_page(score='1 : 0'), self.bih_source())
+        with self.assertRaisesRegex(ValueError, 'round tabs'):
+            parse_bih_fixtures(self.bih_page(result_round=12), self.bih_source())
+        changed = self.bih_page().replace('/en/stats/match/54152329-fixture/', '/en/stats/cup/54152329-fixture/')
+        with self.assertRaisesRegex(ValueError, 'match identity'):
+            parse_bih_fixtures(changed, self.bih_source())
+        source = self.bih_source(); source['catalog_terms']=['CUP BiH']
         with self.assertRaisesRegex(ValueError,'catalog scope'):
-            parse_bih_fixtures(page,source)
+            parse_bih_fixtures(self.bih_page(),source)
 
     def test_malta_ticket_fixture_is_timed(self):
         source = {
