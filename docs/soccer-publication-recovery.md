@@ -40,6 +40,12 @@ Evidence: https://www.leagueofireland.ie/mens/sse-airtricity-mens-premier-divisi
 
 The official men's Premier Division page still binds the same senior competition and paginated AJAX request. After the October 30 regular-season finale, that exact endpoint returns its terminal `No upcoming fixtures` response on page one. Treat only that exact, unpaginated response as a healthy empty regular-season source. Changed empty text, a sentinel after a populated page, a different competition request, or any malformed fixture still fails closed. The promotion/relegation play-off remains outside this adapter and is not inferred from an empty regular-season feed.
 
+## Bosnia and Herzegovina Wwin League
+
+Evidence: https://www.nfsbih.ba/en/news/football-m/wwin-league-bh/
+
+The current English federation page separates result, standings and upcoming-round tables. Its `Fixtures round 12` tab publishes five exact senior pairings on October 31 and November 1, 2026, each with a numeric match-detail identity and explicit local kickoff. Bind only the unique next-round tab, require it to follow result round 11, require all ten current senior clubs exactly once and reject completed scores, partial rounds, changed match links or altered grouping. Later rounds, the Bosnian Cup and Super Cup remain outside this adapter.
+
 ## Swiss Challenge League
 
 The SFL directory now links the October 23 revision of the exact 2026/27 dieci Challenge League PDF. That revision publishes 18 complete five-match rounds (90 pairings), replacing the September 7 document with 17 rounds. Bind collection to the unique current directory link, exact revision, senior competition title, complete round count, ten distinct eligible clubs per round, published weekday and Europe/Zurich kickoff. The adapter remains limited to the published first phase; later phases and the interdivision barrage are not inferred. The separate Swiss Cup source remains on its existing access hold.
