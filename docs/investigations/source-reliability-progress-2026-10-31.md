@@ -144,3 +144,24 @@ The adapter now validates all match routes, including the explicit live card, wh
 Fresh captured-response replay yields three upcoming November 2 fixtures: Korona Kielce at Zagłębie Lubin and Śląsk Wrocław at Radomiak Radom at 17:00 UTC, and Pogoń Szczecin at Raków Częstochowa at 19:30 UTC. All fall in the current review window; the live match and five completed matches emit nothing. These are replay results, not normal publication recovery. The regression fixture retains the exact live card's semantic fields and removes decorative SVG/images only.
 
 Focused negative regressions reject absent live labels, unknown or contradictory routes, malformed scores, missing club links, completed/live contradictions, missing cards, duplicate UUIDs and duplicate clubs. This repair requires the paired exact trusted-code manifest and normal-publication verification. Catalog, age, publisher, phase, geographic and zero-quota safeguards remain unchanged; no scheduled collection was manually triggered.
+
+## Normal global publication confirmed at 21:27 UTC
+
+Normal scheduled [refresh 41243681140](https://github.com/cornhskr1/active-offerings-data/actions/runs/41243681140) succeeded using reviewed app `dd7e9839412ab5b8acf97570500c1e1bb8e7609e`. The execution log and complete-snapshot family receipt agree on that applied commit, with no pending global configuration. Immutable data commit `71f8771fbde29a8ea86adaedca876ca00ec5d94e` publishes schedule blob `6c6f39f54c14b88b1b360d4051eb59178fbb4bdd`; its manifest records schedule SHA-256 `42926626ed5662ef54175fbc2f04776e46e566de44c0fae043922f3fcb10fb6e`.
+
+The schedule is generated at `2026-10-31T21:27:58.864331+00:00`, for October 31–November 7: 650 source records, 2,549 events, 452 healthy sources, 178 unchanged permission holds and 20 other failures. All 178 held records, including saved dates and errors, exactly match the earlier 12:16 snapshot. Seven UEFA holds lack the generic `collection_paused` flag, so that flag alone undercounts holds; their explicit permission errors remain unchanged.
+
+| Source recovered since 12:16 | Fresh normal result | Events |
+| --- | --- | ---: |
+| Brazil NBB | healthy, official schedule available again | 17 |
+| UAE ADNOC league | healthy | 3 |
+| Poland Ekstraklasa | healthy | 3 |
+| Iceland reviewed final groups | healthy empty | 0 |
+| Rugby USA | healthy empty in this publication, partial coverage retained | 0 |
+| Luxembourg BGL | healthy empty in this publication, partial coverage retained | 0 |
+
+All six checks use the new generation timestamp and have empty errors. Their 23 emitted fixtures have unique IDs, named pairings, official source endpoints, upcoming starts after generation and Central dates inside the review window, with no stale markers. These normal observations supersede the earlier pending NBB/UAE/Poland/Iceland checkpoints. Rugby and Luxembourg recovered without a new code change; an empty partial source does not establish complete competition coverage or season completion. No fixture observation grants wagering or age eligibility approval.
+
+Six previously healthy lanes now fail: Uzbekistan Super League (placeholder-only kickoff window), Uruguay women's A league (official request timeout), Bosnia Wwin League (round tabs changed), Estonia Premium Liiga (senior upcoming fields changed), Malta Premier League (no verified league fixtures on ticket page) and Slovenia PrvaLiga (senior fixture fields changed). They join the scoped evidence-review queue. Uruguay cup was already failed; its latest error is also an official request timeout, which does not clear its documented amateur/phase blocker. Retain explicit warnings and inspect permitted exact evidence before any repair; do not infer missing dates or widen participant/phase scope.
+
+At the initial review, hosted global bytes still matched the older 12:16 snapshot, so this checkpoint distinguishes successful normal data publication from hosted delivery. Verify hosted SHA-256 after deployment before claiming delivery of the new snapshot. Tennis intelligence still lacks a normal run after its persistence repair and remains separately pending. No collection was manually dispatched, no caches were reset, and executable trust, quotas, catalog, age safeguards and publisher holds are unchanged.
