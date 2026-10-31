@@ -16,8 +16,8 @@ SPECS = {
         "Swiss Super League | Men", "Brack Super League", "21.09.2026", 22, 6,
         "Brack_Super_League_Spielplan-Calendrier_21-09-26_Season-2026-27"),
     "uefa-soccer-switzerland-swiss-challenge-league-men": (
-        "Swiss Challenge League | Men", "dieci Challenge League", "07.09.2026", 17, 5,
-        "dieci_Challenge_League_Spielplan-Calendrier_2026-27"),
+        "Swiss Challenge League | Men", "dieci Challenge League", "23.10.2026", 18, 5,
+        "dieci_Challenge_League_Spielplan-Calendrier_2026-29.pdf"),
 }
 ROW = re.compile(r"^\s*(\d{2}\.\d{2}\.(?:\d{2}|\d{4}))\s+"
                  r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+(\d{2}:\d{2})\s+"
