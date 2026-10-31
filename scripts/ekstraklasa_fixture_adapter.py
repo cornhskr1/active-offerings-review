@@ -10,7 +10,7 @@ from lxml import html
 SOURCE_ID = "uefa-soccer-poland-ekstraklasa-men"
 WARSAW = ZoneInfo("Europe/Warsaw")
 ROUND_URL = re.compile(r"https://ekstraklasa\.org/terminarz/2026-2027/kolejka-(\d{1,2})/")
-MATCH_PATH = re.compile(r"/mecz/([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})/[a-z0-9-]+/(?:statystyki|przeglad)/")
+MATCH_PATH = re.compile(r"/mecz/([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})/[a-z0-9-]+/(?:statystyki|przeglad|relacja)/")
 
 
 def next_round(page, final_url, source):
@@ -28,7 +28,7 @@ def next_round(page, final_url, source):
             or " ".join(doc.xpath('//h1/text()')).strip() != "Terminarz"
             or f"{number}. Kolejka" not in round_labels):
         raise ValueError("Ekstraklasa edition or selected round changed")
-    links = doc.xpath('//a[starts-with(@href,"/mecz/") and (contains(@href,"/statystyki/") or contains(@href,"/przeglad/"))]')
+    links = doc.xpath('//a[starts-with(@href,"/mecz/")]')
     if len(links) != 9:
         raise ValueError("Ekstraklasa nine-match round changed")
     events = []
@@ -45,15 +45,29 @@ def next_round(page, final_url, source):
         venue = [" ".join(x.split()) for x in card.xpath('.//p[contains(@class,"text-xsmall")]/text()')]
         mobile = [" ".join(x.split()) for x in card.xpath('.//p[contains(@class,"label-xsmall-bold")]/text()')]
         finished = "Zakończony" in card.text_content()
+        live_labels = card.xpath('.//span[normalize-space(.)="na żywo"]')
+        live = path.endswith('/relacja/')
         if (not match_link or match_link.group(1) in ids or len(names) != 2
                 or not all(names) or names[0] == names[1]
-                or label != [f"Otwórz szczegóły meczu {names[0]} kontra {names[1]}"]
-                or len(stamps) < 2 or not re.fullmatch(r"\d{2}\.\d{2}", stamps[1])):
+                or label != [f"Otwórz szczegóły meczu {names[0]} kontra {names[1]}"]):
             raise ValueError("Ekstraklasa match pairing, date or venue changed")
-        if finished != path.endswith("/przeglad/"):
+        if finished != path.endswith("/przeglad/") or bool(live_labels) != live or (live and finished):
             raise ValueError("Ekstraklasa match state and detail route disagree")
         ids.add(match_link.group(1))
         teams.update(names)
+        if live:
+            # Live cards omit kickoff/date fields. Validate their explicit state,
+            # score and senior club links, then exclude them from upcoming output.
+            scores = [x.strip() for x in card.xpath('.//span[contains(concat(" ",normalize-space(@class)," ")," heading-medium ")]/text()')]
+            clubs = card.xpath('.//a[starts-with(@href,"/kluby/")]/@href')
+            if (len(live_labels)!=1 or len(scores)!=3 or scores[1]!=':'
+                    or not re.fullmatch(r'\d+',scores[0]) or not re.fullmatch(r'\d+',scores[2])
+                    or len(clubs)!=2 or len(set(clubs))!=2
+                    or any(not re.fullmatch(r'/kluby/[a-z0-9-]+/',c) for c in clubs)):
+                raise ValueError('Ekstraklasa live match evidence changed')
+            continue
+        if len(stamps) < 2 or not re.fullmatch(r"\d{2}\.\d{2}", stamps[1]):
+            raise ValueError("Ekstraklasa match pairing, date or venue changed")
         month = int(stamps[1][3:])
         year = 2026 if month >= 7 else 2027
         try:
