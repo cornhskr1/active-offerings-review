@@ -18,6 +18,27 @@ def _scope(source):
         raise ValueError('UAE league catalog scope changed')
 
 
+def _detail_link(row):
+    links=[]
+    for anchor in row.xpath('.//div[@class="upcomingMatches__right"]//a'):
+        link=anchor.get('href','')
+        # The publisher adds a separate external ticket button beside its match
+        # detail arrow. It is presentation, never fixture-identity evidence.
+        parsed=urlparse(link)
+        if ('btn--ticket' in anchor.get('class','').split()
+                and _norm(anchor.text_content())=='Buy Tickets'
+                and parsed.scheme=='https'
+                and re.fullmatch(r'(?:abu-dhabi|ajman|dubai|sharjah)\.platinumlist\.net',parsed.netloc)
+                and re.fullmatch(r'/event-tickets/\d+/[a-z0-9-]+',parsed.path)
+                and not parsed.query and not parsed.fragment):
+            continue
+        links.append(link)
+    if len(links)!=1 or not re.fullmatch(
+            r'https://www\.uaeproleague\.ae/en/fixtures/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}',links[0]):
+        raise ValueError('UAE fixture detail identity missing')
+    return links[0]
+
+
 def discover_league_competition(page, source):
     _scope(source)
     doc=html.fromstring(page,parser=html.HTMLParser(encoding='utf-8'))
@@ -85,14 +106,12 @@ def parse_league_matches(payload, source):
         date=datetime.datetime.strptime(date_texts[0],'%a %d %b %Y').date()
         if date.strftime('%a')!=date_texts[0].split()[0] or not datetime.date(2026,7,1)<=date<=datetime.date(2027,6,30):
             raise ValueError('UAE fixture date/edition inconsistent')
-        links=row.xpath('.//div[@class="upcomingMatches__right"]//a/@href')
-        if len(links)!=1 or urlparse(links[0]).hostname!='www.uaeproleague.ae' or not re.fullmatch(r'/en/fixtures/[a-f0-9-]{36}',urlparse(links[0]).path):
-            raise ValueError('UAE fixture detail identity missing')
+        detail_link=_detail_link(row)
         venue=_norm(row.xpath('string(.//span[@class="upcomingMatches__stadium-name"])'))
         local=datetime.datetime.combine(date,datetime.time.fromisoformat(clocks[0]),DUBAI)
         events.append(dict(id='uae-league-'+match_id.removeprefix('matchList_'),source_id=source['id'],
             sport=source['sport'],league=source['league'],region=source['region'],name=f'{names[1]} at {names[0]}',
             start_time=local.astimezone(datetime.timezone.utc).isoformat().replace('+00:00','Z'),
             status='UPCOMING',status_detail='Official ADNOC league fixture',season_stage='ROUND '+week,
-            location=venue or None,source_endpoint=links[0]))
+            location=venue or None,source_endpoint=detail_link))
     return events,held,completed,len(rows)
