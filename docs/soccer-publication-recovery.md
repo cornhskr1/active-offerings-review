@@ -28,6 +28,12 @@ Evidence: https://www.qsl.qa/en/doha-bank-stars-league-fixtures-results
 
 The October 31 official 2026–27 Doha Bank Stars League page splits week 8 across three scored results (match numbers 43–45) and three named, timed upcoming fixtures (46–48), followed by all six named, timed week 9 fixtures (49–54). The adapter now combines only those exact result and fixture panes to validate each complete six-match senior week. It rejects partial weeks, duplicate or unknown clubs, future/non-numeric results, unexpected match-number spans and horizons beyond the last published kickoff.
 
+## Lithuania TOPLYGA
+
+Evidence: https://www.lff.lt/varzybos/23198513/
+
+The October 31 federation page identifies the exact senior competition as `TOPLYGA 2026`, while retaining 36 four-match rounds and 144 unique match-detail identities. Round 35 is the next complete published round: three fixtures on October 31 and FK Sūduva–FK Banga on November 1. All four linked detail pages independently confirm the round, pairing, kickoff, venue and match ID. Round 36 remains held because its four kickoffs are midnight placeholders; the promotion/relegation tie remains outside this adapter.
+
 ## Swiss Challenge League
 
 The SFL directory now links the October 23 revision of the exact 2026/27 dieci Challenge League PDF. That revision publishes 18 complete five-match rounds (90 pairings), replacing the September 7 document with 17 rounds. Bind collection to the unique current directory link, exact revision, senior competition title, complete round count, ten distinct eligible clubs per round, published weekday and Europe/Zurich kickoff. The adapter remains limited to the published first phase; later phases and the interdivision barrage are not inferred. The separate Swiss Cup source remains on its existing access hold.
