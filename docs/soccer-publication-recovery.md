@@ -46,6 +46,12 @@ Evidence: https://www.nfsbih.ba/en/news/football-m/wwin-league-bh/
 
 The current English federation page separates result, standings and upcoming-round tables. Its `Fixtures round 12` tab publishes five exact senior pairings on October 31 and November 1, 2026, each with a numeric match-detail identity and explicit local kickoff. Bind only the unique next-round tab, require it to follow result round 11, require all ten current senior clubs exactly once and reject completed scores, partial rounds, changed match links or altered grouping. Later rounds, the Bosnian Cup and Super Cup remain outside this adapter.
 
+## Azerbaijan Misli Premier League
+
+Evidence: https://www.affa.az/index.php/news/misli-premyer-liqas-x-turun-tyinatlar/81740
+
+AFFA's October 30 round-X appointment notice publishes five exact senior pairings across October 30–November 1. The current HTML mixes standalone and combined date, pairing, officials, stadium and kickoff blocks; the older parser read only the final pairing. Preserve publisher order across those blocks and require each detected pairing to receive a named official venue and Baku-local kickoff before another pairing or date begins. Damaged team text, duplicate pairings, missing clocks and venue records without a pairing still fail closed. A sixth or later fixture is not inferred from the appointment notice, and the separate Azerbaijan Cup remains outside this adapter.
+
 ## Swiss Challenge League
 
 The SFL directory now links the October 23 revision of the exact 2026/27 dieci Challenge League PDF. That revision publishes 18 complete five-match rounds (90 pairings), replacing the September 7 document with 17 rounds. Bind collection to the unique current directory link, exact revision, senior competition title, complete round count, ten distinct eligible clubs per round, published weekday and Europe/Zurich kickoff. The adapter remains limited to the published first phase; later phases and the interdivision barrage are not inferred. The separate Swiss Cup source remains on its existing access hold.

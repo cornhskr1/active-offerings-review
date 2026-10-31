@@ -37,6 +37,31 @@ class DynamicLeagueAdapterTests(unittest.TestCase):
         self.assertEqual(1, len(events))
         self.assertEqual("2026-10-03T13:00:00Z", events[0]["start_time"])
 
+    def test_affa_current_mixed_blocks_preserve_all_pairings_and_venues(self):
+        page = '''<html><body><div class="news_item"><h1>Misli Premyer Liqası: X turun təyinatları</h1>
+        <span class="date">Dərc olundu: <span>30.10.2026</span></span><div class="texts mb3">
+        <div><span>30 oktyabr (cümə)</span></div>
+        <div><span>“Turan Tovuz” – “Sabah”</span><br>Hakimlər: A<br>Tovuz şəhər stadionu, 18:30</div>
+        <div><strong>31 oktyabr (şənbə)</strong><br><span>“Araz-Naxçıvan” – “Zirə”</span><br>
+        Hakimlər: B<br>Şamaxı şəhər stadionu, 15:00<br><span>“Qəbələ” – “Qarabağ”</span><br>
+        Hakimlər: C<br>Qəbələ şəhər stadionu, 17:30</div>
+        <div><strong>1 noyabr (bazar)</strong></div>
+        <div><span>“Şamaxı” – “Neftçi”</span><br>Hakimlər: D<br>Şamaxı şəhər stadionu, 15:00</div>
+        <div><strong>“Kəpəz” – “İmişli”</strong></div>
+        <div>Hakimlər: E<br>Gəncə şəhər stadionu, 17:30</div>
+        </div></div></body></html>'''
+        events = parse_affa_notice(page, self.affa_source(), review_date=datetime.date(2026, 10, 30))
+        self.assertEqual(5, len(events))
+        self.assertEqual(["Tovuz şəhər stadionu", "Şamaxı şəhər stadionu", "Qəbələ şəhər stadionu",
+                          "Şamaxı şəhər stadionu", "Gəncə şəhər stadionu"],
+                         [event["location"] for event in events])
+        self.assertEqual(["2026-10-30T14:30:00Z", "2026-10-31T11:00:00Z",
+                          "2026-10-31T13:30:00Z", "2026-11-01T11:00:00Z",
+                          "2026-11-01T13:30:00Z"], [event["start_time"] for event in events])
+        with self.assertRaisesRegex(ValueError, "kickoff missing"):
+            parse_affa_notice(page.replace("Qəbələ şəhər stadionu, 17:30", "Qəbələ şəhər stadionu, TBC"),
+                              self.affa_source())
+
     def bih_source(self):
         return dict(id='uefa-soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men',
             sport='Soccer',league='Premier League of Bosnia and Herzegovina | Men',region='Bosnia and Herzegovina',
@@ -73,6 +98,7 @@ class DynamicLeagueAdapterTests(unittest.TestCase):
         self.assertEqual(6,len(events))
         self.assertEqual('Neftçi at Qəbələ',events[0]['name'])
         self.assertEqual('2026-09-18T13:30:00Z',events[0]['start_time'])
+        self.assertEqual('Qəbələ şəhər stadionu',events[0]['location'])
         self.assertEqual('2026-09-20T15:00:00Z',events[-1]['start_time'])
 
     def test_affa_past_notice_remains_an_actionable_failure(self):

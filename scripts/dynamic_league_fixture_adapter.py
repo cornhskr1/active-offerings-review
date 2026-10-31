@@ -66,7 +66,7 @@ def parse_affa_notice(page, source, review_date=None):
     fixture_re = re.compile(r'^(?:(\d{1,2}:\d{2})\.?\s*)?[“"]([^”"]+)[”"]\s*[–-]\s*[“"]([^”"]+)[”"]$')
     events, seen, current_date, pending = [], set(), None, None
 
-    def emit(clock):
+    def emit(clock, location=None):
         nonlocal pending
         if not pending or not current_date:
             raise ValueError("AFFA fixture date/pairing missing")
@@ -79,18 +79,22 @@ def parse_affa_notice(page, source, review_date=None):
             raise ValueError("AFFA fixture duplicated")
         seen.add(key)
         slug = re.sub(r"[^a-z0-9]+", "-", (home + "-" + away).lower()).strip("-")
-        events.append({
+        event = {
             "id": f"azerbaijan-premier-{current_date:%Y%m%d}-{slug}",
             "source_id": source["id"], "sport": source["sport"], "league": source["league"],
             "region": source["region"], "name": f"{away} at {home}",
             "start_time": local.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
             "status": "UPCOMING", "status_detail": "AFFA published league appointment",
             "season_stage": "REGULAR", "source_endpoint": source["endpoint"],
-        })
+        }
+        if location:
+            event["location"] = location
+        events.append(event)
         pending = None
 
-    for node in bodies[0]:
-        value = _norm(node.text_content())
+    tokens = [_norm(value) for node in bodies[0] for value in node.itertext() if _norm(value)]
+    venue_re = re.compile(r'^[“"]?(.+?(?:stadionu|Arena))[”"]?[,\.]\s*(\d{1,2}:\d{2})$', re.I)
+    for value in tokens:
         dm = date_re.match(value.lower())
         if dm:
             if pending:
@@ -110,9 +114,11 @@ def parse_affa_notice(page, source, review_date=None):
             if fm.group(1):
                 emit(fm.group(1))
             continue
-        clock = re.search(r"(?:Saat|stadionu[,\.]|Arena[“”\"]?[,\.])\s*(\d{1,2}:\d{2})", value, re.I)
-        if clock and pending:
-            emit(clock.group(1))
+        venue = venue_re.match(value)
+        if venue:
+            if not pending:
+                raise ValueError("AFFA fixture venue/kickoff has no pairing")
+            emit(venue.group(2), venue.group(1))
     if pending:
         raise ValueError("AFFA fixture kickoff missing")
     if not events:
