@@ -32,6 +32,12 @@ The October 31 official 2026–27 Doha Bank Stars League page splits week 8 acro
 
 Evidence: https://www.lff.lt/varzybos/23198513/
 
+## League of Ireland Premier Division
+
+Evidence: https://www.leagueofireland.ie/mens/sse-airtricity-mens-premier-division/fixtures/
+
+The official men's Premier Division page still binds the same senior competition and paginated AJAX request. After the October 30 regular-season finale, that exact endpoint returns its terminal `No upcoming fixtures` response on page one. Treat only that exact, unpaginated response as a healthy empty regular-season source. Changed empty text, a sentinel after a populated page, a different competition request, or any malformed fixture still fails closed. The promotion/relegation play-off remains outside this adapter and is not inferred from an empty regular-season feed.
+
 The October 31 federation page identifies the exact senior competition as `TOPLYGA 2026`, while retaining 36 four-match rounds and 144 unique match-detail identities. Round 35 is the next complete published round: three fixtures on October 31 and FK Sūduva–FK Banga on November 1. All four linked detail pages independently confirm the round, pairing, kickoff, venue and match ID. Round 36 remains held because its four kickoffs are midnight placeholders; the promotion/relegation tie remains outside this adapter.
 
 ## Swiss Challenge League
