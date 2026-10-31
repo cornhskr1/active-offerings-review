@@ -1,4 +1,4 @@
-"""Fail-closed, four-game DI subsets of two official university schedules.
+"""Fail-closed, bounded DI subsets of two official university schedules.
 
 This is not a National Collegiate championship or whole-team approval.
 """
@@ -28,6 +28,15 @@ SPECS = {
 # A bounded reviewed batch, not an indefinitely renewable participant whitelist.
 VALID_FROM = dt.date(2026, 10, 18)
 VALID_THROUGH = dt.date(2026, 10, 25)
+
+# Separately reviewed October 31 evidence: one regular-season away game only.
+# Historical batches and the expired women's hockey scope remain unchanged.
+WATER_POLO_RENEWAL = {
+    "valid_from": dt.date(2026, 10, 31), "valid_through": dt.date(2026, 11, 6),
+    "games": {14408: (27, "Long Beach State")}, "expected_side": "A",
+    "exact_local": "2026-11-06T19:00:00", "exact_utc": "2026-11-07T03:00:00Z",
+    "exact_location": "Long Beach, Calif.",
+}
 
 
 def _nodes(page):
@@ -73,8 +82,8 @@ def _local_time(text):
 def parse_fixtures(page, source, start_day, end_day):
     """Return (collector events, held unique game count), or raise on changes.
 
-    Dates are inclusive America/Chicago review dates. This reviewed batch expires
-    after October 25, 2026; a new verification is necessary to extend its scope.
+    Dates are inclusive America/Chicago review dates. Each separately reviewed
+    batch expires; a new verification is necessary to extend its scope.
     Missing approved games/UTC or contradictory duplicates fail the entire source.
     Unapproved IDs are never ingested. Completed, inactive and TBD games are held.
     """
@@ -87,7 +96,12 @@ def parse_fixtures(page, source, start_day, end_day):
             or source.get("coverage_status") != "partial"
             or source.get("coverage_complete") is not False):
         raise ValueError("NCAA reviewed subset configuration broadened")
-    if start_day > end_day or start_day < VALID_FROM or start_day > VALID_THROUGH:
+    valid_from, valid_through = VALID_FROM, VALID_THROUGH
+    if (source["id"] == "ncaa-water-polo-di-men"
+            and WATER_POLO_RENEWAL["valid_from"] <= start_day <= WATER_POLO_RENEWAL["valid_through"]):
+        spec = {**spec, **WATER_POLO_RENEWAL}
+        valid_from, valid_through = spec["valid_from"], spec["valid_through"]
+    if start_day > end_day or start_day < valid_from or start_day > valid_through:
         raise ValueError("NCAA exact-team evidence window expired or invalid")
     nodes, resolve = _nodes(page)
     if spec["title"] not in nodes:
@@ -110,7 +124,7 @@ def parse_fixtures(page, source, start_day, end_day):
         opponent = row.get("opponent") or {}
         if (opponent.get("id"), opponent.get("title")) != spec["games"][number]:
             raise ValueError("Approved game opponent changed")
-        if _field(row, "location_indicator", "locationIndicator") != "H":
+        if _field(row, "location_indicator", "locationIndicator") != spec.get("expected_side", "H"):
             raise ValueError("Approved host/home identity changed")
         sport = row.get("sport")
         if sport is not None and any(sport.get(k) != v for k, v in {
@@ -125,6 +139,8 @@ def parse_fixtures(page, source, start_day, end_day):
             raise ValueError("Invalid local schedule date") from None
         if local_dt.tzinfo is not None or local_dt.time() != _local_time(row.get("time")):
             raise ValueError("Visible time contradicts local schedule date")
+        if "exact_local" in spec and (local != spec["exact_local"] or row.get("location") != spec["exact_location"]):
+            raise ValueError("Renewed game date or location changed")
         utc_values = [row[k] for k in ("start_date_utc", "dateUtc") if k in row]
         utc = None
         if utc_values:
@@ -133,6 +149,8 @@ def parse_fixtures(page, source, start_day, end_day):
             if len(set(utc_values)) != 1 or not isinstance(utc_values[0], str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", utc_values[0]):
                 raise ValueError("Unconfirmed literal publisher UTC")
             utc = utc_values[0]
+            if "exact_utc" in spec and utc != spec["exact_utc"]:
+                raise ValueError("Renewed game UTC changed")
             instant = dt.datetime.fromisoformat(utc.replace("Z", "+00:00"))
             if instant.astimezone(ZoneInfo(spec["timezone"])).replace(tzinfo=None) != local_dt:
                 raise ValueError("Publisher UTC contradicts visible local time")
@@ -160,7 +178,7 @@ def parse_fixtures(page, source, start_day, end_day):
         local, active, tbd, allday, location = next(iter(comparable))
         utc = next(iter(times))
         day = dt.datetime.fromisoformat(utc.replace("Z", "+00:00")).astimezone(ZoneInfo("America/Chicago")).date()
-        if not active or tbd or allday or not VALID_FROM <= day <= VALID_THROUGH:
+        if not active or tbd or allday or not valid_from <= day <= valid_through:
             held.add(number)
             continue
         remaining += 1
@@ -169,7 +187,8 @@ def parse_fixtures(page, source, start_day, end_day):
         events.append({"id": f"{source['id']}:{number}", "source_id": source["id"],
             "sport": source["sport"], "league": source["league"],
             "region": source.get("region", "United States"),
-            "name": f"{spec['games'][number][1]} at {spec['host']}",
+            "name": (f"{spec['host']} at {spec['games'][number][1]}" if spec.get("expected_side") == "A"
+                     else f"{spec['games'][number][1]} at {spec['host']}"),
             "start_time": utc, "status": "UPCOMING", "status_detail": "SCHEDULED",
             "season_stage": None, "location": location, "source_endpoint": source["endpoint"]})
     if not remaining:
