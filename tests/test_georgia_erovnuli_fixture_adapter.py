@@ -34,6 +34,13 @@ def detail():
 
 
 class GeorgiaTests(unittest.TestCase):
+    def test_only_outside_review_window_may_lack_venue(self):
+        page = calendar().replace('<span class="f-game-stadium">Stadium</span>','')
+        with self.assertRaisesRegex(ValueError,'venue missing'):
+            candidates(page,SOURCE,datetime.date(2026,9,28),datetime.date(2026,10,5))
+        rows,count=candidates(page,SOURCE,datetime.date(2026,10,20),datetime.date(2026,10,27))
+        self.assertEqual([],rows)
+        self.assertEqual(1,count)
     def test_detail_utc_corrects_calendar_metadata(self):
         rows, count = candidates(calendar(), SOURCE, datetime.date(2026, 9, 28), datetime.date(2026, 10, 5))
         self.assertEqual((len(rows), count), (1, 1))

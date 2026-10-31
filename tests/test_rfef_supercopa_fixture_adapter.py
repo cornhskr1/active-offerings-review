@@ -14,13 +14,8 @@ SOURCE = {
 
 
 def page():
-    return """<html><body>
-    <h1>Supercopa de España 2027</h1>
-    <p>Estambul acogerá la competición.</p>
-    <p>FC Barcelona - Club Atlético de Madrid · 02/02/2027 · 20:00 · Chobani Stadium Fenerbahçe Şükrü Saracoğlu Sports Complex</p>
-    <p>Real Sociedad de Fútbol - Real Madrid CF · 03/02/2027 · 20:00 · Tüpraş Stadium</p>
-    <p>La final tendrá lugar el 6 de febrero de 2027.</p>
-    </body></html>""".encode()
+    from pathlib import Path
+    return (Path(__file__).parent / 'fixtures/rfef_semifinals_table_2027.html').read_bytes()
 
 
 class RfefSupercopaAdapterTests(unittest.TestCase):
@@ -39,6 +34,17 @@ class RfefSupercopaAdapterTests(unittest.TestCase):
         bad = dict(SOURCE, league="Supercopa de España Femenina | Women")
         with self.assertRaisesRegex(ValueError, "catalog scope"):
             parse_semifinals(page(), bad)
+
+    def test_each_table_date_time_zone_pairing_and_unknown_final_remain_bound(self):
+        for old,new in [(b'02/02/2027',b'03/02/2027'),(b'20:00',b'21:00'),
+                        ('peninsular español'.encode(),b'UTC'),(b'Por determinar',b'FC Barcelona')]:
+            with self.subTest(change=new), self.assertRaises(ValueError):
+                self.assertIn(old,page())
+                parse_semifinals(page().replace(old,new,1),SOURCE)
+
+    def test_missing_table_cannot_use_unrelated_prose_to_authorize_fixtures(self):
+        with self.assertRaisesRegex(ValueError,'table'):
+            parse_semifinals(b'<h1>Supercopa de Espa\xc3\xb1a 2027 en Estambul</h1>',SOURCE)
 
 
 if __name__ == "__main__":

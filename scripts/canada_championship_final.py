@@ -30,15 +30,25 @@ def parse_final(page, source):
     link = card.xpath('./div[contains(@class,"match-card-header")]//a/@href')
     teams = [_text(card, f'.//p[contains(@class,"{kind}-team")]//span[contains(@class,"team-name")]//text()')
              for kind in ("away", "visitor")]
-    date = _text(card, './/p[contains(@class,"match-date")]/text()')
+    date = _text(card, './/p[contains(@class,"match-date")]//text()')
     clock = _text(card, './/p[contains(@class,"match-time")]/text()')
     footer = _text(card, './/div[contains(@class,"match-card-footer")]//text()')
     if (link != [f"https://canadasoccer.com/match/{FINAL_ID}/"]
             or teams != ["CF Montréal", "Forge FC Hamilton"]
-            or date != "21 Oct 2026" or clock != "19:00 EDT"
+            or date != "21 Oct 2026"
             or "FINAL / FINALE (Local 19h00)" not in footer
             or "Stade Saputo, Montréal, Québec" not in footer):
         raise ValueError("Canada Soccer final pairing, venue, or kickoff changed")
+    if re.search(r"\bpast-match\b", card.get("class", "")):
+        scores = card.xpath('.//p[contains(@class,"team")]/span[@class="score"]/text()')
+        stamp = card.xpath('.//p[contains(@class,"match-date")]/time/@datetime')
+        if (clock != 'Full Time' or stamp != ['2026-10-21T19:00:00-04:00']
+                or len(scores) != 2 or not all(re.fullmatch(r'\d+', score.strip()) for score in scores)
+                or re.search(r'\bupcoming-match\b', card.get('class',''))):
+            raise ValueError('Canada Soccer completed final evidence changed')
+        return None
+    if clock != '19:00 EDT':
+        raise ValueError('Canada Soccer final kickoff changed')
     if not re.search(r"\bupcoming-match\b", card.get("class", "")):
         if re.search(r"\b(?:completed-match|finished-match)\b", card.get("class", "")):
             return None

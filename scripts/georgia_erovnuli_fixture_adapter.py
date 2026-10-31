@@ -45,7 +45,7 @@ def candidates(page, source, today, end):
             if (teaser.get("data-status") != "upcoming" or not match_id or not match_id.isdigit()
                     or match_id in ids or len(link) != 1
                     or not re.fullmatch(r"/en/game/" + match_id + r"-[a-z0-9-]+", link[0])
-                    or not all(names) or names[0] == names[1] or not venue
+                    or not all(names) or names[0] == names[1]
                     or not re.fullmatch(r"\d{2}:\d{2}", local)):
                 raise ValueError("Georgian senior upcoming match fields changed")
             ids.add(match_id)
@@ -61,6 +61,8 @@ def candidates(page, source, today, end):
             if day.year != 2026:
                 raise ValueError("Georgian edition changed")
             if today - datetime.timedelta(days=1) <= day <= end + datetime.timedelta(days=1):
+                if not venue:
+                    raise ValueError('Georgian review-window venue missing')
                 rows.append((day, round_number, local, venue, names, link[0], match_id))
     return rows, len(ids)
 

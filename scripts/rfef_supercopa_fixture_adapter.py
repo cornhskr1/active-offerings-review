@@ -2,6 +2,7 @@
 
 import datetime
 import re
+import unicodedata
 from zoneinfo import ZoneInfo
 
 from lxml import html
@@ -10,14 +11,14 @@ from lxml import html
 MADRID = ZoneInfo("Europe/Madrid")
 EXPECTED = [
     ("2027-02-02", "20:00", "FC Barcelona", "Club Atlético de Madrid",
-     "Chobani Stadium Fenerbahçe Şükrü Saracoğlu Sports Complex"),
+     "Chobani Stadyumu Fenerbahçe Şükrü Saracoğlu Sports Complex"),
     ("2027-02-03", "20:00", "Real Sociedad de Fútbol", "Real Madrid CF",
      "Tüpraş Stadium"),
 ]
 
 
 def _norm(value):
-    return " ".join(str(value or "").replace("\xa0", " ").split())
+    return " ".join(unicodedata.normalize('NFC', str(value or "")).replace("\xa0", " ").split())
 
 
 def parse_semifinals(page, source):
@@ -31,14 +32,27 @@ def parse_semifinals(page, source):
     text = _norm(doc.text_content())
     if ("Supercopa de España 2027" not in text
             or "Estambul" not in text
-            or "6 de febrero de 2027" not in text):
+            ):
         raise ValueError("RFEF Supercopa 2027 page identity changed")
 
+    tables = doc.xpath('//table[.//th[contains(.,"RONDA")]]')
+    if len(tables) != 1:
+        raise ValueError('RFEF exact schedule table missing or ambiguous')
+    headers = [_norm(' '.join(c.itertext())) for c in tables[0].xpath('./thead/tr/th')]
+    if headers != ['RONDA','PARTIDO','FECHA','HORARIO (peninsular español)','ESTADIO']:
+        raise ValueError('RFEF schedule fields or time zone changed')
+    rows = [[_norm(c.text_content()) for c in row.xpath('./th|./td')]
+            for row in tables[0].xpath('./tbody/tr')]
+    if len(rows) != 3 or any(len(row) != 5 for row in rows):
+        raise ValueError('RFEF schedule row count changed')
+    if rows[2] != ['FINAL','Por determinar','06/02/2027','20:00','Ali Sami Yen Sports Complex - RAMS Park']:
+        raise ValueError('RFEF unconfirmed final evidence changed')
+
     events = []
-    for date_text, clock, home, away, venue in EXPECTED:
-        if home not in text or away not in text or venue not in text or clock not in text:
-            raise ValueError(f"RFEF Supercopa semifinal changed: {home} - {away}")
+    for number, (date_text, clock, home, away, venue) in enumerate(EXPECTED,1):
         date = datetime.date.fromisoformat(date_text)
+        if rows[number-1] != [f'SEMIFINAL {number}',f'{home} - {away}',date.strftime('%d/%m/%Y'),clock,venue]:
+            raise ValueError(f"RFEF Supercopa semifinal changed: {home} - {away}")
         local = datetime.datetime.combine(date, datetime.time.fromisoformat(clock), MADRID)
         slug = re.sub(r"[^a-z0-9]+", "-", home.lower()).strip("-")
         events.append({
