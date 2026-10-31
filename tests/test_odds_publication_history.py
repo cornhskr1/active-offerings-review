@@ -1,8 +1,13 @@
 """Offline regression for pinned Actions and conditionally skipped deployments."""
 import copy
+import io
+import json
+import os
 import pathlib
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import check_odds_deploy_safety as safety
@@ -112,5 +117,70 @@ class PublicationHistoryTests(unittest.TestCase):
             return self.jobs(n)
         with self.assertRaises(ValueError):
             safety.proved_precollection_failures(runs,unavailable)
+
+    def resume_main(self, runs=None, jobs=None, event='workflow_dispatch', resume='true', attempt=1):
+        current=dict(self.current,event=event,run_attempt=attempt)
+        runs=[self.anchor,self.failure,current] if runs is None else runs
+        calls=[]
+        fixture=self
+        class GitHub:
+            def open(self, request, timeout):
+                path=request.full_url.split(safety.REPOSITORY)[1];calls.append(path)
+                if path=='/actions/runs/13':payload=current
+                elif path=='/actions/workflows/99/runs?per_page=100&page=1':
+                    payload={'total_count':len(runs),'workflow_runs':runs}
+                elif path=='/actions/runs/9/attempts/1/jobs?per_page=100':
+                    payload=(jobs or fixture.jobs)(9)
+                elif path=='/actions/runs/11/attempts/1/jobs?per_page=100':
+                    payload=fixture.jobs(11)
+                    # Hosting failure after collection must never be auto-ignored.
+                    for step in payload['jobs'][0]['steps'][:8]:step['conclusion']='success'
+                    payload['jobs'][0]['steps'][8]['conclusion']='failure'
+                else:raise AssertionError('Unexpected endpoint: '+path)
+                return io.BytesIO(json.dumps(payload).encode())
+        with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ,{
+            'GITHUB_REPOSITORY':safety.REPOSITORY,'GH_TOKEN':'synthetic-test-token',
+            'GITHUB_RUN_ID':'13','GITHUB_EVENT_NAME':event,
+            'RESUME_AFTER_REVIEW':resume,'RUNNER_TEMP':temp,
+        }), patch.object(safety.urllib.request,'build_opener',return_value=GitHub()):
+            path=pathlib.Path(temp)/'odds-recovery-proof.json'
+            try:safety.main()
+            except ValueError:
+                self.assertFalse(path.exists(),'Rejected recovery must not leave a proof')
+                raise
+            return json.loads(path.read_text()),calls
+
+    def test_reviewed_new_dispatch_restores_only_verified_success_not_failed_artifact(self):
+        proof,calls=self.resume_main()
+        self.assertEqual(proof,{'repository':safety.REPOSITORY,'current_run_id':13,'anchor_run_id':9})
+        self.assertIn('/actions/runs/9/attempts/1/jobs?per_page=100',calls)
+        self.assertNotIn('/actions/runs/11/attempts/1/jobs?per_page=100',calls)
+
+    def test_reviewed_resume_without_valid_anchor_cannot_create_proof(self):
+        for runs in ([self.failure],[]):
+            with self.subTest(runs=runs),self.assertRaises(ValueError):self.resume_main(runs=runs)
+        for damage in ('rerun','missing','changed_action','collection_failed','unavailable'):
+            def jobs(n):
+                if damage=='unavailable':raise ValueError('Jobs unavailable')
+                payload=self.jobs(n)
+                if damage=='rerun':payload['jobs'][0]['run_attempt']=2
+                elif damage=='missing':payload['jobs']=[]
+                elif damage=='changed_action':payload['jobs'][0]['steps'][8]['name']+='0'
+                else:payload['jobs'][0]['steps'][5]['conclusion']='failure'
+                return payload
+            # An older success cannot replace a damaged latest-success anchor.
+            older=dict(self.anchor,id=8,run_number=8,updated_at='2026-10-18T01:00:00Z')
+            with self.subTest(damage=damage),self.assertRaises(ValueError):
+                self.resume_main(runs=[older,self.anchor,self.failure],jobs=jobs)
+
+    def test_resume_does_not_clear_automatic_trigger_rerun_or_active_history(self):
+        for event,resume,attempt in [('push','true',1),('schedule','true',1),
+                ('workflow_run','true',1),('workflow_dispatch','false',1),('workflow_dispatch','true',2)]:
+            with self.subTest(event=event,resume=resume,attempt=attempt),self.assertRaises(ValueError):
+                self.resume_main(event=event,resume=resume,attempt=attempt)
+        for status in ('in_progress','pending','waiting'):
+            active=dict(self.failure,status=status,conclusion=None)
+            with self.subTest(status=status),self.assertRaises(ValueError):
+                self.resume_main(runs=[self.anchor,active])
 
 if __name__=='__main__':unittest.main()

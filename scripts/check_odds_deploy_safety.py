@@ -236,13 +236,15 @@ def main():
  proved=proved_precollection_failures(runs,lambda failed_id:get('/actions/runs/'+str(failed_id)+'/attempts/1/jobs?per_page=100')) if not resume else set()
  if not permitted(current,runs,resume,proved,pending):raise ValueError('Previous deployment was not confirmed successful. Review the failure before explicitly resuming collection.')
  if pending:print('Verified '+str(len(pending))+' never-started deployment(s) waiting for the same Pages lock.')
- # Artifact restoration is allowed only from the exact verified publication anchor.
- if not resume:
-  anchors=[r for r in runs if r.get('status')=='completed' and r.get('conclusion')=='success']
-  anchor=max(anchors,key=lambda r:datetime.fromisoformat(r['updated_at'].replace('Z','+00:00'))) if anchors else None
-  if anchor and successful_publication(anchor,get('/actions/runs/'+str(anchor['id'])+'/attempts/1/jobs?per_page=100')):
-   from pathlib import Path
-   Path(os.environ['RUNNER_TEMP'],'odds-recovery-proof.json').write_text(json.dumps({'repository':REPOSITORY,'current_run_id':int(run_id),'anchor_run_id':anchor['id']}))
+ # Reviewed resume permits a new deployment after inspected failure; it does
+ # not authorize inventing prior control state. Restoration still requires
+ # the exact latest successful publication and its pinned first-attempt jobs.
+ anchors=[r for r in runs if r.get('status')=='completed' and r.get('conclusion')=='success']
+ anchor=max(anchors,key=lambda r:datetime.fromisoformat(r['updated_at'].replace('Z','+00:00'))) if anchors else None
+ if not anchor or not successful_publication(anchor,get('/actions/runs/'+str(anchor['id'])+'/attempts/1/jobs?per_page=100')):
+  raise ValueError('Verified publication anchor required before restoration')
+ from pathlib import Path
+ Path(os.environ['RUNNER_TEMP'],'odds-recovery-proof.json').write_text(json.dumps({'repository':REPOSITORY,'current_run_id':int(run_id),'anchor_run_id':anchor['id']}))
 if __name__=='__main__':
  try:main()
  except Exception:
