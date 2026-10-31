@@ -40,3 +40,13 @@ Do not replace the current table with its August first-turn PDF, an indexed copy
 - The tennis artifact is still generated at `2026-10-29T17:25:06.477580+00:00`; the merged tennis packaging fix still lacks fresh normal-publication confirmation.
 - The Odds API persistent halt remains untouched; no recovery, paid request or cache reset is authorized.
 - Source triage is complete, but the source-repair program is not. Seventeen non-access failure lanes remain; some need code, while others need new publisher evidence. They remain separate from the five access/TLS blockers and 178 permission holds.
+
+## October 31 follow-up verification
+
+App releases #329–#334 and their data companions #25–#29 are merged. The latest app merge is `7b9e741e754e2c51ff7cc2559ad15bf337a3e747`, reviewed tree `e6032f3f7b268981a9039ae05de9c936beab5ee8`; data #29 is `23802158afd5faa1f719b32b5c7b2f80f98d4a3b`. Deployment 41198551285 and post-merge boundary 41198566745 passed. The trusted manifest still contains 537 selected entries matching the reviewed app tree. Qatar Stars, Lithuania, Ireland, Bosnia and Azerbaijan still require normal-publication evidence at this checkpoint; UAE detail recovery also requires that observation.
+
+### Portugal Allianz Cup: current evidence remains incomplete
+
+The exact configured official page, https://www.ligaportugal.pt/competition/914/allianz-cup/round/20262027, was retrieved again on October 31. It identifies Allianz Cup and season 2026–2027, but renders `Não foram encontrados jogos.` Its embedded publisher state identifies competition 914 / season 20262027, with an empty rounds list and `hasMatches: false`.
+
+This does not establish the quarterfinals' final results or a complete upcoming phase. The existing parser correctly rejects the missing quarterfinal identity. Do not remove that gate, reuse the previous hardcoded dates, or treat the empty shell as a healthy empty schedule. Before a code repair, require a current official schedule/results publication proving exact phase, match identities, senior pairings, completed status or explicit kickoffs. The January Final Four remains outside the reviewed adapter until exact pairings and times are published.
