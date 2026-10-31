@@ -3443,7 +3443,7 @@ for source in CFG.get("sources",[]):
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
             response.raise_for_status()
             parser=parse_superlega if source["id"]=="volleyball-italy-superlega" else parse_serie_a1
-            fixtures=parser(response.text,source,TODAY,END)
+            fixtures=parser(response.content,source,TODAY,END)
             published_count=len(fixtures)
             candidates=stage_timed_fixtures(fixtures,source["id"],NOW_UTC,TODAY,END,TZ,seen)
         except Exception as exc:
