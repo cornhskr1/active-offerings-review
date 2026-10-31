@@ -420,7 +420,7 @@
       "coverage_status": "partial",
       "endpoint": "https://www.qsl.qa/en/doha-bank-stars-league-fixtures-results",
       "official_schedule_url": "https://www.qsl.qa/en/doha-bank-stars-league-fixtures-results",
-      "source_note": "Official 2026–27 Doha Bank Stars League upcoming tables list two six-match senior league weeks, October 8–18. The adapter validates both complete weeks and fails closed when they become stale; later rounds, the final fixture, and any post-season scope remain unverified.",
+      "source_note": "Official 2026–27 Doha Bank Stars League tables currently split completed and upcoming matches inside the same exact competition page. The adapter combines scored result rows with named, timed fixture rows to prove each visible six-match senior league week contains all 12 clubs exactly once; partial weeks, unknown clubs, non-results and stale horizons fail closed. Later unpublished rounds and any post-season scope remain unverified.",
       "catalog_terms": [
         "Qatar Stars League | Men"
       ]

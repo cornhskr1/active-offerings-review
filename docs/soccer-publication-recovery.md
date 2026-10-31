@@ -22,6 +22,12 @@ Evidence: https://www.erovnuliliga.ge/en/calendar
 
 All eight candidate detail pages in the October 30–November 6 envelope were retrieved and independently matched by the existing verifier. Five fall inside the actual Central Time review window. Their IDs are 9407, 9409, 9408, 9401 and 9410. No result or missing venue was guessed.
 
+## Qatar Stars League
+
+Evidence: https://www.qsl.qa/en/doha-bank-stars-league-fixtures-results
+
+The October 31 official 2026–27 Doha Bank Stars League page splits week 8 across three scored results (match numbers 43–45) and three named, timed upcoming fixtures (46–48), followed by all six named, timed week 9 fixtures (49–54). The adapter now combines only those exact result and fixture panes to validate each complete six-match senior week. It rejects partial weeks, duplicate or unknown clubs, future/non-numeric results, unexpected match-number spans and horizons beyond the last published kickoff.
+
 ## Swiss Challenge League
 
 The SFL directory now links the October 23 revision of the exact 2026/27 dieci Challenge League PDF. That revision publishes 18 complete five-match rounds (90 pairings), replacing the September 7 document with 17 rounds. Bind collection to the unique current directory link, exact revision, senior competition title, complete round count, ten distinct eligible clubs per round, published weekday and Europe/Zurich kickoff. The adapter remains limited to the published first phase; later phases and the interdivision barrage are not inferred. The separate Swiss Cup source remains on its existing access hold.
