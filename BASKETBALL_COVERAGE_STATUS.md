@@ -22,7 +22,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | BBL-Pokal \| Men | Calendar only | published-event-window |
 | BIG3 \| Men | Calendar only | last-published-event-window |
 | Basketball Bundesliga (BBL) \| Men | Fixtures published in this window | partial |
-| Basketball Champions League \| Men | Source blocked or failed | partial |
+| Basketball Champions League \| Men | Source blocked or failed | fiba-bcl: Permission required: FIBA automated collection is paused pending access review; saved observations are not fresh. Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 | Basketball League of Serbia / Košarkaška liga Srbije (KLS) \| Men | Fixtures published in this window | partial |
 | Basketbol Süper Ligi (BSL) \| Men | Fixtures published in this window | partial |
 | Basketligaen \| Men | Fixtures published in this window | partial |
@@ -58,9 +58,9 @@ Configured connections are not a completion percentage. Published fixtures only 
 | FIBA Micronesia Cup \| Women | Calendar only | last-published-event-window |
 | FIBA Polynesian Basketball Cup \| Men | Calendar only | published-event-window |
 | FIBA Polynesian Basketball Cup \| Women | Calendar only | published-event-window |
-| FIBA Women's EuroLeague \| Women | Source blocked or failed | partial |
+| FIBA Women's EuroLeague \| Women | Source blocked or failed | basketball-womens-euroleague: Permission required: FIBA automated collection is paused pending access review; saved observations are not fresh. Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 | French Cup \| Men | Calendar only | last-published-event-window |
-| Governor’s Cup \| Men | Source blocked or failed | published-schedule-window |
+| Governor’s Cup \| Men | Source blocked or failed | basketball-ph-governors: 403 Client Error: Forbidden for url: https://www.pba.ph/news/familiar-faces-new-imports-coming-over-for-govern Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 | Greek Basket League (GBL) \| Men | Fixtures published in this window | partial |
 | Greek Cup \| Men | Calendar only | last-published-event-window |
 | Greek Super Cup \| Men | Calendar only | published-event-window |
@@ -75,16 +75,16 @@ Configured connections are not a completion percentage. Published fixtures only 
 | Liga ACB \| Men | Fixtures published in this window | partial |
 | Liga Nacional de Baloncesto Profesional (LNBP) \| Men | Source checked; no current fixtures | partial |
 | Liga Nacional de Basquetbol de Chile (LNB) \| Men | Fixture connection missing | missing |
-| Liga Nacional de Básquet (LNB) \| Men | Source blocked or failed | partial |
+| Liga Nacional de Básquet (LNB) \| Men | Source blocked or failed | basketball-ar-lnb: Argentina LNB response crossed the requested date window Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 | Ligat Ha’Al / Israeli Basketball Premier League \| Men | Fixtures published in this window | partial |
 | NBA Draft | Calendar only | last-published-event-window |
 | NBA Preseason Games v. International Teams | Competition/scope hold | The NBA's published 2026 preseason schedule lists NBA-versus-NBA global games, but no matchup against a non-NBA international club; global location alone does not satisfy this identity |
-| National Basketball Association (NBA) \| Men | Source blocked or failed | not reported |
-| National Basketball League (NBL) \| Men | Source blocked or failed | complete |
-| Novo Basquete Brasil (NBB) \| Men | Source blocked or failed | partial |
+| National Basketball Association (NBA) \| Men | Source blocked or failed | nba: Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh. Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
+| National Basketball League (NBL) \| Men | Source blocked or failed | australian-nbl: Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh. Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
+| Novo Basquete Brasil (NBB) \| Men | Source blocked or failed | basketball-br-nbb: NBB fixture identity or pairing changed Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 | Pacific Games \| Men | Calendar only | last-published-event-window |
 | Pacific Games \| Women | Calendar only | last-published-event-window |
-| Philippine Basketball Association (PBA) \| Men | Source blocked or failed | published-schedule-window |
+| Philippine Basketball Association (PBA) \| Men | Source blocked or failed | basketball-ph-pba: 403 Client Error: Forbidden for url: https://www.pba.ph/schedule Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 | Philippine Cup \| Men | Calendar only | last-published-event-window |
 | Polish Cup \| Men | Calendar only | last-published-event-window |
 | Polish Supercup \| Men | Calendar only | published-event-window |
@@ -106,7 +106,7 @@ Configured connections are not a completion percentage. Published fixtures only 
 | The Basketball Tournament (TBT) \| Women | Competition/scope hold | No official division-specific women's TBT competition or calendar was found. |
 | Turkish Basketball Cup \| Men | Calendar only | last-published-event-window |
 | Unrivaled Basketball \| Women | Calendar only | published-schedule-window |
-| Women’s National Basketball Association (WNBA) \| Women | Source blocked or failed | not reported |
+| Women’s National Basketball Association (WNBA) \| Women | Source blocked or failed | wnba: Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh. Resolve the recorded source failure by provider family, or retain a visible manual check. A failed source is not a missing catalog identity. |
 
 Detailed source URLs, checks, errors and next actions: [machine-readable register](data/basketball-coverage-acceptance.json).
 Source failures remain unresolved until verified. Calendar windows and documented holds are not completed fixture coverage.
