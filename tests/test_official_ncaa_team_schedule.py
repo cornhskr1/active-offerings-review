@@ -51,6 +51,44 @@ def page(source, records):
 
 
 class ExactNcaaTeamScheduleTests(unittest.TestCase):
+    def renewed(self):
+        source,_=fixture()
+        rows=json.loads((Path(__file__).parent/'fixtures/uci-reviewed-game-14408-20261031.json').read_text())
+        return source,rows
+
+    def test_renewed_exact_away_game_preserves_publisher_identity_and_central_date(self):
+        source,rows=self.renewed()
+        events,held=self.parse(source,rows,dt.date(2026,10,31),dt.date(2026,11,7))
+        self.assertEqual((1,0),(len(events),held))
+        self.assertEqual(('ncaa-water-polo-di-men:14408','UC Irvine at Long Beach State','2026-11-07T03:00:00Z'),
+                         (events[0]['id'],events[0]['name'],events[0]['start_time']))
+        self.assertEqual(1,len(self.parse(source,rows,dt.date(2026,11,6),dt.date(2026,11,6))[0]))
+
+    def test_renewal_cannot_change_exact_side_date_clock_location_or_opponent(self):
+        for change in [lambda r:r.update(location_indicator='H',locationIndicator='H'),
+                       lambda r:r['opponent'].update(id=99),lambda r:r['opponent'].update(title='Other'),
+                       lambda r:r.update(location='Irvine, Calif.'),
+                       lambda r:r.update(date='2026-11-05T19:00:00',start_date='2026-11-05T19:00:00'),
+                       lambda r:r.update(dateUtc='2026-11-07T04:00:00Z',start_date_utc='2026-11-07T04:00:00Z'),
+                       lambda r:r.update(time='TBA')]:
+            source,rows=self.renewed();change(rows[0])
+            with self.subTest(change=change),self.assertRaises(ValueError):
+                self.parse(source,rows,dt.date(2026,10,31),dt.date(2026,11,7))
+
+    def test_renewal_expires_and_does_not_clear_hockey_or_unreviewed_games(self):
+        source,rows=self.renewed();extra=copy.deepcopy(rows[-1]);extra['id']=14409;rows.append(extra)
+        self.assertEqual((1,1),tuple(len(x) if isinstance(x,list) else x for x in self.parse(source,rows,dt.date(2026,10,31),dt.date(2026,11,7))))
+        for start in (dt.date(2026,10,30),dt.date(2026,11,7)):
+            with self.assertRaises(ValueError):self.parse(source,rows,start,start+dt.timedelta(days=7))
+        source,rows=fixture('ncaa-ice-hockey-di-women')
+        with self.assertRaises(ValueError):self.parse(source,rows,dt.date(2026,10,31),dt.date(2026,11,7))
+
+    def test_renewal_missing_utc_conflicting_copy_and_inactive_games_stay_closed(self):
+        for mutate in [lambda rows:rows[:1],lambda rows:[{**r,'status':'I'} for r in rows],
+                       lambda rows:rows+[{**rows[-1],'is_all_day':True}]]:
+            source,rows=self.renewed()
+            with self.assertRaises(ValueError):self.parse(source,mutate(rows),dt.date(2026,10,31),dt.date(2026,11,7))
+
     def parse(self, source, rows, start=START, end=END):
         return parse_fixtures(page(source, rows), source, start, end)
 
