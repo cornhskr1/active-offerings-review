@@ -13,6 +13,9 @@ class ItalyVolleyballFixtureTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.sources = {s["id"]: s for s in json.loads((ROOT / "data/global-schedule-sources.json").read_text())["sources"]}
+        # Historical bulletin tests use the historical adapter configuration.
+        cls.sources['volleyball-italy-serie-a1-women'] = {**cls.sources['volleyball-italy-serie-a1-women'],
+            'endpoint': 'https://www.legavolleyfemminile.it/sale-lattesa-per-la-nuova-lvf-a1-fineco-ufficiale-la-programmazione-delle-prime-cinque-giornate/'}
         cls.men = (ROOT / "tests/fixtures/italy_superlega_2026.html").read_text()
         cls.women = (ROOT / "tests/fixtures/italy_serie_a1_2026.html").read_text()
         cls.today, cls.end = datetime.date(2026, 9, 28), datetime.date(2026, 10, 5)
