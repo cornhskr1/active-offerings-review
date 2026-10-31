@@ -44,7 +44,7 @@ class PublisherScheduleTests(unittest.TestCase):
     def test_nbb_403_retries_browser_headers_but_persistent_block_fails(self):
         blocked = Mock(status_code=403)
         blocked.raise_for_status.side_effect = requests.HTTPError("403 Forbidden")
-        accepted = Mock(status_code=200, text=self.nbb_page())
+        accepted = Mock(status_code=200, content=self.nbb_page().encode('utf-8'))
         accepted.raise_for_status.return_value = None
         get = Mock(side_effect=[blocked, accepted])
         page = fetch_nbb_schedule(self.sources["basketball-br-nbb"]["endpoint"], get=get)

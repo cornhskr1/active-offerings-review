@@ -28,7 +28,9 @@ def fetch_nbb_schedule(url, get=requests.get):
         if response.status_code == 403 and index + 1 < len(header_sets):
             continue
         response.raise_for_status()
-        return response.text
+        # Let the HTML parser honor the publisher's UTF-8 meta declaration;
+        # requests otherwise defaults charset-less text/html to Latin-1.
+        return response.content
     raise RuntimeError("NBB schedule publisher did not return a usable page")
 
 
@@ -41,7 +43,7 @@ def parse_nbb_fixtures(page, source):
     rows = document.xpath('//tr[td[contains(concat(" ",normalize-space(@class)," ")," position_value ")]]')
     if not rows:
         raise ValueError("NBB schedule has no match rows")
-    events = []
+    events, validated_pairings = [], set()
     seen_numbers, seen_ids = set(), set()
     for row in rows:
         def field(name):
@@ -61,12 +63,9 @@ def parse_nbb_fixtures(page, source):
         stamps = [" ".join(x.itertext()).strip() for x in date_cell.xpath("./span")]
         home, away = " ".join(home_cell.itertext()).strip(), " ".join(away_cell.itertext()).strip()
         links = row.xpath('.//a[contains(@href,"/partidas/nbb-2026-2027-")]/@href')
-        if (not number.isdigit() or not publisher_id.isdigit() or len(stamps) < 2
-                or not home or not away or home == away or len(set(links)) != 1):
+        if (not number.isdigit() or not publisher_id.isdigit() or len(stamps) != 2
+                or not home or not away or home == away):
             raise ValueError("NBB fixture identity or pairing changed")
-        url = links[0]
-        if urlparse(url).hostname != "lnb.com.br":
-            raise ValueError("NBB fixture link left the publisher")
         try:
             local = datetime.datetime.strptime(" ".join(stamps[:2]), "%d/%m/%Y %H:%M").replace(tzinfo=BRAZIL)
         except ValueError as exc:
@@ -75,6 +74,32 @@ def parse_nbb_fixtures(page, source):
             raise ValueError("NBB fixture edition or ID changed")
         seen_numbers.add(number)
         seen_ids.add(publisher_id)
+        validated_pairings.add((home, away))
+        # Finished rows replace the fixture URL with a same-edition result
+        # article. Validate the published result, but never emit it as upcoming.
+        reports = row.xpath('.//a[contains(concat(" ",normalize-space(@class)," ")," match_score_relatorio ")]')
+        scores = []
+        for report in reports:
+            pair = ["".join(report.xpath(f'./span[@class="{side}"]//text()')).strip()
+                    for side in ("home", "away")]
+            if any(pair):
+                if not all(value.isascii() and value.isdigit() for value in pair):
+                    raise ValueError("NBB result scores changed")
+                scores.append(tuple(pair))
+        if scores:
+            report_urls = {report.get("href", "") for report in reports}
+            if len(scores) != len(reports) or len(set(scores)) != 1 or len(report_urls) != 1 or links:
+                raise ValueError("NBB result identity changed")
+            result_url = urlparse(next(iter(report_urls)))
+            if (result_url.scheme != "https" or result_url.netloc != "lnb.com.br"
+                    or not result_url.path.startswith("/noticias/nbb-caixa-2026-27-")):
+                raise ValueError("NBB result link left the publisher or edition")
+            continue
+        if len(set(links)) != 1:
+            raise ValueError("NBB fixture identity or pairing changed")
+        url = links[0]
+        if urlparse(url).scheme != "https" or urlparse(url).netloc != "lnb.com.br":
+            raise ValueError("NBB fixture link left the publisher")
         events.append({
             "id": f"nbb-2026-27-{publisher_id}", "source_id": source["id"],
             "sport": source["sport"], "league": source["league"], "region": source["region"],
@@ -83,7 +108,7 @@ def parse_nbb_fixtures(page, source):
             "status": "UPCOMING", "status_detail": "NBB official 2026/27 fixture",
             "season_stage": "REGULAR", "location": None, "source_endpoint": url,
         })
-    if len(events) < 20 or len({event["name"] for event in events}) < 10:
+    if len(seen_ids) < 20 or len(validated_pairings) < 10:
         raise ValueError("NBB 2026/27 fixture list is incomplete")
     return events
 
