@@ -2,6 +2,7 @@ import copy
 import json
 import unittest
 from pathlib import Path
+from lxml import html
 from scripts.uae_pro_league_fixtures import discover_league_competition,parse_league_matches
 
 FIXTURES=Path(__file__).parent/'fixtures'
@@ -54,6 +55,56 @@ class UaeLeagueFixturesTests(unittest.TestCase):
         timed=doc.xpath('//div[@id="matchList_1lu4oerqdz5maz39qhenfzsic"]')[0]
         with self.assertRaisesRegex(ValueError,'duplicate'):
             parse_league_matches({'html':self.payload['html']+html.tostring(timed,encoding='unicode')},SOURCE)
+
+    def ticket_payload(self, change=None):
+        payload=json.loads((FIXTURES/'uae-league-ticket-records-20261031.json').read_text())
+        if change:
+            doc=html.fromstring('<main>'+payload['html']+'</main>')
+            change(doc.xpath('//div[@id="matchList_d1h3pu0uc29oev0lc5gipzhuc"]/div[@class="upcomingMatches__right"]')[0])
+            payload['html']=html.tostring(doc,encoding='unicode')
+        return payload
+
+    def test_current_ticket_cards_preserve_exact_official_match_evidence(self):
+        events,held,completed,total=parse_league_matches(self.ticket_payload(),SOURCE)
+        self.assertEqual((4,1,0,5),(len(events),held,completed,total))
+        self.assertEqual(['Kalba at Al Dhafra','Khorfakkan at Hatta','Shabab AlAhli at Sharjah','Hatta at Al Wasl'],[e['name'] for e in events])
+        self.assertEqual(['2026-11-07T12:55:00Z','2026-11-07T15:30:00Z','2026-11-07T15:30:00Z','2026-11-19T12:45:00Z'],[e['start_time'] for e in events])
+        self.assertEqual('Hamdan Bin Zayed Stadium',events[0]['location'])
+        self.assertEqual('https://www.uaeproleague.ae/en/fixtures/22e17f7a-7604-11f1-b32b-0289588efdb9',events[0]['source_endpoint'])
+        self.assertEqual('uae-league-d1h3pu0uc29oev0lc5gipzhuc',events[0]['id'])
+
+    def test_ticket_cannot_replace_missing_or_duplicate_official_detail(self):
+        def remove(right):
+            right.remove(right.xpath('./a[not(@class)]')[0])
+        def duplicate(right):
+            right.append(copy.deepcopy(right.xpath('./a[not(@class)]')[0]))
+        def disguised_duplicate(right):
+            node=copy.deepcopy(right.xpath('./a[not(@class)]')[0])
+            node.set('class','btn--ticket');node.text='Buy Tickets';right.append(node)
+        for change in (remove,duplicate,disguised_duplicate):
+            with self.subTest(change=change.__name__),self.assertRaisesRegex(ValueError,'detail identity'):
+                parse_league_matches(self.ticket_payload(change),SOURCE)
+
+    def test_external_or_malformed_detail_identity_rejected_even_with_ticket(self):
+        original='https://www.uaeproleague.ae/en/fixtures/22e17f7a-7604-11f1-b32b-0289588efdb9'
+        for link in (original.replace('https:','http:'),original.replace('www.uaeproleague.ae','example.com'),
+                     original.replace('www.uaeproleague.ae','www.uaeproleague.ae:8443'),original+'?match=other',
+                     original+'#other',original.replace('22e17f7a','22e-7f7a'),original.replace('/fixtures/','/clubs/')):
+            def change(right):right.xpath('./a[not(@class)]')[0].set('href',link)
+            with self.subTest(link=link),self.assertRaisesRegex(ValueError,'detail identity'):
+                parse_league_matches(self.ticket_payload(change),SOURCE)
+
+    def test_unrecognized_extra_links_are_not_silently_discarded(self):
+        for attribute,value in (('class','btn--match-report'),('href','https://example.com/tickets'),('href','http://dubai.platinumlist.net/event-tickets/109426/game')):
+            def change(right):right.xpath('./a[@class]')[0].set(attribute,value)
+            with self.subTest(attribute=attribute,value=value),self.assertRaisesRegex(ValueError,'detail identity'):
+                parse_league_matches(self.ticket_payload(change),SOURCE)
+
+    def test_ticket_cards_cannot_borrow_cup_or_u23_scope(self):
+        for competition in ('ADIB Cup','Pro League U23'):
+            payload=self.ticket_payload();payload['html']=payload['html'].replace('alt="ADNOC PRO LEAGUE"',f'alt="{competition}"',1)
+            with self.subTest(competition=competition),self.assertRaisesRegex(ValueError,'another competition'):
+                parse_league_matches(payload,SOURCE)
 
 
 if __name__=='__main__':unittest.main()
