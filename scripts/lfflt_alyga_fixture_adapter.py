@@ -20,7 +20,7 @@ def next_round(page, source, today):
     if source["id"] != SOURCE_ID or source.get("catalog_terms") != [source["league"]]:
         raise ValueError("Lithuanian LFF catalog scope changed")
     doc = html.fromstring(page)
-    if (_text(doc, '//div[@class="mlh-league-name"]/text()') != "A lyga, kurią remia TOPsport 2026"
+    if (_text(doc, '//div[@class="mlh-league-name"]/text()') != "TOPLYGA 2026"
             or _text(doc, '//div[@class="mlh-season"]/text()') != "Sezonas 2026"):
         raise ValueError("Lithuanian LFF senior 2026 competition changed")
     panels = doc.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," matches-tour-table ")]')

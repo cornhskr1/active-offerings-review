@@ -31,7 +31,7 @@ def page():
                 <td><a href="/{prefix}-varzybos/fixture-{match_id}">Details</a></td></tr>''')
         panels.append(f'<div class="matches-tour-table"><h1>{number}. TURAS</h1><table class="matches-table">'
                       + ''.join(rows) + '</table></div>')
-    return ('<div class="mlh-league-name">A lyga, kurią remia TOPsport 2026</div>'
+    return ('<div class="mlh-league-name">TOPLYGA 2026</div>'
             '<div class="mlh-season">Sezonas 2026</div>' + ''.join(panels))
 
 
@@ -56,7 +56,10 @@ class LithuanianFixtureTests(unittest.TestCase):
 
     def test_scope_and_linked_detail_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "competition"):
-            next_round(page().replace("A lyga, kurią remia TOPsport 2026", "I lyga 2026"), SOURCE,
+            next_round(page().replace("TOPLYGA 2026", "I lyga 2026", 1), SOURCE,
+                       datetime.date(2026, 9, 28))
+        with self.assertRaisesRegex(ValueError, "competition"):
+            next_round(page().replace("TOPLYGA 2026", "A lyga, kurią remia TOPsport 2026", 1), SOURCE,
                        datetime.date(2026, 9, 28))
         with self.assertRaisesRegex(ValueError, "scope"):
             next_round(page().replace("-23198513", "-other-league", 1), SOURCE,
