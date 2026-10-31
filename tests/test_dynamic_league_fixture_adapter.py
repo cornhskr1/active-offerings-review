@@ -11,6 +11,39 @@ from scripts.dynamic_league_fixture_adapter import (
 
 
 class DynamicLeagueAdapterTests(unittest.TestCase):
+    def results_page(self):
+        return (Path(__file__).parent/'fixtures/bih-round12-results-20261031.html').read_text()
+
+    def parse_results(self,page):
+        return parse_bih_fixtures(page,self.bih_source(),
+            observed_at=datetime.datetime(2026,10,31,23,tzinfo=datetime.timezone.utc))
+
+    def test_bih_exact_results_round_retains_only_two_unscored_fixtures(self):
+        events=self.parse_results(self.results_page())
+        self.assertEqual(['bih-wwin-54152329','bih-wwin-54152333'],[e['id'] for e in events])
+        self.assertEqual(['2026-11-01T12:00:00Z','2026-11-01T14:00:00Z'],[e['start_time'] for e in events])
+
+    def test_bih_results_scope_identity_dates_and_scores_fail_closed(self):
+        with self.assertRaisesRegex(ValueError,'round tabs'):
+            parse_bih_fixtures(self.bih_page(result_round=12,fixture_round=13),self.bih_source())
+        page=self.results_page()
+        for a,b in [('Results round 12','Results round 13'),('54152329-bsk','99999999-bsk'),
+                    ('01.11.2026. 13:00','01.11.2026. 14:00'),('2 : 0','P : P'),
+                    ('BSK','UNKNOWN'),('- : -','1 : 0')]:
+            with self.subTest(change=b),self.assertRaises(ValueError):
+                self.parse_results(page.replace(a,b))
+
+    def test_bih_results_missing_or_duplicate_rows_and_nonempty_footer_rejected(self):
+        from lxml import html
+        import copy
+        for duplicate in (False,True):
+            d=html.fromstring(self.results_page());r=d.xpath('//tr[td/a[contains(@href,"54152329")]]')[0]
+            if duplicate:r.getparent().append(copy.deepcopy(r))
+            else:r.getparent().remove(r)
+            with self.assertRaises(ValueError):self.parse_results(html.tostring(d))
+        page=self.results_page().replace('<td colspan="6"></td>','<td colspan="6">Unverified match</td>')
+        with self.assertRaisesRegex(ValueError,'footer'):self.parse_results(page)
+
     BIH_FIXTURES = (
         ("01.11.2026. 13:00", "BSK", "FK SARAJEVO", "54152329"),
         ("01.11.2026. 15:00", "FK SLOGA DOBOJ", "FK VELEŽ", "54152333"),

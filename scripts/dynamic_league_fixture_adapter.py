@@ -20,6 +20,13 @@ BIH_CLUBS = (
     "NK ČELIK", "FK RADNIK", "NK ŠIROKI BRIJEG", "BSK", "FK BORAC",
     "HŠK ZRINJSKI", "FK SLOGA DOBOJ", "FK ŽELJEZNIČAR", "FK VELEŽ", "FK SARAJEVO",
 )
+BIH_ROUND12 = {
+    '54152329': ('BSK', 'FK SARAJEVO', '2026-11-01T12:00:00Z'),
+    '54152333': ('FK SLOGA DOBOJ', 'FK VELEŽ', '2026-11-01T14:00:00Z'),
+    '54152331': ('FK RADNIK', 'NK ŠIROKI BRIJEG', '2026-10-31T12:00:00Z'),
+    '54152330': ('FK ŽELJEZNIČAR', 'HŠK ZRINJSKI', '2026-10-31T15:00:00Z'),
+    '54152332': ('NK ČELIK', 'FK BORAC', '2026-10-31T19:45:00Z'),
+}
 
 
 def _norm(value):
@@ -128,7 +135,7 @@ def parse_affa_notice(page, source, review_date=None):
     return events
 
 
-def parse_bih_fixtures(page, source):
+def parse_bih_fixtures(page, source, *, observed_at=None):
     if (source.get("id") != "uefa-soccer-bosnia-and-herzegovina-premier-league-of-bosnia-and-herzegovina-men"
             or source.get("league") != "Premier League of Bosnia and Herzegovina | Men"
             or source.get("catalog_terms") != ["Premier League of Bosnia and Herzegovina | Men"]):
@@ -151,16 +158,29 @@ def parse_bih_fixtures(page, source):
             result_tabs.append((int(result.group(1)), link.get("href")))
         if fixture:
             fixture_tabs.append((int(fixture.group(1)), link.get("href")))
-    if (len(result_tabs) != 1 or len(fixture_tabs) != 1
+    results_mode = (not fixture_tabs and len(result_tabs) == 1 and result_tabs[0][0] == 12
+                    and result_tabs[0][1].endswith('-rezultati'))
+    if results_mode:
+        observed_at = observed_at or datetime.datetime.now(datetime.timezone.utc)
+        if observed_at.tzinfo is None or observed_at.utcoffset() is None:
+            raise ValueError('BiH results observation clock must be aware')
+    if not results_mode and (len(result_tabs) != 1 or len(fixture_tabs) != 1
+            or fixture_tabs[0][0] != 12
             or fixture_tabs[0][0] != result_tabs[0][0] + 1
             or not fixture_tabs[0][1].endswith("-naredno")):
         raise ValueError("BiH Wwin League round tabs changed")
-    target_id = fixture_tabs[0][1][1:]
+    target_id = (result_tabs if results_mode else fixture_tabs)[0][1][1:]
     targets = panels[0].xpath('.//div[@id=$target]', target=target_id)
     tables = targets[0].xpath('./table') if len(targets) == 1 else []
     if len(tables) != 1:
         raise ValueError("BiH Wwin League fixture table missing or ambiguous")
-    rows = tables[0].xpath('.//tr')
+    if results_mode:
+        footers = tables[0].xpath('./tfoot')
+        if (len(footers) != 1 or _norm(footers[0].text_content())
+                or len(footers[0].xpath('./tr/td[@colspan="6"]')) != 1
+                or len(footers[0].xpath('.//td|.//th')) != 1 or footers[0].xpath('.//td/*')):
+            raise ValueError('BiH results footer changed')
+    rows = tables[0].xpath('.//tr[not(ancestor::tfoot)]') if results_mode else tables[0].xpath('.//tr')
     if not rows or [_norm(cell.text_content()) for cell in rows[0].xpath('./th')] != ["Host", "", "Score", "", "Guest", ""]:
         raise ValueError("BiH Wwin League fixture table headings changed")
     events, seen_ids, participants, pending = [], set(), set(), None
@@ -181,13 +201,22 @@ def parse_bih_fixtures(page, source):
         links = cells[5].xpath('./a/@href')
         match = re.fullmatch(r"/en/stats/match/(\d+)-[a-z0-9-]+/", links[0] if len(links) == 1 else "")
         if (home not in BIH_CLUBS or away not in BIH_CLUBS or home == away
-                or score != "- : -" or not match or match.group(1) in seen_ids):
+                or (score != "- : -" and not (results_mode and re.fullmatch(r'\d+ : \d+', score)))
+                or not match or match.group(1) in seen_ids):
             raise ValueError("BiH Wwin League pairing, status or match identity changed")
         day, clock = pending
         pending = None
         seen_ids.add(match.group(1))
         participants.update((home, away))
         local = datetime.datetime.combine(day, datetime.time.fromisoformat(clock), SARAJEVO)
+        instant = local.astimezone(datetime.timezone.utc).isoformat().replace('+00:00', 'Z')
+        if BIH_ROUND12.get(match.group(1)) != (home, away, instant):
+            raise ValueError('BiH reviewed round identity or kickoff changed')
+        if results_mode:
+            if score != '- : -':
+                if local > observed_at:
+                    raise ValueError('BiH future fixture has a score')
+                continue
         events.append({
             "id": f"bih-wwin-{match.group(1)}",
             "source_id": source["id"], "sport": source["sport"], "league": source["league"],
@@ -196,7 +225,7 @@ def parse_bih_fixtures(page, source):
             "status": "UPCOMING", "status_detail": "NS/FSBiH published Wwin League fixture",
             "season_stage": "REGULAR", "source_endpoint": source["endpoint"],
         })
-    if pending or len(events) != 5 or participants != set(BIH_CLUBS):
+    if pending or len(seen_ids) != 5 or participants != set(BIH_CLUBS):
         raise ValueError("BiH Wwin League published round is incomplete")
     return events
 
