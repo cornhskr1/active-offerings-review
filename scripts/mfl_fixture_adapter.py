@@ -18,13 +18,14 @@ SENIOR_CLUBS = {
     "SABAH FC", "DPMM FC", "MELAKA FC", "KELANTAN RED WARRIOR FC",
 }
 PDF_PATTERN = re.compile(r'https://files\.malaysianfootballleague\.com/[^"<>\s]+\.pdf')
-ROW = re.compile(r"^\s*(\d{1,2}) (OGOS|SEPTEMBER|OKTOBER|NOVEMBER|DISEMBER|JANUARI|FEBRUARI|MAC|APRIL|MEI) (2026|2027), [A-Z]+\s+(\d+)\s+(.+?)\s+v\s+(.+?)\s+STADIUM\s+.+?\s+(\d{1,2})\.(\d{2}) (AM|PM)\s*$")
+ROW = re.compile(r"^\s*(\d{1,2}) (OGOS|SEPTEMBER|OKTOBER|NOVEMBER|DISEMBER|JANUARI|FEBRUARI|MAC|APRIL|MEI) (2026|2027),\s*[A-Z]+\s+(\d+)\s+(.+?)\s+v\s+(.+?)\s+STADIUM\s+.+?\s+(\d{1,2})\.(\d{2}) (AM|PM)\s*$")
 FA_ROW = re.compile(r"^\s*(\d{1,2}) (September|Oktober) (2026), [A-Za-z]+\s+(\d+)\s+(.+?)\s+v\s+(.+?)\s+STADIUM\s+.+?\s+(\d{1,2})\.(\d{2}) (AM|PM)\s*$")
 
 
 def pdf_url(article, kind):
     matches = PDF_PATTERN.findall(article)
-    token = "LIGA-SUPER-2026-2027" if kind == "league" else "PIALA-FA-2026-2027-PUSINGAN-SUKU-AKHIR"
+    token = ("JADUAL-PERLAWANAN-UNIFI-LIGA-SUPER-2026-2027-LS1-LS22-KEMASKINI-21102026"
+             if kind == "league" else "PIALA-FA-2026-2027-PUSINGAN-SUKU-AKHIR")
     matches = [url for url in matches if token in url and urlparse(url).hostname == "files.malaysianfootballleague.com"]
     if len(set(matches)) != 1:
         raise ValueError("MFL exact competition schedule link changed")
@@ -58,16 +59,15 @@ def parse_mfl_schedule(text, source, kind, window_end):
     expected = {"league": "Malaysia Super League | Men", "fa-cup": "Malaysia FA Cup | Men"}
     if kind not in expected or source.get("catalog_terms") != [expected[kind]]:
         raise ValueError("MFL schedule is mapped to a different catalog competition")
-    marker = r"KEMASKINI\s*:\s*2 SEPTEMBER 2026" if kind == "league" else r"KEMASKINI\s*:\s*17 SEPTEMBER 2026"
+    marker = r"KEMASKINI\s*:\s*21 OKTOBER 2026" if kind == "league" else r"KEMASKINI\s*:\s*17 SEPTEMBER 2026"
     if not re.search(marker, text) or ("LIGA PUSINGAN PERTAMA" if kind == "league" else "PERLAWANAN (PUSINGAN SUKU AKHIR)") not in text:
         raise ValueError("MFL schedule edition or revision changed")
     if kind == "league":
-        section = re.search(r"\bLS5\s*\n(.*?)\bLS6\s*\n", text, re.S)
-        if not section:
-            raise ValueError("MFL league round five missing")
-        rows = [ROW.match(line) for line in section.group(1).splitlines()]
-        rows = [row for row in rows if row]
-        expected_numbers = set(range(25, 31))
+        if not re.search(r"LIGA PUSINGAN KEDUA\s*\(LS12\s*[–-]\s*LS22\)", text):
+            raise ValueError("MFL unparsed second-phase boundary changed")
+        rows = [match for line in text.splitlines() if (match := ROW.match(line))
+                and 31 <= int(match.group(4)) <= 66]
+        expected_numbers = set(range(31, 67))
     else:
         section = re.search(r"FA QF \(2\)\s*\n(.*?)(?:\f|KEMASKINI)", text, re.S)
         if not section:
@@ -77,21 +77,30 @@ def parse_mfl_schedule(text, source, kind, window_end):
         expected_numbers = set(range(21, 25))
     if {int(row.group(4)) for row in rows} != expected_numbers or len(rows) != len(expected_numbers):
         raise ValueError("MFL published round is incomplete")
-    events, clubs, held = [], [], 0
-    for row in rows:
-        event, pair = _event(row, source, kind)
-        if kind == "fa-cup" and not set(pair) <= SENIOR_CLUBS:
-            held += 1
-            continue
-        if kind == "league" and not set(pair) <= SENIOR_CLUBS:
-            raise ValueError("MFL league club inventory changed")
-        clubs.extend(pair)
-        events.append(event)
-    if kind == "league" and len(set(clubs)) != 12:
-        raise ValueError("MFL league week has duplicate or missing clubs")
+    events, held = [], 0
+    if kind == "league":
+        by_number = {int(row.group(4)): row for row in rows}
+        for round_number, first in enumerate(range(31, 67, 6), 6):
+            group = [by_number[number] for number in range(first, first + 6)]
+            clubs = [club.strip().replace("’", "'") for row in group for club in row.groups()[4:6]]
+            if set(clubs) != SENIOR_CLUBS or len(clubs) != len(set(clubs)):
+                raise ValueError("MFL league round club inventory changed")
+            for row in group:
+                event, _ = _event(row, source, kind)
+                event["status_detail"] = f"MFL published LS{round_number} fixture"
+                events.append(event)
+    else:
+        for row in rows:
+            event, pair = _event(row, source, kind)
+            if not set(pair) <= SENIOR_CLUBS:
+                held += 1
+                continue
+            events.append(event)
     if kind == "fa-cup" and held != 1:
         raise ValueError("MFL FA Cup lower-tier hold changed")
-    horizon = datetime.date(2026, 10, 18) if kind == "league" else datetime.date(2026, 10, 11)
+    horizon = (max(datetime.datetime.fromisoformat(event["start_time"].replace("Z", "+00:00"))
+                   .astimezone(MALAYSIA).date() for event in events)
+               if kind == "league" else datetime.date(2026, 10, 11))
     if window_end > horizon:
         raise ValueError("MFL published round does not cover the full review window")
     return events, held

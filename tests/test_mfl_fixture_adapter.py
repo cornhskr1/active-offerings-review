@@ -20,17 +20,21 @@ class MflFixtureTests(unittest.TestCase):
         cls.sources = {s["league"]: s for s in sources if s["region"] == "Malaysia"}
         cls.league = (ROOT / "tests/fixtures/mfl_league_round_five_2026.txt").read_text()
         cls.fa = (ROOT / "tests/fixtures/mfl_fa_cup_quarterfinals_2026.txt").read_text()
-        cls.end = datetime.date(2026, 10, 4)
+        cls.end = datetime.date(2026, 11, 6)
 
     def test_distinct_senior_rounds_and_malaysia_kickoffs(self):
         league, held = parse_mfl_schedule(self.league, self.sources["Malaysia Super League | Men"], "league", self.end)
-        self.assertEqual((6, 0), (len(league), held))
-        self.assertEqual("STAR CITY FC at KELANTAN RED WARRIOR FC", league[0]["name"])
-        self.assertEqual("2026-10-16T13:00:00Z", league[0]["start_time"])
-        self.assertEqual("mfl-league-2026-27-30", league[-1]["id"])
-        self.assertTrue(all("2026-10-" in e["start_time"] for e in league))
+        self.assertEqual((36, 0), (len(league), held))
+        self.assertEqual("KELANTAN RED WARRIOR FC at JOHOR DARUL TA'ZIM", league[0]["name"])
+        self.assertEqual("2026-08-26T12:15:00Z", league[0]["start_time"])
+        self.assertEqual("mfl-league-2026-27-66", league[-1]["id"])
+        self.assertEqual(set(range(31, 67)), {int(e["id"].rsplit("-", 1)[1]) for e in league})
+        self.assertEqual({f"MFL published LS{number} fixture" for number in range(6, 12)},
+                         {event["status_detail"] for event in league})
 
-        cup, held = parse_mfl_schedule(self.fa, self.sources["Malaysia FA Cup | Men"], "fa-cup", self.end)
+        cup, held = parse_mfl_schedule(
+            self.fa, self.sources["Malaysia FA Cup | Men"], "fa-cup", datetime.date(2026, 10, 4)
+        )
         self.assertEqual((3, 1), (len(cup), held))
         self.assertEqual("PENANG FC at JOHOR DARUL TA'ZIM", cup[0]["name"])
         self.assertEqual("2026-10-09T12:15:00Z", cup[0]["start_time"])
@@ -42,10 +46,11 @@ class MflFixtureTests(unittest.TestCase):
         fa_source = self.sources["Malaysia FA Cup | Men"]
         cases = (
             (self.league, {**league_source, "catalog_terms": ["Charity Shield | Men"]}, "league", self.end),
-            (self.league.replace("KEMASKINI : 2 SEPTEMBER 2026", "KEMASKINI : 3 SEPTEMBER 2026"), league_source, "league", self.end),
-            (self.league.replace("25 KELANTAN", "25 TBC"), league_source, "league", self.end),
-            (self.league.replace("26 NEGERI", "25 NEGERI"), league_source, "league", self.end),
-            (self.league, league_source, "league", datetime.date(2026, 10, 19)),
+            (self.league.replace("21 OKTOBER 2026", "22 OKTOBER 2026"), league_source, "league", self.end),
+            (self.league.replace("33 DPMM", "33 U18"), league_source, "league", self.end),
+            (self.league.replace("33 DPMM", "32 DPMM"), league_source, "league", self.end),
+            (self.league.replace("LIGA PUSINGAN KEDUA (LS12 – LS22)", "LIGA PUSINGAN KETIGA"), league_source, "league", self.end),
+            (self.league, league_source, "league", datetime.date(2026, 12, 31)),
             (self.fa.replace("17 SEPTEMBER 2026", "18 SEPTEMBER 2026"), fa_source, "fa-cup", self.end),
             (self.fa.replace("21 JOHOR", "21 TBC"), fa_source, "fa-cup", self.end),
             (self.fa.replace("KELANTAN CITY FC", "SELANGOR FC"), fa_source, "fa-cup", self.end),
@@ -62,7 +67,7 @@ class MflFixtureTests(unittest.TestCase):
             (self.fa, self.sources["Malaysia FA Cup | Men"], "fa-cup",
              datetime.date(2026, 10, 6), datetime.date(2026, 10, 11), 3),
             (self.league, self.sources["Malaysia Super League | Men"], "league",
-             datetime.date(2026, 10, 11), datetime.date(2026, 10, 18), 6),
+             datetime.date(2026, 10, 30), datetime.date(2026, 11, 6), 4),
         ):
             events, _ = parse_mfl_schedule(text, source, kind, end)
             admitted = [event for event in events if start <= datetime.datetime.fromisoformat(
@@ -74,6 +79,11 @@ class MflFixtureTests(unittest.TestCase):
         self.assertEqual(url, pdf_url(f'<a href="{url}">Schedule</a>', "fa-cup"))
         with self.assertRaises(ValueError):
             pdf_url('<a href="https://other.example/JADUAL-PIALA-FA-2026-2027-PUSINGAN-SUKU-AKHIR.pdf">Schedule</a>', "fa-cup")
+        league_url = ("https://files.malaysianfootballleague.com/wp-content/uploads/2026/10/"
+                      "JADUAL-PERLAWANAN-UNIFI-LIGA-SUPER-2026-2027-LS1-LS22-KEMASKINI-21102026.pdf")
+        self.assertEqual(league_url, pdf_url(f'<meta content="{league_url}">', "league"))
+        with self.assertRaises(ValueError):
+            pdf_url(league_url.replace("21102026", "05102026"), "league")
         rows = {r["identity_key"]: r for r in build()["identities"]}
         for suffix in ("malaysia-super-league-men", "malaysia-fa-cup-men"):
             self.assertEqual("ADAPTER_CONFIGURED", rows["soccer-malaysia-" + suffix]["coverage_state"])

@@ -28,6 +28,12 @@ The SFL directory now links the October 23 revision of the exact 2026/27 dieci C
 
 Evidence: https://sfl.ch/de/anspielzeiten
 
+## Malaysia Super League
+
+The current MFL article links the October 21 revision of the exact 2026/27 Unifi Liga Super PDF. Validate all match numbers 31–66 across LS6–LS11 as six complete senior-club rounds. Two LS6 matches (31–32) were explicitly advanced to August for ACL scheduling; four fixtures remain in the October 30–November 6 review window. Later moved fixtures retain their published match numbers and dates through December 30. The parser stops at the published LS12–LS22 boundary and does not import the unreviewed second phase, Malaysia Cup, Charity Shield or lower-tier participants.
+
+Evidence: https://www.malaysianfootballleague.com/Content/Post/Watch/6542
+
 ## Validation and release boundary
 
 Full app suite: 1,244 tests passed, one existing skip. Focused Canada, RFEF and Georgia tests: 11 passed. New cases cover completed-date/score/status contradictions, exact table dates/times/timezone/final hold, absent table evidence and in-window versus out-of-window venue requirements. Existing catalog, age, phase, publisher-access and zero-quota safeguards are unchanged.
