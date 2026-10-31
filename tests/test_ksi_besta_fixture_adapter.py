@@ -2,6 +2,8 @@
 
 import datetime
 import unittest
+from pathlib import Path
+from lxml import html
 
 from scripts.ksi_besta_fixture_adapter import next_round
 
@@ -33,6 +35,48 @@ def pages():
 
 
 class KsiBestaTests(unittest.TestCase):
+    def completed_pages(self):
+        root = Path(__file__).parent / "fixtures"
+        return {cid: tuple((root / f"ksi_completed_{phase}{suffix}.html").read_text()
+                           for suffix in ("", "-rounds"))
+                for cid, phase in (("7025527", "upper"), ("7025532", "lower"))}
+
+    def test_completed_final_groups_are_healthy_empty(self):
+        self.assertEqual(([], 0, 0), next_round(self.completed_pages(), SOURCE, datetime.date(2026, 10, 31)))
+
+    def test_completed_evidence_must_be_complete_and_consistent(self):
+        changes = [
+            (0, '2 - 2', 'TBC'),
+            (0, '7100161', '9999999'),
+            (0, 'competitionId=7025527', 'competitionId=youth'),
+            (0, 'Víkingur R.', 'Unknown'),
+            (0, '24. október', '25. október'),
+            (1, 'Umferð 5', 'Umferð 4'),
+            (1, '8 - 3', '8 - 2'),
+        ]
+        for view, old, new in changes:
+            with self.subTest(change=(view, old, new)):
+                both = self.completed_pages()
+                pair = list(both['7025527'])
+                self.assertIn(old, pair[view])
+                pair[view] = pair[view].replace(old, new, 1)
+                both['7025527'] = tuple(pair)
+                with self.assertRaises(ValueError):
+                    next_round(both, SOURCE, datetime.date(2026, 10, 31))
+        both = self.completed_pages()
+        both['7025532'] = pages()['7025532']
+        with self.assertRaises(ValueError):
+            next_round(both, SOURCE, datetime.date(2026, 10, 31))
+        both = self.completed_pages()
+        doc = html.fromstring(both['7025527'][0])
+        cards = doc.xpath('//div[@class="grid-cols-[70%_auto]"]')
+        cards[0].getparent().remove(cards[0])
+        both['7025527'] = (html.tostring(doc, encoding='unicode'), both['7025527'][1])
+        with self.assertRaises(ValueError):
+            next_round(both, SOURCE, datetime.date(2026, 10, 31))
+        with self.assertRaises(ValueError):
+            next_round(self.completed_pages(), SOURCE, datetime.date(2026, 10, 24))
+
     def test_both_phases_cross_checked(self):
         fixtures, count, held = next_round(pages(), SOURCE, datetime.date(2026, 9, 28))
         self.assertEqual((len(fixtures), count, held), (6, 12, 6))

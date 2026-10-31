@@ -10,7 +10,15 @@ from lxml import html
 
 SOURCE_ID = "uefa-soccer-iceland-besta-deild-karla-rvalsdeild-men"
 PHASES = {"7025527": "Efri hluti", "7025532": "Neðri hluti"}
-MONTHS = {"október": 10}
+MONTHS = {"september": 9, "október": 10}
+COMPLETED_CLUBS = {
+    "7025527": {"5364": "Víkingur R.", "5366": "Fram", "5387": "Breiðablik",
+                "5698": "KR", "5735": "ÍA", "5964": "Keflavík"},
+    "7025532": {"5363": "Valur", "5388": "ÍBV", "5730": "Stjarnan",
+                "5731": "KA", "5733": "FH", "5965": "Þór"},
+}
+COMPLETED_MATCHES = {"7025527": set(map(str, range(7100149, 7100164))),
+                     "7025532": set(map(str, range(7100283, 7100298)))}
 REYKJAVIK = ZoneInfo("Atlantic/Reykjavik")
 
 
@@ -63,9 +71,58 @@ def _cards(doc, competition_id):
     return result
 
 
+def _completed_results(doc, competition_id, today):
+    rows = _cards(doc, competition_id)
+    cards = doc.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," grid-cols-[70%_auto] ")]')
+    results, pairings = {}, set()
+    for card, row in zip(cards, rows):
+        day, clock, venue, names, ids, _ = row
+        scores = card.xpath('./div[contains(@class,"grid-cols-[1fr_auto_1fr]")]/span/text()')
+        links = set(card.xpath('.//a[contains(@href,"/leikir-og-urslit/felagslid/leikur")]/@href'))
+        if len(links) != 1 or len(scores) != 1 or not re.fullmatch(r"\d+ - \d+", scores[0].strip()):
+            raise ValueError("KSÍ completed result identity or score changed")
+        link = urlsplit(links.pop())
+        query = parse_qs(link.query)
+        mid = query.get("id", [None])[0]
+        if (link.path != "/leikir-og-urslit/felagslid/leikur" or query != {"id": [mid]}
+                or mid not in COMPLETED_MATCHES[competition_id] or mid in results
+                or any(COMPLETED_CLUBS[competition_id].get(cid) != name for cid, name in zip(ids, names))
+                or not datetime.date(2026, 9, 13) <= day <= datetime.date(2026, 10, 24)
+                or day >= today):
+            raise ValueError("KSÍ completed result scope or date changed")
+        pairing = frozenset(ids)
+        if pairing in pairings:
+            raise ValueError("KSÍ completed pairing duplicated")
+        pairings.add(pairing)
+        results[mid] = (day, clock, venue, tuple(names), tuple(ids), scores[0].strip())
+    return results
+
+
+def _completed_final_groups(pages, today):
+    # A scored response must prove the whole bounded season; never emit scores as fixtures.
+    docs = {cid: tuple(html.fromstring(p.decode("utf-8") if isinstance(p, bytes) else p)
+                       for p in pages[cid]) for cid in PHASES}
+    if not any(re.fullmatch(r"\d+ - \d+", score.strip())
+               for pair in docs.values() for doc in pair
+               for score in doc.xpath('//div[contains(@class,"grid-cols-[1fr_auto_1fr]")]/span/text()')):
+        return False
+    for cid, (all_doc, round_doc) in docs.items():
+        results = _completed_results(all_doc, cid, today)
+        final = _completed_results(round_doc, cid, today)
+        if (set(results) != COMPLETED_MATCHES[cid] or len(final) != 3
+                or _text(round_doc, '//button[contains(@class,"link-dropdown-trigger")]/span/text()') != "Umferð 5"
+                or any(results.get(mid) != row or row[0] != datetime.date(2026, 10, 24)
+                       for mid, row in final.items())
+                or len({club for row in final.values() for club in row[4]}) != 6):
+            raise ValueError("KSÍ completed final-group evidence incomplete")
+    return True
+
+
 def next_round(pages, source, today):
     if source["id"] != SOURCE_ID or source.get("catalog_terms") != [source["league"]]:
         raise ValueError("KSÍ catalog scope changed")
+    if _completed_final_groups(pages, today):
+        return [], 0, 0
     selected = []
     page_count = 0
     held = 0
