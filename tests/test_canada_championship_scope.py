@@ -21,6 +21,15 @@ PAGE = b'''<html><head><meta charset="utf-8"></head><body><main>2026 TELUS Canad
 
 
 class CanadaChampionshipScopeTests(unittest.TestCase):
+    def test_completed_publisher_card_is_empty_not_a_source_failure_or_new_fixture(self):
+        page = (Path(__file__).parent/'fixtures/canada_final_completed_2026.html').read_bytes()
+        self.assertIsNone(parse_final(page,SOURCE))
+        for old,new in [(b'Full Time',b'TBD'),(b'2026-10-21T19:00:00-04:00',b'2026-10-22T19:00:00-04:00'),
+                        (b'past-match',b'past-match upcoming-match'),(b'1 <span class="pks">',b'TBD <span class="pks">')]:
+            with self.subTest(change=new), self.assertRaises(ValueError):
+                self.assertIn(old,page)
+                parse_final(page.replace(old,new,1),SOURCE)
+
     def test_exact_final_and_competition_gate(self):
         event = parse_final(PAGE, SOURCE)
         self.assertEqual("2026-10-21T23:00:00Z", event["start_time"])
