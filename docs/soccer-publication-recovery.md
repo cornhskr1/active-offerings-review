@@ -1,5 +1,9 @@
 # Current soccer publication recovery
 
+## Iceland completed 2026 final groups
+
+On October 31 the exact KSÍ upper/lower phase pages (competition 7025527 and 7025532, with and without `toggle=rounds`) publish all 15 results per six-club group and complete round-5 results on October 24. The former next-round parser rejected September result rows as changed date fields. Treat this bounded completed season as healthy empty only when every reviewed numeric match identity appears exactly once, all 15 distinct pairings use the reviewed senior club IDs/names, every result has a score and past date/venue/kickoff, and each round-5 view agrees with its full results view for all six clubs. Mixed completed/upcoming pages, missing scores, altered identities, partial groups and changed final-round evidence fail closed. This adds no upcoming fixtures, no new season and no prior regular-season coverage. Fresh official response replay returned zero fixtures; normal publication remains required.
+
 Three saved source failures had distinct causes and were checked against one successful permitted request per official directory, plus exact Georgian match detail pages. Transport success alone was not treated as usable fixture coverage.
 
 ## Canadian Championship
