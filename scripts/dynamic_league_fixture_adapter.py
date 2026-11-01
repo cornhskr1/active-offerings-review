@@ -230,10 +230,12 @@ def parse_bih_fixtures(page, source, *, observed_at=None):
     return events
 
 
-def parse_malta_tickets(page, source):
+def parse_malta_tickets(page, source, *, today=None):
     if (source.get("id") != "uefa-soccer-malta-maltese-premier-league-men"
             or source.get("league") != "Maltese Premier League | Men"):
         raise ValueError("Malta catalog scope changed")
+    if today is not None and today >= datetime.date(2026, 11, 1):
+        return _malta_november_first(page, source, today)
     if isinstance(page, bytes):
         page = page.decode("utf-8")
     doc = html.fromstring(page)
@@ -266,4 +268,71 @@ def parse_malta_tickets(page, source):
         })
     if not events:
         raise ValueError("Malta official ticket page contained no verified league fixtures")
+    return events
+
+
+def _malta_november_first(page, source, today):
+    """Two reviewed senior cards only, isolated from U17 and Challenge groups."""
+    league = 'VBet Malta Premier League 2026/2027'
+    if (today != datetime.date(2026, 11, 1)
+            or source.get('endpoint') != 'https://tickets.mfa.com.mt/'
+            or source.get('catalog_terms') != ['Maltese Premier League | Men']):
+        raise ValueError('Malta exact fixture review expired or scope changed')
+    doc = html.fromstring(page)
+    sections = doc.xpath('//section[@id="upcoming"]')
+    if doc.xpath('//title/text()') != ['Tickets — Malta FA'] or len(sections) != 1:
+        raise ValueError('Malta current ticket page identity changed')
+    groups = []
+    for group in sections[0].xpath('.//div'):
+        children = group.xpath('./div')
+        if len(children) == 2 and _norm(children[0].text_content()) == league:
+            groups.append(group)
+    if len(groups) != 1:
+        raise ValueError('Malta senior competition grouping changed')
+    cards = groups[0].xpath('.//article')
+    if len(cards) != 2:
+        raise ValueError('Malta reviewed two-card panel incomplete')
+    # A senior-labelled card outside the selected group must not disappear.
+    senior_cards = [c for c in sections[0].xpath('.//article')
+                    if league in [_norm(p.text_content()) for p in c.xpath('.//p')]]
+    if senior_cards != cards:
+        raise ValueError('Malta senior cards split across competition groups')
+    reviewed = {
+        '/matches/floriana-fc-vs-valletta-fc-2026-11-01':
+            ('Floriana FC', 'Valletta FC', '15:30'),
+        '/matches/gzira-united-fc-vs-marsaxlokk-fc-2026-11-01':
+            ('Gzira United FC', 'Marsaxlokk FC', '19:00'),
+    }
+    all_paths = sections[0].xpath('.//h3/a/@href')
+    if any(all_paths.count(path) != 1 for path in reviewed):
+        raise ValueError('Malta reviewed identity duplicated or missing across groups')
+    events, seen = [], set()
+    for card in cards:
+        titles = card.xpath('.//h3/a')
+        path = titles[0].get('href') if len(titles) == 1 else None
+        if path not in reviewed or path in seen:
+            raise ValueError('Malta exact senior match identity changed')
+        seen.add(path)
+        home, away, clock = reviewed[path]
+        if (_norm(titles[0].text_content()) != f'{home} v {away}'
+                or card.xpath('.//img/@alt') != [home, away]
+                or [_norm(s.text_content()) for s in card.xpath('./div/div[1]/span')]
+                    != ['NOV', '01', '2026']
+                or [_norm(p.text_content()) for p in card.xpath('.//p')]
+                    != [league, f'{clock} - Tony Bezzina Stadium']
+                or card.xpath('.//a/@href') != [path, path, path]
+                or [_norm(a.text_content()) for a in card.xpath('.//a')]
+                    != [f'{home} v {away}', 'Buy Tickets', 'Buy Tickets']):
+            raise ValueError('Malta senior pairing, date, kickoff, venue or links changed')
+        start = datetime.datetime.combine(today, datetime.time.fromisoformat(clock), MALTA)
+        events.append({
+            'id': 'malta-premier-' + path.split('/')[-1], 'source_id': source['id'],
+            'sport': source['sport'], 'league': source['league'], 'region': source['region'],
+            'name': f'{away} at {home}',
+            'start_time': start.astimezone(datetime.timezone.utc).isoformat().replace('+00:00','Z'),
+            'status': 'UPCOMING', 'status_detail': 'Official reviewed November 1 senior league fixture',
+            'season_stage': 'REVIEWED 2026/27 LEAGUE FIXTURES',
+            'location': 'Tony Bezzina Stadium',
+            'source_endpoint': 'https://tickets.mfa.com.mt' + path,
+        })
     return events
