@@ -10,6 +10,13 @@ from lxml import html
 SOURCE_ID = "uefa-soccer-slovenia-slovenian-prvaliga-men"
 ROOT_PATH = "/klubi/moski/prva-liga-telemach/tekme/"
 LJUBLJANA = ZoneInfo("Europe/Ljubljana")
+ROUND14 = {
+    'dns-mura-nk-brinje-grosuplje-1snl2627-2026-11-01-150000': ('Mura', 'Brinje Grosuplje', '2026-11-01', '15:00', 'Mestni stadion Fazanerija'),
+    'nk-celje-nd-lendava-1903-1snl2627-2026-11-01-173000': ('Celje', 'Nafta 1903', '2026-11-01', '17:30', "Štadion Z'dežele"),
+    'nk-bravo-fc-koper-1snl2627-2026-11-02-170000': ('Bravo Ljubljana', 'Koper', '2026-11-02', '17:00', 'Stadion Stožice Ljubljana'),
+    'nk-aluminij-kidricevo-nk-radomlje-1snl2627-2026-10-31-180000': ('Aluminij', 'Kalcer Radomlje', '2026-10-31', '18:00', None),
+    'nk-maribor-branik-sd-nk-olimpija-ljubljana-1snl2627-2026-10-31-160000': ('Maribor', 'Olimpija Ljubljana', '2026-10-31', '16:00', None),
+}
 
 
 def _document(page):
@@ -19,7 +26,55 @@ def _document(page):
     return doc
 
 
-def next_round(page, source, today):
+def _text(node, query):
+    return ' '.join(' '.join(node.xpath(query)).split())
+
+
+def _reviewed_round14(rows, today, observed_at):
+    if not datetime.date(2026, 10, 31) <= today <= datetime.date(2026, 11, 2):
+        raise ValueError('NZS reviewed round-14 window expired')
+    now = observed_at if observed_at is not None else datetime.datetime.now(datetime.timezone.utc)
+    if not isinstance(now, datetime.datetime) or now.tzinfo is None or now.utcoffset() is None:
+        raise ValueError('NZS aware observation clock required')
+    selected = [row for row in rows if re.search(r'\bKrog\s+14\b', _text(row, './/text()'))]
+    if len(selected) != 5:
+        raise ValueError('NZS reviewed five-match round incomplete')
+    seen = set(); clubs = set(); fixtures = []
+    for row in selected:
+        actions = row.xpath('.//div[@class="actions"]/a[@aria-label="Podrobnosti"]/@href')
+        if len(actions) != 1 or actions[0] not in [ROOT_PATH + key for key in ROUND14]:
+            raise ValueError('NZS reviewed match identity changed')
+        path = actions[0]; key = path.rsplit('/', 1)[-1]
+        if key in seen:
+            raise ValueError('NZS duplicate reviewed match')
+        seen.add(key)
+        home, away, date, clock, venue = ROUND14[key]
+        names = [' '.join(n.text_content().split()) for n in row.xpath('.//h5[contains(@class,"match-team-name")]')]
+        if (names != [home, away] or row.xpath('.//time[@class="date"]/@datetime') != [date]
+                or row.xpath('.//time[@class="time"]/@datetime') != [clock]
+                or _text(row, './/div[@class="match-category"]//text()') != 'Prva liga Telemach'):
+            raise ValueError('NZS reviewed pairing, kickoff or league changed')
+        clubs.update(names)
+        start = datetime.datetime.combine(datetime.date.fromisoformat(date), datetime.time.fromisoformat(clock), LJUBLJANA)
+        links = row.xpath('.//a[contains(@href,"/prva-liga-telemach/tekme/")]/@href')
+        scores = row.xpath('.//strong[@class="match-score"]')
+        locations = row.xpath('.//strong[@class="match-location"]')
+        if venue is not None:
+            if scores or links != [path] or len(locations) != 1 or ' '.join(locations[0].text_content().split()) != venue:
+                raise ValueError('NZS reviewed fixture state or stadium changed')
+            fixtures.append((start.date(), 14, path, names, venue, clock))
+        elif (len(scores) != 1 or locations or links != [path, path]
+              or scores[0].getparent().tag != 'a' or scores[0].getparent().get('href') != path
+              or not re.fullmatch(r'\d{1,2} : \d{1,2} \(\d{1,2} : \d{1,2}\)', ' '.join(scores[0].text_content().split()))
+              or start > now):
+            raise ValueError('NZS unknown or future scored result')
+    if seen != set(ROUND14) or len(clubs) != 10:
+        raise ValueError('NZS reviewed round identities changed')
+    # Later rounds, including their untimed placeholders, remain held.
+    return fixtures, len(rows)
+
+
+def next_round(page, source, today, observed_at=None):
     if source["id"] != SOURCE_ID or source.get("catalog_terms") != [source["league"]]:
         raise ValueError("NZS catalog scope changed")
     doc = _document(page)
@@ -28,6 +83,8 @@ def next_round(page, source, today):
     rows = doc.xpath('//tr[contains(@class,"match-tbody-tr")][.//div[contains(@class,"upcoming-match-date")]]')
     if len(rows) < 5:
         raise ValueError("NZS upcoming league page incomplete")
+    if today >= datetime.date(2026, 10, 31):
+        return _reviewed_round14(rows, today, observed_at)
     parsed = []
     for row in rows:
         date = row.xpath('string(.//time[contains(@class,"date")]/@datetime)').strip()
