@@ -9,6 +9,7 @@ from lxml import html
 
 SOURCE_ID = "uefa-soccer-georgia-erovnuli-liga-men"
 TBILISI = ZoneInfo("Asia/Tbilisi")
+CENTRAL = ZoneInfo("America/Chicago")
 
 
 def _text(node, path):
@@ -61,13 +62,14 @@ def candidates(page, source, today, end):
             if day.year != 2026:
                 raise ValueError("Georgian edition changed")
             if today - datetime.timedelta(days=1) <= day <= end + datetime.timedelta(days=1):
-                if not venue:
+                calendar_start = datetime.datetime.combine(day, datetime.time.fromisoformat(local), TBILISI)
+                if not venue and today <= calendar_start.astimezone(CENTRAL).date() <= end:
                     raise ValueError('Georgian review-window venue missing')
                 rows.append((day, round_number, local, venue, names, link[0], match_id))
     return rows, len(ids)
 
 
-def verified_match(page, fixture, source):
+def verified_match(page, fixture, source, *, today=None, end=None):
     day, number, local, venue, names, path, match_id = fixture
     doc = html.fromstring(page)
     clubs = doc.xpath('//h1[contains(@class,"gfh-clubs-inner")]/a[contains(@class,"gfh-club")]')
@@ -81,11 +83,20 @@ def verified_match(page, fixture, source):
         start = datetime.datetime.fromisoformat(match_time[0].replace("Z", "+00:00"))
     except ValueError as exc:
         raise ValueError("Georgian linked match UTC kickoff changed") from exc
+    if start.tzinfo is None or start.utcoffset() is None:
+        raise ValueError('Georgian linked match kickoff must have an explicit timezone')
     local_start = start.astimezone(TBILISI)
     if (len(clubs) != 2 or actual_names != names or round_label != f"ტური {number}"
             or actual_venue != venue or (local_start.date(), local_start.strftime("%H:%M")) != (day, local)
             or not _text(doc, '/html/head/title/text()').endswith(" - Erovnuli Liga")):
         raise ValueError("Georgian match pairing, round, local kickoff or stadium changed")
+    if not venue:
+        # Buffered cards are still fetched and independently verified. Never
+        # emit an untimed/unlocated game or use calendar metadata as UTC proof.
+        if (not isinstance(today, datetime.date) or not isinstance(end, datetime.date)
+                or today > end or today <= start.astimezone(CENTRAL).date() <= end):
+            raise ValueError('Georgian review-window venue missing')
+        return None
     return {"id": f"erovnuli-{match_id}", "source_id": source["id"],
         "sport": source["sport"], "league": source["league"], "region": source["region"],
         "name": f"{names[1]} at {names[0]}",
