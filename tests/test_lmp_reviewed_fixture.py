@@ -23,6 +23,47 @@ def payload():
 
 
 class ReviewedLmpTests(unittest.TestCase):
+    def revised_payload(self):
+        return json.loads((ROOT / 'tests/fixtures/lmp_held_clock_nov1_2026.json').read_text())
+
+    def test_revised_held_clock_keeps_identical_one_game_and_six_holds(self):
+        now = dt.datetime(2026,11,1,21,15,tzinfo=dt.timezone.utc)
+        actual = parse(self.revised_payload(), SOURCE, FIRST, LAST, now)
+        self.assertEqual(parse(payload(),SOURCE,FIRST,LAST,now),actual)
+        self.assertEqual(['lmp-2026-27-850500'],[r['id'] for r in actual[0]])
+        self.assertEqual(6,actual[1]['fixtures_held'])
+        self.assertEqual(actual,parse({'response':list(reversed(self.revised_payload()['response']))},SOURCE,FIRST,LAST,now))
+
+    def test_revised_proof_not_retroactive_or_renewed(self):
+        for now,first,last in ((NOW,FIRST,LAST),
+                (dt.datetime(2026,11,1,21,13,59,tzinfo=dt.timezone.utc),FIRST,LAST),
+                (dt.datetime(2026,11,2,6,tzinfo=dt.timezone.utc),FIRST+dt.timedelta(days=1),LAST+dt.timedelta(days=1)),
+                (NOW.replace(tzinfo=None),FIRST,LAST)):
+            with self.subTest(now=now),self.assertRaises(ValueError):
+                parse(self.revised_payload(),SOURCE,first,last,now)
+
+    def test_revised_held_identity_and_all_clocks_still_required(self):
+        now=dt.datetime(2026,11,1,21,15,tzinfo=dt.timezone.utc)
+        changes={'id':'other','awayTeamId':1,'stadium':'other','gameStatus':1,'awayRuns':1,
+                 'season':'2027','gameType':'P','utcFullDate':'2026-11-02 02:01:00',
+                 'localFullDate':'2026-11-01 18:00:00','spFullDate':'2026-11-02 00:00:00',
+                 'gameDate':'2026-11-02','gameTimeH':'18:00:00'}
+        for field,value in changes.items():
+            revised=self.revised_payload()
+            next(r for r in revised['response'] if r['boxScore']==850497)[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):parse(revised,SOURCE,FIRST,LAST,now)
+        for game in (850500,850503):
+            revised=self.revised_payload();row=next(r for r in revised['response'] if r['boxScore']==game)
+            row.update(utcFullDate='2026-11-02 02:00:00',spFullDate='2026-11-02 02:00:00',
+                       localFullDate='2026-11-01 20:00:00',gameTimeH='20:00:00')
+            with self.subTest(game=game),self.assertRaises(ValueError):parse(revised,SOURCE,FIRST,LAST,now)
+
+    def test_revised_held_identity_cannot_be_dropped_or_merged(self):
+        now=dt.datetime(2026,11,1,21,15,tzinfo=dt.timezone.utc);revised=self.revised_payload()
+        for rows in ([r for r in revised['response'] if r['boxScore']!=850497],
+                     revised['response']+[next(r for r in revised['response'] if r['boxScore']==850497)]):
+            with self.assertRaises(ValueError):parse({'response':rows},SOURCE,FIRST,LAST,now)
+
     def run_parse(self, data):
         return parse(data, SOURCE, FIRST, LAST, NOW)
 
@@ -95,10 +136,10 @@ class ReviewedLmpTests(unittest.TestCase):
                     body=[node],orelse=[])],type_ignores=[])
         program=compile(ast.fix_missing_locations(wrapper),'<actual LMP collector branch>','exec')
         damaged=payload();damaged['response'][0]['gameStatus']=1
-        for status,data,expected in [(200,payload(),1),(200,damaged,0),(302,payload(),0),(403,payload(),0)]:
+        for status,data,expected in [(200,payload(),1),(200,self.revised_payload(),1),(200,damaged,0),(302,payload(),0),(403,payload(),0)]:
             response=Mock(status_code=status);response.json.return_value=data;get=Mock(return_value=response)
             context=dict(configured_source=copy.deepcopy(SOURCE),collect_lmp_reviewed=collect,TODAY=FIRST,
-                         END=LAST,NOW_UTC=NOW,requests=SimpleNamespace(get=get),HEADERS={},
+                         END=LAST,NOW_UTC=dt.datetime(2026,11,1,21,15,tzinfo=dt.timezone.utc),requests=SimpleNamespace(get=get),HEADERS={},
                          events=[],seen=set(),source_status=[],count=0)
             exec(program,context)
             self.assertEqual(expected,len(context['events']));self.assertEqual(1,get.call_count)
