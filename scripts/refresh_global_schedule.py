@@ -2926,7 +2926,7 @@ for source in CFG.get("sources",[]):
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
             response.raise_for_status()
-            fixtures=parse_malta_tickets(response.content,source)
+            fixtures=parse_malta_tickets(response.content,source,today=TODAY)
             published_count=len(fixtures)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
