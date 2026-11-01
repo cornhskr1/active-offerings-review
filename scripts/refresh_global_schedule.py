@@ -32,6 +32,7 @@ from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, p
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from rolling_publisher_batch import stage_timed_fixtures
 from thesportsdb_fixture_adapter import PublicClient, collect as collect_thesportsdb
+from lmp_reviewed_fixture import collect as collect_lmp_reviewed
 from baltic_cup_fixture_adapter import fetch_fixtures as fetch_baltic_cup_fixtures
 from hns_croatian_cup_fixture_adapter import fetch_fixtures as fetch_croatian_cup_fixtures
 from mfl_fa_semifinal_adapter import fetch_fixtures as fetch_mfl_fa_semifinals
@@ -3799,6 +3800,19 @@ for source in CFG.get("sources",[]):
             "errors":errors[:3],
             "checked_at":NOW_UTC.isoformat()
         })
+        continue
+    if source.get("source_type") == "official-lmp-reviewed-fixture":
+        diagnostics = {}
+        try:
+            fixtures, diagnostics = collect_lmp_reviewed(source, TODAY, END, NOW_UTC, requests.get, HEADERS)
+            for parsed in fixtures:
+                key = (parsed["id"], parsed["start_time"])
+                if key not in seen:
+                    seen.add(key); events.append(parsed); count += 1
+        except Exception as exc:
+            diagnostics = {"ok": False, "errors": [str(exc)[:180]], "coverage_complete": False}
+        source_status.append({**source, **diagnostics, "approved_catalog": True,
+                              "events": count, "checked_at": NOW_UTC.isoformat()})
         continue
     if source.get("source_type") in ("thesportsdb", "thesportsdb-day"):
         diagnostics = {}

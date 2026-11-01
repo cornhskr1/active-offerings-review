@@ -175,10 +175,10 @@ class PublicClientTests(unittest.TestCase):
             with self.subTest(data=data), self.assertRaises(ValueError):
                 PublicClient(Mock(return_value=response(data=data)),Mock()).json(SOURCE['endpoint'],{})
 
-    def test_config_exact_27_sources_no_basketball_regression(self):
+    def test_config_exact_26_sources_no_basketball_regression(self):
         config=json.loads((ROOT/'data/global-schedule-sources.json').read_text())['sources']
         sources=[s for s in config if s.get('source_type','').startswith('thesportsdb') and s['id']!='israeli-basketball']
-        self.assertEqual(27,len(sources))
+        self.assertEqual(26,len(sources))
         self.assertEqual(15,sum(s['sport']=='Basketball' for s in sources))
         for source in sources:
             self.assertTrue(source['endpoint'].startswith(BASE))
