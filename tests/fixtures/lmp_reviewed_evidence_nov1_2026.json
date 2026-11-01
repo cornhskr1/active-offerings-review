@@ -1,0 +1,70 @@
+{
+  "review_date": "2026-11-01",
+  "scope": "One Nov1 regular-season game 850500; six other day identities held. No vendor requests.",
+  "responses": [
+    {
+      "url": "https://api.lmp.mx/3.0.0/scoreboard/2026/11/01",
+      "sha256": "836488da85dce4b2b7587d5f5507ba05082e447006abbc5679184bb0eff6c814",
+      "bytes": 24925
+    },
+    {
+      "url": "https://api.lmp.mx/3.0.0/calendar?date=2026-11-01",
+      "sha256": "affbfdd753ef033fe257caa865f25f9d78891058e29cd753a0810a349e97d1c8",
+      "bytes": 18769
+    },
+    {
+      "url": "https://api.lmp.mx/3.0.0/boxscore/850500",
+      "sha256": "cc7667e61433d89bae566c2d74489365e1ff0beae197fbfe207ec2e5eb633afe",
+      "bytes": 48643
+    },
+    {
+      "url": "https://editor.lmp.mx/tenemos-calendario-para-la-temporada-2026-2027/",
+      "sha256": "69ec22461d9ac9849911a674b522402dcb6c110aa6d9078a490096b89171b41e",
+      "bytes": 28386
+    },
+    {
+      "url": "https://editor.lmp.mx/david-reyes-en-plan-grande-y-los-aguilas-derrotan-a-mayos/",
+      "sha256": "746cb8e5c2075481ccb3e046e75c3625ba5e29337f622faf0d434f2c2b9e7979",
+      "bytes": 25895
+    },
+    {
+      "url": "https://editor.lmp.mx/con-salida-de-calidad-de-norge-ruiz-y-cuadrangular-de-rosman-verdugo-tomateros-blanquea-a-charros/",
+      "sha256": "b699bcba49b20f62cae3c48cb2406e80448dea7e821958b03ed8f04a3aa2514a",
+      "bytes": 26103
+    }
+  ],
+  "phase_evidence": {
+    "publication_date": "2026-05-06",
+    "season": "2026-2027",
+    "first_regular_half": "October13-November22",
+    "second_regular_half": "November24-December30",
+    "playoffs": "January2027"
+  },
+  "fixture_evidence": {
+    "publication_date": "2026-10-31",
+    "next_day": "2026-11-01",
+    "pairing": "Charros de Jalisco at Tomateros de Culiacán",
+    "venue": "Estadio Juan Ley Fong",
+    "official_article_clock": "5:05 P.M. Culiacán",
+    "scoreboard_utcFullDate": "2026-11-02 00:05:00",
+    "calendar_localFullDate": "2026-11-01 18:05:00",
+    "boxscore_display": "5:05 PM",
+    "timezone_binding": "Explicit scoreboard UTC, cross-checked with America/Mexico_City and America/Mazatlan; no browser-local inference."
+  },
+  "ambiguous_pairings": {
+    "published_clock": "17:00 Ciudad Obregón Sonora",
+    "separate_game_clocks": "not published",
+    "held_ids": [
+      850501,
+      850495,
+      850497,
+      850503
+    ],
+    "note": "Do not collapse distinct IDs, choose a game number, or apply the aggregate start to both.",
+    "confirmed_doubleheader_ids": [
+      850501,
+      850495
+    ],
+    "other_pairing_semantics": "850497/850503 remain unresolved distinct identities; no doubleheader inference."
+  }
+}

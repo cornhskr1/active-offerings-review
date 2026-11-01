@@ -551,17 +551,24 @@
       "sport": "Baseball",
       "league": "Mexican Pacific League",
       "region": "Mexico",
-      "source_type": "thesportsdb",
-      "league_id": "5109",
-      "endpoint": "https://www.thesportsdb.com/api/v1/json/123/eventsnextleague.php",
       "catalog_terms": [
         "Mexican Pacific League",
         "Liga Mexicana del Pacífico"
       ],
       "coverage_status": "partial",
-      "provider_documentation": "https://www.thesportsdb.com/documentation",
-      "provider_free_result_limit": 1,
-      "source_note": "Vendor-documented public v1 API; free results are limited to 1 per request. Exact league, named opponents, season and timed current-window fixtures are checked. This is not full-season or full-window coverage; empty responses do not establish offseason, and qualifiers/preseason remain held."
+      "source_note": "One exact 2026-27 regular-season fixture reviewed for November 1 only. All seven official day identities must validate; six remain held. Four same-pairing identities lack independently verified separate kickoffs. One public official request and at most one event, no vendor requests. Partial coverage; no full-window or offseason inference.",
+      "source_type": "official-lmp-reviewed-fixture",
+      "endpoint": "https://api.lmp.mx/3.0.0/scoreboard/2026/11/01",
+      "max_requests_per_run": 1,
+      "max_events_per_run": 1,
+      "prior_vendor": {
+        "source_type": "thesportsdb",
+        "league_id": "5109",
+        "endpoint": "https://www.thesportsdb.com/api/v1/json/123/eventsnextleague.php",
+        "provider_documentation": "https://www.thesportsdb.com/documentation",
+        "provider_free_result_limit": 1
+      },
+      "provider_documentation": "https://editor.lmp.mx/tenemos-calendario-para-la-temporada-2026-2027/"
     },
     {
       "id": "lidom",
