@@ -3303,7 +3303,7 @@ for source in CFG.get("sources",[]):
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
             response.raise_for_status()
-            rows,published_count=nzs_next_round(response.content,source,TODAY)
+            rows,published_count=nzs_next_round(response.content,source,TODAY,NOW_UTC)
             def verify_nzs(row):
                 detail=requests.get("https://www.nzs.si"+row[2],headers=HEADERS,timeout=25)
                 detail.raise_for_status()

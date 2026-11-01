@@ -17,6 +17,11 @@ ROUND14 = {
     'nk-aluminij-kidricevo-nk-radomlje-1snl2627-2026-10-31-180000': ('Aluminij', 'Kalcer Radomlje', '2026-10-31', '18:00', None),
     'nk-maribor-branik-sd-nk-olimpija-ljubljana-1snl2627-2026-10-31-160000': ('Maribor', 'Olimpija Ljubljana', '2026-10-31', '16:00', None),
 }
+# Separately reviewed completed November 1 games, not a renewal of round scope.
+NOV1_RESULTS = {
+    'dns-mura-nk-brinje-grosuplje-1snl2627-2026-11-01-150000': '0 : 0 (0 : 0)',
+    'nk-celje-nd-lendava-1903-1snl2627-2026-11-01-173000': '4 : 0 (3 : 0)',
+}
 
 
 def _document(page):
@@ -60,6 +65,14 @@ def _reviewed_round14(rows, today, observed_at):
         scores = row.xpath('.//strong[@class="match-score"]')
         locations = row.xpath('.//strong[@class="match-location"]')
         if venue is not None:
+            if scores:
+                if (today != datetime.date(2026, 11, 1) or key not in NOV1_RESULTS
+                        or len(scores) != 1 or locations or links != [path, path]
+                        or scores[0].getparent().tag != 'a' or scores[0].getparent().get('href') != path
+                        or ' '.join(scores[0].text_content().split()) != NOV1_RESULTS[key]
+                        or start >= now):
+                    raise ValueError('NZS unreviewed or future November scored result')
+                continue
             if scores or links != [path] or len(locations) != 1 or ' '.join(locations[0].text_content().split()) != venue:
                 raise ValueError('NZS reviewed fixture state or stadium changed')
             fixtures.append((start.date(), 14, path, names, venue, clock))
