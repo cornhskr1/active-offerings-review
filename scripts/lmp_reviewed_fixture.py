@@ -17,6 +17,11 @@ ROWS = {
     850500: ('6a04ad877e5adba28', 674, 'JAL', 'Charros', 678, 'CUL', 'Tomateros', 'Estadio Juan Ley Fong', '2026-11-02 00:05:00'),
 }
 FIELDS = ('id', 'awayTeamId', 'awayTeam', 'awayTeamShort', 'homeTeamId', 'homeTeam', 'homeTeamShort', 'stadium', 'utcFullDate')
+# Separately reviewed public scoreboard revision. This changes no emitted game
+# or hold: 850497 is still outside the single-game whitelist. Do not infer a
+# second-game order or transfer its clock to the other same-pairing identity.
+HELD_CLOCK_REVIEWED_AT = dt.datetime(2026, 11, 1, 21, 14, tzinfo=UTC)
+HELD_CLOCK_REVISION = '2026-11-02 02:00:00'
 
 
 def validate(source, today, end, now):
@@ -45,6 +50,9 @@ def parse(payload, source, today, end, now):
     selected = None
     for row in rows:
         expected = ROWS[row['boxScore']]
+        if (row['boxScore'] == 850497 and row.get('utcFullDate') == HELD_CLOCK_REVISION
+                and now >= HELD_CLOCK_REVIEWED_AT):
+            expected = (*expected[:-1], HELD_CLOCK_REVISION)
         if tuple(row.get(k) for k in FIELDS) != expected:
             raise ValueError('LMP fixture pairing, venue or UTC identity changed')
         if (row.get('season') != '2026' or type(row.get('league_id')) is not int or row['league_id'] != 132
