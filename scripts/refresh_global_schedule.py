@@ -3259,7 +3259,7 @@ for source in CFG.get("sources",[]):
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=30)
             response.raise_for_status()
             response.encoding="utf-8"
-            fixtures,published_count,held_other=lff_next_round(response.text,source,TODAY)
+            fixtures,published_count,held_other=lff_next_round(response.text,source,TODAY,NOW_UTC)
             for parsed in fixtures:
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
                 if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
