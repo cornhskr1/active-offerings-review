@@ -2622,10 +2622,11 @@ for source in CFG.get("sources",[]):
             def verify_georgia(row):
                 detail=requests.get("https://erovnuliliga.ge"+row[5],headers=HEADERS,timeout=25)
                 detail.raise_for_status()
-                return georgia_verified_match(detail.content,row,source)
+                return georgia_verified_match(detail.content,row,source,today=TODAY,end=END)
             with ThreadPoolExecutor(max_workers=4) as pool:
                 fixtures=list(pool.map(verify_georgia,rows))
             for parsed in fixtures:
+                if parsed is None:continue
                 start=datetime.datetime.fromisoformat(parsed["start_time"].replace("Z","+00:00"))
                 if start<=NOW_UTC or not TODAY<=start.astimezone(TZ).date()<=END:continue
                 key=(parsed["id"],parsed["start_time"])
