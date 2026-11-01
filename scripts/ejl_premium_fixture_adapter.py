@@ -18,6 +18,9 @@ ROUND35 = {
     "186279": ("01.11.2026 kell 12:30", ("3136", "Nõmme Kalju FC"), ("76", "FC Kuressaare"), None),
     "186280": ("01.11.2026 kell 14:30", ("4", "Tallinna FC Flora"), ("14", "JK Narva Trans"), None),
 }
+# Separately reviewed November 1 scored rows, bound to the two exact details.
+# The October 31 observation and later rounds retain their existing boundaries.
+NOV1_RESULTS = {"186279": ("143983", "1 - 0"), "186280": ("144017", "2 - 0")}
 
 
 def _text(node, query):
@@ -54,11 +57,14 @@ def _reviewed_round35(listings, today, observed_at):
         if len(results) != 1:
             raise ValueError("EJL ambiguous result state")
         result = results[0]; score = " ".join(result.text_content().split())
+        reviewed_result = NOV1_RESULTS.get(key) if today == datetime.date(2026, 11, 1) else None
+        result_protocol = protocol or (reviewed_result[0] if reviewed_result else None)
         if result.tag == 'span' and result.get('class') == 'result' and score == '-' and not result.get('href'):
             rows.append((start.date(), 35, start.strftime('%H:%M'), names, links[0]))
-        elif (result.tag == 'a' and result.get('class') == 'result' and protocol is not None
-              and result.get('href') == '/voistlused/protocol/' + protocol
-              and re.fullmatch(r'\d{1,2} - \d{1,2}', score) and start <= now):
+        elif (result.tag == 'a' and result.get('class') == 'result' and result_protocol is not None
+              and result.get('href') == '/voistlused/protocol/' + result_protocol
+              and re.fullmatch(r'\d{1,2} - \d{1,2}', score) and start <= now
+              and (protocol is not None or score == reviewed_result[1])):
             continue
         else:
             raise ValueError("EJL unknown or future scored result")
