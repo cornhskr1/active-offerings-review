@@ -10,13 +10,65 @@ from lxml import html
 SOURCE_ID = "uefa-soccer-estonia-meistriliiga-premium-liiga-men"
 ROOT_PATH = "/voistlused/match_info/"
 TALLINN = ZoneInfo("Europe/Tallinn")
+# Exact senior round reviewed against the federation panel and all five details.
+ROUND35 = {
+    "186276": ("31.10.2026 kell 15:00", ("6314", "FC Nõmme United"), ("11", "Tallinna FCI Levadia"), "143981"),
+    "186277": ("31.10.2026 kell 14:30", ("5387", "Pärnu JK Vaprus"), ("5", "Paide Linnameeskond"), "144002"),
+    "186278": ("31.10.2026 kell 14:30", ("1382", "Tartu JK Tammeka"), ("3573", "Harju JK Laagri"), "143942"),
+    "186279": ("01.11.2026 kell 12:30", ("3136", "Nõmme Kalju FC"), ("76", "FC Kuressaare"), None),
+    "186280": ("01.11.2026 kell 14:30", ("4", "Tallinna FC Flora"), ("14", "JK Narva Trans"), None),
+}
 
 
 def _text(node, query):
     return " ".join(" ".join(node.xpath(query)).split())
 
 
-def next_round(page, source, today):
+def _reviewed_round35(listings, today, observed_at):
+    if not datetime.date(2026, 10, 31) <= today <= datetime.date(2026, 11, 1):
+        raise ValueError("EJL reviewed round-35 window expired")
+    now = observed_at if observed_at is not None else datetime.datetime.now(datetime.timezone.utc)
+    if not isinstance(now, datetime.datetime) or now.tzinfo is None or now.utcoffset() is None:
+        raise ValueError("EJL aware observation clock required")
+    selected = [n for n in listings if _text(n.getparent(), './div[contains(@class,"info")]/p/text()') == "35. Voor"]
+    if len(selected) != 5:
+        raise ValueError("EJL reviewed five-match round incomplete")
+    seen = set(); clubs = set(); rows = []
+    for item in selected:
+        links = item.xpath(f'.//a[starts-with(@href,"{ROOT_PATH}")]/@href')
+        if len(links) != 1 or links[0] not in [ROOT_PATH + key for key in ROUND35]:
+            raise ValueError("EJL reviewed match identity changed")
+        key = links[0].rsplit('/', 1)[-1]
+        if key in seen:
+            raise ValueError("EJL duplicate reviewed match")
+        seen.add(key)
+        expected_time, home, away, protocol = ROUND35[key]
+        names = [_text(item, f'.//div[contains(@class,"teams")]/p[contains(@class,"{side}")]/a/text()') for side in ("left", "right")]
+        paths = item.xpath('.//div[contains(@class,"teams")]/p/a/@href')
+        if (names != [home[1], away[1]] or paths != [f"/voistlused/52/team/{t[0]}?season=2026" for t in (home, away)]
+                or _text(item, './/p[contains(@class,"time")]/text()') != expected_time):
+            raise ValueError("EJL reviewed pairing or kickoff changed")
+        clubs.update(paths)
+        start = datetime.datetime.strptime(expected_time, "%d.%m.%Y kell %H:%M").replace(tzinfo=TALLINN)
+        results = item.xpath('.//div[@class="results-container"]/*')
+        if len(results) != 1:
+            raise ValueError("EJL ambiguous result state")
+        result = results[0]; score = " ".join(result.text_content().split())
+        if result.tag == 'span' and result.get('class') == 'result' and score == '-' and not result.get('href'):
+            rows.append((start.date(), 35, start.strftime('%H:%M'), names, links[0]))
+        elif (result.tag == 'a' and result.get('class') == 'result' and protocol is not None
+              and result.get('href') == '/voistlused/protocol/' + protocol
+              and re.fullmatch(r'\d{1,2} - \d{1,2}', score) and start <= now):
+            continue
+        else:
+            raise ValueError("EJL unknown or future scored result")
+    if seen != set(ROUND35) or len(clubs) != 10:
+        raise ValueError("EJL reviewed round identities changed")
+    # Round 36 and qualification ties are not part of this bounded renewal.
+    return rows, len(listings)
+
+
+def next_round(page, source, today, observed_at=None):
     if source["id"] != SOURCE_ID or source.get("catalog_terms") != [source["league"]]:
         raise ValueError("EJL catalog scope changed")
     doc = html.fromstring(page.replace(b"\x00", b"") if isinstance(page, bytes) else page.replace("\x00", ""))
@@ -25,6 +77,8 @@ def next_round(page, source, today):
     listings = doc.xpath('//div[contains(@class,"event-single-small")]')
     if len(listings) < 10:
         raise ValueError("EJL recent and upcoming match panel incomplete")
+    if today >= datetime.date(2026, 10, 31):
+        return _reviewed_round35(listings, today, observed_at)
     rows = []
     for item in listings:
         time_text = _text(item, './/p[contains(@class,"time")]/text()')
