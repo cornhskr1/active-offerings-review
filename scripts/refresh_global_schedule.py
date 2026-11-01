@@ -44,7 +44,7 @@ from czech_cup_fixture_adapter import parse_fixtures as parse_czech_cup_fixtures
 from european_basketball_fixture_adapter import parse_fixtures as parse_european_basketball_fixtures, validate_review_window as validate_european_basketball_window
 from fiba_report_fixture_adapter import fetch_fiba_report_fixtures
 from pfl_event_calendar import SERIES as PFL_SERIES, upcoming_event_links as pfl_upcoming_links, verified_event as pfl_verified_event
-from italy_volleyball_fixtures import parse_superlega, parse_serie_a1
+from italy_volleyball_fixtures import parse_superlega, parse_serie_a1, serie_a1_completed_round_urls
 from oefb_fixture_adapter import current_and_next_rounds, round_url as oefb_round_url, parse_round as parse_oefb_round
 from dbu_betinia_fixture_adapter import round_fixtures as dbu_betinia_round, verified_fixture as dbu_betinia_detail
 from official_window_activity import reviewable_window_start
@@ -3442,8 +3442,18 @@ for source in CFG.get("sources",[]):
         try:
             response=requests.get(source["endpoint"],headers=HEADERS,timeout=35)
             response.raise_for_status()
-            parser=parse_superlega if source["id"]=="volleyball-italy-superlega" else parse_serie_a1
-            fixtures=parser(response.content,source,TODAY,END)
+            if source["id"]=="volleyball-italy-superlega":
+                fixtures=parse_superlega(response.content,source,TODAY,END)
+            else:
+                completed_pages={}
+                for url in serie_a1_completed_round_urls(response.content,source,TODAY):
+                    detail=requests.get(url,headers=HEADERS,timeout=35,allow_redirects=False)
+                    detail.raise_for_status()
+                    if detail.status_code != 200 or detail.url != url:
+                        raise ValueError('Serie A1 result redirected from reviewed identity')
+                    completed_pages[url]=detail.content
+                fixtures=parse_serie_a1(response.content,source,TODAY,END,
+                    completed_pages=completed_pages,observed_at=NOW_UTC)
             published_count=len(fixtures)
             candidates=stage_timed_fixtures(fixtures,source["id"],NOW_UTC,TODAY,END,TZ,seen)
         except Exception as exc:

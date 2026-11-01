@@ -88,11 +88,12 @@ def parse_superlega(page, source, today, end):
     return result
 
 
-def parse_serie_a1(page, source, today, end):
+def parse_serie_a1(page, source, today, end, *, completed_pages=None, observed_at=None):
     if source.get("catalog_terms") != ["Italian Volleyball Federation (FIPAV)", "Serie A1 | Women"]:
         raise ValueError("Serie A1 catalog scope changed")
     if source.get('endpoint') == 'https://www.legavolleyfemminile.it/calendario/':
-        return parse_serie_a1_calendar(page, source, today, end)
+        return parse_serie_a1_calendar(page, source, today, end,
+                                       completed_pages=completed_pages, observed_at=observed_at)
     document = html.fromstring(page)
     content = document.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," single-news__content ")]')
     if len(content) != 1 or "LVF A1 Fineco" not in content[0].text_content() or "16 Settembre 2026" not in document.text_content():
@@ -131,7 +132,104 @@ def parse_serie_a1(page, source, today, end):
     return result
 
 
-def parse_serie_a1_calendar(page, source, today, end):
+# October 31's two completed games disappear from the current calendar. Only
+# this reviewed round can combine its five remaining rows with exact results.
+_A1_BASE = 'https://www.legavolleyfemminile.it'
+_A1_ROUND_SIX = {
+    '3040': ('748021', '31/10/2026', '18:00', 'Fontescodella - Macerata',
+             '710945', 'Cbf Balducci Hr Macerata', '710947', 'Granda Volley Cuneo'),
+    '3036': ('748017', '31/10/2026', '20:30', 'Palafenera - Chieri',
+             '710954', 'Reale Mutua Fenera Chieri', '710946', 'Laica Cioccolato Uyba'),
+    '3042': ('748023', '01/11/2026', '16:00', 'Pala BigMat - Firenze',
+             '710949', 'Il Bisonte Firenze', '710953', 'Prosecco Doc A.Carraro Imoco Conegliano'),
+    '3037': ('748018', '01/11/2026', '17:00', 'Opiquad Arena - Monza',
+             '710951', 'Numia Vero Volley Milano', '710952', 'Omag Consolini Volley 1907'),
+    '3038': ('748019', '01/11/2026', '17:00', 'Pala Megabox - Pesaro',
+             '710950', 'Megabox Ond. Savio Vallefoglia', '710971', 'Cda Volley Talmassons Fvg'),
+    '3039': ('748020', '01/11/2026', '18:00', 'Choruslife Arena - Bergamo',
+             '710944', 'ChorusLife Volley Bergamo', '710955', 'Savino Del Bene Scandicci'),
+    '3041': ('748022', '02/11/2026', '20:40', 'Pala Igor - Novara',
+             '710948', 'Igor Gorgonzola Novara', '710972', 'Banca Valsabbina Millenium Brescia'),
+}
+_A1_COMPLETED = {
+    '3040': ('Fontescodella', ['3', '1'], '3 1 25-17, 19-25, 25-23, 25-15'),
+    '3036': ('Palafenera', ['3', '0'], '3 0 25-20, 25-22, 25-22'),
+}
+
+
+def _a1_text(node):
+    return ' '.join(node.text_content().split())
+
+
+def serie_a1_completed_round_urls(page, source, today):
+    """Only request the two pinned results after proving the remaining panel."""
+    if (source.get('endpoint') != _A1_BASE + '/calendario/'
+            or source.get('season_code') != '2026-2027'
+            or source.get('catalog_terms') != ['Italian Volleyball Federation (FIPAV)', 'Serie A1 | Women']
+            or not datetime.date(2026, 10, 31) <= today <= datetime.date(2026, 11, 2)):
+        return []
+    document = html.fromstring(page)
+    if document.xpath('//title/text()') != ['Calendario – Lega Pallavolo Serie A Femminile']:
+        return []
+    selected = []
+    for table in document.xpath('//table[contains(concat(" ",normalize-space(@class)," ")," risultati ")]'):
+        cells = table.xpath('./thead/tr/th')
+        if len(cells) != 7 or _a1_text(cells[3]) != 'LVF A1 Fineco 6a Giornata - Andata':
+            continue
+        values = [_a1_text(c) for c in cells]
+        game = values[0].removeprefix('#')
+        if game not in _A1_ROUND_SIX or game in _A1_COMPLETED or game in selected:
+            return []
+        mid, day, clock, venue, home_id, home, away_id, away = _A1_ROUND_SIX[game]
+        clubs = table.xpath('./tbody/tr/td/a')
+        if (values[0] != '#' + game or values[1:3] != [day, clock] or values[4] != venue
+                or [(c.get('href'), _a1_text(c)) for c in clubs] != [
+                    (f'/club/club/{home_id}/', home), (f'/club/club/{away_id}/', away)]
+                or cells[6].xpath('./a/@href') != [f'{_A1_BASE}/match-center/{mid}/']):
+            return []
+        selected.append(game)
+    if set(selected) != set(_A1_ROUND_SIX) - set(_A1_COMPLETED):
+        return []
+    return [f'{_A1_BASE}/match-center/{_A1_ROUND_SIX[g][0]}/' for g in _A1_COMPLETED]
+
+
+def _validate_a1_completed(pages, observed_at):
+    if observed_at is None or observed_at.tzinfo is None or observed_at.utcoffset() is None:
+        raise ValueError('Serie A1 completed results require an aware observation clock')
+    expected_urls = {f'{_A1_BASE}/match-center/{_A1_ROUND_SIX[g][0]}/' for g in _A1_COMPLETED}
+    if set(pages) != expected_urls:
+        raise ValueError('Serie A1 complete exact result evidence missing')
+    for game, (venue, score, score_text) in _A1_COMPLETED.items():
+        mid, day, clock, _, home_id, home, away_id, away = _A1_ROUND_SIX[game]
+        local = datetime.datetime.strptime(day + ' ' + clock, '%d/%m/%Y %H:%M').replace(tzinfo=ROME)
+        if local >= observed_at:
+            raise ValueError('Serie A1 completed result has a future kickoff')
+        url = f'{_A1_BASE}/match-center/{mid}/'
+        document = html.fromstring(pages[url])
+        if (document.xpath('//title/text()') != ['Play by Play - Lega Pallavolo Serie A Femminile']
+                or [(a.get('href'), _a1_text(a)) for a in document.xpath('//a[contains(concat(" ",normalize-space(@class)," ")," selez ")]')] != [(url, 'Match')]):
+            raise ValueError('Serie A1 completed result identity changed')
+        panels = document.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," tabellone-alto-match-center ")]')
+        if len(panels) != 1:
+            raise ValueError('Serie A1 completed result panel changed')
+        panel = panels[0]
+        live = panel.xpath('./div[contains(concat(" ",normalize-space(@class)," ")," live ")]/div')
+        teams = panel.xpath('./div[contains(concat(" ",normalize-space(@class)," ")," pre-roster ")]')
+        if len(live) != 3 or [_a1_text(c) for c in live[:2]] != [day + ' ' + clock, venue] or len(teams) != 1:
+            raise ValueError('Serie A1 completed result kickoff or venue changed')
+        home_links = teams[0].xpath('./div[contains(concat(" ",normalize-space(@class)," ")," casa ")]/a')
+        away_links = teams[0].xpath('./div[contains(concat(" ",normalize-space(@class)," ")," fuori ")]/a')
+        if ([(a.get('href'), _a1_text(a)) for a in home_links + away_links] != [
+                (f'/club/club/{home_id}/', home), (f'/club/club/{away_id}/', away)]
+                or len(teams[0].xpath('./div')) != 3):
+            raise ValueError('Serie A1 completed result pairing changed')
+        scores = teams[0].xpath('./div[contains(concat(" ",normalize-space(@class)," ")," count ")]')
+        if (len(scores) != 1 or scores[0].xpath('./span/text()') != score
+                or ' '.join(' '.join(scores[0].itertext()).split()) != score_text):
+            raise ValueError('Serie A1 completed result score changed')
+
+
+def parse_serie_a1_calendar(page, source, today, end, *, completed_pages=None, observed_at=None):
     """Published current A1 rows only; the same page also contains A2 fixtures."""
     if source.get('season_code') != '2026-2027':
         raise ValueError('Serie A1 configured edition changed')
@@ -184,6 +282,21 @@ def parse_serie_a1_calendar(page, source, today, end):
                    season_stage=f'REGULAR SEASON {leg.upper()} ROUND {number}',
                    source_endpoint=links[0], location=values[4] or None)
         result.append(row)
+    if completed_pages:
+        urls = serie_a1_completed_round_urls(page, source, today)
+        if not urls or set(completed_pages) != set(urls):
+            raise ValueError('Serie A1 completed evidence outside reviewed round')
+        _validate_a1_completed(completed_pages, observed_at)
+        key = ('Andata', 6)
+        if rounds.get(key) != 5 or len(teams[key]) != 10:
+            raise ValueError('Serie A1 reviewed remaining round incomplete')
+        for game in _A1_COMPLETED:
+            mid, _, _, _, _, home, _, away = _A1_ROUND_SIX[game]
+            if any(name in teams[key] for name in (home, away)) or any(
+                    ident[0] == '#' + game or ident[1] == f'/match-center/{mid}/' for ident in ids):
+                raise ValueError('Serie A1 completed result duplicates calendar identity')
+            teams[key].update((home, away))
+            rounds[key] += 1
     if not result or any(count != 7 or len(teams[key]) != 14 for key, count in rounds.items()):
         raise ValueError('Serie A1 calendar round incomplete')
     sequence = sorted(number + (13 if leg == 'Ritorno' else 0) for leg, number in rounds)
