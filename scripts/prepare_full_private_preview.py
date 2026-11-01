@@ -4,6 +4,7 @@
 bundle cannot supply a validator, contract, executable or allowlist. Per-family
 semantic/freshness review remains required and is exposed in the receipt.
 """
+from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -14,6 +15,7 @@ import tempfile
 from scripts.prepare_private_pilot_preview import _regular, _revision, _strict_json
 from scripts.build_public_reference_snapshot import build_reference_snapshot
 from scripts.snapshot_semantic_guards import validate_change
+from scripts.tennis_age_rollover import retention_baselines
 from scripts.public_data_snapshot import read_public_snapshot,build_public_snapshot
 from scripts.protected_football_config import validate_football_config
 
@@ -106,6 +108,8 @@ def prepare_full_preview(site: Path,candidate: Path,preview: Path,*,
     that pending state is reported, never silently called current. The current
     contract represents an inventoried baseline, not accepted live semantics.
     """
+    now=now or datetime.now(timezone.utc)
+    if now.tzinfo is None or now.utcoffset() is None:raise ValueError("aware staging clock required")
     _revision(expected_data_commit,fetched_data_commit)
     _revision(expected_app_commit,staged_app_commit)
     for root in (site,candidate,previous_publication,preview.parent):
@@ -123,10 +127,15 @@ def prepare_full_preview(site: Path,candidate: Path,preview: Path,*,
     captured,manifest,spec,digest=read_full_snapshot(candidate)
     public={name:raw for name,raw in captured.items() if spec['outputs'][name]['public']}
     previous_bytes,previous_manifest=read_public_snapshot(previous_publication,expected_digest=expected_previous_snapshot_sha256)
+    previous_documents={name:_strict_json(previous_bytes[name]) for name in public
+                        if spec['outputs'][name]['root_type']=='dict'}
+    current_documents={name:_strict_json(raw) for name,raw in public.items()
+                       if spec['outputs'][name]['root_type']=='dict'}
+    baselines=retention_baselines(previous_documents,current_documents,now)
     for name,raw in public.items():
         rule=spec['outputs'][name]
         if rule['root_type']=='dict':
-            previous=_strict_json(previous_bytes[name])
+            previous=baselines[name]
             validate_change(previous,_strict_json(raw),now=now)
             if name=='data/ncaa-football-sources.json':
                 validate_football_config(_strict_json(_regular(site/name,rule['max_bytes'])),_strict_json(raw))

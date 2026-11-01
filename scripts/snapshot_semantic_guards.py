@@ -81,6 +81,9 @@ def identity(node):
     for key in IDENTITY_FIELDS:
         if type(node.get(key)) in (str,int) and str(node[key]):return (key,str(node[key]))
     if isinstance(node.get('source_url'),str) and node['source_url']:
+        # Distinct reviewed athletes may share one official rankings document.
+        if reviewed(node) and isinstance(node.get('name'),str) and node['name']:
+            return ('reviewed_source_name',canonical([node['source_url'],node['name']]))
         return ('source_url',node['source_url'])
     # Never merge different official IDs by name; IDs were already selected above.
     if isinstance(node.get('name'),str):
