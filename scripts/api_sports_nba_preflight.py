@@ -5,6 +5,10 @@ reviewed before activating a fixture adapter. Never log response bodies or keys.
 """
 import datetime as dt
 import re
+try:
+    from .preflight_diagnostics import PreflightError, record_failure, restore_failure, validate_quota
+except ImportError:
+    from preflight_diagnostics import PreflightError, record_failure, restore_failure, validate_quota
 
 ENDPOINT = 'https://v2.nba.api-sports.io/games'
 SOURCE_ID = 'api-sports-nba-preflight'
@@ -25,37 +29,42 @@ def positive(value):
 def inspect_payload(payload, season, now):
     """Whitelist schedule diagnostics only; no personnel, scores, logos or raw errors."""
     if not isinstance(payload, dict) or payload.get('errors') not in ([], {}):
-        raise ValueError('NBA API rejected request; current-season access unverified')
+        raise PreflightError('nba_provider_rejected')
     if payload.get('get') not in ('games', 'games/') or payload.get('parameters') != {'league': 'standard', 'season': str(season)}:
-        raise ValueError('NBA response query identity changed')
+        raise PreflightError('nba_query_changed')
     rows = payload.get('response')
+    if isinstance(rows, list) and not rows and type(payload.get('results')) is int and payload['results'] == 0:
+        raise PreflightError('nba_rows_empty')
     if not isinstance(rows, list) or not 0 < len(rows) <= 5000 or type(payload.get('results')) is not int or payload['results'] != len(rows):
-        raise ValueError('NBA response incomplete or empty; access unverified')
+        raise PreflightError('nba_rows_invalid')
     seen = set(); previews = []; stages = {}; states = {}; ids = {}
     for row in rows:
         if not isinstance(row, dict) or not positive(row.get('id')) or row['id'] in seen or row.get('league') != 'standard' or type(row.get('season')) is not int or row['season'] != season:
-            raise ValueError('NBA game identity or season changed')
+            raise PreflightError('nba_identity_changed')
         seen.add(row['id'])
-        when = aware((row.get('date') or {}).get('start'))
+        try:
+            when = aware((row.get('date') or {}).get('start'))
+        except (ValueError, TypeError, AttributeError):
+            raise PreflightError('nba_start_invalid') from None
         if not dt.datetime(season, 7, 1, tzinfo=UTC) <= when < dt.datetime(season + 1, 8, 1, tzinfo=UTC):
-            raise ValueError('NBA game outside requested season')
+            raise PreflightError('nba_date_outside_season')
         stage = row.get('stage'); state = (row.get('status') or {}).get('short')
         if type(stage) is not int or not 1 <= stage <= 10 or type(state) is not int or state not in range(1, 7):
-            raise ValueError('NBA phase or state unrecognized')
+            raise PreflightError('nba_state_unrecognized')
         teams = row.get('teams') or {}; pair = []
         for side in ('visitors', 'home'):
             team = teams.get(side) or {}; tid = team.get('id'); name = team.get('name')
             if not positive(tid) or name not in TEAM_NAMES or (tid in ids and ids[tid] != name) or (name in ids.values() and ids.get(tid) != name):
-                raise ValueError('NBA senior club identity unverified')
+                raise PreflightError('nba_participant_unverified')
             ids[tid] = name; pair.append({'id': tid, 'name': name})
         if pair[0]['id'] == pair[1]['id']:
-            raise ValueError('NBA duplicate participant')
+            raise PreflightError('nba_participant_duplicate')
         stages[str(stage)] = stages.get(str(stage), 0) + 1
         states[str(state)] = states.get(str(state), 0) + 1
         if now < when <= now + dt.timedelta(days=8) and len(previews) < 8:
             previews.append({'provider_game_id': row['id'], 'start_time': when.isoformat(), 'stage': stage, 'status_code': state, 'visitors': pair[0], 'home': pair[1]})
     if not previews:
-        raise ValueError('NBA current review-window observations unavailable')
+        raise PreflightError('nba_window_empty')
     return {'response_games': len(rows), 'stages': stages, 'status_codes': states, 'schedule_preview': previews, 'catalog_identity_key': 'basketball-us-nba'}
 
 
@@ -76,6 +85,7 @@ def collect(source, previous, now, key, get):
         if now < attempted or now - attempted < dt.timedelta(hours=24):
             for field in ('api_attempted_at', 'preflight_evidence', 'api_http_status', 'quota_limit', 'quota_remaining'):
                 if field in previous: result[field] = previous[field]
+            restore_failure(result, previous)
             return result
     if source.get('id') != SOURCE_ID or source.get('source_type') != 'api-sports-nba-preflight' or source.get('endpoint') != ENDPOINT or source.get('coverage_status') != 'pending-fixture-review':
         result['errors'] = ['NBA preflight configuration changed; no request made']; return result
@@ -83,21 +93,27 @@ def collect(source, previous, now, key, get):
         result['errors'] = ['API_SPORTS_KEY unavailable or invalid; no request made']; return result
     result.update(api_attempted_at=now.isoformat(), requests_this_run=1)
     season = now.year if now.month >= 7 else now.year - 1
+    stage = 'schedule_request'
     try:
         response = get(ENDPOINT, params={'league': 'standard', 'season': str(season)},
                        headers={'x-apisports-key': key}, timeout=25, allow_redirects=False)
         status = response.status_code
         result['api_http_status'] = status
         if status != 200:
-            result['errors'] = ['NBA API HTTP response rejected; no redirect or retry']; return result
-        limit = response.headers.get('x-ratelimit-requests-limit', '')
-        remaining = response.headers.get('x-ratelimit-requests-remaining', '')
-        if not str(limit).isdigit() or not str(remaining).isdigit() or not 1 <= int(limit) <= 100 or not 0 <= int(remaining) < int(limit):
-            result['errors'] = ['NBA free-plan quota headers unverified']; return result
-        result.update(quota_limit=int(limit), quota_remaining=int(remaining))
-        result['preflight_evidence'] = inspect_payload(response.json(), season, now)
+            raise PreflightError('http_rejected')
+        stage = 'schedule_quota'
+        limit, remaining = validate_quota(response.headers, 'x-ratelimit-requests-limit',
+                                          'x-ratelimit-requests-remaining', 100)
+        result.update(quota_limit=limit, quota_remaining=remaining)
+        stage = 'schedule_json'
+        payload = response.json()
+        stage = 'schedule_validation'
+        result['preflight_evidence'] = inspect_payload(payload, season, now)
         result['checked_at'] = now.isoformat()
+    except PreflightError as error:
+        record_failure(result, stage, error.code)
     except Exception:
         # requests/JSON exceptions can contain credentials, URL parameters or bodies.
-        result['errors'] = ['NBA preflight transport or response validation failed; no retry']
+        code = {'schedule_request': 'transport_failed', 'schedule_json': 'json_invalid'}.get(stage, 'validation_unexpected')
+        record_failure(result, stage, code)
     return result
