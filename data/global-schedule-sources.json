@@ -6504,6 +6504,20 @@
       ],
       "coverage_status": "pending-fixture-review",
       "source_note": "Owner-provided API-SPORTS account. One request per rolling 24 hours, free-plan quota <=100; no redirects/retries. Schedule-only capability evidence, never fixture approval. Current-season access, exact identities and phase require review before activation. Existing ESPN/Odds holds remain unchanged."
+    },
+    {
+      "id": "sharp-api-events-preflight",
+      "source_type": "sharp-api-events-preflight",
+      "sport": "Basketball",
+      "league": "NBA / NFL access evidence",
+      "region": "United States / Canada",
+      "endpoint": "https://api.sharpapi.io/api/v1/events",
+      "official_schedule_url": "https://docs.sharpapi.io/en/api-reference/events/",
+      "catalog_terms": [
+        "National Basketball Association (NBA) | Men"
+      ],
+      "coverage_status": "pending-fixture-review",
+      "source_note": "Owner-provided SharpAPI free account. At most two requests per normal run: account validation then one NBA/NFL event page. A saved attempt receipt suppresses requests for 24 hours. No pagination, redirects, retries, odds, streams or paid upgrade. No events emitted; exact catalog/phase/identity and current account access require review. Existing publisher/Odds holds unchanged."
     }
   ]
 }
