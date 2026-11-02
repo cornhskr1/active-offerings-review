@@ -71,9 +71,12 @@ class CompetitionIdentityRegistryTests(unittest.TestCase):
         self.assertTrue(self.registry["coverage_gaps"])
 
         afl = next(item for item in self.registry["competitions"] if item["sport"] == "Aussie Rules")
-        self.assertEqual("Australian Football League (AFL)", afl["league"])
+        self.assertEqual("Australian Football League (AFL) | Men", afl["league"])
         self.assertIn({"name": "AFL", "source_id": "afl"}, afl["source_labels"])
-        self.assertEqual(1, len([item for item in self.registry["competitions"] if item["sport"] == "Aussie Rules"]))
+        self.assertEqual(2, len([item for item in self.registry["competitions"] if item["sport"] == "Aussie Rules"]))
+        women = next(item for item in self.registry["competitions"] if item.get("identity_key") == "aussie-rules-au-afl-women")
+        self.assertEqual([], women["source_ids"])
+        self.assertEqual([], women["events"])
 
         self.assertIn(("Soccer", "Serie A | Men"), actual)
         self.assertIn(("Soccer", "Serie A | Women"), actual)

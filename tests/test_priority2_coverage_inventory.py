@@ -537,7 +537,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("DATED_WINDOW", row["season_state"])
         self.assertEqual("November 24, 2025–September 12, 2027, including six qualifier windows and the finals", row["season_window"])
         self.assertEqual("coverage-gap", row["sources"][0]["type"])
-        afl = self.rows[("Aussie Rules", "Australian Football League (AFL)")]
+        afl = self.rows[("Aussie Rules", "Australian Football League (AFL) | Men")]
         self.assertEqual("ADAPTER_CONFIGURED", afl["coverage_state"])
 
     def test_chile_league_and_cup_keep_distinct_schedule_gaps(self):

@@ -197,7 +197,7 @@ restriction_patterns = [
     r"\bNO\b.*\bWAGER", r"\bWAGER LIMIT\b", r"\bMARKETS?\b.*\b(CLOSE|LIMIT|DISABLE|REMOVE)",
     r"\bMUST\b.*\b(CLOSE|DISABLE|REMOVE)", r"\bPROHIBIT", r"\bRESTRICT",
     r"\bNOT PERMISSIBLE\b", r"\bNO PROPOSITION\b", r"\bNO PLAYER PROPOSITION\b",
-    r"\bNO IN-GAME\b"
+    r"\bNO IN-GAME\b", r"\bNO FREE FIGHTS\b"
 ]
 def restriction_scope(section,text):
     up=text.upper()

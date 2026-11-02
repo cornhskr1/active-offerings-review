@@ -9,6 +9,34 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_event_board_uses_exact_identity_and_excludes_reference_windows(self):
+        self.js("""
+const nfl=DATA.seasonMap.sports.find(x=>x.sport==='Football').groups.flatMap(x=>x.events).find(x=>x.source_id==='nfl');
+const row={id:nfl.key,sport:'Football',name:nfl.catalog_event,event:nfl};
+const event={id:'one',sport:'Football',name:'A at B',catalog_identity_key:nfl.key,start_time:'2026-11-03T01:00:00Z'};
+TODAY_MODEL={global:{sources:[{id:'calendar',source_type:'official-event-window'}]},events:[event,{...event,id:'wrong',catalog_identity_key:'other'},{...event,id:'reference',reference_only:true},{...event,id:'calendar',source_id:'calendar'}]};
+assert.deepEqual(catalogBoardRows([row]).map(x=>x.event.id),['one']);
+assert.equal(catalogBoardRows([row,{...row}]).length,0);
+assert.equal(catalogBoardDate(event),'2026-11-02');
+assert.equal(catalogBoardDate({start_time:'2026-11-03T01:00:00'}),'');
+assert.match(catalogBoardFlags(event,{restrictions:[]}),/Check offerings/);
+assert.match(catalogBoardFlags({...event,source_stale:true},{restrictions:['NO FREE FIGHTS']}),/Saved schedule/);
+""",ui=True)
+
+    def test_november_catalog_preserves_new_approvals_and_bkfc_restriction(self):
+        self.js("""
+assert.equal(DATA.catalog.menu_version,'11.2.26');
+assert.ok(DATA.catalog.restrictions.some(x=>/BKFC.*NO FREE FIGHTS/.test(x.text)));
+const rows=C.build({catalog:DATA.catalog,seasonMap:DATA.seasonMap,identities:DATA.identities,today:'2026-11-02',role:catalogLineRole});
+const afl=rows.find(x=>x.id==='aussie-rules-afl-catalog');
+assert.equal(afl.event.coverage_children.length,2);
+assert.equal(afl.event.coverage_children[1].source_id,undefined);
+assert.equal(rows.find(x=>x.id==='tennis-davis-cup-men').status,'unknown');
+const bkfc=rows.find(x=>x.id==='boxing-bkfc');
+assert.ok(bkfc.restrictions.includes('NO FREE FIGHTS'));
+assert.ok(!bkfc.restrictions.some(x=>/North America/.test(x)));
+""",ui=True)
+
     def test_age_views_live_inside_catalog_without_separate_tab(self):
         self.assertNotIn('data-panel="u18"', HTML)
         self.assertNotIn('<section class="panel" id="u18">', HTML)
