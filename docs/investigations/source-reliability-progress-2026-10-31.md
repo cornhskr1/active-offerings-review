@@ -429,3 +429,16 @@ The initial capability check makes at most one NBA `/games?league=standard&seaso
 This is **not a newly usable fixture route or fixture publication**: the source stays pending review, emits zero events and grants no approval or age clearance. The first normal response must establish current-season access, exact team IDs and phase semantics before activation. Existing publisher records, Odds API persistent halt, age/Nebraska restrictions and request quotas remain unchanged. No paid upgrade is selected.
 
 Contract: https://api-sports.io/public/documentations/nba-v2.yaml and https://api-sports.io/terms . API access does not itself establish third-party publication rights. Normal capability confirmation remains pending release and the next scheduled run.
+
+
+## SharpAPI connection check — November 2, 2026
+
+Nich confirmed sharpapi.io and reported adding `SHARP_API_KEY` to the data repository. The key is passed only to the trusted normal global collector; it is never read back, logged, committed or exposed in a browser. The compliance work automation is paused at Nich's request; normal data schedules are unchanged.
+
+A bounded preflight first validates a free account with the schedule feature, then requests one upcoming nonlive NBA/NFL event page (maximum 200 rows). Two requests maximum per run, no retries, redirects, pagination, odds/stream endpoints or plan changes. A successfully saved attempt receipt suppresses attempts for 24 hours; a discarded publication cannot retain that receipt. Headers must match the free tier's <=12 requests/minute. Account/key identifiers and raw provider errors are omitted.
+
+Selected evidence retains only exact event IDs, canonical senior teams, league, aware kickoff and explicitly supplied phase. Duplicate IDs/UUIDs, foreign leagues/sports, youth/unknown clubs, live/final rows, stale/future responses, bad pagination, naive dates and invalid account/quota evidence fail closed. Missing NFL phase remains unknown, never regular-season approval. This source emits **zero events** and remains pending; no usable route or Review Today gain is claimed before actual normal response review and a mapped fixture release. Existing sources and all 178 permission holds, Odds halt, age/Nebraska/catalog restrictions and original observations remain unchanged.
+
+Contracts reviewed: https://docs.sharpapi.io/en/api-reference/events/ , https://docs.sharpapi.io/en/api-reference/account/ , https://docs.sharpapi.io/en/pricing/ and https://sharpapi.io/terms . Internal analytical tools are permitted; this integration does not resell raw feeds. No manual collection was triggered. API-SPORTS #369/data #49 remains separately pending its first normal authenticated response.
+
+Validation before upload: 10 focused SharpAPI regressions; full app suite 1,353 tests passed (one existing skip); provider gate passed. Data companion binding regression and full 116-test suite passed. No live provider requests occurred during tests; authenticated access and Review Today gains remain pending normal publication.
