@@ -32,6 +32,7 @@ from publisher_basketball_beach import fetch_nbb_schedule, parse_nbb_fixtures, p
 from arg_lnb_fixture_adapter import parse_arg_lnb_fixtures
 from rolling_publisher_batch import stage_timed_fixtures
 from thesportsdb_fixture_adapter import PublicClient, collect as collect_thesportsdb
+from api_sports_nba_preflight import collect as collect_api_sports_nba_preflight
 from lmp_reviewed_fixture import collect as collect_lmp_reviewed
 from baltic_cup_fixture_adapter import fetch_fixtures as fetch_baltic_cup_fixtures
 from hns_croatian_cup_fixture_adapter import fetch_fixtures as fetch_croatian_cup_fixtures
@@ -1850,6 +1851,11 @@ for source in CFG.get("sources",[]):
     count=0
     errors=[]
     seen=set()
+    if source.get("source_type") == "api-sports-nba-preflight":
+        previous_status=next((x for x in previous_schedule.get("sources",[]) if x.get("id")==source.get("id")),{})
+        source_status.append(collect_api_sports_nba_preflight(source, previous_status, NOW_UTC,
+            os.environ.get("API_SPORTS_KEY", ""), requests.get))
+        continue
     if source.get("source_type") in ("official-lff-cup-fixtures", "official-hns-croatian-cup-fixtures", "official-mfl-fa-semifinal-fixtures", "official-dfb-womens-cup-fixtures"):
         candidates=[]
         evidence={}
