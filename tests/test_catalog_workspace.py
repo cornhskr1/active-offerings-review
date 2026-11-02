@@ -9,6 +9,22 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_board_date_filters_use_central_calendar_and_seven_inclusive_days(self):
+        self.js("""
+todayKey=()=> '2026-10-31';
+const nfl=DATA.seasonMap.sports.find(x=>x.sport==='Football').groups.flatMap(x=>x.events).find(x=>x.source_id==='nfl');
+const row={id:nfl.key,sport:'Football',name:nfl.catalog_event,event:nfl};
+const event=(id,start_time)=>({id,start_time,sport:'Football',name:id,catalog_identity_key:nfl.key});
+TODAY_MODEL={global:{sources:[]},events:[event('today','2026-11-01T03:00:00Z'),event('tomorrow','2026-11-01T07:30:00Z'),event('last','2026-11-06T18:00:00Z'),event('outside','2026-11-07T18:00:00Z'),event('unknown','2026-11-02T12:00:00')]};
+assert.deepEqual(catalogBoardRows([row],'today').map(x=>x.event.id),['today']);
+assert.deepEqual(catalogBoardRows([row],'tomorrow').map(x=>x.event.id),['tomorrow']);
+assert.deepEqual(catalogBoardRows([row],'week').map(x=>x.event.id),['today','tomorrow','last']);
+assert.equal(catalogBoardNeedsAttention({}, {restrictions:[]}),false);
+assert.equal(catalogBoardNeedsAttention({source_stale:true}, {restrictions:[]}),true);
+assert.equal(catalogBoardNeedsAttention({}, {restrictions:['NO FREE FIGHTS']}),true);
+assert.equal(catalogBoardNeedsAttention({requires_bout_review:true}, {restrictions:[]}),true);
+""",ui=True)
+
     def test_event_board_uses_exact_identity_and_excludes_reference_windows(self):
         self.js("""
 const nfl=DATA.seasonMap.sports.find(x=>x.sport==='Football').groups.flatMap(x=>x.events).find(x=>x.source_id==='nfl');
