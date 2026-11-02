@@ -67,8 +67,14 @@ function renderCatalogWorkspace(){
   const group=[row.group.confederation,row.group.country,row.group.governing_body,row.event?.category].filter(Boolean).join(' › ');const label=group!==lastGroup?`<div class="catalog-group-label">${esc(group)}</div>`:'';lastGroup=group;
   return label+`<button type="button" class="catalog-select" data-browser-entry="${esc(row.id)}" aria-pressed="${state.entry===row.id}">${esc(row.name)}<small><span class="catalog-season-tag ${row.status}">${catalogSeasonLabel(row.status)}</span>${row.restrictions.length?'<span class="catalog-restriction-tag">Has restrictions</span>':''}</small></button>`;
  }).join('')+(!selected.length?'<p class="empty">No leagues match these filters. Use Return to All to restore the catalog.</p>':'');
+ // Keep the existing NCAA evidence nodes alive across selections and reloads.
+ // They belong to sport-level evidence, never an inferred league affiliation.
+ const parking=document.getElementById('catalogAgeParking');
+ const agePanels=['catalogFootballAge','catalogBasketballAge'].map(id=>document.getElementById(id)).filter(Boolean);
+ if(parking)agePanels.forEach(panel=>parking.append(panel));
  const row=selected.find(x=>x.id===state.entry);
  document.getElementById('catalogDetail').innerHTML=row?catalogBrowserDetail(row):catalogBrowserSportDetails(state.sport);
+ if(!row){const panel=state.sport==='NCAA Football'?'catalogFootballAge':state.sport==='NCAA Basketball'?'catalogBasketballAge':null;if(panel)document.getElementById('catalogDetail').append(document.getElementById(panel));}
  document.getElementById('catalogRestrictionsOnly').checked=state.restricted;
  document.getElementById('catalogSports').scrollTop=sportScroll;document.getElementById('catalogLeagues').scrollTop=leagueScroll;
 }

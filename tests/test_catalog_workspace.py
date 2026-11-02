@@ -9,6 +9,24 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_age_views_live_inside_catalog_without_separate_tab(self):
+        self.assertNotIn('data-panel="u18"', HTML)
+        self.assertNotIn('<section class="panel" id="u18">', HTML)
+        catalog = HTML[HTML.index('<section class="panel active" id="catalog">'):HTML.index('<footer')]
+        for key in ['catalogAgeDirectory', 'u18Search', 'u18Groups', 'catalogAgeParking', 'catalogFootballAge', 'catalogBasketballAge']:
+            self.assertIn(f'id="{key}"', catalog)
+
+    def test_soccer_and_tennis_age_records_remain_accessible(self):
+        self.js("""
+const current=catalogBrowserU18();
+for(const sport of ['Soccer','Tennis']){
+ const records=current.filter(x=>x.sport===sport);assert.ok(records.length>0,sport);
+ const html=catalogBrowserSportDetails(sport);
+ assert.equal((html.match(/class="registry-athlete"/g)||[]).length,records.length);
+ for(const record of records)assert.ok(html.includes(esc(record.athlete)),record.athlete);
+}
+""",ui=True)
+
     def js(self, body, ui=False):
         pre = "const assert=require('node:assert/strict'),fs=require('node:fs'),C=require('./assets/catalog-workspace.js');\n"
         if ui:

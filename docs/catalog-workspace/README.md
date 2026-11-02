@@ -25,7 +25,7 @@ Open work was checked before implementation and again before the review branch w
 | Review Today | Attention alerts, date/sport event boards, source observations and reload status retained in **Event Overview**. Exact league-matched events and existing alerts also appear in Sports & Leagues. Publication and reload details are accessible from the catalog header. |
 | Nebraska Collegiate | Separate view retained: school/location filters, calendar evidence, location test, stale labels, futures cutoffs and rules. |
 | Restriction Watch | Catalog-wide standards, full sport notes, exact market wording and existing restriction search retained. Relevant rules also appear directly beside the selected league. |
-| Known U18 | Original age registry and NCAA age-intelligence views retained. Current U18 and uncertain records are also accessible under each sport, regardless of presentation filters. |
+| Known U18 | Separate tab removed. Soccer, tennis and all other current U18/uncertain records are accessible under their sports. Existing NCAA football and basketball intelligence panels appear in the matching sport-level age view. Cross-sport age search remains inside Sports & Leagues. |
 | Catalog Changes | Intake, review holds, original/changed lines and safeguards retained. |
 | Approved Catalog & Coverage | Replaced as the default screen by Sports & Leagues. The original full catalog, Olympic programs, hierarchy, health and source details remain in an expandable section. |
 
@@ -44,7 +44,15 @@ The removed long navigation guide had no independent function or data. No unrela
 - Every current age record remains accessible under its sport. A league placement requires an explicit verified, evidenced catalog relationship. Unmapped records are not guessed into leagues. Age evidence, uncertainty, source dates and the existing age-decision logic remain intact. The 25 verified adults remain in retained evidence for historical screening; the current view contains 79 U18/uncertain records from 104 durable records at the baseline date.
 - Desktop is the primary layout. At 390 pixels the columns stack, sports and leagues remain scrollable, and no horizontal page overflow was observed.
 
+The initial catalog layout is pictured below; its former Known U18 navigation tab has since been removed as described above.
+
 ![Locally tested desktop view](desktop.jpg)
+
+Event Overview after the age-view consolidation:
+
+![Event Overview](event-overview.jpg)
+
+![Expanded daily event list](event-overview-events.jpg)
 
 ## Data coverage: unchanged, measured separately
 
@@ -84,8 +92,8 @@ The next evidence to inspect is the already authorized normal collector's bounde
 | Check | Result |
 | --- | --- |
 | App baseline suite | 1,353 tests, passing; one existing skip |
-| App revised full suite | 1,366 tests, passing; one existing skip |
-| Revised dashboard check | 99 tests, passing, including 13 new catalog-workspace tests |
+| App revised full suite | 1,368 tests, passing; one existing skip |
+| Revised dashboard check | 101 tests, passing, including 15 new catalog-workspace tests |
 | Portal baseline/full regression | 727 tests: 726 passed, one existing skip |
 | Portal saved gold cases | 21/21 passed across Kambi, IGT and Caesars |
 | Portal final audit/release gate | Passed with the existing U18 reference-review-due advisory |
