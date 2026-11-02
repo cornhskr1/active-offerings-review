@@ -6490,6 +6490,20 @@
         "Division I Ice Hockey | Women"
       ],
       "source_note": "Partial reviewed regular-season team schedule only: two October 23–25, 2026 games hosted by St. Cloud State against Bemidji State. Exact publisher game IDs, participant sport-specific Division I evidence and explicit UTC times are required. This does not cover the full division or clear the broader National Collegiate championship hold, Nebraska restrictions, or athlete-age review."
+    },
+    {
+      "id": "api-sports-nba-preflight",
+      "source_type": "api-sports-nba-preflight",
+      "sport": "Basketball",
+      "league": "NBA",
+      "region": "United States / Canada",
+      "endpoint": "https://v2.nba.api-sports.io/games",
+      "official_schedule_url": "https://api-sports.io/documentation/nba/v2",
+      "catalog_terms": [
+        "National Basketball Association (NBA) | Men"
+      ],
+      "coverage_status": "pending-fixture-review",
+      "source_note": "Owner-provided API-SPORTS account. One request per rolling 24 hours, free-plan quota <=100; no redirects/retries. Schedule-only capability evidence, never fixture approval. Current-season access, exact identities and phase require review before activation. Existing ESPN/Odds holds remain unchanged."
     }
   ]
 }
