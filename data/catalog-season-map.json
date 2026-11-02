@@ -198,17 +198,35 @@
           "governing_body": "Australian Football League (AFL) Commission",
           "events": [
             {
-              "key": "aussie-rules-au-afl",
-              "catalog_event": "Australian Football League (AFL)",
-              "season_window": "March–September",
-              "season_start": "03-01",
-              "season_end": "09-30",
-              "source_id": "afl",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "key": "aussie-rules-afl-catalog",
+              "catalog_event": "Australian Football League (AFL) | Men and Women",
+              "identity_model": "combined-approval-separate-competitions",
+              "season_basis": "Men and women are approved in the November 2 catalog. Their season and schedule evidence is maintained separately.",
+              "catalog_change_date": "2026-10-28",
+              "restrictions": [],
+              "coverage_children": [
+                {
+                  "key": "aussie-rules-au-afl",
+                  "season_window": "March–September",
+                  "season_start": "03-01",
+                  "season_end": "09-30",
+                  "source_id": "afl",
+                  "last_verified": "2026-09-17",
+                  "label": "Australian Football League (AFL) | Men"
+                },
+                {
+                  "key": "aussie-rules-au-afl-women",
+                  "label": "Australian Football League (AFL) | Women",
+                  "season_basis": "Approved October 28, 2026. Current season dates and a women-specific schedule source have not been verified."
+                }
+              ]
             }
           ]
         }
+      ],
+      "catalog_snapshot_lines": [
+        "Australian Football League (AFL) Commission",
+        "Australian Football League (AFL) | Men and Women"
       ]
     },
     {
@@ -1546,7 +1564,7 @@
         "World Boxing Council (WBC)",
         "World Boxing Organization (WBO)",
         "British Boxing Board of Control (BBBofC)",
-        "Bare Knuckle Fighting Championship (BKFC) - North America & UK Only",
+        "Bare Knuckle Fighting Championship (BKFC) - NO FREE FIGHTS",
         "Association of Boxing Commissions and Combative Sports (ABCCS)",
         "Most Valuable Promotions (MVP)",
         "State Athletic Commissions",
@@ -1644,18 +1662,19 @@
         },
         {
           "country": "Conditional Approval",
-          "governing_body": "Geographic Limitation",
+          "governing_body": "Event Restriction",
           "events": [
             {
               "key": "boxing-bkfc",
               "catalog_event": "Bare Knuckle Fighting Championship (BKFC)",
-              "entry_type": "conditional-authority",
+              "entry_type": "conditional-event",
               "nonseasonal": true,
-              "season_basis": "Approved only for bouts conducted in North America or the United Kingdom.",
+              "season_basis": "No free fights. Professional status and recognized oversight must still be established for each bout. The October 28, 2026 catalog update removes the geographic restriction.",
               "last_verified": "2026-09-17",
               "restrictions": [
-                "NORTH AMERICA & UNITED KINGDOM ONLY"
-              ]
+                "NO FREE FIGHTS"
+              ],
+              "catalog_change_date": "2026-10-28"
             }
           ]
         },
@@ -9325,7 +9344,7 @@
     {
       "sport": "Tennis",
       "mapping_status": "complete",
-      "summary_label": "11 approved competitions · 18 operational identities with dated, recurring, or held season states",
+      "summary_label": "12 approved competitions · 19 operational identities with dated, recurring, or unverified season states",
       "catalog_snapshot_lines": [
         "Association of Tennis Professionals (ATP)",
         "ATP Tour | Men",
@@ -9341,6 +9360,7 @@
         "USTA Pro Circuit | Men and Women",
         "International Tennis Federation (ITF)",
         "ITF World Tennis Tour | Men and Women",
+        "Davis Cup | Men",
         "Universal Tennis LLC / UTR Sports",
         "UTR Pro Tennis Tour | Men and Women",
         "Association of Tennis Professionals (ATP) / Women’s Tennis Association",
@@ -9611,6 +9631,13 @@
                   "last_verified": "2026-09-26"
                 }
               ]
+            },
+            {
+              "key": "tennis-davis-cup-men",
+              "catalog_event": "Davis Cup | Men",
+              "catalog_change_date": "2026-10-30",
+              "season_basis": "Approved October 30, 2026. Current season dates and a dedicated Davis Cup schedule source have not been verified.",
+              "restrictions": []
             }
           ]
         },
