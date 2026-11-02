@@ -9,6 +9,42 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_olympics_overview_restores_full_official_program_and_review_groups(self):
+        self.js("""
+todayKey=()=> '2026-11-02';
+const html=catalogOlympicsOverview();
+assert.equal(CATALOG_BROWSER.olympicEdition,'summer-2028');
+assert.match(html,/Next Games/);assert.match(html,/Los Angeles 2028/);assert.match(html,/French Alps 2030/);
+assert.match(html,/Jul 10, 2028/);assert.match(html,/Jul 30, 2028/);
+for(const name of DATA.olympicsSummer.disciplines.map(x=>x.name))assert.ok(html.includes(esc(name)),name);
+for(const label of ['APPROVED — SCHEDULED','SCHEDULED — NOT APPROVED','SCOPE REVIEW REQUIRED','APPROVED — NOT SCHEDULED'])assert.ok(html.includes(label),label);
+const query=catalogOlympicsOverview('Artistic Gymnastics');
+assert.match(query,/SCHEDULED — NOT APPROVED/);assert.match(query,/Artistic Gymnastics/);
+assert.equal((query.match(/<article class="olympic-program-card/g)||[]).length,1);
+assert.match(catalogOlympicsOverview('not-a-real-discipline'),/No matching Olympic disciplines/);
+""",ui=True)
+
+    def test_olympics_defaults_to_next_games_and_keeps_pending_dates_explicit(self):
+        self.js("""
+todayKey=()=> '2029-01-01';
+const html=catalogOlympicsOverview();
+assert.equal(CATALOG_BROWSER.olympicEdition,'winter-2030');
+assert.match(html,/Detailed discipline schedule pending/);
+assert.match(html,/Nordic Combined/);assert.match(html,/Not on confirmed program/);
+assert.match(html,/SCOPE REVIEW REQUIRED/);
+const card=renderOlympicProgramCard({...DATA.olympicsWinter.disciplines[0],approval_status:'approved-scheduled',games_start_date:'2030-02-01',games_end_date:'2030-02-17',schedule_detail_status:'detailed-schedule-pending'});
+assert.ok(!card.includes('Feb 1, 2030'));assert.match(card,/Detailed discipline schedule pending/);
+""",ui=True)
+
+    def test_new_unmapped_olympic_discipline_requires_review_and_escapes_display(self):
+        self.js("""
+todayKey=()=> '2026-11-02';
+DATA.olympicsSummer.disciplines.push({id:'new-unmapped',name:'New <discipline>'});
+const html=catalogOlympicsOverview('New <discipline>');
+assert.match(html,/New &lt;discipline&gt;/);assert.ok(!html.includes('New <discipline>'));
+assert.match(html,/SCOPE REVIEW REQUIRED/);assert.match(html,/not yet mapped to the catalog/);
+""",ui=True)
+
     def test_board_date_filters_use_central_calendar_and_seven_inclusive_days(self):
         self.js("""
 todayKey=()=> '2026-10-31';
