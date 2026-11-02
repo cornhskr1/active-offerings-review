@@ -2879,7 +2879,7 @@ function renderOlympicProgramCard(row){
     ?`<div class="catalog-event-restrictions">${row.restrictions.map(x=>`<div class="catalog-event-restriction">${esc(x)}</div>`).join('')}</div>`:'';
   return `<article class="olympic-program-card ${esc(row.approval_status||'scope-review-required')}"><div class="olympic-program-main"><div><div class="catalog-event-name">${esc(row.name||row.catalog_event)}</div><div class="catalog-season-detail">${esc(dateLabel)}${row.governing_body?` · ${catalogGoverningBodyHtml(row.governing_body)}`:''}</div>${catalogMatch}${components}</div><div class="olympic-card-pills">${olympicCompliancePill(row.approval_status)}${mappedSeasonBadge(seasonStatus)}</div></div>${restrictions}</article>`;
 }
-function renderOlympicsCatalog(section,mapping,q,seasonFilter){
+function renderOlympicsCatalog(section,mapping,q,seasonFilter,{workspace=false,editionKey=null}={}){
   const sportHit=!q||section.sport.toLowerCase().includes(q)||'summer olympic games los angeles 2028 winter french alps 2030'.includes(q);
   const snapshotCounts=new Map();
   (mapping.catalog_snapshot_lines||[]).forEach(line=>snapshotCounts.set(line,(snapshotCounts.get(line)||0)+1));
@@ -2889,10 +2889,10 @@ function renderOlympicsCatalog(section,mapping,q,seasonFilter){
     if(remaining>0)snapshotCounts.set(line,remaining-1);
     else catalogChanges.push(line);
   });
-  const editions=(mapping.editions||[]).map(edition=>{
+  const editions=(mapping.editions||[]).filter(edition=>!editionKey||edition.key===editionKey).map(edition=>{
     if(edition.mapping_status==='pending'){
       const hit=sportHit||!q||`${edition.label} ${edition.status_label||''} ${edition.note||''}`.toLowerCase().includes(q);
-      return hit&&(seasonFilter==='all'||seasonFilter==='unmapped')?`<details class="olympic-edition pending"><summary><span>${esc(edition.label)}</span><span class="olympic-edition-meta">${pill('amber',edition.status_label||'MAPPING PENDING')}</span></summary><div class="olympic-edition-body"><div class="empty">${esc(edition.note||'Program mapping pending.')}</div></div></details>`:'';
+      return hit&&(seasonFilter==='all'||seasonFilter==='unmapped')?`<details class="olympic-edition pending" ${workspace?'open':''}><summary><span>${esc(edition.label)}</span><span class="olympic-edition-meta">${pill('amber',edition.status_label||'MAPPING PENDING')}</span></summary><div class="olympic-edition-body"><div class="empty">${esc(edition.note||'Program mapping pending.')}</div></div></details>`:'';
     }
     const program=DATA[edition.program_data_key]||{};
     const games=program.games||{};
@@ -2929,7 +2929,7 @@ function renderOlympicsCatalog(section,mapping,q,seasonFilter){
     const groups=definitions.map(([status,label,color,description])=>{
       const matches=rows.filter(row=>row.approval_status===status).sort((a,b)=>String(a.name||a.catalog_event).localeCompare(String(b.name||b.catalog_event)));
       const emptyText=status==='approved-not-scheduled'?`No catalog-approved disciplines are absent from the current ${editionName} program.`:'No entries in this category.';
-      return `<details class="olympic-status-group ${color}" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(label)}</span><span>${matches.length} ${matches.length===1?'entry':'entries'}</span></summary><div class="olympic-status-description">${esc(description)}</div><div class="olympic-program-list">${matches.length?matches.map(renderOlympicProgramCard).join(''):`<div class="empty">${esc(emptyText)}</div>`}</div></details>`;
+      return `<details class="olympic-status-group ${color}" ${(q||seasonFilter!=='all'||workspace&&status!=='approved-scheduled')?'open':''}><summary><span>${esc(label)}</span><span>${matches.length} ${matches.length===1?'entry':'entries'}</span></summary><div class="olympic-status-description">${esc(description)}</div><div class="olympic-program-list">${matches.length?matches.map(renderOlympicProgramCard).join(''):`<div class="empty">${esc(emptyText)}</div>`}</div></details>`;
     }).join('');
     const counts={approved:rows.filter(x=>x.approval_status==='approved-scheduled').length,notApproved:rows.filter(x=>x.approval_status==='scheduled-not-approved').length,scope:rows.filter(x=>x.approval_status==='scope-review-required').length};
     const source=program.source_url?`<a href="${esc(program.source_url)}" target="_blank" rel="noopener">${esc(program.source_label||'official Olympic source')}</a>`:'official Olympic source';
@@ -2937,10 +2937,11 @@ function renderOlympicsCatalog(section,mapping,q,seasonFilter){
       ?`Detailed schedule pending · Program as of ${esc(program.program_as_of||edition.last_verified||'')}`
       :`Schedule ${esc(program.schedule_version||'')} as of ${esc(program.schedule_as_of||'')}`;
     const notes=(edition.review_notes||[]).map(note=>`<div class="olympic-review-note">${esc(note)}</div>`).join('');
-    return `<details class="olympic-edition" ${(q||seasonFilter!=='all')?'open':''}><summary><span>${esc(edition.label)}</span><span class="olympic-edition-meta">${(program.disciplines||[]).length} scheduled · ${counts.approved} approved · ${counts.notApproved} not approved · ${counts.scope} scope review</span></summary><div class="olympic-edition-body"><div class="olympic-source"><b>${esc(olympicDateLabel(gamesStart,gamesEnd))}</b> · ${releaseStatus} · ${source}</div>${notes}<div class="olympic-status-list">${groups}</div></div></details>`;
+    return `<details class="olympic-edition" ${(workspace||q||seasonFilter!=='all')?'open':''}><summary><span>${esc(edition.label)}</span><span class="olympic-edition-meta">${(program.disciplines||[]).length} scheduled · ${counts.approved} approved · ${counts.notApproved} not approved · ${counts.scope} scope review</span></summary><div class="olympic-edition-body"><div class="olympic-source"><b>${esc(olympicDateLabel(gamesStart,gamesEnd))}</b> · ${releaseStatus} · ${source}</div>${notes}<div class="olympic-status-list">${groups}</div></div></details>`;
   }).filter(Boolean);
   if(!editions.length&&!catalogChanges.length)return'';
   const changeNotice=catalogChanges.length?`<div class="olympic-catalog-change">${pill('amber','CATALOG REVIEW REQUIRED')} ${catalogChanges.length} new Olympics catalog ${catalogChanges.length===1?'line was':'lines were'} detected after the completed crosswalk.</div>`:'';
+  if(workspace)return `${changeNotice}<div class="olympic-games-list">${editions.join('')}</div>`;
   return `<details class="catalog-sport" ${(q||seasonFilter!=='all')?'open':''}><summary><span>Olympics</span><span>${esc(mapping.summary_label||'Olympic program mapping')}</span></summary><div class="catalog-body">${changeNotice}<div class="olympic-games-list">${editions.join('')}</div></div></details>`;
 }
 function renderMappedCatalogSport(section,mapping,q,seasonFilter){
