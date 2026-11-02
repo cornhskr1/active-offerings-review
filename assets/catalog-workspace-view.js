@@ -1,5 +1,48 @@
 /* UI-only bridge to existing published data, evidence renderers and review model. */
-let CATALOG_BROWSER={sport:null,entry:'all',event:null,status:'all',restricted:false,date:'all'};
+let CATALOG_BROWSER={sport:null,entry:'all',event:null,status:'all',restricted:false,date:'all',mode:'events',attention:false,details:true};
+
+// Decorative, local SVGs: sport names remain the accessible labels.
+function catalogSportIcon(sport){
+ const ball='<circle cx="12" cy="12" r="9"/>';
+ const icons={
+  football:'<path d="M3 21C-1 7 7-1 21 3c4 14-4 22-18 18Z"/><path d="m7 17 10-10M8 12l4 4m-1-7 4 4M4 9l11 11M9 4l11 11"/>',
+  basketball:ball+'<path d="M3 12h18M12 3v18M5.6 5.6c8 2 11 5 12.8 12.8M18.4 5.6c-8 2-11 5-12.8 12.8"/>',
+  baseball:ball+'<path d="M6 5c5 4 5 10 0 14M18 5c-5 4-5 10 0 14M7 8l3-1M8 12h3m-4 4 3 1m7-9-3-1m2 5h-3m4 4-3 1"/>',
+  soccer:ball+'<path d="m12 8 4 3-1.5 4h-5L8 11Zm0 0V3m4 8 4.5-2m-6 6 3 4.5m-8-4.5-3 4.5M8 11 3.5 9"/>',
+  tennis:ball+'<path d="M4 8c7 1 11-1 12-4M8 20c1-7 4-11 12-12"/>',
+  volleyball:ball+'<path d="m12 12 8-4m-8 4-1-9m1 9-7 6m1-13c0 6 2 10 6 14m6-14c-6 3-9 7-10 14m13-5c-7-1-12-4-14-8"/>',
+  hockey:'<ellipse cx="12" cy="10" rx="9" ry="4"/><path d="M3 10v5c0 5 18 5 18 0v-5M6 13v4m4-3v4m4-4v4m4-5v4"/>',
+  golf:'<path d="M6 20V3l12 4-12 4"/><ellipse cx="12" cy="20" rx="9" ry="2"/>',
+  racing:'<path d="M4 22V3c6-4 10 4 16 0v11c-6 4-10-4-16 0"/><path d="M8 2v6l4 1V4m4 1v6l4-1M4 8l4-1v7m4-5v5l4 2v-5"/>',
+  boxing:'<path d="M7 17c-2-1-4-3-4-6V8c0-2 3-2 3 0V5c0-4 12-4 12 1v4c3-1 4 3 1 6l-2 2v3H7Z"/><path d="M7 17h10M7 21h10"/>',
+  cycling:'<circle cx="5" cy="16" r="4"/><circle cx="19" cy="16" r="4"/><path d="m5 16 5-9 9 9H5l8-5m-5-4h5m2-3h3l1 12"/>',
+  swimming:'<circle cx="15" cy="6" r="2"/><path d="m4 12 5-6 5 5 6 1M2 16q3-3 6 0t6 0t8 0M2 21q3-3 6 0t6 0t8 0"/>',
+  athletics:'<circle cx="15" cy="4" r="2"/><path d="m7 21 5-8 3 3 4 1M3 15l6-1 3-7 4 4 4-1M6 7l4-2 3 2"/>',
+  esports:'<path d="M8 7h8c5 0 7 12 3 12l-4-4H9l-4 4C1 19 3 7 8 7Z"/><path d="M8 9v5m-2-2h4m6-2h.01M18 13h.01"/>',
+  darts:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 8-8m-3 0 2-2 1 2 2 1-2 2"/>',
+  trophy:'<path d="M7 3h10v6c0 7-10 7-10 0ZM7 5H3v3c0 4 4 4 5 4m9-7h4v3c0 4-4 4-5 4M12 14v6m-5 1h10"/>',
+  bowling:'<circle cx="12" cy="12" r="9"/><circle cx="10" cy="7" r="1"/><circle cx="14" cy="8" r="1"/><circle cx="11" cy="11" r="1"/>',
+  cricket:'<path d="m15 2-5 7m-2-1 5 4-7 9-5-4Z"/><circle cx="18" cy="17" r="4"/><path d="m16 14 4 6"/>',
+  lacrosse:'<path d="m3 22 9-11M10 3c4-4 11-2 11 2 0 7-6 11-10 8-3-2-3-6-1-10Z"/><path d="m10 5 8 6m-8-2 9-5m-5-2 2 10"/>',
+  surf:'<ellipse cx="12" cy="10" rx="4" ry="9" transform="rotate(35 12 10)"/><path d="M2 20q3-3 6 0t6 0t8 0"/>',
+ };
+ const name=String(sport).toLowerCase();
+ const type=/basketball/.test(name)?'basketball':/baseball|softball/.test(name)?'baseball':/soccer/.test(name)?'soccer':/volleyball|water polo/.test(name)?'volleyball':/football|aussie|rugby/.test(name)?'football':/tennis/.test(name)?'tennis':/hockey/.test(name)?'hockey':/golf/.test(name)?'golf':/motorsport/.test(name)?'racing':/boxing|combat|wrestling/.test(name)?'boxing':/cycling/.test(name)?'cycling':/swim/.test(name)?'swimming':/track/.test(name)?'athletics':/esport/.test(name)?'esports':/dart/.test(name)?'darts':/bowling/.test(name)?'bowling':/cricket/.test(name)?'cricket':/lacrosse/.test(name)?'lacrosse':/surf/.test(name)?'surf':'trophy';
+ return `<svg class="sport-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[type]}</svg>`;
+}
+function catalogBoardDayOffset(offset){
+ const day=new Date(todayKey()+'T12:00:00Z');day.setUTCDate(day.getUTCDate()+offset);return day.toISOString().slice(0,10);
+}
+function catalogBoardNeedsAttention(event,row){
+ return Boolean(catalogBoardAlerts(event).length||event.source_stale||event.schedule_time_conflict||event.requires_bout_review||row.restrictions.length);
+}
+function catalogSetDetails(visible){
+ CATALOG_BROWSER.details=visible;
+ document.getElementById('catalogBrowser').classList.toggle('details-hidden',!visible);
+ document.getElementById('catalogReviewColumn').hidden=!visible;
+ const toggle=document.getElementById('catalogDetailToggle');toggle.textContent=visible?'Hide details':'Show details';toggle.setAttribute('aria-expanded',String(visible));
+}
+
 let CATALOG_BOARD_EVENTS=[];
 let CATALOG_BROWSER_ROWS=[];
 const catalogSeasonLabel=s=>({in:'In season',out:'Out of season',unknown:'Undetermined'}[s]||'Undetermined');
@@ -59,6 +102,8 @@ function catalogBoardRows(rows,date='all'){
   if(event.reference_only||referenceSources.has(event.source_id))continue;
   const day=catalogBoardDate(event);
   if(date==='today'&&day!==todayKey())continue;
+  if(date==='tomorrow'&&day!==catalogBoardDayOffset(1))continue;
+  if(date==='week'&&(!day||day<todayKey()||day>catalogBoardDayOffset(6)))continue;
   if(date==='upcoming'&&(!day||day<todayKey()||(day===todayKey()&&!event.date_only&&Number.isFinite(Date.parse(event.start_time))&&Date.parse(event.start_time)<Date.now())))continue;
   const mapped=mappedCatalogEventForScheduleEvent(event),matches=rows.filter(row=>CatalogWorkspace.matchEvent(row,event,mapped));
   // A board row requires exactly one catalog parent. Similar labels never establish approval.
@@ -81,13 +126,16 @@ function catalogBoardFlags(event,row){
 }
 function renderCatalogBoard(selected){
  const state=CATALOG_BROWSER,rows=state.entry==='all'||state.entry==='u18'?selected:selected.filter(x=>x.id===state.entry);
- CATALOG_BOARD_EVENTS=catalogBoardRows(rows,state.date);
+ CATALOG_BOARD_EVENTS=catalogBoardRows(rows,state.date).filter(x=>!state.attention||catalogBoardNeedsAttention(x.event,x.row));
  const eventKey=e=>String(e.id||[e.source_id,e.name,e.start_time].join('|'));
  let picked=CATALOG_BOARD_EVENTS.find(x=>eventKey(x.event)===state.event);
  if(!picked)state.event=null;
  const selectedRow=selected.find(x=>x.id===state.entry);
  const title=state.entry==='all'||state.entry==='u18'?'All competitions':selectedRow?.name||'Selected competition';
- document.getElementById('catalogEvents').innerHTML=`<div class="catalog-event-summary"><b>${esc(title)}</b><span>${CATALOG_BOARD_EVENTS.length} published event${CATALOG_BOARD_EVENTS.length===1?'':'s'} · Central time</span></div>`+(CATALOG_BOARD_EVENTS.length?`<table class="catalog-event-table"><thead><tr><th>Start · Central</th><th>Event / competition</th><th>Review</th><th><span class="sr-only">Details</span></th></tr></thead><tbody>${CATALOG_BOARD_EVENTS.map(({event,row},i)=>{const when=CatalogWorkspace.eventDate(event),passed=!event.date_only&&/(?:Z|[+-]\d{2}:\d{2})$/.test(event.start_time||'')&&Date.parse(event.start_time)<Date.now();return `<tr class="${state.event===eventKey(event)?'selected':''}"><td><time>${esc(when.date)}<strong>${event.schedule_time_conflict?'Verify time':esc(when.time)}</strong></time>${passed?'<span class="board-neutral">Start passed</span>':''}</td><td><button class="catalog-event-name" type="button" data-browser-event="${i}" aria-label="Review ${esc(event.name)}">${esc(event.name)}</button><div class="board-competition">${esc(row.name)}</div></td><td>${catalogBoardFlags(event,row)}</td><td><button class="board-open" type="button" data-browser-event="${i}" aria-label="Open details for ${esc(event.name)}">›</button></td></tr>`;}).join('')}</tbody></table>`:`<div class="catalog-board-empty"><h3>No published events in this view</h3><p>${state.date==='today'?'No matching events are available for today. Try Review window.':'The selected competition has no usable event schedule in the loaded review window.'}</p><p>The approved catalog and its restrictions remain available in Review details. An empty schedule does not confirm that no events are taking place.</p></div>`);
+ document.getElementById('catalogEvents').innerHTML=`<div class="catalog-event-summary"><b>${esc(title)}</b><span>${CATALOG_BOARD_EVENTS.length} published event${CATALOG_BOARD_EVENTS.length===1?'':'s'} · Central time</span></div>`+(CATALOG_BOARD_EVENTS.length?`<table class="catalog-event-table"><thead><tr><th>Start · Central</th><th>Event / competition</th><th>Review</th><th><span class="sr-only">Details</span></th></tr></thead><tbody>${CATALOG_BOARD_EVENTS.map(({event,row},i)=>{const when=CatalogWorkspace.eventDate(event),passed=!event.date_only&&/(?:Z|[+-]\d{2}:\d{2})$/.test(event.start_time||'')&&Date.parse(event.start_time)<Date.now();return `<tr data-browser-event="${i}" class="${state.event===eventKey(event)?'selected':''}"><td><time>${esc(when.date)}<strong>${event.schedule_time_conflict?'Verify time':esc(when.time)}</strong></time>${passed?'<span class="board-neutral">Start passed</span>':''}</td><td><button class="catalog-event-name" type="button" data-browser-event="${i}" aria-label="Review ${esc(event.name)}">${esc(event.name)}</button><div class="board-competition">${esc(row.name)}</div></td><td>${catalogBoardFlags(event,row)}</td><td><button class="board-open" type="button" data-browser-event="${i}" aria-label="Open details for ${esc(event.name)}">›</button></td></tr>`;}).join('')}</tbody></table>`:`<div class="catalog-board-empty"><h3>No published events in this view</h3><p>${state.attention||state.date!=='all'?'No events match the date and review filters. Try Review window or clear Needs attention.':'The selected competition has no usable event schedule in the loaded review window.'}</p><p>The approved catalog and its restrictions remain available in Review details. An empty schedule does not confirm that no events are taking place.</p></div>`);
+ if(state.mode==='catalog'){
+  document.getElementById('catalogEvents').innerHTML=`<div class="catalog-event-summary"><b>Approved catalog · ${esc(state.sport)}</b><span>${selected.length} entries</span></div><div class="catalog-entry-list">${selected.map(row=>`<button type="button" class="catalog-entry-card" data-browser-entry="${esc(row.id)}" aria-pressed="${state.entry===row.id}"><span><b>${esc(row.name)}</b><small>${esc([row.group.country,row.group.governing_body].filter(Boolean).join(' · '))}</small>${row.restrictions.length?`<span class="board-flag amber">${row.restrictions.length} restriction${row.restrictions.length===1?'':'s'}</span>`:''}</span><span class="catalog-season-tag ${row.status}">${catalogSeasonLabel(row.status)}</span><span aria-hidden="true">›</span></button>`).join('')||'<div class="catalog-board-empty">No catalog entries match these filters. Clear filters to see the complete list.</div>'}</div>`;
+ }
  const parking=document.getElementById('catalogAgeParking');
  if(parking)['catalogFootballAge','catalogBasketballAge'].forEach(id=>{const panel=document.getElementById(id);if(panel)parking.append(panel);});
  const detail=document.getElementById('catalogDetail');
@@ -106,21 +154,30 @@ function renderCatalogWorkspace(){
  const sportsNode=document.getElementById('catalogSports'),leaguesNode=document.getElementById('catalogLeagues'),sportScroll=sportsNode.scrollTop,leagueScroll=leaguesNode.scrollLeft;
  const state=CATALOG_BROWSER,query=document.getElementById('catalogSearch').value||'',base={query,restricted:state.restricted},counts=CatalogWorkspace.counts(CATALOG_BROWSER_ROWS,base);
  document.getElementById('catalogSeasonButtons').innerHTML=[['all','All'],['in','In season'],['unknown','Dates unconfirmed'],['out','Out of season']].map(([key,label])=>`<button type="button" data-browser-season="${key}" aria-pressed="${state.status===key}">${label} (${counts[key]})</button>`).join('');
- const visible=CatalogWorkspace.filter(CATALOG_BROWSER_ROWS,{...base,status:state.status}),known=catalogBrowserU18();
+ const visible=CatalogWorkspace.filter(CATALOG_BROWSER_ROWS,{...base,status:state.mode==='catalog'?state.status:'all'}),known=catalogBrowserU18();
  const sports=[...new Set([...(DATA.catalog?.sections||[]).map(x=>x.sport),...known.map(x=>CatalogWorkspace.u18Placement(x,CATALOG_BROWSER_ROWS).sport)])];
  if(!state.sport||!sports.includes(state.sport))state.sport=sports.includes('Football')?'Football':sports[0];
  if(query&&visible.length&&!visible.some(x=>x.sport===state.sport)){state.sport=visible[0].sport;state.entry='all';state.event=null;}
- sportsNode.innerHTML=sports.map(s=>{const count=visible.filter(x=>x.sport===s).length;return `<button type="button" class="catalog-select" data-browser-sport="${esc(s)}" aria-pressed="${state.sport===s}"><span>${esc(s)}</span><small>${count}</small></button>`;}).join('');
+ const sportButton=s=>{const count=visible.filter(x=>x.sport===s).length;return `<button type="button" class="catalog-select" data-browser-sport="${esc(s)}" aria-pressed="${state.sport===s}"><span class="catalog-sport-name">${catalogSportIcon(s)}<span>${esc(s)}</span></span><small title="Catalog entries">${count}</small></button>`;};
+ const collegeOpen=sportsNode.querySelector('.catalog-college-group')?.open||state.sport.startsWith('NCAA');
+ sportsNode.innerHTML=sports.filter(s=>!s.startsWith('NCAA')).map(sportButton).join('')+`<details class="catalog-college-group" ${collegeOpen?'open':''}><summary>College sports · NCAA</summary>${sports.filter(s=>s.startsWith('NCAA')).map(sportButton).join('')}</details>`;
  const selected=visible.filter(x=>x.sport===state.sport);
  if(!['all','u18'].includes(state.entry)&&!selected.some(x=>x.id===state.entry)){state.entry='all';state.event=null;}
  if(query&&selected.length===1&&state.entry==='all')state.entry=selected[0].id;
  document.getElementById('catalogResultCount').textContent=`${visible.length} of ${CATALOG_BROWSER_ROWS.length} catalog entries · Published schedules support review; verify actual sportsbook offerings.`;
  document.getElementById('catalogVersionBadge').textContent=`Catalog ${DATA.catalog?.menu_version||'version unavailable'}`;
- document.getElementById('catalogSportTitle').textContent=state.sport;
+ document.getElementById('catalogSportTitle').innerHTML=catalogSportIcon(state.sport)+`<span>${esc(state.sport)}</span>`;
+ document.getElementById('catalogSeasonButtons').hidden=state.mode!=='catalog';
+ document.getElementById('catalogDateButtons').hidden=state.mode!=='events';
+ document.getElementById('catalogEventFilters').hidden=state.mode!=='events';
+ document.getElementById('catalogLeagues').hidden=state.mode!=='events';
+ document.getElementById('catalogNeedsAttention').checked=state.attention;
+ document.querySelectorAll('[data-browser-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.browserMode===state.mode)));
+ catalogSetDetails(state.details);
  // Search and the full dropdown expose every competition; tabs stay short even for large sports.
  const eventCounts=new Map();catalogBoardRows(selected).forEach(x=>eventCounts.set(x.row.id,(eventCounts.get(x.row.id)||0)+1));
  const ranked=[...selected].sort((a,b)=>(eventCounts.get(b.id)||0)-(eventCounts.get(a.id)||0));
- const tabs=ranked.slice(0,8);const current=selected.find(x=>x.id===state.entry);if(current&&!tabs.includes(current))tabs.push(current);
+ const tabs=ranked.slice(0,3);const current=selected.find(x=>x.id===state.entry);if(current&&!tabs.includes(current))tabs.push(current);
  leaguesNode.innerHTML=`<button type="button" class="catalog-select" data-browser-entry="all" aria-pressed="${state.entry==='all'}">All competitions</button>`+tabs.map(row=>`<button type="button" class="catalog-select" data-browser-entry="${esc(row.id)}" aria-pressed="${state.entry===row.id}" title="${esc(row.name)}">${esc(row.name)}</button>`).join('');
  const select=document.getElementById('catalogLeagueSelect');select.innerHTML='<option value="all">All competitions ('+selected.length+')</option>'+selected.map(row=>`<option value="${esc(row.id)}">${esc([row.group.country,row.name].filter(Boolean).join(' · '))}</option>`).join('');select.value=state.entry==='u18'?'all':state.entry;
  document.querySelectorAll('[data-browser-date]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.browserDate===state.date)));
@@ -130,19 +187,22 @@ function renderCatalogWorkspace(){
 }
 function installCatalogWorkspace(){
  document.getElementById('catalogBrowserControls').addEventListener('click',e=>{
+  const mode=e.target.closest('[data-browser-mode]');if(mode){CATALOG_BROWSER.mode=mode.dataset.browserMode;CATALOG_BROWSER.event=null;renderCatalogWorkspace();}
   const button=e.target.closest('[data-browser-season]');if(button){CATALOG_BROWSER.status=button.dataset.browserSeason;renderCatalogWorkspace();}
-  if(e.target.closest('#catalogReset')){Object.assign(CATALOG_BROWSER,{entry:'all',event:null,status:'all',restricted:false,date:'all'});document.getElementById('catalogSearch').value='';document.getElementById('catalogSeason').value='all';CATALOG_HEALTH_FILTER='all';renderCatalog();}
+  if(e.target.closest('#catalogReset')){Object.assign(CATALOG_BROWSER,{entry:'all',event:null,status:'all',restricted:false,date:'all',attention:false,details:true});document.getElementById('catalogSearch').value='';document.getElementById('catalogSeason').value='all';CATALOG_HEALTH_FILTER='all';renderCatalog();}
  });
+ document.getElementById('catalogNeedsAttention').addEventListener('change',e=>{CATALOG_BROWSER.attention=e.target.checked;renderCatalogWorkspace();});
+ document.getElementById('catalogDetailToggle').addEventListener('click',()=>catalogSetDetails(!CATALOG_BROWSER.details));
  document.getElementById('catalogRestrictionsOnly').addEventListener('change',e=>{CATALOG_BROWSER.restricted=e.target.checked;renderCatalogWorkspace();});
- document.getElementById('catalogLeagueSelect').addEventListener('change',e=>{CATALOG_BROWSER.entry=e.target.value;CATALOG_BROWSER.event=null;renderCatalogWorkspace();});
+ document.getElementById('catalogLeagueSelect').addEventListener('change',e=>{CATALOG_BROWSER.entry=e.target.value;CATALOG_BROWSER.event=null;CATALOG_BROWSER.details=true;renderCatalogWorkspace();});
  document.getElementById('catalogBrowser').addEventListener('click',e=>{
   const sport=e.target.closest('[data-browser-sport]'),entry=e.target.closest('[data-browser-entry]'),u18=e.target.closest('[data-browser-u18]'),panel=e.target.closest('[data-browser-panel]'),date=e.target.closest('[data-browser-date]'),event=e.target.closest('[data-browser-event]');
   if(panel){document.querySelector(`button[data-panel="${panel.dataset.browserPanel}"]`)?.click();return;}
   if(sport){CATALOG_BROWSER.sport=sport.dataset.browserSport;CATALOG_BROWSER.entry='all';CATALOG_BROWSER.event=null;}
-  else if(entry){CATALOG_BROWSER.entry=entry.dataset.browserEntry;CATALOG_BROWSER.event=null;}
-  else if(u18||e.target.closest('#catalogSportEvidence')){if(u18)CATALOG_BROWSER.sport=u18.dataset.browserU18;CATALOG_BROWSER.entry='u18';CATALOG_BROWSER.event=null;}
+  else if(entry){CATALOG_BROWSER.entry=entry.dataset.browserEntry;CATALOG_BROWSER.event=null;CATALOG_BROWSER.details=true;}
+  else if(u18||e.target.closest('#catalogSportEvidence')){if(u18)CATALOG_BROWSER.sport=u18.dataset.browserU18;CATALOG_BROWSER.entry='u18';CATALOG_BROWSER.event=null;CATALOG_BROWSER.details=true;}
   else if(date)CATALOG_BROWSER.date=date.dataset.browserDate;
-  else if(event){const item=CATALOG_BOARD_EVENTS[Number(event.dataset.browserEvent)];if(!item)return;CATALOG_BROWSER.event=String(item.event.id||[item.event.source_id,item.event.name,item.event.start_time].join('|'));if(CATALOG_BROWSER.entry==='u18')CATALOG_BROWSER.entry='all';}
+  else if(event){CATALOG_BROWSER.details=true;const item=CATALOG_BOARD_EVENTS[Number(event.dataset.browserEvent)];if(!item)return;CATALOG_BROWSER.event=String(item.event.id||[item.event.source_id,item.event.name,item.event.start_time].join('|'));if(CATALOG_BROWSER.entry==='u18')CATALOG_BROWSER.entry='all';}
   else return;
   renderCatalogWorkspace();document.getElementById('catalogDetail').scrollTop=0;
  });
