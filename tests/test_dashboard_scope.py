@@ -9,7 +9,8 @@ HTML = (ROOT / "index.html").read_text(encoding="utf-8")
 
 class DashboardScopeTests(unittest.TestCase):
     def test_catalog_and_coverage_are_one_staff_view(self):
-        self.assertIn("Approved Catalog &amp; Coverage", HTML)
+        self.assertIn("Sports &amp; Leagues", HTML)
+        self.assertIn('id="catalogBrowser"', HTML)
         self.assertIn('id="catalogHealth"', HTML)
         self.assertIn("Coverage at a glance", HTML)
         self.assertIn("catalogEntryHealthHtml", HTML)

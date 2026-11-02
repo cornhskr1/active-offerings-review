@@ -26,8 +26,8 @@ class Priority2ReviewWorkflowTests(unittest.TestCase):
         self.assertEqual(len(partials), next(g["count"] for g in groups if (g["kind"], g["state"], g["sport"]) == ("season", "PARTIAL_WINDOW", "Soccer")))
         self.assertEqual(len(INVENTORY['identities']), sum(INVENTORY['summary']['coverage_states'].values()))
 
-    def test_catalog_stays_in_its_own_tab(self):
-        today = HTML[HTML.index('<section class="panel active" id="today"'):HTML.index('<section class="panel" id="catalog"')]
+    def test_catalog_is_default_with_event_overview_preserved(self):
+        today = HTML[HTML.index('<section class="panel" id="today"'):HTML.index('<section class="panel active" id="catalog"')]
         self.assertNotIn('todayCatalogSearch', today)
         self.assertNotIn('Full Catalog Coverage', today)
         self.assertIn('id="catalogHealth"', HTML)
