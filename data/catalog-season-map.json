@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T00:00:00+00:00",
+  "generated_at": "2026-11-03T10:44:00.240667+00:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -25,20 +25,36 @@
       "sport": "Football",
       "country": "United States",
       "catalog_event": "NFL Preseason",
-      "season_window": "August 6–29, 2026",
-      "season_start": "08-06",
-      "season_end": "08-29",
-      "last_verified": "2026-09-18"
+      "season_window": "2026-08-06 – 2026-08-29",
+      "last_verified": "2026-11-03",
+      "season_basis": "Hall of Fame Game through the last preseason weekend.",
+      "season_source_url": "https://operations.nfl.com/media/urolxkdj/05-14-26-preseason-schedule.pdf",
+      "season_evidence_urls": [
+        "https://operations.nfl.com/media/urolxkdj/05-14-26-preseason-schedule.pdf",
+        "https://www.nfl.com/news/2026-27-national-football-league-important-dates"
+      ],
+      "season_window_complete": true,
+      "season_verification_status": "verified-complete",
+      "season_start_date": "2026-08-06",
+      "season_end_date": "2026-08-29"
     },
     {
       "source_id": "cfl",
       "sport": "Football",
       "country": "Canada",
       "catalog_event": "Canadian Football League (CFL)",
-      "season_window": "May 12–November 16, 2026",
-      "season_start": "05-12",
-      "season_end": "11-16",
-      "last_verified": "2026-09-18"
+      "season_window": "2026-05-18 – 2026-11-15",
+      "last_verified": "2026-11-03",
+      "season_basis": "Preseason through Grey Cup, preserving the existing season scope.",
+      "season_source_url": "https://press.cfl.ca/cfl-combine-presented-by-anytime-fitness-in-edmonton-and-april-28-cfl-draft-highlight-2026-offseason",
+      "season_evidence_urls": [
+        "https://press.cfl.ca/cfl-combine-presented-by-anytime-fitness-in-edmonton-and-april-28-cfl-draft-highlight-2026-offseason",
+        "https://press.cfl.ca/grey-cup-playoffs-schedule-announced"
+      ],
+      "season_window_complete": true,
+      "season_verification_status": "verified-complete",
+      "season_start_date": "2026-05-18",
+      "season_end_date": "2026-11-15"
     },
     {
       "source_id": "ifl",
@@ -55,10 +71,17 @@
       "sport": "Football",
       "country": "United States",
       "catalog_event": "United Football League (UFL)",
-      "season_window": "March 27–June 13, 2026",
-      "season_start": "03-27",
-      "season_end": "06-13",
-      "last_verified": "2026-09-18"
+      "season_window": "2026-03-27 – 2026-06-13",
+      "last_verified": "2026-11-03",
+      "season_basis": "Official opening game through championship.",
+      "season_source_url": "https://www.theufl.com/news/ufl-announces-2026-full-season-schedule",
+      "season_evidence_urls": [
+        "https://www.theufl.com/news/ufl-announces-2026-full-season-schedule"
+      ],
+      "season_window_complete": true,
+      "season_verification_status": "verified-complete",
+      "season_start_date": "2026-03-27",
+      "season_end_date": "2026-06-13"
     },
     {
       "source_id": "nba",
@@ -100,10 +123,18 @@
       "sport": "Soccer",
       "country": "United States",
       "catalog_event": "Major League Soccer (MLS) | Men",
-      "season_window": "February–December",
-      "season_start": "02-01",
-      "season_end": "12-31",
-      "last_verified": "2026-09-16"
+      "season_window": "2026-02-21 – 2026-12-18",
+      "last_verified": "2026-11-03",
+      "season_basis": "Regular season through MLS Cup, including the midyear World Cup break.",
+      "season_source_url": "https://www.mlssoccer.com/news/about-major-league-soccer-x4174",
+      "season_evidence_urls": [
+        "https://www.mlssoccer.com/news/about-major-league-soccer-x4174",
+        "https://www.mlssoccer.com/news/audi-2026-mls-cup-playoffs-key-dates-schedule-information"
+      ],
+      "season_window_complete": true,
+      "season_verification_status": "verified-complete",
+      "season_start_date": "2026-02-21",
+      "season_end_date": "2026-12-18"
     },
     {
       "source_id": "epl",
@@ -2051,14 +2082,20 @@
             {
               "key": "baseball-jp-npb",
               "catalog_event": "Nippon Professional Baseball (NPB)",
-              "season_status": "in",
-              "season_basis": "Recurring regular season and postseason calendar",
-              "season_window": "March–October",
-              "season_start": "03-01",
-              "season_end": "10-31",
+              "season_basis": "Regular-season opener through the actual Japan Series clincher, rather than the unused November 1 Game 7 reservation.",
+              "season_window": "2026-03-27 – 2026-10-28",
               "source_id": "npb",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://www.npb.or.jp/eng/",
+              "season_evidence_urls": [
+                "https://www.npb.or.jp/eng/",
+                "https://npb.jp/nippons/2026/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-27",
+              "season_end_date": "2026-10-28"
             }
           ]
         },
@@ -2127,12 +2164,19 @@
             {
               "key": "baseball-int-wbc",
               "catalog_event": "World Baseball Classic",
-              "season_status": "out",
-              "season_basis": "Event-specific tournament calendar",
-              "season_window": "March 2026 tournament completed",
+              "season_basis": "2026 final tournament window; qualifying rounds are excluded.",
+              "season_window": "2026-03-05 – 2026-03-17",
               "source_id": "wbc",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://www.usabaseball.com/news/team-usa-announces-roster-for-2026-world-baseball-classic",
+              "season_evidence_urls": [
+                "https://www.usabaseball.com/news/team-usa-announces-roster-for-2026-world-baseball-classic"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-05",
+              "season_end_date": "2026-03-17"
             }
           ]
         },
@@ -2143,42 +2187,59 @@
             {
               "key": "baseball-us-mlb",
               "catalog_event": "Major League Baseball (MLB)",
-              "season_status": "in",
-              "season_basis": "Connected live schedule",
-              "season_window": "Regular season and postseason",
-              "season_start": "03-01",
-              "season_end": "11-30",
+              "season_basis": "Opener through completed World Series Game 5.",
+              "season_window": "2026-03-25 – 2026-10-28",
               "source_id": "mlb",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://www.mlb.com/press-release/press-release-mlb-announces-2026-regular-season-schedule",
+              "season_evidence_urls": [
+                "https://www.mlb.com/press-release/press-release-mlb-announces-2026-regular-season-schedule",
+                "https://www.mlb.com/postseason"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-25",
+              "season_end_date": "2026-10-28"
             },
             {
               "key": "baseball-us-mlb-draft",
               "catalog_event": "Draft",
-              "season_status": "out",
-              "season_basis": "Event-specific calendar",
-              "season_window": "Annual July event",
-              "season_start": "07-01",
-              "season_end": "07-31",
+              "season_basis": "2026 two-day Draft.",
+              "season_window": "2026-07-11 – 2026-07-12",
               "source_id": null,
-              "last_verified": "2026-09-16",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "MARKETS MUST CLOSE 1 HOUR PRIOR TO EVENT START TIME"
-              ]
+              ],
+              "season_source_url": "https://www.mlb.com/news/2026-mlb-draft-overview-and-schedule",
+              "season_evidence_urls": [
+                "https://www.mlb.com/news/2026-mlb-draft-overview-and-schedule",
+                "https://www.mlb.com/press-release/press-release-major-league-baseball-completes-2026-mlb-draft-presented-by-nippon-express"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-07-11",
+              "season_end_date": "2026-07-12"
             },
             {
               "key": "baseball-us-mlb-spring-training",
               "catalog_event": "Spring Training",
-              "season_status": "out",
-              "season_basis": "Recurring preseason calendar",
-              "season_window": "February–March",
-              "season_start": "02-01",
-              "season_end": "03-31",
+              "season_basis": "Published Spring Training window.",
+              "season_window": "2026-02-20 – 2026-03-24",
               "source_id": null,
-              "last_verified": "2026-09-16",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "MARKETS LIMITED TO MONEYLINE, RUN LINE, AND TOTAL RUNS"
-              ]
+              ],
+              "season_source_url": "https://www.mlb.com/press-release/press-release-mlb-announces-2026-spring-training-schedule",
+              "season_evidence_urls": [
+                "https://www.mlb.com/press-release/press-release-mlb-announces-2026-spring-training-schedule"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-20",
+              "season_end_date": "2026-03-24"
             }
           ]
         }
@@ -2488,26 +2549,39 @@
               "key": "lacrosse-us-pll",
               "catalog_event": "Premier Lacrosse League (PLL)",
               "review_label": "Premier Lacrosse League (PLL)",
-              "season_window": "May 8–September 20, 2026",
-              "season_start": "05-08",
-              "season_end": "09-20",
+              "season_window": "2026-05-08 – 2026-09-20",
               "source_id": "lacrosse-pll",
-              "season_basis": "2026 regular season and playoffs through the PLL Championship; connected ESPN schedule",
-              "last_verified": "2026-09-18",
+              "season_basis": "PLL regular-season opener through championship; the separate Championship Series is excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The PLL uses a touring model in which its teams play in designated homecoming markets and league-hosted weekends.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.premierlacrosseleague.com/schedule?team=ARC&view=list",
+              "season_evidence_urls": [
+                "https://www.premierlacrosseleague.com/schedule?team=ARC&view=list"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-05-08",
+              "season_end_date": "2026-09-20"
             },
             {
               "key": "lacrosse-us-pll-championship-series",
               "catalog_event": "Premier Lacrosse League (PLL) Championship Series",
               "review_label": "PLL Championship Series",
-              "season_window": "February 27–March 1, 2026 · completed",
-              "season_status": "out",
+              "season_window": "2026-02-27 – 2026-03-08",
               "source_id": "lacrosse-pll-championship-series",
-              "season_basis": "Completed event-specific 2026 tournament; future editions require newly published dates",
-              "last_verified": "2026-09-18",
+              "season_basis": "Published 2026 Championship Series window.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The PLL Championship Series uses the faster six-on-six lacrosse format that will be played at the 2028 Olympic Games.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://premierlacrosseleague.com/championship-series",
+              "season_evidence_urls": [
+                "https://premierlacrosseleague.com/championship-series"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-27",
+              "season_end_date": "2026-03-08"
             }
           ]
         },
@@ -2571,14 +2645,20 @@
             {
               "key": "motorsports-au-supercars",
               "catalog_event": "Repco Supercars Championship",
-              "season_window": "February 20–November 29, 2026",
-              "season_start": "02-20",
-              "season_end": "11-29",
+              "season_window": "2026-02-20 – 2026-11-29",
               "source_id": "motorsports-supercars",
-              "season_basis": "2026 Repco Supercars Championship calendar; live schedule adapter pending",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official championship weekend window through the Adelaide finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Supercars Championship races purpose-built touring cars at permanent circuits and temporary street courses across Australia.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.supercars.com/news/supercars-2026-calendar-announcement-release-date-rounds-printable-ticket-information-news",
+              "season_evidence_urls": [
+                "https://www.supercars.com/news/supercars-2026-calendar-announcement-release-date-rounds-printable-ticket-information-news"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-20",
+              "season_end_date": "2026-11-29"
             }
           ]
         },
@@ -2590,26 +2670,38 @@
               "key": "motorsports-intl-f1",
               "catalog_event": "Formula One (F1)",
               "review_label": "Formula One (F1)",
-              "season_window": "March 8–December 6, 2026",
-              "season_start": "03-08",
-              "season_end": "12-06",
+              "season_window": "2026-03-06 – 2026-12-06",
               "source_id": "motorsports-f1",
-              "season_basis": "2026 FIA Formula One World Championship; publisher-owned race calendar connected",
-              "last_verified": "2026-09-18",
+              "season_basis": "Grand Prix weekend envelope, including on-track sessions; preseason testing is excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "Formula One’s 2026 championship spans 24 Grands Prix across five continents.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.formula1.com/en/racing/2026",
+              "season_evidence_urls": [
+                "https://www.formula1.com/en/racing/2026"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-06",
+              "season_end_date": "2026-12-06"
             },
             {
               "key": "motorsports-intl-formula-e",
               "catalog_event": "Formula E World Championship",
-              "season_window": "December 18, 2026–July 25, 2027",
-              "season_start": "12-18",
-              "season_end": "07-25",
+              "season_window": "2026-12-18 – 2027-07-25",
               "source_id": "motorsports-formula-e",
-              "season_basis": "Official 2026–27 Formula E calendar; round 4 has an Americas placeholder without a specific venue and remains held out of event cards",
-              "last_verified": "2026-09-27",
+              "season_basis": "Updated 2026–27 championship race calendar; dates remain subject to schedule revisions.",
+              "last_verified": "2026-11-03",
               "fun_fact": "Formula E is the FIA’s electric single-seater world championship and races primarily on city circuits.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.fiaformulae.com/en/news/races/formula-e-updates-202627-calendar-and-secures-long-term-future-in-monaco",
+              "season_evidence_urls": [
+                "https://www.fiaformulae.com/en/news/races/formula-e-updates-202627-calendar-and-secures-long-term-future-in-monaco"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-12-18",
+              "season_end_date": "2027-07-25"
             }
           ]
         },
@@ -2621,14 +2713,20 @@
               "key": "motorsports-intl-motogp",
               "catalog_event": "MotoGP World Championship",
               "review_label": "MotoGP World Championship",
-              "season_window": "February 27–November 22, 2026",
-              "season_start": "02-27",
-              "season_end": "11-22",
+              "season_window": "2026-02-27 – 2026-11-29",
               "source_id": "motorsports-motogp",
-              "season_basis": "2026 MotoGP World Championship; publisher-owned race calendar connected",
-              "last_verified": "2026-09-18",
+              "season_basis": "Updated Grand Prix weekend calendar includes the moved November 29 Valencia finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "MotoGP’s 2026 calendar contains 22 rounds and is the final season for the championship’s 1000cc technical formula.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.motogp.com/en/calendar",
+              "season_evidence_urls": [
+                "https://www.motogp.com/en/calendar"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-27",
+              "season_end_date": "2026-11-29"
             }
           ]
         },
@@ -2639,14 +2737,20 @@
             {
               "key": "motorsports-us-indycar",
               "catalog_event": "IndyCar Series",
-              "season_window": "March 1–September 6, 2026 · completed",
-              "season_start": "03-01",
-              "season_end": "09-06",
+              "season_window": "2026-03-01 – 2026-09-06",
               "source_id": "motorsports-indycar",
-              "season_basis": "2026 NTT INDYCAR SERIES through the Laguna Seca season finale",
-              "last_verified": "2026-09-18",
+              "season_basis": "2026 championship race dates; testing is excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The IndyCar calendar combines street circuits, road courses, short ovals, and superspeedways in one championship.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.indycar.com/news/2026/01/01-06-nics-scene-setter",
+              "season_evidence_urls": [
+                "https://www.indycar.com/news/2026/01/01-06-nics-scene-setter"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-01",
+              "season_end_date": "2026-09-06"
             }
           ]
         },
@@ -2658,39 +2762,58 @@
               "key": "motorsports-us-nascar-cup",
               "catalog_event": "NASCAR Cup Series (NCS)",
               "review_label": "NASCAR Cup Series (NCS)",
-              "season_window": "February 1–November 8, 2026",
-              "season_start": "02-01",
-              "season_end": "11-08",
+              "season_window": "2026-02-04 – 2026-11-08",
               "source_id": "motorsports-nascar-cup",
-              "season_basis": "2026 NASCAR Cup Series calendar; publisher-owned race weekend schedule connected",
-              "last_verified": "2026-09-18",
+              "season_basis": "Race-date envelope includes the rescheduled Clash exhibition and the championship finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Cup Series is NASCAR’s highest national division and determines its champion through a playoff format.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.nascar.com/nascar-cup-series/2026/schedule/",
+              "season_evidence_urls": [
+                "https://www.nascar.com/nascar-cup-series/2026/schedule/",
+                "https://www.nascar.com/news-media/2025/08/20/nascar-releases-2026-schedule-adding-chicagoland-and-shifting-all-star-to-dover/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-04",
+              "season_end_date": "2026-11-08"
             },
             {
               "key": "motorsports-us-nascar-oreilly",
               "catalog_event": "NASCAR O’Reilly Auto Parts Series",
               "review_label": "NASCAR O’Reilly Auto Parts Series",
-              "season_window": "February 14–November 7, 2026",
-              "season_start": "02-14",
-              "season_end": "11-07",
+              "season_window": "2026-02-14 – 2026-11-07",
               "source_id": "motorsports-nascar-oreilly",
-              "season_basis": "2026 national-series calendar; approved catalog reflects the updated O’Reilly Auto Parts Series name",
-              "last_verified": "2026-09-18",
+              "season_basis": "2026 series race dates through the championship finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The O’Reilly Auto Parts Series is the current name of NASCAR’s second-tier national series, formerly the Xfinity Series.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.nascar.com/news-media/2025/08/20/nascar-releases-2026-schedule-adding-chicagoland-and-shifting-all-star-to-dover/",
+              "season_evidence_urls": [
+                "https://www.nascar.com/news-media/2025/08/20/nascar-releases-2026-schedule-adding-chicagoland-and-shifting-all-star-to-dover/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-14",
+              "season_end_date": "2026-11-07"
             },
             {
               "key": "motorsports-us-nascar-truck",
               "catalog_event": "NASCAR Craftsman Truck Series",
-              "season_window": "February 13–November 6, 2026",
-              "season_start": "02-13",
-              "season_end": "11-06",
+              "season_window": "2026-02-13 – 2026-11-06",
               "source_id": "motorsports-nascar-truck",
-              "season_basis": "2026 NASCAR Craftsman Truck Series calendar; live schedule adapter pending",
-              "last_verified": "2026-09-18",
+              "season_basis": "2026 series race dates through the championship finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Truck Series uses purpose-built racing pickups and is one of NASCAR’s three national divisions.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.nascar.com/news-media/2025/08/20/nascar-releases-2026-schedule-adding-chicagoland-and-shifting-all-star-to-dover/",
+              "season_evidence_urls": [
+                "https://www.nascar.com/news-media/2025/08/20/nascar-releases-2026-schedule-adding-chicagoland-and-shifting-all-star-to-dover/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-13",
+              "season_end_date": "2026-11-06"
             }
           ]
         },
@@ -2702,17 +2825,23 @@
               "key": "motorsports-us-nhra",
               "catalog_event": "National Hot Rod Association (NHRA) Mission Foods Drag Racing Series",
               "review_label": "NHRA Mission Foods Drag Racing Series",
-              "season_window": "March–November 15, 2026",
-              "season_start": "03-01",
-              "season_end": "11-15",
+              "season_window": "2026-03-05 – 2026-11-15",
               "source_id": "motorsports-nhra",
-              "season_basis": "2026 Mission Foods Drag Racing Series calendar; publisher-owned event window connected",
-              "last_verified": "2026-09-18",
+              "season_basis": "Published national event-weekend envelope from Gatornationals through NHRA Finals.",
+              "last_verified": "2026-11-03",
               "fun_fact": "NHRA’s approved professional series includes Top Fuel, Funny Car, Pro Stock, and Pro Stock Motorcycle.",
               "restrictions": [],
               "notes": [
                 "Includes Top Fuel, Funny Car, Pro Stock, and Pro Stock Motorcycle."
-              ]
+              ],
+              "season_source_url": "https://www.nhra.com/schedule/2026",
+              "season_evidence_urls": [
+                "https://www.nhra.com/schedule/2026"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-05",
+              "season_end_date": "2026-11-15"
             }
           ]
         },
@@ -8515,13 +8644,20 @@
             {
               "key": "soccer-united-states-major-league-soccer-mls-men",
               "catalog_event": "Major League Soccer (MLS) | Men",
-              "season_window": "February 21–December 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-02-21 – 2026-12-18",
+              "season_basis": "Regular season through MLS Cup, including the midyear World Cup break.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
               "source_id": "mls",
-              "season_start": "02-21",
-              "season_end": "12-31"
+              "season_source_url": "https://www.mlssoccer.com/news/about-major-league-soccer-x4174",
+              "season_evidence_urls": [
+                "https://www.mlssoccer.com/news/about-major-league-soccer-x4174",
+                "https://www.mlssoccer.com/news/audi-2026-mls-cup-playoffs-key-dates-schedule-information"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-21",
+              "season_end_date": "2026-12-18"
             },
             {
               "key": "soccer-united-states-u-s-open-cup-men",
@@ -8576,24 +8712,37 @@
             {
               "key": "soccer-united-states-national-women-s-soccer-league-nwsl-women",
               "catalog_event": "National Women’s Soccer League (NWSL) | Women",
-              "season_window": "March 13–November 21, 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-13 – 2026-11-21",
+              "season_basis": "Regular-season opener through championship.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "03-13",
-              "season_end": "11-21",
-              "source_id": "concacaf-soccer-united-states-nwsl-women"
+              "source_id": "concacaf-soccer-united-states-nwsl-women",
+              "season_source_url": "https://www.nwslsoccer.com/news/the-2026-nwsl-schedule-is-here",
+              "season_evidence_urls": [
+                "https://www.nwslsoccer.com/news/the-2026-nwsl-schedule-is-here",
+                "https://www.nwslsoccer.com/news/quarterfinal-round-set-ahead-of-2026-nwsl-playoffs-presented-by-google-pixel"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-13",
+              "season_end_date": "2026-11-21"
             },
             {
               "key": "soccer-united-states-nwsl-championship-women",
               "catalog_event": "NWSL Championship | Women",
-              "season_window": "November 21, 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-11-21 – 2026-11-21",
+              "season_basis": "Championship match only; the full NWSL season is a separate record.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "11-21",
-              "season_end": "11-21",
-              "source_id": "concacaf-soccer-united-states-nwsl-women"
+              "source_id": "concacaf-soccer-united-states-nwsl-women",
+              "season_source_url": "https://www.nwslsoccer.com/news/quarterfinal-round-set-ahead-of-2026-nwsl-playoffs-presented-by-google-pixel",
+              "season_evidence_urls": [
+                "https://www.nwslsoccer.com/news/quarterfinal-round-set-ahead-of-2026-nwsl-playoffs-presented-by-google-pixel"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-11-21",
+              "season_end_date": "2026-11-21"
             },
             {
               "key": "soccer-united-states-nwsl-challenge-cup-women",
@@ -9996,97 +10145,145 @@
               "key": "cycling-tour-de-france",
               "catalog_event": "Tour de France",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "July 4–26, 2026 · completed",
-              "season_start": "07-04",
-              "season_end": "07-26",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-07-04 – 2026-07-26",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-tour-de-france"
+              "source_id": "cycling-tour-de-france",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-07-04",
+              "season_end_date": "2026-07-26"
             },
             {
               "key": "cycling-giro-ditalia",
               "catalog_event": "Giro d’Italia",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "May 8–31, 2026 · completed",
-              "season_start": "05-08",
-              "season_end": "05-31",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-05-08 – 2026-05-31",
+              "season_basis": "UCI results establish the actual 2026 stage dates, superseding the earlier May 9 calendar opener.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-giro-ditalia"
+              "source_id": "cycling-giro-ditalia",
+              "season_source_url": "https://dataride.uci.org/iframe/CompetitionResults/76390?disciplineId=10",
+              "season_evidence_urls": [
+                "https://dataride.uci.org/iframe/CompetitionResults/76390?disciplineId=10"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-05-08",
+              "season_end_date": "2026-05-31"
             },
             {
               "key": "cycling-vuelta",
               "catalog_event": "Vuelta a España / La Vuelta",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "August 22–September 13, 2026 · completed",
-              "season_start": "08-22",
-              "season_end": "09-13",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-08-22 – 2026-09-13",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-vuelta"
+              "source_id": "cycling-vuelta",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-08-22",
+              "season_end_date": "2026-09-13"
             },
             {
               "key": "cycling-milan-san-remo",
               "catalog_event": "Milan-San Remo",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "March 21, 2026 · completed",
-              "season_start": "03-21",
-              "season_end": "03-21",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-21 – 2026-03-21",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-milan-san-remo"
+              "source_id": "cycling-milan-san-remo",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-21",
+              "season_end_date": "2026-03-21"
             },
             {
               "key": "cycling-tour-flanders",
               "catalog_event": "Tour of Flanders",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "April 5, 2026 · completed",
-              "season_start": "04-05",
-              "season_end": "04-05",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-04-05 – 2026-04-05",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-tour-flanders"
+              "source_id": "cycling-tour-flanders",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-04-05",
+              "season_end_date": "2026-04-05"
             },
             {
               "key": "cycling-paris-roubaix",
               "catalog_event": "Paris-Roubaix",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "April 12, 2026 · completed",
-              "season_start": "04-12",
-              "season_end": "04-12",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-04-12 – 2026-04-12",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-paris-roubaix"
+              "source_id": "cycling-paris-roubaix",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-04-12",
+              "season_end_date": "2026-04-12"
             },
             {
               "key": "cycling-liege-bastogne-liege",
               "catalog_event": "Liège-Bastogne-Liège",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "April 26, 2026 · completed",
-              "season_start": "04-26",
-              "season_end": "04-26",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-04-26 – 2026-04-26",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-liege-bastogne-liege"
+              "source_id": "cycling-liege-bastogne-liege",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-04-26",
+              "season_end_date": "2026-04-26"
             },
             {
               "key": "cycling-il-lombardia",
               "catalog_event": "Il Lombardia / Giro di Lombardia",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "October 10, 2026",
-              "season_start": "10-10",
-              "season_end": "10-10",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-10-10 – 2026-10-10",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-il-lombardia"
+              "source_id": "cycling-il-lombardia",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-10-10",
+              "season_end_date": "2026-10-10"
             },
             {
               "key": "cycling-cadel-evans",
@@ -10104,180 +10301,272 @@
               "key": "cycling-uae-tour",
               "catalog_event": "UAE Tour",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "February 16–22, 2026 · completed",
-              "season_start": "02-16",
-              "season_end": "02-22",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-02-16 – 2026-02-22",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-uae-tour"
+              "source_id": "cycling-uae-tour",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-16",
+              "season_end_date": "2026-02-22"
             },
             {
               "key": "cycling-gp-quebec",
               "catalog_event": "Grand Prix Cycliste de Québec",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "September 11, 2026 · completed",
-              "season_start": "09-11",
-              "season_end": "09-11",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-09-11 – 2026-09-11",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-gp-quebec"
+              "source_id": "cycling-gp-quebec",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-09-11",
+              "season_end_date": "2026-09-11"
             },
             {
               "key": "cycling-gp-montreal",
               "catalog_event": "Grand Prix Cycliste de Montréal",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "September 13, 2026 · completed",
-              "season_start": "09-13",
-              "season_end": "09-13",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-09-13 – 2026-09-13",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-gp-montreal"
+              "source_id": "cycling-gp-montreal",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-09-13",
+              "season_end_date": "2026-09-13"
             },
             {
               "key": "cycling-tour-guangxi",
               "catalog_event": "Tour of Guangxi",
               "category": "Road Cycling · UCI WorldTour / Grand Tours",
-              "season_window": "October 13–18, 2026",
-              "season_start": "10-13",
-              "season_end": "10-18",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-10-13 – 2026-10-18",
+              "season_basis": "Official 2026 men's race dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-tour-guangxi"
+              "source_id": "cycling-tour-guangxi",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-approves-the-2026-calendars-for-the-uci-womens-worldtour-and-uci/4Eom6DCpjNwy5BeppuLXg3"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-10-13",
+              "season_end_date": "2026-10-18"
             },
             {
               "key": "cycling-road-worlds",
               "catalog_event": "UCI Road World Championships",
               "category": "Discipline World Championships",
-              "season_window": "September 20–27, 2026",
-              "season_start": "09-20",
-              "season_end": "09-27",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-09-20 – 2026-09-27",
+              "season_basis": "Official 2026 championship calendar; age and event restrictions remain separate.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-road-worlds"
+              "source_id": "cycling-road-worlds",
+              "season_source_url": "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU",
+              "season_evidence_urls": [
+                "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-09-20",
+              "season_end_date": "2026-09-27"
             },
             {
               "key": "cycling-track-worlds",
               "catalog_event": "UCI Track Cycling World Championships",
               "category": "Discipline World Championships",
-              "season_window": "October 14–18, 2026",
-              "season_start": "10-14",
-              "season_end": "10-18",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-10-14 – 2026-10-18",
+              "season_basis": "Official 2026 championship calendar.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-track-worlds"
+              "source_id": "cycling-track-worlds",
+              "season_source_url": "https://www.uci.org/calendar/all/2jnxYAuvjgttyHi6YQ94EJ?searchTerm=cycling",
+              "season_evidence_urls": [
+                "https://www.uci.org/calendar/all/2jnxYAuvjgttyHi6YQ94EJ?searchTerm=cycling"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-10-14",
+              "season_end_date": "2026-10-18"
             },
             {
               "key": "cycling-mtb-worlds",
               "catalog_event": "UCI Mountain Bike World Championships",
               "category": "Discipline World Championships",
-              "season_window": "August 26–30, 2026 · completed",
-              "season_start": "08-26",
-              "season_end": "08-30",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-08-26 – 2026-08-30",
+              "season_basis": "Official 2026 mountain-bike championship calendar.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-mtb-worlds"
+              "source_id": "cycling-mtb-worlds",
+              "season_source_url": "https://www.uci.org/discipline/mountain-bike/4LArSj7CKcytMrGEDtKwkb?discipline=MTB&raceClass=CMM&tab=calendar",
+              "season_evidence_urls": [
+                "https://www.uci.org/discipline/mountain-bike/4LArSj7CKcytMrGEDtKwkb?discipline=MTB&raceClass=CMM&tab=calendar"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-08-26",
+              "season_end_date": "2026-08-30"
             },
             {
               "key": "cycling-mtb-marathon-worlds",
               "catalog_event": "UCI Mountain Bike Marathon World Championships",
               "category": "Discipline World Championships",
-              "season_window": "September 12, 2026 · completed",
-              "season_start": "09-12",
-              "season_end": "09-12",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-09-12 – 2026-09-12",
+              "season_basis": "Elite races on September 12; the following day's Masters events are excluded from this window.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-mtb-marathon-worlds"
+              "source_id": "cycling-mtb-marathon-worlds",
+              "season_source_url": "https://www.uci.org/article/2026-uci-mountain-bike-marathon-world-championships-the-courses-and-who-to-watch/0W7XsijulZD6VaNKMZbuc",
+              "season_evidence_urls": [
+                "https://www.uci.org/article/2026-uci-mountain-bike-marathon-world-championships-the-courses-and-who-to-watch/0W7XsijulZD6VaNKMZbuc"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-09-12",
+              "season_end_date": "2026-09-12"
             },
             {
               "key": "cycling-urban-worlds",
               "catalog_event": "UCI Urban Cycling World Championships",
               "category": "Discipline World Championships",
-              "season_window": "November 3–7, 2026",
-              "season_start": "11-03",
-              "season_end": "11-07",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026 edition canceled; next edition dates unconfirmed",
+              "season_basis": "UCI canceled the November 3–7, 2026 Urban Championships, including trials and BMX Freestyle. The canceled dates must not establish an active season.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-urban-worlds"
+              "source_id": "cycling-urban-worlds",
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "cancelled",
+              "season_hold": true,
+              "season_cancelled": true,
+              "hold_reason": "UCI canceled the November 3–7, 2026 Urban Championships, including trials and BMX Freestyle. The canceled dates must not establish an active season."
             },
             {
               "key": "cycling-trials-worlds",
               "catalog_event": "UCI Trials World Championships",
               "category": "Discipline World Championships",
-              "season_window": "November 3–7, 2026 · held within the UCI Urban Cycling World Championships",
-              "season_start": "11-03",
-              "season_end": "11-07",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_window": "2026 edition canceled; next edition dates unconfirmed",
+              "season_basis": "UCI canceled the November 3–7, 2026 Urban Championships, including trials and BMX Freestyle. The canceled dates must not establish an active season.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "cancelled",
+              "season_hold": true,
+              "season_cancelled": true,
+              "hold_reason": "UCI canceled the November 3–7, 2026 Urban Championships, including trials and BMX Freestyle. The canceled dates must not establish an active season."
             },
             {
               "key": "cycling-cyclocross-worlds",
               "catalog_event": "UCI Cyclo-Cross World Championships",
               "category": "Discipline World Championships",
-              "season_window": "January 30–February 1, 2026 · completed",
-              "season_start": "01-30",
-              "season_end": "02-01",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-01-30 – 2026-02-01",
+              "season_basis": "Official 2026 championship window; individual age restrictions remain separate.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-cyclocross-worlds"
+              "source_id": "cycling-cyclocross-worlds",
+              "season_source_url": "https://www.uci.org/pressrelease/where-to-watch-the-2026-rabobank-uci-cyclo-cross-world-championships/6ZiSBDoW0gBSl8mT8zS5Va",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/where-to-watch-the-2026-rabobank-uci-cyclo-cross-world-championships/6ZiSBDoW0gBSl8mT8zS5Va"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-01-30",
+              "season_end_date": "2026-02-01"
             },
             {
               "key": "cycling-gravel-worlds",
               "catalog_event": "UCI Gravel World Championships",
               "category": "Discipline World Championships",
-              "season_window": "October 10–11, 2026",
-              "season_start": "10-10",
-              "season_end": "10-11",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-10-10 – 2026-10-11",
+              "season_basis": "Official 2026 championship calendar.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-gravel-worlds"
+              "source_id": "cycling-gravel-worlds",
+              "season_source_url": "https://www.uci.org/calendar/all/2jnxYAuvjgttyHi6YQ94EJ?searchTerm=gr",
+              "season_evidence_urls": [
+                "https://www.uci.org/calendar/all/2jnxYAuvjgttyHi6YQ94EJ?searchTerm=gr"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-10-10",
+              "season_end_date": "2026-10-11"
             },
             {
               "key": "cycling-bmx-worlds",
               "catalog_event": "UCI BMX Racing World Championships",
               "category": "Discipline World Championships",
-              "season_window": "July 18–19, 2026 · completed",
-              "season_start": "07-18",
-              "season_end": "07-19",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-07-18 – 2026-07-18",
+              "season_basis": "July 19 finals were canceled; classifications use July 18 completed racing. Later Challenge and Masters races are outside this championship window.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-bmx-worlds"
+              "source_id": "cycling-bmx-worlds",
+              "season_source_url": "https://www.uci.org/pressrelease/2026-uci-bmx-racing-world-championships-finals-cancelled-due-to-strong-winds/6cUOx2qstM51CR8A9arYwk",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/2026-uci-bmx-racing-world-championships-finals-cancelled-due-to-strong-winds/6cUOx2qstM51CR8A9arYwk"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-07-18",
+              "season_end_date": "2026-07-18"
             },
             {
               "key": "cycling-indoor-worlds",
               "catalog_event": "UCI Indoor Cycling World Championships",
               "category": "Discipline World Championships",
-              "season_window": "October 16–18, 2026",
-              "season_start": "10-16",
-              "season_end": "10-18",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-10-30 – 2026-11-01",
+              "season_basis": "Replacement Ludwigsburg dates supersede the canceled October 16–18 Derby window.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-indoor-worlds"
+              "source_id": "cycling-indoor-worlds",
+              "season_source_url": "https://www.uci.org/pressrelease/the-2026-uci-indoor-cycling-world-championships-will-take-place-in-ludwigsburg/2tG5YlYvMkRMtuc5fy7ecz",
+              "season_evidence_urls": [
+                "https://www.uci.org/pressrelease/the-2026-uci-indoor-cycling-world-championships-will-take-place-in-ludwigsburg/2tG5YlYvMkRMtuc5fy7ecz"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-10-30",
+              "season_end_date": "2026-11-01"
             },
             {
               "key": "cycling-snow-bike-worlds",
               "catalog_event": "UCI Snow Bike World Championships",
               "category": "Discipline World Championships",
-              "season_window": "February 7, 2026 · completed",
-              "season_start": "02-07",
-              "season_end": "02-07",
-              "season_basis": "2026 official UCI calendar",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-02-07 – 2026-02-07",
+              "season_basis": "Official competition date; prior-day training is excluded.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "source_id": "cycling-snow-bike-worlds"
+              "source_id": "cycling-snow-bike-worlds",
+              "season_source_url": "https://www.uci.org/article/what-is-snow-bike/pgd7heNuNAS1zf8EwisNN",
+              "season_evidence_urls": [
+                "https://www.uci.org/article/what-is-snow-bike/pgd7heNuNAS1zf8EwisNN"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-07",
+              "season_end_date": "2026-02-07"
             },
             {
               "key": "cycling-africa-tour",
@@ -11023,14 +11312,21 @@
             {
               "key": "football-canada-cfl",
               "catalog_event": "Canadian Football League (CFL)",
-              "season_window": "May 12–November 16, 2026",
-              "season_start": "05-12",
-              "season_end": "11-16",
+              "season_window": "2026-05-18 – 2026-11-15",
               "source_id": "cfl",
-              "season_basis": "2026 official CFL schedule, including preseason through the Grey Cup window",
-              "last_verified": "2026-09-18",
+              "season_basis": "Preseason through Grey Cup, preserving the existing season scope.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Grey Cup trophy predates the CFL itself; it was first awarded in 1909, while the modern league was formed in 1958.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://press.cfl.ca/cfl-combine-presented-by-anytime-fitness-in-edmonton-and-april-28-cfl-draft-highlight-2026-offseason",
+              "season_evidence_urls": [
+                "https://press.cfl.ca/cfl-combine-presented-by-anytime-fitness-in-edmonton-and-april-28-cfl-draft-highlight-2026-offseason",
+                "https://press.cfl.ca/grey-cup-playoffs-schedule-announced"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-05-18",
+              "season_end_date": "2026-11-15"
             }
           ]
         },
@@ -11096,28 +11392,41 @@
               "key": "football-us-nfl-preseason",
               "catalog_event": "NFL Preseason",
               "category": "Special Events and Markets",
-              "season_window": "August 6–29, 2026 · completed",
-              "season_start": "08-06",
-              "season_end": "08-29",
+              "season_window": "2026-08-06 – 2026-08-29",
               "source_id": "football-nfl-preseason",
-              "season_basis": "2026 NFL preseason schedule",
-              "last_verified": "2026-09-18",
+              "season_basis": "Hall of Fame Game through the last preseason weekend.",
+              "last_verified": "2026-11-03",
               "fun_fact": "NFL preseason games help teams reduce their offseason rosters to the regular-season limit before Week 1.",
               "restrictions": [
                 "NO PLAYER PROPOSITION WAGERS"
-              ]
+              ],
+              "season_source_url": "https://operations.nfl.com/media/urolxkdj/05-14-26-preseason-schedule.pdf",
+              "season_evidence_urls": [
+                "https://operations.nfl.com/media/urolxkdj/05-14-26-preseason-schedule.pdf",
+                "https://www.nfl.com/news/2026-27-national-football-league-important-dates"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-08-06",
+              "season_end_date": "2026-08-29"
             },
             {
               "key": "football-us-super-bowl-coin-toss",
               "catalog_event": "Super Bowl Coin Toss Winner and Outcome",
               "category": "Special Events and Markets",
-              "season_window": "February 14, 2027 · Super Bowl LXI",
-              "season_start": "02-14",
-              "season_end": "02-14",
-              "season_basis": "Approved market tied only to the Super Bowl coin toss",
-              "last_verified": "2026-09-18",
+              "season_window": "2027-02-14 – 2027-02-14",
+              "season_basis": "Super Bowl LXI date; no market cutoff or kickoff time inferred.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Super Bowl coin toss is conducted shortly before kickoff and is tracked separately from the game result.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
+              "season_evidence_urls": [
+                "https://www.nfl.com/news/2026-27-national-football-league-important-dates"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2027-02-14",
+              "season_end_date": "2027-02-14"
             }
           ]
         },
@@ -11128,14 +11437,20 @@
             {
               "key": "football-us-ufl",
               "catalog_event": "United Football League (UFL)",
-              "season_window": "March 27–June 13, 2026 · completed",
-              "season_start": "03-27",
-              "season_end": "06-13",
+              "season_window": "2026-03-27 – 2026-06-13",
               "source_id": "ufl",
-              "season_basis": "2026 official UFL regular season and postseason through the United Bowl",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official opening game through championship.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The modern UFL was created by combining the USFL and XFL football operations into one spring league.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.theufl.com/news/ufl-announces-2026-full-season-schedule",
+              "season_evidence_urls": [
+                "https://www.theufl.com/news/ufl-announces-2026-full-season-schedule"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-03-27",
+              "season_end_date": "2026-06-13"
             }
           ]
         }
@@ -11214,14 +11529,20 @@
               "key": "golf-dp-world-tour",
               "catalog_event": "DP World Tour",
               "category": "Approved Tours",
-              "season_window": "November–November",
-              "season_start": "11-01",
-              "season_end": "11-30",
+              "season_window": "2025-11-27 – 2026-11-15",
               "source_id": "golf-dp-world-tour",
-              "season_basis": "2026 DP World Tour tournament calendar connected",
-              "last_verified": "2026-09-24",
+              "season_basis": "2026 Race to Dubai season, including its November 2025 opening event and November 2026 finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The DP World Tour's season-long points race concludes at the DP World Tour Championship in Dubai.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.europeantour.com/dpworld-tour/schedule/2026/",
+              "season_evidence_urls": [
+                "https://www.europeantour.com/dpworld-tour/schedule/2026/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2025-11-27",
+              "season_end_date": "2026-11-15"
             }
           ]
         },
@@ -11269,14 +11590,21 @@
               "key": "golf-liv",
               "catalog_event": "LIV Golf League",
               "category": "Approved Tours",
-              "season_window": "February 4–August 30, 2026 · completed",
-              "season_start": "02-04",
-              "season_end": "08-30",
+              "season_window": "2026-02-04 – 2026-08-30",
               "source_id": "golf-liv-golf",
-              "season_basis": "2026 LIV Golf tournament calendar",
-              "last_verified": "2026-09-18",
+              "season_basis": "Tour opener through the separate Michigan team championship finale.",
+              "last_verified": "2026-11-03",
               "fun_fact": "LIV Golf combines individual stroke-play standings with a season-long team competition.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.livgolf.com/schedule",
+              "season_evidence_urls": [
+                "https://www.livgolf.com/schedule",
+                "https://events.livgolf.com/tickets/en/michigan/grounds-michigan-liv-golf"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-02-04",
+              "season_end_date": "2026-08-30"
             }
           ]
         },
@@ -11403,14 +11731,22 @@
               "catalog_event": "Professional Golfers’ Association Tour (PGA Tour)",
               "review_label": "PGA Tour",
               "category": "Approved Tours",
-              "season_window": "January 8–December 6, 2026",
-              "season_start": "01-08",
-              "season_end": "12-06",
+              "season_window": "2026-01-15 – 2026-12-13",
               "source_id": "golf-pga-tour",
-              "season_basis": "2026 tour calendar; tournament identity follows the stable tour event ID rather than sponsor title",
-              "last_verified": "2026-09-18",
+              "season_basis": "Published tour-event envelope includes the December mixed-team invitational; FedExCup points competition is a narrower phase.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The PGA Tour's FedExCup Fall gives players a late-season path to secure status for the following year.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.pgatour.com/schedule",
+              "season_evidence_urls": [
+                "https://www.pgatour.com/schedule",
+                "https://internationalmedia.pgatour.com/uploads/commentator_resources/wf_broadcaster_packets/world-feed-broadcaster-packet-2026-sony-open-in-hawaii.pdf",
+                "https://grantthorntoninvitational.com/tournament-info/schedule-of-events/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-01-15",
+              "season_end_date": "2026-12-13"
             },
             {
               "key": "golf-pga-tour-champions",
@@ -11450,14 +11786,21 @@
               "catalog_event": "Ladies Professional Golf Association Tour (LPGA Tour)",
               "review_label": "LPGA Tour",
               "category": "Approved Tours",
-              "season_window": "January 29–November 22, 2026",
-              "season_start": "01-29",
-              "season_end": "11-22",
+              "season_window": "2026-01-29 – 2026-11-22",
               "source_id": "golf-lpga-tour",
-              "season_basis": "2026 LPGA Tour calendar",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official LPGA season through CME Tour Championship; post-season mixed-team invitational is outside this season window.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The LPGA Tour was founded in 1950 by 13 women, making it one of the longest-running professional women's sports organizations.",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.lpga.com/tournaments/hilton-grand-vacations-tournament-of-champions/results?year=2026",
+              "season_evidence_urls": [
+                "https://www.lpga.com/tournaments/hilton-grand-vacations-tournament-of-champions/results?year=2026",
+                "https://www.cmegrouptourchampionship.com/news/2026/tickets-now-available-for-2026-cme-group-tour-championship"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-01-29",
+              "season_end_date": "2026-11-22"
             }
           ]
         },
