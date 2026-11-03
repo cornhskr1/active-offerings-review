@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T12:15:00.874Z",
+  "generated_at": "2026-11-03T12:17:58.173Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -4646,15 +4646,34 @@
                   "key": "soccer-international-afc-champions-league-elite-men",
                   "label": "AFC Champions League Elite | Men",
                   "source_id": "soccer-afc-champions-league-elite",
-                  "season_window": "July 2026–May 2027",
-                  "season_start": "07-01",
-                  "season_end": "05-31"
+                  "season_window": "2026-08-11 – 2027-05-01",
+                  "season_start_date": "2026-08-11",
+                  "season_basis": "2026/27 men's preliminary ties on August 11 through May 1 final. August 2026 official club knockout calendar supersedes May 2025 preliminary calendar's April 30 endpoint.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.the-afc.com/en/more/afc_competitions.html/news/preliminary-battles-to-kick-off-in-aclelite-and-acltwo",
+                  "season_evidence_urls": [
+                    "https://www.the-afc.com/en/more/afc_competitions.html/news/preliminary-battles-to-kick-off-in-aclelite-and-acltwo",
+                    "https://www.antlers.co.jp/en/blogs/news/260819sptxt4"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete",
+                  "season_end_date": "2027-05-01"
                 },
                 {
                   "key": "soccer-international-afc-champions-league-elite-women",
                   "label": "AFC Champions League Elite | Women",
                   "source_id": "soccer-afc-champions-league-elite-women",
-                  "season_window": "Schedule mapping pending"
+                  "season_window": "Starts 2026-08-17; final date pending",
+                  "season_start_date": "2026-08-17",
+                  "season_basis": "2026/27 women's preliminary opener verified August 17 by AIFF match schedule. AFC uses both Women's Champions League and Women's Champions League Elite labels. Final date remains unverified in reviewed primary sources.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.the-aiff.com/article/afc-womens-champions-league-2026-27-east-bengal-fc-drawn-against-clubs-from-malaysia-guam-bangladesh",
+                  "season_evidence_urls": [
+                    "https://www.the-aiff.com/article/afc-womens-champions-league-2026-27-east-bengal-fc-drawn-against-clubs-from-malaysia-guam-bangladesh",
+                    "https://www.the-afc.com/en/club/afc_womens_champions_league.html"
+                  ],
+                  "season_window_complete": false,
+                  "season_verification_status": "verified-partial"
                 }
               ]
             }
