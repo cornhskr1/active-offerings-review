@@ -37,7 +37,10 @@ for(const family of ['itf-world-tour','utr-pro-tour','usta-pro-circuit'])
     assert.equal(seasonProgressHtml(mapped,annualSeasonStatus(mapped)),'');
   }
 const united=mappedCatalogEventForSource('tennis-united-cup');
-assert.equal(united.season_hold,true);
+assert.equal(united.season_hold,undefined);
+assert.equal(united.season_start_date,'2027-01-01');
+assert.equal(united.season_end_date,'2027-01-10');
+assert.equal(united.season_verification_status,'verified-complete');
 assert.equal(seasonProgressHtml(united,'in'),'');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
