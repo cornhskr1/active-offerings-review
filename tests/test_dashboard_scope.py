@@ -47,7 +47,7 @@ class DashboardScopeTests(unittest.TestCase):
         start = HTML.index("function seasonProgressHtml(")
         end = HTML.index("\nfunction eventSourceIds(", start)
         script = "const assert=require('node:assert/strict');\nfunction todayKey(){return '2026-09-26'}\n" + HTML[start:end] + """
-const dated={season_start_date:'2026-09-01',season_end_date:'2026-10-01'};
+const dated={season_start_date:'2026-09-01',season_end_date:'2026-10-01',last_verified:'2026-09-20'};
 const shown=seasonProgressHtml(dated,'in');
 assert.match(shown,/role="progressbar"/);
 assert.match(shown,/aria-label="Season progress"/);
@@ -55,7 +55,7 @@ assert.match(shown,/Season \\d+%/);
 assert.equal(seasonProgressHtml({...dated,season_hold:true},'in'),'');
 assert.equal(seasonProgressHtml({...dated,season_window_complete:false},'in'),'');
 assert.equal(seasonProgressHtml(dated,'out'),'');
-assert.equal(seasonProgressHtml({season_start:'09-01',season_end:'06-30'},'in').includes('Season '),true);
+assert.equal(seasonProgressHtml({season_start:'09-01',season_end:'06-30'},'in'),'');
 assert.equal(seasonProgressHtml({},'in'),'');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)

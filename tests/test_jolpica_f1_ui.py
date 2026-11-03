@@ -124,7 +124,7 @@ todayKey=()=> '2026-10-19';DATA.global={sources:[],events:[]};const before=JSON.
 const f1=oddsCatalogIdentity('motorsports-intl-f1'),formulaE=oddsCatalogIdentity('motorsports-intl-formula-e');
 F1_SNAPSHOT=JolpicaF1.project(sample,now);
 assert.ok(eventSourceIds(f1).includes('jolpica-f1'));assert.ok(!eventSourceIds(formulaE).includes('jolpica-f1'));
-const valid=renderMappedCatalogEvents([f1],'Motorsports');assert.match(valid,/PARTIAL SCHEDULE/);assert.match(valid,/Jolpica-F1/);assert.doesNotMatch(valid,/NOT CONNECTED/);assert.match(valid,/Season progress/);
+const valid=renderMappedCatalogEvents([f1],'Motorsports');assert.match(valid,/PARTIAL SCHEDULE/);assert.match(valid,/Jolpica-F1/);assert.doesNotMatch(valid,/NOT CONNECTED/);assert.doesNotMatch(valid,/Season progress/); // Month/day context is not an exact confirmed season range.
 F1_SNAPSHOT=JolpicaF1.project(sample,'2026-10-20T11:00:00Z');
 const stale=renderMappedCatalogEvents([f1],'Motorsports');assert.match(stale,/SOURCE NEEDS CHECK/);assert.match(stale,/SAVED EVIDENCE — VERIFY/);assert.doesNotMatch(stale,/NOT CONNECTED/);
 F1_SNAPSHOT=null;
