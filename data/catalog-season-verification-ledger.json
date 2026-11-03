@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-03T12:13:08.763Z",
+  "updated_at": "2026-11-03T12:15:00.874Z",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "384c36061e3da1fc0107b0e2e9cfa9713c5e9364",
   "baseline_dated_records": 255,
@@ -577,6 +577,101 @@
       "finding": "AFC November 3 announcement supersedes January 7–February 5, 2027. Replacement December 23, 2027–January 21, 2028 dates are subject to FIFA approval; not a confirmed window.",
       "missing_fact": "FIFA approval and final revised match schedule.",
       "next_action": "Check the official revised schedule/approval announcement before promoting this record."
+    },
+    {
+      "key": "baseball-kr-kbo",
+      "sport": "Baseball",
+      "country": "Korea",
+      "catalog_event": "KBO League",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=11794",
+      "evidence_urls": [
+        "https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=11794",
+        "https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=12221"
+      ],
+      "finding": "2026 regular-season opener through last possible Korean Series Game 7. October 30 KBO notice and attached schedule move Game 1 to November 3 and Game 7 to November 11; subject to further weather postponements.",
+      "missing_fact": "",
+      "next_action": "Recheck if revised official schedule appears."
+    },
+    {
+      "key": "baseball-mx-lmb",
+      "sport": "Baseball",
+      "country": "Mexico",
+      "catalog_event": "Mexico Baseball League",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lmb.com.mx/noticias/calendario-oficial-de-la-temporada-2026-de-la-liga-mexicana-de-beisbol",
+      "evidence_urls": [
+        "https://lmb.com.mx/noticias/calendario-oficial-de-la-temporada-2026-de-la-liga-mexicana-de-beisbol",
+        "https://torosdetijuana.com/index.php/toros-de-tijuana-es-campeon-de-la-liga-mexicana-de-beisbol-banorte/2026/09/"
+      ],
+      "finding": "2026 opening game through actual title-clinching Game 6 on September 15; replaces preliminary last-possible-game estimates.",
+      "missing_fact": "",
+      "next_action": "Recheck if revised official schedule appears."
+    },
+    {
+      "key": "baseball-do-lidom",
+      "sport": "Baseball",
+      "country": "Dominican Republic",
+      "catalog_event": "Professional Baseball League of the Dominican Republic (LIDOM)",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lidom.com/lidom/junta-de-directores-aprueba-calendario-y-reglamentos-para-campeonato-2026-2027-90160.html",
+      "evidence_urls": [
+        "https://lidom.com/lidom/junta-de-directores-aprueba-calendario-y-reglamentos-para-campeonato-2026-2027-90160.html"
+      ],
+      "finding": "2026/27 opener confirmed October 16; December 22 is regular-season endpoint only. Championship-series endpoint not established by reviewed official calendar.",
+      "missing_fact": "Last possible championship-series game date.",
+      "next_action": "Check official playoff calendar; do not substitute regular-season endpoint."
+    },
+    {
+      "key": "baseball-mx-lmp",
+      "sport": "Baseball",
+      "country": "Mexico",
+      "catalog_event": "Mexican Pacific League",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.lmp.mx/noticias/estas-seran-las-series-inaugurales-de-la-temporada-2026-2027",
+      "evidence_urls": [
+        "https://www.lmp.mx/noticias/estas-seran-las-series-inaugurales-de-la-temporada-2026-2027",
+        "https://editor.lmp.mx/tenemos-calendario-para-la-temporada-2026-2027/"
+      ],
+      "finding": "2026/27 opener confirmed October 13; December 30 ends regular season. Official announcement says playoff calendar will follow; no full championship-series endpoint established.",
+      "missing_fact": "Last possible championship-series game date.",
+      "next_action": "Check official playoff calendar; do not substitute regular-season endpoint."
+    },
+    {
+      "key": "soccer-international-afc-champions-league-elite-men",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "AFC Champions League Elite | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.the-afc.com/en/club/afc_champions_league_elite.html/news/aclelite-202627-all-you-need-to-know",
+      "evidence_urls": [
+        "https://www.the-afc.com/en/club/afc_champions_league_elite.html/news/aclelite-202627-all-you-need-to-know",
+        "https://www.antlers.co.jp/en/blogs/news/260819sptxt4",
+        "https://assets.the-afc.com/downloads/calendars/AFC-Calendar-%28Jul-2026-Jun-2027%29-upd-15-May-2025.pdf"
+      ],
+      "finding": "Exact preliminary-stage opening match date and latest full 2026/27 finals schedule need reconciliation; club schedule ends May 1 while older AFC calendar ends April 30.",
+      "missing_fact": "Exact preliminary-stage opening match date and latest full 2026/27 finals schedule need reconciliation; club schedule ends May 1 while older AFC calendar ends April 30.",
+      "next_action": "Inspect latest AFC competition calendar and preliminary fixtures; confirm final endpoint."
+    },
+    {
+      "key": "soccer-international-afc-champions-league-elite-women",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "AFC Champions League Elite | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.the-afc.com/en/club/afc_womens_champions_league.html",
+      "evidence_urls": [
+        "https://www.the-afc.com/en/club/afc_womens_champions_league.html"
+      ],
+      "finding": "Official AFC page uses both Women's Champions League and Women's Champions League Elite for 2026/27. November 1 group matches confirmed; complete preliminary-through-final dates not yet verified.",
+      "missing_fact": "Official preliminary-stage opening date and 2027 final date.",
+      "next_action": "Review official 2026/27 women's competition calendar and preliminary-stage match reports."
     }
   ]
 }

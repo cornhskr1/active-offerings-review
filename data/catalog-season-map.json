@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T12:13:08.763Z",
+  "generated_at": "2026-11-03T12:15:00.874Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -2200,14 +2200,19 @@
             {
               "key": "baseball-do-lidom",
               "catalog_event": "Professional Baseball League of the Dominican Republic (LIDOM)",
-              "season_status": "out",
-              "season_basis": "Recurring winter league season",
-              "season_window": "October–January",
-              "season_start": "10-01",
-              "season_end": "01-31",
+              "season_basis": "2026/27 opener confirmed October 16; December 22 is regular-season endpoint only. Championship-series endpoint not established by reviewed official calendar.",
+              "season_window": "Starts 2026-10-16; final date pending",
               "source_id": "lidom",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-10-16",
+              "season_source_url": "https://lidom.com/lidom/junta-de-directores-aprueba-calendario-y-reglamentos-para-campeonato-2026-2027-90160.html",
+              "season_evidence_urls": [
+                "https://lidom.com/lidom/junta-de-directores-aprueba-calendario-y-reglamentos-para-campeonato-2026-2027-90160.html"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "regular_season_end_date": "2026-12-22"
             }
           ]
         },
@@ -2242,14 +2247,20 @@
             {
               "key": "baseball-kr-kbo",
               "catalog_event": "KBO League",
-              "season_status": "in",
-              "season_basis": "Recurring regular season and postseason calendar",
-              "season_window": "March–October",
-              "season_start": "03-01",
-              "season_end": "10-31",
+              "season_basis": "2026 regular-season opener through last possible Korean Series Game 7. October 30 KBO notice and attached schedule move Game 1 to November 3 and Game 7 to November 11; subject to further weather postponements.",
+              "season_window": "2026-03-28 – 2026-11-11",
               "source_id": "kbo",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-03-28",
+              "season_source_url": "https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=11794",
+              "season_evidence_urls": [
+                "https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=11794",
+                "https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=12221"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-11-11"
             }
           ]
         },
@@ -2260,16 +2271,22 @@
             {
               "key": "baseball-mx-lmb",
               "catalog_event": "Mexico Baseball League",
-              "season_status": "in",
-              "season_basis": "Recurring regular season and postseason calendar",
-              "season_window": "April–September",
-              "season_start": "04-01",
-              "season_end": "09-30",
+              "season_basis": "2026 opening game through actual title-clinching Game 6 on September 15; replaces preliminary last-possible-game estimates.",
+              "season_window": "2026-04-16 – 2026-09-15",
               "source_id": "lmb",
-              "last_verified": "2026-09-16",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
-              ]
+              ],
+              "season_start_date": "2026-04-16",
+              "season_source_url": "https://lmb.com.mx/noticias/calendario-oficial-de-la-temporada-2026-de-la-liga-mexicana-de-beisbol",
+              "season_evidence_urls": [
+                "https://lmb.com.mx/noticias/calendario-oficial-de-la-temporada-2026-de-la-liga-mexicana-de-beisbol",
+                "https://torosdetijuana.com/index.php/toros-de-tijuana-es-campeon-de-la-liga-mexicana-de-beisbol-banorte/2026/09/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-09-15"
             }
           ]
         },
@@ -2280,16 +2297,22 @@
             {
               "key": "baseball-mx-lmp",
               "catalog_event": "Mexican Pacific League",
-              "season_status": "out",
-              "season_basis": "Recurring winter league season",
-              "season_window": "October–January",
-              "season_start": "10-01",
-              "season_end": "01-31",
+              "season_basis": "2026/27 opener confirmed October 13; December 30 ends regular season. Official announcement says playoff calendar will follow; no full championship-series endpoint established.",
+              "season_window": "Starts 2026-10-13; final date pending",
               "source_id": "lmp",
-              "last_verified": "2026-09-16",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
-              ]
+              ],
+              "season_start_date": "2026-10-13",
+              "season_source_url": "https://www.lmp.mx/noticias/estas-seran-las-series-inaugurales-de-la-temporada-2026-2027",
+              "season_evidence_urls": [
+                "https://www.lmp.mx/noticias/estas-seran-las-series-inaugurales-de-la-temporada-2026-2027",
+                "https://editor.lmp.mx/tenemos-calendario-para-la-temporada-2026-2027/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "regular_season_end_date": "2026-12-30"
             }
           ]
         },
