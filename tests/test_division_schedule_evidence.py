@@ -18,7 +18,7 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
             "basketball-fiba-3x3-world-cup-men": ("2026-06-01", "2026-06-07", "Basketball"),
             "basketball-fiba-3x3-world-cup-women": ("2026-06-01", "2026-06-07", "Basketball"),
             "soccer-italy-serie-a-women": ("2026-09-26", "2027-05-16", "Soccer"),
-            "soccer-italy-coppa-italia-women": ("2026-08-29", "2027-05-23", "Soccer"),
+            "soccer-italy-coppa-italia-women": ("2026-08-30", None, "Soccer"),
             "soccer-italy-supercoppa-italiana-women": ("2027-01-09", "2027-01-10", "Soccer"),
         }
         children = {child["key"]: child for sport in season["sports"]
@@ -28,8 +28,13 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
         for key, (start, end, sport) in expected.items():
             with self.subTest(key=key):
                 child = children[key]
-                self.assertEqual((start, end),
-                                 (child["season_start_date"], child["season_end_date"]))
+                self.assertEqual(start, child["season_start_date"])
+                if end is None:
+                    self.assertNotIn("season_end_date", child)
+                    self.assertFalse(child["season_window_complete"])
+                    self.assertEqual("verified-partial", child["season_verification_status"])
+                else:
+                    self.assertEqual(end, child["season_end_date"])
                 source = sources[child["source_id"]]
                 self.assertEqual((sport, child["label"]), (source["sport"], source["league"]))
                 if key == "soccer-italy-serie-a-women":
