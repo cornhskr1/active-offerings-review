@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T12:55:00.000Z",
+  "generated_at": "2026-11-03",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -6748,18 +6748,31 @@
                   "key": "soccer-france-coupe-de-france-men",
                   "label": "Coupe de France | Men",
                   "source_id": "uefa-soccer-france-coupe-de-france-men",
-                  "season_window": "August 2026–May 2027",
-                  "season_start": "08-01",
-                  "season_end": "05-31"
+                  "season_window": "2026/27 regional opening unverified; May 15, 2027 final confirmed",
+                  "season_end_date": "2027-05-15",
+                  "season_basis": "2026/27 senior men's Coupe de France: FFF general calendar confirms May 15 final. Pays de la Loire lists an August 15–16 preliminary round only if necessary and August 22–23 first round; these do not establish the earliest actual qualifying fixture across all participating regional associations.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://media.fff.fr/uploads/documents/calendrier-general-26-27-vfinale-lfp-fff-comex-121225-vdef.pdf",
+                  "season_evidence_urls": [
+                    "https://media.fff.fr/uploads/documents/calendrier-general-26-27-vfinale-lfp-fff-comex-121225-vdef.pdf",
+                    "https://lfpl.fff.fr/wp-content/uploads/sites/20/bsk-pdf-manager/dc2c36b3181c623a045a9b4d7d7c16fb.pdf"
+                  ],
+                  "season_window_complete": false,
+                  "season_verification_status": "verified-partial"
                 },
                 {
                   "key": "soccer-france-coupe-de-france-women",
                   "label": "Coupe de France | Women",
                   "source_id": "uefa-soccer-france-coupe-de-france-women",
-                  "season_window": "Federal phase November 22, 2026–May 23, 2027; regional phase begins earlier",
-                  "season_start_date": "2026-11-22",
-                  "season_end_date": "2027-05-23",
-                  "season_window_complete": false
+                  "season_window": "2026/27 regional opening unverified; federal phase November 22; final May 22 or 23, 2027",
+                  "season_window_complete": false,
+                  "season_basis": "FFF confirms November 22, 2026 as the first federal round, after regional qualification, and May 22 OR May 23, 2027 as the final. Neither the federal entry date nor one arbitrarily selected final day is an exact full-competition boundary.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+                  "season_evidence_urls": [
+                    "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html"
+                  ],
+                  "season_verification_status": "verified-partial"
                 }
               ]
             },
@@ -6778,14 +6791,21 @@
             {
               "key": "soccer-france-troph-e-des-championnes-women",
               "catalog_event": "Trophée des Championnes | Women",
-              "season_window": "No 2026–27 date published by FFF · hold",
-              "season_basis": "FFF's current national women's calendar omits a Trophée des Championnes date. The catalog approval remains preserved, but no current edition is inferred from prior seasons or from the unrelated Réunion competition of the same translated name.",
-              "last_verified": "2026-09-29",
+              "season_window": "No 2026–27 national date established in reviewed FFF calendar · hold",
+              "season_basis": "Current FFF national women's calendar has no Trophée des Championnes date. Older audiovisual-rights coverage is not a current schedule; regional Guadeloupe/Réunion events with similar names are not this national approval. Existing date-specific hold remains; omission is not proof of cancellation.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
               "season_status": "out",
               "source_id": "uefa-soccer-france-troph-e-des-championnes-women",
               "season_hold": true,
-              "hold_reason": "No current 2026–27 metropolitan FFF Trophée des Championnes date is published. Do not use the Réunion regional competition or a previous national edition as current schedule evidence."
+              "hold_reason": "No current 2026–27 metropolitan FFF Trophée des Championnes date is published. Do not use the Réunion regional competition or a previous national edition as current schedule evidence.",
+              "season_source_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+              "season_evidence_urls": [
+                "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+                "https://www.fff.fr/article/10100-droits-d-exploitation-audiovisuelle-consultations.html"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             }
           ]
         },
@@ -8223,35 +8243,54 @@
             {
               "key": "soccer-portugal-liga-bpi-women",
               "catalog_event": "Liga BPI | Women",
-              "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "September 12, 2026 opening confirmed; full 2026/27 endpoint unverified",
+              "season_basis": "2026/27 senior women's Liga BPI: indexed official Benfica ticket announcement confirms September 12 opening-round fixture. May 23 is a regular-season reference date, not proof of the last applicable relegation playoff. Federation calendar access returned 403; direct club ticket retrieval also failed after indexed evidence was obtained.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-portugal-liga-bpi-women"
+              "source_id": "uefa-soccer-portugal-liga-bpi-women",
+              "season_start_date": "2026-09-12",
+              "season_source_url": "https://media.slbenfica.pt/pt-pt/agora/noticias/2026/09/07/futebol-feminino-bilhetes-benfica-racing-power-1-jornada-liga-bpi",
+              "season_evidence_urls": [
+                "https://media.slbenfica.pt/pt-pt/agora/noticias/2026/09/07/futebol-feminino-bilhetes-benfica-racing-power-1-jornada-liga-bpi",
+                "https://www.slbenfica.pt/pt-pt/agora/noticias/2026/07/28/futebol-feminino-benfica-sorteio-calendario-liga-bpi-2026-27",
+                "https://www.fpf.pt/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-portugal-ta-a-de-portugal-men",
               "catalog_event": "Taça de Portugal | Men",
-              "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "August 28, 2026–May 30, 2027",
+              "season_basis": "2026/27 senior men's Taça de Portugal: Aveiro association identifies Beira-Mar–União de Lamas on August 28 as the opening fixture; Liga Portugal's 2026/27 official calendar places FINAL TP on May 30. The association article's women's category is inconsistent with its named men's teams and 87th-edition content; scope is established from the article body.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-portugal-ta-a-de-portugal-men"
+              "source_id": "uefa-soccer-portugal-ta-a-de-portugal-men",
+              "season_start_date": "2026-08-28",
+              "season_end_date": "2027-05-30",
+              "season_source_url": "https://afatv.pt/news-details/84addf46-f365-4be8-bace-1934a870ef4b",
+              "season_evidence_urls": [
+                "https://afatv.pt/news-details/84addf46-f365-4be8-bace-1934a870ef4b",
+                "https://www.ligaportugal.pt/backoffice/assets/Comunicado_Oficial_n_357_Calendarios_das_Competicoes_Profissionais_2026_27_3b82c06381.pdf"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-portugal-ta-a-de-portugal-feminina-women",
               "catalog_event": "Taça de Portugal Feminina | Women",
-              "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026/27 edition: exact opening and final need official calendar verification",
+              "season_basis": "2026/27 senior women's cup review did not obtain an accessible official dated calendar. FPF homepage and linked competition document returned 403. Reported September 13 opening and June 6 final were found only in secondary reports and are not promoted to verified dates.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-portugal-ta-a-de-portugal-feminina-women"
+              "source_id": "uefa-soccer-portugal-ta-a-de-portugal-feminina-women",
+              "season_source_url": "https://www.fpf.pt/",
+              "season_evidence_urls": [
+                "https://www.fpf.pt/",
+                "https://www.fpf.pt/DownloadDocument.ashx?id=33176"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-portugal-superta-a-c-ndido-de-oliveira-men",
@@ -8280,13 +8319,19 @@
             {
               "key": "soccer-portugal-ta-a-da-liga-feminina-women",
               "catalog_event": "Taça da Liga Feminina | Women",
-              "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026/27 edition: group draw confirmed; exact first fixture and final unverified",
+              "season_basis": "Official Sporting draw report confirms 2026/27 women's league-cup group participation but Sporting has a first-round bye; its later opening match cannot establish the competition opener. FPF document returned 403. Reported October 3 opening and April 3 final lack accessible official confirmation in this review.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-portugal-ta-a-da-liga-feminina-women"
+              "source_id": "uefa-soccer-portugal-ta-a-da-liga-feminina-women",
+              "season_source_url": "https://www.sporting.pt/pt/noticias/futebol/futebol-feminino/2026-09-07/taca-da-liga-o-grupo-das-leoas",
+              "season_evidence_urls": [
+                "https://www.sporting.pt/pt/noticias/futebol/futebol-feminino/2026-09-07/taca-da-liga-o-grupo-das-leoas",
+                "https://www.fpf.pt/DownloadDocument.ashx?id=33176",
+                "https://www.fpf.pt/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             }
           ]
         },
@@ -8481,14 +8526,21 @@
             {
               "key": "soccer-scotland-scottish-championship-men",
               "catalog_event": "Scottish Championship | Men",
-              "season_window": "July 31, 2026–April 30, 2027 regular season",
-              "season_basis": "SPFL published regular-season bounds; promotion/relegation play-off fixtures may extend past April 30 and are not covered by this date window.",
-              "last_verified": "2026-09-26",
+              "season_window": "August 1, 2026 opening; April 30, 2027 regular finish; full playoff endpoint unverified",
+              "season_basis": "2026/27 men's Championship: June 18 fixture release fixes all five opening games to August 1, superseding provisional July 31/August 1 bounds. April 30 is regular-season only. Premiership promotion final is May 23; reviewed current sources do not establish the last Championship relegation-playoff fixture. Previous-edition May dates are not rolled forward.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
               "source_id": "uefa-soccer-scotland-scottish-championship-men",
-              "season_start_date": "2026-07-31",
-              "season_end_date": "2027-04-30",
-              "season_window_complete": false
+              "season_window_complete": false,
+              "season_start_date": "2026-08-01",
+              "season_source_url": "https://clublogin.spfl.co.uk/news/spfl-fixtures-for-202627",
+              "season_evidence_urls": [
+                "https://clublogin.spfl.co.uk/news/spfl-fixtures-for-202627",
+                "https://spfl.co.uk/news/key-dates-for-202627",
+                "https://spfl.co.uk/pages/key-dates"
+              ],
+              "season_verification_status": "verified-partial",
+              "regular_season_end_date": "2027-04-30"
             },
             {
               "key": "soccer-scotland-scottish-cup-men",
