@@ -24,7 +24,8 @@ class LithuaniaScopeTests(unittest.TestCase):
     def test_league_qualification_and_cup_final_revision(self):
         league = self.events["soccer-lithuania-a-lyga-men"]
         cup = self.events["soccer-lithuania-lithuanian-football-cup-men"]
-        self.assertEqual(("2026-02-21", "2026-11-07"), (league["season_start_date"], league["season_end_date"]))
+        self.assertEqual("2026-02-21", league["season_start_date"])
+        self.assertNotIn("season_end_date", league)
         self.assertFalse(league["season_window_complete"])
         self.assertEqual("PARTIAL_WINDOW", self.inventory[league["key"]]["season_state"])
         self.assertEqual(("2026-04-01", "2026-10-11"), (cup["season_start_date"], cup["season_end_date"]))

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "updated_at": "2026-11-03",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
-  "baseline_commit": "33aedc843e67814f4f165065715fe14dd2bd2847",
-  "baseline_dated_records": 315,
+  "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
+  "baseline_dated_records": 317,
   "catalog_records": 735,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
@@ -2368,6 +2368,122 @@
       "finding": "Current LFPP documents and targeted FPF review did not establish a 2026 senior men's Supercopa Peruana edition. The FPF result is Supercopa TDS FIFA Sub-13, a different youth scope and not evidence for this adult catalog entry. Preserve the identity; no dates or cancellation inferred.",
       "missing_fact": "Official senior men's Supercopa Peruana current-edition announcement and match date.",
       "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-finland-veikkausliiga-men",
+      "sport": "Soccer",
+      "country": "Finland",
+      "catalog_event": "Veikkausliiga | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.veikkausliiga.com/uutiset/2025/12/19/veikkausliigan-runkosarjan-2026-otteluohjelma-julkaistaan-ennatyksellisen-varhain-avauspaiva-44-aivan-taynna-otteluita",
+      "evidence_urls": [
+        "https://www.veikkausliiga.com/uutiset/2025/12/19/veikkausliigan-runkosarjan-2026-otteluohjelma-julkaistaan-ennatyksellisen-varhain-avauspaiva-44-aivan-taynna-otteluita",
+        "https://www.veikkausliiga.com/uutiset/2026/10/19/veikkausliigan-karsinnan-ajankohdat-selvilla-ottelut-21-ja-2510",
+        "https://www.veikkausliiga.com/uutiset/2026/10/25/inter-ja-ac-oulu-voittoihin-hjk-kups-tasapeliin-jaro-sailyy-veikkausliigassa",
+        "https://www.veikkausliiga.com/uutiset/2026/11/02/hjk-ja-inter-tasapistein-paatoskierrokselle-mestaruussarjan-viimeista-edellinen-kierros-pelattu"
+      ],
+      "finding": "2026 men's Veikkausliiga opens April 4 and ends with the championship group on November 8. Official indexed notices date the promotion/relegation legs October 21 and 25 and confirm Jaro retained its place; those ties finish before the championship endpoint. Direct article fetch returned 502; dated official search extracts provide the evidence. Existing fixture-source assignment and publisher hold remain unchanged.",
+      "missing_fact": "",
+      "next_action": "Recheck only if the official calendar changes."
+    },
+    {
+      "key": "soccer-ireland-league-of-ireland-premier-division-men",
+      "sport": "Soccer",
+      "country": "Ireland",
+      "catalog_event": "League of Ireland Premier Division | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+      "evidence_urls": [
+        "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+        "https://www.leagueofireland.ie/news/sse-airtricity-mens-premier-division-promotionrelegation-play-confirmed/"
+      ],
+      "finding": "2026 men's Premier Division opens February 6; regular rounds end October 30. The November 1 LOI notice fixes UCD versus Drogheda United at Tallaght on November 7, replacing the earlier week-ending-November-8 range. Full endpoint includes this promotion/relegation playoff.",
+      "missing_fact": "",
+      "next_action": "Recheck only if the official calendar changes."
+    },
+    {
+      "key": "soccer-switzerland-swiss-super-league-men",
+      "sport": "Soccer",
+      "country": "Switzerland",
+      "catalog_event": "Swiss Super League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://sfl.ch/articles/lescalendriersde-la-saison-202627",
+      "evidence_urls": [
+        "https://sfl.ch/articles/lescalendriersde-la-saison-202627",
+        "https://sfl.ch/articles/le-club-de-challenge-league-jouera-a-domicile-au-match-aller-du-barrage"
+      ],
+      "finding": "2026/27 men's Super League opens July 25. The championship final round remains May 29 or 30, 2027. SFL's September 4 notice places the promotion/relegation barrage within May 31–June 4 depending on the cup finalist; it does not fix both legs. Neither May 30 nor June 4 is promoted to an exact full endpoint.",
+      "missing_fact": "Exact 2027 championship-round date and both promotion/relegation barrage dates.",
+      "next_action": "Recheck the official final-phase announcement; keep regular-round endpoints separate from unverified playoffs."
+    },
+    {
+      "key": "soccer-switzerland-swiss-challenge-league-men",
+      "sport": "Soccer",
+      "country": "Switzerland",
+      "catalog_event": "Swiss Challenge League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://sfl.ch/articles/lescalendriersde-la-saison-202627",
+      "evidence_urls": [
+        "https://sfl.ch/articles/lescalendriersde-la-saison-202627",
+        "https://sfl.ch/articles/le-club-de-challenge-league-jouera-a-domicile-au-match-aller-du-barrage"
+      ],
+      "finding": "2026/27 men's Challenge League opens July 24 and regular rounds end May 28, 2027. The September SFL notice gives a May 31–June 4 barrage window conditional on the cup finalist, with the Challenge club hosting leg one. Full playoff-inclusive return date is not yet exact.",
+      "missing_fact": "Exact dates of the 2027 promotion/relegation barrage, especially its return leg.",
+      "next_action": "Recheck the official final-phase announcement; keep regular-round endpoints separate from unverified playoffs."
+    },
+    {
+      "key": "soccer-latvia-latvian-higher-league-virsl-ga-men",
+      "sport": "Soccer",
+      "country": "Latvia",
+      "catalog_event": "Latvian Higher League / Virslīga | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
+      "evidence_urls": [
+        "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
+        "https://lff.lv/zinas/19313/fk-metta-garante-lvbet-ligas-cempionu-titulu/",
+        "https://lff.lv/files/documents/2310/Virsligas_reglaments_2026_.pdf"
+      ],
+      "finding": "2026 men's Virslīga opens March 6 and regular round 36 is November 8. LFF's current LVBet league notice confirms a separate promotion/relegation tie, but the 2026 return-leg date was not established. The November 20/23 result found in search is from 2025 and was not rolled forward.",
+      "missing_fact": "Exact 2026 promotion/relegation playoff dates, including the return leg.",
+      "next_action": "Recheck the official final-phase announcement; keep regular-round endpoints separate from unverified playoffs."
+    },
+    {
+      "key": "soccer-lithuania-a-lyga-men",
+      "sport": "Soccer",
+      "country": "Lithuania",
+      "catalog_event": "A Lyga | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://toplyga.lt/naujiena/sezono-startas-pirmasis-zalgirio-ambicijas-patikrins-dziugas/9316",
+      "evidence_urls": [
+        "https://toplyga.lt/naujiena/sezono-startas-pirmasis-zalgirio-ambicijas-patikrins-dziugas/9316",
+        "https://toplyga.lt/naujiena/naujasis-lietuvos-futbolo-cempionato-pavadinimas-toplyga/9300",
+        "https://www.lff.lt/wp-content/uploads/2026/02/2026-sezono-TOPLYGA-cempionato-varzybu-nuostatai.pdf"
+      ],
+      "finding": "2026 men's top flight starts February 21; current official TOPLYGA branding does not change the approved A Lyga identity. LFF regulation 9.13 includes a two-leg promotion/relegation tie in the 2026 season. Its final leg was not established, so the old regular-round endpoint is not retained as the full season end.",
+      "missing_fact": "Exact 2026 promotion/relegation return-leg date and final league-round confirmation.",
+      "next_action": "Recheck the official final-phase announcement; keep regular-round endpoints separate from unverified playoffs."
+    },
+    {
+      "key": "soccer-estonia-meistriliiga-premium-liiga-men",
+      "sport": "Soccer",
+      "country": "Estonia",
+      "catalog_event": "Meistriliiga / Premium Liiga | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://jalgpall.ee/voistlused/uudised/tiitlikaitsja-alustas-voiduga-vaprus-tegi-koduvaljakul-tagasituleku-n25723",
+      "evidence_urls": [
+        "https://jalgpall.ee/voistlused/uudised/tiitlikaitsja-alustas-voiduga-vaprus-tegi-koduvaljakul-tagasituleku-n25723",
+        "https://www.jalgpall.ee/voistlused/52/premium-liiga"
+      ],
+      "finding": "2026 men's Premium Liiga opening-match report confirms March 7; EJL fixtures list round 36 on November 7. Separate transition/promotion-relegation dates were not established. November 7 is only the regular endpoint; historical playoff dates were not reused.",
+      "missing_fact": "Exact 2026 transition/promotion-relegation playoff dates and full final-leg endpoint.",
+      "next_action": "Recheck the official final-phase announcement; keep regular-round endpoints separate from unverified playoffs."
     }
   ]
 }

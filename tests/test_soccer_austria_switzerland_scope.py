@@ -20,14 +20,14 @@ class AustriaSwitzerlandScopeTests(unittest.TestCase):
             'soccer-austria-austrian-bundesliga-men': ('2026-07-31', '2027-05-30', 'PARTIAL_WINDOW'),
             'soccer-austria-2-liga-men': ('2026-07-31', '2027-05-30', 'DATED_WINDOW'),
             'soccer-austria-austrian-cup-men': ('2026-07-24', '2027-05-01', 'DATED_WINDOW'),
-            'soccer-switzerland-swiss-super-league-men': ('2026-07-25', '2027-05-30', 'PARTIAL_WINDOW'),
-            'soccer-switzerland-swiss-challenge-league-men': ('2026-07-24', '2027-05-28', 'PARTIAL_WINDOW'),
+            'soccer-switzerland-swiss-super-league-men': ('2026-07-25', None, 'PARTIAL_WINDOW'),
+            'soccer-switzerland-swiss-challenge-league-men': ('2026-07-24', None, 'PARTIAL_WINDOW'),
             'soccer-switzerland-swiss-cup-men': ('2026-08-14', '2027-06-06', 'DATED_WINDOW'),
         }
         for key, (start, end, state) in bounds.items():
             with self.subTest(key=key):
                 event = self.events[key]
-                self.assertEqual((start, end), (event['season_start_date'], event['season_end_date']))
+                self.assertEqual((start, end), (event['season_start_date'], event.get('season_end_date')))
                 self.assertEqual(state, self.inventory[key]['season_state'])
                 self.assertIn(event['source_id'], self.sources)
 

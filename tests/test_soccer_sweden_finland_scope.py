@@ -47,8 +47,9 @@ class SwedenFinlandScopeTests(unittest.TestCase):
     def test_league_qualification_is_not_hidden_in_regular_season(self):
         for key in ('soccer-finland-veikkausliiga-men',):
             with self.subTest(key=key):
-                self.assertFalse(self.events[key]['season_window_complete'])
-                self.assertEqual('PARTIAL_WINDOW', self.inventory[key]['season_state'])
+                self.assertTrue(self.events[key]['season_window_complete'])
+                self.assertEqual('2026-11-08', self.events[key]['season_end_date'])
+                self.assertEqual('DATED_WINDOW', self.inventory[key]['season_state'])
         for key, start in (('soccer-sweden-allsvenskan-men', '2026-04-04'),
                            ('soccer-sweden-superettan-men', '2026-04-03')):
             with self.subTest(key=key):
