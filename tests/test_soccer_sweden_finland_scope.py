@@ -2,6 +2,10 @@
 import json
 import unittest
 from pathlib import Path
+from sys import path as sys_path
+
+sys_path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+from audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / 'data'
 
@@ -13,7 +17,7 @@ class SwedenFinlandScopeTests(unittest.TestCase):
         groups = [g for g in soccer['groups'] if g.get('country') in {'Sweden', 'Finland'}]
         cls.events = {e['key']: e for g in groups for e in g['events']}
         cls.children = {c['key']: c for c in cls.events['soccer-sweden-svenska-cupen-men-and-women']['coverage_children']}
-        cls.inventory = {r['identity_key']: r for r in json.loads((DATA / 'priority2-coverage-inventory.json').read_text())['identities']}
+        cls.inventory = {r['identity_key']: r for r in build()['identities']}
 
     def test_finnish_cups_do_not_inherit_league_dates(self):
         for key, bounds in {

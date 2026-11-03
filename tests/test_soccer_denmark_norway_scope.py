@@ -2,6 +2,10 @@
 import json
 import unittest
 from pathlib import Path
+from sys import path as sys_path
+
+sys_path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+from audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / 'data'
 
@@ -11,7 +15,7 @@ class DenmarkNorwayScopeTests(unittest.TestCase):
     def setUpClass(cls):
         soccer = next(s for s in json.loads((DATA/'catalog-season-map.json').read_text())['sports'] if s['sport']=='Soccer')
         cls.events = {e['key']:e for g in soccer['groups'] if g.get('country') in {'Denmark','Norway'} for e in g['events']}
-        cls.inventory = {r['identity_key']:r for r in json.loads((DATA/'priority2-coverage-inventory.json').read_text())['identities']}
+        cls.inventory = {r['identity_key']:r for r in build()['identities']}
         cls.sources = {x['id']:x for x in json.loads((DATA/'soccer-uefa-domestic-sources.json').read_text())['sources']}
 
     def test_six_distinct_identities_and_edition_bounds(self):
