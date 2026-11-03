@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-03T11:23:57.228Z",
+  "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
+  "baseline_commit": "384c36061e3da1fc0107b0e2e9cfa9713c5e9364",
+  "baseline_dated_records": 255,
+  "catalog_records": 735,
+  "status_definitions": {
+    "verified-complete": "Official evidence establishes the exact edition window.",
+    "awaiting-published-dates": "Partial official dates exist; a complete window is not established in reviewed sources.",
+    "manual-verification-needed": "A specific identity, source or status issue needs targeted review.",
+    "source-access-held": "An existing publisher access hold prevents this verification route.",
+    "not-yet-reviewed": "No review result has been recorded in this pass."
+  },
+  "records": [
+    {
+      "key": "basketball-au-nbl",
+      "sport": "Basketball",
+      "country": "Australia",
+      "catalog_event": "National Basketball League (NBL) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.nbl.com.au/news/nbl-unveils-exciting-2026-27-schedule",
+      "evidence_urls": [
+        "https://www.nbl.com.au/news/nbl-unveils-exciting-2026-27-schedule",
+        "https://www.nbl.com.au/schedule"
+      ],
+      "finding": "The NBL's official NBL27 schedule announcement confirms the September 19, 2026 opener and regular-season fixture list. The reviewed schedule does not establish the last possible 2027 championship game.",
+      "missing_fact": "Last possible 2027 championship-series game date.",
+      "next_action": "Check the league's postseason schedule when published."
+    },
+    {
+      "key": "basketball-br-super8",
+      "sport": "Basketball",
+      "country": "Brazil",
+      "catalog_event": "Copa Super 8 | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lnb.com.br/noticias/copa-super-8-2026-cruzamentos-sao-definidos-apos-o-fim-do-primeiro-turno-do-nbb-caixa-2025-26/",
+      "evidence_urls": [
+        "https://lnb.com.br/noticias/copa-super-8-2026-cruzamentos-sao-definidos-apos-o-fim-do-primeiro-turno-do-nbb-caixa-2025-26/",
+        "https://lnb.com.br/copa-super-8/?season=50"
+      ],
+      "finding": "LNB's official announcement and results verify the completed 2026 Copa Super 8, January 24–31. No dates are inferred for the next edition."
+    },
+    {
+      "key": "basketball-de-bbl",
+      "sport": "Basketball",
+      "country": "Germany",
+      "catalog_event": "Basketball Bundesliga (BBL) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://easycredit-bbl.de/de/n/news/2026/august/easycredit-bbl-veroeffentlicht-vorlaeufigen-spielplan-fuer-saison-26-27-heimpartie-des-deutschen-meisters-alba-berlin-als-eroeffnung",
+      "evidence_urls": [
+        "https://easycredit-bbl.de/de/n/news/2026/august/easycredit-bbl-veroeffentlicht-vorlaeufigen-spielplan-fuer-saison-26-27-heimpartie-des-deutschen-meisters-alba-berlin-als-eroeffnung",
+        "https://cms.easycredit-bbl.de/wp-content/uploads/2026/07/CD_RTP_2627-1.pdf",
+        "https://www.easycredit-bbl.de/faqs-saison"
+      ],
+      "finding": "BBL confirms the September 18 opener, May 9 regular-season finish and June 11 start of the finals. The linked framework PDF leaves postseason cells blank, so the final possible championship date remains unverified.",
+      "missing_fact": "Last possible 2027 championship game date.",
+      "next_action": "Check the updated playoff framework; do not use May 9 or June 11 as a full-season endpoint."
+    },
+    {
+      "key": "basketball-es-acb",
+      "sport": "Basketball",
+      "country": "Spain",
+      "catalog_event": "Liga ACB | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://acb.com/es/copa-del-rey/noticias/las-fechas-de-la-temporada-2026-27-145584",
+      "evidence_urls": [
+        "https://acb.com/es/copa-del-rey/noticias/las-fechas-de-la-temporada-2026-27-145584"
+      ],
+      "finding": "ACB's 2026–27 calendar starts Liga Endesa on September 26 and allows the playoffs to conclude as late as June 29, 2027; May 23 is only the regular-season endpoint."
+    },
+    {
+      "key": "basketball-es-copa",
+      "sport": "Basketball",
+      "country": "Spain",
+      "catalog_event": "Copa del Rey | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://acb.com/es/copa-del-rey/noticias/las-fechas-de-la-temporada-2026-27-145584",
+      "evidence_urls": [
+        "https://acb.com/es/copa-del-rey/noticias/las-fechas-de-la-temporada-2026-27-145584"
+      ],
+      "finding": "ACB confirms the 2027 Copa del Rey in Valencia runs February 18–21, replacing the previously saved 2026 edition."
+    },
+    {
+      "key": "basketball-es-supercopa",
+      "sport": "Basketball",
+      "country": "Spain",
+      "catalog_event": "Supercopa de Espana | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://acb.com/es/copa-del-rey/noticias/las-fechas-de-la-temporada-2026-27-145584",
+      "evidence_urls": [
+        "https://acb.com/es/copa-del-rey/noticias/las-fechas-de-la-temporada-2026-27-145584"
+      ],
+      "finding": "ACB's official calendar confirms the completed 2026 Supercopa Endesa in Badalona on September 19–20."
+    },
+    {
+      "key": "basketball-eurocup",
+      "sport": "Basketball",
+      "country": "Spain",
+      "catalog_event": "EuroCup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://mediacentre.euroleague.net/en/app/2/communication/communication/preview/24408",
+      "evidence_urls": [
+        "https://mediacentre.euroleague.net/en/app/2/communication/communication/preview/24408"
+      ],
+      "finding": "Euroleague Basketball's 2026–27 EuroCup calendar starts September 29 and includes the latest possible championship game on April 30, 2027. January 13 is only the regular-season endpoint."
+    },
+    {
+      "key": "basketball-fr-cup",
+      "sport": "Basketball",
+      "country": "France",
+      "catalog_event": "French Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.ffbb.com/actualites/la-competition-commence-en-coupe-de-france",
+      "evidence_urls": [
+        "https://www.ffbb.com/actualites/la-competition-commence-en-coupe-de-france",
+        "https://billetterie.ffbb.com/fr"
+      ],
+      "finding": "FFBB confirms the 2026–27 men's cup began September 12. Its ticket site lists the combined finals weekend on April 23–24, 2027 without identifying the men's final day, so the exact full men's window remains partial.",
+      "missing_fact": "Which day of the April 23–24, 2027 combined finals weekend hosts the men's final.",
+      "next_action": "Check the division-specific finals programme; retain partial status until the men's date is explicit."
+    },
+    {
+      "key": "basketball-gr-cup",
+      "sport": "Basketball",
+      "country": "Greece",
+      "catalog_event": "Greek Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.basket.gr/cup-men/kypello-andron-2026-2027/187587/",
+      "evidence_urls": [
+        "https://www.basket.gr/cup-men/kypello-andron-2026-2027/187587/",
+        "https://www.basket.gr/ellinika/eidhseis/kypello-andron-premiera-simera-12-9-stin/188423/"
+      ],
+      "finding": "The Greek federation confirms the 2026–27 men's cup began September 12. Its published schedule reaches the December UNICEF Trophy stage but does not establish the main cup final date; the completed 2025–26 window must not imply the current competition is out of season.",
+      "missing_fact": "Exact 2027 main men's cup final date; the December UNICEF Trophy final is an earlier stage.",
+      "next_action": "Check the federation's main-cup final-stage announcement when published."
+    },
+    {
+      "key": "basketball-it-cup",
+      "sport": "Basketball",
+      "country": "Italy",
+      "catalog_event": "Coppa Italia | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://turismotorino.org/it/visita/eventi/frecciarossa-final-eight-2027",
+      "evidence_urls": [
+        "https://turismotorino.org/it/visita/eventi/frecciarossa-final-eight-2027",
+        "https://www.reyer.it/news/maschile/2026-08-03/dallesordio-con-cantu-al-derby-finale-con-trieste-scopri-la-regular-season-dellumana-reyer/"
+      ],
+      "finding": "Turin's official event listing and participating club Varese confirm the 2027 Coppa Italia Final Eight at Inalpi Arena on February 17–21."
+    },
+    {
+      "key": "basketball-it-lba",
+      "sport": "Basketball",
+      "country": "Italy",
+      "catalog_event": "Lega Basket Serie A (LBA) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.reyer.it/news/maschile/2026-08-03/dallesordio-con-cantu-al-derby-finale-con-trieste-scopri-la-regular-season-dellumana-reyer/",
+      "evidence_urls": [
+        "https://www.reyer.it/news/maschile/2026-08-03/dallesordio-con-cantu-al-derby-finale-con-trieste-scopri-la-regular-season-dellumana-reyer/"
+      ],
+      "finding": "Participating club Reyer publishes the 2026–27 LBA opening weekend of September 26–27 and May 9 regular-season endpoint, explicitly stating postseason dates will be announced according to Italian clubs' European progress. A full-season endpoint is not established.",
+      "missing_fact": "Exact first league game from the revised schedule and last possible championship game date.",
+      "next_action": "Check the league's dated first-round results and postseason announcement; do not use the regular-season endpoint."
+    },
+    {
+      "key": "basketball-it-supercup",
+      "sport": "Basketball",
+      "country": "Italy",
+      "catalog_event": "Supercopa Italia | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.legabasket.it/landing/supercoppa-26",
+      "evidence_urls": [
+        "https://www.legabasket.it/landing/supercoppa-26",
+        "https://www.legabasket.it/competizioni/6/supercoppa"
+      ],
+      "finding": "LBA's official event page gives the September 19 semifinals and September 20 final in Tortona; its results page confirms the final was completed."
+    },
+    {
+      "key": "basketball-kr-cup",
+      "sport": "Basketball",
+      "country": "South Korea",
+      "catalog_event": "KBL Cup | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.kbl.or.kr/",
+      "evidence_urls": [
+        "https://www.mt.co.kr/amp/sports/2025/07/14/2025071409212442830",
+        "https://skygunners.kbl.or.kr/intro/history"
+      ],
+      "finding": "News reporting says the KBL Cup was abolished from 2025 and replaced by Open Match Day preseason games. This is a stronger issue than merely awaiting a 2026 date, but the review did not locate an explicit official discontinuation notice.",
+      "missing_fact": "Official confirmation of the KBL Cup's discontinued status and whether a revival exists.",
+      "next_action": "Review the league's 2025–26 calendar announcement or authoritative KBL notice. Keep the existing catalog hold; do not substitute Open Match Day dates."
+    },
+    {
+      "key": "basketball-pl-cup",
+      "sport": "Basketball",
+      "country": "Poland",
+      "catalog_event": "Polish Cup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://plk.pl/aktualnosci/26647/poznalismy-pary-pekao-sa-pucharu-polski",
+      "evidence_urls": [
+        "https://plk.pl/aktualnosci/26647/poznalismy-pary-pekao-sa-pucharu-polski"
+      ],
+      "finding": "PLK's official draw and tournament schedule establish the completed 2026 Polish Cup on February 19–22 in Sosnowiec. This verifies the 2026 edition only; it does not infer 2027 dates."
+    },
+    {
+      "key": "basketball-rs-cup",
+      "sport": "Basketball",
+      "country": "Serbia",
+      "catalog_event": "Radivoj Korać Cup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://kss.rs/odrzan-zreb-za-mocart-kup-radivoj-korac-2026/",
+      "evidence_urls": [
+        "https://kss.rs/odrzan-zreb-za-mocart-kup-radivoj-korac-2026/"
+      ],
+      "finding": "The Serbian federation's official 2026 draw confirms the Radivoj Korac Cup final tournament in Nis on February 18–21."
+    },
+    {
+      "key": "basketball-tr-cup",
+      "sport": "Basketball",
+      "country": "Turkey",
+      "catalog_event": "Turkish Basketball Cup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.tbf.org.tr/ligler/erkekler-turkiye-kupasi-2017-2018/haber/ziraat-bankasi-turkiye-kupasi-nda-ceyrek-final-eslesmeleri-belirlendi-2026-01-22",
+      "evidence_urls": [
+        "https://www.tbf.org.tr/ligler/erkekler-turkiye-kupasi-2017-2018/haber/ziraat-bankasi-turkiye-kupasi-nda-ceyrek-final-eslesmeleri-belirlendi-2026-01-22"
+      ],
+      "finding": "TBF's dated 2026 announcement confirms quarterfinals February 17–18 and the final on February 22. The evidence includes the whole cup, not just the Final Four."
+    },
+    {
+      "key": "basketball-tr-presidential",
+      "sport": "Basketball",
+      "country": "Turkey",
+      "catalog_event": "Presidential Cup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://tbf.org.tr/haber/39-cumhurbaskanligi-erkekler-basketbol-kupasi-nda-sampiyon-fenerbahce-tarfin-2026-09-22",
+      "evidence_urls": [
+        "https://tbf.org.tr/haber/39-cumhurbaskanligi-erkekler-basketbol-kupasi-nda-sampiyon-fenerbahce-tarfin-2026-09-22",
+        "https://tbf.org.tr/ligler/tbf/haber/39-cumhurbaskanligi-erkekler-basketbol-kupasi-hakemleri-belli-oldu-2026-09-17"
+      ],
+      "finding": "TBF's official match announcement and completed-result report confirm the men's Presidential Cup was played September 22, 2026."
+    },
+    {
+      "key": "basketball-us-big3",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "BIG3 | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://big3.com/scores/",
+      "evidence_urls": [
+        "https://big3.com/scores/",
+        "https://www.spectrumcentercharlotte.com/events/detail/big3-1"
+      ],
+      "finding": "BIG3's completed results begin June 20 and continue through August 22; the championship venue confirms the August 22 title game. August 9 was a regular-season game date, not the season endpoint."
+    },
+    {
+      "key": "basketball-us-nba-draft",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "NBA Draft",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.nba.com/draft/2026",
+      "evidence_urls": [
+        "https://www.nba.com/draft/2026",
+        "https://api-hub.nba.com/draft/2026/draft-board"
+      ],
+      "finding": "The NBA's official 2026 draft board identifies round one on June 23 and round two on June 24. The separate draft market cutoff remains unchanged."
+    },
+    {
+      "key": "basketball-us-tbt-men",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "The Basketball Tournament (TBT) | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://tbthoops.com/news/tbt-announces-two-year-extension-with-fox-sports-for-new-look-2-million-tournament/",
+      "evidence_urls": [
+        "https://tbthoops.com/news/tbt-announces-two-year-extension-with-fox-sports-for-new-look-2-million-tournament/"
+      ],
+      "finding": "TBT's official 2026 broadcast announcement specifies July 18 for the opening game and August 2 for the championship. This evidence applies only to the men's tournament."
+    }
+  ]
+}
