@@ -2,8 +2,8 @@
   "schema_version": 1,
   "updated_at": "2026-11-03",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
-  "baseline_commit": "6372baeafcaa40488990610b8c59b8711a0b5ae6",
-  "baseline_dated_records": 298,
+  "baseline_commit": "9c2668c19737651a2f799daeea6bbe98c3061d65",
+  "baseline_dated_records": 303,
   "catalog_records": 735,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
@@ -11,7 +11,8 @@
     "manual-verification-needed": "A specific identity, source or status issue needs targeted review.",
     "source-access-held": "An existing publisher access hold prevents this verification route.",
     "not-yet-reviewed": "No review result has been recorded in this pass.",
-    "not-scheduled": "The official current-edition format does not include the named competition; distinct from unreviewed dates or cancellation."
+    "not-scheduled": "The official current-edition format does not include the named competition; distinct from unreviewed dates or cancellation.",
+    "scope-conflict": "Official competition identity or scope does not yet match the preserved catalog approval; existing mapping holds remain."
   },
   "records": [
     {
@@ -1694,6 +1695,151 @@
       "finding": "Official 2026/27 format has 18 top-division clubs and no championship playoffs. This is a documented format change, not unresearched dates or an event cancellation. Challenger promotion playoffs remain a distinct competition; preserve this approval and existing hold.",
       "missing_fact": "No named top-division playoff edition exists in the published 2026/27 format.",
       "next_action": "Retain approval and hold; review only if the official competition format changes."
+    },
+    {
+      "key": "soccer-canada-canadian-premier-league-men",
+      "sport": "Soccer",
+      "country": "Canada",
+      "catalog_event": "Canadian Premier League | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.cplsoccer.com/news/2026-cpl-primer-everything-you-need-to-know-about-the-new-season",
+      "evidence_urls": [
+        "https://www.cplsoccer.com/news/2026-cpl-primer-everything-you-need-to-know-about-the-new-season",
+        "https://www.cplsoccer.com/news/2026-cpl-final-to-be-played-saturday-nov-21"
+      ],
+      "finding": "2026 senior men's CPL: league season guide confirms April 4 opening; October 15 announcement fixes November 21 Final, superseding the earlier November 21-or-22 window. Includes playoffs.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-canada-canadian-championship-men",
+      "sport": "Soccer",
+      "country": "Canada",
+      "catalog_event": "Canadian Championship | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://news.canadasoccer.com/dates-and-times-confirmed-for-2026-telus-canadian-championship-preliminary-round",
+      "evidence_urls": [
+        "https://news.canadasoccer.com/dates-and-times-confirmed-for-2026-telus-canadian-championship-preliminary-round",
+        "https://www.canadasoccer.com/championship/canChamp/2026/"
+      ],
+      "finding": "2026 men's TELUS Canadian Championship: Canada Soccer confirms May 5 preliminary opener; official results show the October 21 final. Voyageurs Cup is the trophy for this competition, not a separately verified Canadian Cup identity.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-canada-northern-super-league-women",
+      "sport": "Soccer",
+      "country": "Canada",
+      "catalog_event": "Northern Super League | Women",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.nsl.ca/news/from-breakout-debut-to-season-two-northern-super-league-releases-2026-schedule",
+      "evidence_urls": [
+        "https://www.nsl.ca/news/from-breakout-debut-to-season-two-northern-super-league-releases-2026-schedule",
+        "https://www.nsl.ca/final"
+      ],
+      "finding": "2026 senior women's Northern Super League: official complete schedule starts April 24 and includes semifinals plus November 14 final. Current final page reconfirms November 14 at TD Place.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-canada-canadian-cup-men",
+      "sport": "Soccer",
+      "country": "Canada",
+      "catalog_event": "Canadian Cup | Men",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.canadasoccer.com/championship/canChamp/2026/",
+      "evidence_urls": [
+        "https://www.canadasoccer.com/championship/canChamp/2026/",
+        "https://news.canadasoccer.com/dates-and-times-confirmed-for-2026-telus-canadian-championship-preliminary-round"
+      ],
+      "finding": "Canada Soccer identifies the TELUS Canadian Championship as the men's knockout competition for the Voyageurs Cup. No separate exact Canadian Cup competition is established by these sources. Existing identity hold is preserved; do not duplicate Championship fixtures.",
+      "missing_fact": "Which distinct approved senior men's competition the Canadian Cup catalog line denotes.",
+      "next_action": "Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures."
+    },
+    {
+      "key": "soccer-canada-voyager-cup-women",
+      "sport": "Soccer",
+      "country": "Canada",
+      "catalog_event": "Voyager Cup | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
+      "evidence_urls": [
+        "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
+        "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship"
+      ],
+      "finding": "Canada Soccer's 2026/27 W Canadian Championship is a newly published women's knockout competition for the Voyageurs Shield. Its official name and trophy do not establish equivalence to the approved Voyager Cup women line. Preserve existing regulatory mapping hold; no fixture reassignment.",
+      "missing_fact": "Explicit approval-to-competition mapping between Voyager Cup | Women and the W Canadian Championship/Voyageurs Shield, or identification of another intended competition.",
+      "next_action": "Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures."
+    },
+    {
+      "key": "soccer-australia-a-league-men",
+      "sport": "Soccer",
+      "country": "Australia",
+      "catalog_event": "A-League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://aleagues.com.au/news/aleague-men-2026-2027-fixture-list-revealed-key-dates-fixture-information/",
+      "evidence_urls": [
+        "https://aleagues.com.au/news/aleague-men-2026-2027-fixture-list-revealed-key-dates-fixture-information/",
+        "https://footballaustralia.com.au/news/football-australia-releases-domestic-match-calendar-202627"
+      ],
+      "finding": "2026/27 men's A-League: league fixtures fix October 16 opener. The July fixture release gives June 3–6 for the Grand Final, while Football Australia's domestic calendar gives June 5–6; neither establishes an exact single final day. Remove previously selected June 6 endpoint and retain partial timing.",
+      "missing_fact": "Exact 2027 men's Grand Final day, resolving the overlapping published final windows.",
+      "next_action": "Check the official final fixture announcement; retain partial dates."
+    },
+    {
+      "key": "soccer-australia-a-league-women",
+      "sport": "Soccer",
+      "country": "Australia",
+      "catalog_event": "A-League | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://aleagues.com.au/news/2026-27-ninja-a-league-season-ultimate-guide-fixtures-signings-kits-more/",
+      "evidence_urls": [
+        "https://aleagues.com.au/news/2026-27-ninja-a-league-season-ultimate-guide-fixtures-signings-kits-more/",
+        "https://footballaustralia.com.au/news/football-australia-releases-domestic-match-calendar-202627"
+      ],
+      "finding": "2026/27 senior women's Ninja A-League: October 15 season guide fixes October 17 opening, superseding the inherited October 18 date. Finals series ends on May 15 OR 16, 2027; no single final day is yet established in reviewed official sources.",
+      "missing_fact": "Exact selection of May 15 or May 16, 2027 for the women's Grand Final.",
+      "next_action": "Check the official final fixture announcement; retain partial dates."
+    },
+    {
+      "key": "soccer-australia-australia-cup-men",
+      "sport": "Soccer",
+      "country": "Australia",
+      "catalog_event": "Australia Cup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://australiacup.com.au/about-competition",
+      "evidence_urls": [
+        "https://australiacup.com.au/about-competition",
+        "https://capitalfootball.com.au/wp-content/uploads/2025/12/NPL-_Key-Tasks-and-Timeline.pdf",
+        "https://australiacup.com.au/"
+      ],
+      "finding": "2026 men's Hahn Australia Cup: official competition overview lists Queensland preliminary opening January 30 and later dates for the other federations; Capital Football's timeline places its draw February 11. Official cup homepage's indexed final result confirms October 10. Covers qualifying rounds, not only July national rounds.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-australia-australia-cup-women",
+      "sport": "Soccer",
+      "country": "Australia",
+      "catalog_event": "Australia Cup | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://australiacup.com.au/about-competition",
+      "evidence_urls": [
+        "https://australiacup.com.au/about-competition",
+        "https://footballaustralia.com.au/news/football-australia-releases-domestic-match-calendar-202627"
+      ],
+      "finding": "Football Australia's cup structure names men's A-League entrants and member-federation pathways; its domestic calendar does not establish a separate senior women's national Australia Cup. Existing identity hold remains. State women's cups and unrelated sports using Australia Cup are not substitutes.",
+      "missing_fact": "Exact official senior women's national competition corresponding to the approved Australia Cup women child.",
+      "next_action": "Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures."
     }
   ]
 }
