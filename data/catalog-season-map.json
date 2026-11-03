@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T12:51:00.000Z",
+  "generated_at": "2026-11-03T12:55:00.000Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -955,22 +955,39 @@
             {
               "key": "basketball-dk-league",
               "catalog_event": "Basketligaen | Men",
-              "season_window": "September–May",
-              "season_start": "09-01",
-              "season_end": "05-31",
+              "season_window": "2026-09-17 – full endpoint unconfirmed",
               "source_id": "danish-basketligaen",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://basketligaen.dk/vi-vil-slaa-tilskuerrekord-kom-gratis-til-aabningskampen-i-svendborg/",
+              "season_evidence_urls": [
+                "https://basketligaen.dk/vi-vil-slaa-tilskuerrekord-kom-gratis-til-aabningskampen-i-svendborg/",
+                "https://www.basketligaen.dk/sadan-spilles-basketligaen",
+                "https://www.basketligaen.dk/article/6hwsdg4-1kn1d/view"
+              ],
+              "season_basis": "2026/27 senior men's Basketligaen opens September 17. League format establishes championship/qualification phases and best-of-five title final, but reviewed league calendar does not establish the complete postseason endpoint.",
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "season_start_date": "2026-09-17"
             },
             {
               "key": "basketball-dk-cup",
               "catalog_event": "Danish Cup | Men",
-              "season_window": "Full men's cup window not verified",
-              "season_basis": "DBBF confirms the January 24, 2026 men's cup final but its public event pages do not establish the full competition window. Do not treat a final-only page as complete Danish Cup coverage.",
+              "season_window": "Opening date unconfirmed – 2027-01-23 final",
+              "season_basis": "2026/27 men's Landspokal final is January 23, 2027, confirmed by event body and October 5 draw. Event header has stale 2026 text, while title, detailed date and league draw agree on 2027. First-round opening date remains unverified; do not treat final-only dates as a complete cup window or merge separate Divisionspokal qualification.",
               "season_hold": true,
-              "hold_reason": "Only the 2026 men's final date is verified; the full Danish Cup schedule and source scope are not publicly established.",
-              "last_verified": "2026-09-25",
-              "restrictions": []
+              "hold_reason": "January 23, 2027 men's final confirmed; full Landspokal opening boundary and separate Divisionspokal scope remain unresolved.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://basket.dk/event/pokalfinaler-2027-svendborg/",
+              "season_evidence_urls": [
+                "https://basket.dk/event/pokalfinaler-2027-svendborg/",
+                "https://www.basketligaen.dk/article/4upatmg-1kn1d/view",
+                "https://basket.dk/raekker/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "season_end_date": "2027-01-23"
             }
           ]
         },
@@ -981,12 +998,19 @@
             {
               "key": "basketball-fr-elite",
               "catalog_event": "LNB Élite | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "2026-09-25 – full endpoint unconfirmed",
               "source_id": "france-lnb",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://sigstrasbourg.fr/2026/09/saison-202627-le-calendrier-est-connu",
+              "season_evidence_urls": [
+                "https://sigstrasbourg.fr/2026/09/saison-202627-le-calendrier-est-connu",
+                "https://fr.linkedin.com/posts/ligue-nationale-de-basket_betclic-%C3%A9lite-le-calendrier-de-la-saison-activity-7500459630742024193-BBXY"
+              ],
+              "season_basis": "2026/27 senior men's Betclic Elite opener confirmed by participating club and league announcement. May 8–9 is regular-season closing weekend only. Exact last possible championship-final date not established by reviewed official sources.",
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "season_start_date": "2026-09-25"
             },
             {
               "key": "basketball-fr-cup",
@@ -1198,12 +1222,19 @@
             {
               "key": "basketball-lt-lkl",
               "catalog_event": "Lietuvos krepšinio lyga (LKL) | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "2026-09-17 – 2027-06-18",
               "source_id": "lithuanian-lkl",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://lkl.lt/straipsniai/8966/:privacyUrl",
+              "season_evidence_urls": [
+                "https://lkl.lt/straipsniai/8966/:privacyUrl"
+              ],
+              "season_basis": "2026/27 senior men's LKL: September 17 opening game through June 18 latest possible playoff completion. May 16 ends only the regular season; championship series may conclude earlier.",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-09-17",
+              "season_end_date": "2027-06-18"
             },
             {
               "key": "basketball-lt-cup",
@@ -1225,12 +1256,20 @@
             {
               "key": "basketball-mx-lnbp",
               "catalog_event": "Liga Nacional de Baloncesto Profesional (LNBP) | Men",
-              "season_window": "July–December",
-              "season_start": "07-01",
-              "season_end": "12-31",
+              "season_window": "2026-07-23 – full endpoint unconfirmed",
               "source_id": "mexican-lnbp",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://diablosrojosbasquetbol.com.mx/calendario",
+              "season_evidence_urls": [
+                "https://diablosrojosbasquetbol.com.mx/calendario",
+                "https://diablosrojosbasquetbol.com.mx/calendario/playoffs",
+                "https://lnbp.mx/"
+              ],
+              "season_basis": "2026 men's LNBP: official club calendar confirms July 23 opening fixture. League homepage returned no readable schedule and club playoff page no fixtures. Reported November 23 final endpoint was not independently established in accessible official evidence and is not entered as confirmed.",
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "season_start_date": "2026-07-23"
             }
           ]
         },
@@ -1296,12 +1335,20 @@
             {
               "key": "basketball-pl-league",
               "catalog_event": "Polska Liga Koszykówki (PLK) | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "2026-10-02 – 2027-06-21",
               "source_id": "polish-plk",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://plk.pl/aktualnosci/27277/terminarz-",
+              "season_evidence_urls": [
+                "https://plk.pl/aktualnosci/27277/terminarz-",
+                "https://plk.pl/aktualnosci/27451/co-musisz-wiedziec-o-nowym-sezonie-pge-basket-ligi"
+              ],
+              "season_basis": "2026/27 senior men's PLK: opening round through latest possible championship-series game. September 30 league update retains June 21 endpoint, including play-in and playoffs; series may conclude earlier.",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-10-02",
+              "season_end_date": "2027-06-21"
             },
             {
               "key": "basketball-pl-cup",
@@ -1508,12 +1555,20 @@
             {
               "key": "basketball-ch-sbl",
               "catalog_event": "Swiss Basketball League (SBL) | Men",
-              "season_window": "September–May",
-              "season_start": "09-01",
-              "season_end": "05-31",
+              "season_window": "2026-09-26 – 2027-05-29",
               "source_id": "swiss-sbl",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://s3.eu-central-1.amazonaws.com/swiss.basketball/downloads/resource-center/fr/Competitions/championnat-sbl/dates-bloquees/dates-bloquees-sbl-men-2026-2027.pdf",
+              "season_evidence_urls": [
+                "https://s3.eu-central-1.amazonaws.com/swiss.basketball/downloads/resource-center/fr/Competitions/championnat-sbl/dates-bloquees/dates-bloquees-sbl-men-2026-2027.pdf",
+                "https://s3.eu-central-1.amazonaws.com/swiss.basketball/downloads/resource-center/fr/Competitions/championnat-sbl/formules-de-championnat/formuledechampionnatsbleague2627fdef.pdf"
+              ],
+              "season_basis": "2026/27 senior men's SBL. Federation calendar revised September 21 places opening round September 26 and possible fifth championship-final game May 29. Includes all best-of-five playoff rounds; series can finish earlier.",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_start_date": "2026-09-26",
+              "season_end_date": "2027-05-29"
             },
             {
               "key": "basketball-ch-cup",
@@ -1546,12 +1601,20 @@
             {
               "key": "basketball-tr-bsl",
               "catalog_event": "Basketbol Süper Ligi (BSL) | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "2026-09-25 – full endpoint unconfirmed",
               "source_id": "turkish-bsl",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_source_url": "https://tofasspor.com/fikstur.aspx",
+              "season_evidence_urls": [
+                "https://tofasspor.com/fikstur.aspx",
+                "https://tofasspor.com/m/haber-3637-bslde_2026_2027_sezonu_fiksturu_cekildi",
+                "https://www.tbf.org.tr/ligler/super-lig/haber/turkiye-sigorta-basketbol-super-ligi-nde-2026-2027-sezonunun-fikstur-kura-cekimi-gerceklestirildi-2026-08-06"
+              ],
+              "season_basis": "2026/27 senior men's BSL: official club fixture confirms September 25 opening-round game, superseding federation draw announcement's provisional September 26. Reviewed official sources do not establish final playoff endpoint.",
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "season_start_date": "2026-09-25"
             },
             {
               "key": "basketball-tr-cup",
