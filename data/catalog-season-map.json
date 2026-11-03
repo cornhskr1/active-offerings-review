@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T10:44:00.240667+00:00",
+  "generated_at": "2026-11-03T11:00:08.203Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -891,12 +891,20 @@
             {
               "key": "basketball-ca-cebl",
               "catalog_event": "Canadian Elite Basketball League (CEBL) | Men",
-              "season_window": "May–August",
-              "season_start": "05-01",
-              "season_end": "08-31",
+              "season_window": "2026-05-09 – 2026-08-15",
               "source_id": "cebl",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-05-09",
+              "season_source_url": "https://www.cebl.ca/cebl-statement-cebl-finals-format-update",
+              "season_evidence_urls": [
+                "https://www.cebl.ca/cebl-statement-cebl-finals-format-update",
+                "https://www.cebl.ca/new-playoff-era-to-begin-as-cebl-announces-2026-season-schedule"
+              ],
+              "season_basis": "2026 CEBL opener through actual single-game championship on August 15; supersedes the original possible August 16 series endpoint.",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-08-15"
             }
           ]
         },
@@ -2292,14 +2300,20 @@
             {
               "key": "hockey-at-icehl",
               "catalog_event": "ICE Hockey League (ICEHL)",
-              "season_window": "September 2026–April 2027",
-              "season_start": "09-01",
-              "season_end": "04-30",
+              "season_window": "2026-09-18–postseason endpoint unconfirmed; regular season ends 2027-02-24",
               "source_id": "icehl",
-              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official 2026–27 ICEHL regular season confirmed through February 24. An exact postseason endpoint remains unverified; regular-season end is not the full-season end.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The ICE Hockey League includes clubs from several Central European countries, not only Austria.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-18",
+              "season_source_url": "https://newsroom.ice.hockey/news-spielplan-der-win2day-ice-hockey-league-saison-202627?id=245697&l=deutsch&menueid=30998",
+              "season_evidence_urls": [
+                "https://newsroom.ice.hockey/news-spielplan-der-win2day-ice-hockey-league-saison-202627?id=245697&l=deutsch&menueid=30998"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "regular_season_end_date": "2027-02-24"
             }
           ]
         },
@@ -2328,14 +2342,19 @@
             {
               "key": "hockey-fi-liiga",
               "catalog_event": "Liiga",
-              "season_window": "September 2026–April 2027",
-              "season_start": "09-01",
-              "season_end": "04-30",
+              "season_window": "2026-09-01–postseason endpoint unconfirmed",
               "source_id": "liiga",
-              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official Liiga 2026–27 schedule confirms September 1 opening games. Full postseason endpoint remains unverified.",
+              "last_verified": "2026-11-03",
               "fun_fact": "Liiga is Finland’s highest professional ice hockey league.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-01",
+              "season_source_url": "https://www.liiga.fi/en/schedule?kausi=2026-2027&sarja=runkosarja",
+              "season_evidence_urls": [
+                "https://www.liiga.fi/en/schedule?kausi=2026-2027&sarja=runkosarja"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             }
           ]
         },
@@ -2346,14 +2365,20 @@
             {
               "key": "hockey-de-del",
               "catalog_event": "Deutsche Eishockey Liga (DEL)",
-              "season_window": "September 17, 2026–April 2027",
-              "season_start": "09-17",
-              "season_end": "04-30",
+              "season_window": "2026-09-17 – 2027-04-30",
               "source_id": "del",
-              "season_basis": "2026–27 regular season and postseason window; connected schedule feed",
-              "last_verified": "2026-09-18",
+              "season_basis": "DEL 2026–27 season including playoffs, using the published latest championship endpoint; finals may finish earlier.",
+              "last_verified": "2026-11-03",
               "fun_fact": "DEL is Germany’s top professional ice hockey league.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-17",
+              "season_source_url": "https://www.penny-del.org/news/detail/meister-eisbaeren-berlin-eroeffnet-die-saison-2026-27",
+              "season_evidence_urls": [
+                "https://www.penny-del.org/news/detail/meister-eisbaeren-berlin-eroeffnet-die-saison-2026-27"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-04-30"
             }
           ]
         },
@@ -2418,14 +2443,20 @@
             {
               "key": "hockey-eu-chl",
               "catalog_event": "Champions Hockey League (CHL)",
-              "season_window": "August 2026–March 2027",
-              "season_start": "08-01",
-              "season_end": "03-31",
+              "season_window": "2026-09-03 – 2027-02-23",
               "source_id": "chl",
-              "season_basis": "2026–27 European club tournament window; connected schedule feed",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official CHL 2026–27 opening round through the one-game final; replaces broad August–March estimate.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Champions Hockey League brings leading clubs from multiple European domestic leagues into one tournament.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-03",
+              "season_source_url": "https://www.chl.hockey/en/news/schedule-dates-for-2026-27-confirmed",
+              "season_evidence_urls": [
+                "https://www.chl.hockey/en/news/schedule-dates-for-2026-27-confirmed"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-02-23"
             }
           ]
         },
@@ -2593,13 +2624,20 @@
               "key": "lacrosse-usca-nll",
               "catalog_event": "National Lacrosse League (NLL)",
               "review_label": "National Lacrosse League (NLL)",
-              "season_window": "2026–27 schedule pending official publication",
-              "season_status": "out",
+              "season_window": "2026-11-27–postseason endpoint unconfirmed; regular season ends 2027-04-25",
               "source_id": "lacrosse-nll",
-              "season_basis": "The 2025–26 season ended May 23, 2026; the official 2026–27 schedule is not yet published",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official 2026–27 NLL regular season confirmed November 27–April 25. Exact playoff completion date remains unverified; do not treat the regular-season end as the full season end.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The NLL plays indoor box lacrosse with six players per side, including the goaltender.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-11-27",
+              "season_source_url": "https://www.nll.com/news/2026-27-nll-regular-season-schedule/",
+              "season_evidence_urls": [
+                "https://www.nll.com/news/2026-27-nll-regular-season-schedule/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial",
+              "regular_season_end_date": "2027-04-25"
             }
           ]
         }
@@ -3056,14 +3094,21 @@
             {
               "key": "rugby-au-nrl",
               "catalog_event": "National Rugby League (NRL) | Men",
-              "season_window": "March–October",
-              "season_start": "03-01",
-              "season_end": "10-31",
+              "season_window": "2026-02-28 – 2026-10-04",
               "source_id": "rugby-nrl",
-              "season_basis": "Annual NRL premiership and finals window",
-              "last_verified": "2026-09-18",
+              "season_basis": "2026 NRL premiership opening match in Las Vegas on February 28 local time (March 1 in Australia), through Sydney Grand Final. Preseason excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The NRL is Australia’s top-tier rugby league competition and concludes with its Grand Final in Sydney.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-02-28",
+              "season_source_url": "https://www.nrl.com/news/2026/01/30/rugby-league-las-vegas-2026-kick-off-and-broadcast-details-confirmed/",
+              "season_evidence_urls": [
+                "https://www.nrl.com/news/2026/01/30/rugby-league-las-vegas-2026-kick-off-and-broadcast-details-confirmed/",
+                "https://www.nrl.com/draw/nrl-premiership/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-10-04"
             }
           ]
         },
@@ -3074,34 +3119,46 @@
             {
               "key": "rugby-eu-champions-cup",
               "catalog_event": "European Rugby Champions Cup | Men",
-              "season_window": "October–May",
-              "season_start": "10-16",
-              "season_end": "05-31",
+              "season_window": "2026-10-16 – 2027-05-22",
               "source_id": "rugby-epcr-champions",
               "source_ids": [
                 "rugby-epcr",
                 "rugby-epcr-champions"
               ],
-              "season_basis": "Official EPCR 2026–27 individual fixture list; next edition requires verification",
-              "last_verified": "2026-09-27",
+              "season_basis": "EPCR 2026–27 competition window, first pool round through the respective Lyon final.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Champions Cup brings together leading clubs from Europe’s major professional rugby union leagues.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-10-16",
+              "season_source_url": "https://www.epcrugby.com/champions-cup/content/epcr-and-dazn-agree-international-broadcast-partnership-for-investec-champions-cup-and-epcr-challenge-cup",
+              "season_evidence_urls": [
+                "https://www.epcrugby.com/champions-cup/content/epcr-and-dazn-agree-international-broadcast-partnership-for-investec-champions-cup-and-epcr-challenge-cup"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-05-22"
             },
             {
               "key": "rugby-eu-challenge-cup",
               "catalog_event": "European Rugby Challenge Cup | Men",
-              "season_window": "October–May",
-              "season_start": "10-16",
-              "season_end": "05-31",
+              "season_window": "2026-10-16 – 2027-05-21",
               "source_id": "rugby-epcr-challenge",
               "source_ids": [
                 "rugby-epcr",
                 "rugby-epcr-challenge"
               ],
-              "season_basis": "Official EPCR 2026–27 individual fixture list; next edition requires verification",
-              "last_verified": "2026-09-27",
+              "season_basis": "EPCR 2026–27 competition window, first pool round through the respective Lyon final.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Challenge Cup runs alongside the Champions Cup and provides a second European club pathway to a continental title.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-10-16",
+              "season_source_url": "https://www.epcrugby.com/champions-cup/content/epcr-and-dazn-agree-international-broadcast-partnership-for-investec-champions-cup-and-epcr-challenge-cup",
+              "season_evidence_urls": [
+                "https://www.epcrugby.com/champions-cup/content/epcr-and-dazn-agree-international-broadcast-partnership-for-investec-champions-cup-and-epcr-challenge-cup"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-05-21"
             }
           ]
         },
@@ -3112,14 +3169,20 @@
             {
               "key": "rugby-eng-premiership",
               "catalog_event": "Gallagher Premiership Rugby | Men",
-              "season_window": "September 25, 2026–June 2027",
-              "season_start": "09-25",
-              "season_end": "06-30",
+              "season_window": "2026-09-25 – 2027-06-19",
               "source_id": "rugby-prem-gallagher",
-              "season_basis": "2026–27 English top-flight club season",
-              "last_verified": "2026-09-18",
+              "season_basis": "PREM 2026–27 opener through championship final, including playoffs.",
+              "last_verified": "2026-11-03",
               "fun_fact": "Premiership Rugby is the highest level of domestic rugby union in England.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-25",
+              "season_source_url": "https://www.premrugby.com/content/fixtures-202627",
+              "season_evidence_urls": [
+                "https://www.premrugby.com/content/fixtures-202627"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-06-19"
             },
             {
               "key": "rugby-eng-premiership-cup",
@@ -3160,50 +3223,68 @@
             {
               "key": "rugby-eng-super-league",
               "catalog_event": "Super League Rugby | Men",
-              "season_window": "February–October",
-              "season_start": "02-01",
-              "season_end": "10-31",
+              "season_window": "2026-02-12 – 2026-10-03",
               "source_id": "rugby-rfl-super-league",
               "source_ids": [
                 "rugby-rfl",
                 "rugby-rfl-super-league"
               ],
-              "season_basis": "Annual Super League regular season and playoffs",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official 2026 Super League season from opening match through Grand Final.",
+              "last_verified": "2026-11-03",
               "fun_fact": "Super League is the top professional rugby league competition in the British system.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-02-12",
+              "season_source_url": "https://www.superleague.co.uk/about",
+              "season_evidence_urls": [
+                "https://www.superleague.co.uk/about"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-10-03"
             },
             {
               "key": "rugby-eng-challenge-cup",
               "catalog_event": "Challenge Cup | Men",
-              "season_window": "January–June",
-              "season_start": "01-01",
-              "season_end": "06-30",
+              "season_window": "2026-01-10 – 2026-05-30",
               "source_id": "rugby-rfl-challenge-cup",
               "source_ids": [
                 "rugby-rfl",
                 "rugby-rfl-challenge-cup"
               ],
-              "season_basis": "Annual RFL knockout cup window",
-              "last_verified": "2026-09-18",
+              "season_basis": "RFL 2026 men's Challenge Cup, including community first round through Wembley final.",
+              "last_verified": "2026-11-03",
               "fun_fact": "First contested in 1897, the Challenge Cup is rugby league’s oldest knockout competition.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-01-10",
+              "season_source_url": "https://www.rugby-league.com/article/64460/the-betfred-challenge-cup-begins-this-weekend",
+              "season_evidence_urls": [
+                "https://www.rugby-league.com/article/64460/the-betfred-challenge-cup-begins-this-weekend"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-05-30"
             },
             {
               "key": "rugby-eng-world-club-challenge",
               "catalog_event": "World Club Challenge | Men",
-              "season_window": "Annual February event",
-              "season_start": "02-01",
-              "season_end": "02-28",
+              "season_window": "2026-02-19 – 2026-02-19",
               "source_id": "rugby-rfl-world-club-challenge",
               "source_ids": [
                 "rugby-rfl",
                 "rugby-rfl-world-club-challenge"
               ],
-              "season_basis": "Event-specific annual matchup",
-              "last_verified": "2026-09-18",
+              "season_basis": "Completed 2026 World Club Challenge; single-match edition.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The World Club Challenge traditionally matches the champions of Europe’s Super League and Australia’s NRL.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-02-19",
+              "season_source_url": "https://www.nrl.com/draw/world-club-challenge/2026/",
+              "season_evidence_urls": [
+                "https://www.nrl.com/draw/world-club-challenge/2026/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-02-19"
             },
             {
               "key": "rugby-eng-womens-super-league",
@@ -3223,18 +3304,25 @@
             {
               "key": "rugby-eng-womens-challenge-cup",
               "catalog_event": "Women’s Challenge Cup | Women",
-              "season_window": "March–June",
-              "season_start": "03-01",
-              "season_end": "06-30",
+              "season_window": "2026-04-04 – 2026-05-30",
               "source_id": "rugby-rfl-womens-challenge-cup",
               "source_ids": [
                 "rugby-rfl",
                 "rugby-rfl-womens-challenge-cup"
               ],
-              "season_basis": "Annual women’s knockout cup window",
-              "last_verified": "2026-09-18",
+              "season_basis": "RFL 2026 women's Challenge Cup, first group fixtures through Wembley final.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Women’s Challenge Cup is the RFL’s national knockout competition for women’s clubs.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-04-04",
+              "season_source_url": "https://www.rugby-league.com/article/64513/betfred-womens-challenge-cup-fixtures-confirmed",
+              "season_evidence_urls": [
+                "https://www.rugby-league.com/article/64513/betfred-womens-challenge-cup-fixtures-confirmed",
+                "https://www.rugby-league.com/article/64469/catalans-dragons-join-betfred-womens-challenge-cup-for-2026--"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-05-30"
             }
           ]
         },
@@ -3485,14 +3573,20 @@
             {
               "key": "rugby-na-mlr",
               "catalog_event": "Major League Rugby (MLR) | Men",
-              "season_window": "February–June",
-              "season_start": "02-01",
-              "season_end": "06-30",
+              "season_window": "2026-03-28 – 2026-06-21",
               "source_id": "rugby-mlr",
-              "season_basis": "Annual North American professional rugby union season",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official 2026 MLR season opener through championship final.",
+              "last_verified": "2026-11-03",
               "fun_fact": "Major League Rugby is North America’s professional fifteen-a-side rugby union league.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-03-28",
+              "season_source_url": "https://www.majorleague.rugby/news/never-miss-a-match-add-the-2026-mlr-season-to-your-calendar",
+              "season_evidence_urls": [
+                "https://www.majorleague.rugby/news/never-miss-a-match-add-the-2026-mlr-season-to-your-calendar"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-06-21"
             }
           ]
         },
@@ -4280,16 +4374,33 @@
                   "key": "soccer-international-fifa-world-cup-men",
                   "label": "FIFA World Cup | Men",
                   "source_id": "soccer-fifa-world-cup",
-                  "season_window": "June 11–July 19, 2026",
-                  "season_start": "06-11",
-                  "season_end": "07-19"
+                  "season_window": "2026-06-11 – 2026-07-19",
+                  "last_verified": "2026-11-03",
+                  "season_start_date": "2026-06-11",
+                  "season_source_url": "https://gpcustomersupportfwc2026.tickets.fifa.com/hc/en-gb/articles/28783291386653-1-When-and-where-is-the-FIFA-World-Cup-2026-being-held",
+                  "season_evidence_urls": [
+                    "https://gpcustomersupportfwc2026.tickets.fifa.com/hc/en-gb/articles/28783291386653-1-When-and-where-is-the-FIFA-World-Cup-2026-being-held"
+                  ],
+                  "season_basis": "FIFA 2026 men's World Cup finals tournament; qualifying excluded.",
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete",
+                  "season_end_date": "2026-07-19"
                 },
                 {
                   "key": "soccer-international-fifa-world-cup-women",
                   "label": "FIFA World Cup | Women",
                   "source_id": "soccer-fifa-womens-world-cup",
-                  "season_window": "Next finals in 2027",
-                  "season_status": "out"
+                  "season_window": "2027-06-24 – 2027-07-25",
+                  "last_verified": "2026-11-03",
+                  "season_start_date": "2027-06-24",
+                  "season_source_url": "https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/everything-you-need-to-know",
+                  "season_evidence_urls": [
+                    "https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/everything-you-need-to-know"
+                  ],
+                  "season_basis": "FIFA 2027 women's World Cup finals tournament; qualifying excluded.",
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete",
+                  "season_end_date": "2027-07-25"
                 }
               ]
             },
@@ -9932,18 +10043,24 @@
             {
               "key": "tennis-united-cup",
               "catalog_event": "United Cup | Men and Women",
-              "season_window": "January 2–11, 2026 last published; 2027 dates pending",
-              "season_status": "out",
+              "season_window": "2027-01-01 – 2027-01-10",
               "source_id": "tennis-united-cup",
-              "season_basis": "The single mixed-team event was held January 2–11, 2026; next edition dates require direct publisher confirmation.",
-              "last_verified": "2026-09-26",
+              "season_basis": "Official fifth-edition United Cup dates for Perth and Sydney, one mixed-team competition. Newly published 2027 dates resolve the prior next-edition date hold; individual ties require their own schedule.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The United Cup is a mixed-team event in which men and women represent their countries together.",
               "restrictions": [],
               "identity_model": "single-mixed-gender-competition",
               "identity_basis": "United Cup is one national-team tournament. Each tie combines men's singles, women's singles, and mixed doubles toward one team result.",
               "identity_evidence_url": "https://www.unitedcup.com/en/about/overview",
-              "season_hold": true,
-              "hold_reason": "The United Cup publisher currently shows the completed January 2–11, 2026 mixed-team edition; no 2027 match calendar is verified. Do not roll the 2026 dates forward."
+              "season_start_date": "2027-01-01",
+              "season_source_url": "https://www.unitedcup.com/en/about/overview",
+              "season_evidence_urls": [
+                "https://www.unitedcup.com/en/about/overview",
+                "https://www.unitedcup.com/en/media/news/auger-aliassime-mboko-tsitsipas-sakkari-to-play-united-cup-2027"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-01-10"
             }
           ]
         }
@@ -9980,24 +10097,36 @@
             {
               "key": "cricket-au-bbl",
               "catalog_event": "Big Bash League (BBL) | Men",
-              "season_window": "December 12–January 26",
-              "season_start": "12-12",
-              "season_end": "01-26",
+              "season_window": "2026-12-12 – 2027-01-26",
               "source_id": "cricket-bbl",
-              "season_basis": "2026–27 official competition calendar",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "Cricket Australia BBL|16 calendar, including the final.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-12-12",
+              "season_source_url": "https://www.cricket.com.au/matches/series/CA%3A4691",
+              "season_evidence_urls": [
+                "https://www.cricket.com.au/matches/series/CA%3A4691"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-01-26"
             },
             {
               "key": "cricket-au-wbbl",
               "catalog_event": "Women’s Big Bash League (WBBL) | Women",
-              "season_window": "October 29–December 5",
-              "season_start": "10-29",
-              "season_end": "12-05",
+              "season_window": "2026-10-29 – 2026-12-05",
               "source_id": "cricket-wbbl",
-              "season_basis": "2026 official competition calendar",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "Cricket Australia WBBL|12 calendar, including the final.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-10-29",
+              "season_source_url": "https://www.cricket.com.au/matches/series/CA%3A4687/weber-wbbl-12",
+              "season_evidence_urls": [
+                "https://www.cricket.com.au/matches/series/CA%3A4687/weber-wbbl-12"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-12-05"
             }
           ]
         },
@@ -10008,24 +10137,36 @@
             {
               "key": "cricket-gb-county-d1",
               "catalog_event": "Rothesay County Championship Division 1 | Men",
-              "season_window": "April 3–September 27",
-              "season_start": "04-03",
-              "season_end": "09-27",
+              "season_window": "2026-04-03 – 2026-09-27",
               "source_id": "cricket-county-d1",
-              "season_basis": "2026 official competition calendar",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "ECB 2026 County Championship published playing window, rounds 1–16.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-04-03",
+              "season_source_url": "https://www.ecb.co.uk/news/4408073/rothesay-county-championship-fixtures-2026",
+              "season_evidence_urls": [
+                "https://www.ecb.co.uk/news/4408073/rothesay-county-championship-fixtures-2026"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-09-27"
             },
             {
               "key": "cricket-gb-county-d2",
               "catalog_event": "Rothesay County Championship Division 2 | Men",
-              "season_window": "April 3–September 27",
-              "season_start": "04-03",
-              "season_end": "09-27",
+              "season_window": "2026-04-03 – 2026-09-27",
               "source_id": "cricket-county-d2",
-              "season_basis": "2026 official competition calendar",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "ECB 2026 County Championship published playing window, rounds 1–16.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-04-03",
+              "season_source_url": "https://www.ecb.co.uk/news/4408073/rothesay-county-championship-fixtures-2026",
+              "season_evidence_urls": [
+                "https://www.ecb.co.uk/news/4408073/rothesay-county-championship-fixtures-2026"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-09-27"
             }
           ]
         },
@@ -10036,13 +10177,20 @@
             {
               "key": "cricket-in-ipl",
               "catalog_event": "Indian Premier League | Men",
-              "season_window": "March 28–May 31",
-              "season_start": "03-28",
-              "season_end": "05-31",
+              "season_window": "2026-03-28 – 2026-05-31",
               "source_id": "cricket-ipl",
-              "season_basis": "2026 official competition calendar",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "BCCI 2026 IPL season schedule and playoff announcement; opening match through final.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-03-28",
+              "season_source_url": "https://www.iplt20.com/news/article/schedule-for-tata-ipl-2026-playoffs-announced-ahmedabad-to-host-grand-finale",
+              "season_evidence_urls": [
+                "https://www.iplt20.com/news/article/schedule-for-tata-ipl-2026-playoffs-announced-ahmedabad-to-host-grand-finale",
+                "https://documents.iplt20.com/smart-images/1774525332894_TATA_IPL_2026-Schedule.pdf"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-05-31"
             }
           ]
         },
@@ -10053,22 +10201,36 @@
             {
               "key": "cricket-int-ashes",
               "catalog_event": "The Ashes | Men",
-              "season_window": "November 2025–January 2026 · completed",
-              "season_status": "out",
+              "season_window": "2025-11-21 – 2026-01-08",
               "source_id": "cricket-ashes",
-              "season_basis": "Event-specific series calendar; next series requires a new dated mapping",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "Completed 2025–26 men's Ashes, first through fifth Test; no annual rollover.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2025-11-21",
+              "season_source_url": "https://www.cricket.com.au/matches/series/CA%3A3014/men-s-ashes-2025-26",
+              "season_evidence_urls": [
+                "https://www.cricket.com.au/matches/series/CA%3A3014/men-s-ashes-2025-26"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-01-08"
             },
             {
               "key": "cricket-int-t20-world-cup",
               "catalog_event": "ICC T20 World Cup | Men",
-              "season_window": "February 7–March 8, 2026 · completed",
-              "season_status": "out",
+              "season_window": "2026-02-07 – 2026-03-08",
               "source_id": "cricket-t20-world-cup",
-              "season_basis": "Event-specific tournament calendar; do not treat as an annual February window",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "ICC 2026 men's tournament window including the final; qualifying excluded.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-02-07",
+              "season_source_url": "https://www.icc-cricket.com/media-releases/icc-men-s-t20-world-cup-2026-schedule-announced",
+              "season_evidence_urls": [
+                "https://www.icc-cricket.com/media-releases/icc-men-s-t20-world-cup-2026-schedule-announced"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-03-08"
             },
             {
               "key": "cricket-int-odi",
@@ -11616,14 +11778,20 @@
               "key": "golf-japan-tour",
               "catalog_event": "Japan Golf Tour",
               "category": "Approved Tours",
-              "season_window": "April–December",
-              "season_start": "04-01",
-              "season_end": "12-31",
+              "season_window": "2026-03-05 – 2026-12-06",
               "source_id": "golf-japan-tour",
-              "season_basis": "2026 JGTO main-tour tournament calendar connected",
-              "last_verified": "2026-09-24",
+              "season_basis": "JGTO 2026 main-tour rounds, including the New Zealand co-sanctioned opener and December JT Cup finale; ACN tour excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Japan Golf Tour Organization administers Japan's leading men's professional golf circuit.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-03-05",
+              "season_source_url": "https://www.jgto.org/en/news/35066",
+              "season_evidence_urls": [
+                "https://www.jgto.org/en/news/35066"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-12-06"
             }
           ]
         },
@@ -11766,14 +11934,21 @@
               "key": "golf-korn-ferry",
               "catalog_event": "Korn Ferry Tour",
               "category": "Approved Tours",
-              "season_window": "January–October",
-              "season_start": "01-01",
-              "season_end": "10-31",
+              "season_window": "2026-01-11 – 2026-10-11",
               "source_id": "golf-korn-ferry-tour",
-              "season_basis": "2026 Korn Ferry Tour tournament calendar connected",
-              "last_verified": "2026-09-24",
+              "season_basis": "2026 Korn Ferry Tour tournament rounds from Bahamas opener through Tour Championship; qualifying excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Korn Ferry Tour is the primary pathway through which players earn PGA Tour membership.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-01-11",
+              "season_source_url": "https://www.kornferry.com/about-us/press/pga-tour-announces-2026-korn-ferry-tour-schedule",
+              "season_evidence_urls": [
+                "https://www.kornferry.com/about-us/press/pga-tour-announces-2026-korn-ferry-tour-schedule",
+                "https://pgatourmedia.pgatourhq.com/tours/2026/kornferrytour/kornferrytourchampionship"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-10-11"
             }
           ]
         },
@@ -11812,14 +11987,20 @@
               "key": "golf-let",
               "catalog_event": "Ladies European Tour (LET)",
               "category": "Approved Tours",
-              "season_window": "February–November",
-              "season_start": "02-01",
-              "season_end": "11-30",
+              "season_window": "2026-02-11 – 2026-11-29",
               "source_id": "golf-ladies-european-tour",
-              "season_basis": "2026 Ladies European Tour tournament calendar connected",
-              "last_verified": "2026-09-24",
+              "season_basis": "LET 2026 published tournament calendar, Saudi opener through Spanish season finale; qualifying excluded.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Ladies European Tour stages women's professional golf events across Europe and additional international venues.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-02-11",
+              "season_source_url": "https://ocs-sport.ams3.cdn.digitaloceanspaces.com/let_new/2026/05/2026-Public-Schedule.pdf",
+              "season_evidence_urls": [
+                "https://ocs-sport.ams3.cdn.digitaloceanspaces.com/let_new/2026/05/2026-Public-Schedule.pdf"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-11-29"
             }
           ]
         },
@@ -11831,14 +12012,20 @@
               "key": "golf-tgl",
               "catalog_event": "Tomorrow’s Golf League (TGL)",
               "category": "Approved Tours",
-              "season_window": "January–March 2026 · completed",
-              "season_start": "01-01",
-              "season_end": "03-31",
+              "season_window": "2025-12-28 – 2026-03-24",
               "source_id": "golf-tgl",
-              "season_basis": "2026 TGL match schedule connected",
-              "last_verified": "2026-09-24",
+              "season_basis": "TGL Season 2, December 2025 opener through March 2026 finals series; no annual rollover.",
+              "last_verified": "2026-11-03",
               "fun_fact": "TGL combines simulator shots with live short-game play inside a purpose-built arena.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2025-12-28",
+              "season_source_url": "https://tglgolf.com/articles/2025/12/tgl-ultimate-season-2-preview",
+              "season_evidence_urls": [
+                "https://tglgolf.com/articles/2025/12/tgl-ultimate-season-2-preview"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-03-24"
             }
           ]
         },

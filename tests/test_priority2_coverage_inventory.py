@@ -20,7 +20,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         cls.inventory = build()
         cls.rows = {(row["sport"], row["league"]): row for row in cls.inventory["identities"]}
 
-    def test_tennis_source_scope_and_united_cup_hold(self):
+    def test_tennis_source_scope_and_united_cup_dated_window(self):
         sources = {source["id"]: source for source in json.loads(
             (ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8")
         )["sources"]}
@@ -53,9 +53,9 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([row["identity_key"]],
                                  [source["id"] for source in row["sources"]])
         united = self.rows[("Tennis", "United Cup | Men and Women")]
-        self.assertEqual("DOCUMENTED_HOLD", united["season_state"])
+        self.assertEqual("DATED_WINDOW", united["season_state"])
         self.assertEqual("ADAPTER_GAP", united["coverage_state"])
-        self.assertIn("no 2027 match calendar", united["hold_reason"])
+        self.assertFalse(united["hold_reason"])
 
     def test_usta_shared_references_do_not_inflate_coverage(self):
         from audit_priority2_coverage import read as original_read
