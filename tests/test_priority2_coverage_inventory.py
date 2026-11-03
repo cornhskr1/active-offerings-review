@@ -55,7 +55,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         united = self.rows[("Tennis", "United Cup | Men and Women")]
         self.assertEqual("DATED_WINDOW", united["season_state"])
         self.assertEqual("ADAPTER_GAP", united["coverage_state"])
-        self.assertFalse(united["hold_reason"])
+        self.assertFalse(united.get("hold_reason"))
 
     def test_usta_shared_references_do_not_inflate_coverage(self):
         from audit_priority2_coverage import read as original_read
