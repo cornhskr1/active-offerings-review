@@ -9,6 +9,22 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_independent_completed_season_evidence_does_not_refresh_event_feed(self):
+        self.js("""
+const sources=[{id:'league',coverage_status:'last-published-event-window',source_stale:true}];
+const old=JSON.stringify(sources),today='2026-11-03';
+const e={source_id:'league',season_start_date:'2026-02-01',season_end_date:'2026-10-31',last_verified:'2026-11-03',season_window_complete:true,season_verification_status:'verified-complete',season_source_url:'https://league.example/2026'};
+assert.equal(C.timing(e,today,sources).status,'out');
+assert.equal(C.season(e,today,sources),'out');
+for(const change of [{season_verification_status:null},{season_source_url:null},{last_verified:'2026-10-01'},{last_verified:'2026-11-04'},{season_window_complete:false},{season_hold:true},{season_cancelled:true}]){
+ assert.equal(C.timing({...e,...change},today,sources).status,'unknown');
+ assert.equal(C.season({...e,...change},today,sources),'unknown');
+}
+assert.equal(C.timing(e,'2027-01-01',sources).status,'unknown');
+assert.match(C.timing({...e,season_cancelled:true},today,sources).reason,/canceled/);
+assert.equal(JSON.stringify(sources),old);
+""")
+
     def test_season_timing_distinguishes_exact_upcoming_annual_and_held_dates(self):
         self.js("""
 const dated={season_start_date:'2026-10-01',season_end_date:'2026-12-01',last_verified:'2026-09-20'};

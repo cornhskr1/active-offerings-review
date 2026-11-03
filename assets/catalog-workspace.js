@@ -4,11 +4,15 @@
 const norm=v=>String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').trim();
 const unique=a=>[...new Set(a.filter(Boolean))];
 const validDate=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&Number.isFinite(Date.parse(v+'T12:00:00Z'))&&new Date(v+'T12:00:00Z').toISOString().slice(0,10)===v;
+function independentlyVerifiedEnd(event,today){
+ const checked=String(event.last_verified||'').slice(0,10);
+ return event.season_verification_status==='verified-complete'&&event.season_window_complete===true&&/^https:\/\//.test(event.season_source_url||'')&&validDate(checked)&&validDate(event.season_end_date)&&checked>=event.season_end_date&&checked<=today;
+}
 function season(event,today,sources=[]){
- if(!event||event.nonseasonal||event.season_hold||event.season_window_complete===false)return 'unknown';
+ if(!event||event.nonseasonal||event.season_hold||event.season_cancelled||event.season_window_complete===false)return 'unknown';
  if(event.coverage_children?.length){const statuses=event.coverage_children.map(x=>season(x,today,sources));return statuses.every(x=>x===statuses[0])?statuses[0]:'unknown';}
  const ids=unique([event.source_id,...(event.source_ids||[])]);
- if(event.season_end_date<today&&sources.some(x=>ids.includes(x.id)&&x.coverage_status==='last-published-event-window'))return 'unknown';
+ if(event.season_end_date<today&&sources.some(x=>ids.includes(x.id)&&x.coverage_status==='last-published-event-window')&&!independentlyVerifiedEnd(event,today))return 'unknown';
  if(validDate(event.season_start_date)&&validDate(event.season_end_date)&&event.season_start_date<=event.season_end_date){
   // Prior-year dates describe their recorded edition, not this year's status.
   if(Number(event.season_end_date.slice(0,4))<Number(today.slice(0,4)))return 'unknown';
@@ -23,13 +27,14 @@ function timing(event,today,sources=[]){
  const e=event||{},start=e.season_start_date,end=e.season_end_date;
  const checked=String(e.last_verified||'').slice(0,10);
  const unknown=reason=>({status:'unknown',reason,start:validDate(start)?start:null,end:validDate(end)?end:null,checked:validDate(checked)?checked:null,progress:null,days:null});
+ if(e.season_cancelled)return unknown('Recorded edition canceled · next dates unconfirmed');
  if(e.season_hold)return unknown('Season scope needs confirmation');
  if(e.nonseasonal)return unknown('Event-based competition; dates vary');
  if(e.season_window_complete===false)return unknown('Season dates are incomplete');
  if(!validDate(today)||!validDate(start)||!validDate(end)||start>end)return unknown(e.season_window||e.season_start?'Typical season window · confirmation needed':'Season dates need confirmation');
  if(Number(end.slice(0,4))<Number(today.slice(0,4)))return unknown('Previous edition · next dates need confirmation');
  const ids=[e.source_id,...(e.source_ids||[])];
- if(end<today&&sources.some(x=>ids.includes(x.id)&&x.coverage_status==='last-published-event-window'))return unknown('Previous event window · current season unconfirmed');
+ if(end<today&&sources.some(x=>ids.includes(x.id)&&x.coverage_status==='last-published-event-window')&&!independentlyVerifiedEnd(e,today))return unknown('Previous event window · current season unconfirmed');
  if(!validDate(checked)||checked>today)return unknown('Recorded dates · verification date needs confirmation');
  const day=x=>Date.parse(x+'T00:00:00Z')/86400000;
  const status=today<start?'upcoming':today>end?'out':'in';
