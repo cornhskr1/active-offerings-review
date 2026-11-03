@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-02T16:32:00+00:00",
+  "generated_at": "2026-11-03T00:00:00+00:00",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -10,9 +10,15 @@
       "country": "United States",
       "catalog_event": "National Football League (NFL)",
       "season_window": "September 9, 2026–February 14, 2027",
-      "season_start": "09-09",
-      "season_end": "02-14",
-      "last_verified": "2026-09-18"
+      "last_verified": "2026-11-03",
+      "season_basis": "2026 regular season through Super Bowl LXI.",
+      "season_start_date": "2026-09-09",
+      "season_source_url": "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
+      "season_evidence_urls": [
+        "https://www.nfl.com/news/2026-27-national-football-league-important-dates"
+      ],
+      "season_window_complete": true,
+      "season_end_date": "2027-02-14"
     },
     {
       "source_id": "football-nfl-preseason",
@@ -59,20 +65,35 @@
       "sport": "Basketball",
       "country": "United States",
       "catalog_event": "National Basketball Association (NBA) | Men",
-      "season_window": "October–June",
-      "season_start": "10-01",
-      "season_end": "06-30",
-      "last_verified": "2026-09-16"
+      "season_window": "October 20, 2026–postseason endpoint unconfirmed; regular season ends April 11, 2027",
+      "last_verified": "2026-11-03",
+      "season_start_date": "2026-10-20",
+      "season_basis": "Official release confirms the regular-season boundaries. The full postseason endpoint has not been established by this verification.",
+      "season_source_url": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+      "season_evidence_urls": [
+        "https://pr.nba.com/2026-27-nba-regular-season-schedule"
+      ],
+      "season_window_complete": false,
+      "regular_season_start_date": "2026-10-20",
+      "regular_season_end_date": "2027-04-11"
     },
     {
       "source_id": "wnba",
       "sport": "Basketball",
       "country": "United States",
       "catalog_event": "Women’s National Basketball Association (WNBA) | Women",
-      "season_window": "May–October",
-      "season_start": "05-01",
-      "season_end": "10-31",
-      "last_verified": "2026-09-16"
+      "season_window": "May 8–October 31, 2026 · completed",
+      "last_verified": "2026-11-03",
+      "season_start_date": "2026-05-08",
+      "season_basis": "Regular-season opener through the completed Finals Game 7; September 24 is only the regular-season endpoint.",
+      "season_source_url": "https://www.wnba.com/keydates",
+      "season_evidence_urls": [
+        "https://www.wnba.com/keydates",
+        "https://www.wnba.com/playoffs/2026",
+        "https://www.wnba.com/game/1042600307"
+      ],
+      "season_window_complete": true,
+      "season_end_date": "2026-10-31"
     },
     {
       "source_id": "mls",
@@ -89,20 +110,32 @@
       "sport": "Soccer",
       "country": "England",
       "catalog_event": "Premier League | Men",
-      "season_window": "August–May",
-      "season_start": "08-01",
-      "season_end": "05-31",
-      "last_verified": "2026-09-16"
+      "season_window": "August 21, 2026–May 30, 2027",
+      "last_verified": "2026-11-03",
+      "season_basis": "Premier League's updated 2026–27 opening and final match rounds.",
+      "season_start_date": "2026-08-21",
+      "season_source_url": "https://www.premierleague.com/en/news/4468487/",
+      "season_evidence_urls": [
+        "https://www.premierleague.com/en/news/4468487/"
+      ],
+      "season_window_complete": true,
+      "season_end_date": "2027-05-30"
     },
     {
       "source_id": "bundesliga",
       "sport": "Soccer",
       "country": "Germany",
       "catalog_event": "Bundesliga | Men",
-      "season_window": "August–May",
-      "season_start": "08-01",
-      "season_end": "05-31",
-      "last_verified": "2026-09-16"
+      "season_window": "August 28, 2026–May 22, 2027 · league rounds",
+      "last_verified": "2026-11-03",
+      "season_basis": "Official calendar confirms league rounds. Relegation play-offs remain separate from this recorded league-round window.",
+      "season_start_date": "2026-08-28",
+      "season_end_date": "2027-05-22",
+      "season_source_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+      "season_evidence_urls": [
+        "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+      ],
+      "season_window_complete": true
     },
     {
       "source_id": "laliga",
@@ -207,17 +240,34 @@
               "coverage_children": [
                 {
                   "key": "aussie-rules-au-afl",
-                  "season_window": "March–September",
-                  "season_start": "03-01",
-                  "season_end": "09-30",
+                  "season_window": "March 5–September 26, 2026 · completed",
                   "source_id": "afl",
-                  "last_verified": "2026-09-17",
-                  "label": "Australian Football League (AFL) | Men"
+                  "last_verified": "2026-11-03",
+                  "label": "Australian Football League (AFL) | Men",
+                  "season_start_date": "2026-03-05",
+                  "season_basis": "Opening Round through the Grand Final; men's competition only.",
+                  "season_source_url": "https://www.afl.com.au/opening-round/",
+                  "season_evidence_urls": [
+                    "https://www.afl.com.au/opening-round/",
+                    "https://www.afl.com.au/news/1616906/what-time-does-the-2026-toyota-afl-grand-final-start"
+                  ],
+                  "season_window_complete": true,
+                  "season_end_date": "2026-09-26"
                 },
                 {
                   "key": "aussie-rules-au-afl-women",
                   "label": "Australian Football League (AFL) | Women",
-                  "season_basis": "Approved October 28, 2026. Current season dates and a women-specific schedule source have not been verified."
+                  "season_basis": "AFLW fixture announcement establishes the opener; the later Grand Final announcement fixes November 27. Women's competition only.",
+                  "season_start_date": "2026-08-09",
+                  "season_window": "August 9–November 27, 2026",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.afl.com.au/aflw/news/1523432/fixture-confirmed-for-2026-nab-aflw-season",
+                  "season_evidence_urls": [
+                    "https://www.afl.com.au/aflw/news/1523432/fixture-confirmed-for-2026-nab-aflw-season",
+                    "https://www.afl.com.au/news/1596264/friday-night-lights-prime-time-stage-set-for-2026-nab-aflw-grand-final"
+                  ],
+                  "season_window_complete": true,
+                  "season_end_date": "2026-11-27"
                 }
               ]
             }
@@ -1400,12 +1450,19 @@
             {
               "key": "basketball-us-nba",
               "catalog_event": "National Basketball Association (NBA) | Men",
-              "season_window": "October–June",
-              "season_start": "10-01",
-              "season_end": "06-30",
+              "season_window": "October 20, 2026–postseason endpoint unconfirmed; regular season ends April 11, 2027",
               "source_id": "nba",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-10-20",
+              "season_basis": "Official release confirms the regular-season boundaries. The full postseason endpoint has not been established by this verification.",
+              "season_source_url": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+              "season_evidence_urls": [
+                "https://pr.nba.com/2026-27-nba-regular-season-schedule"
+              ],
+              "season_window_complete": false,
+              "regular_season_start_date": "2026-10-20",
+              "regular_season_end_date": "2027-04-11"
             },
             {
               "key": "basketball-us-nba-draft",
@@ -1442,12 +1499,20 @@
             {
               "key": "basketball-us-wnba",
               "catalog_event": "Women’s National Basketball Association (WNBA) | Women",
-              "season_window": "May–October",
-              "season_start": "05-01",
-              "season_end": "10-31",
+              "season_window": "May 8–October 31, 2026 · completed",
               "source_id": "wnba",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-05-08",
+              "season_basis": "Regular-season opener through the completed Finals Game 7; September 24 is only the regular-season endpoint.",
+              "season_source_url": "https://www.wnba.com/keydates",
+              "season_evidence_urls": [
+                "https://www.wnba.com/keydates",
+                "https://www.wnba.com/playoffs/2026",
+                "https://www.wnba.com/game/1042600307"
+              ],
+              "season_window_complete": true,
+              "season_end_date": "2026-10-31"
             }
           ]
         },
@@ -2356,25 +2421,35 @@
               "key": "hockey-usca-nhl-skills",
               "catalog_event": "NHL All-Star Skills Challenge",
               "season_window": "February 5, 2027",
-              "season_basis": "Official 2027 event date at UBS Arena, Elmont, New York; calendar-only coverage, not an individual contest feed. No recurring window or later edition is inferred.",
-              "last_verified": "2026-10-18",
+              "season_basis": "Official NHL calendar.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The Skills Challenge tests individual abilities such as skating speed, shooting accuracy, and shot power.",
               "restrictions": [],
               "source_id": "hockey-usca-nhl-skills",
               "season_start_date": "2027-02-05",
-              "season_end_date": "2027-02-05"
+              "season_end_date": "2027-02-05",
+              "season_source_url": "https://www.nhl.com/news/nhl-announces-2026-27-regular-season-schedule",
+              "season_evidence_urls": [
+                "https://www.nhl.com/news/nhl-announces-2026-27-regular-season-schedule"
+              ],
+              "season_window_complete": true
             },
             {
               "key": "hockey-usca-nhl-all-star",
               "catalog_event": "NHL All-Star Game",
               "season_window": "February 6, 2027",
-              "season_basis": "Official 2027 event date at UBS Arena, Elmont, New York; calendar-only coverage, not an individual contest feed. No recurring window or later edition is inferred.",
-              "last_verified": "2026-10-18",
+              "season_basis": "Official NHL calendar.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The NHL All-Star format has changed several times, including conference, divisional, and international-team formats.",
               "restrictions": [],
               "source_id": "hockey-usca-nhl-all-star",
               "season_start_date": "2027-02-06",
-              "season_end_date": "2027-02-06"
+              "season_end_date": "2027-02-06",
+              "season_source_url": "https://www.nhl.com/news/nhl-announces-2026-27-regular-season-schedule",
+              "season_evidence_urls": [
+                "https://www.nhl.com/news/nhl-announces-2026-27-regular-season-schedule"
+              ],
+              "season_window_complete": true
             },
             {
               "key": "hockey-usca-four-nations",
@@ -5677,13 +5752,18 @@
             {
               "key": "soccer-england-premier-league-men",
               "catalog_event": "Premier League | Men",
-              "season_window": "August–May",
-              "season_basis": "Existing connected public schedule source and controlled annual season window",
-              "last_verified": "2026-09-18",
+              "season_window": "August 21, 2026–May 30, 2027",
+              "season_basis": "Premier League's updated 2026–27 opening and final match rounds.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "epl"
+              "source_id": "epl",
+              "season_start_date": "2026-08-21",
+              "season_source_url": "https://www.premierleague.com/en/news/4468487/",
+              "season_evidence_urls": [
+                "https://www.premierleague.com/en/news/4468487/"
+              ],
+              "season_window_complete": true,
+              "season_end_date": "2027-05-30"
             },
             {
               "key": "soccer-england-league-one-men",
@@ -6184,35 +6264,50 @@
             {
               "key": "soccer-germany-bundesliga-men",
               "catalog_event": "Bundesliga | Men",
-              "season_window": "August 28, 2026–May 22, 2027",
-              "season_basis": "DFB and DFL publish the opening fixture and final regular-season matchday; relegation play-offs are separate.",
-              "last_verified": "2026-09-26",
+              "season_window": "August 28, 2026–May 22, 2027 · league rounds",
+              "season_basis": "Official calendar confirms league rounds. Relegation play-offs remain separate from this recorded league-round window.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
               "season_start_date": "2026-08-28",
               "season_end_date": "2027-05-22",
-              "source_id": "bundesliga"
+              "source_id": "bundesliga",
+              "season_source_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+              "season_evidence_urls": [
+                "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+              ],
+              "season_window_complete": true
             },
             {
               "key": "soccer-germany-2-bundesliga-men",
               "catalog_event": "2. Bundesliga | Men",
-              "season_window": "August 7, 2026–May 23, 2027",
-              "season_basis": "DFB and DFL publish the opening fixture and final regular-season matchday; relegation play-offs are separate.",
-              "last_verified": "2026-09-26",
+              "season_window": "August 7, 2026–May 23, 2027 · league rounds",
+              "season_basis": "Official calendar confirms league rounds. Relegation play-offs remain separate from this recorded league-round window.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
               "season_start_date": "2026-08-07",
               "season_end_date": "2027-05-23",
-              "source_id": "uefa-soccer-germany-2-bundesliga-men"
+              "source_id": "uefa-soccer-germany-2-bundesliga-men",
+              "season_source_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+              "season_evidence_urls": [
+                "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+              ],
+              "season_window_complete": true
             },
             {
               "key": "soccer-germany-dfb-pokal-men",
               "catalog_event": "DFB-Pokal | Men",
               "season_window": "August 21, 2026–May 29, 2027",
-              "season_basis": "DFB publishes the first main round, September exceptions for Supercup participants, and Berlin final.",
-              "last_verified": "2026-09-26",
+              "season_basis": "Official calendar dates the first round and Berlin final; Supercup participants play their first-round ties in September.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
               "season_start_date": "2026-08-21",
               "season_end_date": "2027-05-29",
-              "source_id": "uefa-soccer-germany-dfb-pokal-men"
+              "source_id": "uefa-soccer-germany-dfb-pokal-men",
+              "season_source_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+              "season_evidence_urls": [
+                "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+              ],
+              "season_window_complete": true
             },
             {
               "key": "soccer-germany-frauen-bundesliga-women",
@@ -10965,26 +11060,37 @@
               "key": "football-us-nfl",
               "catalog_event": "National Football League (NFL)",
               "season_window": "September 9, 2026–February 14, 2027",
-              "season_start": "09-09",
-              "season_end": "02-14",
               "source_id": "nfl",
-              "season_basis": "2026 NFL regular season and postseason through Super Bowl LXI",
-              "last_verified": "2026-09-18",
+              "season_basis": "2026 regular season through Super Bowl LXI.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The NFL's 32 teams are split evenly between the AFC and NFC, with four four-team divisions in each conference.",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-09",
+              "season_source_url": "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
+              "season_evidence_urls": [
+                "https://www.nfl.com/news/2026-27-national-football-league-important-dates"
+              ],
+              "season_window_complete": true,
+              "season_end_date": "2027-02-14"
             },
             {
               "key": "football-us-nfl-draft",
               "catalog_event": "NFL Draft",
               "category": "Special Events and Markets",
-              "season_window": "Annual April event · 2027 dates pending official release",
-              "season_status": "out",
-              "season_basis": "Annual NFL Draft; exact 2027 event dates are not yet published in the approved source set",
-              "last_verified": "2026-09-18",
+              "season_window": "April 29–May 1, 2027",
+              "season_basis": "NFL announcement for the 2027 Draft in Washington, D.C.",
+              "last_verified": "2026-11-03",
               "fun_fact": "The NFL Draft has seven rounds, and the selection order is primarily based on the prior season's standings.",
               "restrictions": [
                 "MARKETS CLOSE 1 HOUR PRIOR TO EVENT START"
-              ]
+              ],
+              "season_start_date": "2027-04-29",
+              "season_source_url": "https://www.nfl.com/news/nfl-announces-dates-for-2027-draft-in-washington-d-c",
+              "season_evidence_urls": [
+                "https://www.nfl.com/news/nfl-announces-dates-for-2027-draft-in-washington-d-c"
+              ],
+              "season_window_complete": true,
+              "season_end_date": "2027-05-01"
             },
             {
               "key": "football-us-nfl-preseason",
