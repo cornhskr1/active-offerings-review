@@ -66,7 +66,11 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
     def test_french_womens_cup_calendar_and_trophee_hold_are_explicit(self):
         cup = self.events["soccer-france-coupe-de-france-men-and-women"]["coverage_children"]
         women = next(x for x in cup if x["key"] == "soccer-france-coupe-de-france-women")
-        self.assertEqual(("2026-11-22", "2027-05-23"), (women["season_start_date"], women["season_end_date"]))
+        self.assertNotIn("season_start_date", women)  # Federal entry is not regional opening.
+        self.assertNotIn("season_end_date", women)  # Final remains one of two days.
+        self.assertIn("November 22", women["season_window"])
+        self.assertIn("May 22 or 23, 2027", women["season_window"])
+        self.assertFalse(women["season_window_complete"])
         self.assertEqual("OFFICIAL_WINDOW_ONLY", self.inventory["soccer-france-coupe-de-france-women"]["coverage_state"])
         self.assertEqual("DOCUMENTED_HOLD", self.inventory["soccer-france-troph-e-des-championnes-women"]["season_state"])
 
