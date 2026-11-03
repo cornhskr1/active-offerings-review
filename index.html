@@ -610,7 +610,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 
 
 
-<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Outside Nebraska is GREEN for the location check only; other restrictions and market checks still apply. Calendar collection covers Nebraska football and all three schools’ men’s basketball, women’s basketball, volleyball, baseball and softball. Other saved school-sport observations remain available with stale labels; approved catalog entries are unchanged.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool" aria-label="Filter Nebraska collegiate school"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus" aria-label="Filter Nebraska collegiate location status"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
+<section class="panel" id="college"><div class="card"><div class="section-title">Nebraska Collegiate — Today + 7</div><p class="small">Physical event location controls the site test. A Nebraska collegiate participant competing in Nebraska is RED / NOT PERMISSIBLE. Unresolved locations are RED / MANUAL REVIEW until verified. Outside Nebraska is GREEN for the location check only; other restrictions and market checks still apply. Calendar collection covers Nebraska football and all three schools’ men’s basketball, women’s basketball, volleyball, baseball and softball. Other saved school-sport observations remain available with stale labels; approved catalog entries are unchanged.</p><div class="source-note" id="collegeSource"></div><div class="toolbar"><select id="collegeSchool" aria-label="Filter Nebraska collegiate school"><option value="all">All schools</option><option>Nebraska</option><option>Creighton</option><option>Omaha</option></select><select id="collegeStatus" aria-label="Filter Nebraska collegiate location status"><option value="all">All statuses</option><option value="red">Not Permissible</option><option value="green">Outside Nebraska</option><option value="amber">Location Review</option></select></div><div class="college-days" id="collegeGrid"></div></div><div class="card">
   <div class="section-title">Nebraska Collegiate — Basketball Futures Cutoffs</div>
   <p class="small">Regular-season futures must be disabled before the first legitimate regular-season contest. A narrower subset used to determine the market outcome — such as away games, home games, conference games, or similar subsets — does not move that cutoff. Postseason futures must be disabled before the first legitimate postseason contest, if applicable. Combination markets must be removed by the earliest applicable cutoff among all included Nebraska collegiate components. Cutoff intelligence is schedule-driven and does not represent operator verification.</p>
   <div class="futures-guidance">
@@ -1720,7 +1720,7 @@ function renderToday(){
         html+=arr.map(e=>{
           const c=collegeMatchForGlobal(e);
           const r=c?collegeReg(c):null;
-          const color=r?.c||(e.requires_bout_review?'amber':'green');
+          const color=r?.displayColor||r?.c||(e.requires_bout_review?'amber':'green');
           const label=r?.c==='red'?'NOT PERMISSIBLE':r?.c==='amber'?'REVIEW REQUIRED':e.requires_bout_review?'BOUT AND AGE REVIEW':'';
           const game=esportsGameLabel(e);
 
@@ -1745,10 +1745,14 @@ function renderToday(){
   document.getElementById('todayDays').innerHTML=html;
 }
 function collegeReg(e){
-  if(e.played_in_nebraska||e.site_test==='NOT PERMISSIBLE')return{c:'red',label:'PLAYED IN NEBRASKA',test:'NOT PERMISSIBLE'};
-  if(e.site_color==='amber'||e.site_test==='MANUAL LOCATION REVIEW')return{c:'amber',label:e.regulatory_site_label||'LOCATION REVIEW',test:'MANUAL REVIEW'};
-  if(e.location)return{c:'green',label:'OUTSIDE NEBRASKA',test:'LOCATION CHECK ONLY'};
-  return{c:'amber',label:'LOCATION REVIEW',test:'MANUAL REVIEW'};
+  // Exact, independently verified venue only; HOME and generic arena names are not location proof.
+  // https://www.pinnaclebankarena.com/plan-your-visit/ (verified 2026-11-03)
+  const venue=String(e.location||'').trim().replace(/\s+/g,' ').toLowerCase();
+  if(venue==='pinnacle bank arena'&&!e.location_conflict_reason)return{c:'red',displayColor:'red',label:'PLAYED IN NEBRASKA',test:'NOT PERMISSIBLE',location:'Pinnacle Bank Arena · Lincoln, Nebraska',venueSource:'https://www.pinnaclebankarena.com/plan-your-visit/'};
+  if(e.played_in_nebraska||e.site_test==='NOT PERMISSIBLE')return{c:'red',displayColor:'red',label:'PLAYED IN NEBRASKA',test:'NOT PERMISSIBLE'};
+  if(e.location_conflict_reason||e.site_color==='amber'||e.site_test==='MANUAL LOCATION REVIEW')return{c:'amber',displayColor:'red',label:'LOCATION UNRESOLVED',test:'MANUAL REVIEW'};
+  if(e.site_color==='green'||e.site_test==='OK · OUTSIDE NEBRASKA')return{c:'green',displayColor:'green',label:'OUTSIDE NEBRASKA',test:'LOCATION CHECK ONLY'};
+  return{c:'amber',displayColor:'red',label:'LOCATION UNRESOLVED',test:'MANUAL REVIEW'};
 }
 function collegeMatchupLabel(e){
   if(e?.matchup_label)return e.matchup_label;
@@ -1879,9 +1883,11 @@ function renderCollege(){
   }
   const eventCard=e=>{
     const r=collegeReg(e);
+    const color=r.displayColor||r.c;
+    const venueSource=r.venueSource?` <a class="college-source-link" href="${esc(r.venueSource)}" target="_blank" rel="noopener">Verified venue location ↗</a>`:'';
     const source=e.source_url?`<a class="college-source-link" href="${esc(e.source_url)}" target="_blank" rel="noopener">Official schedule ↗</a>`:'';
     const note=e.location_conflict_reason||e.promotional_label;
-    return `<article class="college-card ${r.c}"><div class="college-top"><div class="college-sport">${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</div>${pill(r.c,r.label)}</div><div class="college-date">${esc(e.time||'TBA')}</div><div class="college-matchup-line"><span class="college-team">${esc(e.school)}</span><span class="college-matchup">${esc(collegeMatchupLabel(e))}</span><b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(e.location||'Location unresolved')}</div>${note?`<div class="college-promo">${esc(note)}</div>`:''}<div style="margin-top:9px">${pill(r.c,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('amber','NCAA FEED · LOCATION PENDING')}`:''}${e.source_stale?` ${pill('amber','SAVED SOURCE — VERIFY')}`:''}${e.status==='TENTATIVE'?` ${pill('amber','TENTATIVE')}`:''}${e.event_type==='exhibition'?` ${pill('gray','EXHIBITION')}`:''}</div>${source}</article>`;
+    return `<article class="college-card ${color}"><div class="college-top"><div class="college-sport">${esc(e.sport)}${e.division?` · ${esc(e.division)}`:''}</div>${pill(color,r.label)}</div><div class="college-date">${esc(e.time||'TBA')}</div><div class="college-matchup-line"><span class="college-team">${esc(e.school)}</span><span class="college-matchup">${esc(collegeMatchupLabel(e))}</span><b>${esc(e.opponent||'TBA')}</b></div><div class="college-loc">${esc(r.location||e.location||'Location unresolved')}</div>${note?`<div class="college-promo">${esc(note)}</div>`:''}<div style="margin-top:9px">${pill(color,r.test)} ${e.phase?pill('gray',e.phase):''}${e._basketballSupplement?` ${pill('red','NCAA FEED · LOCATION PENDING')}`:''}${e.source_stale?` ${pill('amber','SAVED SOURCE — VERIFY')}`:''}${e.status==='TENTATIVE'?` ${pill('amber','TENTATIVE')}`:''}${e.event_type==='exhibition'?` ${pill('gray','EXHIBITION')}`:''}</div>${source}${venueSource}</article>`;
   };
   const timeValue=value=>{
     const match=String(value||'').match(/(\d{1,2}):(\d{2})\s*(a\.?m\.?|p\.?m\.?)?/i);
