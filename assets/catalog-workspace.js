@@ -18,6 +18,24 @@ function season(event,today,sources=[]){
  if(event.season_status_year===Number(today.slice(0,4))&&['in','out'].includes(event.season_status)&&event.last_verified)return event.season_status;
  return 'unknown';
 }
+// Timing is descriptive evidence, never a wagering eligibility decision.
+function timing(event,today,sources=[]){
+ const e=event||{},start=e.season_start_date,end=e.season_end_date;
+ const checked=String(e.last_verified||'').slice(0,10);
+ const unknown=reason=>({status:'unknown',reason,start:validDate(start)?start:null,end:validDate(end)?end:null,checked:validDate(checked)?checked:null,progress:null,days:null});
+ if(e.season_hold)return unknown('Season scope needs confirmation');
+ if(e.nonseasonal)return unknown('Event-based competition; dates vary');
+ if(e.season_window_complete===false)return unknown('Season dates are incomplete');
+ if(!validDate(today)||!validDate(start)||!validDate(end)||start>end)return unknown(e.season_window||e.season_start?'Typical season window · confirmation needed':'Season dates need confirmation');
+ if(Number(end.slice(0,4))<Number(today.slice(0,4)))return unknown('Previous edition · next dates need confirmation');
+ const ids=[e.source_id,...(e.source_ids||[])];
+ if(end<today&&sources.some(x=>ids.includes(x.id)&&x.coverage_status==='last-published-event-window'))return unknown('Previous event window · current season unconfirmed');
+ if(!validDate(checked)||checked>today)return unknown('Recorded dates · verification date needs confirmation');
+ const day=x=>Date.parse(x+'T00:00:00Z')/86400000;
+ const status=today<start?'upcoming':today>end?'out':'in';
+ const duration=day(end)-day(start);
+ return {status,reason:'Recorded season dates',start,end,checked,days:status==='upcoming'?day(start)-day(today):status==='in'?day(end)-day(today):null,progress:status==='in'&&duration>0?Math.round((day(today)-day(start))/duration*100):null};
+}
 function aliasRows(identities,key){
  const rows=identities.filter(x=>x.identity_key===key);
  const result=[];const seen=new Set();
@@ -92,5 +110,5 @@ function eventDate(event){
  if(typeof value!=='string'||!/(?:Z|[+-]\d{2}:\d{2})$/.test(value)||!Number.isFinite(Date.parse(value)))return {date:'Date not confirmed',time:'Time not published'};
  const date=new Date(value);return {date:new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric'}).format(date),time:new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(date)};
 }
-return {norm,season,build,filter,counts,u18Placement,matchEvent,eventDate};
+return {norm,season,timing,build,filter,counts,u18Placement,matchEvent,eventDate};
 });

@@ -9,6 +9,30 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_season_timing_distinguishes_exact_upcoming_annual_and_held_dates(self):
+        self.js("""
+const dated={season_start_date:'2026-10-01',season_end_date:'2026-12-01',last_verified:'2026-09-20'};
+assert.equal(C.timing(dated,'2026-11-01').status,'in');assert.equal(C.timing(dated,'2026-11-01').progress,51);
+assert.equal(C.timing(dated,'2026-09-29').status,'upcoming');assert.equal(C.timing(dated,'2026-09-29').days,2);
+assert.equal(C.timing(dated,'2026-12-02').status,'out');
+for(const event of [{season_start:'10-01',season_end:'06-30'}, {...dated,last_verified:null},{...dated,season_hold:true},{...dated,season_window_complete:false},{...dated,season_start_date:'2026-02-30'},{...dated,last_verified:'2027-01-01'},{...dated,nonseasonal:true}]){
+ assert.equal(C.timing(event,'2026-11-01').status,'unknown');assert.equal(C.timing(event,'2026-11-01').progress,null);
+}
+assert.equal(C.timing(dated,'2027-11-01').status,'unknown');
+assert.equal(C.timing({season_start_date:'2026-11-01',season_end_date:'2026-11-01',last_verified:'2026-10-01'},'2026-11-01').progress,null);
+""")
+
+    def test_season_cards_preserve_division_scope_restrictions_and_escape_text(self):
+        self.js("""
+todayKey=()=> '2026-11-02';
+const row={id:'parent',name:'League <A>',sport:'Basketball',group:{},aliases:[{name:'Alias <A>'}],restrictions:['NO <PROPS>'],event:{coverage_children:[{key:'men',label:'Men',season_start_date:'2026-10-01',season_end_date:'2027-01-01',last_verified:'2026-09-30'},{key:'women',label:'Women',season_window:'March–June',season_start:'03-01',season_end:'06-30'}]}};
+assert.equal(catalogSeasonMatches(row,'in'),true);assert.equal(catalogSeasonMatches(row,'unknown'),true);assert.equal(catalogSeasonMatches(row,'upcoming'),false);
+const html=catalogSeasonCard(row);assert.match(html,/Men/);assert.match(html,/Women/);assert.match(html,/Typical season window/);
+assert.equal((html.match(/role="progressbar"/g)||[]).length,1);
+assert.match(html,/NO &lt;PROPS&gt;/);assert.match(html,/League &lt;A&gt;/);assert.match(html,/Alias &lt;A&gt;/);
+assert.doesNotMatch(catalogTimingHtml({season_start:'10-01',season_end:'06-30'}),/progressbar/);
+""",ui=True)
+
     def test_reliability_counts_exact_entries_and_keeps_gaps_separate_from_approval(self):
         self.js("""
 mappedCatalogEventForScheduleEvent=e=>({key:e.catalog_identity_key});
@@ -239,7 +263,7 @@ assert.ok(!html.includes('<img'));assert.ok(!html.includes('<script>'));assert.o
 
     def test_existing_functions_are_used_for_real_progress_and_safeguards(self):
         view=(ROOT/'assets/catalog-workspace-view.js').read_text()
-        self.assertIn('seasonProgressHtml(e,mappedSeasonStatus(e))',view)
+        self.assertIn('const seasonBlock=e=>catalogTimingHtml(e)',view)
         self.assertIn('combinedKnownU18Rows()',view)
         self.assertIn('registryAgeSummary(x,todayKey())',view)
         self.assertIn('TODAY_MODEL||buildTodayModel()',view)

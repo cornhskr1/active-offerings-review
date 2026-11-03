@@ -16,7 +16,7 @@ def function_source(name):
 
 
 class ReviewTodayDivisionTests(unittest.TestCase):
-    def test_tennis_tour_children_resolve_and_show_progress(self):
+    def test_tennis_tour_children_resolve_without_inventing_exact_progress(self):
         script = """
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -34,7 +34,7 @@ for(const family of ['itf-world-tour','utr-pro-tour','usta-pro-circuit'])
     assert(mapped);
     assert.equal(mapped.catalog_event.endsWith(` | ${division}`),true);
     assert.equal(mapped.parent_catalog_event.endsWith(' | Men and Women'),true);
-    assert.match(seasonProgressHtml(mapped,annualSeasonStatus(mapped)),/role="progressbar"/);
+    assert.equal(seasonProgressHtml(mapped,annualSeasonStatus(mapped)),'');
   }
 const united=mappedCatalogEventForSource('tennis-united-cup');
 assert.equal(united.season_hold,true);
