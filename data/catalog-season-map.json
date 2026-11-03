@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T12:17:58.173Z",
+  "generated_at": "2026-11-03T12:46:41.988Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -4920,29 +4920,53 @@
                   "key": "soccer-international-copa-libertadores-men",
                   "label": "Copa Libertadores | Men",
                   "source_id": "soccer-conmebol-libertadores",
-                  "season_window": "February–November 2026",
-                  "season_start": "02-01",
-                  "season_end": "11-30"
+                  "season_window": "2026-02-03 – 2026-11-28",
+                  "season_start_date": "2026-02-03",
+                  "season_end_date": "2026-11-28",
+                  "season_basis": "2026 men's competition from first preliminary tie through the announced final. Club's dated February 3 preview is available in search indexing; direct page is challenged. Local opening date, not UTC February 4.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://deportivotachira.com/por-la-ventaja-en-la-paz-previa/",
+                  "season_evidence_urls": [
+                    "https://deportivotachira.com/por-la-ventaja-en-la-paz-previa/",
+                    "https://gol.conmebol.com/libertadores/es/news/la-final-de-la-conmebol-libertadores-2026-se-disputara-en-montevideo"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 },
                 {
                   "key": "soccer-international-copa-libertadores-women",
                   "label": "Copa Libertadores | Women",
                   "source_id": "soccer-conmebol-libertadores-women",
-                  "season_window": "Schedule mapping pending"
+                  "season_window": "2026-10-15 – 2026-10-31",
+                  "season_start_date": "2026-10-15",
+                  "season_end_date": "2026-10-31",
+                  "season_basis": "2026 women's field-football tournament in Ecuador, group opening through final. Dates also appear under the separate Femenina catalog entry; identities and source assignments remain separate.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026",
+                  "season_evidence_urls": [
+                    "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 }
               ]
             },
             {
               "key": "soccer-international-copa-libertadores-femenina-women",
-              "season_window": "October 15–31, 2026; 24 group fixtures published October 15–22, knockout pairings pending",
-              "season_basis": "CONMEBOL publishes 24 local-time group fixtures; six retain unidentified Colombian representatives and are held. Knockout pairings and future editions remain unverified.",
-              "season_window_complete": false,
+              "season_window": "2026-10-15 – 2026-10-31",
+              "season_basis": "2026 women's field-football tournament, group opening through final. Full season window is established independently of unresolved fixture participants; existing event-source holds remain unchanged.",
+              "season_window_complete": true,
               "season_start_date": "2026-10-15",
               "season_end_date": "2026-10-31",
-              "last_verified": "2026-09-27",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-conmebol-libertadores-femenina",
               "catalog_event": "Copa Libertadores Femenina | Women",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026",
+              "season_evidence_urls": [
+                "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026"
+              ],
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-international-copa-sudamericana-men-and-women",
@@ -4959,9 +4983,18 @@
                   "key": "soccer-international-copa-sudamericana-men",
                   "label": "Copa Sudamericana | Men",
                   "source_id": "soccer-conmebol-sudamericana",
-                  "season_window": "March–November 2026",
-                  "season_start": "03-01",
-                  "season_end": "11-30"
+                  "season_window": "2026-03-03 – 2026-11-21",
+                  "season_start_date": "2026-03-03",
+                  "season_end_date": "2026-11-21",
+                  "season_basis": "2026 men's competition from first-round fixtures through the announced Barranquilla final, including all knockout stages.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://cdn.conmebol.com/wp-content/uploads/2026/02/Fixture_CONMEBOL-Sudamericana-2026_Primera-Fase_v23.02.pdf",
+                  "season_evidence_urls": [
+                    "https://cdn.conmebol.com/wp-content/uploads/2026/02/Fixture_CONMEBOL-Sudamericana-2026_Primera-Fase_v23.02.pdf",
+                    "https://gol.conmebol.com/sudamericana/es/news/barranquilla-sede-de-la-final-de-la-conmebol-sudamericana-2026"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 },
                 {
                   "key": "soccer-international-copa-sudamericana-women",
@@ -4986,8 +5019,17 @@
                   "key": "soccer-international-recopa-sudamericana-men",
                   "label": "Recopa Sudamericana | Men",
                   "source_id": "soccer-conmebol-recopa",
-                  "season_window": "February 2026",
-                  "season_status": "out"
+                  "season_window": "2026-02-19 – 2026-02-26",
+                  "season_start_date": "2026-02-19",
+                  "season_end_date": "2026-02-26",
+                  "season_basis": "2026 men's Recopa between Flamengo and Lanus, both legs. Confirmed fixture dates supersede preliminary February 18/25 calendar; dates are local.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.afa.com.ar/4505/posts/fechas-y-horarios-de-las-finales-recopa-2026-entre-flamengo-y-lanus",
+                  "season_evidence_urls": [
+                    "https://www.afa.com.ar/4505/posts/fechas-y-horarios-de-las-finales-recopa-2026-entre-flamengo-y-lanus"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 },
                 {
                   "key": "soccer-international-recopa-sudamericana-women",
@@ -4999,13 +5041,21 @@
             },
             {
               "key": "soccer-international-copa-am-rica-femenina-women",
-              "season_window": "Most recent edition: July–August 2025 · no 2026 finals",
-              "season_basis": "Tournament-cycle event",
-              "last_verified": "2026-09-18",
+              "season_window": "2025-07-11 – 2025-08-02",
+              "season_basis": "Latest completed 2025 senior women's edition. Opener rescheduled to July 11 from July 12; no recurring roll-forward or 2026 tournament implied.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-conmebol-copa-america-femenina",
-              "season_status": "out",
               "catalog_event": "Copa América Femenina | Women",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2025-07-11",
+              "season_end_date": "2025-08-02",
+              "season_source_url": "https://copaamerica.com/es/copa-america-femenina-2025",
+              "season_evidence_urls": [
+                "https://copaamerica.com/es/copa-america-femenina-2025",
+                "https://copaamerica.com/es/novedades/cambio-fecha-partido-inaugural-copa-america-femenina-2025"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             }
           ]
         },

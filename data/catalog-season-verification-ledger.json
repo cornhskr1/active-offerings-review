@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-03T12:17:58.173Z",
+  "updated_at": "2026-11-03T12:46:41.988Z",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "384c36061e3da1fc0107b0e2e9cfa9713c5e9364",
   "baseline_dated_records": 255,
@@ -1049,6 +1049,131 @@
       "finding": "Current repository mapping points to a held publisher. Reviewed stored mapping and access policy only; no held domain requested and no saved dates refreshed.",
       "missing_fact": "Current edition opening and full closing dates from permitted official evidence.",
       "next_action": "Seek an independently permitted federation or host calendar; otherwise await access review. This route-specific hold does not establish that dates are impossible to confirm."
+    },
+    {
+      "key": "soccer-international-copa-libertadores-men",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Copa Libertadores | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://deportivotachira.com/por-la-ventaja-en-la-paz-previa/",
+      "evidence_urls": [
+        "https://deportivotachira.com/por-la-ventaja-en-la-paz-previa/",
+        "https://gol.conmebol.com/libertadores/es/news/la-final-de-la-conmebol-libertadores-2026-se-disputara-en-montevideo"
+      ],
+      "finding": "2026 men's competition from first preliminary tie through the announced final. Club's dated February 3 preview is available in search indexing; direct page is challenged. Local opening date, not UTC February 4.",
+      "missing_fact": "",
+      "next_action": "Recheck on new edition or revised calendar announcement."
+    },
+    {
+      "key": "soccer-international-copa-libertadores-women",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Copa Libertadores | Women",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026",
+      "evidence_urls": [
+        "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026"
+      ],
+      "finding": "2026 women's field-football tournament in Ecuador, group opening through final. Dates also appear under the separate Femenina catalog entry; identities and source assignments remain separate.",
+      "missing_fact": "",
+      "next_action": "Recheck on new edition or revised calendar announcement."
+    },
+    {
+      "key": "soccer-international-copa-libertadores-femenina-women",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Copa Libertadores Femenina | Women",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026",
+      "evidence_urls": [
+        "https://gol.conmebol.com/libertadores/es/news/asi-quedaron-los-grupos-de-la-conmebol-libertadores-femenina-2026"
+      ],
+      "finding": "2026 women's field-football tournament, group opening through final. Full season window is established independently of unresolved fixture participants; existing event-source holds remain unchanged.",
+      "missing_fact": "",
+      "next_action": "Recheck on new edition or revised calendar announcement."
+    },
+    {
+      "key": "soccer-international-copa-sudamericana-men",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Copa Sudamericana | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://cdn.conmebol.com/wp-content/uploads/2026/02/Fixture_CONMEBOL-Sudamericana-2026_Primera-Fase_v23.02.pdf",
+      "evidence_urls": [
+        "https://cdn.conmebol.com/wp-content/uploads/2026/02/Fixture_CONMEBOL-Sudamericana-2026_Primera-Fase_v23.02.pdf",
+        "https://gol.conmebol.com/sudamericana/es/news/barranquilla-sede-de-la-final-de-la-conmebol-sudamericana-2026"
+      ],
+      "finding": "2026 men's competition from first-round fixtures through the announced Barranquilla final, including all knockout stages.",
+      "missing_fact": "",
+      "next_action": "Recheck on new edition or revised calendar announcement."
+    },
+    {
+      "key": "soccer-international-recopa-sudamericana-men",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Recopa Sudamericana | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.afa.com.ar/4505/posts/fechas-y-horarios-de-las-finales-recopa-2026-entre-flamengo-y-lanus",
+      "evidence_urls": [
+        "https://www.afa.com.ar/4505/posts/fechas-y-horarios-de-las-finales-recopa-2026-entre-flamengo-y-lanus"
+      ],
+      "finding": "2026 men's Recopa between Flamengo and Lanus, both legs. Confirmed fixture dates supersede preliminary February 18/25 calendar; dates are local.",
+      "missing_fact": "",
+      "next_action": "Recheck on new edition or revised calendar announcement."
+    },
+    {
+      "key": "soccer-international-copa-am-rica-femenina-women",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Copa América Femenina | Women",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://copaamerica.com/es/copa-america-femenina-2025",
+      "evidence_urls": [
+        "https://copaamerica.com/es/copa-america-femenina-2025",
+        "https://copaamerica.com/es/novedades/cambio-fecha-partido-inaugural-copa-america-femenina-2025"
+      ],
+      "finding": "Latest completed 2025 senior women's edition. Opener rescheduled to July 11 from July 12; no recurring roll-forward or 2026 tournament implied.",
+      "missing_fact": "",
+      "next_action": "Recheck on new edition or revised calendar announcement."
+    },
+    {
+      "key": "soccer-international-copa-sudamericana-women",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Copa Sudamericana | Women",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.conmebol.com/",
+      "evidence_urls": [
+        "https://cdn.conmebol.com/",
+        "https://cdn.conmebol.com/wp-content/uploads/2025/12/CS-2026-Manual-de-Clubes-ESP-Feb26.pdf"
+      ],
+      "finding": "Reviewed CONMEBOL competition directory, competition manual and targeted official-site searches. No distinct women's competition matching this catalog label was established; men's dates cannot be transferred.",
+      "missing_fact": "Exact official women's competition identity intended by this catalog approval.",
+      "next_action": "Reconcile the catalog approval with the CONMEBOL competition directory; identify the intended women's competition before assigning dates. Do not remove or merge the approval based on absence from search."
+    },
+    {
+      "key": "soccer-international-recopa-sudamericana-women",
+      "sport": "Soccer",
+      "country": "International-Level Competitions",
+      "catalog_event": "Recopa Sudamericana | Women",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.conmebol.com/",
+      "evidence_urls": [
+        "https://cdn.conmebol.com/",
+        "https://cdn.conmebol.com/wp-content/uploads/2025/12/CS-2026-Manual-de-Clubes-ESP-Feb26.pdf"
+      ],
+      "finding": "Reviewed CONMEBOL competition directory, competition manual and targeted official-site searches. No distinct women's competition matching this catalog label was established; men's dates cannot be transferred.",
+      "missing_fact": "Exact official women's competition identity intended by this catalog approval.",
+      "next_action": "Reconcile the catalog approval with the CONMEBOL competition directory; identify the intended women's competition before assigning dates. Do not remove or merge the approval based on absence from search."
     }
   ]
 }
