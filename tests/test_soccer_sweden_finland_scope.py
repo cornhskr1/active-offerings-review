@@ -2,6 +2,10 @@
 import json
 import unittest
 from pathlib import Path
+from sys import path as sys_path
+
+sys_path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+from audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / 'data'
 
@@ -13,7 +17,7 @@ class SwedenFinlandScopeTests(unittest.TestCase):
         groups = [g for g in soccer['groups'] if g.get('country') in {'Sweden', 'Finland'}]
         cls.events = {e['key']: e for g in groups for e in g['events']}
         cls.children = {c['key']: c for c in cls.events['soccer-sweden-svenska-cupen-men-and-women']['coverage_children']}
-        cls.inventory = {r['identity_key']: r for r in json.loads((DATA / 'priority2-coverage-inventory.json').read_text())['identities']}
+        cls.inventory = {r['identity_key']: r for r in build()['identities']}
 
     def test_finnish_cups_do_not_inherit_league_dates(self):
         for key, bounds in {
@@ -41,10 +45,18 @@ class SwedenFinlandScopeTests(unittest.TestCase):
         self.assertNotEqual(self.children['soccer-sweden-svenska-cupen-men']['source_id'], self.children['soccer-sweden-svenska-cupen-women']['source_id'])
 
     def test_league_qualification_is_not_hidden_in_regular_season(self):
-        for key in ('soccer-finland-veikkausliiga-men', 'soccer-sweden-allsvenskan-men', 'soccer-sweden-superettan-men'):
+        for key in ('soccer-finland-veikkausliiga-men',):
             with self.subTest(key=key):
                 self.assertFalse(self.events[key]['season_window_complete'])
                 self.assertEqual('PARTIAL_WINDOW', self.inventory[key]['season_state'])
+        for key, start in (('soccer-sweden-allsvenskan-men', '2026-04-04'),
+                           ('soccer-sweden-superettan-men', '2026-04-03')):
+            with self.subTest(key=key):
+                self.assertTrue(self.events[key]['season_window_complete'])
+                self.assertEqual(start, self.events[key]['season_start_date'])
+                self.assertEqual('2026-12-06', self.events[key]['season_end_date'])
+                self.assertLess(self.events[key]['regular_season_end_date'], self.events[key]['season_end_date'])
+                self.assertEqual('DATED_WINDOW', self.inventory[key]['season_state'])
         self.assertEqual('ADAPTER_CONFIGURED', self.inventory['soccer-finland-veikkausliiga-men']['coverage_state'])
 
 
