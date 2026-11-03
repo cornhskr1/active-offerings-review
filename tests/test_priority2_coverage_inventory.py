@@ -665,11 +665,15 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
         self.assertEqual(6, basketball["no_linked_source"])
-        self.assertEqual(10, basketball["pending_dates"])
+        self.assertEqual(14, basketball["pending_dates"])
         # Newly researched recurring estimates remain partial until finals are published.
         for league in ("Basketligaen | Men", "LNB Élite | Men",
                        "Basketbol Süper Ligi (BSL) | Men",
-                       "Liga Nacional de Baloncesto Profesional (LNBP) | Men"):
+                       "Liga Nacional de Baloncesto Profesional (LNBP) | Men",
+                       "Liga Nacional de Básquet (LNB) | Men",
+                       "Novo Basquete Brasil (NBB) | Men",
+                       "Liga Nacional de Basquetbol de Chile (LNB) | Men",
+                       "Unrivaled Basketball | Women"):
             with self.subTest(league=league):
                 self.assertEqual("PARTIAL_WINDOW", self.rows[("Basketball", league)]["season_state"])
         nba = self.rows[("Basketball", "National Basketball Association (NBA) | Men")]
@@ -778,7 +782,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
 
         lnb = self.rows[("Basketball", "Liga Nacional de Básquet (LNB) | Men")]
-        self.assertEqual("DESCRIPTIVE_WINDOW", lnb["season_state"])
+        self.assertEqual("PARTIAL_WINDOW", lnb["season_state"])
         self.assertEqual("ADAPTER_CONFIGURED", lnb["coverage_state"])
         self.assertEqual("official-arg-lnb-fixtures", lnb["sources"][0]["type"])
 
@@ -795,7 +799,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertIn(reason, row["hold_reason"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(10, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(14, self.inventory["by_sport"]["Basketball"]["pending_dates"])
 
     def test_fifth_basketball_source_batch_uses_exact_or_descriptive_official_windows(self):
         dated_windows = {
@@ -828,7 +832,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("official-nbb-fixtures", nbb["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(10, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(14, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_sixth_basketball_source_batch_uses_exact_official_windows(self):
@@ -849,7 +853,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(10, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(14, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_seventh_basketball_source_batch_closes_actionable_source_gaps(self):
@@ -868,13 +872,13 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
         unrivaled = self.rows[("Basketball", "Unrivaled Basketball | Women")]
-        self.assertEqual("DESCRIPTIVE_WINDOW", unrivaled["season_state"])
+        self.assertEqual("PARTIAL_WINDOW", unrivaled["season_state"])
         self.assertEqual("OFFICIAL_WINDOW_ONLY", unrivaled["coverage_state"])
         self.assertEqual(["basketball-us-unrivaled"], [source["id"] for source in unrivaled["sources"]])
         self.assertEqual("official-event-window", unrivaled["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(10, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(14, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_ncaa_division_one_adapters_match_the_exact_competition_scope(self):

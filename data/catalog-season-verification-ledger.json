@@ -2,8 +2,8 @@
   "schema_version": 1,
   "updated_at": "2026-11-03",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
-  "baseline_commit": "9c2668c19737651a2f799daeea6bbe98c3061d65",
-  "baseline_dated_records": 303,
+  "baseline_commit": "9e06b2865b8ecb57717aedd4108743a0b808ca51",
+  "baseline_dated_records": 307,
   "catalog_records": 735,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
@@ -1840,6 +1840,170 @@
       "finding": "Football Australia's cup structure names men's A-League entrants and member-federation pathways; its domestic calendar does not establish a separate senior women's national Australia Cup. Existing identity hold remains. State women's cups and unrelated sports using Australia Cup are not substitutes.",
       "missing_fact": "Exact official senior women's national competition corresponding to the approved Australia Cup women child.",
       "next_action": "Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures."
+    },
+    {
+      "key": "basketball-ar-lnb",
+      "sport": "Basketball",
+      "country": "Argentina",
+      "catalog_event": "Liga Nacional de Básquet (LNB) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://gimnasiacomodoro.com/gimnasia-ya-tiene-fecha-para-su-debut-en-la-liga-nacional/",
+      "evidence_urls": [
+        "https://gimnasiacomodoro.com/gimnasia-ya-tiene-fecha-para-su-debut-en-la-liga-nacional/",
+        "https://www.laliganacional.com.ar/"
+      ],
+      "finding": "2026/27 men's Liga Nacional: the participating club confirms September 28 at Lanus, superseding the preliminary September 27 description. League homepage returned 403. Full championship endpoint remains unverified.",
+      "missing_fact": "Exact final possible championship game date for 2026/27.",
+      "next_action": "Recheck the official complete schedule when final dates are published."
+    },
+    {
+      "key": "basketball-ar-super20",
+      "sport": "Basketball",
+      "country": "Argentina",
+      "catalog_event": "Super 20 Cup | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.obrasbasket.com/noticias/obras-clasificado-y-con-rival-para-la-copa-islas-malvinas/",
+      "evidence_urls": [
+        "https://www.obrasbasket.com/noticias/obras-clasificado-y-con-rival-para-la-copa-islas-malvinas/",
+        "https://www.obrasbasket.com/noticias/especiales/pepo-barral-simbolo-de-obras-volvio-a-gritar-campeon-de-la-liga-sudamericana-2012-a-la-copa-islas-malvinas-2026/"
+      ],
+      "finding": "2026 men's Copa Islas Malvinas: Obras explicitly identifies this as the competition previously called Copa Super 20 and confirms April 1-2 semifinals/final; its championship report confirms April 2. Existing catalog identity and source assignment remain unchanged. Next edition is not inferred.",
+      "missing_fact": null,
+      "next_action": "Recheck when the next edition is officially published; do not roll these dates forward."
+    },
+    {
+      "key": "basketball-ar-supercopa",
+      "sport": "Basketball",
+      "country": "Argentina",
+      "catalog_event": "Supercopa de Liga | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://institutoacc.com.ar/index.php/venta-de-entradas-para-la-supercopa/",
+      "evidence_urls": [
+        "https://institutoacc.com.ar/index.php/venta-de-entradas-para-la-supercopa/",
+        "https://institutoacc.com.ar/index.php/instituto-campeon-de-la-supercopa-2025-26/"
+      ],
+      "finding": "2025/26 men's Supercopa de La Liga: Instituto's official ticket notice confirms March 5, 2026 and its March 6 result confirms the completed Boca-Instituto title match. Replaces stale 2025 edition. Exact next-edition date not established.",
+      "missing_fact": null,
+      "next_action": "Recheck when the next edition is officially published; do not roll these dates forward."
+    },
+    {
+      "key": "basketball-br-nbb",
+      "sport": "Basketball",
+      "country": "Brazil",
+      "catalog_event": "Novo Basquete Brasil (NBB) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lnb.com.br/noticias/nbb-caixa-2026-27-comeca-em-17-de-outubro-com-mogi-basquete-x-corinthians/",
+      "evidence_urls": [
+        "https://lnb.com.br/noticias/nbb-caixa-2026-27-comeca-em-17-de-outubro-com-mogi-basquete-x-corinthians/",
+        "https://lnb.com.br/nbb/tabela-de-jogos"
+      ],
+      "finding": "2026/27 men's NBB: official opening announcement confirms October 17. All playoff rounds are best of five; the published first-turn fixtures do not establish the championship endpoint.",
+      "missing_fact": "Final possible championship game date; do not use the last currently listed regular-season fixture.",
+      "next_action": "Recheck the official complete schedule when final dates are published."
+    },
+    {
+      "key": "basketball-cl-lnb",
+      "sport": "Basketball",
+      "country": "Chile",
+      "catalog_event": "Liga Nacional de Basquetbol de Chile (LNB) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lnbchile.com/noticias/uc-y-colo-colo-daran-el-salto-inicial-al-torneo-de-clausura-2026-de-la-lnb",
+      "evidence_urls": [
+        "https://lnbchile.com/noticias/uc-y-colo-colo-daran-el-salto-inicial-al-torneo-de-clausura-2026-de-la-lnb",
+        "https://lnbchile.com/noticias/ocho-equipos-y-un-objetivo-la-liga-chery-by-cecinas-llanquihue-2026-comienza-sus-playoffs",
+        "https://lnbchile.com/liga/uno/calendario"
+      ],
+      "finding": "Current men's Liga Chery Clausura 2026 opened July 8. The November 2 playoff announcement publishes quarterfinals only, through possible November 16 games. Full scope includes best-of-seven championship and relegation playout; neither endpoint is established. Removes recurring March-December estimate.",
+      "missing_fact": "Exact championship and relegation-playout endpoints for Clausura 2026.",
+      "next_action": "Recheck the official complete schedule when final dates are published."
+    },
+    {
+      "key": "basketball-cl-copa",
+      "sport": "Basketball",
+      "country": "Chile",
+      "catalog_event": "Copa Chile | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://lnbchile.com/noticias/el-invicto-vs-el-primer-campeon-del-ano-todo-listo-para-la-copa-chile-chery-by-cecinas-llanquihue-temuco-2026",
+      "evidence_urls": [
+        "https://lnbchile.com/noticias/el-invicto-vs-el-primer-campeon-del-ano-todo-listo-para-la-copa-chile-chery-by-cecinas-llanquihue-temuco-2026",
+        "https://noticias.udec.cl/santiago-gomez-adelanta-la-final-de-copa-chile-frente-a-cd-espanol-de-osorno-lucharemos-para-quedarnos-con-el-titulo/",
+        "https://lnbchile.com/copa-chile/match/con-vs-eso-2026-05-08"
+      ],
+      "finding": "2026 men's Copa Chile was a single title match on May 8 between the two Apertura conference leaders. UdeC confirms the single-match format; LNB confirms the date and final result. League qualification is a separate competition, not earlier Copa rounds. Removes recurring September-December estimate.",
+      "missing_fact": null,
+      "next_action": "Recheck when the next edition is officially published; do not roll these dates forward."
+    },
+    {
+      "key": "basketball-us-nba",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "National Basketball Association (NBA) | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+      "evidence_urls": [
+        "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "https://www.nba.com/news/key-dates"
+      ],
+      "finding": "2026/27 NBA regular season runs October 20-April 11. NBA key dates do not establish the Finals endpoint; the regular-season endpoint remains separately recorded.",
+      "missing_fact": "Exact final possible NBA Finals date for 2026/27.",
+      "next_action": "Recheck the official complete schedule when final dates are published."
+    },
+    {
+      "key": "basketball-us-unrivaled",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "Unrivaled Basketball | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
+      "evidence_urls": [
+        "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
+        "https://www.unrivaled.basketball/schedule?season=2027",
+        "https://www.unrivaled.basketball/arena"
+      ],
+      "finding": "2027 women's Unrivaled season three begins January 8, confirmed by the October 28 league release and opening game page. Published schedule lists regular-season games; Miami's last listed home date is not proof of the championship endpoint.",
+      "missing_fact": "Exact 2027 championship date.",
+      "next_action": "Recheck the official complete schedule when final dates are published."
+    },
+    {
+      "key": "basketball-us-nba-international-preseason",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "NBA Preseason Games v. International Teams",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://pr.nba.com/mavericks-rockets-macao/",
+      "evidence_urls": [
+        "https://pr.nba.com/mavericks-rockets-macao/",
+        "https://www.nba.com/news/key-dates"
+      ],
+      "finding": "Reviewed 2026 international preseason scope. Official Macao announcement is Mavericks versus Rockets, both NBA teams, and does not satisfy NBA versus a non-NBA international club. No qualifying current-edition matchup established; existing hold and no-proposition restriction remain.",
+      "missing_fact": "Official current-edition NBA versus non-NBA international-club matchup and date.",
+      "next_action": "Retain the existing identity hold until official evidence establishes the exact competition; do not substitute another division or opponent scope."
+    },
+    {
+      "key": "basketball-us-tbt-women",
+      "sport": "Basketball",
+      "country": "United States",
+      "catalog_event": "The Basketball Tournament (TBT) | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://tbthoops.com/news/tbt-announces-two-year-extension-with-fox-sports-for-new-look-2-million-tournament/",
+      "evidence_urls": [
+        "https://tbthoops.com/news/tbt-announces-two-year-extension-with-fox-sports-for-new-look-2-million-tournament/",
+        "https://tbthoops.com/",
+        "https://thetournament.com/"
+      ],
+      "finding": "Official TBT format describes alumni and non-alumni brackets, not a distinct women's basketball tournament. TST women's competition is soccer. Existing women's TBT identity hold remains; no men's dates copied.",
+      "missing_fact": "Exact official women's basketball competition and its calendar corresponding to this child.",
+      "next_action": "Retain the existing identity hold until official evidence establishes the exact competition; do not substitute another division or opponent scope."
     }
   ]
 }
