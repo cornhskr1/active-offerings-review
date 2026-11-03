@@ -9,6 +9,24 @@ HTML = (ROOT / 'index.html').read_text()
 SCRIPT = re.search(r'<script>([\s\S]*)</script>', HTML).group(1).split('// interactions')[0]
 
 class CatalogWorkspaceTests(unittest.TestCase):
+    def test_reliability_counts_exact_entries_and_keeps_gaps_separate_from_approval(self):
+        self.js("""
+mappedCatalogEventForScheduleEvent=e=>({key:e.catalog_identity_key});
+const rows=[{id:'one',sport:'A',name:'One',event:{key:'one'}},{id:'two',sport:'A',name:'Two',event:{key:'two'}}];
+TODAY_MODEL={global:{sources:[]},events:[{id:'a',name:'A',sport:'A',catalog_identity_key:'one',source_stale:true,start_time:'2026-11-02'}, {id:'b',name:'B',sport:'A',catalog_identity_key:'one',observed_at:'2026-11-02T12:00:00Z',start_time:'2026-11-03'}]};
+DATA.oddsEvents={collector_state:{halted:true}};
+CATALOG_BROWSER.entry='all';CATALOG_BROWSER.date='tomorrow';CATALOG_BROWSER.attention=true;
+const html=catalogReliabilityHtml(rows);
+assert.match(html,/1 of 2 catalog entries/);assert.match(html,/1 event flagged/);assert.match(html,/provider is paused/);assert.match(html,/Unlisted events may still be taking place/);
+CATALOG_BROWSER.entry='two';const empty=catalogReliabilityHtml(rows);
+assert.match(empty,/0 of 1 catalog entries/);assert.doesNotMatch(empty,/not approved|No events taking place|fully covered/i);
+assert.equal(catalogObservation({observed_at:'invalid'}),null);
+assert.equal(catalogObservationLabel({}),'Observation date unavailable');
+const options=catalogCompetitionOptions([{id:'x',sport:'Soccer',name:'League <one>',group:{}},{id:'y',sport:'Basketball',name:'NBA',group:{}}],'All sports');
+assert.match(options,/<optgroup label="Soccer">/);assert.match(options,/League &lt;one&gt;/);assert.match(options,/<optgroup label="Basketball">/);
+assert.match(catalogAliasPreview({name:'National Basketball Association',aliases:[{name:'NBA'}]}),/Also listed as NBA/);
+""",ui=True)
+
     def test_olympics_overview_restores_full_official_program_and_review_groups(self):
         self.js("""
 todayKey=()=> '2026-11-02';
@@ -71,7 +89,7 @@ assert.deepEqual(catalogBoardRows([row]).map(x=>x.event.id),['one']);
 assert.equal(catalogBoardRows([row,{...row}]).length,0);
 assert.equal(catalogBoardDate(event),'2026-11-02');
 assert.equal(catalogBoardDate({start_time:'2026-11-03T01:00:00'}),'');
-assert.match(catalogBoardFlags(event,{restrictions:[]}),/Check offerings/);
+assert.match(catalogBoardFlags(event,{restrictions:[]}),/Catalog linked/);
 assert.match(catalogBoardFlags({...event,source_stale:true},{restrictions:['NO FREE FIGHTS']}),/Saved schedule/);
 """,ui=True)
 

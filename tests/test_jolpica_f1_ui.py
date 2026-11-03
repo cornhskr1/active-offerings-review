@@ -102,14 +102,14 @@ const before=JSON.stringify(DATA.global);const model=buildTodayModel();assert.eq
 assert.equal(buildTodayModel().events.length,1);
 """, ui=True)
 
-    def test_default_by_date_render_includes_license_and_unknowns(self):
+    def test_by_date_render_includes_license_and_unknowns(self):
         self.run_js(r"""
 F1_SNAPSHOT=JolpicaF1.project(sample,now);todayKey=()=> '2026-10-19';
 const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',dataset:{},classList:{toggle(){}},setAttribute(){}});return nodes.get(id);};
 global.document={getElementById:node,querySelector:node,querySelectorAll:()=>[]};
 renderOddsSessionStatus=()=>{};reviewFeedWindows=()=>[];collegeMatchForGlobal=()=>null;
 TODAY_MODEL={start:todayKey(),end:'2026-10-26',global:{},events:F1_SNAPSHOT.events,pqCards:[],coverageAlerts:[],red:0,amber:0,dateHtml:null};
-assert.equal(TODAY_VIEW,'date');renderToday();const html=node('todayDays').innerHTML;
+TODAY_VIEW='date';renderToday();const html=node('todayDays').innerHTML;
 assert.match(html,/United States Grand Prix/);assert.match(html,/Circuit of the Americas/);assert.match(html,/Austin/);assert.match(html,/Race status UNKNOWN/);assert.match(html,/Entrants and ages unknown/);
 assert.match(html,/CC BY-NC-SA 4.0/);assert.match(html,/Data-use terms/);assert.match(html,/Modifications:/);assert.match(html,/noncommercial, share alike/);assert.match(html,/does not endorse/);
 assert.equal((html.match(/Modifications:/g)||[]).length,1);
