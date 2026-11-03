@@ -88,17 +88,19 @@
       "sport": "Basketball",
       "country": "United States",
       "catalog_event": "National Basketball Association (NBA) | Men",
-      "season_window": "October 20, 2026–postseason endpoint unconfirmed; regular season ends April 11, 2027",
+      "season_window": "2026-10-20 – full endpoint unconfirmed",
       "last_verified": "2026-11-03",
       "season_start_date": "2026-10-20",
-      "season_basis": "Official release confirms the regular-season boundaries. The full postseason endpoint has not been established by this verification.",
+      "season_basis": "2026/27 NBA regular season runs October 20-April 11. NBA key dates do not establish the Finals endpoint; the regular-season endpoint remains separately recorded.",
       "season_source_url": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
       "season_evidence_urls": [
-        "https://pr.nba.com/2026-27-nba-regular-season-schedule"
+        "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "https://www.nba.com/news/key-dates"
       ],
       "season_window_complete": false,
       "regular_season_start_date": "2026-10-20",
-      "regular_season_end_date": "2027-04-11"
+      "regular_season_end_date": "2027-04-11",
+      "season_verification_status": "awaiting-published-dates"
     },
     {
       "source_id": "wnba",
@@ -802,39 +804,61 @@
             {
               "key": "basketball-ar-lnb",
               "catalog_event": "Liga Nacional de Básquet (LNB) | Men",
-              "season_window": "2026-27 season begins September 27, 2026; completion date not yet published",
+              "season_window": "2026-09-28 – full endpoint unconfirmed",
               "source_id": "basketball-ar-lnb",
-              "season_basis": "AdC confirms the 2026-27 Liga Nacional begins September 27; its official fixture page is linked, but the season completion date and unattended adapter remain pending",
-              "last_verified": "2026-09-25",
+              "season_basis": "2026/27 men's Liga Nacional: the participating club confirms September 28 at Lanus, superseding the preliminary September 27 description. League homepage returned 403. Full championship endpoint remains unverified.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
-              ]
+              ],
+              "season_start_date": "2026-09-28",
+              "season_source_url": "https://gimnasiacomodoro.com/gimnasia-ya-tiene-fecha-para-su-debut-en-la-liga-nacional/",
+              "season_evidence_urls": [
+                "https://gimnasiacomodoro.com/gimnasia-ya-tiene-fecha-para-su-debut-en-la-liga-nacional/",
+                "https://www.laliganacional.com.ar/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             },
             {
               "key": "basketball-ar-super20",
               "catalog_event": "Super 20 Cup | Men",
-              "season_window": "March 3–4, 2025; next edition dates pending",
-              "season_start_date": "2025-03-03",
-              "season_end_date": "2025-03-04",
+              "season_window": "2026-04-01 – 2026-04-02",
+              "season_start_date": "2026-04-01",
               "source_id": "basketball-ar-super20",
-              "season_basis": "AdC confirms the last published men's Copa Super 20 was played March 3-4, 2025 in Rosario; the next edition dates and an unattended fixture adapter remain pending",
-              "last_verified": "2026-09-25",
+              "season_basis": "2026 men's Copa Islas Malvinas: Obras explicitly identifies this as the competition previously called Copa Super 20 and confirms April 1-2 semifinals/final; its championship report confirms April 2. Existing catalog identity and source assignment remain unchanged. Next edition is not inferred.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
-              ]
+              ],
+              "season_end_date": "2026-04-02",
+              "season_source_url": "https://www.obrasbasket.com/noticias/obras-clasificado-y-con-rival-para-la-copa-islas-malvinas/",
+              "season_evidence_urls": [
+                "https://www.obrasbasket.com/noticias/obras-clasificado-y-con-rival-para-la-copa-islas-malvinas/",
+                "https://www.obrasbasket.com/noticias/especiales/pepo-barral-simbolo-de-obras-volvio-a-gritar-campeon-de-la-liga-sudamericana-2012-a-la-copa-islas-malvinas-2026/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "basketball-ar-supercopa",
               "catalog_event": "Supercopa de Liga | Men",
-              "season_window": "January 17, 2025; next edition date pending",
-              "season_start_date": "2025-01-17",
-              "season_end_date": "2025-01-17",
+              "season_window": "2026-03-05 – 2026-03-05",
+              "season_start_date": "2026-03-05",
               "source_id": "basketball-ar-supercopa",
-              "season_basis": "AdC confirms the last completed men's Supercopa de La Liga was played January 17, 2025; the announced Boca-Instituto next edition still lacks a published exact date and an unattended fixture adapter remains pending",
-              "last_verified": "2026-09-25",
+              "season_basis": "2025/26 men's Supercopa de La Liga: Instituto's official ticket notice confirms March 5, 2026 and its March 6 result confirms the completed Boca-Instituto title match. Replaces stale 2025 edition. Exact next-edition date not established.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
-              ]
+              ],
+              "season_end_date": "2026-03-05",
+              "season_source_url": "https://institutoacc.com.ar/index.php/venta-de-entradas-para-la-supercopa/",
+              "season_evidence_urls": [
+                "https://institutoacc.com.ar/index.php/venta-de-entradas-para-la-supercopa/",
+                "https://institutoacc.com.ar/index.php/instituto-campeon-de-la-supercopa-2025-26/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             }
           ]
         },
@@ -878,12 +902,19 @@
             {
               "key": "basketball-br-nbb",
               "catalog_event": "Novo Basquete Brasil (NBB) | Men",
-              "season_window": "2026-27 season begins October 17, 2026; official schedule currently published through December 29",
-              "season_status": "out",
+              "season_window": "2026-10-17 – full endpoint unconfirmed",
               "source_id": "basketball-br-nbb",
-              "season_basis": "Liga Nacional de Basquete's official NBB schedule confirms the 2026-27 season begins October 17 and currently publishes games through December 29; later rounds, the season completion date and an unattended fixture adapter remain unpublished",
-              "last_verified": "2026-09-25",
-              "restrictions": []
+              "season_basis": "2026/27 men's NBB: official opening announcement confirms October 17. All playoff rounds are best of five; the published first-turn fixtures do not establish the championship endpoint.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-10-17",
+              "season_source_url": "https://lnb.com.br/noticias/nbb-caixa-2026-27-comeca-em-17-de-outubro-com-mogi-basquete-x-corinthians/",
+              "season_evidence_urls": [
+                "https://lnb.com.br/noticias/nbb-caixa-2026-27-comeca-em-17-de-outubro-com-mogi-basquete-x-corinthians/",
+                "https://lnb.com.br/nbb/tabela-de-jogos"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             },
             {
               "key": "basketball-br-super8",
@@ -936,22 +967,39 @@
             {
               "key": "basketball-cl-lnb",
               "catalog_event": "Liga Nacional de Basquetbol de Chile (LNB) | Men",
-              "season_window": "March–December competition calendar",
-              "season_start": "03-01",
-              "season_end": "12-31",
+              "season_window": "2026-07-08 – full endpoint unconfirmed",
               "source_id": "chile-lnb",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-07-08",
+              "season_basis": "Current men's Liga Chery Clausura 2026 opened July 8. The November 2 playoff announcement publishes quarterfinals only, through possible November 16 games. Full scope includes best-of-seven championship and relegation playout; neither endpoint is established. Removes recurring March-December estimate.",
+              "season_source_url": "https://lnbchile.com/noticias/uc-y-colo-colo-daran-el-salto-inicial-al-torneo-de-clausura-2026-de-la-lnb",
+              "season_evidence_urls": [
+                "https://lnbchile.com/noticias/uc-y-colo-colo-daran-el-salto-inicial-al-torneo-de-clausura-2026-de-la-lnb",
+                "https://lnbchile.com/noticias/ocho-equipos-y-un-objetivo-la-liga-chery-by-cecinas-llanquihue-2026-comienza-sus-playoffs",
+                "https://lnbchile.com/liga/uno/calendario"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             },
             {
               "key": "basketball-cl-copa",
               "catalog_event": "Copa Chile | Men",
-              "season_window": "September–December",
-              "season_start": "09-01",
-              "season_end": "12-31",
+              "season_window": "2026-05-08 – 2026-05-08",
               "source_id": "chile-copa",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2026-05-08",
+              "season_end_date": "2026-05-08",
+              "season_basis": "2026 men's Copa Chile was a single title match on May 8 between the two Apertura conference leaders. UdeC confirms the single-match format; LNB confirms the date and final result. League qualification is a separate competition, not earlier Copa rounds. Removes recurring September-December estimate.",
+              "season_source_url": "https://lnbchile.com/noticias/el-invicto-vs-el-primer-campeon-del-ano-todo-listo-para-la-copa-chile-chery-by-cecinas-llanquihue-temuco-2026",
+              "season_evidence_urls": [
+                "https://lnbchile.com/noticias/el-invicto-vs-el-primer-campeon-del-ano-todo-listo-para-la-copa-chile-chery-by-cecinas-llanquihue-temuco-2026",
+                "https://noticias.udec.cl/santiago-gomez-adelanta-la-final-de-copa-chile-frente-a-cd-espanol-de-osorno-lucharemos-para-quedarnos-con-el-titulo/",
+                "https://lnbchile.com/copa-chile/match/con-vs-eso-2026-05-08"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             }
           ]
         },
@@ -1667,19 +1715,21 @@
             {
               "key": "basketball-us-nba",
               "catalog_event": "National Basketball Association (NBA) | Men",
-              "season_window": "October 20, 2026–postseason endpoint unconfirmed; regular season ends April 11, 2027",
+              "season_window": "2026-10-20 – full endpoint unconfirmed",
               "source_id": "nba",
               "last_verified": "2026-11-03",
               "restrictions": [],
               "season_start_date": "2026-10-20",
-              "season_basis": "Official release confirms the regular-season boundaries. The full postseason endpoint has not been established by this verification.",
+              "season_basis": "2026/27 NBA regular season runs October 20-April 11. NBA key dates do not establish the Finals endpoint; the regular-season endpoint remains separately recorded.",
               "season_source_url": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
               "season_evidence_urls": [
-                "https://pr.nba.com/2026-27-nba-regular-season-schedule"
+                "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+                "https://www.nba.com/news/key-dates"
               ],
               "season_window_complete": false,
               "regular_season_start_date": "2026-10-20",
-              "regular_season_end_date": "2027-04-11"
+              "regular_season_end_date": "2027-04-11",
+              "season_verification_status": "awaiting-published-dates"
             },
             {
               "key": "basketball-us-nba-draft",
@@ -1704,15 +1754,22 @@
             {
               "key": "basketball-us-nba-international-preseason",
               "catalog_event": "NBA Preseason Games v. International Teams",
-              "season_window": "No 2026 NBA-versus-international-club preseason games verified as of September 25, 2026",
+              "season_window": "No qualifying current-edition NBA-versus-international-club preseason matchup verified as of November 3, 2026",
               "season_status": "hold",
               "season_hold": true,
               "hold_reason": "The NBA's published 2026 preseason schedule lists NBA-versus-NBA global games, but no matchup against a non-NBA international club; global location alone does not satisfy this identity",
-              "season_basis": "NBA key dates and official schedule review; no exact 2026 NBA-versus-international-club event was published as of September 25, 2026",
-              "last_verified": "2026-09-25",
+              "season_basis": "Reviewed 2026 international preseason scope. Official Macao announcement is Mavericks versus Rockets, both NBA teams, and does not satisfy NBA versus a non-NBA international club. No qualifying current-edition matchup established; existing hold and no-proposition restriction remain.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
-              ]
+              ],
+              "season_source_url": "https://pr.nba.com/mavericks-rockets-macao/",
+              "season_evidence_urls": [
+                "https://pr.nba.com/mavericks-rockets-macao/",
+                "https://www.nba.com/news/key-dates"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "scope-conflict"
             }
           ]
         },
@@ -1775,10 +1832,18 @@
                   "key": "basketball-us-tbt-women",
                   "label": "The Basketball Tournament (TBT) | Women",
                   "season_window": "No corresponding official women's TBT competition verified",
-                  "season_basis": "TBT publishes one 2026 basketball tournament and does not identify a separate women's competition. Keep the catalog child fail-closed rather than assigning the published TBT dates across divisions.",
+                  "season_basis": "Official TBT format describes alumni and non-alumni brackets, not a distinct women's basketball tournament. TST women's competition is soccer. Existing women's TBT identity hold remains; no men's dates copied.",
                   "season_hold": true,
                   "hold_reason": "No official division-specific women's TBT competition or calendar was found.",
-                  "last_verified": "2026-09-25"
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://tbthoops.com/news/tbt-announces-two-year-extension-with-fox-sports-for-new-look-2-million-tournament/",
+                  "season_evidence_urls": [
+                    "https://tbthoops.com/news/tbt-announces-two-year-extension-with-fox-sports-for-new-look-2-million-tournament/",
+                    "https://tbthoops.com/",
+                    "https://thetournament.com/"
+                  ],
+                  "season_window_complete": false,
+                  "season_verification_status": "scope-conflict"
                 }
               ]
             }
@@ -1791,11 +1856,20 @@
             {
               "key": "basketball-us-unrivaled",
               "catalog_event": "Unrivaled Basketball | Women",
-              "season_window": "2027 season begins January 8 and runs through March; exact completion date not yet published",
+              "season_window": "2027-01-08 – full endpoint unconfirmed",
               "source_id": "basketball-us-unrivaled",
-              "season_basis": "Unrivaled confirms its third season opens January 8, 2027 and runs January through March; the complete schedule, exact completion date and unattended fixture adapter remain unpublished, so the window stays descriptive",
-              "last_verified": "2026-09-25",
-              "restrictions": []
+              "season_basis": "2027 women's Unrivaled season three begins January 8, confirmed by the October 28 league release and opening game page. Published schedule lists regular-season games; Miami's last listed home date is not proof of the championship endpoint.",
+              "last_verified": "2026-11-03",
+              "restrictions": [],
+              "season_start_date": "2027-01-08",
+              "season_source_url": "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
+              "season_evidence_urls": [
+                "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
+                "https://www.unrivaled.basketball/schedule?season=2027",
+                "https://www.unrivaled.basketball/arena"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             }
           ]
         },
