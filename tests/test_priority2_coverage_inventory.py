@@ -661,11 +661,13 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual([], women["sources"])
         self.assertIn("women's TBT", women["hold_reason"])
 
-    def test_basketball_date_reconciliation_is_complete(self):
+    def test_basketball_date_reconciliation_preserves_unconfirmed_nba_postseason(self):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
         self.assertEqual(6, basketball["no_linked_source"])
-        self.assertEqual(0, basketball["pending_dates"])
+        self.assertEqual(1, basketball["pending_dates"])
+        nba = self.rows[("Basketball", "National Basketball Association (NBA) | Men")]
+        self.assertEqual("PARTIAL_WINDOW", nba["season_state"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_first_basketball_source_batch_uses_exact_official_windows_or_hold(self):
@@ -786,7 +788,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertIn(reason, row["hold_reason"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(1, self.inventory["by_sport"]["Basketball"]["pending_dates"])
 
     def test_fifth_basketball_source_batch_uses_exact_or_descriptive_official_windows(self):
         dated_windows = {
@@ -819,7 +821,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("official-nbb-fixtures", nbb["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(1, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_sixth_basketball_source_batch_uses_exact_official_windows(self):
@@ -840,7 +842,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(1, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_seventh_basketball_source_batch_closes_actionable_source_gaps(self):
@@ -865,7 +867,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("official-event-window", unrivaled["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(0, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(1, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_ncaa_division_one_adapters_match_the_exact_competition_scope(self):
