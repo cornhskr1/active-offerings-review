@@ -86,6 +86,30 @@ function build({catalog={},seasonMap={},identities={},today,sources=[],role=()=>
  for(const row of rows)row.search=norm([row.sport,row.name,row.group.country,row.group.confederation,row.group.governing_body,row.event?.category,...row.aliases.flatMap(x=>[x.name,x.operator,x.operator_name,x.scope]),...row.restrictions].join(' '));
  return rows;
 }
+function identityRows(rows,identities,today,sources=[]){
+ const registry=identities.competitions||[];
+ return rows.filter(row=>row.kind!=='olympic').flatMap(row=>{
+  const children=row.event?.coverage_children;
+  if(!children?.length)return [row];
+  return children.map(child=>{
+   const event={...child,catalog_event:child.label||child.catalog_event||child.key};
+   const result={...row,id:child.key,name:event.catalog_event,event,parentName:row.name,aliases:aliasRows(registry,child.key),restrictions:unique([...row.restrictions,...(child.restrictions||[])]),notes:unique([...row.notes,...(child.notes||[])]),status:season(event,today,sources)};
+   result.search=norm([result.sport,result.name,result.parentName,result.group.country,result.group.governing_body,result.group.confederation,...result.aliases.map(x=>x.name),...result.restrictions].join(' '));
+   return result;
+  });
+ });
+}
+function hierarchy(rows){
+ const groups=new Map();
+ for(const row of rows){
+  const country=row.group.country||'Country not specified';
+  const body=row.group.governing_body||row.group.confederation||'Governing body not specified';
+  const key=JSON.stringify([row.sport,country,body]);
+  if(!groups.has(key))groups.set(key,{sport:row.sport,country,body,rows:[]});
+  groups.get(key).rows.push(row);
+ }
+ return [...groups.values()].sort((a,b)=>a.sport.localeCompare(b.sport)||a.country.localeCompare(b.country)||a.body.localeCompare(b.body)).map(g=>({...g,rows:g.rows.sort((a,b)=>a.name.localeCompare(b.name)||a.id.localeCompare(b.id))}));
+}
 function filter(rows,{query='',status='all',restricted=false,sport=null}={}){
  const q=norm(query);return rows.filter(x=>(!sport||x.sport===sport)&&(!q||x.search.includes(q))&&(!restricted||x.restrictions.length>0)&&(status==='all'||x.status===status));
 }
@@ -110,5 +134,5 @@ function eventDate(event){
  if(typeof value!=='string'||!/(?:Z|[+-]\d{2}:\d{2})$/.test(value)||!Number.isFinite(Date.parse(value)))return {date:'Date not confirmed',time:'Time not published'};
  const date=new Date(value);return {date:new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric'}).format(date),time:new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(date)};
 }
-return {norm,season,timing,build,filter,counts,u18Placement,matchEvent,eventDate};
+return {norm,season,timing,build,identityRows,hierarchy,filter,counts,u18Placement,matchEvent,eventDate};
 });
