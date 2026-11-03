@@ -1,5 +1,5 @@
 /* UI-only bridge to existing published data, evidence renderers and review model. */
-let CATALOG_BROWSER={sport:'All sports',entry:'all',event:null,status:'in',restricted:false,date:'all',mode:'catalog',attention:false,details:false,olympicEdition:null};
+let CATALOG_BROWSER={sport:'All sports',entry:'all',event:null,status:'all',restricted:false,date:'all',mode:'catalog',attention:false,details:false,olympicEdition:null};
 
 // Decorative, local SVGs: sport names remain the accessible labels.
 function catalogSportIcon(sport){
@@ -31,6 +31,27 @@ function catalogSportIcon(sport){
  const type=/basketball/.test(name)?'basketball':/baseball|softball/.test(name)?'baseball':/soccer/.test(name)?'soccer':/volleyball|water polo/.test(name)?'volleyball':/football|aussie|rugby/.test(name)?'football':/table tennis|ping.?pong/.test(name)?'tabletennis':/tennis/.test(name)?'tennis':/hockey/.test(name)?'hockey':/golf/.test(name)?'golf':/motorsport/.test(name)?'racing':/boxing|combat|wrestling/.test(name)?'boxing':/cycling/.test(name)?'cycling':/swim/.test(name)?'swimming':/track/.test(name)?'athletics':/esport/.test(name)?'esports':/dart/.test(name)?'darts':/bowling/.test(name)?'bowling':/cricket/.test(name)?'cricket':/lacrosse/.test(name)?'lacrosse':/surf/.test(name)?'surf':'trophy';
  return `<svg class="sport-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[type]}</svg>`;
 }
+const CATALOG_COUNTRY_FLAGS={"Austria": ["at"], "Italy": ["it"], "Iceland": ["is"], "Sweden": ["se"], "Zambia": ["zm"], "Norway": ["no"], "India": ["in"], "Mexico": ["mx"], "South Korea": ["kr"], "Portugal": ["pt"], "Kosovo": ["xk"], "Bangladesh": ["bd"], "Singapore": ["sg"], "Morocco": ["ma"], "Czech Republic": ["cz"], "Malaysia": ["my"], "Korea": ["kr"], "Bosnia and Herzegovina": ["ba"], "Canada": ["ca"], "Bolivia": ["bo"], "Ireland": ["ie"], "Vietnam": ["vn"], "Ethiopia": ["et"], "Poland": ["pl"], "Argentina": ["ar"], "Uruguay": ["uy"], "Latvia": ["lv"], "Iran": ["ir"], "Luxembourg": ["lu"], "Scotland": ["gb-sct"], "Brazil": ["br"], "Japan": ["jp"], "Suriname": ["sr"], "Faroe Islands": ["fo"], "Tunisia": ["tn"], "Egypt": ["eg"], "Dominican Republic": ["do"], "Iraq": ["iq"], "Estonia": ["ee"], "El Salvador": ["sv"], "Lithuania": ["lt"], "Montenegro": ["me"], "Netherlands": ["nl"], "Serbia": ["rs"], "Turkey": ["tr"], "New Zealand": ["nz"], "Algeria": ["dz"], "Wales": ["gb-wls"], "England": ["gb-eng"], "Saudi Arabia": ["sa"], "Australia": ["au"], "Thailand": ["th"], "Paraguay": ["py"], "Democratic Republic of the Congo": ["cd"], "France": ["fr"], "Malta": ["mt"], "Greece": ["gr"], "Romania": ["ro"], "Peru": ["pe"], "Croatia": ["hr"], "Costa Rica": ["cr"], "Finland": ["fi"], "Guatemala": ["gt"], "Belgium": ["be"], "Colombia": ["co"], "Denmark": ["dk"], "Slovenia": ["si"], "Bulgaria": ["bg"], "Spain": ["es"], "Qatar": ["qa"], "United Arab Emirates": ["ae"], "Honduras": ["hn"], "Chile": ["cl"], "Tanzania": ["tz"], "Nicaragua": ["ni"], "Uzbekistan": ["uz"], "Georgia": ["ge"], "Ivory Coast": ["ci"], "South Africa": ["za"], "Armenia": ["am"], "Slovakia": ["sk"], "Switzerland": ["ch"], "Azerbaijan": ["az"], "Ecuador": ["ec"], "China": ["cn"], "Germany": ["de"], "Israel": ["il"], "United States": ["us"], "Philippines": ["ph"], "England and Wales": ["gb-eng", "gb-wls"], "United States / Canada": ["us", "ca"], "United States / Mexico": ["us", "mx"]};
+function catalogCountryFlag(country){
+ return (CATALOG_COUNTRY_FLAGS[country]||[]).map(code=>`<svg class="country-flag" viewBox="0 0 640 480" aria-hidden="true" focusable="false"><use href="assets/country-flags.svg#${code}"></use></svg>`).join('');
+}
+function catalogHierarchyHtml(rows){
+ let sport='',country='';
+ return CatalogWorkspace.hierarchy(rows).map(group=>{
+  const newSport=sport!==group.sport,newCountry=newSport||country!==group.country;sport=group.sport;country=group.country;
+  return `${newSport?`<h2 class="catalog-hierarchy-sport">${catalogSportIcon(sport)}${esc(sport)}</h2>`:''}${newCountry?`<h3 class="catalog-country-heading">${catalogCountryFlag(country)}<span>${esc(country)}</span></h3>`:''}<section class="catalog-body-group"><h4>${esc(group.body)}</h4><div class="season-catalog-grid">${group.rows.map(catalogSeasonCard).join('')}</div></section>`;
+ }).join('')||'<div class="catalog-board-empty"><h3>No competitions match</h3><p>Clear filters to return to the full catalog.</p><button type="button" data-season-show-all>All competitions</button></div>';
+}
+function catalogRestoreDetails(){
+ const browser=document.getElementById('catalogBrowser'),detail=document.getElementById('catalogReviewColumn');
+ if(detail.parentElement!==browser)browser.append(detail);
+}
+function catalogPlaceDetails(){
+ if(document.body.classList.contains('compact-view')&&CATALOG_BROWSER.details){
+  const card=document.querySelector('.season-catalog-card.selected');
+  if(card)card.after(document.getElementById('catalogReviewColumn'));
+ }
+}
 function catalogBoardDayOffset(offset){
  const day=new Date(todayKey()+'T12:00:00Z');day.setUTCDate(day.getUTCDate()+offset);return day.toISOString().slice(0,10);
 }
@@ -47,7 +68,7 @@ function catalogTimingHtml(event,label=''){
  const countdown=t.status==='upcoming'?`Starts in ${t.days} day${t.days===1?'':'s'}`:t.status==='in'?(t.days===0?'Final day of recorded window':`Ends in ${t.days} day${t.days===1?'':'s'}`):'';
  return `<div class="season-timing">${label?`<b class="season-category">${esc(label)}</b>`:''}<div class="season-timing-heading"><span class="season-state ${t.status}">${catalogTimingLabel(t.status)}</span><span>${esc(countdown)}</span></div><div class="season-dates">${esc(exact||event.season_window||'No confirmed date range')}</div>${t.progress!==null?`<div class="season-timeline" role="progressbar" aria-label="Elapsed time in recorded season window" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${t.progress}"><span style="width:${t.progress}%"></span></div><div class="season-time-note">${t.progress}% of recorded season window elapsed · may include breaks</div>`:''}<div class="season-time-note">${esc(t.reason)}${t.checked?` · Checked ${esc(date(t.checked))}`:''}</div></div>`;
 }
-function querySeasonLabel(){return document.getElementById('catalogSearch').value?'Search results':CATALOG_BROWSER.status==='all'?'All seasons':catalogTimingLabel(CATALOG_BROWSER.status);}
+function querySeasonLabel(){return document.getElementById('catalogSearch').value?'Search results':CATALOG_BROWSER.status==='all'?'All competitions':catalogTimingLabel(CATALOG_BROWSER.status);}
 function catalogSeasonCard(row){
  const parts=catalogTimingParts(row);
  const rules=[...new Set([...row.restrictions,...(row.event?.coverage_children||[]).flatMap(x=>x.restrictions||[])])];
@@ -57,7 +78,7 @@ function catalogSeasonCard(row){
 function catalogSeasonSummary(rows){
  const parts=rows.filter(row=>row.kind!=='olympic').flatMap(catalogTimingParts),dated=parts.filter(x=>x.timing.status!=='unknown').length;
  const identities=new Set((DATA.identities?.competitions||[]).map(x=>x.identity_key).filter(Boolean)).size;
- return `<div><b>Full catalog: ${identities} competition identities · ${CATALOG_BROWSER_ROWS.length} catalog groups</b><span>Some catalog groups contain separately tracked competitions.</span></div><div><b>${dated} of ${parts.length} competition season records have dated, checked windows</b><span>Typical windows need confirmation. Season timing does not establish wagering eligibility.</span></div>`;
+ return `<div><b>Full catalog: ${identities} competition identities</b><span>Organized by sport, country and governing body.</span></div><div><b>${dated} of ${parts.length} competition season records have dated, checked windows</b><span>Typical windows need confirmation. Season timing does not establish wagering eligibility.</span></div>`;
 }
 
 function catalogObservation(event){
@@ -137,7 +158,7 @@ function catalogBrowserDetail(row,{showEvents=true}={}){
  const eventCards=events.map(e=>{const when=CatalogWorkspace.eventDate(e);const source=(TODAY_MODEL?.global?.sources||[]).find(x=>x.id===e.source_id)||{};const alerts=(TODAY_MODEL?.windowCards||[]).filter(c=>c.key==='event|'+e.id||(c.event===e.name&&c.start_time===e.start_time&&c.sport===e.sport));return `<li><b>${esc(e.name)}</b>${alerts.map(c=>`<div class="catalog-detail-rules"><b>${esc(c.type)}</b><p>${esc(c.reason)}</p></div>`).join('')}<time>${esc(when.date)} · ${e.schedule_time_conflict?'Time requires review':esc(when.time)}</time>${e.source_stale?'<span class="catalog-restriction-tag">Saved schedule · verify current details</span>':''}${!e.date_only&&/[ZT]/.test(e.start_time||'')&&Date.parse(e.start_time)<Date.now()?'<div class="row-meta">Scheduled start has passed; event status may need checking.</div>':''}${e.requires_bout_review?'<div>Bout and age review required</div>':''}${e.source_id==='jolpica-f1'?f1EventHtml(e):''}${oddsObservationHtml(e)}<details><summary>Event source</summary><div>${esc(e.source_id||'Source not recorded')} · Last observed: ${esc(e.observed_at||e.checked_at||source.checked_at||'Not recorded')}</div>${/^https?:\/\//.test(e.source_url||'')?`<a href="${esc(e.source_url)}" target="_blank" rel="noopener noreferrer">Source ↗</a>`:''}</details></li>`;});
  const section=(DATA.catalog?.sections||[]).find(x=>x.sport===row.sport);
  const olympics=row.kind==='olympic'?renderOlympicsCatalog(section,(DATA.seasonMap.sports||[]).find(x=>x.sport==='Olympics'),row.name.toLowerCase(),'all'):'';
- return `<div class="catalog-path">${esc(path)}</div><h3>${row.event?.key?catalogEventNameHtml(event):esc(row.name)}</h3>${row.aliases.length?'<h4>Names &amp; aliases</h4>':''}${row.aliases.map(x=>`<div class="catalog-alias"><b>${esc(catalogAliasLabel(x))}:</b> ${esc(x.name)}${x.scope?` · ${esc(x.scope)}`:''}</div>`).join('')}${row.restrictions.length?`<div class="catalog-detail-rules"><b>Restrictions &amp; special conditions</b>${row.restrictions.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:'<p class="row-meta">Catalog-wide restrictions still apply.</p>'}${row.notes.length?`<details><summary>Catalog context</summary>${row.notes.map(x=>`<p>${esc(x)}</p>`).join('')}</details>`:''}<h4>Season</h4>${seasonBlock(event)}${children.map(child=>`<div><h4>${esc(child.label||child.catalog_event||child.key)}</h4>${seasonBlock(child)}</div>`).join('')}${showEvents?`<h4>Today &amp; upcoming events · Central time</h4>${events.length?`<ul class="catalog-detail-events">${eventCards.slice(0,5).join('')}</ul>${events.length>5?`<details><summary>Show ${events.length-5} more events</summary><ul class="catalog-detail-events">${eventCards.slice(5).join('')}</ul></details>`:''}`:'<p>No usable upcoming schedule is available in this review window. Season information above is separate.</p>'}`:''}${row.id==='motorsports-intl-f1'?f1SourceHtml():''}${tourCalendarHtml(event)}${olympics}<h4>Known U18</h4>${linked.map(catalogBrowserAthlete).join('')||'<p>No verified league-specific U18 information. This does not confirm there are no U18 participants.</p>'}<button type="button" class="catalog-plain-link" data-browser-u18="${esc(row.sport)}">View sport-level age evidence (${sportPeople.length})</button><details><summary>Sources &amp; last verified</summary><p>Season last verified: ${esc(u18LastVerifiedLabel(event.last_verified))}</p>${event.season_source_url&&/^https?:\/\//.test(event.season_source_url)?`<a href="${esc(event.season_source_url)}" target="_blank" rel="noopener noreferrer">Season source ↗</a>`:''}${row.aliases.map(x=>`<p>${esc(x.name)}${x.scope_note?` — ${esc(x.scope_note)}`:''}${/^https?:\/\//.test(x.evidence_url||'')?` · <a href="${esc(x.evidence_url)}" target="_blank" rel="noopener noreferrer">Alias evidence</a>`:''}</p>`).join('')}${catalogEntryHealthHtml(row.sport,[row.name,row.id],eventSourceIds(event))}</details><details><summary>Catalog-wide standards</summary>${catalogWideStandards(DATA.catalog||{}).general.map(x=>`<p>${esc(x)}</p>`).join('')}<button type="button" class="catalog-plain-link" data-browser-panel="restrictions">Open all restrictions &amp; integrity standards</button></details><details><summary>Original catalog wording · ${esc(row.sport)}</summary>${(section?.lines||[]).map(x=>`<div>${esc(x)}</div>`).join('')}</details>`;
+ return `<div class="catalog-path">${esc(path)}</div><h3>${row.event?.key?catalogEventNameHtml(event):esc(row.name)}</h3>${row.aliases.length?'<h4>Names &amp; aliases</h4>':''}${row.aliases.map(x=>`<div class="catalog-alias"><b>${esc(catalogAliasLabel(x))}:</b> ${esc(x.name)}${x.scope?` · ${esc(x.scope)}`:''}</div>`).join('')}${row.restrictions.length?`<div class="catalog-detail-rules"><b>Restrictions &amp; special conditions</b>${row.restrictions.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:'<p class="row-meta">Catalog-wide restrictions still apply.</p>'}${row.notes.length?`<details><summary>Catalog context</summary>${row.notes.map(x=>`<p>${esc(x)}</p>`).join('')}</details>`:''}<h4>Season</h4>${seasonBlock(event)}${children.map(child=>`<div><h4>${esc(child.label||child.catalog_event||child.key)}</h4>${seasonBlock(child)}</div>`).join('')}${showEvents?`<h4>Today &amp; upcoming events · Central time</h4>${events.length?`<ul class="catalog-detail-events">${eventCards.slice(0,5).join('')}</ul>${events.length>5?`<details><summary>Show ${events.length-5} more events</summary><ul class="catalog-detail-events">${eventCards.slice(5).join('')}</ul></details>`:''}`:'<p>No usable upcoming schedule is available in this review window. Season information above is separate.</p>'}`:''}${row.id==='motorsports-intl-f1'?f1SourceHtml():''}${tourCalendarHtml(event)}${olympics}<h4>Known U18</h4>${linked.map(catalogBrowserAthlete).join('')||'<p>No verified league-specific U18 information. This does not confirm there are no U18 participants.</p>'}<button type="button" class="catalog-plain-link" data-browser-u18="${esc(row.sport)}">View sport-level age evidence (${sportPeople.length})</button><details><summary>Source &amp; last checked</summary><p>Season last verified: ${esc(u18LastVerifiedLabel(event.last_verified))}</p>${event.season_source_url&&/^https?:\/\//.test(event.season_source_url)?`<a href="${esc(event.season_source_url)}" target="_blank" rel="noopener noreferrer">Season source ↗</a>`:''}${row.aliases.map(x=>`<p>${esc(x.name)}${x.scope_note?` — ${esc(x.scope_note)}`:''}${/^https?:\/\//.test(x.evidence_url||'')?` · <a href="${esc(x.evidence_url)}" target="_blank" rel="noopener noreferrer">Alias evidence</a>`:''}</p>`).join('')}${catalogEntryHealthHtml(row.sport,[row.name,row.id],eventSourceIds(event))}</details><details><summary>Catalog-wide standards</summary>${catalogWideStandards(DATA.catalog||{}).general.map(x=>`<p>${esc(x)}</p>`).join('')}<button type="button" class="catalog-plain-link" data-browser-panel="restrictions">Open all restrictions &amp; integrity standards</button></details><details><summary>Original catalog wording · ${esc(row.sport)}</summary>${(section?.lines||[]).map(x=>`<div>${esc(x)}</div>`).join('')}</details>`;
 }
 
 function catalogBoardDate(event){
@@ -199,6 +220,7 @@ function catalogOlympicsOverview(query=''){
 }
 
 function renderCatalogBoard(selected){
+ catalogRestoreDetails();
  const state=CATALOG_BROWSER;
  if(state.sport==='Olympics'){
   CATALOG_BOARD_EVENTS=[];state.event=null;
@@ -217,11 +239,8 @@ function renderCatalogBoard(selected){
  const title=state.entry==='all'||state.entry==='u18'?(state.sport==='All sports'?'Across all sports':'All '+state.sport+' competitions'):selectedRow?.name||'Selected competition';
  document.getElementById('catalogEvents').innerHTML=`<div class="catalog-event-summary"><b>${esc(title)}</b><span>${CATALOG_BOARD_EVENTS.length} published event${CATALOG_BOARD_EVENTS.length===1?'':'s'} · Central time</span></div>`+(CATALOG_BOARD_EVENTS.length?`<table class="catalog-event-table"><thead><tr><th>Start · Central</th><th>Event / competition</th><th>Review</th><th><span class="sr-only">Details</span></th></tr></thead><tbody>${CATALOG_BOARD_EVENTS.map(({event,row},i)=>{const when=CatalogWorkspace.eventDate(event),passed=!event.date_only&&/(?:Z|[+-]\d{2}:\d{2})$/.test(event.start_time||'')&&Date.parse(event.start_time)<Date.now();return `<tr data-browser-event="${i}" class="${state.event===eventKey(event)?'selected':''}"><td><time>${esc(when.date)}<strong>${event.schedule_time_conflict?'Verify time':esc(when.time)}</strong></time>${passed?'<span class="board-neutral">Start passed</span>':''}</td><td><button class="catalog-event-name" type="button" data-browser-event="${i}" aria-label="Review ${esc(event.name)}">${esc(event.name)}</button><div class="board-competition">${esc(row.sport)} · ${esc(row.name)}</div><div class="board-observed">${catalogObservationLabel(event)}</div></td><td>${catalogBoardFlags(event,row)}</td><td><button class="board-open" type="button" data-browser-event="${i}" aria-label="Open details for ${esc(event.name)}">›</button></td></tr>`;}).join('')}</tbody></table>`:`<div class="catalog-board-empty"><h3>No published events in this view</h3><p>${state.attention||state.date!=='all'?'No events match the date and review filters. Try Review window or clear Needs attention.':'The selected competition has no usable event schedule in the loaded review window.'}</p><p>Switch to Approved catalog to see entries and their restrictions. An empty schedule does not confirm that no events are taking place.</p></div>`);
  if(state.mode==='catalog'){
-  const ordered=[...selected].sort((a,b)=>{
-   const start=row=>catalogTimingParts(row).filter(x=>x.timing.status==='upcoming').map(x=>x.timing.start).sort()[0]||'9999';
-   return (state.status==='upcoming'?start(a).localeCompare(start(b)):a.sport.localeCompare(b.sport))||a.name.localeCompare(b.name);
-  });
-  document.getElementById('catalogEvents').innerHTML=`<div class="catalog-event-summary"><b>${querySeasonLabel()} · ${esc(state.sport)}</b><span>${selected.length} catalog groups</span></div><div class="season-catalog-grid">${ordered.map(catalogSeasonCard).join('')||'<div class="catalog-board-empty"><h3>No catalog groups match this view</h3><p>Try All seasons or Dates need confirmation. Unconfirmed timing does not mean a competition is inactive.</p><button type="button" class="season-details-button" data-season-show-all>Show all seasons</button></div>'}</div>`;
+  document.getElementById('catalogEvents').innerHTML=`<div class="catalog-event-summary"><b>${querySeasonLabel()} · ${esc(state.sport)}</b><span>${selected.length} competition identities</span></div>`+catalogHierarchyHtml(selected);
+
  }
  const parking=document.getElementById('catalogAgeParking');
  if(parking)['catalogFootballAge','catalogBasketballAge'].forEach(id=>{const panel=document.getElementById(id);if(panel)parking.append(panel);});
@@ -237,22 +256,22 @@ function renderCatalogBoard(selected){
 }
 function renderCatalogWorkspace(){
  if(typeof CatalogWorkspace==='undefined'||!document.getElementById('catalogBrowser'))return;
- CATALOG_BROWSER_ROWS=CatalogWorkspace.build({catalog:DATA.catalog,seasonMap:DATA.seasonMap,identities:DATA.identities,today:todayKey(),sources:DATA.global?.sources||[],notes:catalogSportNotes(DATA.catalog||{}),role:(line,sport,country)=>((DATA.seasonMap?.catalog_role_overrides||[]).find(x=>x.sport===sport&&x.line===String(line).trim()&&(!x.country||x.country===country))?.role||catalogLineRole(line))});
+ CATALOG_BROWSER_ROWS=CatalogWorkspace.identityRows(CatalogWorkspace.build({catalog:DATA.catalog,seasonMap:DATA.seasonMap,identities:DATA.identities,today:todayKey(),sources:DATA.global?.sources||[],notes:catalogSportNotes(DATA.catalog||{}),role:(line,sport,country)=>((DATA.seasonMap?.catalog_role_overrides||[]).find(x=>x.sport===sport&&x.line===String(line).trim()&&(!x.country||x.country===country))?.role||catalogLineRole(line))}),DATA.identities,todayKey(),DATA.global?.sources||[]);
  const sportsNode=document.getElementById('catalogSports'),leaguesNode=document.getElementById('catalogLeagues'),sportScroll=sportsNode.scrollTop,leagueScroll=leaguesNode.scrollLeft;
  const state=CATALOG_BROWSER,query=document.getElementById('catalogSearch').value||'',base={query:state.sport==='Olympics'?'':query,restricted:state.sport==='Olympics'?false:state.restricted},counts=CatalogWorkspace.counts(CATALOG_BROWSER_ROWS,base);
- document.getElementById('catalogSeasonButtons').innerHTML=[['in','In season'],['upcoming','Upcoming'],['unknown','Dates need confirmation'],['out','Out of season'],['all','All seasons']].map(([key,label])=>`<button type="button" data-browser-season="${key}" aria-pressed="${(query?'all':state.status)===key}">${label}</button>`).join('');
+ document.getElementById('catalogSeasonButtons').innerHTML=[['all','All competitions'],['in','In season'],['upcoming','Upcoming'],['unknown','Dates need confirmation'],['out','Out of season']].map(([key,label])=>`<button type="button" data-browser-season="${key}" aria-pressed="${(query?'all':state.status)===key}">${label}</button>`).join('');
  const searched=CatalogWorkspace.filter(CATALOG_BROWSER_ROWS,{...base,status:'all'});
  const visible=searched.filter(row=>state.sport==='Olympics'||state.mode!=='catalog'||(row.kind!=='olympic'&&catalogSeasonMatches(row,query?'all':state.status))),known=catalogBrowserU18();
  const sports=[...new Set([...(DATA.catalog?.sections||[]).map(x=>x.sport),...known.map(x=>CatalogWorkspace.u18Placement(x,CATALOG_BROWSER_ROWS).sport)])];
  if(!state.sport||!['All sports',...sports].includes(state.sport))state.sport='All sports';
  if(!['All sports','Olympics'].includes(state.sport)&&query&&visible.length&&!visible.some(x=>x.sport===state.sport)){state.sport=visible[0].sport;state.entry='all';state.event=null;}
- const sportButton=s=>{const count=s==='All sports'?CATALOG_BROWSER_ROWS.length:CATALOG_BROWSER_ROWS.filter(x=>x.sport===s).length;return `<button type="button" class="catalog-select" data-browser-sport="${esc(s)}" aria-pressed="${state.sport===s}"><span class="catalog-sport-name">${catalogSportIcon(s)}<span>${esc(s)}</span></span><small title="All catalog groups in this sport">${count}</small></button>`;};
+ const sportButton=s=>{const count=s==='All sports'?CATALOG_BROWSER_ROWS.length:CATALOG_BROWSER_ROWS.filter(x=>x.sport===s).length;return `<button type="button" class="catalog-select" data-browser-sport="${esc(s)}" aria-pressed="${state.sport===s}"><span class="catalog-sport-name">${catalogSportIcon(s)}<span>${esc(s)}</span></span><small title="Competition identities in this sport">${s==='Olympics'?'Games':count}</small></button>`;};
  const collegeOpen=sportsNode.querySelector('.catalog-college-group')?.open||state.sport.startsWith('NCAA');
  sportsNode.innerHTML=sportButton('All sports')+sports.filter(s=>!s.startsWith('NCAA')).map(sportButton).join('')+`<details class="catalog-college-group" ${collegeOpen?'open':''}><summary>College sports · NCAA</summary>${sports.filter(s=>s.startsWith('NCAA')).map(sportButton).join('')}</details>`;
  const selected=state.sport==='All sports'?visible:visible.filter(x=>x.sport===state.sport);
  if(!['all','u18'].includes(state.entry)&&!selected.some(x=>x.id===state.entry)){state.entry='all';state.event=null;}
  if(query&&selected.length===1&&state.entry==='all')state.entry=selected[0].id;
- document.getElementById('catalogResultCount').textContent=`Showing ${selected.length} catalog groups${query?' · Search includes every season status':''} · Counts in the sport list are catalog groups, not games.`;
+ document.getElementById('catalogResultCount').textContent=`Showing ${selected.length} competition identities${query?' · Search includes every season status':''} · Sport → country → governing body → competition A–Z.`;
  document.getElementById('catalogVersionBadge').textContent=`Catalog ${DATA.catalog?.menu_version||'version unavailable'}`;
  document.getElementById('catalogSportEvidence').hidden=state.sport==='All sports';
  document.getElementById('catalogSportTitle').innerHTML=catalogSportIcon(state.sport)+`<span>${esc(state.sport)}</span>`;
@@ -268,7 +287,7 @@ function renderCatalogWorkspace(){
  document.getElementById('catalogBrowser').classList.toggle('olympic-board',olympics);
  document.getElementById('catalogBrowser').classList.toggle('season-board',state.mode==='catalog'&&!olympics);
  document.querySelector('.catalog-board-toolbar').hidden=state.mode==='catalog';
- document.querySelector('#catalogBrowserControls .catalog-modes').hidden=olympics;
+ document.querySelector('#catalogBrowserControls .catalog-modes').hidden=true;
  document.querySelector('#catalogBrowserControls .catalog-restricted').hidden=olympics;
  document.getElementById('catalogDetailToggle').hidden=false;
  const search=document.getElementById('catalogSearch');
@@ -287,23 +306,35 @@ function renderCatalogWorkspace(){
  const select=document.getElementById('catalogLeagueSelect');select.innerHTML=catalogCompetitionOptions(selected,state.sport);select.value=state.entry==='u18'?'all':state.entry;
  document.querySelectorAll('[data-browser-date]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.browserDate===state.date)));
  renderCatalogBoard(selected);
+ catalogPlaceDetails();
+ const mobile=document.getElementById("catalogMobileSport");mobile.innerHTML=["All sports",...sports].map(s=>`<option>${esc(s)}</option>`).join("");mobile.value=state.sport;
  document.getElementById('catalogRestrictionsOnly').checked=state.restricted;
  sportsNode.scrollTop=sportScroll;leaguesNode.scrollLeft=leagueScroll;
 }
 function installCatalogWorkspace(){
+ document.getElementById('layoutToggle').addEventListener('click',e=>{
+  const compact=document.body.classList.toggle('compact-view');
+  e.currentTarget.textContent=compact?'Desktop view':'Mobile view';e.currentTarget.setAttribute('aria-pressed',String(compact));
+  renderCatalogWorkspace();
+ });
+ document.getElementById('catalogMobileSport').addEventListener('change',e=>{
+  if(CATALOG_BROWSER.sport==='Olympics'||e.target.value==='Olympics')document.getElementById('catalogSearch').value='';
+  Object.assign(CATALOG_BROWSER,{sport:e.target.value,entry:'all',event:null,details:false});renderCatalogWorkspace();
+ });
  document.getElementById('catalogReliability').addEventListener('click',e=>{if(e.target.closest('#hubEvidenceButton')){const details=document.getElementById('hubEvidence');details.open=true;details.scrollIntoView({behavior:'instant',block:'start'});}});
  document.getElementById('catalogBrowserControls').addEventListener('click',e=>{
   const mode=e.target.closest('[data-browser-mode]');if(mode){CATALOG_BROWSER.mode=mode.dataset.browserMode;CATALOG_BROWSER.event=null;renderCatalogWorkspace();}
   const button=e.target.closest('[data-browser-season]');if(button){CATALOG_BROWSER.status=button.dataset.browserSeason;document.getElementById('catalogSearch').value='';CATALOG_BROWSER.entry='all';CATALOG_BROWSER.details=false;renderCatalogWorkspace();}
-  if(e.target.closest('#catalogReset')){Object.assign(CATALOG_BROWSER,{olympicEdition:null,entry:'all',event:null,status:'in',restricted:false,date:'all',attention:false,details:false});document.getElementById('catalogSearch').value='';document.getElementById('catalogSeason').value='all';CATALOG_HEALTH_FILTER='all';renderCatalog();}
+  if(e.target.closest('#catalogReset')){Object.assign(CATALOG_BROWSER,{olympicEdition:null,entry:'all',event:null,status:'all',restricted:false,date:'all',attention:false,details:false});document.getElementById('catalogSearch').value='';document.getElementById('catalogSeason').value='all';CATALOG_HEALTH_FILTER='all';renderCatalog();}
  });
  document.getElementById('catalogNeedsAttention').addEventListener('change',e=>{CATALOG_BROWSER.attention=e.target.checked;renderCatalogWorkspace();});
- document.getElementById('catalogDetailToggle').addEventListener('click',()=>catalogSetDetails(!CATALOG_BROWSER.details));
+ document.getElementById('catalogDetailToggle').addEventListener('click',()=>{catalogSetDetails(!CATALOG_BROWSER.details);catalogPlaceDetails();});
  document.getElementById('catalogRestrictionsOnly').addEventListener('change',e=>{CATALOG_BROWSER.restricted=e.target.checked;renderCatalogWorkspace();});
  document.getElementById('catalogLeagueSelect').addEventListener('change',e=>{CATALOG_BROWSER.entry=e.target.value;CATALOG_BROWSER.event=null;CATALOG_BROWSER.details=true;renderCatalogWorkspace();});
  document.getElementById('catalogBrowser').addEventListener('click',e=>{
   if(e.target.closest('[data-season-show-all]')){CATALOG_BROWSER.status='all';renderCatalogWorkspace();return;}
   const sport=e.target.closest('[data-browser-sport]'),entry=e.target.closest('[data-browser-entry]'),u18=e.target.closest('[data-browser-u18]'),panel=e.target.closest('[data-browser-panel]'),date=e.target.closest('[data-browser-date]'),event=e.target.closest('[data-browser-event]');
+  if(panel&&panel.dataset.browserPanel==='restrictions'){const guide=document.getElementById('catalogRestrictionsGuide');guide.open=true;guide.scrollIntoView({block:'start'});return;}
   if(panel){document.querySelector(`button[data-panel="${panel.dataset.browserPanel}"]`)?.click();return;}
   const games=e.target.closest('[data-browser-olympics]');
   if(games){CATALOG_BROWSER.olympicEdition=games.dataset.browserOlympics;renderCatalogWorkspace();document.getElementById('catalogEvents').scrollTop=0;return;}
