@@ -2,8 +2,8 @@
   "schema_version": 1,
   "updated_at": "2026-11-03",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
-  "baseline_commit": "05a75601e36637874f6ffd4fa17da0c2b149d6cc",
-  "baseline_dated_records": 310,
+  "baseline_commit": "33aedc843e67814f4f165065715fe14dd2bd2847",
+  "baseline_dated_records": 315,
   "catalog_records": 735,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
@@ -2201,6 +2201,173 @@
       "finding": "Indexed official AUF women's A fixtures establish May 9 as the 2026 Apertura opener. September 27 is the first-phase final, not the complete season: AUF lists second-phase permanence matches in October/November. Full championship/relegation endpoint remains unverified. Direct AUF retrieval timed out.",
       "missing_fact": "Exact full 2026 endpoint including all championship and permanence phases.",
       "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
+    },
+    {
+      "key": "soccer-chile-primera-divisi-n-men",
+      "sport": "Soccer",
+      "country": "Chile",
+      "catalog_event": "Primera División | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.campeonatochileno.cl/noticias/es-hoy-es-hoy-comienza-la-liga-de-primera-mercado-libre-y-la-copa-chile-coca-cola-zero-azucar/",
+      "evidence_urls": [
+        "https://www.campeonatochileno.cl/noticias/es-hoy-es-hoy-comienza-la-liga-de-primera-mercado-libre-y-la-copa-chile-coca-cola-zero-azucar/",
+        "https://www.campeonatochileno.cl/pagina-2026/"
+      ],
+      "finding": "2026 men's Liga de Primera opens January 30. Official fixtures place round 30 on December 6, but the same official competition page lists a separate Chile 4 qualification match against the Copa Chile winner without its date. December 6 is retained only as the regular endpoint, not a verified full playoff-inclusive endpoint.",
+      "missing_fact": "Date and scope of the Chile 4 qualification match after the 2026 league rounds.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-chile-copa-chile-men",
+      "sport": "Soccer",
+      "country": "Chile",
+      "catalog_event": "Copa Chile | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.campeonatochileno.cl/noticias/es-hoy-es-hoy-comienza-la-liga-de-primera-mercado-libre-y-la-copa-chile-coca-cola-zero-azucar/",
+      "evidence_urls": [
+        "https://www.campeonatochileno.cl/noticias/es-hoy-es-hoy-comienza-la-liga-de-primera-mercado-libre-y-la-copa-chile-coca-cola-zero-azucar/",
+        "https://www.campeonatochileno.cl/pagina-2026/"
+      ],
+      "finding": "2026 men's Copa Chile begins January 30 with Antofagasta-Cobreloa. The reviewed official page does not establish the current-edition final date; 2025 final articles and Copa de la Liga are separate and are not substituted.",
+      "missing_fact": "Exact 2026 Copa Chile final date and any applicable subsequent qualification match.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-ecuador-ligapro-serie-a-men",
+      "sport": "Soccer",
+      "country": "Ecuador",
+      "catalog_event": "LigaPro Serie A | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://ligapro.ec/se-termino-la-espera-volvio-nuestra-liga-ecuabet/",
+      "evidence_urls": [
+        "https://ligapro.ec/se-termino-la-espera-volvio-nuestra-liga-ecuabet/",
+        "https://ligapro.ec/acta-de-programacion-fecha-5-fase-final-de-la-liga-ecuabet/",
+        "https://ligapro.ec/concursoprogillette/reglas-del-concurso"
+      ],
+      "finding": "2026 men's Serie A opens February 20 with Orense-LDU. The format includes championship and relegation hexagonals plus a Sudamericana quadrangular. LigaPro promotional rules mention December 13 as tournament completion, but a full fixture endpoint across all groups is not established from the reviewed programming notices; retain a partial window.",
+      "missing_fact": "Official last fixture date covering all 2026 final-stage groups; corroborate the promotional December 13 reference.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-ecuador-copa-ecuador-men",
+      "sport": "Soccer",
+      "country": "Ecuador",
+      "catalog_event": "Copa Ecuador | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://fef.ec/",
+      "evidence_urls": [
+        "https://fef.ec/",
+        "https://www.ecuavisa.com/futbol-nacional/copa-ecuador-2026-fecha-hora-donde-ver-sorteo-primera-fase-20260327-0056.html",
+        "https://www.elcomercio.com/deportes/futbol/copa-ecuador-semifinales-fechas-horarios-2026/"
+      ],
+      "finding": "FEF direct retrieval returned 403 and official indexed results did not expose the complete 2026 calendar. Secondary reports identify March 28 prequalification and a December 2 final; neither is promoted to verified official dates. May 12 is only the round-of-32 start, not the competition opening.",
+      "missing_fact": "Primary FEF confirmation of the earliest 2026 prequalifying fixture and current final date.",
+      "next_action": "Nich: retrieve FEF's 2026 cup calendar or match notices confirming the March 28 prequalification and current final date; do not use the round-of-32 opener."
+    },
+    {
+      "key": "soccer-ecuador-supercopa-ecuador-men",
+      "sport": "Soccer",
+      "country": "Ecuador",
+      "catalog_event": "Supercopa Ecuador | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://twitter.com/FEFecuador/status/2051344096191472014?ref_src=twsrc%5Etfw",
+      "evidence_urls": [
+        "https://twitter.com/FEFecuador/status/2051344096191472014?ref_src=twsrc%5Etfw",
+        "https://www.primicias.ec/deportes/futbol/supercopa-ecuador-universidad-catolica-independiente-valle-fecha-hora-tv-120735/",
+        "https://www.independientedelvalle.com/noticias-novedades/independiente-del-valle-conquista-la-supercopa-ecuador-con-autoridad/"
+      ],
+      "finding": "2026 men's Supercopa is a single match on May 13: the FEF May 4 official announcement is preserved as an attributed embedded post in Primicias (direct Twitter retrieval returned 403). Independiente del Valle's official report confirms the 3-0 title match against Universidad Catolica; its May 15 publication date is not used as the fixture date.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-paraguay-paraguayan-primera-divisi-n-men",
+      "sport": "Soccer",
+      "country": "Paraguay",
+      "catalog_event": "Paraguayan Primera División | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.apf.org.py/noticias/listo-calendario-para-la-temporada-2026",
+      "evidence_urls": [
+        "https://www.apf.org.py/noticias/listo-calendario-para-la-temporada-2026",
+        "https://www.apf.org.py/noticias/la-espera-termino-arranca-el-clausura"
+      ],
+      "finding": "2026 men's annual Primera Division scope combines Apertura and Clausura. APF gives January 23 opening and, in its July 24 current-edition launch, November 30 Clausura completion, superseding the preliminary November 29. Both are 22-round points-table championships, not a separate championship playoff series.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-paraguay-copa-paraguay-men",
+      "sport": "Soccer",
+      "country": "Paraguay",
+      "catalog_event": "Copa Paraguay | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.apf.org.py/noticias/la-copa-paraguay-2026-tiene-definidas-sus-primeras-semanas-de-disputa",
+      "evidence_urls": [
+        "https://www.apf.org.py/noticias/la-copa-paraguay-2026-tiene-definidas-sus-primeras-semanas-de-disputa",
+        "https://www.apf.org.py/noticias/esta-es-la-hoja-de-ruta-de-la-copa-de-todos-2026",
+        "https://www.apf.org.py/noticias/recoleta-cierra-el-cupo-de-equipos-semifinalistas",
+        "https://www.apf.org.py/copa-paraguay"
+      ],
+      "finding": "APF confirms June 2 first-phase opening of the 2026 men's Copa Paraguay. Current October 29 reporting confirms the semifinalists but not a final date. The November 16 final article concerns the earlier 2 de Mayo-General Caballero edition and is not used for 2026; calendar graphics were not legible in retrieved content.",
+      "missing_fact": "Exact 2026 Copa Paraguay final date in an accessible official calendar or fixture notice.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-peru-peruvian-primera-divisi-n-men",
+      "sport": "Soccer",
+      "country": "Peru",
+      "catalog_event": "Peruvian Primera División | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://liga1.pe/wp-content/uploads/2026/03/Reglamento-Liga1-Te-Apuesto-2026.pdf",
+      "evidence_urls": [
+        "https://liga1.pe/wp-content/uploads/2026/03/Reglamento-Liga1-Te-Apuesto-2026.pdf",
+        "https://liga1.pe/wp-content/uploads/2026/03/RESOLUCION-N%C2%B0-02-EXP.-L1.O-04-26-Alianza-Lima.pdf",
+        "https://liga1.pe/fixture-y-resultados-del-clausura-liga1-te-apuesto-2026/"
+      ],
+      "finding": "2026 men's Liga1 annual scope opens January 30: regulation first-round window and the official Sport Huancayo-Alianza match decision agree. Regulations require playoffs including a runner-up playoff even when one club wins both short tournaments. Current Clausura dates do not verify the last playoff return leg.",
+      "missing_fact": "Exact last applicable championship or runner-up playoff return date for 2026.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-peru-copa-bicentenario-men",
+      "sport": "Soccer",
+      "country": "Peru",
+      "catalog_event": "Copa Bicentenario | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://liga1.pe/wp-content/uploads/2026/03/Reglamento-Liga1-Te-Apuesto-2026.pdf",
+      "evidence_urls": [
+        "https://liga1.pe/wp-content/uploads/2026/03/Reglamento-Liga1-Te-Apuesto-2026.pdf",
+        "https://liga1.pe/las-reglas-de-juego-se-actualizaran-en-torneos-de-la-lfpp-por-decision-de-ifab/",
+        "https://liga1.pe/reglamentos/"
+      ],
+      "finding": "Reviewed 2026 LFPP regulations and competition notices identify a distinct Copa de la Liga, not an edition of Copa Bicentenario. No official current-edition dates for the exact approved name were established. Preserve the identity and do not substitute Copa de la Liga dates or claim cancellation.",
+      "missing_fact": "Official current-edition announcement and dates for the exact Copa Bicentenario competition.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+    },
+    {
+      "key": "soccer-peru-supercopa-peruana-men",
+      "sport": "Soccer",
+      "country": "Peru",
+      "catalog_event": "Supercopa Peruana | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://liga1.pe/reglamentos/",
+      "evidence_urls": [
+        "https://liga1.pe/reglamentos/",
+        "https://fpf.org.pe/copa-federacion-2026-arranca-este-sabado-14-de-marzo/"
+      ],
+      "finding": "Current LFPP documents and targeted FPF review did not establish a 2026 senior men's Supercopa Peruana edition. The FPF result is Supercopa TDS FIFA Sub-13, a different youth scope and not evidence for this adult catalog entry. Preserve the identity; no dates or cancellation inferred.",
+      "missing_fact": "Official senior men's Supercopa Peruana current-edition announcement and match date.",
+      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
     }
   ]
 }
