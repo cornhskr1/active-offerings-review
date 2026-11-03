@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T11:28:01.263Z",
+  "generated_at": "2026-11-03T12:13:08.763Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -4580,16 +4580,31 @@
                   "key": "soccer-international-afc-asian-cup-men",
                   "label": "AFC Asian Cup | Men",
                   "source_id": "soccer-afc-asian-cup-men",
-                  "season_window": "January 7–February 5, 2027",
-                  "season_start_date": "2027-01-07",
-                  "season_end_date": "2027-02-05"
+                  "season_window": "Postponed; proposed December 23, 2027–January 21, 2028 awaits FIFA approval",
+                  "season_basis": "AFC November 3 announcement supersedes January 7–February 5, 2027. Replacement December 23, 2027–January 21, 2028 dates are subject to FIFA approval; not a confirmed window.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.the-afc.com/en/national/afc_asian_cup.html/news/important-update-afc-asian-cup-saudi-arabia-2027%E2%84%A2%EF%B8%8F",
+                  "season_evidence_urls": [
+                    "https://www.the-afc.com/en/national/afc_asian_cup.html/news/important-update-afc-asian-cup-saudi-arabia-2027%E2%84%A2%EF%B8%8F"
+                  ],
+                  "season_window_complete": false,
+                  "season_verification_status": "verified-partial"
                 },
                 {
                   "key": "soccer-international-afc-asian-cup-women",
                   "label": "AFC Asian Cup | Women",
                   "source_id": "soccer-afc-asian-cup-women",
-                  "season_window": "March 1–21, 2026",
-                  "season_status": "out"
+                  "season_window": "2026-03-01 – 2026-03-21",
+                  "season_start_date": "2026-03-01",
+                  "season_end_date": "2026-03-21",
+                  "season_basis": "2026 senior women's finals tournament in Australia, opening match through final.",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.the-afc.com/en/national/afc_womens_asian_cup.html/news/asia%E2%80%99s-best-vie-for-continental-glory-at-wac2026",
+                  "season_evidence_urls": [
+                    "https://www.the-afc.com/en/national/afc_womens_asian_cup.html/news/asia%E2%80%99s-best-vie-for-continental-glory-at-wac2026"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 }
               ]
             },
@@ -4689,88 +4704,131 @@
           "events": [
             {
               "key": "soccer-international-concacaf-nations-league-men",
-              "season_window": "September 23–October 7, 2026",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "09-23",
-              "season_end": "10-07",
+              "season_window": "2026/27 edition: September 2026–March 2027; exact full window pending",
+              "season_basis": "League A finals March 25–28, but B/C championships use March 22–30 window. Broad catalog identity covers all leagues; do not use League A final as full endpoint or FIFA window start as actual opener.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-nations-league",
               "catalog_event": "CONCACAF Nations League | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.concacaf.com/competitions/nations-league/news/2026-27-concacaf-nations-league-groups-confirmed",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/competitions/nations-league/news/2026-27-concacaf-nations-league-groups-confirmed"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-international-concacaf-gold-cup-men",
-              "season_window": "Most recent edition: June–July 2025 · no 2026 finals",
-              "season_basis": "Tournament-cycle event",
-              "last_verified": "2026-09-18",
+              "season_window": "2027 edition: June–July; exact dates pending",
+              "season_basis": "Official September announcement provides months only and says match schedules will follow. Do not import secondary June 18–July 11 dates.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-gold-cup",
-              "season_status": "out",
               "catalog_event": "CONCACAF Gold Cup | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.concacaf.com/competitions/gold-cup/news/2027-concacaf-gold-cup-qualification-pathway-confirmed",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/competitions/gold-cup/news/2027-concacaf-gold-cup-qualification-pathway-confirmed"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-international-concacaf-central-american-cup-men",
-              "season_window": "July 29–September 18, 2026",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "07-29",
-              "season_end": "09-18",
+              "season_window": "2026-07-28 – 2026-12-06",
+              "season_basis": "2026 group-stage opener through second leg of final, including knockout rounds.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-central-american-cup",
               "catalog_event": "CONCACAF Central American Cup | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-07-28",
+              "season_end_date": "2026-12-06",
+              "season_source_url": "https://www.concacaf.com/competitions/central-american-cup/news/2026-central-american-cup-schedule-confirmed",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/competitions/central-american-cup/news/2026-central-american-cup-schedule-confirmed"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-international-concacaf-champions-cup-men",
-              "season_window": "February 4–May 31, 2026",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "02-04",
-              "season_end": "05-31",
+              "season_window": "2026-02-03 – 2026-05-30",
+              "season_basis": "2026 men's edition, first round through single-leg final. The 2027 edition has only February–June months published; these dates describe the completed 2026 edition.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-champions-cup",
               "catalog_event": "CONCACAF Champions Cup | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-02-03",
+              "season_end_date": "2026-05-30",
+              "season_source_url": "https://www.concacaf.com/international-match-calendars",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/international-match-calendars"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-international-leagues-cup-men",
-              "season_window": "August 4–September 7, 2026",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "08-04",
-              "season_end": "09-07",
+              "season_window": "2026-08-04 – 2026-09-06",
+              "season_basis": "2026 men's club competition, opening matches through final.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-leagues-cup",
               "catalog_event": "Leagues Cup | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-08-04",
+              "season_end_date": "2026-09-06",
+              "season_source_url": "https://www.leaguescup.com/news/leagues-cup-2026-set-to-be-played-august-4-september-6-participating-clubs-announced",
+              "season_evidence_urls": [
+                "https://www.leaguescup.com/news/leagues-cup-2026-set-to-be-played-august-4-september-6-participating-clubs-announced"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-international-concacaf-w-gold-cup-women",
-              "season_window": "Most recent edition: February–March 2024 · no 2026 finals",
-              "season_basis": "Tournament-cycle event",
-              "last_verified": "2026-09-18",
+              "season_window": "2029 edition: summer; exact dates pending",
+              "season_basis": "Official competition plan places the second W Gold Cup in summer 2029; no full exact window established.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-w-gold-cup",
-              "season_status": "out",
               "catalog_event": "CONCACAF W Gold Cup | Women",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.concacaf.com/news/cbs-sports-acuerda-que-paramount-sea-el-hogar-exclusivo-en-ee-uu-en-ingles-de-todas-las-competiciones-femeninas-de-concacaf-hasta-2030",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/news/cbs-sports-acuerda-que-paramount-sea-el-hogar-exclusivo-en-ee-uu-en-ingles-de-todas-las-competiciones-femeninas-de-concacaf-hasta-2030"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-international-concacaf-w-championship-women",
-              "season_window": "November 27–December 5, 2026",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "11-27",
-              "season_end": "12-05",
+              "season_window": "2026-11-27 – 2026-12-05",
+              "season_basis": "2026 senior women's championship finals tournament, quarterfinals through final; separate qualifiers excluded.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-w-championship",
               "catalog_event": "CONCACAF W Championship | Women",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-11-27",
+              "season_end_date": "2026-12-05",
+              "season_source_url": "https://www.concacaf.com/competitions/w-championship/news/texas-health-mansfield-stadium-and-shell-energy-stadium-to-host-2026-concacaf-w-championship",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/competitions/w-championship/news/texas-health-mansfield-stadium-and-shell-energy-stadium-to-host-2026-concacaf-w-championship"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-international-concacaf-w-champions-cup-women",
-              "season_window": "Most recent finals: May 20–24, 2026 · next schedule pending",
-              "season_basis": "Tournament-cycle event; next competition schedule pending",
-              "last_verified": "2026-09-18",
+              "season_window": "2027 edition: July–October; exact dates pending",
+              "season_basis": "May 8 announcement supersedes earlier 2026/27 group-stage plan: third edition starts July 2027 with decentralized knockout format. Exact opening and final dates not established.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-concacaf-w-champions-cup",
-              "season_status": "out",
               "catalog_event": "CONCACAF W Champions Cup | Women",
-              "restrictions": []
+              "restrictions": [],
+              "season_source_url": "https://www.concacaf.com/news/revamped-format-for-region-s-w-champions-cup",
+              "season_evidence_urls": [
+                "https://www.concacaf.com/news/revamped-format-for-region-s-w-champions-cup"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             }
           ]
         },
