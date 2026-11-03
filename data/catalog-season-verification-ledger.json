@@ -2,8 +2,8 @@
   "schema_version": 1,
   "updated_at": "2026-11-03",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
-  "baseline_commit": "9e06b2865b8ecb57717aedd4108743a0b808ca51",
-  "baseline_dated_records": 307,
+  "baseline_commit": "05a75601e36637874f6ffd4fa17da0c2b149d6cc",
+  "baseline_dated_records": 310,
   "catalog_records": 735,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
@@ -2004,6 +2004,203 @@
       "finding": "Official TBT format describes alumni and non-alumni brackets, not a distinct women's basketball tournament. TST women's competition is soccer. Existing women's TBT identity hold remains; no men's dates copied.",
       "missing_fact": "Exact official women's basketball competition and its calendar corresponding to this child.",
       "next_action": "Retain the existing identity hold until official evidence establishes the exact competition; do not substitute another division or opponent scope."
+    },
+    {
+      "key": "soccer-argentina-argentine-primera-divisi-n-men",
+      "sport": "Soccer",
+      "country": "Argentina",
+      "catalog_event": "Argentine Primera División | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.ligaprofesional.ar/?p=78265",
+      "evidence_urls": [
+        "https://www.ligaprofesional.ar/?p=78265",
+        "https://www.afa.com.ar/es/posts/escenario-y-fecha-confirmada-para-la-gran-final-del-torneo-clausura-2026",
+        "https://www.afa.com.ar/es/posts/la-agenda-de-la-afa"
+      ],
+      "finding": "2026 men's Primera Division annual scope: January 22 Apertura opening fixtures through the December 12 Clausura final, still listed in AFA's current agenda. Includes league playoffs; December 19 Trofeo de Campeones is a separate competition.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-argentina-argentine-primera-nacional-men",
+      "sport": "Soccer",
+      "country": "Argentina",
+      "catalog_event": "Argentine Primera Nacional | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.afa.com.ar/30/posts/programacion-y-jueces-para-la-quinta-fecha-de-la-liga-profesional-y-el-inicio-de-la-primera-nacional-y-primera-b",
+      "evidence_urls": [
+        "https://www.afa.com.ar/30/posts/programacion-y-jueces-para-la-quinta-fecha-de-la-liga-profesional-y-el-inicio-de-la-primera-nacional-y-primera-b",
+        "https://assets1.afa.com.ar/2025/LEA-2026/OCTUBRE/Boletin-Resoluciones-6969-(30-10-2026).pdf",
+        "https://assets1.afa.com.ar/2025/LEA-2026/ENERO/Boletin-Especial-6823---Reglamento-del-Campeonato-de-Primera-Nacional-2026.pdf"
+      ],
+      "finding": "2026 men's Primera Nacional: actual opening fixture San Miguel-Central Norte is February 13. AFA Bulletin 6969 of October 30 replaces the earlier calendar with seven final/second-promotion playoff dates ending December 19; this includes the Reducido, not merely the first-promotion final.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-argentina-copa-argentina-men",
+      "sport": "Soccer",
+      "country": "Argentina",
+      "catalog_event": "Copa Argentina | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.copaargentina.org/es/pwa/news/11744_Se-confirmaron-las-fechas-de-todos-los-partidos-de-32avos-de-Final",
+      "evidence_urls": [
+        "https://www.copaargentina.org/es/pwa/news/11744_Se-confirmaron-las-fechas-de-todos-los-partidos-de-32avos-de-Final",
+        "https://www.afa.com.ar/Torneos_Locales/posts/toda-la-informacion-de-la-copa-argentina1",
+        "https://www.afa.com.ar/es/posts/la-agenda-de-la-afa"
+      ],
+      "finding": "2026 men's Copa Argentina: organizer confirms January 18 opening tie. AFA's current competition page and agenda set the final on December 2, superseding the earlier November 4 announcement.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-argentina-copa-de-la-liga-profesional-men",
+      "sport": "Soccer",
+      "country": "Argentina",
+      "catalog_event": "Copa de la Liga Profesional | Men",
+      "status": "not-scheduled",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.ligaprofesional.ar/notas/institucional/2025/11/20/las-competencias-de-2026/",
+      "evidence_urls": [
+        "https://www.ligaprofesional.ar/notas/institucional/2025/11/20/las-competencias-de-2026/"
+      ],
+      "finding": "LPF's official 2026 competition structure has Apertura and Clausura within the league and no separate Copa de la Liga Profesional edition. Preserve the approved identity; do not duplicate league dates or infer cancellation.",
+      "missing_fact": "No separate 2026 edition under this name.",
+      "next_action": "Retain the catalog identity; recheck if LPF announces a separate edition."
+    },
+    {
+      "key": "soccer-colombia-superliga-colombiana-men",
+      "sport": "Soccer",
+      "country": "Colombia",
+      "catalog_event": "Superliga Colombiana | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://dimayor.com.co/wp-content/uploads/2025/12/SUPERLIGA-BetPlay-DIMAYOR-2026.pdf",
+      "evidence_urls": [
+        "https://dimayor.com.co/wp-content/uploads/2025/12/SUPERLIGA-BetPlay-DIMAYOR-2026.pdf",
+        "https://www.dimayor.com.co/2025/12/28/programacion-de-la-superliga-betplay-dimayor-2026/",
+        "https://dimayor.com.co/2026/01/21/independiente-santa-fe-campeon-de-la-superliga-betplay-dimayor-2026/"
+      ],
+      "finding": "Official 2026 men's Superliga fixture poster visually confirms January 15 and January 21 legs. DIMAYOR's January 21 championship report confirms completion. No-proposition restriction remains.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-colombia-primera-a-men",
+      "sport": "Soccer",
+      "country": "Colombia",
+      "catalog_event": "Primera A | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://dimayor.com.co/wp-content/uploads/2026/01/PROGRAMACION-LIGA-BETPLAY-DIMAYOR-I-2026-FECHA-1-19-10-_compressed.pdf",
+      "evidence_urls": [
+        "https://dimayor.com.co/wp-content/uploads/2026/01/PROGRAMACION-LIGA-BETPLAY-DIMAYOR-I-2026-FECHA-1-19-10-_compressed.pdf",
+        "https://dimayor.com.co/wp-content/uploads/2026/04/CALENDARIO-Segundo-Semestre-2026-V1-2.pdf",
+        "https://dimayor.com.co/2026/09/04/confirmacion-de-la-programacion-de-la-liga-betplay-dimayor-ll-2026/"
+      ],
+      "finding": "2026 annual men's Primera A scope begins January 16 in Liga I. The later Liga II rescheduling announcement prevents treating the early second-semester calendar as a verified final endpoint. Full Liga II final return date remains unverified; no-proposition restriction remains.",
+      "missing_fact": "Exact Liga II championship final return date after the 2026 rescheduling.",
+      "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
+    },
+    {
+      "key": "soccer-colombia-copa-colombia-men",
+      "sport": "Soccer",
+      "country": "Colombia",
+      "catalog_event": "Copa Colombia | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://dimayor.com.co/wp-content/uploads/2026/05/Programacion-Copa-FECHA-1A.pdf",
+      "evidence_urls": [
+        "https://dimayor.com.co/wp-content/uploads/2026/05/Programacion-Copa-FECHA-1A.pdf",
+        "https://www.dimayor.com.co/2026/08/19/comunicado-oficial-dimayor-informa-decisiones-de-la-asamblea-extraordinaria/",
+        "https://dimayor.com.co/2026/10/24/programacion-partido-independiente-santa-fe-vs-once-caldas-daf-copa-betplay-dimayor-2026/"
+      ],
+      "finding": "2026 men's Copa BetPlay opens May 6 with Patriotas-Chico in the official first-round notice. August format revision retains two-legged semifinals/final; October quarterfinal rescheduling makes the early calendar unsuitable for a complete endpoint. No-proposition restriction remains.",
+      "missing_fact": "Exact 2026 final return date after the format and fixture changes.",
+      "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
+    },
+    {
+      "key": "soccer-uruguay-supercopa-uruguaya-men",
+      "sport": "Soccer",
+      "country": "Uruguay",
+      "catalog_event": "Supercopa Uruguaya | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.auf.org.uy/proceso-de-acreditaciones-para-la-supercopa-uruguaya-2026/",
+      "evidence_urls": [
+        "https://www.auf.org.uy/proceso-de-acreditaciones-para-la-supercopa-uruguaya-2026/",
+        "https://www.auf.org.uy/liga-auf-uruguaya/"
+      ],
+      "finding": "Indexed official AUF accreditation announcement dates the 2026 men's Supercopa to February 1; indexed AUF results identify Penarol-Nacional on that date. Single-match edition, not the previous January estimate. Direct AUF retrieval timed out.",
+      "missing_fact": null,
+      "next_action": "Recheck official amendments before the next edition; do not roll these dates forward."
+    },
+    {
+      "key": "soccer-uruguay-campeonato-uruguayo-men",
+      "sport": "Soccer",
+      "country": "Uruguay",
+      "catalog_event": "Campeonato Uruguayo | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.auf.org.uy/comienza-la-liga-auf-uruguaya-2026/",
+      "evidence_urls": [
+        "https://www.auf.org.uy/comienza-la-liga-auf-uruguaya-2026/",
+        "https://www.auf.org.uy/liga-auf-uruguaya/"
+      ],
+      "finding": "Indexed AUF opening announcement and fixtures establish February 6 for the 2026 men's league. The full championship playoff endpoint is not established; a general December deadline is not an exact final fixture. Direct AUF retrieval timed out.",
+      "missing_fact": "Exact last applicable 2026 championship playoff/final date.",
+      "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
+    },
+    {
+      "key": "soccer-uruguay-segunda-divisi-n-men",
+      "sport": "Soccer",
+      "country": "Uruguay",
+      "catalog_event": "Segunda División | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.auf.org.uy/comienza-la-temporada-2026-de-la-segunda-division-profesional/",
+      "evidence_urls": [
+        "https://www.auf.org.uy/comienza-la-temporada-2026-de-la-segunda-division-profesional/",
+        "https://auf.org.uy/se-sorteo-el-fixture-de-la-segunda-division-profesional-2026/"
+      ],
+      "finding": "Indexed official AUF announcement establishes March 13 opening of the 2026 men's Segunda Division, including Torneo Competencia. The full promotion-playoff endpoint is not established. Direct AUF retrieval timed out.",
+      "missing_fact": "Exact last 2026 promotion-playoff date, beyond the regular phase.",
+      "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
+    },
+    {
+      "key": "soccer-uruguay-copa-uruguay-men",
+      "sport": "Soccer",
+      "country": "Uruguay",
+      "catalog_event": "Copa Uruguay | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://auf.org.uy/copa-auf-uruguay-2026/",
+      "evidence_urls": [
+        "https://auf.org.uy/copa-auf-uruguay-2026/",
+        "https://www.auf.org.uy/copaaufuruguay/"
+      ],
+      "finding": "Indexed AUF July 9 announcement gives August 4 as the 2026 men's cup AUF-team qualifying-phase opener. Current indexed fixtures reach the round of 16 in October/November; the final endpoint is not established. Direct AUF retrieval timed out.",
+      "missing_fact": "Exact 2026 final date; retain the organizer-announced qualifying opener.",
+      "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
+    },
+    {
+      "key": "soccer-uruguay-campeonato-femenino-women",
+      "sport": "Soccer",
+      "country": "Uruguay",
+      "catalog_event": "Campeonato Femenino | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.auf.org.uy/campeonato-femenino-a/",
+      "evidence_urls": [
+        "https://www.auf.org.uy/campeonato-femenino-a/",
+        "https://auf.org.uy/campeonato-femenino-a/"
+      ],
+      "finding": "Indexed official AUF women's A fixtures establish May 9 as the 2026 Apertura opener. September 27 is the first-phase final, not the complete season: AUF lists second-phase permanence matches in October/November. Full championship/relegation endpoint remains unverified. Direct AUF retrieval timed out.",
+      "missing_fact": "Exact full 2026 endpoint including all championship and permanence phases.",
+      "next_action": "Recheck the official organizer's updated fixture notices for the missing endpoint; do not infer it from regular-season or phase dates."
     }
   ]
 }
