@@ -17,11 +17,11 @@ class DenmarkNorwayScopeTests(unittest.TestCase):
     def test_six_distinct_identities_and_edition_bounds(self):
         self.assertEqual(6,len(self.events))
         bounds={
-            'soccer-denmark-danish-superliga-men':('2026-07-24','2027-06-03','PARTIAL_WINDOW'),
+            'soccer-denmark-danish-superliga-men':('2026-07-24','2027-06-03','DATED_WINDOW'),
             'soccer-denmark-danish-1st-division-men':('2026-07-24','2027-06-06','DATED_WINDOW'),
             'soccer-denmark-danish-cup-men':('2026-08-05','2027-05-06','PARTIAL_WINDOW'),
-            'soccer-norway-eliteserien-men':('2026-03-14','2026-12-21','PARTIAL_WINDOW'),
-            'soccer-norway-obos-ligaen-men':('2026-04-05','2026-12-21','PARTIAL_WINDOW'),
+            'soccer-norway-eliteserien-men':('2026-03-14','2026-12-21','DATED_WINDOW'),
+            'soccer-norway-obos-ligaen-men':('2026-04-05','2026-12-21','DATED_WINDOW'),
         }
         for key,(start,end,state) in bounds.items():
             with self.subTest(key=key):
@@ -38,7 +38,9 @@ class DenmarkNorwayScopeTests(unittest.TestCase):
         e=self.events[key]
         self.assertTrue(e['season_hold'])
         self.assertIn('2027 edition',e['season_window'])
-        self.assertNotIn('season_end_date',e)
+        self.assertEqual('2027-05-29',e['season_end_date'])
+        self.assertNotIn('season_start_date',e)
+        self.assertFalse(e['season_window_complete'])
         self.assertEqual('DOCUMENTED_HOLD',self.inventory[key]['season_state'])
         self.assertEqual('ADAPTER_CONFIGURED',self.inventory[key]['coverage_state'])
         self.assertEqual("permission_required", self.sources[e['source_id']]["access_status"])

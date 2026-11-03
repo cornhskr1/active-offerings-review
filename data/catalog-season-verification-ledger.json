@@ -2,15 +2,16 @@
   "schema_version": 1,
   "updated_at": "2026-11-03",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
-  "baseline_commit": "7a36a04e32a5bed13468c8e60c71cd39c39a4dad",
-  "baseline_dated_records": 297,
+  "baseline_commit": "6372baeafcaa40488990610b8c59b8711a0b5ae6",
+  "baseline_dated_records": 298,
   "catalog_records": 735,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
     "awaiting-published-dates": "Partial official dates exist; a complete window is not established in reviewed sources.",
     "manual-verification-needed": "A specific identity, source or status issue needs targeted review.",
     "source-access-held": "An existing publisher access hold prevents this verification route.",
-    "not-yet-reviewed": "No review result has been recorded in this pass."
+    "not-yet-reviewed": "No review result has been recorded in this pass.",
+    "not-scheduled": "The official current-edition format does not include the named competition; distinct from unreviewed dates or cancellation."
   },
   "records": [
     {
@@ -1545,6 +1546,154 @@
       "finding": "2026/27 men's Championship: June 18 fixture release fixes all five opening games to August 1, superseding provisional July 31/August 1 bounds. April 30 is regular-season only. Premiership promotion final is May 23; reviewed current sources do not establish the last Championship relegation-playoff fixture. Previous-edition May dates are not rolled forward.",
       "missing_fact": "Last applicable 2026/27 Championship relegation-playoff fixture, to establish the full promotion/relegation endpoint.",
       "next_action": "Check the next competition-specific official calendar update; retain partial dates and existing holds."
+    },
+    {
+      "key": "soccer-denmark-danish-superliga-men",
+      "sport": "Soccer",
+      "country": "Denmark",
+      "catalog_event": "Danish Superliga | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://superliga.dk/nyheder/kamptidspunkter/2026-2027/kampprogrammet-for-grundspillet-2026-27-er-fastlagt",
+      "evidence_urls": [
+        "https://superliga.dk/nyheder/kamptidspunkter/2026-2027/kampprogrammet-for-grundspillet-2026-27-er-fastlagt",
+        "https://cms.divisionsforeningen.dk/assets/34cac0fc-4df5-4650-aa74-4022a138638a"
+      ],
+      "finding": "2026/27 men's 3F Superliga: official first-round fixture starts July 24; Divisionsforeningen spring plan places S33 on June 3 and explicitly defines S33 as Europa Playoff. Full season timing includes that match; this does not expand the held daily feed's scope.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-norway-eliteserien-men",
+      "sport": "Soccer",
+      "country": "Norway",
+      "catalog_event": "Eliteserien | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.eliteserien.no/nyheter/her-er-spilleplanen-for-2026",
+      "evidence_urls": [
+        "https://www.eliteserien.no/nyheter/her-er-spilleplanen-for-2026",
+        "https://www.fotball.no/tema/nff-nyheter/2026/slik-spilles-kvalifiseringskampene/"
+      ],
+      "finding": "2026 men's Eliteserien: league fixture list confirms March 14 opening. NFF's October 22 qualification announcement fixes the top-division second leg to December 21. Qualification is included in season timing without changing held feed permissions or coverage.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-norway-obos-ligaen-men",
+      "sport": "Soccer",
+      "country": "Norway",
+      "catalog_event": "OBOS-ligaen | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.obos-ligaen.no/nyheter/her-er-spilleplanen-for-2026",
+      "evidence_urls": [
+        "https://www.obos-ligaen.no/nyheter/her-er-spilleplanen-for-2026",
+        "https://www.fotball.no/tema/nff-nyheter/2026/slik-spilles-kvalifiseringskampene/"
+      ],
+      "finding": "2026 men's OBOS-ligaen: official opening match is April 5. NFF October 22 notice fixes relegation qualification through November 28 and the promotion path through the Eliteserien second leg on December 21. No fixture adapter scope is expanded.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-sweden-allsvenskan-men",
+      "sport": "Soccer",
+      "country": "Sweden",
+      "catalog_event": "Allsvenskan | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://svenskelitfotboll.se/allsvenskans-spelschema-omgang-1-10/",
+      "evidence_urls": [
+        "https://svenskelitfotboll.se/allsvenskans-spelschema-omgang-1-10/",
+        "https://www.svenskfotboll.se/4a5e9d/globalassets/svff/dokumentdokumentblock/tavling/gruppindelningar-och-spelordningar-for-kvalspelet-2026.pdf",
+        "https://ostersundsfk.se/forutsattningarna-infor-sista-sex-omgangarna-i-superettan/"
+      ],
+      "finding": "2026 men's Allsvenskan: SEF's fixed opening fixtures start April 4. SvFF establishes the qualification path; Östersunds' September 16 official explanation explicitly fixes the final return leg at the Allsvenskan club to December 6. November 29 league finish is not the full endpoint.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-sweden-superettan-men",
+      "sport": "Soccer",
+      "country": "Sweden",
+      "catalog_event": "Superettan | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.svenskfotboll.se/nyheter/serier/2026/01/avsparkstider-omgang-1-15-i-superettan-faststallda/",
+      "evidence_urls": [
+        "https://www.svenskfotboll.se/nyheter/serier/2026/01/avsparkstider-omgang-1-15-i-superettan-faststallda/",
+        "https://www.svenskfotboll.se/4a5e9d/globalassets/svff/dokumentdokumentblock/tavling/gruppindelningar-och-spelordningar-for-kvalspelet-2026.pdf",
+        "https://ostersundsfk.se/forutsattningarna-infor-sista-sex-omgangarna-i-superettan/"
+      ],
+      "finding": "2026 men's Superettan: SvFF's fixed fixture release confirms Helsingborg–Öster on April 3, superseding provisional April 4. Relegation qualification ends within November 21–28; Östersunds explicitly fixes the promotion path's final return leg to December 6.",
+      "missing_fact": null,
+      "next_action": "Recheck if the official calendar changes."
+    },
+    {
+      "key": "soccer-sweden-damallsvenskan-women",
+      "sport": "Soccer",
+      "country": "Sweden",
+      "catalog_event": "Damallsvenskan | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.svenskfotboll.se/nyheter/serier/2026/01/avsparkstider-omgang-1-11-i-obos-damallsvenskan/",
+      "evidence_urls": [
+        "https://www.svenskfotboll.se/nyheter/serier/2026/01/avsparkstider-omgang-1-11-i-obos-damallsvenskan/",
+        "https://www.svenskfotboll.se/4a5e9d/globalassets/svff/dokumentdokumentblock/tavling/gruppindelningar-och-spelordningar-for-kvalspelet-2026.pdf"
+      ],
+      "finding": "2026 senior women's OBOS Damallsvenskan: fixed first kickoff is March 28, not the preliminary March 27–30 window. SvFF's qualification document allocates November 19–22 but reviewed evidence does not independently fix the exact return-leg match date.",
+      "missing_fact": "Exact date of the 2026 qualification return leg within the November 19–22 allocation.",
+      "next_action": "Check the competition's next official fixture/calendar update; keep unresolved boundaries partial."
+    },
+    {
+      "key": "soccer-norway-norwegian-cup-men",
+      "sport": "Soccer",
+      "country": "Norway",
+      "catalog_event": "Norwegian Cup | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.fotball.no/tema/nff-nyheter/2026/se-hovedterminlistene-for-2027/",
+      "evidence_urls": [
+        "https://www.fotball.no/tema/nff-nyheter/2026/se-hovedterminlistene-for-2027/",
+        "https://www.fotball.no/kretser/oslo/konkurranse/artikler/2026/kretsvis-kvalifisering-nm-menn-senior-2027/"
+      ],
+      "finding": "NFF's October 6 calendar now fixes the 2027 men's Norwegian Cup final to May 29. Oslo's edition-specific notice confirms regional rounds before the June 6–7 playoff weekend, including April fixtures; June is therefore not the full competition opener. Earliest actual qualifying fixture across all districts remains unresolved.",
+      "missing_fact": "Exact earliest actual regional qualification fixture for the 2027 men's cup across all NFF districts.",
+      "next_action": "Confirm the earliest actual 2027-edition cup qualifier from NFF district fixture records; retain the hold until full scope is established."
+    },
+    {
+      "key": "soccer-belgium-belgian-cup-beker-van-belgi-men",
+      "sport": "Soccer",
+      "country": "Belgium",
+      "catalog_event": "Belgian Cup / Beker van België | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://royal-belgian-football-association.prezly.com/loting-croky-cup-2026-2027",
+      "evidence_urls": [
+        "https://royal-belgian-football-association.prezly.com/loting-croky-cup-2026-2027",
+        "https://www.proleague.be/nieuws/croky-cup-krijgt-prominente-plaats-in-kalender-van-2026-2027",
+        "https://www.kvk.be/competitieformat-2026-2027/",
+        "https://cdn.assets.prezly.com/e823dd77-a0b5-45db-930a-70a0e77b5da2/-/inline/no/Croky%20Cup%202026-2027.pdf"
+      ],
+      "finding": "RBFA June draw notice places opening in July 25–26, before September professional rounds; its fixture PDF was inaccessible. Reported July 24 advance fixture lacks official confirmation here. Kortrijk gives May 30 final, but the newer September 1 Pro League notice explicitly leaves the final date to follow. Keep both boundaries unresolved pending current official fixture confirmation.",
+      "missing_fact": "Exact earliest first-round fixture (including any July 24 advance match) and current governing-body confirmation of the final date versus the club's May 30 reference.",
+      "next_action": "Check the competition's next official fixture/calendar update; keep unresolved boundaries partial."
+    },
+    {
+      "key": "soccer-belgium-championship-playoffs-i-and-ii-men",
+      "sport": "Soccer",
+      "country": "Belgium",
+      "catalog_event": "Championship Playoffs I and II | Men",
+      "status": "not-scheduled",
+      "reviewed_at": "2026-11-03",
+      "official_url": "https://www.kvk.be/competitieformat-2026-2027/",
+      "evidence_urls": [
+        "https://www.kvk.be/competitieformat-2026-2027/",
+        "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie"
+      ],
+      "finding": "Official 2026/27 format has 18 top-division clubs and no championship playoffs. This is a documented format change, not unresearched dates or an event cancellation. Challenger promotion playoffs remain a distinct competition; preserve this approval and existing hold.",
+      "missing_fact": "No named top-division playoff edition exists in the published 2026/27 format.",
+      "next_action": "Retain approval and hold; review only if the official competition format changes."
     }
   ]
 }
