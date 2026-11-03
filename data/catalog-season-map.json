@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T11:23:57.228Z",
+  "generated_at": "2026-11-03T11:28:01.263Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -5190,12 +5190,20 @@
             {
               "key": "soccer-argentina-supercopa-argentina-men",
               "catalog_event": "Supercopa Argentina | Men",
-              "season_window": "Annual single-match event · 2026 date pending",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-11-12 – 2026-11-12",
+              "season_basis": "The organizer's current match listing and announcement confirm November 12, 2026 in Cordoba (23:00 UTC / 20:00 local). These supersede earlier November 11 and November 13 notices.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_status": "out",
-              "source_id": "conmebol-soccer-argentina-supercopa-men"
+              "source_id": "conmebol-soccer-argentina-supercopa-men",
+              "season_start_date": "2026-11-12",
+              "season_end_date": "2026-11-12",
+              "season_source_url": "https://www.copaargentina.org/es/partido/3705_Estudiantes-de-La-Plata-vs-Independiente-Rivadavia.html",
+              "season_evidence_urls": [
+                "https://www.copaargentina.org/es/partido/3705_Estudiantes-de-La-Plata-vs-Independiente-Rivadavia.html",
+                "https://www.copaargentina.org/es/supercopa/326_La-Supercopa-Argentina-se-disputara-el-jueves-12-de-noviembre.html"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-argentina-copa-de-la-liga-profesional-men",
@@ -6214,13 +6222,21 @@
             {
               "key": "soccer-england-english-football-league-efl-trophy-men",
               "catalog_event": "English Football League (EFL) Trophy | Men",
-              "season_window": "August 2026–May 2027",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-08-18 – 2027-04-11",
+              "season_basis": "EFL's opening-night report establishes August 18, 2026; its key dates and participating club Newcastle confirm the April 11, 2027 final. The actual opening matches supersede the generic early-September group-stage marker.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "08-01",
-              "season_end": "05-31",
-              "source_id": "uefa-soccer-england-english-football-league-efl-trophy-men"
+              "source_id": "uefa-soccer-england-english-football-league-efl-trophy-men",
+              "season_start_date": "2026-08-18",
+              "season_end_date": "2027-04-11",
+              "season_source_url": "https://www.efl.com/competitions/key-dates/",
+              "season_evidence_urls": [
+                "https://www.efl.com/competitions/key-dates/",
+                "https://www.efl.com/news/2026/august/18/efl-trophy-round-up--stockport-county-and-barnet-hit-five-on-opening-night/",
+                "https://www.newcastleunited.com/en/news/under-21s-learn-efl-trophy-group-stage-opponents"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-england-the-championship-men-and-women",
@@ -7071,10 +7087,18 @@
                   "key": "soccer-italy-serie-a-men",
                   "label": "Serie A | Men",
                   "source_id": "seriea",
-                  "season_window": "August 22, 2026–May 30, 2027",
+                  "season_window": "2026-08-22 – 2027-05-30",
+                  "season_basis": "Lega Serie A's calendar fixes the 2026–27 final round on May 30; its detailed first-round schedule confirms the actual August 22 opening matches.",
                   "season_start_date": "2026-08-22",
                   "season_end_date": "2027-05-30",
-                  "season_basis": "Lega Serie A publishes the opening match on August 22 and final regular-season weekend ending May 30."
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.legaseriea.it/serie-a/news/le-date-della-stagione-2026-2027",
+                  "season_evidence_urls": [
+                    "https://www.legaseriea.it/serie-a/news/le-date-della-stagione-2026-2027",
+                    "https://www.legaseriea.it/serie-a/news/date-orari-e-programmazione-tv-delle-prime-cinque-giornate"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 },
                 {
                   "key": "soccer-italy-serie-a-women",
@@ -7099,19 +7123,34 @@
                   "key": "soccer-italy-coppa-italia-men",
                   "label": "Coppa Italia | Men",
                   "source_id": "uefa-soccer-italy-coppa-italia-men",
-                  "season_window": "August 8, 2026–May 19, 2027",
+                  "season_window": "2026-08-08 – 2027-05-19",
+                  "season_basis": "Lega Serie A confirms the May 19, 2027 final; Lega Pro's official preliminary-round notice confirms the first match on August 8, 2026, superseding the generic August 9 round date.",
                   "season_start_date": "2026-08-08",
                   "season_end_date": "2027-05-19",
-                  "season_basis": "Lega Serie A publishes the preliminary opening fixtures and May 19 final."
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.legaseriea.it/serie-a/news/le-date-della-stagione-2026-2027",
+                  "season_evidence_urls": [
+                    "https://www.legaseriea.it/serie-a/news/le-date-della-stagione-2026-2027",
+                    "https://www.seriec.com/news-detail/coppa-italia-frecciarossa-2026-27"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 },
                 {
                   "key": "soccer-italy-coppa-italia-women",
                   "label": "Coppa Italia | Women",
                   "source_id": "soccer-italy-coppa-italia-women",
-                  "season_window": "August 29, 2026–May 23, 2027",
-                  "season_start_date": "2026-08-29",
-                  "season_end_date": "2027-05-23",
-                  "season_basis": "FIGC 2026–27 women's cup calendar; fixture adapter pending"
+                  "season_window": "2026-08-30 – full endpoint unconfirmed",
+                  "season_basis": "FIGC's preliminary-round announcement confirms August 30, 2026, correcting the saved August 29 opener. The official calendar gives May 22–23, 2027 as alternative final dates, with the specific day still to be defined; no exact endpoint is claimed.",
+                  "season_start_date": "2026-08-30",
+                  "last_verified": "2026-11-03",
+                  "season_source_url": "https://www.figc.it/it/serie-a-women/news/domenica-il-turno-preliminare-san-marino-academy-catania-e-verona-moncalieri-aprono-la-caccia-al-trofeo-vinto-a-maggio-dalla-roma-e3ra20et",
+                  "season_evidence_urls": [
+                    "https://www.figc.it/it/serie-a-women/news/domenica-il-turno-preliminare-san-marino-academy-catania-e-verona-moncalieri-aprono-la-caccia-al-trofeo-vinto-a-maggio-dalla-roma-e3ra20et",
+                    "https://www.juventus.com/it/news/articoli/coppa-italia-women-2026-27-formula-calendario-e-percorso-della-juventus"
+                  ],
+                  "season_window_complete": false,
+                  "season_verification_status": "verified-partial"
                 }
               ],
               "identity_model": "combined-approval-separate-competitions"
@@ -8901,39 +8940,60 @@
             {
               "key": "soccer-united-states-u-s-open-cup-men",
               "catalog_event": "U.S. Open Cup | Men",
-              "season_window": "March–October 21, 2026",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-17 – 2026-10-21",
+              "season_basis": "U.S. Soccer's national tournament schedule starts March 17 and ends October 21, 2026; the winning club's match report confirms the final was played that day. This is the national tournament proper, excluding prior local qualification.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_start": "03-01",
-              "season_end": "10-21",
-              "source_id": "concacaf-soccer-united-states-us-open-cup-men"
+              "source_id": "concacaf-soccer-united-states-us-open-cup-men",
+              "season_start_date": "2026-03-17",
+              "season_end_date": "2026-10-21",
+              "season_source_url": "https://www.ussoccer.com/stories/2026/01/2026-lamar-hunt-us-open-cup-kicks-off-with-32-game-first-round-pitting-amateur-vs-pro-clubs",
+              "season_evidence_urls": [
+                "https://www.ussoccer.com/stories/2026/01/2026-lamar-hunt-us-open-cup-kicks-off-with-32-game-first-round-pitting-amateur-vs-pro-clubs",
+                "https://www.stlcitysc.com/news/match-report-st-louis-city-sc-defeats-columbus-crew-5-3-in-penalty-shootout-to-win-2026-u-s-open-cup"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-united-states-usl-championship-men",
               "catalog_event": "USL Championship | Men",
-              "season_window": "March–November",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-06 – 2026-11-21",
+              "season_basis": "USL's national broadcast schedule confirms the November 21, 2026 championship final. Lexington's official match report confirms the actual March 6 opening game, superseding the preliminary March 7 season launch.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
-              "season_start": "03-01",
-              "season_end": "11-30",
-              "source_id": "concacaf-soccer-united-states-usl-championship-men"
+              "source_id": "concacaf-soccer-united-states-usl-championship-men",
+              "season_start_date": "2026-03-06",
+              "season_end_date": "2026-11-21",
+              "season_source_url": "https://www.uslsoccer.com/news_article/show/1357048",
+              "season_evidence_urls": [
+                "https://www.uslsoccer.com/news_article/show/1357048",
+                "https://www.lexsporting.com/news/match-recap-lexington-sporting-club-drops-season-opener-to-loucity-2-1/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             },
             {
               "key": "soccer-united-states-usl-league-one-usl1-men",
               "catalog_event": "USL League One (USL1) | Men",
-              "season_window": "March–November",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-07 – full endpoint unconfirmed",
+              "season_basis": "USL League One's home-openers announcement confirms March 7, 2026. Its competition-format page gives a November 13–15 final window, while the playoff listing says November 15–17; an exact final date is not established by these inconsistent league pages.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
-              "season_start": "03-01",
-              "season_end": "11-30",
-              "source_id": "concacaf-soccer-united-states-usl-league-one-men"
+              "source_id": "concacaf-soccer-united-states-usl-league-one-men",
+              "season_start_date": "2026-03-07",
+              "season_source_url": "https://www.uslleagueone.com/news_article/show/1351512",
+              "season_evidence_urls": [
+                "https://www.uslleagueone.com/news_article/show/1351512",
+                "https://www.uslleagueone.com/layout_container/show_layout_tab?layout_container_id=126640429&page_node_id=4614679&tab_element_id=354383",
+                "https://www.uslleagueone.com/playoffs"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-united-states-usl-cup-men",
@@ -9011,12 +9071,19 @@
             {
               "key": "soccer-united-states-shebelieves-cup-women",
               "catalog_event": "SheBelieves Cup | Women",
-              "season_window": "March 2026 · completed",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-01 – 2026-03-07",
+              "season_basis": "U.S. Soccer's complete 2026 SheBelieves Cup schedule lists the three matchdays on March 1, 4 and 7.",
+              "last_verified": "2026-11-03",
               "restrictions": [],
-              "season_status": "out",
-              "source_id": "concacaf-soccer-united-states-shebelieves-cup-women"
+              "source_id": "concacaf-soccer-united-states-shebelieves-cup-women",
+              "season_start_date": "2026-03-01",
+              "season_end_date": "2026-03-07",
+              "season_source_url": "https://www.ussoccer.com/stories/2026/02/uswnt/2026-shebelieves-cup-everything-you-need-to-know-format-rules-argentina-canada-colombia",
+              "season_evidence_urls": [
+                "https://www.ussoccer.com/stories/2026/02/uswnt/2026-shebelieves-cup-everything-you-need-to-know-format-rules-argentina-canada-colombia"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete"
             }
           ]
         },
