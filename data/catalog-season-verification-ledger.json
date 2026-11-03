@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-03T12:16:42.761Z",
+  "updated_at": "2026-11-03T12:17:58.173Z",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "384c36061e3da1fc0107b0e2e9cfa9713c5e9364",
   "baseline_dated_records": 255,
@@ -646,17 +646,16 @@
       "sport": "Soccer",
       "country": "International-Level Competitions",
       "catalog_event": "AFC Champions League Elite | Men",
-      "status": "manual-verification-needed",
+      "status": "verified-complete",
       "reviewed_at": "2026-11-03",
-      "official_url": "https://www.the-afc.com/en/club/afc_champions_league_elite.html/news/aclelite-202627-all-you-need-to-know",
+      "official_url": "https://www.the-afc.com/en/more/afc_competitions.html/news/preliminary-battles-to-kick-off-in-aclelite-and-acltwo",
       "evidence_urls": [
-        "https://www.the-afc.com/en/club/afc_champions_league_elite.html/news/aclelite-202627-all-you-need-to-know",
-        "https://www.antlers.co.jp/en/blogs/news/260819sptxt4",
-        "https://assets.the-afc.com/downloads/calendars/AFC-Calendar-%28Jul-2026-Jun-2027%29-upd-15-May-2025.pdf"
+        "https://www.the-afc.com/en/more/afc_competitions.html/news/preliminary-battles-to-kick-off-in-aclelite-and-acltwo",
+        "https://www.antlers.co.jp/en/blogs/news/260819sptxt4"
       ],
-      "finding": "Exact preliminary-stage opening match date and latest full 2026/27 finals schedule need reconciliation; club schedule ends May 1 while older AFC calendar ends April 30.",
-      "missing_fact": "Exact preliminary-stage opening match date and latest full 2026/27 finals schedule need reconciliation; club schedule ends May 1 while older AFC calendar ends April 30.",
-      "next_action": "Inspect latest AFC competition calendar and preliminary fixtures; confirm final endpoint."
+      "finding": "2026/27 men's preliminary ties on August 11 through May 1 final. August 2026 official club knockout calendar supersedes May 2025 preliminary calendar's April 30 endpoint.",
+      "missing_fact": "",
+      "next_action": "Recheck if the AFC issues a revised finals calendar."
     },
     {
       "key": "soccer-international-afc-champions-league-elite-women",
@@ -665,13 +664,14 @@
       "catalog_event": "AFC Champions League Elite | Women",
       "status": "awaiting-published-dates",
       "reviewed_at": "2026-11-03",
-      "official_url": "https://www.the-afc.com/en/club/afc_womens_champions_league.html",
+      "official_url": "https://www.the-aiff.com/article/afc-womens-champions-league-2026-27-east-bengal-fc-drawn-against-clubs-from-malaysia-guam-bangladesh",
       "evidence_urls": [
+        "https://www.the-aiff.com/article/afc-womens-champions-league-2026-27-east-bengal-fc-drawn-against-clubs-from-malaysia-guam-bangladesh",
         "https://www.the-afc.com/en/club/afc_womens_champions_league.html"
       ],
-      "finding": "Official AFC page uses both Women's Champions League and Women's Champions League Elite for 2026/27. November 1 group matches confirmed; complete preliminary-through-final dates not yet verified.",
-      "missing_fact": "Official preliminary-stage opening date and 2027 final date.",
-      "next_action": "Review official 2026/27 women's competition calendar and preliminary-stage match reports."
+      "finding": "2026/27 women's preliminary opener verified August 17 by AIFF match schedule. AFC uses both Women's Champions League and Women's Champions League Elite labels. Final date remains unverified in reviewed primary sources.",
+      "missing_fact": "2027 final date from official competition schedule.",
+      "next_action": "Check latest AFC women's knockout/finals schedule; do not adopt secondary May 22 date without primary confirmation."
     },
     {
       "key": "basketball-fiba-world-cup-women",
