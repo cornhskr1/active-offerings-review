@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T12:46:41.988Z",
+  "generated_at": "2026-11-03T12:51:00.000Z",
   "description": "Controlled season mapping for approved catalog events. This file supplements the NRGC catalog and does not determine permissibility.",
   "catalog_role_overrides": [],
   "source_mappings": [
@@ -4686,46 +4686,71 @@
           "events": [
             {
               "key": "soccer-international-africa-cup-of-nations-men",
-              "season_window": "December 21, 2025–January 18, 2026",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "12-21",
-              "season_end": "01-18",
+              "season_window": "2027-06-19 – 2027-07-17",
+              "season_basis": "2027 senior men's AFCON Pamoja finals tournament, opening through final; qualifiers excluded. CAF states FIFA approved these dates.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-caf-afcon",
               "catalog_event": "Africa Cup of Nations | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2027-06-19",
+              "season_source_url": "https://www.cafonline.com/afcon2025/news/road-to-east-africa-caf-announces-kick-off-final-and-qualifiers-dates-for-the-totalenergies-caf-africa-cup-of-nations-pamoja-2027",
+              "season_evidence_urls": [
+                "https://www.cafonline.com/afcon2025/news/road-to-east-africa-caf-announces-kick-off-final-and-qualifiers-dates-for-the-totalenergies-caf-africa-cup-of-nations-pamoja-2027"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2027-07-17"
             },
             {
               "key": "soccer-international-caf-champions-league-men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "07-01",
-              "season_end": "05-31",
+              "season_window": "2026-09-04 – full endpoint unconfirmed",
+              "season_basis": "2026/27 senior men's competition begins with September 4 preliminary matches. CAF allocates May 9–31, 2027 collectively to club finals; this competition's exact last-leg date remains unconfirmed. May 31 is not asserted as the endpoint.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-caf-champions-league",
               "catalog_event": "CAF Champions League | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-04",
+              "season_source_url": "https://www.cafonline.com/caf-champions-league/news/zamalek-win-away-as-al-swehly-and-saoura-make-winning-totalenergies-caf-champions-league-starts/",
+              "season_evidence_urls": [
+                "https://www.cafonline.com/caf-champions-league/news/zamalek-win-away-as-al-swehly-and-saoura-make-winning-totalenergies-caf-champions-league-starts/",
+                "https://www.cafonline.com/news/caf-announces-match-calendar-for-totalenergies-caf-champions-league-2026-27-and-totalenergies-caf-confederation-cup-2026-27-seasons"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-international-caf-confederation-cup-men",
-              "season_window": "July 2026–May 2027",
-              "season_basis": "Verified competition calendar and connected schedule source",
-              "last_verified": "2026-09-18",
-              "season_start": "07-01",
-              "season_end": "05-31",
+              "season_window": "2026-09-04 – full endpoint unconfirmed",
+              "season_basis": "2026/27 senior men's competition begins with September 4 preliminary matches. CAF allocates May 9–31, 2027 collectively to club finals; this competition's exact last-leg date remains unconfirmed. May 31 is not asserted as the endpoint.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-caf-confederation-cup",
               "catalog_event": "CAF Confederation Cup | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-09-04",
+              "season_source_url": "https://www.cafonline.com/caf-confederation-cup/news/zed-and-al-ahli-tripoli-take-control-as-confederation-cup-preliminary-round-first-legs-conclude/",
+              "season_evidence_urls": [
+                "https://www.cafonline.com/caf-confederation-cup/news/zed-and-al-ahli-tripoli-take-control-as-confederation-cup-preliminary-round-first-legs-conclude/",
+                "https://www.cafonline.com/news/caf-announces-match-calendar-for-totalenergies-caf-champions-league-2026-27-and-totalenergies-caf-confederation-cup-2026-27-seasons"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "verified-partial"
             },
             {
               "key": "soccer-international-caf-super-cup-men",
-              "season_window": "Next event date pending official CAF publication",
-              "season_basis": "Single-event competition; explicit coverage gap retained until CAF publishes the next date",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-11-08 – 2026-11-08",
+              "season_basis": "2026 senior men's single-match CAF Super Cup, Mamelodi Sundowns versus USM Alger at Loftus Versfeld, Pretoria. CAF's October 21 announcement supplies the missing date.",
+              "last_verified": "2026-11-03",
               "source_id": "soccer-caf-super-cup",
-              "season_status": "out",
               "catalog_event": "CAF Super Cup | Men",
-              "restrictions": []
+              "restrictions": [],
+              "season_start_date": "2026-11-08",
+              "season_source_url": "https://www.cafonline.com/caf-super-cup/news/media-accreditation-window-officially-open-for-totalenergies-caf-super-cup-2026/",
+              "season_evidence_urls": [
+                "https://www.cafonline.com/caf-super-cup/news/media-accreditation-window-officially-open-for-totalenergies-caf-super-cup-2026/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-11-08"
             },
             {
               "key": "soccer-international-african-nations-championship-chan-men",
@@ -5745,41 +5770,62 @@
             {
               "key": "soccer-brazil-campeonato-brasileiro-s-rie-a-men",
               "catalog_event": "Campeonato Brasileiro Série A | Men",
-              "season_window": "January–December",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-01-28 – 2026-12-02",
+              "season_basis": "CBF's 2026 senior men's Serie A: January 28 opening fixtures through December 2 final league round; no playoff phase.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
-              "season_start": "01-01",
-              "season_end": "12-31",
-              "source_id": "conmebol-soccer-brazil-serie-a-men"
+              "source_id": "conmebol-soccer-brazil-serie-a-men",
+              "season_start_date": "2026-01-28",
+              "season_source_url": "https://www.cbf.com.br/a-cbf/noticias/legado/a/cbf-realiza-conselho-tecnico-da-serie-a-de-2026",
+              "season_evidence_urls": [
+                "https://www.cbf.com.br/a-cbf/noticias/legado/a/cbf-realiza-conselho-tecnico-da-serie-a-de-2026",
+                "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias/a/cbf-divulga-tabela-detalhada-das-primeiras-rodadas-do-brasileirao-2026"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-12-02"
             },
             {
               "key": "soccer-brazil-campeonato-brasileiro-s-rie-b-men",
               "catalog_event": "Campeonato Brasileiro Série B | Men",
-              "season_window": "March–November",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-03-21 – 2026-11-28",
+              "season_basis": "2026 senior men's Serie B includes the new promotion playoffs ending November 28, beyond the November 14 regular-season endpoint. Detailed opening schedule supersedes the preliminary March 20 start with March 21.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
-              "season_start": "03-01",
-              "season_end": "11-30",
-              "source_id": "conmebol-soccer-brazil-serie-b-men"
+              "source_id": "conmebol-soccer-brazil-serie-b-men",
+              "season_start_date": "2026-03-21",
+              "season_source_url": "https://www.cbf.com.br/futebol-brasileiro/noticias/se/a/cbf-divulga-tabela-detalhada-das-cinco-primeiras-rodadas-da-serie-b",
+              "season_evidence_urls": [
+                "https://www.cbf.com.br/futebol-brasileiro/noticias/se/a/cbf-divulga-tabela-detalhada-das-cinco-primeiras-rodadas-da-serie-b",
+                "https://fcf.com.br/avai-e-criciuma-conhecem-a-tabela-do-brasileirao-serie-b-2026/"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-11-28"
             },
             {
               "key": "soccer-brazil-copa-do-brasil-men",
               "catalog_event": "Copa do Brasil | Men",
-              "season_window": "February–December",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "2026-02-17 – 2026-12-06",
+              "season_basis": "2026 senior men's 126-club national cup, first round through single-match December 6 final. Detailed February 17 opener supersedes preliminary February 18/19 dates; the first article's URL category does not change its explicitly senior scope.",
+              "last_verified": "2026-11-03",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
-              "season_start": "02-01",
-              "season_end": "12-31",
-              "source_id": "conmebol-soccer-brazil-copa-do-brasil-men"
+              "source_id": "conmebol-soccer-brazil-copa-do-brasil-men",
+              "season_start_date": "2026-02-17",
+              "season_source_url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/sub17/cbf-divulga-tabela-detalhada-da-1-fase-da-copa-betano-do-brasil-2026",
+              "season_evidence_urls": [
+                "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/sub17/cbf-divulga-tabela-detalhada-da-1-fase-da-copa-betano-do-brasil-2026",
+                "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/brasilia-recebe-final-da-copa-do-brasil-2026"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-12-06"
             },
             {
               "key": "soccer-brazil-supercopa-do-brasil-men",
