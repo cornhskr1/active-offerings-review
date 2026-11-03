@@ -18,7 +18,6 @@ class BelgiumScotlandScopeTests(unittest.TestCase):
         self.assertEqual(10, len(self.events))
         expected = {
             'soccer-scotland-scottish-premiership-men': ('2026-07-31', '2027-05-23'),
-            'soccer-scotland-scottish-championship-men': ('2026-07-31', '2027-04-30'),
             'soccer-scotland-scottish-cup-men': ('2026-08-01', '2027-05-22'),
             'soccer-scotland-scottish-league-cup-men': ('2026-07-11', '2026-12-13'),
             'soccer-scotland-challenge-cup-men': ('2026-08-11', '2027-04-04'),
@@ -28,6 +27,10 @@ class BelgiumScotlandScopeTests(unittest.TestCase):
                 self.assertEqual(dates, tuple(self.events[key][f'season_{part}_date'] for part in ('start', 'end')))
                 self.assertEqual('ADAPTER_CONFIGURED', self.inventory[key]['coverage_state'])
         championship = 'soccer-scotland-scottish-championship-men'
+        self.assertEqual('2026-08-01', self.events[championship]['season_start_date'])
+        self.assertEqual('2027-04-30', self.events[championship]['regular_season_end_date'])
+        self.assertNotIn('season_end_date', self.events[championship])
+        self.assertEqual('ADAPTER_CONFIGURED', self.inventory[championship]['coverage_state'])
         self.assertFalse(self.events[championship]['season_window_complete'])
         self.assertEqual('PARTIAL_WINDOW', self.inventory[championship]['season_state'])
 
