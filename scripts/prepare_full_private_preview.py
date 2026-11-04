@@ -16,6 +16,7 @@ from scripts.prepare_private_pilot_preview import _regular, _revision, _strict_j
 from scripts.build_public_reference_snapshot import build_reference_snapshot
 from scripts.snapshot_semantic_guards import validate_change
 from scripts.tennis_age_rollover import retention_baselines
+from scripts.basketball_catalog_transition import retention_baselines as basketball_baselines
 from scripts.public_data_snapshot import read_public_snapshot,build_public_snapshot
 from scripts.protected_football_config import validate_football_config
 
@@ -132,6 +133,7 @@ def prepare_full_preview(site: Path,candidate: Path,preview: Path,*,
     current_documents={name:_strict_json(raw) for name,raw in public.items()
                        if spec['outputs'][name]['root_type']=='dict'}
     baselines=retention_baselines(previous_documents,current_documents,now)
+    baselines=basketball_baselines(baselines,current_documents)
     for name,raw in public.items():
         rule=spec['outputs'][name]
         if rule['root_type']=='dict':
