@@ -41,8 +41,8 @@ function timing(event,today,sources=[]){
  const duration=day(end)-day(start);
  return {status,reason:'Recorded season dates',start,end,checked,days:status==='upcoming'?day(start)-day(today):status==='in'?day(end)-day(today):null,progress:status==='in'&&duration>0?Math.round((day(today)-day(start))/duration*100):null};
 }
-function aliasRows(identities,key){
- const rows=identities.filter(x=>x.identity_key===key);
+function aliasRows(identities,key,displayAliases=[]){
+ const rows=[...identities.filter(x=>x.identity_key===key),{aliases:displayAliases}];
  const result=[];const seen=new Set();
  for(const row of rows){for(const item of [...(row.aliases||[]),...(row.source_labels||[]).map(x=>({...x,name_type:'source label'}))]){
   if(!item?.name)continue;
@@ -56,9 +56,9 @@ function build({catalog={},seasonMap={},identities={},today,sources=[],role=()=>
   const mapping=(seasonMap.sports||[]).find(x=>x.sport===section.sport);const sportNotes=notes.filter(x=>x.sport===section.sport||(x.sport==='NCAA'&&section.sport.startsWith('NCAA ')));
   const common=sportNotes.flatMap(x=>Array.isArray(x.content)?x.content:[x.content]);
   for(const group of mapping?.groups||[]){for(const event of group.events||[]){
-   const aliases=aliasRows(competitions,event.key);
+   const aliases=aliasRows(competitions,event.key,event.display_aliases);
    // Include child aliases without merging distinct catalog identities.
-   for(const child of event.coverage_children||[])for(const alias of aliasRows(competitions,child.key))aliases.push({...alias,scope:child.label||child.catalog_event||child.key});
+   for(const child of event.coverage_children||[])for(const alias of aliasRows(competitions,child.key,child.display_aliases))aliases.push({...alias,scope:child.label||child.catalog_event||child.key});
    const restrictions=unique([...(event.restrictions||[]),...common]);
    rows.push({id:event.key,sport:section.sport,name:event.catalog_event,event,group,aliases,restrictions,notes:event.notes||[],status:season(event,today,sources),kind:'mapped'});
   }}
@@ -98,7 +98,7 @@ function identityRows(rows,identities,today,sources=[]){
   if(!children?.length)return [row];
   return children.map(child=>{
    const event={...child,catalog_event:child.label||child.catalog_event||child.key};
-   const result={...row,id:child.key,name:event.catalog_event,event,parentName:row.name,aliases:aliasRows(registry,child.key),restrictions:unique([...row.restrictions,...(child.restrictions||[])]),notes:unique([...row.notes,...(child.notes||[])]),status:season(event,today,sources)};
+   const result={...row,id:child.key,name:event.catalog_event,event,parentName:row.name,aliases:aliasRows(registry,child.key,child.display_aliases),restrictions:unique([...row.restrictions,...(child.restrictions||[])]),notes:unique([...row.notes,...(child.notes||[])]),status:season(event,today,sources)};
    result.search=norm([result.sport,result.name,result.parentName,result.group.country,result.group.governing_body,result.group.confederation,...result.aliases.map(x=>x.name),...result.restrictions].join(' '));
    return result;
   });

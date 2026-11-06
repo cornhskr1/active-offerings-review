@@ -129,7 +129,7 @@ function catalogAliasLabel(alias){
   try{const host=new URL(alias.evidence_url).hostname;if(host==='sportsbook.fanduel.com')return 'FanDuel';if(host==='www.ticketmaster.com')return 'Ticketmaster (ticketing)';}catch(_){}
   return 'Operator not recorded';
  }
- return alias.name_type==='source label'?'Source label':alias.name_type==='data-provider'?'Data provider':'Also called';
+ return alias.name_type==='catalog alias'?'Catalog alias':alias.name_type==='source label'?'Source label':alias.name_type==='data-provider'?'Data provider':'Also called';
 }
 function catalogBrowserU18(){return combinedKnownU18Rows().rows.filter(x=>registryAgeSummary(x,todayKey()).status!=='VERIFIED 18+');}
 function catalogBrowserAthlete(x){
