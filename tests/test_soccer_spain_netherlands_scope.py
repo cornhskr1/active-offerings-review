@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 
 DATA = Path(__file__).resolve().parents[1] / "data"
@@ -27,7 +28,7 @@ class SpainNetherlandsScopeTests(unittest.TestCase):
         }
         cls.inventory = {
             row["identity_key"]: row
-            for row in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]
+            for row in build()["identities"]
             if row["sport"] == "Soccer"
         }
 
@@ -41,8 +42,8 @@ class SpainNetherlandsScopeTests(unittest.TestCase):
             "soccer-spain-laliga-men": ("2026-08-15", "2027-05-30"),
             "soccer-spain-segunda-divisi-n-men": ("2026-08-14", "2027-06-20"),
             "soccer-spain-liga-f-women": ("2026-08-29", "2027-05-23"),
-            "soccer-netherlands-eredivisie-men": ("2026-08-07", "2027-05-23"),
-            "soccer-netherlands-eerste-divisie-men": ("2026-08-07", "2027-05-14"),
+            "soccer-netherlands-eredivisie-men": ("2026-08-07", None),
+            "soccer-netherlands-eerste-divisie-men": ("2026-08-07", None),
             "soccer-netherlands-knvb-beker-dutch-cup-men": ("2026-09-01", "2027-04-18"),
             "soccer-netherlands-johan-cruyff-shield-dutch-super-cup-men": ("2026-08-02", "2026-08-02"),
         }
@@ -50,8 +51,11 @@ class SpainNetherlandsScopeTests(unittest.TestCase):
         for key, dates in expected.items():
             with self.subTest(key=key):
                 event = self.events[key]
-                self.assertEqual(dates, (event["season_start_date"], event["season_end_date"]))
-                self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
+                self.assertEqual(dates, (event["season_start_date"], event.get("season_end_date")))
+                self.assertEqual("PARTIAL_WINDOW" if dates[1] is None else "DATED_WINDOW", self.inventory[key]["season_state"])
+                if dates[1] is None:
+                    self.assertFalse(event["season_window_complete"])
+                    self.assertNotIn("season_end_date", event)
                 self.assertIn(event["source_id"], self.sources)
 
     def test_supercups_and_womens_second_tier_keep_separate_scope(self):
