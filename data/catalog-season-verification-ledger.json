@@ -3388,6 +3388,85 @@
       "missing_fact": "",
       "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
       "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "combat-dwcs",
+      "sport": "Combat Sports",
+      "country": "International",
+      "catalog_event": "Dana White Contender Series",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "reconciled_at": "2026-11-06",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.ufc.com/dwcs?page=1",
+      "evidence_urls": [
+        "https://www.ufc.com/dwcs?page=1"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json"
+      ],
+      "finding": "Existing catalog maps this as an approved event series, nonseasonal for permissibility. Indexed official UFC text identifies Season 10 opening August 11, 2026 and Week 10 October 13, 2026. Direct retrieval returned 403; no bypass attempted. These are dated Season 10 context, not an annual permission window or a future-edition schedule.",
+      "season_edition": "Event series; see finding for any dated subseries",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Verify exact card date and all applicable professional, age and approved-brand restrictions per event.",
+      "revisit_trigger": "Official revised event-series format or changed catalog identity; do not reopen for unchanged incomplete extraction."
+    },
+    {
+      "key": "combat-glory",
+      "sport": "Combat Sports",
+      "country": "International",
+      "catalog_event": "Glory Kickboxing",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "reconciled_at": "2026-11-06",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://glorykickboxing.com/events",
+      "evidence_urls": [
+        "https://glorykickboxing.com/events"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json"
+      ],
+      "finding": "Existing catalog approval is the professional GLORY promotion, not one Grand Prix. Official event hub exposes navigation and age-verification text but no extracted schedule rows. A particular title tournament final cannot define the whole promotion season. Preserve per-card review and do not use secondary event lists or the search-result proxy.",
+      "season_edition": "Event series; see finding for any dated subseries",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Verify exact card date and all applicable professional, age and approved-brand restrictions per event.",
+      "revisit_trigger": "Official revised event-series format or changed catalog identity; do not reopen for unchanged incomplete extraction."
+    },
+    {
+      "key": "combat-one",
+      "sport": "Combat Sports",
+      "country": "International",
+      "catalog_event": "ONE Championship",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "reconciled_at": "2026-11-06",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.onefc.com/news/one-championship-gears-up-for-historic-2026-with-record-breaking-72-events/",
+      "evidence_urls": [
+        "https://www.onefc.com/news/one-championship-gears-up-for-historic-2026-with-record-breaking-72-events/",
+        "https://www.onefc.com/events/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json"
+      ],
+      "finding": "Official January 7, 2026 announcement describes a continuing multi-series 72-event calendar including numbered cards, Fight Nights and Friday Fights. Catalog approval remains ONLY numbered cards and Fight Nights; the wider calendar does not authorize Friday Fights or other brands. Per-event dates and eligibility apply, not a shared championship endpoint.",
+      "season_edition": "Event series; see finding for any dated subseries",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Verify exact card date and all applicable professional, age and approved-brand restrictions per event.",
+      "revisit_trigger": "Official revised event-series format or changed catalog identity; do not reopen for unchanged incomplete extraction."
     }
   ],
   "reconciled_against_commit": "832c7b1f7856f5bb24d1df2334d8284e9f3e0449"
