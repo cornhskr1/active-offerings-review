@@ -6546,33 +6546,57 @@
             {
               "key": "soccer-costa-rica-liga-fpd-men",
               "catalog_event": "Liga FPD | Men",
-              "season_window": "January–May / July–December",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "Full edition window not independently verified",
+              "season_basis": "The club-authored Saprissa calendar explicitly dates the Apertura semifinal legs December 9/10 and 12/13, second-phase final December 16/20 and conditional Gran Final December 23/26. December 20 is not the full endpoint. Opening is expressed as the weekend of July 26 and Saprissa’s own first match July 26, which does not prove the league’s earliest individual fixture. UNAFUT homepage/calendar returned 502; no bypass or ESPN request. Remove the unsupported year-round January 1–December 31 template; Clausura is a distinct edition.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_start": "01-01",
-              "season_end": "12-31",
-              "source_id": "concacaf-soccer-costa-rica-liga-fpd-men"
+              "source_id": "concacaf-soccer-costa-rica-liga-fpd-men",
+              "season_edition": "2026 Liga FPD Apertura",
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates",
+              "season_source_url": "https://www.saprissa.com/noticias/saprissa-ya-conoce-su-ruta-para-el-torneo-de-apertura-2026",
+              "season_evidence_urls": [
+                "https://www.saprissa.com/noticias/saprissa-ya-conoce-su-ruta-para-el-torneo-de-apertura-2026",
+                "https://www.unafut.com/calendario/",
+                "https://www.herediano.com/"
+              ],
+              "season_end_date": "2026-12-26"
             },
             {
               "key": "soccer-costa-rica-costa-rica-domestic-cup-men",
               "catalog_event": "Costa Rica Domestic Cup | Men",
-              "season_window": "Annual cup · next official schedule pending",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "Full edition window not independently verified",
+              "season_basis": "UNAFUT homepage/calendar returned 502 and the federation homepage timed out. No alternate client or publisher restriction bypass was attempted. Secondary reports describe a 2026/27 no-cup decision while older 2025/26 cup games extended into April 2026. Neither is promoted without the operative organizer decision; Recopa is a distinct event.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_status": "out",
-              "source_id": "concacaf-soccer-costa-rica-costa-rica-domestic-cup-men"
+              "source_id": "concacaf-soccer-costa-rica-costa-rica-domestic-cup-men",
+              "season_edition": "Next/current Torneo de Copa edition requires primary confirmation",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://www.unafut.com/",
+              "season_evidence_urls": [
+                "https://www.unafut.com/",
+                "https://www.fcrf.cr/",
+                "https://www.herediano.com/"
+              ]
             },
             {
               "key": "soccer-costa-rica-supercopa-de-costa-rica-men",
               "catalog_event": "Supercopa de Costa Rica | Men",
-              "season_window": "Annual single-match event · next official date pending",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "Full edition window not independently verified",
+              "season_basis": "UNAFUT homepage/calendar returned 502 and the federation homepage timed out. No alternate client or publisher restriction bypass was attempted. Secondary reports identify Herediano–Alajuelense July 12, 2026 and a separate July 17 Recopa. Herediano’s current official honors establish Supercopa history but not that precise edition/date; no secondary date is promoted.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_status": "out",
-              "source_id": "concacaf-soccer-costa-rica-supercopa-de-costa-rica-men"
+              "source_id": "concacaf-soccer-costa-rica-supercopa-de-costa-rica-men",
+              "season_edition": "2026 senior Supercopa, primary dated report needed",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://www.unafut.com/",
+              "season_evidence_urls": [
+                "https://www.unafut.com/",
+                "https://www.fcrf.cr/",
+                "https://www.herediano.com/"
+              ]
             }
           ]
         },
@@ -6713,24 +6737,38 @@
             {
               "key": "soccer-democratic-republic-of-the-congo-linafoot-men",
               "catalog_event": "Linafoot | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-democratic-republic-of-the-congo-linafoot-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "The federation’s current regulations page links a 2026/27 Linafoot PDF. Text and page rendering explicitly label it DOCUMENT DE DÉMONSTRATION and fictitious placeholder content to be replaced before publication; it is rejected as competition evidence. Referee-document titles do not establish full opening/playoff endpoints. Secondary reports of an August postponement are not promoted to an official replacement date. Generic September 1–June 30 dates are removed.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "2026/27 Linafoot Ligue 1",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://fecofa.cd/fr/fecofa/textes",
+              "season_evidence_urls": [
+                "https://fecofa.cd/fr/fecofa/textes",
+                "https://admin.fecofa.cd/wp-content/uploads/2026/10/demo-reglement-linafoot-2026-2027.pdf",
+                "https://fecofa.cd/fr/arbitrage"
+              ]
             },
             {
               "key": "soccer-democratic-republic-of-the-congo-coupe-du-congo-men",
               "catalog_event": "Coupe du Congo | Men",
-              "season_window": "May–June",
-              "season_start": "05-01",
-              "season_end": "06-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-democratic-republic-of-the-congo-coupe-du-congo-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "Federation’s July 20 report dates the men’s final July 19, 2026: DC Virunga–AS Butras, distinct from the women’s cup and the Republic of Congo’s different federation/competition. The exact first applicable national/provincial qualifying fixture is not established. Generic May 1–June 30 dates are removed; this completed-edition gap requires an archived operative calendar rather than an invented next season.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "2026 senior Coupe du Congo",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://fecofa.cd/fr/actualites/coupe-du-congo-le-dc-virunga-vainqueur-de-la-60eme-edition",
+              "season_evidence_urls": [
+                "https://fecofa.cd/fr/actualites/coupe-du-congo-le-dc-virunga-vainqueur-de-la-60eme-edition",
+                "https://fecofa.cd/fr/actualites/categorie/coupe-du-congo"
+              ],
+              "season_end_date": "2026-07-19"
             }
           ]
         },
@@ -6815,23 +6853,34 @@
             {
               "key": "soccer-egypt-egypt-cup-men",
               "catalog_event": "Egypt Cup | Men",
-              "season_window": "November–June",
-              "season_start": "11-01",
-              "season_end": "06-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-egypt-egypt-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "The assigned Egyptian FA homepage returned HTTP 403. No alternative client, mirrored endpoint or domain was used to bypass it. Secondary discussion of shifting Super Cup dates/hosts is not official confirmation and no generic month/day window is retained. League fixtures and the separate League Cup cannot supply these cup boundaries.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "Current/next senior Egypt Cup edition unverified",
+              "season_window_complete": false,
+              "season_verification_status": "source-access-held",
+              "season_source_url": "https://www.efa.com.eg/",
+              "season_evidence_urls": [
+                "https://www.efa.com.eg/"
+              ]
             },
             {
               "key": "soccer-egypt-egyptian-super-cup-men",
               "catalog_event": "Egyptian Super Cup | Men",
-              "season_window": "Annual event · next date pending",
-              "season_status": "out",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-egypt-egyptian-super-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "The assigned Egyptian FA homepage returned HTTP 403. No alternative client, mirrored endpoint or domain was used to bypass it. Secondary discussion of shifting Super Cup dates/hosts is not official confirmation and no generic month/day window is retained. League fixtures and the separate League Cup cannot supply these cup boundaries.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "Current/next Egyptian Super Cup edition unverified",
+              "season_window_complete": false,
+              "season_verification_status": "source-access-held",
+              "season_source_url": "https://www.efa.com.eg/",
+              "season_evidence_urls": [
+                "https://www.efa.com.eg/"
+              ]
             }
           ]
         },
@@ -6843,23 +6892,40 @@
             {
               "key": "soccer-el-salvador-primera-divisi-n-men",
               "catalog_event": "Primera División | Men",
-              "season_window": "January–May / July–December",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "Full edition window not independently verified",
+              "season_basis": "The league’s current site confirms the 2026/27 format and named Apertura 2026 current match reports. It does not expose a readable complete first-round/championship-final calendar in the reviewed pages; federation homepage is unreadable. Secondary July 24–December 19 claims are not promoted, and the prior January 1–December 31 template is removed. Reserve, youth, women’s and Copa Presidente schedules are distinct; ESPN collection hold remains unchanged.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_start": "01-01",
-              "season_end": "12-31",
-              "source_id": "concacaf-soccer-el-salvador-primera-division-men"
+              "source_id": "concacaf-soccer-el-salvador-primera-division-men",
+              "season_edition": "2026 Liga GanaPlay Apertura",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://laprimera.com.sv/",
+              "season_evidence_urls": [
+                "https://laprimera.com.sv/",
+                "https://laprimera.com.sv/news/",
+                "https://fesfut.org.sv/"
+              ]
             },
             {
               "key": "soccer-el-salvador-copa-el-salvador-men",
               "catalog_event": "Copa El Salvador | Men",
-              "season_window": "No current 2026 competition schedule located",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
+              "season_window": "Identity scope needs confirmation · no annual dates assigned",
+              "season_basis": "INDES’s January 27 primary launch establishes a revived Copa Presidente GanaPlay with 24 clubs across three divisions and February 10 opening; its inauguration report confirms that event. The catalog instead names Copa El Salvador, so continuity/approval mapping is not silently assumed. The initial November 3–5 final range is not an exact final and later secondary reports describe postponement into early 2027. FESFUT homepage yielded no readable text. No old no-2026-event assertion, November 5 closing date or adjacent competition is promoted.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_status": "out",
-              "source_id": "concacaf-soccer-el-salvador-copa-el-salvador-men"
+              "source_id": "concacaf-soccer-el-salvador-copa-el-salvador-men",
+              "season_edition": "Catalog Copa El Salvador versus 2026 Copa Presidente GanaPlay",
+              "season_window_complete": false,
+              "season_verification_status": "scope-conflict",
+              "season_source_url": "https://web.indes.gob.sv/?p=134266",
+              "season_evidence_urls": [
+                "https://web.indes.gob.sv/?p=134266",
+                "https://web.indes.gob.sv/?p=135038",
+                "https://fesfut.org.sv/"
+              ],
+              "season_hold": true,
+              "season_hold_reason": "Confirm approved Copa El Salvador continuity with the revived Copa Presidente GanaPlay; obtain the operative revised final calendar after reported postponement."
             }
           ]
         },
@@ -7106,34 +7172,56 @@
             {
               "key": "soccer-ethiopia-ethiopian-premier-league-men",
               "catalog_event": "Ethiopian Premier League | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-ethiopia-ethiopian-premier-league-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "The mapped ethiopianfootball.com page was inaccessible. FIFA’s official association directory identifies ethiopiaff.org as the federation website; that linked site exposed only a JavaScript ticketing message and no domestic calendar. The original assigned source ID is preserved, and no national-team, ticketed international, youth or women’s event is substituted. The generic recurring season range is not verified edition evidence.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "2026/27 senior Ethiopian Premier League boundaries unverified",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://inside.fifa.com/en/associations/ETH/organisation",
+              "season_evidence_urls": [
+                "https://inside.fifa.com/en/associations/ETH/organisation",
+                "https://ethiopiaff.org/",
+                "https://ethiopianfootball.com/"
+              ]
             },
             {
               "key": "soccer-ethiopia-ethiopian-cup-men",
               "catalog_event": "Ethiopian Cup | Men",
-              "season_window": "May–June",
-              "season_start": "05-01",
-              "season_end": "06-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-ethiopia-ethiopian-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "The mapped ethiopianfootball.com page was inaccessible. FIFA’s official association directory identifies ethiopiaff.org as the federation website; that linked site exposed only a JavaScript ticketing message and no domestic calendar. The original assigned source ID is preserved, and no national-team, ticketed international, youth or women’s event is substituted. The generic recurring season range is not verified edition evidence.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "Current senior Ethiopian Cup edition unverified",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://inside.fifa.com/en/associations/ETH/organisation",
+              "season_evidence_urls": [
+                "https://inside.fifa.com/en/associations/ETH/organisation",
+                "https://ethiopiaff.org/",
+                "https://ethiopianfootball.com/"
+              ]
             },
             {
               "key": "soccer-ethiopia-ethiopian-super-cup-men",
               "catalog_event": "Ethiopian Super Cup | Men",
-              "season_window": "Annual event · next date pending",
-              "season_status": "out",
+              "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-ethiopia-ethiopian-super-cup-men",
-              "season_basis": "Current competition cycle mapped separately from catalog permissibility; schedule gaps remain visible in Coverage Control.",
-              "last_verified": "2026-09-18",
-              "restrictions": []
+              "season_basis": "The mapped ethiopianfootball.com page was inaccessible. FIFA’s official association directory identifies ethiopiaff.org as the federation website; that linked site exposed only a JavaScript ticketing message and no domestic calendar. The original assigned source ID is preserved, and no national-team, ticketed international, youth or women’s event is substituted. The generic recurring season range is not verified edition evidence.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "Current senior Ethiopian Super Cup edition unverified",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://inside.fifa.com/en/associations/ETH/organisation",
+              "season_evidence_urls": [
+                "https://inside.fifa.com/en/associations/ETH/organisation",
+                "https://ethiopiaff.org/",
+                "https://ethiopianfootball.com/"
+              ]
             }
           ]
         },

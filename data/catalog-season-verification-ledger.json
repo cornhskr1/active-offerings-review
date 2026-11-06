@@ -9,7 +9,7 @@
     "verified-complete": "Official evidence establishes the exact edition window.",
     "awaiting-published-dates": "Partial official dates exist; a complete window is not established in reviewed sources.",
     "manual-verification-needed": "A specific identity, source or status issue needs targeted review.",
-    "source-access-held": "An existing publisher access hold prevents this verification route.",
+    "source-access-held": "An existing publisher access hold or a documented source-access failure prevents this verification route. Record hold_kind to distinguish policy restrictions from observed tool/HTTP failures; neither implies permanent impossibility.",
     "not-yet-reviewed": "No review result has been recorded in this pass.",
     "not-scheduled": "The official current-edition format does not include the named competition; distinct from unreviewed dates or cancellation.",
     "scope-conflict": "Official competition identity or scope does not yet match the preserved catalog approval; existing mapping holds remain.",
@@ -7711,7 +7711,787 @@
         "season_window": "August 8, 2026 opening round–2027 final matchday pending",
         "season_window_complete": false
       }
+    },
+    {
+      "key": "soccer-bulgaria-bulgarian-cup-men",
+      "sport": "Soccer",
+      "country": "Bulgaria",
+      "catalog_event": "Bulgarian Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://bfunion.bg/uploads/2026-06-24/naredba-za-parvenstavata-26-27.pdf",
+      "evidence_urls": [
+        "https://bfunion.bg/uploads/2026-06-24/naredba-za-parvenstavata-26-27.pdf"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. BFU 2026–27 senior Cup rules include amateur district and zonal qualifying, with regional representatives due September 19, before the national rounds. Exact first-match and 2027 final dates remain pending; the October-only window omitted qualifiers. BFU senior Cup rules include district and zonal qualifiers before September 19; exact first fixture and final date and unattended adapter remain pending.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Bulgarian Cup",
+      "gender_division": "Bulgarian Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact first district/zonal qualifying fixture and 2027 senior final; September 19 regional-representative deadline is not the opening.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026 district preliminary stage through September 19; 2027 final date pending",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ]
+    },
+    {
+      "key": "soccer-bulgaria-bulgarian-first-professional-league-parva-liga-men",
+      "sport": "Soccer",
+      "country": "Bulgaria",
+      "catalog_event": "Bulgarian First Professional League / Parva Liga | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://bfunion.bg/news/51916/0",
+      "evidence_urls": [
+        "https://bfunion.bg/news/51916/0"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. BFU confirms the efbet Liga opening fixture on July 17. Full 2027 regular-season and post-season bounds and an unattended match adapter remain unverified. Permission required: automated UEFA collection is paused pending supported publisher access. Exact current first-tier senior league; no athlete-age clearance.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 efbet Liga",
+      "gender_division": "Bulgarian First Professional League / Parva Liga | Men",
+      "season_start_date": "2026-07-17",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact 2027 championship, relegation and applicable European qualification playoff conclusion.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "July 17, 2026–2027 final and play-off dates pending",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "publisher_access_context": "Assigned UEFA feed remains no-network/access-held. Independent BFU/GFF prior evidence is reconciled without accessing UEFA."
+    },
+    {
+      "key": "soccer-costa-rica-costa-rica-domestic-cup-men",
+      "sport": "Soccer",
+      "country": "Costa Rica",
+      "catalog_event": "Costa Rica Domestic Cup | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.unafut.com/",
+      "evidence_urls": [
+        "https://www.unafut.com/",
+        "https://www.fcrf.cr/",
+        "https://www.herediano.com/"
+      ],
+      "finding": "UNAFUT homepage/calendar returned 502 and the federation homepage timed out. No alternate client or publisher restriction bypass was attempted. Secondary reports describe a 2026/27 no-cup decision while older 2025/26 cup games extended into April 2026. Neither is promoted without the operative organizer decision; Recopa is a distinct event.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "Next/current Torneo de Copa edition requires primary confirmation",
+      "gender_division": "Senior men’s exact approved Costa Rica Domestic Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "operative edition/event boundaries not established",
+      "missing_fact": "Official 2026/27 no-tournament/resumption decision versus the completed 2025/26 cup, with exact dates if scheduled.",
+      "next_action": "Supply the official UNAFUT assembly decision or edition-specific match report/calendar, preserving the separate Cup/Supercopa/Recopa identities.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-costa-rica-liga-fpd-men",
+      "sport": "Soccer",
+      "country": "Costa Rica",
+      "catalog_event": "Liga FPD | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.saprissa.com/noticias/saprissa-ya-conoce-su-ruta-para-el-torneo-de-apertura-2026",
+      "evidence_urls": [
+        "https://www.saprissa.com/noticias/saprissa-ya-conoce-su-ruta-para-el-torneo-de-apertura-2026",
+        "https://www.unafut.com/calendario/",
+        "https://www.herediano.com/"
+      ],
+      "finding": "The club-authored Saprissa calendar explicitly dates the Apertura semifinal legs December 9/10 and 12/13, second-phase final December 16/20 and conditional Gran Final December 23/26. December 20 is not the full endpoint. Opening is expressed as the weekend of July 26 and Saprissa’s own first match July 26, which does not prove the league’s earliest individual fixture. UNAFUT homepage/calendar returned 502; no bypass or ESPN request. Remove the unsupported year-round January 1–December 31 template; Clausura is a distinct edition.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 Liga FPD Apertura",
+      "gender_division": "Senior men’s Costa Rican top-flight Apertura; not Clausura, Cup or Supercopa",
+      "season_start_date": null,
+      "season_end_date": "2026-12-26",
+      "endpoint_type": "published conditional Gran Final return leg; exact opening unconfirmed",
+      "missing_fact": "Exact earliest Apertura 2026 league fixture, rather than the general July 26 opening weekend.",
+      "next_action": "Provide or await an identifiable official exact opening-round fixture export/revision; retain the December 26 conditional full endpoint separately.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "opening_round_context": "weekend of 2026-07-26",
+      "regular_season_end_date": "2026-11-29",
+      "conditional_grand_final_dates": [
+        "2026-12-23",
+        "2026-12-26"
+      ]
+    },
+    {
+      "key": "soccer-costa-rica-supercopa-de-costa-rica-men",
+      "sport": "Soccer",
+      "country": "Costa Rica",
+      "catalog_event": "Supercopa de Costa Rica | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.unafut.com/",
+      "evidence_urls": [
+        "https://www.unafut.com/",
+        "https://www.fcrf.cr/",
+        "https://www.herediano.com/"
+      ],
+      "finding": "UNAFUT homepage/calendar returned 502 and the federation homepage timed out. No alternate client or publisher restriction bypass was attempted. Secondary reports identify Herediano–Alajuelense July 12, 2026 and a separate July 17 Recopa. Herediano’s current official honors establish Supercopa history but not that precise edition/date; no secondary date is promoted.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 senior Supercopa, primary dated report needed",
+      "gender_division": "Senior men’s exact approved Supercopa de Costa Rica | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "operative edition/event boundaries not established",
+      "missing_fact": "Readable official 2026 Supercopa match/date confirmation and next-edition status; distinguish it from Recopa and youth Supercopas.",
+      "next_action": "Supply the official UNAFUT assembly decision or edition-specific match report/calendar, preserving the separate Cup/Supercopa/Recopa identities.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-croatia-croatian-cup-men",
+      "sport": "Soccer",
+      "country": "Croatia",
+      "catalog_event": "Croatian Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://hns.family/vijesti/31631/odigrano-pretkolo-supersport-hrvatskog-nogometnog-kupa/",
+      "evidence_urls": [
+        "https://hns.family/vijesti/31631/odigrano-pretkolo-supersport-hrvatskog-nogometnog-kupa/",
+        "https://semafor.hns.family/natjecanja/114492931/supersport-hnk/"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. HNS confirms the 2026–27 senior SuperSport Croatian Cup preliminary round was played in August and its national round of 32 in September; exact edition start across district qualifiers and 2027 final remain unverified. Official HNS 2026/27 named unplayed senior cup pairings, excluding the preliminary round. Dates are date-only because publisher timezone is unverified. Partial published-phase coverage, not a complete season. Zero current-window fixtures is not offseason evidence; participant ages, professional status, and market eligibility require separate review.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 SuperSport Croatian Cup",
+      "gender_division": "Croatian Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact first applicable district qualifier and 2027 full final date, including preliminary rounds.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "August 2026–spring 2027; final date and district qualifier scope pending",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ]
+    },
+    {
+      "key": "soccer-croatia-croatian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Croatia",
+      "catalog_event": "Croatian Super Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://hns.family/dokumenti/propozicije-natjecanja-hns-a/",
+      "evidence_urls": [
+        "https://hns.family/dokumenti/propozicije-natjecanja-hns-a/"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. The former completed-2026 assertion has no verified senior Croatian Super Cup match in the checked HNS competition sources; futsal Supercup listings are not this approved football identity. No verified senior 2026 Super Cup fixture; do not import a futsal Supercup or treat a prior edition as current. Unattended adapter absent.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Current senior Croatian football Super Cup edition unverified",
+      "gender_division": "Croatian Super Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Official current senior football Super Cup edition/date; futsal Supercup is a different competition.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "No verified senior 2026 fixture or next edition date",
+        "season_hold": true,
+        "hold_reason": "No verified senior football Super Cup 2026 fixture or current edition date; keep unlinked pending HNS confirmation."
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ]
+    },
+    {
+      "key": "soccer-czech-republic-czech-first-league-men",
+      "sport": "Soccer",
+      "country": "Czech Republic",
+      "catalog_event": "Czech First League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+      "evidence_urls": [
+        "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+        "https://www.chanceliga.cz/rozpis-zapasu/2027?id_stage=1&month=0&round=0&type=1"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. LFA 2026–27 date plan opens Chance Liga July 25/26, ends its title phase May 29/30, and schedules top-flight qualification June 3/6; no unattended league or qualification adapter. LFA 2026–27 Chance Liga currently published scoreboard fixtures, including multiple rounds and rescheduled matches. Each row retains its match ID, exact pairing, date and local kickoff; untimed/reserve candidates are held. Partial panel coverage only; later championship/playoff phases need separate verification.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Chance Liga",
+      "gender_division": "Czech First League | Men",
+      "season_start_date": "2026-07-25",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Confirm exact opening fixture within the July 25/26 date-plan round and full applicable qualification calendar; retain June 6 planned final qualification leg as context.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "July 25, 2026–June 6, 2027 including relegation qualification",
+        "season_start_date": "2026-07-25",
+        "season_end_date": "2027-06-06",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "published_phase_end_context": "2027-06-06",
+      "opening_round_context": "Prior official round/date-plan evidence; exact earliest individual fixture remains a boundary check."
+    },
+    {
+      "key": "soccer-czech-republic-czech-national-football-league-men",
+      "sport": "Soccer",
+      "country": "Czech Republic",
+      "catalog_event": "Czech National Football League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+      "evidence_urls": [
+        "https://www.chanceliga.cz/clanek/18691-ligove-gremium-schvalilo-terminovou-listinu-pro-sezonu-2026-27-platby-solidarity-prinesou-klubum-vice-penez",
+        "https://www.chnliga.cz/zapasy/2026"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. LFA date plan opens Chance Národní Liga July 25/26, ends its regular rounds May 29/30, and schedules promotion qualification June 3/6; no unattended second-tier adapter. LFA 2026–27 Chance Národní Liga current published round only. Reserve/B-team matches are held for participant-age review; promotion qualifiers remain outside this adapter.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Chance Národní Liga",
+      "gender_division": "Czech National Football League | Men",
+      "season_start_date": "2026-07-25",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Confirm exact opening fixture within the July 25/26 date-plan round and complete promotion-qualification scope; reserve-team eligibility remains separate.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "July 25, 2026–June 6, 2027 including promotion qualification",
+        "season_start_date": "2026-07-25",
+        "season_end_date": "2027-06-06",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "published_phase_end_context": "2027-06-06",
+      "opening_round_context": "Prior official round/date-plan evidence; exact earliest individual fixture remains a boundary check."
+    },
+    {
+      "key": "soccer-democratic-republic-of-the-congo-coupe-du-congo-men",
+      "sport": "Soccer",
+      "country": "Democratic Republic of the Congo",
+      "catalog_event": "Coupe du Congo | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://fecofa.cd/fr/actualites/coupe-du-congo-le-dc-virunga-vainqueur-de-la-60eme-edition",
+      "evidence_urls": [
+        "https://fecofa.cd/fr/actualites/coupe-du-congo-le-dc-virunga-vainqueur-de-la-60eme-edition",
+        "https://fecofa.cd/fr/actualites/categorie/coupe-du-congo"
+      ],
+      "finding": "Federation’s July 20 report dates the men’s final July 19, 2026: DC Virunga–AS Butras, distinct from the women’s cup and the Republic of Congo’s different federation/competition. The exact first applicable national/provincial qualifying fixture is not established. Generic May 1–June 30 dates are removed; this completed-edition gap requires an archived operative calendar rather than an invented next season.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 senior Coupe du Congo",
+      "gender_division": "Senior men’s Democratic Republic of Congo cup, not women’s or Republic of Congo cup",
+      "season_start_date": null,
+      "season_end_date": "2026-07-19",
+      "endpoint_type": "actual final reported by federation; full opening missing",
+      "missing_fact": "Exact first applicable fixture/qualifier of the completed 2026 senior DRC Cup edition.",
+      "next_action": "Provide FECOFA’s official 2026 cup draw/calendar including earlier provincial/national rounds; do not substitute the other Congo federation.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "publication_date": "2026-07-20"
+    },
+    {
+      "key": "soccer-democratic-republic-of-the-congo-linafoot-men",
+      "sport": "Soccer",
+      "country": "Democratic Republic of the Congo",
+      "catalog_event": "Linafoot | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://fecofa.cd/fr/fecofa/textes",
+      "evidence_urls": [
+        "https://fecofa.cd/fr/fecofa/textes",
+        "https://admin.fecofa.cd/wp-content/uploads/2026/10/demo-reglement-linafoot-2026-2027.pdf",
+        "https://fecofa.cd/fr/arbitrage"
+      ],
+      "finding": "The federation’s current regulations page links a 2026/27 Linafoot PDF. Text and page rendering explicitly label it DOCUMENT DE DÉMONSTRATION and fictitious placeholder content to be replaced before publication; it is rejected as competition evidence. Referee-document titles do not establish full opening/playoff endpoints. Secondary reports of an August postponement are not promoted to an official replacement date. Generic September 1–June 30 dates are removed.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026/27 Linafoot Ligue 1",
+      "gender_division": "Senior men’s DRC Linafoot Ligue 1; not Ligue 2 or LINAFF",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "operative full season boundaries unverified",
+      "missing_fact": "Operative 2026/27 senior Ligue 1 regulations/calendar establishing actual opening and complete playoff/relegation endpoint; the linked file is explicitly fictitious.",
+      "next_action": "Obtain FECOFA/Linafoot’s real issued calendar/document, not the linked demo PDF, and verify edition plus numbered concluding phase.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-denmark-danish-cup-men",
+      "sport": "Soccer",
+      "country": "Denmark",
+      "catalog_event": "Danish Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://cms.superliga.dk/media/wx2hyvhr/datoplan-for%C3%A5r-2027.pdf",
+      "evidence_urls": [
+        "https://cms.superliga.dk/media/wx2hyvhr/datoplan-for%C3%A5r-2027.pdf"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. Divisionsforeningen date plan marks LP1 August 5 and national cup final May 6; local DBU qualifying rounds may precede the national draw, so this window is partial. National Oddset Pokalen first round and May 6 final in the official date plan; local qualifiers may precede the mapped national window, and no unattended adapter is connected.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Oddset Pokalen",
+      "gender_division": "Danish Cup | Men",
+      "season_start_date": "2026-08-05",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact first applicable local DBU qualifier before the August 5 national round; May 6 national final alone does not establish full qualifying-inclusive window.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "August 5, 2026–May 6, 2027 national rounds; local qualifying scope pending",
+        "season_start_date": "2026-08-05",
+        "season_end_date": "2027-05-06",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "published_phase_end_context": "2027-05-06"
+    },
+    {
+      "key": "soccer-egypt-egypt-cup-men",
+      "sport": "Soccer",
+      "country": "Egypt",
+      "catalog_event": "Egypt Cup | Men",
+      "status": "source-access-held",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.efa.com.eg/",
+      "evidence_urls": [
+        "https://www.efa.com.eg/"
+      ],
+      "finding": "The assigned Egyptian FA homepage returned HTTP 403. No alternative client, mirrored endpoint or domain was used to bypass it. Secondary discussion of shifting Super Cup dates/hosts is not official confirmation and no generic month/day window is retained. League fixtures and the separate League Cup cannot supply these cup boundaries.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "Current/next senior Egypt Cup edition unverified",
+      "gender_division": "Senior men’s exact approved Egypt Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "full primary edition boundaries unverified",
+      "missing_fact": "Exact active edition/year, earliest qualifying fixture and complete final date.",
+      "next_action": "Supply a readable EFA edition-specific full calendar/announcement, or resolve the observed official-source access issue before a triggered recheck.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "hold_kind": "observed-official-source-403"
+    },
+    {
+      "key": "soccer-egypt-egyptian-premier-league-men",
+      "sport": "Soccer",
+      "country": "Egypt",
+      "catalog_event": "Egyptian Premier League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-10-06",
+      "original_evidence_verified_at": "2026-10-06",
+      "official_url": "https://www.egyptianproleague.com/team/24/detials/8/matches",
+      "evidence_urls": [
+        "https://www.egyptianproleague.com/team/24/detials/8/matches",
+        "https://www.egyptianproleague.com/"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. The official Al Masry page provides structured senior Egyptian Premier League fixtures with explicit ISO timestamps. Only this team schedule is connected; the full league, changed dates and later phases still require verification. Partial Al Masry team schedule. Read exact senior Premier League structured match records and explicit timezone-bearing publisher timestamps; do not infer AM/PM or Cairo time from the 12-hour display.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Egyptian Premier League coverage slice",
+      "gender_division": "Egyptian Premier League | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact whole-league opening and complete final phase; the Al Masry team slice does not establish the league envelope.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "August–May"
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-caf-domestic-sources.json"
+      ]
+    },
+    {
+      "key": "soccer-egypt-egyptian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Egypt",
+      "catalog_event": "Egyptian Super Cup | Men",
+      "status": "source-access-held",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.efa.com.eg/",
+      "evidence_urls": [
+        "https://www.efa.com.eg/"
+      ],
+      "finding": "The assigned Egyptian FA homepage returned HTTP 403. No alternative client, mirrored endpoint or domain was used to bypass it. Secondary discussion of shifting Super Cup dates/hosts is not official confirmation and no generic month/day window is retained. League fixtures and the separate League Cup cannot supply these cup boundaries.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "Current/next Egyptian Super Cup edition unverified",
+      "gender_division": "Senior men’s exact approved Egyptian Super Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "full primary edition boundaries unverified",
+      "missing_fact": "Official edition, opening semifinals and final date; distinguish four-team tournament from a single-match assumption.",
+      "next_action": "Supply a readable EFA edition-specific full calendar/announcement, or resolve the observed official-source access issue before a triggered recheck.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "hold_kind": "observed-official-source-403"
+    },
+    {
+      "key": "soccer-el-salvador-copa-el-salvador-men",
+      "sport": "Soccer",
+      "country": "El Salvador",
+      "catalog_event": "Copa El Salvador | Men",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://web.indes.gob.sv/?p=134266",
+      "evidence_urls": [
+        "https://web.indes.gob.sv/?p=134266",
+        "https://web.indes.gob.sv/?p=135038",
+        "https://fesfut.org.sv/"
+      ],
+      "finding": "INDES’s January 27 primary launch establishes a revived Copa Presidente GanaPlay with 24 clubs across three divisions and February 10 opening; its inauguration report confirms that event. The catalog instead names Copa El Salvador, so continuity/approval mapping is not silently assumed. The initial November 3–5 final range is not an exact final and later secondary reports describe postponement into early 2027. FESFUT homepage yielded no readable text. No old no-2026-event assertion, November 5 closing date or adjacent competition is promoted.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "Catalog Copa El Salvador versus 2026 Copa Presidente GanaPlay",
+      "gender_division": "Senior men’s catalog domestic cup; lower-division entrants require separate age/eligibility review",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "unassigned pending named-competition continuity and current final",
+      "missing_fact": "Confirm approved Copa El Salvador continuity with the revived Copa Presidente GanaPlay; obtain the operative revised final calendar after reported postponement.",
+      "next_action": "Provide the substantive identity-continuity evidence/approval interpretation and FESFUT/INDES revised full cup calendar; keep source and approval assignments unchanged.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "unassigned_current_event_context": {
+        "event": "2026 Copa Presidente GanaPlay",
+        "opening_date": "2026-02-10",
+        "initial_final_range": "2026-11-03 to 2026-11-05",
+        "range_not_promoted": true
+      },
+      "publication_date": "2026-01-27"
+    },
+    {
+      "key": "soccer-el-salvador-primera-divisi-n-men",
+      "sport": "Soccer",
+      "country": "El Salvador",
+      "catalog_event": "Primera División | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://laprimera.com.sv/",
+      "evidence_urls": [
+        "https://laprimera.com.sv/",
+        "https://laprimera.com.sv/news/",
+        "https://fesfut.org.sv/"
+      ],
+      "finding": "The league’s current site confirms the 2026/27 format and named Apertura 2026 current match reports. It does not expose a readable complete first-round/championship-final calendar in the reviewed pages; federation homepage is unreadable. Secondary July 24–December 19 claims are not promoted, and the prior January 1–December 31 template is removed. Reserve, youth, women’s and Copa Presidente schedules are distinct; ESPN collection hold remains unchanged.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 Liga GanaPlay Apertura",
+      "gender_division": "Senior men’s El Salvador Primera División; not reserves, youth or cup",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "full primary edition boundaries unverified",
+      "missing_fact": "Official exact Apertura 2026 opening fixture and full championship-final date under the revised playoff format.",
+      "next_action": "Supply the league/FESFUT current Apertura 2026 full fixture/calendar publication, including championship final; do not use similarly named reserve or cup events.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-england-the-championship-women",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "The Championship | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+      "evidence_urls": [
+        "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+        "https://www.wslfootball.com/fixtures/wsl2"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. Official WSL Football 2026-27 fixture dates and competition calendar. This catalog child is the legacy name for the current BWSL2 competition and must not create a second fixture stream. This legacy catalog label and Super League 2 | Women refer to the same current competition. Keep this fail-closed source record visible; it must not create a second fixture stream when a BWSL2 adapter is added.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 legacy women’s Championship / current BWSL2",
+      "gender_division": "The Championship | Women",
+      "season_start_date": "2026-09-04",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Canonical ownership of the shared current competition remains held to prevent duplicate fixture streams; do not automatically merge/remap approvals.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "September 4, 2026–May 30, 2027",
+        "season_start_date": "2026-09-04",
+        "season_end_date": "2027-05-30",
+        "season_hold": true,
+        "hold_reason": "The Championship | Women is the legacy name for the current WSL2 competition. The current Super League 2 | Women child owns its fixtures; this legacy child must not publish a duplicate stream."
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "published_phase_end_context": "2027-05-30"
+    },
+    {
+      "key": "soccer-estonia-estonian-cup-tipneri-karikas-men",
+      "sport": "Soccer",
+      "country": "Estonia",
+      "catalog_event": "Estonian Cup / Tipneri Karikas | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://jalgpall.ee/voistlused/karikavoistlused/eesti-2026-27-a-karikavoistluste-mangupaevad",
+      "evidence_urls": [
+        "https://jalgpall.ee/voistlused/karikavoistlused/eesti-2026-27-a-karikavoistluste-mangupaevad"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. EJL 2026/27 Tipneri Cup begins with June 10–11 round of 64 and lists a May 2027 final without an exact day; the old May–November 2026 window crossed editions. EJL 2026/27 cup dates June 10, 2026 start and May 2027 final month; exact final date pending. No unattended adapter connected.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Tipneri Karikas",
+      "gender_division": "Estonian Cup / Tipneri Karikas | Men",
+      "season_start_date": "2026-06-10",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact day of the May 2027 final; do not reuse a preceding edition or month-end estimate.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "June 10, 2026–May 2027 final date pending",
+        "season_start_date": "2026-06-10",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ]
+    },
+    {
+      "key": "soccer-ethiopia-ethiopian-cup-men",
+      "sport": "Soccer",
+      "country": "Ethiopia",
+      "catalog_event": "Ethiopian Cup | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://inside.fifa.com/en/associations/ETH/organisation",
+      "evidence_urls": [
+        "https://inside.fifa.com/en/associations/ETH/organisation",
+        "https://ethiopiaff.org/",
+        "https://ethiopianfootball.com/"
+      ],
+      "finding": "The mapped ethiopianfootball.com page was inaccessible. FIFA’s official association directory identifies ethiopiaff.org as the federation website; that linked site exposed only a JavaScript ticketing message and no domestic calendar. The original assigned source ID is preserved, and no national-team, ticketed international, youth or women’s event is substituted. The generic recurring season range is not verified edition evidence.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "Current senior Ethiopian Cup edition unverified",
+      "gender_division": "Senior men’s exact approved Ethiopian Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "current operative calendar not established",
+      "missing_fact": "Exact current senior Cup edition and first applicable qualifying round/full final dates.",
+      "next_action": "Supply the authenticated federation/league organizer’s edition-specific senior calendar for this exact competition; verify publisher ownership before any proposed source reassignment.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-ethiopia-ethiopian-premier-league-men",
+      "sport": "Soccer",
+      "country": "Ethiopia",
+      "catalog_event": "Ethiopian Premier League | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://inside.fifa.com/en/associations/ETH/organisation",
+      "evidence_urls": [
+        "https://inside.fifa.com/en/associations/ETH/organisation",
+        "https://ethiopiaff.org/",
+        "https://ethiopianfootball.com/"
+      ],
+      "finding": "The mapped ethiopianfootball.com page was inaccessible. FIFA’s official association directory identifies ethiopiaff.org as the federation website; that linked site exposed only a JavaScript ticketing message and no domestic calendar. The original assigned source ID is preserved, and no national-team, ticketed international, youth or women’s event is substituted. The generic recurring season range is not verified edition evidence.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026/27 senior Ethiopian Premier League boundaries unverified",
+      "gender_division": "Senior men’s exact approved Ethiopian Premier League | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "current operative calendar not established",
+      "missing_fact": "Official exact top-division opening and full last matchday/any concluding playoff date.",
+      "next_action": "Supply the authenticated federation/league organizer’s edition-specific senior calendar for this exact competition; verify publisher ownership before any proposed source reassignment.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-ethiopia-ethiopian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Ethiopia",
+      "catalog_event": "Ethiopian Super Cup | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://inside.fifa.com/en/associations/ETH/organisation",
+      "evidence_urls": [
+        "https://inside.fifa.com/en/associations/ETH/organisation",
+        "https://ethiopiaff.org/",
+        "https://ethiopianfootball.com/"
+      ],
+      "finding": "The mapped ethiopianfootball.com page was inaccessible. FIFA’s official association directory identifies ethiopiaff.org as the federation website; that linked site exposed only a JavaScript ticketing message and no domestic calendar. The original assigned source ID is preserved, and no national-team, ticketed international, youth or women’s event is substituted. The generic recurring season range is not verified edition evidence.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "Current senior Ethiopian Super Cup edition unverified",
+      "gender_division": "Senior men’s exact approved Ethiopian Super Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "current operative calendar not established",
+      "missing_fact": "Whether a current senior Super Cup edition is scheduled, and exact match/tournament dates.",
+      "next_action": "Supply the authenticated federation/league organizer’s edition-specific senior calendar for this exact competition; verify publisher ownership before any proposed source reassignment.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "soccer-georgia-erovnuli-liga-men",
+      "sport": "Soccer",
+      "country": "Georgia",
+      "catalog_event": "Erovnuli Liga | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.erovnuliliga.ge/en/calendar",
+      "evidence_urls": [
+        "https://www.erovnuliliga.ge/en/calendar"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. The official Erovnuli Liga 2026 results start February 28 and the published 36th league round is December 6. A separate Playoffs tab exists, but its qualification tie boundary and unattended coverage are not verified. Official top-division 2026 calendar is checked for current-window fixtures against each linked match's authoritative UTC kickoff, round, pairing and venue. Calendar card time metadata is inconsistently marked UTC despite displaying local time. December qualification play-off scope remains unverified.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Erovnuli Liga",
+      "gender_division": "Erovnuli Liga | Men",
+      "season_start_date": "2026-02-28",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact full promotion/relegation qualification endpoint after December 6 league round 36.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "February 28–December 6, 2026 league rounds; qualification scope pending",
+        "season_start_date": "2026-02-28",
+        "season_end_date": "2026-12-06",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "published_phase_end_context": "2026-12-06"
+    },
+    {
+      "key": "soccer-georgia-georgian-cup-men",
+      "sport": "Soccer",
+      "country": "Georgia",
+      "catalog_event": "Georgian Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://gff.ge/ge/media/news/31481",
+      "evidence_urls": [
+        "https://gff.ge/ge/media/news/31481"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. GFF dates the Davit Kipiani senior cup first stage May 24 and second stage June 26; top-division clubs enter at the July 25 round of 32. The final date is not verified, and lower-tier entrant age eligibility needs separate review. Permission required: automated UEFA collection is paused pending supported publisher access. Exact independently reviewed semifinal fixtures only, October 27–29 2026. Current top-flight club identities verified; all other cup participants, phases and dates held. No athlete-age or market clearance.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Davit Kipiani Cup",
+      "gender_division": "Georgian Cup | Men",
+      "season_start_date": "2026-05-24",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact full senior cup final date; May 24 first stage includes earlier lower-tier entrants.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "May 24, 2026 first stage–final date pending",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "publisher_access_context": "Assigned UEFA feed remains no-network/access-held. Independent BFU/GFF prior evidence is reconciled without accessing UEFA."
+    },
+    {
+      "key": "soccer-greece-super-league-men",
+      "sport": "Soccer",
+      "country": "Greece",
+      "catalog_event": "Super League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.slgr.gr/en/schedule/",
+      "evidence_urls": [
+        "https://www.slgr.gr/en/schedule/"
+      ],
+      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. Super League Greece publishes the 2026–27 top-division matchday schedule. The regular season opens August 22–23, 2026; the mapped record does not claim an unverified postseason endpoint or full playoff fixture coverage. Connected ESPN gre.1 men’s league feed; league schedule includes regular rounds, while postseason end and feed scope require separate verification.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Greek Super League",
+      "gender_division": "Super League | Men",
+      "season_start_date": "2026-08-22",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
+      "missing_fact": "Exact opening fixture within the published August 22/23 round and full championship/playout/qualifying endpoint.",
+      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "August 22, 2026–2027 postseason end pending",
+        "season_window_complete": false
+      },
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json"
+      ],
+      "opening_round_context": "Prior official round/date-plan evidence; exact earliest individual fixture remains a boundary check."
     }
   ],
-  "reconciled_against_commit": "4dd01e95669f747676bf42aaddd0f8ceaba09edc"
+  "reconciled_against_commit": "4551b441b880fb7d25f6661767f1752116a0fc33"
 }
