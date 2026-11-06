@@ -68,6 +68,12 @@ One reusable credential-free directory/match contract, not country-sized adapter
 
 This file is the project source of truth. A merged pull request, passing test, or completed sport does not change project status unless this ledger is updated against the applicable completion gate.
 
+## Current season-verification checkpoint — November 6, 2026
+
+The canonical identity registry and displayed child model both contain **735** keys. This batch records **337 reviewed / 398 pending**: no new complete calendars, 13 reconciliations of prior country evidence, five first-pass source/date gaps and zero triggered rechecks. The exact ordered queue and batch keys are in `data/catalog-season-verification-pending.json`; dispositions and primary links are in `data/catalog-season-verification-ledger.json`. Existing Armenia, Austria, Azerbaijan, Bangladesh and Bosnia findings were reconciled rather than researched again. The previous country research below is historical context; its older identity and adapter counts are not current season-verification totals.
+
+Saved-source presentation for this checkpoint: **364 dated / 371 undetermined**, using `data/global-schedule.json` and the catalog workspace model on November 6. These are full-catalog timing totals, separate from ledger statuses and from fixture-coverage completion. Priority 2 remains in progress and its exit condition is unchanged. A normal deployment timeout after PR #412 was reviewed: logs showed zero provider requests, with failure only at Pages file synchronization. Reviewed normal recovery run 42229258182 succeeded for main through #414; later main publication must still be verified before claiming live parity. No deployment guard or publisher permission was relaxed.
+
 ## Fixed priority order
 
 1. **Separate competition identities.**
@@ -93,7 +99,7 @@ This file is the project source of truth. A merged pull request, passing test, o
 | Priority | Status | Current evidence | Exit condition |
 |---|---|---|---|
 | 1. Competition identities | **COMPLETE** | 74/74 resolved; 72 split legal parents yield 144 unique children, with two evidence-backed single mixed competitions; public and private portal gate checks passed | 74/74 resolved; no false combined schedulable identities |
-| 2. Season/schedule coverage | **IN PROGRESS** | Of 733 operational identities, 354 have configured adapters, 179 have adapter gaps, 147 have official windows only, and 53 have no linked source. Configured does not prove every phase or current fixture health. | Every approved schedulable identity has verified exact-scope fixture coverage; event-based approval authorities have an explicit event check. External-source blockers stay open and visible, not counted complete by a gap label. |
+| 2. Season/schedule coverage | **IN PROGRESS** | 735 canonical identities. Current season ledger: 337 reviewed / 398 pending; full-catalog timing: 364 dated / 371 undetermined. Older adapter counts below are historical. A calendar disposition does not establish exact-scope fixture coverage or current provider health. | Every approved schedulable identity has verified exact-scope fixture coverage; event-based approval authorities have an explicit event check. External-source blockers stay open and visible, not counted complete by a gap label. |
 | 3. Operator aliases | **PROVISIONAL** | Extensive alias and portal work merged before Priority 1 was finished | Revalidate every alias against final child identities; unresolved ambiguity remains queued |
 | 4. Catalog-change workflow | **PARTIAL** | Fail-closed queue and refresh workflow exist | Controlled add/change/remove test passes end to end |
 | 5. Systemwide regression | **PARTIAL** | Many component tests exist | One cross-repository release suite passes against final data |
