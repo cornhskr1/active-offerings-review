@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from scripts.canada_championship_final import parse_final
+from scripts.audit_priority2_coverage import build
 
 
 DATA = Path(__file__).resolve().parents[1] / "data"
@@ -39,12 +40,24 @@ class CanadaChampionshipScopeTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 parse_final(altered, SOURCE)
 
-    def test_other_approved_labels_remain_held(self):
-        rows = {r["identity_key"]: r for r in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
+    def test_explicit_womens_mapping_does_not_clear_dates_or_fixture_coverage(self):
+        rows = {r["identity_key"]: r for r in build()["identities"]}
         self.assertEqual("ADAPTER_CONFIGURED", rows["soccer-canada-canadian-championship-men"]["coverage_state"])
         for key in ("soccer-canada-canadian-cup-men", "soccer-canada-voyager-cup-women"):
             self.assertEqual("ADAPTER_GAP", rows[key]["coverage_state"])
-            self.assertEqual("DOCUMENTED_HOLD", rows[key]["season_state"])
+        self.assertEqual("DOCUMENTED_HOLD", rows["soccer-canada-canadian-cup-men"]["season_state"])
+        self.assertEqual("PARTIAL_WINDOW", rows["soccer-canada-voyager-cup-women"]["season_state"])
+        ledger = json.loads((DATA / "catalog-season-verification-ledger.json").read_text())
+        reviewed = next(r for r in ledger["records"] if r["key"] == "soccer-canada-voyager-cup-women")
+        self.assertEqual("awaiting-published-dates", reviewed["status"])
+        self.assertEqual("2026-08-03", reviewed["season_start_date"])
+        self.assertIsNone(reviewed["season_end_date"])
+        self.assertEqual("consumed", reviewed["revisit_history"][-1]["status"])
+        self.assertEqual("W Canadian Championship", reviewed["scope_confirmation"]["official_competition"])
+        source = next(s for s in json.loads((DATA / "soccer-concacaf-domestic-sources.json").read_text())["sources"]
+                      if s["id"] == "concacaf-soccer-canada-voyager-cup-women")
+        self.assertEqual("coverage-gap", source["source_type"])
+        self.assertEqual("pending", source["coverage_status"])
 
 
 if __name__ == "__main__":
