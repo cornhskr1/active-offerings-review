@@ -3392,14 +3392,22 @@
               "key": "rodeo-us-pbr-utb",
               "catalog_event": "Unleash The Beast Series",
               "review_label": "Unleash The Beast Series",
-              "season_window": "December 11, 2026–May 23, 2027",
-              "season_start": "12-11",
-              "season_end": "05-23",
+              "season_window": "2026-12-11 – 2027-05-23",
               "source_id": "rodeo-pbr-utb",
-              "season_basis": "2027 PBR Unleash The Beast schedule, from the Manchester opener through the World Finals",
-              "last_verified": "2026-09-18",
+              "season_basis": "Reconciliation of the existing December 11, 2026–May 23, 2027 edition. Organizer event list separates the UTB Manchester opener December 11–12 from Albany’s same-day Velocity Tour and other PBR circuits. World Finals include Cowtown Coliseum May 6–9 and the concluding Glendale event May 20–23. Team Series and Velocity Tour do not extend the UTB season. No recurring dates were rolled to a new edition.",
+              "last_verified": "2026-11-06",
               "fun_fact": "Unleash The Beast is PBR’s premier tour, and its season concludes with the multi-round PBR World Finals in Texas and Arizona.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2027 PBR Unleash The Beast",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://www.pbr.com/events",
+              "season_evidence_urls": [
+                "https://www.pbr.com/events",
+                "https://pbrworldfinals.com/"
+              ],
+              "season_start_date": "2026-12-11",
+              "season_end_date": "2027-05-23"
             }
           ]
         },
@@ -3411,14 +3419,22 @@
               "key": "rodeo-us-prca-tour",
               "catalog_event": "Pro Rodeo Tour",
               "review_label": "Pro Rodeo Tour",
-              "season_window": "October 1, 2025–September 30, 2026",
-              "season_start": "10-01",
-              "season_end": "09-30",
+              "season_window": "Identity scope needs confirmation · no annual dates assigned",
               "source_id": "rodeo-prca-tour",
-              "season_basis": "PRCA/WPRA competition year runs October 1 through September 30",
-              "last_verified": "2026-09-18",
+              "season_basis": "The existing October 1, 2025–September 30, 2026 dates describe the PRCA/WPRA competition or earnings year, not an edition-specific first and last Pro Rodeo Tour competition. The assigned schedule is a JavaScript shell. Current secondary reports describe the separate named Playoff Series and September finals, but cannot establish which modern circuit is the approved catalog tour or its complete boundaries. No PRCA-wide year is promoted as the tour season, no National Finals Rodeo endpoint is borrowed, and no competition remap is made.",
+              "last_verified": "2026-11-06",
               "fun_fact": "PRCA competitors earn season money toward qualification for the National Finals Rodeo across hundreds of sanctioned rodeos.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "Approved Pro Rodeo Tour versus PRCA-wide competition year",
+              "season_window_complete": false,
+              "season_verification_status": "scope-conflict",
+              "season_source_url": "https://www.prorodeo.com/schedule",
+              "season_evidence_urls": [
+                "https://www.prorodeo.com/schedule",
+                "https://www.prorodeo.com/"
+              ],
+              "season_hold": true,
+              "season_hold_reason": "Which current PRCA tour/series corresponds to the approved Pro Rodeo Tour identity, and its exact opening and concluding tour-final dates?"
             },
             {
               "key": "rodeo-us-prca-ncfr",
@@ -3619,14 +3635,21 @@
             {
               "key": "rugby-eng-premiership-cup",
               "catalog_event": "Premiership Rugby Cup | Men",
-              "season_window": "September–April",
-              "season_start": "09-01",
-              "season_end": "04-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "rugby-prem-cup",
-              "season_basis": "Annual English club cup window",
-              "last_verified": "2026-09-18",
+              "season_basis": "Indexed league-owned edition announcement identifies opening pool games on September 5, 2026 and the final only as the weekend March 13–15 in the 2026/27 cycle. Direct page exposes a news shell. Preserve that full announced weekend as partial context, not March 15 as a verified final. The Gallagher PREM league final is a different competition. Existing exact Cup competition/season feed assignment remains unchanged.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The Premiership Rugby Cup gives clubs an additional knockout-style domestic competition alongside league play.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026/27 PREM Rugby Cup",
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates",
+              "season_source_url": "https://www.premrugby.com/content/prem-rugby-cup-2026-27-fixtures-revealed",
+              "season_evidence_urls": [
+                "https://www.premrugby.com/content/prem-rugby-cup-2026-27-fixtures-revealed",
+                "https://www.premrugby.com/fixtures-results?competition=prem-rugby-cup"
+              ],
+              "season_start_date": "2026-09-05"
             }
           ]
         },
@@ -3637,14 +3660,24 @@
             {
               "key": "rugby-eng-rfu-championship",
               "catalog_event": "RFU Championship | Men",
-              "season_window": "September–May",
-              "season_start": "09-01",
-              "season_end": "05-31",
+              "season_window": "2026-09-18 – 2027-05-29",
               "source_id": "rugby-rfu",
-              "season_basis": "Annual second-tier English rugby union season",
-              "last_verified": "2026-09-18",
+              "season_basis": "Nottingham’s October 8 club report confirms the September 18, 2026 season-opening win over Blackheath, preceding the generic September 19 round weekend. Ealing’s July 8 complete competition-format release explicitly dates playoffs from May 8 and the championship final Saturday May 29, 2027; April 24 is only the final regular-season round weekend. Direct RFU/Champ sites returned 403; no bypass was attempted. Club-authored primary publications establish these boundaries while the assigned RFU source remains unchanged.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The RFU Championship sits directly below Premiership Rugby in England’s rugby union pyramid.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026/27 Elior Champ Rugby / RFU Championship",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://www.nottinghamrugby.co.uk/matthew-durbridge-makes-his-champ-rugby-debut",
+              "season_evidence_urls": [
+                "https://www.nottinghamrugby.co.uk/matthew-durbridge-makes-his-champ-rugby-debut",
+                "https://www.nottinghamrugby.co.uk/event/nottingham-v-blackheath",
+                "https://ealingtrailfinders.com/confirmation-of-champ-rugby-2026-27-fixtures/",
+                "https://coventryrugby.co.uk/news/coventry-rugby-s-2026-27-elior-champ-rugby-fixtures-announced"
+              ],
+              "season_start_date": "2026-09-18",
+              "season_end_date": "2027-05-29"
             }
           ]
         },
@@ -3987,14 +4020,22 @@
             {
               "key": "rugby-za-varsity-cup",
               "catalog_event": "Varsity Cup | Men",
-              "season_window": "February–April",
-              "season_start": "02-01",
-              "season_end": "04-30",
+              "season_window": "Full edition window not independently verified",
               "source_id": "rugby-saru",
-              "season_basis": "Annual South African university rugby competition window",
-              "last_verified": "2026-09-18",
+              "season_basis": "The organizer January 16 edition announcement establishes Cup opening February 16, distinct from Shield February 13. Its April 13 report confirms the Cup championship final, Tuks 31–3 NWU. The Cup fixture page also carries a later May 6 Emeris–WSU promotion/relegation match while the fixture widget is unreadable. Do not silently exclude that cross-division postseason game or treat an upload date as match date. Young Guns, Shield and women’s championships are separate. Existing SARU gap and athlete-age safeguards remain unchanged.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The Varsity Cup is South Africa’s national university rugby union competition.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026 FNB Varsity Cup men",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://www.varsitycup.co.za/news/fnb-varsity-cup-and-shield-2026-to-showcase-rugby-s-future-talent",
+              "season_evidence_urls": [
+                "https://www.varsitycup.co.za/news/fnb-varsity-cup-and-shield-2026-to-showcase-rugby-s-future-talent",
+                "https://www.varsitycup.co.za/news/tuks-crowned-fnb-varsity-cup-2026-champions-winning-record-sixth-title",
+                "https://www.varsitycup.co.za/varsity-cup-fixtures-logs"
+              ],
+              "season_start_date": "2026-02-16"
             }
           ]
         },
