@@ -13,7 +13,7 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
             (DATA / "global-schedule-sources.json").read_text(encoding="utf-8")
         )["sources"]}
         expected = {
-            "basketball-fiba-world-cup-men": ("2025-11-24", "2027-09-12", "Basketball"),
+            "basketball-fiba-world-cup-men": (None, "2027-09-12", "Basketball"),
             "basketball-fiba-world-cup-women": ("2026-09-04", "2026-09-13", "Basketball"),
             "basketball-fiba-3x3-world-cup-men": ("2026-06-01", "2026-06-07", "Basketball"),
             "basketball-fiba-3x3-world-cup-women": ("2026-06-01", "2026-06-07", "Basketball"),
@@ -28,7 +28,12 @@ class DivisionScheduleEvidenceTests(unittest.TestCase):
         for key, (start, end, sport) in expected.items():
             with self.subTest(key=key):
                 child = children[key]
-                self.assertEqual(start, child["season_start_date"])
+                if start is None:
+                    self.assertNotIn("season_start_date", child)
+                    self.assertFalse(child["season_window_complete"])
+                    self.assertEqual("awaiting-published-dates", child["season_verification_status"])
+                else:
+                    self.assertEqual(start, child["season_start_date"])
                 if end is None:
                     self.assertNotIn("season_end_date", child)
                     self.assertFalse(child["season_window_complete"])
