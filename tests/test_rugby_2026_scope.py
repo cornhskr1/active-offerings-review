@@ -19,17 +19,20 @@ class Rugby2026ScopeTests(unittest.TestCase):
         mapped = {event["key"]: event for group in rugby["groups"] for event in group["events"]}
         rows = {row["identity_key"]: row for row in build()["identities"]}
         for key, start, end in (
-            ("rugby-nz-npc", "2026-07-30", "2026-10-25"),
-            ("rugby-nz-heartland", "2026-08-15", "2026-10-18"),
+            ("rugby-nz-npc", "2026-07-30", None),
+            ("rugby-nz-heartland", "2026-08-15", None),
             ("rugby-nz-farah-palmer", "2026-08-29", "2026-10-11"),
         ):
             with self.subTest(key=key):
                 event = mapped[key]
-                self.assertEqual((start, end), (event["season_start_date"], event["season_end_date"]))
+                self.assertEqual((start, end), (event["season_start_date"], event.get("season_end_date")))
                 self.assertEqual({"rugby-nz-npc": "rugby-nzr-npc-2026",
                                   "rugby-nz-farah-palmer": "rugby-nzr-farah-palmer-2026"}.get(key, "rugby-nzr"),
                                  event["source_id"])
-                self.assertEqual(("DATED_WINDOW", "ADAPTER_GAP" if key == "rugby-nz-heartland" else "ADAPTER_CONFIGURED"),
+                if end is None:
+                    self.assertNotIn("season_end_date", event)
+                    self.assertFalse(event["season_window_complete"])
+                self.assertEqual(("PARTIAL_WINDOW" if end is None else "DATED_WINDOW", "ADAPTER_GAP" if key == "rugby-nz-heartland" else "ADAPTER_CONFIGURED"),
                                  (rows[key]["season_state"], rows[key]["coverage_state"]))
 
         championship = mapped["rugby-intl-rugby-championship"]
