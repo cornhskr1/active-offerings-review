@@ -4720,7 +4720,314 @@
       "missing_fact": "No single annual competition/edition boundary is established for the organizer-wide event brand.",
       "next_action": "Use game-specific publisher fixtures and individual tournament rules; do not infer a yearly season or change the existing source assignment.",
       "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+    },
+    {
+      "key": "esports-r6-challenger",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Challenger Series",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.ubisoft.com/en-gb/news/ignt.57738/challenger-series-2026-your-chance-to-compete-in-your-regional-league",
+      "evidence_urls": [
+        "https://www.ubisoft.com/en-gb/news/ignt.57738/challenger-series-2026-your-chance-to-compete-in-your-regional-league",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/calendar",
+        "https://www.ubisoft.com/de-de/news/ignt.58584/welcome-to-the-eml-challenger-circuit-2026"
+      ],
+      "finding": "Ubisoft’s January 2026 Series announcement lists four open qualifiers February 21, 22, 28 and March 1 across EML, NAL, SAL and APL subregions, Swiss March 3–8 and finals March 12–15. This is the named 2026 Challenger Series, not the later regional Challenger Circuits feeding the 2027 Challenger Finals. The generic March–December range is rejected. Open qualification, Swiss and finals are distinct phases; NO IN-GAME WAGERS is preserved.",
+      "progress_kind": "newly-resolved-calendar",
+      "season_edition": "2026 Challenger Series regional-league qualification tournament",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2026-02-21",
+      "season_end_date": "2026-03-15",
+      "endpoint_type": "published regional finals endpoint",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "publication_month": "2026-01",
+      "stage_windows": [
+        {
+          "stage": "open qualifiers",
+          "start_date": "2026-02-21",
+          "end_date": "2026-03-01"
+        },
+        {
+          "stage": "Swiss",
+          "start_date": "2026-03-03",
+          "end_date": "2026-03-08"
+        },
+        {
+          "stage": "finals",
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-15"
+        }
+      ]
+    },
+    {
+      "key": "esports-r6-global",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Global Championships",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/competition/520",
+      "evidence_urls": [
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/competition/520",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/news-updates/5cqYMkWfjksM82e1Nqomcn/your-guide-to-the-six-invitational-2026",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/calendar"
+      ],
+      "finding": "The current official competition page explicitly identifies Six Invitational 2027, February 1–14 in Sao Paulo. This assigns the next exact global championship finals edition, not a January–December blanket season. The 2026 Invitational was a distinct completed February 2–15 Paris tournament. Regional SI-point qualification, Majors and EWC are separate competitions; the existing classifier routes Six Invitational/global championship names to this key and does not route the EWC title. NO IN-GAME WAGERS remains.",
+      "progress_kind": "newly-resolved-calendar",
+      "season_edition": "Six Invitational 2027 championship finals",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2027-02-01",
+      "season_end_date": "2027-02-14",
+      "endpoint_type": "scheduled Invitational final",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "prior_edition_context": {
+        "edition": "Six Invitational 2026",
+        "start_date": "2026-02-02",
+        "end_date": "2026-02-15"
+      }
+    },
+    {
+      "key": "esports-r6-majors",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "BLAST R6 Major Events",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/competition/513",
+      "evidence_urls": [
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/competition/513",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/competition/502",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/news-updates/2o61ouFqCXB0awFPQFW3oA/r6-esports-in-2026-a-new-era-of-global-competition"
+      ],
+      "finding": "Ubisoft’s season announcement specifies two regular Majors in 2026, distinct from EWC. Official Salt Lake City page gives May 8–17, including the completed May 17 final; Osaka gives November 6–15, including play-in November 6–8, Swiss November 9–11 and playoffs November 13–15. The two named full-event windows establish the annual Majors envelope, with the gap between events retained and no year-round inference. NO IN-GAME WAGERS remains.",
+      "progress_kind": "newly-resolved-calendar",
+      "season_edition": "2026 BLAST R6 regular Majors: Salt Lake City and Osaka",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2026-05-08",
+      "season_end_date": "2026-11-15",
+      "endpoint_type": "scheduled Osaka Major final",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "stage_windows": [
+        {
+          "event": "Salt Lake City Major",
+          "start_date": "2026-05-08",
+          "end_date": "2026-05-17"
+        },
+        {
+          "event": "Osaka Major",
+          "start_date": "2026-11-06",
+          "end_date": "2026-11-15"
+        }
+      ]
+    },
+    {
+      "key": "esports-r6-regional",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Regional Closed Leagues",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/calendar",
+      "evidence_urls": [
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/calendar",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/championship/70/7",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/championship/63/7",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/championship/65/7",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/championship/64/7",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/championship/62/7",
+        "https://www.ubisoft.com/en-ca/news/ignt.59178/introducing-blast-r6-kickoff-2026",
+        "https://www.ubisoft.com/en-us/esports/rainbow-six/siege/news-updates/2o61ouFqCXB0awFPQFW3oA/r6-esports-in-2026-a-new-era-of-global-competition"
+      ],
+      "finding": "All five official league pages were reviewed. Stage 2 summary captions give CN October 18, NAL October 16, SAL October 11, EML October 13, and APL subregions October 14/16/18. However, official match lists contain later Stage Finals: SAL October 13, EML October 15 and APL October 23–24. The season announcement says no separate regional league finals return, but stage finals/deciders still occur; a summary date cannot establish the full endpoint. The Kickoff publication includes NAL April 1 opening fixtures, but a complete earliest/latest fixture export across all five leagues was not established. The old March–December range is not confirmed.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026/27 regional closed leagues: CN, NAL, SAL, EML and APL",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "aggregate full endpoint unconfirmed",
+      "missing_fact": "Exact earliest 2026 regional Kickoff match and last applicable Stage 2 final/decider across all five closed leagues; reconcile summary captions with later official Stage Finals.",
+      "next_action": "Export each league’s Kickoff and final Stage 2 fixture list; identify any rescheduled/deciding matches after displayed date ranges before assigning one combined window.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "known_context": {
+        "CN_caption_end": "2026-10-18",
+        "NAL_caption_end": "2026-10-16",
+        "SAL_caption_end": "2026-10-11",
+        "SAL_later_stage_final": "2026-10-13",
+        "EML_caption_end": "2026-10-13",
+        "EML_later_stage_final": "2026-10-15",
+        "APL_latest_visible_stage_final": "2026-10-24"
+      }
+    },
+    {
+      "key": "esports-rlcs",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Rocket League Championship Series (RLCS)",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.rocketleague.com/news/rocket-league-championship-series-2026-season?lang=en",
+      "evidence_urls": [
+        "https://www.rocketleague.com/news/rocket-league-championship-series-2026-season?lang=en",
+        "https://www.rocketleague.com/news/2026-rocket-league-world-championship-primer?lang=en",
+        "https://www.rocketleague.com/competitive/rlcs-2026-world-championship",
+        "https://www.rocketleague.com/competitive/schedule"
+      ],
+      "finding": "The September 15, 2025 publisher announcement explicitly starts the 2026 season in November 2025: NA/EU Opens November 14, SAM/APAC November 15, other regions later. December 5–7 Kick-Off LAN follows those Opens. September 9, 2026 Worlds primer gives September 15–20 and identifies September 20 Championship Sunday. This corrects the unsupported January 9 opening, includes qualification stages and the full final, and does not confuse the already announced 2027 Kickoff events with the 2026 edition. NO IN-GAME WAGERS remains.",
+      "progress_kind": "newly-resolved-calendar",
+      "season_edition": "2026 RLCS season, including opening regional Opens and Worlds",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2025-11-14",
+      "season_end_date": "2026-09-20",
+      "endpoint_type": "published World Championship Sunday",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "esports-valorant-champions",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Valorant Champions",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://valorantesports.com/en-US/news/champions-shanghai-everything-you-need-to-know",
+      "evidence_urls": [
+        "https://valorantesports.com/en-US/news/champions-shanghai-everything-you-need-to-know",
+        "https://competitiveops.riotgames.com/en-US/VALORANT"
+      ],
+      "finding": "Reconciliation of the recorded September 24–October 18, 2026 window. Riot’s September 11 guide explicitly lists group stage September 24–October 4, playoffs October 7–18 and October 18 Grand Final. Regional qualification, Masters and Game Changers Championship are separate; no women-only Game Changers event is substituted for open Champions.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Champions Shanghai",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2026-09-24",
+      "season_end_date": "2026-10-18",
+      "endpoint_type": "published grand final",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "stage_windows": [
+        {
+          "stage": "groups",
+          "start_date": "2026-09-24",
+          "end_date": "2026-10-04"
+        },
+        {
+          "stage": "playoffs",
+          "start_date": "2026-10-07",
+          "end_date": "2026-10-18"
+        }
+      ],
+      "publication_date": "2026-09-11",
+      "original_evidence_verified_at": "2026-09-18",
+      "reconciled_at": "2026-11-06"
+    },
+    {
+      "key": "esports-valorant-masters",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Valorant Masters",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://valorantesports.com/en-US/news/masters-santiago-everything-you-need-to-know",
+      "evidence_urls": [
+        "https://valorantesports.com/en-US/news/masters-santiago-everything-you-need-to-know",
+        "https://valorantesports.com/en-US/news/masters-london-everything-you-need-to-know",
+        "https://competitiveops.riotgames.com/en-US/VALORANT"
+      ],
+      "finding": "Reconciliation of the recorded two-event 2026 Masters envelope. Riot explicitly identifies exactly two Masters tournaments. Santiago’s February 20 guide gives Swiss February 28–March 4, playoffs March 6–15 and March 15 Grand Final; London’s May 30 guide gives Swiss June 6–10, playoffs June 12–21 and June 21 Grand Final. The gap is not continuous daily play; regional leagues and Champions remain separate. Dated event guides take precedence over the generic calendar banner’s March 16 Santiago endpoint.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Masters Santiago and London",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2026-02-28",
+      "season_end_date": "2026-06-21",
+      "endpoint_type": "published London grand final",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "stage_windows": [
+        {
+          "event": "Masters Santiago",
+          "start_date": "2026-02-28",
+          "end_date": "2026-03-15"
+        },
+        {
+          "event": "Masters London",
+          "start_date": "2026-06-06",
+          "end_date": "2026-06-21"
+        }
+      ],
+      "publication_date": "2026-02-20",
+      "original_evidence_verified_at": "2026-09-18",
+      "reconciled_at": "2026-11-06"
+    },
+    {
+      "key": "esports-valorant-regional",
+      "sport": "Esports",
+      "country": "International",
+      "catalog_event": "Regional Leagues and Stages",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://valorantesports.com/en-US/news/vct-2026-season-start-eyntk",
+      "evidence_urls": [
+        "https://valorantesports.com/en-US/news/vct-2026-season-start-eyntk",
+        "https://valorantesports.com/en-US/news/vct-americas-stage-2-finals-so-paulo-event-guide",
+        "https://valorantesports.com/en-PH/news/vct-pacific-2026-season-primer",
+        "https://valorantesports.com/en-GB/news/barcelona-finals-know-before-you-go",
+        "https://valorantesports.com/en-SG/leagues/champions%2Cvct_china",
+        "https://valorantesports.com/en-US/leagues/champions%2Cvct_masters%2Cvct_pacific"
+      ],
+      "finding": "Reconciliation of the recorded January 15–September 6, 2026 regional envelope. Riot’s season guide gives openings: Americas January 15, EMEA January 20, Pacific/CN January 22. Full finals evidence: CN August 23 official result, EMEA August 30 dated guide, Americas September 6 dated guide, Pacific September 6 primer and official final result. All four are covered; the endpoint is a final, not a regular-season finish. Kickoff/stages are separate phases and international Masters, Champions and Game Changers are excluded. Path-to-Champions participants do not remove age safeguards; eligibility is not inferred from these dates.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 VCT international leagues: Kickoff, Stage 1 and Stage 2",
+      "gender_division": "Professional esports; preserved approved game and division scope",
+      "season_start_date": "2026-01-15",
+      "season_end_date": "2026-09-06",
+      "endpoint_type": "actual last regional Stage 2 grand finals",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "region_boundaries": [
+        {
+          "region": "Americas",
+          "start_date": "2026-01-15",
+          "end_date": "2026-09-06"
+        },
+        {
+          "region": "EMEA",
+          "start_date": "2026-01-20",
+          "end_date": "2026-08-30"
+        },
+        {
+          "region": "Pacific",
+          "start_date": "2026-01-22",
+          "end_date": "2026-09-06"
+        },
+        {
+          "region": "CN",
+          "start_date": "2026-01-22",
+          "end_date": "2026-08-23"
+        }
+      ],
+      "original_evidence_verified_at": "2026-09-18",
+      "reconciled_at": "2026-11-06"
     }
   ],
-  "reconciled_against_commit": "067ca8d49e9a4b22090ec482b680c1ea7bdcb4ed"
+  "reconciled_against_commit": "120579ecd075eea63b614e12af1afc5b5d4a9df7"
 }
