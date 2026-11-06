@@ -66,6 +66,20 @@ class PublicationHistoryTests(unittest.TestCase):
         mixed=self.jobs(9);mixed['jobs'][0]['steps'][2]['name']=safety.DEPLOY_STEPS[2]
         self.assertFalse(safety.successful_publication(self.anchor,mixed))
 
+    def test_action_upgrade_preserves_exact_historical_success_and_failure(self):
+        for profile in (safety.LEGACY_PINNED_RECOVERY_STEPS, safety.PINNED_RECOVERY_STEPS):
+            for run, run_id in ((self.anchor, 9), (self.failure, 11)):
+                payload = self.jobs(run_id)
+                for step, name in zip(payload['jobs'][0]['steps'], profile):
+                    step['name'] = name
+                if run_id == 9:
+                    self.assertTrue(safety.successful_publication(run, payload))
+                else:
+                    self.assertTrue(safety.precollection_failure(run, payload))
+        mixed = self.jobs(9)
+        mixed['jobs'][0]['steps'][2]['name'] = safety.LEGACY_PINNED_RECOVERY_STEPS[2]
+        self.assertFalse(safety.successful_publication(self.anchor, mixed))
+
     def test_skipped_proof_rejects_missing_ambiguous_or_started_jobs(self):
         self.assertTrue(safety.skipped_before_job_start(self.skip,self.skip_payload))
         for payload in (None,{}, {'total_count':0,'jobs':[]},

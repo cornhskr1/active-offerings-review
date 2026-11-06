@@ -121,6 +121,15 @@ class PendingDeploymentTests(unittest.TestCase):
         for payload in (None, {}, dict(self.workflow, type='symlink'), dict(self.workflow, path='other.yml')):
             self.assertEqual(self.prove(workflow=lambda sha: payload), set())
 
+    def test_reviewed_action_upgrade_keeps_prior_and_new_lock_proofs(self):
+        legacy = '0f76ca30ca7789aaa14eeebbda2e1858d078ca13'
+        for current_blob, pending_blob in ((legacy, safety.SERIALIZED_WORKFLOW_BLOB),
+                                           (safety.SERIALIZED_WORKFLOW_BLOB, legacy)):
+            def workflow(sha):
+                return dict(self.workflow, sha=current_blob if sha == self.current['head_sha'] else pending_blob)
+            self.assertEqual(self.prove(workflow=workflow), {11})
+        self.assertEqual(len(safety.SERIALIZED_WORKFLOW_BLOBS), 2)
+
     def test_started_or_rerun_between_jobs_and_run_recheck_remains_blocked(self):
         for change in (dict(status='in_progress'), dict(run_attempt=2), dict(head_sha='c' * 40),
                        dict(status='completed', conclusion='failure'), dict(repository=None)):
