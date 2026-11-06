@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / "data"
 
@@ -13,7 +14,7 @@ class EastAsiaScopeTests(unittest.TestCase):
         soccer = next(s for s in json.loads((DATA / "catalog-season-map.json").read_text())["sports"] if s["sport"] == "Soccer")
         cls.events = {e["key"]: e for g in soccer["groups"] if g.get("country") in {"Japan", "Korea"} for e in g["events"]}
         cls.sources = {s["id"]: s for s in json.loads((DATA / "soccer-afc-domestic-sources.json").read_text())["sources"]}
-        cls.inventory = {x["identity_key"]: x for x in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
+        cls.inventory = {x["identity_key"]: x for x in build()["identities"]}
 
     def test_eight_distinct_sources_without_synthetic_recurring_dates(self):
         self.assertEqual(8, len(self.events))
@@ -25,15 +26,17 @@ class EastAsiaScopeTests(unittest.TestCase):
 
     def test_japan_transition_and_separate_cups(self):
         dates = {
-            "soccer-japan-j1-league-men": ("2026-08-07", "2027-06-06"),
-            "soccer-japan-j2-league-men": ("2026-08-08", "2027-06-06"),
-            "soccer-japan-emperor-s-cup-men": ("2026-08-19", "2027-01-01"),
+            "soccer-japan-j1-league-men": ("2026-08-07", None),
+            "soccer-japan-j2-league-men": ("2026-08-08", None),
+            "soccer-japan-emperor-s-cup-men": (None, "2027-01-01"),
             "soccer-korea-korean-fa-cup-men": ("2026-06-20", "2027-06-05"),
         }
         for key, pair in dates.items():
             e = self.events[key]
-            self.assertEqual(pair, (e["season_start_date"], e["season_end_date"]))
-            self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
+            self.assertEqual(pair, (e.get("season_start_date"), e.get("season_end_date")))
+            self.assertEqual("PARTIAL_WINDOW" if None in pair else "DATED_WINDOW", self.inventory[key]["season_state"])
+            if None in pair:
+                self.assertFalse(e["season_window_complete"])
         self.assertIn("transition", self.events["soccer-japan-j1-league-men"]["season_basis"])
         levain = self.events["soccer-japan-j-league-cup-men"]
         self.assertEqual("2026-09-02", levain["season_start_date"])
@@ -45,7 +48,7 @@ class EastAsiaScopeTests(unittest.TestCase):
     def test_korean_leagues_include_final_phases_but_tie_scope_remains_open(self):
         for key in ("soccer-korea-k-league-1-men", "soccer-korea-k-league-2-men"):
             e = self.events[key]
-            self.assertEqual(("2026-02-28", "2026-12-06"), (e["season_start_date"], e["season_end_date"]))
+            self.assertEqual(("2026-02-28", "2026-12-06"), (e.get("season_start_date"), e.get("season_end_date")))
             self.assertFalse(e["season_window_complete"])
             self.assertEqual("PARTIAL_WINDOW", self.inventory[key]["season_state"])
         self.assertIn("lower-tier", self.events["soccer-korea-korean-fa-cup-men"]["season_basis"])

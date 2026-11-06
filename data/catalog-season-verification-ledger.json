@@ -16,7 +16,7 @@
     "nonseasonal": "An event series, promoter, sanctioning authority or approval rule has no single competition season; dates and eligibility must be established per event.",
     "cancelled": "Official evidence states the recorded edition will not take place; future editions remain separate."
   },
-  "reconciled_against_commit": "6ba26b042b04f770c09dd2fd52480470aa5bf2cc",
+  "reconciled_against_commit": "91a2cac710ec4976daa9f2dfa450c2e425516edd",
   "records": [
     {
       "key": "basketball-au-nbl",
@@ -16343,6 +16343,2546 @@
         "last_published_end": "2026-06-13"
       },
       "scope_note": "Exact named senior competition only; separate divisions, qualifiers, promotion/access matches and SVNS 2/3 are not substituted. Athlete eligibility remains independent."
+    },
+    {
+      "key": "rugby-na-ran-championship-women",
+      "sport": "Rugby",
+      "country": "North America",
+      "catalog_event": "Rugby Americas North Championship | Women",
+      "gender_division": "Rugby Americas North Championship | Women",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.americasnorth.rugby/competitions/competitions",
+      "evidence_urls": [
+        "https://www.americasnorth.rugby/competitions/competitions"
+      ],
+      "season_start_date": "2026-05-16",
+      "season_end_date": "2026-06-06",
+      "endpoint_type": "Last published historical slate endpoint; full operative championship unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. RAN’s published 2026 senior women’s XVs slate and match calendar; no 2027 window or unattended fixture adapter established. ",
+      "missing_fact": "Complete operative women’s XVs championship slate/last match, rather than assuming the last published May 16–June 6, 2026 slice is the whole championship or next edition.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "last_published_slate_start": "2026-05-16",
+        "last_published_slate_end": "2026-06-06"
+      }
+    },
+    {
+      "key": "rugby-na-ran-sevens-men",
+      "sport": "Rugby",
+      "country": "North America",
+      "catalog_event": "Rugby Americas North Sevens | Men",
+      "gender_division": "Rugby Americas North Sevens | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad",
+      "evidence_urls": [
+        "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad"
+      ],
+      "season_start_date": "2026-11-28",
+      "season_end_date": "2026-11-29",
+      "endpoint_type": "Scheduled two-day division-specific Sevens tournament final day",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. RAN’s September 17, 2026 tournament announcement explicitly includes the men’s division; team lists and match fixtures remain unpublished. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "publication_date": "2026-09-17"
+    },
+    {
+      "key": "rugby-na-ran-sevens-women",
+      "sport": "Rugby",
+      "country": "North America",
+      "catalog_event": "Rugby Americas North Sevens | Women",
+      "gender_division": "Rugby Americas North Sevens | Women",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad",
+      "evidence_urls": [
+        "https://www.americasnorth.rugby/news/new-dates-and-venue-as-the-2026-ran-sevens-returns-to-trinidad"
+      ],
+      "season_start_date": "2026-11-28",
+      "season_end_date": "2026-11-29",
+      "endpoint_type": "Scheduled two-day division-specific Sevens tournament final day",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. RAN’s September 17, 2026 tournament announcement explicitly includes the women’s division; team lists and match fixtures remain unpublished. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "publication_date": "2026-09-17"
+    },
+    {
+      "key": "soccer-armenia-armenian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Armenia",
+      "catalog_event": "Armenian Super Cup | Men",
+      "gender_division": "Armenian Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://noah.am/en/media/noah-is-the-winner-of-the-armenian-super-cup",
+      "evidence_urls": [
+        "https://noah.am/en/media/noah-is-the-winner-of-the-armenian-super-cup"
+      ],
+      "season_start_date": "2026-03-12",
+      "season_end_date": "2026-03-12",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Noah FC records the 2025/26 Hakob Tonoyan Super Cup final against Ararat-Armenia on March 12, 2026; the next edition date is unverified. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-austria-2-liga-men",
+      "sport": "Soccer",
+      "country": "Austria",
+      "catalog_event": "2. Liga | Men",
+      "gender_division": "2. Liga | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.bundesliga.at/de/news/artikel/rahmenterminplan-fuer-die-saison-2026-27",
+      "evidence_urls": [
+        "https://www.bundesliga.at/de/news/artikel/rahmenterminplan-fuer-die-saison-2026-27",
+        "https://www.2liga.at/de/spielplan?spieltag=8"
+      ],
+      "season_start_date": "2026-07-31",
+      "season_end_date": "2027-05-30",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. The Austrian Bundesliga publishes the 2026–27 ADMIRAL 2. Liga calendar through May 30, 2027. A scoped official adapter verifies all eight round-8 fixtures on October 9–11 with exact kickoff times; later rounds require continued publisher checks. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-austria-austrian-cup-men",
+      "sport": "Soccer",
+      "country": "Austria",
+      "catalog_event": "Austrian Cup | Men",
+      "gender_division": "Austrian Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.oefb.at/cup",
+      "evidence_urls": [
+        "https://www.oefb.at/cup"
+      ],
+      "season_start_date": "2026-07-24",
+      "season_end_date": "2027-05-01",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. ÖFB first round began July 24–26, 2026, and Austrian Bundesliga framework sets the men’s cup final for May 1, 2027; unattended cup adapter remains missing. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-azerbaijan-azerbaijan-cup-men",
+      "sport": "Soccer",
+      "country": "Azerbaijan",
+      "catalog_event": "Azerbaijan Cup | Men",
+      "gender_division": "Azerbaijan Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.affa.az/index.php/news/azrbaycan-kubokunun-final-gncd-keirilck-/81410",
+      "evidence_urls": [
+        "https://www.affa.az/index.php/news/azrbaycan-kubokunun-final-gncd-keirilck-/81410"
+      ],
+      "season_start_date": "2026-10-07",
+      "season_end_date": "2027-05-12",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. The 2026–27 cup draw schedules the first qualifying round for October 7–8 with second-division entrants; AFFA schedules the senior final May 12, 2027 in Ganja. Lower-tier participation requires separate athlete eligibility review. No unattended fixture adapter is connected. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-belgium-belgian-pro-league-men",
+      "sport": "Soccer",
+      "country": "Belgium",
+      "catalog_event": "Belgian Pro League | Men",
+      "gender_division": "Belgian Pro League | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie",
+      "evidence_urls": [
+        "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie"
+      ],
+      "season_start_date": "2026-08-07",
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Pro League 2026–27 calendar: 34 rounds, no top-division championship play-offs; connected ESPN top-division feed remains scoped to league fixtures. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-belgium-belgian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Belgium",
+      "catalog_event": "Belgian Super Cup | Men",
+      "gender_division": "Belgian Super Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie",
+      "evidence_urls": [
+        "https://www.proleague.be/nieuws/dit-zijn-de-krijtlijnen-van-de-kalender-in-2026-2027-latere-start-geen-midweekvoetbal-en-croky-cup-finale-na-de-competitie"
+      ],
+      "season_start_date": "2026-07-31",
+      "season_end_date": "2026-07-31",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Pro League calendar confirms the single 2026 Volkswagen Supercup date; no 2027 edition or unattended adapter is established. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-belgium-challenger-pro-league-men",
+      "sport": "Soccer",
+      "country": "Belgium",
+      "catalog_event": "Challenger Pro League | Men",
+      "gender_division": "Challenger Pro League | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.proleague.be/fr/informations/calendrier-2026-2027-un-duel-de-nouveaux-venus-pour-lancer-la-challenger-pro-league",
+      "evidence_urls": [
+        "https://www.proleague.be/fr/informations/calendrier-2026-2027-un-duel-de-nouveaux-venus-pour-lancer-la-challenger-pro-league",
+        "https://www.proleague.be/cpl-kalender"
+      ],
+      "season_start_date": "2026-08-14",
+      "season_end_date": "2027-05-22",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Pro League 2026–27 calendar confirms the August 14 opener, regular season through May 1, and separate promotion play-offs on May 6, 9, 15, and 22; unattended fixture adapter remains missing. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-brazil-supercopa-do-brasil-men",
+      "sport": "Soccer",
+      "country": "Brazil",
+      "catalog_event": "Supercopa do Brasil | Men",
+      "gender_division": "Supercopa do Brasil | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.cbf.com.br/futebol-brasileiro/jogos/supercopa-do-brasil/masculino/2026/flamengo-x-corinthians/831969",
+      "evidence_urls": [
+        "https://www.cbf.com.br/futebol-brasileiro/jogos/supercopa-do-brasil/masculino/2026/flamengo-x-corinthians/831969"
+      ],
+      "season_start_date": "2026-02-01",
+      "season_end_date": "2026-02-01",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. CBF held the professional men’s Supercopa Rei on February 1, 2026. The 2027 pairing is not yet established. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-conmebol-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-bulgaria-bulgarian-supercup-men",
+      "sport": "Soccer",
+      "country": "Bulgaria",
+      "catalog_event": "Bulgarian Supercup | Men",
+      "gender_division": "Bulgarian Supercup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://bfunion.bg/news/52036/0",
+      "evidence_urls": [
+        "https://bfunion.bg/news/52036/0"
+      ],
+      "season_start_date": "2026-09-09",
+      "season_end_date": "2026-09-09",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. BFU scheduled the 2026 senior Supercup between Levski and CSKA in September; the September 9 completed match is one official event, not a recurring season or unattended fixture feed. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-croatia-croatian-football-league-supersport-hnl-men",
+      "sport": "Soccer",
+      "country": "Croatia",
+      "catalog_event": "Croatian Football League / SuperSport HNL | Men",
+      "gender_division": "Croatian Football League / SuperSport HNL | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.hnl.hr/supersport-hnl/raspored-i-rezultati/",
+      "evidence_urls": [
+        "https://www.hnl.hr/supersport-hnl/raspored-i-rezultati/"
+      ],
+      "season_start_date": "2026-07-31",
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. HNS 2026–27 SuperSport HNL competition rules set the opening and final dates for the 36-round top division; no unattended adapter is connected. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-czech-republic-czech-cup-men",
+      "sport": "Soccer",
+      "country": "Czech Republic",
+      "catalog_event": "Czech Cup | Men",
+      "gender_division": "Czech Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.molcup.cz/vysledky",
+      "evidence_urls": [
+        "https://www.molcup.cz/vysledky"
+      ],
+      "season_start_date": "2026-07-24",
+      "season_end_date": "2027-05-12",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. MOL Cup reports preliminary matches from July 24 and publishes May 12 final for the 2026–27 edition, independently of league seasons. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-denmark-danish-1st-division-men",
+      "sport": "Soccer",
+      "country": "Denmark",
+      "catalog_event": "Danish 1st Division | Men",
+      "gender_division": "Danish 1st Division | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.dbu.dk/resultater/pulje/507530/kampprogramFuld",
+      "evidence_urls": [
+        "https://www.dbu.dk/resultater/pulje/507530/kampprogramFuld"
+      ],
+      "season_start_date": "2026-07-24",
+      "season_end_date": "2027-06-06",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Betinia Liga official opening fixture July 24 and Divisionsforeningen’s spring 2027 date plan through F32 on June 6; unattended division adapter remains missing. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-english-football-league-efl-cup-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "English Football League (EFL) Cup | Men",
+      "gender_division": "English Football League (EFL) Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+      "evidence_urls": [
+        "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+        "https://www.efl.com/competitions/carabao-cup/"
+      ],
+      "season_start_date": "2026-08-07",
+      "season_end_date": "2027-03-21",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official EFL 2026-27 fixture and competition dates; the linked daily adapter remains scoped to this competition. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-fa-community-shield-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "FA Community Shield | Men",
+      "gender_division": "FA Community Shield | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.thefa.com/news/2026/aug/16/mikel-arteta-arsenal-community-shield-reaction-20261608",
+      "evidence_urls": [
+        "https://www.thefa.com/news/2026/aug/16/mikel-arteta-arsenal-community-shield-reaction-20261608"
+      ],
+      "season_start_date": "2026-08-16",
+      "season_end_date": "2026-08-16",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official FA report for the completed 2026 Community Shield; the next edition remains unpublished. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-fa-cup-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "FA Cup | Men",
+      "gender_division": "FA Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.thefa.com/competitions/thefacup/round-dates",
+      "evidence_urls": [
+        "https://www.thefa.com/competitions/thefacup/round-dates"
+      ],
+      "season_start_date": "2026-08-08",
+      "season_end_date": "2027-05-22",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official FA 2026-27 round dates; the linked daily adapter remains scoped to this gender-specific competition. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-fa-cup-women",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "FA Cup | Women",
+      "gender_division": "FA Cup | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.thefa.com/competitions/the-womens-fa-cup/round-dates",
+      "evidence_urls": [
+        "https://www.thefa.com/competitions/the-womens-fa-cup/round-dates"
+      ],
+      "season_start_date": "2026-08-23",
+      "season_end_date": "2027-05-15",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official FA 2026-27 round dates; the linked daily adapter remains scoped to this gender-specific competition. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-league-one-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "League One | Men",
+      "gender_division": "League One | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+      "evidence_urls": [
+        "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+        "https://www.efl.com/matches/"
+      ],
+      "season_start_date": "2026-08-14",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official EFL 2026-27 fixture and competition dates; the linked daily adapter remains scoped to this competition. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-14",
+        "published_regular_season_end": "2027-05-08"
+      }
+    },
+    {
+      "key": "soccer-england-league-two-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "League Two | Men",
+      "gender_division": "League Two | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+      "evidence_urls": [
+        "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+        "https://www.efl.com/matches/"
+      ],
+      "season_start_date": "2026-08-14",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official EFL 2026-27 fixture and competition dates; the linked daily adapter remains scoped to this competition. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-14",
+        "published_regular_season_end": "2027-05-08"
+      }
+    },
+    {
+      "key": "soccer-england-players-cup-women",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "Players Cup | Women",
+      "gender_division": "Players Cup | Women",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+      "evidence_urls": [
+        "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+        "https://www.wslfootball.com/fixtures/players-cup"
+      ],
+      "season_start_date": "2026-09-23",
+      "season_end_date": null,
+      "endpoint_type": "Published finals/final-round weekend, exact last competition day unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official WSL Football 2026-27 fixture dates and competition calendar. The final is published for the March 13–14 weekend. ",
+      "missing_fact": "Exact final/last match day within the published two-day final or final-round weekend; its second day is not independently established as the actual endpoint.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_final_weekend_end": "2027-03-14",
+        "published_calendar": "September 23, 2026–March 14, 2027"
+      }
+    },
+    {
+      "key": "soccer-england-premier-league-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "Premier League | Men",
+      "gender_division": "Premier League | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.premierleague.com/en/news/4468487/",
+      "evidence_urls": [
+        "https://www.premierleague.com/en/news/4468487/"
+      ],
+      "season_start_date": "2026-08-21",
+      "season_end_date": "2027-05-30",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Premier League's updated 2026–27 opening and final match rounds. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-super-league-2-women",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "Super League 2 | Women",
+      "gender_division": "Super League 2 | Women",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+      "evidence_urls": [
+        "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+        "https://www.wslfootball.com/fixtures/wsl2"
+      ],
+      "season_start_date": "2026-09-04",
+      "season_end_date": null,
+      "endpoint_type": "Published finals/final-round weekend, exact last competition day unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official WSL Football 2026-27 fixture dates and competition calendar. The end date includes the published promotion play-off weekend. ",
+      "missing_fact": "Exact final/last match day within the published two-day final or final-round weekend; its second day is not independently established as the actual endpoint.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_final_weekend_end": "2027-05-30",
+        "published_calendar": "September 4, 2026–May 30, 2027"
+      }
+    },
+    {
+      "key": "soccer-england-super-league-women",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "Super League | Women",
+      "gender_division": "Super League | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+      "evidence_urls": [
+        "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+        "https://www.wslfootball.com/fixtures/wsl"
+      ],
+      "season_start_date": "2026-09-04",
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official WSL Football 2026-27 fixture dates and competition calendar. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-england-the-championship-men",
+      "sport": "Soccer",
+      "country": "England",
+      "catalog_event": "The Championship | Men",
+      "gender_division": "The Championship | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+      "evidence_urls": [
+        "https://www.efl.com/news/2026/june/25/the-2026-27-efl-fixtures-are-here/",
+        "https://www.efl.com/matches/"
+      ],
+      "season_start_date": "2026-08-14",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official EFL 2026-27 fixture and competition dates; the linked daily adapter remains scoped to this competition. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-14",
+        "published_regular_season_end": "2027-05-01"
+      }
+    },
+    {
+      "key": "soccer-estonia-estonian-super-cup-eesti-superkarikas-men",
+      "sport": "Soccer",
+      "country": "Estonia",
+      "catalog_event": "Estonian Super Cup / Eesti Superkarikas | Men",
+      "gender_division": "Estonian Super Cup / Eesti Superkarikas | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://jalgpall.ee/voistlused/136/karikad",
+      "evidence_urls": [
+        "https://jalgpall.ee/voistlused/136/karikad"
+      ],
+      "season_start_date": "2026-02-28",
+      "season_end_date": "2026-02-28",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. EJL records the senior A. Le Coq Superkarikas Flora–Nõmme Kalju match February 28; single completed event, with no 2027 date or unattended adapter. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-faroe-islands-faroe-islands-cup-men",
+      "sport": "Soccer",
+      "country": "Faroe Islands",
+      "catalog_event": "Faroe Islands Cup | Men",
+      "gender_division": "Faroe Islands Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fsf.fo/ab-og-b68-leggja-fyri/",
+      "evidence_urls": [
+        "https://www.fsf.fo/ab-og-b68-leggja-fyri/"
+      ],
+      "season_start_date": "2026-04-15",
+      "season_end_date": "2026-09-05",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FSF dates the men’s Løgmanssteypið first round April 15–16 and final September 5 at Tórsvøllur. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-faroe-islands-faroe-islands-premier-league-men",
+      "sport": "Soccer",
+      "country": "Faroe Islands",
+      "catalog_event": "Faroe Islands Premier League | Men",
+      "gender_division": "Faroe Islands Premier League | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fsf.fo/kappingar-og-urslit/menn/meistaradeildin-menn/",
+      "evidence_urls": [
+        "https://www.fsf.fo/kappingar-og-urslit/menn/meistaradeildin-menn/"
+      ],
+      "season_start_date": "2026-03-06",
+      "season_end_date": "2026-10-31",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FSF identifies a March 6 opening fixture and October 31 final round for the renamed men’s Meistaradeildin; catalog identity retains its existing title. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-faroe-islands-faroe-islands-super-cup-men",
+      "sport": "Soccer",
+      "country": "Faroe Islands",
+      "catalog_event": "Faroe Islands Super Cup | Men",
+      "gender_division": "Faroe Islands Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fsf.fo/kappingar-og-urslit/storsteypid/",
+      "evidence_urls": [
+        "https://www.fsf.fo/kappingar-og-urslit/storsteypid/"
+      ],
+      "season_start_date": "2026-02-28",
+      "season_end_date": "2026-02-28",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FSF records the men’s KÍ–HB Stórsteypið match at Tórsvøllur on February 28, 2026 and a 1–0 result. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-finland-finnish-cup-men",
+      "sport": "Soccer",
+      "country": "Finland",
+      "catalog_event": "Finnish Cup | Men",
+      "gender_division": "Finnish Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.palloliitto.fi/kilpailut/aikuisten-valtakunnalliset-sarjat/miesten-suomen-cup",
+      "evidence_urls": [
+        "https://www.palloliitto.fi/kilpailut/aikuisten-valtakunnalliset-sarjat/miesten-suomen-cup"
+      ],
+      "season_start_date": "2026-02-06",
+      "season_end_date": "2026-09-05",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Palloliitto men’s Suomen Cup 2026 round plan begins February 6 including Juuson Kierros; the September 5 final was played separately from the women’s cup. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-finland-finnish-league-cup-men",
+      "sport": "Soccer",
+      "country": "Finland",
+      "catalog_event": "Finnish League Cup | Men",
+      "gender_division": "Finnish League Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.veikkausliiga.com/uutiset/2026/03/21/inter-jalleen-liigacupin-mestariksi-ac-oulu-kaatui-finaalissa-2-1",
+      "evidence_urls": [
+        "https://www.veikkausliiga.com/uutiset/2026/03/21/inter-jalleen-liigacupin-mestariksi-ac-oulu-kaatui-finaalissa-2-1"
+      ],
+      "season_start_date": "2026-01-16",
+      "season_end_date": "2026-03-21",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Veikkausliiga’s 2026 Liigacup fixture list begins January 16; FC Inter won the March 21 final. Ykkösliigacup is a separate competition. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-france-coup-lffp-women",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Coup LFFP | Women",
+      "gender_division": "Coup LFFP | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "evidence_urls": [
+        "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html"
+      ],
+      "season_start_date": "2026-08-22",
+      "season_end_date": "2027-04-10",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FFF publishes all 2026–27 competition dates: five league-phase matchdays from August 22 through December 9, January 27 play-off, February 17 quarterfinals, March 17 semifinals, and April 10 final. This establishes an official competition window, not individual match coverage. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-france-ligue-1-men",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Ligue 1 | Men",
+      "gender_division": "Ligue 1 | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.lfp.fr/article/publication-du-calendrier-general-de-la-ligue-1-mcdonald-s-pour-la-saison-2026-2027",
+      "evidence_urls": [
+        "https://www.lfp.fr/article/publication-du-calendrier-general-de-la-ligue-1-mcdonald-s-pour-la-saison-2026-2027"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFP publishes the opening weekend and final regular-season matchday; June promotion play-offs are outside this league window. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s). Exact first fixture within the published opening weekend also remains unverified.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-23",
+        "published_regular_season_end": "2027-05-29",
+        "published_opening_weekend_end": "2026-08-23"
+      }
+    },
+    {
+      "key": "soccer-france-ligue-2-men",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Ligue 2 | Men",
+      "gender_division": "Ligue 2 | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.lfp.fr/article/ligue-2-bkt-le-calendrier-de-la-saison-2026-2027",
+      "evidence_urls": [
+        "https://www.lfp.fr/article/ligue-2-bkt-le-calendrier-de-la-saison-2026-2027"
+      ],
+      "season_start_date": "2026-08-08",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFP publishes all 34 regular-season rounds; promotion and relegation play-offs through June 6 are separately scheduled. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-08",
+        "published_regular_season_end": "2027-05-22"
+      }
+    },
+    {
+      "key": "soccer-france-premi-re-ligue-women",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Première Ligue | Women",
+      "gender_division": "Première Ligue | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html",
+      "evidence_urls": [
+        "https://www.fff.fr/article/16277-competitions-feminines-le-calendrier-2026-2027.html"
+      ],
+      "season_start_date": "2026-09-05",
+      "season_end_date": "2027-06-05",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FFF publishes the opening weekend, regular season ending May 4, and championship play-off final June 5. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-france-seconde-ligue-women",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Seconde Ligue | Women",
+      "gender_division": "Seconde Ligue | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.fff.fr/article/17085-communique-sur-la-seconde-ligue-et-la-coupe-lffp.html",
+      "evidence_urls": [
+        "https://www.fff.fr/article/17085-communique-sur-la-seconde-ligue-et-la-coupe-lffp.html"
+      ],
+      "season_start_date": "2026-09-06",
+      "season_end_date": "2027-05-09",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FFF publishes the September 6, 2026 opening and May 9, 2027 final matchday. Its July 20 revision establishes eleven clubs and supersedes the earlier twelve-club fixture list; unattended full-league fixture ingestion remains pending. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-france-troph-e-des-champions-men",
+      "sport": "Soccer",
+      "country": "France",
+      "catalog_event": "Trophée des Champions | Men",
+      "gender_division": "Trophée des Champions | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.lfp.fr/article/le-trophee-des-champions-confirme-son-rayonnement-mondial-avec-une-diffusion-dans-173-territoires",
+      "evidence_urls": [
+        "https://www.lfp.fr/article/le-trophee-des-champions-confirme-son-rayonnement-mondial-avec-une-diffusion-dans-173-territoires"
+      ],
+      "season_start_date": "2026-08-16",
+      "season_end_date": "2026-08-16",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFP's 2026 match announcement establishes the completed Lens–Paris Saint-Germain edition only; no 2027 date or unattended adapter is claimed. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-georgia-georgian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Georgia",
+      "catalog_event": "Georgian Super Cup | Men",
+      "gender_division": "Georgian Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.gff.ge/ge/media/news/31600",
+      "evidence_urls": [
+        "https://www.gff.ge/ge/media/news/31600"
+      ],
+      "season_start_date": "2026-06-27",
+      "season_end_date": "2026-07-01",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. GFF confirms a four-team Slava Metreveli Super Cup: semifinals June 27, 2026, then final and third-place match July 1. The next edition is unverified. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-germany-2-bundesliga-men",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "2. Bundesliga | Men",
+      "gender_division": "2. Bundesliga | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+      "evidence_urls": [
+        "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+      ],
+      "season_start_date": "2026-08-07",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official calendar confirms league rounds. Relegation play-offs remain separate from this recorded league-round window. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-07",
+        "published_regular_season_end": "2027-05-23"
+      }
+    },
+    {
+      "key": "soccer-germany-bundesliga-men",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "Bundesliga | Men",
+      "gender_division": "Bundesliga | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+      "evidence_urls": [
+        "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+      ],
+      "season_start_date": "2026-08-28",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official calendar confirms league rounds. Relegation play-offs remain separate from this recorded league-round window. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-28",
+        "published_regular_season_end": "2027-05-22"
+      }
+    },
+    {
+      "key": "soccer-germany-dfb-pokal-frauen-women",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "DFB-Pokal Frauen | Women",
+      "gender_division": "DFB-Pokal Frauen | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.dfb.de/news/pokalachtelfinale-zeitgenau-angesetzt-topspiel-bayern-gegen-leverkusen-live-bei-sky-und-im-ard-livestream",
+      "evidence_urls": [
+        "https://www.dfb.de/news/pokalachtelfinale-zeitgenau-angesetzt-topspiel-bayern-gegen-leverkusen-live-bei-sky-und-im-ard-livestream"
+      ],
+      "season_start_date": "2026-08-15",
+      "season_end_date": "2027-05-17",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. DFB publishes the women's playoff opening and Cologne final; a women-only fixture adapter remains pending. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-germany-dfb-pokal-men",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "DFB-Pokal | Men",
+      "gender_division": "DFB-Pokal | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676",
+      "evidence_urls": [
+        "https://www.bundesliga.com/en/bundesliga/news/calendar-for-2026-27-season-world-cup-34676"
+      ],
+      "season_start_date": "2026-08-21",
+      "season_end_date": "2027-05-29",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Official calendar dates the first round and Berlin final; Supercup participants play their first-round ties in September. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-germany-dfl-supercup-men",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "DFL-Supercup | Men",
+      "gender_division": "DFL-Supercup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://datencenter.dfb.de/en/competitions/german-super-cup/seasons/19388/teams/bayern-munich",
+      "evidence_urls": [
+        "https://datencenter.dfb.de/en/competitions/german-super-cup/seasons/19388/teams/bayern-munich"
+      ],
+      "season_start_date": "2026-08-22",
+      "season_end_date": "2026-08-22",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. DFB records the completed Franz Beckenbauer Supercup under its current name; the approved DFL-Supercup label remains the legal catalog identity, with no 2027 date or unattended adapter claimed. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-germany-frauen-bundesliga-women",
+      "sport": "Soccer",
+      "country": "Germany",
+      "catalog_event": "Frauen Bundesliga | Women",
+      "gender_division": "Frauen Bundesliga | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-28",
+      "original_evidence_verified_at": "2026-09-28",
+      "official_url": "https://datencenter.dfb.de/competitions/google-pixel-frauen-bundesliga/seasons/google-pixel-frauen-bundesliga-2026-2027",
+      "evidence_urls": [
+        "https://datencenter.dfb.de/competitions/google-pixel-frauen-bundesliga/seasons/google-pixel-frauen-bundesliga-2026-2027"
+      ],
+      "season_start_date": "2026-08-21",
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. DFB Datencenter publishes the exact women's 2026–27 season pairings; only rows with a dated kickoff are eligible for the fixture adapter. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-greece-greek-cup-men",
+      "sport": "Soccer",
+      "country": "Greece",
+      "catalog_event": "Greek Cup | Men",
+      "gender_division": "Greek Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.epo.gr/el/superbet-kypello-elladas",
+      "evidence_urls": [
+        "https://www.epo.gr/el/superbet-kypello-elladas"
+      ],
+      "season_start_date": "2026-08-11",
+      "season_end_date": "2027-05-27",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. EPO places the senior Superbet Greek Cup first qualifying match on August 11, 2026 and its final on May 27, 2027. This does not provide an unattended fixture adapter. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-iceland-besta-deild-karla-rvalsdeild-men",
+      "sport": "Soccer",
+      "country": "Iceland",
+      "catalog_event": "Besta deild karla / Úrvalsdeild | Men",
+      "gender_division": "Besta deild karla / Úrvalsdeild | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.ksi.is/oll-mot/mot?banner-tab=matches-and-results&id=7025527",
+      "evidence_urls": [
+        "https://www.ksi.is/oll-mot/mot?banner-tab=matches-and-results&id=7025527"
+      ],
+      "season_start_date": "2026-04-11",
+      "season_end_date": "2026-10-24",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. KSÍ records the April 11 opener and separate upper/lower final groups with October 24 fixtures; neither group may be omitted from source scope. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-iceland-super-cup-men",
+      "sport": "Soccer",
+      "country": "Iceland",
+      "catalog_event": "Super Cup | Men",
+      "gender_division": "Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.ksi.is/oll-mot/mot?id=7025605&toggle=results",
+      "evidence_urls": [
+        "https://www.ksi.is/oll-mot/mot?id=7025605&toggle=results"
+      ],
+      "season_start_date": "2026-03-29",
+      "season_end_date": "2026-03-29",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. KSÍ records the senior men’s Meistarakeppni Víkingur–Vestri match March 29; one completed event only. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-india-durand-cup-men",
+      "sport": "Soccer",
+      "country": "India",
+      "catalog_event": "Durand Cup | Men",
+      "gender_division": "Durand Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://newsonair.gov.in/135th-edition-of-durand-cup-to-kick-off-july-25-in-kolkata/",
+      "evidence_urls": [
+        "https://newsonair.gov.in/135th-edition-of-durand-cup-to-kick-off-july-25-in-kolkata/"
+      ],
+      "season_start_date": "2026-07-25",
+      "season_end_date": "2026-08-23",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. 135th Durand Cup opened July 25 in Kolkata and concluded August 23. The tournament included Services, lower-tier and overseas clubs; exact eligible match scope and underage exposure need separate review. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-iraq-iraq-fa-cup-men",
+      "sport": "Soccer",
+      "country": "Iraq",
+      "catalog_event": "Iraq FA Cup | Men",
+      "gender_division": "Iraq FA Cup | Men",
+      "season_edition": "2026",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://iraqfa.com/",
+      "evidence_urls": [
+        "https://iraqfa.com/",
+        "https://www.shafaq.com/ar/ريـاضة/الاتحاد-العراقي-يعلن-روزنامة-ك-س-العراق-والسوبر-للموسم-الجديد"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Secondary-reported dates only; no primary-confirmed boundary",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. IFA-announced 2026–27 Iraq Cup calendar places the first round December 13 and final May 14 at Karbala; qualifying entrant and underage scope require separate review. A calendar does not provide a complete unattended adapter. The earlier report is retained only as unconfirmed context; the federation URL is a manual reference, not claimed fetched evidence.",
+      "missing_fact": "Direct IFA publication confirming the exact 2026/27 senior Iraq FA Cup earliest qualifying/first-round opening December 13 and full May 14 final; current saved evidence is secondary reporting, not direct federation calendar evidence.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "secondary_reported_start": "2026-12-13",
+        "secondary_reported_end": "2027-05-14",
+        "secondary_report_url": "https://www.shafaq.com/ar/ريـاضة/الاتحاد-العراقي-يعلن-روزنامة-ك-س-العراق-والسوبر-للموسم-الجديد"
+      }
+    },
+    {
+      "key": "soccer-iraq-iraqi-super-cup-men",
+      "sport": "Soccer",
+      "country": "Iraq",
+      "catalog_event": "Iraqi Super Cup | Men",
+      "gender_division": "Iraqi Super Cup | Men",
+      "season_edition": "2026",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://iraqfa.com/",
+      "evidence_urls": [
+        "https://iraqfa.com/",
+        "https://www.shafaq.com/ar/ريـاضة/الاتحاد-العراقي-يعلن-روزنامة-ك-س-العراق-والسوبر-للموسم-الجديد"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Secondary-reported dates only; no primary-confirmed boundary",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. IFA-announced 2026–27 senior Iraqi Super Cup semifinals December 14–15 and final December 18. This is a four-team tournament, distinct from the August 13 Gulf Club Super Cup between Iraq and Qatar. The earlier report is retained only as unconfirmed context; the federation URL is a manual reference, not claimed fetched evidence.",
+      "missing_fact": "Direct IFA publication confirming the exact 2026/27 senior four-team Iraqi Super Cup semifinals December 14–15 and final December 18; current saved evidence is secondary reporting, not direct federation calendar evidence.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "secondary_reported_start": "2026-12-14",
+        "secondary_reported_end": "2026-12-18",
+        "secondary_report_url": "https://www.shafaq.com/ar/ريـاضة/الاتحاد-العراقي-يعلن-روزنامة-ك-س-العراق-والسوبر-للموسم-الجديد"
+      }
+    },
+    {
+      "key": "soccer-ireland-fai-cup-men",
+      "sport": "Soccer",
+      "country": "Ireland",
+      "catalog_event": "FAI Cup | Men",
+      "gender_division": "FAI Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.fai.ie/latest/fixtures-confirmed-club-orange-mens-fai-cup-semi-finals/",
+      "evidence_urls": [
+        "https://www.fai.ie/latest/fixtures-confirmed-club-orange-mens-fai-cup-semi-finals/"
+      ],
+      "season_start_date": "2026-05-10",
+      "season_end_date": "2026-11-08",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. FAI publishes the 2026 men’s cup through the November 8 final. A scoped official adapter verifies both semifinals: Bohemians–Waterford on October 9 at 19:45 and Galway United–Derry City on October 10 at 15:00; the final remains outside this slice. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-ireland-president-s-cup-men",
+      "sport": "Soccer",
+      "country": "Ireland",
+      "catalog_event": "President’s Cup | Men",
+      "gender_division": "President’s Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/",
+      "evidence_urls": [
+        "https://www.leagueofireland.ie/news/key-dates-schedule-confirmed-2026-loi-season/"
+      ],
+      "season_start_date": "2026-01-31",
+      "season_end_date": "2026-01-31",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LOI scheduled the senior men’s Shamrock Rovers–Derry City President’s Cup January 31; one completed event only, separate from the women’s March event. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-israel-israel-super-cup-men",
+      "sport": "Soccer",
+      "country": "Israel",
+      "catalog_event": "Israel Super Cup | Men",
+      "gender_division": "Israel Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.maccabi-tlv.co.il/en/2026/07/super-cup-maccabi-beat-beersheva-3-1/",
+      "evidence_urls": [
+        "https://www.maccabi-tlv.co.il/en/2026/07/super-cup-maccabi-beat-beersheva-3-1/"
+      ],
+      "season_start_date": "2026-07-16",
+      "season_end_date": "2026-07-16",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Maccabi Tel Aviv reports its 3–1 Champion of Champions/Super Cup match against Hapoel Be’er Sheva on July 16; IFA also lists Champion of Champions as a separate Toto Cup round. This is one completed senior match. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-italy-serie-b-men",
+      "sport": "Soccer",
+      "country": "Italy",
+      "catalog_event": "Serie B | Men",
+      "gender_division": "Serie B | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.legab.it/seriebkt/calendario",
+      "evidence_urls": [
+        "https://www.legab.it/seriebkt/calendario"
+      ],
+      "season_start_date": "2026-08-21",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Lega B publishes its August 21 opening match and final regular-season weekend through May 16; promotion play-offs are separate. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-21",
+        "published_regular_season_end": "2027-05-16"
+      }
+    },
+    {
+      "key": "soccer-japan-emperor-s-cup-men",
+      "sport": "Soccer",
+      "country": "Japan",
+      "catalog_event": "Emperor’s Cup | Men",
+      "gender_division": "Emperor’s Cup | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.jfa.jp/eng/match/emperorscup_2026/",
+      "evidence_urls": [
+        "https://www.jfa.jp/eng/match/emperorscup_2026/",
+        "https://www.jfa.jp/match/emperorscup_2026/news/00036688/"
+      ],
+      "season_start_date": null,
+      "season_end_date": "2027-01-01",
+      "endpoint_type": "Scheduled national cup final; earliest qualifying opening unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. JFA publishes the 106th Emperor’s Cup from August 19, 2026 through the January 1, 2027 final. A scoped official adapter verifies ten named and timed third-round fixtures on October 7; later rounds remain outside this current adapter slice. ",
+      "missing_fact": "Earliest applicable prefectural qualification date; August 19 is the national tournament opening, not verified earliest qualifying activity. Keep the January 1, 2027 final.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "national_tournament_opening": "2026-08-19"
+      }
+    },
+    {
+      "key": "soccer-japan-j1-league-men",
+      "sport": "Soccer",
+      "country": "Japan",
+      "catalog_event": "J1 League | Men",
+      "gender_division": "J1 League | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://aboutj.jleague.jp/corporate/about_competitions/season/",
+      "evidence_urls": [
+        "https://aboutj.jleague.jp/corporate/about_competitions/season/"
+      ],
+      "season_start_date": "2026-08-07",
+      "season_end_date": null,
+      "endpoint_type": "Published finals/final-round weekend, exact last competition day unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. J.League confirms the 2026–27 J1 opener August 7 and final league round June 5–6. The February–June 2026 Hundred Year Vision special competition is a distinct transition event, not this J1 season. ESPN daily fixture coverage still needs health verification. ",
+      "missing_fact": "Exact final/last match day within the published two-day final or final-round weekend; its second day is not independently established as the actual endpoint.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_final_weekend_end": "2027-06-06",
+        "published_calendar": "August 7, 2026–June 6, 2027"
+      }
+    },
+    {
+      "key": "soccer-japan-j2-league-men",
+      "sport": "Soccer",
+      "country": "Japan",
+      "catalog_event": "J2 League | Men",
+      "gender_division": "J2 League | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.jleague.jp/en/j2/match/search-list/",
+      "evidence_urls": [
+        "https://www.jleague.jp/en/j2/match/search-list/"
+      ],
+      "season_start_date": "2026-08-08",
+      "season_end_date": null,
+      "endpoint_type": "Published finals/final-round weekend, exact last competition day unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. J.League schedules J2 league rounds through May 23, with J1 promotion play-off final June 5–6. The February–June transition special competition is separate; adapter coverage must include the actual J2 season and play-offs. ",
+      "missing_fact": "Exact final/last match day within the published two-day final or final-round weekend; its second day is not independently established as the actual endpoint.",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_final_weekend_end": "2027-06-06",
+        "published_calendar": "August 8, 2026–June 6, 2027 promotion play-off final"
+      }
+    },
+    {
+      "key": "soccer-korea-korean-fa-cup-men",
+      "sport": "Soccer",
+      "country": "Korea",
+      "catalog_event": "Korean FA Cup | Men",
+      "gender_division": "Korean FA Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.kfa.or.kr/layer_popup/popup_live.php?act=news_tv_detail&div_code=news&idx=28131",
+      "evidence_urls": [
+        "https://www.kfa.or.kr/layer_popup/popup_live.php?act=news_tv_detail&div_code=news&idx=28131"
+      ],
+      "season_start_date": "2026-06-20",
+      "season_end_date": "2027-06-05",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. KFA’s renamed 2026–27 Korea Cup includes June 20 preliminary ties with lower-tier clubs, August 2026 round of 16, and a scheduled June 5, 2027 final. The exact catalog Korean FA Cup identity is retained; lower-tier age eligibility needs separate review. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-latvia-latvian-cup-latvijas-kauss-men",
+      "sport": "Soccer",
+      "country": "Latvia",
+      "catalog_event": "Latvian Cup / Latvijas Kauss | Men",
+      "gender_division": "Latvian Cup / Latvijas Kauss | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://lff.lv/sacensibas/viriesi/latvijas-kauss/",
+      "evidence_urls": [
+        "https://lff.lv/sacensibas/viriesi/latvijas-kauss/"
+      ],
+      "season_start_date": "2026-05-15",
+      "season_end_date": "2026-11-20",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFF records the May 15 round-of-64 opener and moved the senior final to November 20; the previous October endpoint was too early. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-latvia-latvian-supercup-latvijas-superkauss-men",
+      "sport": "Soccer",
+      "country": "Latvia",
+      "catalog_event": "Latvian Supercup / Latvijas Superkauss | Men",
+      "gender_division": "Latvian Supercup / Latvijas Superkauss | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://lff.lv/sacensibas/viriesi/superkauss/",
+      "evidence_urls": [
+        "https://lff.lv/sacensibas/viriesi/superkauss/"
+      ],
+      "season_start_date": "2026-02-17",
+      "season_end_date": "2026-02-17",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFF records the senior Riga FC–FK Auda Superkauss in Turkey February 17; distinct from the March women’s Superkauss. Single completed event only. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-lithuania-lithuanian-football-cup-men",
+      "sport": "Soccer",
+      "country": "Lithuania",
+      "catalog_event": "Lithuanian Football Cup | Men",
+      "gender_division": "Lithuanian Football Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.lff.lt/kaune-futbolo-savaitgalis-lff-taures-finalas-vyks-spalio-11-aja/",
+      "evidence_urls": [
+        "https://www.lff.lt/kaune-futbolo-savaitgalis-lff-taures-finalas-vyks-spalio-11-aja/"
+      ],
+      "season_start_date": "2026-04-01",
+      "season_end_date": "2026-10-11",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFF confirms two preliminary ties opened the senior cup April 1 and moved its final from October 10 to October 11. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-lithuania-lithuanian-super-cup-men",
+      "sport": "Soccer",
+      "country": "Lithuania",
+      "catalog_event": "Lithuanian Super Cup | Men",
+      "gender_division": "Lithuanian Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.lff.lt/naujoko-ivartis-padovanojo-kauno-zalgiriui-pirma-sezono-trofeju/",
+      "evidence_urls": [
+        "https://www.lff.lt/naujoko-ivartis-padovanojo-kauno-zalgiriui-pirma-sezono-trofeju/"
+      ],
+      "season_start_date": "2026-02-16",
+      "season_end_date": "2026-02-16",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. LFF confirms the senior Kauno Žalgiris–Panevėžys Supertaurė played February 16 in Marijampolė; this one completed event is distinct from September futsal. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-malaysia-charity-shield-men",
+      "sport": "Soccer",
+      "country": "Malaysia",
+      "catalog_event": "Charity Shield | Men",
+      "gender_division": "Charity Shield | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6186",
+      "evidence_urls": [
+        "https://www.malaysianfootballleague.com/Content/Post/Watch/6186"
+      ],
+      "season_start_date": "2026-08-21",
+      "season_end_date": "2026-08-21",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. MFL reports JDT beat Kuching City 3–0 in the August 21 Sultan Haji Ahmad Shah Charity Shield. MFL also counts this same physical match as Super League opener for league points; preserve two competition identities without a second fixture. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-malaysia-malaysia-cup-men",
+      "sport": "Soccer",
+      "country": "Malaysia",
+      "catalog_event": "Malaysia Cup | Men",
+      "gender_division": "Malaysia Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
+      "evidence_urls": [
+        "https://www.malaysianfootballleague.com/Content/Post/Watch/6000"
+      ],
+      "season_start_date": "2027-01-22",
+      "season_end_date": "2027-05-30",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. MFL 2026–27 Malaysia Cup calendar starts January 22–24 and schedules May 30 final, with four Liga A1 entrants alongside 12 Super League clubs. Lower-tier age and match scope remain separate checks. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-malaysia-malaysia-fa-cup-men",
+      "sport": "Soccer",
+      "country": "Malaysia",
+      "catalog_event": "Malaysia FA Cup | Men",
+      "gender_division": "Malaysia FA Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
+      "evidence_urls": [
+        "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
+        "https://www.malaysianfootballleague.com/Content/Post/Watch/6495"
+      ],
+      "season_start_date": "2026-09-01",
+      "season_end_date": "2027-01-16",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. MFL 2026–27 FA Cup calendar starts September 1–2 and schedules January 16 final, including four Liga A1 entrants; lower-tier age eligibility remains a match-level check. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-malaysia-malaysia-super-league-men",
+      "sport": "Soccer",
+      "country": "Malaysia",
+      "catalog_event": "Malaysia Super League | Men",
+      "gender_division": "Malaysia Super League | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
+      "evidence_urls": [
+        "https://www.malaysianfootballleague.com/Content/Post/Watch/6000",
+        "https://www.malaysianfootballleague.com/Content/Post/Watch/6542"
+      ],
+      "season_start_date": "2026-08-21",
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final league round, including the phases explicitly supported in the saved evidence",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. MFL 2026–27 calendar dates 12-club Super League opening August 21 and conclusion May 23. Opening JDT–Kuching City match also awards the Charity Shield and counts in league standings; do not duplicate it as a second fixture. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-malta-maltese-super-cup-men",
+      "sport": "Soccer",
+      "country": "Malta",
+      "catalog_event": "Maltese Super Cup | Men",
+      "gender_division": "Maltese Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.mfa.com.mt/news/competitions/valletta-claim-14th-bov-super-cup-title-after-gripping-final/",
+      "evidence_urls": [
+        "https://www.mfa.com.mt/news/competitions/valletta-claim-14th-bov-super-cup-title-after-gripping-final/"
+      ],
+      "season_start_date": "2026-09-07",
+      "season_end_date": "2026-09-07",
+      "endpoint_type": "Actual completed single-match edition; no annual rollover or next-edition assumption",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. Malta FA confirms Valletta beat Floriana 2–0 in the senior BOV Super Cup on September 7; this is distinct from the women’s Super Cup. ",
+      "missing_fact": "",
+      "next_action": "Retain the exact edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition."
+    },
+    {
+      "key": "soccer-netherlands-eerste-divisie-men",
+      "sport": "Soccer",
+      "country": "Netherlands",
+      "catalog_event": "Eerste Divisie | Men",
+      "gender_division": "Eerste Divisie | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.knvb.nl/node/71918",
+      "evidence_urls": [
+        "https://www.knvb.nl/node/71918"
+      ],
+      "season_start_date": "2026-08-07",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. KNVB definitive Keuken Kampioen Divisie opening fixtures and final regular-season round; promotion playoffs are separate. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-07",
+        "published_regular_season_end": "2027-05-14"
+      }
+    },
+    {
+      "key": "soccer-netherlands-eredivisie-men",
+      "sport": "Soccer",
+      "country": "Netherlands",
+      "catalog_event": "Eredivisie | Men",
+      "gender_division": "Eredivisie | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.knvb.nl/node/71918",
+      "evidence_urls": [
+        "https://www.knvb.nl/node/71918"
+      ],
+      "season_start_date": "2026-08-07",
+      "season_end_date": null,
+      "endpoint_type": "Regular-season boundary known; full applicable postseason endpoint unverified",
+      "finding": "Reconciliation of prior exact-key evidence in the saved season map, governing-source mapping and repository country/fixture checkpoints; no repeat research or newly resolved calendar. KNVB definitive 2026/27 fixtures and published final matchday; daily feed remains scoped to the men's Eredivisie. ",
+      "missing_fact": "Full applicable promotion/relegation or qualification-playoff endpoint beyond the recorded regular-season final round; keep phases separate and verify exact deciding game(s).",
+      "next_action": "Supply the direct official exact-edition publication for the missing boundaries described above; retain source and approval assignments.",
+      "revisit_trigger": "Identifiable new or revised official exact-edition calendar, or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key map and source calendar evidence",
+        "Prior country/fixture investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Named senior competition and gender only. Lower-tier/youth entrants, participant ages, current adapter phase coverage, separate cup competitions and wagering approval remain independent. Completed historical single events are not rolled to a future edition.",
+      "saved_partial_context": {
+        "published_regular_season_start": "2026-08-07",
+        "published_regular_season_end": "2027-05-23"
+      }
     }
   ]
 }

@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / "data"
 COUNTRIES = {"India", "Iran", "Iraq"}
@@ -14,7 +15,7 @@ class IndiaIranIraqScopeTests(unittest.TestCase):
         soccer = next(s for s in json.loads((DATA / "catalog-season-map.json").read_text())["sports"] if s["sport"] == "Soccer")
         cls.events = {e["key"]: e for g in soccer["groups"] if g.get("country") in COUNTRIES for e in g["events"]}
         cls.sources = {s["id"]: s for s in json.loads((DATA / "soccer-afc-domestic-sources.json").read_text())["sources"]}
-        cls.inventory = {x["identity_key"]: x for x in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
+        cls.inventory = {x["identity_key"]: x for x in build()["identities"]}
 
     def test_all_nine_distinct_and_no_recurring_assumption(self):
         self.assertEqual(9, len(self.events))
@@ -38,16 +39,19 @@ class IndiaIranIraqScopeTests(unittest.TestCase):
             self.assertNotIn("season_start_date", self.events[key])
         self.assertIn("superseded", self.events["soccer-india-indian-super-league-men"]["season_basis"])
 
-    def test_durand_and_two_iraqi_cups_have_separate_exact_windows(self):
+    def test_durand_is_dated_but_secondary_iraqi_calendars_stay_unconfirmed(self):
         dates = {
             "soccer-india-durand-cup-men": ("2026-07-25", "2026-08-23"),
-            "soccer-iraq-iraq-fa-cup-men": ("2026-12-13", "2027-05-14"),
-            "soccer-iraq-iraqi-super-cup-men": ("2026-12-14", "2026-12-18"),
+            "soccer-iraq-iraq-fa-cup-men": (None, None),
+            "soccer-iraq-iraqi-super-cup-men": (None, None),
         }
         for key, window in dates.items():
             e = self.events[key]
-            self.assertEqual(window, (e["season_start_date"], e["season_end_date"]))
-            self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
+            self.assertEqual(window, (e.get("season_start_date"), e.get("season_end_date")))
+            self.assertEqual("PARTIAL_WINDOW" if window[0] is None else "DATED_WINDOW", self.inventory[key]["season_state"])
+            if window[0] is None:
+                self.assertFalse(e["season_window_complete"])
+                self.assertEqual("manual-verification-needed", e["season_verification_status"])
         self.assertIn("four-team", self.events["soccer-iraq-iraqi-super-cup-men"]["season_basis"])
 
     def test_premier_is_not_stars_and_iran_league_end_is_open(self):
