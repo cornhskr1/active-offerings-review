@@ -182,7 +182,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 source_id = f"rugby-na-ran-{kind}-{division.lower()}"
                 row = self.rows[("Rugby", league)]
                 self.assertEqual(f"{base} | Men and Women", row["approval_parent"])
-                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                self.assertEqual(("PARTIAL_WINDOW" if kind == "championship" and division == "Men" else "DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
                                  (row["season_state"], row["coverage_state"]))
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
                 self.assertEqual(0, row["events_in_window"])
