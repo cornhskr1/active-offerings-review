@@ -26,7 +26,11 @@ class BasketballDivisionIdentityTests(unittest.TestCase):
                 self.assertNotIn("season_end", child)
                 if child.get("source_id"):
                     self.assertEqual(child["key"], child["source_id"])
-                    self.assertIn("season_start_date", child)
+                    if child["key"] == "basketball-fiba-world-cup-men":
+                        self.assertNotIn("season_start_date", child)
+                        self.assertFalse(child["season_window_complete"])
+                    else:
+                        self.assertIn("season_start_date", child)
                     self.assertIn("season_end_date", child)
 
     def test_existing_wnba_identity_is_not_duplicated(self):

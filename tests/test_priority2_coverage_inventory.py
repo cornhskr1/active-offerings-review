@@ -535,11 +535,11 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                             or (row["season_state"], row["coverage_state"]) == ("DOCUMENTED_HOLD", "NO_LINKED_SOURCE")
                             for row in ncaa))
 
-    def test_complete_world_cup_window_and_gap_do_not_pretend_to_be_fixture_adapter(self):
+    def test_world_cup_qualifier_window_stays_partial_without_first_match(self):
         row = self.rows[("Basketball", "FIBA Basketball World Cup | Men")]
         self.assertEqual("ADAPTER_GAP", row["coverage_state"])
-        self.assertEqual("DATED_WINDOW", row["season_state"])
-        self.assertEqual("November 24, 2025–September 12, 2027, including six qualifier windows and the finals", row["season_window"])
+        self.assertEqual("PARTIAL_WINDOW", row["season_state"])
+        self.assertEqual("2027 finals August 27–September 12; full qualifying opening unverified", row["season_window"])
         self.assertEqual("coverage-gap", row["sources"][0]["type"])
         afl = self.rows[("Aussie Rules", "Australian Football League (AFL) | Men")]
         self.assertEqual("ADAPTER_CONFIGURED", afl["coverage_state"])
@@ -669,7 +669,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         basketball = self.inventory["by_sport"]["Basketball"]
         self.assertEqual(89, basketball["identities"])
         self.assertEqual(6, basketball["no_linked_source"])
-        self.assertEqual(17, basketball["pending_dates"])
+        self.assertEqual(18, basketball["pending_dates"])
         # Newly researched recurring estimates remain partial until finals are published.
         for league in ("Basketligaen | Men", "LNB Élite | Men",
                        "Basketbol Süper Ligi (BSL) | Men",
@@ -803,7 +803,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertIn(reason, row["hold_reason"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(18, self.inventory["by_sport"]["Basketball"]["pending_dates"])
 
     def test_fifth_basketball_source_batch_uses_exact_or_descriptive_official_windows(self):
         dated_windows = {
@@ -836,7 +836,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("official-nbb-fixtures", nbb["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(18, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_sixth_basketball_source_batch_uses_exact_official_windows(self):
@@ -857,7 +857,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(18, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_seventh_basketball_source_batch_closes_actionable_source_gaps(self):
@@ -882,7 +882,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         self.assertEqual("official-event-window", unrivaled["sources"][0]["type"])
 
         self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
-        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(18, self.inventory["by_sport"]["Basketball"]["pending_dates"])
         self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
 
     def test_ncaa_division_one_adapters_match_the_exact_competition_scope(self):
