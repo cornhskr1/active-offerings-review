@@ -1154,12 +1154,19 @@
             {
               "key": "basketball-gr-gbl",
               "catalog_event": "Greek Basket League (GBL) | Men",
-              "season_window": "October–June",
-              "season_start": "10-01",
-              "season_end": "06-30",
+              "season_window": "2026-10-03 opening verified; championship endpoint pending",
               "source_id": "greek-basket-league",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_start_date": "2026-10-03",
+              "season_basis": "Official ESAKE opening-day notices identify October 3, 2026 for the 2026/27 senior men championship. The current program is regular-round evidence and does not establish the final deciding playoff game.",
+              "season_source_url": "https://temp.esake.gr/el/action/EsakeFantasynews",
+              "season_evidence_urls": [
+                "https://temp.esake.gr/el/action/EsakeFantasynews",
+                "https://www.esake.gr/el/action/EsakePrograms"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             },
             {
               "key": "basketball-gr-cup",
@@ -1218,11 +1225,20 @@
             {
               "key": "basketball-il-league-cup",
               "catalog_event": "League Cup | Men",
-              "season_window": "Began September 8, 2026; knockout schedule currently published through October 4",
+              "season_window": "2026-09-08 opening verified; championship endpoint pending",
               "source_id": "basketball-il-league-cup",
-              "season_basis": "Winner League confirms the 2026 Winner Cup began September 8 and currently publishes knockout games through the October 4 semifinals; the final date and unattended adapter remain pending",
-              "last_verified": "2026-09-25",
-              "restrictions": []
+              "season_basis": "July 15 official notice dates 2026/27 Winner Cup opening September 8 and leaves the final November 8 or 15. September 29 semifinal ticket notice dates semifinals October 3 and 4, with classification games through October 5. October 4 is not a confirmed final.",
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_start_date": "2026-09-08",
+              "season_source_url": "https://basket.co.il/news.asp?id=84485",
+              "season_evidence_urls": [
+                "https://basket.co.il/news.asp?id=84485",
+                "https://basket.co.il/news.asp?id=83442",
+                "https://basket.co.il/news.asp?id=86616&lang=he"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             }
           ]
         },
@@ -1463,12 +1479,19 @@
             {
               "key": "basketball-rs-kls",
               "catalog_event": "Basketball League of Serbia / Košarkaška liga Srbije (KLS) | Men",
-              "season_window": "September–June",
-              "season_start": "09-01",
-              "season_end": "06-30",
+              "season_window": "2026-10-03 opening verified; championship endpoint pending",
               "source_id": "serbian-kls",
-              "last_verified": "2026-09-16",
-              "restrictions": []
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_start_date": "2026-10-03",
+              "season_basis": "Joint KSS/KLS statement explicitly opens the 2026/27 men league October 3. Calendar hub identifies the season; no fully verified championship final or deciding-game endpoint established. Secondary May 17 Final Four claim is not promoted.",
+              "season_source_url": "https://kls.rs/zajednicko-saopstenje-kss-i-uk-kls/",
+              "season_evidence_urls": [
+                "https://kls.rs/zajednicko-saopstenje-kss-i-uk-kls/",
+                "https://kls.rs/kalendar/"
+              ],
+              "season_window_complete": false,
+              "season_verification_status": "awaiting-published-dates"
             },
             {
               "key": "basketball-rs-cup",
@@ -1934,12 +1957,19 @@
             {
               "key": "bowling-pba-national-tour",
               "catalog_event": "PBA National Tour",
-              "season_window": "February–August",
-              "season_start": "02-16",
-              "season_end": "08-31",
+              "season_window": "2026-02-16–2026-08-31 (2026 edition)",
               "source_id": "pba-national-tour",
-              "last_verified": "2026-09-17",
-              "restrictions": []
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_start_date": "2026-02-16",
+              "season_basis": "Official complete 2026 National Tour table begins Players Championship February 16–22 and ends Lucky Larsen Masters August 21–31. The bounds include event finals; regional, senior and elite league circuits are separate. Replaces recurring month/day context with edition-specific official dates.",
+              "season_source_url": "https://www.pba.com/pba-tour/pba-national-tour",
+              "season_evidence_urls": [
+                "https://www.pba.com/pba-tour/pba-national-tour"
+              ],
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_end_date": "2026-08-31"
             },
             {
               "key": "bowling-pba-strike-derby",
