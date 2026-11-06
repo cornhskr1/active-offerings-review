@@ -9601,7 +9601,602 @@
         "data/catalog-season-map.json",
         "data/soccer-uefa-domestic-sources.json"
       ]
+    },
+    {
+      "key": "soccer-italy-serie-a-women",
+      "sport": "Soccer",
+      "country": "Italy",
+      "catalog_event": "Serie A | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.figc.it/it/serie-a-women/news/le-date-della-stagione-2026-27-si-parte-il-22-23-agosto-con-la-serie-a-womens-cup-la-serie-a-women-al-via-tra-il-26-e-il-27-settembre-serie-b-il-6-settembre-hw30jsnl",
+      "evidence_urls": [
+        "https://www.figc.it/it/serie-a-women/news/le-date-della-stagione-2026-27-si-parte-il-22-23-agosto-con-la-serie-a-womens-cup-la-serie-a-women-al-via-tra-il-26-e-il-27-settembre-serie-b-il-6-settembre-hw30jsnl"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FIGC 2026–27 women's calendar; fixture adapter pending FIGC's September 28 announcement supplies eighteen named, timed Serie A Women fixtures for rounds four through six, October 24–November 8, 2026. Only this published phase is covered; the adapter fails closed beyond its verified horizon. Europe/Rome conversion retains the October daylight-saving transition. Schedule coverage does not establish participant-age or market eligibility.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Serie A Women",
+      "gender_division": "Senior women’s Serie A | Women",
+      "season_start_date": "2026-09-26",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact first fixture within September 26/27 and exact final round day within the retained FIGC calendar; partial round-specific adapter does not establish full boundary.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "September 26, 2026–May 16, 2027",
+        "season_start_date": "2026-09-26",
+        "season_end_date": "2027-05-16"
+      },
+      "original_verification_date_basis": "September 26 country-review checkpoint in PROJECT_CONTROL.md; child lacked an independent last_verified field.",
+      "boundary_context": "Retained published window is context only until exact first/last match day is established; do not turn alternative dates into a multi-day match."
+    },
+    {
+      "key": "soccer-italy-supercoppa-italiana-men",
+      "sport": "Soccer",
+      "country": "Italy",
+      "catalog_event": "Supercoppa Italiana | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://en.legaseriea.it/supercoppa",
+      "evidence_urls": [
+        "https://en.legaseriea.it/supercoppa"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. Men's EA Sports FC Supercup is separate from the FIGC women's January event and youth Primavera cup; exact official match details remain pending. The approved men's Supercoppa is separate from the women's January event and the youth Primavera super cup. An exact 2026 match record and dependable daily adapter are not yet attached.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 men’s EA Sports FC Supercup",
+      "gender_division": "Senior men’s Supercoppa Italiana | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact first semifinal and final if four-team format; December 1–31 is an unverified month template, not the current event window.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "December 2026"
+      },
+      "original_verification_date_basis": "September 26 country-review checkpoint in PROJECT_CONTROL.md; child lacked an independent last_verified field.",
+      "boundary_context": "Retained published window is context only until exact first/last match day is established; do not turn alternative dates into a multi-day match."
+    },
+    {
+      "key": "soccer-italy-supercoppa-italiana-women",
+      "sport": "Soccer",
+      "country": "Italy",
+      "catalog_event": "Supercoppa Italiana | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.figc.it/it/serie-a-women/news/le-date-della-stagione-2026-27-si-parte-il-22-23-agosto-con-la-serie-a-womens-cup-la-serie-a-women-al-via-tra-il-26-e-il-27-settembre-serie-b-il-6-settembre-hw30jsnl",
+      "evidence_urls": [
+        "https://www.figc.it/it/serie-a-women/news/le-date-della-stagione-2026-27-si-parte-il-22-23-agosto-con-la-serie-a-womens-cup-la-serie-a-women-al-via-tra-il-26-e-il-27-settembre-serie-b-il-6-settembre-hw30jsnl"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FIGC 2026–27 women's Supercoppa window; exact kickoff pending FIGC confirms the January 9–10, 2027 Supercoppa window; exact kickoff and unattended fixture adapter are pending.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 women’s Supercoppa",
+      "gender_division": "Senior women’s Supercoppa Italiana | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact match day within the January 9/10, 2027 federation window; alternative days are not automatically a two-day tournament.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "January 9–10, 2027",
+        "season_start_date": "2027-01-09",
+        "season_end_date": "2027-01-10"
+      },
+      "original_verification_date_basis": "September 26 country-review checkpoint in PROJECT_CONTROL.md; child lacked an independent last_verified field.",
+      "boundary_context": "Retained published window is context only until exact first/last match day is established; do not turn alternative dates into a multi-day match."
+    },
+    {
+      "key": "soccer-ivory-coast-coupe-de-c-te-d-ivoire-men",
+      "sport": "Soccer",
+      "country": "Ivory Coast",
+      "catalog_event": "Coupe de Côte d’Ivoire | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.clubomnisportkorhogo.com/actualites/saison-2026-2027-la-fif-devoile-le-calendrier-des-competitions",
+      "evidence_urls": [
+        "https://www.clubomnisportkorhogo.com/actualites/saison-2026-2027-la-fif-devoile-le-calendrier-des-competitions",
+        "https://www.fifciv.com/?q=categories/coupe-nationale",
+        "https://www.fifciv.com/?q=coupe-nationale-2026-le-co-korhogo-entre-dans-l%E2%80%99histoire"
+      ],
+      "finding": "Korhogo’s June 17 club-authored season notice reproduces the federation framework and gives January 29, 2027 Coupe Nationale opening; the broad July 1–June 30 administrative year is not a competition window. FIF’s June 1 report separately confirms the preceding 60th edition final May 29, 2026 (Korhogo–SOA). No 2027 final or earliest lower-tier qualifier is established in the current primary material. The assigned fif-ci.com redirects normally to fifciv.com; no publisher restriction is bypassed.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026/27 senior Coupe Nationale de Côte d’Ivoire",
+      "gender_division": "Senior men’s Ivorian national cup, not Coupe de la Ligue or women’s cup",
+      "season_start_date": "2027-01-29",
+      "season_end_date": null,
+      "endpoint_type": "scheduled national opening; qualifying-inclusive full endpoint unconfirmed",
+      "missing_fact": "Confirm whether January 29 national opening includes all applicable earlier qualifiers, and publish exact 2027 senior final.",
+      "next_action": "Await an identifiable operative federation full cup calendar including lower-tier qualifiers/final; do not borrow the preceding edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "historical_final_context": "2026-05-29",
+      "publication_date": "2026-06-17"
+    },
+    {
+      "key": "soccer-ivory-coast-ligue-1-men",
+      "sport": "Soccer",
+      "country": "Ivory Coast",
+      "catalog_event": "Ligue 1 | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.asec.ci/index.php/news/le-calendrier-des-mimos-est-connu",
+      "evidence_urls": [
+        "https://www.asec.ci/index.php/news/le-calendrier-des-mimos-est-connu",
+        "https://www.clubomnisportkorhogo.com/actualites/saison-2026-2027-la-fif-devoile-le-calendrier-des-competitions",
+        "https://www.fifciv.com/?q=categories/ligue1"
+      ],
+      "finding": "ASEC’s September 23 official club calendar confirms its first 2026/27 match September 26 and says later dates/times/venues will be announced as official. It does not establish the earliest whole-league fixture. Korhogo’s June 17 August 28 framework has been overtaken by that September program; secondary September 25 whole-league opening and June 2027 end are not promoted without the operative full primary calendar. Prior May 24, 2026 last round is a different completed season. Remove recurring September–June assumptions; this is not France’s Ligue 1.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026/27 Ligue 1 LONACI",
+      "gender_division": "Senior men’s Côte d’Ivoire Ligue 1 LONACI, not France, women or reserve divisions",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "exact whole-league opening and full final matchday unconfirmed",
+      "missing_fact": "Official exact earliest 2026/27 whole-league fixture and full final matchday/any applicable concluding tie.",
+      "next_action": "Await or supply the federation/league full 2026/27 issued calendar/revision, not one club’s first match.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "club_opening_context": "2026-09-26",
+      "superseded_framework_context": "2026-08-28",
+      "publication_date": "2026-09-23"
+    },
+    {
+      "key": "soccer-ivory-coast-super-coupe-men",
+      "sport": "Soccer",
+      "country": "Ivory Coast",
+      "catalog_event": "Super Coupe | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.fifciv.com/?q=super-coupe-f%C3%A9lix-houphou%C3%ABt-boigny-2026-lasec-mimosas-lance-sa-saison-avec-un-premier-troph%C3%A9e",
+      "evidence_urls": [
+        "https://www.fifciv.com/?q=super-coupe-f%C3%A9lix-houphou%C3%ABt-boigny-2026-lasec-mimosas-lance-sa-saison-avec-un-premier-troph%C3%A9e",
+        "https://www.clubomnisportkorhogo.com/actualites/saison-2026-2027-la-fif-devoile-le-calendrier-des-competitions"
+      ],
+      "finding": "FIF’s August 11 report explicitly dates the senior men’s Super Coupe August 6, 2026: ASEC Mimosas defeated CO Korhogo 2–0 at Stade Félix Houphouët-Boigny. This was the league champion versus national cup winner; the government/FIF curtain-raiser and women’s Super Coupe are separate. The club’s June 17 calendar independently agrees August 6. The mapped federation homepage redirects to its current official site. Do not roll the completed single fixture into an assumed 2027 date.",
+      "progress_kind": "newly-resolved-calendar",
+      "season_edition": "2026 senior men’s Super Coupe Félix Houphouët-Boigny",
+      "gender_division": "Senior men’s league champion versus cup winner, excluding curtain-raiser and women’s event",
+      "season_start_date": "2026-08-06",
+      "season_end_date": "2026-08-06",
+      "endpoint_type": "actual completed single-match final",
+      "missing_fact": "",
+      "next_action": "Recheck only for an identifiable official revision of this edition.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "publication_date": "2026-08-11"
+    },
+    {
+      "key": "soccer-japan-j-league-cup-men",
+      "sport": "Soccer",
+      "country": "Japan",
+      "catalog_event": "J.League Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://aboutj.jleague.jp/corporate/en/pressrelease/article/15992",
+      "evidence_urls": [
+        "https://aboutj.jleague.jp/corporate/en/pressrelease/article/15992"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. J.League starts its renamed 2026–27 Levain Cup September 2, with November 2026 quarterfinals and March 2027 semifinals; it has not fixed the final date. This cup is distinct from the league and transition competition. Exact official 2026–27 Levain Cup first-team match cards; league, friendlies and transition competition excluded. Future unannounced stages require continued feed checks.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 J.League Levain Cup",
+      "gender_division": "Senior men’s J.League Cup | Men",
+      "season_start_date": "2026-09-02",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact 2027 final; September 2 opening is established and this is distinct from the Hundred Year Vision transition competition.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "September 2, 2026 opening; 2027 final date pending",
+        "season_start_date": "2026-09-02",
+        "season_window_complete": false
+      }
+    },
+    {
+      "key": "soccer-japan-japanese-super-cup-men",
+      "sport": "Soccer",
+      "country": "Japan",
+      "catalog_event": "Japanese Super Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.jleague.jp/news/article/33086/",
+      "evidence_urls": [
+        "https://www.jleague.jp/news/article/33086/"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. J.League’s 2026 transition program identifies only the Hundred Year Vision special league in its February–June interval; no current senior FUJIFILM Super Cup fixture has been verified. Do not infer an annual February match from the old calendar. J.League’s 2026 transition program identifies only the Hundred Year Vision special league in its February–June interval; no current senior FUJIFILM Super Cup fixture has been verified. Do not infer an annual February match from the old calendar. A dependable complete unattended match adapter remains a coverage gap.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Next senior FUJIFILM Super Cup during calendar transition",
+      "gender_division": "Senior men’s Japanese Super Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Official current/next senior edition existence, pairing and exact match date; February is not evidence.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "Next senior Japanese Super Cup date pending",
+        "season_hold": true
+      }
+    },
+    {
+      "key": "soccer-korea-k-league-1-men",
+      "sport": "Soccer",
+      "country": "Korea",
+      "catalog_event": "K League 1 | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.kleague.com/about/competition.do",
+      "evidence_urls": [
+        "https://www.kleague.com/about/competition.do"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. K League regulations establish February 28–December 6, 2026 with 33 regular rounds and five final-round matches per club. A scoped official adapter verifies the October 18 FC Seoul–Gimcheon Sangmu Round 32 fixture after K League's published schedule change; later/final-round cards require fresh official publication checks. K League's September 2 official notice fixes the Round 32 FC Seoul–Gimcheon Sangmu match for October 18 at 16:30 Korea time after an ACL2 schedule change. The scoped adapter verifies that exact publication only; the broader 33-round regular season and five-round final phase require continued publication checks.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 K League 1",
+      "gender_division": "Senior men’s K League 1 | Men",
+      "season_start_date": "2026-02-28",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Full applicable interdivision relegation/promotion tie endpoint after December 6 league final-group bounds.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "February 28–December 6, 2026 league phases; relegation tie scope pending",
+        "season_start_date": "2026-02-28",
+        "season_end_date": "2026-12-06",
+        "season_window_complete": false
+      },
+      "published_phase_end_context": "2026-12-06"
+    },
+    {
+      "key": "soccer-korea-k-league-2-men",
+      "sport": "Soccer",
+      "country": "Korea",
+      "catalog_event": "K League 2 | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.kleague.com/about/competition.do",
+      "evidence_urls": [
+        "https://www.kleague.com/about/competition.do"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. K League regulations establish the 2026 regular season through November 29 and conditional promotion play-offs through December 6. A scoped official adapter verifies Gimpo FC–Seoul E-Land FC on October 9 at 16:30 Korea time in Round 28; later rounds and cross-division ties remain outside this first adapter slice. K League's September club publication confirms Gimpo FC hosts Seoul E-Land FC in Round 28 on October 9 at 16:30 Korea time. The scoped adapter verifies that exact next fixture only; later regular-season rounds and conditional promotion play-offs remain outside this first slice.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 K League 2",
+      "gender_division": "Senior men’s K League 2 | Men",
+      "season_start_date": "2026-02-28",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Full applicable cross-division promotion/relegation tie endpoint; December 6 conditional K2 playoff boundary alone may not cover it.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "February 28–December 6, 2026 league and promotion play-offs; later tie scope pending",
+        "season_start_date": "2026-02-28",
+        "season_end_date": "2026-12-06",
+        "season_window_complete": false
+      },
+      "published_phase_end_context": "2026-12-06"
+    },
+    {
+      "key": "soccer-kosovo-kosovar-cup-men",
+      "sport": "Soccer",
+      "country": "Kosovo",
+      "catalog_event": "Kosovar Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ffk-kosova.com/",
+      "evidence_urls": [
+        "https://ffk-kosova.com/"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FFK competition source does not establish the current senior cup opening or final dates; the prior November–May bounds were an unsupported recurring assumption. Current 2026–27 senior cup opener and final not verified at FFK; previous November–May recurring range removed. No unattended adapter.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 senior Kosovar Cup",
+      "gender_division": "Senior men’s Kosovar Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact first applicable qualifier and complete 2027 final; no recurring November opener.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "2026–27 senior cup · first match and final pending",
+        "season_hold": true,
+        "hold_reason": "Current edition senior cup dates unverified; no synthetic November opening."
+      }
+    },
+    {
+      "key": "soccer-kosovo-supercup-of-kosovo-men",
+      "sport": "Soccer",
+      "country": "Kosovo",
+      "catalog_event": "Supercup of Kosovo | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ffk-kosova.com/",
+      "evidence_urls": [
+        "https://ffk-kosova.com/"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FFK sources reviewed do not establish a senior men’s 2026 Super Cup fixture; a completed edition cannot be inferred from the generic catalog label. No verified FFK senior men’s 2026 Supercup fixture or next date; historic/youth competition must not populate this identity. No unattended adapter.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Current/next senior Kosovo Supercup",
+      "gender_division": "Senior men’s Supercup of Kosovo | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Official senior 2026 event existence or exact next-edition fixture; do not infer completed status.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "Senior Super Cup · 2026 event and next official date unverified",
+        "season_hold": true,
+        "hold_reason": "Senior event existence and date unverified; do not assert completed 2026 edition."
+      }
+    },
+    {
+      "key": "soccer-kosovo-superleague-of-kosovo-superliga-e-kosov-s-men",
+      "sport": "Soccer",
+      "country": "Kosovo",
+      "catalog_event": "Superleague of Kosovo / Superliga e Kosovës | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ffk-kosova.com/albimall-superliga/",
+      "evidence_urls": [
+        "https://ffk-kosova.com/albimall-superliga/"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. UEFA lists the 2026/27 Kosovan Superliga; contemporaneous reports of the opening Feronikeli 74–Gjilani match on August 14 supersede the initial federation August 15 announcement. Final and play-off boundaries await official publication. Permission required: automated UEFA collection is paused pending supported publisher access. Exact current first-tier senior league; no athlete-age clearance.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Kosovan Superliga",
+      "gender_division": "Senior men’s Superleague of Kosovo / Superliga e Kosovës | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Direct official exact first fixture confirmation (August 14 secondary versus initial August 15 federation date), complete 2027 final and applicable playoffs.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "August 14, 2026 opening fixture–2027 final round pending",
+        "season_window_complete": false
+      },
+      "publisher_access_context": "Assigned UEFA no-network hold retained; prior independent FFK/secondary opening discrepancy is not promoted."
+    },
+    {
+      "key": "soccer-luxembourg-luxembourg-cup-men",
+      "sport": "Soccer",
+      "country": "Luxembourg",
+      "catalog_event": "Luxembourg Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.flf.lu/coupes-93861v4",
+      "evidence_urls": [
+        "https://www.flf.lu/coupes-93861v4"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FLF 2026–27 cup draw documents are published, but the public competition page still displays the 2025–26 edition; current first fixture and final dates have not been established. FLF 2026–27 cup draw documents are published, but the public competition page still displays the 2025–26 edition; current first fixture and final dates have not been established. No unattended fixture adapter is connected; dates do not establish catalog approval.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 senior Coupe de Luxembourg",
+      "gender_division": "Senior men’s Luxembourg Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact current opening qualifier/full final; public competition page previously retained the prior 2025/26 edition.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "2026–27 senior Coupe de Luxembourg · first fixture and final pending",
+        "season_hold": true,
+        "hold_reason": "Current senior football edition date or fixture scope unverified; do not infer a recurring window or completed event."
+      }
+    },
+    {
+      "key": "soccer-luxembourg-luxembourg-super-cup-men",
+      "sport": "Soccer",
+      "country": "Luxembourg",
+      "catalog_event": "Luxembourg Super Cup | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.flf.lu/sponsors/post-296485v4/posts/68008",
+      "evidence_urls": [
+        "https://www.flf.lu/sponsors/post-296485v4/posts/68008"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FLF announces a September 20, 2026 Supercoupe de Futsal; that is not the catalog senior football identity. No senior football 2026 fixture is verified. FLF announces a September 20, 2026 Supercoupe de Futsal; that is not the catalog senior football identity. No senior football 2026 fixture is verified. No unattended fixture adapter is connected; dates do not establish catalog approval.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Current/next Luxembourg senior football Super Cup",
+      "gender_division": "Senior men’s Luxembourg Super Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Establish whether senior football edition is scheduled and its exact date; the September 20 publication is futsal.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "Senior football Super Cup · 2026 event and next date unverified",
+        "season_hold": true,
+        "hold_reason": "Current senior football edition date or fixture scope unverified; do not infer a recurring window or completed event."
+      }
+    },
+    {
+      "key": "soccer-luxembourg-national-division-bgl-ligue-men",
+      "sport": "Soccer",
+      "country": "Luxembourg",
+      "catalog_event": "National Division / BGL Ligue | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.flf.lu/games/2942798",
+      "evidence_urls": [
+        "https://www.flf.lu/games/2942798"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. FLF 2026–27 BGL Ligue senior men’s opening-round fixture dates August 2; end and promotion/relegation tie scope remain unverified. FLF publishes 240 senior BGL Ligue 2026–27 regular-season match links. The adapter verifies all eight next-round match pages for pairing, time, venue and exact senior league before admitting current-window cards. Later rounds and promotion/relegation ties remain outside this partial feed.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 BGL Ligue",
+      "gender_division": "Senior men’s National Division / BGL Ligue | Men",
+      "season_start_date": "2026-08-02",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact 2027 full final including applicable promotion/relegation tie; August 2 first senior round known.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "August 2, 2026 first senior round–2027 final and promotion ties pending",
+        "season_window_complete": false
+      }
+    },
+    {
+      "key": "soccer-malta-maltese-fa-trophy-men",
+      "sport": "Soccer",
+      "country": "Malta",
+      "catalog_event": "Maltese FA Trophy | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.mfa.com.mt/competitions/meridianbet-fa-trophy/",
+      "evidence_urls": [
+        "https://www.mfa.com.mt/competitions/meridianbet-fa-trophy/"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. Malta FA’s currently retrieved FA Trophy final article concerns the prior 2025–26 edition played May 23; no current 2026–27 opening or final date was verified. Malta FA’s currently retrieved FA Trophy final article concerns the prior 2025–26 edition played May 23; no current 2026–27 opening or final date was verified. No unattended fixture adapter is connected; dates do not establish catalog approval.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 senior Malta FA Trophy",
+      "gender_division": "Senior men’s Maltese FA Trophy | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Exact first applicable round and full 2027 final; May 23, 2026 belongs to prior 2025/26.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "2026–27 senior FA Trophy · first fixture and final pending",
+        "season_hold": true,
+        "hold_reason": "Current senior football edition date or fixture scope unverified; do not infer a recurring window or completed event."
+      }
+    },
+    {
+      "key": "soccer-malta-maltese-premier-league-men",
+      "sport": "Soccer",
+      "country": "Malta",
+      "catalog_event": "Maltese Premier League | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://matchcentre.mfa.com.mt/competition/58539",
+      "evidence_urls": [
+        "https://matchcentre.mfa.com.mt/competition/58539"
+      ],
+      "finding": "Reconciliation of prior country review, season map and matching source configuration; no new search or complete calendar. Malta FA's official ticket and match-centre publications provide named and timed VBET Malta Premier fixtures. A scoped adapter verifies the October 9–11 senior league cards currently published by MFA; later opening-round and final-phase fixtures remain outside this first slice. Malta FA's official ticket portal publishes named, dated, timed VBET Malta Premier fixtures. The adapter verifies the current October 9–11 senior league cards from the official MFA ticket publication; later matchdays remain outside this slice.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 VBET Malta Premier",
+      "gender_division": "Senior men’s Maltese Premier League | Men",
+      "season_start_date": "2026-08-14",
+      "season_end_date": null,
+      "endpoint_type": "Prior partial edition-specific evidence; complete boundary not promoted",
+      "missing_fact": "Full 2027 concluding phases/playoffs after August 14 opener; ticket/October fixture slice is not full coverage.",
+      "next_action": "Preserve reviewed state, source assignments and all publisher/age/approval holds. Reopen only for an identifiable new official edition publication/revision or new user-supplied evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope edition publication/revision or substantive new user-supplied evidence.",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "saved_partial_context": {
+        "season_window": "August 14, 2026 opening round–2027 final phases pending",
+        "season_window_complete": false
+      }
     }
   ],
-  "reconciled_against_commit": "9277e45b8695c830e5ed7b04356b89966a14d7a3"
+  "reconciled_against_commit": "44e2a79537cb06754ee3ba5066c8c974db5641b5"
 }
