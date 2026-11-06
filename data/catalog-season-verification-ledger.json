@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-03",
+  "updated_at": "2026-11-06",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
   "baseline_dated_records": 317,
@@ -21,15 +21,19 @@
       "country": "Australia",
       "catalog_event": "National Basketball League (NBL) | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://www.nbl.com.au/news/nbl-unveils-exciting-2026-27-schedule",
       "evidence_urls": [
         "https://www.nbl.com.au/news/nbl-unveils-exciting-2026-27-schedule",
-        "https://www.nbl.com.au/schedule"
+        "https://www.nbl.com.au/schedule",
+        "https://cdn.prod.website-files.com/64a4f0de3648103ab3295afa/6a18df6b70056bbef35f32d0_Schedule_NBL27.pdf"
       ],
-      "finding": "The NBL's official NBL27 schedule announcement confirms the September 19, 2026 opener and regular-season fixture list. The reviewed schedule does not establish the last possible 2027 championship game.",
+      "finding": "NBL27 opening remains September 19, 2026 in the league announcement. The current schedule page did not expose postseason fixtures, and the linked NBL27 PDF could not be retrieved. No last possible 2027 championship-series game date was established in this recheck; the regular-season announcement is not a full-season calendar.",
       "missing_fact": "Last possible 2027 championship-series game date.",
-      "next_action": "Check the league's postseason schedule when published."
+      "next_action": "Recheck a dated NBL27 postseason announcement for the last possible championship game. Do not roll forward NBL26 finals or use a regular-season finish.",
+      "season_edition": "2026/27 (NBL27)",
+      "season_start_date": "2026-09-19",
+      "season_end_date": null
     },
     {
       "key": "basketball-br-super8",
@@ -51,16 +55,20 @@
       "country": "Germany",
       "catalog_event": "Basketball Bundesliga (BBL) | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://easycredit-bbl.de/de/n/news/2026/august/easycredit-bbl-veroeffentlicht-vorlaeufigen-spielplan-fuer-saison-26-27-heimpartie-des-deutschen-meisters-alba-berlin-als-eroeffnung",
       "evidence_urls": [
         "https://easycredit-bbl.de/de/n/news/2026/august/easycredit-bbl-veroeffentlicht-vorlaeufigen-spielplan-fuer-saison-26-27-heimpartie-des-deutschen-meisters-alba-berlin-als-eroeffnung",
         "https://cms.easycredit-bbl.de/wp-content/uploads/2026/07/CD_RTP_2627-1.pdf",
-        "https://www.easycredit-bbl.de/faqs-saison"
+        "https://www.easycredit-bbl.de/faqs-saison",
+        "https://www.seawolves.de/voller-terminkalender-bei-den-seawolves/"
       ],
-      "finding": "BBL confirms the September 18 opener, May 9 regular-season finish and June 11 start of the finals. The linked framework PDF leaves postseason cells blank, so the final possible championship date remains unverified.",
-      "missing_fact": "Last possible 2027 championship game date.",
-      "next_action": "Check the updated playoff framework; do not use May 9 or June 11 as a full-season endpoint."
+      "finding": "League evidence retains September 18, 2026 opening, May 9, 2027 regular-season finish and June 11 finals start. Visual inspection of the linked framework PDF confirms blank postseason cells. Rostock Seawolves publishes a June 11-19, 2027 best-of-five finals planning range, but does not enumerate the possible deciding game; June 19 remains a candidate requiring a league-confirmed final-game boundary. The club page also contains an unrelated cup-date inconsistency, so no full endpoint is promoted.",
+      "missing_fact": "League-confirmed last possible 2027 championship game date; corroborate the club-published June 19 planning endpoint.",
+      "next_action": "Check an updated BBL framework or exact Finals game schedule against the Rostock June 11-19 range. Preserve the partial window until the deciding-game boundary is established.",
+      "season_edition": "2026/27",
+      "season_start_date": "2026-09-18",
+      "season_end_date": null
     },
     {
       "key": "basketball-es-acb",
@@ -166,14 +174,20 @@
       "country": "Italy",
       "catalog_event": "Lega Basket Serie A (LBA) | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
-      "official_url": "https://www.reyer.it/news/maschile/2026-08-03/dallesordio-con-cantu-al-derby-finale-con-trieste-scopri-la-regular-season-dellumana-reyer/",
+      "reviewed_at": "2026-11-06",
+      "official_url": "https://trevisobasket.it/lba-date-e-orari-delle-prime-cinque-giornate/",
       "evidence_urls": [
-        "https://www.reyer.it/news/maschile/2026-08-03/dallesordio-con-cantu-al-derby-finale-con-trieste-scopri-la-regular-season-dellumana-reyer/"
+        "https://www.reyer.it/news/maschile/2026-08-03/dallesordio-con-cantu-al-derby-finale-con-trieste-scopri-la-regular-season-dellumana-reyer/",
+        "https://trevisobasket.it/lba-date-e-orari-delle-prime-cinque-giornate/",
+        "https://www.legabasket.it/news/139544/preview-reyer-venezia-cantu",
+        "https://www.legabasket.it/news/138370/date-lba-playoff-unipol-2026"
       ],
-      "finding": "Participating club Reyer publishes the 2026–27 LBA opening weekend of September 26–27 and May 9 regular-season endpoint, explicitly stating postseason dates will be announced according to Italian clubs' European progress. A full-season endpoint is not established.",
-      "missing_fact": "Exact first league game from the revised schedule and last possible championship game date.",
-      "next_action": "Check the league's dated first-round results and postseason announcement; do not use the regular-season endpoint."
+      "finding": "The revised first-round schedule fixes the LBA opening on September 26, 2026: Treviso hosts BC Roma that evening, corroborated by the league first-round Reyer-Cantu preview on the same date. This resolves the former September 26-27 opening-weekend uncertainty. May 9, 2027 remains only the regular-season finish. Retrieved LBA Finals notices concern the 2026 postseason, not the 2027 championship; no full endpoint is established.",
+      "missing_fact": "Last possible 2027 championship game date, including any European-competition-dependent schedule scenarios.",
+      "next_action": "Recheck the 2027 LBA Playoff/Finals announcement. Do not reuse June 2026 Finals dates or May 9 regular-season completion.",
+      "season_edition": "2026/27",
+      "season_start_date": "2026-09-26",
+      "season_end_date": null
     },
     {
       "key": "basketball-it-supercup",
@@ -419,16 +433,21 @@
       "country": "United States",
       "catalog_event": "USL League One (USL1) | Men",
       "status": "manual-verification-needed",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://www.uslleagueone.com/news_article/show/1351512",
       "evidence_urls": [
         "https://www.uslleagueone.com/news_article/show/1351512",
         "https://www.uslleagueone.com/layout_container/show_layout_tab?layout_container_id=126640429&page_node_id=4614679&tab_element_id=354383",
-        "https://www.uslleagueone.com/playoffs"
+        "https://www.uslleagueone.com/playoffs",
+        "https://www.ussoccer.com/stories/2026/10/federation/everything-you-need-to-know-about-the-2026-usl-league-one-playoffs",
+        "https://tickets.charlotteindependence.com/event/usl-league-one-playoffs-round-3-charlotte-indepe-6li5m1"
       ],
-      "finding": "USL League One's home-openers announcement confirms March 7, 2026. Its competition-format page gives a November 13–15 final window, while the playoff listing says November 15–17; an exact final date is not established by these inconsistent league pages.",
-      "missing_fact": "Exact 2026 final date, resolving conflicting published windows.",
-      "next_action": "Review the final match announcement or host confirmation after the semifinals; do not choose a day from a tentative range."
+      "finding": "U.S. Soccer confirms March 7 opening, October 24 regular-season completion and a November 13-15 final window. Charlotte Independence's final ticket page introduces a specific conflict: its event header/date say November 14 while its English and Spanish descriptions say November 15; the opponent is still TBD. The league playoff page returned 403. No exact full endpoint is promoted.",
+      "missing_fact": "Exact 2026 final date from a consistent league or confirmed-host announcement; resolve November 14 versus November 15 on the Charlotte ticket page.",
+      "next_action": "Recheck the league and confirmed finalist/host after the semifinals; require a consistent dated final announcement before setting the season end.",
+      "season_edition": "2026",
+      "season_start_date": "2026-03-07",
+      "season_end_date": null
     },
     {
       "key": "soccer-international-concacaf-champions-cup-men",
@@ -1407,16 +1426,20 @@
       "country": "Mexico",
       "catalog_event": "Liga Nacional de Baloncesto Profesional (LNBP) | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://diablosrojosbasquetbol.com.mx/calendario",
       "evidence_urls": [
         "https://diablosrojosbasquetbol.com.mx/calendario",
         "https://diablosrojosbasquetbol.com.mx/calendario/playoffs",
-        "https://lnbp.mx/"
+        "https://lnbp.mx/",
+        "https://www.enjuegodeportes.com/mas-deportes/gran-final-lnbp-2026-soles-vs-astros-calendario-y-donde-ver/"
       ],
-      "finding": "2026 men's LNBP: official club calendar confirms July 23 opening fixture. League homepage returned no readable schedule and club playoff page no fixtures. Reported November 23 final endpoint was not independently established in accessible official evidence and is not entered as confirmed.",
+      "finding": "The official Diablos calendar still confirms July 23, 2026 opening. The league homepage returned no readable schedule and the club playoff page lists zero fixtures. A November 6 secondary report gives November 23 as possible Finals Game 7, but direct league or participating-finalist confirmation was not established. Retain November 23 only as an unverified research lead, not a full endpoint.",
       "missing_fact": "Official evidence for latest possible 2026 championship-final date (reported November 23).",
-      "next_action": "Check a competition-specific official schedule for the missing boundary; retain partial dates."
+      "next_action": "Obtain the league or finalist-club 2026 Finals schedule identifying the last possible game. Do not substitute secondary reporting for verified official evidence.",
+      "season_edition": "2026 (men)",
+      "season_start_date": "2026-07-23",
+      "season_end_date": null
     },
     {
       "key": "soccer-portugal-ta-a-de-portugal-men",
@@ -1636,15 +1659,19 @@
       "country": "Sweden",
       "catalog_event": "Damallsvenskan | Women",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://www.svenskfotboll.se/nyheter/serier/2026/01/avsparkstider-omgang-1-11-i-obos-damallsvenskan/",
       "evidence_urls": [
         "https://www.svenskfotboll.se/nyheter/serier/2026/01/avsparkstider-omgang-1-11-i-obos-damallsvenskan/",
-        "https://www.svenskfotboll.se/4a5e9d/globalassets/svff/dokumentdokumentblock/tavling/gruppindelningar-och-spelordningar-for-kvalspelet-2026.pdf"
+        "https://www.svenskfotboll.se/4a5e9d/globalassets/svff/dokumentdokumentblock/tavling/gruppindelningar-och-spelordningar-for-kvalspelet-2026.pdf",
+        "https://www.svenskfotboll.se/nyheter/serier/2025/11/kvalklart-as-och-se/"
       ],
-      "finding": "2026 senior women's OBOS Damallsvenskan: fixed first kickoff is March 28, not the preliminary March 27–30 window. SvFF's qualification document allocates November 19–22 but reviewed evidence does not independently fix the exact return-leg match date.",
+      "finding": "SvFF first-round kickoff notice reconfirms March 28, 2026 opening. Its 2026 qualification document still allocates November 19-22 without separately dating the two legs. The indexed notice assigning November 20 and 23 belongs to 2025 and is not evidence for this edition. The exact 2026 return leg remains unverified.",
       "missing_fact": "Exact date of the 2026 qualification return leg within the November 19–22 allocation.",
-      "next_action": "Check the competition's next official fixture/calendar update; keep unresolved boundaries partial."
+      "next_action": "Check the 2026 qualification match notice after the league placings are settled. Do not interpret the allocation range as an exact return-leg fixture.",
+      "season_edition": "2026",
+      "season_start_date": "2026-03-28",
+      "season_end_date": null
     },
     {
       "key": "soccer-norway-norwegian-cup-men",
@@ -1945,15 +1972,18 @@
       "country": "United States",
       "catalog_event": "National Basketball Association (NBA) | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
       "evidence_urls": [
         "https://pr.nba.com/2026-27-nba-regular-season-schedule",
         "https://www.nba.com/news/key-dates"
       ],
-      "finding": "2026/27 NBA regular season runs October 20-April 11. NBA key dates do not establish the Finals endpoint; the regular-season endpoint remains separately recorded.",
+      "finding": "2026/27 NBA Finals endpoint remains unverified.",
       "missing_fact": "Exact final possible NBA Finals date for 2026/27.",
-      "next_action": "Recheck the official complete schedule when final dates are published."
+      "next_action": "Recheck the official 2027 Finals schedule, including the possible deciding game. Keep the regular-season endpoint separate.",
+      "season_edition": "2026/27",
+      "season_start_date": "2026-10-20",
+      "season_end_date": null
     },
     {
       "key": "basketball-us-unrivaled",
@@ -1961,16 +1991,20 @@
       "country": "United States",
       "catalog_event": "Unrivaled Basketball | Women",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
       "evidence_urls": [
         "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
         "https://www.unrivaled.basketball/schedule?season=2027",
-        "https://www.unrivaled.basketball/arena"
+        "https://www.unrivaled.basketball/arena",
+        "https://www.unrivaled.basketball/news/unrivaled-announces-2027-club-rosters-j51bz0hxvcux"
       ],
-      "finding": "2027 women's Unrivaled season three begins January 8, confirmed by the October 28 league release and opening game page. Published schedule lists regular-season games; Miami's last listed home date is not proof of the championship endpoint.",
+      "finding": "The November 4 league release reconfirms January 8, 2027 opening and announces a November 6 matchup reveal. The reviewed season-three schedule still labels regular-season games and the separate one-on-one tournament, without an identified championship fixture. Neither the last listed regular game nor a one-on-one event establishes the league championship endpoint.",
       "missing_fact": "Exact 2027 championship date.",
-      "next_action": "Recheck the official complete schedule when final dates are published."
+      "next_action": "Recheck the announced November 6 schedule update and subsequent postseason notice for the exact season-three championship date.",
+      "season_edition": "2027 (season three)",
+      "season_start_date": "2027-01-08",
+      "season_end_date": null
     },
     {
       "key": "basketball-us-nba-international-preseason",
@@ -2307,17 +2341,21 @@
       "country": "Paraguay",
       "catalog_event": "Copa Paraguay | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
+      "reviewed_at": "2026-11-06",
       "official_url": "https://www.apf.org.py/noticias/la-copa-paraguay-2026-tiene-definidas-sus-primeras-semanas-de-disputa",
       "evidence_urls": [
         "https://www.apf.org.py/noticias/la-copa-paraguay-2026-tiene-definidas-sus-primeras-semanas-de-disputa",
         "https://www.apf.org.py/noticias/esta-es-la-hoja-de-ruta-de-la-copa-de-todos-2026",
         "https://www.apf.org.py/noticias/recoleta-cierra-el-cupo-de-equipos-semifinalistas",
-        "https://www.apf.org.py/copa-paraguay"
+        "https://www.apf.org.py/copa-paraguay",
+        "https://www.apf.org.py/noticias/libertad-sella-su-pase-a-semifinales"
       ],
-      "finding": "APF confirms June 2 first-phase opening of the 2026 men's Copa Paraguay. Current October 29 reporting confirms the semifinalists but not a final date. The November 16 final article concerns the earlier 2 de Mayo-General Caballero edition and is not used for 2026; calendar graphics were not legible in retrieved content.",
+      "finding": "APF reconfirms June 2, 2026 first-phase opening. Its current cup hub and October 28-29 reports establish semifinal progression but no exact final date. The roadmap page refers to a calendar graphic whose dates were not exposed in retrieved content. No earlier-edition final date is reused.",
       "missing_fact": "Exact 2026 Copa Paraguay final date in an accessible official calendar or fixture notice.",
-      "next_action": "Recheck the exact competition's official edition announcement or fixture notices; do not substitute another phase, division or competition."
+      "next_action": "Check APF's 2026 semifinal/final programming notice or an accessible official calendar graphic for the exact final date.",
+      "season_edition": "2026",
+      "season_start_date": "2026-06-02",
+      "season_end_date": null
     },
     {
       "key": "soccer-peru-peruvian-primera-divisi-n-men",
@@ -2485,5 +2523,6 @@
       "missing_fact": "Exact 2026 transition/promotion-relegation playoff dates and full final-leg endpoint.",
       "next_action": "Recheck the official final-phase announcement; keep regular-round endpoints separate from unverified playoffs."
     }
-  ]
+  ],
+  "reconciled_against_commit": "32568df4ca8ca99d2a0e755822a299f523a6adf7"
 }
