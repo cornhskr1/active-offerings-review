@@ -36,7 +36,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         ):
             for division in ("Men", "Women"):
                 row = self.rows[("Tennis", f"{league} | {division}")]
-                self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+                self.assertEqual(("PARTIAL_WINDOW", "OFFICIAL_WINDOW_ONLY"),
                                  (row["season_state"], row["coverage_state"]))
                 sid = row["identity_key"]
                 self.assertEqual([sid], [source["id"] for source in row["sources"]])
@@ -114,7 +114,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
             league = f"World Table Tennis (WTT) | {division}"
             sid = f"table-tennis-wtt-{division.lower()}"
             row = self.rows[("Table Tennis", league)]
-            self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+            self.assertEqual(("PARTIAL_WINDOW", "OFFICIAL_WINDOW_ONLY"),
                              (row["season_state"], row["coverage_state"]))
             self.assertEqual([sid], [source["id"] for source in row["sources"]])
             self.assertEqual([league], sources[sid]["catalog_terms"])
@@ -124,7 +124,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                               for event in sources[sid]["official_events"]])
             self.assertEqual(0, row["events_in_window"])
         mltt = self.rows[("Table Tennis", "Major League Table Tennis (MLTT) | Men and Women")]
-        self.assertEqual(("DATED_WINDOW", "OFFICIAL_WINDOW_ONLY"),
+        self.assertEqual(("PARTIAL_WINDOW", "OFFICIAL_WINDOW_ONLY"),
                          (mltt["season_state"], mltt["coverage_state"]))
         self.assertEqual(["table-tennis-mltt"], [source["id"] for source in mltt["sources"]])
         self.assertEqual(["2026-09-25", "2026-09-25"],

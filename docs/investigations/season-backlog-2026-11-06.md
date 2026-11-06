@@ -1,5 +1,7 @@
 # Catalog-wide verification continuation — November 6, 2026
 
+Historical PR #401 checkpoint. The current first-pass reconciliation is [all 735 identities accounted for](season-verification-final-2026-11-06.md); use the current ledger and pending-key file rather than the historical counts below.
+
 ## Reconciliation and checkpoint
 
 Base: main `b1aabd1c9533e69dfc266a577dc758443c0e6b73` (approved PR #400). Its Pages deployment run `42208084141` completed successfully. That deployment does not include this proposal.

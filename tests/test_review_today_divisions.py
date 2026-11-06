@@ -61,15 +61,17 @@ for(const division of ['Men','Women']){
   const mapped=mappedCatalogEventForSource(`table-tennis-wtt-${division.toLowerCase()}`);
   assert.equal(mapped.catalog_event,`World Table Tennis (WTT) | ${division}`);
   assert.equal(mapped.parent_catalog_event,'World Table Tennis (WTT) | Men and Women');
-  assert.equal(mapped.season_start_date,'2026-01-07');
-  assert.equal(mapped.season_end_date,'2026-12-13');
-  assert.match(seasonProgressHtml(mapped,exactSeasonStatus(mapped)),/role="progressbar"/);
+  assert.equal(mapped.season_start_date,undefined);
+  assert.equal(mapped.season_end_date,undefined);
+  assert.equal(mapped.season_window_complete,false);
+  assert.equal(seasonProgressHtml(mapped,exactSeasonStatus(mapped)),'');
 }
 const mltt=mappedCatalogEventForSource('table-tennis-mltt');
 assert.equal(mltt.catalog_event,'Major League Table Tennis (MLTT) | Men and Women');
 assert.equal(mltt.season_start_date,'2026-09-11');
-assert.equal(mltt.season_end_date,'2027-04-04');
-assert.match(seasonProgressHtml(mltt,exactSeasonStatus(mltt)),/role="progressbar"/);
+assert.equal(mltt.season_end_date,undefined);
+assert.equal(mltt.season_window_complete,false);
+assert.equal(seasonProgressHtml(mltt,exactSeasonStatus(mltt)),'');
 """
         subprocess.run(["node", "-e", script], check=True, cwd=ROOT)
 

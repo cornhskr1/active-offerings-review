@@ -2,6 +2,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / 'data'
 
@@ -20,11 +21,11 @@ class BelgiumScotlandScopeTests(unittest.TestCase):
             'soccer-scotland-scottish-premiership-men': ('2026-07-31', '2027-05-23'),
             'soccer-scotland-scottish-cup-men': ('2026-08-01', '2027-05-22'),
             'soccer-scotland-scottish-league-cup-men': ('2026-07-11', '2026-12-13'),
-            'soccer-scotland-challenge-cup-men': ('2026-08-11', '2027-04-04'),
+            'soccer-scotland-challenge-cup-men': ('2026-08-11', None),
         }
         for key, dates in expected.items():
             with self.subTest(key=key):
-                self.assertEqual(dates, tuple(self.events[key][f'season_{part}_date'] for part in ('start', 'end')))
+                self.assertEqual(dates, tuple(self.events[key].get(f'season_{part}_date') for part in ('start', 'end')))
                 self.assertEqual('ADAPTER_CONFIGURED', self.inventory[key]['coverage_state'])
         championship = 'soccer-scotland-scottish-championship-men'
         self.assertEqual('2026-08-01', self.events[championship]['season_start_date'])
