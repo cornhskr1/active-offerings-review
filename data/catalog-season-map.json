@@ -12039,14 +12039,23 @@
               "key": "esports-cdl",
               "catalog_event": "Call of Duty League (CDL)",
               "category": "Call of Duty (COD)",
-              "season_window": "December 5, 2025–July 19, 2026 · completed",
-              "season_start": "12-05",
-              "season_end": "07-19",
+              "season_window": "2025-12-05 – 2026-07-19",
               "source_id": "esports-cdl",
-              "season_basis": "2026 official Call of Duty League season schedule",
-              "last_verified": "2026-09-18",
+              "season_basis": "Reconciliation of the recorded 2026 edition, not a rolled 2027 season. Indexed official 2026 standings separate regular season December 5–June 28 and postseason July 16–19; official championship rewards page explicitly identifies the Sunday July 19 championship. Direct pages returned only an iframe, so indexed publisher text was used. New schedule now shows a distinct December 4–July 11 cycle alongside the 2027 homepage; no unanchored month/day rollover is applied to this 2026 record.",
+              "last_verified": "2026-11-06",
               "fun_fact": "Call of Duty League match series rotate through multiple competitive game modes rather than using a single format throughout.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026 CDL season",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://callofdutyleague.com/en-us/standings",
+              "season_evidence_urls": [
+                "https://callofdutyleague.com/en-us/standings",
+                "https://www.callofdutyleague.com/en-us/viewership-rewards/2026/champs",
+                "https://www.callofdutyleague.com/en-us/schedule"
+              ],
+              "season_start_date": "2025-12-05",
+              "season_end_date": "2026-07-19"
             }
           ]
         },
@@ -12423,51 +12432,89 @@
               "key": "esports-dota-international",
               "catalog_event": "The International",
               "category": "Dota 2",
-              "season_window": "October 7–17, 2026",
-              "season_start": "10-07",
-              "season_end": "10-17",
+              "season_window": "2026-08-13 – 2026-08-23",
               "source_id": "esports-dota-international",
-              "season_basis": "2026 official Dota 2 announcement",
-              "last_verified": "2026-09-18",
+              "season_basis": "Valve’s official February 12 announcement, readable as indexed publisher text, places the Swiss group stage August 13–16 and main event August 20–23 in Shanghai. Official Chinese event page explicitly identifies the August 23 Grand Final. June 9–12 open and June 15–28 regional qualifiers are separate from finals. This corrects the unsupported October 7–17 mapping; those were not TI 2026 finals dates. Direct Valve pages returned no readable text; no held publisher was accessed.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The International is Valve's annual Dota 2 world championship.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026 The International finals, including Swiss group stage",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://steamcommunity.com/games/dota2/announcements/detail/523115482349306001",
+              "season_evidence_urls": [
+                "https://steamcommunity.com/games/dota2/announcements/detail/523115482349306001",
+                "https://www.dota2.com/newsentry/523115482349306001",
+                "https://www.dota2.com/news",
+                "https://www.dota2.com.cn/international/2026"
+              ],
+              "season_start_date": "2026-08-13",
+              "season_end_date": "2026-08-23"
             },
             {
               "key": "esports-dota-esl-pro-tour",
               "catalog_event": "Electronic Sports League (ESL) Pro Tour - Dota 2",
               "category": "Dota 2 — ESL Pro Tour",
-              "season_window": "2026/27 tournament dates not yet announced",
-              "season_status": "out",
+              "season_window": "2026-12-02 – 2027-05-09",
               "source_id": "esports-dota-esl-pro-tour",
-              "season_basis": "Official ESL Pro Tour calendar currently reports no available Dota 2 events",
-              "last_verified": "2026-09-18",
+              "season_basis": "The dated September 11 season announcement identifies the numbered 2026/27 Tier 1 calendar: DreamLeague 30 December 2–13, 31 January 20–31, ESL One April 4–11 and DreamLeague 32 April 26–May 9. Years follow the explicitly announced December 2026-to-spring 2027 edition, not a recurring-date rollover. The full numbered event endpoints include playoffs, not qualifier finishes. The older 2025 planning list is superseded; one season-hub sentence incorrectly says Season 31 starts 2026, but the dated edition announcement and earlier explicitly year-numbered 2026/27 sequence establish January 2027. This is the preserved adapter scope of Tier 1 DreamLeague/ESL One and its EPT points cutoff at DreamLeague 32; Division 2 and qualifiers are excluded. The separately approved EWC championship is not folded into this points-season window; its 2027 precise dates remain unpublished here.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The ESL Pro Tour links multiple Dota 2 tournaments into a season-long circuit.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026/27 ESL-organized Tier 1 circuit / points season; EWC separate",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://pro.eslgaming.com/tour/2026/09/introducing-dotas-ept-season-26-27/",
+              "season_evidence_urls": [
+                "https://pro.eslgaming.com/tour/2026/09/introducing-dotas-ept-season-26-27/",
+                "https://pro.eslgaming.com/tour/dota2/season26-27/",
+                "https://pro.eslgaming.com/tour/dota2/",
+                "https://eslfaceitgroup.com/press/esl-faceit-group-unveils-changes-to-the-dota-2-ecosystem-with-a-robust-esl-pro-tour-calendar-announcement/"
+              ],
+              "season_start_date": "2026-12-02",
+              "season_end_date": "2027-05-09"
             },
             {
               "key": "esports-dota-dreamleague",
               "catalog_event": "DreamLeague",
               "category": "Dota 2 — ESL Pro Tour",
-              "season_window": "2026/27 tournament dates not yet announced",
-              "season_status": "out",
+              "season_window": "2026-12-02 – 2027-05-09",
               "source_id": "esports-dota-dreamleague",
-              "season_basis": "Official ESL Pro Tour calendar currently reports no available Dota 2 events",
-              "last_verified": "2026-09-18",
+              "season_basis": "The dated September 11 season announcement identifies the numbered 2026/27 Tier 1 calendar: DreamLeague 30 December 2–13, 31 January 20–31, ESL One April 4–11 and DreamLeague 32 April 26–May 9. Years follow the explicitly announced December 2026-to-spring 2027 edition, not a recurring-date rollover. The full numbered event endpoints include playoffs, not qualifier finishes. The older 2025 planning list is superseded; one season-hub sentence incorrectly says Season 31 starts 2026, but the dated edition announcement and earlier explicitly year-numbered 2026/27 sequence establish January 2027. Only the three Tier 1 DreamLeague events form this series window; ESL One, Division 2 and open/closed qualifiers are separately recorded and excluded.",
+              "last_verified": "2026-11-06",
               "fun_fact": "DreamLeague is a recurring Dota 2 tournament series within the ESL Pro Tour.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026/27 DreamLeague Seasons 30–32, Tier 1 main events",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://pro.eslgaming.com/tour/2026/09/introducing-dotas-ept-season-26-27/",
+              "season_evidence_urls": [
+                "https://pro.eslgaming.com/tour/2026/09/introducing-dotas-ept-season-26-27/",
+                "https://pro.eslgaming.com/tour/dota2/season26-27/",
+                "https://pro.eslgaming.com/tour/dota2/",
+                "https://eslfaceitgroup.com/press/esl-faceit-group-unveils-changes-to-the-dota-2-ecosystem-with-a-robust-esl-pro-tour-calendar-announcement/"
+              ],
+              "season_start_date": "2026-12-02",
+              "season_end_date": "2027-05-09"
             },
             {
               "key": "esports-dota-ewc",
               "catalog_event": "Esports World Cup — Dota 2",
               "category": "Dota 2",
-              "season_window": "July 14–19, 2026 · completed",
-              "season_start": "07-14",
-              "season_end": "07-19",
+              "season_window": "Full edition window not independently verified",
               "source_id": "esports-dota-ewc",
-              "season_basis": "2026 official Esports World Cup calendar",
-              "last_verified": "2026-09-18",
+              "season_basis": "The saved July 14–19 window is not independently established as the complete tournament. Direct official 2026 Dota page returned HTTP 403. Search surfaced conflicting July 7 group-stage opening and a Paris venue on external/alternate-host material; no alternate host was opened to work around the access failure and no secondary date or venue is promoted. The saved source observation remains historical context, not a confirmed whole-season calendar.",
+              "last_verified": "2026-11-06",
               "fun_fact": "Dota 2 is one of the game championships contested within the multi-title Esports World Cup.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026 EWC Dota 2 finals",
+              "season_window_complete": false,
+              "season_verification_status": "manual-verification-needed",
+              "season_source_url": "https://esportsworldcup.com/en/competitions/2026/dota2",
+              "season_evidence_urls": [
+                "https://esportsworldcup.com/en/competitions/2026/dota2",
+                "https://esportsworldcup.com/"
+              ]
             }
           ]
         },
@@ -12479,28 +12526,47 @@
               "key": "esports-cs2-esl-pro-league",
               "catalog_event": "Electronic Sports League (ESL) Pro League",
               "category": "Counter-Strike 2 (CS2)",
-              "season_window": "October 3–11, 2026",
-              "season_start": "10-03",
-              "season_end": "10-11",
+              "season_window": "2026-10-03 – 2026-10-11",
               "source_id": "esports-cs2-esl-pro-league",
-              "season_basis": "2026 official ESL Pro Tour calendar — Season 24",
-              "last_verified": "2026-09-18",
+              "season_basis": "Reconciliation of the existing October 3–11, 2026 edition. The dated October 12 organizer retrospective explicitly confirms October 3 opening and October 11 final, Vitality 3–0 MOUZ. It resolves the undated landing-page hero October 4 versus its own October 3 group-stage detail. Earlier September 24 planning dates were superseded by the reduced format. IEM, Challenger and 2027 Season 25 are separate editions/competitions.",
+              "last_verified": "2026-11-06",
               "fun_fact": "ESL Pro League brings professional Counter-Strike teams together across a multi-stage international competition.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "2026 ESL Pro League Season 24",
+              "season_window_complete": true,
+              "season_verification_status": "verified-complete",
+              "season_source_url": "https://eslfaceitgroup.com/press/team-vitality-crowned-esl-pro-league-season-24-champions-following-the-leagues-return-to-the-big-stage-in-katowice/",
+              "season_evidence_urls": [
+                "https://eslfaceitgroup.com/press/team-vitality-crowned-esl-pro-league-season-24-champions-following-the-leagues-return-to-the-big-stage-in-katowice/",
+                "https://pro.eslgaming.com/tour/details/esl-pro-league-season-24/",
+                "https://pro.eslgaming.com/csgo/proleague/2026/09/esl-pro-league-returns-to-the-big-stage-as-competition-kicks-off-in-katowice/",
+                "https://pro.eslgaming.com/csgo/proleague/"
+              ],
+              "season_start_date": "2026-10-03",
+              "season_end_date": "2026-10-11"
             },
             {
               "key": "esports-cs2-pgl",
               "catalog_event": "Professional Gamers League (PGL) CS2",
               "category": "Counter-Strike 2 (CS2)",
-              "season_window": "Discrete 2026 events · next October 22–31",
-              "season_status": "out",
+              "season_window": "Event series · individual tournament dates apply",
               "source_id": "esports-cs2-pgl",
-              "season_basis": "2026 official PGL events feed; CS2 events are evaluated individually",
-              "last_verified": "2026-09-18",
+              "season_basis": "Reconciliation of the existing discrete-event classification. PGL lists distinct CS2 tournaments and separately lists Dota Wallachia; those Dota events are excluded. The current event-specific Singapore page gives November 24–December 13, 2026 while the homepage card says November 22; no conflicting card range is promoted to a whole-series season. The old next October 22–31 text is not a current annual boundary. NO IN-GAME WAGERS remains unchanged.",
+              "last_verified": "2026-11-06",
               "fun_fact": "PGL stages its Counter-Strike 2 events in host cities around the world.",
               "restrictions": [
                 "NO IN-GAME WAGERS"
-              ]
+              ],
+              "season_edition": "PGL CS2 event series; per-event editions",
+              "season_window_complete": false,
+              "season_verification_status": "nonseasonal",
+              "season_source_url": "https://www.pglesports.com/",
+              "season_evidence_urls": [
+                "https://www.pglesports.com/",
+                "https://news.pglesports.com/",
+                "https://www.pglesports.com/cs2/pgl-major-singapore-2026/"
+              ],
+              "nonseasonal": true
             }
           ]
         },
@@ -12578,27 +12644,44 @@
               "key": "esports-eadriatic-nextgen",
               "catalog_event": "NextGen eBasket League",
               "category": "Basketball Simulations",
-              "season_window": "Year-round",
-              "season_start": "01-01",
-              "season_end": "12-31",
+              "season_window": "Event series · individual tournament dates apply",
               "source_id": "esports-eadriatic-nextgen",
-              "season_basis": "Continuous competition format; schedule adapter pending",
-              "last_verified": "2026-09-18",
+              "season_basis": "Official NextGen rules (2025 edition still published at review) define daily NBA 2K 1v1 matches, schedules released at least 12 hours ahead, four/five-player mini round-robins and monthly/annual prizes. These are recurring mini-tournaments, not evidence of an exact January 1–December 31 championship season. The broader eAdriatic rebrand is recorded separately without altering this key/source assignment. Published 18+ rule does not replace individual athlete-age safeguards.",
+              "last_verified": "2026-11-06",
               "fun_fact": "NextGen eBasket League fixtures are played as simulated basketball contests rather than physical basketball games.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "NextGen daily NBA 2K mini-tournament series",
+              "season_window_complete": false,
+              "season_verification_status": "nonseasonal",
+              "season_source_url": "https://nextgenbasket.com/rules/",
+              "season_evidence_urls": [
+                "https://nextgenbasket.com/rules/",
+                "https://nextgenbasket.com/about/",
+                "https://eadriaticleague.com/"
+              ],
+              "nonseasonal": true
             },
             {
               "key": "esports-eadriatic-league",
               "catalog_event": "eAdriatic League",
               "category": "Basketball Simulations",
-              "season_window": "Year-round",
-              "season_start": "01-01",
-              "season_end": "12-31",
+              "season_window": "Identity scope needs confirmation · no annual dates assigned",
               "source_id": "esports-eadriatic-league",
-              "season_basis": "Continuous competition format; schedule adapter pending",
-              "last_verified": "2026-09-18",
+              "season_basis": "The saved identity is grouped under Basketball Simulations, but its assigned eAdriatic website currently advertises FC26 football. NextGen’s official history says the basketball discipline rebranded from eAdriatic Basketball League to NextGen eBasket; both names remain separate canonical catalog identities. No automatic merger, game remap or common year-round season is safe. Preserve both keys and all assignments.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The eAdriatic League is an esports basketball competition distinct from the region's physical basketball leagues.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "Current eAdriatic branding versus preserved basketball identity",
+              "season_window_complete": false,
+              "season_verification_status": "scope-conflict",
+              "season_source_url": "https://eadriaticleague.com/",
+              "season_evidence_urls": [
+                "https://eadriaticleague.com/",
+                "https://nextgenbasket.com/about/",
+                "https://nextgenbasket.com/2025/03/24/eadriatic-league-becomes-next-gen-ebasket/"
+              ],
+              "season_hold": true,
+              "season_hold_reason": "Does the approved eAdriatic League identity mean legacy basketball (now NextGen) or the continuing EAL football/umbrella competition?"
             }
           ]
         },
@@ -12610,14 +12693,21 @@
               "key": "esports-gt-sports-league",
               "catalog_event": "GT Sports League",
               "category": "Sports Simulations",
-              "season_window": "Year-round",
-              "season_start": "01-01",
-              "season_end": "12-31",
+              "season_window": "Event series · individual tournament dates apply",
               "source_id": "esports-gt-sports-league",
-              "season_basis": "Continuous competition format; schedule adapter pending",
-              "last_verified": "2026-09-18",
+              "season_basis": "Indexed organizer About page describes daily productions, 1,000+ weekly events and 16–18 hours daily coverage. The current direct page is a JavaScript shell. This supports a recurring event brand, not a January 1–December 31 season or a single named championship. It is not Georgia Tech esports. Existing schedule-adapter gap and source assignment remain.",
+              "last_verified": "2026-11-06",
               "fun_fact": "GT Sports League offerings use short-form simulated sports competition formats.",
-              "restrictions": []
+              "restrictions": [],
+              "season_edition": "GT Sports daily event series",
+              "season_window_complete": false,
+              "season_verification_status": "nonseasonal",
+              "season_source_url": "https://www.gtleagues.com/about-us",
+              "season_evidence_urls": [
+                "https://www.gtleagues.com/about-us",
+                "https://www.gtleagues.com/dashboard"
+              ],
+              "nonseasonal": true
             }
           ]
         },
