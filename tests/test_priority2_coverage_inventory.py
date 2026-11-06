@@ -822,7 +822,7 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
         for league, source_id in descriptive_windows.items():
             with self.subTest(league=league):
                 row = self.rows[("Basketball", league)]
-                self.assertEqual("PARTIAL_WINDOW", row["season_state"])
+                self.assertEqual("DESCRIPTIVE_WINDOW", row["season_state"])
                 self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
                 self.assertEqual([source_id], [source["id"] for source in row["sources"]])
                 self.assertEqual("official-event-window", row["sources"][0]["type"])
