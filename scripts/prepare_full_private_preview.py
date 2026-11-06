@@ -146,6 +146,10 @@ def prepare_full_preview(site: Path,candidate: Path,preview: Path,*,
         shutil.copytree(site,temp,dirs_exist_ok=True)
         for name,raw in public.items():
             path=temp/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw)
+        # A lagging saved collector snapshot must not restore the reviewed
+        # Champions Cup / Club World Cup identity error. Correct before hashing.
+        from scripts.apply_catalog_source_corrections import apply_fifa_correction
+        apply_fifa_correction(temp)
         reference=build_reference_snapshot(temp,app_commit=staged_app_commit,data_commit=fetched_data_commit)
         publication=build_public_snapshot(temp,app_commit=staged_app_commit,data_commit=fetched_data_commit,
             data_contract_app_commit=manifest['app_commit'],configuration_state=manifest['configuration'],publisher_run_id=trusted_publication_run_id)
