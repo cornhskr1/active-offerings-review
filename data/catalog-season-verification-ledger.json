@@ -13,7 +13,8 @@
     "not-yet-reviewed": "No review result has been recorded in this pass.",
     "not-scheduled": "The official current-edition format does not include the named competition; distinct from unreviewed dates or cancellation.",
     "scope-conflict": "Official competition identity or scope does not yet match the preserved catalog approval; existing mapping holds remain.",
-    "nonseasonal": "An event series, promoter, sanctioning authority or approval rule has no single competition season; dates and eligibility must be established per event."
+    "nonseasonal": "An event series, promoter, sanctioning authority or approval rule has no single competition season; dates and eligibility must be established per event.",
+    "cancelled": "Official evidence states the recorded edition will not take place; future editions remain separate."
   },
   "records": [
     {
@@ -3739,6 +3740,191 @@
       "next_action": "Verify each exact event and all catalog restrictions; do not invent annual bounds.",
       "revisit_trigger": "A material official format or catalog-identity change.",
       "reconciled_at": "2026-11-06"
+    },
+    {
+      "key": "cycling-cadel-evans",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "Cadel Evans Great Ocean Road Race",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-18",
+      "official_url": "https://www.efprocycling.com/calendar/cadel-evans-great-ocean-road-race-men/",
+      "evidence_urls": [
+        "https://www.efprocycling.com/calendar/cadel-evans-great-ocean-road-race-men/",
+        "https://transport.vic.gov.au/news-and-resources/events-and-public-transport/cadel-evans-great-ocean-road-race"
+      ],
+      "finding": "Reconciles the map’s existing February 1, 2026 one-day men’s WorldTour event into exact dated fields. Official participating-team calendar gives February 1 to February 1, corroborated by Transport Victoria’s January 27 event notice. Women’s January 31 event is separate and not merged into this recorded scope.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026",
+      "season_start_date": "2026-02-01",
+      "season_end_date": "2026-02-01",
+      "endpoint_type": "actual one-day race",
+      "missing_fact": "",
+      "next_action": "Recheck only on an official correction.",
+      "revisit_trigger": "New official edition/calendar publication.",
+      "reconciled_at": "2026-11-06"
+    },
+    {
+      "key": "cycling-urban-worlds",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI Urban Cycling World Championships",
+      "status": "cancelled",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d",
+      "evidence_urls": [
+        "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d",
+        "https://www.uci.org/pressrelease/2026-uci-urban-cycling-world-championships-sporting-consequences-of-the-event-not-taking-place/3ZNMfDGDFpxPQDPlnE76Wx"
+      ],
+      "finding": "UCI and Saudi federation explicitly state the Riyadh November 3–7, 2026 championships will not proceed. UCI follow-up confirms no 2026 world titles for Trials or BMX Freestyle and retention of 2025 titles until 2027. This supersedes the older calendar listing, which is not evidence of an active 2026 event. No 2027 dates inferred.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "cancelled edition",
+      "missing_fact": "",
+      "next_action": "Await a separately published future edition.",
+      "revisit_trigger": "New official edition/calendar publication."
+    },
+    {
+      "key": "cycling-trials-worlds",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI Trials World Championships",
+      "status": "cancelled",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d",
+      "evidence_urls": [
+        "https://www.uci.org/pressrelease/the-uci-and-saudi-cycling-federation-confirm-that-the-2026-uci-urban-cycling-world-championships-will-not-proceed/AsZUTThGT0DsbQPmWS58d",
+        "https://www.uci.org/pressrelease/2026-uci-urban-cycling-world-championships-sporting-consequences-of-the-event-not-taking-place/3ZNMfDGDFpxPQDPlnE76Wx"
+      ],
+      "finding": "UCI and Saudi federation explicitly state the Riyadh November 3–7, 2026 championships will not proceed. UCI follow-up confirms no 2026 world titles for Trials or BMX Freestyle and retention of 2025 titles until 2027. This supersedes the older calendar listing, which is not evidence of an active 2026 event. No 2027 dates inferred.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "cancelled edition",
+      "missing_fact": "",
+      "next_action": "Await a separately published future edition.",
+      "revisit_trigger": "New official edition/calendar publication."
+    },
+    {
+      "key": "cycling-africa-tour",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI African Tour",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-18",
+      "official_url": "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+      "evidence_urls": [
+        "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+        "https://docs.uci.org/documents/calendar/ProcedureENG.pdf"
+      ],
+      "finding": "Reviewed the saved 2026 Continental Circuits basis and UCI calendar. The extracted official past-calendar page contains no race rows; calendar instructions distinguish the continental ME/MU circuits. January–December in the map is a recurring approximation, not verified first/last actual 2026 races. No invented January 1/December 31 boundaries or inference of cancellation.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": null,
+      "missing_fact": "Exact first and last actual 2026 races for UCI African Tour, excluding national championships, other circuits and cancelled events.",
+      "next_action": "Obtain/export the official 2026 UCI calendar filtered to this continental circuit; reconcile first/last actual race dates.",
+      "revisit_trigger": "Readable official 2026 circuit export or newly published exact boundary evidence."
+    },
+    {
+      "key": "cycling-america-tour",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI America Tour",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-18",
+      "official_url": "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+      "evidence_urls": [
+        "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+        "https://docs.uci.org/documents/calendar/ProcedureENG.pdf"
+      ],
+      "finding": "Reviewed the saved 2026 Continental Circuits basis and UCI calendar. The extracted official past-calendar page contains no race rows; calendar instructions distinguish the continental ME/MU circuits. January–December in the map is a recurring approximation, not verified first/last actual 2026 races. No invented January 1/December 31 boundaries or inference of cancellation.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": null,
+      "missing_fact": "Exact first and last actual 2026 races for UCI America Tour, excluding national championships, other circuits and cancelled events.",
+      "next_action": "Obtain/export the official 2026 UCI calendar filtered to this continental circuit; reconcile first/last actual race dates.",
+      "revisit_trigger": "Readable official 2026 circuit export or newly published exact boundary evidence."
+    },
+    {
+      "key": "cycling-asia-tour",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI Asia Tour",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-18",
+      "official_url": "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+      "evidence_urls": [
+        "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+        "https://docs.uci.org/documents/calendar/ProcedureENG.pdf"
+      ],
+      "finding": "Reviewed the saved 2026 Continental Circuits basis and UCI calendar. The extracted official past-calendar page contains no race rows; calendar instructions distinguish the continental ME/MU circuits. January–December in the map is a recurring approximation, not verified first/last actual 2026 races. No invented January 1/December 31 boundaries or inference of cancellation.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": null,
+      "missing_fact": "Exact first and last actual 2026 races for UCI Asia Tour, excluding national championships, other circuits and cancelled events.",
+      "next_action": "Obtain/export the official 2026 UCI calendar filtered to this continental circuit; reconcile first/last actual race dates.",
+      "revisit_trigger": "Readable official 2026 circuit export or newly published exact boundary evidence."
+    },
+    {
+      "key": "cycling-europe-tour",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI Europe Tour",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-18",
+      "official_url": "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+      "evidence_urls": [
+        "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+        "https://docs.uci.org/documents/calendar/ProcedureENG.pdf"
+      ],
+      "finding": "Reviewed the saved 2026 Continental Circuits basis and UCI calendar. The extracted official past-calendar page contains no race rows; calendar instructions distinguish the continental ME/MU circuits. January–December in the map is a recurring approximation, not verified first/last actual 2026 races. No invented January 1/December 31 boundaries or inference of cancellation.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": null,
+      "missing_fact": "Exact first and last actual 2026 races for UCI Europe Tour, excluding national championships, other circuits and cancelled events.",
+      "next_action": "Obtain/export the official 2026 UCI calendar filtered to this continental circuit; reconcile first/last actual race dates.",
+      "revisit_trigger": "Readable official 2026 circuit export or newly published exact boundary evidence."
+    },
+    {
+      "key": "cycling-oceania-tour",
+      "sport": "Cycling",
+      "country": "International",
+      "catalog_event": "UCI Oceania Tour",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-18",
+      "official_url": "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+      "evidence_urls": [
+        "https://www.uci.org/calendar/road/2ruOnavHX0dMGTCRozdYAU?discipline=ROA&tab=calendar-past&year=2026",
+        "https://docs.uci.org/documents/calendar/ProcedureENG.pdf"
+      ],
+      "finding": "Reviewed the saved 2026 Continental Circuits basis and UCI calendar. The extracted official past-calendar page contains no race rows; calendar instructions distinguish the continental ME/MU circuits. January–December in the map is a recurring approximation, not verified first/last actual 2026 races. No invented January 1/December 31 boundaries or inference of cancellation.",
+      "progress_kind": "first-pass-unresolved",
+      "season_edition": "2026",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": null,
+      "missing_fact": "Exact first and last actual 2026 races for UCI Oceania Tour, excluding national championships, other circuits and cancelled events.",
+      "next_action": "Obtain/export the official 2026 UCI calendar filtered to this continental circuit; reconcile first/last actual race dates.",
+      "revisit_trigger": "Readable official 2026 circuit export or newly published exact boundary evidence."
     }
   ],
   "reconciled_against_commit": "832c7b1f7856f5bb24d1df2334d8284e9f3e0449"
