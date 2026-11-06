@@ -43,7 +43,7 @@ class GulfScopeTests(unittest.TestCase):
         self.assertIn("Al Sadd and Al Rayyan", self.events["soccer-qatar-qatar-cup-men"]["season_basis"])
         self.assertFalse(any("QSL 2" in e["catalog_event"] for e in self.events.values()))
 
-    def test_partial_boundaries_and_uae_super_cup_hold(self):
+    def test_partial_boundaries_and_verified_uae_super_cup(self):
         partial = set(self.events) - {
             "soccer-saudi-arabia-saudi-pro-league-men",
             "soccer-saudi-arabia-saudi-super-cup-men",
@@ -57,10 +57,16 @@ class GulfScopeTests(unittest.TestCase):
             self.assertNotIn("season_end_date", e)
             self.assertEqual("PARTIAL_WINDOW", self.inventory[key]["season_state"])
         key = "soccer-united-arab-emirates-uae-super-cup-men"
-        self.assertTrue(self.events[key]["season_hold"])
-        self.assertNotIn("season_start_date", self.events[key])
-        self.assertEqual("DOCUMENTED_HOLD", self.inventory[key]["season_state"])
-        self.assertIn("UAE–Qatar", self.events[key]["season_basis"])
+        super_cup = self.events[key]
+        self.assertFalse(super_cup.get("season_hold", False))
+        self.assertTrue(super_cup["season_window_complete"])
+        self.assertEqual(("2026-11-29", "2026-11-29"),
+                         (super_cup["season_start_date"], super_cup["season_end_date"]))
+        self.assertEqual("2026/27", super_cup["season_edition"])
+        self.assertTrue(super_cup["season_source_url"].startswith("https://uaeproleague.ae/"))
+        self.assertIn("UAE-Qatar", super_cup["season_basis"])
+        # Date verification does not create an unattended fixture adapter.
+        self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
 
     def test_configured_saudi_espn_endpoints_are_preserved(self):
         for key, suffix in (

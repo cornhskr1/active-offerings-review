@@ -889,12 +889,20 @@
             {
               "key": "basketball-au-ignite",
               "catalog_event": "Ignite Cup | Men",
-              "season_window": "September 30, 2026–February 21, 2027",
+              "season_window": "2026-09-30 – 2027-02-21",
               "season_start_date": "2026-09-30",
               "season_end_date": "2027-02-21",
               "source_id": "basketball-au-ignite",
-              "last_verified": "2026-09-25",
-              "restrictions": []
+              "last_verified": "2026-11-06",
+              "restrictions": [],
+              "season_edition": "2026/27 (NBL27 Ignite Cup)",
+              "season_verification_status": "verified-complete",
+              "season_window_complete": true,
+              "season_source_url": "https://www.nbl.com.au/news/the-hungry-jacks-nbl27-ignite-cup-schedule-tickets-rules-more",
+              "season_evidence_urls": [
+                "https://www.nbl.com.au/news/the-hungry-jacks-nbl27-ignite-cup-schedule-tickets-rules-more"
+              ],
+              "season_basis": "NBL27 Ignite Cup opener through its February 21 final. The group stage ends January 27; this is separate from the NBL championship series."
             }
           ]
         },
@@ -948,7 +956,7 @@
               "catalog_event": "Canadian Elite Basketball League (CEBL) | Men",
               "season_window": "2026-05-09 – 2026-08-15",
               "source_id": "cebl",
-              "last_verified": "2026-11-03",
+              "last_verified": "2026-11-06",
               "restrictions": [],
               "season_start_date": "2026-05-09",
               "season_source_url": "https://www.cebl.ca/cebl-statement-cebl-finals-format-update",
@@ -956,10 +964,11 @@
                 "https://www.cebl.ca/cebl-statement-cebl-finals-format-update",
                 "https://www.cebl.ca/new-playoff-era-to-begin-as-cebl-announces-2026-season-schedule"
               ],
-              "season_basis": "2026 CEBL opener through actual single-game championship on August 15; supersedes the original possible August 16 series endpoint.",
+              "season_basis": "2026 CEBL opener through the actual August 15 championship, following the league decision to replace the original best-of-three finals with a single game.",
               "season_window_complete": true,
               "season_verification_status": "verified-complete",
-              "season_end_date": "2026-08-15"
+              "season_end_date": "2026-08-15",
+              "season_edition": "2026"
             }
           ]
         },
@@ -4685,32 +4694,35 @@
                   "label": "FIFA World Cup | Men",
                   "source_id": "soccer-fifa-world-cup",
                   "season_window": "2026-06-11 – 2026-07-19",
-                  "last_verified": "2026-11-03",
+                  "last_verified": "2026-11-06",
                   "season_start_date": "2026-06-11",
                   "season_source_url": "https://gpcustomersupportfwc2026.tickets.fifa.com/hc/en-gb/articles/28783291386653-1-When-and-where-is-the-FIFA-World-Cup-2026-being-held",
                   "season_evidence_urls": [
                     "https://gpcustomersupportfwc2026.tickets.fifa.com/hc/en-gb/articles/28783291386653-1-When-and-where-is-the-FIFA-World-Cup-2026-being-held"
                   ],
-                  "season_basis": "FIFA 2026 men's World Cup finals tournament; qualifying excluded.",
+                  "season_basis": "Completed 2026 men's World Cup finals tournament, June 11-July 19; qualification is separate.",
                   "season_window_complete": true,
                   "season_verification_status": "verified-complete",
-                  "season_end_date": "2026-07-19"
+                  "season_end_date": "2026-07-19",
+                  "season_edition": "2026 finals tournament"
                 },
                 {
                   "key": "soccer-international-fifa-world-cup-women",
                   "label": "FIFA World Cup | Women",
                   "source_id": "soccer-fifa-womens-world-cup",
                   "season_window": "2027-06-24 – 2027-07-25",
-                  "last_verified": "2026-11-03",
+                  "last_verified": "2026-11-06",
                   "season_start_date": "2027-06-24",
-                  "season_source_url": "https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/everything-you-need-to-know",
+                  "season_source_url": "https://www.figc.it/en/national-teams/news/2027-womens-world-cup-in-brazil-to-take-place-between-24-june-and-25-july-ncv3p0ji",
                   "season_evidence_urls": [
+                    "https://www.figc.it/en/national-teams/news/2027-womens-world-cup-in-brazil-to-take-place-between-24-june-and-25-july-ncv3p0ji",
                     "https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/everything-you-need-to-know"
                   ],
-                  "season_basis": "FIFA 2027 women's World Cup finals tournament; qualifying excluded.",
+                  "season_basis": "2027 women's World Cup finals tournament, June 24-July 25, confirmed by the FIFA Council and FIGC; qualification is separate.",
                   "season_window_complete": true,
                   "season_verification_status": "verified-complete",
-                  "season_end_date": "2027-07-25"
+                  "season_end_date": "2027-07-25",
+                  "season_edition": "2027 finals tournament"
                 }
               ]
             },
@@ -4735,8 +4747,18 @@
                   "key": "soccer-international-fifa-club-world-cup-women",
                   "label": "FIFA Club World Cup | Women",
                   "source_id": "soccer-fifa-womens-club-world-cup",
-                  "season_window": "Next competition calendar pending",
-                  "season_status": "out"
+                  "season_window": "Official calendars published; Club World Cup / Champions Cup identity-scope review required",
+                  "season_status": "out",
+                  "season_edition": "Scope unresolved: Club World Cup 2028 versus Champions Cup 2027",
+                  "last_verified": "2026-11-06",
+                  "season_verification_status": "scope-conflict",
+                  "season_window_complete": false,
+                  "season_source_url": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders",
+                  "season_evidence_urls": [
+                    "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders"
+                  ],
+                  "season_basis": "FIFA Women's Club World Cup and Women's Champions Cup are distinct competitions. Confirm the approved identity and its source assignment before applying either published calendar.",
+                  "season_hold": true
                 }
               ]
             }
@@ -9490,22 +9512,36 @@
               "catalog_event": "Thai FA Cup | Men",
               "season_window": "September 22–23, 2026 qualifying start; final pending",
               "source_id": "soccer-afc-thailand-thai-fa-cup-men",
-              "season_basis": "Thai League/FAT confirms 2026–27 Chang FA Cup qualifying September 22–23 with 82 entrants including T1–T3, semi-pro and FA membership clubs. Exact final and underage eligibility need separate verification.",
-              "last_verified": "2026-09-27",
+              "season_basis": "2026/27 qualifying window begins September 22; final date remains unverified. The cup includes lower-tier clubs; season evidence does not establish age eligibility.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
               "season_start_date": "2026-09-22",
-              "season_window_complete": false
+              "season_window_complete": false,
+              "season_edition": "2026/27",
+              "season_verification_status": "awaiting-published-dates",
+              "season_source_url": "https://www.fathailand.org/news-detail/BDYcx",
+              "season_evidence_urls": [
+                "https://www.fathailand.org/news-detail/BDYcx",
+                "https://www.fathailand.org/news-detail/NRb-q?language=th"
+              ]
             },
             {
               "key": "soccer-thailand-thai-league-cup-men",
               "catalog_event": "Thai League Cup | Men",
               "season_window": "September 5–6, 2026 qualifying start; final pending",
               "source_id": "soccer-afc-thailand-thai-league-cup-men",
-              "season_basis": "Thai League/FAT 2026–27 Muangthai Cup qualifying begins September 5–6 with T3 clubs, a second round September 12–13, and later T1/T2 entry. Final and lower-tier age scope remain open.",
-              "last_verified": "2026-09-27",
+              "season_basis": "2026/27 qualifying window begins September 5. The latest round-of-32 schedule does not establish the final date; lower-tier and age eligibility remain separate checks.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
               "season_start_date": "2026-09-05",
-              "season_window_complete": false
+              "season_window_complete": false,
+              "season_edition": "2026/27",
+              "season_verification_status": "awaiting-published-dates",
+              "season_source_url": "https://fathailand.org/news-detail/zzF6y?language=th",
+              "season_evidence_urls": [
+                "https://fathailand.org/news-detail/zzF6y?language=th",
+                "https://www.fathailand.org/news-detail/sls1L"
+              ]
             }
           ]
         },
@@ -9581,14 +9617,22 @@
             {
               "key": "soccer-turkey-turkish-super-cup-men",
               "catalog_event": "Turkish Super Cup | Men",
-              "season_window": "Next senior Turkcell Süper Kupa match dates pending",
-              "season_basis": "TFF records the January 10, 2026 final of the prior edition and identifies the 2026 edition semifinal participants after the May 2026 cup final, but a January 2027 event date is not established. Keep this senior competition on hold; the Spanish Supercopa hosted in Istanbul in February 2027 is a different approved identity.",
-              "last_verified": "2026-09-26",
+              "season_window": "2027-01-04 – 2027-01-09",
+              "season_basis": "TFF 2026 edition, played in January 2027: semifinals January 4-5 and final January 9. Turkish senior competition; Spain's Supercopa is separate.",
+              "last_verified": "2026-11-06",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
               "source_id": "uefa-soccer-turkey-turkish-super-cup-men",
-              "season_hold": true
+              "season_edition": "2026 edition (played January 2027)",
+              "season_verification_status": "verified-complete",
+              "season_window_complete": true,
+              "season_source_url": "https://www.tff.org/Default.aspx?ftxtId=51493&pageId=200",
+              "season_evidence_urls": [
+                "https://www.tff.org/Default.aspx?ftxtId=51493&pageId=200"
+              ],
+              "season_start_date": "2027-01-04",
+              "season_end_date": "2027-01-09"
             }
           ]
         },
@@ -9621,12 +9665,20 @@
             {
               "key": "soccer-united-arab-emirates-uae-super-cup-men",
               "catalog_event": "UAE Super Cup | Men",
-              "season_window": "2026–27 UAE senior Super Cup date pending",
+              "season_window": "2026-11-29 – 2026-11-29",
               "source_id": "soccer-afc-united-arab-emirates-uae-super-cup-men",
-              "season_basis": "The UAE Pro League documents the 2025–26 EMAAR Super Cup on December 27, 2025, but a 2026–27 senior edition date is not verified. Do not substitute the UAE–Qatar Super Cup or youth competitions.",
-              "last_verified": "2026-09-27",
+              "season_basis": "Single 2026/27 EMAAR Super Cup match, Al Ain-Shabab Al Ahli, on November 29, 2026. UAE-Qatar and youth competitions are separate.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_hold": true
+              "season_edition": "2026/27",
+              "season_verification_status": "verified-complete",
+              "season_window_complete": true,
+              "season_source_url": "https://uaeproleague.ae/en/news-and-gallery/uae-pro-league-announces-date-for-emaar-super-cup-between-al-ain-and-shabab-al-ahli-1",
+              "season_evidence_urls": [
+                "https://uaeproleague.ae/en/news-and-gallery/uae-pro-league-announces-date-for-emaar-super-cup-between-al-ain-and-shabab-al-ahli-1"
+              ],
+              "season_start_date": "2026-11-29",
+              "season_end_date": "2026-11-29"
             }
           ]
         },
@@ -9718,15 +9770,23 @@
             {
               "key": "soccer-united-states-usl-cup-men",
               "catalog_event": "USL Cup | Men",
-              "season_window": "April 25–October 4, 2026",
-              "season_basis": "USL 2026 cup kickoff and confirmed October 4 final; men’s cup only.",
-              "last_verified": "2026-09-27",
+              "season_window": "2026-04-25 – 2026-10-04",
+              "season_basis": "2026 USL Cup opener through the completed October 4 final. The two league championships have separate calendars.",
+              "last_verified": "2026-11-06",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
               "season_start_date": "2026-04-25",
               "season_end_date": "2026-10-04",
-              "source_id": "concacaf-soccer-united-states-usl-cup-men"
+              "source_id": "concacaf-soccer-united-states-usl-cup-men",
+              "season_edition": "2026",
+              "season_verification_status": "verified-complete",
+              "season_window_complete": true,
+              "season_source_url": "https://www.uslsoccer.com/news_article/show/1359508",
+              "season_evidence_urls": [
+                "https://www.uslsoccer.com/news_article/show/1359508",
+                "https://www.loucity.com/news/2026/10/04/usl-cup-final-highlights-loucity-1-hartford-athletic-0/"
+              ]
             },
             {
               "key": "soccer-united-states-national-women-s-soccer-league-nwsl-women",
@@ -9778,15 +9838,24 @@
             {
               "key": "soccer-united-states-usl-super-league-women",
               "catalog_event": "USL Super League | Women",
-              "season_window": "August 15–December 12, 2026",
-              "season_basis": "Gainbridge Super League 2026 Fall transition season; the former August–May cycle no longer applies.",
-              "last_verified": "2026-09-27",
+              "season_window": "2026-08-15 – 2026-12-12",
+              "season_basis": "Standalone Fall 2026 transition season: August 15 opener, November 28 regular-season finish, December 5 semifinals and December 12 final. The Spring-Fall 2027 season is separate.",
+              "last_verified": "2026-11-06",
               "restrictions": [
                 "NO PROPOSITION WAGERS"
               ],
               "season_start_date": "2026-08-15",
               "season_end_date": "2026-12-12",
-              "source_id": "concacaf-soccer-united-states-usl-super-league-women"
+              "source_id": "concacaf-soccer-united-states-usl-super-league-women",
+              "season_edition": "2026 Fall transition season",
+              "season_verification_status": "verified-complete",
+              "season_window_complete": true,
+              "season_source_url": "https://www.gainbridgesuperleague.com/news/2026/08/13/catch-up-on-storylines-stats-and-the-record-book-before-kickoff-news-notes-week-1/",
+              "season_evidence_urls": [
+                "https://www.gainbridgesuperleague.com/news/2026/08/13/catch-up-on-storylines-stats-and-the-record-book-before-kickoff-news-notes-week-1/",
+                "https://www.gainbridgesuperleague.com/news/2026/06/18/gainbridge-super-league-unveils-2026-fall-season-kickoff-slated-for-august-15/"
+              ],
+              "regular_season_end_date": "2026-11-28"
             },
             {
               "key": "soccer-united-states-shebelieves-cup-women",
