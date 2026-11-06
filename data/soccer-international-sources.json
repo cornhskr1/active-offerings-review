@@ -80,14 +80,28 @@
       "sport": "Soccer",
       "league": "FIFA Club World Cup | Women",
       "region": "International",
-      "source_type": "espn-daily",
-      "coverage_status": "complete",
-      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
-      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
-      "source_note": "Daily competition schedule feed retained for FIFA's approved women's club world competition under the combined catalog label.",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders",
+      "official_schedule_url": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders",
+      "source_note": "Nich confirmed the Women's Champions Cup is a different competition and requested correction to the catalog's Women's Club World Cup. FIFA's October 22 publication confirms January 5–30, 2028 for the inaugural Women's Club World Cup. Champions Cup dates and fixtures are excluded. Exact Club World Cup fixture adapter remains unavailable; ESPN publisher access remains held.",
       "catalog_terms": [
         "FIFA Club World Cup | Men and Women"
-      ]
+      ],
+      "season_start_date": "2028-01-05",
+      "season_end_date": "2028-01-30",
+      "season_window_complete": true,
+      "season_verification_status": "verified-complete",
+      "season_evidence_urls": [
+        "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders"
+      ],
+      "retired_mapping": {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
+        "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
+        "reason": "Distinct Women’s Champions Cup; not an alias or approved source for this Club World Cup identity.",
+        "retired_at": "2026-11-06",
+        "publisher_access_status": "permission_required"
+      }
     },
     {
       "id": "soccer-afc-asian-cup-men",

@@ -28,16 +28,16 @@
       "manual-verification-needed": 48,
       "nonseasonal": 28,
       "not-scheduled": 10,
-      "scope-conflict": 26,
+      "scope-conflict": 25,
       "source-access-held": 48,
-      "verified-complete": 318
+      "verified-complete": 319
     },
     "first_pass_complete": true,
     "meaning": "All canonical keys carry substantive evidence-backed dispositions; not all seasons have published complete schedules.",
     "saved_source_presentation": {
       "as_of": "2026-11-06",
-      "dated": 322,
-      "undetermined": 413
+      "dated": 323,
+      "undetermined": 412
     },
     "run_start_reviewed_count": 220,
     "run_progress_counts": {
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "855861109d7fba283f4bb20ad47e12985ba460e0",
-    "post_first_pass_triggered_rechecks": 4
+    "latest_follow_up_commit_base": "ad3e978fe47e7c0e50246bdc3a4d1d88e6309eca",
+    "post_first_pass_triggered_rechecks": 5
   },
   "records": [
     {
@@ -2809,18 +2809,18 @@
       "sport": "Soccer",
       "country": "International",
       "catalog_event": "FIFA Club World Cup | Women",
-      "status": "scope-conflict",
+      "status": "verified-complete",
       "reviewed_at": "2026-11-06",
       "official_url": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders",
       "evidence_urls": [
         "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders"
       ],
-      "finding": "FIFA explicitly separates the Women's Club World Cup (January 5-30, 2028) from the Women's Champions Cup (October 25, 2026-January 31, 2027). The catalog child is labeled Club World Cup, but its preserved saved source uses fifa.w.champions_cup and its observed Naegohyang-Auckland match is the Champions Cup opener. The competition dates are known; their assignment to this approved identity requires scope review. ESPN publisher access remains held and no network request was made to ESPN.",
-      "season_edition": "Scope unresolved: Club World Cup 2028 versus Champions Cup 2027",
-      "season_start_date": null,
-      "season_end_date": null,
-      "missing_fact": "Which distinct FIFA women's club competition the approved catalog identity and saved source are intended to cover.",
-      "next_action": "Confirm approval scope for Club World Cup versus Champions Cup before applying either calendar or remapping the preserved source. Do not infer authorization from these dates.",
+      "finding": "Nich confirmed the Women's Champions Cup is a different competition and requested correction to the catalog's Women's Club World Cup. FIFA's October 22 publication confirms January 5–30, 2028 for the inaugural Women's Club World Cup. Champions Cup dates and fixtures are excluded. Exact Club World Cup fixture adapter remains unavailable; ESPN publisher access remains held.",
+      "season_edition": "2028 FIFA Women’s Club World Cup",
+      "season_start_date": "2028-01-05",
+      "season_end_date": "2028-01-30",
+      "missing_fact": null,
+      "next_action": "Reopen only for a revised FIFA Club World Cup calendar; fixture adapter coverage is separately unresolved.",
       "source_publication_dates": {
         "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders": "2026-10-22"
       },
@@ -2830,7 +2830,7 @@
           "edition": "2028",
           "start_date": "2028-01-05",
           "end_date": "2028-01-30",
-          "applied_to_catalog": false
+          "applied_to_catalog": true
         },
         {
           "competition": "FIFA Women's Champions Cup",
@@ -2838,6 +2838,19 @@
           "start_date": "2026-10-25",
           "end_date": "2027-01-31",
           "applied_to_catalog": false
+        }
+      ],
+      "endpoint_type": "scheduled final",
+      "reconciled_at": "2026-11-06",
+      "revisit_history": [
+        {
+          "trigger_type": "user-supplied-information",
+          "trigger_date": "2026-11-06",
+          "trigger": "Nich distinguished Champions Cup from Club World Cup and instructed: Please correct.",
+          "status": "consumed",
+          "checked_at": "2026-11-06",
+          "result": "Applied existing official 2028 calendar and retired mismatched Champions Cup mapping; original catalog identity preserved.",
+          "evidence_url": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders"
         }
       ]
     },

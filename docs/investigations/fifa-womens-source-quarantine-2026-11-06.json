@@ -1,0 +1,68 @@
+{
+  "reason": "Saved Champions Cup observation formerly mislabeled as Club World Cup. Preserved audit evidence only; not an approved fixture or fresh publisher retrieval.",
+  "source_before_correction": {
+    "id": "soccer-fifa-womens-club-world-cup",
+    "sport": "Soccer",
+    "league": "FIFA Club World Cup | Women",
+    "region": "International",
+    "source_type": "espn-daily",
+    "coverage_status": "complete",
+    "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
+    "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
+    "source_note": "Daily competition schedule feed retained for FIFA's approved women's club world competition under the combined catalog label.",
+    "catalog_terms": [
+      "FIFA Club World Cup | Men and Women"
+    ]
+  },
+  "saved_source_status": {
+    "id": "soccer-fifa-womens-club-world-cup",
+    "sport": "Soccer",
+    "league": "FIFA Club World Cup | Women",
+    "region": "International",
+    "source_type": "espn-daily",
+    "coverage_status": "complete",
+    "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
+    "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
+    "source_note": "Daily competition schedule feed retained for FIFA's approved women's club world competition under the combined catalog label.",
+    "catalog_terms": [
+      "FIFA Club World Cup | Men and Women"
+    ],
+    "approved_catalog": true,
+    "ok": false,
+    "events": 1,
+    "errors": [
+      "Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh."
+    ],
+    "checked_at": "2026-10-18T23:16:42.314137+00:00",
+    "access_status": "permission_required",
+    "collection_paused": true,
+    "stale": true,
+    "coverage_complete": false,
+    "hold_recorded_at": "2026-10-24T10:49:15.660948+00:00"
+  },
+  "saved_events": [
+    {
+      "id": "401930375",
+      "source_id": "soccer-fifa-womens-club-world-cup",
+      "sport": "Soccer",
+      "league": "FIFA Club World Cup | Women",
+      "region": "International",
+      "name": "Auckland United FC at Naegohyang",
+      "start_time": "2026-10-25T07:00Z",
+      "status": "UPCOMING",
+      "status_detail": "Scheduled",
+      "season_stage": null,
+      "location": null,
+      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
+      "catalog_approval": "EXPLICIT SOURCE MAPPING",
+      "u18_matches": [],
+      "u18_risk": false,
+      "restriction_signals": [],
+      "restriction_risk": false,
+      "collection_paused": true,
+      "stale": true,
+      "source_stale": true,
+      "collection_status_note": "Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh."
+    }
+  ]
+}
