@@ -12,6 +12,8 @@ This follow-up has **zero newly resolved calendars, zero new prior-evidence reco
 
 ## First decision: FIFA women's Club World Cup
 
+**Answered November 6:** Nich confirmed Champions Cup is distinct and requested correction. Club World Cup 2028 calendar applied; mismatched source retired, saved observation quarantined, and exact fixture adapter remains a gap. The original question below is retained for provenance.
+
 Exact key: `soccer-international-fifa-club-world-cup-women`.
 
 The saved November 2 NRGC menu says **FIFA Club World Cup | Men and Women** (PDF page 26, printed page 25). The saved source for the women's child instead points at the **Women's Champions Cup**. The ledger already distinguishes both official calendars:

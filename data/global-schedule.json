@@ -4,7 +4,7 @@
   "timezone": "America/Chicago",
   "window_start": "2026-10-24",
   "window_end": "2026-10-31",
-  "event_count": 2582,
+  "event_count": 2581,
   "discovered_event_count": 2600,
   "catalog_rejected_event_count": 0,
   "unresolved_matchup_count": 18,
@@ -43988,29 +43988,6 @@
       "collection_status_note": "Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh."
     },
     {
-      "id": "401930375",
-      "source_id": "soccer-fifa-womens-club-world-cup",
-      "sport": "Soccer",
-      "league": "FIFA Club World Cup | Women",
-      "region": "International",
-      "name": "Auckland United FC at Naegohyang",
-      "start_time": "2026-10-25T07:00Z",
-      "status": "UPCOMING",
-      "status_detail": "Scheduled",
-      "season_stage": null,
-      "location": null,
-      "source_endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
-      "catalog_approval": "EXPLICIT SOURCE MAPPING",
-      "u18_matches": [],
-      "u18_risk": false,
-      "restriction_signals": [],
-      "restriction_risk": false,
-      "collection_paused": true,
-      "stale": true,
-      "source_stale": true,
-      "collection_status_note": "Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh."
-    },
-    {
       "id": "401877569",
       "source_id": "soccer-afc-japan-j1-league-men",
       "sport": "Soccer",
@@ -75544,26 +75521,34 @@
       "sport": "Soccer",
       "league": "FIFA Club World Cup | Women",
       "region": "International",
-      "source_type": "espn-daily",
-      "coverage_status": "complete",
-      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
-      "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
-      "source_note": "Daily competition schedule feed retained for FIFA's approved women's club world competition under the combined catalog label.",
+      "source_type": "coverage-gap",
+      "coverage_status": "pending",
+      "endpoint": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders",
+      "official_schedule_url": "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders",
+      "source_note": "Nich confirmed the Women's Champions Cup is a different competition and requested correction to the catalog's Women's Club World Cup. FIFA's October 22 publication confirms January 5\u201330, 2028 for the inaugural Women's Club World Cup. Champions Cup dates and fixtures are excluded. Exact Club World Cup fixture adapter remains unavailable; ESPN publisher access remains held.",
       "catalog_terms": [
         "FIFA Club World Cup | Men and Women"
       ],
-      "approved_catalog": true,
-      "ok": false,
-      "events": 1,
-      "errors": [
-        "Permission required: ESPN automated collection is paused pending access review; saved observations are not fresh."
+      "season_start_date": "2028-01-05",
+      "season_end_date": "2028-01-30",
+      "season_window_complete": true,
+      "season_verification_status": "verified-complete",
+      "season_evidence_urls": [
+        "https://inside.fifa.com/organisation/fifa-council/media-releases/bureau-council-elevate-womens-football-competitions-stakeholders"
       ],
-      "checked_at": "2026-10-18T23:16:42.314137+00:00",
-      "access_status": "permission_required",
-      "collection_paused": true,
-      "stale": true,
+      "retired_mapping": {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.w.champions_cup/scoreboard",
+        "official_schedule_url": "https://www.espn.com/soccer/league/_/name/fifa.w.champions_cup",
+        "reason": "Distinct Women\u2019s Champions Cup; not an alias or approved source for this Club World Cup identity.",
+        "retired_at": "2026-11-06",
+        "publisher_access_status": "permission_required"
+      },
+      "approved_catalog": true,
+      "ok": true,
+      "events": 0,
       "coverage_complete": false,
-      "hold_recorded_at": "2026-10-24T10:49:15.660948+00:00"
+      "note": "No fixture adapter. Champions Cup observation quarantined; no collection performed.",
+      "checked_at": null
     },
     {
       "id": "soccer-afc-asian-cup-men",
@@ -80417,7 +80402,7 @@
     {
       "area": "Soccer",
       "state": "PARTIAL SCHEDULE COVERAGE",
-      "note": "130 approved competitions still lack a dependable automated adapter.",
+      "note": "129 approved competitions still lack a dependable automated adapter.",
       "competitions": [
         "ABSA Cup | Men",
         "AFC Champions League Elite | Women",
@@ -80439,7 +80424,6 @@
         "Carling Knockout Cup | Men",
         "Challenge Cup | Men",
         "Championship Playoffs I and II | Men",
-        "Charity Shield | Men",
         "Charity Shield | Men",
         "Chatham Cup | Men",
         "Community Shield | Men",
@@ -80466,6 +80450,7 @@
         "Ethiopian Cup | Men",
         "Ethiopian Premier League | Men",
         "Ethiopian Super Cup | Men",
+        "FIFA Club World Cup | Women",
         "FIFA World Cup Qualifiers | Women",
         "Faroe Islands Cup | Men",
         "Federation Cup | Men",
@@ -80503,7 +80488,6 @@
         "OFC Nations Cup | Men",
         "OFC Nations Cup | Women",
         "Persian Gulf Pro League | Men",
-        "President\u2019s Cup | Men",
         "President\u2019s Cup | Men",
         "Qatar Cup | Men",
         "Recopa Sudamericana | Women",
