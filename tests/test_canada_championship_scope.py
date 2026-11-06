@@ -1,6 +1,7 @@
 """The men's final must not become approval for similarly named Canadian cups."""
 
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -22,6 +23,32 @@ PAGE = b'''<html><head><meta charset="utf-8"></head><body><main>2026 TELUS Canad
 
 
 class CanadaChampionshipScopeTests(unittest.TestCase):
+    def test_catalog_alias_shares_calendar_without_remapping_fixture_sources(self):
+        script = """
+const fs=require('fs'), C=require('./assets/catalog-workspace.js');
+const load=p=>JSON.parse(fs.readFileSync('data/'+p+'.json'));
+const map=load('catalog-season-map'), ids=load('competition-identity-registry');
+const rows=C.build({catalog:load('catalog-live'),seasonMap:map,identities:ids,today:'2026-11-06',sources:load('global-schedule').sources});
+console.log(JSON.stringify(rows.filter(r=>['soccer-canada-canadian-cup-men','soccer-canada-canadian-championship-men'].includes(r.id))));
+"""
+        result = subprocess.run(['node', '-e', script], cwd=DATA.parent, capture_output=True, text=True, check=True)
+        rows = {r['id']: r for r in json.loads(result.stdout)}
+        self.assertEqual(2, len(rows))
+        cup = rows['soccer-canada-canadian-cup-men']
+        champ = rows['soccer-canada-canadian-championship-men']
+        self.assertEqual('Canadian Cup | Men', cup['name'])
+        self.assertIn('Canadian Championship — Men', [a['name'] for a in cup['aliases']])
+        self.assertIn('Canadian Cup — Men', [a['name'] for a in champ['aliases']])
+        for field in ('season_start_date', 'season_end_date'):
+            self.assertEqual(champ['event'][field], cup['event'][field])
+        self.assertEqual('2026-05-05', cup['event']['season_start_date'])
+        self.assertEqual('2026-10-21', cup['event']['season_end_date'])
+        self.assertNotEqual(champ['event']['source_id'], cup['event']['source_id'])
+        sources = json.loads((DATA/'soccer-concacaf-domestic-sources.json').read_text())['sources']
+        source = next(s for s in sources if s['id'] == cup['event']['source_id'])
+        self.assertEqual('coverage-gap', source['source_type'])
+        self.assertEqual('pending', source['coverage_status'])
+
     def test_completed_publisher_card_is_empty_not_a_source_failure_or_new_fixture(self):
         page = (Path(__file__).parent/'fixtures/canada_final_completed_2026.html').read_bytes()
         self.assertIsNone(parse_final(page,SOURCE))
@@ -45,7 +72,7 @@ class CanadaChampionshipScopeTests(unittest.TestCase):
         self.assertEqual("ADAPTER_CONFIGURED", rows["soccer-canada-canadian-championship-men"]["coverage_state"])
         for key in ("soccer-canada-canadian-cup-men", "soccer-canada-voyager-cup-women"):
             self.assertEqual("ADAPTER_GAP", rows[key]["coverage_state"])
-        self.assertEqual("DOCUMENTED_HOLD", rows["soccer-canada-canadian-cup-men"]["season_state"])
+        self.assertEqual("DATED_WINDOW", rows["soccer-canada-canadian-cup-men"]["season_state"])
         self.assertEqual("PARTIAL_WINDOW", rows["soccer-canada-voyager-cup-women"]["season_state"])
         ledger = json.loads((DATA / "catalog-season-verification-ledger.json").read_text())
         reviewed = next(r for r in ledger["records"] if r["key"] == "soccer-canada-voyager-cup-women")

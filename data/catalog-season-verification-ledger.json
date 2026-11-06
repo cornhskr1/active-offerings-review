@@ -28,16 +28,16 @@
       "manual-verification-needed": 47,
       "nonseasonal": 28,
       "not-scheduled": 10,
-      "scope-conflict": 28,
+      "scope-conflict": 27,
       "source-access-held": 48,
-      "verified-complete": 317
+      "verified-complete": 318
     },
     "first_pass_complete": true,
     "meaning": "All canonical keys carry substantive evidence-backed dispositions; not all seasons have published complete schedules.",
     "saved_source_presentation": {
       "as_of": "2026-11-06",
-      "dated": 321,
-      "undetermined": 414
+      "dated": 322,
+      "undetermined": 413
     },
     "run_start_reviewed_count": 220,
     "run_progress_counts": {
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "907c03993ca58ed8b5bb1277286dd08f7a2b091e",
-    "post_first_pass_triggered_rechecks": 1
+    "latest_follow_up_commit_base": "24d302df4a267a90ee3952338578c460ab0a05cb",
+    "post_first_pass_triggered_rechecks": 2
   },
   "records": [
     {
@@ -1811,16 +1811,33 @@
       "sport": "Soccer",
       "country": "Canada",
       "catalog_event": "Canadian Cup | Men",
-      "status": "scope-conflict",
+      "status": "verified-complete",
       "reviewed_at": "2026-11-03",
       "official_url": "https://www.canadasoccer.com/championship/canChamp/2026/",
       "evidence_urls": [
         "https://www.canadasoccer.com/championship/canChamp/2026/",
         "https://news.canadasoccer.com/dates-and-times-confirmed-for-2026-telus-canadian-championship-preliminary-round"
       ],
-      "finding": "Canada Soccer identifies the TELUS Canadian Championship as the men's knockout competition for the Voyageurs Cup. No separate exact Canadian Cup competition is established by these sources. Existing identity hold is preserved; do not duplicate Championship fixtures.",
-      "missing_fact": "Which distinct approved senior men's competition the Canadian Cup catalog line denotes.",
-      "next_action": "Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures."
+      "finding": "Nich confirmed on November 6, 2026 that Canadian Cup is a catalog alias for the men's Canadian Championship and requested its existing calendar here. Both original catalog entries remain; fixtures belong only to the Canadian Championship source. Trophy: Voyageurs Cup. This does not change wagering approval or participant eligibility.",
+      "missing_fact": null,
+      "next_action": "Recheck only after a revised official 2026 calendar or a new edition is published. Preserve both catalog lines pending the deferred naming audit.",
+      "revisit_history": [
+        {
+          "trigger_date": "2026-11-06",
+          "trigger_type": "user-supplied-information",
+          "trigger": "Nich explicitly requested the naming convention as an alias and the schedule on this section, preserving the catalog entries and deferring the broader naming audit.",
+          "status": "consumed",
+          "checked_at": "2026-11-06",
+          "result": "Shared existing verified 2026 Canadian Championship calendar; no new competition or fixture stream."
+        }
+      ],
+      "evidence_verified_at": "2026-11-03",
+      "reconciled_at": "2026-11-06",
+      "calendar_identity_key": "soccer-canada-canadian-championship-men",
+      "season_start_date": "2026-05-05",
+      "season_end_date": "2026-10-21",
+      "endpoint_type": "actual final",
+      "revisit_trigger": "New official edition calendar or revised 2026 result; a naming audit is separately deferred."
     },
     {
       "key": "soccer-canada-voyager-cup-women",
