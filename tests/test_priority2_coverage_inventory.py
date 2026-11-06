@@ -918,8 +918,8 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
     def test_ncaa_baseball_adapter_maps_only_division_one_men(self):
         identity = ("NCAA Baseball", "Division I Baseball | Men")
         row = self.rows[identity]
-        self.assertEqual("RECURRING_WINDOW", row["season_state"])
-        self.assertEqual("February–June", row["season_window"])
+        self.assertEqual("DATED_WINDOW", row["season_state"])
+        self.assertEqual("2027-02-19 – 2027-06-28", row["season_window"])
         self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
         schedule = json.loads((ROOT / "data" / "global-schedule.json").read_text())
         saved_source = next(source for source in schedule["sources"] if source["id"] == "ncaa-baseball")
@@ -938,19 +938,18 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         season_map = json.loads((ROOT / "data" / "catalog-season-map.json").read_text(encoding="utf-8"))
         baseball = next(sport for sport in season_map["sports"] if sport["sport"] == "NCAA Baseball")
-        self.assertEqual(
-            [{
-                "key": "ncaa-baseball-di",
-                "source_id": "ncaa-baseball",
-                "catalog_event": "Division I Baseball | Men",
-                "season_window": "February–June",
-                "season_start": "02-01",
-                "season_end": "06-30",
-                "last_verified": "2026-09-16",
-                "restrictions": [],
-            }],
-            baseball["groups"][0]["events"],
-        )
+        events = baseball["groups"][0]["events"]
+        self.assertEqual(["ncaa-baseball-di"], [event["key"] for event in events])
+        event = events[0]
+        self.assertEqual("ncaa-baseball", event["source_id"])
+        self.assertEqual("Division I Baseball | Men", event["catalog_event"])
+        self.assertEqual([], event["restrictions"])
+        self.assertEqual("2027-02-19", event["season_start_date"])
+        self.assertEqual("2027-06-28", event["season_end_date"])
+        self.assertTrue(event["season_window_complete"])
+        self.assertEqual("verified-complete", event["season_verification_status"])
+        self.assertNotIn("season_start", event)
+        self.assertNotIn("season_end", event)
 
         config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
         configured = {source["id"]: source for source in config["sources"]}["ncaa-baseball"]
