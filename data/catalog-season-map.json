@@ -6885,21 +6885,32 @@
             {
               "key": "soccer-canada-voyager-cup-women",
               "catalog_event": "Voyager Cup | Women",
-              "season_window": "Voyager Cup approval mapping unresolved · hold",
-              "season_basis": "Canada Soccer's 2026/27 W Canadian Championship is a newly published women's knockout competition for the Voyageurs Shield. Its official name and trophy do not establish equivalence to the approved Voyager Cup women line. Preserve existing regulatory mapping hold; no fixture reassignment.",
-              "last_verified": "2026-11-03",
+              "season_window": "August 3, 2026–May 2027; exact final date awaiting publication",
+              "season_basis": "Nich confirmed on November 6 that the existing Voyager Cup | Women entry covers the W Canadian Championship for the Voyageurs Shield. Canada Soccer identifies August 3, 2026 as the inaugural 2026/27 competition opener. Its October 4 semifinal notice schedules semifinals in April 2027 and the final for Victoria Day weekend in May 2027, without an exact day. The final match page and official spreadsheet still contain year-0001 placeholders, which are rejected as dates. The identity conflict is resolved; the complete season endpoint remains unpublished. Source IDs, coverage-gap status, participant-age safeguards and all unrelated approval/publisher holds remain unchanged.",
+              "last_verified": "2026-11-06",
               "restrictions": [],
-              "season_status": "out",
-              "season_hold": true,
-              "hold_reason": "The inaugural W Canadian Championship is not established as the exact approved Voyager Cup women identity; hold its fixtures pending explicit regulatory mapping.",
               "source_id": "concacaf-soccer-canada-voyager-cup-women",
-              "season_source_url": "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
+              "season_source_url": "https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship",
               "season_evidence_urls": [
+                "https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship",
+                "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship",
                 "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
-                "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship"
+                "https://canadasoccer.com/match/6615/",
+                "https://cs-data-production.azurewebsites.net/api/teamplayer/GetChampionshipScheduleByYear/?champCode=womensCanadianChamp&lang=en&year=2026"
               ],
               "season_window_complete": false,
-              "season_verification_status": "scope-conflict"
+              "season_verification_status": "awaiting-published-dates",
+              "season_start_date": "2026-08-03",
+              "season_end_date": null,
+              "scope_confirmation": {
+                "confirmed_at": "2026-11-06",
+                "confirmed_by": "Nich Oberle",
+                "catalog_identity": "soccer-canada-voyager-cup-women",
+                "official_competition": "W Canadian Championship",
+                "trophy": "Voyageurs Shield",
+                "basis": "Explicit user confirmation of the existing Voyager Cup | Women approval mapping in this conversation.",
+                "source_assignment_preserved": "concacaf-soccer-canada-voyager-cup-women"
+              }
             }
           ]
         },

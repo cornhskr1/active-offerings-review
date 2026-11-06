@@ -6,12 +6,12 @@ All records have a substantive finding and retained source reference. Prior evid
 
 | Ledger disposition | Identities |
 | --- | ---: |
-| awaiting-published-dates | 252 |
+| awaiting-published-dates | 253 |
 | cancelled | 4 |
 | manual-verification-needed | 47 |
 | nonseasonal | 28 |
 | not-scheduled | 10 |
-| scope-conflict | 29 |
+| scope-conflict | 28 |
 | source-access-held | 48 |
 | verified-complete | 317 |
 | Total | 735 |
@@ -21,6 +21,10 @@ Full-catalog saved-source presentation: **321 dated / 414 undetermined**, using 
 This run advanced from 220 to 735 dispositions: **30 newly resolved calendars; 406 prior-evidence reconciliations; 79 first-time unresolved dispositions; zero triggered rechecks**. Original source/identity assignments, approval restrictions, athlete-age safeguards, market cutoffs and zero-quota API limits are preserved. No other repository was changed.
 
 Publication is a separate check. The latest observed fresh live read before this proposal contained 461 ledger entries. PR #422 publication run 42239323083 failed after a ten-minute GitHub Pages `updating_pages` timeout; its logs show zero provider requests and collection halted under the existing persistent hold. Do not claim live parity until normal reviewed recovery and fresh live JSON verification succeed.
+
+## Post-first-pass update
+
+Nich confirmed the W Canadian Championship / Voyager Cup women mapping on November 6. The opening is now verified as August 3, 2026; the exact May 2027 final remains unpublished. This resolves one scope conflict through one logged, consumed user-triggered recheck; it adds no complete calendar. Current statuses above are 253 awaiting dates and 28 scope conflicts. All other totals remain unchanged. See [the evidence checkpoint](canada-womens-cup-season-2026-11-06.md).
 
 ## Targeted manual verification and scope decisions
 
@@ -96,7 +100,6 @@ Supply the exact official fact or substantive approval-scope interpretation desc
 | `soccer-australia-australia-cup-women` · Soccer / Australia / Australia Cup \| Women | Exact official senior women's national competition corresponding to the approved Australia Cup women child. | [Source 1](https://australiacup.com.au/about-competition)<br>[Source 2](https://footballaustralia.com.au/news/football-australia-releases-domestic-match-calendar-202627) | Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures. |
 | `soccer-bangladesh-bangladesh-premier-league-men` · Soccer / Bangladesh / Bangladesh Premier League \| Men | Continuity of the approved Bangladesh Premier League identity with BFF’s Bangladesh Football League wording, plus exact opening/final fixture dates. | [Source 1](https://www.bff.com.bd/category/circulars) | Preserve this reviewed disposition. Reopen only for a named new official edition publication/revision or new user-supplied substantive scope/evidence decision. |
 | `soccer-canada-canadian-cup-men` · Soccer / Canada / Canadian Cup \| Men | Which distinct approved senior men's competition the Canadian Cup catalog line denotes. | [Source 1](https://www.canadasoccer.com/championship/canChamp/2026/)<br>[Source 2](https://news.canadasoccer.com/dates-and-times-confirmed-for-2026-telus-canadian-championship-preliminary-round) | Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures. |
-| `soccer-canada-voyager-cup-women` · Soccer / Canada / Voyager Cup \| Women | Explicit approval-to-competition mapping between Voyager Cup \| Women and the W Canadian Championship/Voyageurs Shield, or identification of another intended competition. | [Source 1](https://canadasoccer.com/championship/womensCanadianChamp/2026/)<br>[Source 2](https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship) | Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures. |
 | `soccer-el-salvador-copa-el-salvador-men` · Soccer / El Salvador / Copa El Salvador \| Men | Confirm approved Copa El Salvador continuity with the revived Copa Presidente GanaPlay; obtain the operative revised final calendar after reported postponement. | [Source 1](https://web.indes.gob.sv/?p=134266)<br>[Source 2](https://web.indes.gob.sv/?p=135038) | Provide the substantive identity-continuity evidence/approval interpretation and FESFUT/INDES revised full cup calendar; keep source and approval assignments unchanged. |
 | `soccer-england-the-championship-women` · Soccer / England / The Championship \| Women | Canonical ownership of the shared current competition remains held to prevent duplicate fixture streams; do not automatically merge/remap approvals. | [Source 1](https://www.wslfootball.com/news/the-2026-27-fixtures-are-out)<br>[Source 2](https://www.wslfootball.com/fixtures/wsl2) | Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision. |
 | `soccer-guatemala-copa-de-guatemala-men` · Soccer / Guatemala / Copa de Guatemala \| Men | Establish whether the approved Copa de Guatemala legally continues as Supercopa Bantrab; obtain primary full cup calendar and entrant scope if so. | [Source 1](https://fedefutguate.gt/)<br>[Source 2](https://dca.gob.gt/noticias-guatemala-diario-centro-america/16-equipos-iran-por-la-supercopa/) | Supply federation continuity/approval interpretation and the operative competition regulations/calendar; do not remap this key automatically. |
@@ -169,6 +172,7 @@ Supply the exact official fact or substantive approval-scope interpretation desc
 
 | Exact key · sport / country / competition | Missing fact or conflict | Official reference(s) | Next action |
 | --- | --- | --- | --- |
+| `soccer-canada-voyager-cup-women` · Soccer / Canada / Voyager Cup \| Women | Exact day of the 2026/27 W Canadian Championship final; the published May 2027 Victoria Day weekend is not an exact endpoint. | [Launch](https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship)<br>[Semifinal notice](https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship)<br>[Final placeholder](https://canadasoccer.com/match/6615/) | Reopen only for a new official semifinal/final draw or exact final-date publication; no repeat check of the unchanged placeholder. The announced early-2027 draw has no exact release day yet. |
 | `baseball-do-lidom` · Baseball / Dominican Republic / Professional Baseball League of the Dominican Republic (LIDOM) | Last possible championship-series game date. | [Source 1](https://lidom.com/lidom/junta-de-directores-aprueba-calendario-y-reglamentos-para-campeonato-2026-2027-90160.html) | Check official playoff calendar; do not substitute regular-season endpoint. |
 | `baseball-mx-lmp` · Baseball / Mexico / Mexican Pacific League | Last possible championship-series game date. | [Source 1](https://www.lmp.mx/noticias/estas-seran-las-series-inaugurales-de-la-temporada-2026-2027)<br>[Source 2](https://editor.lmp.mx/tenemos-calendario-para-la-temporada-2026-2027/) | Check official playoff calendar; do not substitute regular-season endpoint. |
 | `basketball-ar-lnb` · Basketball / Argentina / Liga Nacional de Básquet (LNB) \| Men | Exact final possible championship game date for 2026/27. | [Source 1](https://gimnasiacomodoro.com/gimnasia-ya-tiene-fecha-para-su-debut-en-la-liga-nacional/)<br>[Source 2](https://www.laliganacional.com.ar/) | Recheck the official complete schedule when final dates are published. |

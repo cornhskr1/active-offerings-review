@@ -29,6 +29,8 @@ Saved official evidence: [FIFA's October 22 publication](https://inside.fifa.com
 
 ## Second decision: Canada's two ambiguous cup lines
 
+**Women’s line answered November 6:** Nich confirmed that Voyager Cup | Women covers the W Canadian Championship for the Voyageurs Shield. [The resulting calendar review](canada-womens-cup-season-2026-11-06.md) verifies the August 3 opening but leaves the exact final date awaiting publication. The men’s Canadian Cup question remains unresolved. The original question below is retained as the provenance of that answer.
+
 Exact keys:
 
 - `soccer-canada-canadian-cup-men`

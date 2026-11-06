@@ -23,12 +23,12 @@
     "canonical_key_sha256": "ed04c2b5295cd8c570f4ffc9b19eda886c5ea61dd8d41c53332881cc171898b9",
     "reconciled_at": "2026-11-06",
     "status_counts": {
-      "awaiting-published-dates": 252,
+      "awaiting-published-dates": 253,
       "cancelled": 4,
       "manual-verification-needed": 47,
       "nonseasonal": 28,
       "not-scheduled": 10,
-      "scope-conflict": 29,
+      "scope-conflict": 28,
       "source-access-held": 48,
       "verified-complete": 317
     },
@@ -45,7 +45,9 @@
       "prior-evidence-reconciliation": 406,
       "first-time-unresolved": 79
     },
-    "triggered_rechecks": 0
+    "triggered_rechecks": 0,
+    "latest_follow_up_commit_base": "907c03993ca58ed8b5bb1277286dd08f7a2b091e",
+    "post_first_pass_triggered_rechecks": 1
   },
   "records": [
     {
@@ -1825,16 +1827,79 @@
       "sport": "Soccer",
       "country": "Canada",
       "catalog_event": "Voyager Cup | Women",
-      "status": "scope-conflict",
-      "reviewed_at": "2026-11-03",
-      "official_url": "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "official_url": "https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship",
       "evidence_urls": [
+        "https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship",
+        "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship",
         "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
-        "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship"
+        "https://canadasoccer.com/match/6615/",
+        "https://cs-data-production.azurewebsites.net/api/teamplayer/GetChampionshipScheduleByYear/?champCode=womensCanadianChamp&lang=en&year=2026"
       ],
-      "finding": "Canada Soccer's 2026/27 W Canadian Championship is a newly published women's knockout competition for the Voyageurs Shield. Its official name and trophy do not establish equivalence to the approved Voyager Cup women line. Preserve existing regulatory mapping hold; no fixture reassignment.",
-      "missing_fact": "Explicit approval-to-competition mapping between Voyager Cup | Women and the W Canadian Championship/Voyageurs Shield, or identification of another intended competition.",
-      "next_action": "Retain the existing approval and identity hold until the exact official competition mapping is established; do not duplicate another competition's fixtures."
+      "finding": "Nich confirmed on November 6 that the existing Voyager Cup | Women entry covers the W Canadian Championship for the Voyageurs Shield. Canada Soccer identifies August 3, 2026 as the inaugural 2026/27 competition opener. Its October 4 semifinal notice schedules semifinals in April 2027 and the final for Victoria Day weekend in May 2027, without an exact day. The final match page and official spreadsheet still contain year-0001 placeholders, which are rejected as dates. The identity conflict is resolved; the complete season endpoint remains unpublished. Source IDs, coverage-gap status, participant-age safeguards and all unrelated approval/publisher holds remain unchanged.",
+      "missing_fact": "Exact day of the 2026/27 W Canadian Championship final; the published May 2027 Victoria Day weekend is not an exact endpoint.",
+      "next_action": "Reopen only for a new official semifinal/final draw or exact final-date publication; no repeat check of the unchanged placeholder. The announced early-2027 draw has no exact release day yet.",
+      "revisit_history": [
+        {
+          "trigger_id": "nich-canada-voyager-women-2026-11-06",
+          "trigger_type": "substantive-user-scope-confirmation",
+          "trigger_logged_at": "2026-11-06T18:51:35.120804+00:00",
+          "source": "User reply in Catalog Season Verification conversation, November 6, 2026 (America/Chicago)",
+          "user_response": "That’s is correct",
+          "question_confirmed": "Canada lists “Voyager Cup | Women.” Is that intended to cover the W Canadian Championship, which awards the Voyageurs Shield, or a different competition?",
+          "interpretation": "The existing Voyager Cup | Women catalog identity covers the W Canadian Championship. No different identity or source ID is authorized by this confirmation.",
+          "status": "consumed",
+          "consumed_at": "2026-11-06T18:54:48.363523+00:00",
+          "result": "Identity mapping confirmed; opening verified; exact final still awaiting publication.",
+          "source_versions": {
+            "launch_published": "2026-07-16",
+            "semifinal_notice_published": "2026-10-04",
+            "schedule_export_sha256": "60cf845676876aa1abd9f7d47c68277917e9b0d23af90e4cff566bc03b5d520c"
+          }
+        }
+      ],
+      "evidence_verified_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-11-03",
+      "season_edition": "2026/27 inaugural W Canadian Championship",
+      "gender_division": "Senior women's domestic knockout championship",
+      "season_start_date": "2026-08-03",
+      "season_end_date": null,
+      "endpoint_type": "Exact final day unpublished; May 2027 Victoria Day weekend only",
+      "progress_kind": "triggered-recheck",
+      "revisit_trigger": "New official draw/final-date publication or substantive new user evidence; the present user-confirmation trigger is consumed.",
+      "scope_confirmation": {
+        "confirmed_at": "2026-11-06",
+        "confirmed_by": "Nich Oberle",
+        "catalog_identity": "soccer-canada-voyager-cup-women",
+        "official_competition": "W Canadian Championship",
+        "trophy": "Voyageurs Shield",
+        "basis": "Explicit user confirmation of the existing Voyager Cup | Women approval mapping in this conversation.",
+        "source_assignment_preserved": "concacaf-soccer-canada-voyager-cup-women"
+      },
+      "source_publication_dates": {
+        "https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship": "2026-07-16",
+        "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship": "2026-10-04"
+      },
+      "sources_checked": [
+        "https://news.canadasoccer.com/canada-soccer-launches-inaugural-w-canadian-championship",
+        "https://news.canadasoccer.com/teams-qualified-for-the-quarterfinals-of-2026-27-w-canadian-championship",
+        "https://canadasoccer.com/championship/womensCanadianChamp/2026/",
+        "https://canadasoccer.com/match/6615/",
+        "https://cs-data-production.azurewebsites.net/api/teamplayer/GetChampionshipScheduleByYear/?champCode=womensCanadianChamp&lang=en&year=2026"
+      ],
+      "source_notes": [
+        "The competition hub labels the semifinal story October 5; the direct pressroom article itself is dated October 4.",
+        "The official spreadsheet duplicates QF2 with French/English venue labels and retains year-0001 semifinal/final placeholders. Neither becomes a new fixture or verified date.",
+        "The pressroom and fixture/export disagree on the Calgary score (5-0 versus 4-0); no score is imported or used to determine season boundaries."
+      ],
+      "schedule_export_evidence": {
+        "url": "https://cs-data-production.azurewebsites.net/api/teamplayer/GetChampionshipScheduleByYear/?champCode=womensCanadianChamp&lang=en&year=2026",
+        "sha256": "60cf845676876aa1abd9f7d47c68277917e9b0d23af90e4cff566bc03b5d520c",
+        "checked_at": "2026-11-06",
+        "final_row_date": "01/01/0001 00:00:00",
+        "result": "Rejected placeholder; no exact final date."
+      }
     },
     {
       "key": "soccer-australia-a-league-men",
@@ -21448,6 +21513,38 @@
         "Prior source/country investigation checkpoints; no repeat network request"
       ],
       "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    }
+  ],
+  "post_completion_updates": [
+    {
+      "date": "2026-11-06",
+      "base_commit": "907c03993ca58ed8b5bb1277286dd08f7a2b091e",
+      "keys": [
+        "soccer-canada-voyager-cup-women"
+      ],
+      "result": "One identity scope conflict resolved; one partial calendar with confirmed opening and unpublished exact final.",
+      "progress_counts": {
+        "newly-resolved-calendar": 0,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 1
+      },
+      "identity_conflicts_resolved": 1,
+      "full_calendars_completed": 0,
+      "reviewed_count": 735,
+      "pending_count": 0,
+      "status_counts": {
+        "awaiting-published-dates": 253,
+        "cancelled": 4,
+        "manual-verification-needed": 47,
+        "nonseasonal": 28,
+        "not-scheduled": 10,
+        "scope-conflict": 28,
+        "source-access-held": 48,
+        "verified-complete": 317
+      },
+      "dated": 321,
+      "undetermined": 414
     }
   ]
 }
