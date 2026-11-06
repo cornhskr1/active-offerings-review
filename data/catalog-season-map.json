@@ -10732,9 +10732,9 @@
             {
               "key": "soccer-zambia-zambia-super-league-men",
               "catalog_event": "Zambia Super League | Men",
-              "season_window": "Full edition window not independently verified",
+              "season_window": "2026-10-03 opening; full transition-season endpoint unverified",
               "source_id": "caf-soccer-zambia-zambia-super-league-men",
-              "season_basis": "Indexed organizer primary pages explicitly identify Transitional 2026 and Men–Stream A, with Konkola Blades fixtures continuing through January 23, 2027. The old August–May recurring season is not the operative transition edition. Direct root timed out; indexed primary material is identified as such. One club/stream fixture list cannot establish the earliest full league match, other stream or championship/relegation conclusion; secondary October 3 opening is not promoted.",
+              "season_basis": "Reconciliation of the original October 18 ZPL package: twenty official senior club calendars across Streams A/B contain 180 distinct league fixtures, 29 scored results, 11 past unresolved holds and future regular fixtures through January 24, 2027. Retained ICS records establish October 3 as the earliest regular league date. Four nonleague cup copies were excluded. Current indexed club material corroborates Transitional 2026, but does not establish the complete championship/relegation endpoint. The generic August–May map was not updated by that adapter implementation; it is corrected here without rerunning collection.",
               "last_verified": "2026-11-06",
               "restrictions": [],
               "season_edition": "Transitional 2026 Zambian Super League, extending into 2027",
@@ -10744,7 +10744,8 @@
               "season_evidence_urls": [
                 "https://zpl.co.zm/",
                 "https://zpl.co.zm/club/49?id=49&season=Transitional+2026&team_id=55&view=fixtures"
-              ]
+              ],
+              "season_start_date": "2026-10-03"
             },
             {
               "key": "soccer-zambia-absa-cup-men",
@@ -10789,16 +10790,17 @@
               "catalog_event": "Charity Shield | Men",
               "season_window": "Full edition window not independently verified",
               "source_id": "caf-soccer-zambia-charity-shield-men",
-              "season_basis": "The assigned FAZ page was inaccessible and ZPL root direct read timed out. Indexed official ZPL content establishes Transitional 2026 league scope but did not establish a readable dated Charity Shield report. Secondary September 19 Red Arrows–Power Dynamos and separate women’s match reports are not promoted as official calendar confirmation; the old annual-August assumption is removed.",
+              "season_basis": "Reconciliation of October 18 saved official evidence: both Red Arrows and Power Dynamos calendars date fixture 10425 (Charity Shield–Men–Super) September 20, 2026 at 13:00 UTC with result 1–0. A distinct Men–National fixture 10427 is Chirundu United–Makeni All Stars on September 19. Current secondary reports instead date Red Arrows–Power September 19; this cannot be resolved by conflating the two official divisions or changing UTC/local dates (Lusaka is UTC+2). Current root retrieval timed out, and no repeat of the prior calendar collection is counted as progress.",
               "last_verified": "2026-11-06",
               "restrictions": [],
               "season_edition": "2026 Samuel Zoom Ndhlovu Charity Shield, primary exact date unverified",
               "season_window_complete": false,
               "season_verification_status": "manual-verification-needed",
-              "season_source_url": "https://zpl.co.zm/",
+              "season_source_url": "https://zpl.co.zm/fixture/10425",
               "season_evidence_urls": [
-                "https://zpl.co.zm/",
-                "https://www.faz.co.zm/"
+                "https://zpl.co.zm/fixture/10425",
+                "https://zpl.co.zm/fixture/10427",
+                "https://zpl.co.zm/"
               ]
             }
           ]

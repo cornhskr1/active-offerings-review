@@ -11500,15 +11500,15 @@
       "catalog_event": "ABSA Cup | Men",
       "status": "manual-verification-needed",
       "reviewed_at": "2026-11-06",
-      "evidence_verified_at": "2026-11-06",
+      "evidence_verified_at": "2026-10-18",
       "official_url": "https://zanacofc.co.zm/category/absa-cup/",
       "evidence_urls": [
         "https://zanacofc.co.zm/category/absa-cup/",
         "https://www.faz.co.zm/",
         "https://www.absa.co.zm/press-media/"
       ],
-      "finding": "ZANACO’s own current category identifies its 2026 Absa Cup round-of-16 draw and April 17 quarterfinal preview. The assigned FAZ root was inaccessible through the tool, and sponsor media page retains older releases rather than a full current calendar. Secondary March preliminaries/final claims are not promoted. The similarly named legacy Barclays Cup remains a separate catalog key pending scope interpretation, not a second inferred annual schedule.",
-      "progress_kind": "first-time-unresolved",
+      "finding": "Reconciliation of the October 18 prior Zambia source-proof and fixture package, not a newly researched calendar. ZANACO’s own current category identifies its 2026 Absa Cup round-of-16 draw and April 17 quarterfinal preview. The assigned FAZ root was inaccessible through the tool, and sponsor media page retains older releases rather than a full current calendar. Secondary March preliminaries/final claims are not promoted. The similarly named legacy Barclays Cup remains a separate catalog key pending scope interpretation, not a second inferred annual schedule.",
+      "progress_kind": "prior-evidence-reconciliation",
       "season_edition": "2026 senior Absa Cup",
       "gender_division": "Senior men’s Zambian Absa Cup, including lower-tier qualifiers",
       "season_start_date": null,
@@ -11516,7 +11516,15 @@
       "endpoint_type": "full qualifying-inclusive opening/final not established",
       "missing_fact": "Official 2026 first applicable qualifying/preliminary fixture and exact championship final, plus treatment of the separate legacy Barclays key.",
       "next_action": "Supply the operative FAZ/organizer full 2026 cup calendar/results and approved naming interpretation for the legacy key.",
-      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "original_evidence_verified_at": "2026-10-18",
+      "reconciled_at": "2026-11-06",
+      "corroborated_at": "2026-11-06",
+      "prior_evidence_locations": [
+        "SOCCER_FIXTURE_BATCH.md",
+        "tests/fixtures/zpl_20261018/source-proof.json",
+        "data/soccer-caf-domestic-sources.json"
+      ]
     },
     {
       "key": "soccer-zambia-barclays-cup-men",
@@ -11525,15 +11533,15 @@
       "catalog_event": "Barclays Cup | Men",
       "status": "scope-conflict",
       "reviewed_at": "2026-11-06",
-      "evidence_verified_at": "2026-11-06",
+      "evidence_verified_at": "2026-10-18",
       "official_url": "https://zanacofc.co.zm/category/absa-cup/",
       "evidence_urls": [
         "https://zanacofc.co.zm/category/absa-cup/",
         "https://www.absa.co.zm/faqs/",
         "https://www.faz.co.zm/"
       ],
-      "finding": "ZANACO’s official archive refers to 2019 Absa Cup semifinals organized with Barclays Bank Zambia; the bank’s own FAQ states its Zambia legal rebrand to Absa occurred February 10, 2020. The catalog nevertheless retains separate Barclays Cup and Absa Cup keys. No distinct current Barclays edition/full calendar is established, so assigning the Absa calendar to both would risk duplicate event streams. The bank rebrand alone is not treated as approval to merge/delete/remap identities.",
-      "progress_kind": "first-time-unresolved",
+      "finding": "Reconciliation of the October 18 prior Zambia source-proof and fixture package, not a newly researched calendar. ZANACO’s official archive refers to 2019 Absa Cup semifinals organized with Barclays Bank Zambia; the bank’s own FAQ states its Zambia legal rebrand to Absa occurred February 10, 2020. The catalog nevertheless retains separate Barclays Cup and Absa Cup keys. No distinct current Barclays edition/full calendar is established, so assigning the Absa calendar to both would risk duplicate event streams. The bank rebrand alone is not treated as approval to merge/delete/remap identities.",
+      "progress_kind": "prior-evidence-reconciliation",
       "season_edition": "Legacy catalog Barclays Cup versus current Absa Cup identity",
       "gender_division": "Senior men’s legacy Zambian domestic cup, current ownership unresolved",
       "season_start_date": null,
@@ -11541,7 +11549,15 @@
       "endpoint_type": "unassigned pending legacy/current competition ownership",
       "missing_fact": "Substantive approved-scope decision on whether legacy Barclays Cup and current Absa Cup represent the same continuing competition and which identity owns current events.",
       "next_action": "Supply the relevant catalog/approval interpretation and official competition naming continuity before any remap; keep both keys and source assignments unchanged.",
-      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "original_evidence_verified_at": "2026-10-18",
+      "reconciled_at": "2026-11-06",
+      "corroborated_at": "2026-11-06",
+      "prior_evidence_locations": [
+        "SOCCER_FIXTURE_BATCH.md",
+        "tests/fixtures/zpl_20261018/source-proof.json",
+        "data/soccer-caf-domestic-sources.json"
+      ]
     },
     {
       "key": "soccer-zambia-charity-shield-men",
@@ -11550,22 +11566,36 @@
       "catalog_event": "Charity Shield | Men",
       "status": "manual-verification-needed",
       "reviewed_at": "2026-11-06",
-      "evidence_verified_at": "2026-11-06",
-      "official_url": "https://zpl.co.zm/",
+      "evidence_verified_at": "2026-10-18",
+      "official_url": "https://zpl.co.zm/fixture/10425",
       "evidence_urls": [
-        "https://zpl.co.zm/",
-        "https://www.faz.co.zm/"
+        "https://zpl.co.zm/fixture/10425",
+        "https://zpl.co.zm/fixture/10427",
+        "https://zpl.co.zm/"
       ],
-      "finding": "The assigned FAZ page was inaccessible and ZPL root direct read timed out. Indexed official ZPL content establishes Transitional 2026 league scope but did not establish a readable dated Charity Shield report. Secondary September 19 Red Arrows–Power Dynamos and separate women’s match reports are not promoted as official calendar confirmation; the old annual-August assumption is removed.",
-      "progress_kind": "first-time-unresolved",
+      "finding": "Reconciliation of October 18 saved official evidence: both Red Arrows and Power Dynamos calendars date fixture 10425 (Charity Shield–Men–Super) September 20, 2026 at 13:00 UTC with result 1–0. A distinct Men–National fixture 10427 is Chirundu United–Makeni All Stars on September 19. Current secondary reports instead date Red Arrows–Power September 19; this cannot be resolved by conflating the two official divisions or changing UTC/local dates (Lusaka is UTC+2). Current root retrieval timed out, and no repeat of the prior calendar collection is counted as progress.",
+      "progress_kind": "prior-evidence-reconciliation",
       "season_edition": "2026 Samuel Zoom Ndhlovu Charity Shield, primary exact date unverified",
       "gender_division": "Senior men’s national Zambian Charity Shield; not women or provincial event",
       "season_start_date": null,
       "season_end_date": null,
       "endpoint_type": "single senior match needs exact primary dated confirmation",
-      "missing_fact": "Readable official senior men’s 2026 Charity Shield exact match date/result confirmation; distinguish women’s shield and provincial named shields.",
-      "next_action": "Supply the FAZ/ZPL exact senior match report/calendar or competing club’s own dated match report; no secondary date rollover.",
-      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence."
+      "missing_fact": "Resolve the Super fixture’s official September 20 versus secondary September 19 date and confirm whether the generic approved men’s Charity Shield scope includes only Super or also the separate National event.",
+      "next_action": "Supply a dated primary match report/corrected fixture for Red Arrows–Power Dynamos and the applicable approved division scope; keep the separate National match distinct.",
+      "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
+      "original_evidence_verified_at": "2026-10-18",
+      "reconciled_at": "2026-11-06",
+      "corroborated_at": "2026-11-06",
+      "prior_evidence_locations": [
+        "SOCCER_FIXTURE_BATCH.md",
+        "tests/fixtures/zpl_20261018/source-proof.json",
+        "data/soccer-caf-domestic-sources.json"
+      ],
+      "conflicting_date_context": {
+        "saved_official_super_fixture": "2026-09-20",
+        "secondary_super_match_date": "2026-09-19",
+        "separate_official_national_fixture": "2026-09-19"
+      }
     },
     {
       "key": "soccer-zambia-zambia-super-league-men",
@@ -11574,23 +11604,32 @@
       "catalog_event": "Zambia Super League | Men",
       "status": "awaiting-published-dates",
       "reviewed_at": "2026-11-06",
-      "evidence_verified_at": "2026-11-06",
+      "evidence_verified_at": "2026-10-18",
       "official_url": "https://zpl.co.zm/",
       "evidence_urls": [
         "https://zpl.co.zm/",
         "https://zpl.co.zm/club/49?id=49&season=Transitional+2026&team_id=55&view=fixtures"
       ],
-      "finding": "Indexed organizer primary pages explicitly identify Transitional 2026 and Men–Stream A, with Konkola Blades fixtures continuing through January 23, 2027. The old August–May recurring season is not the operative transition edition. Direct root timed out; indexed primary material is identified as such. One club/stream fixture list cannot establish the earliest full league match, other stream or championship/relegation conclusion; secondary October 3 opening is not promoted.",
-      "progress_kind": "first-time-unresolved",
+      "finding": "Reconciliation of the original October 18 ZPL package: twenty official senior club calendars across Streams A/B contain 180 distinct league fixtures, 29 scored results, 11 past unresolved holds and future regular fixtures through January 24, 2027. Retained ICS records establish October 3 as the earliest regular league date. Four nonleague cup copies were excluded. Current indexed club material corroborates Transitional 2026, but does not establish the complete championship/relegation endpoint. The generic August–May map was not updated by that adapter implementation; it is corrected here without rerunning collection.",
+      "progress_kind": "prior-evidence-reconciliation",
       "season_edition": "Transitional 2026 Zambian Super League, extending into 2027",
       "gender_division": "Senior men’s ZPL Transitional 2026 all applicable streams and concluding phases",
-      "season_start_date": null,
+      "season_start_date": "2026-10-03",
       "season_end_date": null,
       "endpoint_type": "full stream-inclusive opening and title/concluding ties unresolved",
-      "missing_fact": "Exact earliest fixture across all current men’s streams and complete championship/relegation playoff final date for Transitional 2026.",
-      "next_action": "Await or supply the organizer’s full stream/knockout calendar or operative transition regulations with numbered concluding fixtures.",
+      "missing_fact": "Exact complete championship/relegation playoff endpoint after the published two-stream regular slate; January 24 is regular-fixture context only.",
+      "next_action": "Await an identifiable official numbered concluding-phase calendar or final match announcement; do not repeat the already-reviewed twenty club calendar inventory.",
       "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
-      "indexed_phase_context": "Men–Stream A fixtures include January 23, 2027; not a verified full endpoint."
+      "indexed_phase_context": "Men–Stream A fixtures include January 23, 2027; not a verified full endpoint.",
+      "original_evidence_verified_at": "2026-10-18",
+      "reconciled_at": "2026-11-06",
+      "corroborated_at": "2026-11-06",
+      "prior_evidence_locations": [
+        "SOCCER_FIXTURE_BATCH.md",
+        "tests/fixtures/zpl_20261018/source-proof.json",
+        "data/soccer-caf-domestic-sources.json"
+      ],
+      "regular_season_end_context": "2027-01-24"
     }
   ],
   "reconciled_against_commit": "bdd882c8b6198af20d8f3e49f5e95d5d4943bcc5"
