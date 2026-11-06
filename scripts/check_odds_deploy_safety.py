@@ -9,7 +9,9 @@ REPOSITORY='cornhskr1/active-offerings-review'
 WORKFLOW_PATH='.github/workflows/deploy-pages.yml'
 # Audited workflow-wide, literal `pages` lock with cancel-in-progress: false.
 # Review the serialization contract before updating this pin after a YAML edit.
-SERIALIZED_WORKFLOW_BLOB='0f76ca30ca7789aaa14eeebbda2e1858d078ca13'
+SERIALIZED_WORKFLOW_BLOB='599f1bddbc6598c777b0df7bfb2e44f61e4076f4'
+# Both reviewed revisions retain the same workflow-wide Pages lock.
+SERIALIZED_WORKFLOW_BLOBS=frozenset((SERIALIZED_WORKFLOW_BLOB,'0f76ca30ca7789aaa14eeebbda2e1858d078ca13'))
 class HistoryChanged(ValueError):
  pass
 
@@ -87,7 +89,7 @@ def serialized_pending_runs(current,runs,get_run,get_jobs,get_workflow,workflow_
  def audited(sha):
   payload=get_workflow(sha)
   return (isinstance(payload,dict) and payload.get('type')=='file'
-          and payload.get('path')==WORKFLOW_PATH and payload.get('sha')==SERIALIZED_WORKFLOW_BLOB)
+          and payload.get('path')==WORKFLOW_PATH and payload.get('sha') in SERIALIZED_WORKFLOW_BLOBS)
  if (not identity(current) or not active(current) or workflow_sha!=current['head_sha']
      or workflow_ref!=REPOSITORY+'/'+WORKFLOW_PATH+'@refs/heads/main'
      or not audited(workflow_sha)):return set()
@@ -126,6 +128,15 @@ for index,name in {
  8:'Run actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e',
  9:'Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065',
 }.items():PINNED_RECOVERY_STEPS[index]=name
+LEGACY_PINNED_RECOVERY_STEPS=PINNED_RECOVERY_STEPS.copy()
+# Node 24 Action migration: preserve historical publication evidence exactly.
+for index,name in {
+ 2:'Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0',
+ 6:'Run actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d',
+ 7:'Run actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9',
+ 8:'Run actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346',
+ 9:'Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0',
+}.items():PINNED_RECOVERY_STEPS[index]=name
 def verified_job_steps(run,payload):
  if run.get('run_attempt')!=1 or run.get('status')!='completed':return None
  if not isinstance(payload,dict) or payload.get('total_count')!=1:return None
@@ -138,7 +149,7 @@ def verified_job_steps(run,payload):
  steps=job.get('steps')
  if not isinstance(steps,list) or len(steps)!=len(DEPLOY_STEPS):return None
  if any(not isinstance(step,dict) or step.get('status')!='completed' for step in steps):return None
- if [step.get('name') for step in steps] not in (DEPLOY_STEPS,RECOVERY_STEPS,PINNED_RECOVERY_STEPS):return None
+ if [step.get('name') for step in steps] not in (DEPLOY_STEPS,RECOVERY_STEPS,LEGACY_PINNED_RECOVERY_STEPS,PINNED_RECOVERY_STEPS):return None
  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,17,18,19]:return None
  return [step.get('conclusion') for step in steps]
 
