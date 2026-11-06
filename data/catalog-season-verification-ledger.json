@@ -12,7 +12,8 @@
     "source-access-held": "An existing publisher access hold prevents this verification route.",
     "not-yet-reviewed": "No review result has been recorded in this pass.",
     "not-scheduled": "The official current-edition format does not include the named competition; distinct from unreviewed dates or cancellation.",
-    "scope-conflict": "Official competition identity or scope does not yet match the preserved catalog approval; existing mapping holds remain."
+    "scope-conflict": "Official competition identity or scope does not yet match the preserved catalog approval; existing mapping holds remain.",
+    "nonseasonal": "An event series, promoter, sanctioning authority or approval rule has no single competition season; dates and eligibility must be established per event."
   },
   "records": [
     {
@@ -3070,6 +3071,402 @@
       "season_edition": "2026",
       "season_start_date": null,
       "season_end_date": null
+    },
+    {
+      "key": "boxing-bkfc",
+      "sport": "Boxing",
+      "country": "Conditional Approval",
+      "catalog_event": "Bare Knuckle Fighting Championship (BKFC)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.bkfc.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://www.bkfc.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing conditional-event evidence, not a newly resolved calendar. No free fights. Professional status and recognized oversight must still be established for each bout. The October 28, 2026 catalog update removes the geographic restriction. This identity is a sequence of separately dated bouts/cards, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-bout-level-rule",
+      "sport": "Boxing",
+      "country": "Controlling Approval Standard",
+      "catalog_event": "Bout-Level Approval Test",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-rule evidence, not a newly resolved calendar. Approval of one bout does not extend to any other bout on the same card. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-ibf",
+      "sport": "Boxing",
+      "country": "International Sanctioning Organizations",
+      "catalog_event": "International Boxing Federation (IBF)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.ibf-usba-boxing.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://www.ibf-usba-boxing.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. The specific bout must be sanctioned or overseen by the IBF. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-wba",
+      "sport": "Boxing",
+      "country": "International Sanctioning Organizations",
+      "catalog_event": "World Boxing Association (WBA)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.wbaboxing.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://www.wbaboxing.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. The specific bout must be sanctioned or overseen by the WBA. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-wbc",
+      "sport": "Boxing",
+      "country": "International Sanctioning Organizations",
+      "catalog_event": "World Boxing Council (WBC)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://wbcboxing.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://wbcboxing.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. The specific bout must be sanctioned or overseen by the WBC. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-wbo",
+      "sport": "Boxing",
+      "country": "International Sanctioning Organizations",
+      "catalog_event": "World Boxing Organization (WBO)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://wboboxing.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://wboboxing.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. The specific bout must be sanctioned or overseen by the WBO. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-abccs",
+      "sport": "Boxing",
+      "country": "Jurisdictional and Promotional Authorities",
+      "catalog_event": "Association of Boxing Commissions and Combative Sports (ABCCS)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.abcboxing.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://www.abcboxing.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. The specific bout must fall under recognized ABCCS-member commission authority. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-bbbofc",
+      "sport": "Boxing",
+      "country": "Jurisdictional and Promotional Authorities",
+      "catalog_event": "British Boxing Board of Control (BBBofC)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://bbbofc.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://bbbofc.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. BBBofC oversight of the specific bout is independently sufficient. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-mvp",
+      "sport": "Boxing",
+      "country": "Jurisdictional and Promotional Authorities",
+      "catalog_event": "Most Valuable Promotions (MVP)",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.mvppromotions.com/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://www.mvppromotions.com/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approved-promoter evidence, not a newly resolved calendar. MVP promotion of the specific bout is independently sufficient. This identity is a sequence of separately dated bouts/cards, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "boxing-state-commissions",
+      "sport": "Boxing",
+      "country": "Jurisdictional and Promotional Authorities",
+      "catalog_event": "State Athletic Commissions",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.abcboxing.com/commission-directory/",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+        "https://www.abcboxing.com/commission-directory/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing approval-authority evidence, not a newly resolved calendar. Oversight of the specific bout by a recognized state athletic commission is independently sufficient. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "combat-event-rule",
+      "sport": "Combat Sports",
+      "country": "Controlling Approval Standard",
+      "catalog_event": "Combat Sports Approval Test",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf",
+      "evidence_urls": [
+        "https://nrgc.nebraska.gov/sites/default/files/doc/Nebraska%20Authorized%20Sports%20Wagering%20Menu%2011.2.26.pdf"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json",
+        "data/catalog-official-sources.json"
+      ],
+      "source_version": "Nebraska Authorized Sports Wagering Menu 11.2.26; SHA256 c6acb6a0a3c30d2b1bc008a23357f3dc1fde648a51f2bec26742713da1da1f72",
+      "finding": "Reconciliation of existing event-approval-rule evidence, not a newly resolved calendar. Apply the approval test to the specific event and approved promotion or event series. This identity is an oversight authority or per-event approval standard, not a season competition with a shared opening and championship closing. No event dates are promoted to annual bounds.",
+      "season_edition": "Not applicable: per-event authority/promotion/rule",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Review exact event date, professional/sanctioning status and all applicable catalog restrictions for each bout; no annual window required.",
+      "revisit_trigger": "A revised official catalog identity or an explicit conversion to a bounded championship format."
+    },
+    {
+      "key": "combat-dwcs",
+      "sport": "Combat Sports",
+      "country": "International",
+      "catalog_event": "Dana White Contender Series",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "reconciled_at": "2026-11-06",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.ufc.com/dwcs?page=1",
+      "evidence_urls": [
+        "https://www.ufc.com/dwcs?page=1"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json"
+      ],
+      "finding": "Existing catalog maps this as an approved event series, nonseasonal for permissibility. Indexed official UFC text identifies Season 10 opening August 11, 2026 and Week 10 October 13, 2026. Direct retrieval returned 403; no bypass attempted. These are dated Season 10 context, not an annual permission window or a future-edition schedule.",
+      "season_edition": "Event series; see finding for any dated subseries",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Verify exact card date and all applicable professional, age and approved-brand restrictions per event.",
+      "revisit_trigger": "Official revised event-series format or changed catalog identity; do not reopen for unchanged incomplete extraction."
+    },
+    {
+      "key": "combat-glory",
+      "sport": "Combat Sports",
+      "country": "International",
+      "catalog_event": "Glory Kickboxing",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "reconciled_at": "2026-11-06",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://glorykickboxing.com/events",
+      "evidence_urls": [
+        "https://glorykickboxing.com/events"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json"
+      ],
+      "finding": "Existing catalog approval is the professional GLORY promotion, not one Grand Prix. Official event hub exposes navigation and age-verification text but no extracted schedule rows. A particular title tournament final cannot define the whole promotion season. Preserve per-card review and do not use secondary event lists or the search-result proxy.",
+      "season_edition": "Event series; see finding for any dated subseries",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Verify exact card date and all applicable professional, age and approved-brand restrictions per event.",
+      "revisit_trigger": "Official revised event-series format or changed catalog identity; do not reopen for unchanged incomplete extraction."
+    },
+    {
+      "key": "combat-one",
+      "sport": "Combat Sports",
+      "country": "International",
+      "catalog_event": "ONE Championship",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-17",
+      "reconciled_at": "2026-11-06",
+      "progress_kind": "prior-evidence-reconciliation",
+      "official_url": "https://www.onefc.com/news/one-championship-gears-up-for-historic-2026-with-record-breaking-72-events/",
+      "evidence_urls": [
+        "https://www.onefc.com/news/one-championship-gears-up-for-historic-2026-with-record-breaking-72-events/",
+        "https://www.onefc.com/events/"
+      ],
+      "evidence_repository_paths": [
+        "data/catalog-season-map.json",
+        "data/catalog-live.json"
+      ],
+      "finding": "Official January 7, 2026 announcement describes a continuing multi-series 72-event calendar including numbered cards, Fight Nights and Friday Fights. Catalog approval remains ONLY numbered cards and Fight Nights; the wider calendar does not authorize Friday Fights or other brands. Per-event dates and eligibility apply, not a shared championship endpoint.",
+      "season_edition": "Event series; see finding for any dated subseries",
+      "season_start_date": null,
+      "season_end_date": null,
+      "missing_fact": "",
+      "next_action": "Verify exact card date and all applicable professional, age and approved-brand restrictions per event.",
+      "revisit_trigger": "Official revised event-series format or changed catalog identity; do not reopen for unchanged incomplete extraction."
     }
   ],
   "reconciled_against_commit": "832c7b1f7856f5bb24d1df2334d8284e9f3e0449"
