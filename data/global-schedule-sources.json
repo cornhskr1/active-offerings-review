@@ -351,16 +351,22 @@
       "coverage_status": "complete",
       "endpoint": "https://www.dota2.com/esports/ti15",
       "official_schedule_url": "https://www.dota2.com/esports/ti15",
-      "source_note": "Official Valve tournament window for The International 2026. Tournament-level coverage is used because Valve does not expose a stable unattended match feed.",
+      "source_note": "Valve-verified TI 2026 finals August 13–23 in Shanghai, including Swiss stage and grand final; June qualification is separate. Corrected November 6 from the unsupported October window. Tournament-level coverage; no matchups invented.",
       "official_events": [
         {
           "source_id": "esports-dota-international",
           "league": "The International",
           "name": "The International 2026",
-          "start_date": "2026-10-07",
-          "end_date": "2026-10-17",
-          "location": "International",
-          "official_schedule_url": "https://www.dota2.com/esports/ti15"
+          "start_date": "2026-08-13",
+          "end_date": "2026-08-23",
+          "location": "Shanghai, China",
+          "official_schedule_url": "https://www.dota2.com/esports/ti15",
+          "season_evidence_urls": [
+            "https://steamcommunity.com/games/dota2/announcements/detail/523115482349306001",
+            "https://www.dota2.com/newsentry/523115482349306001",
+            "https://www.dota2.com/news",
+            "https://www.dota2.com.cn/international/2026"
+          ]
         }
       ],
       "catalog_terms": [
@@ -396,7 +402,7 @@
       "coverage_status": "complete",
       "endpoint": "https://esportsworldcup.com/",
       "official_schedule_url": "https://esportsworldcup.com/",
-      "source_note": "Official Esports World Cup 2026 Dota 2 tournament window; the competition is complete.",
+      "source_note": "Historical July 14–19 observation retained pending full-edition verification. November 6 season ledger flags possible omitted group stage and unverified venue; official page returned 403. Do not treat this stored observation as an independently confirmed full tournament calendar.",
       "official_events": [
         {
           "source_id": "esports-dota-ewc",
