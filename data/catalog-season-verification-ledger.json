@@ -11630,7 +11630,863 @@
         "data/soccer-caf-domestic-sources.json"
       ],
       "regular_season_end_context": "2027-01-24"
+    },
+    {
+      "key": "surfing-wsl-big-wave-men",
+      "sport": "Surfing",
+      "country": "International",
+      "catalog_event": "Big Wave Tour | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldsurfleague.com/events/2026/bwt?all=1",
+      "evidence_urls": [
+        "https://www.worldsurfleague.com/events/2026/bwt?all=1"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. WSL has no confirmed 2026–27 men’s Big Wave Tour calendar or waiting periods. No WSL-published 2026–27 men’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 WSL Big Wave Tour men",
+      "gender_division": "Big Wave Tour | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact official division-specific competition/waiting-period opening and full endpoint; no prior-season event, awards or independent contest substitution.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026–27 Big Wave Tour dates not published",
+        "season_hold": true,
+        "hold_reason": "No WSL-published 2026–27 men’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "surfing-wsl-big-wave-women",
+      "sport": "Surfing",
+      "country": "International",
+      "catalog_event": "Big Wave Tour | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldsurfleague.com/events/2026/bwt?all=1",
+      "evidence_urls": [
+        "https://www.worldsurfleague.com/events/2026/bwt?all=1"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. WSL has no confirmed 2026–27 women’s Big Wave Tour calendar or waiting periods. No WSL-published 2026–27 women’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 WSL Big Wave Tour women",
+      "gender_division": "Big Wave Tour | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact official division-specific competition/waiting-period opening and full endpoint; no prior-season event, awards or independent contest substitution.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026–27 Big Wave Tour dates not published",
+        "season_hold": true,
+        "hold_reason": "No WSL-published 2026–27 women’s Big Wave Tour window or competition call is verified. Prior-season events, awards, and independently scheduled big-wave contests cannot activate this approved identity."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "tennis-atp-challenger",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "ATP Challenger Tour | Men",
+      "status": "source-access-held",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-28",
+      "official_url": "https://www.atptour.com/en/atp-challenger-tour/calendar",
+      "evidence_urls": [
+        "https://www.atptour.com/en/atp-challenger-tour/calendar"
+      ],
+      "finding": "Reconciliation of the September 28 publisher probe and current-date discovery failures recorded in PROJECT_CONTROL.md: ATP Challenger returned Cloudflare HTTP 403, and later crawl quality gates retained a degraded lane with unresolved current-page dates. A missing ledger entry is not a first research attempt. No calendar, alternate client or mirror was requested for this Challenger recheck. The January–November generic range is not complete annual evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 ATP Challenger Tour men",
+      "gender_division": "ATP Challenger Tour | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Full current approved Challenger calendar including first qualifying date and last full tournament final; current/archive discovery remains unresolved.",
+      "next_action": "Use an identifiable newly published readable official full Challenger calendar or resolve the recorded publisher/date-discovery issue; do not rerun the same unchanged crawl.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "January–November"
+      },
+      "hold_kind": "prior-observed-publisher-403-and-current-date-discovery-gap",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-28",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ],
+      "sources_checked": [
+        "PROJECT_CONTROL.md September 28 source probe and Challenger lane checkpoints",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "tennis-atp-tour",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "ATP Tour | Men",
+      "status": "source-access-held",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.atptour.com/en/news/what-is-the-2026-atp-tour-calendar",
+      "evidence_urls": [
+        "https://www.atptour.com/en/news/what-is-the-2026-atp-tour-calendar"
+      ],
+      "finding": "The current primary ATP season-calendar article returned HTTP 403. Indexed organizer excerpts identify 2026 ATP events and November 15–22 Nitto ATP Finals, but do not by themselves establish the entire approved annual envelope, earliest qualifying boundary or treatment of separately named events. No alternate ATP endpoint, client or mirror was used after that failure; ESPN hold remains unchanged. Generic January–November dates are removed.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 ATP Tour senior men",
+      "gender_division": "ATP Tour | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Readable operative full Tour calendar establishing earliest applicable qualifying/mixed-team opening and last applicable final; distinguish Challenger, Next Gen and Davis Cup.",
+      "next_action": "Supply the operative exact-scope official full ATP season calendar through an authorized readable publication; retain publisher and participant safeguards.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "January–November"
+      },
+      "hold_kind": "observed-official-calendar-article-403"
+    },
+    {
+      "key": "tennis-davis-cup-men",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Davis Cup | Men",
+      "status": "source-access-held",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.daviscup.com/",
+      "evidence_urls": [
+        "https://www.daviscup.com/"
+      ],
+      "finding": "The new October 30 catalog identity explicitly lacks a verified calendar or dedicated Davis Cup source. The held ITF primary collection route cannot be used, and no alternative ITF domain/client/mirror was requested to work around that publisher restriction. The Davis Cup competition URL is retained as a manual reference, not claimed fetched evidence. ATP Tour, exhibition and junior calendars cannot substitute. This documents a held verification route, not a claim every national-federation or competition route is impossible.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 senior Davis Cup, approved October 30",
+      "gender_division": "Davis Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact approved Davis Cup qualifying/group scope, earliest applicable tie and complete championship final calendar; a dedicated exact source is unverified.",
+      "next_action": "Supply the official complete senior Davis Cup edition calendar via an authorized route, including the approved qualifying/group scope; do not change source assignments or broaden approval.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {},
+      "hold_kind": "publisher-policy-ITF-primary-route",
+      "sources_checked": [
+        "data/catalog-season-map.json",
+        "data/competition-identity-registry.json",
+        "PUBLISHER_COLLECTION_HOLDS.md; no held network request"
+      ]
+    },
+    {
+      "key": "tennis-utr-pro-tour-men",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "UTR Pro Tennis Tour | Men",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.utrsports.net/pages/ptt-tournaments",
+      "evidence_urls": [
+        "https://www.utrsports.net/pages/ptt-tournaments"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. UTR Pro Tennis Tour men’s events have separately published dates. The annual envelope is for orientation only; a particular tournament requires its own verified date and identity.  The saved January 1–December 31 range was explicitly orientation only. It does not establish first/last actual events or an annual championship.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 UTR Pro Tennis Tour separately dated event series",
+      "gender_division": "UTR Pro Tennis Tour | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Individual tournament endpoint; no single annual championship",
+      "missing_fact": "No single championship season is established by this event calendar; exact tournament dates and division apply per event.",
+      "next_action": "Use the individual gender-specific official tournament schedule and retain independent athlete-age checks; reopen annual boundaries only for a new named championship publication.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Year-round 2026 tournament calendar; event dates vary"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "tennis-utr-pro-tour-women",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "UTR Pro Tennis Tour | Women",
+      "status": "nonseasonal",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.utrsports.net/pages/ptt-tournaments",
+      "evidence_urls": [
+        "https://www.utrsports.net/pages/ptt-tournaments"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. UTR Pro Tennis Tour women’s events have separately published dates. The annual envelope is for orientation only; a particular tournament requires its own verified date and identity.  The saved January 1–December 31 range was explicitly orientation only. It does not establish first/last actual events or an annual championship.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 UTR Pro Tennis Tour separately dated event series",
+      "gender_division": "UTR Pro Tennis Tour | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Individual tournament endpoint; no single annual championship",
+      "missing_fact": "No single championship season is established by this event calendar; exact tournament dates and division apply per event.",
+      "next_action": "Use the individual gender-specific official tournament schedule and retain independent athlete-age checks; reopen annual boundaries only for a new named championship publication.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Year-round 2026 tournament calendar; event dates vary"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "tennis-wta-tour",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "WTA Tour | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-06",
+      "official_url": "https://www.wtatennis.com/news/4377748/wta-announces-2026-tour-calendar",
+      "evidence_urls": [
+        "https://www.wtatennis.com/news/4377748/wta-announces-2026-tour-calendar",
+        "https://www.wtatennis.com/tournaments/wta-125",
+        "https://www.wtatennis.com/match-notes"
+      ],
+      "finding": "The saved map explicitly says Annual WTA Tour and WTA 125 calendar, and the identity registry retains observations such as RoveretOpen and Mallorca alongside Tour events. WTA’s official Tour release lists 1000/500/250, United Cup, Grand Slams and Finals, while WTA 125 has a separate official calendar. Current WTA match notes identify the Finals November 8–15, 2026 in Indian Wells, superseding the older launch’s Riyadh context. Those partial facts do not establish one approved combined annual scope or first qualifying boundary. No WTA125 approval, provider remap or new restriction is inferred.",
+      "progress_kind": "first-time-unresolved",
+      "season_edition": "2026 WTA Tour scope versus saved WTA 125-inclusive basis",
+      "gender_division": "WTA Tour | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Resolve the saved WTA Tour-plus-WTA125 calendar/source scope against the approved Tour identity, then exact earliest qualifying/United Cup opening and full applicable final; do not treat every WTA tier as automatically authorized.",
+      "next_action": "Resolve the existing provider/calendar tier mismatch against the substantive approved scope before assigning a combined season; provide the exact full approved-tier calendar including qualifying where applicable.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "January–November"
+      },
+      "unassigned_title_context": {
+        "event": "FAGE WTA Finals",
+        "start_date": "2026-11-08",
+        "end_date": "2026-11-15",
+        "venue": "Indian Wells, USA"
+      }
+    },
+    {
+      "key": "volleyball-brazil-supercopa-men",
+      "sport": "Volleyball",
+      "country": "Brazil",
+      "catalog_event": "Brazilian Supercopa | Men",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://cbv.com.br/volei-de-quadra/supercopa",
+      "evidence_urls": [
+        "https://cbv.com.br/volei-de-quadra/supercopa"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. Reported 2026 date and venue: https://jc.uol.com.br/blog-do-torcedor/volei/2026/09/17/supercopa-masculina-de-volei-2026-sera-disputada-em-sao-jose-veja-data-horario-e-finalistas.html. CBV’s direct Supercopa page https://cbv.com.br/volei-de-quadra/supercopa still displays 2025 finals. This is a calendar hold, not a fixture source or new catalog approval. Reports citing CBV place the 2026 men’s Supercopa on October 23 in São José, Santa Catarina, but CBV’s public Supercopa page still displays 2025 finals. Verify the 2026 date, venue and participants against a current CBV publication and operator menu before clearing activity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Brazilian Supercopa men",
+      "gender_division": "Brazilian Supercopa | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Direct current CBV confirmation of the reported October 23 São José men’s final date, division, pairing and venue; prior accessible page still showed 2025.",
+      "next_action": "Supply the precise official edition-specific missing fact/conflict evidence identified in this record.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026 October 23 reported · CBV direct schedule confirmation pending",
+        "season_hold": true,
+        "hold_reason": "Reports citing CBV place the 2026 men’s Supercopa on October 23 in São José, Santa Catarina, but CBV’s public Supercopa page still displays 2025 finals. Verify the 2026 date, venue and participants against a current CBV publication and operator menu before clearing activity."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-brazil-supercopa-women",
+      "sport": "Volleyball",
+      "country": "Brazil",
+      "catalog_event": "Brazilian Supercopa | Women",
+      "status": "manual-verification-needed",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://cbv.com.br/volei-de-quadra/supercopa",
+      "evidence_urls": [
+        "https://cbv.com.br/volei-de-quadra/supercopa"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. Reported 2026 date and venue: https://ge.globo.com/ma/volei/noticia/2026/08/12/cbv-confirma-supercopa-feminina-entre-praia-clube-e-osasco-em-sao-luis.ghtml. CBV’s direct Supercopa page https://cbv.com.br/volei-de-quadra/supercopa still displays 2025 finals. This is a calendar hold, not a fixture source or new catalog approval. Reports citing CBV place the 2026 women’s Supercopa on October 16 in São Luís, Maranhão, but CBV’s public Supercopa page still displays 2025 finals. Verify the 2026 date, venue and participants against a current CBV publication and operator menu before clearing activity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Brazilian Supercopa women",
+      "gender_division": "Brazilian Supercopa | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Direct current CBV confirmation of the reported October 16 São Luís women’s final date, division, pairing and venue; prior accessible page still showed 2025.",
+      "next_action": "Supply the precise official edition-specific missing fact/conflict evidence identified in this record.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026 October 16 reported · CBV direct schedule confirmation pending",
+        "season_hold": true,
+        "hold_reason": "Reports citing CBV place the 2026 women’s Supercopa on October 16 in São Luís, Maranhão, but CBV’s public Supercopa page still displays 2025 finals. Verify the 2026 date, venue and participants against a current CBV publication and operator menu before clearing activity."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-brazil-superliga-men",
+      "sport": "Volleyball",
+      "country": "Brazil",
+      "catalog_event": "Superliga Masculina | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-08-13/cbv-reune-clubes-da-superliga-masculina-para-alinhar-detalhes-da-temporada-2026-2027",
+      "evidence_urls": [
+        "https://cbv.com.br/noticias/volei-de-quadra/2026-08-13/cbv-reune-clubes-da-superliga-masculina-para-alinhar-detalhes-da-temporada-2026-2027",
+        "https://cbv.com.br/volei-de-quadra/superliga-a-masculina"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. CBV 2026–27 club meeting confirms the competition, while the division calendar remains on the 2025–26 edition; 2026–27 dates are unpublished CBV confirms the 2026–27 Superliga Masculina competition and discussed its calendar with clubs, but its public division page still displays 2025–26. No exact 2026–27 start, end, or fixture calendar is verified. Do not reuse last season or a generic October–May window; check the operator menu and CBV before clearing activity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Superliga Masculina",
+      "gender_division": "Superliga Masculina | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact current 2026/27 opening and full championship playoff/last possible deciding-game endpoint; prior public division calendar was 2025/26.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026–27 season dates pending official CBV publication",
+        "season_hold": true,
+        "hold_reason": "CBV confirms the 2026–27 Superliga Masculina competition and discussed its calendar with clubs, but its public division page still displays 2025–26. No exact 2026–27 start, end, or fixture calendar is verified. Do not reuse last season or a generic October–May window; check the operator menu and CBV before clearing activity."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-brazil-superliga-women",
+      "sport": "Volleyball",
+      "country": "Brazil",
+      "catalog_event": "Superliga Feminina | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-08-05/com-anuncio-de-transmissao-de-pelo-menos-um-jogo-por-rodada-na-getv-cbv-reune-clubes-da-superliga-feminina-para-alinhamento-da-temporada-2026-2027",
+      "evidence_urls": [
+        "https://cbv.com.br/noticias/volei-de-quadra/2026-08-05/com-anuncio-de-transmissao-de-pelo-menos-um-jogo-por-rodada-na-getv-cbv-reune-clubes-da-superliga-feminina-para-alinhamento-da-temporada-2026-2027",
+        "https://cbv.com.br/volei-de-quadra/superliga-a-feminina"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. CBV 2026–27 club meeting confirms the competition, while the division calendar remains on the 2025–26 edition; 2026–27 dates are unpublished CBV confirms the 2026–27 Superliga Feminina competition and discussed its calendar with clubs, but its public division page still displays 2025–26. No exact 2026–27 start, end, or fixture calendar is verified. Do not reuse last season or a generic October–May window; check the operator menu and CBV before clearing activity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 Superliga Feminina",
+      "gender_division": "Superliga Feminina | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact current 2026/27 opening and full championship playoff/last possible deciding-game endpoint; prior public division calendar was 2025/26.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026–27 season dates pending official CBV publication",
+        "season_hold": true,
+        "hold_reason": "CBV confirms the 2026–27 Superliga Feminina competition and discussed its calendar with clubs, but its public division page still displays 2025–26. No exact 2026–27 start, end, or fixture calendar is verified. Do not reuse last season or a generic October–May window; check the operator menu and CBV before clearing activity."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-cev-champions-league-men",
+      "sport": "Volleyball",
+      "country": "Europe",
+      "catalog_event": "CEV Champions League | Men",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1947&PID=3533",
+      "evidence_urls": [
+        "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1947&PID=3533"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. CEV 2027 competition overview publishes early rounds through the men’s May 15–16 Final Four; published phases are not an unattended match feed.  Reconcile the missing child verification metadata from the September 26 durable checkpoint; this is not a newly resolved calendar.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 CEV Champions League men",
+      "gender_division": "CEV Champions League | Men",
+      "season_start_date": "2026-10-20",
+      "season_end_date": "2027-05-16",
+      "endpoint_type": "Scheduled championship final day of the published Final Four",
+      "missing_fact": "",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026-10-20–2027-05-16",
+        "season_start_date": "2026-10-20",
+        "season_end_date": "2027-05-16"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-cev-champions-league-women",
+      "sport": "Volleyball",
+      "country": "Europe",
+      "catalog_event": "CEV Champions League | Women",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1948&PID=3534",
+      "evidence_urls": [
+        "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1948&PID=3534"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. CEV 2027 competition overview publishes early rounds through the women’s May 1–2 Final Four; published phases are not an unattended match feed.  Reconcile the missing child verification metadata from the September 26 durable checkpoint; this is not a newly resolved calendar.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 CEV Champions League women",
+      "gender_division": "CEV Champions League | Women",
+      "season_start_date": "2026-10-20",
+      "season_end_date": "2027-05-02",
+      "endpoint_type": "Scheduled championship final day of the published Final Four",
+      "missing_fact": "",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026-10-20–2027-05-02",
+        "season_start_date": "2026-10-20",
+        "season_end_date": "2027-05-02"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-continental-cup-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "FIVB Beach Volleyball Continental Cup | Men",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/last-olympic-beach-volleyball-spots-filled-at-continental-qualifiers/",
+      "evidence_urls": [
+        "https://www.fivb.com/last-olympic-beach-volleyball-spots-filled-at-continental-qualifiers/",
+        "https://www.fivb.com/volleyball-and-beach-volleyball-qualification-systems-for-la28-olympic-games-confirmed/",
+        "https://www.fivb.com/la28-slots-at-stake-as-beach-volleyball-continental-championships-begin/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. FIVB identifies the 2024 AVC Continental Cup; no division-specific current Continental Cup calendar is established for this exact catalog identity. FIVB documents a 2024 AVC Continental Cup, while LA28 qualification uses 2026 regional championships or tour finals across five confederations. An exact current FIVB Beach Volleyball Continental Cup edition and division-specific fixture source are unverified. Do not substitute the 2026 championships or infer one global Cup schedule.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Exact current Continental Cup identity versus 2026 LA28 regional championships",
+      "gender_division": "FIVB Beach Volleyball Continental Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Establish exact approved current competition/division continuity; 2024 AVC Continental Cup and 2026 regional championships/tour finals are not automatically one global Cup calendar.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2024 AVC Continental Cup documented · exact 2026 edition unverified",
+        "season_hold": true,
+        "hold_reason": "FIVB documents a 2024 AVC Continental Cup, while LA28 qualification uses 2026 regional championships or tour finals across five confederations. An exact current FIVB Beach Volleyball Continental Cup edition and division-specific fixture source are unverified. Do not substitute the 2026 championships or infer one global Cup schedule."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-continental-cup-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "FIVB Beach Volleyball Continental Cup | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/last-olympic-beach-volleyball-spots-filled-at-continental-qualifiers/",
+      "evidence_urls": [
+        "https://www.fivb.com/last-olympic-beach-volleyball-spots-filled-at-continental-qualifiers/",
+        "https://www.fivb.com/volleyball-and-beach-volleyball-qualification-systems-for-la28-olympic-games-confirmed/",
+        "https://www.fivb.com/la28-slots-at-stake-as-beach-volleyball-continental-championships-begin/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. FIVB identifies the 2024 AVC Continental Cup; no division-specific current Continental Cup calendar is established for this exact catalog identity. FIVB documents a 2024 AVC Continental Cup, while LA28 qualification uses 2026 regional championships or tour finals across five confederations. An exact current FIVB Beach Volleyball Continental Cup edition and division-specific fixture source are unverified. Do not substitute the 2026 championships or infer one global Cup schedule.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Exact current Continental Cup identity versus 2026 LA28 regional championships",
+      "gender_division": "FIVB Beach Volleyball Continental Cup | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Establish exact approved current competition/division continuity; 2024 AVC Continental Cup and 2026 regional championships/tour finals are not automatically one global Cup calendar.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2024 AVC Continental Cup documented · exact 2026 edition unverified",
+        "season_hold": true,
+        "hold_reason": "FIVB documents a 2024 AVC Continental Cup, while LA28 qualification uses 2026 regional championships or tour finals across five confederations. An exact current FIVB Beach Volleyball Continental Cup edition and division-specific fixture source are unverified. Do not substitute the 2026 championships or infer one global Cup schedule."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-pro-tour-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Beach Pro Tour | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/from-world-champions-to-rising-stars-volleyball-world-announces-stops-for-2026-beach-pro-tour/",
+      "evidence_urls": [
+        "https://www.fivb.com/from-world-champions-to-rising-stars-volleyball-world-announces-stops-for-2026-beach-pro-tour/",
+        "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/2026/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. FIVB/Volleyball World publish a 2026 Beach Pro Tour calendar with men competition. Futures began February 5; Elite and Challenge stops are published March–August. The November successor Beach World Series is a different competition and is not imported into this catalog identity. An unattended gender-specific fixture adapter is not established. ",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Beach Pro Tour men",
+      "gender_division": "Beach Pro Tour | Men",
+      "season_start_date": "2026-02-05",
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact division-specific full final/last tournament after Futures and Elite/Challenge stops; November Beach World Series is a distinct successor.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026 tour calendar published; Futures begin February 5, Elite/Challenge run March–August; final tour date unconfirmed"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-pro-tour-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Beach Pro Tour | Women",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/from-world-champions-to-rising-stars-volleyball-world-announces-stops-for-2026-beach-pro-tour/",
+      "evidence_urls": [
+        "https://www.fivb.com/from-world-champions-to-rising-stars-volleyball-world-announces-stops-for-2026-beach-pro-tour/",
+        "https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/2026/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. FIVB/Volleyball World publish a 2026 Beach Pro Tour calendar with women competition. Futures began February 5; Elite and Challenge stops are published March–August. The November successor Beach World Series is a different competition and is not imported into this catalog identity. An unattended gender-specific fixture adapter is not established. ",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026 Beach Pro Tour women",
+      "gender_division": "Beach Pro Tour | Women",
+      "season_start_date": "2026-02-05",
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact division-specific full final/last tournament after Futures and Elite/Challenge stops; November Beach World Series is a distinct successor.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "2026 tour calendar published; Futures begin February 5, Elite/Challenge run March–August; final tour date unconfirmed"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-world-tour-championships-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Beach Volleyball World Tour Championships | Men",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/beach-volleyball/fivb-competitions/",
+      "evidence_urls": [
+        "https://www.fivb.com/beach-volleyball/fivb-competitions/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. The exact catalog wording has no verified current event calendar; preserve the legal approval but hold current coverage and wagering review for identity clarification. The catalog says Beach Volleyball World Tour Championships; FIVB identifies historical World Tour Finals and separately runs Beach Volleyball World Championships. A current competition matching this exact catalog wording has not been verified. Do not substitute either product.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Historical catalog World Tour Championships, current exact identity unverified",
+      "gender_division": "Beach Volleyball World Tour Championships | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Clarify exact approved named competition versus historical World Tour Finals or distinct Beach Volleyball World Championships; no current calendar may be substituted.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Historical competition; no current edition verified",
+        "season_hold": true,
+        "hold_reason": "The catalog says Beach Volleyball World Tour Championships; FIVB identifies historical World Tour Finals and separately runs Beach Volleyball World Championships. A current competition matching this exact catalog wording has not been verified. Do not substitute either product."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-world-tour-championships-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Beach Volleyball World Tour Championships | Women",
+      "status": "scope-conflict",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/beach-volleyball/fivb-competitions/",
+      "evidence_urls": [
+        "https://www.fivb.com/beach-volleyball/fivb-competitions/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. The exact catalog wording has no verified current event calendar; preserve the legal approval but hold current coverage and wagering review for identity clarification. The catalog says Beach Volleyball World Tour Championships; FIVB identifies historical World Tour Finals and separately runs Beach Volleyball World Championships. A current competition matching this exact catalog wording has not been verified. Do not substitute either product.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Historical catalog World Tour Championships, current exact identity unverified",
+      "gender_division": "Beach Volleyball World Tour Championships | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Clarify exact approved named competition versus historical World Tour Finals or distinct Beach Volleyball World Championships; no current calendar may be substituted.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Historical competition; no current edition verified",
+        "season_hold": true,
+        "hold_reason": "The catalog says Beach Volleyball World Tour Championships; FIVB identifies historical World Tour Finals and separately runs Beach Volleyball World Championships. A current competition matching this exact catalog wording has not been verified. Do not substitute either product."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-world-tour-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Beach Volleyball World Tour | Men",
+      "status": "not-scheduled",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/volleyball-world-announces-beach-pro-tour-the-ultimate-beach-volleyball-experience-2/",
+      "evidence_urls": [
+        "https://www.fivb.com/volleyball-world-announces-beach-pro-tour-the-ultimate-beach-volleyball-experience-2/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. The exact catalog wording has no verified current event calendar; preserve the legal approval but hold current coverage and wagering review for identity clarification. FIVB states that the Beach Pro Tour replaced the Beach Volleyball World Tour in 2022. Do not treat current Beach Pro Tour or Beach World Series events as this retired catalog competition.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Retired Beach Volleyball World Tour, replaced in 2022",
+      "gender_division": "Beach Volleyball World Tour | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "No current edition of the named retired Tour is established; approval/source remapping to Pro Tour or World Series is a separate substantive question.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Historical competition; no current edition verified",
+        "season_hold": true,
+        "hold_reason": "FIVB states that the Beach Pro Tour replaced the Beach Volleyball World Tour in 2022. Do not treat current Beach Pro Tour or Beach World Series events as this retired catalog competition."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-beach-world-tour-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Beach Volleyball World Tour | Women",
+      "status": "not-scheduled",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/volleyball-world-announces-beach-pro-tour-the-ultimate-beach-volleyball-experience-2/",
+      "evidence_urls": [
+        "https://www.fivb.com/volleyball-world-announces-beach-pro-tour-the-ultimate-beach-volleyball-experience-2/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. The exact catalog wording has no verified current event calendar; preserve the legal approval but hold current coverage and wagering review for identity clarification. FIVB states that the Beach Pro Tour replaced the Beach Volleyball World Tour in 2022. Do not treat current Beach Pro Tour or Beach World Series events as this retired catalog competition.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "Retired Beach Volleyball World Tour, replaced in 2022",
+      "gender_division": "Beach Volleyball World Tour | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "No current edition of the named retired Tour is established; approval/source remapping to Pro Tour or World Series is a separate substantive question.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Historical competition; no current edition verified",
+        "season_hold": true,
+        "hold_reason": "FIVB states that the Beach Pro Tour replaced the Beach Volleyball World Tour in 2022. Do not treat current Beach Pro Tour or Beach World Series events as this retired catalog competition."
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-challenger-cup-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball Challenger Cup | Men",
+      "status": "not-scheduled",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/china-and-the-philippines-set-to-host-volleyball-challenger-cup-2024/",
+      "evidence_urls": [
+        "https://www.fivb.com/china-and-the-philippines-set-to-host-volleyball-challenger-cup-2024/",
+        "https://www.fivb.com/rosters-released-for-2024-volleyball-challenger-cup/",
+        "https://www.fivb.com/2025-in-preview-first-expanded-vnl-edition-with-18-teams-per-gender/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. Official 2024 men’s final edition July 4–7; no current edition or unattended fixture source FIVB identifies the 2024 men’s Volleyball Challenger Cup as the final edition. No 2025 or 2026 edition is established; the expanded VNL now uses ranking-based replacement. Do not use a VNL, continental, or other Challenger event as this catalog identity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2024 final Volleyball Challenger Cup edition; no current edition",
+      "gender_division": "Volleyball Challenger Cup | Men",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "No current edition: 2024 was expressly the final edition; VNL ranking-based replacement is a distinct competition.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Final edition July 4–7, 2024; no current edition",
+        "season_hold": true,
+        "hold_reason": "FIVB identifies the 2024 men’s Volleyball Challenger Cup as the final edition. No 2025 or 2026 edition is established; the expanded VNL now uses ranking-based replacement. Do not use a VNL, continental, or other Challenger event as this catalog identity."
+      },
+      "historical_final_edition_context": {
+        "start_date": "2024-07-04",
+        "end_date": "2024-07-07"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-fivb-challenger-cup-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball Challenger Cup | Women",
+      "status": "not-scheduled",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/china-and-the-philippines-set-to-host-volleyball-challenger-cup-2024/",
+      "evidence_urls": [
+        "https://www.fivb.com/china-and-the-philippines-set-to-host-volleyball-challenger-cup-2024/",
+        "https://www.fivb.com/rosters-released-for-2024-volleyball-challenger-cup/",
+        "https://www.fivb.com/2025-in-preview-first-expanded-vnl-edition-with-18-teams-per-gender/"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. Official 2024 women’s final edition July 4–7; no current edition or unattended fixture source FIVB identifies the 2024 women’s Volleyball Challenger Cup as the final edition. No 2025 or 2026 edition is established; the expanded VNL now uses ranking-based replacement. Do not use a VNL, continental, or other Challenger event as this catalog identity.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2024 final Volleyball Challenger Cup edition; no current edition",
+      "gender_division": "Volleyball Challenger Cup | Women",
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "No current edition: 2024 was expressly the final edition; VNL ranking-based replacement is a distinct competition.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Final edition July 4–7, 2024; no current edition",
+        "season_hold": true,
+        "hold_reason": "FIVB identifies the 2024 women’s Volleyball Challenger Cup as the final edition. No 2025 or 2026 edition is established; the expanded VNL now uses ranking-based replacement. Do not use a VNL, continental, or other Challenger event as this catalog identity."
+      },
+      "historical_final_edition_context": {
+        "start_date": "2024-07-04",
+        "end_date": "2024-07-07"
+      },
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
+    },
+    {
+      "key": "volleyball-italy-superlega",
+      "sport": "Volleyball",
+      "country": "Italy",
+      "catalog_event": "SuperLega | Men",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "official_url": "https://ww2.legavolley.it/Calendario.asp",
+      "evidence_urls": [
+        "https://ww2.legavolley.it/Calendario.asp"
+      ],
+      "finding": "Reconciliation of prior exact competition review in PROJECT_CONTROL.md and the season map; no new calendar or repeated publisher research. The official SuperLega calendar lists an October 17 opening fixture and first-leg rounds through December 20; the May 2027 postseason end and remaining 2027 dates are not yet verified ",
+      "progress_kind": "prior-evidence-reconciliation",
+      "season_edition": "2026/27 senior SuperLega men",
+      "gender_division": "SuperLega | Men",
+      "season_start_date": "2026-10-17",
+      "season_end_date": null,
+      "endpoint_type": "Exact current full boundaries not established",
+      "missing_fact": "Exact full return-leg and playoff/last possible deciding-game endpoint; December 20 is only the published first-leg limit.",
+      "next_action": "Preserve this disposition and reopen only for an identifiable new official edition-specific calendar/revision or new substantive user evidence.",
+      "revisit_trigger": "Identifiable new official exact-scope publication/revision or substantive new user-supplied evidence.",
+      "saved_partial_context": {
+        "season_window": "Published 2026–27 first-leg fixtures October 17–December 20, 2026; return leg and playoffs pending",
+        "season_start_date": "2026-10-17",
+        "season_end_date": "2026-12-20",
+        "season_window_complete": false
+      },
+      "published_phase_end_context": "2026-12-20",
+      "reconciled_at": "2026-11-06",
+      "original_evidence_verified_at": "2026-09-26",
+      "prior_evidence_locations": [
+        "PROJECT_CONTROL.md",
+        "data/catalog-season-map.json"
+      ]
     }
   ],
-  "reconciled_against_commit": "bdd882c8b6198af20d8f3e49f5e95d5d4943bcc5"
+  "reconciled_against_commit": "e286d9abea035c23b9292e98e97e1df7d2277441"
 }

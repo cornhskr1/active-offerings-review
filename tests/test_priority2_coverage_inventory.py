@@ -48,7 +48,11 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
                                  ("UTR Pro Tennis Tour", "ADAPTER_CONFIGURED")):
             for division in ("Men", "Women"):
                 row = self.rows[("Tennis", f"{league} | {division}")]
-                self.assertEqual(("RECURRING_WINDOW", expected),
+                # UTR publishes separate event calendars; a year-round guide
+                # does not establish a single annual championship season.
+                season_state = ("EVENT_BASED_APPROVAL" if league == "UTR Pro Tennis Tour"
+                                else "RECURRING_WINDOW")
+                self.assertEqual((season_state, expected),
                                  (row["season_state"], row["coverage_state"]))
                 self.assertEqual([row["identity_key"]],
                                  [source["id"] for source in row["sources"]])

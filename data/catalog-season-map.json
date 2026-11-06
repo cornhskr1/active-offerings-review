@@ -11361,7 +11361,14 @@
                   "season_basis": "CEV 2027 competition overview publishes early rounds through the men’s May 15–16 Final Four; published phases are not an unattended match feed.",
                   "season_start_date": "2026-10-20",
                   "season_end_date": "2027-05-16",
-                  "source_id": "volleyball-cev-champions-league-men"
+                  "source_id": "volleyball-cev-champions-league-men",
+                  "last_verified": "2026-09-26",
+                  "season_source_url": "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1947&PID=3533",
+                  "season_evidence_urls": [
+                    "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1947&PID=3533"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 },
                 {
                   "key": "volleyball-cev-champions-league-women",
@@ -11370,7 +11377,14 @@
                   "season_basis": "CEV 2027 competition overview publishes early rounds through the women’s May 1–2 Final Four; published phases are not an unattended match feed.",
                   "season_start_date": "2026-10-20",
                   "season_end_date": "2027-05-02",
-                  "source_id": "volleyball-cev-champions-league-women"
+                  "source_id": "volleyball-cev-champions-league-women",
+                  "last_verified": "2026-09-26",
+                  "season_source_url": "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1948&PID=3534",
+                  "season_evidence_urls": [
+                    "https://www-old.cev.eu/Competition-Area/competition.aspx?ID=1948&PID=3534"
+                  ],
+                  "season_window_complete": true,
+                  "season_verification_status": "verified-complete"
                 }
               ]
             }
@@ -11412,26 +11426,28 @@
             {
               "key": "tennis-atp-tour",
               "catalog_event": "ATP Tour | Men",
-              "season_window": "January–November",
-              "season_start": "01-01",
-              "season_end": "11-30",
+              "season_window": "Full 2026 ATP Tour boundaries unverified; official calendar article returned 403",
               "source_id": "atp-tennis",
-              "season_basis": "Annual ATP Tour calendar",
-              "last_verified": "2026-09-18",
+              "season_basis": "The current primary ATP season-calendar article returned HTTP 403. Indexed organizer excerpts identify 2026 ATP events and November 15–22 Nitto ATP Finals, but do not by themselves establish the entire approved annual envelope, earliest qualifying boundary or treatment of separately named events. No alternate ATP endpoint, client or mirror was used after that failure; ESPN hold remains unchanged. Generic January–November dates are removed.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The ATP Tour season spans multiple surfaces before ending with the ATP Finals.",
-              "restrictions": []
+              "restrictions": [],
+              "season_window_complete": false,
+              "season_verification_status": "source-access-held",
+              "season_source_url": "https://www.atptour.com/en/news/what-is-the-2026-atp-tour-calendar"
             },
             {
               "key": "tennis-atp-challenger",
               "catalog_event": "ATP Challenger Tour | Men",
-              "season_window": "January–November",
-              "season_start": "01-01",
-              "season_end": "11-30",
+              "season_window": "Full Challenger edition calendar unverified; prior publisher/date-discovery hold",
               "source_id": "tennis-atp-challenger",
-              "season_basis": "Annual ATP Challenger Tour calendar",
+              "season_basis": "Reconciliation of the September 28 publisher probe and current-date discovery failures recorded in PROJECT_CONTROL.md: ATP Challenger returned Cloudflare HTTP 403, and later crawl quality gates retained a degraded lane with unresolved current-page dates. A missing ledger entry is not a first research attempt. No calendar, alternate client or mirror was requested for this Challenger recheck. The January–November generic range is not complete annual evidence.",
               "last_verified": "2026-09-18",
               "fun_fact": "The Challenger Tour is the principal pathway for players earning points and experience below the ATP Tour level.",
-              "restrictions": []
+              "restrictions": [],
+              "season_window_complete": false,
+              "season_verification_status": "source-access-held",
+              "season_source_url": "https://www.atptour.com/en/atp-challenger-tour/calendar"
             }
           ]
         },
@@ -11442,14 +11458,22 @@
             {
               "key": "tennis-wta-tour",
               "catalog_event": "WTA Tour | Women",
-              "season_window": "January–November",
-              "season_start": "01-01",
-              "season_end": "11-30",
+              "season_window": "Tour/125 calendar scope conflict; exact approved season boundaries unassigned",
               "source_id": "wta-tennis",
-              "season_basis": "Annual WTA Tour and WTA 125 calendar",
-              "last_verified": "2026-09-18",
+              "season_basis": "The saved map explicitly says Annual WTA Tour and WTA 125 calendar, and the identity registry retains observations such as RoveretOpen and Mallorca alongside Tour events. WTA’s official Tour release lists 1000/500/250, United Cup, Grand Slams and Finals, while WTA 125 has a separate official calendar. Current WTA match notes identify the Finals November 8–15, 2026 in Indian Wells, superseding the older launch’s Riyadh context. Those partial facts do not establish one approved combined annual scope or first qualifying boundary. No WTA125 approval, provider remap or new restriction is inferred.",
+              "last_verified": "2026-11-06",
               "fun_fact": "The WTA was founded in 1973 and now administers a worldwide calendar of women’s professional tournaments.",
-              "restrictions": []
+              "restrictions": [],
+              "season_window_complete": false,
+              "season_hold": true,
+              "season_hold_reason": "Resolve the saved WTA Tour-plus-WTA125 calendar/source scope against the approved Tour identity, then exact earliest qualifying/United Cup opening and full applicable final; do not treat every WTA tier as automatically authorized.",
+              "season_verification_status": "scope-conflict",
+              "season_source_url": "https://www.wtatennis.com/news/4377748/wta-announces-2026-tour-calendar",
+              "season_evidence_urls": [
+                "https://www.wtatennis.com/news/4377748/wta-announces-2026-tour-calendar",
+                "https://www.wtatennis.com/tournaments/wta-125",
+                "https://www.wtatennis.com/match-notes"
+              ]
             }
           ]
         },
@@ -11673,8 +11697,13 @@
               "key": "tennis-davis-cup-men",
               "catalog_event": "Davis Cup | Men",
               "catalog_change_date": "2026-10-30",
-              "season_basis": "Approved October 30, 2026. Current season dates and a dedicated Davis Cup schedule source have not been verified.",
-              "restrictions": []
+              "season_basis": "The new October 30 catalog identity explicitly lacks a verified calendar or dedicated Davis Cup source. The held ITF primary collection route cannot be used, and no alternative ITF domain/client/mirror was requested to work around that publisher restriction. The Davis Cup competition URL is retained as a manual reference, not claimed fetched evidence. ATP Tour, exhibition and junior calendars cannot substitute. This documents a held verification route, not a claim every national-federation or competition route is impossible.",
+              "restrictions": [],
+              "season_window": "Exact senior Davis Cup calendar/source unverified; held primary route",
+              "season_window_complete": false,
+              "season_verification_status": "source-access-held",
+              "season_source_url": "https://www.daviscup.com/",
+              "last_verified": "2026-11-06"
             }
           ]
         },
@@ -11697,22 +11726,24 @@
                 {
                   "key": "tennis-utr-pro-tour-men",
                   "label": "UTR Pro Tennis Tour | Men",
-                  "season_window": "Year-round 2026 tournament calendar; event dates vary",
+                  "season_window": "Per-event UTR Pro Tennis Tour dates; no single championship season",
                   "season_basis": "UTR Pro Tennis Tour men’s events have separately published dates. The annual envelope is for orientation only; a particular tournament requires its own verified date and identity.",
-                  "season_start": "01-01",
-                  "season_end": "12-31",
                   "source_id": "tennis-utr-pro-tour-men",
-                  "last_verified": "2026-09-26"
+                  "last_verified": "2026-09-26",
+                  "nonseasonal": true,
+                  "season_window_complete": false,
+                  "season_verification_status": "nonseasonal"
                 },
                 {
                   "key": "tennis-utr-pro-tour-women",
                   "label": "UTR Pro Tennis Tour | Women",
-                  "season_window": "Year-round 2026 tournament calendar; event dates vary",
+                  "season_window": "Per-event UTR Pro Tennis Tour dates; no single championship season",
                   "season_basis": "UTR Pro Tennis Tour women’s events have separately published dates. The annual envelope is for orientation only; a particular tournament requires its own verified date and identity.",
-                  "season_start": "01-01",
-                  "season_end": "12-31",
                   "source_id": "tennis-utr-pro-tour-women",
-                  "last_verified": "2026-09-26"
+                  "last_verified": "2026-09-26",
+                  "nonseasonal": true,
+                  "season_window_complete": false,
+                  "season_verification_status": "nonseasonal"
                 }
               ]
             }
