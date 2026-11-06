@@ -25,10 +25,10 @@
     "status_counts": {
       "awaiting-published-dates": 253,
       "cancelled": 4,
-      "manual-verification-needed": 47,
+      "manual-verification-needed": 48,
       "nonseasonal": 28,
       "not-scheduled": 10,
-      "scope-conflict": 27,
+      "scope-conflict": 26,
       "source-access-held": 48,
       "verified-complete": 318
     },
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "24d302df4a267a90ee3952338578c460ab0a05cb",
-    "post_first_pass_triggered_rechecks": 2
+    "latest_follow_up_commit_base": "855861109d7fba283f4bb20ad47e12985ba460e0",
+    "post_first_pass_triggered_rechecks": 4
   },
   "records": [
     {
@@ -11620,15 +11620,15 @@
         "https://www.faz.co.zm/",
         "https://www.absa.co.zm/press-media/"
       ],
-      "finding": "Reconciliation of the October 18 prior Zambia source-proof and fixture package, not a newly researched calendar. ZANACO’s own current category identifies its 2026 Absa Cup round-of-16 draw and April 17 quarterfinal preview. The assigned FAZ root was inaccessible through the tool, and sponsor media page retains older releases rather than a full current calendar. Secondary March preliminaries/final claims are not promoted. The similarly named legacy Barclays Cup remains a separate catalog key pending scope interpretation, not a second inferred annual schedule.",
+      "finding": "Nich concurred on November 6, 2026 with displaying Barclays Cup as the former name of ABSA Cup. Both original catalog entries and source IDs remain. ABSA is the current competition; no separate Barclays fixture stream is authorized by this display alias. Official 2026 qualifying-inclusive opening and final remain unverified.",
       "progress_kind": "prior-evidence-reconciliation",
       "season_edition": "2026 senior Absa Cup",
       "gender_division": "Senior men’s Zambian Absa Cup, including lower-tier qualifiers",
       "season_start_date": null,
       "season_end_date": null,
       "endpoint_type": "full qualifying-inclusive opening/final not established",
-      "missing_fact": "Official 2026 first applicable qualifying/preliminary fixture and exact championship final, plus treatment of the separate legacy Barclays key.",
-      "next_action": "Supply the operative FAZ/organizer full 2026 cup calendar/results and approved naming interpretation for the legacy key.",
+      "missing_fact": "Official 2026 first applicable qualifying/preliminary fixture and exact championship final.",
+      "next_action": "Obtain the operative official qualifying-inclusive 2026 cup calendar/results after a qualifying publication trigger; preserve both catalog entries and one current-competition fixture owner.",
       "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
       "original_evidence_verified_at": "2026-10-18",
       "reconciled_at": "2026-11-06",
@@ -11637,6 +11637,18 @@
         "SOCCER_FIXTURE_BATCH.md",
         "tests/fixtures/zpl_20261018/source-proof.json",
         "data/soccer-caf-domestic-sources.json"
+      ],
+      "alias_confirmed_at": "2026-11-06",
+      "revisit_history": [
+        {
+          "trigger_type": "user-supplied-information",
+          "trigger_date": "2026-11-06",
+          "trigger": "Nich concurred with the presented Barclays/ABSA former-name evidence and proposed display alias.",
+          "status": "consumed",
+          "checked_at": "2026-11-06",
+          "result": "Naming interpretation resolved; no new calendar dates established.",
+          "evidence_url": "https://zambianfootball.co.zm/faz-changes-absa-cup-format/"
+        }
       ]
     },
     {
@@ -11644,7 +11656,7 @@
       "sport": "Soccer",
       "country": "Zambia",
       "catalog_event": "Barclays Cup | Men",
-      "status": "scope-conflict",
+      "status": "manual-verification-needed",
       "reviewed_at": "2026-11-06",
       "evidence_verified_at": "2026-10-18",
       "official_url": "https://zanacofc.co.zm/category/absa-cup/",
@@ -11653,15 +11665,15 @@
         "https://www.absa.co.zm/faqs/",
         "https://www.faz.co.zm/"
       ],
-      "finding": "Reconciliation of the October 18 prior Zambia source-proof and fixture package, not a newly researched calendar. ZANACO’s official archive refers to 2019 Absa Cup semifinals organized with Barclays Bank Zambia; the bank’s own FAQ states its Zambia legal rebrand to Absa occurred February 10, 2020. The catalog nevertheless retains separate Barclays Cup and Absa Cup keys. No distinct current Barclays edition/full calendar is established, so assigning the Absa calendar to both would risk duplicate event streams. The bank rebrand alone is not treated as approval to merge/delete/remap identities.",
+      "finding": "Nich concurred on November 6, 2026 with displaying Barclays Cup as the former name of ABSA Cup. Both original catalog entries and source IDs remain. ABSA is the current competition; no separate Barclays fixture stream is authorized by this display alias. Official 2026 qualifying-inclusive opening and final remain unverified.",
       "progress_kind": "prior-evidence-reconciliation",
-      "season_edition": "Legacy catalog Barclays Cup versus current Absa Cup identity",
+      "season_edition": "2026 senior Absa Cup, retained legacy Barclays catalog label",
       "gender_division": "Senior men’s legacy Zambian domestic cup, current ownership unresolved",
       "season_start_date": null,
       "season_end_date": null,
       "endpoint_type": "unassigned pending legacy/current competition ownership",
-      "missing_fact": "Substantive approved-scope decision on whether legacy Barclays Cup and current Absa Cup represent the same continuing competition and which identity owns current events.",
-      "next_action": "Supply the relevant catalog/approval interpretation and official competition naming continuity before any remap; keep both keys and source assignments unchanged.",
+      "missing_fact": "Official 2026 first applicable qualifying/preliminary fixture and exact championship final.",
+      "next_action": "Obtain the operative official qualifying-inclusive 2026 cup calendar/results after a qualifying publication trigger; preserve both catalog entries and one current-competition fixture owner.",
       "revisit_trigger": "Identifiable new official edition-specific schedule/revision, or new user-supplied official evidence.",
       "original_evidence_verified_at": "2026-10-18",
       "reconciled_at": "2026-11-06",
@@ -11670,7 +11682,20 @@
         "SOCCER_FIXTURE_BATCH.md",
         "tests/fixtures/zpl_20261018/source-proof.json",
         "data/soccer-caf-domestic-sources.json"
-      ]
+      ],
+      "alias_confirmed_at": "2026-11-06",
+      "revisit_history": [
+        {
+          "trigger_type": "user-supplied-information",
+          "trigger_date": "2026-11-06",
+          "trigger": "Nich concurred with the presented Barclays/ABSA former-name evidence and proposed display alias.",
+          "status": "consumed",
+          "checked_at": "2026-11-06",
+          "result": "Naming interpretation resolved; no new calendar dates established.",
+          "evidence_url": "https://zambianfootball.co.zm/faz-changes-absa-cup-format/"
+        }
+      ],
+      "calendar_identity_key": "soccer-zambia-absa-cup-men"
     },
     {
       "key": "soccer-zambia-charity-shield-men",

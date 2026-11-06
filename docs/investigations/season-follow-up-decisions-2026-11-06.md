@@ -49,6 +49,8 @@ Saved official references: [men's Canadian Championship](https://www.canadasocce
 
 ## Third decision: Zambia's legacy Barclays Cup label
 
+**Answered November 6:** Nich concurred with the former-name alias after reviewing the exact catalog wording and linked evidence. Both entries remain; official season boundaries are still unresolved. See [implementation checkpoint](zambia-cup-alias-2026-11-06.md). The question below is historical provenance.
+
 Exact key: `soccer-zambia-barclays-cup-men`. Related separate identity: `soccer-zambia-absa-cup-men`.
 
 The saved November 2 NRGC menu lists both **ABSA Cup | Men** and **Barclays Cup | Men** (PDF page 40, printed page 39). Existing club and bank evidence documents Absa/Barclays naming history, but a sponsor's corporate rebrand alone does not decide approval identity ownership.
