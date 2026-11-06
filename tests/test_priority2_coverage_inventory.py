@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 22739)
-Total output lines: 1442
-
 """The Priority 2 inventory keeps legal identities and schedule evidence separate."""
 
 import json
@@ -575,7 +572,335 @@ class Priority2CoverageInventoryTests(unittest.TestCase):
 
         women = self.rows[("Basketball", "FIBA 3x3 World Tour | Women")]
         self.assertEqual("DOCUMENTED_HOLD", women["season_state"])
-        self.ass…4739 tokens truncated…]: source for source in config["sources"]}
+        self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
+        self.assertEqual([], women["sources"])
+        self.assertIn("identity mismatch", women["hold_reason"])
+
+    def test_afrobasket_divisions_keep_separate_official_windows(self):
+        expected = {
+            "FIBA AfroBasket | Men": "basketball-afrobasket-men",
+            "FIBA AfroBasket | Women": "basketball-afrobasket-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual(
+                    [{
+                        "id": source_id,
+                        "type": "official-event-window",
+                        "configured_league": league,
+                        "refresh_ok": True,
+                        "events_in_window": 0,
+                    }],
+                    row["sources"],
+                )
+
+    def test_americup_divisions_keep_separate_official_windows(self):
+        expected = {
+            "FIBA AmeriCup | Men": "basketball-americup-men",
+            "FIBA AmeriCup | Women": "basketball-americup-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual(
+                    [{
+                        "id": source_id,
+                        "type": "official-event-window",
+                        "configured_league": league,
+                        "refresh_ok": True,
+                        "events_in_window": 0,
+                    }],
+                    row["sources"],
+                )
+
+    def test_fiba_continental_and_oceania_windows_stay_division_specific(self):
+        expected = {
+            "FIBA Asia Cup | Men": "basketball-asia-cup-men",
+            "FIBA Asia Cup | Women": "basketball-asia-cup-women",
+            "FIBA EuroBasket | Men": "basketball-eurobasket-men",
+            "FIBA EuroBasket | Women": "basketball-eurobasket-women",
+            "FIBA Melanesia Cup | Men": "basketball-melanesia-men",
+            "FIBA Melanesia Cup | Women": "basketball-melanesia-women",
+            "FIBA Micronesia Cup | Men": "basketball-micronesia-men",
+            "FIBA Micronesia Cup | Women": "basketball-micronesia-women",
+            "FIBA Polynesian Basketball Cup | Men": "basketball-polynesian-men",
+            "FIBA Polynesian Basketball Cup | Women": "basketball-polynesian-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+    def test_pacific_and_south_american_divisions_use_official_windows(self):
+        expected = {
+            "Pacific Games | Men": "basketball-pacific-games-men",
+            "Pacific Games | Women": "basketball-pacific-games-women",
+            "South American Championship | Men": "basketball-south-american-men",
+            "South American Championship | Women": "basketball-south-american-women",
+        }
+        for league, source_id in expected.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+
+    def test_tbt_mens_window_and_womens_scope_hold_remain_separate(self):
+        men = self.rows[("Basketball", "The Basketball Tournament (TBT) | Men")]
+        self.assertEqual("DATED_WINDOW", men["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", men["coverage_state"])
+        self.assertEqual(["basketball-us-tbt-men"], [source["id"] for source in men["sources"]])
+
+        women = self.rows[("Basketball", "The Basketball Tournament (TBT) | Women")]
+        self.assertEqual("DOCUMENTED_HOLD", women["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", women["coverage_state"])
+        self.assertEqual([], women["sources"])
+        self.assertIn("women's TBT", women["hold_reason"])
+
+    def test_basketball_date_reconciliation_preserves_unconfirmed_nba_postseason(self):
+        basketball = self.inventory["by_sport"]["Basketball"]
+        self.assertEqual(89, basketball["identities"])
+        self.assertEqual(6, basketball["no_linked_source"])
+        self.assertEqual(17, basketball["pending_dates"])
+        # Newly researched recurring estimates remain partial until finals are published.
+        for league in ("Basketligaen | Men", "LNB Élite | Men",
+                       "Basketbol Süper Ligi (BSL) | Men",
+                       "Liga Nacional de Baloncesto Profesional (LNBP) | Men",
+                       "Liga Nacional de Básquet (LNB) | Men",
+                       "Novo Basquete Brasil (NBB) | Men",
+                       "Liga Nacional de Basquetbol de Chile (LNB) | Men",
+                       "Unrivaled Basketball | Women"):
+            with self.subTest(league=league):
+                self.assertEqual("PARTIAL_WINDOW", self.rows[("Basketball", league)]["season_state"])
+        nba = self.rows[("Basketball", "National Basketball Association (NBA) | Men")]
+        self.assertEqual("PARTIAL_WINDOW", nba["season_state"])
+        self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
+
+    def test_first_basketball_source_batch_uses_exact_official_windows_or_hold(self):
+        expected_windows = {
+            "BBL-Pokal | Men": "basketball-de-cup",
+            "BIG3 | Men": "basketball-us-big3",
+            "Caribbean Women's Championship | Women": "basketball-caribbean-women",
+            "Central American Women's Championship | Women": "basketball-central-american-women",
+            "Centrobasket Women's Championship | Women": "basketball-centrobasket-women",
+        }
+        for league, source_id in expected_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        champions = self.rows[("Basketball", "BBL Champions Cup")]
+        self.assertEqual("DOCUMENTED_HOLD", champions["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", champions["coverage_state"])
+        self.assertIn("no BBL Champions Cup", champions["hold_reason"])
+
+    def test_second_basketball_source_batch_uses_exact_official_windows_or_hold(self):
+        expected_windows = {
+            "Commissioner’s Cup | Men": "basketball-ph-commissioners",
+            "Copa Super 8 | Men": "basketball-br-super8",
+            "Copa del Rey | Men": "basketball-es-copa",
+            "Coppa Italia | Men": "basketball-it-cup",
+        }
+        for league, source_id in expected_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        danish = self.rows[("Basketball", "Danish Cup | Men")]
+        self.assertEqual("DOCUMENTED_HOLD", danish["season_state"])
+        self.assertEqual("NO_LINKED_SOURCE", danish["coverage_state"])
+        self.assertEqual([], danish["sources"])
+        self.assertIn("full Danish Cup schedule", danish["hold_reason"])
+
+    def test_verified_basketball_windows_are_promoted_to_exact_fixture_adapters(self):
+        for league, source_id, adapter in (
+            ("EuroLeague | Men", "basketball-euroleague", "official-european-basketball-fixtures"),
+            ("FIBA Women's EuroLeague | Women", "basketball-womens-euroleague", "official-fiba-report-fixtures"),
+        ):
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual(adapter, row["sources"][0]["type"])
+
+    def test_third_basketball_source_batch_uses_official_windows(self):
+        dated_windows = {
+            "French Cup | Men": "basketball-fr-cup",
+            "Greek Cup | Men": "basketball-gr-cup",
+            "Greek Super Cup | Men": "basketball-gr-supercup",
+            "Ignite Cup | Men": "basketball-au-ignite",
+        }
+        for league, source_id in dated_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                expected_state = "PARTIAL_WINDOW" if source_id in {"basketball-fr-cup", "basketball-gr-cup"} else "DATED_WINDOW"
+                self.assertEqual(expected_state, row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        governors = self.rows[("Basketball", "Governor’s Cup | Men")]
+        self.assertEqual("DESCRIPTIVE_WINDOW", governors["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", governors["coverage_state"])
+        self.assertEqual(
+            ["basketball-ph-governors"],
+            [source["id"] for source in governors["sources"]],
+        )
+        self.assertIn("October 18", governors["season_window"])
+
+    def test_fourth_basketball_source_batch_uses_exact_scoped_evidence_or_hold(self):
+        dated_windows = {
+            "King Mindaugas Cup | Men": "basketball-lt-cup",
+            "NBA Draft": "basketball-us-nba-draft",
+        }
+        for league, source_id in dated_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        descriptive_windows = {
+            "League Cup | Men": "basketball-il-league-cup",
+        }
+        for league, source_id in descriptive_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("PARTIAL_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+
+        lnb = self.rows[("Basketball", "Liga Nacional de Básquet (LNB) | Men")]
+        self.assertEqual("PARTIAL_WINDOW", lnb["season_state"])
+        self.assertEqual("ADAPTER_CONFIGURED", lnb["coverage_state"])
+        self.assertEqual("official-arg-lnb-fixtures", lnb["sources"][0]["type"])
+
+        holds = {
+            "KBL Cup | Men": "has not published a 2026 KBL Cup schedule",
+            "NBA Preseason Games v. International Teams": "no matchup against a non-NBA international club",
+        }
+        for league, reason in holds.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DOCUMENTED_HOLD", row["season_state"])
+                self.assertEqual("NO_LINKED_SOURCE", row["coverage_state"])
+                self.assertEqual([], row["sources"])
+                self.assertIn(reason, row["hold_reason"])
+
+        self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+
+    def test_fifth_basketball_source_batch_uses_exact_or_descriptive_official_windows(self):
+        dated_windows = {
+            "Philippine Cup | Men": "basketball-ph-philippine-cup",
+            "Polish Cup | Men": "basketball-pl-cup",
+            "Polish Supercup | Men": "basketball-pl-supercup",
+            "Presidential Cup | Men": "basketball-tr-presidential",
+        }
+        for league, source_id in dated_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        descriptive_windows = {
+            "Philippine Basketball Association (PBA) | Men": "basketball-ph-pba",
+        }
+        for league, source_id in descriptive_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DESCRIPTIVE_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        nbb = self.rows[("Basketball", "Novo Basquete Brasil (NBB) | Men")]
+        self.assertEqual("ADAPTER_CONFIGURED", nbb["coverage_state"])
+        self.assertEqual("official-nbb-fixtures", nbb["sources"][0]["type"])
+
+        self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
+
+    def test_sixth_basketball_source_batch_uses_exact_official_windows(self):
+        expected_windows = {
+            "Radivoj Korać Cup | Men": "basketball-rs-cup",
+            "SBL Cup | Men": "basketball-ch-sbl-cup",
+            "State Cup | Men": "basketball-il-state-cup",
+            "Super 20 Cup | Men": "basketball-ar-super20",
+            "Supercopa Italia | Men": "basketball-it-supercup",
+            "Supercopa de Espana | Men": "basketball-es-supercopa",
+        }
+        for league, source_id in expected_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
+
+    def test_seventh_basketball_source_batch_closes_actionable_source_gaps(self):
+        dated_windows = {
+            "Supercopa de Liga | Men": "basketball-ar-supercopa",
+            "Svenska Basketligan (SBL) | Men": "basketball-se-sbl",
+            "Swiss Cup | Men": "basketball-ch-cup",
+            "Turkish Basketball Cup | Men": "basketball-tr-cup",
+        }
+        for league, source_id in dated_windows.items():
+            with self.subTest(league=league):
+                row = self.rows[("Basketball", league)]
+                self.assertEqual("DATED_WINDOW", row["season_state"])
+                self.assertEqual("OFFICIAL_WINDOW_ONLY", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("official-event-window", row["sources"][0]["type"])
+
+        unrivaled = self.rows[("Basketball", "Unrivaled Basketball | Women")]
+        self.assertEqual("PARTIAL_WINDOW", unrivaled["season_state"])
+        self.assertEqual("OFFICIAL_WINDOW_ONLY", unrivaled["coverage_state"])
+        self.assertEqual(["basketball-us-unrivaled"], [source["id"] for source in unrivaled["sources"]])
+        self.assertEqual("official-event-window", unrivaled["sources"][0]["type"])
+
+        self.assertEqual(6, self.inventory["by_sport"]["Basketball"]["no_linked_source"])
+        self.assertEqual(17, self.inventory["by_sport"]["Basketball"]["pending_dates"])
+        self.assertEqual(6, sum(row["season_state"] == "DOCUMENTED_HOLD" for row in self.rows.values() if row["sport"] == "Basketball"))
+
+    def test_ncaa_division_one_adapters_match_the_exact_competition_scope(self):
+        expected = {
+            ("NCAA Basketball", "Division I Basketball | Men"): ("ncaa-mbb", "NCAA Men's Basketball"),
+            ("NCAA Basketball", "Division I Basketball | Women"): ("ncaa-wbb", "NCAA Women's Basketball"),
+            ("NCAA Volleyball", "Division I Volleyball | Women"): ("ncaa-volleyball", "NCAA Volleyball"),
+        }
+        for identity, (source_id, configured_league) in expected.items():
+            with self.subTest(identity=identity):
+                row = self.rows[identity]
+                self.assertEqual("ADAPTER_CONFIGURED", row["coverage_state"])
+                self.assertEqual([source_id], [source["id"] for source in row["sources"]])
+                self.assertEqual("adapter", row["sources"][0]["type"])
+                self.assertEqual(configured_league, row["sources"][0]["configured_league"])
+
+        config = json.loads((ROOT / "data" / "global-schedule-sources.json").read_text(encoding="utf-8"))
+        configured_sources = {source["id"]: source for source in config["sources"]}
         self.assertEqual("NCAA Basketball", configured_sources["ncaa-mbb"]["sport"])
         self.assertEqual(["Division I Basketball | Men"], configured_sources["ncaa-mbb"]["catalog_terms"])
         self.assertEqual("NCAA Basketball", configured_sources["ncaa-wbb"]["sport"])
