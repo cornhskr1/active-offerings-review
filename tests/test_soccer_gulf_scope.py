@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 
 DATA = Path(__file__).resolve().parents[1] / "data"
@@ -15,7 +16,7 @@ class GulfScopeTests(unittest.TestCase):
         soccer = next(s for s in json.loads((DATA / "catalog-season-map.json").read_text())["sports"] if s["sport"] == "Soccer")
         cls.events = {e["key"]: e for g in soccer["groups"] if g.get("country") in COUNTRIES for e in g["events"]}
         cls.sources = {s["id"]: s for s in json.loads((DATA / "soccer-afc-domestic-sources.json").read_text())["sources"]}
-        cls.inventory = {x["identity_key"]: x for x in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
+        cls.inventory = {x["identity_key"]: x for x in build()["identities"]}
 
     def test_distinct_senior_sources_have_no_synthetic_recurring_dates(self):
         self.assertEqual(10, len(self.events))
@@ -28,13 +29,13 @@ class GulfScopeTests(unittest.TestCase):
     def test_confirmed_full_windows_and_rescheduled_qatar_edition(self):
         windows = {
             "soccer-saudi-arabia-saudi-pro-league-men": ("2026-08-13", "2027-05-29"),
-            "soccer-saudi-arabia-saudi-super-cup-men": ("2026-12-19", "2026-12-23"),
+            "soccer-saudi-arabia-saudi-super-cup-men": (None, None),
             "soccer-qatar-qatar-cup-men": ("2026-09-01", "2026-12-11"),
         }
         for key, dates in windows.items():
             e = self.events[key]
-            self.assertEqual(dates, (e["season_start_date"], e["season_end_date"]))
-            self.assertEqual("DATED_WINDOW", self.inventory[key]["season_state"])
+            self.assertEqual(dates, (e.get("season_start_date"), e.get("season_end_date")))
+            self.assertEqual("PARTIAL_WINDOW" if None in dates else "DATED_WINDOW", self.inventory[key]["season_state"])
         self.assertIn("rescheduled edition originally announced for 2025–26", self.events["soccer-qatar-qatar-cup-men"]["season_basis"])
         self.assertEqual("ADAPTER_GAP", self.inventory["soccer-qatar-qatar-cup-men"]["coverage_state"])
         cup = self.sources[self.events["soccer-qatar-qatar-cup-men"]["source_id"]]

@@ -36,12 +36,12 @@ class SpainNetherlandsScopeTests(unittest.TestCase):
         expected = {
             "soccer-spain-copa-del-rey-men": ("2026-09-26", "2027-04-24"),
             "soccer-spain-supercopa-de-espa-a-men": ("2027-02-02", "2027-02-06"),
-            "soccer-spain-primera-federaci-n-femenina-women": ("2026-09-12", "2027-06-06"),
+            "soccer-spain-primera-federaci-n-femenina-women": (None, None),
             "soccer-spain-copa-de-la-reina-women": ("2026-09-09", "2027-05-15"),
-            "soccer-spain-supercopa-de-espa-a-femenina-women": ("2027-01-19", "2027-01-24"),
+            "soccer-spain-supercopa-de-espa-a-femenina-women": (None, None),
             "soccer-spain-laliga-men": ("2026-08-15", "2027-05-30"),
             "soccer-spain-segunda-divisi-n-men": ("2026-08-14", "2027-06-20"),
-            "soccer-spain-liga-f-women": ("2026-08-29", "2027-05-23"),
+            "soccer-spain-liga-f-women": (None, None),
             "soccer-netherlands-eredivisie-men": ("2026-08-07", None),
             "soccer-netherlands-eerste-divisie-men": ("2026-08-07", None),
             "soccer-netherlands-knvb-beker-dutch-cup-men": ("2026-09-01", "2027-04-18"),
@@ -51,7 +51,7 @@ class SpainNetherlandsScopeTests(unittest.TestCase):
         for key, dates in expected.items():
             with self.subTest(key=key):
                 event = self.events[key]
-                self.assertEqual(dates, (event["season_start_date"], event.get("season_end_date")))
+                self.assertEqual(dates, (event.get("season_start_date"), event.get("season_end_date")))
                 self.assertEqual("PARTIAL_WINDOW" if dates[1] is None else "DATED_WINDOW", self.inventory[key]["season_state"])
                 if dates[1] is None:
                     self.assertFalse(event["season_window_complete"])

@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 
 DATA = Path(__file__).resolve().parents[1] / "data"
@@ -29,7 +30,7 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
         }
         cls.inventory = {
             item["identity_key"]: item
-            for item in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]
+            for item in build()["identities"]
             if item["sport"] == "Soccer"
         }
 
@@ -78,9 +79,11 @@ class FrancePortugalSoccerScopeTests(unittest.TestCase):
         league = self.events["soccer-portugal-liga-portugal-2-men"]
         cup = self.events["soccer-portugal-ta-a-da-liga-men"]
         self.assertEqual("2026-08-09", league["season_start_date"])
-        self.assertEqual("2027-05-16", league["season_end_date"])
+        self.assertNotIn("season_end_date", league)
+        self.assertFalse(league["season_window_complete"])
         self.assertEqual("2026-10-27", cup["season_start_date"])
-        self.assertEqual("2027-01-09", cup["season_end_date"])
+        self.assertNotIn("season_end_date", cup)
+        self.assertFalse(cup["season_window_complete"])
         self.assertNotEqual(league["source_id"], cup["source_id"])
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory[league["key"]]["coverage_state"])
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory[cup["key"]]["coverage_state"])

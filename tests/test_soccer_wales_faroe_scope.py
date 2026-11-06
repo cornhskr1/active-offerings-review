@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 DATA = Path(__file__).resolve().parents[1] / "data"
 
@@ -13,7 +14,7 @@ class WalesFaroeScopeTests(unittest.TestCase):
         soccer = next(s for s in json.loads((DATA / "catalog-season-map.json").read_text())["sports"] if s["sport"] == "Soccer")
         cls.events = {e["key"]: e for g in soccer["groups"] if g.get("country") in {"Wales", "Faroe Islands"} for e in g["events"]}
         cls.sources = {s["id"]: s for s in json.loads((DATA / "soccer-uefa-domestic-sources.json").read_text())["sources"]}
-        cls.inventory = {x["identity_key"]: x for x in json.loads((DATA / "priority2-coverage-inventory.json").read_text())["identities"]}
+        cls.inventory = {x["identity_key"]: x for x in build()["identities"]}
 
     def test_six_independent_competitions(self):
         self.assertEqual(6, len(self.events))
@@ -25,8 +26,8 @@ class WalesFaroeScopeTests(unittest.TestCase):
     def test_faw_playoff_and_qualifying_bounds(self):
         league = self.events["soccer-wales-cymru-premier-men"]
         cup = self.events["soccer-wales-welsh-cup-men"]
-        self.assertEqual(("2026-07-31", "2027-05-09"), (league["season_start_date"], league["season_end_date"]))
-        self.assertEqual(("2026-07-24", "2027-04-18"), (cup["season_start_date"], cup["season_end_date"]))
+        self.assertEqual((None, None), (league.get("season_start_date"), league.get("season_end_date")))
+        self.assertEqual((None, "2027-04-18"), (cup.get("season_start_date"), cup["season_end_date"]))
         self.assertIn("play-off", league["season_basis"])
 
     def test_withdrawn_welsh_league_cup_held(self):

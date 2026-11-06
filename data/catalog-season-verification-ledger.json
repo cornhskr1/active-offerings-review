@@ -16,7 +16,37 @@
     "nonseasonal": "An event series, promoter, sanctioning authority or approval rule has no single competition season; dates and eligibility must be established per event.",
     "cancelled": "Official evidence states the recorded edition will not take place; future editions remain separate."
   },
-  "reconciled_against_commit": "91a2cac710ec4976daa9f2dfa450c2e425516edd",
+  "reconciled_against_commit": "bb7b75dfbe75f8972b29ea2ac8b77d1b04e1e36b",
+  "completion_reconciliation": {
+    "reviewed_count": 735,
+    "pending_count": 0,
+    "canonical_key_sha256": "ed04c2b5295cd8c570f4ffc9b19eda886c5ea61dd8d41c53332881cc171898b9",
+    "reconciled_at": "2026-11-06",
+    "status_counts": {
+      "awaiting-published-dates": 252,
+      "cancelled": 4,
+      "manual-verification-needed": 47,
+      "nonseasonal": 28,
+      "not-scheduled": 10,
+      "scope-conflict": 29,
+      "source-access-held": 48,
+      "verified-complete": 317
+    },
+    "first_pass_complete": true,
+    "meaning": "All canonical keys carry substantive evidence-backed dispositions; not all seasons have published complete schedules.",
+    "saved_source_presentation": {
+      "as_of": "2026-11-06",
+      "dated": 321,
+      "undetermined": 414
+    },
+    "run_start_reviewed_count": 220,
+    "run_progress_counts": {
+      "newly-resolved-calendar": 30,
+      "prior-evidence-reconciliation": 406,
+      "first-time-unresolved": 79
+    },
+    "triggered_rechecks": 0
+  },
   "records": [
     {
       "key": "basketball-au-nbl",
@@ -18883,6 +18913,2541 @@
         "published_regular_season_start": "2026-08-07",
         "published_regular_season_end": "2027-05-23"
       }
+    },
+    {
+      "key": "soccer-netherlands-johan-cruyff-shield-dutch-super-cup-men",
+      "sport": "Soccer",
+      "country": "Netherlands",
+      "catalog_event": "Johan Cruyff Shield / Dutch Super Cup | Men",
+      "gender_division": "Johan Cruyff Shield / Dutch Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.knvb.nl/nieuws/betaald-voetbal/johan-cruijff-schaal/72064/jeugdig-az-laat-tiental-psv-kansloos-en-pakt-de",
+      "evidence_urls": [
+        "https://www.knvb.nl/nieuws/betaald-voetbal/johan-cruijff-schaal/72064/jeugdig-az-laat-tiental-psv-kansloos-en-pakt-de"
+      ],
+      "season_start_date": "2026-08-02",
+      "season_end_date": "2026-08-02",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. KNVB confirms the completed men's Johan Cruijff Schaal; the next edition is unannounced and no daily fixture adapter is linked.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-netherlands-knvb-beker-dutch-cup-men",
+      "sport": "Soccer",
+      "country": "Netherlands",
+      "catalog_event": "KNVB Beker / Dutch Cup | Men",
+      "gender_division": "KNVB Beker / Dutch Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.knvb.nl/nieuws/betaald-voetbal/vriendenloterij-eredivisie/71361/speeldagenkalender-betaald-voetbal-seizoen",
+      "evidence_urls": [
+        "https://www.knvb.nl/nieuws/betaald-voetbal/vriendenloterij-eredivisie/71361/speeldagenkalender-betaald-voetbal-seizoen"
+      ],
+      "season_start_date": "2026-09-01",
+      "season_end_date": "2027-04-18",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official KNVB Beker first amateur qualifying round through the KNVB's published final; ESPN daily feed may omit qualifying fixtures.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-poland-ekstraklasa-men",
+      "sport": "Soccer",
+      "country": "Poland",
+      "catalog_event": "Ekstraklasa | Men",
+      "gender_division": "Ekstraklasa | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ekstraklasa.org/terminarz/2026-2027/",
+      "evidence_urls": [
+        "https://ekstraklasa.org/terminarz/2026-2027/"
+      ],
+      "season_start_date": "2026-07-24",
+      "season_end_date": "2027-05-22",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Ekstraklasa SA publishes July 24 opening and May 22 final league round for the 2026–27 season; no unattended adapter is connected.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-poland-polish-super-cup-men",
+      "sport": "Soccer",
+      "country": "Poland",
+      "catalog_event": "Polish Super Cup | Men",
+      "gender_division": "Polish Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://pzpn.pl/federacja/aktualnosci/2026-07-16/lech-poznan-zdobywca-sts-superpucharu-polski",
+      "evidence_urls": [
+        "https://pzpn.pl/federacja/aktualnosci/2026-07-16/lech-poznan-zdobywca-sts-superpucharu-polski"
+      ],
+      "season_start_date": "2026-07-16",
+      "season_end_date": "2026-07-16",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. PZPN confirms the 2026 STS Superpuchar Polski was played July 16 by Lech Poznań and Górnik Zabrze; this single event does not establish a 2027 date.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-portugal-liga-portugal-2-men",
+      "sport": "Soccer",
+      "country": "Portugal",
+      "catalog_event": "Liga Portugal 2 | Men",
+      "gender_division": "Liga Portugal 2 | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.ligaportugal.pt/calendar",
+      "evidence_urls": [
+        "https://www.ligaportugal.pt/calendar"
+      ],
+      "season_start_date": "2026-08-09",
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Liga Portugal's official 2026/27 Meu Super calendar provides exact regular-season kickoffs when set. Midnight placeholders and reserve B-team fixtures are held; promotion play-offs are scheduled separately.",
+      "missing_fact": "Exact full applicable promotion/relegation-playoff endpoint beyond the recorded league/group rounds; league-phase finish is not the full championship envelope.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_league_phase_start": "2026-08-09",
+        "published_league_phase_end": "2027-05-16"
+      }
+    },
+    {
+      "key": "soccer-portugal-primeira-liga-men",
+      "sport": "Soccer",
+      "country": "Portugal",
+      "catalog_event": "Primeira Liga | Men",
+      "gender_division": "Primeira Liga | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.ligaportugal.pt/news/27682/definido-o-arranque-das-competicoes-profissionais-2026-27",
+      "evidence_urls": [
+        "https://www.ligaportugal.pt/news/27682/definido-o-arranque-das-competicoes-profissionais-2026-27"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Liga Portugal publishes opening and final regular-season weekends; promotion play-offs through June 6 are separate.",
+      "missing_fact": "Exact full applicable promotion/relegation-playoff endpoint beyond the recorded league/group rounds; league-phase finish is not the full championship envelope. Exact first opening-weekend fixture is also unverified.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_league_phase_start": "2026-08-09",
+        "published_league_phase_end": "2027-05-16",
+        "published_opening_weekend_end": "2026-08-09"
+      }
+    },
+    {
+      "key": "soccer-portugal-superta-a-c-ndido-de-oliveira-men",
+      "sport": "Soccer",
+      "country": "Portugal",
+      "catalog_event": "Supertaça Cândido de Oliveira | Men",
+      "gender_division": "Supertaça Cândido de Oliveira | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.ligaportugal.pt/news/28284/fc-porto-conquista-supertaca-candido-de-oliveira",
+      "evidence_urls": [
+        "https://www.ligaportugal.pt/news/28284/fc-porto-conquista-supertaca-candido-de-oliveira"
+      ],
+      "season_start_date": "2026-08-01",
+      "season_end_date": "2026-08-01",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Liga Portugal confirms FC Porto's completed men's Supertaça in Coimbra; no 2027 date or unattended adapter is established.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-portugal-superta-a-feminina-women",
+      "sport": "Soccer",
+      "country": "Portugal",
+      "catalog_event": "Supertaça Feminina | Women",
+      "gender_division": "Supertaça Feminina | Women",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fpf.pt/pt/News/Todas-as-not%C3%ADcias/Not%C3%ADcia/news/57655",
+      "evidence_urls": [
+        "https://www.fpf.pt/pt/News/Todas-as-not%C3%ADcias/Not%C3%ADcia/news/57655"
+      ],
+      "season_start_date": "2026-09-06",
+      "season_end_date": "2026-09-06",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FPF confirms Benfica's completed women's football Supertaça in Viseu; no 2027 date or unattended adapter is established.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-portugal-ta-a-da-liga-men",
+      "sport": "Soccer",
+      "country": "Portugal",
+      "catalog_event": "Taça da Liga | Men",
+      "gender_division": "Taça da Liga | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.ligaportugal.pt/competition/914/allianz-cup/round/20262027",
+      "evidence_urls": [
+        "https://www.ligaportugal.pt/competition/914/allianz-cup/round/20262027"
+      ],
+      "season_start_date": "2026-10-27",
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Liga Portugal's 20th Allianz Cup edition starts with the October 27–29 quarterfinals and ends with the January 5–9 Final Four; the exact final kickoff remains subject to scheduling.",
+      "missing_fact": "Exact championship final day within the published Final Four/weekend alternatives; the last day of a planning range is not a confirmed final.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_calendar": "October 27, 2026–January 9, 2027",
+        "published_range_end": "2027-01-09"
+      }
+    },
+    {
+      "key": "soccer-qatar-qatar-cup-men",
+      "sport": "Soccer",
+      "country": "Qatar",
+      "catalog_event": "Qatar Cup | Men",
+      "gender_division": "Qatar Cup | Men",
+      "season_edition": "2026 rescheduled 2025/26 edition",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-28",
+      "original_evidence_verified_at": "2026-09-28",
+      "official_url": "https://www.qsl.qa/en/qatar-cup-fixtures-results",
+      "evidence_urls": [
+        "https://www.qsl.qa/en/qatar-cup-fixtures-results"
+      ],
+      "season_start_date": "2026-09-01",
+      "season_end_date": "2026-12-11",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. QSL identifies this as Qatar Cup 2026, a rescheduled edition originally announced for 2025–26: two September 1 semifinals and a December 11 final between Al Sadd and Al Rayyan, with kickoff still TBD. A separate subsequent edition has not been established.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-romania-cupa-rom-niei-men",
+      "sport": "Soccer",
+      "country": "Romania",
+      "catalog_event": "Cupa României | Men",
+      "gender_division": "Cupa României | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.frf.ro/competitii/competitii-masculin/cupa-romaniei-betano-programul-meciurilor-din-prima-etapa-a-grupelor-toate-meciurile-vor-fi-la-tv-sau-pe-frf-tv/",
+      "evidence_urls": [
+        "https://www.frf.ro/competitii/competitii-masculin/cupa-romaniei-betano-programul-meciurilor-din-prima-etapa-a-grupelor-toate-meciurile-vor-fi-la-tv-sau-pe-frf-tv/"
+      ],
+      "season_start_date": "2026-07-08",
+      "season_end_date": "2027-05-12",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FRF confirms the 2026–27 Cup calendar, including group round 2 on October 28 and the May 12 final. Exact round-2 pairings and kickoffs remain unpublished, so no unattended Cup fixture adapter is claimed.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "publisher_access_note": "Uses pre-existing independent FRF calendar evidence; UEFA source access_status and no-network policy remain unchanged."
+    },
+    {
+      "key": "soccer-romania-supercupa-rom-niei-men",
+      "sport": "Soccer",
+      "country": "Romania",
+      "catalog_event": "Supercupa României | Men",
+      "gender_division": "Supercupa României | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.frf.ro/recomandate/supercupa-romaniei-se-va-disputa-pe-12-iulie/",
+      "evidence_urls": [
+        "https://www.frf.ro/recomandate/supercupa-romaniei-se-va-disputa-pe-12-iulie/"
+      ],
+      "season_start_date": "2026-07-12",
+      "season_end_date": "2026-07-12",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FRF revised its 2026 senior Supercupa date from July 4 to July 11 and then July 12; the match was played July 12. This is one official event window only.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-saudi-arabia-saudi-pro-league-men",
+      "sport": "Soccer",
+      "country": "Saudi Arabia",
+      "catalog_event": "Saudi Pro League | Men",
+      "gender_division": "Saudi Pro League | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.spl.com.sa/en/news/spl-announces-2026-27-rsl-fixture-schedule",
+      "evidence_urls": [
+        "https://www.spl.com.sa/en/news/spl-announces-2026-27-rsl-fixture-schedule"
+      ],
+      "season_start_date": "2026-08-13",
+      "season_end_date": "2027-05-29",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SPL confirms the 34-round 2026–27 Roshn Saudi League fixture span. The configured ESPN daily adapter remains subject to actual fixture coverage and health verification.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-saudi-arabia-saudi-super-cup-men",
+      "sport": "Soccer",
+      "country": "Saudi Arabia",
+      "catalog_event": "Saudi Super Cup | Men",
+      "gender_division": "Saudi Super Cup | Men",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.saff.com.sa/en/news.php?id=4351",
+      "evidence_urls": [
+        "https://www.saff.com.sa/en/news.php?id=4351"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SAFF schedules the distinct four-club 2026–27 Saudi Super Cup in Kuwait December 19–23, with semifinal draw pending; a complete unattended match adapter remains missing.",
+      "missing_fact": "Exact first competitive fixture and full final/last deciding-game day within the published weekend or tournament planning envelope; preserve published range without promoting unnumbered boundary days.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_competition_envelope_start": "2026-12-19",
+        "published_competition_envelope_end": "2026-12-23"
+      }
+    },
+    {
+      "key": "soccer-scotland-challenge-cup-men",
+      "sport": "Soccer",
+      "country": "Scotland",
+      "catalog_event": "Challenge Cup | Men",
+      "gender_division": "Challenge Cup | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://spfl.co.uk/league/challenge-cup/format",
+      "evidence_urls": [
+        "https://spfl.co.uk/league/challenge-cup/format"
+      ],
+      "season_start_date": "2026-08-11",
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SPFL KDM Evolution Trophy starts August 11; final is March 27–28 or April 3–4. League phase includes Premiership B teams and permits 15-year-olds; age and team composition require separate regulatory checks, not an assumed fixture approval.",
+      "missing_fact": "Exact championship final day within the published Final Four/weekend alternatives; the last day of a planning range is not a confirmed final.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_calendar": "August 11, 2026–April 4, 2027 latest final weekend",
+        "published_range_end": "2027-04-04"
+      }
+    },
+    {
+      "key": "soccer-scotland-scottish-cup-men",
+      "sport": "Soccer",
+      "country": "Scotland",
+      "catalog_event": "Scottish Cup | Men",
+      "gender_division": "Scottish Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.scottishfa.co.uk/en/scottish-cup/scottish-gas-mens-scottish-cup/format-rules",
+      "evidence_urls": [
+        "https://www.scottishfa.co.uk/en/scottish-cup/scottish-gas-mens-scottish-cup/format-rules"
+      ],
+      "season_start_date": "2026-08-01",
+      "season_end_date": "2027-05-22",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Scottish FA 2026–27 men’s Cup calendar includes preliminary rounds from August 1 and final May 22; ESPN feed may omit preliminary rounds.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-scotland-scottish-league-cup-men",
+      "sport": "Soccer",
+      "country": "Scotland",
+      "catalog_event": "Scottish League Cup | Men",
+      "gender_division": "Scottish League Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://spfl.co.uk/news/premier-sports-cup-202627-draw",
+      "evidence_urls": [
+        "https://spfl.co.uk/news/premier-sports-cup-202627-draw"
+      ],
+      "season_start_date": "2026-07-11",
+      "season_end_date": "2026-12-13",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SPFL 2026–27 Premier Sports Cup group stage begins July 11 and final is December 13; ESPN feed scope through group stage needs monitoring.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-scotland-scottish-premiership-men",
+      "sport": "Soccer",
+      "country": "Scotland",
+      "catalog_event": "Scottish Premiership | Men",
+      "gender_division": "Scottish Premiership | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://spfl.co.uk/news/key-dates-for-202627",
+      "evidence_urls": [
+        "https://spfl.co.uk/news/key-dates-for-202627"
+      ],
+      "season_start_date": "2026-07-31",
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SPFL opening fixture July 31; league round 38 May 15–16 and Premiership play-off final second leg May 23. ESPN league feed may omit play-off fixtures.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-singapore-community-shield-men",
+      "sport": "Soccer",
+      "country": "Singapore",
+      "catalog_event": "Community Shield | Men",
+      "gender_division": "Community Shield | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://spl.sg/news/ilhan-brace-powers-sailors-to-community-shield-triumph/",
+      "evidence_urls": [
+        "https://spl.sg/news/ilhan-brace-powers-sailors-to-community-shield-triumph/"
+      ],
+      "season_start_date": "2026-09-06",
+      "season_end_date": "2026-09-06",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SPL reports Lion City Sailors beat Tampines Rovers in the 2026–27 Community Shield September 6; it precedes the separate league opener.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-singapore-singapore-premier-league-men",
+      "sport": "Soccer",
+      "country": "Singapore",
+      "catalog_event": "Singapore Premier League | Men",
+      "gender_division": "Singapore Premier League | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://spl.sg/fixtures/",
+      "evidence_urls": [
+        "https://spl.sg/fixtures/"
+      ],
+      "season_start_date": "2026-09-11",
+      "season_end_date": "2027-05-16",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SPL official 2026–27 fixture page opens September 11 and runs through May 16; fixture changes remain possible. The September 6 Community Shield is separate.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-slovakia-slovak-cup-men",
+      "sport": "Soccer",
+      "country": "Slovakia",
+      "catalog_event": "Slovak Cup | Men",
+      "gender_division": "Slovak Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://futbalsfz.sk/slovnaft-cup-na-starte-pohara-rekordnych-307-klubov/",
+      "evidence_urls": [
+        "https://futbalsfz.sk/slovnaft-cup-na-starte-pohara-rekordnych-307-klubov/"
+      ],
+      "season_start_date": "2026-07-14",
+      "season_end_date": "2027-05-01",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SFZ lists an advanced preliminary match July 14 and the May 1 final; regional early rounds remain part of this cup, without an unattended adapter.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-slovakia-slovak-first-football-league-slovak-1-liga-men",
+      "sport": "Soccer",
+      "country": "Slovakia",
+      "catalog_event": "Slovak First Football League / Slovak 1. Liga | Men",
+      "gender_division": "Slovak First Football League / Slovak 1. Liga | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.nikeliga.sk/zapasy/2026?id_round=999&id_stage=1",
+      "evidence_urls": [
+        "https://www.nikeliga.sk/zapasy/2026?id_round=999&id_stage=1"
+      ],
+      "season_start_date": "2026-07-25",
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Niké Liga schedules its July 25 opening and May 15 final championship/relegation round; this calendar does not establish an unattended fixture adapter.",
+      "missing_fact": "Exact full applicable promotion/relegation-playoff endpoint beyond the recorded league/group rounds; league-phase finish is not the full championship envelope.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_league_phase_start": "2026-07-25",
+        "published_league_phase_end": "2027-05-15"
+      }
+    },
+    {
+      "key": "soccer-spain-copa-de-la-reina-women",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Copa de la Reina | Women",
+      "gender_division": "Copa de la Reina | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "evidence_urls": [
+        "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627"
+      ],
+      "season_start_date": "2026-09-09",
+      "season_end_date": "2027-05-15",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. RFEF women's Copa de la Reina first round through final, separate from the men's Copa and futsal competitions.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-spain-copa-del-rey-men",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Copa del Rey | Men",
+      "gender_division": "Copa del Rey | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://rfef.es/es/noticias/la-temporada-202627-ya-tiene-establecidas-sus-fechas-clave",
+      "evidence_urls": [
+        "https://rfef.es/es/noticias/la-temporada-202627-ya-tiene-establecidas-sus-fechas-clave"
+      ],
+      "season_start_date": "2026-09-26",
+      "season_end_date": "2027-04-24",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. RFEF men's Copa del Rey territorial preliminary first leg through the national final; the ESPN feed may omit territorial fixtures.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-spain-laliga-men",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "LaLiga | Men",
+      "gender_division": "LaLiga | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.laliga.com/laliga-easports/calendario",
+      "evidence_urls": [
+        "https://www.laliga.com/laliga-easports/calendario"
+      ],
+      "season_start_date": "2026-08-15",
+      "season_end_date": "2027-05-30",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. LaLiga's first scheduled match and RFEF's final regular-season round; connected men's LaLiga feed.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-spain-liga-f-women",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Liga F | Women",
+      "gender_division": "Liga F | Women",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ligaf.es/noticia/liga-f-moeve-ya-tiene-definido-el-calendario-de-emparejamientos-de-la-temporada-20262027",
+      "evidence_urls": [
+        "https://ligaf.es/noticia/liga-f-moeve-ya-tiene-definido-el-calendario-de-emparejamientos-de-la-temporada-20262027"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Liga F's published opening and final weekends; connected women's Liga F feed.",
+      "missing_fact": "Exact first competitive fixture and full final/last deciding-game day within the published weekend or tournament planning envelope; preserve published range without promoting unnumbered boundary days.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_competition_envelope_start": "2026-08-29",
+        "published_competition_envelope_end": "2027-05-23"
+      }
+    },
+    {
+      "key": "soccer-spain-primera-federaci-n-femenina-women",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Primera Federación Femenina | Women",
+      "gender_division": "Primera Federación Femenina | Women",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://rfef.es/es/noticias/calendario-completo-primera-federacion-femenina-temporada-202627",
+      "evidence_urls": [
+        "https://rfef.es/es/noticias/calendario-completo-primera-federacion-femenina-temporada-202627"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. RFEF publishes the complete 2026–27 Primera Federación Femenina calendar and dates the competition from September 12–13 through the June 5–6 promotion phase. The calendar establishes official season structure but not a dependable unattended exact-kickoff feed.",
+      "missing_fact": "Exact first competitive fixture and full final/last deciding-game day within the published weekend or tournament planning envelope; preserve published range without promoting unnumbered boundary days.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_competition_envelope_start": "2026-09-12",
+        "published_competition_envelope_end": "2027-06-06"
+      }
+    },
+    {
+      "key": "soccer-spain-segunda-divisi-n-men",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Segunda División | Men",
+      "gender_division": "Segunda División | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.laliga.com/laliga-hypermotion/calendario",
+      "evidence_urls": [
+        "https://www.laliga.com/laliga-hypermotion/calendario"
+      ],
+      "season_start_date": "2026-08-14",
+      "season_end_date": "2027-06-20",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. LaLiga's first scheduled match and RFEF's published final promotion-playoff date; connected men's Segunda feed.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-spain-supercopa-de-espa-a-femenina-women",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Supercopa de España Femenina | Women",
+      "gender_division": "Supercopa de España Femenina | Women",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627",
+      "evidence_urls": [
+        "https://rfef.es/es/noticias/repasa-las-fechas-clave-del-futbol-femenino-para-la-temporada-202627"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. RFEF publishes the women's Supercopa final-four window January 19–24, 2027. Exact pairings and kickoffs are not yet established, so this remains official-window-only.",
+      "missing_fact": "Exact first competitive fixture and full final/last deciding-game day within the published weekend or tournament planning envelope; preserve published range without promoting unnumbered boundary days.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_competition_envelope_start": "2027-01-19",
+        "published_competition_envelope_end": "2027-01-24"
+      }
+    },
+    {
+      "key": "soccer-spain-supercopa-de-espa-a-men",
+      "sport": "Soccer",
+      "country": "Spain",
+      "catalog_event": "Supercopa de España | Men",
+      "gender_division": "Supercopa de España | Men",
+      "season_edition": "2027",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://rfef.es/es/noticias/definida-la-hoja-de-ruta-de-la-supercopa-2027-que-se-celebrara-en-estambul",
+      "evidence_urls": [
+        "https://rfef.es/es/noticias/definida-la-hoja-de-ruta-de-la-supercopa-2027-que-se-celebrara-en-estambul"
+      ],
+      "season_start_date": "2027-02-02",
+      "season_end_date": "2027-02-06",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. RFEF's September 17 Istanbul schedule publishes both semifinal pairings, February 2–3 kickoffs and the February 6 final slot. The adapter emits only the named semifinals; the final remains held until participants are known.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-switzerland-swiss-cup-men",
+      "sport": "Soccer",
+      "country": "Switzerland",
+      "catalog_event": "Swiss Cup | Men",
+      "gender_division": "Swiss Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-29",
+      "original_evidence_verified_at": "2026-09-29",
+      "official_url": "https://www.football.ch/en/schweizer-cup/spiele-resultate.aspx",
+      "evidence_urls": [
+        "https://www.football.ch/en/schweizer-cup/spiele-resultate.aspx"
+      ],
+      "season_start_date": "2026-08-14",
+      "season_end_date": "2027-06-06",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. SFV publishes the 2026–27 Swiss Cup round calendar and exact second-round fixtures. A scoped official adapter verifies all 16 second-round matches on October 16–18 with exact kickoff times; later rounds remain outside this slice.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-thailand-thai-league-1-men",
+      "sport": "Soccer",
+      "country": "Thailand",
+      "catalog_event": "Thai League 1 | Men",
+      "gender_division": "Thai League 1 | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://thaileague.co.th/fixtures/224",
+      "evidence_urls": [
+        "https://thaileague.co.th/fixtures/224"
+      ],
+      "season_start_date": "2026-09-04",
+      "season_end_date": "2027-05-30",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Thai League official 2026–27 fixture announcement opens September 4 and schedules all final-round matches May 30. Cup fixtures remain distinct.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-turkey-s-per-lig-men",
+      "sport": "Soccer",
+      "country": "Turkey",
+      "catalog_event": "Süper Lig | Men",
+      "gender_division": "Süper Lig | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.tff.org/Default.aspx?pageId=198",
+      "evidence_urls": [
+        "https://www.tff.org/Default.aspx?pageId=198"
+      ],
+      "season_start_date": null,
+      "season_end_date": "2027-05-23",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. TFF announces the 2026–27 Süper Lig opening round August 14–17 and league finish May 23. The connected ESPN feed remains bounded to this men’s division and requires normal refresh checks.",
+      "missing_fact": "Exact first competitive fixture inside the published first-round weekend, including qualifying where applicable; the round-range start is not independently established as the first match.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_first_round_range_start": "2026-08-14"
+      }
+    },
+    {
+      "key": "soccer-united-states-major-league-soccer-mls-men",
+      "sport": "Soccer",
+      "country": "United States",
+      "catalog_event": "Major League Soccer (MLS) | Men",
+      "gender_division": "Major League Soccer (MLS) | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.mlssoccer.com/news/about-major-league-soccer-x4174",
+      "evidence_urls": [
+        "https://www.mlssoccer.com/news/about-major-league-soccer-x4174",
+        "https://www.mlssoccer.com/news/audi-2026-mls-cup-playoffs-key-dates-schedule-information"
+      ],
+      "season_start_date": "2026-02-21",
+      "season_end_date": "2026-12-18",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Regular season through MLS Cup, including the midyear World Cup break.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-united-states-national-women-s-soccer-league-nwsl-women",
+      "sport": "Soccer",
+      "country": "United States",
+      "catalog_event": "National Women’s Soccer League (NWSL) | Women",
+      "gender_division": "National Women’s Soccer League (NWSL) | Women",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.nwslsoccer.com/news/the-2026-nwsl-schedule-is-here",
+      "evidence_urls": [
+        "https://www.nwslsoccer.com/news/the-2026-nwsl-schedule-is-here",
+        "https://www.nwslsoccer.com/news/quarterfinal-round-set-ahead-of-2026-nwsl-playoffs-presented-by-google-pixel"
+      ],
+      "season_start_date": "2026-03-13",
+      "season_end_date": "2026-11-21",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Regular-season opener through championship.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-concacaf-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-united-states-nwsl-challenge-cup-women",
+      "sport": "Soccer",
+      "country": "United States",
+      "catalog_event": "NWSL Challenge Cup | Women",
+      "gender_division": "NWSL Challenge Cup | Women",
+      "season_edition": "2027",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://www.nwslsoccer.com/news/nwsl-announces-2027-schedule-footprint",
+      "evidence_urls": [
+        "https://www.nwslsoccer.com/news/nwsl-announces-2027-schedule-footprint",
+        "https://www.nwslsoccer.com/schedule/challenge-cup"
+      ],
+      "season_start_date": "2027-02-06",
+      "season_end_date": "2027-02-06",
+      "endpoint_type": "Scheduled single-match 2027 Challenge Cup; participants remain unpublished",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. The NWSL held the standalone 2026 Challenge Cup on June 26; its announced 2027 date is February 6, with participants still undetermined. Neither event inherits the regular-season schedule. Reconciliation of the September 27 saved direct NWSL schedule-footprint publication: February 6, 2027 was already announced; this is prior evidence, not a newly resolved calendar or repeated search.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-concacaf-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "completed_2026_date": "2026-06-26"
+      }
+    },
+    {
+      "key": "soccer-united-states-nwsl-championship-women",
+      "sport": "Soccer",
+      "country": "United States",
+      "catalog_event": "NWSL Championship | Women",
+      "gender_division": "NWSL Championship | Women",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.nwslsoccer.com/news/quarterfinal-round-set-ahead-of-2026-nwsl-playoffs-presented-by-google-pixel",
+      "evidence_urls": [
+        "https://www.nwslsoccer.com/news/quarterfinal-round-set-ahead-of-2026-nwsl-playoffs-presented-by-google-pixel"
+      ],
+      "season_start_date": "2026-11-21",
+      "season_end_date": "2026-11-21",
+      "endpoint_type": "Scheduled single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Championship match only; the full NWSL season is a separate record.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-concacaf-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-uzbekistan-uzbekistan-super-cup-men",
+      "sport": "Soccer",
+      "country": "Uzbekistan",
+      "catalog_event": "Uzbekistan Super Cup | Men",
+      "gender_division": "Uzbekistan Super Cup | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://pfl.uz/news/ozbekiston-superkubogi-2026-chempionat-va-kubok-goliblari-ortasidagi-bellashuvga-bobur-arena-mezbonlik-qiladi",
+      "evidence_urls": [
+        "https://pfl.uz/news/ozbekiston-superkubogi-2026-chempionat-va-kubok-goliblari-ortasidagi-bellashuvga-bobur-arena-mezbonlik-qiladi"
+      ],
+      "season_start_date": "2026-03-15",
+      "season_end_date": "2026-03-15",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. PFL scheduled the senior Neftchi–Paxtakor Super Cup for March 15 in Andijan; do not infer another February edition.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-uzbekistan-uzbekistan-super-league-men",
+      "sport": "Soccer",
+      "country": "Uzbekistan",
+      "catalog_event": "Uzbekistan Super League | Men",
+      "gender_division": "Uzbekistan Super League | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://pfl.uz/en/tours/calendar?tournamentId=1&seasonId=11",
+      "evidence_urls": [
+        "https://pfl.uz/en/tours/calendar?tournamentId=1&seasonId=11"
+      ],
+      "season_start_date": "2026-02-27",
+      "season_end_date": "2026-12-03",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. PFL records a February 27 first-round match and its revised 2026 calendar places the final league round December 3; World Cup interruption and schedule changes require fixture-level checks.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-vietnam-v-league-1-men",
+      "sport": "Soccer",
+      "country": "Vietnam",
+      "catalog_event": "V.League 1 | Men",
+      "gender_division": "V.League 1 | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1",
+      "evidence_urls": [
+        "https://vpf.vn/season/v-league-2027/?action=calendar&pagejs=1"
+      ],
+      "season_start_date": "2026-09-04",
+      "season_end_date": "2027-05-22",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. VPF's 2026–27 draw and competition notice date the 14-club top flight from September 4 through May 22, distinct from V.League 2.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-vietnam-vietnamese-cup-men",
+      "sport": "Soccer",
+      "country": "Vietnam",
+      "catalog_event": "Vietnamese Cup | Men",
+      "gender_division": "Vietnamese Cup | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://vpf.vn/tin-tuc/tin-noi-bat/sacombank-la-nha-tai-tro-chinh-giai-hang-nhat-quoc-gia-va-cup-quoc-gia-2026-27/",
+      "evidence_urls": [
+        "https://vpf.vn/tin-tuc/tin-noi-bat/sacombank-la-nha-tai-tro-chinh-giai-hang-nhat-quoc-gia-va-cup-quoc-gia-2026-27/"
+      ],
+      "season_start_date": "2026-09-18",
+      "season_end_date": "2027-05-30",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. VPF's updated 2026–27 National Cup notice confirms September 18 opener and May 30 second-leg final; V.League 1 and V.League 2 clubs enter, so match and athlete scope remain review items.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-vietnam-vietnamese-super-cup-men",
+      "sport": "Soccer",
+      "country": "Vietnam",
+      "catalog_event": "Vietnamese Super Cup | Men",
+      "gender_division": "Vietnamese Super Cup | Men",
+      "season_edition": "2025/26 title match played August 30, 2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-27",
+      "original_evidence_verified_at": "2026-09-27",
+      "official_url": "https://vpf.vn/tin-tuc/doi-gianh-sieu-cup-quoc-gia-2025-26-nhan-800-trieu-tien-thuong/",
+      "evidence_urls": [
+        "https://vpf.vn/tin-tuc/doi-gianh-sieu-cup-quoc-gia-2025-26-nhan-800-trieu-tien-thuong/"
+      ],
+      "season_start_date": "2026-08-30",
+      "season_end_date": "2026-08-30",
+      "endpoint_type": "Actual completed single-match edition",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. VPF identifies the August 30, 2026 Công an Hà Nội–Công an TPHCM senior National Super Cup as the 2025–26 title match; its edition label differs from the following league season.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-afc-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "soccer-wales-cymru-premier-men",
+      "sport": "Soccer",
+      "country": "Wales",
+      "catalog_event": "Cymru Premier | Men",
+      "gender_division": "Cymru Premier | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://faw.cymru/cymru-leagues/cymru-premier/fixtures-and-results/",
+      "evidence_urls": [
+        "https://faw.cymru/cymru-leagues/cymru-premier/fixtures-and-results/"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FAW confirms a July 31–August 2 opening weekend, April 23–25 final league round, and May 7–9 promotion/relegation play-off final. The calendar envelope includes the post-season.",
+      "missing_fact": "Exact championship final day within the published Final Four/weekend alternatives; the last day of a planning range is not a confirmed final. Exact opening fixture within July 31–August 2 is also unverified.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_calendar": "July 31, 2026–May 9, 2027",
+        "published_range_end": "2027-05-09",
+        "published_opening_weekend_start": "2026-07-31"
+      },
+      "publisher_access_note": "Reconciles saved evidence only. Existing FAW.cymru or USTA publisher access hold remains; no held network request or bypass."
+    },
+    {
+      "key": "soccer-wales-welsh-cup-men",
+      "sport": "Soccer",
+      "country": "Wales",
+      "catalog_event": "Welsh Cup | Men",
+      "gender_division": "Welsh Cup | Men",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://faw.cymru/news/faw-cup-conference-dates-2026-27/",
+      "evidence_urls": [
+        "https://faw.cymru/news/faw-cup-conference-dates-2026-27/"
+      ],
+      "season_start_date": null,
+      "season_end_date": "2027-04-18",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FAW Cup Conference calendar dates the senior men’s first qualifying round July 24–26, 2026 and final April 18, 2027.",
+      "missing_fact": "Exact first competitive fixture inside the published first-round weekend, including qualifying where applicable; the round-range start is not independently established as the first match.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/soccer-uefa-domestic-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_first_round_range_start": "2026-07-24"
+      },
+      "publisher_access_note": "Reconciles saved evidence only. Existing FAW.cymru or USTA publisher access hold remains; no held network request or bypass."
+    },
+    {
+      "key": "surfing-wsl-championship-tour-men",
+      "sport": "Surfing",
+      "country": "International",
+      "catalog_event": "Championship Tour | Men",
+      "gender_division": "Championship Tour | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldsurfleague.com/events/2026/ct?all=1",
+      "evidence_urls": [
+        "https://www.worldsurfleague.com/events/2026/ct?all=1"
+      ],
+      "season_start_date": "2026-04-01",
+      "season_end_date": "2026-12-20",
+      "endpoint_type": "Published division-specific tour waiting-period/calendar endpoint; actual heat day can finish earlier and is not inferred",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. WSL published 2026 men’s Championship Tour from Bells Beach through Pipeline; unattended heat/match ingestion remains unverified.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "surfing-wsl-championship-tour-women",
+      "sport": "Surfing",
+      "country": "International",
+      "catalog_event": "Championship Tour | Women",
+      "gender_division": "Championship Tour | Women",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldsurfleague.com/events/2026/ct?all=1",
+      "evidence_urls": [
+        "https://www.worldsurfleague.com/events/2026/ct?all=1"
+      ],
+      "season_start_date": "2026-04-01",
+      "season_end_date": "2026-12-20",
+      "endpoint_type": "Published division-specific tour waiting-period/calendar endpoint; actual heat day can finish earlier and is not inferred",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. WSL published 2026 women’s Championship Tour from Bells Beach through Pipeline; unattended heat/match ingestion remains unverified.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "surfing-wsl-longboard-men",
+      "sport": "Surfing",
+      "country": "International",
+      "catalog_event": "Longboard Championship Tour | Men",
+      "gender_division": "Longboard Championship Tour | Men",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldsurfleague.com/events/2026/lt?all=1",
+      "evidence_urls": [
+        "https://www.worldsurfleague.com/events/2026/lt?all=1"
+      ],
+      "season_start_date": "2026-07-25",
+      "season_end_date": "2027-03-21",
+      "endpoint_type": "Published division-specific tour waiting-period/calendar endpoint; actual heat day can finish earlier and is not inferred",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. WSL announced the 2026–27 men’s Longboard Tour from Huntington Beach through the March 2027 El Salvador title event; Bells Beach dates were later updated to December 2–6; unattended heat/match ingestion remains unverified.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "surfing-wsl-longboard-women",
+      "sport": "Surfing",
+      "country": "International",
+      "catalog_event": "Longboard Championship Tour | Women",
+      "gender_division": "Longboard Championship Tour | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldsurfleague.com/events/2026/lt?all=1",
+      "evidence_urls": [
+        "https://www.worldsurfleague.com/events/2026/lt?all=1"
+      ],
+      "season_start_date": "2026-07-25",
+      "season_end_date": "2027-03-21",
+      "endpoint_type": "Published division-specific tour waiting-period/calendar endpoint; actual heat day can finish earlier and is not inferred",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. WSL announced the 2026–27 women’s Longboard Tour from Huntington Beach through the March 2027 El Salvador title event; Bells Beach dates were later updated to December 2–6; unattended heat/match ingestion remains unverified.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "table-tennis-wtt-men",
+      "sport": "Table Tennis",
+      "country": "International",
+      "catalog_event": "World Table Tennis (WTT) | Men",
+      "gender_division": "World Table Tennis (WTT) | Men",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldtabletennis.com/events_calendar",
+      "evidence_urls": [
+        "https://www.worldtabletennis.com/events_calendar"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. WTT publishes separate men’s senior competition fields within the 2026 Series from Doha to the Hong Kong Finals. This circuit envelope does not verify every event or match; youth, para, ITTF-only, and mixed-doubles competitions are excluded.",
+      "missing_fact": "Exact division-specific earliest qualifying/competitive round and last Finals match; the saved shared senior event envelope does not independently establish those match boundaries. Youth/para/mixed-double exclusions remain.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_senior_circuit_envelope_start": "2026-01-07",
+        "published_senior_circuit_envelope_end": "2026-12-13"
+      }
+    },
+    {
+      "key": "table-tennis-wtt-women",
+      "sport": "Table Tennis",
+      "country": "International",
+      "catalog_event": "World Table Tennis (WTT) | Women",
+      "gender_division": "World Table Tennis (WTT) | Women",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.worldtabletennis.com/events_calendar",
+      "evidence_urls": [
+        "https://www.worldtabletennis.com/events_calendar"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. WTT publishes separate women’s senior competition fields within the 2026 Series from Doha to the Hong Kong Finals. This circuit envelope does not verify every event or match; youth, para, ITTF-only, and mixed-doubles competitions are excluded.",
+      "missing_fact": "Exact division-specific earliest qualifying/competitive round and last Finals match; the saved shared senior event envelope does not independently establish those match boundaries. Youth/para/mixed-double exclusions remain.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_senior_circuit_envelope_start": "2026-01-07",
+        "published_senior_circuit_envelope_end": "2026-12-13"
+      }
+    },
+    {
+      "key": "table-tennis-mltt",
+      "sport": "Table Tennis",
+      "country": "United States",
+      "catalog_event": "Major League Table Tennis (MLTT) | Men and Women",
+      "gender_division": "Major League Table Tennis (MLTT) | Men and Women",
+      "season_edition": "2026/27",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.mltt.com/league/schedule",
+      "evidence_urls": [
+        "https://www.mltt.com/league/schedule"
+      ],
+      "season_start_date": "2026-09-11",
+      "season_end_date": null,
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. MLTT Season 4 official team-match schedule begins September 11, 2026 and currently ends April 4, 2027. The one coed league retains a single operational identity; no unattended fixture adapter is established.",
+      "missing_fact": "Full coed championship/playoff endpoint beyond the last published April 4 schedule row; saved examples and last scheduled regular matches do not establish a final.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_schedule_end": "2027-04-04"
+      }
+    },
+    {
+      "key": "tennis-australian-open-men",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Australian Open | Men",
+      "gender_division": "Australian Open | Men",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ausopen.com/articles/news/australian-open-2027-dates-announced",
+      "evidence_urls": [
+        "https://ausopen.com/articles/news/australian-open-2027-dates-announced"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official Australian Open 2027 tournament window applies to the men’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact men’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2027-01-11",
+        "published_combined_tournament_end": "2027-01-31"
+      }
+    },
+    {
+      "key": "tennis-australian-open-women",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Australian Open | Women",
+      "gender_division": "Australian Open | Women",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://ausopen.com/articles/news/australian-open-2027-dates-announced",
+      "evidence_urls": [
+        "https://ausopen.com/articles/news/australian-open-2027-dates-announced"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official Australian Open 2027 tournament window applies to the women’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact women’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2027-01-11",
+        "published_combined_tournament_end": "2027-01-31"
+      }
+    },
+    {
+      "key": "tennis-french-open-men",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Roland-Garros / French Open | Men",
+      "gender_division": "Roland-Garros / French Open | Men",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://travel.rolandgarros.com/en/conditions",
+      "evidence_urls": [
+        "https://travel.rolandgarros.com/en/conditions"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official Roland-Garros 2027 tournament window applies to the men’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact men’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2027-05-17",
+        "published_combined_tournament_end": "2027-06-06"
+      }
+    },
+    {
+      "key": "tennis-french-open-women",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Roland-Garros / French Open | Women",
+      "gender_division": "Roland-Garros / French Open | Women",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://travel.rolandgarros.com/en/conditions",
+      "evidence_urls": [
+        "https://travel.rolandgarros.com/en/conditions"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official Roland-Garros 2027 tournament window applies to the women’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact women’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2027-05-17",
+        "published_combined_tournament_end": "2027-06-06"
+      }
+    },
+    {
+      "key": "tennis-us-open-men",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "United States Open | Men",
+      "gender_division": "United States Open | Men",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html",
+      "evidence_urls": [
+        "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official United States Open 2026 tournament window applies to the men’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact men’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2026-08-23",
+        "published_combined_tournament_end": "2026-09-13"
+      },
+      "publisher_access_note": "Reconciles saved evidence only. Existing FAW.cymru or USTA publisher access hold remains; no held network request or bypass."
+    },
+    {
+      "key": "tennis-us-open-women",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "United States Open | Women",
+      "gender_division": "United States Open | Women",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html",
+      "evidence_urls": [
+        "https://www.usopen.org/en_US/news/articles/2026-05-28/2026_us_open_to_feature_22_days_of_worldclass_tennis_and_entertainment.html"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official United States Open 2026 tournament window applies to the women’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact women’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2026-08-23",
+        "published_combined_tournament_end": "2026-09-13"
+      },
+      "publisher_access_note": "Reconciles saved evidence only. Existing FAW.cymru or USTA publisher access hold remains; no held network request or bypass."
+    },
+    {
+      "key": "tennis-wimbledon-men",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Wimbledon | Men",
+      "gender_division": "Wimbledon | Men",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.wimbledon.com/en_GB/atoz/dates.html",
+      "evidence_urls": [
+        "https://www.wimbledon.com/en_GB/atoz/dates.html"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official Wimbledon 2027 tournament window applies to the men’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact men’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2027-06-28",
+        "published_combined_tournament_end": "2027-07-11"
+      }
+    },
+    {
+      "key": "tennis-wimbledon-women",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "Wimbledon | Women",
+      "gender_division": "Wimbledon | Women",
+      "season_edition": "2027",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.wimbledon.com/en_GB/atoz/dates.html",
+      "evidence_urls": [
+        "https://www.wimbledon.com/en_GB/atoz/dates.html"
+      ],
+      "season_start_date": null,
+      "season_end_date": null,
+      "endpoint_type": "Combined tournament envelope retained as context, exact division/qualifying endpoints unverified",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official Wimbledon 2027 tournament window applies to the women’s competition; match draws and daily order of play require separate verification.",
+      "missing_fact": "Exact women’s qualifying opening and division-specific last championship match. The saved combined tournament/event envelope does not independently establish both gender-specific boundaries; main-draw and qualifying phases must remain separate.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "published_combined_tournament_start": "2027-06-28",
+        "published_combined_tournament_end": "2027-07-11"
+      }
+    },
+    {
+      "key": "tennis-united-cup",
+      "sport": "Tennis",
+      "country": "International / Australia",
+      "catalog_event": "United Cup | Men and Women",
+      "gender_division": "United Cup | Men and Women",
+      "season_edition": "2027 fifth edition; one mixed-team competition",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-11-03",
+      "original_evidence_verified_at": "2026-11-03",
+      "official_url": "https://www.unitedcup.com/en/about/overview",
+      "evidence_urls": [
+        "https://www.unitedcup.com/en/about/overview",
+        "https://www.unitedcup.com/en/media/news/auger-aliassime-mboko-tsitsipas-sakkari-to-play-united-cup-2027"
+      ],
+      "season_start_date": "2027-01-01",
+      "season_end_date": "2027-01-10",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Official fifth-edition United Cup dates for Perth and Sydney, one mixed-team competition. Newly published 2027 dates resolve the prior next-edition date hold; individual ties require their own schedule.",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "volleyball-brazil-cup-men",
+      "sport": "Volleyball",
+      "country": "Brazil",
+      "catalog_event": "Brazilian Cup | Men",
+      "gender_division": "Brazilian Cup | Men",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
+      "evidence_urls": [
+        "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil"
+      ],
+      "season_start_date": "2026-01-26",
+      "season_end_date": "2026-03-08",
+      "endpoint_type": "Verified completed 2026 final, next edition boundaries unpublished",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. CBV published separate men’s 2026 quarterfinals and final-phase dates; its men’s title report confirms completion. The exact 2027 cup dates and an unattended fixture adapter remain unpublished.",
+      "missing_fact": "Exact next 2027 division-specific opening and full championship final calendar; the verified completed 2026 edition is retained without annual rollover.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "completed_2026_opening": "2026-01-26",
+        "completed_2026_final": "2026-03-08"
+      }
+    },
+    {
+      "key": "volleyball-brazil-cup-women",
+      "sport": "Volleyball",
+      "country": "Brazil",
+      "catalog_event": "Brazilian Cup | Women",
+      "gender_division": "Brazilian Cup | Women",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil",
+      "evidence_urls": [
+        "https://cbv.com.br/noticias/volei-de-quadra/2026-01-05/cbv-e-clubes-definem-datas-locais-e-horarios-do-confrontos-das-quartas-de-final-da-copa-brasil"
+      ],
+      "season_start_date": "2026-01-23",
+      "season_end_date": "2026-02-28",
+      "endpoint_type": "Verified completed 2026 final, next edition boundaries unpublished",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. CBV published separate women’s 2026 quarterfinals and final-phase dates; its women’s title report confirms completion. The exact 2027 cup dates and an unattended fixture adapter remain unpublished.",
+      "missing_fact": "Exact next 2027 division-specific opening and full championship final calendar; the verified completed 2026 edition is retained without annual rollover.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "completed_2026_opening": "2026-01-23",
+        "completed_2026_final": "2026-02-28"
+      }
+    },
+    {
+      "key": "volleyball-fivb-club-world-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball World Club Championships | Men",
+      "gender_division": "Volleyball World Club Championships | Men",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/poland-to-host-the-fivb-volleyball-mens-club-world-championship-in-2026-and-2027/",
+      "evidence_urls": [
+        "https://www.fivb.com/poland-to-host-the-fivb-volleyball-mens-club-world-championship-in-2026-and-2027/"
+      ],
+      "season_start_date": "2026-12-15",
+      "season_end_date": "2026-12-20",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FIVB confirms the men's 2026 Club World Championship in Poland; the published window is not an unattended match fixture adapter",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "volleyball-fivb-club-world-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball World Club Championships | Women",
+      "gender_division": "Volleyball World Club Championships | Women",
+      "season_edition": "2026",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/eight-teams-confirmed-for-the-2026-fivb-womens-club-world-championship-in-sao-paulo/",
+      "evidence_urls": [
+        "https://www.fivb.com/eight-teams-confirmed-for-the-2026-fivb-womens-club-world-championship-in-sao-paulo/"
+      ],
+      "season_start_date": "2026-12-08",
+      "season_end_date": "2026-12-13",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FIVB confirms the women's 2026 Club World Championship in São Paulo; the published window is not an unattended match fixture adapter",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "volleyball-fivb-vnl-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball Nations League | Men",
+      "gender_division": "Volleyball Nations League | Men",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/",
+      "evidence_urls": [
+        "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/"
+      ],
+      "season_start_date": "2026-06-10",
+      "season_end_date": "2026-08-02",
+      "endpoint_type": "Verified completed 2026 final, next edition boundaries unpublished",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FIVB and Volleyball World 2026 men’s VNL calendar includes the preliminary phase and Finals; the 2027 exact schedule and unattended fixture adapter remain pending",
+      "missing_fact": "Exact next 2027 division-specific opening and full championship final calendar; the verified completed 2026 edition is retained without annual rollover.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "completed_2026_opening": "2026-06-10",
+        "completed_2026_final": "2026-08-02"
+      }
+    },
+    {
+      "key": "volleyball-fivb-vnl-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball Nations League | Women",
+      "gender_division": "Volleyball Nations League | Women",
+      "season_edition": "2026",
+      "status": "awaiting-published-dates",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/",
+      "evidence_urls": [
+        "https://en.volleyballworld.com/volleyball/competitions/volleyball-nations-league/schedule/"
+      ],
+      "season_start_date": "2026-06-03",
+      "season_end_date": "2026-07-26",
+      "endpoint_type": "Verified completed 2026 final, next edition boundaries unpublished",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FIVB and Volleyball World 2026 women’s VNL calendar includes the preliminary phase and Finals; the 2027 exact schedule and unattended fixture adapter remain pending",
+      "missing_fact": "Exact next 2027 division-specific opening and full championship final calendar; the verified completed 2026 edition is retained without annual rollover.",
+      "next_action": "Use an identifiable new or revised official exact-edition publication to establish the precise missing boundary; keep all publisher and compliance holds.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition.",
+      "saved_partial_context": {
+        "completed_2026_opening": "2026-06-03",
+        "completed_2026_final": "2026-07-26"
+      }
+    },
+    {
+      "key": "volleyball-fivb-world-championships-men",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball World Championships | Men",
+      "gender_division": "Volleyball World Championships | Men",
+      "season_edition": "2027",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/wp-content/uploads/2024/03/VB_CALENDAR_2025-2028_17.12.25.pdf",
+      "evidence_urls": [
+        "https://www.fivb.com/wp-content/uploads/2024/03/VB_CALENDAR_2025-2028_17.12.25.pdf"
+      ],
+      "season_start_date": "2027-09-10",
+      "season_end_date": "2027-09-26",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FIVB 2027 men’s senior World Cup is the renamed World Championship edition in Poland; an unattended fixture adapter remains unverified",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "volleyball-fivb-world-championships-women",
+      "sport": "Volleyball",
+      "country": "International",
+      "catalog_event": "Volleyball World Championships | Women",
+      "gender_division": "Volleyball World Championships | Women",
+      "season_edition": "2027",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.fivb.com/the-2027-fivb-womens-volleyball-world-cup-american-host-cities-revealed/",
+      "evidence_urls": [
+        "https://www.fivb.com/the-2027-fivb-womens-volleyball-world-cup-american-host-cities-revealed/"
+      ],
+      "season_start_date": "2027-08-20",
+      "season_end_date": "2027-09-05",
+      "endpoint_type": "Scheduled championship final or final competition day, with supported phases preserved",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. FIVB 2027 women’s senior World Cup is the renamed World Championship edition in United States and Canada; an unattended fixture adapter remains unverified",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "volleyball-italy-serie-a1-women",
+      "sport": "Volleyball",
+      "country": "Italy",
+      "catalog_event": "Serie A1 | Women",
+      "gender_division": "Serie A1 | Women",
+      "season_edition": "2026/27",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-06",
+      "reconciled_at": "2026-11-06",
+      "evidence_verified_at": "2026-09-26",
+      "original_evidence_verified_at": "2026-09-26",
+      "official_url": "https://www.legavolleyfemminile.it/serie-a1-fineco-2026-2027-definito-il-calendario/",
+      "evidence_urls": [
+        "https://www.legavolleyfemminile.it/serie-a1-fineco-2026-2027-definito-il-calendario/",
+        "https://www.legavolleyfemminile.it/calendario/"
+      ],
+      "season_start_date": "2026-10-04",
+      "season_end_date": "2027-04-25",
+      "endpoint_type": "Last possible Scudetto Final Game 5 on April 25, 2027",
+      "finding": "Reconciliation of prior edition-specific evidence and source/country investigation checkpoints; no repeat publisher research or newly resolved calendar. Lega Volley Femminile publishes the 2026–27 regular season through March 14, playoffs from March 20–21, and a possible fifth final April 25; the fixture adapter remains missing",
+      "missing_fact": "",
+      "next_action": "Retain the exact named edition and scope, reopen only for a concrete revised official publication or substantive new user evidence.",
+      "revisit_trigger": "Identifiable new/revised official exact-edition calendar or substantive new user evidence.",
+      "progress_kind": "prior-evidence-reconciliation",
+      "prior_evidence_locations": [
+        "data/catalog-season-map.json",
+        "data/global-schedule-sources.json",
+        "PROJECT_CONTROL.md"
+      ],
+      "sources_checked": [
+        "Saved exact-key calendar and primary evidence links",
+        "Prior source/country investigation checkpoints; no repeat network request"
+      ],
+      "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
     }
   ]
 }
