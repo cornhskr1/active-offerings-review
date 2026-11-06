@@ -33,9 +33,15 @@ class GreeceTurkeyScopeTests(unittest.TestCase):
                 self.assertNotIn("season_end_date", self.events[key])
                 self.assertEqual("PARTIAL_WINDOW", self.inventory[key]["season_state"])
         key = "soccer-turkey-turkish-super-cup-men"
-        self.assertTrue(self.events[key]["season_hold"])
-        self.assertEqual("DOCUMENTED_HOLD", self.inventory[key]["season_state"])
-        self.assertNotIn("season_start_date", self.events[key])
+        super_cup = self.events[key]
+        self.assertFalse(super_cup.get("season_hold", False))
+        self.assertTrue(super_cup["season_window_complete"])
+        self.assertEqual(("2027-01-04", "2027-01-09"),
+                         (super_cup["season_start_date"], super_cup["season_end_date"]))
+        self.assertIn("2026 edition", super_cup["season_edition"])
+        self.assertTrue(super_cup["season_source_url"].startswith("https://www.tff.org/"))
+        # The historical fixture inventory is not refreshed by calendar research.
+        self.assertEqual("ADAPTER_GAP", self.inventory[key]["coverage_state"])
 
 
 if __name__ == "__main__":
