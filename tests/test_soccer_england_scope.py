@@ -3,6 +3,7 @@
 import json
 import unittest
 from pathlib import Path
+from scripts.audit_priority2_coverage import build
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -89,7 +90,8 @@ class EnglandSoccerScopeTests(unittest.TestCase):
         self.assertEqual("coverage-gap", legacy["source_type"])
         self.assertEqual("ADAPTER_CONFIGURED", self.inventory["Super League 2 | Women"]["coverage_state"])
         self.assertEqual("ADAPTER_GAP", self.inventory["The Championship | Women"]["coverage_state"])
-        self.assertEqual("DOCUMENTED_HOLD", self.inventory["The Championship | Women"]["season_state"])
+        reviewed = next(r for r in build()["identities"] if r["identity_key"] == "soccer-england-the-championship-women")
+        self.assertEqual("PARTIAL_WINDOW", reviewed["season_state"])
         self.assertEqual(
             "https://www.wslfootball.com/fixtures/wsl2",
             current["official_schedule_url"],

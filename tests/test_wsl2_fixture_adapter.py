@@ -38,13 +38,13 @@ class WSL2FixtureTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     parse_wsl2_fixtures(page, source, end)
 
-    def test_legacy_catalog_child_is_held(self):
+    def test_confirmed_legacy_alias_keeps_partial_dates_and_no_duplicate_adapter(self):
         rows = {row["identity_key"]: row for row in build()["identities"]}
         current = rows["soccer-england-super-league-2-women"]
         legacy = rows["soccer-england-the-championship-women"]
         self.assertEqual("ADAPTER_CONFIGURED", current["coverage_state"])
         self.assertEqual("ADAPTER_GAP", legacy["coverage_state"])
-        self.assertEqual("DOCUMENTED_HOLD", legacy["season_state"])
+        self.assertEqual("PARTIAL_WINDOW", legacy["season_state"])
 
 
 if __name__ == "__main__":

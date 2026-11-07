@@ -23,12 +23,12 @@
     "canonical_key_sha256": "ed04c2b5295cd8c570f4ffc9b19eda886c5ea61dd8d41c53332881cc171898b9",
     "reconciled_at": "2026-11-06",
     "status_counts": {
-      "awaiting-published-dates": 253,
+      "awaiting-published-dates": 254,
       "cancelled": 4,
       "manual-verification-needed": 48,
       "nonseasonal": 28,
       "not-scheduled": 10,
-      "scope-conflict": 25,
+      "scope-conflict": 24,
       "source-access-held": 48,
       "verified-complete": 319
     },
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "ad3e978fe47e7c0e50246bdc3a4d1d88e6309eca",
-    "post_first_pass_triggered_rechecks": 5
+    "latest_follow_up_commit_base": "d7ed562cd79d81c521f10161c3760b892675345d",
+    "post_first_pass_triggered_rechecks": 7
   },
   "records": [
     {
@@ -8367,7 +8367,7 @@
       "sport": "Soccer",
       "country": "England",
       "catalog_event": "The Championship | Women",
-      "status": "scope-conflict",
+      "status": "awaiting-published-dates",
       "reviewed_at": "2026-11-06",
       "reconciled_at": "2026-11-06",
       "evidence_verified_at": "2026-09-27",
@@ -8375,17 +8375,19 @@
       "official_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
       "evidence_urls": [
         "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
-        "https://www.wslfootball.com/fixtures/wsl2"
+        "https://www.wslfootball.com/fixtures/wsl2",
+        "https://www.wslfootball.com/2026-27-fixtures",
+        "https://www.burnleyfootballclub.com/media-article/womens-teams-2026-27-fixtures-confirmed"
       ],
-      "finding": "Reconciliation of prior exact country/competition research in PROJECT_CONTROL.md, the season map and source configuration; no new calendar resolution or repeated official search. Official WSL Football 2026-27 fixture dates and competition calendar. This catalog child is the legacy name for the current BWSL2 competition and must not create a second fixture stream. This legacy catalog label and Super League 2 | Women refer to the same current competition. Keep this fail-closed source record visible; it must not create a second fixture stream when a BWSL2 adapter is added.",
+      "finding": "Nich agreed on November 6, 2026 that the women’s Championship is the former name of Women’s Super League 2. WSL Football’s May 12, 2025 announcement confirms the change from 2025/26. Both original catalog entries remain; the Super League 2 source alone owns fixtures. Men’s Championship is separate and unchanged. 2026/27 WSL2: September 4, 2026 opening; promotion play-off weekend May 29–30, 2027, exact final day unverified. The published weekend is partial evidence and is not a confirmed full-season endpoint.",
       "progress_kind": "prior-evidence-reconciliation",
       "season_edition": "2026/27 legacy women’s Championship / current BWSL2",
       "gender_division": "The Championship | Women",
       "season_start_date": "2026-09-04",
       "season_end_date": null,
-      "endpoint_type": "Prior partial calendar; complete exact-scope window not promoted",
-      "missing_fact": "Canonical ownership of the shared current competition remains held to prevent duplicate fixture streams; do not automatically merge/remap approvals.",
-      "next_action": "Preserve this reviewed disposition and existing holds. Reopen only for a specific new official edition calendar/revision or substantive user-supplied scope/evidence decision.",
+      "endpoint_type": "Published finals/final-round weekend, exact last competition day unverified",
+      "missing_fact": "Exact final/last match day within the published two-day final or final-round weekend; its second day is not independently established as the actual endpoint.",
+      "next_action": "Apply only an identifiable official exact final/play-off date publication to the shared calendar; keep WSL2 as the sole fixture owner.",
       "revisit_trigger": "Identifiable new official edition-specific publication/revision or new user-supplied evidence.",
       "saved_partial_context": {
         "season_window": "September 4, 2026–May 30, 2027",
@@ -8399,7 +8401,24 @@
         "data/catalog-season-map.json",
         "data/soccer-uefa-domestic-sources.json"
       ],
-      "published_phase_end_context": "2027-05-30"
+      "published_phase_end_context": "2027-05-30",
+      "calendar_identity_key": "soccer-england-super-league-2-women",
+      "alias_confirmed_at": "2026-11-06",
+      "calendar_evidence_verified_at": "2026-09-26",
+      "revisit_history": [
+        {
+          "trigger_type": "user-supplied-information",
+          "trigger_date": "2026-11-06",
+          "trigger": "Nich agreed to preserve both catalog entries, show the former Championship name as an alias and share WSL2’s calendar without duplicating fixtures.",
+          "status": "consumed",
+          "checked_at": "2026-11-06",
+          "evidence_url": "https://www.wslfootball.com/news/a-new-name-and-a-new-look-for-professional-womens-football-in-england",
+          "source_publication_date": "2025-05-12",
+          "result": "Naming interpretation resolved; existing partial calendar reconciled, exact endpoint remains unverified."
+        }
+      ],
+      "calendar_corroborated_at": "2026-11-06",
+      "calendar_scope_note": "Exact WSL2 opener corroborated as Watford–Burnley September 4, 2026 in the official matchweek-one listing and Burnley July 30 publication. League July 30 calendar names pre-qualifier May 22–23 and final play-off May 29–30, 2027; no exact final day assigned."
     },
     {
       "key": "soccer-estonia-estonian-cup-tipneri-karikas-men",
@@ -17338,7 +17357,9 @@
       "official_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
       "evidence_urls": [
         "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
-        "https://www.wslfootball.com/fixtures/wsl2"
+        "https://www.wslfootball.com/fixtures/wsl2",
+        "https://www.wslfootball.com/2026-27-fixtures",
+        "https://www.burnleyfootballclub.com/media-article/womens-teams-2026-27-fixtures-confirmed"
       ],
       "season_start_date": "2026-09-04",
       "season_end_date": null,
@@ -17361,7 +17382,21 @@
       "saved_partial_context": {
         "published_final_weekend_end": "2027-05-30",
         "published_calendar": "September 4, 2026–May 30, 2027"
-      }
+      },
+      "revisit_history": [
+        {
+          "trigger_type": "user-supplied-information",
+          "trigger_date": "2026-11-06",
+          "trigger": "Nich agreed to preserve both catalog entries, show the former Championship name as an alias and share WSL2’s calendar without duplicating fixtures.",
+          "status": "consumed",
+          "checked_at": "2026-11-06",
+          "evidence_url": "https://www.wslfootball.com/news/a-new-name-and-a-new-look-for-professional-womens-football-in-england",
+          "source_publication_date": "2025-05-12",
+          "result": "Naming interpretation resolved; existing partial calendar reconciled, exact endpoint remains unverified."
+        }
+      ],
+      "calendar_corroborated_at": "2026-11-06",
+      "calendar_scope_note": "Exact WSL2 opener corroborated as Watford–Burnley September 4, 2026 in the official matchweek-one listing and Burnley July 30 publication. League July 30 calendar names pre-qualifier May 22–23 and final play-off May 29–30, 2027; no exact final day assigned."
     },
     {
       "key": "soccer-england-super-league-women",
