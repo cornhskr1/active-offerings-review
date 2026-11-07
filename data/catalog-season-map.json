@@ -7527,8 +7527,8 @@
             {
               "key": "soccer-england-super-league-2-women",
               "catalog_event": "Super League 2 | Women",
-              "season_window": "September 4, 2026–May 30, 2027",
-              "season_basis": "Official WSL Football 2026-27 fixture dates and competition calendar. The end date includes the published promotion play-off weekend.",
+              "season_window": "September 4, 2026 opening · May 29–30, 2027 play-off weekend; exact final day unverified",
+              "season_basis": "2026/27 WSL2: September 4, 2026 opening; promotion play-off weekend May 29–30, 2027, exact final day unverified. The published weekend is partial evidence and is not a confirmed full-season endpoint. Nich agreed on November 6, 2026 that the women’s Championship is the former name of Women’s Super League 2. WSL Football’s May 12, 2025 announcement confirms the change from 2025/26. Both original catalog entries remain; the Super League 2 source alone owns fixtures. Men’s Championship is separate and unchanged.",
               "last_verified": "2026-09-26",
               "restrictions": [],
               "source_id": "uefa-soccer-england-super-league-2-women",
@@ -7538,8 +7538,21 @@
               "season_source_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
               "season_evidence_urls": [
                 "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
-                "https://www.wslfootball.com/fixtures/wsl2"
-              ]
+                "https://www.wslfootball.com/fixtures/wsl2",
+                "https://www.wslfootball.com/2026-27-fixtures",
+                "https://www.burnleyfootballclub.com/media-article/womens-teams-2026-27-fixtures-confirmed"
+              ],
+              "display_aliases": [
+                {
+                  "name": "Formerly Women’s Championship",
+                  "name_type": "catalog alias",
+                  "evidence_url": "https://www.wslfootball.com/news/a-new-name-and-a-new-look-for-professional-womens-football-in-england",
+                  "scope_note": "Nich agreed on November 6, 2026 that the women’s Championship is the former name of Women’s Super League 2. WSL Football’s May 12, 2025 announcement confirms the change from 2025/26. Both original catalog entries remain; the Super League 2 source alone owns fixtures. Men’s Championship is separate and unchanged."
+                }
+              ],
+              "alias_confirmed_at": "2026-11-06",
+              "season_edition": "2026/27 WSL2",
+              "calendar_reconciled_at": "2026-11-06"
             },
             {
               "key": "soccer-england-players-cup-women",
@@ -7644,13 +7657,31 @@
                   "key": "soccer-england-the-championship-women",
                   "label": "The Championship | Women",
                   "source_id": "uefa-soccer-england-championship-women",
-                  "season_window": "September 4, 2026–May 30, 2027",
+                  "season_window": "September 4, 2026 opening · May 29–30, 2027 play-off weekend; exact final day unverified",
                   "season_start_date": "2026-09-04",
-                  "season_end_date": "2027-05-30",
-                  "season_basis": "Official WSL Football 2026-27 fixture dates and competition calendar. This catalog child is the legacy name for the current BWSL2 competition and must not create a second fixture stream.",
-                  "last_verified": "2026-09-27",
-                  "season_hold": true,
-                  "hold_reason": "The Championship | Women is the legacy name for the current WSL2 competition. The current Super League 2 | Women child owns its fixtures; this legacy child must not publish a duplicate stream."
+                  "season_basis": "2026/27 WSL2: September 4, 2026 opening; promotion play-off weekend May 29–30, 2027, exact final day unverified. The published weekend is partial evidence and is not a confirmed full-season endpoint. Nich agreed on November 6, 2026 that the women’s Championship is the former name of Women’s Super League 2. WSL Football’s May 12, 2025 announcement confirms the change from 2025/26. Both original catalog entries remain; the Super League 2 source alone owns fixtures. Men’s Championship is separate and unchanged.",
+                  "last_verified": "2026-09-26",
+                  "display_aliases": [
+                    {
+                      "name": "Women’s Super League 2 (WSL2)",
+                      "name_type": "catalog alias",
+                      "evidence_url": "https://www.wslfootball.com/news/a-new-name-and-a-new-look-for-professional-womens-football-in-england",
+                      "scope_note": "Nich agreed on November 6, 2026 that the women’s Championship is the former name of Women’s Super League 2. WSL Football’s May 12, 2025 announcement confirms the change from 2025/26. Both original catalog entries remain; the Super League 2 source alone owns fixtures. Men’s Championship is separate and unchanged."
+                    }
+                  ],
+                  "alias_confirmed_at": "2026-11-06",
+                  "season_window_complete": false,
+                  "season_verification_status": "awaiting-published-dates",
+                  "season_edition": "2026/27 WSL2",
+                  "season_source_url": "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+                  "season_evidence_urls": [
+                    "https://www.wslfootball.com/news/the-2026-27-fixtures-are-out",
+                    "https://www.wslfootball.com/fixtures/wsl2",
+                    "https://www.wslfootball.com/2026-27-fixtures",
+                    "https://www.burnleyfootballclub.com/media-article/womens-teams-2026-27-fixtures-confirmed"
+                  ],
+                  "calendar_identity_key": "soccer-england-super-league-2-women",
+                  "calendar_reconciled_at": "2026-11-06"
                 }
               ]
             },
