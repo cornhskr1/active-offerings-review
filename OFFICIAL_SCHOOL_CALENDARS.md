@@ -50,3 +50,47 @@ configuration accepts that name and the earlier `University of Nebraska Omaha`,
 while still requiring the exact program and match structure. The new fixtures
 retain only factual event properties. No production data is rewritten by this
 configuration change alone.
+
+## Optional bounded scheduled-start evidence
+
+The historical result remains date-only. An optional
+`scheduled_start_evidence` object carries separately fetched, scheduled (never
+actual) start provenance for those same two reviewed events. Its own 60-hour
+TTL, source URL, response SHA-256, exact original calendar identity, program,
+match date, teams, site and city/state binding survive into the portal audit.
+The result and calendar observations are never rewritten to manufacture a time.
+Timing failure, malformed timing cache, changed facts or unavailable PDF leaves
+valid result/location evidence available with timing unknown. Retried failures
+never update a last-good observation timestamp. The existing 90-day historical
+scope, cancellation/conflict checks and source-health gates still apply.
+
+Nebraska football at Illinois is scheduled for 7 p.m. CT on November 6, 2026
+(UTC November 7 at 01:00). The official November 2 preview supplies the qualified
+kickoff statement, but does not itself state November 6. Therefore the adapter
+also requires the exact linked official game-notes PDF, whose inspected page 1
+identifies the 2026 football schedule, both teams, Friday November 6, 7 p.m. CT,
+Champaign and Memorial Stadium. Its reviewed SHA-256 is
+`b64c9ed82e4985c013dc47fd48fc59086745cf60a3d3abef9ef14d91db21546e`.
+Only identical PDF bytes qualify. A changed PDF needs a new human review, not
+automatic repinning. No runtime PDF parser or new dependency is needed.
+
+Nebraska women's volleyball at Oregon is scheduled for 9 p.m. CT on November 7,
+2026 (UTC November 8 at 03:00). Its official November 5 preview also describes
+Washington. The parser requires the exact Oregon heading and qualified first
+serve in the same unique paragraph. Washington's time cannot fill an absent
+Oregon time. Actual venue continues to come from the separately verified
+completed result, including its exact Matthew Knight Arena evidence.
+
+Sources:
+- https://huskers.com/news/2026/11/2/nebraska-faces-illinois-in-friday-night-road-game
+- https://storage.googleapis.com/huskers-com-prod/2026/11/02/7722pedpBrvn50mWdr6tzmNFeRWsDWa0MMNPbTGO.pdf
+- https://huskers.com/news/2026/11/05/vb-preview-at-no-12-oregon-and-no-18-washington
+
+The portal requires explicit staff confirmation and a verification note for each
+historical group. It separately validates optional timing provenance and the
+PDF pin, retains known-start conflicts and post-scheduled-start findings, and
+states that scheduled time does not prove play began. These fixtures are not a
+claim that all real wagers clear. Release requires a full executable-tree
+companion manifest after the actual source merge, then a verified collector and
+consumer publication. Preparing patches alone does not activate new evidence; a successful guarded
+collector and verified consumer publication are required.
