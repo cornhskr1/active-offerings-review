@@ -33,6 +33,40 @@ class CalendarTests(unittest.TestCase):
     def test_exact_inventory(self):
         self.assertEqual(len(SOURCES),16);self.assertEqual(len({s['id'] for s in SOURCES}),16)
         self.assertEqual(sum(s['sport']=='Football' for s in SOURCES),1)
+    def test_omaha_observed_school_name_change_keeps_exact_program_scope(self):
+        # Official offered calendars now use Omaha; older snapshots used the
+        # university's full name. Both are exact names, never a substring match.
+        for source in (s for s in SOURCES if s['school'] == 'Omaha'):
+            for school in ('Omaha', 'University of Nebraska Omaha'):
+                for prefix, status in (('', 'CONFIRMED'), ('[L] ', 'COMPLETED'),
+                                       ('CANCELLED ', 'CANCELLED')):
+                    summary = f"{prefix}{school} {source['sport']} at BYU"
+                    rows, _ = parse_calendar(calendar(event(summary=summary)), source, 'season')
+                    self.assertEqual(rows[0]['status'], status)
+                    self.assertEqual(rows[0]['opponent'], 'BYU')
+                    self.assertEqual(rows[0]['school'], 'Omaha')
+            for summary in (f"Nebraska {source['sport']} at BYU",
+                            f"Omaha State {source['sport']} at BYU",
+                            "Omaha Football at BYU",
+                            f"Example Omaha {source['sport']} at BYU"):
+                with self.assertRaises(ValueError):
+                    parse_calendar(calendar(event(summary=summary)), source, 'season')
+        mens = next(s for s in SOURCES if s['id'] == 'official-omaha-mens-basketball')
+        with self.assertRaises(ValueError):
+            parse_calendar(calendar(event(summary="Omaha Women's Basketball at BYU")), mens, 'season')
+
+    def test_observed_omaha_byu_completed_calendar(self):
+        source = next(s for s in SOURCES if s['id'] == 'official-omaha-mens-basketball')
+        body = (ROOT/'tests/fixtures/omaha-byu-calendar-20261109.ics').read_text()
+        rows, meta = parse_calendar(body, source, '101:492:2026-27')
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['uid'], 'vcal_19940-omahamavs.com')
+        self.assertEqual(rows[0]['status'], 'COMPLETED')
+        self.assertEqual(rows[0]['date'], '2026-11-06')
+        self.assertEqual(rows[0]['start_time'], '2026-11-07T02:00:00+00:00')
+        self.assertEqual(rows[0]['location'], 'Provo, UT, Marriott Center')
+        self.assertEqual(meta['ttl_seconds'], 7200)
+
     def test_minimal_date_only_and_ttl(self):
         rows,meta=parse_calendar(calendar(event(extra='DESCRIPTION:must not retain\nURL:https://example.test/logo.png')),SOURCE,'rolling')
         self.assertEqual(meta['ttl_seconds'],216000);self.assertTrue(rows[0]['date_only']);self.assertIsNone(rows[0]['start_time'])
