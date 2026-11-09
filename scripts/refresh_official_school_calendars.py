@@ -10,9 +10,11 @@ import requests
 try:
     from official_school_calendar import collect_school_calendar
     from publisher_access_policy import install_network_guards
+    from official_historical_school_result import collect_results
 except ModuleNotFoundError:
     from scripts.official_school_calendar import collect_school_calendar
     from scripts.publisher_access_policy import install_network_guards
+    from scripts.official_historical_school_result import collect_results
 
 CT = ZoneInfo('America/Chicago')
 ROOT = Path(__file__).resolve().parents[1]
@@ -94,14 +96,18 @@ def build_snapshot(config, previous, previous_cache, now, get=requests.get):
             raise ValueError('Duplicate school-calendar event identity')
         seen.add(identity)
     events.sort(key=lambda e: (e.get('date', ''), e.get('start_time') or 'Z', e['school'], e['sport']))
+    historical_rows, historical_status, historical_cache = collect_results(
+        calendar_events, previous_cache.get('historical_result', {}), now, get)
+    historical_rows = [classify_location(row) for row in historical_rows]
     coverage = {school: {'configured': sum(s['school'] == school for s in statuses), 'loaded': sum(s['school'] == school and bool(s.get('ok')) for s in statuses)} for school in ('Nebraska', 'Creighton', 'Omaha')}
     return ({'schema_version': 2, 'generated_at': now.isoformat(), 'timezone': 'America/Chicago',
              'window_start': today.isoformat(), 'window_end': end.isoformat(), 'events': events,
              'calendar_events': calendar_events,
+             'historical_events': historical_rows, 'historical_sources': historical_status,
              'projection_note': 'The review window rolls over saved calendar rows without changing their source observation dates.',
              'sources': statuses, 'coverage': coverage, 'calendar_programs': [{'school': s, 'sport': p} for s, p in sorted(EXPECTED)],
              'calendar_note': 'Official calendar facts; refresh timestamps are not guarantees that the publisher updated its schedule. Unrelated saved programs remain stale.'},
-            {'schema_version': 1, 'sources': cache})
+            {'schema_version': 1, 'sources': cache, 'historical_result': historical_cache})
 
 
 def retain_futures(saved):
