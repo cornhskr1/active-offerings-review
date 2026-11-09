@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-06",
+  "updated_at": "2026-11-08",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
   "baseline_dated_records": 317,
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "d7ed562cd79d81c521f10161c3760b892675345d",
-    "post_first_pass_triggered_rechecks": 7
+    "latest_follow_up_commit_base": "2ffbb83a97cecf7a462dd1c7d738fdbb0f184bc4",
+    "post_first_pass_triggered_rechecks": 8
   },
   "records": [
     {
@@ -2106,20 +2106,36 @@
       "country": "United States",
       "catalog_event": "Unrivaled Basketball | Women",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-06",
-      "official_url": "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
+      "reviewed_at": "2026-11-08",
+      "official_url": "https://www.unrivaled.basketball/news/unrivaled-reveals-season-three-matchups-and-clubs-competing-in-tour-stops-ftugcxnvnpa7",
       "evidence_urls": [
         "https://www.unrivaled.basketball/news/unrivaled-announces-roster-updates-ahead-of-season-three-ttpckjvtuox2",
         "https://www.unrivaled.basketball/schedule?season=2027",
         "https://www.unrivaled.basketball/arena",
-        "https://www.unrivaled.basketball/news/unrivaled-announces-2027-club-rosters-j51bz0hxvcux"
+        "https://www.unrivaled.basketball/news/unrivaled-announces-2027-club-rosters-j51bz0hxvcux",
+        "https://www.unrivaled.basketball/news/unrivaled-reveals-season-three-matchups-and-clubs-competing-in-tour-stops-ftugcxnvnpa7"
       ],
-      "finding": "The November 4 league release reconfirms January 8, 2027 opening and announces a November 6 matchup reveal. The reviewed season-three schedule still labels regular-season games and the separate one-on-one tournament, without an identified championship fixture. Neither the last listed regular game nor a one-on-one event establishes the league championship endpoint.",
+      "finding": "Unrivaled’s November 6 regular-season release confirms January 8, 2027 doubleheaders in Boston and Los Angeles. February 20 concludes the separate one-on-one tournament. The league championship date is still unconfirmed.",
       "missing_fact": "Exact 2027 championship date.",
-      "next_action": "Recheck the announced November 6 schedule update and subsequent postseason notice for the exact season-three championship date.",
+      "next_action": "Check a new official postseason announcement identifying the 2027 league championship date.",
       "season_edition": "2027 (season three)",
       "season_start_date": "2027-01-08",
-      "season_end_date": null
+      "season_end_date": null,
+      "revisit_history": [
+        {
+          "trigger_date": "2026-11-06",
+          "trigger_type": "official-publication",
+          "trigger": "Season-three regular-season matchups released November 6 at 11 a.m. ET.",
+          "source_url": "https://www.unrivaled.basketball/news/unrivaled-reveals-season-three-matchups-and-clubs-competing-in-tour-stops-ftugcxnvnpa7",
+          "status": "consumed",
+          "checked_at": "2026-11-08",
+          "result": "Unrivaled’s November 6 regular-season release confirms January 8, 2027 doubleheaders in Boston and Los Angeles. February 20 concludes the separate one-on-one tournament. The league championship date is still unconfirmed."
+        }
+      ],
+      "source_publication_dates": {
+        "https://www.unrivaled.basketball/news/unrivaled-reveals-season-three-matchups-and-clubs-competing-in-tour-stops-ftugcxnvnpa7": "2026-11-06"
+      },
+      "revisit_trigger": "Check a new official postseason announcement identifying the 2027 league championship date."
     },
     {
       "key": "basketball-us-nba-international-preseason",
