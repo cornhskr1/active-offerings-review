@@ -5,8 +5,10 @@ from html.parser import HTMLParser
 import re
 try:
     from official_school_calendar import instant, fetch_text, CT
+    from official_historical_scheduled_start import collect_scheduled_start
 except ImportError:
     from scripts.official_school_calendar import instant, fetch_text, CT
+    from scripts.official_historical_scheduled_start import collect_scheduled_start
 
 SOURCE_ID = 'official-nebraska-football-historical-20261106'
 URL = 'https://huskers.com/sports/football/schedule'
@@ -144,5 +146,14 @@ def collect_results(calendar_rows, previous_cache, now, get):
     rows, statuses, cache = [], [], {}
     for spec in SPECS:
         events, status, saved = collect_result(calendar_rows, previous_cache.get(spec['source_id'], {}), now, get, spec)
+        old_timing = previous_cache.get(spec['source_id'], {}).get('scheduled_start', {})
+        if len(events) == 1:
+            timing, timing_cache = collect_scheduled_start(events[0], status, old_timing, now, get, spec)
+            # Project optional evidence only. Do not put timing on the completed
+            # result's cached observation or rewrite either original calendar row.
+            events = [deepcopy(events[0])]
+            if timing is not None:
+                events[0]['scheduled_start_evidence'] = timing
+            saved['scheduled_start'] = timing_cache
         rows.extend(events); statuses.append(status); cache[spec['source_id']] = saved
     return rows, statuses, cache
