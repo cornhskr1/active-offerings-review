@@ -1,0 +1,105 @@
+{
+  "contract": "school-calendar-history-projection/v1",
+  "window_start": "2026-08-11",
+  "window_end": "2026-11-09",
+  "retention_note": "90-day review projection; source observations survive rollover within an explicit storage budget. Capture gaps and changes require review. Calendar venue is not independent actual-venue verification.",
+  "sources": [
+    {
+      "source_id": "official-nebraska-football",
+      "capture_status": "recording",
+      "reason": "Observed calendar versions only; no claim of complete historical coverage",
+      "observation_count": 1,
+      "legacy_gap_count": 0
+    }
+  ],
+  "events": [
+    {
+      "id": "official-nebraska-football:result:21839",
+      "uid": "official-result-21839",
+      "source_id": "official-nebraska-football",
+      "school_id": "nebraska",
+      "school": "Nebraska",
+      "sport_id": "football",
+      "sport": "Football",
+      "season_id": "official-result:2026",
+      "opponent": "Illinois",
+      "date": "2026-11-06",
+      "start_time": null,
+      "date_only": true,
+      "time_unknown": true,
+      "site": "AWAY",
+      "location": "Champaign, Ill.",
+      "status": "COMPLETED",
+      "source_url": "https://huskers.com/sports/football/schedule",
+      "calendar_url": "https://api.calendar.wmt.digital/api/calendar/calendar.ics?username=huskers&category%5B%5D=265",
+      "result": "L Loss",
+      "score": "31-24",
+      "publisher_event_id": "21839",
+      "source_links": [
+        "https://huskers.com/boxscore/21839",
+        "https://huskers.com/news/2026/11/6/result"
+      ],
+      "evidence_kind": "recorded-official-school-result",
+      "historical_calendar_uid": "synthetic-calendar-uid",
+      "historical_calendar_source_id": "official-nebraska-football",
+      "calendar_link_status": "exact",
+      "calendar_location": "Champaign, Ill.",
+      "played_in_nebraska": false,
+      "site_test": "OK \u00b7 OUTSIDE NEBRASKA",
+      "site_color": "green",
+      "regulatory_site_label": "OUTSIDE NEBRASKA",
+      "matchup_label": "AT",
+      "archive_event_key": "9c08385c18cd9a807a68b77a9101ed4a52fb630c7782706bbd2557b561869752",
+      "observation_id": "a10eb421b674484c5ddd9496721b234d06225a48e1e5d15b03a3a602d0ce2736",
+      "observed_at": "2026-11-09T12:00:00+00:00",
+      "actual_venue_verified": false,
+      "archive_latest_kind": "published",
+      "archive_conflict_fields": [],
+      "observations": [
+        {
+          "observation_id": "a10eb421b674484c5ddd9496721b234d06225a48e1e5d15b03a3a602d0ce2736",
+          "previous_observation_id": null,
+          "event_key": "9c08385c18cd9a807a68b77a9101ed4a52fb630c7782706bbd2557b561869752",
+          "observed_at": "2026-11-09T12:00:00+00:00",
+          "origin": "validated-official-result",
+          "kind": "published",
+          "facts": {
+            "id": "official-nebraska-football:result:21839",
+            "uid": "official-result-21839",
+            "source_id": "official-nebraska-football",
+            "school_id": "nebraska",
+            "school": "Nebraska",
+            "sport_id": "football",
+            "sport": "Football",
+            "season_id": "official-result:2026",
+            "opponent": "Illinois",
+            "date": "2026-11-06",
+            "start_time": null,
+            "date_only": true,
+            "time_unknown": true,
+            "site": "AWAY",
+            "location": "Champaign, Ill.",
+            "status": "COMPLETED",
+            "source_url": "https://huskers.com/sports/football/schedule",
+            "calendar_url": "https://api.calendar.wmt.digital/api/calendar/calendar.ics?username=huskers&category%5B%5D=265",
+            "result": "L Loss",
+            "score": "31-24",
+            "publisher_event_id": "21839",
+            "source_links": [
+              "https://huskers.com/boxscore/21839",
+              "https://huskers.com/news/2026/11/6/result"
+            ],
+            "evidence_kind": "official-school-result",
+            "historical_calendar_uid": "synthetic-calendar-uid",
+            "historical_calendar_source_id": "official-nebraska-football",
+            "calendar_link_status": "exact",
+            "calendar_location": "Champaign, Ill."
+          },
+          "changed_fields": [],
+          "venue_basis": "published-official-result-location",
+          "actual_venue_verified": false
+        }
+      ]
+    }
+  ]
+}

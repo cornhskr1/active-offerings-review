@@ -154,6 +154,8 @@ def parse_event(props,source,season_id):
          'location':text(val('LOCATION')) or None,'status':status,'sequence':sequence,
          'source_url':source['schedule_url'],'calendar_url':source['calendar_url'],'source':source['schedule_url']}
     if event_type:row['event_type']=event_type
+    if (match.groupdict().get('result') or '').upper() in ('W','L','T'):
+        row['result'] = match.groupdict()['result'].upper()
     if val('LAST-MODIFIED') or val('DTSTAMP'):
         modified=val('LAST-MODIFIED') or val('DTSTAMP')
         if modified.endswith('Z'):
@@ -197,7 +199,7 @@ def fetch_text(url,get):
     return response.text
 
 
-def collect_school_calendar(source,previous_cache,now,get):
+def _collect_school_calendar(source,previous_cache,now,get):
     """Atomic last-good snapshots with literal publisher TTL and explicit stale rows."""
     now=instant(now)
     previous=deepcopy(previous_cache or {})
@@ -256,3 +258,13 @@ def collect_school_calendar(source,previous_cache,now,get):
                 'fetched_at':previous.get('fetched_at'),'next_fetch_at':previous['retry_after'],
                 'season_id':previous.get('season_id'),'retained_stale_count':len(stale)}
         return {'events':stale,'source_status':status,'cache':previous}
+
+
+def collect_school_calendar(source, previous_cache, now, get):
+    """Persist a separate historical observation ledger without changing live facts."""
+    try:
+        from school_event_history import capture_history
+    except ImportError:
+        from scripts.school_event_history import capture_history
+    result = _collect_school_calendar(source, previous_cache, now, get)
+    return capture_history(previous_cache, result, source['id'])
