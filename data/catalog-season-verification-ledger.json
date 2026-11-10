@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-08",
+  "updated_at": "2026-11-09",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
   "baseline_dated_records": 317,
@@ -23,21 +23,21 @@
     "canonical_key_sha256": "ed04c2b5295cd8c570f4ffc9b19eda886c5ea61dd8d41c53332881cc171898b9",
     "reconciled_at": "2026-11-06",
     "status_counts": {
-      "awaiting-published-dates": 254,
-      "cancelled": 4,
-      "manual-verification-needed": 48,
-      "nonseasonal": 28,
+      "awaiting-published-dates": 252,
+      "verified-complete": 322,
+      "manual-verification-needed": 47,
+      "source-access-held": 48,
       "not-scheduled": 10,
       "scope-conflict": 24,
-      "source-access-held": 48,
-      "verified-complete": 319
+      "nonseasonal": 28,
+      "cancelled": 4
     },
     "first_pass_complete": true,
     "meaning": "All canonical keys carry substantive evidence-backed dispositions; not all seasons have published complete schedules.",
     "saved_source_presentation": {
-      "as_of": "2026-11-06",
-      "dated": 323,
-      "undetermined": 412
+      "as_of": "2026-11-09",
+      "dated": 326,
+      "undetermined": 409
     },
     "run_start_reviewed_count": 220,
     "run_progress_counts": {
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "fc9bb4ab41fd066444c413c5a5eb7d7719f7f684",
-    "post_first_pass_triggered_rechecks": 9
+    "latest_follow_up_commit_base": "4f37adb2366c751d636e8935f5982260fd991ae1",
+    "post_first_pass_triggered_rechecks": 13
   },
   "records": [
     {
@@ -467,22 +467,41 @@
       "sport": "Soccer",
       "country": "United States",
       "catalog_event": "USL League One (USL1) | Men",
-      "status": "manual-verification-needed",
-      "reviewed_at": "2026-11-06",
-      "official_url": "https://www.uslleagueone.com/news_article/show/1351512",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-09",
+      "official_url": "https://www.charlotteindependence.com/newstag/usl-league-one-news/",
       "evidence_urls": [
         "https://www.uslleagueone.com/news_article/show/1351512",
         "https://www.uslleagueone.com/layout_container/show_layout_tab?layout_container_id=126640429&page_node_id=4614679&tab_element_id=354383",
         "https://www.uslleagueone.com/playoffs",
         "https://www.ussoccer.com/stories/2026/10/federation/everything-you-need-to-know-about-the-2026-usl-league-one-playoffs",
-        "https://tickets.charlotteindependence.com/event/usl-league-one-playoffs-round-3-charlotte-indepe-6li5m1"
+        "https://tickets.charlotteindependence.com/event/usl-league-one-playoffs-round-3-charlotte-indepe-6li5m1",
+        "https://www.uslleagueone.com/",
+        "https://www.charlotteindependence.com/newstag/usl-league-one-news/",
+        "https://www.acboise.com/2026-schedule/"
       ],
-      "finding": "U.S. Soccer confirms March 7 opening, October 24 regular-season completion and a November 13-15 final window. Charlotte Independence's final ticket page introduces a specific conflict: its event header/date say November 14 while its English and Spanish descriptions say November 15; the opponent is still TBD. The league playoff page returned 403. No exact full endpoint is promoted.",
-      "missing_fact": "Exact 2026 final date from a consistent league or confirmed-host announcement; resolve November 14 versus November 15 on the Charlotte ticket page.",
-      "next_action": "Recheck the league and confirmed finalist/host after the semifinals; require a consistent dated final announcement before setting the season end.",
+      "finding": "The 2026 men’s USL League One season opened March 7 and completed the regular season October 24. After both semifinals, the league identified Charlotte Independence and Athletic Club Boise as the finalists; Charlotte’s official November 8 announcement and Boise’s official schedule consistently set the final for Saturday, November 14 at 7:30 p.m. Eastern in Matthews, North Carolina. This resolves the prior November 14/15 conflict.",
+      "missing_fact": null,
+      "next_action": "No routine follow-up; reopen only for an identifiable official fixture revision or publication of the completed final result.",
       "season_edition": "2026",
       "season_start_date": "2026-03-07",
-      "season_end_date": null
+      "season_end_date": "2026-11-14",
+      "revisit_trigger": "Identifiable official final-fixture revision or completed November 14 final result.",
+      "progress_kind": "triggered-recheck",
+      "endpoint_type": "scheduled-final",
+      "evidence_verified_at": "2026-11-09",
+      "revisit_history": [
+        {
+          "trigger_date": "2026-11-08",
+          "trigger_type": "official-publication",
+          "trigger": "USL League One and both confirmed finalists published the 2026 final pairing after the semifinals.",
+          "source_url": "https://www.uslleagueone.com/",
+          "source_version": "USL final announcement dated 2026-11-08; Charlotte finalist announcement; AC Boise 2026 schedule",
+          "status": "consumed",
+          "checked_at": "2026-11-09",
+          "result": "Charlotte Independence vs Athletic Club Boise is scheduled for November 14, 2026 at 7:30 p.m. Eastern in Matthews, resolving the prior November 14/15 conflict."
+        }
+      ]
     },
     {
       "key": "soccer-international-concacaf-champions-cup-men",
@@ -2609,19 +2628,22 @@
       "sport": "Soccer",
       "country": "Latvia",
       "catalog_event": "Latvian Higher League / Virslīga | Men",
-      "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-08",
-      "official_url": "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-09",
+      "official_url": "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/",
       "evidence_urls": [
         "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
         "https://lff.lv/zinas/19313/fk-metta-garante-lvbet-ligas-cempionu-titulu/",
         "https://lff.lv/files/documents/2310/Virsligas_reglaments_2026_.pdf",
         "https://lff.lv/zinas/19347/pedeja-karta-vietu-parspeles-izcina-valmiera-fc/",
-        "https://lff.lv/sacensibas/viriesi/parspeles/"
+        "https://lff.lv/sacensibas/viriesi/parspeles/",
+        "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/",
+        "https://lff.lv/speles/fk-tukums-2000-valmiera-fc-26107309/",
+        "https://lff.lv/speles/valmiera-fc-fk-tukums-2000-26107310/"
       ],
-      "finding": "2026 men's Virslīga opens March 6 and regular round 36 is November 8. LFF's current LVBet league notice confirms a separate promotion/relegation tie, but the 2026 return-leg date was not established. The November 20/23 result found in search is from 2025 and was not rolled forward. The Latvian federation named Valmiera FC and FK Tukums 2000 as the 2026 promotion/relegation opponents on November 7. Its notice gives no leg dates. The federation playoff directory still displays the 2025 edition.",
-      "missing_fact": "Exact 2026 promotion/relegation playoff dates, including the return leg.",
-      "next_action": "Reopen when LFF lists the dated 2026 playoff legs or publishes the return-leg result.",
+      "finding": "The 2026 men’s Virslīga opened March 6 and ended its regular season November 8. On November 9, LFF published the promotion/relegation tie: FK Tukums 2000 hosts Valmiera FC on November 11, and Valmiera hosts the scheduled return leg on November 14. The November 14 return leg is the full scheduled season endpoint.",
+      "missing_fact": null,
+      "next_action": "No routine follow-up; reopen only for an identifiable official fixture revision or the published return-leg result.",
       "revisit_history": [
         {
           "trigger_date": "2026-11-07",
@@ -2631,12 +2653,29 @@
           "status": "consumed",
           "checked_at": "2026-11-08",
           "result": "The Latvian federation named Valmiera FC and FK Tukums 2000 as the 2026 promotion/relegation opponents on November 7. Its notice gives no leg dates. The federation playoff directory still displays the 2025 edition."
+        },
+        {
+          "trigger_date": "2026-11-09",
+          "trigger_type": "official-publication",
+          "trigger": "LFF published the exact 2026 promotion/relegation playoff legs.",
+          "source_url": "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/",
+          "source_version": "LFF article 19351; match IDs 26107309 and 26107310",
+          "status": "consumed",
+          "checked_at": "2026-11-09",
+          "result": "The first leg is November 11 at 14:00 in Tukums and the scheduled return leg is November 14 at 13:00 in Valmiera."
         }
       ],
       "source_publication_dates": {
-        "https://lff.lv/zinas/19347/pedeja-karta-vietu-parspeles-izcina-valmiera-fc/": "2026-11-07"
+        "https://lff.lv/zinas/19347/pedeja-karta-vietu-parspeles-izcina-valmiera-fc/": "2026-11-07",
+        "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/": "2026-11-09"
       },
-      "revisit_trigger": "Reopen when LFF lists the dated 2026 playoff legs or publishes the return-leg result."
+      "revisit_trigger": "Identifiable LFF revision to either playoff leg or publication of the November 14 return-leg result.",
+      "progress_kind": "triggered-recheck",
+      "season_edition": "2026",
+      "season_start_date": "2026-03-06",
+      "season_end_date": "2026-11-14",
+      "endpoint_type": "scheduled-promotion-relegation-return-leg",
+      "evidence_verified_at": "2026-11-09"
     },
     {
       "key": "soccer-lithuania-a-lyga-men",
@@ -3022,27 +3061,53 @@
       "sport": "Basketball",
       "country": "Israel",
       "catalog_event": "League Cup | Men",
-      "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-06",
-      "official_url": "https://basket.co.il/news.asp?id=84485",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-09",
+      "official_url": "https://basket.co.il/game-zone.asp?GameId=26848&lang=en",
       "evidence_urls": [
         "https://basket.co.il/news.asp?id=84485",
         "https://basket.co.il/news.asp?id=83442",
-        "https://basket.co.il/news.asp?id=86616&lang=he"
+        "https://basket.co.il/news.asp?id=86616&lang=he",
+        "https://basket.co.il/game-zone.asp?GameId=26848&lang=en",
+        "https://basket.co.il/results.asp?Board=10&RoundNumber=0&TeamId=0&cYear=2027&lang=en"
       ],
-      "finding": "July 15 official notice dates 2026/27 Winner Cup opening September 8 and leaves the final November 8 or 15. September 29 semifinal ticket notice dates semifinals October 3 and 4, with classification games through October 5. October 4 is not a confirmed final.",
-      "missing_fact": "Exact final date superseding the November 8/15 allocation.",
-      "next_action": "Review only when the stated material trigger occurs.",
-      "revisit_trigger": "New official publication directly establishing: Exact final date superseding the November 8/15 allocation.",
-      "progress_kind": "first-pass-unresolved",
+      "finding": "The league’s official GameId 26848 page records the 2026 Winner Cup final on November 9, 2026 in Holon: Hapoel Tel Aviv defeated Maccabi Tel Aviv 86–75. Together with the verified September 8 opening, this establishes the complete 2026/27 tournament window.",
+      "missing_fact": null,
+      "next_action": "No routine follow-up; reopen only for an identifiable official result correction.",
+      "revisit_trigger": "Identifiable official correction to GameId 26848.",
+      "progress_kind": "triggered-recheck",
       "season_edition": "2026/27",
       "season_start_date": "2026-09-08",
-      "season_end_date": null,
+      "season_end_date": "2026-11-09",
       "source_publication_dates": {
         "https://basket.co.il/news.asp?id=84485": "2026-07-15",
         "https://basket.co.il/news.asp?id=83442": "2026-07-07",
         "https://basket.co.il/news.asp?id=86616&lang=he": "2026-09-29"
-      }
+      },
+      "endpoint_type": "actual-final",
+      "evidence_verified_at": "2026-11-09",
+      "revisit_history": [
+        {
+          "trigger_date": "2026-11-08",
+          "trigger_type": "official-publication",
+          "trigger": "Winner League published GameId 26848 and its 2026/27 results page with the exact 2026 Winner Cup final fixture.",
+          "source_url": "https://basket.co.il/game-zone.asp?GameId=26848&lang=en",
+          "source_version": "GameId 26848; cYear 2027 schedule",
+          "status": "consumed",
+          "checked_at": "2026-11-08",
+          "result": "The scheduled final was Maccabi Tel Aviv vs Hapoel Tel Aviv in Holon on November 9, 2026 at 20:55, completing the September 8–November 9 tournament window."
+        },
+        {
+          "trigger_date": "2026-11-09",
+          "trigger_type": "official-result-publication",
+          "trigger": "Winner League updated GameId 26848 with the completed final score.",
+          "source_url": "https://basket.co.il/game-zone.asp?GameId=26848&lang=en",
+          "source_version": "GameId 26848 final result 75:86",
+          "status": "consumed",
+          "checked_at": "2026-11-09",
+          "result": "Hapoel Tel Aviv defeated Maccabi Tel Aviv 86–75 in the November 9 final; the scheduled endpoint is now confirmed as the actual final."
+        }
+      ]
     },
     {
       "key": "basketball-il-state-cup",
@@ -21668,6 +21733,69 @@
       },
       "dated": 321,
       "undetermined": 414
+    },
+    {
+      "date": "2026-11-08",
+      "base_commit": "30090216a51f1170db5c961149072dba2a91061c",
+      "keys": [
+        "basketball-il-league-cup"
+      ],
+      "result": "The exact scheduled 2026 Winner Cup final completed the September 8–November 9 tournament window.",
+      "progress_counts": {
+        "newly-resolved-calendar": 1,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 1
+      },
+      "identity_conflicts_resolved": 0,
+      "full_calendars_completed": 1,
+      "reviewed_count": 735,
+      "pending_count": 0,
+      "status_counts": {
+        "awaiting-published-dates": 253,
+        "cancelled": 4,
+        "manual-verification-needed": 48,
+        "nonseasonal": 28,
+        "not-scheduled": 10,
+        "scope-conflict": 24,
+        "source-access-held": 48,
+        "verified-complete": 320
+      },
+      "dated": 324,
+      "undetermined": 411
+    },
+    {
+      "date": "2026-11-09",
+      "base_commit": "4f37adb2366c751d636e8935f5982260fd991ae1",
+      "keys": [
+        "basketball-il-league-cup",
+        "soccer-latvia-latvian-higher-league-virsl-ga-men",
+        "soccer-united-states-usl-league-one-usl1-men"
+      ],
+      "result": "One completed final result and two newly exact soccer playoff endpoints were reconciled from material official publications.",
+      "progress_counts": {
+        "newly-resolved-calendar": 2,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 3
+      },
+      "identity_conflicts_resolved": 0,
+      "full_calendars_completed": 2,
+      "actual_finals_confirmed": 1,
+      "reviewed_count": 735,
+      "pending_count": 0,
+      "status_counts": {
+        "awaiting-published-dates": 252,
+        "verified-complete": 322,
+        "manual-verification-needed": 47,
+        "source-access-held": 48,
+        "not-scheduled": 10,
+        "scope-conflict": 24,
+        "nonseasonal": 28,
+        "cancelled": 4
+      },
+      "dated": 326,
+      "undetermined": 409
     }
   ]
 }

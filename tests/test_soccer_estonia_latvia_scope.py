@@ -30,9 +30,15 @@ class EstoniaLatviaScopeTests(unittest.TestCase):
         self.assertEqual(("2026-05-15", "2026-11-20"), (latvian["season_start_date"], latvian["season_end_date"]))
 
     def test_league_qualification_and_completed_senior_supercups(self):
-        for country, league_key, date in (("estonia", "soccer-estonia-meistriliiga-premium-liiga-men", "2026-02-28"), ("latvia", "soccer-latvia-latvian-higher-league-virsl-ga-men", "2026-02-17")):
+        for country, league_key, date, complete in (
+            ("estonia", "soccer-estonia-meistriliiga-premium-liiga-men", "2026-02-28", False),
+            ("latvia", "soccer-latvia-latvian-higher-league-virsl-ga-men", "2026-02-17", True),
+        ):
             league = self.events[league_key]
-            self.assertFalse(league["season_window_complete"])
+            self.assertEqual(complete, league["season_window_complete"])
+            if country == "latvia":
+                self.assertEqual("2026-11-14", league["season_end_date"])
+                self.assertEqual("scheduled-promotion-relegation-return-leg", league["endpoint_type"])
             cup = next(e for k, e in self.events.items() if k.startswith(f"soccer-{country}-") and "super" in k)
             self.assertEqual((date, date), (cup["season_start_date"], cup["season_end_date"]))
             self.assertEqual("OFFICIAL_WINDOW_ONLY", self.inventory[cup["key"]]["coverage_state"])
