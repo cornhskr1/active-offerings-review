@@ -263,8 +263,9 @@ def _collect_school_calendar(source,previous_cache,now,get):
 def collect_school_calendar(source, previous_cache, now, get):
     """Persist a separate historical observation ledger without changing live facts."""
     try:
-        from school_event_history import capture_history
+        from school_event_history import capture_history, recover_reviewed_budget_failure
     except ImportError:
-        from scripts.school_event_history import capture_history
+        from scripts.school_event_history import capture_history, recover_reviewed_budget_failure
+    previous_cache = recover_reviewed_budget_failure(previous_cache, source['id'])
     result = _collect_school_calendar(source, previous_cache, now, get)
     return capture_history(previous_cache, result, source['id'])

@@ -125,3 +125,56 @@ class HistoryTests(unittest.TestCase):
         self.assertEqual(classify_location({'location':'Nebraska / Iowa'})['site_color'],'amber')
         self.assertEqual(classify_location({'location':'Town, Neb., Iowa'})['site_color'],'amber')
         self.assertEqual(classify_location({'location':'Memorial Stadium', 'site':'HOME'})['site_color'],'amber')
+
+    def test_initial_capture_above_old_budget_fits_bounded_allowance(self):
+        from scripts.school_event_history import update_history, MAX_SOURCE_HISTORY_BYTES
+        self.assertEqual(MAX_SOURCE_HISTORY_BYTES, 200000)
+        first = self.collect()
+        old = copy.deepcopy(first['cache']); old.pop('event_history'); old.pop('history_capture')
+        template = old['events'][0]
+        old['events'] = [{**template, 'uid':str(i), 'location':template['location'] + 'x'*300} for i in range(56)]
+        result = {'events':copy.deepcopy(old['events']), 'cache':copy.deepcopy(old),
+                  'source_status':{'ok':True,'status':'current','fetched_at':'2026-10-22T00:00:00+00:00'}}
+        candidate = update_history(old, result, SOURCE['id'])
+        encoded = json.dumps(candidate, indent=2, ensure_ascii=False)
+        size = len(encoded.encode()) + 6 * (encoded.count('\n')+1)
+        self.assertGreater(size, 180000); self.assertLessEqual(size, 200000)
+        saved = capture_history(old, result, SOURCE['id'])['cache']
+        self.assertEqual(saved['history_capture']['capture_status'], 'recording')
+        self.assertEqual(len(saved['event_history']['observations']), 112)
+
+    def test_reviewed_budget_recovery_requires_every_pin_and_never_changes_live_rows(self):
+        from scripts import school_event_history as history
+        current = self.collect()['cache']
+        current['events'][0]['provider_updated_at'] = '2026-10-19T00:00:01+00:00'
+        current['event_history'] = {'contract':history.CONTRACT,'observations':[]}
+        current['history_capture'] = {'source_id':SOURCE['id'],'capture_status':'degraded',
+            'reason':'History capture unavailable or budget reached; prior history retained without eviction',
+            'observation_count':0,'legacy_gap_count':0}
+        facts = [history.facts_for(current['events'][0],SOURCE['id'])]
+        original = [{**facts[0], 'provider_updated_at':'2026-10-18T00:00:01+00:00'}]
+        pin = {'source_id':SOURCE['id'],'rows':1,'old_fetched_at':'2026-10-18T00:00:00+00:00',
+            'current_fetched_at':current['fetched_at'],'current_next_fetch_at':current['next_fetch_at'],
+            'current_provider_updated_at':facts[0]['provider_updated_at'],
+            'old_provider_updated_at':original[0]['provider_updated_at'],
+            'current_facts_sha256':history.digest(facts),'old_facts_sha256':history.digest(original)}
+        before = copy.deepcopy(current)
+        with patch.object(history,'OMAHA_BUDGET_RECOVERY',pin):
+            recovered = history.recover_reviewed_budget_failure(current,SOURCE['id'])
+            self.assertEqual(current,before)
+            self.assertEqual(recovered['events'],before['events'])
+            self.assertEqual(recovered['fetched_at'],before['fetched_at'])
+            self.assertEqual(recovered['next_fetch_at'],before['next_fetch_at'])
+            self.assertEqual(recovered['history_capture']['capture_status'],'recording')
+            self.assertEqual([o['observed_at'] for o in recovered['event_history']['observations']],
+                [pin['old_fetched_at'],pin['current_fetched_at']])
+            self.assertEqual(history.recover_reviewed_budget_failure(recovered,SOURCE['id']),recovered)
+            for field in ('location','provider_updated_at'):
+                bad = copy.deepcopy(current);bad['events'][0][field]='changed'
+                self.assertEqual(history.recover_reviewed_budget_failure(bad,SOURCE['id']),bad)
+            bad=copy.deepcopy(current);bad['history_capture']['reason']='Another genuine capture gap'
+            self.assertEqual(history.recover_reviewed_budget_failure(bad,SOURCE['id']),bad)
+            bad=copy.deepcopy(current);bad['fetched_at']='2026-10-20T00:00:00+00:00'
+            self.assertEqual(history.recover_reviewed_budget_failure(bad,SOURCE['id']),bad)
+            with patch.dict(pin,{'old_facts_sha256':'0'*64}):
+                self.assertEqual(history.recover_reviewed_budget_failure(current,SOURCE['id']),current)

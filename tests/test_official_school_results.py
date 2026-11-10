@@ -60,8 +60,10 @@ class OfficialSchoolResultsTests(unittest.TestCase):
         for result in (None, 'Final', '7-0', 'TBA', 'Live 7-0', 'Red, 3 - White, 1'):
             self.assertEqual(parse_results(page(event(result=result)), config(), '2030-01-01T00:00:00Z'), [])
 
-    def test_clock_does_not_create_completion(self):
-        self.assertEqual(len(parse_results(page(event()), config(), '2020-01-01T00:00:00Z')), 1)
+    def test_future_completed_date_is_held_not_shifted_to_another_year(self):
+        with self.assertRaisesRegex(ValueError, 'Future-dated completed'):
+            parse_results(page(event()), config(), '2020-01-01T00:00:00Z')
+        self.assertEqual(parse_results(page(event(result=None)), config(), '2030-01-01T00:00:00Z'), [])
 
     def test_missing_location_is_unknown_not_inferred_from_away(self):
         row = parse_results(page(event(location=None)), config(), STAMP)[0]
@@ -88,7 +90,7 @@ class OfficialSchoolResultsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             parse_results(html, source, STAMP)
         source.update(season_start='2026-07-01', season_end='2027-06-30')
-        self.assertEqual(parse_results(html, source, STAMP)[0]['date'], '2027-01-04')
+        self.assertEqual(parse_results(html, source, '2027-01-05T12:00:00Z')[0]['date'], '2027-01-04')
 
     def test_invalid_dates(self):
         for day in ('Feb 30', 'Nov 6, 2025', 'Nov 6-7', 'TBD'):
@@ -176,11 +178,11 @@ class ResultPollingTests(unittest.TestCase):
     def test_cross_year_review_bounds_required(self):
         source = config('mens-basketball')
         html = page(event(day='Jan 4'), sport=source['sport'], season='2026-27')
-        result = self.collect(html, source=source)
+        result = self.collect(html, source=source, now='2027-01-05T12:00:00Z')
         self.assertEqual(result['source_status']['status'], 'stale')
         self.assertIn('reviewed date bounds', result['source_status']['reason'])
         source.update(result_season_start='2026-07-01', result_season_end='2027-06-30')
-        result = self.collect(html, source=source)
+        result = self.collect(html, source=source, now='2027-01-05T12:00:00Z')
         self.assertTrue(result['source_status']['ok'])
         self.assertEqual(result['events'][0]['date'], '2027-01-04')
 
@@ -189,7 +191,7 @@ class ResultPollingTests(unittest.TestCase):
             '2026-10-20', '2027-03-15', '2025-12-01'])
         html = page(event(day='Nov 6'), event('99', day='Jan 4'),
                     sport=source['sport'], season='2026-27')
-        result = self.collect(html, source=source)
+        result = self.collect(html, source=source, now='2027-01-05T12:00:00Z')
         self.assertTrue(result['source_status']['ok'])
         self.assertEqual([row['date'] for row in result['events']],
                          ['2026-11-06', '2027-01-04'])
@@ -200,13 +202,13 @@ class ResultPollingTests(unittest.TestCase):
                       ['2026-01-01', '2027-12-31'], ['bad-date']):
             source = config('mens-basketball', result_season_dates=dates)
             html = page(event(day='Jan 4'), sport=source['sport'], season='2026-27')
-            self.assertFalse(self.collect(html, source=source)['source_status']['ok'])
+            self.assertFalse(self.collect(html, source=source, now='2027-01-05T12:00:00Z')['source_status']['ok'])
 
     def test_explicit_cross_year_bounds_override_calendar_dates(self):
         source = config('mens-basketball', result_season_dates=['bad-date'],
                         result_season_start='2026-10-01', result_season_end='2027-04-01')
         html = page(event(day='Jan 4'), sport=source['sport'], season='2026-27')
-        self.assertTrue(self.collect(html, source=source)['source_status']['ok'])
+        self.assertTrue(self.collect(html, source=source, now='2027-01-05T12:00:00Z')['source_status']['ok'])
 
     def test_ttl_floor_and_prior_longer_interval(self):
         result = self.collect(source=config(minimum_poll_seconds=1))
@@ -263,6 +265,29 @@ class ResultPollingTests(unittest.TestCase):
         self.assertFalse(result['source_status']['ok'])
         self.assertTrue(result['source_status']['integrity_hold'])
         self.assertIn('capacity', result['source_status']['reason'])
+
+    def test_completed_future_year_fetch_holds_without_capture(self):
+        source = config('baseball')
+        html = page(event(day='Sep 26'), sport='Baseball', season='2027')
+        result = self.collect(html, source=source)
+        self.assertFalse(result['source_status']['ok'])
+        self.assertTrue(result['source_status']['integrity_hold'])
+        self.assertEqual(result['events'], [])
+        self.assertNotIn('fetched_at', result['cache'])
+
+    def test_existing_future_completed_cache_keeps_bytes_and_cooldown(self):
+        from official_school_results import collect_program_results
+        old = self.collect()['cache']
+        old['events'][0]['date'] = '2027-09-26'
+        original = deepcopy(old['events'])
+        def denied(*a, **k):
+            self.fail('No new fetch is due')
+        result = collect_program_results(config(), old, '2026-11-10T12:00:00Z', denied)
+        self.assertEqual(result['cache']['events'], original)
+        self.assertEqual(result['cache']['next_fetch_at'], old['next_fetch_at'])
+        self.assertEqual(result['cache']['fetched_at'], old['fetched_at'])
+        self.assertTrue(result['source_status']['integrity_hold'])
+        self.assertFalse(result['source_status']['ok'])
 
 
 if __name__ == '__main__':
