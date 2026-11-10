@@ -89,7 +89,7 @@ historical facts. It is not independent confirmation of actual play.
 ## Capacity and release
 
 The existing private artifact limits remain unchanged at 5 MB. Each of sixteen
-program ledgers has a 180000-byte pretty-JSON embedded budget (2.88 MB aggregate).
+program ledgers has a 200000-byte pretty-JSON embedded budget (3.2 MB aggregate).
 Overflow preserves all old records, marks capture degraded and stops new capture
 for that attempt without blocking current schedule collection. Degraded status
 is sticky; recovery requires review. This is bounded durable storage, not a
@@ -129,3 +129,30 @@ Generic per-program result fetch caches are additionally capped at 100000 bytes
 (600000 bytes across six configured programs). Oversize capture retains the prior
 cache and places historical use on an integrity hold; it does not increase the
 private 5 MB contract or block ordinary calendar collection.
+
+
+Completed result dates after their original observation's Central calendar date
+are held as unresolved event-year evidence. Neither season titles nor elapsed
+time repair such dates. Existing invalid observations remain immutable for
+audit and unusable for historical matching. Detecting one in an existing fetch
+cache marks an integrity hold without bypassing or resetting its publisher
+cooldown. Ordinary later network observations can append corrections; they do
+not erase the old observation or automatically clear capture degradation.
+
+The 200000-byte program budget gives headroom for the observed 180373-byte
+Omaha baseball initial archive. Sixteen histories plus six 100000-byte generic
+result caches allow at most 3.8 MB of these bounded additions. The unchanged
+private 5 MB artifact guard remains authoritative. Existing genuine capture gaps
+remain degraded; a budget increase alone does not clear them or recreate lost
+original timestamps. Any recovery must use verified historical source bytes.
+
+
+One narrowly pinned recovery is included for the actual Omaha first-run budget
+failure. It requires the exact empty degraded ledger, original/current fetch
+metadata, complete current factual-row hash and reconstructed original factual-
+row hash. The only reconstructed delta is the known uniform provider update
+stamp. It restores 56 original cache observations and 56 actual validated
+November 10 observations through normal capture without fetching, advancing
+observation dates, modifying current events, or resetting a polling deadline.
+Any changed fact, timestamp, failure, nonempty ledger or different hold prevents
+this recovery. It does not clear other historical uncertainty.

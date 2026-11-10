@@ -12,10 +12,10 @@ from urllib.parse import urljoin, urlsplit
 
 try:
     from official_historical_school_result import FactsParser, walk, content, by_class
-    from official_school_calendar import fetch_text, instant
+    from official_school_calendar import fetch_text, instant, CT
 except ImportError:
     from scripts.official_historical_school_result import FactsParser, walk, content, by_class
-    from scripts.official_school_calendar import fetch_text, instant
+    from scripts.official_school_calendar import fetch_text, instant, CT
 
 PROGRAMS = {
     'football': 'Football', 'volleyball': 'Volleyball', 'baseball': 'Baseball',
@@ -148,6 +148,8 @@ def parse_results(page, config, observed_at):
         opponent = _text(block, 'schedule-event-item-default__opponent-name')
         day_label = _text(block, 'schedule-event-date__label')
         day = _day(day_label, start, end)
+        if date.fromisoformat(day) > stamp.astimezone(CT).date():
+            raise ValueError('Future-dated completed result; exact event year unresolved')
         location = _text(block, 'schedule-event-location', optional=True)
         site = _text(block, 'schedule-event-venue__type-label', optional=True)
         if site not in (None, 'Home', 'Away', 'Neutral'):
@@ -212,12 +214,23 @@ def collect_program_results(source, previous_cache, now, get):
         }
 
     try:
+        # A previously captured impossible date stays invalid against its
+        # original observation, even after wall-clock time moves past it.
+        invalid_cached_date = any(row.get('status') == 'COMPLETED'
+            and (row.get('observed_at') or previous.get('fetched_at'))
+            and date.fromisoformat(row['date']) > instant(row.get('observed_at') or previous['fetched_at']).astimezone(CT).date()
+            for row in previous.get('events', []))
+        if invalid_cached_date:
+            previous['integrity_hold'] = True
+            previous['last_error'] = 'Future-dated completed result in saved observation; exact event year unresolved'
         retry = previous.get('retry_after')
         if retry and now < instant(retry):
             return response(previous, 'stale', False, retry,
                             previous.get('last_error', 'Result refresh retry interval'))
         until = previous.get('next_fetch_at')
         if not retry and until and now < instant(until):
+            if invalid_cached_date:
+                return response(previous, 'stale', False, until, previous['last_error'])
             return response(previous, 'cached', True, until, 'Publisher refresh interval has not elapsed')
         page = fetch_text(source['schedule_url'], get)
         if len(page.encode('utf-8')) > 2_000_000:
@@ -268,7 +281,7 @@ def collect_program_results(source, previous_cache, now, get):
         # A failed request is not contradictory evidence. An observed malformed
         # identity or explicit conflict is: preserve the hold through retries
         # until a complete successful snapshot establishes current facts.
-        if isinstance(exc, ValueError) and re.search(r'conflict|duplicate|ambiguous|capacity exceeded', str(exc), re.I):
+        if isinstance(exc, ValueError) and re.search(r'conflict|duplicate|ambiguous|capacity exceeded|future-dated completed', str(exc), re.I):
             previous['integrity_hold'] = True
         previous.update(source_id=source['id'], last_error=str(exc), ttl_seconds=ttl,
                         retry_after=(now + timedelta(seconds=ttl)).isoformat())

@@ -148,9 +148,9 @@ def update_history(previous_cache, result, source_id):
 
 
 # Measured as pretty JSON embedded three levels deep in the cache. Sixteen
-# programs total <= 2.88 MB history, leaving room below the existing 5 MB
+# programs total <= 3.2 MB history, leaving room below the existing 5 MB
 # private artifact ceiling. No eviction or implicit extension of this budget.
-MAX_SOURCE_HISTORY_BYTES = 180_000
+MAX_SOURCE_HISTORY_BYTES = 200_000
 
 
 def capture_history(previous_cache, result, source_id):
@@ -247,3 +247,64 @@ def project_history(caches, today, classify_location, window_days=90):
     return {'contract': 'school-calendar-history-projection/v1', 'window_start': start, 'window_end': end,
             'retention_note': '90-day review projection; source observations survive rollover within an explicit storage budget. Capture gaps and changes require review. Calendar venue is not independent actual-venue verification.',
             'sources': sources, 'events': sorted(events, key=lambda row: (row['date'], row['archive_event_key']))}
+
+
+# Narrow recovery of the reviewed first-run capacity failure. These fingerprints
+# bind factual rows from private commits ecffce6c563e53cca0f9118046a95b6de97ce778
+# and 8b808fa75054416018755e9bb95aa57835841f1c. The only row-field difference is
+# the uniform provider_updated_at below; no raw cache or operator data is stored.
+OMAHA_BUDGET_RECOVERY = {
+    'source_id': 'official-omaha-baseball', 'rows': 56,
+    'old_fetched_at': '2026-11-09T18:45:36.631287+00:00',
+    'current_fetched_at': '2026-11-10T00:22:56.676029+00:00',
+    'current_next_fetch_at': '2026-11-10T02:22:56.676029+00:00',
+    'old_provider_updated_at': '2026-11-09T18:45:47+00:00',
+    'current_provider_updated_at': '2026-11-10T00:23:05+00:00',
+    'old_facts_sha256': '319f8b98c0cd6a4b7802be8bada0a72b142267f3cf808f6ec3f191e2b28b6fd6',
+    'current_facts_sha256': '4b7feadd0a26ba1de9a8f9abd7c55c8de866f7a85bd213145dc7d1123a87db3e',
+}
+
+
+def recover_reviewed_budget_failure(previous_cache, source_id):
+    """Recover only the pinned empty Omaha ledger; preserve every other hold.
+
+    This rebuilds two actually observed versions, never a new observation. The
+    existing current cache, timestamps, polling deadline and live rows are kept.
+    Any later input change or uncertainty makes this a no-op requiring review.
+    """
+    pin = OMAHA_BUDGET_RECOVERY
+    if source_id != pin['source_id'] or not isinstance(previous_cache, dict):
+        return previous_cache
+    state = previous_cache.get('history_capture')
+    expected_state = {'source_id': source_id, 'capture_status': 'degraded',
+        'reason': 'History capture unavailable or budget reached; prior history retained without eviction',
+        'observation_count': 0, 'legacy_gap_count': 0}
+    if (state != expected_state or previous_cache.get('event_history') != {'contract': CONTRACT, 'observations': []}
+            or previous_cache.get('source_id') != source_id
+            or previous_cache.get('fetched_at') != pin['current_fetched_at']
+            or previous_cache.get('next_fetch_at') != pin['current_next_fetch_at']
+            or previous_cache.get('retry_after') or previous_cache.get('last_error')):
+        return previous_cache
+    try:
+        events = previous_cache.get('events', [])
+        if len(events) != pin['rows'] or any(row.get('source_stale') for row in events):
+            return previous_cache
+        current = sorted((facts_for(row, source_id) for row in events), key=lambda row: row['uid'])
+        if digest(current) != pin['current_facts_sha256'] or any(
+                row.get('provider_updated_at') != pin['current_provider_updated_at'] for row in current):
+            return previous_cache
+        original = [{**row, 'provider_updated_at': pin['old_provider_updated_at']} for row in current]
+        if digest(original) != pin['old_facts_sha256']:
+            return previous_cache
+        old_cache = {'source_id': source_id, 'season_id': previous_cache['season_id'],
+                     'events': original, 'fetched_at': pin['old_fetched_at']}
+        wrapper = {'events': events, 'cache': deepcopy(previous_cache),
+                   'source_status': {'ok': True, 'status': 'current',
+                                     'fetched_at': pin['current_fetched_at']}}
+        recovered = capture_history(old_cache, wrapper, source_id)['cache']
+        if (recovered['history_capture']['capture_status'] != 'recording'
+                or len(recovered['event_history']['observations']) != pin['rows'] * 2):
+            return previous_cache
+        return recovered
+    except (ValueError, TypeError, KeyError):
+        return previous_cache
