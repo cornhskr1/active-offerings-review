@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-09",
+  "updated_at": "2026-11-10",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
   "baseline_dated_records": 317,
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "4f37adb2366c751d636e8935f5982260fd991ae1",
-    "post_first_pass_triggered_rechecks": 13
+    "latest_follow_up_commit_base": "f4baa8430a229c9c1e75d2a65e55ca8ae09a3920",
+    "post_first_pass_triggered_rechecks": 14
   },
   "records": [
     {
@@ -1480,7 +1480,7 @@
       "country": "Mexico",
       "catalog_event": "Liga Nacional de Baloncesto Profesional (LNBP) | Men",
       "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-06",
+      "reviewed_at": "2026-11-10",
       "official_url": "https://diablosrojosbasquetbol.com.mx/calendario",
       "evidence_urls": [
         "https://diablosrojosbasquetbol.com.mx/calendario",
@@ -1488,12 +1488,31 @@
         "https://lnbp.mx/",
         "https://www.enjuegodeportes.com/mas-deportes/gran-final-lnbp-2026-soles-vs-astros-calendario-y-donde-ver/"
       ],
-      "finding": "The official Diablos calendar still confirms July 23, 2026 opening. The league homepage returned no readable schedule and the club playoff page lists zero fixtures. A November 6 secondary report gives November 23 as possible Finals Game 7, but direct league or participating-finalist confirmation was not established. Retain November 23 only as an unverified research lead, not a full endpoint.",
+      "finding": "The official Diablos calendar still confirms July 23, 2026 opening. The league homepage returned no readable schedule and the club playoff page lists zero fixtures. A November 6 secondary report gives November 23 as possible Finals Game 7, but direct league or participating-finalist confirmation was not established. Retain November 23 only as an unverified research lead, not a full endpoint. A November 10 follow-up located candidate official calendar post 2119907175317258549, but direct X access was disabled and lnbp.mx remained unreadable; the indexed mirror was not accepted as primary calendar evidence.",
       "missing_fact": "Official evidence for latest possible 2026 championship-final date (reported November 23).",
-      "next_action": "Obtain the league or finalist-club 2026 Finals schedule identifying the last possible game. Do not substitute secondary reporting for verified official evidence.",
+      "next_action": "Inspect the calendar image on official @LNBPoficial post 2119907175317258549 and confirm the date of Game 7, explicitly conditional if necessary, or provide a direct readable league/finalist calendar. Do not repeat the consumed indexed-post lookup.",
       "season_edition": "2026 (men)",
       "season_start_date": "2026-07-23",
-      "season_end_date": null
+      "season_end_date": null,
+      "revisit_history": [
+        {
+          "trigger_date": "2026-11-10",
+          "trigger_type": "indexed-official-publication-lead",
+          "trigger": "A newly indexed CALENDARIO GRAN FINAL 2026 post attributed to @LNBPoficial identifies a specific candidate official calendar. Its direct primary content still requires verification.",
+          "source_url": "https://x.com/LNBPoficial/status/2119907175317258549",
+          "source_version": "X status 2119907175317258549; indexed calendar-post text",
+          "publication_date_confirmed": false,
+          "status": "consumed",
+          "checked_at": "2026-11-10",
+          "sources_checked": [
+            "https://x.com/LNBPoficial/status/2119907175317258549",
+            "https://lnbp.mx/",
+            "https://www.instalker.org/LNBPoficial/status/2119907175317258549"
+          ],
+          "result": "Direct X retrieval returned DisabledError; the league homepage returned no readable lines. The index/mirror was used only to locate the exact primary post, not to verify calendar dates. November 23 remains an unverified Game 7 lead; no calendar date or approval state changes."
+        }
+      ],
+      "revisit_trigger": "New readable primary content for X status 2119907175317258549, an identifiable direct league/finalist schedule publication, or a user-supplied copy of the official calendar image."
     },
     {
       "key": "soccer-portugal-ta-a-de-portugal-men",
@@ -21782,6 +21801,35 @@
       "identity_conflicts_resolved": 0,
       "full_calendars_completed": 2,
       "actual_finals_confirmed": 1,
+      "reviewed_count": 735,
+      "pending_count": 0,
+      "status_counts": {
+        "awaiting-published-dates": 252,
+        "verified-complete": 322,
+        "manual-verification-needed": 47,
+        "source-access-held": 48,
+        "not-scheduled": 10,
+        "scope-conflict": 24,
+        "nonseasonal": 28,
+        "cancelled": 4
+      },
+      "dated": 326,
+      "undetermined": 409
+    },
+    {
+      "date": "2026-11-10",
+      "base_commit": "f4baa8430a229c9c1e75d2a65e55ca8ae09a3920",
+      "keys": [
+        "basketball-mx-lnbp"
+      ],
+      "result": "Consumed one newly indexed official-calendar lead; direct primary access blocked, so the missing championship endpoint remains unresolved.",
+      "progress_counts": {
+        "newly-resolved-calendar": 0,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 1
+      },
+      "full_calendars_completed": 0,
       "reviewed_count": 735,
       "pending_count": 0,
       "status_counts": {
