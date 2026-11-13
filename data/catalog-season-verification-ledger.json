@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-10",
+  "updated_at": "2026-11-12",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
   "baseline_dated_records": 317,
@@ -23,8 +23,8 @@
     "canonical_key_sha256": "ed04c2b5295cd8c570f4ffc9b19eda886c5ea61dd8d41c53332881cc171898b9",
     "reconciled_at": "2026-11-06",
     "status_counts": {
-      "awaiting-published-dates": 252,
-      "verified-complete": 322,
+      "awaiting-published-dates": 251,
+      "verified-complete": 323,
       "manual-verification-needed": 47,
       "source-access-held": 48,
       "not-scheduled": 10,
@@ -35,9 +35,9 @@
     "first_pass_complete": true,
     "meaning": "All canonical keys carry substantive evidence-backed dispositions; not all seasons have published complete schedules.",
     "saved_source_presentation": {
-      "as_of": "2026-11-09",
-      "dated": 326,
-      "undetermined": 409
+      "as_of": "2026-11-12",
+      "dated": 327,
+      "undetermined": 408
     },
     "run_start_reviewed_count": 220,
     "run_progress_counts": {
@@ -46,8 +46,8 @@
       "first-time-unresolved": 79
     },
     "triggered_rechecks": 0,
-    "latest_follow_up_commit_base": "f4baa8430a229c9c1e75d2a65e55ca8ae09a3920",
-    "post_first_pass_triggered_rechecks": 14
+    "latest_follow_up_commit_base": "4aa75ca521b554268dc5ea51bc1b3e3ff3b167d6",
+    "post_first_pass_triggered_rechecks": 15
   },
   "records": [
     {
@@ -583,15 +583,38 @@
       "sport": "Soccer",
       "country": "International-Level Competitions",
       "catalog_event": "CONCACAF Gold Cup | Men",
-      "status": "awaiting-published-dates",
-      "reviewed_at": "2026-11-03",
-      "official_url": "https://www.concacaf.com/competitions/gold-cup/news/2027-concacaf-gold-cup-qualification-pathway-confirmed",
+      "status": "verified-complete",
+      "reviewed_at": "2026-11-12",
+      "official_url": "https://www.concacaf.com/competitions/nations-league/news/concacaf-nations-league-returns-thursday-with-gold-cup-qualification-on-the-line",
       "evidence_urls": [
-        "https://www.concacaf.com/competitions/gold-cup/news/2027-concacaf-gold-cup-qualification-pathway-confirmed"
+        "https://www.concacaf.com/competitions/gold-cup/news/2027-concacaf-gold-cup-qualification-pathway-confirmed",
+        "https://www.concacaf.com/competitions/nations-league/news/concacaf-nations-league-returns-thursday-with-gold-cup-qualification-on-the-line"
       ],
-      "finding": "Official September announcement provides months only and says match schedules will follow. Do not import secondary June 18–July 11 dates.",
-      "missing_fact": "Exact 2027 finals tournament opener and final.",
-      "next_action": "Check the official revised schedule/approval announcement before promoting this record."
+      "finding": "Concacaf’s November 11, 2026 release directly dates the senior men’s 2027 Gold Cup finals tournament from June 17 to July 11, 2027 and describes its group, quarterfinal, semifinal and final stages. July 11 is the scheduled tournament-final endpoint. The March 2027 Gold Cup Prelims and 2026/27 Nations League remain separate qualification competitions.",
+      "missing_fact": null,
+      "next_action": "Reopen only for an identifiable official revision to the finals tournament window or publication of the completed final result.",
+      "revisit_trigger": "Identifiable official revision to the June 17–July 11, 2027 finals tournament window or the completed final result.",
+      "progress_kind": "triggered-recheck",
+      "season_edition": "2027 (senior men, finals tournament)",
+      "season_start_date": "2027-06-17",
+      "season_end_date": "2027-07-11",
+      "endpoint_type": "scheduled-final",
+      "evidence_verified_at": "2026-11-12",
+      "source_publication_dates": {
+        "https://www.concacaf.com/competitions/nations-league/news/concacaf-nations-league-returns-thursday-with-gold-cup-qualification-on-the-line": "2026-11-11"
+      },
+      "revisit_history": [
+        {
+          "trigger_date": "2026-11-11",
+          "trigger_type": "official-publication",
+          "trigger": "Concacaf published an exact 2027 Gold Cup finals-tournament window in its November Nations League release.",
+          "source_url": "https://www.concacaf.com/competitions/nations-league/news/concacaf-nations-league-returns-thursday-with-gold-cup-qualification-on-the-line",
+          "source_version": "November 11, 2026, 8:02 PM release; Road To The 2027 Concacaf Gold Cup",
+          "status": "consumed",
+          "checked_at": "2026-11-12",
+          "result": "June 17 opening and July 11 scheduled tournament final verified; separate Prelims and Nations League dates were not imported."
+        }
+      ]
     },
     {
       "key": "soccer-international-concacaf-w-gold-cup-women",
@@ -21844,6 +21867,35 @@
       },
       "dated": 326,
       "undetermined": 409
+    },
+    {
+      "date": "2026-11-12",
+      "base_commit": "4aa75ca521b554268dc5ea51bc1b3e3ff3b167d6",
+      "keys": [
+        "soccer-international-concacaf-gold-cup-men"
+      ],
+      "result": "One new official publication resolves the 2027 senior men’s Gold Cup finals-tournament boundaries.",
+      "progress_counts": {
+        "newly-resolved-calendar": 1,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 1
+      },
+      "full_calendars_completed": 1,
+      "reviewed_count": 735,
+      "pending_count": 0,
+      "status_counts": {
+        "awaiting-published-dates": 251,
+        "verified-complete": 323,
+        "manual-verification-needed": 47,
+        "source-access-held": 48,
+        "not-scheduled": 10,
+        "scope-conflict": 24,
+        "nonseasonal": 28,
+        "cancelled": 4
+      },
+      "dated": 327,
+      "undetermined": 408
     }
   ]
 }
