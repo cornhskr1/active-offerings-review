@@ -9,6 +9,7 @@ on:
       - scripts/refresh_odds_api_events.py
       - scripts/stage_odds_pages.py
       - scripts/recover_verified_pages_cache.py
+      - scripts/recover_pinned_public_snapshot.py
       - tests/test_verified_pages_cache_recovery.py
       - scripts/check_odds_deploy_safety.py
       - .github/actions/wait-pages-artifact/**
@@ -26,6 +27,7 @@ on:
       - scripts/refresh_odds_api_events.py
       - scripts/stage_odds_pages.py
       - scripts/recover_verified_pages_cache.py
+      - scripts/recover_pinned_public_snapshot.py
       - tests/test_verified_pages_cache_recovery.py
       - scripts/check_odds_deploy_safety.py
       - .github/actions/wait-pages-artifact/**
