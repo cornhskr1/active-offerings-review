@@ -11,6 +11,7 @@ on:
       - scripts/recover_verified_pages_cache.py
       - tests/test_verified_pages_cache_recovery.py
       - scripts/check_odds_deploy_safety.py
+      - scripts/wait_pages_artifact.py
       - tests/test_refresh_odds_api_events.py
       - tests/test_odds*.py
       - .github/workflows/deploy-pages.yml
@@ -27,6 +28,7 @@ on:
       - scripts/recover_verified_pages_cache.py
       - tests/test_verified_pages_cache_recovery.py
       - scripts/check_odds_deploy_safety.py
+      - scripts/wait_pages_artifact.py
       - tests/test_refresh_odds_api_events.py
       - tests/test_odds*.py
       - .github/workflows/deploy-pages.yml

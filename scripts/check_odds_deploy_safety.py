@@ -9,9 +9,9 @@ REPOSITORY='cornhskr1/active-offerings-review'
 WORKFLOW_PATH='.github/workflows/deploy-pages.yml'
 # Audited workflow-wide, literal `pages` lock with cancel-in-progress: false.
 # Review the serialization contract before updating this pin after a YAML edit.
-SERIALIZED_WORKFLOW_BLOB='599f1bddbc6598c777b0df7bfb2e44f61e4076f4'
-# Both reviewed revisions retain the same workflow-wide Pages lock.
-SERIALIZED_WORKFLOW_BLOBS=frozenset((SERIALIZED_WORKFLOW_BLOB,'0f76ca30ca7789aaa14eeebbda2e1858d078ca13'))
+SERIALIZED_WORKFLOW_BLOB='3ee0eb9d7c55c005371194d5b565782f7957b491'
+# All reviewed revisions retain the same workflow-wide Pages lock.
+SERIALIZED_WORKFLOW_BLOBS=frozenset((SERIALIZED_WORKFLOW_BLOB,'599f1bddbc6598c777b0df7bfb2e44f61e4076f4','0f76ca30ca7789aaa14eeebbda2e1858d078ca13'))
 class HistoryChanged(ValueError):
  pass
 
@@ -137,6 +137,9 @@ for index,name in {
  8:'Run actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346',
  9:'Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0',
 }.items():PINNED_RECOVERY_STEPS[index]=name
+READY_RECOVERY_STEPS=PINNED_RECOVERY_STEPS.copy()
+READY_RECOVERY_STEPS.insert(8,'Verify exact Pages artifact is ready')
+
 def verified_job_steps(run,payload):
  if run.get('run_attempt')!=1 or run.get('status')!='completed':return None
  if not isinstance(payload,dict) or payload.get('total_count')!=1:return None
@@ -147,7 +150,16 @@ def verified_job_steps(run,payload):
      or job.get('head_branch')!='main' or job.get('name')!='deploy' or job.get('status')!='completed'
      or job.get('conclusion')!=run.get('conclusion')):return None
  steps=job.get('steps')
- if not isinstance(steps,list) or len(steps)!=len(DEPLOY_STEPS):return None
+ if not isinstance(steps,list):return None
+ # The added readiness check must succeed for a successful publication; an
+ # upload/readiness failure after collection is NEVER classified precollection.
+ if [step.get('name') for step in steps if isinstance(step,dict)]==READY_RECOVERY_STEPS:
+  if any(not isinstance(step,dict) or step.get('status')!='completed' for step in steps):return None
+  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,10,18,19,20]:return None
+  if steps[8].get('conclusion') not in ('success','skipped'):return None
+  if run.get('conclusion')=='success' and steps[8].get('conclusion')!='success':return None
+  steps=[dict(step,number=n) for step,n in zip(steps[:8]+steps[9:],[1,2,3,4,5,6,7,8,9,17,18,19])]
+ if len(steps)!=len(DEPLOY_STEPS):return None
  if any(not isinstance(step,dict) or step.get('status')!='completed' for step in steps):return None
  if [step.get('name') for step in steps] not in (DEPLOY_STEPS,RECOVERY_STEPS,LEGACY_PINNED_RECOVERY_STEPS,PINNED_RECOVERY_STEPS):return None
  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,17,18,19]:return None
