@@ -3,6 +3,8 @@ from pathlib import Path
 import json, re, datetime, hashlib, urllib.parse, requests
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
+import pdfplumber
+from catalog_pdf_extract import extract_verified_page, validate_split_parents
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -80,13 +82,19 @@ pages = []
 all_lines = []
 raw_pages = []
 
+spatial_reader = pdfplumber.open(str(pdf_path))
+if len(reader.pages) != len(spatial_reader.pages):
+    raise ValueError("Catalog PDF page counts disagree; review required")
+
 for i,p in enumerate(reader.pages, start=1):
-    txt = p.extract_text() or ""
+    txt = extract_verified_page(p, spatial_reader.pages[i-1], page_number=i)
     raw_lines = [x.rstrip() for x in txt.splitlines() if normalize(x)]
     lines = [normalize(x) for x in raw_lines]
     raw_pages.append(raw_lines)
     pages.append({"page":i,"lines":lines})
     all_lines.extend(lines)
+
+spatial_reader.close()
 
 dedup=[]
 for line in all_lines:
@@ -157,7 +165,7 @@ for page_index in range(content_start, len(raw_pages)):
         indent=leading_indent(raw)
 
         is_top_level = indent == 0 and heading in TOP_LEVEL_SPORTS
-        is_ncaa_subsection = indent == 0 and heading in NCAA_SUBSECTIONS
+        is_ncaa_subsection = heading in NCAA_SUBSECTIONS and (indent == 0 or raw.lstrip().startswith("•"))
 
         if is_top_level or is_ncaa_subsection:
             section_label = heading
@@ -266,6 +274,7 @@ out = {
     "restrictions":restrictions,
     "pages":pages
 }
+validate_split_parents(out, json.loads((DATA/"catalog-season-map.json").read_text(encoding="utf-8")))
 (DATA/"catalog-live.json").write_text(json.dumps(out,indent=2,ensure_ascii=False),encoding="utf-8")
 
 # Lightweight status file for header/banner use.
