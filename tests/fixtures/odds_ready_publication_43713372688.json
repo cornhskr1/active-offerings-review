@@ -1,0 +1,121 @@
+{
+  "source": {
+    "run_url": "https://github.com/cornhskr1/active-offerings-review/actions/runs/43713372688",
+    "workflow_commit": "599330a3660e50d39eddcdc60bb8dd8180576c24",
+    "jobs_endpoint": "/actions/runs/43713372688/attempts/1/jobs?per_page=100"
+  },
+  "run": {
+    "id": 43713372688,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "599330a3660e50d39eddcdc60bb8dd8180576c24",
+    "head_branch": "main",
+    "workflow_id": 344224120,
+    "run_number": 2821,
+    "path": ".github/workflows/deploy-pages.yml",
+    "event": "workflow_dispatch",
+    "updated_at": "2026-11-15T12:23:05Z",
+    "repository": {
+      "full_name": "cornhskr1/active-offerings-review"
+    },
+    "head_repository": {
+      "full_name": "cornhskr1/active-offerings-review"
+    }
+  },
+  "payload": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 132809586155,
+        "run_id": 43713372688,
+        "run_attempt": 1,
+        "head_branch": "main",
+        "head_sha": "599330a3660e50d39eddcdc60bb8dd8180576c24",
+        "name": "deploy",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout latest main",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Verify previous deployment before any provider collection",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Stage site with pinned verified-cache recovery",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Refresh zero-quota event observations only",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6
+          },
+          {
+            "name": "Run actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Verify exact Pages artifact is ready",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Run actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Post Checkout latest main",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          }
+        ]
+      }
+    ]
+  }
+}
