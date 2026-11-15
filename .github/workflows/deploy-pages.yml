@@ -63,7 +63,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           DATA_REPO_READ_TOKEN: ${{ secrets.DATA_REPO_READ_TOKEN }}
-        run: python -m scripts.restore_public_snapshot --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json" --checkpoint migration/activation/pages-bootstrap.json
+        run: python -m scripts.restore_public_snapshot --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json" --checkpoint migration/activation/pages-bootstrap.json --public-recovery-checkpoint migration/activation/pages-public-recovery-20261115.json
       - name: Refresh zero-quota event observations only
         if: steps.stage.outputs.recovered != 'true'
         env:
@@ -74,7 +74,7 @@ jobs:
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: ${{ runner.temp }}/active-offerings-site
-          retention-days: 1
+          retention-days: 30
       - name: Verify exact Pages artifact is ready
         timeout-minutes: 3
         uses: ./.github/actions/wait-pages-artifact

@@ -126,7 +126,7 @@ def _odds(raw):
         raise ValueError('Verified odds control state unavailable')
     return raw
 
-def restore_snapshot(proof,run_id,output:Path,*,get,get_archive,checkpoint=None,retained_archive=None):
+def restore_snapshot(proof,run_id,output:Path,*,get,get_archive,checkpoint=None,retained_archive=None,public_recovery_checkpoint=None):
     anchor=_proof(proof,run_id)
     run=get('/actions/runs/'+str(anchor))
     if (not isinstance(run,dict) or run.get('id')!=anchor or run.get('repository',{}).get('full_name')!=REPO
@@ -138,6 +138,9 @@ def restore_snapshot(proof,run_id,output:Path,*,get,get_archive,checkpoint=None,
         or not isinstance(payload.get('artifacts'),list) or payload['total_count']!=len(payload['artifacts'])):
         raise ValueError('Complete artifact inventory required')
     artifacts=[a for a in payload['artifacts'] if isinstance(a,dict) and a.get('name')=='github-pages']
+    if payload['total_count']==0 and not artifacts and public_recovery_checkpoint is not None:
+        from scripts.recover_pinned_public_snapshot import restore_pinned_public
+        return restore_pinned_public(run,output,public_recovery_checkpoint)
     if len(artifacts)!=1:raise ValueError('Unique prior Pages artifact required')
     metadata=artifacts[0];origin=metadata.get('workflow_run',{})
     if (type(metadata.get('id')) is not int or metadata['id']<=0 or not isinstance(metadata.get('digest'),str)
@@ -148,6 +151,9 @@ def restore_snapshot(proof,run_id,output:Path,*,get,get_archive,checkpoint=None,
         if not _checkpoint(checkpoint,anchor,metadata):raise ValueError('Retained archive requires exact reviewed recovery checkpoint')
         raw=retained_archive
     else:
+        if metadata.get('expired') is True and public_recovery_checkpoint is not None:
+            from scripts.recover_pinned_public_snapshot import restore_pinned_public
+            return restore_pinned_public(run,output,public_recovery_checkpoint)
         if metadata.get('expired') is not False:raise ValueError('Anchor artifact expired; exact retained-archive checkpoint required')
         raw=get_archive(metadata['id'])
     files=_archive_files(raw,metadata['digest'][7:]);odds=_odds(files.get(ODDS,b''))
@@ -196,7 +202,7 @@ def require_activation(root):
         raise ValueError('Reviewed production source activation checkpoint required')
 
 
-def stage_migration(root,stage_path,previous_odds,*,checkpoint=None,retained_archive=None):
+def stage_migration(root,stage_path,previous_odds,*,checkpoint=None,retained_archive=None,public_recovery_checkpoint=None):
     from scripts.stage_odds_pages import stage
     from scripts.fetch_full_private_candidate import fetch_candidate,github_getter
     from scripts.prepare_full_private_preview import prepare_full_preview
@@ -209,7 +215,7 @@ def stage_migration(root,stage_path,previous_odds,*,checkpoint=None,retained_arc
     with tempfile.TemporaryDirectory(prefix='validated-data-stage-',dir=temporary_root) as temp:
         work=Path(temp)
         prior_receipt,odds=restore_snapshot(proof,run_id,work/'previous-publication',get=get,get_archive=download,
-            checkpoint=checkpoint,retained_archive=retained_archive)
+            checkpoint=checkpoint,retained_archive=retained_archive,public_recovery_checkpoint=public_recovery_checkpoint)
         private=fetch_candidate(work/'candidate',get=github_getter(os.environ.get('DATA_REPO_READ_TOKEN')))
         stage(root,work/'current-app')
         app_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
@@ -223,16 +229,18 @@ def stage_migration(root,stage_path,previous_odds,*,checkpoint=None,retained_arc
         previous_odds.write_bytes(odds)
         (stage_path/ODDS).write_bytes(odds)
         with (temporary_root/'private-publication-receipt.json').open('x') as stream:json.dump(receipt,stream,sort_keys=True)
-    with open(os.environ['GITHUB_OUTPUT'],'a') as stream:stream.write('recovered=false\n')
+    with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+        stream.write('recovered='+('true' if prior_receipt.get('pinned_public_recovery') else 'false')+'\n')
     return receipt
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('--stage',type=Path,required=True)
-    p.add_argument('--previous',type=Path,required=True);p.add_argument('--checkpoint',type=Path);p.add_argument('--retained-archive',type=Path);a=p.parse_args()
+    p.add_argument('--previous',type=Path,required=True);p.add_argument('--checkpoint',type=Path);p.add_argument('--retained-archive',type=Path);p.add_argument('--public-recovery-checkpoint',type=Path);a=p.parse_args()
     try:
         checkpoint=_strict_json(a.checkpoint.read_bytes()) if a.checkpoint else None
         retained=a.retained_archive.read_bytes() if a.retained_archive else None
-        stage_migration(a.root,a.stage,a.previous,checkpoint=checkpoint,retained_archive=retained)
+        public_checkpoint=_strict_json(a.public_recovery_checkpoint.read_bytes()) if a.public_recovery_checkpoint else None
+        stage_migration(a.root,a.stage,a.previous,checkpoint=checkpoint,retained_archive=retained,public_recovery_checkpoint=public_checkpoint)
     except Exception:
         raise SystemExit('Complete private publication blocked: prior state or candidate evidence unavailable. No provider request made.') from None
     print('Prepared validated complete publication; prior odds control state preserved.')
