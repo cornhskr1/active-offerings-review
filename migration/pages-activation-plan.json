@@ -2,10 +2,10 @@
   "schema_version": 1,
   "production_enabled": false,
   "template": "migration/workflows/deploy-pages.yml.inactive",
-  "template_workflow_blob": "599f1bddbc6598c777b0df7bfb2e44f61e4076f4",
+  "template_workflow_blob": "dc6e6727bfe2cbaa7afe713f01dd498a7d74ee99",
   "current_guard_workflow_blob": "1e7aa9808af1e1e50ebb2d306cce92a0c35362e5",
-  "required_guard_workflow_blob": "599f1bddbc6598c777b0df7bfb2e44f61e4076f4",
-  "guard_step_profile": "PINNED_RECOVERY_STEPS (unchanged names/order/numbers)",
+  "required_guard_workflow_blob": "dc6e6727bfe2cbaa7afe713f01dd498a7d74ee99",
+  "guard_step_profile": "READY_RECOVERY_STEPS (exact readiness step and historical profiles retained)",
   "activation_requires": [
     "owner source-cutover authorization",
     "independent exact template/guard review and full CI",
