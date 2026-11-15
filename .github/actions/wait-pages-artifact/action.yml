@@ -1,0 +1,12 @@
+name: Verify exact Pages artifact is ready
+description: Wait for the deployment artifact in both Results and REST APIs without retrying collection
+inputs:
+  artifact-id:
+    required: true
+    description: Exact output ID from upload-pages-artifact
+  github-token:
+    required: true
+    description: Ephemeral read-only GitHub token
+runs:
+  using: node24
+  main: index.js
