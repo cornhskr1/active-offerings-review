@@ -151,11 +151,13 @@ def verified_job_steps(run,payload):
      or job.get('conclusion')!=run.get('conclusion')):return None
  steps=job.get('steps')
  if not isinstance(steps,list):return None
+ # Observed attempt-1 job 132809586155 at workflow 599330a3660e50d39eddcdc60bb8dd8180576c24
+ # has cleanup steps 19..21. Match that exact profile, not a guessed offset.
  # The added readiness check must succeed for a successful publication; an
  # upload/readiness failure after collection is NEVER classified precollection.
  if [step.get('name') for step in steps if isinstance(step,dict)]==READY_RECOVERY_STEPS:
   if any(not isinstance(step,dict) or step.get('status')!='completed' for step in steps):return None
-  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,10,18,19,20]:return None
+  if [step.get('number') for step in steps]!=[1,2,3,4,5,6,7,8,9,10,19,20,21]:return None
   if steps[8].get('conclusion') not in ('success','skipped'):return None
   if run.get('conclusion')=='success' and steps[8].get('conclusion')!='success':return None
   steps=[dict(step,number=n) for step,n in zip(steps[:8]+steps[9:],[1,2,3,4,5,6,7,8,9,17,18,19])]
