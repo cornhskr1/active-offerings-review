@@ -63,8 +63,18 @@ class PinnedPublicRecoveryTests(unittest.TestCase):
         with patch('scripts.recover_pinned_public_snapshot.restore_pinned_public') as recover,self.assertRaises(ValueError):
             restore_snapshot(self.f.proof,12345,self.output,get=evidence,get_archive=lambda _:self.fail(),public_recovery_checkpoint=self.checkpoint)
         recover.assert_not_called()
+    def test_expired_artifact_requires_valid_provenance_before_recovery(self):
+        self.f.metadata['expired']=True
+        with patch('scripts.recover_pinned_public_snapshot.restore_pinned_public',return_value=({'pinned_public_recovery':True},self.f.odds)) as recover:
+            result=restore_snapshot(self.f.proof,12345,self.output,get=self.f.get_public,get_archive=lambda _:self.fail(),public_recovery_checkpoint=self.checkpoint)
+            self.assertTrue(result[0]['pinned_public_recovery']);recover.assert_called_once()
+        for mutate in (lambda m:m.update(digest='bad'),lambda m:m['workflow_run'].update(id=999),lambda m:m['workflow_run'].update(head_sha='b'*40)):
+            self.f.reset_metadata();self.f.metadata['expired']=True;mutate(self.f.metadata)
+            with patch('scripts.recover_pinned_public_snapshot.restore_pinned_public') as recover,self.assertRaises(ValueError):
+                restore_snapshot(self.f.proof,12345,self.output,get=self.f.get_public,get_archive=lambda _:self.fail(),public_recovery_checkpoint=self.checkpoint)
+            recover.assert_not_called()
     def test_malformed_inventory_never_falls_back(self):
-        for inventory in ({}, {'total_count':1,'artifacts':[]}, {'total_count':2,'artifacts':[self.f.metadata]*2}):
+        for inventory in ({}, {'total_count':1,'artifacts':[]}, {'total_count':1,'artifacts':[None]}, {'total_count':1,'artifacts':[{'id':5}]}, {'total_count':2,'artifacts':[self.f.metadata]*2}):
             def evidence(p):return inventory if p.endswith('/artifacts?per_page=100') else self.f.get_public(p)
             with patch('scripts.recover_pinned_public_snapshot.restore_pinned_public') as recover,self.assertRaises(ValueError):
                 restore_snapshot(self.f.proof,12345,self.output,get=evidence,get_archive=lambda _:self.fail(),public_recovery_checkpoint=self.checkpoint)

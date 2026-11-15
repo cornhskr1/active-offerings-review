@@ -138,7 +138,7 @@ def restore_snapshot(proof,run_id,output:Path,*,get,get_archive,checkpoint=None,
         or not isinstance(payload.get('artifacts'),list) or payload['total_count']!=len(payload['artifacts'])):
         raise ValueError('Complete artifact inventory required')
     artifacts=[a for a in payload['artifacts'] if isinstance(a,dict) and a.get('name')=='github-pages']
-    if not artifacts and public_recovery_checkpoint is not None:
+    if payload['total_count']==0 and not artifacts and public_recovery_checkpoint is not None:
         from scripts.recover_pinned_public_snapshot import restore_pinned_public
         return restore_pinned_public(run,output,public_recovery_checkpoint)
     if len(artifacts)!=1:raise ValueError('Unique prior Pages artifact required')
