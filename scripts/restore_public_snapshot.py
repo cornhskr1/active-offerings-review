@@ -16,6 +16,8 @@ import shutil
 import subprocess
 import tarfile
 import tempfile
+import traceback
+import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -245,6 +247,10 @@ if __name__=='__main__':
         retained=a.retained_archive.read_bytes() if a.retained_archive else None
         public_checkpoint=_strict_json(a.public_recovery_checkpoint.read_bytes()) if a.public_recovery_checkpoint else None
         stage_migration(a.root,a.stage,a.previous,checkpoint=checkpoint,retained_archive=retained,public_recovery_checkpoint=public_checkpoint)
-    except Exception:
+    except Exception as error:
+        # Report code location only: exception text may contain credentials,
+        # response bodies or signed URLs. Validation and fail-closed exit stay intact.
+        frame = traceback.extract_tb(error.__traceback__)[-1]
+        print(f'Publication diagnostic: {type(error).__name__} at {Path(frame.filename).name}:{frame.lineno} ({frame.name})', file=sys.stderr)
         raise SystemExit('Complete private publication blocked: prior state or candidate evidence unavailable. No provider request made.') from None
     print('Prepared validated complete publication; prior odds control state preserved.')
