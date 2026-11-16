@@ -1,4 +1,4 @@
-"""App-owned proof for one reviewed held basketball provenance transition.
+"""App-owned proof for exact reviewed held basketball provenance transitions.
 
 Private data supplies no validator or allowlist. The exact prior public screening,
 prior public catalog and replacement must match reviewed hashes. Both old clocks
@@ -13,6 +13,13 @@ CATALOG = 'data/catalog-live.json'
 BEFORE = 'fc93c9f0059c7fe4ca5ab3f354b48e996e9da6a35963ca20b918368be8dcb5b3'
 AFTER = 'ca86740abcaa8b971ff85a241493071f57077bf146f541210292ebdcd0d935b6'
 CATALOG_HASH = '77af391ebfc40d9c108a83a17a09346b9416c0b64de8d4d4c897e7f6519d77bc'
+# Owner-approved 2026-11-16: only Crown/CBI catalog_source/catalog_version
+# advance from 11.2.26 to 11.13.26. Entire documents remain hash-bound.
+NOVEMBER_13_TRANSITION = (
+    'ca86740abcaa8b971ff85a241493071f57077bf146f541210292ebdcd0d935b6',
+    '7d5eed776f8320e42bc7be28e5988c11cc79debd1120b95c5f88b97afc6a1cb7',
+    'ca441d155742ff8a4efe92dafd7fe86af79a15d216cc5e7cbbc987c268460a31',
+)
 CLOCKS = ('generated_at', 'screening_date')
 PROVENANCE = ('catalog_source', 'catalog_version')
 
@@ -25,7 +32,8 @@ def proven_candidate(previous, candidate, catalog):
     """Prove the exact replacement, never normalize consumer input."""
     if not all(isinstance(value, dict) for value in (previous, candidate, catalog)):
         return None
-    if digest(previous) != BEFORE or digest(catalog) != CATALOG_HASH or digest(candidate) != AFTER:
+    if (digest(previous), digest(candidate), digest(catalog)) not in (
+            (BEFORE, AFTER, CATALOG_HASH), NOVEMBER_13_TRANSITION):
         return None
     if any(not isinstance(previous.get(key), str) or candidate.get(key) != previous[key] for key in CLOCKS):
         return None
