@@ -135,7 +135,7 @@ assert.match(catalogBoardFlags({...event,source_stale:true},{restrictions:['NO F
 
     def test_november_catalog_preserves_new_approvals_and_bkfc_restriction(self):
         self.js("""
-assert.equal(DATA.catalog.menu_version,'11.2.26');
+assert.equal(DATA.catalog.menu_version,'11.13.26');
 assert.ok(DATA.catalog.restrictions.some(x=>/BKFC.*NO FREE FIGHTS/.test(x.text)));
 const rows=C.build({catalog:DATA.catalog,seasonMap:DATA.seasonMap,identities:DATA.identities,today:'2026-11-02',role:catalogLineRole});
 const afl=rows.find(x=>x.id==='aussie-rules-afl-catalog');
