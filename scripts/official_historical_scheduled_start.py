@@ -22,7 +22,7 @@ PDF_URL = 'https://storage.googleapis.com/huskers-com-prod/2026/11/02/7722pedpBr
 TIMING_SPECS = {
     '21839': {
         'source_id': 'official-nebraska-football-scheduled-20261106',
-        'source_url': 'https://huskers.com/news/2026/11/2/nebraska-faces-illinois-in-friday-night-road-game',
+        'source_url': 'https://huskers.com/news/2026/11/02/nebraska-faces-illinois-in-friday-night-road-game',
         'title': 'Nebraska Faces Illinois in Friday Night Road Game',
         'published': 'Football November 02, 2026', 'hour': 19, 'source_time': '7 p.m. CT',
         'date_source_url': PDF_URL,
