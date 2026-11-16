@@ -29,7 +29,7 @@ def github_getter(token):
     if not isinstance(token,str) or not token:raise ValueError('Existing private-read token required')
     opener=urllib.request.build_opener(NoRedirect())
     def get(path):
-        if not path.startswith(('/commits/','/git/trees/','/git/blobs/')) or any(v in path for v in ('://','#','\\','..')):
+        if re.fullmatch(r'/commits/main|/git/trees/[0-9a-f]{40}\?recursive=1|/git/blobs/[0-9a-f]{40}|/compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}\?per_page=1', path) is None:
             raise ValueError('Unapproved private GitHub endpoint')
         request=urllib.request.Request('https://api.github.com/repos/'+REPOSITORY+path,
             headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})

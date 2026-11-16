@@ -208,6 +208,8 @@ def stage_migration(root,stage_path,previous_odds,*,checkpoint=None,retained_arc
     from scripts.prepare_full_private_preview import prepare_full_preview
     if os.environ.get('GITHUB_REPOSITORY')!=REPO:raise ValueError('Wrong Pages execution repository')
     require_activation(root)
+    from scripts.verify_publication_notification import inputs, verify
+    notification = inputs()
     run_id=int(os.environ['GITHUB_RUN_ID']);temporary_root=Path(os.environ['RUNNER_TEMP'])
     proof=_strict_json((temporary_root/'odds-recovery-proof.json').read_bytes())
     if stage_path.exists() or previous_odds.exists():raise ValueError('Fresh stage/odds paths required')
@@ -216,7 +218,9 @@ def stage_migration(root,stage_path,previous_odds,*,checkpoint=None,retained_arc
         work=Path(temp)
         prior_receipt,odds=restore_snapshot(proof,run_id,work/'previous-publication',get=get,get_archive=download,
             checkpoint=checkpoint,retained_archive=retained_archive,public_recovery_checkpoint=public_recovery_checkpoint)
-        private=fetch_candidate(work/'candidate',get=github_getter(os.environ.get('DATA_REPO_READ_TOKEN')))
+        private_get=github_getter(os.environ.get('DATA_REPO_READ_TOKEN'))
+        private=fetch_candidate(work/'candidate',get=private_get)
+        verify(notification,private,private_get)
         stage(root,work/'current-app')
         app_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
         receipt=prepare_full_preview(work/'current-app',work/'candidate',stage_path,

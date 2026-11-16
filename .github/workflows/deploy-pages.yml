@@ -5,6 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
+      notification_data_commit:
+        description: Confirmed private data commit (notification only)
+        type: string
+        default: ''
+      notification_manifest_sha256:
+        description: Exact private manifest SHA256 (notification only)
+        type: string
+        default: ''
       resume_after_review:
         description: 'Resume only after reviewing a failed deployment for unexpected API usage'
         type: boolean
@@ -56,13 +64,16 @@ jobs:
       - name: Verify previous deployment before any provider collection
         env:
           GH_TOKEN: ${{ github.token }}
-          RESUME_AFTER_REVIEW: ${{ inputs.resume_after_review || false }}
+          RESUME_AFTER_REVIEW: ${{ !inputs.notification_data_commit && !inputs.notification_manifest_sha256 && inputs.resume_after_review || false }}
         run: python scripts/check_odds_deploy_safety.py
       - name: Stage site with pinned verified-cache recovery
         id: stage
         env:
           GH_TOKEN: ${{ github.token }}
           DATA_REPO_READ_TOKEN: ${{ secrets.DATA_REPO_READ_TOKEN }}
+          NOTIFICATION_DATA_COMMIT: ${{ inputs.notification_data_commit }}
+          NOTIFICATION_MANIFEST_SHA256: ${{ inputs.notification_manifest_sha256 }}
+          NOTIFICATION_RESUME: ${{ inputs.resume_after_review || false }}
         run: python -m scripts.restore_public_snapshot --root . --stage "$RUNNER_TEMP/active-offerings-site" --previous "$RUNNER_TEMP/odds-previous.json" --checkpoint migration/activation/pages-bootstrap.json --public-recovery-checkpoint migration/activation/pages-public-recovery-20261115.json
       - name: Refresh zero-quota event observations only
         if: steps.stage.outputs.recovered != 'true'

@@ -128,7 +128,10 @@ class PendingDeploymentTests(unittest.TestCase):
             def workflow(sha):
                 return dict(self.workflow, sha=current_blob if sha == self.current['head_sha'] else pending_blob)
             self.assertEqual(self.prove(workflow=workflow), {11})
-        self.assertEqual(len(safety.SERIALIZED_WORKFLOW_BLOBS), 4)
+        self.assertEqual(safety.SERIALIZED_WORKFLOW_BLOBS, frozenset((
+            safety.SERIALIZED_WORKFLOW_BLOB, '50d6555709ac0775e9b9b793980b6822fd278a35',
+            'dc6e6727bfe2cbaa7afe713f01dd498a7d74ee99', '599f1bddbc6598c777b0df7bfb2e44f61e4076f4',
+            '0f76ca30ca7789aaa14eeebbda2e1858d078ca13')))
 
     def test_started_or_rerun_between_jobs_and_run_recheck_remains_blocked(self):
         for change in (dict(status='in_progress'), dict(run_attempt=2), dict(head_sha='c' * 40),
