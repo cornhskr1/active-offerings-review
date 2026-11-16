@@ -2,6 +2,7 @@
 from copy import deepcopy
 import hashlib
 import json
+import shutil
 import unittest
 from unittest.mock import patch
 from scripts import basketball_catalog_transition as transition
@@ -42,6 +43,20 @@ class BasketballConsumerTransitionTests(unittest.TestCase):
         self.fixture.prepare()
         self.assertEqual(self.new,json.loads((self.fixture.preview/transition.PATH).read_text()))
         self.assertEqual(old,snapshot(self.fixture.previous));self.assertEqual(candidate,snapshot(self.fixture.bundle))
+
+    def test_november_catalog_transition_at_consumer_boundary(self):
+        with patch.object(transition, 'BEFORE', 'unmatched'), \
+             patch.object(transition, 'NOV13_BEFORE', transition.digest(self.old)), \
+             patch.object(transition, 'NOV13_AFTER', transition.digest(self.new)), \
+             patch.object(transition, 'NOV13_CATALOG', transition.digest({k: v for k, v in self.catalog.items() if k != 'generated_at'})):
+            self.prior(transition.CATALOG, {**self.catalog, 'menu_version': '10'})
+            self.fixture.prepare()
+            self.assertEqual(self.new, json.loads((self.fixture.preview/transition.PATH).read_text()))
+            shutil.rmtree(self.fixture.preview)
+            bad = deepcopy(self.new)
+            bad['generated_at'] = '2026-11-04T09:00:00Z'
+            self.candidate(transition.PATH, bad)
+            self.fixture.reject()
 
     def test_freshened_clocks_rejected_even_with_rehashed_manifest(self):
         for field,value in [('generated_at','2026-11-04T09:00:00Z'),('screening_date','2026-11-04')]:
