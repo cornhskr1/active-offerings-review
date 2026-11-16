@@ -14,6 +14,7 @@ try:
     from school_result_history import capture_result_history, seed_reviewed_result
     from publisher_access_policy import install_network_guards
     from official_historical_school_result import collect_results
+    from official_recorded_scheduled_start import collect_starts
 except ModuleNotFoundError:
     from scripts.official_school_calendar import collect_school_calendar
     from scripts.school_event_history import project_history
@@ -21,6 +22,7 @@ except ModuleNotFoundError:
     from scripts.school_result_history import capture_result_history, seed_reviewed_result
     from scripts.publisher_access_policy import install_network_guards
     from scripts.official_historical_school_result import collect_results
+    from scripts.official_recorded_scheduled_start import collect_starts
 
 CT = ZoneInfo('America/Chicago')
 ROOT = Path(__file__).resolve().parents[1]
@@ -173,17 +175,19 @@ def build_snapshot(config, previous, previous_cache, now, get=requests.get):
     historical_rows, historical_status, historical_cache = collect_results(
         calendar_events, previous_cache.get('historical_result', {}), now, get)
     historical_rows = [classify_location(row) for row in historical_rows]
+    history = project_history(cache, today, classify_location)
+    scheduled_starts, scheduled_cache = collect_starts(history, previous_cache.get('recorded_scheduled_starts', {}), now, get)
     coverage = {school: {'configured': sum(s['school'] == school for s in statuses), 'loaded': sum(s['school'] == school and bool(s.get('ok')) for s in statuses)} for school in ('Nebraska', 'Creighton', 'Omaha')}
     return ({'schema_version': 2, 'generated_at': now.isoformat(), 'timezone': 'America/Chicago',
              'window_start': today.isoformat(), 'window_end': end.isoformat(), 'events': events,
              'calendar_events': calendar_events,
-             'event_history': project_history(cache, today, classify_location),
+             'event_history': history, 'recorded_scheduled_starts': scheduled_starts,
              'historical_events': historical_rows, 'historical_sources': historical_status,
              'official_result_sources': official_result_status,
              'projection_note': 'The review window rolls over saved calendar rows without changing their source observation dates.',
              'sources': statuses, 'coverage': coverage, 'calendar_programs': [{'school': s, 'sport': p} for s, p in sorted(EXPECTED)],
              'calendar_note': 'Official calendar facts; refresh timestamps are not guarantees that the publisher updated its schedule. Unrelated saved programs remain stale.'},
-            {'schema_version': 1, 'sources': cache, 'historical_result': historical_cache, 'official_results': official_result_cache})
+            {'schema_version': 1, 'sources': cache, 'historical_result': historical_cache, 'official_results': official_result_cache, 'recorded_scheduled_starts': scheduled_cache})
 
 
 def retain_futures(saved):
