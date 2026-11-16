@@ -48,7 +48,7 @@
     },
     "triggered_rechecks": 0,
     "latest_follow_up_commit_base": "4aa75ca521b554268dc5ea51bc1b3e3ff3b167d6",
-    "post_first_pass_triggered_rechecks": 15
+    "post_first_pass_triggered_rechecks": 16
   },
   "records": [
     {
@@ -469,8 +469,8 @@
       "country": "United States",
       "catalog_event": "USL League One (USL1) | Men",
       "status": "verified-complete",
-      "reviewed_at": "2026-11-09",
-      "official_url": "https://www.charlotteindependence.com/newstag/usl-league-one-news/",
+      "reviewed_at": "2026-11-16",
+      "official_url": "https://www.charlotteindependence.com/newstag/home/",
       "evidence_urls": [
         "https://www.uslleagueone.com/news_article/show/1351512",
         "https://www.uslleagueone.com/layout_container/show_layout_tab?layout_container_id=126640429&page_node_id=4614679&tab_element_id=354383",
@@ -479,18 +479,19 @@
         "https://tickets.charlotteindependence.com/event/usl-league-one-playoffs-round-3-charlotte-indepe-6li5m1",
         "https://www.uslleagueone.com/",
         "https://www.charlotteindependence.com/newstag/usl-league-one-news/",
-        "https://www.acboise.com/2026-schedule/"
+        "https://www.acboise.com/2026-schedule/",
+        "https://www.charlotteindependence.com/newstag/home/"
       ],
-      "finding": "The 2026 men’s USL League One season opened March 7 and completed the regular season October 24. After both semifinals, the league identified Charlotte Independence and Athletic Club Boise as the finalists; Charlotte’s official November 8 announcement and Boise’s official schedule consistently set the final for Saturday, November 14 at 7:30 p.m. Eastern in Matthews, North Carolina. This resolves the prior November 14/15 conflict.",
+      "finding": "The 2026 men’s USL League One season opened March 7 and completed the regular season October 24. Charlotte’s official match report confirms a 4–2 championship-final win over Athletic Club Boise at the Sportsplex at Matthews. The club’s official archive also retains the exact November 14, 2026 match notice, confirming the previously scheduled date as the actual completed championship endpoint. The separate USL Cup and USL Championship retain their own calendars.",
       "missing_fact": null,
-      "next_action": "No routine follow-up; reopen only for an identifiable official fixture revision or publication of the completed final result.",
+      "next_action": "No routine recheck. Retain the completed 2026 edition until a specific new official edition calendar, revised result or substantive user evidence supplies a material trigger.",
       "season_edition": "2026",
       "season_start_date": "2026-03-07",
       "season_end_date": "2026-11-14",
-      "revisit_trigger": "Identifiable official final-fixture revision or completed November 14 final result.",
+      "revisit_trigger": "Identifiable official correction to the completed 2026 endpoint or a newly published exact next-edition calendar; a new run date alone is not a trigger.",
       "progress_kind": "triggered-recheck",
-      "endpoint_type": "scheduled-final",
-      "evidence_verified_at": "2026-11-09",
+      "endpoint_type": "actual-final",
+      "evidence_verified_at": "2026-11-16",
       "revisit_history": [
         {
           "trigger_date": "2026-11-08",
@@ -501,8 +502,20 @@
           "status": "consumed",
           "checked_at": "2026-11-09",
           "result": "Charlotte Independence vs Athletic Club Boise is scheduled for November 14, 2026 at 7:30 p.m. Eastern in Matthews, resolving the prior November 14/15 conflict."
+        },
+        {
+          "trigger_date": "2026-11-16",
+          "trigger_type": "official-result-publication",
+          "trigger": "Charlotte published its completed 4–2 championship-final match report, the exact final-result publication named by the existing revisit trigger.",
+          "source_url": "https://www.charlotteindependence.com/newstag/home/",
+          "source_version": "Official Charlotte archive, report titled \"Charlotte Independence Completes the Double, Defeats AC Boise 4-2 in USL League One Final\"; observed November 16, 2026. Primary page does not expose a publication timestamp.",
+          "publication_date_confirmed": false,
+          "status": "consumed",
+          "checked_at": "2026-11-16",
+          "result": "The 2026 men’s USL League One season opened March 7 and completed the regular season October 24. Charlotte’s official match report confirms a 4–2 championship-final win over Athletic Club Boise at the Sportsplex at Matthews. The club’s official archive also retains the exact November 14, 2026 match notice, confirming the previously scheduled date as the actual completed championship endpoint. The separate USL Cup and USL Championship retain their own calendars."
         }
-      ]
+      ],
+      "original_endpoint_evidence_verified_at": "2026-11-09"
     },
     {
       "key": "soccer-international-concacaf-champions-cup-men",
@@ -21917,6 +21930,26 @@
       ],
       "result": "Added separate approval mapping only; season review remains pending and dates undetermined.",
       "full_calendars_completed": 0,
+      "reviewed_count": 735,
+      "pending_count": 1,
+      "dated": 327,
+      "undetermined": 409
+    },
+    {
+      "date": "2026-11-16",
+      "base_commit": "844a8297302b43e23a92188bf4d30d24faf0be79",
+      "keys": [
+        "soccer-united-states-usl-league-one-usl1-men"
+      ],
+      "result": "New official championship-final match report confirms actual completed November 14 endpoint; existing season dates and ledger disposition are unchanged.",
+      "progress_counts": {
+        "newly-resolved-calendar": 0,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 1
+      },
+      "full_calendars_completed": 0,
+      "actual_endpoints_confirmed": 1,
       "reviewed_count": 735,
       "pending_count": 1,
       "dated": 327,
