@@ -48,7 +48,7 @@
     },
     "triggered_rechecks": 0,
     "latest_follow_up_commit_base": "4aa75ca521b554268dc5ea51bc1b3e3ff3b167d6",
-    "post_first_pass_triggered_rechecks": 16
+    "post_first_pass_triggered_rechecks": 17
   },
   "records": [
     {
@@ -2173,7 +2173,17 @@
       "next_action": "Recheck the official 2027 Finals schedule, including the possible deciding game. Keep the regular-season endpoint separate.",
       "season_edition": "2026/27",
       "season_start_date": "2026-10-20",
-      "season_end_date": null
+      "season_end_date": null,
+      "publication_discovery_history": [
+        {
+          "checked_at": "2026-11-16",
+          "source_url": "https://www.nba.com/news/key-dates",
+          "source_version": "Official calendar updated November 14, 2026 at 2:58 PM",
+          "status": "consumed",
+          "qualifying_boundary_recheck": false,
+          "result": "No 2027 last-possible Finals date. Await a materially new Finals-boundary publication; do not repeat this version."
+        }
+      ]
     },
     {
       "key": "basketball-us-unrivaled",
@@ -2685,8 +2695,8 @@
       "country": "Latvia",
       "catalog_event": "Latvian Higher League / Virslīga | Men",
       "status": "verified-complete",
-      "reviewed_at": "2026-11-09",
-      "official_url": "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/",
+      "reviewed_at": "2026-11-16",
+      "official_url": "https://lff.lv/zinas/19365/virsligas-parspeles-uzvar-fk-tukums-2000/",
       "evidence_urls": [
         "https://lff.lv/zinas/18770/virsligas-cempionats-saksies-6-marta-riga/",
         "https://lff.lv/zinas/19313/fk-metta-garante-lvbet-ligas-cempionu-titulu/",
@@ -2695,11 +2705,12 @@
         "https://lff.lv/sacensibas/viriesi/parspeles/",
         "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/",
         "https://lff.lv/speles/fk-tukums-2000-valmiera-fc-26107309/",
-        "https://lff.lv/speles/valmiera-fc-fk-tukums-2000-26107310/"
+        "https://lff.lv/speles/valmiera-fc-fk-tukums-2000-26107310/",
+        "https://lff.lv/zinas/19365/virsligas-parspeles-uzvar-fk-tukums-2000/"
       ],
-      "finding": "The 2026 men’s Virslīga opened March 6 and ended its regular season November 8. On November 9, LFF published the promotion/relegation tie: FK Tukums 2000 hosts Valmiera FC on November 11, and Valmiera hosts the scheduled return leg on November 14. The November 14 return leg is the full scheduled season endpoint.",
+      "finding": "The 2026 men’s Virslīga opened March 6 and ended its regular season November 8. LFF’s November 14 result report confirms FK Tukums 2000 won the return leg at Valmiera 1–0, completing a 2–0 aggregate promotion/relegation tie. The full season endpoint is the actual completed November 14 return leg; the separate Latvian Cup remains outside this league window.",
       "missing_fact": null,
-      "next_action": "No routine follow-up; reopen only for an identifiable official fixture revision or the published return-leg result.",
+      "next_action": "No routine recheck. Retain the completed 2026 edition until a specific new official edition calendar, revised result or substantive user evidence supplies a material trigger.",
       "revisit_history": [
         {
           "trigger_date": "2026-11-07",
@@ -2719,19 +2730,33 @@
           "status": "consumed",
           "checked_at": "2026-11-09",
           "result": "The first leg is November 11 at 14:00 in Tukums and the scheduled return leg is November 14 at 13:00 in Valmiera."
+        },
+        {
+          "trigger_date": "2026-11-16",
+          "trigger_type": "official-result-publication",
+          "trigger": "LFF published the completed November 14 promotion/relegation return-leg result, the exact result publication named by the existing revisit trigger.",
+          "source_url": "https://lff.lv/zinas/19365/virsligas-parspeles-uzvar-fk-tukums-2000/",
+          "source_version": "LFF article 19365, \"Virslīgas pārspēlēs uzvar FK Tukums 2000\", published November 14, 2026 at 14:55",
+          "publication_date_confirmed": true,
+          "publication_date": "2026-11-14",
+          "status": "consumed",
+          "checked_at": "2026-11-16",
+          "result": "The 2026 men’s Virslīga opened March 6 and ended its regular season November 8. LFF’s November 14 result report confirms FK Tukums 2000 won the return leg at Valmiera 1–0, completing a 2–0 aggregate promotion/relegation tie. The full season endpoint is the actual completed November 14 return leg; the separate Latvian Cup remains outside this league window."
         }
       ],
       "source_publication_dates": {
         "https://lff.lv/zinas/19347/pedeja-karta-vietu-parspeles-izcina-valmiera-fc/": "2026-11-07",
-        "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/": "2026-11-09"
+        "https://lff.lv/zinas/19351/parspeles-par-vietu-virsliga-notiks-11-un-14-novembri/": "2026-11-09",
+        "https://lff.lv/zinas/19365/virsligas-parspeles-uzvar-fk-tukums-2000/": "2026-11-14"
       },
-      "revisit_trigger": "Identifiable LFF revision to either playoff leg or publication of the November 14 return-leg result.",
+      "revisit_trigger": "Identifiable official correction to the completed 2026 endpoint or a newly published exact next-edition calendar; a new run date alone is not a trigger.",
       "progress_kind": "triggered-recheck",
       "season_edition": "2026",
       "season_start_date": "2026-03-06",
       "season_end_date": "2026-11-14",
-      "endpoint_type": "scheduled-promotion-relegation-return-leg",
-      "evidence_verified_at": "2026-11-09"
+      "endpoint_type": "actual-promotion-relegation-return-leg",
+      "evidence_verified_at": "2026-11-16",
+      "original_endpoint_evidence_verified_at": "2026-11-09"
     },
     {
       "key": "soccer-lithuania-a-lyga-men",
@@ -21942,6 +21967,26 @@
         "soccer-united-states-usl-league-one-usl1-men"
       ],
       "result": "New official championship-final match report confirms actual completed November 14 endpoint; existing season dates and ledger disposition are unchanged.",
+      "progress_counts": {
+        "newly-resolved-calendar": 0,
+        "prior-evidence-reconciliation": 0,
+        "first-time-unresolved": 0,
+        "triggered-recheck": 1
+      },
+      "full_calendars_completed": 0,
+      "actual_endpoints_confirmed": 1,
+      "reviewed_count": 735,
+      "pending_count": 1,
+      "dated": 327,
+      "undetermined": 409
+    },
+    {
+      "date": "2026-11-16",
+      "base_commit": "fbfde2326eb8664f2af1e45a31b1cd27959b973d",
+      "keys": [
+        "soccer-latvia-latvian-higher-league-virsl-ga-men"
+      ],
+      "result": "New LFF result confirms actual completed November 14 promotion/relegation return leg; existing dates and verified-complete status unchanged.",
       "progress_counts": {
         "newly-resolved-calendar": 0,
         "prior-evidence-reconciliation": 0,

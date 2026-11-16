@@ -38,7 +38,7 @@ class EstoniaLatviaScopeTests(unittest.TestCase):
             self.assertEqual(complete, league["season_window_complete"])
             if country == "latvia":
                 self.assertEqual("2026-11-14", league["season_end_date"])
-                self.assertEqual("scheduled-promotion-relegation-return-leg", league["endpoint_type"])
+                self.assertEqual("actual-promotion-relegation-return-leg", league["endpoint_type"])
             cup = next(e for k, e in self.events.items() if k.startswith(f"soccer-{country}-") and "super" in k)
             self.assertEqual((date, date), (cup["season_start_date"], cup["season_end_date"]))
             self.assertEqual("OFFICIAL_WINDOW_ONLY", self.inventory[cup["key"]]["coverage_state"])
