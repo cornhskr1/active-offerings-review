@@ -42,4 +42,4 @@ console.log(JSON.stringify(C.identityRows(rows,load('competition-identity-regist
         self.assertEqual('official-wsl2-fixtures', source['source_type'])
         self.assertEqual('coverage-gap', alias['source_type'])
         self.assertEqual('pending', alias['coverage_status'])
-        self.assertEqual(735, len(rows))
+        self.assertEqual(736, len(rows))

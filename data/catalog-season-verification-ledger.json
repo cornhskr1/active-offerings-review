@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-12",
+  "updated_at": "2026-11-16",
   "description": "Research checkpoint for the accelerated season-verification pass. Entries record reviewed results only; absence does not imply that a record cannot be confirmed. Season evidence does not establish wagering eligibility or refresh event feeds.",
   "baseline_commit": "b42282744cdc9f08bd864d9bc6774f24f734ad5f",
   "baseline_dated_records": 317,
-  "catalog_records": 735,
+  "catalog_records": 736,
   "status_definitions": {
     "verified-complete": "Official evidence establishes the exact edition window.",
     "awaiting-published-dates": "Partial official dates exist; a complete window is not established in reviewed sources.",
@@ -19,9 +19,9 @@
   "reconciled_against_commit": "bb7b75dfbe75f8972b29ea2ac8b77d1b04e1e36b",
   "completion_reconciliation": {
     "reviewed_count": 735,
-    "pending_count": 0,
-    "canonical_key_sha256": "ed04c2b5295cd8c570f4ffc9b19eda886c5ea61dd8d41c53332881cc171898b9",
-    "reconciled_at": "2026-11-06",
+    "pending_count": 1,
+    "canonical_key_sha256": "0632273fc62a11e98850a56c1651dbb27e6b72e06c67dab099abeea3e46aad13",
+    "reconciled_at": "2026-11-16",
     "status_counts": {
       "awaiting-published-dates": 251,
       "verified-complete": 323,
@@ -30,14 +30,15 @@
       "not-scheduled": 10,
       "scope-conflict": 24,
       "nonseasonal": 28,
-      "cancelled": 4
+      "cancelled": 4,
+      "not-yet-reviewed": 1
     },
-    "first_pass_complete": true,
-    "meaning": "All canonical keys carry substantive evidence-backed dispositions; not all seasons have published complete schedules.",
+    "first_pass_complete": false,
+    "meaning": "735 prior keys retain their reviewed dispositions; the newly approved WTA 125 identity is pending season review.",
     "saved_source_presentation": {
-      "as_of": "2026-11-12",
+      "as_of": "2026-11-16",
       "dated": 327,
-      "undetermined": 408
+      "undetermined": 409
     },
     "run_start_reviewed_count": 220,
     "run_progress_counts": {
@@ -21743,6 +21744,18 @@
         "Prior source/country investigation checkpoints; no repeat network request"
       ],
       "scope_note": "Separate senior competition/division only; fixture adapter completeness, participant ages, market cutoffs and wagering approval remain independent. Historical dates are not rolled into a new edition."
+    },
+    {
+      "key": "tennis-wta-125",
+      "sport": "Tennis",
+      "country": "International",
+      "catalog_event": "WTA 125 | Women",
+      "status": "not-yet-reviewed",
+      "finding": "New explicit catalog approval mapped; no season-calendar review or date verification has been completed.",
+      "missing_fact": "Exact WTA 125 edition season boundaries and qualifying scope.",
+      "next_action": "Review separately scoped official season evidence subject to existing publisher holds.",
+      "official_url": "https://www.wtatennis.com/tournaments/wta-125",
+      "evidence_urls": []
     }
   ],
   "post_completion_updates": [
@@ -21896,6 +21909,18 @@
       },
       "dated": 327,
       "undetermined": 408
+    },
+    {
+      "date": "2026-11-16",
+      "keys": [
+        "tennis-wta-125"
+      ],
+      "result": "Added separate approval mapping only; season review remains pending and dates undetermined.",
+      "full_calendars_completed": 0,
+      "reviewed_count": 735,
+      "pending_count": 1,
+      "dated": 327,
+      "undetermined": 409
     }
   ]
 }

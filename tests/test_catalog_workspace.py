@@ -165,12 +165,12 @@ for(const sport of ['Soccer','Tennis']){
 }
 """,ui=True)
 
-    def test_identity_projection_preserves_all_735_keys_and_child_scope(self):
+    def test_identity_projection_preserves_all_736_keys_and_child_scope(self):
         self.js("""
 const parents=[];
 for(const sport of DATA.seasonMap.sports)for(const group of sport.groups||[])for(const event of group.events||[])parents.push({id:event.key,name:event.catalog_event,sport:sport.sport,event,group,aliases:[],restrictions:event.restrictions||[],notes:event.notes||[],kind:'mapped'});
 const rows=C.identityRows(parents,DATA.identities,'2026-11-02');
-assert.equal(rows.length,735);assert.deepEqual(rows.map(x=>x.id).sort(),DATA.identities.competitions.map(x=>x.identity_key).sort());
+assert.equal(rows.length,736);assert.deepEqual(rows.map(x=>x.id).sort(),DATA.identities.competitions.map(x=>x.identity_key).sort());
 const synthetic=C.identityRows([{id:'p',name:'Parent',sport:'Sport',group:{country:'Z'},restrictions:['Parent rule'],notes:[],kind:'mapped',event:{season_start_date:'2026-01-01',coverage_children:[{key:'a',label:'A',restrictions:['A rule']},{key:'b',label:'B'}]}}],{competitions:[{identity_key:'a',aliases:[{name:'Only A'}]},{identity_key:'b',aliases:[{name:'Only B'}]}]},'2026-11-02');
 assert.deepEqual(synthetic[0].restrictions,['Parent rule','A rule']);assert.deepEqual(synthetic[1].restrictions,['Parent rule']);
 assert.equal(synthetic[0].aliases[0].name,'Only A');assert.equal(synthetic[1].aliases[0].name,'Only B');assert.equal(synthetic[0].event.season_start_date,undefined);
