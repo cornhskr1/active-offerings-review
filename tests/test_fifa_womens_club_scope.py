@@ -53,4 +53,4 @@ class FifaWomensClubScopeTests(unittest.TestCase):
         self.assertEqual(('2028-01-05', '2028-01-30'), (event['season_start_date'], event['season_end_date']))
         self.assertTrue(event['season_window_complete'])
         self.assertFalse(event.get('season_hold'))
-        self.assertEqual(735, len(leaves))
+        self.assertEqual(736, len(leaves))
