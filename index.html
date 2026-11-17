@@ -670,7 +670,7 @@ const FILES={
   identities:'data/competition-identity-registry.json',
   f1:'data/jolpica-f1-events.json',
   oddsMap:'data/odds-api-catalog-mappings.json', oddsEvents:'data/odds-api-events.json',
-  global:'data/global-schedule.json', coverage:'data/priority2-coverage-inventory.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
+  golfCalendars:'data/golf-tour-calendars.json', global:'data/global-schedule.json', coverage:'data/priority2-coverage-inventory.json', priority:'data/priority-queue.json', college:'data/nebraska-collegiate-live.json', collegeFutures:'data/nebraska-collegiate-futures.json',
   catalog:'data/catalog-live.json', catalogStatus:'data/catalog-status.json', seasonMap:'data/catalog-season-map.json', catalogOfficialSources:'data/catalog-official-sources.json', known:'data/known-u18.json',
   intake:'data/catalog-change-queue.json',
   ncaa:'data/ncaa-football-data.json', ncaaAge:'data/ncaa-football-age-review.json',
@@ -2762,7 +2762,8 @@ function catalogEntryBadge(event,status){
 }
 function tourCalendarForEvent(event){
   const ids=eventSourceIds(event);
-  return (DATA.global?.tour_calendars||[]).find(calendar=>ids.includes(calendar.source_id))||null;
+  return (DATA.global?.tour_calendars||[]).find(calendar=>ids.includes(calendar.source_id))
+    ||(DATA.golfCalendars?.tour_calendars||[]).find(calendar=>ids.includes(calendar.source_id))||null;
 }
 function tourDateLabel(item){
   if(!item?.start_date)return'';
@@ -2775,15 +2776,16 @@ function tourCalendarHtml(event){
   if(!calendar)return'';
   const today=todayKey();
   const horizon=addDays(today,7);
+  const saved=calendar.source_stale||calendar.stale||calendar.collection_paused;
   const rows=(calendar.events||[]).map(item=>{
-    const active=item.start_date<=today&&item.end_date>=today;
-    const upcoming=!active&&item.start_date>today&&item.start_date<=horizon;
+    const active=!saved&&item.start_date<=today&&item.end_date>=today;
+    const upcoming=!saved&&!active&&item.start_date>today&&item.start_date<=horizon;
     return{...item,display_status:active?'ACTIVE NOW':upcoming?'NEXT 7 DAYS':item.status||'' ,emphasis:active?'active':upcoming?'upcoming':''};
   });
   const active=rows.filter(x=>x.emphasis==='active').length;
   const upcoming=rows.filter(x=>x.emphasis==='upcoming').length;
   const summary=[`${rows.length} tournaments`,active?`${active} active`:null,upcoming?`${upcoming} next 7 days`:null].filter(Boolean).join(' · ');
-  return `<details class="catalog-tour-calendar"><summary><span>Tour event schedule</span><span>${esc(summary)}</span></summary><div class="catalog-tour-events">${rows.map(item=>`<div class="catalog-tour-event ${item.emphasis}"><div><div class="catalog-tour-event-name">${esc(item.display_name)}</div><div class="catalog-tour-event-meta">${esc(tourDateLabel(item))} · ${esc(item.approval_path||'')}</div></div><span class="catalog-tour-event-status">${esc(item.display_status)}</span></div>`).join('')}</div></details>`;
+  return `<details class="catalog-tour-calendar"><summary><span>Tour event schedule</span><span>${esc(summary)}</span></summary>${saved?'<p class="season-standard-note">Saved tournament calendar · verify dates with the official tour schedule.</p>':''}${/^https?:\/\//.test(calendar.official_schedule_url||'')?`<p class="season-standard-note"><a href="${esc(calendar.official_schedule_url)}" target="_blank" rel="noopener noreferrer">Official tour schedule ↗</a></p>`:''}<div class="catalog-tour-events">${rows.map(item=>`<div class="catalog-tour-event ${item.emphasis}"><div><div class="catalog-tour-event-name">${esc(item.display_name)}</div><div class="catalog-tour-event-meta">${esc(tourDateLabel(item))} · ${esc(item.approval_path||'')}</div></div><span class="catalog-tour-event-status">${esc(item.display_status)}</span></div>`).join('')}</div></details>`;
 }
 function catalogOfficialBodySource(name){
   return (DATA.catalogOfficialSources?.governing_bodies||[]).find(row=>row.name===name)||null;

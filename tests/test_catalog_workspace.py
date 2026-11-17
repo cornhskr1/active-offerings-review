@@ -49,6 +49,19 @@ assert.match(html,/NO &lt;PROPS&gt;/);assert.match(html,/League &lt;A&gt;/);asse
 assert.doesNotMatch(catalogTimingHtml({season_start:'10-01',season_end:'06-30'}),/progressbar/);
 """,ui=True)
 
+    def test_golf_cards_restore_full_calendars_and_label_saved_fallback(self):
+        self.js("""
+todayKey=()=> '2026-11-17';
+const item={display_name:'Tournament <one>',start_date:'2026-11-17',end_date:'2026-11-20'};
+const saved={source_id:'golf-asian-tour',source_stale:true,events:[item],official_schedule_url:'https://example.com/schedule'};
+DATA.global={tour_calendars:[]};DATA.golfCalendars={tour_calendars:[saved]};
+const row={id:'golf-asian-tour',name:'Asian Tour',sport:'Golf',group:{},aliases:[],restrictions:[],event:{source_id:'golf-asian-tour'}};
+let html=catalogSeasonCard(row);
+assert.match(html,/Tour event schedule/);assert.match(html,/1 tournaments/);assert.match(html,/Tournament &lt;one&gt;/);assert.match(html,/Saved tournament calendar/);assert.doesNotMatch(html,/ACTIVE NOW|NEXT 7 DAYS/);
+DATA.global.tour_calendars=[{...saved,source_stale:false,events:[{...item,display_name:'Current tournament'}]}];
+html=catalogSeasonCard(row);assert.match(html,/Current tournament/);assert.match(html,/ACTIVE NOW/);assert.doesNotMatch(html,/Saved tournament calendar|Tournament &lt;one&gt;/);
+""",ui=True)
+
     def test_reliability_counts_exact_entries_and_keeps_gaps_separate_from_approval(self):
         self.js("""
 mappedCatalogEventForScheduleEvent=e=>({key:e.catalog_identity_key});
