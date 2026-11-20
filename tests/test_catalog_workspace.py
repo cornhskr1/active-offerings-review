@@ -199,6 +199,29 @@ assert.match(catalogCountryFlag('Germany'),/country-flags.svg#de/);assert.equal(
 assert.equal(CATALOG_BROWSER.status,'all');
 """,ui=True)
 
+    def test_country_flags_and_sport_rail_icons_remain_distinct(self):
+        css = (ROOT/'assets/catalog-workspace.css').read_text()
+        rule = css.split('.catalog-sport-list .sport-color-emoji{', 1)[1].split('}', 1)[0]
+        for declaration in ('background:transparent','border:0','box-shadow:none'):
+            self.assertIn(declaration,rule)
+        self.js(r"""
+const rows=['Germany','United States / Canada','International'].map((country,i)=>({
+ id:String(i),name:'League '+i,sport:'Basketball',group:{country,governing_body:'Authority'},
+ aliases:[],restrictions:[],event:{}
+}));
+const html=catalogHierarchyHtml(rows);
+const headings=Object.fromEntries([...html.matchAll(/<h3 class="catalog-country-heading">(.*?)<span>(.*?)<\/span><\/h3>/g)].map(x=>[x[2],x[1]]));
+assert.match(headings.Germany,/assets\/country-flags.svg#de/);
+assert.equal((headings.Germany.match(/class="country-flag"/g)||[]).length,1);
+assert.match(headings['United States / Canada'],/assets\/country-flags.svg#us.*assets\/country-flags.svg#ca/);
+assert.equal((headings['United States / Canada'].match(/class="country-flag"/g)||[]).length,2);
+assert.equal(headings.International,'');
+assert.match(catalogSportRailIcon('Olympics'),/<span class="sport-color-emoji" aria-hidden="true">🏅<\/span>/);
+assert.match(catalogSportRailIcon('Soccer'),/⚽/);
+assert.doesNotMatch(html,/sport-color-emoji/);
+assert.doesNotMatch(catalogSportRailIcon('Soccer'),/country-flag/);
+""",ui=True)
+
     def js(self, body, ui=False):
         pre = "const assert=require('node:assert/strict'),fs=require('node:fs'),C=require('./assets/catalog-workspace.js');\n"
         if ui:
@@ -259,6 +282,21 @@ const match=C.filter(rows,{query:'NCAAB'}).find(x=>x.sport==='NCAA Basketball');
 const alias=match.aliases.find(x=>x.name==='NCAAB');assert.equal(catalogAliasLabel(alias),'FanDuel');assert.match(alias.scope_note,/only in that operator context/);
 assert.equal(catalogAliasLabel({name:'A',name_type:'operator'}),'Operator not recorded');
 assert.equal(catalogAliasLabel({name:'NHL',name_type:'source label'}),'Source label');
+""",ui=True)
+
+    def test_details_aliases_are_collapsed_and_preserve_scoped_evidence(self):
+        self.js(r"""
+const html=catalogAliasDetails([
+ {name:'<NCAAB>',name_type:'operator',evidence_url:'https://sportsbook.fanduel.com/path',scope:'Retail',scope_note:'<Only this operator>'},
+ {name:'Official alternative',name_type:'official',evidence_url:'javascript:alert(1)'},
+ {name:'Other provider',name_type:'data-provider',evidence_url:'https://user:secret@example.com/path'}
+]);
+assert.match(html,/<details class="catalog-alias-details"><summary>Also listed as \(3\)<\/summary>/);
+assert.match(html,/&lt;NCAAB&gt;.*Operator name · FanDuel · Retail.*&lt;Only this operator&gt;/);
+assert.match(html,/https:\/\/sportsbook.fanduel.com\/path/);
+assert.ok(!html.includes('javascript:'));assert.ok(!html.includes('user:secret'));
+assert.match(html,/Official name/);assert.match(html,/Data provider name/);
+assert.equal(catalogAliasDetails([]),'');
 """,ui=True)
 
     def test_new_unmapped_catalog_entry_remains_visible(self):

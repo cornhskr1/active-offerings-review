@@ -55,3 +55,84 @@ body.compact-view{min-width:0}.compact-view .app{max-width:700px!important;margi
 .compact-view .workspace-brand{margin:0;padding:12px}.compact-view .app{width:100%;box-sizing:border-box}.compact-view .catalog-version{display:inline-block;white-space:nowrap;vertical-align:baseline;margin-top:8px}
 /* Keep the explicit layout switch reachable before a phone user opts in. */
 @media(max-width:700px){body:not(.compact-view) .workspace-brand{width:100vw;box-sizing:border-box;flex-wrap:wrap;gap:10px;padding:12px}body:not(.compact-view) .workspace-identity{flex:1 1 220px;min-width:0}body:not(.compact-view) .workspace-boundary{display:none}body:not(.compact-view) #layoutToggle{margin-left:0}}
+
+/* Local visual concept: distinct workspace surfaces, unchanged status semantics. */
+:root{--ao-canvas:#e3e3e3;--ao-ink:#171717;--ao-muted:#565656;--ao-line:#c5c5c5;--ao-panel:#f0f0f0;--ao-deep:#242424;--ao-accent:#c3222b}
+body{background:var(--ao-canvas)}
+.workspace-brand{background:#171717}.workspace-name{color:#fafafa}
+.nav{background:#242424;border-color:var(--ao-line)}
+.nav button,.nav .portal-link{color:#f1f1f1}
+.nav button:hover,.nav .portal-link:hover{background:#ededed;color:#171717}
+.nav button.active{background:#3b3b3b;color:#fff;box-shadow:inset 0 -3px var(--ao-accent)}
+#catalog>.card{background:var(--ao-panel);border:1px solid #c5c5c5;color:var(--ao-ink)}
+.catalog-workspace-head p,.catalog-result-count{color:var(--ao-muted)}
+.catalog-version,#layoutToggle,.catalog-published>summary,#catalogRestrictionsGuide>summary,.hub-evidence>summary{background:#f5f5f5;border-color:#c5c5c5;color:#323232}
+.catalog-browser{border-color:#bfbfbf;background:#e8e8e8}
+.catalog-sports-column,.catalog-sports-column h2{background:var(--ao-deep);color:#fafafa;border-color:#444444}
+.catalog-sports-column h2>span{color:#cacaca}
+.catalog-sport-list{scrollbar-color:#8a8a8a var(--ao-deep)}
+.catalog-sport-list .catalog-select{color:#ededed;border-bottom-color:#3b3b3b}
+.catalog-sport-list .catalog-select small{color:#cecece}
+.catalog-sport-list .catalog-select:hover{background:#333333;color:#fff}
+.catalog-sport-list .catalog-select[aria-pressed=true]{background:#3b3b3b;color:#fff;border-left-color:var(--ao-accent)}
+.catalog-sport-list .catalog-select[aria-pressed=true] small{color:#f7f7f7}
+.catalog-sport-list .sport-icon,.catalog-board-heading .sport-icon{background:#f2f2f2;color:#242424;border-radius:4px}
+.catalog-board-heading,.catalog-hierarchy-sport{background:#242424!important}
+.catalog-board-heading #catalogDetailToggle,.catalog-board-heading #catalogSportEvidence{background:#373737;border-color:#777777;color:#fff}
+.catalog-events,.catalog-body-group,.catalog-country-heading,.catalog-body-group>h4,.season-catalog-grid{background:#e8e8e8}
+.catalog-country-heading,.catalog-body-group>h4,.catalog-event-summary{color:#323232}
+.catalog-event-summary,.catalog-event-table thead th{background:#dedede;border-color:#c4c4c4;color:#303030}
+.catalog-event-table tbody tr:nth-child(even){background:#f4f4f4}
+.season-catalog-card{border-color:#c7c7c7;box-shadow:0 1px 2px #17171712}
+.season-catalog-card.selected{border-color:#a4232a;box-shadow:inset 0 0 0 1px #a4232a}
+.season-details-button,.catalog-plain-link{color:#781a20}
+.season-details-button{background:#f5f5f5;border-color:#cacaca}
+.season-details-button:hover{background:#e8e8e8}
+.catalog-review-column,.catalog-detail{background:#f0f0f0;color:var(--ao-ink)}
+.catalog-review-column h2{background:#dedede;color:#292929;border-color:#c7c7c7}
+.catalog-review-column h2>span,.catalog-detail .catalog-path{color:#555555}
+.catalog-detail h3,.catalog-detail h4{color:#212121}
+.catalog-detail h3{font-size:18px;line-height:1.25;margin-bottom:10px}
+.catalog-detail h4{font-size:12px;letter-spacing:.015em;margin-bottom:7px}
+.catalog-detail p,.catalog-detail .row-meta{color:#414141;line-height:1.42}
+.catalog-detail details{background:#fafafa;border-color:#c7c7c7}
+.catalog-detail summary{color:#3a3a3a;font-weight:700}
+.catalog-detail .season-timing{background:#f7f7f7}
+.catalog-detail .catalog-detail-rules{border-color:#b58a56;background:#fff2dd}
+.board-selected-event,.board-review-intro{background:#e6e6e6;border-color:#bfbfbf}
+.catalog-filter-buttons button[aria-pressed=true],.catalog-date-buttons button[aria-pressed=true]{background:#f6e9ea;border-color:#a4232a;color:#781a20}
+#catalogSearch{border-color:#bfbfbf}
+#catalog .catalog-browser :is(button,a,summary,input,select):focus-visible{outline:3px solid #a9232b;outline-offset:2px}
+#catalog .catalog-sports-column button:focus-visible{outline-color:#ffd7d9;outline-offset:-3px}
+@media(max-width:700px){.compact-view #catalog>.card{padding:12px}.compact-view .catalog-review-column{border:1px solid var(--ao-line)}}
+
+/* Shared neutral surfaces for all Active Offerings tabs; status colors stay semantic. */
+.workspace-brand .workspace-subtitle,.workspace-brand .workspace-boundary{color:#cdcdcd}
+.workspace-footer{color:var(--ao-muted)}
+#college>.card,#intake>.card{background:var(--ao-panel);border-color:var(--ao-line);color:var(--ao-ink);padding:20px}
+:is(#college,#intake) .section-title{color:var(--ao-ink);font-size:20px;line-height:1.25}
+:is(#college,#intake) .small,:is(#college,#intake) .source-note{color:var(--ao-muted);line-height:1.5}
+:is(#college,#intake) .toolbar :is(input,select){color:var(--ao-ink);background:#fafafa;border-color:#bfbfbf}
+:is(#college,#intake) :is(button,a,summary,input,select):focus-visible{outline:3px solid #a9232b;outline-offset:2px}
+#college :is(.college-day,.futures-card),#intake .intake-item{border-block-color:var(--ao-line);border-right-color:var(--ao-line);background:#fafafa}
+#college .college-day{border-inline-start-color:var(--ao-line)}
+#college .college-day>summary,#intake .intake-item>summary{background:#e1e1e1;color:#282828}
+#college .college-day>summary:hover,#intake .intake-item>summary:hover{background:#d9d9d9}
+#college .college-grid{background:#e9e9e9}
+#college :is(.college-day-counts,.college-date,.college-loc,.futures-rule),#intake .intake-item-meta{color:var(--ao-muted)}
+#college :is(.college-source-link,.futures-card a),#intake .intake-source a{color:#781a20}
+#college .futures-guidance{background:#e8e8e8;border-block-color:#c3c3c3;border-right-color:#c3c3c3;color:#333333}
+#intake .intake-item-body{border-color:var(--ao-line)}
+#intake .intake-action,#intake .intake-line{background:#e9e9e9;border-color:var(--ao-line);color:#333333}
+#intake .intake-line.old{color:#5a5a5a}
+#intake .intake-checklist{grid-template-columns:repeat(2,minmax(0,1fr))}
+.catalog-detail .catalog-alias-details{margin:8px 0 13px}
+.catalog-alias-list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+.catalog-alias-list li{display:grid;gap:3px;line-height:1.4;border-top:1px solid #d2d2d2;padding:7px 0 2px;overflow-wrap:anywhere}
+.catalog-alias-label,.catalog-alias-note{color:#4e4e4e;font-size:11px}
+.catalog-alias-list a{justify-self:start;font-size:11px}
+.season-timeline>span{background:#ad2731} /* elapsed season, not a review flag */
+@media(max-width:700px){.compact-view #college>.card,.compact-view #intake>.card{padding:12px}.compact-view #intake .intake-checklist{grid-template-columns:1fr}}
+
+/* Color sport markers, distinct from approval and evidence badges. */
+.catalog-sport-list .sport-color-emoji{display:inline-grid;place-items:center;width:23px;height:23px;flex:none;font:17px/1 "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;background:transparent;border:0;box-shadow:none}
