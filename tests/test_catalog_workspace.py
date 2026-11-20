@@ -201,8 +201,8 @@ assert.equal(CATALOG_BROWSER.status,'all');
 
     def test_country_flags_and_sport_rail_icons_remain_distinct(self):
         css = (ROOT/'assets/catalog-workspace.css').read_text()
-        rule = css.split('.catalog-sport-list .sport-color-emoji{', 1)[1].split('}', 1)[0]
-        for declaration in ('background:transparent','border:0','box-shadow:none'):
+        rule = css.split('.catalog-sport-list .sport-icon,.catalog-board-heading .sport-icon{', 1)[1].split('}', 1)[0]
+        for declaration in ('background:transparent','border:0','box-shadow:none','color:inherit'):
             self.assertIn(declaration,rule)
         self.js(r"""
 const rows=['Germany','United States / Canada','International'].map((country,i)=>({
@@ -216,10 +216,13 @@ assert.equal((headings.Germany.match(/class="country-flag"/g)||[]).length,1);
 assert.match(headings['United States / Canada'],/assets\/country-flags.svg#us.*assets\/country-flags.svg#ca/);
 assert.equal((headings['United States / Canada'].match(/class="country-flag"/g)||[]).length,2);
 assert.equal(headings.International,'');
-assert.match(catalogSportRailIcon('Olympics'),/<span class="sport-color-emoji" aria-hidden="true">🏅<\/span>/);
-assert.match(catalogSportRailIcon('Soccer'),/⚽/);
+assert.match(catalogSportIcon('Olympics',{outlineMedal:true}),/<circle cx="12" cy="16" r="5"\/>/);
+assert.notEqual(catalogSportIcon('Olympics',{outlineMedal:true}),catalogSportIcon('All sports'));
+for(const sport of ['All sports','Soccer','Olympics','Rodeo','Motorsports','NCAA']) {
+ const icon=catalogSportIcon(sport);assert.match(icon,/<svg class="sport-icon".*stroke="currentColor".*aria-hidden="true"/);
+ assert.doesNotMatch(icon,/country-flag|sport-color-emoji/);
+}
 assert.doesNotMatch(html,/sport-color-emoji/);
-assert.doesNotMatch(catalogSportRailIcon('Soccer'),/country-flag/);
 """,ui=True)
 
     def js(self, body, ui=False):
