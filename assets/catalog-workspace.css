@@ -76,7 +76,7 @@ body{background:var(--ao-canvas)}
 .catalog-sport-list .catalog-select:hover{background:#333333;color:#fff}
 .catalog-sport-list .catalog-select[aria-pressed=true]{background:#3b3b3b;color:#fff;border-left-color:var(--ao-accent)}
 .catalog-sport-list .catalog-select[aria-pressed=true] small{color:#f7f7f7}
-.catalog-sport-list .sport-icon,.catalog-board-heading .sport-icon{background:#f2f2f2;color:#242424;border-radius:4px}
+.catalog-sport-list .sport-icon,.catalog-board-heading .sport-icon{background:transparent;border:0;box-shadow:none;color:inherit}
 .catalog-board-heading,.catalog-hierarchy-sport{background:#242424!important}
 .catalog-board-heading #catalogDetailToggle,.catalog-board-heading #catalogSportEvidence{background:#373737;border-color:#777777;color:#fff}
 .catalog-events,.catalog-body-group,.catalog-country-heading,.catalog-body-group>h4,.season-catalog-grid{background:#e8e8e8}
@@ -133,6 +133,3 @@ body{background:var(--ao-canvas)}
 .catalog-alias-list a{justify-self:start;font-size:11px}
 .season-timeline>span{background:#ad2731} /* elapsed season, not a review flag */
 @media(max-width:700px){.compact-view #college>.card,.compact-view #intake>.card{padding:12px}.compact-view #intake .intake-checklist{grid-template-columns:1fr}}
-
-/* Color sport markers, distinct from approval and evidence badges. */
-.catalog-sport-list .sport-color-emoji{display:inline-grid;place-items:center;width:23px;height:23px;flex:none;font:17px/1 "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;background:transparent;border:0;box-shadow:none}

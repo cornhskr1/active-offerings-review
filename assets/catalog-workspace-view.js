@@ -2,7 +2,7 @@
 let CATALOG_BROWSER={sport:'All sports',entry:'all',event:null,status:'all',restricted:false,date:'all',mode:'catalog',attention:false,details:false,olympicEdition:null};
 
 // Decorative, local SVGs: sport names remain the accessible labels.
-function catalogSportIcon(sport){
+function catalogSportIcon(sport,{outlineMedal=false}={}){
  const ball='<circle cx="12" cy="12" r="9"/>';
  const icons={
   football:'<g transform="rotate(-35 12 12)"><path d="M2 12C5 3 19 3 22 12c-3 9-17 9-20 0Z"/><path d="M8 12h8M10 10v4m2-4v4m2-4v4M5 7.5v9m14-9v9"/></g>',
@@ -21,6 +21,7 @@ function catalogSportIcon(sport){
   athletics:'<circle cx="15" cy="4" r="2"/><path d="m7 21 5-8 3 3 4 1M3 15l6-1 3-7 4 4 4-1M6 7l4-2 3 2"/>',
   esports:'<path d="M8 7h8c5 0 7 12 3 12l-4-4H9l-4 4C1 19 3 7 8 7Z"/><path d="M8 9v5m-2-2h4m6-2h.01M18 13h.01"/>',
   darts:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 8-8m-3 0 2-2 1 2 2 1-2 2"/>',
+  medal:'<path d="m6 2 4 9m8-9-4 9M9 2l3 7 3-7"/><circle cx="12" cy="16" r="5"/><path d="m12 14 .6 1.2 1.4.2-1 1 .2 1.4-1.2-.7-1.2.7.2-1.4-1-1 1.4-.2Z"/>',
   trophy:'<path d="M7 3h10v6c0 7-10 7-10 0ZM7 5H3v3c0 4 4 4 5 4m9-7h4v3c0 4-4 4-5 4M12 14v6m-5 1h10"/>',
   bowling:'<circle cx="12" cy="12" r="9"/><circle cx="10" cy="7" r="1"/><circle cx="14" cy="8" r="1"/><circle cx="11" cy="11" r="1"/>',
   cricket:'<path d="m15 2-5 7m-2-1 5 4-7 9-5-4Z"/><circle cx="18" cy="17" r="4"/><path d="m16 14 4 6"/>',
@@ -28,14 +29,8 @@ function catalogSportIcon(sport){
   surf:'<ellipse cx="12" cy="10" rx="4" ry="9" transform="rotate(35 12 10)"/><path d="M2 20q3-3 6 0t6 0t8 0"/>',
  };
  const name=String(sport).toLowerCase();
- const type=/basketball/.test(name)?'basketball':/baseball|softball/.test(name)?'baseball':/soccer/.test(name)?'soccer':/volleyball|water polo/.test(name)?'volleyball':/football|aussie|rugby/.test(name)?'football':/table tennis|ping.?pong/.test(name)?'tabletennis':/tennis/.test(name)?'tennis':/hockey/.test(name)?'hockey':/golf/.test(name)?'golf':/motorsport/.test(name)?'racing':/boxing|combat|wrestling/.test(name)?'boxing':/cycling/.test(name)?'cycling':/swim/.test(name)?'swimming':/track/.test(name)?'athletics':/esport/.test(name)?'esports':/dart/.test(name)?'darts':/bowling/.test(name)?'bowling':/cricket/.test(name)?'cricket':/lacrosse/.test(name)?'lacrosse':/surf/.test(name)?'surf':'trophy';
+ const type=outlineMedal&&name==='olympics'?'medal':/basketball/.test(name)?'basketball':/baseball|softball/.test(name)?'baseball':/soccer/.test(name)?'soccer':/volleyball|water polo/.test(name)?'volleyball':/football|aussie|rugby/.test(name)?'football':/table tennis|ping.?pong/.test(name)?'tabletennis':/tennis/.test(name)?'tennis':/hockey/.test(name)?'hockey':/golf/.test(name)?'golf':/motorsport/.test(name)?'racing':/boxing|combat|wrestling/.test(name)?'boxing':/cycling/.test(name)?'cycling':/swim/.test(name)?'swimming':/track/.test(name)?'athletics':/esport/.test(name)?'esports':/dart/.test(name)?'darts':/bowling/.test(name)?'bowling':/cricket/.test(name)?'cricket':/lacrosse/.test(name)?'lacrosse':/surf/.test(name)?'surf':'trophy';
  return `<svg class="sport-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[type]}</svg>`;
-}
-// Use color in the sports list, not in compliance states.
-const CATALOG_SPORT_EMOJI=Object.freeze({'Baseball':'⚾','Basketball':'🏀','Boxing':'🥊','Combat Sports':'🥊','Cricket':'🏏','Cycling':'🚲','Football':'🏈','NCAA Football':'🏈','NCAA Basketball':'🏀','Golf':'⛳','Hockey':'🏒','Ice Hockey':'🏒','Soccer':'⚽','Table Tennis':'🏓','Tennis':'🎾','Volleyball':'🏐','Olympics':'🏅'});
-function catalogSportRailIcon(sport){
- const glyph=Object.hasOwn(CATALOG_SPORT_EMOJI,sport)?CATALOG_SPORT_EMOJI[sport]:null;
- return glyph?`<span class="sport-color-emoji" aria-hidden="true">${glyph}</span>`:catalogSportIcon(sport);
 }
 const CATALOG_COUNTRY_FLAGS={"Austria": ["at"], "Italy": ["it"], "Iceland": ["is"], "Sweden": ["se"], "Zambia": ["zm"], "Norway": ["no"], "India": ["in"], "Mexico": ["mx"], "South Korea": ["kr"], "Portugal": ["pt"], "Kosovo": ["xk"], "Bangladesh": ["bd"], "Singapore": ["sg"], "Morocco": ["ma"], "Czech Republic": ["cz"], "Malaysia": ["my"], "Korea": ["kr"], "Bosnia and Herzegovina": ["ba"], "Canada": ["ca"], "Bolivia": ["bo"], "Ireland": ["ie"], "Vietnam": ["vn"], "Ethiopia": ["et"], "Poland": ["pl"], "Argentina": ["ar"], "Uruguay": ["uy"], "Latvia": ["lv"], "Iran": ["ir"], "Luxembourg": ["lu"], "Scotland": ["gb-sct"], "Brazil": ["br"], "Japan": ["jp"], "Suriname": ["sr"], "Faroe Islands": ["fo"], "Tunisia": ["tn"], "Egypt": ["eg"], "Dominican Republic": ["do"], "Iraq": ["iq"], "Estonia": ["ee"], "El Salvador": ["sv"], "Lithuania": ["lt"], "Montenegro": ["me"], "Netherlands": ["nl"], "Serbia": ["rs"], "Turkey": ["tr"], "New Zealand": ["nz"], "Algeria": ["dz"], "Wales": ["gb-wls"], "England": ["gb-eng"], "Saudi Arabia": ["sa"], "Australia": ["au"], "Thailand": ["th"], "Paraguay": ["py"], "Democratic Republic of the Congo": ["cd"], "France": ["fr"], "Malta": ["mt"], "Greece": ["gr"], "Romania": ["ro"], "Peru": ["pe"], "Croatia": ["hr"], "Costa Rica": ["cr"], "Finland": ["fi"], "Guatemala": ["gt"], "Belgium": ["be"], "Colombia": ["co"], "Denmark": ["dk"], "Slovenia": ["si"], "Bulgaria": ["bg"], "Spain": ["es"], "Qatar": ["qa"], "United Arab Emirates": ["ae"], "Honduras": ["hn"], "Chile": ["cl"], "Tanzania": ["tz"], "Nicaragua": ["ni"], "Uzbekistan": ["uz"], "Georgia": ["ge"], "Ivory Coast": ["ci"], "South Africa": ["za"], "Armenia": ["am"], "Slovakia": ["sk"], "Switzerland": ["ch"], "Azerbaijan": ["az"], "Ecuador": ["ec"], "China": ["cn"], "Germany": ["de"], "Israel": ["il"], "United States": ["us"], "Philippines": ["ph"], "England and Wales": ["gb-eng", "gb-wls"], "United States / Canada": ["us", "ca"], "United States / Mexico": ["us", "mx"]};
 function catalogCountryFlag(country){
@@ -286,7 +281,7 @@ function renderCatalogWorkspace(){
  const sports=[...new Set([...(DATA.catalog?.sections||[]).map(x=>x.sport),...known.map(x=>CatalogWorkspace.u18Placement(x,CATALOG_BROWSER_ROWS).sport)])];
  if(!state.sport||!['All sports',...sports].includes(state.sport))state.sport='All sports';
  if(!['All sports','Olympics'].includes(state.sport)&&query&&visible.length&&!visible.some(x=>x.sport===state.sport)){state.sport=visible[0].sport;state.entry='all';state.event=null;}
- const sportButton=s=>{const count=s==='All sports'?CATALOG_BROWSER_ROWS.length:CATALOG_BROWSER_ROWS.filter(x=>x.sport===s).length;return `<button type="button" class="catalog-select" data-browser-sport="${esc(s)}" aria-pressed="${state.sport===s}"><span class="catalog-sport-name">${catalogSportRailIcon(s)}<span>${esc(s)}</span></span><small title="Competition identities in this sport">${s==='Olympics'?'Games':count}</small></button>`;};
+ const sportButton=s=>{const count=s==='All sports'?CATALOG_BROWSER_ROWS.length:CATALOG_BROWSER_ROWS.filter(x=>x.sport===s).length;return `<button type="button" class="catalog-select" data-browser-sport="${esc(s)}" aria-pressed="${state.sport===s}"><span class="catalog-sport-name">${catalogSportIcon(s,{outlineMedal:true})}<span>${esc(s)}</span></span><small title="Competition identities in this sport">${s==='Olympics'?'Games':count}</small></button>`;};
  const collegeOpen=sportsNode.querySelector('.catalog-college-group')?.open||state.sport.startsWith('NCAA');
  sportsNode.innerHTML=sportButton('All sports')+sports.filter(s=>!s.startsWith('NCAA')).map(sportButton).join('')+`<details class="catalog-college-group" ${collegeOpen?'open':''}><summary>College sports · NCAA</summary>${sports.filter(s=>s.startsWith('NCAA')).map(sportButton).join('')}</details>`;
  const selected=state.sport==='All sports'?visible:visible.filter(x=>x.sport===state.sport);
@@ -295,7 +290,7 @@ function renderCatalogWorkspace(){
  document.getElementById('catalogResultCount').textContent=`Showing ${selected.length} competition identities${query?' · Search includes every season status':''} · Sport → country → governing body → competition A–Z.`;
  document.getElementById('catalogVersionBadge').textContent=`Catalog ${DATA.catalog?.menu_version||'version unavailable'}`;
  document.getElementById('catalogSportEvidence').hidden=state.sport==='All sports';
- document.getElementById('catalogSportTitle').innerHTML=catalogSportIcon(state.sport)+`<span>${esc(state.sport)}</span>`;
+ document.getElementById('catalogSportTitle').innerHTML=catalogSportIcon(state.sport,{outlineMedal:true})+`<span>${esc(state.sport)}</span>`;
  document.getElementById('catalogSeasonButtons').hidden=state.mode!=='catalog';
  document.getElementById('catalogDateButtons').hidden=state.mode!=='events';
  document.getElementById('catalogEventFilters').hidden=state.mode!=='events';
